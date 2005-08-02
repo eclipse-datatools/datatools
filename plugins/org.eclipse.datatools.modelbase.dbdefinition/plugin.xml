@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?> 
+<plugin
+   id="org.eclipse.datatools.modelbase.dbdefinition"
+   name="%pluginName"
+   version="0.7.0"
+   provider-name="%providerName">
+
+   <runtime>
+      <library name="databasedefinition.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.emf.ecore" export="true"/>
+      <import plugin="org.eclipse.datatools.modelbase.sql"/>
+   </requires>
+
+
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore"
+            class="org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage">
+      </package>
+   </extension>
+
+</plugin>

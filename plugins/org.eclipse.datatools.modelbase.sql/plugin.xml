@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.modelbase.sql"
+   name="%pluginName"
+   version="0.7.0"
+   provider-name="%providerName">
+
+   <runtime>
+      <library name="sqlmodel.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.emf.ecore" export="true"/>
+      <import plugin="org.eclipse.emf.ecore.sdo" export="true"/>
+   </requires>
+   
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"
+            class="org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"
+            class="org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/statements.ecore"
+            class="org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http:///org/eclipse/datatools/modelbase/sql/routines.ecore"
+            class="org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage">
+      </package>
+   </extension>
+
+
+</plugin>
