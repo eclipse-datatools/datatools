@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+ *************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *  
+ *************************************************************************
+
+-->
+</head>
+<body bgcolor="white">
+
+[<b>Provisional</b>] Defines the runtime API of the Open Data Access (ODA) extensions.
+ODA provides the capability to plug any external data source into  
+a data consumer application that supports the ODA framework.
+<p>
+The ODA extension framework defines a set of ODA design-time and 
+run-time interfaces.  
+It adopts the Eclipse plug-in framework for one to provide a designer tool, 
+and a runtime driver for data retrieval.
+This public API package specifies the Java interfaces of an 
+ODA extension's runtime driver.
+<br> 
+An ODA consumer application, such as the BIRT Data Engine, uses the 
+data source connection and data set query definitions specified at design time to
+access an ODA runtime driver for query execution and data retrieval.  
+<p>
+The ODA runtime interfaces are JDBC-like, but have been extended to 
+support additional capabilities of non-RDBMS data sources.  
+An ODA driver would implement the public runtime interfaces, 
+which would in turn wrap data-source-specific APIs, such as web services,  
+to retrieve a result set's data rows.
+<p>
+Below is a brief overview of the API's main interfaces.
+<br>The IDriver serves as the entry point to an ODA
+runtime driver.
+The driver produces a dedicated IConnection for establishing
+a connection to the data source provider.
+<br>An open connection in turn creates an IQuery to define
+the specifics of a data set query.  
+A connection also provides meta-data information on the 
+capabilities of the data source, and its
+supported data set types in IDataSetMetaData.
+<br>A query is executed to retrieve one or 
+more IResultSet instances. 
+<br>A result set is then used to fetch result data.  
+It also provides an IResultSetMetaData for its
+meta-data information. 
+
+<!-- Put @see and @since tags down here. -->
+@since 2.1
+
+</body>
+</html>

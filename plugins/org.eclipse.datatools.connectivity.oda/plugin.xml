@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.connectivity.oda"
+   name="Open Data Access"
+   version="2.1.0"
+   provider-name="Eclipse.org">
+
+   <runtime>
+      <library name="oda.jar">
+         <export name="*"/>
+      </library>
+      <library name="odaconsumer-helper.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+   </requires>
+
+	<extension-point id="dataSource" name="Open Data Access Design and Run-time Extension" schema="schema/datasource.exsd"/>
+
+</plugin>
