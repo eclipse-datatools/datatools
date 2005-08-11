@@ -58,10 +58,10 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="odaVersion" type="string" use="default" value="2.1">
+         <attribute name="odaVersion" type="string" use="default" value="3.0">
             <annotation>
                <documentation>
-                  Version of the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; interfaces for which this driver is developed. This element is required and should take the format of Major.Minor or Major.Minor.Service (e.g. 2.1 or 2.1.0).
+                  Version of the ODA interfaces for which this driver is developed. This element is required and should take the format of Major.Minor or Major.Minor.Service (e.g. 3.0 or 2.0.1).
                </documentation>
             </annotation>
          </attribute>
@@ -273,7 +273,7 @@ The configured values are passed through to the driver&apos;s implementation of 
                   The class name of a concrete log formatter, suitable for use by the driver-specific logging utility.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=""/>
+                  <meta.attribute kind="java"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -455,7 +455,7 @@ The configured values are passed through to the driver&apos;s implementation of 
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         2.1
+         3.0
       </documentation>
    </annotation>
 
@@ -471,7 +471,7 @@ The configured values are passed through to the driver&apos;s implementation of 
          name=&quot;Name&quot;
          point=&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;&gt;
       &lt;dataSource
-            odaVersion=&quot;2.1&quot;
+            odaVersion=&quot;2.0&quot;
    driverClass=&quot;org.eclipse.birt.report.data.oda.jdbc.OdaJdbcDriver&quot;
             id=&quot;org.eclipse.birt.report.data.oda.jdbc&quot;&gt;
            
