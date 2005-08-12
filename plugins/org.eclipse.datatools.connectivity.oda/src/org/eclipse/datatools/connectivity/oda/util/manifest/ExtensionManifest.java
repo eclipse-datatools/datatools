@@ -1,0 +1,353 @@
+/*
+ *************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *  
+ *************************************************************************
+ */
+
+package org.eclipse.datatools.connectivity.oda.util.manifest;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.Set;
+import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.birt.core.framework.IExtension;
+import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.util.OdaResources;
+
+/**
+ * Encapsulates access to the content of an ODA data source
+ * plug-in extension manifest.
+ */
+public class ExtensionManifest
+{
+	private String m_namespace;
+	private String m_dataSourceElementId;
+	private String m_odaVersion;
+	private String m_displayName;
+	private RuntimeInterface m_runtime;
+	private Hashtable m_dataSetTypes;
+	private TraceLogging m_traceLogging;
+	private Property[] m_properties = null;
+	private Properties m_propsVisibility;
+	
+	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
+	{
+	    IConfigurationElement dataSourceElement = 
+	        ManifestExplorer.getDataSourceElement( dataSourceExtn );
+		assert( dataSourceElement != null );
+		m_namespace = dataSourceExtn.getNamespace();
+		
+		// first cache the data source element's attributes
+		m_dataSourceElementId = dataSourceElement.getAttribute( "id" );
+		if( m_dataSourceElementId == null || m_dataSourceElementId.length() == 0 )
+			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
+		
+		m_odaVersion = dataSourceElement.getAttribute( "odaVersion" );
+
+		m_displayName = ManifestExplorer.getElementDisplayName( dataSourceElement );
+
+		// runtime interface
+		String driverClass = dataSourceElement.getAttribute( "driverClass" );
+		if( driverClass == null )
+			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DRIVER_CLASS_DEFINED,
+																	   new Object[] { m_dataSourceElementId } ) );
+		
+		String needSetThreadContextClassLoader = 
+		    dataSourceElement.getAttribute( "setThreadContextClassLoader" );
+		if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) && 
+			! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) )
+			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
+																	   new Object[] { needSetThreadContextClassLoader, m_dataSourceElementId } ) );
+		
+		m_runtime = 
+			new JavaRuntimeInterface( driverClass, 
+									  Boolean.valueOf( needSetThreadContextClassLoader ).booleanValue(),
+									  m_namespace );
+		
+		// data set definition elements in the same extension
+		m_dataSetTypes = ManifestExplorer.getDataSetElements( dataSourceExtn, m_dataSourceElementId );
+		
+		// trace logging element
+		IConfigurationElement[] traceLogging = dataSourceElement.getChildren( "traceLogging" );
+		int numOfTraceLogging = traceLogging.length;
+		// if multiple trace logging configuration exist, use the last one
+		if( numOfTraceLogging > 0 )
+			m_traceLogging = new TraceLogging( traceLogging[ numOfTraceLogging - 1 ], m_dataSourceElementId );
+
+		// properties element
+		IConfigurationElement[] propertiesElements = dataSourceElement.getChildren( "properties" );
+		if ( propertiesElements.length > 0 )
+		{
+			// if multiple properties elements exist, use the last one
+		    IConfigurationElement propertiesElement =
+	            propertiesElements[ propertiesElements.length - 1 ];
+		    m_properties = getPropertyDefinitions( propertiesElement );
+		    m_propsVisibility = getPropertyVisibilities( propertiesElement );
+		}
+	}
+	
+    /* 
+     * Parse and return all the property definitions, 
+     * combining both top-level and grouped properties.
+     */ 
+	static Property[] getPropertyDefinitions( IConfigurationElement propertiesElement )
+		throws OdaException
+	{
+		IConfigurationElement[] propElements = propertiesElement.getChildren( "property" );
+		IConfigurationElement[] propGroupElements = propertiesElement.getChildren( "propertyGroup" );
+	    int numProperties = propElements.length + propGroupElements.length;
+	    if ( numProperties <= 0 )
+	        return new Property[ 0 ];
+
+        ArrayList properties = new ArrayList();
+        
+        // first convert top-level property elements
+		for( int i = 0, size = propElements.length; i < size; i++ )
+		{
+			IConfigurationElement propElement = propElements[i];
+			properties.add( new Property( propElement ) );
+		}
+        
+        // next convert property elements in each group
+		for( int j = 0, size2 = propGroupElements.length; j < size2; j++ )
+		{
+			IConfigurationElement propGroupElement = propGroupElements[j];
+	        // no validation is done; up to the consumer to process
+			String groupName = propGroupElement.getAttribute( "name" );			    
+		    String groupDisplayName = ManifestExplorer.getElementDisplayName( propGroupElement );
+
+		    IConfigurationElement[] groupedPropElements = propGroupElement.getChildren( "property" );
+			for( int i = 0, size = groupedPropElements.length; i < size; i++ )
+			{
+				IConfigurationElement groupedPropElement = groupedPropElements[i];
+				properties.add( new Property( groupedPropElement, groupName, groupDisplayName ) );
+			}
+		}
+		
+        return (Property[]) properties.toArray( new Property[ properties.size() ] );
+	}
+
+	/*
+	 * Parse and return the property visibility definitions.
+	 */
+	static Properties getPropertyVisibilities( IConfigurationElement propertiesElement )
+		throws OdaException
+	{
+		// convert propertyVisibility elements to a collection
+		IConfigurationElement[] propVisibilityElements = 
+		    propertiesElement.getChildren( "propertyVisibility" );
+		if ( propVisibilityElements.length == 0 )
+		    return null;		// done
+		
+		Properties propsVisibility = new Properties();
+		for( int i = 0, size = propVisibilityElements.length; i < size; i++ )
+		{
+			IConfigurationElement propVisibltyElement = propVisibilityElements[i];
+			
+	        // no validation is done; up to the consumer to process
+			String propName = propVisibltyElement.getAttribute( "name" );
+			String propVisbility = propVisibltyElement.getAttribute( "visibility" );
+			propsVisibility.setProperty( propName, propVisbility );
+		}
+		return propsVisibility;
+	}
+	
+	/**
+	 * Returns the namespace associated with this ODA runtime driver.
+	 * @return	the namespace for the ODA driver, null if the driver does not have 
+	 * 			a namespace.
+	 */
+	public String getNamespace()
+	{
+		return m_namespace;
+	}
+	
+	/**
+	 * Returns the ID that uniquely identifies this 
+	 * ODA data source extension in an ODA consumer application's 
+	 * environment.  This is the extension that implements
+	 * the org.eclipse.datatools.connectivity.oda.dataSource extension point.
+	 * <br>Since each data source extension 
+	 * has one and only one data source element, the element ID
+	 * is used as the extension ID.
+	 * @return	the data source extension ID.
+	 */
+	public String getExtensionID()
+	{
+		return getDataSourceElementID();
+	}
+	
+	/**
+	 * Returns the ID that uniquely identifies the dataSource element defined
+	 * in the ODA data source extension.
+	 * @return	the data source element ID.
+	 */
+	public String getDataSourceElementID()
+	{
+		return m_dataSourceElementId;
+	}
+	
+	/**
+	 * Returns the driver installation location.
+	 * @return	the driver directory.
+	 * @throws IOException	if an IO error occurs.
+	 */
+	public URL getDriverLocation() throws IOException
+	{
+		// should be same as the runtime library location in this case
+		return m_runtime.getLibraryLocation();
+	}
+	
+	/**
+	 * Returns the version of the <i>org.eclipse.datatools.connectivity.oda</i> 
+	 * interfaces for which this driver is developed.
+	 * @return	The ODA interface version.  Its format is as defined
+	 * 			in the extension point schema.
+	 */
+	public String getOdaVersion()
+	{
+		return m_odaVersion;
+	}
+
+	/**
+	 * Returns the display name of the data source element
+	 * defined in the ODA data source extension.  
+	 * Defaults to element ID if no display name is specified.
+	 * It can be used by an ODA consumer application's designer tool 
+	 * to display a list of ODA data source extensions.
+	 * @return	The display name of the ODA data source element.
+	 */
+	public String getDataSourceDisplayName()
+	{
+	    return m_displayName;
+	}
+	
+	/**
+	 * Returns an array of DataSetType instances that
+	 * represent the dataSet elements defined in
+	 * this data source extension.
+	 * @return	an array of data set types.
+	 */
+	public DataSetType[] getDataSetTypes()
+	{
+		Collection dataSetTypes = m_dataSetTypes.values();
+		int size = dataSetTypes.size();
+		return (DataSetType[]) dataSetTypes.toArray( new DataSetType[size] );
+	}
+	
+	/**
+	 * Returns an array of ids of the dataSet elements 
+	 * defined in this data source extension.
+	 * @return	an array of data set type IDs.
+	 */
+	public String[] getDataSetTypeIDs()
+	{
+		Set dataSetTypeIDs = m_dataSetTypes.keySet();
+		int size = dataSetTypeIDs.size();
+		return (String[]) dataSetTypeIDs.toArray( new String[size] );
+	}
+	
+	/**
+	 * Returns the DataSetType instance that
+	 * represents the dataSet element with the given ID
+	 * defined in this data source extension.
+	 * If the given data set element ID is null and the data source
+	 * extension supports only one data set type, that
+	 * data set element will be returned by default.
+	 * @param dataSetElementID	the id of the data set element.
+	 * @return	the data set element definition.
+	 * @throws OdaException	if there is no data set definition associated 
+	 * 									with the specified data set element ID, or 
+	 * 									if there are more than one data set elements 
+	 * 									that match the ID.
+	 */
+	public DataSetType getDataSetType( String dataSetElementID ) throws OdaException
+	{
+		if( dataSetElementID == null )
+		{
+			// find default data set element and return it if found
+			if( m_dataSetTypes.size() != 1 )
+			    throwsIllegalArgumentOdaException( dataSetElementID );
+
+			Collection dataSetTypes = m_dataSetTypes.values();
+			assert( dataSetTypes.size() == 1 );
+			return (DataSetType) dataSetTypes.toArray()[0];
+		}
+		
+		DataSetType dsType = (DataSetType) m_dataSetTypes.get( dataSetElementID );
+
+		if( dsType == null )
+		    throwsIllegalArgumentOdaException( dataSetElementID );
+		
+		return dsType;
+	}
+	
+	private void throwsIllegalArgumentOdaException( String arg ) throws OdaException
+	{
+	    Exception illegalArg = new IllegalArgumentException( arg );
+	    throw new OdaException( illegalArg.getLocalizedMessage() );
+	}
+	
+	/**
+	 * Returns the optional trace logging configuration for the driver.
+	 * @return	the trace logging configuration, or null if no trace logging 
+	 * 			configuration was specified.
+	 */
+	public TraceLogging getTraceLogging()
+	{
+		return m_traceLogging;
+	}
+	
+	/**
+	 * Returns the runtime interface configuration.
+	 * @return	the runtime interface configuration.
+	 */
+	public RuntimeInterface getRuntimeInterface()
+	{
+		return m_runtime;
+	}
+	
+	/**
+	 * Returns an array of Property instances that represent
+	 * the properties defined by this data source extension.
+	 * The collection includes both top-level properties and
+	 * those in a group.
+	 * @return	an array of property definitions; 
+	 * 			an empty array is returned if no properties are defined.
+	 */
+	public Property[] getProperties()
+	{
+	    if ( m_properties == null )
+	    {
+	        // creates an empty array to return
+	        m_properties = new Property[ 0 ];
+	    }
+	    return m_properties;
+	}
+
+	/**
+	 * Returns a Properties collecton of property visibilty settings.
+	 * @return	Properties with the property name as key, and
+	 * 			its visibility setting as value.
+	 * 			An empty collection if no property visibility is defined.
+	 */
+	public Properties getPropertiesVisibility()
+	{
+	    if ( m_propsVisibility == null )
+	        m_propsVisibility = new Properties();
+	    return m_propsVisibility;
+	}
+
+}

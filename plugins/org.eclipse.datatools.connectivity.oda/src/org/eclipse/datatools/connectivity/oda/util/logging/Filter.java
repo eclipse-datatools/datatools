@@ -1,0 +1,39 @@
+//----------------------------------------------------------------------
+//  Filter.java
+//
+//  Copyright (c) 2004, 2005 Actuate Corporation.
+// All rights reserved. This program and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html
+//
+// Contributors:
+//  Actuate Corporation  - initial API and implementation
+//
+//  Filter is an interface class from which all filter classes 
+//  should implement.  Filters will filter LogRecords from its 
+//  parent handler based on the rules that are implemented in 
+//  isLoggable().
+//----------------------------------------------------------------------
+
+package org.eclipse.datatools.connectivity.oda.util.logging;
+
+/**
+ *	A Filter can provide more control on what is logged.
+ *	<br>
+ *	<br>
+ *	Each Handler can have an associated Filter and calls the 
+ *	<code>isLoggable</code> method to check whether the 
+ *	<code>LogRecord</code> should be published.
+ */
+
+public interface Filter
+{
+	/**
+	 * Checks if the the <code>LogRecord</code> should be published.
+	 * @param record	the log record.
+	 * @return			<code>true</code> if the log record should
+	 * 					be published; <code>false</code> otherwise.
+	 */
+    public boolean isLoggable( LogRecord record );
+}

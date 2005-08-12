@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+ *************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *  
+ *************************************************************************
+
+-->
+</head>
+<body bgcolor="white">
+
+Provides a trace logging utility to an 
+ODA runtime extension.
+<p>
+The package provides a default implementation of trace logging framework,
+which does not impose dependency on other packages or specific platforms.
+<br>It may serve to encapsulate the type of logging framework used, 
+by simply extending its implementation.  
+Each ODA runtime driver is then not required to make any direct changes when
+switching to another logging framework. 
+<p> 
+The use of this logging utility is purely optional.  
+An ODA runtime driver extension may directly use its driver-specific logging 
+utility, as appropriate.
+
+<!-- Put @see and @since tags down here. -->
+@since 1.0
+
+</body>
+</html>
