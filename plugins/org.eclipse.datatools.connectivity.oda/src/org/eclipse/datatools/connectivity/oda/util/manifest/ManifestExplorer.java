@@ -99,46 +99,54 @@ public class ManifestExplorer
 	/**
 	 * Returns the extension configuration information found 
 	 * in the plugin manifest file
-	 * of the specified data source extension.
+	 * for the specified data source extension of the extension
+	 * point org.eclipse.datatools.connectivity.oda.dataSource.
 	 * @param extensionId	the unique id of the data source element
 	 * 						in a data source extension.
-	 * @return	the extension manifest information.
-	 * @throws IllegalArgumentException	if no ODA driver plugin supports the data source extension ID.
+	 * @return				the extension manifest information
 	 * @throws OdaException	if the extension manifest is invalid.
+	 * @throws IllegalArgumentException if no extension is found.
 	 */
 	public ExtensionManifest getExtensionManifest( String extensionId ) 
 		throws OdaException
 	{
+	    ExtensionManifest manifest = getExtensionManifest( extensionId, 
+	            "org.eclipse.datatools.connectivity.oda.dataSource" );
+	    
+	    if ( manifest != null )
+	        return manifest;
+	    else
+	        throw new IllegalArgumentException( extensionId );
+	}
+	
+	/**
+	 * Returns the extension configuration information found
+	 * in the plugin manifest file for the specified data source
+	 * extension of the specified extension point.
+	 * @param extensionId		the unique id of the data source element
+	 * 							in the data source extension.
+	 * @param extensionPoint	the id of the extension point to search
+	 * @return					the extension manifest information,
+	 * 							or null if no extension configuration is found.
+	 * @throws OdaException		if the extension manifest is invalid.
+	 */
+	public ExtensionManifest getExtensionManifest( String extensionId, String extensionPoint ) 
+		throws OdaException
+	{
 	    if ( extensionId == null || extensionId.length() == 0 )
 			throw new IllegalArgumentException( extensionId );
-
-	    IExtension[] extensions = getDataSourceExtensions();
-		int length = ( extensions == null ) ? 
-        				0 : extensions.length;
-		
-		for( int i = 0; i < length; i++ )
-		{
-			IExtension extension = extensions[i];
-			
-			String dataSourceId = null;
-			try
-			{
-				IConfigurationElement dataSourceElement = 
-				    		getDataSourceElement( extension );
-				dataSourceId = dataSourceElement.getAttribute( "id" );
-			}
-			catch( OdaException ex )
-			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
-				continue;
-			}
-			
-			if( dataSourceId != null &&
-			    dataSourceId.equals( extensionId ) )
-				return new ExtensionManifest( extension );
-		}
-
-		throw new IllegalArgumentException( extensionId );
+	    
+	    if ( extensionPoint == null || extensionPoint.length() == 0 )
+			throw new IllegalArgumentException( extensionPoint );
+	
+	    IExtension[] extensions = getExtensions( extensionPoint );
+	    
+	    IExtension extension = findExtension( extensionId, extensions );
+	
+	    if ( extension != null )
+	        return new ExtensionManifest( extension );
+	    else
+	        return null;
 	}
 
 	/**
@@ -174,14 +182,50 @@ public class ManifestExplorer
 			manifestList.toArray( new ExtensionManifest[ numOfValidExtensions ] );
 	}
 
-	private IExtension[] getDataSourceExtensions()
+	private IExtension findExtension( String extensionId, IExtension[] extensions )
+		throws OdaException
+	{
+	    int length = ( extensions == null ) ? 
+				0 : extensions.length;
+
+		for( int i = 0; i < length; i++ )
+		{
+			IExtension extension = extensions[i];
+			
+			String dataSourceId = null;
+			try
+			{
+				IConfigurationElement dataSourceElement = 
+				    		getDataSourceElement( extension );
+				dataSourceId = dataSourceElement.getAttribute( "id" );
+			}
+			catch( OdaException ex )
+			{
+				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
+				continue;
+			}
+			
+			if( dataSourceId != null &&
+			    dataSourceId.equals( extensionId ) )
+				return extension;
+		}
+		
+		return null;
+	}
+	
+	private IExtension[] getExtensions( String extPoint )
 	{
 		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = 
-			pluginRegistry.getExtensionPoint( "org.eclipse.datatools.connectivity.oda.dataSource" );
+			pluginRegistry.getExtensionPoint( extPoint );
 		if ( extensionPoint == null )
 		    return null;
 		return extensionPoint.getExtensions();
+	}
+	
+	private IExtension[] getDataSourceExtensions()
+	{
+		return getExtensions( "org.eclipse.datatools.connectivity.oda.dataSource" );
 	}
 	
 	// Package helper methods
