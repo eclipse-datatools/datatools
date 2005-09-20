@@ -18,6 +18,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+
+import org.eclipse.datatools.connectivity.oda.IBlob;
+import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -218,4 +221,40 @@ public class SimpleResultSet implements IResultSet
 		// TODO data source dependent
 		throw new UnsupportedOperationException( "Please override and implement me." );
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBlob(int)
+     */
+    public IBlob getBlob( int index ) throws OdaException
+    {
+		// TODO data source dependent
+		throw new UnsupportedOperationException( "Please override and implement me." );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBlob(java.lang.String)
+     */
+    public IBlob getBlob( String columnName ) throws OdaException
+    {
+		// TODO data source dependent
+		throw new UnsupportedOperationException( "Please override and implement me." );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getClob(int)
+     */
+    public IClob getClob( int index ) throws OdaException
+    {
+		// TODO data source dependent
+		throw new UnsupportedOperationException( "Please override and implement me." );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getClob(java.lang.String)
+     */
+    public IClob getClob( String columnName ) throws OdaException
+    {
+		// TODO data source dependent
+		throw new UnsupportedOperationException( "Please override and implement me." );
+    }
 }

@@ -278,6 +278,62 @@ public interface IAdvancedQuery extends IQuery
 	public Timestamp getTimestamp( int parameterId ) throws OdaException;
 	
 	/**
+	 * Returns the IBlob value from the designated output parameter.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned IBlob object and its BLOB data would remain valid 
+	 * and accessible until this query instance is closed.
+	 * @param parameterName		name of the parameter.
+	 * @return		an IBlob object that represents the BLOB value; 
+	 * 				or <code>null</code> if the specific parameter 
+	 * 				has null value.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IBlob getBlob( String parameterName ) throws OdaException;
+
+	/**
+	 * Returns the IBlob value from the designated output parameter.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned IBlob object and its BLOB data would remain valid 
+	 * and accessible until this query instance is closed.
+	 * @param parameterId		id of the parameter (1-based).
+	 * @return		an IBlob object that represents the BLOB value; 
+	 * 				or <code>null</code> if the specific parameter 
+	 * 				has null value.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IBlob getBlob( int parameterId ) throws OdaException;
+	
+	/**
+	 * Returns the IClob value from the designated output parameter.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned IClob object and its CLOB data would remain valid 
+	 * and accessible until this query instance is closed.
+	 * @param parameterName		name of the parameter.
+	 * @return		an IClob object that represents the CLOB value;
+	 * 				or <code>null</code> if the specific parameter 
+	 * 				has null value.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IClob getClob( String parameterName ) throws OdaException;
+
+	/**
+	 * Returns the IClob value from the designated output parameter.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned IClob object and its CLOB data would remain valid 
+	 * and accessible until this query instance is closed.
+	 * @param parameterId		id of the parameter (1-based).
+	 * @return		an IClob object that represents the CLOB value;
+	 * 				or <code>null</code> if the specific parameter 
+	 * 				has null value.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IClob getClob( int parameterId ) throws OdaException;
+	
+	/**
 	 * Returns the structure value from the designated output parameter.  
 	 * This is not intended to return table structures.
 	 * <br>An optional method; applicable only if named structure output

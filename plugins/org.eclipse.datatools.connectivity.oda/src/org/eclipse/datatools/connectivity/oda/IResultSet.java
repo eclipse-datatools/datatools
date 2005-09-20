@@ -36,14 +36,14 @@ public interface IResultSet
 {
 	/**
 	 * Returns the metadata associated with this IResultSet.
-	 * @return	the metadata for this IResultSet.
-	 * @throws OdaException		if data source error occurs.
+	 * @return	the metadata for this IResultSet
+	 * @throws OdaException		if data source error occurs
 	 */
 	public IResultSetMetaData getMetaData( ) throws OdaException;
 	
 	/**
 	 * Closes the cursor associated with this IResultSet.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public void close( ) throws OdaException;
 	
@@ -51,10 +51,11 @@ public interface IResultSet
 	 * Specifies the maximum number of rows that can be fetched from this result set.
 	 * <br>An optional method.
 	 * @param max	maximum number of rows that can be fetched from this IResultSet;
-	 * 				zero means there is no limit. 
+	 * 				zero means there is no limit.
 	 * 				This value should not be greater than the maximum number of rows
 	 * 				specified in the related IQuery.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
+	 * @since	1.1
 	 */
 	public void setMaxRows( int max ) throws OdaException;
 	
@@ -62,15 +63,15 @@ public interface IResultSet
 	 * Moves the cursor down one row from its current position.
 	 * @return	true, if next data row exists and the maxRows limit has  
 	 * 			not been reached.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public boolean next( ) throws OdaException;
 	
 	/**
 	 * Returns the current row's 1-based index position.
 	 * <br>An optional method.
-	 * @return	current row's 1-based index position.
-	 * @throws OdaException		if data source error occurs.
+	 * @return	current row's 1-based index position
+	 * @throws OdaException		if data source error occurs
 	 */
 	public int getRow( ) throws OdaException;
 	
@@ -79,9 +80,9 @@ public interface IResultSet
 	 * An ODA runtime driver may or may not support getString() on a non-String 
 	 * type column.  
 	 * The format of the returned string is implementation-dependent.
-	 * @param index	column number (1-based).
-	 * @return		the string value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the string value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public String getString( int index ) throws OdaException;
 	
@@ -90,122 +91,184 @@ public interface IResultSet
 	 * An ODA runtime driver may or may not support getString() on a non-String 
 	 * type column.  
 	 * The format of the returned string is implementation-dependent.
-	 * @param columnName	column name.
-	 * @return				the string value in the specific column of the current row.
+	 * @param columnName	column name
+	 * @return				the string value in the specific column of the current row
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public String getString( String columnName ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as an int.
-	 * @param index	column number (1-based).
-	 * @return		the integer value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the integer value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public int getInt( int index ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as an int.
-	 * @param columnName	column name.
-	 * @return				the integer value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the integer value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public int getInt( String columnName ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a double.
-	 * @param index	column number (1-based).
-	 * @return		the double value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the double value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public double getDouble( int index ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a double.
-	 * @param columnName	column name.
-	 * @return				the double value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the double value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public double getDouble( String columnName ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a decimal.
-	 * @param index	column number (1-based).
-	 * @return		the decimal value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the decimal value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
+	 * @since	1.1
 	 */
 	public BigDecimal getBigDecimal( int index ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a decimal.
-	 * @param columnName	column name.
-	 * @return				the decimal value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the decimal value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
+	 * @since	1.1
 	 */
 	public BigDecimal getBigDecimal( String columnName ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Date.
-	 * @param index	column number (1-based).
-	 * @return		the java.sql.Date value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the java.sql.Date value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Date getDate( int index ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Date.
-	 * @param columnName	column name.
-	 * @return				the java.sql.Date value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the java.sql.Date value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Date getDate( String columnName ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Time.
-	 * @param index	column number (1-based).
-	 * @return		the java.sql.Time value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the java.sql.Time value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Time getTime( int index ) throws OdaException;
     
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Time.
-	 * @param columnName	column name.
-	 * @return				the java.sql.Time value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the java.sql.Time value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Time getTime( String columnName ) throws OdaException;
 
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Timestamp.
-	 * @param index	column number (1-based).
-	 * @return		the java.sql.Timestamp value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param index	column number (1-based)
+	 * @return		the java.sql.Timestamp value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Timestamp getTimestamp( int index ) throws OdaException;
 	
 	/**
 	 * Gets the value of the designated column in the current row as a java.sql.Timestamp.
-	 * @param columnName	column name.
-	 * @return				the java.sql.Timestamp value in the specific column of the current row.
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	column name
+	 * @return				the java.sql.Timestamp value in the specific column of the current row
+	 * @throws OdaException		if data source error occurs
 	 */
 	public Timestamp getTimestamp( String columnName ) throws OdaException;
+
+	/**
+	 * Gets the value of the designated column in the current row 
+	 * as an IBlob object.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned object and its BLOB data would remain valid 
+	 * and accessible until this result set is closed.
+	 * @param index	column number (1-based)
+	 * @return		an IBlob object that represents the BLOB value 
+	 * 				in the specific column of the current row;
+	 * 				or <code>null</code> if the specific column has null value
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IBlob getBlob( int index ) throws OdaException;
+	
+	/**
+	 * Gets the value of the designated column in the current row 
+	 * as an IBlob object.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned object and its BLOB data would remain valid 
+	 * and accessible until this result set is closed.
+	 * @param columnName	column name
+	 * @return		an IBlob object that represents the BLOB value 
+	 * 				in the specific column of the current row;
+	 * 				or <code>null</code> if the specific column has null value
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IBlob getBlob( String columnName ) throws OdaException;
+
+	/**
+	 * Gets the value of the designated column in the current row 
+	 * as an IClob object.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned object and its CLOB data would remain valid 
+	 * and accessible until this result set is closed.
+	 * @param index	column number (1-based)
+	 * @return		an IClob object that represents the CLOB value 
+	 * 				in the specific column of the current row;
+	 * 				or <code>null</code> if the specific column has null value
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IClob getClob( int index ) throws OdaException;
+	
+	/**
+	 * Gets the value of the designated column in the current row 
+	 * as an IClob object.
+	 * <p><b>Note:</b> The driver must guarantee that
+	 * the returned object and its CLOB data would remain valid 
+	 * and accessible until this result set is closed.
+	 * @param columnName	column name
+	 * @return		an IClob object that represents the CLOB value 
+	 * 				in the specific column of the current row;
+	 * 				or <code>null</code> if the specific column has null value
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public IClob getClob( String columnName ) throws OdaException;
 
 	/**
 	 * Returns whether the value read from the previous get&lt;type&gt; method
 	 * was invalid or null.  This needs to be called immediately after 
 	 * the call to a get&lt;type&gt; method.
-	 * @return 		true, if the previous get&lt;type&gt; call was invalid or null.
-	 * @throws OdaException		if data source error occurs.
+	 * @return 		true, if the previous get&lt;type&gt; call was invalid or null
+	 * @throws OdaException		if data source error occurs
 	 */
 	public boolean wasNull() throws OdaException;
     
 	/**
 	 * Returns the column index of the specified column name.
-	 * @param columnName	name of the column.
-	 * @return				column index (1-based).
-	 * @throws OdaException		if data source error occurs.
+	 * @param columnName	name of the column
+	 * @return				column index (1-based)
+	 * @throws OdaException		if data source error occurs
 	 */
 	public int findColumn( String columnName ) throws OdaException;
 }

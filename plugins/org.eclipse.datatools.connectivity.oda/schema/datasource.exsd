@@ -153,7 +153,7 @@ This data type mapping facilitates all ODA consumers to map from the same set of
          <attribute name="odaScalarDataType" use="default" value="String">
             <annotation>
                <documentation>
-                  The primary ODA scalar data type which the native type maps to. Supported ODA data types are: date, double, integer, string, time, timestamp and decimal.
+                  The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob and Clob.
                </documentation>
             </annotation>
             <simpleType>
@@ -171,6 +171,10 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Timestamp">
                   </enumeration>
                   <enumeration value="Decimal">
+                  </enumeration>
+                  <enumeration value="Blob">
+                  </enumeration>
+                  <enumeration value="Clob">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -206,6 +210,10 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Timestamp">
                   </enumeration>
                   <enumeration value="Decimal">
+                  </enumeration>
+                  <enumeration value="Blob">
+                  </enumeration>
+                  <enumeration value="Clob">
                   </enumeration>
                </restriction>
             </simpleType>

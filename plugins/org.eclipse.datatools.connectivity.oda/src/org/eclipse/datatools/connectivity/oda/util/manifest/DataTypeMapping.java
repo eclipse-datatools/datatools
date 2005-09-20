@@ -80,13 +80,15 @@ public class DataTypeMapping
 																	   OdaResources.NO_ODA_SCALAR_DATA_TYPE_DEFINED_1,
 																	   new Object[] { m_nativeType } ) );
 			
-		if( ! odaScalarType.equals( "Date" ) &&
-			! odaScalarType.equals( "Double" ) &&
-			! odaScalarType.equals( "Integer" ) &&
-			! odaScalarType.equals( "String" ) &&
-			! odaScalarType.equals( "Time" ) &&
-			! odaScalarType.equals( "Timestamp" ) &&
-			! odaScalarType.equals( "Decimal" ) )
+		if( ! odaScalarType.equalsIgnoreCase( "Date" ) &&
+			! odaScalarType.equalsIgnoreCase( "Double" ) &&
+			! odaScalarType.equalsIgnoreCase( "Integer" ) &&
+			! odaScalarType.equalsIgnoreCase( "String" ) &&
+			! odaScalarType.equalsIgnoreCase( "Time" ) &&
+			! odaScalarType.equalsIgnoreCase( "Timestamp" ) &&
+			! odaScalarType.equalsIgnoreCase( "Decimal" ) &&
+			! odaScalarType.equalsIgnoreCase( "Blob" ) &&
+			! odaScalarType.equalsIgnoreCase( "Clob" ) )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_ODA_SCALAR_DATA_TYPE_VALUE,
 																	   new Object[] { odaScalarType, m_nativeType } ) );
 	}
