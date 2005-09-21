@@ -24,10 +24,13 @@ public interface IConnection
 {
 	/**
 	 * Attempts to establish a connection based on the given connection 
-	 * properties.  The connection property "OdaDriverDir" is always 
-	 * passed as a service to drivers; its property value is the directory  
-	 * where the ODA runtime driver is installed.  
-	 * It is up to the individual ODA driver to process this property.
+	 * properties.
+	 * It is up to individual ODA driver to process the properties.
+	 * <br>Note: An ODA driver may use the 
+	 * <code>org.eclipse.datatools.connectivity.oda.util.manifest</code>
+	 * utility package to obtain information on itself,
+	 * such as the content of its plug-in manifest and the driver's
+	 * installation location.
 	 * @param connProperties	Properties necessary to establish a connection. 
 	 * @throws OdaException		if data source error occurs.
 	 */
