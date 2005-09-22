@@ -44,7 +44,7 @@ public class ManifestExplorer
 	private static ManifestExplorer sm_instance = new ManifestExplorer();
 
     // trace logging variables
-	private static String sm_loggerName = "org.eclipse.datatools.connectivity.oda.util.manifest";
+	private static String sm_loggerName = ManifestExplorer.class.getPackage().getName();
 	private static Logger sm_logger = Logger.getLogger( sm_loggerName );
 	
 	/**
@@ -144,9 +144,26 @@ public class ManifestExplorer
 	    IExtension extension = findExtension( extensionId, extensions );
 	
 	    if ( extension != null )
-	        return new ExtensionManifest( extension );
+	        return newExtensionManifest( extension );
 	    else
 	        return null;
+	}
+
+	/**
+	 * Returns the extension configuration information found
+	 * in the plugin manifest file for the specified data source
+	 * extension of the specified extension point.
+	 * @param platformExtension	core platform extension object
+	 * @return					the extension manifest information
+	 * @throws OdaException		if the extension manifest is invalid
+	 */
+	public ExtensionManifest newExtensionManifest( IExtension platformExtension ) 
+		throws OdaException
+	{
+	    if ( platformExtension == null )
+			throw new IllegalArgumentException( "null argument" );	// TODO: localized message
+	    
+        return new ExtensionManifest( platformExtension );
 	}
 
 	/**
@@ -169,7 +186,7 @@ public class ManifestExplorer
 			try
 			{
 				// validate and create extension manifest
-				manifestList.add( new ExtensionManifest( extension ) );
+				manifestList.add( newExtensionManifest( extension ) );
 			}
 			catch( OdaException ex )
 			{
