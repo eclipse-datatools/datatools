@@ -41,11 +41,14 @@ import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
  */
 public class ManifestExplorer
 {
-	private static ManifestExplorer sm_instance = new ManifestExplorer();
-
+	private static ManifestExplorer sm_instance = null;
+	
     // trace logging variables
 	private static String sm_loggerName = ManifestExplorer.class.getPackage().getName();
 	private static Logger sm_logger = Logger.getLogger( sm_loggerName );
+
+	private static final String DTP_ODA_EXT_POINT = 
+	    	"org.eclipse.datatools.connectivity.oda.dataSource";
 	
 	/**
 	 * Gets the <code>ManifestExplorer</code> instance to  
@@ -54,6 +57,8 @@ public class ManifestExplorer
 	 */
 	public static ManifestExplorer getInstance()
 	{
+	    if( sm_instance == null )
+	        sm_instance = new ManifestExplorer();
 		return sm_instance;
 	}
 	
@@ -99,8 +104,8 @@ public class ManifestExplorer
 	/**
 	 * Returns the extension configuration information found 
 	 * in the plugin manifest file
-	 * for the specified data source extension of the extension
-	 * point org.eclipse.datatools.connectivity.oda.dataSource.
+	 * for the specified data source extension that implements the 
+	 * extension point org.eclipse.datatools.connectivity.oda.dataSource.
 	 * @param extensionId	the unique id of the data source element
 	 * 						in a data source extension.
 	 * @return				the extension manifest information
@@ -111,12 +116,12 @@ public class ManifestExplorer
 		throws OdaException
 	{
 	    ExtensionManifest manifest = getExtensionManifest( extensionId, 
-	            "org.eclipse.datatools.connectivity.oda.dataSource" );
+	            							DTP_ODA_EXT_POINT );
 	    
-	    if ( manifest != null )
+	    if( manifest != null )
 	        return manifest;
-	    else
-	        throw new IllegalArgumentException( extensionId );
+
+	    throw new IllegalArgumentException( extensionId );
 	}
 	
 	/**
@@ -130,7 +135,8 @@ public class ManifestExplorer
 	 * 							or null if no extension configuration is found.
 	 * @throws OdaException		if the extension manifest is invalid.
 	 */
-	public ExtensionManifest getExtensionManifest( String extensionId, String extensionPoint ) 
+	public ExtensionManifest getExtensionManifest( String extensionId, 
+	        									   String extensionPoint ) 
 		throws OdaException
 	{
 	    if ( extensionId == null || extensionId.length() == 0 )
@@ -145,8 +151,8 @@ public class ManifestExplorer
 	
 	    if ( extension != null )
 	        return newExtensionManifest( extension );
-	    else
-	        return null;
+
+	    return null;
 	}
 
 	/**
@@ -157,7 +163,7 @@ public class ManifestExplorer
 	 * @return					the extension manifest information
 	 * @throws OdaException		if the extension manifest is invalid
 	 */
-	public ExtensionManifest newExtensionManifest( IExtension platformExtension ) 
+	ExtensionManifest newExtensionManifest( IExtension platformExtension ) 
 		throws OdaException
 	{
 	    if ( platformExtension == null )
@@ -176,7 +182,12 @@ public class ManifestExplorer
 	 */
 	public ExtensionManifest[] getExtensionManifests()
 	{
-		IExtension[] extensions = getDataSourceExtensions();
+		return getExtensionManifests( DTP_ODA_EXT_POINT );
+	}
+
+	public ExtensionManifest[] getExtensionManifests( String extensionPoint )
+	{
+		IExtension[] extensions = getExtensions( extensionPoint );
 		int length = ( extensions == null ) ? 
 						0 : extensions.length;
 		ArrayList manifestList = new ArrayList( length );
@@ -223,7 +234,7 @@ public class ManifestExplorer
 			}
 			
 			if( dataSourceId != null &&
-			    dataSourceId.equals( extensionId ) )
+			    dataSourceId.equalsIgnoreCase( extensionId ) )
 				return extension;
 		}
 		
@@ -242,7 +253,7 @@ public class ManifestExplorer
 	
 	private IExtension[] getDataSourceExtensions()
 	{
-		return getExtensions( "org.eclipse.datatools.connectivity.oda.dataSource" );
+		return getExtensions( DTP_ODA_EXT_POINT );
 	}
 	
 	// Package helper methods
