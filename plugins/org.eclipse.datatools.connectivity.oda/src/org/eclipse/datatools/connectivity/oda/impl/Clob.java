@@ -34,8 +34,7 @@ public class Clob implements IClob
     private long m_length = Long.MIN_VALUE;
     
     private Clob()
-    {
-        
+    {        
     }
     
     /**
@@ -57,6 +56,16 @@ public class Clob implements IClob
         
         return m_reader;
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IClob#getSubString()
+     */
+	public String getSubString( long position, int length ) 
+		throws OdaException
+	{
+        // let the oda.consumer.helper provides default implementation
+	    throw new UnsupportedOperationException();
+	}
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IClob#length()

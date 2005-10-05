@@ -40,6 +40,25 @@ public interface IBlob
 	public InputStream getBinaryStream() throws OdaException;
 	
 	/**
+	 * Retrieves all or part of the BLOB value designated by this 
+	 * IBlob instance as an array of bytes.
+	 * <br>An optional short-cut method to retrieve from the 
+	 * instance's binary stream.  
+	 * The ODA consumer helper framework provides default implementation,
+	 * which is used when an ODA driver throws an UnsupportedOperationException.
+	 * An ODA driver is however encouraged to
+	 * provide a more efficient implementation of this method.
+	 * @param position	the 1-based ordinal position of the first byte 
+	 * 					in the BLOB value to be extracted
+	 * @param length	the number of consecutive bytes to be copied
+	 * @return			a byte array containing up to <code>length</code> 
+	 * 					consecutive bytes from the BLOB value, 
+	 * 					starting with the byte at <code>position</code>
+	 * @throws OdaException		if data source error occurs
+	 */
+	public byte[] getBytes( long position, int length ) throws OdaException;
+	
+	/**
 	 * Returns the number of bytes in the BLOB value designated 
 	 * by this IBlob object.
 	 * An optional method; throws UnsupportedOperationException

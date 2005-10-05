@@ -59,6 +59,15 @@ public class Blob implements IBlob
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IBlob#getBytes(long, int)
+     */
+    public byte[] getBytes( long position, int length ) throws OdaException
+    {
+        // let the oda.consumer.helper provides default implementation
+	    throw new UnsupportedOperationException();
+    }
+    
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IBlob#length()
      */
     public long length() throws OdaException

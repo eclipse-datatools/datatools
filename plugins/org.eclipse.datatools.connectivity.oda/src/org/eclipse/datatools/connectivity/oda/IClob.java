@@ -37,7 +37,25 @@ public interface IClob
 	 * @throws OdaException		if data source error occurs
      */
 	public Reader getCharacterStream() throws OdaException;
-	
+
+	/**
+	 * Retrieves a copy of the specified substring in the CLOB value 
+	 * designated by this IClob instance. 
+	 * <br>An optional short-cut method to retrieve from the 
+	 * instance's character stream.
+	 * The ODA consumer helper framework provides default implementation,
+	 * which is used when an ODA driver throws an UnsupportedOperationException.
+	 * An ODA driver is however encouraged to
+	 * provide a more efficient implementation of this method.
+	 * @param position	 the first character of the substring to be extracted. 
+	 * 					 The first character is at position 1.
+	 * @param length	 the number of consecutive characters to be copied
+	 * @return	the specified substring that begins at <code>position</code>
+	 * 			and has up to <code>length</code> consecutive characters.
+	 * @throws OdaException	if data source error occurs
+	 */
+	public String getSubString( long position, int length ) throws OdaException;
+
 	/**
 	 * Returns the number of characters in the CLOB value 
 	 * designated by this IClob object.
