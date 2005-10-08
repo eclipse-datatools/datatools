@@ -210,7 +210,8 @@ public class Logger
     		m_handler.close();
     	
         m_handler = handler;
-        m_handler.setLevel( m_level );
+        if( m_handler != null )
+            m_handler.setLevel( m_level );
     }
 
     /**

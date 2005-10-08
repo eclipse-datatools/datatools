@@ -51,5 +51,25 @@ public interface IDriver
 	 * @throws OdaException		if driver error occurs.
 	 */
 	public int getMaxConnections() throws OdaException;
+
+	/**
+	 * Sets the driver context passed through from an application.
+	 * Its handling is specific to individual driver implementation.
+	 * The context argument could be null.  The method may be called 
+	 * by an ODA consumer application with a null argument, 
+	 * i.e. passing a null context object to this instance, 
+	 * only if a non-null context was previously passed through to 
+	 * the same instance. 
+	 * <br>
+	 * <b>Note:</b> This method should be called before getConnection( String ).
+	 * <br>An optional method.
+	 * If any part of the context is not recognized by the driver,
+	 * it should simply ignore, and not throw an exception.
+	 * @param context	Application context object of this instance.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public void setAppContext( Object context ) throws OdaException;
+
 }
 

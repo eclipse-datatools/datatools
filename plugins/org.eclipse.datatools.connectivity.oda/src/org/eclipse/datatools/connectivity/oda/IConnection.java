@@ -32,20 +32,39 @@ public interface IConnection
 	 * such as the content of its plug-in manifest and the driver's
 	 * installation location.
 	 * @param connProperties	Properties necessary to establish a connection. 
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public void open( Properties connProperties ) throws OdaException;
+
+	/**
+	 * Sets the connection context passed through from an application.
+	 * Its handling is specific to individual driver implementation.
+	 * The context argument could be null.  The method may be called 
+	 * by an ODA consumer application with a null argument, 
+	 * i.e. passing a null context object to this instance, 
+	 * only if a non-null context was previously passed through to 
+	 * the same instance. 
+	 * <br>
+	 * <b>Note:</b> This method should be called before open().
+	 * <br>An optional method.
+	 * If any part of the context is not recognized by the driver,
+	 * it should simply ignore, and not throw an exception.
+	 * @param context	Application context object of this instance.
+	 * @throws OdaException		if data source error occurs
+	 * @since		3.0
+	 */
+	public void setAppContext( Object context ) throws OdaException;
 	
 	/**
 	 * Attempts to close this connection.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public void close() throws OdaException;
 	
 	/**
 	 * Checks whether this has an established connection
 	 * @return	true if connection is established.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public boolean isOpen() throws OdaException;
 
@@ -57,7 +76,7 @@ public interface IConnection
 	 * before being called, e.g. getDataSourceObjects().  
 	 * @param dataSetType		String representation of a data set type. 
 	 * @return					an IDataSetMetaData object.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public IDataSetMetaData getMetaData( String dataSetType ) throws OdaException;
 
@@ -66,7 +85,7 @@ public interface IConnection
 	 * The data set type is implementation-dependent.
 	 * @param dataSetType		String representation of a data set type.
 	 * @return					an IQuery object.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public IQuery newQuery( String dataSetType ) throws OdaException;
 
@@ -75,7 +94,7 @@ public interface IConnection
 	 * that the driver can support for this connection.
 	 * @return	the maximum number of any type of queries that can be prepared and executed 
 	 * 			concurrently, or 0 if there is no limit or the limit is unknown.
-	 * @throws OdaException		if driver error occurs.
+	 * @throws OdaException		if driver error occurs
 	 */
 	public int getMaxQueries() throws OdaException;
 	
@@ -83,7 +102,7 @@ public interface IConnection
 	 * Commits all changes made since the previous commit/rollback.
 	 * <br>
 	 * An optional method.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public void commit() throws OdaException;
 	
@@ -91,8 +110,9 @@ public interface IConnection
 	 * Undoes all changes made since the previous commit/rollback.
 	 * <br>
 	 * An optional method.
-	 * @throws OdaException		if data source error occurs.
+	 * @throws OdaException		if data source error occurs
 	 */
 	public void rollback() throws OdaException;
+	
 }
 

@@ -149,7 +149,10 @@ public class LogManager
     	// if the caller wants the logger off, then don't bother setting the 
     	// rest of the settings since they'll be empty strings
     	if( isLogLevelOff( logger.getLevel().intValue() ) )
+    	{
+    	    logger.setHandler( null );
     		return logger;
+    	}
     	
     	// if the previous handler wasn't a file handler, then we need 
     	// to replace the existing handler with a new file handler

@@ -25,7 +25,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class SimpleDriver implements IDriver
 {
-	/**
+	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IDriver#getConnection(java.lang.String)
 	 */
 	public IConnection getConnection( String dataSourceType ) throws OdaException
@@ -47,7 +47,7 @@ public class SimpleDriver implements IDriver
 		return new SimpleConnection();
 	}
 
-	/**
+	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IDriver#setLogConfiguration()
 	 */
 	public void setLogConfiguration( LogConfiguration logConfig ) throws OdaException
@@ -55,11 +55,20 @@ public class SimpleDriver implements IDriver
 		// do nothing; assumes simple driver has no logging
 	}
 
-	/**
+	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IDriver#getMaxConnections()
 	 */
 	public int getMaxConnections() throws OdaException
 	{
 		return 0;	// no limit
 	}
+	
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.IDriver#setAppContext(java.lang.Object)
+	 */
+	public void setAppContext( Object context ) throws OdaException
+	{
+	    // do nothing; assumes no support for pass-through context
+	}
+
 }
