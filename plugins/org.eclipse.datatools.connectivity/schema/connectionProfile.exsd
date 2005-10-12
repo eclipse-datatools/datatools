@@ -1,0 +1,472 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="connectionProfile" name="Connection Profile Extension"/>
+      </appInfo>
+      <documentation>
+         This extension point provides a place for plugins to add support for different types of connection profiles.  It also allows extensions to extend the capabilities of defined extension points.
+
+&lt;p&gt;Connection profiles are defined using the connectionProfile element.  A connection profile will belong to a single category and a single configuration type.  Categories are used for grouping like types of connection profiles (e.g. queue, database, etc.).  Configuration types are used for specifying the type of configuration information provided by the profile (e.g. New Era Open Transport, JDBC, etc.).  The connection profile also specifies the file extension used to identify resources in the workspace that are instances of this profile.&lt;/p&gt;
+
+&lt;p&gt;The provider must define a corresponding &lt;samp&gt;org.eclipse.ui.newWizards&lt;/samp&gt; extension for creating the resource.  The provider should set &lt;samp&gt;category&lt;/samp&gt; to &lt;samp&gt;org.eclipse.datatools.connectivity&lt;/samp&gt;.  This will cause the new wizard to show up in the &lt;samp&gt;&quot;Connection Profiles&quot;&lt;/samp&gt; group in Eclipse&apos;s new wizard dialog.&lt;/p&gt;
+
+&lt;p&gt;The provider must define a corresponding &lt;samp&gt;org.eclipse.ui.propertyPages&lt;/samp&gt; for editing the connection profile&apos;s properties.  The provider should esure the &lt;samp&gt;nameFilter&lt;/samp&gt; attribute is consistent with the file extension specified in the &lt;samp&gt;connectionProfile&lt;/samp&gt;.&lt;/p&gt;
+
+&lt;p&gt;Connection factories supporting a given profile may be registered using the &lt;samp&gt;connectionFactory&lt;/samp&gt; element.  Connection factories allow plugins to create a connection to a server from a connection profile resource in the Eclipse workspace.  A connection profile provider should provide a connection factory extension.&lt;p/&gt;
+
+&lt;p&gt;Connection profiles may be extended by other plugins by defining the following extension elements:
+&lt;ul&gt;
+&lt;li&gt;&lt;samp&gt;deploy - &lt;/samp&gt;&lt;/li&gt;This element enables a plugin to provide deployment support for the specified connection profile.
+&lt;li&gt;&lt;samp&gt;contentExtension - &lt;/samp&gt;&lt;/li&gt;This element enables a plugin to provide a tree content provider to be used by the server viewer for displaying elements within a server.  NOTE: this may be implemented using an extension point specific to the common resource navigator.
+&lt;li&gt;&lt;samp&gt;profileExtension - &lt;/samp&gt;&lt;/li&gt;This element enables a plugin to provide additional configuration properties for the specified connection profile.  If you are extending a connection profile in this manner and these properties need to be specified when connecting to the server defined by the connection profile, you will need to provide a connection factory extension that makes use of the additional properties.
+&lt;/ul&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="category" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="configurationType" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="connectionProfile" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="connectionFactory" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="profileExtension" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="newWizard" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="wizardCategory" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified identifier of the target extension point, &lt;samp&gt;org.eclipse.datatools.connectivity.connectionProfile&lt;/samp&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  an optional identifier of the extension instance
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  an optional name of the extension instance
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="category">
+      <annotation>
+         <documentation>
+            This element is used to identify a category.  Categories are used to group related connection profile types (e.g. databases).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this category.  This value is referenced by &lt;samp&gt;connectionProfile&lt;/samp&gt; elements.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of a parent category, if this category has a parent.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The display name for this category.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connectionProfile">
+      <annotation>
+         <documentation>
+            This element is used to define a connection profile type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of this connection profile.  This must uniquely identify this connection profile.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The display name for this connection profile type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The category that this connection profile belongs to.  This must map back to a &lt;samp&gt;category/id&lt;/samp&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="configurationType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The configuration type for this connection profile.  This must map back to a &lt;samp&gt;configurationType/id&lt;/samp&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The plugin relative path to an image file.  This image will be used to identify resources of this type in the servers view.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="maintainConnection" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="configurationType">
+      <annotation>
+         <documentation>
+            This element is used to identify a configuration type.  A configuration type is used for determining the format of the configuration data used by a connection profile.  For example, &quot;New Era Open Transport&quot; or &quot;JDBC Connection URL&quot;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier for this configuration type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The name of this configuration type.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connectionFactory">
+      <annotation>
+         <documentation>
+            This element defines a connection factory that can be used to create connections to a server using the properties stored in a connection profile resource.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="profile" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The connection profile supported by this factory.  This should reference a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The name of this connection factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier for this connection factory.  This id may be used by plugins to retrieve an instance of this connection factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that implements this connection factory.  The specified class must be an instance of IConnectionFactory.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.IConnectionFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="profileExtension">
+      <annotation>
+         <documentation>
+            This element is used to define an extension that provides support for setting additional properties on a connection profile.  When implementing this extension point, you should also implement a connection factory if required.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="profile" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The connection profile that this extension supports.  This should map to a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The name of this extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A unique identifier for this extension.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="newWizard">
+      <annotation>
+         <documentation>
+            This element is used to identify a connection profile wizard. A wizard is used to create a connection profile
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier for the new wizard.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that implements this new wizard.  The specified class must be an instance of IWizard.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.jface.wizard.IWizard"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The plugin relative path to an image file.  This image will be used to identify the new wizard.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the new wizard.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="profile" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The connection profile supported by this new wizard.  This should reference a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="wizardCategory">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  This element is used to identify a wizard category.  Categories are used to group related connection profile wizards (e.g. databases).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of a parent category, if this category has a parent.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The display name for this category.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The plugin relative path to an image file.  This image will be used to identify wizard category in the new connection profile wizard.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the new wizard category.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="wizardTitle" type="string">
+            <annotation>
+               <documentation>
+                  wizard title
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="wizardDescription" type="string">
+            <annotation>
+               <documentation>
+                  wizard description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         DTP v0.x
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;pre&gt;
+ &lt;extension
+   id=&quot;sample&quot;
+   name=&quot;Sample Server Extension&quot;
+   point=&quot;org.eclipse.datatools.connectivity.connectionProfile&quot;&gt;
+  &lt;serverType
+    id=&quot;org.eclipse.datatools.connectivity.example.serverType&quot;
+    name=&quot;Server Type Name (e.g. EAS)&quot;&gt;
+  &lt;/serverType&gt;
+  &lt;technologyType
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleTechnology&quot;
+    name=&quot;Technology Type Name (e.g. J2EE EAR)&quot;&gt;
+  &lt;/technologyType&gt;
+  &lt;category
+    name=&quot;Sample Server Category&quot;
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleCategory&quot;&gt;
+  &lt;/category&gt;
+  &lt;configurationType
+    name=&quot;Sample Configuration Type&quot;
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleConfigurationType&quot;&gt;
+  &lt;/configurationType&gt;
+  &lt;connectionFactory
+    profile=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;
+    name=&quot;Shared Connection Factory&quot;
+    id=&quot;org.eclipse.datatools.connectivity.example.sharedConnectionFactory&quot;
+    class=&quot;org.eclipse.datatools.connectivity.example.SharedConnectionFactory&quot;&gt;
+  &lt;/connectionFactory&gt;
+  &lt;deploy
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleDeploy&quot;
+    name=&quot;Sample Deploy Manager&quot;
+    profile=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;
+    class=&quot;org.eclipse.datatools.connectivity.example.sampleDeployConnectionFactory&quot;&gt;
+  &lt;server
+    type=&quot;org.eclipse.datatools.connectivity.example.serverType&quot;&gt;
+   &lt;technology
+     type=&quot;org.eclipse.datatools.connectivity.example.sampleTechnology&quot;
+     versions=&quot;1.0,1.1&quot;&gt;
+   &lt;/technology&gt;
+  &lt;/server&gt;
+  &lt;/deploy&gt;
+  &lt;contentExtension
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleContentExtension&quot;
+    profile=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;
+    name=&quot;Sample Server Entities&quot;
+    class=&quot;org.eclipse.datatools.connectivity.example.SampleContentProvider&quot;&gt;
+  &lt;/contentExtension&gt;
+  &lt;profileExtension
+    profile=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;
+    name=&quot;Sample Extraneous Properties&quot;
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfileExtension&quot;&gt;
+  &lt;/profileExtension&gt;
+  &lt;connectionProfile
+    configurationType=&quot;org.eclipse.datatools.connectivity.example.sampleConfigurationType&quot;
+    name=&quot;Sample Connection Profile&quot;
+    icon=&quot;icons/sample.gif&quot;
+    category=&quot;org.eclipse.datatools.connectivity.example.sampleCategory&quot;
+    fileExtension=&quot;cfg_sample&quot;
+    id=&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;&gt;
+  &lt;/connectionProfile&gt;
+ &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The core servers plugin provides the following extension points:
+&lt;li&gt;org.eclipse.ui.newWizards - &lt;/li&gt;A category definition for grouping connection profile new wizards.
+&lt;li&gt;org.eclipse.datatools.connectivity.connectionProfile - &lt;/li&gt;Category definitions for databases, queue sessions, queues, application servers, directories.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+&lt;p&gt;Copyright (c) 2004-2005 Sybase, Inc.&lt;/p&gt;
+&lt;p&gt;All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+&lt;a href="http://www.eclipse.org/legal/epl-v10.html"&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Contributors:	rcernich - initial API and implementation&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+</schema>

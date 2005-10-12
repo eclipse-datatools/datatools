@@ -1,0 +1,279 @@
+/*******************************************************************************
+ * Copyright (c) 2004-2005 Sybase, Inc.
+ * 
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: brianf - initial API and implementation
+ ******************************************************************************/
+package org.eclipse.datatools.connectivity.drivers.models;
+
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+import org.eclipse.jface.util.Assert;
+import org.eclipse.jface.util.SafeRunnable;
+
+/**
+ * Represents a category which is provided by the
+ * "org.eclipse.datatools.connectivity.driverExtension" extension point.
+ * 
+ * @author brianf
+ */
+public class CategoryDescriptor implements Comparable {
+
+	// extension point details
+	public static final String DRIVERTYPE_TAG = "driverExtension";//$NON-NLS-1$
+	private static final String EXTENSION_POINT_NAME = "driverExtension"; //$NON-NLS-1$
+	private static final String CATEGORY_ELEMENT_TAG = "category"; //$NON-NLS-1$
+
+	// attributes
+	private static final String ID_ATTRIBUTE = "id"; //$NON-NLS-1$
+	private static final String NAME_ATTRIBUTE = "name"; //$NON-NLS-1$
+	private static final String DESCRIPTION_ATTRIBUTE = "description"; //$NON-NLS-1$	
+	private static final String PARENTCATEGORY_ATTRIBUTE = "parentCategory"; //$NON-NLS-1$	
+
+	// local list of descriptors
+	private static CategoryDescriptor[] fgCategoryDescriptors;
+
+	// local copy of configuration element
+	private IConfigurationElement fElement;
+
+	/**
+	 * Creates a new driver type descriptor for the given configuration element.
+	 */
+	private CategoryDescriptor(IConfigurationElement element) {
+		this.fElement = element;
+
+		/*
+		 * "A category extension for extension-point
+		 * org.eclipse.datatools.connectivity.driverExtension does not provide a
+		 * valid ID");
+		 */
+		Assert.isNotNull(getId(), DriverMgmtMessages
+				.getString("CategoryDescriptor.msg.id_missing")); //$NON-NLS-1$
+		/*
+		 * "A category extension for extension-point
+		 * org.eclipse.datatools.connectivity.driverExtension not provide a
+		 * valid name");
+		 */
+		Assert.isNotNull(getName(), DriverMgmtMessages
+				.getString("CategoryDescriptor.msg.name_missing")); //$NON-NLS-1$
+	}
+
+	/**
+	 * Returns all contributed categories
+	 */
+	public static CategoryDescriptor[] getCategoryDescriptors() {
+		if (fgCategoryDescriptors == null) {
+			IExtensionRegistry registry = Platform.getExtensionRegistry();
+			IConfigurationElement[] elements = registry
+					.getConfigurationElementsFor(ConnectivityPlugin
+							.getDefault().getBundle().getSymbolicName(),
+							EXTENSION_POINT_NAME);
+			fgCategoryDescriptors = createCategoryDescriptors(elements);
+		}
+		return fgCategoryDescriptors;
+	}
+
+	/**
+	 * Returns a category descriptor matching the id or null.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public static CategoryDescriptor getCategoryDescriptor(String id) {
+		if (fgCategoryDescriptors == null) {
+			fgCategoryDescriptors = getCategoryDescriptors();
+		}
+		for (int i = 0; i < fgCategoryDescriptors.length; i++) {
+			CategoryDescriptor desc = fgCategoryDescriptors[i];
+			if (desc.getId().equals(id))
+				return desc;
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a list of all root categories (i.e. those with no parent
+	 * category).
+	 * 
+	 * @return
+	 */
+	public static CategoryDescriptor[] getRootCategories() {
+		Collection col = Arrays.asList(getCategoryDescriptors());
+		ArrayList cats = new ArrayList(col.size());
+		CategoryDescriptor cat;
+		for (Iterator itr = col.iterator(); itr.hasNext();) {
+			cat = (CategoryDescriptor) itr.next();
+			if (cat.getParent() == null)
+				cats.add(cat);
+		}
+		return (CategoryDescriptor[]) cats.toArray(new CategoryDescriptor[cats
+				.size()]);
+	}
+
+	/**
+	 * @return
+	 */
+	public CategoryDescriptor getParent() {
+		if (getParentCategory() != null) {
+			Collection col = Arrays.asList(getCategoryDescriptors());
+			CategoryDescriptor cat;
+			for (Iterator itr = col.iterator(); itr.hasNext();) {
+				cat = (CategoryDescriptor) itr.next();
+				if (cat.getId().equals(getParentCategory()))
+					return cat;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a list of all child categories for this category.
+	 */
+	public List getChildCategories() {
+		Collection col = Arrays.asList(getCategoryDescriptors());
+		ArrayList cats = new ArrayList(col.size());
+		CategoryDescriptor cat;
+		for (Iterator itr = col.iterator(); itr.hasNext();) {
+			cat = (CategoryDescriptor) itr.next();
+			if (cat.getParent() != null
+					&& cat.getParentCategory().equals(getId())) {
+				cats.add(cat);
+			}
+		}
+		return cats;
+	}
+
+	/**
+	 * Returns a list of all associated driver types for this category.
+	 */
+	public List getAssociatedDriverTypes() {
+		Collection col = Arrays.asList(TemplateDescriptor
+				.getDriverTemplateDescriptors());
+		ArrayList dts = new ArrayList(col.size());
+		TemplateDescriptor dt;
+		for (Iterator itr = col.iterator(); itr.hasNext();) {
+			dt = (TemplateDescriptor) itr.next();
+			if (dt.getParentCategory() != null
+					&& dt.getParentCategory().equals(getId())) {
+				dts.add(dt);
+			}
+		}
+		return dts;
+	}
+
+	/**
+	 * Returns the category id.
+	 */
+	public String getId() {
+		return this.fElement.getAttribute(ID_ATTRIBUTE);
+	}
+
+	/**
+	 * Returns the category parent.
+	 */
+	public String getParentCategory() {
+		return this.fElement.getAttribute(PARENTCATEGORY_ATTRIBUTE);
+	}
+
+	/**
+	 * Returns the configuration element.
+	 */
+	public IConfigurationElement getElement() {
+		return this.fElement;
+	}
+
+	/**
+	 * Returns the name.
+	 */
+	public String getName() {
+		String name = this.fElement.getAttribute(NAME_ATTRIBUTE);
+		if (name == null && getId() != null)
+			name = getId();
+		return name;
+	}
+
+	/**
+	 * Returns the description.
+	 * 
+	 * @return the description or <code>null</code> if no description is
+	 *         provided
+	 */
+	public String getDescription() {
+		String description = this.fElement.getAttribute(DESCRIPTION_ATTRIBUTE);
+		if (description == null)
+			description = ""; //$NON-NLS-1$
+		return description;
+	}
+
+	/*
+	 * Implements a method from IComparable
+	 */
+	public int compareTo(Object o) {
+		if (o instanceof CategoryDescriptor)
+			return Collator.getInstance().compare(getName(),
+					((CategoryDescriptor) o).getName());
+		return Integer.MIN_VALUE;
+	}
+
+	/**
+	 * Creates the category descriptors.
+	 */
+	private static CategoryDescriptor[] createCategoryDescriptors(
+			IConfigurationElement[] elements) {
+		List result = new ArrayList(5);
+		Set descIds = new HashSet(5);
+		for (int i = 0; i < elements.length; i++) {
+			final IConfigurationElement element = elements[i];
+			if (CATEGORY_ELEMENT_TAG.equals(element.getName())) {
+
+				final CategoryDescriptor[] desc = new CategoryDescriptor[1];
+				Platform
+						.run(new SafeRunnable(
+								DriverMgmtMessages
+										.getString("CategoryDescriptor.msg.categoryDescriptorCreationError")) { // "CategoryDescriptor.categoryDescriptorCreationError.message")
+
+							// {
+							// //$NON-NLS-1$
+
+							public void run() throws Exception {
+								desc[0] = new CategoryDescriptor(element);
+							}
+						});
+
+				if (desc[0] != null && !descIds.contains(desc[0].getId())) {
+					result.add(desc[0]);
+					descIds.add(desc[0].getId());
+				}
+			}
+		}
+		Collections.sort(result);
+		return (CategoryDescriptor[]) result
+				.toArray(new CategoryDescriptor[result.size()]);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		return getName();
+	}
+}

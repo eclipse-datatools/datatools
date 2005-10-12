@@ -1,0 +1,144 @@
+/*******************************************************************************
+ * Copyright (c) 2005 Sybase, Inc.
+ * 
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: shongxum - initial API and implementation
+ ******************************************************************************/
+package org.eclipse.datatools.connectivity.ui.wizards;
+
+import java.util.Iterator;
+import java.util.Properties;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.BusyIndicator;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.PropertyPage;
+
+/**
+ * @author shongxum
+ */
+public abstract class ProfileDetailsPropertyPage extends PropertyPage {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.preference.PreferencePage#createContents(org.eclipse.swt.widgets.Composite)
+	 */
+	protected Control createContents(Composite parent) {
+		Composite container = new Composite(parent, SWT.NULL);
+		final GridLayout gridLayout = new GridLayout();
+		gridLayout.horizontalSpacing = 0;
+		gridLayout.marginWidth = 0;
+		gridLayout.marginHeight = 0;
+		container.setLayout(gridLayout);
+
+		final Composite composite = new Composite(container, SWT.NONE);
+		composite.setLayout(new FillLayout());
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+		createCustomContents(composite);
+
+		final Button button = new Button(container, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+
+			public void widgetSelected(SelectionEvent e) {
+				testConnection();
+			}
+		});
+		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
+		button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+				IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE);
+
+		return container;
+	}
+
+	protected abstract void createCustomContents(Composite parent);
+
+	protected abstract Properties collectProperties();
+
+	protected IConnectionProfile getConnectionProfile() {
+		IAdaptable element = getElement();
+		IConnectionProfile profile = (IConnectionProfile) element
+				.getAdapter(IConnectionProfile.class);
+		return profile;
+	}
+
+	protected void testConnection() {
+		IConnectionProfile cp = getConnectionProfile();
+		ConnectionProfile profile = new ConnectionProfile(cp.getName(), cp
+				.getDescription(), cp.getProviderId(),
+				cp.getParentProfile() == null ? "" : cp.getParentProfile()
+						.getName(), false);
+		profile.setBaseProperties(collectProperties());
+
+		final Job pingJob = new PingJob(getShell(), profile);
+		pingJob.schedule();
+		BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
+
+			public void run() {
+				try {
+					pingJob.join();
+				}
+				catch (InterruptedException e) {
+				}
+			}
+		});
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.preference.IPreferencePage#performOk()
+	 */
+	public boolean performOk() {
+		IConnectionProfile profile = getConnectionProfile();
+		Properties oldProps = profile.getBaseProperties();
+		Properties newProps = collectProperties();
+		Object key, oldObj, newObj;
+		boolean changed = false;
+		for (Iterator itr = oldProps.keySet().iterator(); itr.hasNext();) {
+			key = itr.next();
+			oldObj = oldProps.get(key);
+			newObj = newProps.get(key);
+			if (!oldObj.equals(newObj)) {
+				changed = true;
+				break;
+			}
+		}
+		profile.setBaseProperties(newProps);
+		if (changed && profile.isConnected()) {
+			if (MessageDialog.openQuestion(getShell(), ConnectivityUIPlugin
+					.getDefault().getResourceString(
+							"ConnectionProfileDetailsPage.AskConfirmation"),
+					ConnectivityUIPlugin.getDefault().getResourceString(
+							"ConnectionProfileDetailsPage.AskReconnect"))) {
+				profile.disconnect(null);
+				profile.connect(null);
+			}
+		}
+		return super.performOk();
+	}
+
+}

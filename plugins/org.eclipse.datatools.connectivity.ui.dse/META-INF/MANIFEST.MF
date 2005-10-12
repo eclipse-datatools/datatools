@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.Name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse; singleton:=true
+Bundle-Version: 0.0.2
+Bundle-Activator: org.eclipse.datatools.connectivity.ui.dse.DSEPlugin
+Bundle-Vendor: %Plugin.ProviderName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.connectivity.navigator.views,
+ org.eclipse.datatools.connectivity.navigator.common
+Eclipse-AutoStart: true

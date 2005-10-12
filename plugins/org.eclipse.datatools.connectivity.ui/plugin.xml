@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%drivers.preference.page.name"
+            class="org.eclipse.datatools.connectivity.internal.ui.preferences.DriverPreferences"
+            id="org.eclipse.datatools.connectivity.internal.ui.preferences.DriverPreferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
+            name="%Extension.PropertyPage.General.Name"
+            class="org.eclipse.datatools.connectivity.internal.ui.wizards.CPPropetyPage"
+            id="org.eclipse.datatools.connectivity.internal.ui.properties.ProfileGeneralPropertyPage">
+      </page>
+      <page
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
+            class="org.eclipse.datatools.connectivity.internal.ui.wizards.CPVersionPropertyPage"
+            name="%Extension.PropertyPage.Version.Name"
+            id="org.eclipse.datatools.connectivity.internal.ui.properties.ProfileVersionPropertyPage">
+      </page>
+   </extension>
+   <extension
+         id="profileFailure"
+         name="%ProfileFailure"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="false">
+      </persistent>
+   </extension>
+   <extension
+         id="org.eclipse.datatools.connectivity.internal.ui.wizards"
+         name="New Connection Profile Wizard"
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            name="%Extension.NewWizard.Name"
+            icon="icons/connection1_newwiz.gif"
+            category="org.eclipse.datatools.connectivity"
+            class="org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizard"
+            id="org.eclipse.datatools.connectivity.internal.ui.wizards.newconnectionprofile">
+         <description>
+            %Extension.NewWizard.Description
+         </description>
+      </wizard>
+      <category
+            id="org.eclipse.datatools.connectivity"
+            name="Connection Profiles"/>
+   </extension>
+</plugin>
