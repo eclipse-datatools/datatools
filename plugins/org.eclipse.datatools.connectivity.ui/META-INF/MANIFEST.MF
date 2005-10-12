@@ -18,3 +18,4 @@ Export-Package: org.eclipse.datatools.connectivity.internal.ui,
  org.eclipse.datatools.connectivity.internal.ui.wizards,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.connectivity.ui.wizards
+Bundle-ClassPath: connectivityui.jar
