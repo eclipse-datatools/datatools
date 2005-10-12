@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity
 Eclipse-AutoStart: true
+Export-Package: org.eclipse.datatools.connectivity.db.generic
+Bundle-ClassPath: genericdb.jar

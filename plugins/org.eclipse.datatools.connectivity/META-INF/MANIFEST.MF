@@ -15,3 +15,4 @@ Export-Package: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.drivers.models,
  org.eclipse.datatools.connectivity.internal,
  org.eclipse.datatools.connectivity.operations
+Bundle-ClassPath: connectivity.jar
