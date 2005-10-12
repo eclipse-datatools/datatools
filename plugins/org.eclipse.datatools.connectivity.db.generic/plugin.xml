@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">
+      <category
+            id="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="Database"/>
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.genericDriverTemplate"
+            jarList=""
+            name="Generic JDBC Driver"
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="Driver Class"
+                  value=""
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.dbdefinition"
+                  name="DBDefinition Model Instance"
+                  value=""
+                  required="true"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>
+
+</plugin>
