@@ -6,7 +6,12 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity" id="driverExtension" name="Driver Definition Extension"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         &lt;p&gt;
+The driverExtension is used by developers to define templates that describe the mechanical components necessary for opening connections to servers.  Users create specific driver definitions using these templates.
+&lt;/p&gt;
+&lt;p&gt;
+The driver definitions are intended to be used in conjunction with connection profiles, where the driver definition specifies the mechanics (e.g. JAR files, driver class names, etc.) necessary for opening the connection and where the connection profile specifies the particulars for connecting to a specific server (e.g. host, port, user ID, password, etc.).
+&lt;/p&gt;
       </documentation>
    </annotation>
 
@@ -50,7 +55,7 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The id of this category.  This value is referenced by &lt;samp&gt;connectionProfile&lt;/samp&gt; elements.
+                  The id of this category.  This value is referenced by &lt;samp&gt;driverTemplate&lt;/samp&gt; elements.
                </documentation>
             </annotation>
          </attribute>
@@ -112,28 +117,28 @@
          <attribute name="parentCategory" type="string">
             <annotation>
                <documentation>
-                  The id of a category.
+                  The id of the category to which this template belongs.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="jarList" type="string">
             <annotation>
                <documentation>
-                  
+                  The list of JAR files used to create the classpath used when connecting using this driver.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="createDefault" type="boolean" use="default" value="true">
             <annotation>
                <documentation>
-                  
+                  Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="emptyJarListIsOK" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  
+                  Specifies whether or not it is valid for the jarList property to be empty.  Default is false.
                </documentation>
             </annotation>
          </attribute>
@@ -141,6 +146,11 @@
    </element>
 
    <element name="properties">
+      <annotation>
+         <documentation>
+            Parent container for specific driver definition properties.
+         </documentation>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="property" minOccurs="1" maxOccurs="unbounded"/>
@@ -149,11 +159,16 @@
    </element>
 
    <element name="property">
+      <annotation>
+         <documentation>
+            A property definition for a driver definition.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The id of this property.
+                  The id of this property.  Used to identify this property in the driver definition.
                </documentation>
             </annotation>
          </attribute>
@@ -174,35 +189,35 @@
          <attribute name="value" type="string">
             <annotation>
                <documentation>
-                  
+                  The default value for this property.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="visible" type="boolean" use="default" value="true">
             <annotation>
                <documentation>
-                  
+                  Specifies whether or not this property is visible and editable to the user.  Default is true.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="example" type="string">
             <annotation>
                <documentation>
-                  
+                  Specifies an example value for this property.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="required" type="boolean" use="default" value="true">
             <annotation>
                <documentation>
-                  
+                  Specifies whether or not this is a required property.  Default is true.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="generated" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  
+                  currently unused and undefined.
                </documentation>
             </annotation>
          </attribute>
@@ -214,7 +229,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         DTP 0.x
       </documentation>
    </annotation>
 
@@ -223,7 +238,36 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         &lt;extension
+         point=&quot;org.eclipse.datatools.connectivity.driverExtension&quot;&gt;
+      &lt;category
+            id=&quot;org.eclipse.datatools.connectivity.db.driverCategory&quot;
+            name=&quot;Database&quot;/&gt;
+      &lt;driverTemplate
+            createDefault=&quot;false&quot;
+            emptyJarListIsOK=&quot;false&quot;
+            id=&quot;org.eclipse.datatools.connectivity.db.genericDriverTemplate&quot;
+            jarList=&quot;&quot;
+            name=&quot;Generic JDBC Driver&quot;
+            parentCategory=&quot;org.eclipse.datatools.connectivity.db.driverCategory&quot;&gt;
+         &lt;properties&gt;
+            &lt;property
+                  generated=&quot;false&quot;
+                  id=&quot;org.eclipse.datatools.connectivity.db.driverClass&quot;
+                  name=&quot;Driver Class&quot;
+                  value=&quot;&quot;
+                  required=&quot;true&quot;
+                  visible=&quot;true&quot;/&gt;
+            &lt;property
+                  generated=&quot;false&quot;
+                  id=&quot;org.eclipse.datatools.connectivity.db.dbdefinition&quot;
+                  name=&quot;DBDefinition Model Instance&quot;
+                  value=&quot;&quot;
+                  required=&quot;true&quot;
+                  visible=&quot;true&quot;/&gt;
+         &lt;/properties&gt;
+      &lt;/driverTemplate&gt;
+   &lt;/extension&gt;
       </documentation>
    </annotation>
 
@@ -250,13 +294,13 @@
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-&lt;p&gt;Copyright (c) 2004-2005 Sybase, Inc.&lt;/p&gt;
+         &lt;p&gt;Copyright (c) 2004-2005 Sybase, Inc.&lt;/p&gt;
 &lt;p&gt;All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
-&lt;a href="http://www.eclipse.org/legal/epl-v10.html"&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Contributors:	brianf - initial API and implementation&lt;/p&gt;
+&lt;p&gt;Contributors: brianf - initial API and implementation&lt;/p&gt;
       </documentation>
    </annotation>
 
