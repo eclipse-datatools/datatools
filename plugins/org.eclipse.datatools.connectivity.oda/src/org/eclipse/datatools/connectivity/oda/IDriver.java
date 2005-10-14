@@ -39,7 +39,7 @@ public interface IDriver
 	/**
 	 * An optional method to set the trace logging configuration of the ODA runtime driver
 	 * for the given type of data source and its runtime connection(s).
-	 * @param LogConfiguration      The trace logging configuration.
+	 * @param logConfig      		The trace logging configuration.
 	 * @throws OdaException			if ODA runtime driver error occurs.
 	 */
 	public void setLogConfiguration( LogConfiguration logConfig ) throws OdaException;

@@ -102,8 +102,8 @@ public interface IParameterMetaData
 	
 	/**
 	 * Returns the maximum number of decimal digits for the specified parameter.
-	 * getPrecision() should only apply to numeric data types, however, it is up 
-	 * to an ODA data provider to determine those java.sql.Types that are 
+	 * This method should only apply to numeric data types; however, it is up 
+	 * to an ODA data provider to determine those data types that are 
 	 * applicable. The maximum precision allowed on a data type may vary depending 
 	 * on the data provider.
 	 * <br>An optional method.
@@ -115,9 +115,10 @@ public interface IParameterMetaData
 	
 	/**
 	 * Returns the maximum number of digits to the right of the decimal point 
-	 * for the specified parameter. getScale() should only apply to numeric 
-	 * data types, however, it is up to an ODA data provider to determine 
-	 * those java.sql.Types that are applicable. The maximum scale allowed on 
+	 * for the specified parameter. 
+	 * This method should only apply to numeric data types;
+	 * however, it is up to an ODA data provider to determine 
+	 * those data types that are applicable. The maximum scale allowed on 
 	 * a data type may vary depending on the data provider.
 	 * <br>An optional method.
 	 * @param param	1-based index of the parameter.

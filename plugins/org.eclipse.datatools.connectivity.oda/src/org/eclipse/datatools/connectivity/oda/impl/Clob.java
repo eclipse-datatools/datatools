@@ -39,7 +39,7 @@ public class Clob implements IClob
     
     /**
      * Create a new Clob from a <code>String</code>.
-     * @param clob		String representing the clob.
+     * @param string		String representing the clob.
      */
     public Clob( String string )
     {

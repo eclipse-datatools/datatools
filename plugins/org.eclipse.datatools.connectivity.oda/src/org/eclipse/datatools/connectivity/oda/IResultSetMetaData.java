@@ -93,8 +93,8 @@ public interface IResultSetMetaData
 
 	/**
 	 * Returns the maximum number of decimal digits of the specific column.  
-	 * getPrecision() should only apply to numeric data types, however, it is 
-	 * up to an ODA data provider to determine those java.sql.Types that are 
+	 * This method should only apply to numeric data types; however, it is 
+	 * up to an ODA data provider to determine those data types that are 
 	 * applicable. The maximum precision allowed on a data type may vary 
 	 * depending on the data provider.
 	 * <br>An optional method.
@@ -106,9 +106,9 @@ public interface IResultSetMetaData
 	
 	/**
 	 * Returns the maximum number of digits to the right of the decimal 
-	 * point of the specific column.  getScale() should only apply 
+	 * point of the specific column.  This method should only apply 
 	 * to numeric data types, however, it is up to an ODA data provider 
-	 * to determine those java.sql.Types that are applicable. 
+	 * to determine those data types that are applicable. 
 	 * The maximum scale allowed on a data type may vary depending on the 
 	 * data provider.
 	 * <br>An optional method.

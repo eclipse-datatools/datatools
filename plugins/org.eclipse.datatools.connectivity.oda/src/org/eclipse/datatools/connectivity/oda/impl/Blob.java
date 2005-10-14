@@ -40,7 +40,7 @@ public class Blob implements IBlob
     
     /**
      * Create a new Blob from a byte array.
-     * @param blob		byte array representing the blob.
+     * @param byteArray		byte array representing the blob.
      */
     public Blob( byte[] byteArray )
     {

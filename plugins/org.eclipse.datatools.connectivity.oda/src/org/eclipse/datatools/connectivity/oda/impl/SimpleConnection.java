@@ -85,7 +85,7 @@ public class SimpleConnection implements IConnection
 	}
 
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IConnectionMetaData#getMaxQueries()
+	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMaxQueries()
 	 */
 	public int getMaxQueries() throws OdaException
 	{

@@ -48,7 +48,7 @@ public class SimpleDriver implements IDriver
 	}
 
 	/*
-	 * @see org.eclipse.datatools.connectivity.oda.IDriver#setLogConfiguration()
+	 * @see org.eclipse.datatools.connectivity.oda.IDriver#setLogConfiguration(org.eclipse.datatools.connectivity.oda.LogConfiguration)
 	 */
 	public void setLogConfiguration( LogConfiguration logConfig ) throws OdaException
 	{

@@ -74,7 +74,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	}
 	
 	/**
-	 * @see org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface#getDriverFileLocation()
+	 * @see org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface#getDriverFileLocation(java.lang.String)
 	 */
 	public URL getDriverFileLocation( String filename ) throws IOException
 	{
