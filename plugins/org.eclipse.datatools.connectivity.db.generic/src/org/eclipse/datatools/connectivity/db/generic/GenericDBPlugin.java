@@ -10,8 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.db.generic;
 
-import org.eclipse.ui.plugin.*;
+import java.text.MessageFormat;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -19,9 +23,11 @@ import org.osgi.framework.BundleContext;
  */
 public class GenericDBPlugin extends AbstractUIPlugin {
 
-	//The shared instance.
+	// The shared instance.
 	private static GenericDBPlugin plugin;
-	
+	// Resource bundle.
+	private ResourceBundle resourceBundle;
+
 	/**
 	 * The constructor.
 	 */
@@ -52,13 +58,50 @@ public class GenericDBPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path.
+	 * 
 	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.connectivity.db.generic", path);
+		return AbstractUIPlugin.imageDescriptorFromPlugin(
+				"org.eclipse.datatools.connectivity.db.generic", path);
 	}
+
+	/**
+	 * Returns the plugin's resource bundle,
+	 */
+	public ResourceBundle getResourceBundle() {
+		try {
+			if (resourceBundle == null)
+				resourceBundle = ResourceBundle
+						.getBundle("org.eclipse.datatools.connectivity.db.generic.resources");
+		}
+		catch (MissingResourceException x) {
+			resourceBundle = null;
+		}
+		return resourceBundle;
+	}
+
+	public String getResourceString(String key) {
+		try {
+			ResourceBundle resBundle = getResourceBundle();
+			if (resBundle == null) {
+				return key;
+			}
+
+			return resBundle.getString(key);
+		}
+		catch (MissingResourceException e) {
+			return key;
+		}
+	}
+
+	public String getResourceString(String key, Object[] arguments) {
+		MessageFormat f = new MessageFormat(getResourceString(key));
+
+		return f.format(arguments);
+	}
+
 }

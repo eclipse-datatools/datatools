@@ -31,6 +31,7 @@ public class ConnectionProfileConstants {
 	// Properties common to all profiles
 	public static final String PROP_UID = PROP_PREFIX + "uid"; //$NON-NLS-1$
 	public static final String PROP_PWD = PROP_PREFIX + "pwd"; //$NON-NLS-1$
+	public static final String PROP_DRIVER_DEFINITION_ID = PROP_PREFIX + "driverDefinitionID"; //$NON-NLS-1$
 
 	// Version caching
 	public static final String PROP_SERVER_PREFIX = PROP_PREFIX + "server."; //$NON-NLS-1$

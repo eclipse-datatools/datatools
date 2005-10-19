@@ -10,6 +10,10 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -23,6 +27,7 @@ public class DriverInstance {
 	private TemplateDescriptor mTemplate;
 	private IPropertySet mInstance;
 	private Properties mInstanceProps;
+	private ClassLoader mClassLoader;
 
 	public DriverInstance(IPropertySet instance) {
 		this.mInstance = instance;
@@ -87,10 +92,18 @@ public class DriverInstance {
 		return rtnStr;
 	}
 
+	public String getProperty(String id) {
+		String rtnStr = null;
+		if (mInstanceProps != null) {
+			rtnStr = mInstanceProps.getProperty(id);
+		}
+		return rtnStr;
+	}
+
 	public TemplateDescriptor getTemplate() {
 		return this.mTemplate;
 	}
-	
+
 	private String[] parseString(String str_list, String token) {
 		StringTokenizer tk = new StringTokenizer(str_list, token);
 		String[] pieces = new String[tk.countTokens()];
@@ -102,6 +115,48 @@ public class DriverInstance {
 
 	public IPropertySet getPropertySet() {
 		return this.mInstance;
+	}
+
+	public ClassLoader getClassLoader() throws Exception {
+		if (mClassLoader == null) {
+			mClassLoader = createClassLoader(null);
+		}
+		return mClassLoader;
+	}
+
+	public ClassLoader createClassLoader(ClassLoader parentCL) throws Exception {
+		String jarList = getJarList();
+		if ((jarList == null || jarList.trim().length() == 0)
+				&& !getTemplate().getEmptyJarListIsOKFlag()) {
+			throw new Exception(
+					"Invalid driver definition; JAR list not defined.");
+		}
+
+		String[] jarStrings = getJarListAsArray();
+		URL[] jars = new URL[jarStrings.length];
+		for (int index = 0, count = jars.length; index < count; ++index) {
+			try {
+				jars[index] = new File(jarStrings[index]).toURL();
+			}
+			catch (MalformedURLException e) {
+				throw new Exception("Invalid driver class path", e);
+			}
+		}
+		if (parentCL == null) {
+			return URLClassLoader.newInstance(jars);
+		}
+		return URLClassLoader.newInstance(jars, parentCL);
+	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof DriverInstance) {
+			return obj == this || getId().equals(((DriverInstance)obj).getId());
+		}
+		return false;
+	}
+
+	public int hashCode() {
+		return getId().hashCode();
 	}
 
 }

@@ -28,8 +28,59 @@
                   value=""
                   required="true"
                   visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.defaultURL"
+                  name="Default Connection URL"
+                  value="jdbc:localhost:1000"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.defaultUID"
+                  name="Default User ID"
+                  value="me"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.defaultPWD"
+                  name="Default Password"
+                  value=""
+                  required="false"
+                  visible="true"/>
          </properties>
       </driverTemplate>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="org.eclipse.datatools.connectivity.db.category"
+            name="Databases"/>
+      <configurationType
+            id="org.eclipse.datatools.connectivity.db.configurationType"/>
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
+            name="Generic Database Connection Profile"/>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            id="java.sql.Connection"
+            name="JDBC Connection"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
+            name="Ping Connection Factory"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+      <newWizard
+            class="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
+            name="Generic Database Connection Profile"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
 
 </plugin>
