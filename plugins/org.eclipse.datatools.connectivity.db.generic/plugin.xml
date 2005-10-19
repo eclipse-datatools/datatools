@@ -82,5 +82,17 @@
             name="Generic Database Connection Profile"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.connectivity.db.generic.GenericDBProfilePropertyPage"
+            id="org.eclipse.datatools.connectivity.db.generic.profileProperties"
+            name="Database Connection Properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+      </page>
+   </extension>
 
 </plugin>

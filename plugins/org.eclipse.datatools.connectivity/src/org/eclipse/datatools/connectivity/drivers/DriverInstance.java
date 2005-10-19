@@ -97,7 +97,7 @@ public class DriverInstance {
 		if (mInstanceProps != null) {
 			rtnStr = mInstanceProps.getProperty(id);
 		}
-		return rtnStr;
+		return rtnStr == null ? new String() : rtnStr;
 	}
 
 	public TemplateDescriptor getTemplate() {
@@ -150,7 +150,8 @@ public class DriverInstance {
 
 	public boolean equals(Object obj) {
 		if (obj instanceof DriverInstance) {
-			return obj == this || getId().equals(((DriverInstance)obj).getId());
+			return obj == this
+					|| getId().equals(((DriverInstance) obj).getId());
 		}
 		return false;
 	}
