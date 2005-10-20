@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.connectivity.oda.flatfile"
+   name="DTP ODA-Flat File Driver"
+   version="3.0.0"
+   provider-name="Eclipse.org"
+   class="org.eclipse.datatools.connectivity.oda.flatfile.plugin.FlatfilePlugin">
+   <runtime>
+      <library name="oda-flatfile.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda"/>
+      <import plugin="org.junit" optional="true"/>
+   </requires>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.dataSource">
+      <dataSource
+            odaVersion="3.0"
+            driverClass="org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver"
+            defaultDisplayName="%datasource.name"
+            id="org.eclipse.datatools.connectivity.oda.flatfile"
+            setThreadContextClassLoader="false">
+         <properties>
+         <propertyGroup
+               defaultDisplayName="Connection Properties"
+               name="connectionProperties">
+            <property
+                  type="string"
+                  defaultDisplayName="Home Folder"
+                  canInherit="true"
+                  name="HOME"/>
+            <property
+                  type="string"
+                  defaultDisplayName="Character Set"
+                  canInherit="true"
+                  name="CHARSET"/>
+            <property
+                  type="string"
+                  canInherit="true"
+                  defaultDisplayName="Includes Data Type (Yes/No)"
+                  name="INCLTYPELINE"/>                 
+         </propertyGroup>
+         </properties>
+      </dataSource>
+      <dataSet
+            defaultDisplayName="%dataset.name"
+            id="org.eclipse.datatools.connectivity.oda.flatfile.dataSet">
+            <dataTypeMapping
+                  nativeDataType="BIT"
+                  nativeDataTypeCode="-7"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="TINYINT"
+                  nativeDataTypeCode="-6"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="SMALLINT"
+                  nativeDataTypeCode="5"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="INTEGER"
+                  nativeDataTypeCode="4"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="BIGINT"
+                  nativeDataTypeCode="-5"
+                  odaScalarDataType="Decimal"/>
+            <dataTypeMapping
+                  nativeDataType="FLOAT"
+                  nativeDataTypeCode="6"
+                  odaScalarDataType="Double"/>
+            <dataTypeMapping
+                  nativeDataType="REAL"
+                  nativeDataTypeCode="7"
+                  odaScalarDataType="Double"/>
+            <dataTypeMapping
+                  nativeDataType="DOUBLE"
+                  nativeDataTypeCode="8"
+                  odaScalarDataType="Double"/>
+            <dataTypeMapping
+                  nativeDataType="NUMERIC"
+                  nativeDataTypeCode="2"
+                  odaScalarDataType="Decimal"/>
+            <dataTypeMapping
+                  nativeDataType="DECIMAL"
+                  nativeDataTypeCode="3"
+                  odaScalarDataType="Decimal"/>
+            <dataTypeMapping
+                  nativeDataType="CHAR"
+                  nativeDataTypeCode="1"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="VARCHAR"
+                  nativeDataTypeCode="12"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="LONGVARCHAR"
+                  nativeDataTypeCode="-1"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="DATE"
+                  nativeDataTypeCode="91"
+                  odaScalarDataType="Date"/>
+            <dataTypeMapping
+                  nativeDataType="TIME"
+                  nativeDataTypeCode="92"
+                  odaScalarDataType="Time"/>
+            <dataTypeMapping
+                  nativeDataType="TIMESTAMP"
+                  nativeDataTypeCode="93"
+                  odaScalarDataType="Timestamp"/>
+            <dataTypeMapping
+                  nativeDataType="BINARY"
+                  nativeDataTypeCode="-2"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="VARBINARY"
+                  nativeDataTypeCode="-3"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="LONGVARBINARY"
+                  nativeDataTypeCode="-4"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="BOOLEAN"
+                  nativeDataTypeCode="16"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="BLOB"
+                  nativeDataTypeCode="2004"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="CLOB"
+                  nativeDataTypeCode="2005"
+                  odaScalarDataType="String"/>
+      </dataSet>
+   </extension>
+</plugin>
