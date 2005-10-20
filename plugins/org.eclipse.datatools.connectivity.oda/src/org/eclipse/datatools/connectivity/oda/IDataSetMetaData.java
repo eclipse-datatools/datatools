@@ -212,7 +212,7 @@ public interface IDataSetMetaData
 	
 	/**
 	 * Returns the dynamic sorting mode supported by this data set type.  
-	 * @return	the dynamic sorting mode supported by the data soruce; one 
+	 * @return	the dynamic sorting mode supported by the data source; one 
 	 * 			of <code>sortModeNone</code>, <code>sortModeSingleOrder</code>,
 	 * 			<code>sortModeColumnOrder</code>, <code>sortModeSingleColumn</code>
 	 */
