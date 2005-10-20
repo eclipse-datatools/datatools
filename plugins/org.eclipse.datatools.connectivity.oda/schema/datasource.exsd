@@ -621,12 +621,12 @@ The configured values are passed through to the driver&apos;s implementation of 
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         The plugin &lt;i&gt;org.eclipse.birt.report.data.oda.jdbc&lt;/i&gt;, supplied with the Eclipse BIRT installation, provides a good example for implementing an ODA runtime extension.
+         The plug-in &lt;i&gt;org.eclipse.datatools.connectivity.oda.flatfile&lt;/i&gt;, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA run-time extension.
 &lt;br&gt;
 In addition, a set of default implementation of the main ODA runtime interfaces are provided in the
 &lt;i&gt;org.eclipse.datatools.connectivity.oda.impl&lt;/i&gt; package.
 These classes assume the behavior of a simple ODA driver,
-and have labelled TODO tasks for a driver developer to implement data source dependent behavior.
+and have labeled TODO tasks for a driver developer to implement data source specific behavior.
 These concrete classes are provided for use as templates or base classes to aid in the development of an ODA custom driver.  Their use is purely optional.
       </documentation>
    </annotation>
