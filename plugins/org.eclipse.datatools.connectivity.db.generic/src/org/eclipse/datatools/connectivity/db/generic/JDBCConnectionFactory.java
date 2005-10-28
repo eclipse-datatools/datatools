@@ -34,7 +34,8 @@ public class JDBCConnectionFactory implements IConnectionFactory {
 	 * @see org.eclipse.datatools.connectivity.IConnectionFactory#createConnection(org.eclipse.datatools.connectivity.IConnectionProfile)
 	 */
 	public IConnection createConnection(IConnectionProfile profile) {
-		return null;
+        JDBCConnection connect = new JDBCConnection(profile);
+        return connect;
 	}
 
 	/* (non-Javadoc)
@@ -42,7 +43,9 @@ public class JDBCConnectionFactory implements IConnectionFactory {
 	 */
 	public IConnection createConnection(IConnectionProfile profile, String uid,
 			String pwd) {
-		return null;
+        // TODO: Need to do something about provided uid and pwd here?
+        JDBCConnection connect = new JDBCConnection(profile);
+        return connect;
 	}
 
 }
