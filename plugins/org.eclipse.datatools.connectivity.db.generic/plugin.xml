@@ -21,6 +21,8 @@
                   value=""
                   required="true"
                   visible="true"/>
+<!-- JG, 102805: Removing for now, until this has something behind it -->
+<!--
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.dbdefinition"
@@ -28,6 +30,7 @@
                   value=""
                   required="true"
                   visible="true"/>
+-->
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.defaultURL"
