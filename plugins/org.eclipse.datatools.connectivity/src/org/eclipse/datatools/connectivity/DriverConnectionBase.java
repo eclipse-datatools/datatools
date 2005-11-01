@@ -13,26 +13,23 @@ package org.eclipse.datatools.connectivity;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 
-public abstract class DriverConnectionBase implements IConnection {
+public abstract class DriverConnectionBase extends VersionProviderConnection {
 
-	private IConnectionProfile mProfile;
 	private DriverInstance mDriver;
 	private Object mConnection;
 	private Throwable mConnectException;
 
-	public DriverConnectionBase(IConnectionProfile profile) {
-		super();
+	public DriverConnectionBase(IConnectionProfile profile, Class factoryClass) {
+		super(profile, factoryClass);
 	}
 
-	public void open(IConnectionProfile profile) {
+	public void open() {
 		if (mConnection != null) {
 			close();
 		}
 
 		mConnection = null;
 		mConnectException = null;
-
-		mProfile = profile;
 
 		internalCreateConnection();
 	}
@@ -45,39 +42,35 @@ public abstract class DriverConnectionBase implements IConnection {
 		return mConnectException;
 	}
 
-	protected IConnectionProfile getConnectionProfile() {
-		return mProfile;
-	}
-
-	protected abstract Object createConnection() throws Throwable;
+	protected abstract Object createConnection(ClassLoader cl) throws Throwable;
+	
+	protected abstract void initVersions();
 
 	protected ClassLoader getParentClassLoader() {
 		return null;
 	}
 
 	private void internalCreateConnection() {
-		ClassLoader oldCL = Thread.currentThread().getContextClassLoader();
-
 		try {
 			DriverInstance driver = getDriverDefinition();
 			ClassLoader driverCL = driver
 					.createClassLoader(getParentClassLoader());
-			if (driverCL != null) {
-				Thread.currentThread().setContextClassLoader(driverCL);
-			}
-			mConnection = createConnection();
+			
+			mConnection = createConnection(driverCL);
+
+			initVersions();
+			updateVersionCache();
 		}
 		catch (Throwable t) {
 			mConnectException = t;
-		}
-		finally {
-			Thread.currentThread().setContextClassLoader(oldCL);
+			clearVersionCache();
 		}
 	}
 
 	protected DriverInstance getDriverDefinition() throws Exception {
 		if (mDriver == null) {
-			String driverID = getConnectionProfile().getBaseProperties()
+			String driverID = getConnectionProfile()
+					.getBaseProperties()
 					.getProperty(
 							ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
 			if (driverID == null) {
