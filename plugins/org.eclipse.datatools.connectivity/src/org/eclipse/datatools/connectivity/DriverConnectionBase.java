@@ -58,6 +58,12 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 			
 			mConnection = createConnection(driverCL);
 
+			if (mConnection == null) {
+				// Connect attempt failed without throwing an exception.
+				// We'll generate one for them.
+				throw new Exception("Connection failed with unspecified error.");
+			}
+
 			initVersions();
 			updateVersionCache();
 		}
