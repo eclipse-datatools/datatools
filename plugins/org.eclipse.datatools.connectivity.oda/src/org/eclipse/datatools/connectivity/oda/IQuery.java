@@ -20,8 +20,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * The base interface in the statement hierarchy.  A 
- * statement contains a query text that can be executed and 
+ * The base interface in the query hierarchy.  A 
+ * query contains a query text that can be executed and 
  * return data in a single result set.
  * It may have scalar input parameters.
  * <p>
@@ -29,9 +29,9 @@ import java.sql.Timestamp;
  * calling execute().  For example:
  * <p>
  * <code>
- * statement.prepare( "SELECT * FROM TABLE" );<br>
+ * query.prepare( "SELECT * FROM TABLE" );<br>
  * // prepare succeeded, no exception was thrown <br>
- * statement.execute();</pre>
+ * query.execute();</pre>
  * </code>
  * <p>
  * An input parameter may be referenced by name or position.  
@@ -98,7 +98,7 @@ public interface IQuery
 	
 	/**
 	 * Specifies the maximum number of rows that can be fetched from 
-	 * the statement's result set(s).
+	 * the query's result set(s).
 	 * <br>An optional method.
 	 * @param max	the maximum number of rows that can be fetched from each 
 	 * 				result set of this IQuery; zero means there is no limit.
@@ -108,7 +108,7 @@ public interface IQuery
 	
 	/**
 	 * Returns the maximum number of rows that can be fetched from 
-	 * the statement's result set(s).
+	 * the query's result set(s).
 	 * <br>An optional method.
 	 * @return	the maximum number of rows that can be fetched from each  
 	 * 			result set of this IQuery; zero means there is no limit.
@@ -127,7 +127,7 @@ public interface IQuery
 	public IResultSetMetaData getMetaData() throws OdaException;
 		
 	/**
-	 * Executes the statement's prepared query and returns 
+	 * Executes the query's prepared query text and returns 
 	 * a single IResultSet object.
 	 * <b>Note:</b> This should only be called after prepare().
 	 * @return	an IResultSet object.
@@ -139,7 +139,7 @@ public interface IQuery
 	 * An optional method to clear the current input parameter values immediately.
 	 * <p>
 	 * In general, input parameter values remain in force for repeated use of a 
-	 * statement.  Setting a parameter value automatically clears its previous value. 
+	 * query.  Setting a parameter value automatically clears its previous value. 
 	 * However, to reset all the parameters to their default values without 
 	 * explicitly setting new values, use this method. 
 	 * @throws OdaException		if data source error occurs
@@ -291,7 +291,7 @@ public interface IQuery
 	 * The setter must be called before this <code>IQuery</code> is executed 
 	 * or before <code>getMoreResults</code> is called.  
 	 * More sort keys can be added to the SortSpec after 
-	 * it is associated with the statement.  
+	 * it is associated with the query.  
 	 * The final sort specification is then applied 
 	 * to subsequent result set(s) at execution.  
 	 * <p>

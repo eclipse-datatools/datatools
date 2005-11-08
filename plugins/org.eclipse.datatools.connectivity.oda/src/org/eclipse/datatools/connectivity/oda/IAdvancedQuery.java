@@ -20,14 +20,14 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * An extended interface for statements that 
+ * An extended interface for queries that 
  * may have complex input parameters, scalar or complex output parameters, 
  * and/or return a single or multiple result sets. 
  * <p>A result set may be extended to reference by name.
  * An input parameter may be extended to support the structure or table data type.  
  * An output parameter may be of scalar or structure data type.
  * <br>
- * All advanced statement implementations (e.g. stored procedures, SAP R/3 BAPI's) 
+ * All advanced query implementations (e.g. stored procedures, SAP R/3 BAPI's) 
  * should implement this interface.
  * <p>
  * A parameter may be referenced by name or position.  
@@ -41,7 +41,7 @@ import java.sql.Timestamp;
 public interface IAdvancedQuery extends IQuery
 {	
 	/**
-	 * Executes the statement's prepared query that may return multiple result sets.
+	 * Executes the query's prepared query that may return multiple result sets.
 	 * <b>Note:</b> This should only be called after prepare().
 	 * @return	true if the next result is an IResultSet object; 
 	 * 			false if there are no result sets.
@@ -58,10 +58,10 @@ public interface IAdvancedQuery extends IQuery
 	public IResultSet getResultSet() throws OdaException;
 	
 	/**
-	 * Moves to the statement's next result set. This method also implicitly 
+	 * Moves to the query's next result set. This method also implicitly 
 	 * closes the current IResultSet object obtained from the previous call to
 	 * getResultSet().
-	 * @return	true, if there are more results in this statement object.
+	 * @return	true, if there are more results in this query object.
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public boolean getMoreResults() throws OdaException;
@@ -69,7 +69,7 @@ public interface IAdvancedQuery extends IQuery
 	/**
 	 * Returns the names of result sets that can be returned by
 	 * this IAdvancedQuery.
-	 * <br>An optional method; only applicable to a statement that  
+	 * <br>An optional method; only applicable to a query that  
 	 * can retrieve multiple named result sets.
 	 * @return	an array of result set names.
 	 * @throws OdaException		if data source error occurs.
@@ -101,7 +101,7 @@ public interface IAdvancedQuery extends IQuery
 	 * For example:
 	 * <br>
 	 * <code><br>
-	 * IParameterRowSet myStruct = myStatement.setNewRow( "MyStructureName" );<br>
+	 * IParameterRowSet myStruct = myQuery.setNewRow( "MyStructureName" );<br>
 	 * myStruct.next();<br>
 	 * myStruct.setString( 1, "myValue" );<br>
 	 * <br></code>
@@ -133,7 +133,7 @@ public interface IAdvancedQuery extends IQuery
 	 * For example:
 	 * <br>
 	 * <code><br>
-	 * IParameterRowSet myTable = myStatement.setNewRowSet( "MyTableName" );<br>
+	 * IParameterRowSet myTable = myQuery.setNewRowSet( "MyTableName" );<br>
 	 * myTable.add();<br>
 	 * myTable.setString( 1, "myValue1" );<br>
 	 * myTable.add();<br>
@@ -374,7 +374,7 @@ public interface IAdvancedQuery extends IQuery
 	 * Specifies the sort specification for the named result set of
 	 * this <code>IAdvancedQuery</code>.  This setter must be called before this is
 	 * executed.  More sort keys can be added to the SortSpec after 
-	 * it is associated with the statement.  The final 
+	 * it is associated with the query.  The final 
 	 * sort specification is applied to the result set(s) at execution.
 	 * <p>
 	 * It is up to individual ODA runtime drivers to validate the type of sort specification 
