@@ -297,7 +297,9 @@ public class ExtensionManifest
 	private void throwsIllegalArgumentOdaException( String arg ) throws OdaException
 	{
 	    Exception illegalArg = new IllegalArgumentException( arg );
-	    throw new OdaException( illegalArg.getLocalizedMessage() );
+	    OdaException ex = new OdaException( illegalArg.toString() );
+	    ex.initCause( illegalArg );
+	    throw ex;
 	}
 	
 	/**
