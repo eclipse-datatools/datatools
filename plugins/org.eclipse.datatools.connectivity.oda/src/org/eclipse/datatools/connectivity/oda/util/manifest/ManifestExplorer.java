@@ -103,51 +103,53 @@ public class ManifestExplorer
 
 	/**
 	 * Returns the extension configuration information found 
-	 * in the plugin manifest file
-	 * for the specified data source extension that implements the 
-	 * extension point org.eclipse.datatools.connectivity.oda.dataSource.
-	 * @param extensionId	the unique id of the data source element
+	 * in the plugin manifest file of the data source extension
+	 * that contains the specified data source element and 
+	 * implements the DTP ODA run-time extension point -
+	 * org.eclipse.datatools.connectivity.oda.dataSource.
+	 * @param dataSourceId	the unique id of the data source element
 	 * 						in a data source extension.
 	 * @return				the extension manifest information
 	 * @throws OdaException	if the extension manifest is invalid.
 	 * @throws IllegalArgumentException if no extension is found.
 	 */
-	public ExtensionManifest getExtensionManifest( String extensionId ) 
+	public ExtensionManifest getExtensionManifest( String dataSourceId ) 
 		throws OdaException
 	{
-	    ExtensionManifest manifest = getExtensionManifest( extensionId, 
-	            							DTP_ODA_EXT_POINT );
+	    ExtensionManifest manifest = 
+	        getExtensionManifest( dataSourceId, DTP_ODA_EXT_POINT );
 	    
 	    if( manifest != null )
 	        return manifest;
 
-	    throw new IllegalArgumentException( extensionId );
+	    throw new IllegalArgumentException( dataSourceId );
 	}
 	
 	/**
-	 * Returns the extension configuration information found
-	 * in the plugin manifest file for the specified data source
-	 * extension of the specified extension point.
-	 * @param extensionId		the unique id of the data source element
-	 * 							in the data source extension.
+	 * Returns the extension configuration information found 
+	 * in the plugin manifest file of the data source extension
+	 * that contains the specified data source element and 
+	 * implements the specified ODA extension point.
+	 * @param dataSourceId		the unique id of the data source element
+	 * 							in a data source extension.
 	 * @param extensionPoint	the id of the extension point to search
 	 * @return					the extension manifest information,
 	 * 							or null if no extension configuration is found.
 	 * @throws OdaException		if the extension manifest is invalid.
 	 */
-	public ExtensionManifest getExtensionManifest( String extensionId, 
+	public ExtensionManifest getExtensionManifest( String dataSourceId, 
 	        									   String extensionPoint ) 
 		throws OdaException
 	{
-	    if ( extensionId == null || extensionId.length() == 0 )
-			throw new IllegalArgumentException( extensionId );
+	    if ( dataSourceId == null || dataSourceId.length() == 0 )
+			throw new IllegalArgumentException( dataSourceId );
 	    
 	    if ( extensionPoint == null || extensionPoint.length() == 0 )
 			throw new IllegalArgumentException( extensionPoint );
 	
 	    IExtension[] extensions = getExtensions( extensionPoint );
 	    
-	    IExtension extension = findExtension( extensionId, extensions );
+	    IExtension extension = findExtension( dataSourceId, extensions );
 	
 	    if ( extension != null )
 	        return newExtensionManifest( extension );
@@ -210,7 +212,7 @@ public class ManifestExplorer
 			manifestList.toArray( new ExtensionManifest[ numOfValidExtensions ] );
 	}
 
-	private IExtension findExtension( String extensionId, IExtension[] extensions )
+	private IExtension findExtension( String dataSourceId, IExtension[] extensions )
 		throws OdaException
 	{
 	    int length = ( extensions == null ) ? 
@@ -220,12 +222,15 @@ public class ManifestExplorer
 		{
 			IExtension extension = extensions[i];
 			
-			String dataSourceId = null;
+			String extnDataSourceId = null;
 			try
 			{
+				/* Each odaDataSource extension should have only 
+				 * one dataSource element.
+				 */
 				IConfigurationElement dataSourceElement = 
 				    		getDataSourceElement( extension );
-				dataSourceId = dataSourceElement.getAttribute( "id" );
+				extnDataSourceId = dataSourceElement.getAttribute( "id" );
 			}
 			catch( OdaException ex )
 			{
@@ -233,8 +238,11 @@ public class ManifestExplorer
 				continue;
 			}
 			
-			if( dataSourceId != null &&
-			    dataSourceId.equalsIgnoreCase( extensionId ) )
+			/* The first extension found with matching dataSourceId 
+			 * in its dataSource element is considered a match.
+			 */
+			if( extnDataSourceId != null &&
+			    extnDataSourceId.equalsIgnoreCase( dataSourceId ) )
 				return extension;
 		}
 		
@@ -256,7 +264,7 @@ public class ManifestExplorer
 		return getExtensions( DTP_ODA_EXT_POINT );
 	}
 	
-	// Package helper methods
+	// Package static helper methods
 	
 	/*
 	 * Returns the dataSource element of the given data source extension.
