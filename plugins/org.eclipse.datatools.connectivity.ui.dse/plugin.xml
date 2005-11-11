@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="%DSE.Name"
-            icon="icons/full/cview16/enterprise_explorer.gif"
             category="org.eclipse.datatools"
-            class="org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView"
-            id="org.eclipse.datatools.connectivity.ui.views.dataSourceExplorer">
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            icon="icons/full/cview16/enterprise_explorer.gif"
+            id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
+            name="%DSE.Name">
       </view>
       <category
             id="org.eclipse.datatools"
@@ -17,8 +17,8 @@
    <extension
          point="org.eclipse.ui.viewActions">
       <viewContribution
-            targetID="org.eclipse.datatools.connectivity.ui.views.dataSourceExplorer"
-            id="org.eclipse.datatools.connectivity.internal.ui.viewActions">
+            targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
+            id="org.eclipse.datatools.connectivity.internal.ui.viewActions2">
          <action
                id="org.eclipse.datatools.connectivity.internal.ui.viewactions.expandall"
                toolbarPath="slot2"
@@ -31,26 +31,15 @@
                tooltip="%DSE.ExpandAll.label">
          </action>
          <action
-               id="org.eclipse.datatools.connectivity.internal.ui.viewactions.collapseall"
-               toolbarPath="slot2"
-               hoverIcon="icons/full/clcl16/collapseall.gif"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.CollapseAllActionDelegate"
-               disabledIcon="icons/full/dlcl16/collapseall.gif"
-               icon="icons/full/elcl16/collapseall.gif"
-               label="%DSE.CollapseAll.label"
-               menubarPath="slot2"
-               tooltip="%DSE.CollapseAll.label">
-         </action>
-         <action
+               class="org.eclipse.datatools.connectivity.ui.dse.actions.ShowCategoryAction"
+               hoverIcon="icons/full/clcl16/extensions.gif"
+               icon="icons/full/elcl16/extensions.gif"
+               id="org.eclipse.datatools.connectivity.internal.ui.viewactions.showcategory"
+               label="%DSE.ShowCategory.label"
+               menubarPath="slot3"
                state="true"
                style="toggle"
                toolbarPath="slot3"
-               id="org.eclipse.datatools.connectivity.internal.ui.viewactions.showcategory"
-               hoverIcon="icons/full/clcl16/extensions.gif"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.ShowCategoryAction"
-               icon="icons/full/elcl16/extensions.gif"
-               label="%DSE.ShowCategory.label"
-               menubarPath="slot3"
                tooltip="%DSE.ShowCategory.label">
          </action>
          <action
@@ -92,140 +81,41 @@
       </viewContribution>
    </extension>
    <extension
-         point="org.eclipse.datatools.connectivity.navigator.views.navigatorViewer">
+         point="org.eclipse.ui.navigator.navigatorViewer">
       <navigatorViewer
-            displayName="%DSE.Name"
-            rootContentExtensionId="org.eclipse.datatools.connectivity.ui.views.content.DSEViewRootContentExtension"
-            viewerId="org.eclipse.datatools.connectivity.ui.views.dataSourceExplorer">
+            popupMenuId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu"
+            rootContentExtensionId="org.eclipse.datatools.connectivity.dsexplorer.content"
+            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
       </navigatorViewer>
    </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.navigator.views.navigatorContent">
-      <navigatorContent
-            name="DataSourceExplorerViewRootContent"
-            class="org.eclipse.datatools.connectivity.ui.dse.views.DSEViewRootContentExtension"
-            id="org.eclipse.datatools.connectivity.ui.views.content.DSEViewRootContentExtension">
-         <contributes>
-            <or>
-               <objectClass
-                     name="org.eclipse.datatools.connectivity.ProfileManager">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.connectivity.ICategory">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.connectivity.IConnectionProfile">
-               </objectClass>
-            </or>
-         </contributes>
-      </navigatorContent>
-   </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.navigator.views.navigatorActions">
-      <navigatorActions
-            priority="40"
-            class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsGroupExtension"
-            id="org.eclipse.datatools.connectivity.internal.ui.actions.connectionprofile">
-      </navigatorActions>
-   </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.navigator.views.navigatorActions">
-      <navigatorActions
-            priority="20"
-            id="org.eclipse.datatools.connectivity.ui.actions.refreshaction">
-         <action
-               enablesFor="1"
-               label="%DSE.Refresh.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshViewAction"
-               menubarPath="slot3"
-               id="org.eclipse.datatools.connectivity.ui.actions.refreshviewaction"/>
-      </navigatorActions>
-   </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.navigator.views.navigatorActions">
-      <navigatorActions
-            priority="30"
-            id="org.eclipse.datatools.connectivity.internal.ui.actions.connectionprofile2">
-         <visibility>
-            <objectClass
-                  adaptable="true"
-                  name="org.eclipse.datatools.connectivity.IConnectionProfile">
-            </objectClass>
-         </visibility>
-         <action
-               label="%DSE.Connect.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectAction"
-               menubarPath="slot1"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
-            <enablement>
-               <and>
-                  <objectState
-                        value="true"
-                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
-	               <not>
-	                  <objectState
-	                        name="org.eclipse.datatools.connectivity.profile.property.isConnected"
-	                        value="true">
-	                  </objectState>
-	               </not>
-               </and>
-            </enablement>
-         </action>
-         <action
-               label="%DSE.Disconnect.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.DisconnectAction"
-               menubarPath="slot1"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.disconnectaction">
-            <enablement>
-               <and>
-                  <objectState
-                        value="true"
-                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
-	               <objectState
-	                     name="org.eclipse.datatools.connectivity.profile.property.isConnected"
-	                     value="true">
-	               </objectState>
-               </and>
-            </enablement>
-         </action>
-         <action
-               label="%DSE.Duplicate.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.DuplicateProfileAction"
-               menubarPath="slot2"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.duplicateaction">
-         </action>
-         <action
-               label="%DSE.Delete.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.DeleteAction"
-               menubarPath="slot2"
-               enablesFor="*"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.deleteaction">
-         </action>
-         <action
-               label="%DSE.Rename.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.RenameAction"
-               menubarPath="slot2"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction">
-         </action>
-         <action
-               label="%DSE.Ping.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.PingAction"
-               menubarPath="slot1"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.internal.ui.actions.pingaction">
-            <enablement>
-               <objectState
-                     name="org.eclipse.datatools.connectivity.profile.property.supportsPing"
-                     value="true">
-               </objectState>
-            </enablement>
-         </action>
-      </navigatorActions>
-   </extension>
+	<extension 
+		point="org.eclipse.ui.navigator.navigatorContent">
+		<navigatorContent
+        contentProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider"
+        enabledByDefault="true"
+        icon="platform:/plugin/org.eclipse.datatools.connectivity.dsexplorer/icons/enterprise_explorer.gif"
+        id="org.eclipse.datatools.connectivity.dsexplorer.content"
+        labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
+        name="%DSE.content"
+        priority="normal">
+			<enablement>
+				<or>
+					<objectClass
+           adaptable="true"
+           name="org.eclipse.core.resources.IWorkspaceRoot"/> 
+	               <objectClass
+                      adaptable="true"
+                      name="org.eclipse.datatools.connectivity.ICategory"/>
+	               <objectClass
+                      adaptable="true"
+                      name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+                <objectClass
+                      adaptable="true"
+                      name="org.eclipse.datatools.connectivity.ProfileManager"/>
+				</or>
+			</enablement>
+		</navigatorContent>
+	</extension>
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
@@ -249,5 +139,134 @@
          </description>
       </decorator>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.navigator.actionProvider">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectActionProvider">
+		    <enablement>
+		    	<or>
+		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
+			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
+		      	</or>
+		    </enablement>
+      </actionProvider>
+   </extension>
+<!--
+	The following is a work in progress. The code currently in ConnectActionProvider
+	will be migrated to use object contributions to provide menus via the plugin.xml.
+-->	
+<!--   <extension
+         point="org.eclipse.ui.navigator.actionProvider">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
+		    <enablement>
+		    	<or>
+		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
+			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
+		      	</or>
+		    </enablement>
+      </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.eclipse.datatools.connectivity.ui.dse.viewerContribution1"
+            targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+         <action
+               enablesFor="1"
+               label="%DSE.Refresh.label"
+               class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshViewAction"
+               menubarPath="slot3"
+               id="org.eclipse.datatools.connectivity.ui.actions.refreshviewaction"/>
+         <visibility>
+		    	<or>
+		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
+			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
+		      	</or>
+         </visibility>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+         <viewerContribution 
+             id="org.eclipse.datatools.connectivity.ui.dse.viewerContribution2"
+            targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+	         <action
+	               label="%DSE.Connect.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
+	            <enablement>
+	               <and>
+	                  <objectState
+	                        value="true"
+	                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
+	                  <objectState
+	                        name="org.eclipse.datatools.connectivity.profile.property.isConnected"
+	                        value="false">
+	                  </objectState>
+	               </and>
+	            </enablement>
+	         </action>
+	         <action
+	               label="%DSE.Disconnect.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DisconnectAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.disconnectaction">
+	            <enablement>
+	               <and>
+	                  <objectState
+	                        value="true"
+	                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
+		               <objectState
+		                     name="org.eclipse.datatools.connectivity.profile.property.isConnected"
+		                     value="true">
+		               </objectState>
+	               </and>
+	            </enablement>
+	         </action>
+	         <action
+	               label="%DSE.Duplicate.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DuplicateProfileAction"
+	               menubarPath="slot2"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.duplicateaction">
+	         </action>
+	         <action
+	               label="%DSE.Delete.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DeleteAction"
+	               menubarPath="slot2"
+	               enablesFor="*"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.deleteaction">
+	         </action>
+	         <action
+	               label="%DSE.Rename.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.RenameAction"
+	               menubarPath="slot2"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction">
+	         </action>
+	         <action
+	               label="%DSE.Ping.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.PingAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.pingaction">
+	            <enablement>
+	               <objectState
+	                     name="org.eclipse.datatools.connectivity.profile.property.supportsPing"
+	                     value="true">
+	               </objectState>
+	            </enablement>
+	         </action>
+	         <visibility>
+			    	<or>
+				      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
+			      	</or>
+	         </visibility>
+		 </viewerContribution>
+   </extension>
+-->        
 </plugin>
