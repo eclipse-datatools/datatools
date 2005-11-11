@@ -18,7 +18,7 @@ import java.util.Properties;
 
 /**
  * A data source connection interface used to
- * establish a connection to the underlying data provider.	
+ * establish a live connection to the underlying data provider.	
  */
 public interface IConnection
 {

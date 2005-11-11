@@ -15,9 +15,9 @@
 package org.eclipse.datatools.connectivity.oda;
 
 /**
- * The interface that represents the metadata
+ * The interface that represents the meta-data
  * of an IResultSet object.
- * An IResultSetMetaData object represents a row containing metadata 
+ * An IResultSetMetaData object represents a row containing meta-data 
  * for each column in the result set.
  * <p>
  * <b>Note:</b> All indices in this interface are 1-based.

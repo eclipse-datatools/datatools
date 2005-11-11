@@ -20,10 +20,10 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * An extended interface for queries that 
- * may have complex input parameters, scalar or complex output parameters, 
+ * An optional, extended query interface for more advanced query capabilities.
+ * It may have complex input parameters, scalar or complex output parameters, 
  * and/or return a single or multiple result sets. 
- * <p>A result set may be extended to reference by name.
+ * <p>A result set may be extended to be referenced by name.
  * An input parameter may be extended to support the structure or table data type.  
  * An output parameter may be of scalar or structure data type.
  * <br>

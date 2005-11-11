@@ -84,7 +84,7 @@ public class SimpleQuery implements IQuery
 	 */
 	public void setProperty( String name, String value ) throws OdaException
 	{
-		// do nothing; assumes no statement property
+		// do nothing; assumes no query property
 	}
 
 	/*

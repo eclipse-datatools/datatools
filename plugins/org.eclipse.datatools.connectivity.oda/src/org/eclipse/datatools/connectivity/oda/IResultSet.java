@@ -20,7 +20,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * The interface used to access a result set retrieved 
+ * The interface used to access a set of data rows retrieved 
  * by an IQuery object.
  * An IResultSet object maintains a cursor pointing to its current row of data. 
  * Initially, the cursor is positioned before the first row.  The next() method 

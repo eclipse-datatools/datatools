@@ -15,12 +15,12 @@
 package org.eclipse.datatools.connectivity.oda;
 
 /**
- * Provides comprehensive information and capabilities 
- * of a type of data set. 
+ * Provides comprehensive information on the driver’s capabilities
+ * for a type of data set query.
  * <p>
  * An ODA runtime driver can implement a connection
- * to work with one or more types of data set.
- * Different types of data set often support different features, and/or implement 
+ * to work with one or more types of data sets.
+ * Different types of data sets often support different features, and/or implement 
  * features in different ways.  In addition, a driver may implement  
  * a feature on top of what the underlying data provider offers.
  * <br>

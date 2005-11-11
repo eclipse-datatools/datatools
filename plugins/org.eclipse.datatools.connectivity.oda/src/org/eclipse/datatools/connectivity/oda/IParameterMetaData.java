@@ -15,8 +15,10 @@
 package org.eclipse.datatools.connectivity.oda;
 
 /**
- * An interface that represents the metadata 
- * of parameters defined in a prepared statement. 
+ * An interface that represents the meta-data 
+ * of input/output parameters defined in a prepared query.
+ * Its implementation is required only if the driver supports 
+ * query parameters. 
  * <p>
  * <b>Note:</b> All parameter indices in this interface are 1-based.
  */
@@ -62,7 +64,7 @@ public interface IParameterMetaData
 	
 	/**
 	 * Returns the number of parameters defined in the 
-	 * prepared statement object.
+	 * prepared IQuery object.
 	 * @return	the number of parameters.
 	 * @throws OdaException		if data source error occurs.
 	 */

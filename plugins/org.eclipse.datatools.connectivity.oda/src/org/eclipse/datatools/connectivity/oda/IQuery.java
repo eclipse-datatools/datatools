@@ -20,10 +20,11 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * The base interface in the query hierarchy.  A 
- * query contains a query text that can be executed and 
- * return data in a single result set.
- * It may have scalar input parameters.
+ * The base query interface to  
+ * prepare and execute a query text to retrieve data.
+ * This base interface covers most basic query capabilities, 
+ * such as returning data rows in a single result set, and
+ * may support scalar input parameters.
  * <p>
  * Note: An IQuery object must <b>ALWAYS</b> be prepared before 
  * calling execute().  For example:
