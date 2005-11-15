@@ -15,8 +15,8 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * This interface is used by the ProfileNavigatorContentExtension for managing
- * user extensions to connection profiles in the Enterprise Navigator.
+ * This interface is used by the CommonContentProviderBase for managing user
+ * extensions to connection profiles in the Enterprise Navigator.
  * 
  * @author rcernich, shongxum
  * 
@@ -67,6 +67,7 @@ public interface IContentExtension {
 
 	/**
 	 * @return true if this content extension node should be visible
+	 * @deprecated
 	 */
 	boolean isVisible();
 }

@@ -73,6 +73,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 		else {
 			Composite serverVersionContainer = new Composite(content, SWT.NULL);
 			layout = new GridLayout(2, false);
+			layout.marginHeight = layout.marginWidth = 0;
 			serverVersionContainer.setLayout(layout);
 			GridData data = new GridData(GridData.FILL_HORIZONTAL);
 			serverVersionContainer.setLayoutData(data);

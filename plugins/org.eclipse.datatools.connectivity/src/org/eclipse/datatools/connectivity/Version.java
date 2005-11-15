@@ -40,17 +40,30 @@ public class Version implements Comparable {
 		String build = new String();
 		String[] components = version.split("\\.", 4); //$NON-NLS-1$
 		if (components[0].trim().length() > 0) {
-			major = Integer.parseInt(components[0].trim());
+			try {
+				major = Integer.parseInt(components[0].trim());
+			}
+			catch (NumberFormatException e) {
+			}
 		}
 		if (components.length > 1 && components[1].trim().length() > 0) {
-			minor = Integer.parseInt(components[1].trim());
+			try {
+				minor = Integer.parseInt(components[1].trim());
+			}
+			catch (NumberFormatException e) {
+			}
 		}
 		if (components.length > 2 && components[2].trim().length() > 0) {
-			release = Integer.parseInt(components[2].trim());
+			try {
+				release = Integer.parseInt(components[2].trim());
+			}
+			catch (NumberFormatException e) {
+			}
 		}
 		if (components.length > 3 && components[3].trim().length() > 0) {
 			build = components[3].trim();
 		}
+
 		return new Version(major, minor, release, build);
 	}
 

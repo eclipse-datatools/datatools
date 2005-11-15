@@ -86,6 +86,7 @@ public abstract class VersionProviderConnection implements IConnection,
 		}
 		if (saveProps) {
 			mProfile.internalSetProperties(mProfile.getProviderId(), props);
+			ProfileManager.getInstance().saveChanges();
 		}
 	}
 
