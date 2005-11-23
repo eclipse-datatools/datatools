@@ -195,6 +195,10 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 		return mAutoConnect.getSelection();
 	}
 
+	public void setAutoConnect(boolean selection) {
+		mAutoConnect.setSelection(selection);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

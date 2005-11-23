@@ -33,6 +33,8 @@ import org.eclipse.ui.PlatformUI;
  * @author shongxum
  */
 public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
+	
+	protected Button btnPing;
 
 	/**
 	 * @param name
@@ -67,15 +69,15 @@ public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
 
 		createCustomControl(composite);
 
-		final Button button = new Button(container, SWT.NONE);
-		button.addSelectionListener(new SelectionAdapter() {
+		btnPing = new Button(container, SWT.NONE);
+		btnPing.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
 				testConnection();
 			}
 		});
-		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
-		button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
+		btnPing.setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
 				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_DETAILS_PAGE);
