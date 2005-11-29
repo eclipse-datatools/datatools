@@ -118,7 +118,7 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 				for (Iterator itr = wizardCats.iterator(); itr.hasNext();) {
 					wizardProvider = (IProfileWizardProvider) itr.next();
 					if (wizardProvider.getCategory().equals(wizardCategory)) {
-						wizardNodes.add(new CPWizardNode(wizardProvider));
+						wizardNodes.add(new CPCategoryWizardNode(wizardProvider));
 					}
 				}
 			}
