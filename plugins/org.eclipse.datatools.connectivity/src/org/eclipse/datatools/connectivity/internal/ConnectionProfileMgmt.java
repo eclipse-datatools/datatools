@@ -126,17 +126,24 @@ public class ConnectionProfileMgmt {
 	 */
 	public static void saveCPs(IConnectionProfile[] cps, File file,
 			boolean useEncryption) throws IOException {
+		
+		/* Throw exception until encryption is available */
+		if (useEncryption) {
+			throw new UnsupportedOperationException("Encryption not supported.");
+		}
 		XMLMemento xmlMemento = XMLMemento.createWriteRoot(ROOTNAME);
 		IMemento xmlChild, xmlExtraChild;
 		if (!file.exists())
 			file.createNewFile();
 		OutputStream out, outs = new FileOutputStream(file);
-		if (useEncryption) {
-			throw new UnsupportedOperationException("Encryption not supported.");
-		}
-		else {
+		
+		/* Commented out for now until encryption is available. */
+//		if (useEncryption) {
+//			throw new UnsupportedOperationException("Encryption not supported.");
+//		}
+//		else {
 			out = outs;
-		}
+//		}
 		OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
 		Writer writer = new BufferedWriter(outw);
 		IConnectionProfile cp;
