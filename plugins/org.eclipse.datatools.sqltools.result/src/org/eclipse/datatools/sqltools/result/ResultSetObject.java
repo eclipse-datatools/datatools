@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
-import org.eclipse.datatools.sqltools.result.internal.utils.Logger;
+import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 import org.eclipse.datatools.sqltools.result.internal.utils.SQLUtil;
 
@@ -76,7 +76,7 @@ public class ResultSetObject implements IResultSetObject
     // total row count of the JDBC result set
     private int           _totalRowCount;
     private File          _backupFile;
-    private static Logger _log = ResultsViewPlugin.getLogger(ResultSetObject.class);
+    private static ILogger _log = ResultsViewPlugin.getLogger(null);
 
     /**
      * Constructs a ResultSetObject instance from a JDBC ResultSet object
@@ -330,10 +330,7 @@ public class ResultSetObject implements IResultSetObject
     {
         if (_backupFile != null && _backupFile.exists())
         {
-            if (_log.isDebug())
-            {
-                _log.debug("ResultSetObjectImpl.debug.dispose", _backupFile.getAbsolutePath());
-            }
+            _log.debug("ResultSetObjectImpl.debug.dispose", _backupFile.getAbsolutePath());
             _backupFile.delete();
         }
     }
@@ -369,10 +366,7 @@ public class ResultSetObject implements IResultSetObject
                     _log.error("ResultSetObjectImpl.error.iterator", e);
                 }
             }
-            if (_log.isDebug())
-            {
-                _log.debug("ResultSetObjectImpl.debug.open", backupFile.getAbsolutePath());
-            }
+            _log.debug("ResultSetObjectImpl.debug.open", backupFile.getAbsolutePath());
         }
 
         public void remove()
@@ -394,10 +388,7 @@ public class ResultSetObject implements IResultSetObject
             {
                 IResultSetRow row = (IResultSetRow) SQLUtil.getResultFromStream(_ois);
                 _nextRecord = row;
-                if (_log.isDebug())
-                {
-                    _log.debug("ResultSetObjectImpl.debug.next", String.valueOf(_index), _backupFile.getAbsolutePath());
-                }
+                _log.debug("ResultSetObjectImpl.debug.next", String.valueOf(_index), _backupFile.getAbsolutePath());
                 _index++;
                 // when there're no rows, close the stream
                 if (_nextRecord == null)

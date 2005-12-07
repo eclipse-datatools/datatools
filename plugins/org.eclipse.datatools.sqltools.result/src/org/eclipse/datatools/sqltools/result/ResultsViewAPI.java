@@ -18,7 +18,7 @@ import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.XMLResultSetObject;
-import org.eclipse.datatools.sqltools.result.internal.utils.Logger;
+import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -104,7 +104,7 @@ import org.eclipse.ui.PartInitException;
  */
 public class ResultsViewAPI
 {
-    private static Logger         _log     = ResultsViewPlugin.getLogger(ResultsViewAPI.class);
+    private static ILogger        _log     = ResultsViewPlugin.getLogger(null);
     private static ResultsViewAPI _instance;
     private IResultManager        _manager = ResultsViewPlugin.getResultManager();
     private IWorkbenchPage        _activePage;

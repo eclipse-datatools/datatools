@@ -23,7 +23,7 @@ import org.eclipse.datatools.sqltools.result.internal.Constants;
 import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
-import org.eclipse.datatools.sqltools.result.internal.utils.Logger;
+import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 
 /**
  * A standard implementation of <code>IResultInstance</code>
@@ -32,7 +32,7 @@ import org.eclipse.datatools.sqltools.result.internal.utils.Logger;
  */
 public class ResultInstance implements IResultInstance
 {
-    private static Logger    _log    = ResultsViewPlugin.getLogger(ResultInstance.class);
+    private static ILogger   _log    = ResultsViewPlugin.getLogger(null);
     /* the operation command */
     private OperationCommand _operationCommand;
     /* the manager */

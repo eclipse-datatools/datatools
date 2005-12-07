@@ -24,7 +24,7 @@ import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
  */
 public class SQLUtil
 {
-    protected static Logger _log = ResultsViewPlugin.getLogger(SQLUtil.class);
+    protected static ILogger _log = ResultsViewPlugin.getLogger(null);
 
     /**
      * Saves result set to output stream
