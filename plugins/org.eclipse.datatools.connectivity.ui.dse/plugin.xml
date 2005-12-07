@@ -101,8 +101,8 @@
 			<enablement>
 				<or>
 					<objectClass
-           adaptable="true"
-           name="org.eclipse.core.resources.IWorkspaceRoot"/> 
+			           adaptable="true"
+				       name="org.eclipse.core.resources.IWorkspaceRoot"/> 
 	               <objectClass
                       adaptable="true"
                       name="org.eclipse.datatools.connectivity.ICategory"/>
@@ -139,7 +139,7 @@
          </description>
       </decorator>
    </extension>
-   <extension
+<!--   <extension
          point="org.eclipse.ui.navigator.actionProvider">
       <actionProvider
             class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectActionProvider">
@@ -150,12 +150,12 @@
 		      	</or>
 		    </enablement>
       </actionProvider>
-   </extension>
+   </extension> -->
 <!--
 	The following is a work in progress. The code currently in ConnectActionProvider
 	will be migrated to use object contributions to provide menus via the plugin.xml.
 -->	
-<!--   <extension
+   <extension
          point="org.eclipse.ui.navigator.actionProvider">
       <actionProvider
             class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
@@ -169,9 +169,9 @@
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
-      <viewerContribution
-            id="org.eclipse.datatools.connectivity.ui.dse.viewerContribution1"
-            targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+      <objectContribution
+            id="org.eclipse.datatools.connectivity.ui.dse.objectContribution1"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <action
                enablesFor="1"
                label="%DSE.Refresh.label"
@@ -184,29 +184,24 @@
 			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
 		      	</or>
          </visibility>
-      </viewerContribution>
+      </objectContribution>
    </extension>
    <extension
          point="org.eclipse.ui.popupMenus">
-         <viewerContribution 
-             id="org.eclipse.datatools.connectivity.ui.dse.viewerContribution2"
-            targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+         <objectContribution 
+             id="org.eclipse.datatools.connectivity.ui.dse.objectContribution2"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
 	         <action
-	               label="%DSE.Connect.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectAction"
+	               label="%DSE.Ping.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.PingAction"
 	               menubarPath="slot1"
 	               enablesFor="1"
-	               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.pingaction">
 	            <enablement>
-	               <and>
-	                  <objectState
-	                        value="true"
-	                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
-	                  <objectState
-	                        name="org.eclipse.datatools.connectivity.profile.property.isConnected"
-	                        value="false">
-	                  </objectState>
-	               </and>
+	               <objectState
+	                     name="org.eclipse.datatools.connectivity.profile.property.supportsPing"
+	                     value="true">
+	               </objectState>
 	            </enablement>
 	         </action>
 	         <action
@@ -225,6 +220,25 @@
 		                     value="true">
 		               </objectState>
 	               </and>
+	            </enablement>
+	         </action>
+	         <action
+	               label="%DSE.Connect.label"
+	               class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
+	            <enablement>
+<!--	               <and>
+	                  <objectState
+	                        value="true"
+	                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
+-->	                      
+	                  <objectState
+	                        name="org.eclipse.datatools.connectivity.profile.property.isConnected"
+	                        value="false">
+	                  </objectState>
+<!--	               </and> -->
 	            </enablement>
 	         </action>
 	         <action
@@ -248,25 +262,11 @@
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction">
 	         </action>
-	         <action
-	               label="%DSE.Ping.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.PingAction"
-	               menubarPath="slot1"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.connectivity.internal.ui.actions.pingaction">
-	            <enablement>
-	               <objectState
-	                     name="org.eclipse.datatools.connectivity.profile.property.supportsPing"
-	                     value="true">
-	               </objectState>
-	            </enablement>
-	         </action>
 	         <visibility>
 			    	<or>
 				      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
 			      	</or>
 	         </visibility>
-		 </viewerContribution>
+		 </objectContribution>
    </extension>
--->        
 </plugin>

@@ -12,8 +12,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.ui,
- org.eclipse.datatools.connectivity.navigator.views,
- org.eclipse.datatools.connectivity.navigator.common,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources
 Eclipse-AutoStart: true

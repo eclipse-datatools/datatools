@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileRule;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.progress.UIJob;
 
 /**
@@ -109,8 +110,8 @@ public class RefreshProfileJob extends UIJob {
 	public IStatus runInUIThread(IProgressMonitor monitor) {
 		monitor.beginTask(getName(), 1);
 		if (mViewer != null && !mViewer.getTree().isDisposed()) {
-			mViewer.refresh(mProfile);
-			mViewer.setExpandedState(mProfile, true);
+			((CommonViewer)mViewer).refresh();//mProfile);
+			((CommonViewer)mViewer).setExpandedState(mProfile, true);
 		}
 		monitor.worked(1);
 		return Status.OK_STATUS;

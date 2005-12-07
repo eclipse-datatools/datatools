@@ -16,7 +16,6 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider;
-import org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -31,7 +30,6 @@ import org.eclipse.ui.navigator.internal.extensions.NavigatorContentProvider;
  */
 public class ShowCategoryAction implements IViewActionDelegate {
 
-	DataSourceExplorerView mView = null;
 	IViewPart view = null;
 	Object currentInput = ResourcesPlugin.getWorkspace().getRoot();
 	boolean currentState = true;
@@ -42,8 +40,6 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	 * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
 	 */
 	public void init(IViewPart view) {
-		if (view instanceof DataSourceExplorerView)
-			mView = (DataSourceExplorerView) view;
 		this.view = view;
 
 	}
@@ -54,14 +50,8 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
-		if (mView != null) {
-			boolean check = action.isChecked();
-			mView.setShowCategory(check);
-		}
-		else {
-			boolean check = action.isChecked();
-			changeShowCategorySetting(check);
-		}
+		boolean check = action.isChecked();
+		changeShowCategorySetting(check);
 	}
 
 	/*
