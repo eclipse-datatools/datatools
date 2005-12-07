@@ -67,15 +67,15 @@ import org.eclipse.datatools.sqltools.result.internal.utils.SQLUtil;
  */
 public class ResultSetObject implements IResultSetObject
 {
-    private String[]      _columnNames;
-    private List          _rows;
-    private int[]         _columnTypes;
-    private int[]         _columnDisplaySizes;
+    private String[]       _columnNames;
+    private List           _rows;
+    private int[]          _columnTypes;
+    private int[]          _columnDisplaySizes;
     // total row count loaded into memory
-    private int           _rowCountLoaded;
+    private int            _rowCountLoaded;
     // total row count of the JDBC result set
-    private int           _totalRowCount;
-    private File          _backupFile;
+    private int            _totalRowCount;
+    private File           _backupFile;
     private static ILogger _log = ResultsViewPlugin.getLogger(null);
 
     /**

@@ -17,7 +17,6 @@ package org.eclipse.datatools.sqltools.result.internal.utils;
  */
 public interface ILogger
 {
-    
     public abstract void fatal(Object message);
 
     /**
@@ -96,7 +95,6 @@ public interface ILogger
      */
     public abstract void fatal(String key, Object[] args, Throwable tt);
 
-    ////////////////////////////////////////////////////////////////////////////////
     public abstract void error(Object message);
 
     /**
@@ -175,7 +173,6 @@ public interface ILogger
      */
     public abstract void error(String key, Object[] args, Throwable tt);
 
-    ////////////////////////////////////////////////////////////////////////////////
     public abstract void warn(Object message);
 
     /**
