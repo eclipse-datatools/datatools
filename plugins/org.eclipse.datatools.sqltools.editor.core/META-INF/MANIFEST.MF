@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.sqltools.editor.core;singleton:=true
 Bundle-Version: 0.7.0
 Bundle-Activator: org.eclipse.datatools.sqltools.core.EditorCorePlugin
 Bundle-Localization: plugin
+Bundle-ClassPath: sqleditorframe.jar
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.ide,
