@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.sqltools.result
 Bundle-Version: 0.7.0
 Bundle-Activator: org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin
 Bundle-Vendor: eclipse.org
+Bundle-ClassPath: sqlresult.jar
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
