@@ -8,12 +8,6 @@ Bundle-Vendor: eclipse.org
 Bundle-ClassPath: sqlresult.jar
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.jface.text,
- org.eclipse.core.resources,
- org.eclipse.ui.console,
- org.eclipse.ui.workbench.texteditor,
- org.eclipse.ui.editors,
- org.eclipse.ui.ide
+ org.eclipse.core.runtime
 Eclipse-AutoStart: true
 Export-Package: org.eclipse.datatools.sqltools.result
