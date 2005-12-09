@@ -7,7 +7,7 @@
             id="org.eclipse.datatools.connectivity.db.driverCategory"
             name="Database"/>   
       <category
-            id="org.eclipse.datatools.connectivity.db.derby.driverCategoryVersion10"
+            id="org.eclipse.datatools.connectivity.sqm.core.driverCategory"
             parentCategory="org.eclipse.datatools.connectivity.db.derby.driverCategoryVendor"
             name="10.0"/>
                   <category
@@ -20,53 +20,53 @@
             id="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
             jarList="C:\Documents and Settings\Administrator\Desktop\Derby\derby.jar"
             name="Derby Embedded JDBC Driver"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.driverCategoryVersion10">
+            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
          <properties>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.driverClass"
+                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
                   name="Driver Class"
                   value="org.apache.derby.jdbc.EmbeddedDriver"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.vendor"
+                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
                   name="Vendor"
                   value="Derby"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.version"
+                  id="org.eclipse.datatools.connectivity.sqm.core.version"
                   name="Version"
                   value="10.0"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.databaseName"
+                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
                   name="Database Name"
                   value="SAMPLE"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.URL"
+                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
                   name="Connection URL"
                   value="jdbc:derby:C:\DerbyDatabases\MyDB;create=true"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.username"
+                  id="org.eclipse.datatools.connectivity.sqm.core.username"
                   name="User ID"
                   value=""
                   required="false"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.derby.password"
+                  id="org.eclipse.datatools.connectivity.sqm.core.password"
                   name="Password"
                   value=""
                   required="false"
