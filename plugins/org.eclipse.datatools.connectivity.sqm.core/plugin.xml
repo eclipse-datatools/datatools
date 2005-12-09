@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.connectivity.sqm.core"
+   name="%pluginName"
+   version="0.7.0"
+   provider-name="%providerName"
+   class="org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin">
+
+   <runtime>
+      <library name="rdbcore.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.datatools.modelbase.sql"/>
+      <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
+      <import plugin="org.eclipse.datatools.connectivity"/>
+   </requires>
+
+   <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
+   <extension-point id="logicalContainment" name="%logicalContainmentExtensionPointName" schema="schema/logicalContainment.exsd"/>
+   <extension-point id="dataModelElementFactory" name="%DataModelElementFactoryExtensionPointName" schema="schema/dataModelElementFactory.exsd"/>
+   <extension-point id="databaseReverseEngineering" name="%DatabaseReverseEngineeringExtensionPointName" schema="schema/databaseReverseEngineering.exsd"/>
+   <extension-point id="ddlParser" name="%DDLParserExtensionPointName" schema="schema/ddlParser.exsd"/>
+   <extension-point id="ddlGeneration" name="%DDLGenerationExtensionPointName" schema="schema/ddlGeneration.exsd"/>
+   <extension-point id="catalog" name="%CatalogExtensionPointName" schema="schema/catalog.exsd"/>
+   <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Dependency"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.DependencyContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Database"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.DatabaseContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Schema"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.SchemaContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="BaseTable"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.TableContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="ViewTable"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ViewContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="Column"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ColumnContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Sequence"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.SequenceContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/tables.ecore"
+            class="Trigger"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.TriggerContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="Index"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.IndexContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+            class="Constraint"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.ConstraintContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/routines.ecore"
+            class="Routine"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.RoutineContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"
+            class="UserDefinedType"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.UserDefinedTypeContainmentProvider">
+      </containment>
+   </extension>
+</plugin>

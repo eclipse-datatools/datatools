@@ -1,101 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-   <extension
-         point="org.eclipse.datatools.connectivity.driverExtension">
+ <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
       <category
             id="org.eclipse.datatools.connectivity.db.driverCategory"
-            name="Database"/>
+            name="Database"/>   
+      <category
+            id="org.eclipse.datatools.connectivity.db.derby.driverCategoryVersion10"
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.driverCategoryVendor"
+            name="10.0"/>
+                  <category
+            id="org.eclipse.datatools.connectivity.db.derby.driverCategoryVendor"
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="Derby"/>
       <driverTemplate
             createDefault="false"
             emptyJarListIsOK="false"
-            id="org.eclipse.datatools.connectivity.db.genericDriverTemplate"
-            jarList=""
-            name="Generic JDBC Driver"
-            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
+            id="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
+            jarList="C:\Documents and Settings\Administrator\Desktop\Derby\derby.jar"
+            name="Derby Embedded JDBC Driver"
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.driverCategoryVersion10">
          <properties>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  id="org.eclipse.datatools.connectivity.db.derby.driverClass"
                   name="Driver Class"
-                  value=""
+                  value="org.apache.derby.jdbc.EmbeddedDriver"
                   required="true"
                   visible="true"/>
-<!-- JG, 102805: Removing for now, until this has something behind it -->
-<!--
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.dbdefinition"
-                  name="DBDefinition Model Instance"
-                  value=""
+                  id="org.eclipse.datatools.connectivity.db.derby.vendor"
+                  name="Vendor"
+                  value="Derby"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.derby.version"
+                  name="Version"
+                  value="10.0"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.derby.databaseName"
+                  name="Database Name"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.derby.URL"
+                  name="Connection URL"
+                  value="jdbc:derby:C:\DerbyDatabases\MyDB;create=true"
                   required="true"
                   visible="true"/>
--->
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.defaultURL"
-                  name="Default Connection URL"
-                  value="jdbc:localhost:1000"
+                  id="org.eclipse.datatools.connectivity.db.derby.username"
+                  name="User ID"
+                  value=""
                   required="false"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.db.defaultUID"
-                  name="Default User ID"
-                  value="me"
-                  required="false"
-                  visible="true"/>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.db.defaultPWD"
-                  name="Default Password"
+                  id="org.eclipse.datatools.connectivity.db.derby.password"
+                  name="Password"
                   value=""
                   required="false"
                   visible="true"/>
          </properties>
       </driverTemplate>
    </extension>
+   
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <category
             id="org.eclipse.datatools.connectivity.db.category"
             name="Databases"/>
       <configurationType
-            id="org.eclipse.datatools.connectivity.db.configurationType"/>
+            id="org.eclipse.datatools.connectivity.db.derby.configurationType"/>
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
-            configurationType="org.eclipse.datatools.connectivity.db.configurationType"
+            configurationType="org.eclipse.datatools.connectivity.db.derby.configurationType"
             icon="icons/jdbc_16.gif"
-            id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
-            name="Generic Database Connection Profile"/>
+            id="org.eclipse.datatools.connectivity.db.derby.connectionProfile"
+            name="Embedded JDBC Driver for Derby 10.0"/>
       <connectionFactory
-            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            class="org.eclipse.datatools.connectivity.db.generic.SQMConnectionFactory"
             id="java.sql.Connection"
             name="JDBC Connection"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
       <connectionFactory
-            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            class="org.eclipse.datatools.connectivity.db.generic.SQMConnectionFactory"
             id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
             name="Ping Connection Factory"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
-            name="Generic Database Connection Profile"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+            name="Embedded JDBC Driver for Derby 10.0"
+            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
             class="org.eclipse.datatools.connectivity.db.generic.GenericDBProfilePropertyPage"
-            id="org.eclipse.datatools.connectivity.db.generic.profileProperties"
-            name="Database Connection Properties"
+            id="org.eclipse.datatools.connectivity.db.derby.profileProperties"
+            name="Derby Embedded Driver Connection Properties"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"
-               value="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+               value="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
       </page>
    </extension>
-
 </plugin>

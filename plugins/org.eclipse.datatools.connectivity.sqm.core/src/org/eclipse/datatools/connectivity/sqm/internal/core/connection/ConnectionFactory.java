@@ -1,30 +1,29 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
- * 
- * All rights reserved. This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License v1.0 which
- * accompanies this distribution, and is available at
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: rcernich - initial API and implementation
- ******************************************************************************/
-package org.eclipse.datatools.connectivity.db.generic;
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 
 /**
- * @author rcernich
+ * @author ledunnel
  * 
- * Created on Oct 17, 2005
  */
-public class JDBCConnectionFactory implements IConnectionFactory {
+public class ConnectionFactory implements IConnectionFactory {
 
 	/**
 	 * 
 	 */
-	public JDBCConnectionFactory() {
+	public ConnectionFactory() {
 		super();
 	}
 
@@ -34,7 +33,7 @@ public class JDBCConnectionFactory implements IConnectionFactory {
 	 * @see org.eclipse.datatools.connectivity.IConnectionFactory#createConnection(org.eclipse.datatools.connectivity.IConnectionProfile)
 	 */
 	public IConnection createConnection(IConnectionProfile profile) {
-		JDBCConnection connection = new JDBCConnection(profile, getClass());
+		IConnection connection = new ConnectionInfoImpl(profile, getClass());
 		return connection;
 	}
 
