@@ -4,22 +4,14 @@
  <extension
          point="org.eclipse.datatools.connectivity.driverExtension">    
       <category
-            id="org.eclipse.datatools.connectivity.db.driverCategory"
-            name="Database"/>   
-      <category
             id="org.eclipse.datatools.connectivity.sqm.core.driverCategory"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.driverCategoryVendor"
-            name="10.0"/>
-                  <category
-            id="org.eclipse.datatools.connectivity.db.derby.driverCategoryVendor"
-            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
-            name="Derby"/>
+            name="Database"/>   
       <driverTemplate
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
             jarList="C:\Documents and Settings\Administrator\Desktop\Derby\derby.jar"
-            name="Derby Embedded JDBC Driver"
+            name="Derby Embedded JDBC Driver for Derby 10.0"
             parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
          <properties>
             <property
@@ -81,40 +73,166 @@
             id="org.eclipse.datatools.connectivity.db.category"
             name="Databases"/>
       <configurationType
-            id="org.eclipse.datatools.connectivity.db.derby.configurationType"/>
+            id="org.eclipse.datatools.connectivity.db.generic.configurationType"/>
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
-            configurationType="org.eclipse.datatools.connectivity.db.derby.configurationType"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
             icon="icons/jdbc_16.gif"
-            id="org.eclipse.datatools.connectivity.db.derby.connectionProfile"
-            name="Embedded JDBC Driver for Derby 10.0"/>
+            id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
+            name="SQL Model-JDBC Connection"/>
       <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.SQMConnectionFactory"
             id="java.sql.Connection"
             name="JDBC Connection"
-            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
       <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.SQMConnectionFactory"
             id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
             name="Ping Connection Factory"
-            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
-            name="Embedded JDBC Driver for Derby 10.0"
-            profile="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
+            name="SQL Model-JDBC Connection"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
             class="org.eclipse.datatools.connectivity.db.generic.GenericDBProfilePropertyPage"
             id="org.eclipse.datatools.connectivity.db.derby.profileProperties"
-            name="Derby Embedded Driver Connection Properties"
+            name="JDBC Connection Properties"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"
-               value="org.eclipse.datatools.connectivity.db.derby.connectionProfile"/>
+               value="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
       </page>
    </extension>
+   
+    <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">     
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.db2udb.genericDriverTemplate"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cisuz.jar"
+            name="IBM DB2 Universal for DB2 UDB V8.2"
+            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
+                  name="Driver Class"
+                  value="com.ibm.db2.jcc.DB2Driver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
+                  name="Vendor"
+                  value="DB2 UDB"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.version"
+                  name="Version"
+                  value="V8.2"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
+                  name="Database Name"
+                  value="SAMPLE"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
+                  name="Connection URL"
+                  value="jdbc:db2://localhost:50000/SAMPLE"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.username"
+                  name="User ID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.password"
+                  name="Password"
+                  value=""
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension> 
+   
+    <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">     
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.connectivity.db.sybase.genericDriverTemplate"
+            jarList="jconn2.jar"
+            name="Sybase JDBC Driver for Sybase 12.x"
+            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
+                  name="Driver Class"
+                  value="com.sybase.jdbc2.jdbc.SybDriver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
+                  name="Vendor"
+                  value="Sybase"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.version"
+                  name="Version"
+                  value="12.x"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
+                  name="Database Name"
+                  value="database"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
+                  name="Connection URL"
+                  value="jdbc:sybase:Tds:host:port/database"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.username"
+                  name="User ID"
+                  value=""
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.sqm.core.password"
+                  name="Password"
+                  value=""
+                  required="false"
+                  visible="true"/>
+         </properties>
+      </driverTemplate>
+   </extension>   
 </plugin>

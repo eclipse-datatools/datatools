@@ -12,9 +12,9 @@ package org.eclipse.datatools.connectivity.db.generic;
 
 public interface IDBConnectionProfileConstants {
 	
-	public static final String CONNECTION_PROFILE_ID = "org.eclipse.datatools.connectivity.db.derby.connectionProfile";
+	public static final String CONNECTION_PROFILE_ID = "org.eclipse.datatools.connectivity.db.generic.connectionProfile";
 
-	public static final String PROP_PREFIX = "org.eclipse.datatools.connectivity.db.derby.";//$NON-NLS-1$
+	public static final String PROP_PREFIX = "org.eclipse.datatools.connectivity.db.generic.";//$NON-NLS-1$
 	public static final String PROP_CONNECTION_PROPERTIES = PROP_PREFIX + "connectionProperties";
 
 }
