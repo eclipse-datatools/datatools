@@ -202,4 +202,14 @@ public class ResultInstance implements IResultInstance
             _resultManager.fireParametersShow(this, _parameters);
         }
     }
+
+    public boolean hasTerminateHandler()
+    {
+        return _terminateHandler != null;
+    }
+
+    public List getParameters()
+    {
+        return _parameters;
+    } 
 }

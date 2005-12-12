@@ -209,11 +209,12 @@ public class ResultSetObject implements IResultSetObject
         Iterator iter = rows.iterator();
         while (iter.hasNext())
         {
-            if (iter.next() == null)
+            Object obj = iter.next();
+            if (obj == null)
             {
                 throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
             }
-            if (!(iter.next() instanceof IResultSetRow))
+            if (!(obj instanceof IResultSetRow))
             {
                 throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
             }
@@ -330,7 +331,6 @@ public class ResultSetObject implements IResultSetObject
     {
         if (_backupFile != null && _backupFile.exists())
         {
-            _log.debug("ResultSetObjectImpl.debug.dispose", _backupFile.getAbsolutePath());
             _backupFile.delete();
         }
     }
@@ -366,7 +366,6 @@ public class ResultSetObject implements IResultSetObject
                     _log.error("ResultSetObjectImpl.error.iterator", e);
                 }
             }
-            _log.debug("ResultSetObjectImpl.debug.open", backupFile.getAbsolutePath());
         }
 
         public void remove()
@@ -388,7 +387,6 @@ public class ResultSetObject implements IResultSetObject
             {
                 IResultSetRow row = (IResultSetRow) SQLUtil.getResultFromStream(_ois);
                 _nextRecord = row;
-                _log.debug("ResultSetObjectImpl.debug.next", String.valueOf(_index), _backupFile.getAbsolutePath());
                 _index++;
                 // when there're no rows, close the stream
                 if (_nextRecord == null)

@@ -14,6 +14,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.Types;
 
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 
@@ -71,5 +72,90 @@ public class SQLUtil
             return null;
         }
         return result;
+    }
+    
+    /**
+     * Check if the given SQL type is numeric data type
+     * @param datatype
+     * @return
+     */
+    public static boolean isNumericType(int datatype)
+    {
+        return datatype == Types.BIGINT || datatype == Types.DECIMAL || datatype == Types.DOUBLE|| datatype == Types.FLOAT
+            || datatype == Types.INTEGER|| datatype == Types.NUMERIC|| datatype == Types.REAL|| datatype == Types.SMALLINT
+            || datatype == Types.TINYINT;
+    }
+    
+    /**
+     * Converts the data type id to data type string
+     * 
+     * @param datatype
+     * @return
+     */
+    public static String convertToString(int datatype)
+    {
+        switch (datatype)
+        {
+            case Types.ARRAY:
+                return "ARRAY";
+            case Types.BIGINT:
+                return "BIGINT";
+            case Types.BINARY:
+                return "BINARY";
+            case Types.BIT:
+                return "BIT";
+            case Types.BLOB:
+                return "BLOB";
+            case Types.BOOLEAN:
+                return "BOOLEAN";
+            case Types.CHAR:
+                return "CHAR";
+            case Types.CLOB:
+                return "CLOB";
+            case Types.DATALINK:
+                return "DATALINK";
+            case Types.DATE:
+                return "DATE";
+            case Types.DECIMAL:
+                return "DECIMAL";
+            case Types.DISTINCT:
+                return "DISTINCT";
+            case Types.DOUBLE:
+                return "DOUBLE";
+            case Types.FLOAT:
+                return "FLOAT";
+            case Types.INTEGER:
+                return "INTEGER";
+            case Types.LONGVARBINARY:
+                return "LONGVARBINARY";
+            case Types.LONGVARCHAR:
+                return "LONGVARCHAR";
+            case Types.NULL:
+                return "NULL";
+            case Types.NUMERIC:
+                return "NUMERIC";
+            case Types.REAL:
+                return "REAL";
+            case Types.OTHER:
+                return "OTHER";
+            case Types.REF:
+                return "REF";
+            case Types.SMALLINT:
+                return "SMALLINT";
+            case Types.STRUCT:
+                return "STRUCT";
+            case Types.TIME:
+                return "TIME";
+            case Types.TIMESTAMP:
+                return "TIMESTAMP";
+            case Types.TINYINT:
+                return "TINYINT";
+            case Types.VARBINARY:
+                return "VARBINARY";
+            case Types.VARCHAR:
+                return "VARCHAR";
+            default:
+                return "UNKNOWN";
+        }
     }
 }

@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import org.eclipse.datatools.sqltools.result.internal.utils.Images;
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * The <code>OperationCommand</code> is used to uniquely identify an execution result in SQL Results View, it is the
@@ -127,6 +129,7 @@ public class OperationCommand
     
     /**
      * Converts the action id to action string.
+     * 
      * @param actionId the action type
      * @return the action string
      */
@@ -138,6 +141,63 @@ public class OperationCommand
                 return Messages.getString("OperationCommand.action.execute");
             default:
                 return Messages.getString("OperationCommand.unknown.action");
+        }
+    }
+    
+    /**
+     * Returns the image of given status
+     * 
+     * @param statusId the status id
+     * @return the image of this status
+     */
+    public static Image getStatusImage(int statusId)
+    {
+        switch (statusId)
+        {
+            case STATUS_STARTED:
+                return Images.get(Images.IMG_STARTED);
+            case STATUS_RUNNING:
+                return Images.get(Images.IMG_RUNNING);
+            case STATUS_SUCCEEDED:
+                return Images.get(Images.IMG_SUCCESS);
+            case STATUS_FAILED:
+                return Images.get(Images.IMG_FAIL);
+            case STATUS_TERMINATED:
+                return Images.get(Images.IMG_TERMINATE);
+            case STATUS_WARNING:
+                return Images.get(Images.IMG_WARNING);
+            case STATUS_CRITICAL_ERROR:
+                return Images.get(Images.IMG_CRITICAL);
+            default:
+                return Images.get(Images.IMG_FAIL);
+        }
+    }
+    
+    /**
+     * Converts the status id to status string
+     * @param statusId the id of the status
+     * @return the string that describes this status
+     */
+    public static String getStatusString(int statusId)
+    {
+        switch (statusId)
+        {
+            case STATUS_STARTED:
+                return Messages.getString("OperationCommand.status.started");
+            case STATUS_RUNNING:
+                return Messages.getString("OperationCommand.status.running");
+            case STATUS_SUCCEEDED:
+                return Messages.getString("OperationCommand.status.succeeded");
+            case STATUS_FAILED:
+                return Messages.getString("OperationCommand.status.failed");
+            case STATUS_TERMINATED:
+                return Messages.getString("OperationCommand.status.terminated");
+            case STATUS_WARNING:
+                return Messages.getString("OperationCommand.status.warning");
+            case STATUS_CRITICAL_ERROR:
+                return Messages.getString("OperationCommand.status.critical");
+            default:
+                return Messages.getString("OperationCommand.status.unknown");
         }
     }
 }
