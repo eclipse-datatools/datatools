@@ -1,0 +1,165 @@
+/*******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.datatools.sqltools.sqleditor;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.runtime.IPath;
+
+/**
+ * This class implements the IStorage interface to facilitate launching the SQL
+ * Editor from an editor input that isn't based on a file.
+ */
+public class SQLEditorStorage implements IStorage {
+    /** The contents of this storage object */
+    private InputStream fContents;
+    /** The name of this storage object */
+    private String fName;
+
+    /**
+     * Creates an instance of this class with the given string as the storage
+     * source content. The new storage object has a default name.
+     * 
+     * @param source the source content for this object
+     */
+    public SQLEditorStorage( String source ) {
+        this( null, source );
+    }
+
+    /**
+     * Creates an instance of this class with the given name and the given
+     * string as the storage content.
+     * 
+     * @param name the name for this storage object
+     * @param source the content source for this object
+     */
+    public SQLEditorStorage( String name, String source ) {
+        super();
+        setName( name );
+        setContents( new ByteArrayInputStream( source.getBytes() ) );
+    }
+
+    /**
+     * Returns an object which is an instance of the given class associated with
+     * this object. This implementation returns <code>null</code>
+     * 
+     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+     */
+    public Object getAdapter( Class key ) {
+        return null;
+    }
+
+    /**
+     * Returns an open input stream on the contents of this storage. The caller
+     * is responsible for closing the stream when finished.
+     * 
+     * @see org.eclipse.core.resources.IStorage#getContents()
+     */
+    public InputStream getContents() {
+        return fContents;
+    }
+
+    /**
+     * Returns the content of this object as a string.
+     * 
+     * @return the content as a string
+     */
+    public String getContentsString() {
+        String contentsString = ""; //$NON-NLS-1$
+        
+        InputStream contentsStream = getContents();
+        
+        // The following code was adapted from StorageDocumentProvider.setDocumentContent method.
+        Reader in = null;
+        try {
+            in = new BufferedReader( new InputStreamReader( contentsStream ));
+            StringBuffer buffer = new StringBuffer();
+            char[] readBuffer = new char[2048];
+            int n = in.read( readBuffer );
+            while (n > 0) {
+                buffer.append( readBuffer, 0, n );
+                n = in.read( readBuffer );
+            }
+            contentsString = buffer.toString();
+        } catch (IOException x) {
+            // ignore and save empty content
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException x) {
+                    // ignore, too late to do anything here
+                }
+            }
+        }
+
+        return contentsString;
+    }
+    
+    /**
+     * Returns the full path of this storage. This default implementation
+     * returns null.
+     * 
+     * @return <code>null</null>
+     * @see org.eclipse.core.resources.IStorage#getFullPath()
+     */
+    public IPath getFullPath() {
+        return null;
+    }
+
+    /**
+     * Returns the name of this storage. The name of a storage is synonymous
+     * with the last segment of its full path though if the storage does not
+     * have a path, it may still have a name.
+     * 
+     * @return the name of this storage object
+     * @see org.eclipse.core.resources.IStorage#getName()
+     */
+    public String getName() {
+        return fName;
+    }
+
+    /**
+     * Returns whether this storage is read-only.
+     * 
+     * @return false, since this storage is not read only
+     * @see org.eclipse.core.resources.IStorage#isReadOnly()
+     */
+    public boolean isReadOnly() {
+        return false;
+    }
+
+    /**
+     * Sets the input stream that acts as the contents of this storage to the
+     * given input stream.
+     * 
+     * @param contents the contents stream to use
+     */
+    public void setContents( InputStream contents ) {
+        fContents = contents;
+    }
+
+    /**
+     * Sets the name of this storage object to the given name.
+     * 
+     * @param name the name of this storage object
+     */
+    public void setName( String name ) {
+        fName = name;
+    }
+
+}

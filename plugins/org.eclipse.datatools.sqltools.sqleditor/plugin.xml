@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.sqltools.sqleditor"
+   name="%pluginName"
+   version="0.7.0"
+   provider-name="%providerName"
+   class="org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin">
+
+   <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>
+
+   <runtime>
+      <library name="sqleditor.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+      <!-- Eclipse Platform and Workbench plugins -->
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.jface.text" export="true"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.editors" export="true"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.views" export="true"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" export="true"/>
+      
+      <!-- Eclipse Web Tools Project plugins -->
+      <import plugin="org.eclipse.datatools.modelbase.sql"/>
+      <import plugin="org.eclipse.datatools.connectivity"/>
+      <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
+      <import plugin="org.eclipse.datatools.sqltools.editor.core"/>
+   </requires>
+
+   <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
+            name="%sqlEditorName"
+            icon=""
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
+			contributorClass="org.eclipse.datatools.sqltools.sqleditor.SQLEditorActionContributor">
+      </editor>
+   </extension>
+
+<!-- Register the DocumentSetupParticipant class for the SQL Editor. -->
+<!-- Note: In order to make the SQL Editor more reusable, the DocumentSetupParticipant 
+     is set up in the main SQL Editor class rather than here.
+   <extension
+         point="org.eclipse.core.filebuffers.documentSetup"
+         id="SQLEditorDocumentSetupParticipant"
+         name="%documentSetupParticipantName">
+      <participant
+            extensions="%sqlEditorFileExtensions"
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditorDocumentSetupParticipant">
+      </participant>
+   </extension>
+-->
+
+   <!-- Register a factory for recreating SQLEditorFileEditorInput objects when
+        the Workbench is restarted. -->
+   <extension 
+      point = "org.eclipse.ui.elementFactories"> 
+         <factory 
+            id ="org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory" 
+            class="org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory"> 
+         </factory> 
+   </extension> 
+
+   
+</plugin>
