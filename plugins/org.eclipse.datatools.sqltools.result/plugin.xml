@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsView"
+            icon="icons/sqlresult.gif"
+            id="org.eclipse.datatools.sqltools.result.resultView"
+            name="%SQLResultsView.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.datatools.sqltools.result.internal.preference.SQLResultsViewPage"
+            id="org.eclipse.datatools.sqltools.result.displayOption"
+            name="%SQLResultsView.display.options"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.datatools.sqltools.result.category"
+            name="%SQLResultsView.full.name"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.result.category"
+            id="org.eclipse.datatools.sqltools.result.removeInstance"
+            name="%RemoveResultAction.command.name"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.result.category"
+            id="org.eclipse.datatools.sqltools.result.removeAllInstances"
+            name="%RemoveAllResultAction.command.name"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.result.category"
+            id="org.eclipse.datatools.sqltools.result.terminate"
+            name="%TerminateInstanceAction.command.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.datatools.sqltools.result.removeInstance"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+DEL"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.result.removeAllInstances"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M2+DEL"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.result.terminate"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+BREAK"/>
+   </extension>
+
+</plugin>
