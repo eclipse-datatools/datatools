@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -21,8 +24,11 @@ import org.osgi.framework.BundleContext;
  */
 public class EditorCorePlugin extends AbstractUIPlugin {
 
+	private static final int INTERNAL_ERROR = 0;
+	public static final String PLUGIN_ID = "org.eclipse.datatools.sqltools.editor.core";
 	//The shared instance.
 	private static EditorCorePlugin plugin;
+	private IControlConnectionManager       _controlConnectionManager;
 	
 	/**
 	 * The constructor.
@@ -63,4 +69,56 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.editor.core", path);
 	}
+	
+    public static synchronized IControlConnectionManager getControlConnectionManager()
+    {
+        if (getDefault()._controlConnectionManager == null)
+        {
+            getDefault()._controlConnectionManager = new ControlConnectionManager();
+        }
+        return getDefault()._controlConnectionManager;
+    }
+
+ 	/**
+ 	 * Logs runtime status.
+ 	 * 
+ 	 * @param status Runtime status.
+ 	 */
+ 	public void log(IStatus status) {
+ 		getLog().log(status);
+ 	}
+
+ 	/**
+ 	 * Logs error message.
+ 	 * 
+ 	 * @param message Error message.
+ 	 */
+ 	public void log(String message) {
+ 		log(createErrorStatus(message));
+ 	}
+
+ 	/**
+ 	 * Logs and exception.
+ 	 * 
+ 	 * @param e Exception.
+ 	 */
+ 	public void log(Throwable e) {
+ 		log(createErrorStatus(e));
+ 	}
+
+ 	public IStatus createErrorStatus(String message) {
+ 		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+ 				INTERNAL_ERROR, message, null);
+ 	}
+
+ 	public IStatus createErrorStatus(Throwable e) {
+ 		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+ 				INTERNAL_ERROR, Messages.getString("plugin.internal_error"), e); //$NON-NLS-1$
+ 	}
+     
+    public static DatabaseFactoryRegistry getDatabaseFactoryRegistry()
+    {
+        return DatabaseFactoryRegistryImpl.INSTANCE;
+    }
+    
 }
