@@ -46,6 +46,8 @@ public interface IConnection
 	 * the same instance. 
 	 * <br>
 	 * <b>Note:</b> This method should be called before open().
+	 * It is called regardless of whether the connection is 
+	 * already open.
 	 * <br>An optional method.
 	 * If any part of the context is not recognized by the driver,
 	 * it should simply ignore, and not throw an exception.
