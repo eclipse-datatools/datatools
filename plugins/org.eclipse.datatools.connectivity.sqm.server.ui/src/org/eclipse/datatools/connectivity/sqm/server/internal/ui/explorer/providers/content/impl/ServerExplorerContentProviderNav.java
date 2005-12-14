@@ -22,8 +22,6 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.datatools.connectivity.navigator.views.INavigatorContentExtension;
-import org.eclipse.datatools.connectivity.navigator.views.INavigatorContentProvider;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
@@ -56,7 +54,7 @@ import org.eclipse.swt.widgets.TreeItem;
 /**
  * @author ljulien
  */
-public class ServerExplorerContentProviderNav implements INavigatorContentProvider, IServerExplorerContentService,
+public class ServerExplorerContentProviderNav implements IServerExplorerContentService,
         IServerExplorerLayoutService, IServerExplorerNavigationService
 {
     private static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
@@ -68,7 +66,7 @@ public class ServerExplorerContentProviderNav implements INavigatorContentProvid
     private static final IVirtualNodeServiceFactory virtualNodeFactory = IDataToolsUIServiceManager.INSTANCE.getVirtualNodeServiceFactory();
  //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
 
-    private INavigatorContentExtension containedExtension;
+ //   private INavigatorContentExtension containedExtension;
  //   private ServerExplorerConfiguration serverExplorerConfiguration = new ServerExplorerConfiguration();
     private IKnownConnectionNode knownServer;
     private IServerExplorerLayoutProviderNav layoutProvider = new ServerExplorerVirtualNodeLayoutNav(this);
@@ -155,10 +153,10 @@ public class ServerExplorerContentProviderNav implements INavigatorContentProvid
     /**
      * @see org.eclipse.ui.views.navigator.INavigatorContentProvider#getContainingExtension()
      */
-    public INavigatorContentExtension getContainingExtension()
-    {
-        return containedExtension;
-    }
+//    public INavigatorContentExtension getContainingExtension()
+//    {
+//        return containedExtension;
+//    }
 
     /**
      * @see org.eclipse.ui.views.navigator.INavigatorContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)

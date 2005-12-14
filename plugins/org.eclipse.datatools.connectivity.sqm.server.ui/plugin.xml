@@ -23,7 +23,6 @@
 	  <import plugin="org.eclipse.datatools.modelbase.sql"/>
       <import plugin="org.eclipse.datatools.connectivity.sqm.core"/>
       <import plugin="org.eclipse.datatools.connectivity.sqm.core.ui"/>
-	  <import plugin="org.eclipse.datatools.connectivity.navigator.views" export="true"/>
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.datatools.connectivity.ui"/>
       <import plugin="org.eclipse.ui.navigator"/>
