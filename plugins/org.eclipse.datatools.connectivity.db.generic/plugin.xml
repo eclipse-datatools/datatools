@@ -234,5 +234,38 @@
                   visible="true"/>
          </properties>
       </driverTemplate>
-   </extension>   
+   </extension> 
+   
+      <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelContentProviderExtension"
+            enabledByDefault="true"
+            id="org.eclipse.datatools.connectivity.db.sqlModelContent"
+            labelProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelLabelProviderExtension"
+            name="SQL Model Content Extension">
+         <enablement id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <or>
+	            <and>
+	               <objectState
+	                     name="org.eclipse.datatools.connectivity.profile.property.factoryID"
+	                     value="java.sql.Connection">
+	               </objectState>
+	               <objectClass
+	                     name="org.eclipse.datatools.connectivity.IConnectionProfile">
+	               </objectClass>
+	            </and>
+               <objectClass
+                     name="org.eclipse.datatools.modelbase.sql.schema.SQLObject">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.datatools.connectivity.db.generic.SQLModelContentExtension">
+               </objectClass>
+            </or>
+         </enablement>
+      </navigatorContent>
+   </extension>  
 </plugin>

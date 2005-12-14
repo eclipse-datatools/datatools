@@ -10,7 +10,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.ui,
- org.eclipse.datatools.connectivity.sqm.core
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.ui.navigator,
+ org.eclipse.datatools.connectivity.sqm.server.ui,
+ org.eclipse.datatools.connectivity.sqm.core.ui
 Eclipse-AutoStart: true
 Export-Package: org.eclipse.datatools.connectivity.db.generic
 Bundle-ClassPath: genericdb.jar

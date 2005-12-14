@@ -620,12 +620,10 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 		this.name = "conn1"; // TODO get name from connection profile
 		
 		open();
-		Connection connection = (Connection)this.getRawConnection();
+		Connection connection = (Connection) super.getRawConnection();
 		this.setSharedConnection(connection);
         new DatabaseProviderHelper().setDatabase(connection,
                 this, this.getDatabaseName());
-        
-        test();  //TODO remove this line, for testing purposes only
 	}
 
 	private void test(){
@@ -667,7 +665,7 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 	}
 
 	public void close() {
-		Connection connection = (Connection) getRawConnection();
+		Connection connection = (Connection) super.getRawConnection();
 		if (connection != null) {
 			try {
 				connection.close();
@@ -701,7 +699,7 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 
 	protected void initVersions() {
 		try {
-			DatabaseMetaData dbmd = ((Connection) getRawConnection())
+			DatabaseMetaData dbmd = ((Connection) super.getRawConnection())
 					.getMetaData();
 			try {
 				mServerName = dbmd.getDatabaseProductName();
@@ -740,5 +738,9 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 		}
 		catch (SQLException e) {
 		}
+	}
+	
+	public Object getRawConnection() {
+		return this;
 	}
 }

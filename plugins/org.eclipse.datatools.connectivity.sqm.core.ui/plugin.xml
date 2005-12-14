@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.connectivity.sqm.core.ui"
+   name="%pluginName"
+   version="0.7.0"
+   provider-name="%providerName"
+   class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin">
+
+   <runtime>
+      <library name="rdb.core.ui.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+
+   <requires>
+   	  <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.datatools.modelbase.sql"/>
+      <import plugin="org.eclipse.datatools.connectivity.sqm.core"/>
+      <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
+      <import plugin="org.eclipse.core.resources"/>
+   </requires>
+
+   <extension-point id="labelService" name="labelService" schema="schema/labelService.exsd"/>
+   <extension-point id="elementID" name="elementID" schema="schema/elementID.exsd"/>
+   <extension-point id="markerNavigationProvider" name="markerNavigationProvider" schema="schema/markerNavigationProvider.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <!-- Data Node -->
+      <page
+            name="%datatools.core.ui.preferences.data"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.PreferencePage"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data">
+      </page>
+   	  <!-- Preference page for Label Decorations -->
+      <page
+            name="%datatools.core.ui.preferences.labeldecorators"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.LabelDecoratorPreference"
+            id="org.eclipse.datatools.connectivity.sqm.core.ui.preferences.labelDecorations">
+      </page>
+	  <!-- Preference page for Output -->
+      <page
+      		name="%datatools.core.ui.preferences.output"
+      		category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+      		class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.OutputPreference"
+      		id="org.eclipse.datatools.connectivity.sqm.core.ui.preferences.output">
+     </page>
+	</extension>
+
+<!-- Decoration of the Explorer - lightweight Decoration -->
+   <extension
+         id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.modelexplorer.decorator"
+         name="%org.eclipse.datatools.connectivity.sqm.core.internal.ui.modelexplorer.decorator"
+         point="org.eclipse.ui.decorators">
+<!-- Decoration for the Dependencies -->
+	  <decorator
+            lightweight="true"
+            location="TOP_LEFT"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.DependencyDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.DependencyDecorationService"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.DependencyDecoration">
+         <enablement>
+	            <objectClass
+	                  name="org.eclipse.datatools.modelbase.sql.schema.Dependency">
+	            </objectClass>
+         </enablement>
+	  </decorator>
+<!-- Decoration for Column -->
+      <decorator
+            lightweight="true"
+            location="TOP_LEFT"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.modelExplorerColumnDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.ColumnDecorationService"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.ColumnDecoration">
+         <enablement>
+	            <objectClass
+	                  name="org.eclipse.datatools.modelbase.sql.tables.Column">
+	            </objectClass>
+         </enablement>
+      </decorator>
+<!-- Foreign Key Decoration -->
+      <decorator
+            lightweight="true"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.ForeignKeyDecorationService"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.ForeignKeyDecoration">
+         <enablement>
+	            <objectClass
+	            	  name="org.eclipse.datatools.modelbase.sql.constraints.ForeignKey">
+	            </objectClass>
+         </enablement>
+      </decorator>
+<!-- Decorator for the Bookmark -->
+	  <decorator
+            lightweight="true"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.bookmarkDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.BookmarkDecorationService"
+            id="org.eclipse.datatools.connectivity.sqm.internal.core.ui.bookmarkDecoration">
+         <enablement>
+            <or> 
+	            <objectClass
+	                  name="org.eclipse.datatools.modelbase.sql.schema.SQLObject">
+	            </objectClass>
+	            <objectClass
+	                  name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode">
+	            </objectClass>
+	        </or>
+         </enablement>
+      </decorator>
+   </extension>
+
+<!-- Support for Bookmark in the Explorers -->
+   <extension
+         id="explorerBookmark"
+         point="org.eclipse.core.resources.markers">
+   </extension>
+   <extension 
+   		id="persistentBookmark" point="org.eclipse.core.resources.markers">
+      	<super 
+      		type="org.eclipse.datatools.connectivity.sqm.core.ui.explorerBookmark">
+      	</super>
+      	<super 
+      		type="org.eclipse.core.resources.bookmark">
+      	</super>
+      	<persistent value="true">
+      	</persistent>
+      	<attribute
+      		name="elementId">
+     	</attribute>
+   </extension>
+   <extension 
+   		id="transientBookmark" point="org.eclipse.core.resources.markers">
+      	<super 
+      		type="org.eclipse.datatools.connectivity.sqm.core.ui.explorerBookmark">
+      	</super>
+      	<super 
+      		type="org.eclipse.core.resources.bookmark">
+      	</super>
+      	<persistent value="false">
+      	</persistent>
+      	<attribute
+      		name="elementId">
+     	</attribute>
+      	<attribute
+      		name="connectionName">
+     	</attribute>
+   </extension>
+
+<!-- Label Providers -->
+	<extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Database"
+			iconLocation = "/icons/database.gif"
+			displayType = "%database">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Schema"
+			iconLocation = "/icons/schema.gif"
+			displayType = "%schema">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.BaseTable"
+			iconLocation = "/icons/table.gif"
+			displayType = "%baseTable">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Column"
+			iconLocation = "/icons/columns.gif"
+			displayType = "%column">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.datatypes.Domain"
+			iconLocation = "/icons/domain.gif"
+			displayType = "%domain">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType"
+			iconLocation = "/icons/udt.gif"
+			displayType = "%udt">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.Index"
+			iconLocation = "/icons/index.gif"
+			displayType = "%index">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Procedure"
+			iconLocation = "/icons/stored_procedure.gif"
+			displayType = "%procedure">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.ViewTable"
+			iconLocation = "/icons/view.gif"
+			displayType = "%view">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Table"
+			iconLocation = "/icons/table.gif"
+			displayType = "%baseTable">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Parameter"
+			iconLocation = "/icons/parameter.gif"
+			displayType = "%parameter">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.tables.Trigger"
+			iconLocation = "/icons/trigger.gif"
+			displayType = "%trigger">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Sequence"
+			iconLocation = "/icons/sequence.gif"
+			displayType = "%sequence">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Source"
+			iconLocation = "/icons/sample.gif"
+			displayType = "%source">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint"
+			iconLocation = "/icons/constraint.gif"
+			displayType = "%CheckConstraint">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint"
+			iconLocation = "/icons/constraint.gif"
+			displayType = "%UniqueConstraint">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.datatypes.AttributeDefinition"
+			iconLocation = "/icons/sample.gif"
+			displayType = "%attributeDefinition">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.routines.Function"
+			iconLocation = "/icons/udf.gif"
+			displayType = "%function">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Dependency"
+			iconLocation = "/icons/dependency.gif"
+			displayType = "%dependency">
+		</contributor>
+		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey"
+			iconLocation = "/icons/primaryKey.gif"
+			displayType = "%primaryKey">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.constraints.ForeignKey"
+			iconLocation = "/icons/fk.gif"
+			displayType = "%foreignKey">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"
+			iconLocation = "/icons/closedFolder.gif"
+			displayType = "%folder">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IDependencyNode"
+			iconLocation = "/icons/dependencyFolder.gif"
+			displayType = "%folder">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode"
+			iconLocation = "/icons/connectionFolder.gif"
+			displayType = "%existingConnection">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
+			iconLocation = "/icons/connection.gif"
+			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.ConnectionSelector"
+			displayType = "%connectedConnection">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
+			iconLocation = "/icons/disconnect_server.gif"
+			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.DisconnectedConnectionSelector"
+			displayType = "%disconnectedConnection">
+		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
+			iconLocation = "/icons/cachedConnection.gif"
+			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.CachedConnectionSelector"
+			displayType = "%cachedConnection">
+		</contributor>
+	</extension>
+</plugin>

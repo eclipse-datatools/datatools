@@ -1,0 +1,68 @@
+/*******************************************************************************
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources;
+
+import java.util.ResourceBundle;
+
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.ServerUIDebugOptions;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.logging.Logger;
+import org.eclipse.swt.graphics.Image;
+
+
+/**
+ * @author ljulien
+ */
+public class ResourceLoader
+{
+	private static final ServerUIPlugin plugin = ServerUIPlugin.getDefault();
+	private static final String RESOURCE_PATH = "org/eclipse/datatools/connectivity/sqm/server/internal/ui/l10n/";
+	private static final String UI_RESOURCES = "datatoolsServerUI";
+	private static final String NO_RESOURCE_FOUND = "NO_RESOURCE_FOUND";
+
+	private ResourceBundle bundle;
+	
+	public static final ResourceLoader INSTANCE = new ResourceLoader ();
+	
+	private ResourceLoader()
+    {
+        this.bundle = ResourceBundle.getBundle(RESOURCE_PATH + UI_RESOURCES);
+    }
+	
+    /**
+     * Client should use this query Image, as the registry will dispose the image
+     * @param imagePath
+     * @return the image
+     */
+    public Image queryImageFromRegistry (String imagePath)
+    {
+        return org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader.getResourceLoader().queryImageFromRegistry(imagePath);
+    }
+
+    /**
+     * @param stringID - the key to look for
+     * @return - the localized string
+     */
+    public String queryString (String stringID)
+    {
+        try
+        {
+            String resource = null;
+            resource = this.bundle.getString(stringID);
+            return (resource);
+        }
+        catch (Throwable e)
+        {
+        	Logger.log(this, e, ServerUIDebugOptions.SERVER_EXPLORER_LOG);
+        	return NO_RESOURCE_FOUND;
+        }
+    }
+}

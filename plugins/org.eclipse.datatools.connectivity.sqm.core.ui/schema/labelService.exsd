@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core.ui" id="labelService" name="labelService"/>
+      </appInfo>
+      <documentation>
+         This extension point will provide plugins a way to supply their own Icons as well as a displayType for SQLObject element.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <documentation>
+            This extension point will provide plugins a way to supply their own Icons as well as a displayType for SQLObject element.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="contributor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="contributor">
+      <complexType>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The EMF type contributed by your provider of the LabelService
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="iconLocation" type="string" use="required">
+            <annotation>
+               <documentation>
+                  This is the Icon location so that the core.ui plugin can load your icon
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="displayType" type="string">
+            <annotation>
+               <documentation>
+                  This is the type to display in UI such as the property browser. By default the type to display will be the metaclass name eClass().getName()
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="selector" type="string" use="optional">
+            <annotation>
+               <documentation>
+                  The name of a class that implements the org.eclipse.datatools.connectivity.sqm.core.internal.ui.LabelSelector interface.  If provided, this class will be used in
+                  addition to the type to determine if the label information should be passed back for the given object.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;extension point = &quot;com.ibm.datatools.core.ui.labelService&quot;&gt;
+		&lt;contributor
+			type = &quot;com.ibm.db.models.sql.schema.Database&quot;
+			iconLocation = &quot;/icons/database.gif&quot;
+			displayType = &quot;%database&quot;&gt;
+		&lt;/contributor&gt;
+    &lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
