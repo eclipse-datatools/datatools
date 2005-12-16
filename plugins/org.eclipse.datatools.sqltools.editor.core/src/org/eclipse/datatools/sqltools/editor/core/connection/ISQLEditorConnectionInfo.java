@@ -19,6 +19,12 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 public interface ISQLEditorConnectionInfo {
 	
     /**
+     * Gets a representing this object. Contains connection profile name and database name if any.
+     * @return connection name
+     */
+    public String getName();
+    
+    /**
      * Gets the <code>DatabaseVendorDefinition</code> object associated with this input.
      * The <code>DatabaseVendorDefinition</code> object contains the information needed
      * to do parsing, syntax highlighting, and syntax validation.

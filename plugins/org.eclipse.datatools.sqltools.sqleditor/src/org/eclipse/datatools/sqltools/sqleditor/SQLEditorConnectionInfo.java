@@ -11,6 +11,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 
 /**
@@ -28,10 +29,10 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	private String _defaultSchemaName = null;
 	
 	
-	public SQLEditorConnectionInfo(DatabaseVendorDefinitionId vendorId, String profileName, String dbName, String schemaName) {
+	public SQLEditorConnectionInfo( String profileName, String dbName, String schemaName) {
 		super();
-		_dbVendorId = vendorId;
 		_profileName = profileName;
+		_dbVendorId = ProfileUtil.getVendorIdentifier(profileName);
 		_databaseName = dbName;
 		_defaultSchemaName = schemaName;
 	}
@@ -103,4 +104,12 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 		//TODO
 		return null;
 	}
+
+    public String getName()
+    {
+        StringBuffer code = new StringBuffer("");
+        code.append(_profileName == null? "":_profileName).append(":");
+        code.append(_databaseName == null? "":_databaseName.toString());
+        return code.toString();
+    }
 }

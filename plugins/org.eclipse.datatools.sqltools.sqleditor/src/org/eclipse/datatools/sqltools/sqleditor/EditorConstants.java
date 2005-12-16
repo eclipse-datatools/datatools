@@ -16,12 +16,11 @@ package org.eclipse.datatools.sqltools.sqleditor;
 public interface EditorConstants
 {
 	/**
-	 * Marker type contants for SQL portability targets.
+	 * Marker type contant for SQL portability targets.
 	 */
     public static final String PORTABILITY_MARKER_TYPE = SQLEditorPlugin.PLUGIN_ID + ".portabilitytask";           //$NON-NLS-1$
     /**
-     * Marker type contants for SQL syntax errors.
+     * Marker type contant for SQL syntax errors.
      */
     public static final String SYNTAX_MARKER_TYPE      = SQLEditorPlugin.PLUGIN_ID + ".syntaxproblem";             //$NON-NLS-1$
-
 }

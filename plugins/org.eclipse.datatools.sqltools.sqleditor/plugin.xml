@@ -31,6 +31,7 @@
       <import plugin="org.eclipse.datatools.connectivity"/>
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.datatools.sqltools.editor.core"/>
+      <import plugin="org.eclipse.datatools.sqltools.sql"/>
    </requires>
 
    <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->

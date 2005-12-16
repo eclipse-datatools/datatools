@@ -8,8 +8,6 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
-import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
  * Performs SQL Editor default preference value initialization.
@@ -25,7 +23,7 @@ public class EditorPreferenceInitializer extends AbstractPreferenceInitializer
      */
     public void initializeDefaultPreferences()
     {
-        IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
+        //IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
         //TODO set default values
         
     }

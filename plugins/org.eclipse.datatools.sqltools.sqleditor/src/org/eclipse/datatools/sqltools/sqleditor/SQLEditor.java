@@ -42,8 +42,8 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.help.WorkbenchHelp;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -133,7 +133,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         viewer.doOperation( ProjectionViewer.TOGGLE );
         
         /* Set a help context ID to enable F1 help. */
-        WorkbenchHelp.setHelp( parent, HELP_CONTEXT_ID );
+        PlatformUI.getWorkbench().getHelpSystem().setHelp( parent, HELP_CONTEXT_ID );
     }
 
     /**
