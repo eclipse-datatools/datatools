@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+     <extension
+         point="org.eclipse.datatools.modelbase.sql.query.sourceWriterExtension">
+      <pluginJava class="org.eclipse.datatools.modelbase.sql.xml.query.util.SQLXMLQueryModelPlugin"/>
+      <sourceWriter
+            packageName="org.eclipse.datatools.modelbase.sql.xml.query"
+            class="org.eclipse.datatools.modelbase.sql.xml.query.util.SQLXMLQuerySourceWriter"
+            implPackageName="org.eclipse.datatools.modelbase.sql.xml.query.impl"/>
+   </extension>
+
+</plugin>
