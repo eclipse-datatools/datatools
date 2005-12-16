@@ -1,0 +1,104 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: UpdateAssignmentExpression.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ */
+package org.eclipse.datatools.modelbase.sql.query;
+
+import org.eclipse.emf.common.util.EList;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>SQL Assignment Expression</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateStatement <em>Update Statement</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getTargetColumnList <em>Target Column List</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateSource <em>Update Source</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression()
+ * @model
+ * @generated
+ */
+public interface UpdateAssignmentExpression extends SQLQueryObject{
+	/**
+	 * Returns the value of the '<em><b>Update Statement</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getAssignmentClause <em>Assignment Clause</em>}'.
+	 * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Update Statement</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+	 * @return the value of the '<em>Update Statement</em>' container reference.
+	 * @see #setUpdateStatement(QueryUpdateStatement)
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_UpdateStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getAssignmentClause
+	 * @model opposite="assignmentClause"
+	 * @generated
+	 */
+    QueryUpdateStatement getUpdateStatement();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateStatement <em>Update Statement</em>}' container reference.
+	 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Update Statement</em>' container reference.
+	 * @see #getUpdateStatement()
+	 * @generated
+	 */
+    void setUpdateStatement(QueryUpdateStatement value);
+
+	/**
+	 * Returns the value of the '<em><b>Target Column List</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getAssignmentExprTarget <em>Assignment Expr Target</em>}'.
+	 * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Target Column List</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+	 * @return the value of the '<em>Target Column List</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_TargetColumnList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getAssignmentExprTarget
+	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="assignmentExprTarget" required="true"
+	 * @generated
+	 */
+    EList getTargetColumnList();
+
+	/**
+	 * Returns the value of the '<em><b>Update Source</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.UpdateSource#getUpdateAssignmentExpr <em>Update Assignment Expr</em>}'.
+	 * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Update Source</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+	 * @return the value of the '<em>Update Source</em>' containment reference.
+	 * @see #setUpdateSource(UpdateSource)
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_UpdateSource()
+	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateSource#getUpdateAssignmentExpr
+	 * @model opposite="updateAssignmentExpr" containment="true" required="true"
+	 * @generated
+	 */
+  UpdateSource getUpdateSource();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateSource <em>Update Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Update Source</em>' containment reference.
+	 * @see #getUpdateSource()
+	 * @generated
+	 */
+  void setUpdateSource(UpdateSource value);
+
+} // SQLAssignmentExpression

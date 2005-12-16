@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension-point id="sourceWriterExtension" name="SourceWriterExtension" schema="schema/sourceWriterExtension.exsd"/>
+     
+   <extension
+         point="org.eclipse.datatools.modelbase.sql.query.sourceWriterExtension">
+      <pluginJava class="org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPlugin"/>
+      <sourceWriter
+            class="org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter"
+            packageName="org.eclipse.datatools.modelbase.sql.query"
+            implPackageName="org.eclipse.datatools.modelbase.sql.query.impl"/>
+   </extension>
+
+</plugin>
