@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sql Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.sql
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.sqltools.sql.internal.SQLActivator
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.sqltools.sql.connection,
+ org.eclipse.datatools.sqltools.sql.parser,
+ org.eclipse.datatools.sqltools.sql.parser.ast,
+ org.eclipse.datatools.sqltools.sql.parser.util,
+ org.eclipse.datatools.sqltools.sql.util
