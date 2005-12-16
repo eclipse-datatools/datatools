@@ -422,7 +422,7 @@ public class ResultsViewAPI
      * 
      * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
      */
-    private boolean checkView()
+    public boolean checkView()
     {
         // get the active window
         IWorkbenchWindow activeWindow = ResultsViewPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
