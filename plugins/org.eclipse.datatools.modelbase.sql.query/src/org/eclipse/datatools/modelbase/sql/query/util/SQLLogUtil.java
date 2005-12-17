@@ -1,12 +1,13 @@
-/*
- * Licensed Material - Property of IBM (C) Copyright IBM Corp. 2000, 2002 - All
- * Rights Reserved. US Government Users Restricted Rights - Use, duplication or
- * disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+/*******************************************************************************
+ * Copyright (c) 2000, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * %W%
- * 
- * @version %I% %H%
- */
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.util;
 
 import org.eclipse.core.runtime.Plugin;

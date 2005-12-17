@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelectStatementImpl.java,v 1.5 2005/02/03 22:58:56 bpayton Exp $
+ * $Id: QuerySelectStatementImpl.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -13,19 +13,13 @@ import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
-
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

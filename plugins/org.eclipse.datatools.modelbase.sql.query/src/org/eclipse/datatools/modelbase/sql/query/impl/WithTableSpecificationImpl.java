@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableSpecificationImpl.java,v 1.6 2005/10/22 01:35:24 bpayton Exp $
+ * $Id: WithTableSpecificationImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -13,20 +13,15 @@ import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;

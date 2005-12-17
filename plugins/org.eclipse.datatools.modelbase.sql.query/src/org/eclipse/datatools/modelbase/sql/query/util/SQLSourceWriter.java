@@ -1,9 +1,13 @@
-/*
- * Created on Feb 6, 2005
- *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
+/*******************************************************************************
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.util;
 
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
@@ -13,7 +17,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * method to generate the SQL source of a given <code>queryObject</code>.
  * {@link org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter} provides the
  * base implementation of this interface, implementing the <code>getSQL()</code>
- * method for the Package <code>com.ibm.db.models.sql.query</code>.
+ * method for the Package <code>org.eclipse.datatools.modelbase.sql.query</code>.
  * 
  * @author ckadner
  */

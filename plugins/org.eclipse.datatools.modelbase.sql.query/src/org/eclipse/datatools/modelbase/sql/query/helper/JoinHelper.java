@@ -1,19 +1,14 @@
-/*
- * Created on Dec 16, 2004
- *
- */
+/*******************************************************************************
+ * Copyright (c) 2000, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.helper;
-
-/*
- * Licensed Material - Property of IBM
- * (C) Copyright IBM Corp. 2000, 2002 - All Rights Reserved.
- * US Government Users Restricted Rights - Use, duplication or disclosure
- * restricted by GSA ADP Schedule Contract with IBM Corp.
- *
- * %W%
- *
- * @version %I% %H%
- */
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -550,7 +545,6 @@ public class JoinHelper {
     public static TableReference findOutermostContainingJoin(List fromClause, TableExpression targetTable) {
         TableReference foundTableRef = null;
         Iterator fromClauseIter = fromClause.iterator();
-        int i = 0;
         while (fromClauseIter.hasNext() && foundTableRef == null) {
             TableReference tempTableRef = (TableReference) fromClauseIter.next();
             if (targetTable == tempTableRef) {

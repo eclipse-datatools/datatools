@@ -2,13 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceImpl.java,v 1.6 2005/10/22 01:35:23 bpayton Exp $
+ * $Id: UpdateSourceImpl.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSource;

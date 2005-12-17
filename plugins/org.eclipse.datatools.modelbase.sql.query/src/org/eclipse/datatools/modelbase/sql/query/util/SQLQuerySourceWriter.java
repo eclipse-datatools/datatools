@@ -1,12 +1,13 @@
-/*
- * Licensed Materials - Property of IBM
- * com.ibm.db.models.sql.query
- * (C) Copyright IBM Corporation 2004, 2005. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- *   Use, duplication or disclosure restricted 
- *   by GSA ADP Schedule Contract with IBM Corp.
- */
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.util;
 
 import java.lang.reflect.InvocationTargetException;
@@ -118,7 +119,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 /**
  * The <code>SQLQuerySourceWriter</code> provides a generic <code>getSQL()</code>
  * method to generate the SQL source text of a given <code>queryObject</code> in
- * the package <code>com.ibm.db.models.sql.query</code>.
+ * the package <code>org.eclipse.datatools.modelbase.sql.query</code>.
  * 
  * @author ckadner
  * @see SQLQueryObject#getSQL()
@@ -126,29 +127,29 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  * <p>
  * <b>Developer note:</b>
  * To extend this <code>SQLQuerySourceWriter</code> for another
- * <code>com.ibm.db.models.sql.query</code> package, the following naming
+ * <code>org.eclipse.datatools.modelbase.sql.query</code> package, the following naming
  * conventions have to be adhered to. The package name containing the
  * <code>SQLQueryObject</code>s must contain the part name
- * <code>sql.query</code>, e.g. <code>com.ibm.db.models.sql.query.db2.luw</code>.
+ * <code>sql.query</code>, e.g. <code>org.eclipse.datatools.modelbase.sql.query.db2.luw</code>.
  * The <code>SQLQuerySourceWriter</code> for that package must be under the sub-
  * package <code>util</code>, likewise
- * <code>com.ibm.db.models.sql.query.db2.luw.util</code>
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.luw.util</code>
  * The name of the <code>SQLQuerySourceWriter</code> class must be composed of
  * at least the last part of the <code>SQLQueryObject</code>s' package name and
  * the word "SourceWriter", e.g. for an <code>SQLQueryObject</code> in package
- * <code>com.ibm.db.models.sql.query.db2.luw</code> the appropriate
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.luw</code> the appropriate
  * <code>SQLQuerySourceWriter</code> class could be
- * <code>com.ibm.db.models.sql.query.db2.luw.util.DB2LUWSourceWriter</code> or
- * <code>com.ibm.db.models.sql.query.db2.luw.util.LUWSourceWriter</code>. The
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.luw.util.DB2LUWSourceWriter</code> or
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.luw.util.LUWSourceWriter</code>. The
  * <code>SQLQuerySourceWriter</code> could also be capable of generatiing the
  * SQL source text of multiple <code>SQLQueryObject</code>s' packages and
  * consequently would have to be located in a higher package itself. Likewise
- * a <code>com.ibm.db.models.sql.query.db2.util.DB2SourceWriter</code> could be
+ * a <code>org.eclipse.datatools.modelbase.sql.query.db2.util.DB2SourceWriter</code> could be
  * capable of generatiing the SQL source text for the packages
- * <code>com.ibm.db.models.sql.query.db2</code> and
- * <code>com.ibm.db.models.sql.query.db2.luw</code> and
- * <code>com.ibm.db.models.sql.query.db2.zos</code> and
- * <code>com.ibm.db.models.sql.query.db2.cloudscape</code>.
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2</code> and
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.luw</code> and
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.zos</code> and
+ * <code>org.eclipse.datatools.modelbase.sql.query.db2.cloudscape</code>.
  * <p>
  * 
  * There can be only one <code>SQLQuerySourceWriter</code> per
@@ -848,7 +849,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
 	            if (preserveComments) appendCommentsPreceeding(queryObject, sb);
 
-                int startIndex = sb.length();
+                //int startIndex = sb.length();
 
 	            getSQL.invoke(this, invokationArgs);
 
@@ -916,7 +917,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
     /**
      * TODO: refactor this so where ever its invoked now to invoke a similar
-     *  implementation in PlugIn com.ibm.db.models.sql
+     *  implementation in PlugIn org.eclipse.datatools.modelbase.sql
      */
     protected void appendSQL(SQLObject sqlObject, StringBuffer sb)
     {
@@ -1708,7 +1709,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.PrimitiveType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType#getSQL()
      */
     protected void appendSpecificSQL(PrimitiveType primitiveType, StringBuffer sb)
     {
@@ -1720,7 +1721,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.BinaryStringDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType#getSQL()
      */
     protected void appendSpecificSQL(BinaryStringDataType dataType, StringBuffer sb)
     {
@@ -1763,7 +1764,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.CharacterStringDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType#getSQL()
      */
     protected void appendSpecificSQL(CharacterStringDataType dataType, StringBuffer sb)
     {
@@ -1823,7 +1824,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.DateDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.DateDataType#getSQL()
      */
     protected void appendSpecificSQL(DateDataType dataType, StringBuffer sb)
     {
@@ -1831,7 +1832,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.TimeDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType#getSQL()
      */
     protected void appendSpecificSQL(TimeDataType dataType, StringBuffer sb)
     {
@@ -1841,7 +1842,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.IntegerDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType#getSQL()
      */
     protected void appendSpecificSQL(IntegerDataType dataType, StringBuffer sb)
     {
@@ -1857,7 +1858,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.FixedPrecisionDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType#getSQL()
      */
     protected void appendSpecificSQL(FixedPrecisionDataType dataType, StringBuffer sb)
     {
@@ -1878,7 +1879,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.ApproximateNumericDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType#getSQL()
      */
     protected void appendSpecificSQL(ApproximateNumericDataType dataType, StringBuffer sb)
     {
@@ -1893,7 +1894,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.ArrayDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType#getSQL()
      */
     protected void appendSpecificSQL(ArrayDataType dataType, StringBuffer sb)
     {
@@ -1912,7 +1913,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     }
 
     /**
-     * @see com.ibm.db.models.sql.datatypes.MultisetDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType#getSQL()
      */
     protected void appendSpecificSQL(MultisetDataType dataType, StringBuffer sb)
     {

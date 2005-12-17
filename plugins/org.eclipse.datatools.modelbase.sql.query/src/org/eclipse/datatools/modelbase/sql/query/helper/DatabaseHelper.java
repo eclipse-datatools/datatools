@@ -1,24 +1,12 @@
 /*******************************************************************************
- * IBM CONFIDENTIAL -- OCO SOURCE MATERIALS
- *
- * COPYRIGHT:
- *     (C) COPYRIGHT IBM CORPORATION 2002
- *
- * The source code for this program is not published or otherwise divested of
- * its trade secrets, irrespective of what has been deposited with the U.S.
- * Copyright Office.
- *
- * Source File Name: %W%
- * Version: %I%, %G%
- *
- * Descriptive Name: Database helper
- *
- * Function:  Provides a set of utility methods for dealing with
- *            Database objects and associated objects such as
- *            Table and Column.
- *
- * Change Activity:
- *
+ * Copyright (c) 2000, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.helper;
 
@@ -39,13 +27,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  * objects and associated objects such as RDBTable and RDBColumn.
  */
 public class DatabaseHelper {
-
-  private static final String myPackageName = "com.ibm.db2.tools.sqlassist2.sqlmodel.helpers";
-  private static final String myClassName = "DatabaseHelper";
-
   
-  
-  /** DO NOT USE ANYMORE IN CONNECTION WITH com.ibm.db.parsers.sql.query PARSER!
+  /** DO NOT USE ANYMORE IN CONNECTION WITH org.eclipse.datatools.sqltools.parsers.sql.query PARSER!
    * Resolves the table references in the From clause of the given query so that
    * each has the correct RDBTable attached to it.
    * 
@@ -58,8 +41,8 @@ public class DatabaseHelper {
    *            if the tables are not already qualified 
    * 
    * @deprecated table reference resolving is now done by post parse processer,
-   * use {@link com.ibm.db.parsers.sql.query.postparse.TableReferenceResolver}
-   * with {@link com.ibm.db.parsers.sql.query.SQLQueryParserManager}
+   * use {@link org.eclipse.datatools.modelbase.parsers.sql.query.postparse.TableReferenceResolver}
+   * with {@link org.eclipse.datatools.modelbase.parsers.sql.query.SQLQueryParserManager}
    */
   public static void resolveTableReferenceRDBTables(QueryStatement aSQLStmt,
                                                     Database aDatabase,
@@ -69,7 +52,7 @@ public class DatabaseHelper {
       resolveTableReferenceRDBTables(tableRefList, aDatabase, aDefaultSchemaName);
   }
 
-  /** DO NOT USE ANYMORE IN CONNECTION WITH com.ibm.db.parsers.sql.query PARSER!
+  /** DO NOT USE ANYMORE IN CONNECTION WITH org.eclipse.datatools.sqltools.parsers.sql.query PARSER!
    * Resolves the table references in the From clause of the given query so that
    * each has the correct RDBTable attached to it.
    * 
@@ -82,8 +65,8 @@ public class DatabaseHelper {
    *            are not already qualified 
    * 
    * @deprecated table reference resolving is now done by post parse processer,
-   * use {@link com.ibm.db.parsers.sql.query.postparse.TableReferenceResolver}
-   * with {@link com.ibm.db.parsers.sql.query.SQLQueryParserManager}
+   * use {@link org.eclipse.datatools.modelbase.parsers.sql.query.postparse.TableReferenceResolver}
+   * with {@link org.eclipse.datatools.modelbase.parsers.sql.query.SQLQueryParserManager}
    */
   public static void resolveTableReferenceRDBTables(List aTableRefList,
                                                     Database aDatabase,

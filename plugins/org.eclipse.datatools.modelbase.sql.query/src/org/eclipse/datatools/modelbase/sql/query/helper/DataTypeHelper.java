@@ -1,9 +1,13 @@
-/*
- * Created on Nov 5, 2004
- *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.helper;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
@@ -12,7 +16,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 
 /**
  * This helper class provides convenience methods related to
- * {@link com.ibm.db.models.sql.datatypes.PredefinedDataType}.
+ * {@link org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType}.
  *
  *
  * @author ckadner

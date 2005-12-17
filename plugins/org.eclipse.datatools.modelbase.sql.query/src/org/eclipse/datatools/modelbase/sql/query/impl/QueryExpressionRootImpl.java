@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionRootImpl.java,v 1.8 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: QueryExpressionRootImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -16,7 +16,6 @@ import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;

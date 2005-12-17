@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupImpl.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: SuperGroupImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -12,21 +12,16 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroup;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupElement;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

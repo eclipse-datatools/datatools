@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimpleImpl.java,v 1.6 2005/10/22 01:35:23 bpayton Exp $
+ * $Id: ValueExpressionCaseSimpleImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
@@ -21,7 +22,6 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
@@ -44,7 +44,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 
 
 /**

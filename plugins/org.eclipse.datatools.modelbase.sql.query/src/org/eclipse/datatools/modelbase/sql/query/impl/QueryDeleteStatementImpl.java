@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDeleteStatementImpl.java,v 1.7 2005/02/15 21:44:45 bpayton Exp $
+ * $Id: QueryDeleteStatementImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -11,7 +11,6 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.CursorReference;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.emf.common.notify.Notification;

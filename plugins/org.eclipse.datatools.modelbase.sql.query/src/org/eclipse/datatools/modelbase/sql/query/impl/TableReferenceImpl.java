@@ -2,14 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableReferenceImpl.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: TableReferenceImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;

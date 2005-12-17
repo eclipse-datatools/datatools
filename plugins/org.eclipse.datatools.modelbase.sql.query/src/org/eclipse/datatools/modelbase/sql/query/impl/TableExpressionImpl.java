@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpressionImpl.java,v 1.9 2005/10/22 01:35:24 bpayton Exp $
+ * $Id: TableExpressionImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -10,7 +10,6 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryInsertStatementImpl.java,v 1.7 2005/02/15 21:44:45 bpayton Exp $
+ * $Id: QueryInsertStatementImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -10,7 +10,6 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;

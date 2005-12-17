@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableJoinedImpl.java,v 1.7 2005/10/22 01:35:23 bpayton Exp $
+ * $Id: TableJoinedImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -12,20 +12,16 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**

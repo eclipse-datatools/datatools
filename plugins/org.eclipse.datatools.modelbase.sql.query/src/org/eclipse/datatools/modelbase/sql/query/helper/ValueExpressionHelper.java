@@ -1,12 +1,13 @@
-/*
- * Licensed Materials - Property of IBM
- * com.ibm.db.models.sql.query
- * (C) Copyright IBM Corporation 2002, 2005. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- *   Use, duplication or disclosure restricted 
- *   by GSA ADP Schedule Contract with IBM Corp.
- */
+/*******************************************************************************
+ * Copyright (c) 2002, 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.helper;
 
 import java.math.BigDecimal;
@@ -736,7 +737,6 @@ public static void resolveValueExpressionCombined( ValueExpressionCombined aValE
   // the datatype, from CHAR to VARCHAR, for example.
   QueryValueExpression leftExpr = aValExpr.getLeftValueExpr();
   QueryValueExpression rightExpr = aValExpr.getRightValueExpr();
-  DataType datatype = null;
   int oper = aValExpr.getCombinedOperator().getValue();
   if (oper == ValueExpressionCombinedOperator.CONCATENATE) {
     resolveValueExpressionConcatDatatype( aValExpr, leftExpr, rightExpr);
@@ -2291,7 +2291,6 @@ private static PredefinedDataType getPredefinedDataTypeForSimpleValue(String val
                 {
                     try
                     {
-                        Long bigInt = new Long(ucValue);
                         int precision = 19;
 
                         // If we reached here we know we have a big integer.
