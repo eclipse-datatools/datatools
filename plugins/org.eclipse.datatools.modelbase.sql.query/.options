@@ -1,1 +1,1 @@
-com.ibm.db.models.sql.query/debug=false
+org.eclipse.datatools.modelbase.sql.query/debug=false
