@@ -2,17 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableFunctionImpl.java,v 1.3 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLTableFunctionImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
-
-
-
 
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
@@ -24,15 +20,11 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionIte
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 

@@ -2,15 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionQueryImpl.java,v 1.5 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionQueryImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
-
-
-
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
@@ -23,7 +21,6 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
@@ -36,28 +33,20 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLEmptyHandlingType;
-import org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression;
-import org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQueryReturning;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-
-import org.eclipse.datatools.modelbase.sql.routines.Function;
 
 /**
  * <!-- begin-user-doc -->

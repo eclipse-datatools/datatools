@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of IBM
- * com.ibm.datatools.sqlbuilder
+ * org.eclipse.datatools.modelbase.sql.xml.query
  * (C) Copyright IBM Corporation 2005. All Rights Reserved.
  *
  * Note to U.S. Government Users Restricted Rights:

@@ -2,14 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionParseImpl.java,v 1.4 2005/10/22 01:40:27 bpayton Exp $
+ * $Id: XMLValueFunctionParseImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
-
-
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
@@ -22,7 +21,6 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
@@ -35,6 +33,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionParse;
@@ -42,18 +41,11 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionParseConten
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-
-import org.eclipse.datatools.modelbase.sql.routines.Function;
 
 /**
  * <!-- begin-user-doc -->

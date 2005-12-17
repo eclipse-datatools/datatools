@@ -1,6 +1,6 @@
 /*
  * Licensed Materials - Property of IBM
- * com.ibm.db.models.sql.xml.query
+ * org.eclipse.datatools.modelbase.sql.xml.query
  * (C) Copyright IBM Corporation 2005. All Rights Reserved.
  *
  * Note to U.S. Government Users Restricted Rights:
@@ -312,7 +312,7 @@ public class SQLXMLQuerySourceWriter extends SQLQuerySourceWriter {
     /* ****************** XML Data Type ****************** */
     
     /**
-     * @see com.ibm.db.models.sql.datatypes.XMLDataType#getSQL()
+     * @see org.eclipse.datatools.modelbase.sql.datatypes.XMLDataType#getSQL()
      */
     protected void appendSpecificSQL(XMLDataType dataType, StringBuffer sb)
     {

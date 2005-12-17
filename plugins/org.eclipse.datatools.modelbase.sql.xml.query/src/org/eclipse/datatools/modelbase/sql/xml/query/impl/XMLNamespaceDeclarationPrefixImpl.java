@@ -1,8 +1,7 @@
 /**
- * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationPrefixImpl.java,v 1.4 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationPrefixImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -13,15 +12,9 @@ import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationPrefix;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
