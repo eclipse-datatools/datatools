@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunctionEncodingImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLSerializeFunctionEncodingImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -12,9 +12,15 @@ import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
 import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLSerializeFunctionEncoding;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,6 +93,44 @@ public class XMLSerializeFunctionEncodingImpl extends SQLQueryObjectImpl impleme
 		encodingName = newEncodingName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME, oldEncodingName, encodingName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLXMLQueryPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
+				default:
+					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		if (eContainer != null)
+			msgs = eBasicRemoveFromContainer(msgs);
+		return eBasicSetContainer(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLXMLQueryPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
+				case SQLXMLQueryPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
+					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
+				default:
+					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		return eBasicSetContainer(null, featureID, msgs);
 	}
 
 	/**

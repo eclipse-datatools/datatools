@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableJoinedOperator.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: TableJoinedOperator.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -89,7 +89,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final TableJoinedOperator DEFAULT_INNER_LITERAL = new TableJoinedOperator(DEFAULT_INNER, "DEFAULT_INNER", "DEFAULT_INNER");
+    public static final TableJoinedOperator DEFAULT_INNER_LITERAL = new TableJoinedOperator(DEFAULT_INNER, "DEFAULT_INNER");
 
 	/**
 	 * The '<em><b>EXPLICIT INNER</b></em>' literal object.
@@ -103,7 +103,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final TableJoinedOperator EXPLICIT_INNER_LITERAL = new TableJoinedOperator(EXPLICIT_INNER, "EXPLICIT_INNER", "EXPLICIT_INNER");
+    public static final TableJoinedOperator EXPLICIT_INNER_LITERAL = new TableJoinedOperator(EXPLICIT_INNER, "EXPLICIT_INNER");
 
 	/**
 	 * The '<em><b>LEFT OUTER</b></em>' literal object.
@@ -117,7 +117,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final TableJoinedOperator LEFT_OUTER_LITERAL = new TableJoinedOperator(LEFT_OUTER, "LEFT_OUTER", "LEFT_OUTER");
+    public static final TableJoinedOperator LEFT_OUTER_LITERAL = new TableJoinedOperator(LEFT_OUTER, "LEFT_OUTER");
 
 	/**
 	 * The '<em><b>RIGHT OUTER</b></em>' literal object.
@@ -131,7 +131,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final TableJoinedOperator RIGHT_OUTER_LITERAL = new TableJoinedOperator(RIGHT_OUTER, "RIGHT_OUTER", "RIGHT_OUTER");
+    public static final TableJoinedOperator RIGHT_OUTER_LITERAL = new TableJoinedOperator(RIGHT_OUTER, "RIGHT_OUTER");
 
 	/**
 	 * The '<em><b>FULL OUTER</b></em>' literal object.
@@ -145,7 +145,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final TableJoinedOperator FULL_OUTER_LITERAL = new TableJoinedOperator(FULL_OUTER, "FULL_OUTER", "FULL_OUTER");
+    public static final TableJoinedOperator FULL_OUTER_LITERAL = new TableJoinedOperator(FULL_OUTER, "FULL_OUTER");
 
 	/**
 	 * An array of all the '<em><b>Table Joined Operator</b></em>' enumerators.
@@ -171,15 +171,15 @@ public final class TableJoinedOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Table Joined Operator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Table Joined Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static TableJoinedOperator get(String literal) {
+    public static TableJoinedOperator get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			TableJoinedOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -187,23 +187,7 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Table Joined Operator</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static TableJoinedOperator getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			TableJoinedOperator result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Table Joined Operator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Table Joined Operator</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -225,8 +209,8 @@ public final class TableJoinedOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TableJoinedOperator(int value, String name, String literal) {
-		super(value, name, literal);
+	private TableJoinedOperator(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLTableJoinedOperator

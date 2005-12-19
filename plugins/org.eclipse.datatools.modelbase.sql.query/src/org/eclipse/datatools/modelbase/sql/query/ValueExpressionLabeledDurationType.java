@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionLabeledDurationType.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionLabeledDurationType.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -111,7 +111,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType YEARS_LITERAL = new ValueExpressionLabeledDurationType(YEARS, "YEARS", "YEARS");
+    public static final ValueExpressionLabeledDurationType YEARS_LITERAL = new ValueExpressionLabeledDurationType(YEARS, "YEARS");
 
 	/**
 	 * The '<em><b>MONTHS</b></em>' literal object.
@@ -125,7 +125,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType MONTHS_LITERAL = new ValueExpressionLabeledDurationType(MONTHS, "MONTHS", "MONTHS");
+    public static final ValueExpressionLabeledDurationType MONTHS_LITERAL = new ValueExpressionLabeledDurationType(MONTHS, "MONTHS");
 
 	/**
 	 * The '<em><b>DAYS</b></em>' literal object.
@@ -139,7 +139,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType DAYS_LITERAL = new ValueExpressionLabeledDurationType(DAYS, "DAYS", "DAYS");
+    public static final ValueExpressionLabeledDurationType DAYS_LITERAL = new ValueExpressionLabeledDurationType(DAYS, "DAYS");
 
 	/**
 	 * The '<em><b>HOURS</b></em>' literal object.
@@ -153,7 +153,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType HOURS_LITERAL = new ValueExpressionLabeledDurationType(HOURS, "HOURS", "HOURS");
+    public static final ValueExpressionLabeledDurationType HOURS_LITERAL = new ValueExpressionLabeledDurationType(HOURS, "HOURS");
 
 	/**
 	 * The '<em><b>MINUTES</b></em>' literal object.
@@ -167,7 +167,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType MINUTES_LITERAL = new ValueExpressionLabeledDurationType(MINUTES, "MINUTES", "MINUTES");
+    public static final ValueExpressionLabeledDurationType MINUTES_LITERAL = new ValueExpressionLabeledDurationType(MINUTES, "MINUTES");
 
 	/**
 	 * The '<em><b>SECONDS</b></em>' literal object.
@@ -181,7 +181,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType SECONDS_LITERAL = new ValueExpressionLabeledDurationType(SECONDS, "SECONDS", "SECONDS");
+    public static final ValueExpressionLabeledDurationType SECONDS_LITERAL = new ValueExpressionLabeledDurationType(SECONDS, "SECONDS");
 
 	/**
 	 * The '<em><b>MICROSECONDS</b></em>' literal object.
@@ -195,7 +195,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionLabeledDurationType MICROSECONDS_LITERAL = new ValueExpressionLabeledDurationType(MICROSECONDS, "MICROSECONDS", "MICROSECONDS");
+    public static final ValueExpressionLabeledDurationType MICROSECONDS_LITERAL = new ValueExpressionLabeledDurationType(MICROSECONDS, "MICROSECONDS");
 
 	/**
 	 * An array of all the '<em><b>Value Expression Labeled Duration Type</b></em>' enumerators.
@@ -223,15 +223,15 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Value Expression Labeled Duration Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Value Expression Labeled Duration Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static ValueExpressionLabeledDurationType get(String literal) {
+    public static ValueExpressionLabeledDurationType get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ValueExpressionLabeledDurationType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -239,23 +239,7 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	}
 
 	/**
-	 * Returns the '<em><b>Value Expression Labeled Duration Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static ValueExpressionLabeledDurationType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValueExpressionLabeledDurationType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Value Expression Labeled Duration Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Value Expression Labeled Duration Type</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -279,8 +263,8 @@ public final class ValueExpressionLabeledDurationType extends AbstractEnumerator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValueExpressionLabeledDurationType(int value, String name, String literal) {
-		super(value, name, literal);
+	private ValueExpressionLabeledDurationType(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLValueExpressionLabeledDurationType

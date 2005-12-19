@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionCombinedOperator.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: SearchConditionCombinedOperator.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -56,7 +56,7 @@ public final class SearchConditionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final SearchConditionCombinedOperator AND_LITERAL = new SearchConditionCombinedOperator(AND, "AND", "AND");
+    public static final SearchConditionCombinedOperator AND_LITERAL = new SearchConditionCombinedOperator(AND, "AND");
 
 	/**
 	 * The '<em><b>OR</b></em>' literal object.
@@ -70,7 +70,7 @@ public final class SearchConditionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final SearchConditionCombinedOperator OR_LITERAL = new SearchConditionCombinedOperator(OR, "OR", "OR");
+    public static final SearchConditionCombinedOperator OR_LITERAL = new SearchConditionCombinedOperator(OR, "OR");
 
 	/**
 	 * An array of all the '<em><b>Search Condition Combined Operator</b></em>' enumerators.
@@ -93,15 +93,15 @@ public final class SearchConditionCombinedOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static SearchConditionCombinedOperator get(String literal) {
+    public static SearchConditionCombinedOperator get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			SearchConditionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -109,23 +109,7 @@ public final class SearchConditionCombinedOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static SearchConditionCombinedOperator getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SearchConditionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -144,8 +128,8 @@ public final class SearchConditionCombinedOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SearchConditionCombinedOperator(int value, String name, String literal) {
-		super(value, name, literal);
+	private SearchConditionCombinedOperator(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLSearchConditionCombinedOperator

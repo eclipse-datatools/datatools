@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: SuperGroupImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -173,6 +173,25 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.SUPER_GROUP__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__GROUP_BY_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING, GroupingSetsElementExpression.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

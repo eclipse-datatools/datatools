@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionRootImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: QueryExpressionRootImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -363,6 +363,17 @@ public class QueryExpressionRootImpl extends SQLQueryObjectImpl implements Query
     public String getSQL() {
         return super.getSQL();
     }
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSQL(String sqlText) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

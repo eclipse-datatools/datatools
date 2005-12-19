@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByOrdinalImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: OrderByOrdinalImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -15,9 +15,15 @@ import org.eclipse.datatools.modelbase.sql.query.OrderingSpecType;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -90,6 +96,67 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 		ordinalValue = newOrdinalValue;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE, oldOrdinalValue, ordinalValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
+				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
+				default:
+					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		if (eContainer != null)
+			msgs = eBasicRemoveFromContainer(msgs);
+		return eBasicSetContainer(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
+				case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
+				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
+				default:
+					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, QuerySelectStatement.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

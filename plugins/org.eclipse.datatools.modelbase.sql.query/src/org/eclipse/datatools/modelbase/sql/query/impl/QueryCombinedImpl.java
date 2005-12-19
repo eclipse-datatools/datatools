@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombinedImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: QueryCombinedImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -336,6 +336,41 @@ public class QueryCombinedImpl extends QueryExpressionBodyImpl implements QueryC
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.QUERY_COMBINED__TABLE_JOINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__TABLE_JOINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__QUERY_EXPRESSION:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_EXPRESSION_ROOT__QUERY, QueryExpressionRoot.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_COMBINED__LEFT_QUERY, QueryCombined.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_COMBINED__RIGHT_QUERY, QueryCombined.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__PREDICATE_EXISTS:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_EXISTS__QUERY_EXPR, PredicateExists.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__UPDATE_SOURCE_QUERY:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR, UpdateSourceQuery.class, msgs);
+				case SQLQueryPackage.QUERY_COMBINED__WITH_TABLE_SPECIFICATION:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR, WithTableSpecification.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

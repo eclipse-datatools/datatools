@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NullOrderingType.java,v 1.2 2005/11/16 00:47:59 bpayton Exp $
+ * $Id: NullOrderingType.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -75,7 +75,7 @@ public final class NullOrderingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final NullOrderingType NONE_LITERAL = new NullOrderingType(NONE, "NONE", "NONE");
+	public static final NullOrderingType NONE_LITERAL = new NullOrderingType(NONE, "NONE");
 
 	/**
 	 * The '<em><b>NULLS FIRST</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class NullOrderingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final NullOrderingType NULLS_FIRST_LITERAL = new NullOrderingType(NULLS_FIRST, "NULLS_FIRST", "NULLS_FIRST");
+    public static final NullOrderingType NULLS_FIRST_LITERAL = new NullOrderingType(NULLS_FIRST, "NULLS_FIRST");
 
 	/**
 	 * The '<em><b>NULLS LAST</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class NullOrderingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final NullOrderingType NULLS_LAST_LITERAL = new NullOrderingType(NULLS_LAST, "NULLS_LAST", "NULLS_LAST");
+    public static final NullOrderingType NULLS_LAST_LITERAL = new NullOrderingType(NULLS_LAST, "NULLS_LAST");
 
 	/**
 	 * An array of all the '<em><b>Null Ordering Type</b></em>' enumerators.
@@ -119,31 +119,15 @@ public final class NullOrderingType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Null Ordering Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static NullOrderingType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NullOrderingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Returns the '<em><b>Null Ordering Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NullOrderingType getByName(String name) {
+	public static NullOrderingType get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			NullOrderingType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -151,7 +135,7 @@ public final class NullOrderingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Null Ordering Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Null Ordering Type</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -171,8 +155,8 @@ public final class NullOrderingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private NullOrderingType(int value, String name, String literal) {
-		super(value, name, literal);
+	private NullOrderingType(int value, String name) {
+		super(value, name);
 	}
 
 } //NullOrderingType

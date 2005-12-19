@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultTableAllColumnsImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: ResultTableAllColumnsImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -171,6 +171,23 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

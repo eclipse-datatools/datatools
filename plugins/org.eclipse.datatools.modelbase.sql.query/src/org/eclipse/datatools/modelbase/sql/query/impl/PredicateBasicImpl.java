@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateBasicImpl.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
+ * $Id: PredicateBasicImpl.java,v 1.2 2005/12/17 01:46:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -311,6 +311,39 @@ public class PredicateBasicImpl extends PredicateImpl implements PredicateBasic 
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.PREDICATE_BASIC__UPDATE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__DELETE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__TABLE_JOINED:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__QUERY_SELECT_HAVING:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__QUERY_SELECT_WHERE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLQueryPackage.PREDICATE_BASIC__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

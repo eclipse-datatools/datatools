@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySearchConditionImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: QuerySearchConditionImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -396,6 +396,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
     public String getSQL() {
         return super.getSQL();
     }
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSQL(String sqlText) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

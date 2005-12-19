@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionQueryImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLValueFunctionQueryImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateLike;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
@@ -529,6 +530,83 @@ public class XMLValueFunctionQueryImpl extends XMLValueFunctionImpl implements X
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUES_ROW:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__ORDER_BY_VALUE_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__RESULT_COLUMN:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__BASIC_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__BASIC_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__LIKE_PATTERN:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__LIKE_MATCHING:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__PREDICATE_NULL:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__IN_VALUE_LIST_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__IN_VALUE_LIST_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__IN_VALUE_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__IN_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__QUANTIFIED_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__BETWEEN_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__BETWEEN_RIGHT1:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__BETWEEN_RIGHT2:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CAST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_FUNCTION:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__GROUPING_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CASE_ELSE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CASE_SIMPLE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__LIKE_ESCAPE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__VALUE_EXPR_LABELED_DURATION:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
+				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__UPDATE_SOURCE_EXPR_LIST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

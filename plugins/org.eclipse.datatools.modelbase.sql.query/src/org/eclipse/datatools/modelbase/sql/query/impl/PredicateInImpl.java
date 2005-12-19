@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateInImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: PredicateInImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -19,9 +19,15 @@ import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,6 +100,131 @@ public abstract class PredicateInImpl extends PredicateImpl implements Predicate
 		notIn = newNotIn;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.PREDICATE_IN__NOT_IN, oldNotIn, notIn));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLQueryPackage.PREDICATE_IN__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
+				case SQLQueryPackage.PREDICATE_IN__UPDATE_STATEMENT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__UPDATE_STATEMENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__DELETE_STATEMENT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__DELETE_STATEMENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__TABLE_JOINED:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__TABLE_JOINED, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_LEFT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__COMBINED_LEFT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_RIGHT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__COMBINED_RIGHT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_HAVING:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_HAVING, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_WHERE:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_WHERE, msgs);
+				case SQLQueryPackage.PREDICATE_IN__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__NEST:
+					if (eContainer != null)
+						msgs = eBasicRemoveFromContainer(msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryPackage.PREDICATE_IN__NEST, msgs);
+				default:
+					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		if (eContainer != null)
+			msgs = eBasicRemoveFromContainer(msgs);
+		return eBasicSetContainer(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case SQLQueryPackage.PREDICATE_IN__EANNOTATIONS:
+					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
+				case SQLQueryPackage.PREDICATE_IN__DEPENDENCIES:
+					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
+				case SQLQueryPackage.PREDICATE_IN__UPDATE_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__UPDATE_STATEMENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__DELETE_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__DELETE_STATEMENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__TABLE_JOINED:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__TABLE_JOINED, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_LEFT:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__COMBINED_LEFT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_RIGHT:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__COMBINED_RIGHT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_HAVING:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_HAVING, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_WHERE:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_WHERE, msgs);
+				case SQLQueryPackage.PREDICATE_IN__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLQueryPackage.PREDICATE_IN__NEST:
+					return eBasicSetContainer(null, SQLQueryPackage.PREDICATE_IN__NEST, msgs);
+				default:
+					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.PREDICATE_IN__UPDATE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__DELETE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__TABLE_JOINED:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_HAVING:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__QUERY_SELECT_WHERE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLQueryPackage.PREDICATE_IN__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

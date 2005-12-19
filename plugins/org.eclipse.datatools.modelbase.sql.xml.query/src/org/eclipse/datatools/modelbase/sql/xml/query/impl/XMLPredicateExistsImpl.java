@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicateExistsImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLPredicateExistsImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -13,6 +13,7 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
@@ -270,6 +271,39 @@ public class XMLPredicateExistsImpl extends XMLPredicateImpl implements XMLPredi
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__UPDATE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__DELETE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__TABLE_JOINED:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__QUERY_SELECT_HAVING:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__QUERY_SELECT_WHERE:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLXMLQueryPackage.XML_PREDICATE_EXISTS__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

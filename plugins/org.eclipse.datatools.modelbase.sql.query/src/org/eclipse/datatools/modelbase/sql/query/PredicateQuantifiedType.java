@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantifiedType.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: PredicateQuantifiedType.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -67,7 +67,7 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateQuantifiedType SOME_LITERAL = new PredicateQuantifiedType(SOME, "SOME", "SOME");
+    public static final PredicateQuantifiedType SOME_LITERAL = new PredicateQuantifiedType(SOME, "SOME");
 
 	/**
 	 * The '<em><b>ANY</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateQuantifiedType ANY_LITERAL = new PredicateQuantifiedType(ANY, "ANY", "ANY");
+    public static final PredicateQuantifiedType ANY_LITERAL = new PredicateQuantifiedType(ANY, "ANY");
 
 	/**
 	 * The '<em><b>ALL</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateQuantifiedType ALL_LITERAL = new PredicateQuantifiedType(ALL, "ALL", "ALL");
+    public static final PredicateQuantifiedType ALL_LITERAL = new PredicateQuantifiedType(ALL, "ALL");
 
 	/**
 	 * An array of all the '<em><b>Predicate Quantified Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Predicate Quantified Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Predicate Quantified Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static PredicateQuantifiedType get(String literal) {
+    public static PredicateQuantifiedType get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PredicateQuantifiedType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -135,23 +135,7 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Predicate Quantified Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static PredicateQuantifiedType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			PredicateQuantifiedType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Predicate Quantified Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Predicate Quantified Type</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -171,8 +155,8 @@ public final class PredicateQuantifiedType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PredicateQuantifiedType(int value, String name, String literal) {
-		super(value, name, literal);
+	private PredicateQuantifiedType(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLPredicateQuantifiedType

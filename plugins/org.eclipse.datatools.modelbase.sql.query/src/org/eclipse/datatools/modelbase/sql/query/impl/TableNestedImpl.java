@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableNestedImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: TableNestedImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -173,6 +173,29 @@ public class TableNestedImpl extends TableReferenceImpl implements TableNested {
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
+				case SQLQueryPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
+				case SQLQueryPackage.TABLE_NESTED__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryPackage.TABLE_NESTED__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupType.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: SuperGroupType.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -67,7 +67,7 @@ public final class SuperGroupType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final SuperGroupType CUBE_LITERAL = new SuperGroupType(CUBE, "CUBE", "CUBE");
+    public static final SuperGroupType CUBE_LITERAL = new SuperGroupType(CUBE, "CUBE");
 
 	/**
 	 * The '<em><b>GRANDTOTAL</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class SuperGroupType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final SuperGroupType GRANDTOTAL_LITERAL = new SuperGroupType(GRANDTOTAL, "GRANDTOTAL", "GRANDTOTAL");
+    public static final SuperGroupType GRANDTOTAL_LITERAL = new SuperGroupType(GRANDTOTAL, "GRANDTOTAL");
 
 	/**
 	 * The '<em><b>ROLLUP</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class SuperGroupType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final SuperGroupType ROLLUP_LITERAL = new SuperGroupType(ROLLUP, "ROLLUP", "ROLLUP");
+    public static final SuperGroupType ROLLUP_LITERAL = new SuperGroupType(ROLLUP, "ROLLUP");
 
 	/**
 	 * An array of all the '<em><b>Super Group Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class SuperGroupType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Super Group Type</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Super Group Type</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static SuperGroupType get(String literal) {
+    public static SuperGroupType get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			SuperGroupType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -135,23 +135,7 @@ public final class SuperGroupType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Super Group Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static SuperGroupType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SuperGroupType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Super Group Type</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Super Group Type</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -171,8 +155,8 @@ public final class SuperGroupType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SuperGroupType(int value, String name, String literal) {
-		super(value, name, literal);
+	private SuperGroupType(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLSuperGroupType

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementSublistImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: GroupingSetsElementSublistImpl.java,v 1.2 2005/12/17 01:46:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -121,6 +121,23 @@ public class GroupingSetsElementSublistImpl extends GroupingSetsElementImpl impl
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

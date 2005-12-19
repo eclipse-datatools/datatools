@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCombinedOperator.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ValueExpressionCombinedOperator.java,v 1.1 2005/12/16 13:11:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -89,7 +89,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionCombinedOperator ADD_LITERAL = new ValueExpressionCombinedOperator(ADD, "ADD", "ADD");
+    public static final ValueExpressionCombinedOperator ADD_LITERAL = new ValueExpressionCombinedOperator(ADD, "ADD");
 
 	/**
 	 * The '<em><b>SUBTRACT</b></em>' literal object.
@@ -103,7 +103,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionCombinedOperator SUBTRACT_LITERAL = new ValueExpressionCombinedOperator(SUBTRACT, "SUBTRACT", "SUBTRACT");
+    public static final ValueExpressionCombinedOperator SUBTRACT_LITERAL = new ValueExpressionCombinedOperator(SUBTRACT, "SUBTRACT");
 
 	/**
 	 * The '<em><b>MULTIPLY</b></em>' literal object.
@@ -117,7 +117,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionCombinedOperator MULTIPLY_LITERAL = new ValueExpressionCombinedOperator(MULTIPLY, "MULTIPLY", "MULTIPLY");
+    public static final ValueExpressionCombinedOperator MULTIPLY_LITERAL = new ValueExpressionCombinedOperator(MULTIPLY, "MULTIPLY");
 
 	/**
 	 * The '<em><b>DIVIDE</b></em>' literal object.
@@ -131,7 +131,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionCombinedOperator DIVIDE_LITERAL = new ValueExpressionCombinedOperator(DIVIDE, "DIVIDE", "DIVIDE");
+    public static final ValueExpressionCombinedOperator DIVIDE_LITERAL = new ValueExpressionCombinedOperator(DIVIDE, "DIVIDE");
 
 	/**
 	 * The '<em><b>CONCATENATE</b></em>' literal object.
@@ -145,7 +145,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionCombinedOperator CONCATENATE_LITERAL = new ValueExpressionCombinedOperator(CONCATENATE, "CONCATENATE", "CONCATENATE");
+    public static final ValueExpressionCombinedOperator CONCATENATE_LITERAL = new ValueExpressionCombinedOperator(CONCATENATE, "CONCATENATE");
 
 	/**
 	 * An array of all the '<em><b>Value Expression Combined Operator</b></em>' enumerators.
@@ -171,15 +171,15 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Value Expression Combined Operator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Value Expression Combined Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static ValueExpressionCombinedOperator get(String literal) {
+    public static ValueExpressionCombinedOperator get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ValueExpressionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -187,23 +187,7 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Value Expression Combined Operator</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static ValueExpressionCombinedOperator getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			ValueExpressionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Value Expression Combined Operator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Value Expression Combined Operator</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -225,8 +209,8 @@ public final class ValueExpressionCombinedOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValueExpressionCombinedOperator(int value, String name, String literal) {
-		super(value, name, literal);
+	private ValueExpressionCombinedOperator(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLValueExpressionCombinedOperator

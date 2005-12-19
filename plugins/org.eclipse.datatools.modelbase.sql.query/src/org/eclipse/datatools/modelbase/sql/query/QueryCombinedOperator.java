@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombinedOperator.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryCombinedOperator.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -108,7 +108,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator UNION_LITERAL = new QueryCombinedOperator(UNION, "UNION", "UNION");
+    public static final QueryCombinedOperator UNION_LITERAL = new QueryCombinedOperator(UNION, "UNION");
 
 	/**
 	 * The '<em><b>UNION ALL</b></em>' literal object.
@@ -122,7 +122,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator UNION_ALL_LITERAL = new QueryCombinedOperator(UNION_ALL, "UNION_ALL", "UNION_ALL");
+    public static final QueryCombinedOperator UNION_ALL_LITERAL = new QueryCombinedOperator(UNION_ALL, "UNION_ALL");
 
 	/**
 	 * The '<em><b>INTERSECT</b></em>' literal object.
@@ -136,7 +136,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator INTERSECT_LITERAL = new QueryCombinedOperator(INTERSECT, "INTERSECT", "INTERSECT");
+    public static final QueryCombinedOperator INTERSECT_LITERAL = new QueryCombinedOperator(INTERSECT, "INTERSECT");
 
 	/**
 	 * The '<em><b>INTERSECT ALL</b></em>' literal object.
@@ -150,7 +150,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator INTERSECT_ALL_LITERAL = new QueryCombinedOperator(INTERSECT_ALL, "INTERSECT_ALL", "INTERSECT_ALL");
+    public static final QueryCombinedOperator INTERSECT_ALL_LITERAL = new QueryCombinedOperator(INTERSECT_ALL, "INTERSECT_ALL");
 
 	/**
 	 * The '<em><b>EXCEPT</b></em>' literal object.
@@ -164,7 +164,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator EXCEPT_LITERAL = new QueryCombinedOperator(EXCEPT, "EXCEPT", "EXCEPT");
+    public static final QueryCombinedOperator EXCEPT_LITERAL = new QueryCombinedOperator(EXCEPT, "EXCEPT");
 
 	/**
 	 * The '<em><b>EXCEPT ALL</b></em>' literal object.
@@ -178,7 +178,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final QueryCombinedOperator EXCEPT_ALL_LITERAL = new QueryCombinedOperator(EXCEPT_ALL, "EXCEPT_ALL", "EXCEPT_ALL");
+    public static final QueryCombinedOperator EXCEPT_ALL_LITERAL = new QueryCombinedOperator(EXCEPT_ALL, "EXCEPT_ALL");
 
 	/**
 	 * An array of all the '<em><b>Query Combined Operator</b></em>' enumerators.
@@ -205,15 +205,15 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Query Combined Operator</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Query Combined Operator</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static QueryCombinedOperator get(String literal) {
+    public static QueryCombinedOperator get(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			QueryCombinedOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -221,23 +221,7 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Query Combined Operator</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static QueryCombinedOperator getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			QueryCombinedOperator result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Returns the '<em><b>Query Combined Operator</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Query Combined Operator</b></em>' literal with the specified value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -260,8 +244,8 @@ public final class QueryCombinedOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private QueryCombinedOperator(int value, String name, String literal) {
-		super(value, name, literal);
+	private QueryCombinedOperator(int value, String name) {
+		super(value, name);
 	}
 
 } //SQLQueryCombinedOperator

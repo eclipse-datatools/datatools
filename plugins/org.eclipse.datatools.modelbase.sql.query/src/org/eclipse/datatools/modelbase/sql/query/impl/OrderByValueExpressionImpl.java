@@ -1,7 +1,7 @@
 /**
  * </copyright>
  *
- * $Id: OrderByValueExpressionImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: OrderByValueExpressionImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -155,6 +155,23 @@ public class OrderByValueExpressionImpl extends OrderBySpecificationImpl impleme
 			}
 		}
 		return eBasicSetContainer(null, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
+				case SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION__SELECT_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, QuerySelectStatement.class, msgs);
+				default:
+					return eDynamicBasicRemoveFromContainer(msgs);
+			}
+		}
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**
