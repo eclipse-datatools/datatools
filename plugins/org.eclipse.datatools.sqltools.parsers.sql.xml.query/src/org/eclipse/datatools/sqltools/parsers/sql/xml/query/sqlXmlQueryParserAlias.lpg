@@ -1,0 +1,134 @@
+------------------------------------------------------------------------------
+-- Alias definitions
+------------------------------------------------------------------------------
+
+$ALIAS
+-- specify the alias that should be used instead of the terminal symbol, like:
+--   MY_ALIAS_A ::= TERMINAL_A
+
+
+
+  <double_quote>                       ::= DOUBLE_QUOTE
+  _DOUBLE_QUOTE                        ::= DOUBLE_QUOTE
+--   <percent>                            ::= PERCENT
+--   <ampersand>                          ::= AMPERSAND
+  <quote>                              ::= QUOTE
+  <left_paren>                         ::= LEFT_PAREN
+  _LPAREN                              ::= LEFT_PAREN
+  <right_paren>                        ::= RIGHT_PAREN
+  _RPAREN                              ::= RIGHT_PAREN
+  <asterisk>                           ::= ASTERISK
+  _STAR                                ::= ASTERISK
+  <plus_sign>                          ::= PLUS_SIGN
+  _PLUS                                ::= PLUS_SIGN
+  <comma>                              ::= COMMA
+  _COMMA                               ::= COMMA
+  <minus_sign>                         ::= MINUS_SIGN
+  _MINUS                               ::= MINUS_SIGN
+  <period>                             ::= PERIOD
+  _DOT                                 ::= PERIOD
+  <solidus>                            ::= SOLIDUS
+  _SLASH                               ::= SOLIDUS
+  <colon>                              ::= COLON
+  _COLON                               ::= COLON
+  <semicolon>                          ::= SEMICOLON
+  <less_than_operator>                 ::= LESS_THAN_OPERATOR
+  _LT                                  ::= LESS_THAN_OPERATOR
+  <equals_operator>                    ::= EQUALS_OPERATOR
+  _EQ                                  ::= EQUALS_OPERATOR
+  <greater_than_operator>              ::= GREATER_THAN_OPERATOR
+  _GT                                  ::= GREATER_THAN_OPERATOR
+  <question_mark>                      ::= QUESTION_MARK
+  _QUESTIONMARK                        ::= QUESTION_MARK
+  <left_bracket>                       ::= LEFT_BRACKET           -- @f95756rps
+  <right_bracket>                      ::= RIGHT_BRACKET          -- @f95756rps
+--   <underscore>                         ::= UNDERSCORE
+  <vertical_bar>                       ::= VERTICAL_BAR
+  <not_equals_operator>                ::= NOT_EQUALS_OPERATOR
+  _NE                                  ::= NOT_EQUALS_OPERATOR
+  <greater_than_or_equals_operator>    ::= GREATER_THAN_OR_EQUALS_OPERATOR
+  _GE                                  ::= GREATER_THAN_OR_EQUALS_OPERATOR
+  <less_than_or_equals_operator>       ::= LESS_THAN_OR_EQUALS_OPERATOR
+  _LE                                  ::= LESS_THAN_OR_EQUALS_OPERATOR
+  <concat_operator>                    ::= CONCAT_OPERATOR
+  _CONCAT_OPERATOR                     ::= CONCAT_OPERATOR
+  <double_period>                      ::= DOUBLE_PERIOD
+  <right_arrow>                        ::= RIGHT_ARROW
+
+
+--   END-EXEC                             ::= END_EXEC
+
+ '"' ::= <double_quote>
+--  '%' ::= <percent>
+--   &  ::= <ampersand>
+'''' ::= <quote>
+  (  ::= <left_paren>
+  )  ::= <right_paren>
+  *  ::= <asterisk>
+  +  ::= <plus_sign>
+  ,  ::= <comma>
+  -  ::= <minus_sign>
+  .  ::= <period>
+  /  ::= <solidus>
+  :  ::= <colon>
+  ;  ::= <semicolon>
+  <  ::= <less_than_operator>
+  =  ::= <equals_operator>
+  >  ::= <greater_than_operator>
+  ?  ::= <question_mark>
+   [  ::= <left_bracket>
+   ]  ::= <right_bracket>
+--   _  ::= <underscore>
+ '|' ::= <vertical_bar>
+  <> ::= <not_equals_operator>
+  >= ::= <greater_than_or_equals_operator>
+  <= ::= <less_than_or_equals_operator>
+  || ::= <concat_operator>
+  .. ::= <double_period>
+                                                          -- OSF_RT-BV-B 960906
+'->' ::= <right_arrow>
+                                                          -- OSF_RT-BV-E 960906
+
+
+  <regular_identifier>           ::= REGULAR_IDENTIFIER
+  <delimited_identifier>         ::= DELIMITED_IDENTIFIER
+--   <SQL_lang_identifier>          ::= SQL_LANG_IDENTIFIER
+  <embedded_variable_name>       ::= EMBEDDED_VARIABLE_NAME
+--   <host_label_identifier>        ::= HOST_LABEL_IDENTIFIER
+  <unsigned_integer>             ::= UNSIGNED_INTEGER
+  _INTNUMBER                     ::= UNSIGNED_INTEGER
+  _BIGINTEGER                    ::= UNSIGNED_INTEGER
+  <suffixed_unsigned_integer>    ::= SUFFIXED_UNSIGNED_INTEGER
+  <exact_numeric_literal>        ::= EXACT_NUMERIC_LITERAL
+  <approximate_numeric_literal>  ::= APPROXIMATE_NUMERIC_LITERAL
+  _DECIMALNUMBER                 ::= EXACT_NUMERIC_LITERAL
+  _REALNUMBER                    ::= APPROXIMATE_NUMERIC_LITERAL
+  <national_char_string_literal> ::= NATIONAL_CHAR_STRING_LITERAL
+  <national_hex_string_literal>  ::= NATIONAL_HEX_STRING_LITERAL    -- @unicode
+  <bit_string_literal>           ::= BIT_STRING_LITERAL
+  <hex_string_literal>           ::= HEX_STRING_LITERAL
+  <char_string_literal>          ::= CHAR_STRING_LITERAL
+  _STRING                        ::= CHAR_STRING_LITERAL
+  <comment>                      ::= COMMENT_STRING
+  <delimited_type_identifier>    ::= DELIMITED_TYPE_IDENTIFIER    -- @f95756rps
+  <version_identifier>           ::= VERSION_IDENTIFIER           -- @f95756rps
+  <statement_terminator>		 ::= STATEMENT_TERMINATOR
+  _STMT_TERM                     ::= STATEMENT_TERMINATOR
+  <hostvariable>		 		 ::= HOSTVARIABLE
+  _HOSTVAR                       ::= HOSTVARIABLE
+  <parameter_marker>             ::= PARAMETER_MARKER
+  _PARAM_MARKER                  ::= PARAMETER_MARKER
+
+  _NULLTOKEN                     ::= NULL
+
+  $EOL   ::= EOLN
+  $EOF   ::= EOF
+  $ERROR ::= PARSE_ERROR
+
+--                                                                  @Ed41850cpz
+
+
+
+$End
+
+

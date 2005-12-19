@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SQL XML Query Parser Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.xml.query
+Bundle-Version: 1.0.0
+Bundle-ClassPath: sqlxmlqueryparser.jar
+Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.xml.query.SQLXMLQueryParserPlugin
+Bundle-Vendor: IBM
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.sqltools.parsers.sql.xml.query
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.sqltools.parsers.sql.query;visibility:=reexport,
+ org.eclipse.datatools.modelbase.sql.xml.query;visibility:=reexport,
+ org.eclipse.datatools.sqltools.parsers.sql.lexer
+Eclipse-AutoStart: true
