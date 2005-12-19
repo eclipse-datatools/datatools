@@ -1,0 +1,27 @@
+$RULES
+
+
+
+
+--//********************* include externalized rules *************************//
+
+--    $include sqlQueryEXTENSIONParserRulesExternal.lpg
+
+
+--//*************************** grammar rules ********************************//
+
+<datatype_built_in> ::=?
+            <datatype_character>
+                /. $BeginStatement setSym1(m_factory.createDataTypeCharacterString(($RT_datatype_character)getSym(1))); $EndAction ./
+
+<datatype_character> ::=
+            CHARACTER
+                /. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, 0, null) ); $EndAction ./
+        |   CHARACTER _LPAREN _INTNUMBER _RPAREN
+                /. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_CHARACTER, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+
+
+
+
+
+$End

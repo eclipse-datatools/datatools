@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+-- Type mapping for SQLQueryParserFactory, alphabetically to avoid duplication.
+-------------------------------------------------------------------------------
+
+$Define
+
+    $import_classes 
+    /.
+        import com.ibm.db.models.sql.query.*;
+        import com.ibm.db.models.sql.query.util.*;
+        import com.ibm.db.models.sql.query.EXTENSION.*;
+        import org.eclipse.wst.rdb.internal.models.sql.datatypes.*;
+    ./
+$End
+
+
+$Define
+
+    $RT_datatype_character              /.CharacterStringDataType./
+
+
+
+$End
+
+--//*********** include type mapping of externalized rules *******************//
+
+--    $include sqlQueryEXTENSIONTypesExternal.lpg
+

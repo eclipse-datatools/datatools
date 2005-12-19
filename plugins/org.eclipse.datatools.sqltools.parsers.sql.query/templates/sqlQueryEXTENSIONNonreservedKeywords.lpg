@@ -1,0 +1,10 @@
+----------------------------------------------------------
+-- Keywords/Reserved Words for SQL Query parser EXTENSION
+----------------------------------------------------------
+
+$include sqlKeywords.lpg
+
+  DENSE_RANK
+  RANK
+  ROW_NUMBER
+  

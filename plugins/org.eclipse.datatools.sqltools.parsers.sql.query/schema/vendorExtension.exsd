@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.ibm.db.parsers.sql.query.com.ibm.db.parsers.sql.query">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.ibm.db.parsers.sql.query.com.ibm.db.parsers.sql.query" id="vendorextension" name="SQLQueryParserVendorExtension"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="parserExtension"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="parserExtension">
+      <annotation>
+         <documentation>
+            Parsers for different databases will implement this extension point and provide the vendor name and version, of the database
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="parserManager" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that extends the com.ibm.db.parser.sql.query.SQLQueryParserManager
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="com.ibm.db.parser.sql.query.SQLQueryParserManager"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="product" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The database product name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="fromVersion" type="string">
+            <annotation>
+               <documentation>
+                  The earliest version of the database that is supported by the parser extension
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="toVersion" type="string">
+            <annotation>
+               <documentation>
+                  The latest/highest version of the database that is supported by the parser extension
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
