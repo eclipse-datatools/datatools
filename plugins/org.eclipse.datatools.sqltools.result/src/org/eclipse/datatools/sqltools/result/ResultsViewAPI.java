@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.result;
 import java.sql.ResultSet;
 import java.util.List;
 
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.eclipse.datatools.sqltools.result.internal.Constants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
@@ -247,6 +249,18 @@ public class ResultsViewAPI
             return false;
         }
         IResultInstance instance = _manager.getInstance(cmd);
+        
+        // should be a well-formed XML document
+        try
+        {
+            DocumentHelper.parseText(xmlString);
+        }
+        catch(DocumentException dex)
+        {
+            _log.error("ResultsViewAPI.notwellformed.xml", dex);
+            return false;
+        }
+        
         try
         {
             IResultSetObject rs = new XMLResultSetObject(xmlString);

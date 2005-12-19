@@ -15,6 +15,10 @@
             class="org.eclipse.datatools.sqltools.result.internal.preference.SQLResultsViewPage"
             id="org.eclipse.datatools.sqltools.result.displayOption"
             name="%SQLResultsView.display.options"/>
+      <page
+            class="org.eclipse.datatools.sqltools.result.internal.preference.ExportFormatPreferencePage"
+            id="org.eclipse.datatools.sqltools.result.exportFormat"
+            name="%SQLResultsView.export.options"/>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
