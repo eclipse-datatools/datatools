@@ -1,0 +1,239 @@
+--
+-- An LPG Parser Template Using lpg.jar
+--
+-- An instance of this template must have a $Export section and the export_terminals option
+-- It must not export the EOF (end-of-file) token or have a $EOF section
+--
+-- Macros that must be provided for an instance of this template
+--
+--	 $package 
+--	 $import_classes
+--	 $parser_base_class   -- class that will be extended by the parser
+--
+-- B E G I N N I N G   O F   T E M P L A T E
+--
+
+$Notice /.$copyright./
+
+$Define
+
+    $copyright /./*
+     * Copyright (c) 2000, 2005 IBM Corporation and others.
+     * All rights reserved. This program and the accompanying materials 
+     * are made available under the terms of the Eclipse Public License v1.0
+     * which is available at
+     * http://www.eclipse.org/legal/epl-v10.html
+     */./
+
+	$parser_name 	/.$file_prefix./
+	$parser_factory /.$file_prefix$Factory./
+
+
+--
+-- Macros that may be needed in an instance of this template
+--
+	$setSym1 /.setSym1./
+	$getSym /.getSym./
+	$getToken /.getToken./
+	$getLeftSpan /.btParser.getFirstToken./
+	$getRightSpan /.btParser.getLastToken./
+--	$lex_stream /.lexStream./
+	$prs_stream /.prsStream./
+--	$_EOF /.TK_EOF./
+
+
+--
+-- Macros useful for specifying actions
+--
+	$Header
+	/.
+				/*
+				 *  Rule $rule_number$:  $rule_text
+				 */./
+
+	$DefaultAction
+	/. $Header
+				case $rule_number: ./
+
+	$BeginAction
+	/.$DefaultAction
+				{
+				    if (checkStmtOnly) {
+				        setSym1(null);
+				        break;
+				    }
+				   ./
+
+	$EndAction
+	/.
+				}
+				break; ./
+
+	$BeginStatement
+	/.$DefaultAction
+				{
+				   ./
+
+
+	$TerminalAction
+	/.	$DefaultAction
+//			setSym1(makeTerminal("$rule_text$"));
+		$EndAction
+		./
+
+	$KeyValueAction
+	/.  	$DefaultAction
+//			setSym1( c.makeKeyElement(getToken(1))
+//					.makeChild(makeTerminal("$rule_text",getToken(2))) );
+			$EndAction
+			./
+	$KeyValueValueAction
+	/.  	$DefaultAction
+//			setSym1( makeTerminal("$rule_text$")
+//						.makeChild(makeTerminal("$rule_text$",getToken(2))
+//							.makeChild(makeTerminal("$rule_text$",getToken(3)))) );
+			$EndAction
+			./
+
+	$NoAction
+		/. $Header
+			case $rule_number$:
+				break;
+		./
+
+	$BeginActions
+		/.
+		public void ruleAction( int ruleNumber)
+		{
+			switch(ruleNumber)
+			{
+		./
+
+	$EndActions
+	/.
+				default:
+					break;
+
+			}
+			return;
+		}
+	./
+
+	$EmptyAction
+	/.
+		$DefaultAction
+			setSym1(null);
+		$EndAction
+		./
+
+--	$ast_type /.SQLQueryObject./
+--	$script_type /.List./
+--	$span_stmt /.SQLQueryObject./
+
+
+$End
+
+$Headers
+
+	/.package $package;
+		
+	$import_classes
+	
+	import com.ibm.lpg.*;
+	import java.util.List;
+
+	class $parser_name extends $parser_base_class //SQLParser
+	{
+		$parser_factory$ m_factory;
+
+
+	    /**
+	     * @param lexStream
+	     * @param factory
+	     * @param sourceFormat
+	     * @param checkStmtOnly
+	     */
+		$parser_name$( LexStream lexStream,
+		               $parser_factory$ factory,
+		               SQLQuerySourceFormat sourceFormat,
+		               boolean checkStmtOnly)
+		{
+	        super(lexStream, new $prs_type(), $prs_type.EOFT_SYMBOL, sourceFormat, checkStmtOnly);
+			this.m_factory = factory;
+		}
+
+		$parser_name$(LexStream lexStream, $parser_factory$ factory, SQLQuerySourceFormat sourceFormat)
+		{
+			this(lexStream, factory, sourceFormat, false);
+		}
+
+		$parser_name$(LexStream lexStream, $parser_factory$ factory)
+		{
+			this(lexStream, factory, SQLQuerySourceFormat.copyDefaultFormat());
+		}
+
+		$parser_name$(LexStream lexStream, $parser_factory$ factory, boolean checkStmtOnly)
+		{
+			this(lexStream, factory, SQLQuerySourceFormat.copyDefaultFormat(), checkStmtOnly);
+		}
+
+		$parser_name$(LexStream lexStream) {
+			this(lexStream, new $parser_factory$());
+		}
+
+		$parser_name$(LexStream lexStream, boolean checkStmtOnly) {
+			this(lexStream, new $parser_factory$(), checkStmtOnly);
+		}
+
+
+		public String[] orderedTerminalSymbols() { return $sym_type.orderedTerminalSymbols; }
+
+
+		protected double getTokenDbl(int p_tok) {
+			int tok = p_tok;
+			int tokKind = getKind(p_tok);
+			if (tokKind == $parser_name$sym.TK_MINUS_SIGN) {
+				++tok;
+				return -1*Double.parseDouble(getTokenName(tok));
+			} else if (tokKind == $parser_name$sym.TK_PLUS_SIGN) {
+				++tok;
+			}
+			return Double.parseDouble(getTokenName(p_tok));
+		}
+
+		protected int getTokenInt(int p_tok) {
+			int tok = p_tok;
+			int tokKind = getKind(p_tok);
+			if (tokKind == $parser_name$sym.TK_MINUS_SIGN) {
+				++tok;
+				return -1*Integer.parseInt(getTokenName(tok));
+			} else if (tokKind == $parser_name$sym.TK_PLUS_SIGN) {
+				++tok;
+			}
+			return Integer.parseInt(getTokenName(tok));
+		}
+
+
+
+
+
+        ./
+
+$End
+
+$Rules
+	/.$BeginActions./
+
+$End
+
+$Trailers
+	/.
+	$EndActions
+	}
+	./
+
+$End
+
+--
+-- E N D   O F   T E M P L A T E
+--
