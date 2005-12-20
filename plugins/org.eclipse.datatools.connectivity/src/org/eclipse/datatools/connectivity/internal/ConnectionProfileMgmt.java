@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
@@ -29,8 +30,13 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
+import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
@@ -112,8 +118,8 @@ public class ConnectionProfileMgmt {
 	 * @param cps To be saved connection profiles
 	 * @throws IOException
 	 */
-	public static void saveCPs(IConnectionProfile[] cps) throws IOException {
-		saveCPs(cps, getStorageLocation().append(FILENAME).toFile(), false);
+	public static void saveCPs(IConnectionProfile[] cps) throws IOException, GeneralSecurityException {
+		saveCPs(cps, getStorageLocation().append(FILENAME).toFile(), SecurityManager.getInstance().getDefaultCipherProvider());
 	}
 
 	/**
@@ -125,29 +131,25 @@ public class ConnectionProfileMgmt {
 	 * @throws IOException
 	 */
 	public static void saveCPs(IConnectionProfile[] cps, File file,
-			boolean useEncryption) throws IOException {
+			ICipherProvider isp) throws IOException, GeneralSecurityException {
 		
-		/* Throw exception until encryption is available */
-		if (useEncryption) {
-			throw new UnsupportedOperationException("Encryption not supported.");
-		}
 		XMLMemento xmlMemento = XMLMemento.createWriteRoot(ROOTNAME);
 		IMemento xmlChild, xmlExtraChild;
 		if (!file.exists())
 			file.createNewFile();
-		OutputStream out, outs = new FileOutputStream(file);
+		OutputStream out = null, outs = new FileOutputStream(file);
+		Writer writer = null;
 		
-		/* Commented out for now until encryption is available. */
-//		if (useEncryption) {
-//			throw new UnsupportedOperationException("Encryption not supported.");
-//		}
-//		else {
-			out = outs;
-//		}
-		OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
-		Writer writer = new BufferedWriter(outw);
-		IConnectionProfile cp;
 		try {
+			if (isp != null) {
+				out = new CipherOutputStream(outs, isp.createEncryptionCipher());
+			}
+			else {
+				out = outs;
+			}
+			OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
+			writer = new BufferedWriter(outw);
+			IConnectionProfile cp;
 			for (int i = 0; i < cps.length; i++) {
 				cp = cps[i];
 				xmlChild = xmlMemento.createChild(CHILDNAME);
@@ -193,7 +195,23 @@ public class ConnectionProfileMgmt {
 			xmlMemento.save(writer);
 		}
 		finally {
-			writer.close();
+			if (writer != null) {
+				writer.close();
+			}
+			else if (out != null) {
+				try {
+					out.close();
+				}
+				catch (IOException e) {
+				}
+			}
+			else {
+				try {
+					outs.close();
+				}
+				catch (IOException e) {
+				}
+			}
 		}
 	}
 
@@ -265,7 +283,7 @@ public class ConnectionProfileMgmt {
 	}
 
 	public static IConnectionProfile[] loadCPs(File file) throws IOException,
-			WorkbenchException {
+			WorkbenchException, GeneralSecurityException {
 		FileInputStream fis = new FileInputStream(file);
 		InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
 		BufferedReader reader = new BufferedReader(isr);
@@ -275,11 +293,11 @@ public class ConnectionProfileMgmt {
 		fis.close();
 		if (line.matches(".*xml.*")) {
 			// not encrpyted
-			return loadCPs(file, false);
+			return loadCPs(file, null);
 		}
 		else {
 			// encrypted
-			return loadCPs(file, true);
+			return loadCPs(file, SecurityManager.getInstance().getDefaultCipherProvider());
 		}
 	}
 
@@ -292,13 +310,13 @@ public class ConnectionProfileMgmt {
 	 * @throws IOException
 	 * @throws WorkbenchException
 	 */
-	public static IConnectionProfile[] loadCPs(File file, boolean needDecryption)
-			throws IOException, WorkbenchException {
+	public static IConnectionProfile[] loadCPs(File file, ICipherProvider isp)
+			throws IOException, WorkbenchException, GeneralSecurityException {
 		if (!file.exists())
 			return new IConnectionProfile[0];
 		InputStream is, fis = new FileInputStream(file);
-		if (needDecryption) {
-			throw new UnsupportedOperationException("Encryption not supported.");
+		if (isp != null) {
+			is = new CipherInputStream(fis, isp.createDecryptionCipher());
 		}
 		else {
 			is = fis;

@@ -14,5 +14,6 @@ Export-Package: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.drivers,
  org.eclipse.datatools.connectivity.drivers.models,
  org.eclipse.datatools.connectivity.internal,
+ org.eclipse.datatools.connectivity.internal.security,
  org.eclipse.datatools.connectivity.operations
 Bundle-ClassPath: connectivity.jar

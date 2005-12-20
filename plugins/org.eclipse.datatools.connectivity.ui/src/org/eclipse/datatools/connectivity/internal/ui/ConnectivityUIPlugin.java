@@ -65,7 +65,6 @@ public class ConnectivityUIPlugin extends AbstractUIPlugin {
 
 	public void stop(BundleContext context) throws Exception {
 		super.stop(context);
-		ProfileManager.getInstance().saveChanges();
 	}
 
 	/**

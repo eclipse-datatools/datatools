@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
+import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -169,12 +170,12 @@ public class ImportProfilesDialog extends Dialog {
 			if (line.matches(".*xml.*")) {
 				// not encrpyted
 				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
-						.getText()), false);
+						.getText()), null);
 			}
 			else {
 				// encrypted
 				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
-						.getText()), true);
+						.getText()), SecurityManager.getInstance().getDefaultCipherProvider());
 			}
 		}
 		catch (Exception e) {
