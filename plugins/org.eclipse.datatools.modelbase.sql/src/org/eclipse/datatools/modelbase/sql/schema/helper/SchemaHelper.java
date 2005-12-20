@@ -20,7 +20,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  * @author ckadner
  *
  * Helper to provide convenience methods that are related to 
- * {@link com.ibm.db.models.sql.schema.Schema}.
+ * {@link org.eclipse.datatools.modelbase.sql.schema.Schema}.
  */
 public class SchemaHelper
 {
