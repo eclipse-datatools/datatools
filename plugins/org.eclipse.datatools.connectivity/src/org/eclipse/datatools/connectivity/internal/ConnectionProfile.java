@@ -155,7 +155,6 @@ public class ConnectionProfile extends PlatformObject implements
 	 */
 	public void setBaseProperties(Properties props) {
 		setProperties(mProfileId, props);
-		notifyManager();
 	}
 
 	/*
