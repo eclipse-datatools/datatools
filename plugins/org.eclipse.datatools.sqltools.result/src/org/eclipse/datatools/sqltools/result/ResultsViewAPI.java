@@ -10,11 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
 import java.util.List;
 
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.eclipse.datatools.sqltools.result.internal.Constants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
@@ -253,9 +255,10 @@ public class ResultsViewAPI
         // should be a well-formed XML document
         try
         {
-            DocumentHelper.parseText(xmlString);
+        	DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        	builder.parse(new ByteArrayInputStream(xmlString.getBytes()));
         }
-        catch(DocumentException dex)
+        catch(Exception dex)
         {
             _log.error("ResultsViewAPI.notwellformed.xml", dex);
             return false;
