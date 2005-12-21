@@ -236,15 +236,14 @@
       </driverTemplate>
    </extension> 
    
-      <extension
+<!--      <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelContentProviderExtension"
-            enabledByDefault="true"
             id="org.eclipse.datatools.connectivity.db.sqlModelContent"
             labelProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelLabelProviderExtension"
             name="SQL Model Content Extension">
-         <enablement id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <enablement>
             <or>
 	            <and>
 	               <objectState
@@ -267,5 +266,32 @@
             </or>
          </enablement>
       </navigatorContent>
-   </extension>  
+   </extension> -->
+      <extension
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <navigatorContent
+               contentProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelContentProviderExtension"
+               id="org.eclipse.datatools.connectivity.db.sqlModelContent"
+               labelProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelLabelProviderExtension"
+               name="SQL Model Content Extension">
+            <enablement>
+               <or>
+                  <and>
+                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+                  </and>
+                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.db.generic.SQLModelContentExtension"/>
+               </or>
+            </enablement>
+         </navigatorContent>
+      </extension>
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.connectivity.db.sqlModelContent"/>
+            </includes>
+         </viewerContentBinding>
+      </extension>  
 </plugin>

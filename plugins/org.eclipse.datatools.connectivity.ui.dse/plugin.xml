@@ -80,7 +80,7 @@
          </action>
       </viewContribution>
    </extension>
-   <extension
+<!--   <extension
          point="org.eclipse.ui.navigator.navigatorViewer">
       <navigatorViewer
             popupMenuId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu"
@@ -115,7 +115,7 @@
 				</or>
 			</enablement>
 		</navigatorContent>
-	</extension>
+	</extension> -->
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
@@ -155,7 +155,7 @@
 	The following is a work in progress. The code currently in ConnectActionProvider
 	will be migrated to use object contributions to provide menus via the plugin.xml.
 -->	
-   <extension
+<!--   <extension
          point="org.eclipse.ui.navigator.actionProvider">
       <actionProvider
             class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
@@ -166,7 +166,7 @@
 		      	</or>
 		    </enablement>
       </actionProvider>
-   </extension>
+   </extension> -->
    <extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
@@ -268,5 +268,47 @@
 			      	</or>
 	         </visibility>
 		 </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider"
+            icon="platform:/plugin/org.eclipse.datatools.connectivity.dsexplorer/icons/enterprise_explorer.gif"
+            id="org.eclipse.datatools.connectivity.dsexplorer.content"
+            labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
+            name="%DSE.content"
+            priority="normal">
+         <actionProvider
+               class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
+               id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
+            <enablement>
+               <or>
+                  <instanceof value="org.eclipse.datatools.connectivity.ICategory"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+               </or>
+            </enablement>
+         </actionProvider>
+         <enablement>
+            <or>
+               <adapt type="org.eclipse.core.resources.IWorkspaceRoot"/>
+               <adapt type="org.eclipse.datatools.connectivity.ICategory"/>
+               <adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+               <adapt type="org.eclipse.datatools.connectivity.ProfileManager"/>
+            </or>
+         </enablement>
+      </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            popupMenuId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu"
+            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>
+      <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <contentExtension
+                  isRoot="true"
+                  pattern="org.eclipse.datatools.connectivity.dsexplorer.content"/>
+         </includes>
+      </viewerContentBinding>
    </extension>
 </plugin>

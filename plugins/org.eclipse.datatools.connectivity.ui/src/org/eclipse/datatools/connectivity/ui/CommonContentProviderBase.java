@@ -19,8 +19,8 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.navigator.ICommonContentProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
-import org.eclipse.ui.navigator.internal.extensions.ICommonContentProvider;
 
 /**
  * @author rcernich
