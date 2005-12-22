@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: ConstraintItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.constraints.Constraint} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.Constraint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -76,14 +76,16 @@ public class ConstraintItemProvider
 	 */
 	protected void addDeferrablePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Constraint_deferrable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_deferrable_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getConstraint_Deferrable(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,14 +96,16 @@ public class ConstraintItemProvider
 	 */
 	protected void addInitiallyDeferredPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Constraint_initiallyDeferred_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_initiallyDeferred_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getConstraint_InitiallyDeferred(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,14 +116,16 @@ public class ConstraintItemProvider
 	 */
 	protected void addEnforcedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Constraint_enforced_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_enforced_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getConstraint_Enforced(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**

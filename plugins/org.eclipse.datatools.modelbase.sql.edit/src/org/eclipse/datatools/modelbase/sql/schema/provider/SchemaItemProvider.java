@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SchemaItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: SchemaItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.schema.Schema} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Schema} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -79,13 +79,16 @@ public class SchemaItemProvider
 	 */
 	protected void addTriggersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_triggers_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_triggers_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Triggers(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -96,13 +99,16 @@ public class SchemaItemProvider
 	 */
 	protected void addIndicesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_indices_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_indices_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Indices(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -113,13 +119,16 @@ public class SchemaItemProvider
 	 */
 	protected void addTablesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_tables_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_tables_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Tables(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -130,13 +139,16 @@ public class SchemaItemProvider
 	 */
 	protected void addSequencesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_sequences_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_sequences_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Sequences(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -147,13 +159,16 @@ public class SchemaItemProvider
 	 */
 	protected void addDatabasePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_database_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_database_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Database(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -164,13 +179,16 @@ public class SchemaItemProvider
 	 */
 	protected void addAssertionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_assertions_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_assertions_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Assertions(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -181,13 +199,16 @@ public class SchemaItemProvider
 	 */
 	protected void addUserDefinedTypesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_userDefinedTypes_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_userDefinedTypes_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_UserDefinedTypes(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -198,13 +219,16 @@ public class SchemaItemProvider
 	 */
 	protected void addCharSetsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_charSets_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_charSets_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_CharSets(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -215,13 +239,16 @@ public class SchemaItemProvider
 	 */
 	protected void addRoutinesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_routines_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_routines_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Routines(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -232,13 +259,16 @@ public class SchemaItemProvider
 	 */
 	protected void addOwnerPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Schema_owner_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_owner_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSchema_Owner(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

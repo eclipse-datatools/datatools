@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLRoutinesItemProviderAdapterFactory.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: SQLRoutinesItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -65,11 +65,11 @@ public class SQLRoutinesItemProviderAdapterFactory extends SQLRoutinesAdapterFac
 	 * @generated
 	 */
 	public SQLRoutinesItemProviderAdapterFactory() {
+		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);		
 	}
 
 	/**

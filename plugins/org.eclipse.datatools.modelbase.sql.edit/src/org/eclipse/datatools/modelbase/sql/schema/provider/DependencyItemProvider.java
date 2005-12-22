@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DependencyItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: DependencyItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.schema.Dependency} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Dependency} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,13 +72,16 @@ public class DependencyItemProvider
 	 */
 	protected void addTargetEndPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Dependency_targetEnd_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_targetEnd_feature", "_UI_Dependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getDependency_TargetEnd(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -89,14 +92,16 @@ public class DependencyItemProvider
 	 */
 	protected void addDependencyTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Dependency_dependencyType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_dependencyType_feature", "_UI_Dependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getDependency_DependencyType(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**

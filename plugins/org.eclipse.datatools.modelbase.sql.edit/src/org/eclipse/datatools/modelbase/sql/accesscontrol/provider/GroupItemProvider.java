@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: GroupItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.Group} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.Group} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,13 +72,16 @@ public class GroupItemProvider
 	 */
 	protected void addUserPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Group_user_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Group_user_feature", "_UI_Group_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLAccessControlPackage.eINSTANCE.getGroup_User(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

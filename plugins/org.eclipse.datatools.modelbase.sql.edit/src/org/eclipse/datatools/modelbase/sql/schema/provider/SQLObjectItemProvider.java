@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLObjectItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: SQLObjectItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.schema.SQLObject} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.SQLObject} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -74,14 +74,16 @@ public class SQLObjectItemProvider
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SQLObject_description_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_description_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSQLObject_Description(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,14 +94,16 @@ public class SQLObjectItemProvider
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SQLObject_label_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_label_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSQLObject_Label(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**

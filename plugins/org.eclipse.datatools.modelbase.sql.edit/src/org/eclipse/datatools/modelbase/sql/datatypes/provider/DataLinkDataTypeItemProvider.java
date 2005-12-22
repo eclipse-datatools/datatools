@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataLinkDataTypeItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: DataLinkDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -79,14 +79,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addLengthPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_length_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_length_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Length(),
 				 true,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE));
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,14 +99,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addLinkControlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_linkControl_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_linkControl_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_LinkControl(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -115,14 +119,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addIntegrityControlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_integrityControl_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_integrityControl_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_IntegrityControl(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -133,14 +139,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addReadPermissionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_readPermission_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_readPermission_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_ReadPermission(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -151,14 +159,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addWritePermissionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_writePermission_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_writePermission_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_WritePermission(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -169,14 +179,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addRecoveryPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_recovery_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_recovery_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Recovery(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -187,14 +199,16 @@ public class DataLinkDataTypeItemProvider
 	 */
 	protected void addUnlinkPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_unlink_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_unlink_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Unlink(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**

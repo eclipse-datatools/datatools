@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BooleanDataTypeItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: BooleanDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.datatypes.BooleanDataType} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.BooleanDataType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

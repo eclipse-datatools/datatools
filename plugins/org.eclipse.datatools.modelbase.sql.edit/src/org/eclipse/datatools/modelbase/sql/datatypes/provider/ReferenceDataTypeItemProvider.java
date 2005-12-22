@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferenceDataTypeItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: ReferenceDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.datatypes.ReferenceDataType} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.ReferenceDataType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -73,13 +73,16 @@ public class ReferenceDataTypeItemProvider
 	 */
 	protected void addScopeTablePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ReferenceDataType_scopeTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceDataType_scopeTable_feature", "_UI_ReferenceDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getReferenceDataType_ScopeTable(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,13 +93,16 @@ public class ReferenceDataTypeItemProvider
 	 */
 	protected void addReferencedTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ReferenceDataType_referencedType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceDataType_referencedType_feature", "_UI_ReferenceDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getReferenceDataType_ReferencedType(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

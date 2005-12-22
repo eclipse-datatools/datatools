@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AuthorizationIdentifierItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: AuthorizationIdentifierItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -78,13 +78,16 @@ public class AuthorizationIdentifierItemProvider
 	 */
 	protected void addOwnedSchemaPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_ownedSchema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_ownedSchema_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_OwnedSchema(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,13 +98,16 @@ public class AuthorizationIdentifierItemProvider
 	 */
 	protected void addReceivedRoleAuthorizationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_receivedRoleAuthorization_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_receivedRoleAuthorization_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedRoleAuthorization(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,13 +118,16 @@ public class AuthorizationIdentifierItemProvider
 	 */
 	protected void addGrantedRoleAuthorizationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_grantedRoleAuthorization_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_grantedRoleAuthorization_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_GrantedRoleAuthorization(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -129,13 +138,16 @@ public class AuthorizationIdentifierItemProvider
 	 */
 	protected void addGrantedPrivilegePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_grantedPrivilege_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_grantedPrivilege_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_GrantedPrivilege(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

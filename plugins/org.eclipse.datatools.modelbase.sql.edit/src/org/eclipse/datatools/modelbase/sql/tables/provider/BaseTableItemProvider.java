@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BaseTableItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: BaseTableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.tables.BaseTable} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.tables.BaseTable} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

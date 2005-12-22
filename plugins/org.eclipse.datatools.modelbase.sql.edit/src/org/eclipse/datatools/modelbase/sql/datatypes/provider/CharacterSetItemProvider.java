@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CharacterSetItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: CharacterSetItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.CharacterSet} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -77,14 +77,16 @@ public class CharacterSetItemProvider
 	 */
 	protected void addRepertoirePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_repertoire_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_repertoire_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Repertoire(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -95,14 +97,16 @@ public class CharacterSetItemProvider
 	 */
 	protected void addDefaultCollationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_defaultCollation_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_defaultCollation_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_DefaultCollation(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -113,14 +117,16 @@ public class CharacterSetItemProvider
 	 */
 	protected void addEncodingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_encoding_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_encoding_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Encoding(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -131,13 +137,16 @@ public class CharacterSetItemProvider
 	 */
 	protected void addSchemaPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_schema_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Schema(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

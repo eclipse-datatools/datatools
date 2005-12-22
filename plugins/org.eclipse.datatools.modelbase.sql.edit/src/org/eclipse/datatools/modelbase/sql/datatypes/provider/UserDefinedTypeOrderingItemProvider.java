@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UserDefinedTypeOrderingItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: UserDefinedTypeOrderingItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedTypeOrdering} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedTypeOrdering} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -76,14 +76,16 @@ public class UserDefinedTypeOrderingItemProvider
 	 */
 	protected void addOrderingFormPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingForm_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingForm_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingForm(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,14 +96,16 @@ public class UserDefinedTypeOrderingItemProvider
 	 */
 	protected void addOrderingCategoryPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingCategory_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingCategory_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingCategory(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -112,13 +116,16 @@ public class UserDefinedTypeOrderingItemProvider
 	 */
 	protected void addOrderingRoutinePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingRoutine_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingRoutine_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingRoutine(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

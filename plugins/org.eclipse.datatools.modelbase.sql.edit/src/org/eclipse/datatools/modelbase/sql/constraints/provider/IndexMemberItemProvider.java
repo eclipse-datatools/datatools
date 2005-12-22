@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IndexMemberItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: IndexMemberItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.IndexMember} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -75,14 +75,16 @@ public class IndexMemberItemProvider
 	 */
 	protected void addIncrementTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_IndexMember_incrementType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IndexMember_incrementType_feature", "_UI_IndexMember_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getIndexMember_IncrementType(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -93,13 +95,16 @@ public class IndexMemberItemProvider
 	 */
 	protected void addColumnPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_IndexMember_column_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IndexMember_column_feature", "_UI_IndexMember_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getIndexMember_Column(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

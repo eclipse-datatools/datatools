@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimaryKeyItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: PrimaryKeyItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

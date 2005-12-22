@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceItemProvider.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: SequenceItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.schema.Sequence} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Sequence} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,13 +72,16 @@ public class SequenceItemProvider
 	 */
 	protected void addSchemaPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Sequence_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Sequence_schema_feature", "_UI_Sequence_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLSchemaPackage.eINSTANCE.getSequence_Schema(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: FunctionItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.routines.Function} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.routines.Function} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -79,14 +79,16 @@ public class FunctionItemProvider
 	 */
 	protected void addNullCallPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Function_nullCall_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_nullCall_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLRoutinesPackage.eINSTANCE.getFunction_NullCall(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -97,14 +99,16 @@ public class FunctionItemProvider
 	 */
 	protected void addStaticPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Function_static_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_static_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLRoutinesPackage.eINSTANCE.getFunction_Static(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -115,14 +119,16 @@ public class FunctionItemProvider
 	 */
 	protected void addTransformGroupPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Function_transformGroup_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_transformGroup_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLRoutinesPackage.eINSTANCE.getFunction_TransformGroup(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -133,14 +139,16 @@ public class FunctionItemProvider
 	 */
 	protected void addTypePreservingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Function_typePreserving_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_typePreserving_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLRoutinesPackage.eINSTANCE.getFunction_TypePreserving(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -151,14 +159,16 @@ public class FunctionItemProvider
 	 */
 	protected void addMutatorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Function_mutator_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_mutator_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLRoutinesPackage.eINSTANCE.getFunction_Mutator(),
 				 true,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -274,13 +284,20 @@ public class FunctionItemProvider
 	 * @generated
 	 */
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
 		boolean qualify =
-			feature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			feature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
-			feature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
-		return getString(
-			qualify ? "_UI_CreateChild_text2" : "_UI_CreateChild_text", //$NON-NLS-1$ //$NON-NLS-2$
-			new Object[] { getTypeText(child), getFeatureText(feature), getTypeText(owner) });
+			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2", //$NON-NLS-1$
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

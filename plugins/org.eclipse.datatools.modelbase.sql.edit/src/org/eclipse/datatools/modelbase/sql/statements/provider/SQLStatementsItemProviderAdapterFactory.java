@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLStatementsItemProviderAdapterFactory.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: SQLStatementsItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.statements.provider;
 
@@ -65,11 +65,11 @@ public class SQLStatementsItemProviderAdapterFactory extends SQLStatementsAdapte
 	 * @generated
 	 */
 	public SQLStatementsItemProviderAdapterFactory() {
+		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);		
 	}
 
 	/**

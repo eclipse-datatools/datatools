@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeignKeyItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: ForeignKeyItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -78,14 +78,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addMatchPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_match_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_match_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_Match(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -96,14 +98,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addOnUpdatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_onUpdate_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_onUpdate_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_OnUpdate(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -114,14 +118,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addOnDeletePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_onDelete_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_onDelete_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_OnDelete(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -132,13 +138,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addUniqueConstraintPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_uniqueConstraint_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_uniqueConstraint_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_UniqueConstraint(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -149,13 +158,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addReferencedMembersPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_referencedMembers_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_referencedMembers_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_ReferencedMembers(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -166,13 +178,16 @@ public class ForeignKeyItemProvider
 	 */
 	protected void addUniqueIndexPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_uniqueIndex_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_uniqueIndex_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_UniqueIndex(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

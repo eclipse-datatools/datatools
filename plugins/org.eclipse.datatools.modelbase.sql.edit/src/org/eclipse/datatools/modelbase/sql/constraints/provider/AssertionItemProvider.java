@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AssertionItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: AssertionItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.constraints.Assertion} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.constraints.Assertion} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -75,13 +75,16 @@ public class AssertionItemProvider
 	 */
 	protected void addSchemaPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Assertion_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Assertion_schema_feature", "_UI_Assertion_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getAssertion_Schema(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -92,13 +95,16 @@ public class AssertionItemProvider
 	 */
 	protected void addConstrainedTablesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Assertion_constrainedTables_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Assertion_constrainedTables_feature", "_UI_Assertion_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getAssertion_ConstrainedTables(),
-				 true));
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.2 2005/06/15 18:16:14 ledunnel Exp $
+ * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -65,11 +65,11 @@ public class SQLSchemaItemProviderAdapterFactory extends SQLSchemaAdapterFactory
 	 * @generated
 	 */
 	public SQLSchemaItemProviderAdapterFactory() {
+		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
-		supportedTypes.add(IItemPropertySource.class);
-		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);		
 	}
 
 	/**

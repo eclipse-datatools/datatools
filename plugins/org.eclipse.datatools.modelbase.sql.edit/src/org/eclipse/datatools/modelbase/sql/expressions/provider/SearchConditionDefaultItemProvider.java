@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionDefaultItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: SearchConditionDefaultItemProvider.java,v 1.1 2005/08/02 22:56:32 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.expressions.SearchConditionDefault} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.expressions.SearchConditionDefault} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -74,14 +74,16 @@ public class SearchConditionDefaultItemProvider
 	 */
 	protected void addSQLPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
-			(new ItemPropertyDescriptor
+			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_SearchConditionDefault_SQL_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SearchConditionDefault_SQL_feature", "_UI_SearchConditionDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLExpressionsPackage.eINSTANCE.getSearchConditionDefault_SQL(),
 				 true,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**

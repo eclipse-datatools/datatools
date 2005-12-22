@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BuiltInFunctionItemProvider.java,v 1.2 2005/06/15 18:16:15 ledunnel Exp $
+ * $Id: BuiltInFunctionItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.routines.BuiltInFunction} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.routines.BuiltInFunction} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -114,13 +114,20 @@ public class BuiltInFunctionItemProvider
 	 * @generated
 	 */
 	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
 		boolean qualify =
-			feature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			feature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
-			feature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
-		return getString(
-			qualify ? "_UI_CreateChild_text2" : "_UI_CreateChild_text", //$NON-NLS-1$ //$NON-NLS-2$
-			new Object[] { getTypeText(child), getFeatureText(feature), getTypeText(owner) });
+			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2", //$NON-NLS-1$
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
