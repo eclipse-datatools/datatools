@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getExtendedDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface ExtendedDefinition extends EObject{
@@ -41,7 +41,7 @@ public interface ExtendedDefinition extends EObject{
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getExtendedDefinition_Name()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -67,7 +67,7 @@ public interface ExtendedDefinition extends EObject{
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getExtendedDefinition_Value()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getValue();

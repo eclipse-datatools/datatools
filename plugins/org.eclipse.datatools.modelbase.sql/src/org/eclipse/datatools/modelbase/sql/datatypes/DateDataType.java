@@ -18,7 +18,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDateDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface DateDataType extends PredefinedDataType{

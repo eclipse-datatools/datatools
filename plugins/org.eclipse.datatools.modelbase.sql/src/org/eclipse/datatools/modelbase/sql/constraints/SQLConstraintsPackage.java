@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLConstraintsPackage extends EPackage{

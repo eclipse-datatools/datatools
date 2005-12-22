@@ -101,6 +101,15 @@ public class SQLSchemaSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLSchemaPackage.TYPED_ELEMENT: {
+				TypedElement typedElement = (TypedElement)theEObject;
+				Object result = caseTypedElement(typedElement);
+				if (result == null) result = caseSQLObject(typedElement);
+				if (result == null) result = caseENamedElement(typedElement);
+				if (result == null) result = caseEModelElement(typedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLSchemaPackage.DEPENDENCY: {
 				Dependency dependency = (Dependency)theEObject;
 				Object result = caseDependency(dependency);
@@ -116,6 +125,14 @@ public class SQLSchemaSwitch {
 				if (result == null) result = caseSQLObject(schema);
 				if (result == null) result = caseENamedElement(schema);
 				if (result == null) result = caseEModelElement(schema);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLSchemaPackage.SQL_OBJECT: {
+				SQLObject sqlObject = (SQLObject)theEObject;
+				Object result = caseSQLObject(sqlObject);
+				if (result == null) result = caseENamedElement(sqlObject);
+				if (result == null) result = caseEModelElement(sqlObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

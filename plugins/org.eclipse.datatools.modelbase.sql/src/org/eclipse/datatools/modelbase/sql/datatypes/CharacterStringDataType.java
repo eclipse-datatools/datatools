@@ -57,7 +57,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface CharacterStringDataType extends PredefinedDataType{
@@ -101,7 +101,7 @@ public interface CharacterStringDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType
 	 * @see #setCoercibility(CoercibilityType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType_Coercibility()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	CoercibilityType getCoercibility();
@@ -143,7 +143,7 @@ public interface CharacterStringDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Collation Name</em>' attribute.
 	 * @see #setCollationName(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType_CollationName()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getCollationName();

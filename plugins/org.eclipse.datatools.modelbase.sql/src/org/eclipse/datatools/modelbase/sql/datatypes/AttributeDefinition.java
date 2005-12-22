@@ -46,7 +46,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getAttributeDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface AttributeDefinition extends TypedElement{
@@ -63,7 +63,7 @@ public interface AttributeDefinition extends TypedElement{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType
 	 * @see #setScopeCheck(ReferentialActionType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getAttributeDefinition_ScopeCheck()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ReferentialActionType getScopeCheck();
@@ -90,7 +90,7 @@ public interface AttributeDefinition extends TypedElement{
 	 * @return the value of the '<em>Scope Checked</em>' attribute.
 	 * @see #setScopeChecked(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getAttributeDefinition_ScopeChecked()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isScopeChecked();
@@ -116,7 +116,7 @@ public interface AttributeDefinition extends TypedElement{
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getAttributeDefinition_DefaultValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDefaultValue();

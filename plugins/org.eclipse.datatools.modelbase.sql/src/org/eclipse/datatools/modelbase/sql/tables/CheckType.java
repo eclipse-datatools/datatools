@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: CheckType.java,v 1.1 2005/08/02 22:56:30 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -38,7 +38,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #CASCADED_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -49,7 +49,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #LOCAL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -60,7 +60,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #NONE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

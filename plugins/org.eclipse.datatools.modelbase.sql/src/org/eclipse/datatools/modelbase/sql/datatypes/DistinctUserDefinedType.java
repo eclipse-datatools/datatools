@@ -36,7 +36,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDistinctUserDefinedType()
- * @model 
+ * @model
  * @generated
  */
 public interface DistinctUserDefinedType extends UserDefinedType{

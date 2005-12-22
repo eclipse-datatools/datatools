@@ -18,8 +18,8 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntegerDataType()
- * @model 
+ * @model
  * @generated
  */
-public interface IntegerDataType extends ExactNumericDataType {
+public interface IntegerDataType extends ExactNumericDataType{
 } // IntegerDataType

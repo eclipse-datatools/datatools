@@ -418,12 +418,12 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
 				case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-					return ((InternalEObject)eContainer).eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
+					return eContainer.eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
 		}
-		return ((InternalEObject)eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

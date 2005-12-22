@@ -18,7 +18,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getBuiltInFunction()
- * @model 
+ * @model
  * @generated
  */
 public interface BuiltInFunction extends Function{

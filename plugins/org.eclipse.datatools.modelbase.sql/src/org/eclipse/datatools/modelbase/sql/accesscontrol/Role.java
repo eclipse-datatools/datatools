@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getRole()
- * @model 
+ * @model
  * @generated
  */
 public interface Role extends AuthorizationIdentifier{

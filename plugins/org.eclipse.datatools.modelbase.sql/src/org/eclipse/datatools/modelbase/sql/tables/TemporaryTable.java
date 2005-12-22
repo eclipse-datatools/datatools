@@ -34,7 +34,7 @@ package org.eclipse.datatools.modelbase.sql.tables;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTemporaryTable()
- * @model 
+ * @model
  * @generated
  */
 public interface TemporaryTable extends BaseTable{
@@ -49,7 +49,7 @@ public interface TemporaryTable extends BaseTable{
 	 * @return the value of the '<em>Local</em>' attribute.
 	 * @see #setLocal(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTemporaryTable_Local()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isLocal();
@@ -75,7 +75,7 @@ public interface TemporaryTable extends BaseTable{
 	 * @return the value of the '<em>Delete On Commit</em>' attribute.
 	 * @see #setDeleteOnCommit(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTemporaryTable_DeleteOnCommit()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDeleteOnCommit();

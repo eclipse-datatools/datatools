@@ -72,7 +72,7 @@ public interface Constraint extends SQLObject{
 	 * @return the value of the '<em>Deferrable</em>' attribute.
 	 * @see #setDeferrable(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getConstraint_Deferrable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDeferrable();

@@ -30,7 +30,7 @@ package org.eclipse.datatools.modelbase.sql.constraints;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getPrimaryKey()
- * @model 
+ * @model
  * @generated
  */
 public interface PrimaryKey extends UniqueConstraint{

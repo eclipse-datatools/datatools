@@ -29,7 +29,7 @@ package org.eclipse.datatools.modelbase.sql.tables;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getPersistentTable()
- * @model 
+ * @model
  * @generated
  */
 public interface PersistentTable extends BaseTable{

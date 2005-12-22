@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getProcedure()
- * @model 
+ * @model
  * @generated
  */
 public interface Procedure extends Routine{
@@ -56,7 +56,7 @@ public interface Procedure extends Routine{
 	 * @return the value of the '<em>Max Result Sets</em>' attribute.
 	 * @see #setMaxResultSets(int)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getProcedure_MaxResultSets()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaxResultSets();
@@ -86,7 +86,7 @@ public interface Procedure extends Routine{
 	 * @return the value of the '<em>Old Save Point</em>' attribute.
 	 * @see #setOldSavePoint(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getProcedure_OldSavePoint()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isOldSavePoint();

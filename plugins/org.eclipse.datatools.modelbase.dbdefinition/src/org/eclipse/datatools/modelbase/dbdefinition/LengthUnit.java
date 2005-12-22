@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LengthUnit.java,v 1.3 2005/06/20 22:06:17 ledunnel Exp $
+ * $Id: LengthUnit.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -27,7 +27,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #DECIMAL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -38,7 +38,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #BIT_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -49,7 +49,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #BYTE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -60,7 +60,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #DOUBLE_BYTE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

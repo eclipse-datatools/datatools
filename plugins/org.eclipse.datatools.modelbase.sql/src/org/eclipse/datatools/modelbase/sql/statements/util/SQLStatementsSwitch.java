@@ -93,6 +93,41 @@ public class SQLStatementsSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case SQLStatementsPackage.SQL_STATEMENT: {
+				SQLStatement sqlStatement = (SQLStatement)theEObject;
+				Object result = caseSQLStatement(sqlStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_DATA_STATEMENT: {
+				SQLDataStatement sqlDataStatement = (SQLDataStatement)theEObject;
+				Object result = caseSQLDataStatement(sqlDataStatement);
+				if (result == null) result = caseSQLStatement(sqlDataStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_SCHEMA_STATEMENT: {
+				SQLSchemaStatement sqlSchemaStatement = (SQLSchemaStatement)theEObject;
+				Object result = caseSQLSchemaStatement(sqlSchemaStatement);
+				if (result == null) result = caseSQLStatement(sqlSchemaStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_CONTROL_STATEMENT: {
+				SQLControlStatement sqlControlStatement = (SQLControlStatement)theEObject;
+				Object result = caseSQLControlStatement(sqlControlStatement);
+				if (result == null) result = caseSQLStatement(sqlControlStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_DATA_CHANGE_STATEMENT: {
+				SQLDataChangeStatement sqlDataChangeStatement = (SQLDataChangeStatement)theEObject;
+				Object result = caseSQLDataChangeStatement(sqlDataChangeStatement);
+				if (result == null) result = caseSQLDataStatement(sqlDataChangeStatement);
+				if (result == null) result = caseSQLStatement(sqlDataChangeStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLStatementsPackage.SQL_STATEMENT_DEFAULT: {
 				SQLStatementDefault sqlStatementDefault = (SQLStatementDefault)theEObject;
 				Object result = caseSQLStatementDefault(sqlStatementDefault);
@@ -100,6 +135,41 @@ public class SQLStatementsSwitch {
 				if (result == null) result = caseSQLStatement(sqlStatementDefault);
 				if (result == null) result = caseENamedElement(sqlStatementDefault);
 				if (result == null) result = caseEModelElement(sqlStatementDefault);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_CONNECTION_STATEMENT: {
+				SQLConnectionStatement sqlConnectionStatement = (SQLConnectionStatement)theEObject;
+				Object result = caseSQLConnectionStatement(sqlConnectionStatement);
+				if (result == null) result = caseSQLStatement(sqlConnectionStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_DIAGNOSTICS_STATEMENT: {
+				SQLDiagnosticsStatement sqlDiagnosticsStatement = (SQLDiagnosticsStatement)theEObject;
+				Object result = caseSQLDiagnosticsStatement(sqlDiagnosticsStatement);
+				if (result == null) result = caseSQLStatement(sqlDiagnosticsStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_DYNAMIC_STATEMENT: {
+				SQLDynamicStatement sqlDynamicStatement = (SQLDynamicStatement)theEObject;
+				Object result = caseSQLDynamicStatement(sqlDynamicStatement);
+				if (result == null) result = caseSQLStatement(sqlDynamicStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_SESSION_STATEMENT: {
+				SQLSessionStatement sqlSessionStatement = (SQLSessionStatement)theEObject;
+				Object result = caseSQLSessionStatement(sqlSessionStatement);
+				if (result == null) result = caseSQLStatement(sqlSessionStatement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLStatementsPackage.SQL_TRANSACTION_STATEMENT: {
+				SQLTransactionStatement sqlTransactionStatement = (SQLTransactionStatement)theEObject;
+				Object result = caseSQLTransactionStatement(sqlTransactionStatement);
+				if (result == null) result = caseSQLStatement(sqlTransactionStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

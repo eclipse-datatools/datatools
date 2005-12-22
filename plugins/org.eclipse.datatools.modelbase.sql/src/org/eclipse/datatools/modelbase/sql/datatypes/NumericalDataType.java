@@ -78,7 +78,7 @@ public interface NumericalDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Precision</em>' attribute.
 	 * @see #setPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getNumericalDataType_Precision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getPrecision();

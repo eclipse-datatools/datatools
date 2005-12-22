@@ -28,7 +28,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getRoleAuthorization()
- * @model 
+ * @model
  * @generated
  */
 public interface RoleAuthorization extends SQLObject{
@@ -43,7 +43,7 @@ public interface RoleAuthorization extends SQLObject{
 	 * @return the value of the '<em>Grantable</em>' attribute.
 	 * @see #setGrantable(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getRoleAuthorization_Grantable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isGrantable();

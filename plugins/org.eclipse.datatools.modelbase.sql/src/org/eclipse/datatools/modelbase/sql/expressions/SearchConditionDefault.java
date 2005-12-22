@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getSearchConditionDefault()
- * @model 
+ * @model
  * @generated
  */
 public interface SearchConditionDefault extends SQLObject, SearchCondition{
@@ -41,7 +41,7 @@ public interface SearchConditionDefault extends SQLObject, SearchCondition{
 	 * @return the value of the '<em>SQL</em>' attribute.
 	 * @see #setSQL(String)
 	 * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getSearchConditionDefault_SQL()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getSQL();

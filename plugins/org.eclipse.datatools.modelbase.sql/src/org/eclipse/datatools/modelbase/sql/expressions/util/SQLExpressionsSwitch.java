@@ -94,6 +94,24 @@ public class SQLExpressionsSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case SQLExpressionsPackage.QUERY_EXPRESSION: {
+				QueryExpression queryExpression = (QueryExpression)theEObject;
+				Object result = caseQueryExpression(queryExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLExpressionsPackage.VALUE_EXPRESSION: {
+				ValueExpression valueExpression = (ValueExpression)theEObject;
+				Object result = caseValueExpression(valueExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLExpressionsPackage.SEARCH_CONDITION: {
+				SearchCondition searchCondition = (SearchCondition)theEObject;
+				Object result = caseSearchCondition(searchCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLExpressionsPackage.QUERY_EXPRESSION_DEFAULT: {
 				QueryExpressionDefault queryExpressionDefault = (QueryExpressionDefault)theEObject;
 				Object result = caseQueryExpressionDefault(queryExpressionDefault);

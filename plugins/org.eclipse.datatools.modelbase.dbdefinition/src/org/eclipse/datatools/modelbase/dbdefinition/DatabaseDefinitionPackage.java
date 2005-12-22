@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionFactory
+ * @model kind="package"
  * @generated
  */
 public interface DatabaseDefinitionPackage extends EPackage{

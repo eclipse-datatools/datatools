@@ -18,8 +18,8 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getApproximateNumericDataType()
- * @model 
+ * @model
  * @generated
  */
-public interface ApproximateNumericDataType extends NumericalDataType {
+public interface ApproximateNumericDataType extends NumericalDataType{
 } // ApproximateNumericDataType

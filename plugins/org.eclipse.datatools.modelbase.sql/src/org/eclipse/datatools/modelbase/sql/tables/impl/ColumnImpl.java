@@ -536,12 +536,12 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
 				case SQLTablesPackage.COLUMN__TABLE:
-					return ((InternalEObject)eContainer).eInverseRemove(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
+					return eContainer.eInverseRemove(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
 		}
-		return ((InternalEObject)eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

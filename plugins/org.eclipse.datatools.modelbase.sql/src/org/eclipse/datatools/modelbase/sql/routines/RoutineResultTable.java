@@ -19,7 +19,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutineResultTable()
- * @model 
+ * @model
  * @generated
  */
 public interface RoutineResultTable extends Table{

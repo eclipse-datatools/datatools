@@ -230,12 +230,12 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
 				case SQLRoutinesPackage.PARAMETER__ROUTINE:
-					return ((InternalEObject)eContainer).eInverseRemove(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
+					return eContainer.eInverseRemove(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
 		}
-		return ((InternalEObject)eContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
 	}
 
 	/**

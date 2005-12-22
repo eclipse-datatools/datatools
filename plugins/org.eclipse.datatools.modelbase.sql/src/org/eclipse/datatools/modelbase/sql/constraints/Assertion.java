@@ -45,7 +45,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getAssertion()
- * @model 
+ * @model
  * @generated
  */
 public interface Assertion extends Constraint{

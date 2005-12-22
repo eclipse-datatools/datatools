@@ -32,7 +32,7 @@ public interface QueryExpression extends EDataObject{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model parameters=""
+	 * @model kind="operation"
 	 * @generated
 	 */
 	String getSQL();
@@ -40,7 +40,7 @@ public interface QueryExpression extends EDataObject{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void setSQL(String sqlText);

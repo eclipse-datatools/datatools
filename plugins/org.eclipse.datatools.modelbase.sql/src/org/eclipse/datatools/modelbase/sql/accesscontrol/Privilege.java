@@ -28,7 +28,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege()
- * @model 
+ * @model
  * @generated
  */
 public interface Privilege extends SQLObject{
@@ -43,7 +43,7 @@ public interface Privilege extends SQLObject{
 	 * @return the value of the '<em>Grantable</em>' attribute.
 	 * @see #setGrantable(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_Grantable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isGrantable();
@@ -69,7 +69,7 @@ public interface Privilege extends SQLObject{
 	 * @return the value of the '<em>Action</em>' attribute.
 	 * @see #setAction(String)
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_Action()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getAction();

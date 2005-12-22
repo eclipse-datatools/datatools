@@ -70,7 +70,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject_Description()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDescription();
@@ -96,7 +96,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject_Label()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getLabel();
@@ -114,7 +114,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	EAnnotation addEAnnotation(String source);
@@ -122,7 +122,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void addEAnnotationDetail(EAnnotation eAnnotation, String key, String value);
@@ -130,7 +130,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getEAnnotationDetail(EAnnotation eAnnotation, String key);
@@ -138,7 +138,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void setAnnotationDetail(EAnnotation eAnnotation, String key, String value);
@@ -146,7 +146,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void removeEAnnotationDetail(EAnnotation eAnnotation, String key);
@@ -154,7 +154,7 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	EAnnotation getEAnnotation(String source);

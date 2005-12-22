@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface ColumnDefinition extends EObject{
@@ -46,7 +46,7 @@ public interface ColumnDefinition extends EObject{
 	 * @return the value of the '<em>Identity Supported</em>' attribute.
 	 * @see #setIdentitySupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition_IdentitySupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isIdentitySupported();
@@ -72,7 +72,7 @@ public interface ColumnDefinition extends EObject{
 	 * @return the value of the '<em>Computed Supported</em>' attribute.
 	 * @see #setComputedSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition_ComputedSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isComputedSupported();

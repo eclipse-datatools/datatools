@@ -42,7 +42,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getStructuredUserDefinedType()
- * @model 
+ * @model
  * @generated
  */
 public interface StructuredUserDefinedType extends UserDefinedType{
@@ -84,7 +84,7 @@ public interface StructuredUserDefinedType extends UserDefinedType{
 	 * @return the value of the '<em>Final</em>' attribute.
 	 * @see #setFinal(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getStructuredUserDefinedType_Final()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isFinal();

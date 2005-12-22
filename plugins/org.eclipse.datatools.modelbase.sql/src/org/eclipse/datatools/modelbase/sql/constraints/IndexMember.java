@@ -31,7 +31,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndexMember()
- * @model 
+ * @model
  * @generated
  */
 public interface IndexMember extends SQLObject{
@@ -48,7 +48,7 @@ public interface IndexMember extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.IncrementType
 	 * @see #setIncrementType(IncrementType)
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndexMember_IncrementType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	IncrementType getIncrementType();

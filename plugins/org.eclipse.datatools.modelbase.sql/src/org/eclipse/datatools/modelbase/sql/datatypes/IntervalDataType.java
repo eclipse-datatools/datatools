@@ -57,7 +57,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface IntervalDataType extends PredefinedDataType{
@@ -74,7 +74,7 @@ public interface IntervalDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType
 	 * @see #setLeadingQualifier(IntervalQualifierType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType_LeadingQualifier()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	IntervalQualifierType getLeadingQualifier();
@@ -103,7 +103,7 @@ public interface IntervalDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType
 	 * @see #setTrailingQualifier(IntervalQualifierType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType_TrailingQualifier()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	IntervalQualifierType getTrailingQualifier();
@@ -130,7 +130,7 @@ public interface IntervalDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Leading Field Precision</em>' attribute.
 	 * @see #setLeadingFieldPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType_LeadingFieldPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getLeadingFieldPrecision();
@@ -156,7 +156,7 @@ public interface IntervalDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Trailing Field Precision</em>' attribute.
 	 * @see #setTrailingFieldPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType_TrailingFieldPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getTrailingFieldPrecision();
@@ -182,7 +182,7 @@ public interface IntervalDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Fractional Seconds Precision</em>' attribute.
 	 * @see #setFractionalSecondsPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalDataType_FractionalSecondsPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getFractionalSecondsPrecision();

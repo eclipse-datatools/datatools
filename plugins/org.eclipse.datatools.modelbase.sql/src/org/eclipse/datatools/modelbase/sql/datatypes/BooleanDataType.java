@@ -27,7 +27,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getBooleanDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface BooleanDataType extends PredefinedDataType{

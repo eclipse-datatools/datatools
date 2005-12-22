@@ -18,7 +18,7 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getUser()
- * @model 
+ * @model
  * @generated
  */
 public interface User extends AuthorizationIdentifier{

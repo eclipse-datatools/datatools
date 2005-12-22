@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDatabase()
- * @model 
+ * @model
  * @generated
  */
 public interface Database extends SQLObject{
@@ -45,7 +45,7 @@ public interface Database extends SQLObject{
 	 * @return the value of the '<em>Vendor</em>' attribute.
 	 * @see #setVendor(String)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDatabase_Vendor()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getVendor();
@@ -71,7 +71,7 @@ public interface Database extends SQLObject{
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDatabase_Version()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getVersion();
@@ -123,7 +123,7 @@ public interface Database extends SQLObject{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" parameters=""
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
 	 * @generated
 	 */
 	List getUserDefinedTypes();

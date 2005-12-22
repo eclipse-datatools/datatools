@@ -64,7 +64,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSchema()
- * @model 
+ * @model
  * @generated
  */
 public interface Schema extends SQLObject{

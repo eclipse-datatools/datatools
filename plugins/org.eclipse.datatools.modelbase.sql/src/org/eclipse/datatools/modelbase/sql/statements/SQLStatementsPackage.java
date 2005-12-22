@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EPackage;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLStatementsPackage extends EPackage{

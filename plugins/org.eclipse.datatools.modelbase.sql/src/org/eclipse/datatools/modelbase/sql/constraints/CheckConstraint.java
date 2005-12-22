@@ -36,7 +36,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getCheckConstraint()
- * @model 
+ * @model
  * @generated
  */
 public interface CheckConstraint extends TableConstraint{

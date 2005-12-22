@@ -81,7 +81,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger()
- * @model 
+ * @model
  * @generated
  */
 public interface Trigger extends SQLObject{
@@ -256,7 +256,7 @@ public interface Trigger extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.tables.ActionTimeType
 	 * @see #setActionTime(ActionTimeType)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_ActionTime()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ActionTimeType getActionTime();
@@ -283,7 +283,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>Update Type</em>' attribute.
 	 * @see #setUpdateType(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_UpdateType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isUpdateType();
@@ -309,7 +309,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>Insert Type</em>' attribute.
 	 * @see #setInsertType(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_InsertType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isInsertType();
@@ -335,7 +335,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>Delete Type</em>' attribute.
 	 * @see #setDeleteType(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_DeleteType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDeleteType();
@@ -361,7 +361,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>Old Row</em>' attribute.
 	 * @see #setOldRow(String)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_OldRow()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getOldRow();
@@ -387,7 +387,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>New Row</em>' attribute.
 	 * @see #setNewRow(String)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_NewRow()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getNewRow();
@@ -413,7 +413,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>Old Table</em>' attribute.
 	 * @see #setOldTable(String)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_OldTable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getOldTable();
@@ -439,7 +439,7 @@ public interface Trigger extends SQLObject{
 	 * @return the value of the '<em>New Table</em>' attribute.
 	 * @see #setNewTable(String)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTrigger_NewTable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getNewTable();

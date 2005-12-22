@@ -24,7 +24,7 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getTablePrivilege()
- * @model 
+ * @model
  * @generated
  */
 public interface TablePrivilege extends Privilege{
@@ -39,7 +39,7 @@ public interface TablePrivilege extends Privilege{
 	 * @return the value of the '<em>With Hierarchy</em>' attribute.
 	 * @see #setWithHierarchy(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getTablePrivilege_WithHierarchy()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isWithHierarchy();

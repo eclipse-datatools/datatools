@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface TriggerDefinition extends EObject{
@@ -49,7 +49,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Reference Part Length</em>' attribute.
 	 * @see #setMaximumReferencePartLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_MaximumReferencePartLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumReferencePartLength();
@@ -75,7 +75,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Action Body Length</em>' attribute.
 	 * @see #setMaximumActionBodyLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_MaximumActionBodyLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumActionBodyLength();
@@ -101,7 +101,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Type Supported</em>' attribute.
 	 * @see #setTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_TypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTypeSupported();
@@ -154,7 +154,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Granularity Supported</em>' attribute.
 	 * @see #setGranularitySupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_GranularitySupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isGranularitySupported();
@@ -180,7 +180,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>References Clause Supported</em>' attribute.
 	 * @see #setReferencesClauseSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_ReferencesClauseSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isReferencesClauseSupported();
@@ -206,7 +206,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Per Column Update Trigger Supported</em>' attribute.
 	 * @see #setPerColumnUpdateTriggerSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_PerColumnUpdateTriggerSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPerColumnUpdateTriggerSupported();
@@ -232,7 +232,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Instead Of Trigger Supported</em>' attribute.
 	 * @see #setInsteadOfTriggerSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_InsteadOfTriggerSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isInsteadOfTriggerSupported();
@@ -258,7 +258,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Row Trigger Reference Supported</em>' attribute.
 	 * @see #setRowTriggerReferenceSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_RowTriggerReferenceSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isRowTriggerReferenceSupported();
@@ -284,7 +284,7 @@ public interface TriggerDefinition extends EObject{
 	 * @return the value of the '<em>Table Trigger Reference Supported</em>' attribute.
 	 * @see #setTableTriggerReferenceSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_TableTriggerReferenceSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTableTriggerReferenceSupported();

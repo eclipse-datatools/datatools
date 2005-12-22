@@ -113,7 +113,7 @@ public interface DataType extends SQLObject{
 	 * <!-- begin-model-doc -->
 	 * This method is used to set the type on the given Column.  It is implemented on the child classes of DataType.  The concrete children classses will know which type relationship to use on Column to set the data type.
 	 * <!-- end-model-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void setContainer(TypedElement newContainer);

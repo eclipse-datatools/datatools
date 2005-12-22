@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSyntaxDefinition.java,v 1.3 2005/06/15 18:16:00 ledunnel Exp $
+ * $Id: SQLSyntaxDefinition.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSQLSyntaxDefinition()
- * @model 
+ * @model
  * @generated
  */
-public interface SQLSyntaxDefinition extends EObject {
+public interface SQLSyntaxDefinition extends EObject{
 	/**
 	 * Returns the value of the '<em><b>Keywords</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

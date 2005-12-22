@@ -51,7 +51,7 @@ public interface PredefinedDataType extends SQLDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType
 	 * @see #setPrimitiveType(PrimitiveType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getPredefinedDataType_PrimitiveType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	PrimitiveType getPrimitiveType();

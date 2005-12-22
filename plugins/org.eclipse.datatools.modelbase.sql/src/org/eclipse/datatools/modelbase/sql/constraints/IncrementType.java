@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IncrementType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: IncrementType.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints;
 
@@ -27,7 +27,7 @@ public final class IncrementType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #ASC_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -38,7 +38,7 @@ public final class IncrementType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #DESC_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

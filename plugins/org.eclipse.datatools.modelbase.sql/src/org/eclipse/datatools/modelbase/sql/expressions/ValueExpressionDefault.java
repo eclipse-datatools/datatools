@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getValueExpressionDefault()
- * @model 
+ * @model
  * @generated
  */
 public interface ValueExpressionDefault extends SQLObject, ValueExpression{
@@ -41,7 +41,7 @@ public interface ValueExpressionDefault extends SQLObject, ValueExpression{
 	 * @return the value of the '<em>SQL</em>' attribute.
 	 * @see #setSQL(String)
 	 * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getValueExpressionDefault_SQL()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getSQL();

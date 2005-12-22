@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface StoredProcedureDefinition extends EObject{
@@ -54,7 +54,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Null Input Action Supported</em>' attribute.
 	 * @see #setNullInputActionSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_NullInputActionSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isNullInputActionSupported();
@@ -80,7 +80,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Package Generation Supported</em>' attribute.
 	 * @see #setPackageGenerationSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_PackageGenerationSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPackageGenerationSupported();
@@ -106,7 +106,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Determininstic Supported</em>' attribute.
 	 * @see #setDetermininsticSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_DetermininsticSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDetermininsticSupported();
@@ -132,7 +132,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Returned Null Supported</em>' attribute.
 	 * @see #setReturnedNullSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ReturnedNullSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isReturnedNullSupported();
@@ -158,7 +158,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Returned Type Declaration Constraint Supported</em>' attribute.
 	 * @see #setReturnedTypeDeclarationConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ReturnedTypeDeclarationConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isReturnedTypeDeclarationConstraintSupported();
@@ -184,7 +184,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Parameter Init Value Supported</em>' attribute.
 	 * @see #setParameterInitValueSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ParameterInitValueSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isParameterInitValueSupported();
@@ -210,7 +210,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Parameter Style Supported</em>' attribute.
 	 * @see #setParameterStyleSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ParameterStyleSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isParameterStyleSupported();
@@ -236,7 +236,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Return Type Supported</em>' attribute.
 	 * @see #setReturnTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ReturnTypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isReturnTypeSupported();
@@ -262,7 +262,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Parameter Declaration Constraint Supported</em>' attribute.
 	 * @see #setParameterDeclarationConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_ParameterDeclarationConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isParameterDeclarationConstraintSupported();
@@ -288,7 +288,7 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Action Body Length</em>' attribute.
 	 * @see #setMaximumActionBodyLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_MaximumActionBodyLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumActionBodyLength();

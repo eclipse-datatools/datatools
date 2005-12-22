@@ -95,6 +95,60 @@ public class SQLDataTypesSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case SQLDataTypesPackage.USER_DEFINED_TYPE: {
+				UserDefinedType userDefinedType = (UserDefinedType)theEObject;
+				Object result = caseUserDefinedType(userDefinedType);
+				if (result == null) result = caseDataType(userDefinedType);
+				if (result == null) result = caseSQLObject(userDefinedType);
+				if (result == null) result = caseENamedElement(userDefinedType);
+				if (result == null) result = caseEModelElement(userDefinedType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.DATA_TYPE: {
+				DataType dataType = (DataType)theEObject;
+				Object result = caseDataType(dataType);
+				if (result == null) result = caseSQLObject(dataType);
+				if (result == null) result = caseENamedElement(dataType);
+				if (result == null) result = caseEModelElement(dataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE: {
+				PredefinedDataType predefinedDataType = (PredefinedDataType)theEObject;
+				Object result = casePredefinedDataType(predefinedDataType);
+				if (result == null) result = caseSQLDataType(predefinedDataType);
+				if (result == null) result = caseDataType(predefinedDataType);
+				if (result == null) result = caseSQLObject(predefinedDataType);
+				if (result == null) result = caseENamedElement(predefinedDataType);
+				if (result == null) result = caseEModelElement(predefinedDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.COLLECTION_DATA_TYPE: {
+				CollectionDataType collectionDataType = (CollectionDataType)theEObject;
+				Object result = caseCollectionDataType(collectionDataType);
+				if (result == null) result = caseConstructedDataType(collectionDataType);
+				if (result == null) result = caseSQLDataType(collectionDataType);
+				if (result == null) result = caseDataType(collectionDataType);
+				if (result == null) result = caseSQLObject(collectionDataType);
+				if (result == null) result = caseENamedElement(collectionDataType);
+				if (result == null) result = caseEModelElement(collectionDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.NUMERICAL_DATA_TYPE: {
+				NumericalDataType numericalDataType = (NumericalDataType)theEObject;
+				Object result = caseNumericalDataType(numericalDataType);
+				if (result == null) result = casePredefinedDataType(numericalDataType);
+				if (result == null) result = caseSQLDataType(numericalDataType);
+				if (result == null) result = caseDataType(numericalDataType);
+				if (result == null) result = caseSQLObject(numericalDataType);
+				if (result == null) result = caseENamedElement(numericalDataType);
+				if (result == null) result = caseEModelElement(numericalDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLDataTypesPackage.CHARACTER_STRING_DATA_TYPE: {
 				CharacterStringDataType characterStringDataType = (CharacterStringDataType)theEObject;
 				Object result = caseCharacterStringDataType(characterStringDataType);
@@ -116,6 +170,32 @@ public class SQLDataTypesSwitch {
 				if (result == null) result = caseSQLObject(rowDataType);
 				if (result == null) result = caseENamedElement(rowDataType);
 				if (result == null) result = caseEModelElement(rowDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.ARRAY_DATA_TYPE: {
+				ArrayDataType arrayDataType = (ArrayDataType)theEObject;
+				Object result = caseArrayDataType(arrayDataType);
+				if (result == null) result = caseCollectionDataType(arrayDataType);
+				if (result == null) result = caseConstructedDataType(arrayDataType);
+				if (result == null) result = caseSQLDataType(arrayDataType);
+				if (result == null) result = caseDataType(arrayDataType);
+				if (result == null) result = caseSQLObject(arrayDataType);
+				if (result == null) result = caseENamedElement(arrayDataType);
+				if (result == null) result = caseEModelElement(arrayDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.MULTISET_DATA_TYPE: {
+				MultisetDataType multisetDataType = (MultisetDataType)theEObject;
+				Object result = caseMultisetDataType(multisetDataType);
+				if (result == null) result = caseCollectionDataType(multisetDataType);
+				if (result == null) result = caseConstructedDataType(multisetDataType);
+				if (result == null) result = caseSQLDataType(multisetDataType);
+				if (result == null) result = caseDataType(multisetDataType);
+				if (result == null) result = caseSQLObject(multisetDataType);
+				if (result == null) result = caseENamedElement(multisetDataType);
+				if (result == null) result = caseEModelElement(multisetDataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -244,6 +324,39 @@ public class SQLDataTypesSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLDataTypesPackage.REFERENCE_DATA_TYPE: {
+				ReferenceDataType referenceDataType = (ReferenceDataType)theEObject;
+				Object result = caseReferenceDataType(referenceDataType);
+				if (result == null) result = caseConstructedDataType(referenceDataType);
+				if (result == null) result = caseSQLDataType(referenceDataType);
+				if (result == null) result = caseDataType(referenceDataType);
+				if (result == null) result = caseSQLObject(referenceDataType);
+				if (result == null) result = caseENamedElement(referenceDataType);
+				if (result == null) result = caseEModelElement(referenceDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.CONSTRUCTED_DATA_TYPE: {
+				ConstructedDataType constructedDataType = (ConstructedDataType)theEObject;
+				Object result = caseConstructedDataType(constructedDataType);
+				if (result == null) result = caseSQLDataType(constructedDataType);
+				if (result == null) result = caseDataType(constructedDataType);
+				if (result == null) result = caseSQLObject(constructedDataType);
+				if (result == null) result = caseENamedElement(constructedDataType);
+				if (result == null) result = caseEModelElement(constructedDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.SQL_DATA_TYPE: {
+				SQLDataType sqlDataType = (SQLDataType)theEObject;
+				Object result = caseSQLDataType(sqlDataType);
+				if (result == null) result = caseDataType(sqlDataType);
+				if (result == null) result = caseSQLObject(sqlDataType);
+				if (result == null) result = caseENamedElement(sqlDataType);
+				if (result == null) result = caseEModelElement(sqlDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLDataTypesPackage.DATA_LINK_DATA_TYPE: {
 				DataLinkDataType dataLinkDataType = (DataLinkDataType)theEObject;
 				Object result = caseDataLinkDataType(dataLinkDataType);
@@ -274,6 +387,19 @@ public class SQLDataTypesSwitch {
 				if (result == null) result = caseSQLObject(dateDataType);
 				if (result == null) result = caseENamedElement(dateDataType);
 				if (result == null) result = caseEModelElement(dateDataType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLDataTypesPackage.EXACT_NUMERIC_DATA_TYPE: {
+				ExactNumericDataType exactNumericDataType = (ExactNumericDataType)theEObject;
+				Object result = caseExactNumericDataType(exactNumericDataType);
+				if (result == null) result = caseNumericalDataType(exactNumericDataType);
+				if (result == null) result = casePredefinedDataType(exactNumericDataType);
+				if (result == null) result = caseSQLDataType(exactNumericDataType);
+				if (result == null) result = caseDataType(exactNumericDataType);
+				if (result == null) result = caseSQLObject(exactNumericDataType);
+				if (result == null) result = caseENamedElement(exactNumericDataType);
+				if (result == null) result = caseEModelElement(exactNumericDataType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

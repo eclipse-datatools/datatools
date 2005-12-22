@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLRoutinesPackage extends EPackage{

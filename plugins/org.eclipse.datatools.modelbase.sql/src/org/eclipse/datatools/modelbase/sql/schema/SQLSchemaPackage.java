@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLSchemaPackage extends EPackage{

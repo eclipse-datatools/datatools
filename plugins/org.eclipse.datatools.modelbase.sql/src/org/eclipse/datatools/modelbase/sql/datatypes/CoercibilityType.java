@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CoercibilityType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: CoercibilityType.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -41,7 +41,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #IMPLICIT_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -52,7 +52,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #EXPLICIT_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -63,7 +63,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #COERCIBILE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -74,7 +74,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #NO_COLLATION_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

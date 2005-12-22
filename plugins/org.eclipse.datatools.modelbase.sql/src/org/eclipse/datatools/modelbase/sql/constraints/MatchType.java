@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MatchType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: MatchType.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints;
 
@@ -30,7 +30,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MATCH_SIMPLE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -41,7 +41,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MATCH_FULL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -52,7 +52,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MATCH_PARTIAL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

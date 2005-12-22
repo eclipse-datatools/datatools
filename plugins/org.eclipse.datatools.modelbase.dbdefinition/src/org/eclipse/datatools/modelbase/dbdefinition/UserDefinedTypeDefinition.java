@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getUserDefinedTypeDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface UserDefinedTypeDefinition extends EObject{
@@ -42,7 +42,7 @@ public interface UserDefinedTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Value Supported</em>' attribute.
 	 * @see #setDefaultValueSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getUserDefinedTypeDefinition_DefaultValueSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDefaultValueSupported();
@@ -68,7 +68,7 @@ public interface UserDefinedTypeDefinition extends EObject{
 	 * @return the value of the '<em>Distinct Type Supported</em>' attribute.
 	 * @see #setDistinctTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getUserDefinedTypeDefinition_DistinctTypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDistinctTypeSupported();
@@ -94,7 +94,7 @@ public interface UserDefinedTypeDefinition extends EObject{
 	 * @return the value of the '<em>Structured Type Supported</em>' attribute.
 	 * @see #setStructuredTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getUserDefinedTypeDefinition_StructuredTypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isStructuredTypeSupported();

@@ -39,7 +39,7 @@ public interface ExactNumericDataType extends NumericalDataType{
 	 * @return the value of the '<em>Scale</em>' attribute.
 	 * @see #setScale(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getExactNumericDataType_Scale()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getScale();

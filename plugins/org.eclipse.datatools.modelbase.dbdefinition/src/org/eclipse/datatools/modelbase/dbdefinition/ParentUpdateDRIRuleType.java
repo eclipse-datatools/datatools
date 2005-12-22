@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParentUpdateDRIRuleType.java,v 1.3 2005/06/15 18:16:00 ledunnel Exp $
+ * $Id: ParentUpdateDRIRuleType.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -27,7 +27,7 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #NO_ACTION_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -38,7 +38,7 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #RESTRICT_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -49,7 +49,7 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #CASCADE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -60,7 +60,7 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #SET_NULL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -71,7 +71,7 @@ public final class ParentUpdateDRIRuleType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #SET_DEFAULT_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

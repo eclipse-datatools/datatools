@@ -70,7 +70,7 @@ public interface TypedElement extends SQLObject{
 	 * @return the value of the '<em>Referenced Type</em>' reference.
 	 * @see #setReferencedType(UserDefinedType)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getTypedElement_ReferencedType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	UserDefinedType getReferencedType();
@@ -91,7 +91,7 @@ public interface TypedElement extends SQLObject{
 	 * <!-- begin-model-doc -->
 	 * Set the type for this TypedElement
 	 * <!-- end-model-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	void setDataType(DataType newType);
@@ -102,7 +102,7 @@ public interface TypedElement extends SQLObject{
 	 * <!-- begin-model-doc -->
 	 * Get the type for this TypedElement
 	 * <!-- end-model-doc -->
-	 * @model parameters=""
+	 * @model kind="operation"
 	 * @generated
 	 */
 	DataType getDataType();

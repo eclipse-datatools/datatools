@@ -120,7 +120,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Specific Name</em>' attribute.
 	 * @see #setSpecificName(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_SpecificName()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getSpecificName();
@@ -161,7 +161,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Language</em>' attribute.
 	 * @see #setLanguage(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_Language()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getLanguage();
@@ -199,7 +199,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Parameter Style</em>' attribute.
 	 * @see #setParameterStyle(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_ParameterStyle()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getParameterStyle();
@@ -231,7 +231,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Deterministic</em>' attribute.
 	 * @see #setDeterministic(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_Deterministic()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDeterministic();
@@ -267,7 +267,7 @@ public interface Routine extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.routines.DataAccess
 	 * @see #setSqlDataAccess(DataAccess)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_SqlDataAccess()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	DataAccess getSqlDataAccess();
@@ -299,7 +299,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Creation TS</em>' attribute.
 	 * @see #setCreationTS(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_CreationTS()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getCreationTS();
@@ -330,7 +330,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Last Altered TS</em>' attribute.
 	 * @see #setLastAlteredTS(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_LastAlteredTS()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getLastAlteredTS();
@@ -360,7 +360,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Authorization ID</em>' attribute.
 	 * @see #setAuthorizationID(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_AuthorizationID()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getAuthorizationID();
@@ -414,7 +414,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>Security</em>' attribute.
 	 * @see #setSecurity(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_Security()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getSecurity();
@@ -452,7 +452,7 @@ public interface Routine extends SQLObject{
 	 * @return the value of the '<em>External Name</em>' attribute.
 	 * @see #setExternalName(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getRoutine_ExternalName()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getExternalName();

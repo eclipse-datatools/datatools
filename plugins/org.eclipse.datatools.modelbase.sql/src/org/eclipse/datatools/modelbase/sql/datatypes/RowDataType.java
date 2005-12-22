@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getRowDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface RowDataType extends ConstructedDataType{

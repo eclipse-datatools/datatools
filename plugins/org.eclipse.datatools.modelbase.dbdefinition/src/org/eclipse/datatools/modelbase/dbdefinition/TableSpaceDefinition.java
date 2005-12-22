@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface TableSpaceDefinition extends EObject{
@@ -51,7 +51,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Type Supported</em>' attribute.
 	 * @see #setTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_TypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTypeSupported();
@@ -77,7 +77,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Extent Size Supported</em>' attribute.
 	 * @see #setExtentSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_ExtentSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isExtentSizeSupported();
@@ -103,7 +103,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Prefetch Size Supported</em>' attribute.
 	 * @see #setPrefetchSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_PrefetchSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPrefetchSizeSupported();
@@ -129,7 +129,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Managed By Supported</em>' attribute.
 	 * @see #setManagedBySupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_ManagedBySupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isManagedBySupported();
@@ -155,7 +155,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Page Size Supported</em>' attribute.
 	 * @see #setPageSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_PageSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPageSizeSupported();
@@ -181,7 +181,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Buffer Pool Supported</em>' attribute.
 	 * @see #setBufferPoolSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_BufferPoolSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isBufferPoolSupported();
@@ -207,7 +207,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Default Supported</em>' attribute.
 	 * @see #setDefaultSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_DefaultSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDefaultSupported();
@@ -233,7 +233,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Container Maximum Size Supported</em>' attribute.
 	 * @see #setContainerMaximumSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_ContainerMaximumSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isContainerMaximumSizeSupported();
@@ -259,7 +259,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Container Initial Size Supported</em>' attribute.
 	 * @see #setContainerInitialSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_ContainerInitialSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isContainerInitialSizeSupported();
@@ -285,7 +285,7 @@ public interface TableSpaceDefinition extends EObject{
 	 * @return the value of the '<em>Container Extent Size Supported</em>' attribute.
 	 * @see #setContainerExtentSizeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_ContainerExtentSizeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isContainerExtentSizeSupported();

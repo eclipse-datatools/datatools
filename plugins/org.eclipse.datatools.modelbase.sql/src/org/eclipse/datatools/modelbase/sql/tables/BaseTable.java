@@ -73,7 +73,7 @@ public interface BaseTable extends Table{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" parameters=""
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
 	 * @generated
 	 */
 	List getUniqueConstraints();
@@ -81,7 +81,7 @@ public interface BaseTable extends Table{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.datatools.modelbase.sql.schema.List" parameters=""
+	 * @model kind="operation" dataType="org.eclipse.datatools.modelbase.sql.schema.List" many="false"
 	 * @generated
 	 */
 	List getForeignKeys();
@@ -89,7 +89,7 @@ public interface BaseTable extends Table{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model parameters=""
+	 * @model kind="operation"
 	 * @generated
 	 */
 	PrimaryKey getPrimaryKey();

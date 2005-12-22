@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getUniqueConstraint()
- * @model 
+ * @model
  * @generated
  */
 public interface UniqueConstraint extends ReferenceConstraint{

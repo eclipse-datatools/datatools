@@ -61,7 +61,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet()
- * @model 
+ * @model
  * @generated
  */
 public interface CharacterSet extends SQLObject{
@@ -76,7 +76,7 @@ public interface CharacterSet extends SQLObject{
 	 * @return the value of the '<em>Repertoire</em>' attribute.
 	 * @see #setRepertoire(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet_Repertoire()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getRepertoire();
@@ -102,7 +102,7 @@ public interface CharacterSet extends SQLObject{
 	 * @return the value of the '<em>Default Collation</em>' attribute.
 	 * @see #setDefaultCollation(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet_DefaultCollation()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDefaultCollation();
@@ -128,7 +128,7 @@ public interface CharacterSet extends SQLObject{
 	 * @return the value of the '<em>Encoding</em>' attribute.
 	 * @see #setEncoding(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterSet_Encoding()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getEncoding();

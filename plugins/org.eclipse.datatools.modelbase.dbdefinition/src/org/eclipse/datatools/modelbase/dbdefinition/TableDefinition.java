@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface TableDefinition extends EObject{
@@ -44,7 +44,7 @@ public interface TableDefinition extends EObject{
 	 * @return the value of the '<em>Audit Supported</em>' attribute.
 	 * @see #setAuditSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_AuditSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isAuditSupported();
@@ -70,7 +70,7 @@ public interface TableDefinition extends EObject{
 	 * @return the value of the '<em>Data Capture Supported</em>' attribute.
 	 * @see #setDataCaptureSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_DataCaptureSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDataCaptureSupported();
@@ -96,7 +96,7 @@ public interface TableDefinition extends EObject{
 	 * @return the value of the '<em>Edit Proc Supported</em>' attribute.
 	 * @see #setEditProcSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_EditProcSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isEditProcSupported();
@@ -122,7 +122,7 @@ public interface TableDefinition extends EObject{
 	 * @return the value of the '<em>Encoding Supported</em>' attribute.
 	 * @see #setEncodingSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_EncodingSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isEncodingSupported();
@@ -148,7 +148,7 @@ public interface TableDefinition extends EObject{
 	 * @return the value of the '<em>Valid Proc Supported</em>' attribute.
 	 * @see #setValidProcSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_ValidProcSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isValidProcSupported();

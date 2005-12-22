@@ -63,7 +63,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface PredefinedDataTypeDefinition extends EObject{
@@ -78,7 +78,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Length Supported</em>' attribute.
 	 * @see #setLengthSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LengthSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isLengthSupported();
@@ -104,7 +104,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Scale Supported</em>' attribute.
 	 * @see #setScaleSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_ScaleSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isScaleSupported();
@@ -130,7 +130,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Precision Supported</em>' attribute.
 	 * @see #setPrecisionSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_PrecisionSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPrecisionSupported();
@@ -156,7 +156,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Key Constraint Supported</em>' attribute.
 	 * @see #setKeyConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_KeyConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isKeyConstraintSupported();
@@ -182,7 +182,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Identity Supported</em>' attribute.
 	 * @see #setIdentitySupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_IdentitySupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isIdentitySupported();
@@ -208,7 +208,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Multiple Columns Supported</em>' attribute.
 	 * @see #setMultipleColumnsSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MultipleColumnsSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isMultipleColumnsSupported();
@@ -288,7 +288,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Clustering Supported</em>' attribute.
 	 * @see #setClusteringSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_ClusteringSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isClusteringSupported();
@@ -314,7 +314,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Fill Factor Supported</em>' attribute.
 	 * @see #setFillFactorSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_FillFactorSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isFillFactorSupported();
@@ -340,7 +340,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Bit Data Supported</em>' attribute.
 	 * @see #setBitDataSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_BitDataSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isBitDataSupported();
@@ -366,7 +366,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Value</em>' attribute.
 	 * @see #setMaximumValue(long)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MaximumValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	long getMaximumValue();
@@ -392,7 +392,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Minimum Value</em>' attribute.
 	 * @see #setMinimumValue(long)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MinimumValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	long getMinimumValue();
@@ -418,7 +418,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Length</em>' attribute.
 	 * @see #setMaximumLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MaximumLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumLength();
@@ -444,7 +444,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Precision</em>' attribute.
 	 * @see #setMaximumPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MaximumPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumPrecision();
@@ -470,7 +470,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Scale</em>' attribute.
 	 * @see #setMaximumScale(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MaximumScale()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumScale();
@@ -496,7 +496,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Minimum Scale</em>' attribute.
 	 * @see #setMinimumScale(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_MinimumScale()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMinimumScale();
@@ -542,7 +542,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType
 	 * @see #setPrimitiveType(PrimitiveType)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_PrimitiveType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	PrimitiveType getPrimitiveType();
@@ -585,7 +585,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Jdbc Enum Type</em>' attribute.
 	 * @see #setJdbcEnumType(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_JdbcEnumType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getJdbcEnumType();
@@ -697,7 +697,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Java Class Name</em>' attribute.
 	 * @see #setJavaClassName(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_JavaClassName()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getJavaClassName();
@@ -723,7 +723,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Length</em>' attribute.
 	 * @see #setDefaultLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getDefaultLength();
@@ -749,7 +749,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Precision</em>' attribute.
 	 * @see #setDefaultPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getDefaultPrecision();
@@ -775,7 +775,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Scale</em>' attribute.
 	 * @see #setDefaultScale(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultScale()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getDefaultScale();
@@ -801,7 +801,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Cutoff Precision</em>' attribute.
 	 * @see #setCutoffPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_CutoffPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getCutoffPrecision();
@@ -829,7 +829,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.LengthUnit
 	 * @see #setLengthUnit(LengthUnit)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LengthUnit()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	LengthUnit getLengthUnit();
@@ -856,7 +856,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Trailing Precision</em>' attribute.
 	 * @see #setTrailingPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getTrailingPrecision();
@@ -882,7 +882,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Trailing Precision</em>' attribute.
 	 * @see #setDefaultTrailingPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultTrailingPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getDefaultTrailingPrecision();
@@ -908,7 +908,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Trailing Precision Supported</em>' attribute.
 	 * @see #setTrailingPrecisionSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingPrecisionSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTrailingPrecisionSupported();
@@ -934,7 +934,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Leading Precision</em>' attribute.
 	 * @see #setLeadingPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getLeadingPrecision();
@@ -960,7 +960,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Default Leading Precision</em>' attribute.
 	 * @see #setDefaultLeadingPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultLeadingPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getDefaultLeadingPrecision();
@@ -986,7 +986,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @return the value of the '<em>Leading Precision Supported</em>' attribute.
 	 * @see #setLeadingPrecisionSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingPrecisionSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isLeadingPrecisionSupported();

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionTimeType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: ActionTimeType.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -30,7 +30,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #AFTER_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -41,7 +41,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #BEFORE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -52,7 +52,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #INSTEADOF_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

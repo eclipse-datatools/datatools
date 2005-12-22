@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDependency()
- * @model 
+ * @model
  * @generated
  */
 public interface Dependency extends SQLObject{
@@ -67,7 +67,7 @@ public interface Dependency extends SQLObject{
 	 * @return the value of the '<em>Dependency Type</em>' attribute.
 	 * @see #setDependencyType(String)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDependency_DependencyType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDependencyType();

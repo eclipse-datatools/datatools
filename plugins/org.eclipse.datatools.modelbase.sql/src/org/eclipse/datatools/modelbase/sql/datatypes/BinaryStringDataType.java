@@ -34,7 +34,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getBinaryStringDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface BinaryStringDataType extends PredefinedDataType{
@@ -49,7 +49,7 @@ public interface BinaryStringDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Length</em>' attribute.
 	 * @see #setLength(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getBinaryStringDataType_Length()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getLength();
@@ -67,7 +67,7 @@ public interface BinaryStringDataType extends PredefinedDataType{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean equals();

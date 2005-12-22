@@ -204,7 +204,7 @@ public interface Table extends SQLObject{
 	 * @return the value of the '<em>Udt</em>' reference.
 	 * @see #setUdt(StructuredUserDefinedType)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTable_Udt()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	StructuredUserDefinedType getUdt();
@@ -268,7 +268,7 @@ public interface Table extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.tables.ReferenceType
 	 * @see #setSelfRefColumnGeneration(ReferenceType)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getTable_SelfRefColumnGeneration()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ReferenceType getSelfRefColumnGeneration();

@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface ConstraintDefinition extends EObject{
@@ -50,7 +50,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Deferrable Constraint Supported</em>' attribute.
 	 * @see #setDeferrableConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_DeferrableConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDeferrableConstraintSupported();
@@ -76,7 +76,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Informational Constraint Supported</em>' attribute.
 	 * @see #setInformationalConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_InformationalConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isInformationalConstraintSupported();
@@ -102,7 +102,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Clustered Primary Key Supported</em>' attribute.
 	 * @see #setClusteredPrimaryKeySupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_ClusteredPrimaryKeySupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isClusteredPrimaryKeySupported();
@@ -128,7 +128,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Clustered Unique Constraint Supported</em>' attribute.
 	 * @see #setClusteredUniqueConstraintSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_ClusteredUniqueConstraintSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isClusteredUniqueConstraintSupported();
@@ -154,7 +154,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Primary Key Nullable</em>' attribute.
 	 * @see #setPrimaryKeyNullable(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_PrimaryKeyNullable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPrimaryKeyNullable();
@@ -180,7 +180,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Unique Key Nullable</em>' attribute.
 	 * @see #setUniqueKeyNullable(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_UniqueKeyNullable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isUniqueKeyNullable();
@@ -206,7 +206,7 @@ public interface ConstraintDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Check Expression Length</em>' attribute.
 	 * @see #setMaximumCheckExpressionLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_MaximumCheckExpressionLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumCheckExpressionLength();

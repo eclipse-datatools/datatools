@@ -47,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDomain()
- * @model 
+ * @model
  * @generated
  */
 public interface Domain extends DistinctUserDefinedType{
@@ -78,7 +78,7 @@ public interface Domain extends DistinctUserDefinedType{
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDomain_DefaultValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDefaultValue();

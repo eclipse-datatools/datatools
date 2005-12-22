@@ -34,7 +34,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getMethod()
- * @model 
+ * @model
  * @generated
  */
 public interface Method extends Function{
@@ -49,7 +49,7 @@ public interface Method extends Function{
 	 * @return the value of the '<em>Overriding</em>' attribute.
 	 * @see #setOverriding(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getMethod_Overriding()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isOverriding();
@@ -75,7 +75,7 @@ public interface Method extends Function{
 	 * @return the value of the '<em>Constructor</em>' attribute.
 	 * @see #setConstructor(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getMethod_Constructor()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isConstructor();

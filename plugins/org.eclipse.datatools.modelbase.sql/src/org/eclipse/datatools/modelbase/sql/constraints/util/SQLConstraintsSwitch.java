@@ -104,6 +104,36 @@ public class SQLConstraintsSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLConstraintsPackage.CONSTRAINT: {
+				Constraint constraint = (Constraint)theEObject;
+				Object result = caseConstraint(constraint);
+				if (result == null) result = caseSQLObject(constraint);
+				if (result == null) result = caseENamedElement(constraint);
+				if (result == null) result = caseEModelElement(constraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLConstraintsPackage.TABLE_CONSTRAINT: {
+				TableConstraint tableConstraint = (TableConstraint)theEObject;
+				Object result = caseTableConstraint(tableConstraint);
+				if (result == null) result = caseConstraint(tableConstraint);
+				if (result == null) result = caseSQLObject(tableConstraint);
+				if (result == null) result = caseENamedElement(tableConstraint);
+				if (result == null) result = caseEModelElement(tableConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLConstraintsPackage.REFERENCE_CONSTRAINT: {
+				ReferenceConstraint referenceConstraint = (ReferenceConstraint)theEObject;
+				Object result = caseReferenceConstraint(referenceConstraint);
+				if (result == null) result = caseTableConstraint(referenceConstraint);
+				if (result == null) result = caseConstraint(referenceConstraint);
+				if (result == null) result = caseSQLObject(referenceConstraint);
+				if (result == null) result = caseENamedElement(referenceConstraint);
+				if (result == null) result = caseEModelElement(referenceConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLConstraintsPackage.CHECK_CONSTRAINT: {
 				CheckConstraint checkConstraint = (CheckConstraint)theEObject;
 				Object result = caseCheckConstraint(checkConstraint);

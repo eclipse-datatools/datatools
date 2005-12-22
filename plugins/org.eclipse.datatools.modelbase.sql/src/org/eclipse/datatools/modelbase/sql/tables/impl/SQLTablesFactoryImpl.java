@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  */
 public class SQLTablesFactoryImpl extends EFactoryImpl implements SQLTablesFactory {
 	/**
-	 * Creates and instance of the factory.
+	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

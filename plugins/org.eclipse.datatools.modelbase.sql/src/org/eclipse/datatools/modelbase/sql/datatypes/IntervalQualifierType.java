@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalQualifierType.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: IntervalQualifierType.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -35,7 +35,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #YEAR_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -46,7 +46,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MONTH_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -57,7 +57,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #DAY_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -68,7 +68,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #HOUR_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -79,7 +79,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MINUTE_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -90,7 +90,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #SECOND_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

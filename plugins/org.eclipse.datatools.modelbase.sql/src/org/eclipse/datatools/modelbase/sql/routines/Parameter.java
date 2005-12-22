@@ -48,7 +48,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter()
- * @model 
+ * @model
  * @generated
  */
 public interface Parameter extends TypedElement{
@@ -75,7 +75,7 @@ public interface Parameter extends TypedElement{
 	 * @see org.eclipse.datatools.modelbase.sql.routines.ParameterMode
 	 * @see #setMode(ParameterMode)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter_Mode()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ParameterMode getMode();
@@ -115,7 +115,7 @@ public interface Parameter extends TypedElement{
 	 * @return the value of the '<em>Locator</em>' attribute.
 	 * @see #setLocator(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter_Locator()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isLocator();

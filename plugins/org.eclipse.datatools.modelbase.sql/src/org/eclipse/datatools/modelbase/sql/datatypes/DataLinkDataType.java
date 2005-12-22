@@ -30,7 +30,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface DataLinkDataType extends PredefinedDataType{
@@ -45,7 +45,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Length</em>' attribute.
 	 * @see #setLength(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_Length()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getLength();
@@ -73,7 +73,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.LinkControlOption
 	 * @see #setLinkControl(LinkControlOption)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_LinkControl()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	LinkControlOption getLinkControl();
@@ -102,7 +102,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.IntegrityControlOption
 	 * @see #setIntegrityControl(IntegrityControlOption)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_IntegrityControl()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	IntegrityControlOption getIntegrityControl();
@@ -131,7 +131,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.ReadPermissionOption
 	 * @see #setReadPermission(ReadPermissionOption)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_ReadPermission()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ReadPermissionOption getReadPermission();
@@ -160,7 +160,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.WritePermissionOption
 	 * @see #setWritePermission(WritePermissionOption)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_WritePermission()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	WritePermissionOption getWritePermission();
@@ -187,7 +187,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Recovery</em>' attribute.
 	 * @see #setRecovery(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_Recovery()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isRecovery();
@@ -215,7 +215,7 @@ public interface DataLinkDataType extends PredefinedDataType{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.UnlinkOption
 	 * @see #setUnlink(UnlinkOption)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getDataLinkDataType_Unlink()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	UnlinkOption getUnlink();

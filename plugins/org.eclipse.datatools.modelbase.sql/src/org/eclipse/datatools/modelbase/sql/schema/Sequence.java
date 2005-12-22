@@ -25,7 +25,7 @@ package org.eclipse.datatools.modelbase.sql.schema;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSequence()
- * @model 
+ * @model
  * @generated
  */
 public interface Sequence extends TypedElement{

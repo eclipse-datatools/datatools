@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage#getSQLStatementDefault()
- * @model 
+ * @model
  * @generated
  */
 public interface SQLStatementDefault extends SQLObject, SQLStatement{
@@ -41,7 +41,7 @@ public interface SQLStatementDefault extends SQLObject, SQLStatement{
 	 * @return the value of the '<em>SQL</em>' attribute.
 	 * @see #setSQL(String)
 	 * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage#getSQLStatementDefault_SQL()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getSQL();

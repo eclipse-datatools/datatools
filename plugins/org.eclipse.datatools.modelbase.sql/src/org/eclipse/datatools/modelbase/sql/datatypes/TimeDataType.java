@@ -50,7 +50,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getTimeDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface TimeDataType extends PredefinedDataType{
@@ -65,7 +65,7 @@ public interface TimeDataType extends PredefinedDataType{
 	 * @return the value of the '<em>Fractional Seconds Precision</em>' attribute.
 	 * @see #setFractionalSecondsPrecision(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getTimeDataType_FractionalSecondsPrecision()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getFractionalSecondsPrecision();

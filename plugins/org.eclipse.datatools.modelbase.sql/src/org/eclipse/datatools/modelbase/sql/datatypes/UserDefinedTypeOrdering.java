@@ -29,7 +29,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getUserDefinedTypeOrdering()
- * @model 
+ * @model
  * @generated
  */
 public interface UserDefinedTypeOrdering extends SQLObject{
@@ -46,7 +46,7 @@ public interface UserDefinedTypeOrdering extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.OrderingType
 	 * @see #setOrderingForm(OrderingType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getUserDefinedTypeOrdering_OrderingForm()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	OrderingType getOrderingForm();
@@ -75,7 +75,7 @@ public interface UserDefinedTypeOrdering extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.OrderingCategoryType
 	 * @see #setOrderingCategory(OrderingCategoryType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getUserDefinedTypeOrdering_OrderingCategory()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	OrderingCategoryType getOrderingCategory();

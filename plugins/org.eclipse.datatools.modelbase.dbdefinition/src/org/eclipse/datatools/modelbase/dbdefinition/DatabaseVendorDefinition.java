@@ -60,7 +60,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface DatabaseVendorDefinition extends EObject{
@@ -75,7 +75,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Vendor</em>' attribute.
 	 * @see #setVendor(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_Vendor()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getVendor();
@@ -101,7 +101,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Version</em>' attribute.
 	 * @see #setVersion(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_Version()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getVersion();
@@ -154,7 +154,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
 	 * @see #setMaximumIdentifierLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_MaximumIdentifierLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumIdentifierLength();
@@ -207,7 +207,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Snapshot View Supported</em>' attribute.
 	 * @see #setSnapshotViewSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SnapshotViewSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isSnapshotViewSupported();
@@ -233,7 +233,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Join Supported</em>' attribute.
 	 * @see #setJoinSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_JoinSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isJoinSupported();
@@ -259,7 +259,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>View Trigger Supported</em>' attribute.
 	 * @see #setViewTriggerSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_ViewTriggerSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isViewTriggerSupported();
@@ -312,7 +312,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Maximum Comment Length</em>' attribute.
 	 * @see #setMaximumCommentLength(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_MaximumCommentLength()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaximumCommentLength();
@@ -338,7 +338,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Sequence Supported</em>' attribute.
 	 * @see #setSequenceSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SequenceSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isSequenceSupported();
@@ -364,7 +364,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>MQT Supported</em>' attribute.
 	 * @see #setMQTSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_MQTSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isMQTSupported();
@@ -417,7 +417,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Alias Supported</em>' attribute.
 	 * @see #setAliasSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_AliasSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isAliasSupported();
@@ -443,7 +443,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Synonym Supported</em>' attribute.
 	 * @see #setSynonymSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SynonymSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isSynonymSupported();
@@ -469,7 +469,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>User Defined Type Supported</em>' attribute.
 	 * @see #setUserDefinedTypeSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_UserDefinedTypeSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isUserDefinedTypeSupported();
@@ -495,7 +495,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Domain Supported</em>' attribute.
 	 * @see #setDomainSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_DomainSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isDomainSupported();
@@ -521,7 +521,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>SQL Statement Supported</em>' attribute.
 	 * @see #setSQLStatementSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SQLStatementSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isSQLStatementSupported();
@@ -547,7 +547,7 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @return the value of the '<em>Nickname Supported</em>' attribute.
 	 * @see #setNicknameSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_NicknameSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isNicknameSupported();

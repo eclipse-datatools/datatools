@@ -33,7 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getSource()
- * @model 
+ * @model
  * @generated
  */
 public interface Source extends SQLObject{
@@ -48,7 +48,7 @@ public interface Source extends SQLObject{
 	 * @return the value of the '<em>Body</em>' attribute.
 	 * @see #setBody(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getSource_Body()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getBody();

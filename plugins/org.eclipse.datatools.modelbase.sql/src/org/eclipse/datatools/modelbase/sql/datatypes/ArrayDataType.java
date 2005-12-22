@@ -48,7 +48,7 @@ public interface ArrayDataType extends CollectionDataType{
 	 * @return the value of the '<em>Max Cardinality</em>' attribute.
 	 * @see #setMaxCardinality(int)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getArrayDataType_MaxCardinality()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getMaxCardinality();

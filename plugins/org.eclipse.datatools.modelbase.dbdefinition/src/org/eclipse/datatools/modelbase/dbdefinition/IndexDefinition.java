@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface IndexDefinition extends EObject{
@@ -47,7 +47,7 @@ public interface IndexDefinition extends EObject{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology
 	 * @see #setPercentFreeTerminology(PercentFreeTerminology)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_PercentFreeTerminology()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	PercentFreeTerminology getPercentFreeTerminology();
@@ -74,7 +74,7 @@ public interface IndexDefinition extends EObject{
 	 * @return the value of the '<em>Percent Free Changeable</em>' attribute.
 	 * @see #setPercentFreeChangeable(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_PercentFreeChangeable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isPercentFreeChangeable();
@@ -100,7 +100,7 @@ public interface IndexDefinition extends EObject{
 	 * @return the value of the '<em>Clustering Supported</em>' attribute.
 	 * @see #setClusteringSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_ClusteringSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isClusteringSupported();
@@ -126,7 +126,7 @@ public interface IndexDefinition extends EObject{
 	 * @return the value of the '<em>Cluster Changeable</em>' attribute.
 	 * @see #setClusterChangeable(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_ClusterChangeable()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isClusterChangeable();
@@ -152,7 +152,7 @@ public interface IndexDefinition extends EObject{
 	 * @return the value of the '<em>Fill Factor Supported</em>' attribute.
 	 * @see #setFillFactorSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_FillFactorSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isFillFactorSupported();

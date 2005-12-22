@@ -96,6 +96,15 @@ public class SQLRoutinesSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case SQLRoutinesPackage.ROUTINE: {
+				Routine routine = (Routine)theEObject;
+				Object result = caseRoutine(routine);
+				if (result == null) result = caseSQLObject(routine);
+				if (result == null) result = caseENamedElement(routine);
+				if (result == null) result = caseEModelElement(routine);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLRoutinesPackage.SOURCE: {
 				Source source = (Source)theEObject;
 				Object result = caseSource(source);

@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition()
- * @model 
+ * @model
  * @generated
  */
 public interface SequenceDefinition extends EObject{
@@ -65,7 +65,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>Type Enumeration Supported</em>' attribute.
 	 * @see #setTypeEnumerationSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_TypeEnumerationSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTypeEnumerationSupported();
@@ -91,7 +91,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>Cache Supported</em>' attribute.
 	 * @see #setCacheSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_CacheSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isCacheSupported();
@@ -117,7 +117,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>Order Supported</em>' attribute.
 	 * @see #setOrderSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_OrderSupported()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isOrderSupported();
@@ -143,7 +143,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>No Maximum Value String</em>' attribute.
 	 * @see #setNoMaximumValueString(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_NoMaximumValueString()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getNoMaximumValueString();
@@ -169,7 +169,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>No Minimum Value String</em>' attribute.
 	 * @see #setNoMinimumValueString(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_NoMinimumValueString()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getNoMinimumValueString();
@@ -195,7 +195,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>No Cache String</em>' attribute.
 	 * @see #setNoCacheString(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_NoCacheString()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getNoCacheString();
@@ -221,7 +221,7 @@ public interface SequenceDefinition extends EObject{
 	 * @return the value of the '<em>Cache Default Value</em>' attribute.
 	 * @see #setCacheDefaultValue(int)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getSequenceDefinition_CacheDefaultValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	int getCacheDefaultValue();

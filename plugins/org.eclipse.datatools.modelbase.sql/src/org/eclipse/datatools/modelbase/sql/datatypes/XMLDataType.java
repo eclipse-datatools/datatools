@@ -18,7 +18,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getXMLDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface XMLDataType extends PredefinedDataType{

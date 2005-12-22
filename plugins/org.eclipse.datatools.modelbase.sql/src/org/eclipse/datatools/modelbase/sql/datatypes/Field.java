@@ -43,7 +43,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getField()
- * @model 
+ * @model
  * @generated
  */
 public interface Field extends TypedElement{
@@ -60,7 +60,7 @@ public interface Field extends TypedElement{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType
 	 * @see #setScopeCheck(ReferentialActionType)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getField_ScopeCheck()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	ReferentialActionType getScopeCheck();
@@ -87,7 +87,7 @@ public interface Field extends TypedElement{
 	 * @return the value of the '<em>Scope Checked</em>' attribute.
 	 * @see #setScopeChecked(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getField_ScopeChecked()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isScopeChecked();

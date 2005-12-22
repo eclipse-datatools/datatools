@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataAccess.java,v 1.4 2005/06/15 18:15:25 ledunnel Exp $
+ * $Id: DataAccess.java,v 1.1 2005/08/02 22:56:30 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines;
 
@@ -40,7 +40,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #NO_SQL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -51,7 +51,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #CONTAINS_SQL_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -62,7 +62,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #READS_SQL_DATA_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
@@ -73,7 +73,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #MODIFIES_SQL_DATA_LITERAL
-	 * @model 
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

@@ -116,6 +116,15 @@ public class SQLTablesSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLTablesPackage.TABLE: {
+				Table table = (Table)theEObject;
+				Object result = caseTable(table);
+				if (result == null) result = caseSQLObject(table);
+				if (result == null) result = caseENamedElement(table);
+				if (result == null) result = caseEModelElement(table);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLTablesPackage.PERSISTENT_TABLE: {
 				PersistentTable persistentTable = (PersistentTable)theEObject;
 				Object result = casePersistentTable(persistentTable);
@@ -124,6 +133,26 @@ public class SQLTablesSwitch {
 				if (result == null) result = caseSQLObject(persistentTable);
 				if (result == null) result = caseENamedElement(persistentTable);
 				if (result == null) result = caseEModelElement(persistentTable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLTablesPackage.DERIVED_TABLE: {
+				DerivedTable derivedTable = (DerivedTable)theEObject;
+				Object result = caseDerivedTable(derivedTable);
+				if (result == null) result = caseTable(derivedTable);
+				if (result == null) result = caseSQLObject(derivedTable);
+				if (result == null) result = caseENamedElement(derivedTable);
+				if (result == null) result = caseEModelElement(derivedTable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLTablesPackage.BASE_TABLE: {
+				BaseTable baseTable = (BaseTable)theEObject;
+				Object result = caseBaseTable(baseTable);
+				if (result == null) result = caseTable(baseTable);
+				if (result == null) result = caseSQLObject(baseTable);
+				if (result == null) result = caseENamedElement(baseTable);
+				if (result == null) result = caseEModelElement(baseTable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

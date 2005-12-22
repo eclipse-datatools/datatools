@@ -38,7 +38,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getFixedPrecisionDataType()
- * @model 
+ * @model
  * @generated
  */
 public interface FixedPrecisionDataType extends ExactNumericDataType{

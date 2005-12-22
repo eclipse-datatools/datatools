@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLAccessControlPackage extends EPackage{

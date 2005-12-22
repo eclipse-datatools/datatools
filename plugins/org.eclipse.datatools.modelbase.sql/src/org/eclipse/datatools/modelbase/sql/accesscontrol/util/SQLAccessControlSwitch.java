@@ -94,6 +94,15 @@ public class SQLAccessControlSwitch {
 	 */
 	protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER: {
+				AuthorizationIdentifier authorizationIdentifier = (AuthorizationIdentifier)theEObject;
+				Object result = caseAuthorizationIdentifier(authorizationIdentifier);
+				if (result == null) result = caseSQLObject(authorizationIdentifier);
+				if (result == null) result = caseENamedElement(authorizationIdentifier);
+				if (result == null) result = caseEModelElement(authorizationIdentifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case SQLAccessControlPackage.PRIVILEGE: {
 				Privilege privilege = (Privilege)theEObject;
 				Object result = casePrivilege(privilege);

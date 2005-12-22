@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  *
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getUserDefinedFunction()
- * @model 
+ * @model
  * @generated
  */
 public interface UserDefinedFunction extends Function{

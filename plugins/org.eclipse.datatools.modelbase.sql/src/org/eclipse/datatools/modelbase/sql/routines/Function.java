@@ -49,7 +49,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction()
- * @model 
+ * @model
  * @generated
  */
 public interface Function extends Routine{
@@ -79,7 +79,7 @@ public interface Function extends Routine{
 	 * @return the value of the '<em>Null Call</em>' attribute.
 	 * @see #setNullCall(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction_NullCall()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isNullCall();
@@ -115,7 +115,7 @@ public interface Function extends Routine{
 	 * @return the value of the '<em>Static</em>' attribute.
 	 * @see #setStatic(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction_Static()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isStatic();
@@ -155,7 +155,7 @@ public interface Function extends Routine{
 	 * @return the value of the '<em>Transform Group</em>' attribute.
 	 * @see #setTransformGroup(String)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction_TransformGroup()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getTransformGroup();
@@ -181,7 +181,7 @@ public interface Function extends Routine{
 	 * @return the value of the '<em>Type Preserving</em>' attribute.
 	 * @see #setTypePreserving(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction_TypePreserving()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isTypePreserving();
@@ -207,7 +207,7 @@ public interface Function extends Routine{
 	 * @return the value of the '<em>Mutator</em>' attribute.
 	 * @see #setMutator(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getFunction_Mutator()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isMutator();

@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getDoubleObjectPrivilege()
- * @model 
+ * @model
  * @generated
  */
 public interface DoubleObjectPrivilege extends Privilege{

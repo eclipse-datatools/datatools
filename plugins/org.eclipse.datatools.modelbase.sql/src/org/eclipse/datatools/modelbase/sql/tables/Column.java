@@ -79,7 +79,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getColumn()
- * @model 
+ * @model
  * @generated
  */
 public interface Column extends TypedElement{
@@ -228,7 +228,7 @@ public interface Column extends TypedElement{
 	 * @return the value of the '<em>Default Value</em>' attribute.
 	 * @see #setDefaultValue(String)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getColumn_DefaultValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	String getDefaultValue();
@@ -284,7 +284,7 @@ public interface Column extends TypedElement{
 	 * @return the value of the '<em>Scope Checked</em>' attribute.
 	 * @see #setScopeChecked(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getColumn_ScopeChecked()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isScopeChecked();
@@ -302,7 +302,7 @@ public interface Column extends TypedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model kind="operation"
 	 * @generated
 	 */
 	boolean isPartOfForeignKey();
@@ -310,7 +310,7 @@ public interface Column extends TypedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model kind="operation"
 	 * @generated
 	 */
 	boolean isPartOfUniqueConstraint();
@@ -318,7 +318,7 @@ public interface Column extends TypedElement{
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model 
+	 * @model kind="operation"
 	 * @generated
 	 */
 	boolean isPartOfPrimaryKey();

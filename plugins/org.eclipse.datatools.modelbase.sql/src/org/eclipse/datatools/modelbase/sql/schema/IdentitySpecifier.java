@@ -43,7 +43,7 @@ import java.math.BigInteger;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier()
- * @model 
+ * @model
  * @generated
  */
 public interface IdentitySpecifier extends SQLObject{
@@ -60,7 +60,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.GenerateType
 	 * @see #setGenerationType(GenerateType)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_GenerationType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	GenerateType getGenerationType();
@@ -87,7 +87,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @return the value of the '<em>Start Value</em>' attribute.
 	 * @see #setStartValue(BigInteger)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_StartValue()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	BigInteger getStartValue();
@@ -113,7 +113,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @return the value of the '<em>Increment</em>' attribute.
 	 * @see #setIncrement(BigInteger)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_Increment()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	BigInteger getIncrement();
@@ -139,7 +139,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @return the value of the '<em>Minimum</em>' attribute.
 	 * @see #setMinimum(BigInteger)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_Minimum()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	BigInteger getMinimum();
@@ -165,7 +165,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @return the value of the '<em>Maximum</em>' attribute.
 	 * @see #setMaximum(BigInteger)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_Maximum()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	BigInteger getMaximum();
@@ -191,7 +191,7 @@ public interface IdentitySpecifier extends SQLObject{
 	 * @return the value of the '<em>Cycle Option</em>' attribute.
 	 * @see #setCycleOption(boolean)
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getIdentitySpecifier_CycleOption()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	boolean isCycleOption();

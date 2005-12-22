@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory
+ * @model kind="package"
  * @generated
  */
 public interface SQLDataTypesPackage extends EPackage{

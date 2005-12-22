@@ -42,7 +42,7 @@ package org.eclipse.datatools.modelbase.sql.tables;
  * </p>
  *
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getViewTable()
- * @model 
+ * @model
  * @generated
  */
 public interface ViewTable extends DerivedTable{
@@ -59,7 +59,7 @@ public interface ViewTable extends DerivedTable{
 	 * @see org.eclipse.datatools.modelbase.sql.tables.CheckType
 	 * @see #setCheckType(CheckType)
 	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getViewTable_CheckType()
-	 * @model 
+	 * @model
 	 * @generated
 	 */
 	CheckType getCheckType();
