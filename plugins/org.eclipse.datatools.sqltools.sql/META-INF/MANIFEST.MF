@@ -2,7 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sql Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sql
-Bundle-Version: 1.0.0
+Bundle-Version: 0.7.0
+Bundle-ClassPath: sqltools.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.sql.internal.SQLActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
