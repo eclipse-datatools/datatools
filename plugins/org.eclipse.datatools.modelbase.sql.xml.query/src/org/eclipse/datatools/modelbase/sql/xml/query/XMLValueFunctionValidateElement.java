@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateElement.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidateElement.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElement()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElement()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface XMLValueFunctionValidateElement extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Element Namespace</em>' containment reference.
 	 * @see #setValidateElementNamespace(XMLValueFunctionValidateElementNamespace)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElement_ValidateElementNamespace()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElement_ValidateElementNamespace()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementNamespace#getValidateElement
 	 * @model opposite="validateElement" containment="true"
 	 * @generated
@@ -66,7 +66,7 @@ public interface XMLValueFunctionValidateElement extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Element Name</em>' containment reference.
 	 * @see #setValidateElementName(XMLValueFunctionValidateElementName)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElement_ValidateElementName()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElement_ValidateElementName()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementName#getValidateElement
 	 * @model opposite="validateElement" containment="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface XMLValueFunctionValidateElement extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate According To</em>' container reference.
 	 * @see #setValidateAccordingTo(XMLValueFunctionValidateAccordingTo)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElement_ValidateAccordingTo()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElement_ValidateAccordingTo()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingTo#getValidateElement
 	 * @model opposite="validateElement" required="true"
 	 * @generated

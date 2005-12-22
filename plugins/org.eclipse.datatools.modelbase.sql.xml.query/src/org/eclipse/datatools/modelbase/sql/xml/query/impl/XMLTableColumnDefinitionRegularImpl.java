@@ -2,14 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionRegularImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionRegularImpl.java,v 1.2 2005/12/19 20:57:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionDefault;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionRegular;
@@ -119,7 +119,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLTableColumnDefinitionRegular();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLTableColumnDefinitionRegular();
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		DataType oldDataType = dataType;
 		dataType = newDataType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, oldDataType, newDataType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, oldDataType, newDataType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -155,14 +155,14 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		if (newDataType != dataType) {
 			NotificationChain msgs = null;
 			if (dataType != null)
-				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, null, msgs);
+				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, null, msgs);
 			if (newDataType != null)
-				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, null, msgs);
+				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, null, msgs);
 			msgs = basicSetDataType(newDataType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, newDataType, newDataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE, newDataType, newDataType));
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		XMLPassingType oldPassingOption = passingOption;
 		passingOption = newPassingOption == null ? PASSING_OPTION_EDEFAULT : newPassingOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION, oldPassingOption, passingOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION, oldPassingOption, passingOption));
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		String oldTableColumnPattern = tableColumnPattern;
 		tableColumnPattern = newTableColumnPattern;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN, oldTableColumnPattern, tableColumnPattern));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN, oldTableColumnPattern, tableColumnPattern));
 	}
 
 	/**
@@ -225,7 +225,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		XMLTableColumnDefinitionDefault oldColumnDefinitionDefault = columnDefinitionDefault;
 		columnDefinitionDefault = newColumnDefinitionDefault;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, oldColumnDefinitionDefault, newColumnDefinitionDefault);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, oldColumnDefinitionDefault, newColumnDefinitionDefault);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -240,14 +240,14 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 		if (newColumnDefinitionDefault != columnDefinitionDefault) {
 			NotificationChain msgs = null;
 			if (columnDefinitionDefault != null)
-				msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR, XMLTableColumnDefinitionDefault.class, msgs);
+				msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR, XMLTableColumnDefinitionDefault.class, msgs);
 			if (newColumnDefinitionDefault != null)
-				msgs = ((InternalEObject)newColumnDefinitionDefault).eInverseAdd(this, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR, XMLTableColumnDefinitionDefault.class, msgs);
+				msgs = ((InternalEObject)newColumnDefinitionDefault).eInverseAdd(this, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR, XMLTableColumnDefinitionDefault.class, msgs);
 			msgs = basicSetColumnDefinitionDefault(newColumnDefinitionDefault, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, newColumnDefinitionDefault, newColumnDefinitionDefault));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, newColumnDefinitionDefault, newColumnDefinitionDefault));
 	}
 
 	/**
@@ -258,15 +258,15 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 					if (columnDefinitionDefault != null)
-						msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, null, msgs);
+						msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, null, msgs);
 					return basicSetColumnDefinitionDefault((XMLTableColumnDefinitionDefault)otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -285,15 +285,15 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 					return basicSetDataType(null, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 					return basicSetColumnDefinitionDefault(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -310,8 +310,8 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -326,25 +326,25 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
 				return getTableFunction();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				return getDataType();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
 				return getPassingOption();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
 				return getTableColumnPattern();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				return getColumnDefinitionDefault();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -357,36 +357,36 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
 				setTableFunction((XMLTableFunction)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				setDataType((DataType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
 				setPassingOption((XMLPassingType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
 				setTableColumnPattern((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				setColumnDefinitionDefault((XMLTableColumnDefinitionDefault)newValue);
 				return;
 		}
@@ -400,34 +400,34 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
 				setTableFunction((XMLTableFunction)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				setDataType((DataType)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
 				setPassingOption(PASSING_OPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
 				setTableColumnPattern(TABLE_COLUMN_PATTERN_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				setColumnDefinitionDefault((XMLTableColumnDefinitionDefault)null);
 				return;
 		}
@@ -441,25 +441,25 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
 				return getTableFunction() != null;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				return dataType != null;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
 				return passingOption != PASSING_OPTION_EDEFAULT;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN:
 				return TABLE_COLUMN_PATTERN_EDEFAULT == null ? tableColumnPattern != null : !TABLE_COLUMN_PATTERN_EDEFAULT.equals(tableColumnPattern);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				return columnDefinitionDefault != null;
 		}
 		return eDynamicIsSet(eFeature);

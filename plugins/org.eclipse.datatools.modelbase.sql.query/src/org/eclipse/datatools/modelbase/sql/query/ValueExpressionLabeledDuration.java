@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionLabeledDuration.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionLabeledDuration.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionLabeledDuration()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionLabeledDuration()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface ValueExpressionLabeledDuration extends ValueExpressionAtomic{
 	 * @return the value of the '<em>Labeled Duration Type</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType
 	 * @see #setLabeledDurationType(ValueExpressionLabeledDurationType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionLabeledDuration_LabeledDurationType()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionLabeledDuration_LabeledDurationType()
 	 * @model
 	 * @generated
 	 */
@@ -65,7 +65,7 @@ public interface ValueExpressionLabeledDuration extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionLabeledDuration_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionLabeledDuration_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprLabeledDuration
 	 * @model opposite="valueExprLabeledDuration" containment="true" required="true"
 	 * @generated

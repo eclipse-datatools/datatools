@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimple.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ValueExpressionCaseSimple.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimple()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimple()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface ValueExpressionCaseSimple extends ValueExpressionCase{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Content List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimple_ContentList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimple_ContentList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent#getValueExprCaseSimple
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent" opposite="valueExprCaseSimple" containment="true" required="true"
 	 * @generated
@@ -55,7 +55,7 @@ public interface ValueExpressionCaseSimple extends ValueExpressionCase{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimple_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimple_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCaseSimple
 	 * @model opposite="valueExprCaseSimple" containment="true" required="true"
 	 * @generated

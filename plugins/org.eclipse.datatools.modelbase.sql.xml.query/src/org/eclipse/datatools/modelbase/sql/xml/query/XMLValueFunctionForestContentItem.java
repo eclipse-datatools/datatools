@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionForestContentItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionForestContentItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForestContentItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface XMLValueFunctionForestContentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Forest</em>' container reference.
 	 * @see #setValueFunctionForest(XMLValueFunctionForest)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForestContentItem_ValueFunctionForest()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueFunctionForest()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getForestContentList
 	 * @model opposite="forestContentList" required="true"
 	 * @generated
@@ -64,7 +64,7 @@ public interface XMLValueFunctionForestContentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForestContentItem_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

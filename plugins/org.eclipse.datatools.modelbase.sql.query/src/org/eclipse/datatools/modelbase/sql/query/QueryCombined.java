@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombined.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: QueryCombined.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryCombined()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryCombined()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface QueryCombined extends QueryExpressionBody{
 	 * @return the value of the '<em>Combined Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator
 	 * @see #setCombinedOperator(QueryCombinedOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryCombined_CombinedOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryCombined_CombinedOperator()
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface QueryCombined extends QueryExpressionBody{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Query</em>' containment reference.
 	 * @see #setLeftQuery(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryCombined_LeftQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryCombined_LeftQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getCombinedLeft
 	 * @model opposite="combinedLeft" containment="true" required="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface QueryCombined extends QueryExpressionBody{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Query</em>' containment reference.
 	 * @see #setRightQuery(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryCombined_RightQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryCombined_RightQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getCombinedRight
 	 * @model opposite="combinedRight" containment="true" required="true"
 	 * @generated

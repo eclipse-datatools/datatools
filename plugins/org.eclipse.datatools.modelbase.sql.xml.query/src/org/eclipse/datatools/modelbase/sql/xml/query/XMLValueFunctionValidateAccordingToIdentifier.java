@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToIdentifier.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToIdentifier.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToIdentifier()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface XMLValueFunctionValidateAccordingToIdentifier extends XMLValueF
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Schema Name</em>' attribute.
 	 * @see #setSchemaName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToIdentifier_SchemaName()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_SchemaName()
 	 * @model
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface XMLValueFunctionValidateAccordingToIdentifier extends XMLValueF
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Registered XML Schema Name</em>' attribute.
 	 * @see #setRegisteredXMLSchemaName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToIdentifier_RegisteredXMLSchemaName()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_RegisteredXMLSchemaName()
 	 * @model
 	 * @generated
 	 */

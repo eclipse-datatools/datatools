@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelectStatement.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: QuerySelectStatement.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelectStatement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelectStatement()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface QuerySelectStatement extends QueryStatement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelectStatement_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelectStatement_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getSelectStatement
 	 * @model opposite="selectStatement" containment="true" required="true"
 	 * @generated
@@ -65,7 +65,7 @@ public interface QuerySelectStatement extends QueryStatement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Order By Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelectStatement_OrderByClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelectStatement_OrderByClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.OrderBySpecification#getSelectStatement
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.OrderBySpecification" opposite="selectStatement" containment="true"
 	 * @generated

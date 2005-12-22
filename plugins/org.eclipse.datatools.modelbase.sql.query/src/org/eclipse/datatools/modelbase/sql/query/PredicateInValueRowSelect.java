@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateInValueRowSelect.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateInValueRowSelect.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateInValueRowSelect()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateInValueRowSelect()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface PredicateInValueRowSelect extends PredicateIn{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateInValueRowSelect_ValueExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateInValueRowSelect_ValueExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getInValueRowSelectLeft
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="inValueRowSelectLeft" containment="true" required="true"
 	 * @generated
@@ -55,7 +55,7 @@ public interface PredicateInValueRowSelect extends PredicateIn{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateInValueRowSelect_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateInValueRowSelect_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getInValueRowSelectRight
 	 * @model opposite="inValueRowSelectRight" containment="true" required="true"
 	 * @generated

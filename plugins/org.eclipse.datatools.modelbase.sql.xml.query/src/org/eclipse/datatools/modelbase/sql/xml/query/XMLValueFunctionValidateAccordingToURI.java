@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToURI.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToURI.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToURI()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToURI()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface XMLValueFunctionValidateAccordingToURI extends XMLValueFunction
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>No Namespace</em>' attribute.
 	 * @see #setNoNamespace(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToURI_NoNamespace()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToURI_NoNamespace()
 	 * @model default="false"
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface XMLValueFunctionValidateAccordingToURI extends XMLValueFunction
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Namespace URI</em>' attribute.
 	 * @see #setTargetNamespaceURI(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToURI_TargetNamespaceURI()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToURI_TargetNamespaceURI()
 	 * @model
 	 * @generated
 	 */
@@ -89,7 +89,7 @@ public interface XMLValueFunctionValidateAccordingToURI extends XMLValueFunction
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Schema Location URI</em>' attribute.
 	 * @see #setSchemaLocationURI(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingToURI_SchemaLocationURI()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToURI_SchemaLocationURI()
 	 * @model
 	 * @generated
 	 */

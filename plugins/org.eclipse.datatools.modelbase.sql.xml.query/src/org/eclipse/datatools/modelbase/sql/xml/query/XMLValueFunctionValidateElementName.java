@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateElementName.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidateElementName.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementName()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementName()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLValueFunctionValidateElementName extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Element</em>' container reference.
 	 * @see #setValidateElement(XMLValueFunctionValidateElement)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementName_ValidateElement()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementName_ValidateElement()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElement#getValidateElementName
 	 * @model opposite="validateElementName" required="true"
 	 * @generated

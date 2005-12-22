@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSearch.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ValueExpressionCaseSearch.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearch()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearch()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface ValueExpressionCaseSearch extends ValueExpressionCase{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Search Content List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearch_SearchContentList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearch_SearchContentList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent#getValueExprCaseSearch
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent" opposite="valueExprCaseSearch" containment="true" required="true"
 	 * @generated

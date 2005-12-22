@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElementSublist.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: SuperGroupElementSublist.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElementSublist()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElementSublist()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface SuperGroupElementSublist extends SuperGroupElement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Super Group Element Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElementSublist_SuperGroupElementExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElementSublist_SuperGroupElementExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression#getSuperGroupElementSublist
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression" opposite="superGroupElementSublist" containment="true" required="true"
 	 * @generated

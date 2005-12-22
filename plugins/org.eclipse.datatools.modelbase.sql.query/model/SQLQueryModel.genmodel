@@ -6,11 +6,11 @@
     editorDirectory="/org.eclipse.datatools.modelbase.sql.query.editor/src" modelPluginID="org.eclipse.datatools.modelbase.sql.query"
     runtimeJar="true" modelName="SQLQueryModel" editPluginClass="org.eclipse.datatools.modelbase.sql.query.provider.Activator"
     editorPluginClass="org.eclipse.datatools.modelbase.sql.query.presentation.Activator"
-    importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>SQLQueryModel.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../..</foreignModel>
-  <genPackages prefix="SQLQuery" basePackage="org.eclipse.datatools.modelbase.sql"
+  <genPackages prefix="SQLQueryModel" basePackage="org.eclipse.datatools.modelbase.sql"
       disposableProviderFactory="true" ecorePackage="SQLQueryModel.ecore#/">
     <genEnums ecoreEnum="SQLQueryModel.ecore#//SuperGroupType">
       <genEnumLiterals ecoreEnumLiteral="SQLQueryModel.ecore#//SuperGroupType/CUBE"/>

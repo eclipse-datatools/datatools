@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAttributeDeclarationItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLAttributeDeclarationItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAttributeDeclarationItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAttributeDeclarationItem()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLAttributeDeclarationItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAttributeDeclarationItem_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAttributeDeclarationItem_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface XMLAttributeDeclarationItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes Decl</em>' container reference.
 	 * @see #setAttributesDecl(XMLAttributesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAttributeDeclarationItem_AttributesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAttributeDeclarationItem_AttributesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAttributesDeclaration#getAttributeDeclItem
 	 * @model opposite="attributeDeclItem" required="true"
 	 * @generated

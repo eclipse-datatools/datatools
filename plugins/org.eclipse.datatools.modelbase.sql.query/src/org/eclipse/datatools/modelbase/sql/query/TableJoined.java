@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableJoined.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: TableJoined.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableJoined()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableJoined()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface TableJoined extends TableReference{
 	 * @return the value of the '<em>Join Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator
 	 * @see #setJoinOperator(TableJoinedOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableJoined_JoinOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableJoined_JoinOperator()
 	 * @model
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface TableJoined extends TableReference{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Join Condition</em>' containment reference.
 	 * @see #setJoinCondition(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableJoined_JoinCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableJoined_JoinCondition()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getTableJoined
 	 * @model opposite="tableJoined" containment="true"
 	 * @generated
@@ -95,7 +95,7 @@ public interface TableJoined extends TableReference{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Ref Right</em>' containment reference.
 	 * @see #setTableRefRight(TableReference)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableJoined_TableRefRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableJoined_TableRefRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableReference#getTableJoinedRight
 	 * @model opposite="tableJoinedRight" containment="true" required="true"
 	 * @generated
@@ -123,7 +123,7 @@ public interface TableJoined extends TableReference{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Ref Left</em>' containment reference.
 	 * @see #setTableRefLeft(TableReference)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableJoined_TableRefLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableJoined_TableRefLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableReference#getTableJoinedLeft
 	 * @model opposite="tableJoinedLeft" containment="true" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElement.java,v 1.5 2005/02/03 22:58:54 bpayton Exp $
+ * $Id: GroupingSetsElement.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElement()
  * @model abstract="true"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface GroupingSetsElement extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Sets</em>' container reference.
 	 * @see #setGroupingSets(GroupingSets)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElement_GroupingSets()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElement_GroupingSets()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingSets#getGroupingSetsElementList
 	 * @model opposite="groupingSetsElementList"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionNested.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: SearchConditionNested.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionNested()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionNested()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface SearchConditionNested extends QuerySearchCondition{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nested Condition</em>' containment reference.
 	 * @see #setNestedCondition(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionNested_NestedCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionNested_NestedCondition()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getNest
 	 * @model opposite="nest" containment="true" required="true"
 	 * @generated

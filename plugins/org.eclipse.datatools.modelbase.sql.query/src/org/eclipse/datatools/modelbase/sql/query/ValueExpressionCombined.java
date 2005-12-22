@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCombined.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionCombined.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCombined()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCombined()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ValueExpressionCombined extends QueryValueExpression{
 	 * @return the value of the '<em>Combined Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator
 	 * @see #setCombinedOperator(ValueExpressionCombinedOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCombined_CombinedOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCombined_CombinedOperator()
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface ValueExpressionCombined extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Value Expr</em>' containment reference.
 	 * @see #setLeftValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCombined_LeftValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCombined_LeftValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCombinedLeft
 	 * @model opposite="valueExprCombinedLeft" containment="true" required="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface ValueExpressionCombined extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Value Expr</em>' containment reference.
 	 * @see #setRightValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCombined_RightValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCombined_RightValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCombinedRight
 	 * @model opposite="valueExprCombinedRight" containment="true" required="true"
 	 * @generated

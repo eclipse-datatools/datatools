@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateExists.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateExists.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateExists()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateExists()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface PredicateExists extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateExists_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateExists_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getPredicateExists
 	 * @model opposite="predicateExists" containment="true" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableReference.java,v 1.6 2005/02/03 22:58:55 bpayton Exp $
+ * $Id: TableReference.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableReference()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableReference()
  * @model abstract="true"
  * @generated
  */
@@ -38,7 +38,7 @@ public interface TableReference extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Joined Right</em>' container reference.
 	 * @see #setTableJoinedRight(TableJoined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableReference_TableJoinedRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableReference_TableJoinedRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableJoined#getTableRefRight
 	 * @model opposite="tableRefRight" required="true"
 	 * @generated
@@ -66,7 +66,7 @@ public interface TableReference extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Joined Left</em>' container reference.
 	 * @see #setTableJoinedLeft(TableJoined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableReference_TableJoinedLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableReference_TableJoinedLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableJoined#getTableRefLeft
 	 * @model opposite="tableRefLeft" required="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface TableReference extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Select</em>' container reference.
 	 * @see #setQuerySelect(QuerySelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableReference_QuerySelect()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableReference_QuerySelect()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getFromClause
 	 * @model opposite="fromClause"
 	 * @generated
@@ -122,7 +122,7 @@ public interface TableReference extends SQLQueryObject{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest</em>' container reference.
 	 * @see #setNest(TableNested)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableReference_Nest()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableReference_Nest()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableNested#getNestedTableRef
 	 * @model opposite="nestedTableRef"
 	 * @generated

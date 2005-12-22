@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombinedOperator.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
+ * $Id: QueryCombinedOperator.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * EXCEPT=5
  * EXCEPT_ALL=6
  * <!-- end-model-doc -->
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryCombinedOperator()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryCombinedOperator()
  * @model
  * @generated
  */

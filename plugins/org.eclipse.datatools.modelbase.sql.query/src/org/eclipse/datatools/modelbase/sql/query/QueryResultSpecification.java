@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryResultSpecification.java,v 1.5 2005/02/03 22:58:55 bpayton Exp $
+ * $Id: QueryResultSpecification.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryResultSpecification()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryResultSpecification()
  * @model abstract="true"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface QueryResultSpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Select</em>' container reference.
 	 * @see #setQuerySelect(QuerySelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryResultSpecification_QuerySelect()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryResultSpecification_QuerySelect()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getSelectClause
 	 * @model opposite="selectClause"
 	 * @generated

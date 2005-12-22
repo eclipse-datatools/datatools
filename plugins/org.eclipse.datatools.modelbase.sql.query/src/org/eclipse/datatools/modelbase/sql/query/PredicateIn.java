@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateIn.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateIn.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateIn()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateIn()
  * @model abstract="true"
  * @generated
  */
@@ -34,7 +34,7 @@ public interface PredicateIn extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Not In</em>' attribute.
 	 * @see #setNotIn(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateIn_NotIn()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateIn_NotIn()
 	 * @model
 	 * @generated
 	 */

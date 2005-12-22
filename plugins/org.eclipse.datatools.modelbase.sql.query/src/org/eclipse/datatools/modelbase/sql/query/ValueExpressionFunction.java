@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionFunction.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ValueExpressionFunction.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.routines.Function;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface ValueExpressionFunction extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Special Register</em>' attribute.
 	 * @see #setSpecialRegister(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction_SpecialRegister()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction_SpecialRegister()
 	 * @model
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface ValueExpressionFunction extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distinct</em>' attribute.
 	 * @see #setDistinct(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction_Distinct()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction_Distinct()
 	 * @model
 	 * @generated
 	 */
@@ -93,7 +93,7 @@ public interface ValueExpressionFunction extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Function</em>' attribute.
 	 * @see #setColumnFunction(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction_ColumnFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction_ColumnFunction()
 	 * @model
 	 * @generated
 	 */
@@ -120,7 +120,7 @@ public interface ValueExpressionFunction extends ValueExpressionAtomic{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameter List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction_ParameterList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction_ParameterList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprFunction
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="valueExprFunction" containment="true"
 	 * @generated
@@ -137,7 +137,7 @@ public interface ValueExpressionFunction extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function</em>' reference.
 	 * @see #setFunction(Function)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionFunction_Function()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionFunction_Function()
 	 * @model required="true"
 	 * @generated
 	 */

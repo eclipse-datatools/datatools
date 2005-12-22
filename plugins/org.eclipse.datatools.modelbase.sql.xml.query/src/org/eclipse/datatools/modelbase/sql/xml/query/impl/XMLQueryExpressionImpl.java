@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryExpressionImpl.java,v 1.4 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLQueryExpressionImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -11,7 +11,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery;
@@ -78,7 +78,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLQueryExpression();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLQueryExpression();
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 		String oldXqueryExprContent = xqueryExprContent;
 		xqueryExprContent = newXqueryExprContent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT, oldXqueryExprContent, xqueryExprContent));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT, oldXqueryExprContent, xqueryExprContent));
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 * @generated
 	 */
     public XMLPredicateExists getPredicateExists() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS) return null;
 		return (XMLPredicateExists)eContainer;
 	}
 
@@ -118,19 +118,19 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 * @generated
 	 */
     public void setPredicateExists(XMLPredicateExists newPredicateExists) {
-		if (newPredicateExists != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS && newPredicateExists != null)) {
+		if (newPredicateExists != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS && newPredicateExists != null)) {
 			if (EcoreUtil.isAncestor(this, newPredicateExists))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newPredicateExists != null)
-				msgs = ((InternalEObject)newPredicateExists).eInverseAdd(this, SQLXMLQueryPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, XMLPredicateExists.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newPredicateExists, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
+				msgs = ((InternalEObject)newPredicateExists).eInverseAdd(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, XMLPredicateExists.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newPredicateExists, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, newPredicateExists, newPredicateExists));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, newPredicateExists, newPredicateExists));
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 * @generated
 	 */
     public XMLValueFunctionQuery getValueFunctionQuery() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY) return null;
 		return (XMLValueFunctionQuery)eContainer;
 	}
 
@@ -149,19 +149,19 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 * @generated
 	 */
     public void setValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery) {
-		if (newValueFunctionQuery != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
+		if (newValueFunctionQuery != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
 			if (EcoreUtil.isAncestor(this, newValueFunctionQuery))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueFunctionQuery != null)
-				msgs = ((InternalEObject)newValueFunctionQuery).eInverseAdd(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_EXPR, XMLValueFunctionQuery.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
+				msgs = ((InternalEObject)newValueFunctionQuery).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_EXPR, XMLValueFunctionQuery.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, newValueFunctionQuery, newValueFunctionQuery));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, newValueFunctionQuery, newValueFunctionQuery));
 	}
 
 	/**
@@ -172,16 +172,16 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -199,14 +199,14 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS, msgs);
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -222,10 +222,10 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, XMLPredicateExists.class, msgs);
-				case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_EXPR, XMLValueFunctionQuery.class, msgs);
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_EXPR, XMLPredicateExists.class, msgs);
+				case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_EXPR, XMLValueFunctionQuery.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -240,21 +240,21 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__NAME:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__LABEL:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
 				return getXqueryExprContent();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
 				return getPredicateExists();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
 				return getValueFunctionQuery();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -267,30 +267,30 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__NAME:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__LABEL:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
 				setXqueryExprContent((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
 				setPredicateExists((XMLPredicateExists)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
 				setValueFunctionQuery((XMLValueFunctionQuery)newValue);
 				return;
 		}
@@ -304,28 +304,28 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__NAME:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__LABEL:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
 				setXqueryExprContent(XQUERY_EXPR_CONTENT_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
 				setPredicateExists((XMLPredicateExists)null);
 				return;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
 				setValueFunctionQuery((XMLValueFunctionQuery)null);
 				return;
 		}
@@ -339,21 +339,21 @@ public class XMLQueryExpressionImpl extends SQLQueryObjectImpl implements XMLQue
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__NAME:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__LABEL:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT:
 				return XQUERY_EXPR_CONTENT_EDEFAULT == null ? xqueryExprContent != null : !XQUERY_EXPR_CONTENT_EDEFAULT.equals(xqueryExprContent);
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__PREDICATE_EXISTS:
 				return getPredicateExists() != null;
-			case SQLXMLQueryPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY:
 				return getValueFunctionQuery() != null;
 		}
 		return eDynamicIsSet(eFeature);

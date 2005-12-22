@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionQueryReturningImpl.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionQueryReturningImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -11,7 +11,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery;
@@ -99,7 +99,7 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLValueFunctionQueryReturning();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionQueryReturning();
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 		XMLReturningType oldReturningOption = returningOption;
 		returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION, oldReturningOption, returningOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION, oldReturningOption, returningOption));
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 		XMLPassingType oldPassingOption = passingOption;
 		passingOption = newPassingOption == null ? PASSING_OPTION_EDEFAULT : newPassingOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION, oldPassingOption, passingOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION, oldPassingOption, passingOption));
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 * @generated
 	 */
     public XMLValueFunctionQuery getValueFunctionQuery() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY) return null;
 		return (XMLValueFunctionQuery)eContainer;
 	}
 
@@ -160,19 +160,19 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 * @generated
 	 */
     public void setValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery) {
-		if (newValueFunctionQuery != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
+		if (newValueFunctionQuery != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
 			if (EcoreUtil.isAncestor(this, newValueFunctionQuery))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueFunctionQuery != null)
-				msgs = ((InternalEObject)newValueFunctionQuery).eInverseAdd(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING, XMLValueFunctionQuery.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
+				msgs = ((InternalEObject)newValueFunctionQuery).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING, XMLValueFunctionQuery.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, newValueFunctionQuery, newValueFunctionQuery));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, newValueFunctionQuery, newValueFunctionQuery));
 	}
 
 	/**
@@ -183,12 +183,12 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -206,12 +206,12 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -227,8 +227,8 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING, XMLValueFunctionQuery.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING, XMLValueFunctionQuery.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -243,21 +243,21 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
 				return getReturningOption();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
 				return getPassingOption();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
 				return getValueFunctionQuery();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -270,30 +270,30 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
 				setReturningOption((XMLReturningType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
 				setPassingOption((XMLPassingType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
 				setValueFunctionQuery((XMLValueFunctionQuery)newValue);
 				return;
 		}
@@ -307,28 +307,28 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
 				setReturningOption(RETURNING_OPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
 				setPassingOption(PASSING_OPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
 				setValueFunctionQuery((XMLValueFunctionQuery)null);
 				return;
 		}
@@ -342,21 +342,21 @@ public class XMLValueFunctionQueryReturningImpl extends SQLQueryObjectImpl imple
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION:
 				return returningOption != RETURNING_OPTION_EDEFAULT;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION:
 				return passingOption != PASSING_OPTION_EDEFAULT;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY:
 				return getValueFunctionQuery() != null;
 		}
 		return eDynamicIsSet(eFeature);

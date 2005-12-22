@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableSpecification.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: WithTableSpecification.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableSpecification()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableSpecification()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface WithTableSpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expression Root</em>' container reference.
 	 * @see #setQueryExpressionRoot(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableSpecification_QueryExpressionRoot()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableSpecification_QueryExpressionRoot()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getWithClause
 	 * @model opposite="withClause"
 	 * @generated
@@ -67,7 +67,7 @@ public interface WithTableSpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Table Query Expr</em>' containment reference.
 	 * @see #setWithTableQueryExpr(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableSpecification_WithTableQueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableSpecification_WithTableQueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getWithTableSpecification
 	 * @model opposite="withTableSpecification" containment="true" required="true"
 	 * @generated
@@ -95,7 +95,7 @@ public interface WithTableSpecification extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Table References</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableSpecification_WithTableReferences()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableSpecification_WithTableReferences()
 	 * @see org.eclipse.datatools.modelbase.sql.query.WithTableReference#getWithTableSpecification
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.WithTableReference" opposite="withTableSpecification"
 	 * @generated
@@ -113,7 +113,7 @@ public interface WithTableSpecification extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Name List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableSpecification_ColumnNameList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableSpecification_ColumnNameList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ColumnName#getWithTableSpecification
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ColumnName" opposite="withTableSpecification" containment="true"
 	 * @generated

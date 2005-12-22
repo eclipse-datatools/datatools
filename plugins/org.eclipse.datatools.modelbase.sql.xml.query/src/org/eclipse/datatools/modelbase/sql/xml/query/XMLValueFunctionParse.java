@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionParse.java,v 1.4 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionParse.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParse()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParse()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLValueFunctionParse extends XMLValueFunction{
 	 * @return the value of the '<em>Content Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType
 	 * @see #setContentOption(XMLContentType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParse_ContentOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParse_ContentOption()
 	 * @model
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface XMLValueFunctionParse extends XMLValueFunction{
 	 * @return the value of the '<em>Whitespace Handling Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType
 	 * @see #setWhitespaceHandlingOption(XMLWhitespaceHandlingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParse_WhitespaceHandlingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParse_WhitespaceHandlingOption()
 	 * @model
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public interface XMLValueFunctionParse extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parse Content</em>' containment reference.
 	 * @see #setParseContent(XMLValueFunctionParseContent)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParse_ParseContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParse_ParseContent()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionParseContent#getValueFunctionParse
 	 * @model opposite="valueFunctionParse" containment="true" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryArgumentItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLQueryArgumentItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentItem()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface XMLQueryArgumentItem extends QueryValueExpression{
 	 * @return the value of the '<em>Passing Mechanism</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
 	 * @see #setPassingMechanism(XMLPassingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentItem_PassingMechanism()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentItem_PassingMechanism()
 	 * @model
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface XMLQueryArgumentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Arg List</em>' container reference.
 	 * @see #setXqueryArgList(XMLQueryArgumentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentItem_XqueryArgList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentItem_XqueryArgList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getXqueryArgListChildren
 	 * @model opposite="xqueryArgListChildren" required="true"
 	 * @generated
@@ -98,7 +98,7 @@ public interface XMLQueryArgumentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentItem_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentItem_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

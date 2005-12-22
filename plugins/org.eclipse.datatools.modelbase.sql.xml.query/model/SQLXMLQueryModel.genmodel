@@ -6,11 +6,11 @@
     editorDirectory="/org.eclipse.datatools.modelbase.sql.xml.query.editor/src" modelPluginID="org.eclipse.datatools.modelbase.sql.xml.query"
     runtimeJar="true" modelName="SQLXMLQueryModel" editPluginClass="com.ibm.db.models.sql.xml.query.provider.SQLXMLQueryModelEditPlugin"
     editorPluginClass="org.eclipse.datatools.modelbase.sql.xml.query.presentation.SQLXMLQueryModelEditorPlugin"
-    importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.genmodel#//query ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    importerID="org.eclipse.emf.importer.rose" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql.query/model/SQLQueryModel.genmodel#//query ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
   <foreignModel>SQLXMLQueryModel.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../..</foreignModel>
-  <genPackages prefix="SQLXMLQuery" basePackage="org.eclipse.datatools.modelbase.sql.xml"
+  <genPackages prefix="SQLXMLQueryModel" basePackage="org.eclipse.datatools.modelbase.sql.xml"
       disposableProviderFactory="true" ecorePackage="SQLXMLQueryModel.ecore#/">
     <genEnums ecoreEnum="SQLXMLQueryModel.ecore#//XMLPassingType">
       <genEnumLiterals ecoreEnumLiteral="SQLXMLQueryModel.ecore#//XMLPassingType/BY_REF"/>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateSortSpecification.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLAggregateSortSpecification.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateSortSpecification()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLAggregateSortSpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Aggregate Function</em>' container reference.
 	 * @see #setAggregateFunction(XMLAggregateFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateSortSpecification_AggregateFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_AggregateFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getSortSpecList
 	 * @model opposite="sortSpecList" required="true"
 	 * @generated
@@ -69,7 +69,7 @@ public interface XMLAggregateSortSpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Order By Spec</em>' containment reference.
 	 * @see #setOrderBySpec(OrderBySpecification)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateSortSpecification_OrderBySpec()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_OrderBySpec()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

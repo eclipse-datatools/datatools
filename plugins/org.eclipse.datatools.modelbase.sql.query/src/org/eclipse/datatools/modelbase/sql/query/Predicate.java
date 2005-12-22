@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Predicate.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: Predicate.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicate()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicate()
  * @model abstract="true"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface Predicate extends QuerySearchCondition{
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Negated Predicate</em>' attribute.
 	 * @see #setNegatedPredicate(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicate_NegatedPredicate()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicate_NegatedPredicate()
 	 * @model
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface Predicate extends QuerySearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Has Selectivity</em>' attribute.
 	 * @see #setHasSelectivity(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicate_HasSelectivity()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicate_HasSelectivity()
 	 * @model
 	 * @generated
 	 */
@@ -87,7 +87,7 @@ public interface Predicate extends QuerySearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Selectivity Value</em>' attribute.
 	 * @see #setSelectivityValue(Integer)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicate_SelectivityValue()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicate_SelectivityValue()
 	 * @model
 	 * @generated
 	 */

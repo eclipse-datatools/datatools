@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionOrdinalityImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionOrdinalityImpl.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionOrdinality;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction;
 
@@ -46,7 +46,7 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLTableColumnDefinitionOrdinality();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLTableColumnDefinitionOrdinality();
 	}
 
 	/**
@@ -57,12 +57,12 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -80,12 +80,12 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -101,8 +101,8 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -117,17 +117,17 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
 				return getTableFunction();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -140,24 +140,24 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	 */
 	public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
 				setTableFunction((XMLTableFunction)newValue);
 				return;
 		}
@@ -171,22 +171,22 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	 */
 	public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
 				setTableFunction((XMLTableFunction)null);
 				return;
 		}
@@ -200,17 +200,17 @@ public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefini
 	 */
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION:
 				return getTableFunction() != null;
 		}
 		return eDynamicIsSet(eFeature);

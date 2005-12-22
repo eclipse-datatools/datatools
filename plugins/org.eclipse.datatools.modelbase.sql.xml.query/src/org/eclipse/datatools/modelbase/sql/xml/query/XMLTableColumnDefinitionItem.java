@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionItem()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLTableColumnDefinitionItem extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Function</em>' container reference.
 	 * @see #setTableFunction(XMLTableFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionItem_TableFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionItem_TableFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction#getColumnDefList
 	 * @model opposite="columnDefList" required="true"
 	 * @generated

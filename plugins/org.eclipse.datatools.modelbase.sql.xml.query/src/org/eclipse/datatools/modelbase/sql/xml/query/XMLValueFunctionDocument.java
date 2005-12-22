@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionDocument.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionDocument.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -24,7 +24,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionDocument()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionDocument()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLValueFunctionDocument extends XMLValueFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionDocument_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionDocument_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface XMLValueFunctionDocument extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Document Content</em>' containment reference.
 	 * @see #setDocumentContent(XMLValueFunctionDocumentContent)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionDocument_DocumentContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionDocument_DocumentContent()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionDocumentContent#getValueFunctionDocument
 	 * @model opposite="valueFunctionDocument" containment="true" required="true"
 	 * @generated

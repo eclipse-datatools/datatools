@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicateExists.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLPredicateExists.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -24,7 +24,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPredicateExists()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface XMLPredicateExists extends XMLPredicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Expr</em>' containment reference.
 	 * @see #setXqueryExpr(XMLQueryExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPredicateExists_XqueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getPredicateExists
 	 * @model opposite="predicateExists" containment="true" required="true"
 	 * @generated
@@ -68,7 +68,7 @@ public interface XMLPredicateExists extends XMLPredicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Arg List</em>' containment reference.
 	 * @see #setXqueryArgList(XMLQueryArgumentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPredicateExists_XqueryArgList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryArgList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getPredicateExists
 	 * @model opposite="predicateExists" containment="true"
 	 * @generated

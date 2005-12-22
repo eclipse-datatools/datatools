@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationDefault.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationDefault.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationDefault()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationDefault()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface XMLNamespaceDeclarationDefault extends XMLNamespaceDeclarationI
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>No Default</em>' attribute.
 	 * @see #setNoDefault(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationDefault_NoDefault()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationDefault_NoDefault()
 	 * @model default="false"
 	 * @generated
 	 */

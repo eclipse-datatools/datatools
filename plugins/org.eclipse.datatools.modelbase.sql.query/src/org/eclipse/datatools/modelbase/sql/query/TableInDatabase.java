@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableInDatabase.java,v 1.8 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: TableInDatabase.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -27,7 +27,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface TableInDatabase extends TableExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Statement</em>' container reference.
 	 * @see #setUpdateStatement(QueryUpdateStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase_UpdateStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase_UpdateStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getTargetTable
 	 * @model opposite="targetTable"
 	 * @generated
@@ -71,7 +71,7 @@ public interface TableInDatabase extends TableExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Delete Statement</em>' container reference.
 	 * @see #setDeleteStatement(QueryDeleteStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase_DeleteStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase_DeleteStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement#getTargetTable
 	 * @model opposite="targetTable"
 	 * @generated
@@ -99,7 +99,7 @@ public interface TableInDatabase extends TableExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Insert Statement</em>' container reference.
 	 * @see #setInsertStatement(QueryInsertStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase_InsertStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase_InsertStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getTargetTable
 	 * @model opposite="targetTable"
 	 * @generated
@@ -126,7 +126,7 @@ public interface TableInDatabase extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Database Table</em>' reference.
 	 * @see #setDatabaseTable(Table)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase_DatabaseTable()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase_DatabaseTable()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -152,7 +152,7 @@ public interface TableInDatabase extends TableExpression{
 	 * Gets the list of columns used anywhere in the statement that are derived from this table.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Derived Column List</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableInDatabase_DerivedColumnList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableInDatabase_DerivedColumnList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableInDatabase
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="tableInDatabase"
 	 * @generated

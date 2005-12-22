@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryObject.java,v 1.9 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: SQLQueryObject.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -15,7 +15,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSQLQueryObject()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSQLQueryObject()
  * @model abstract="true"
  * @generated
  */

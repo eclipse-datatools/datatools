@@ -9,7 +9,7 @@
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.util;
 
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPlugin;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryModelPlugin;
 
 /**
  * This is the main plugin class for the SQL/XML Query Model. 

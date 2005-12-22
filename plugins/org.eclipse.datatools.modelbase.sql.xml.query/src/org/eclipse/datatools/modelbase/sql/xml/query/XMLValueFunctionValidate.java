@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidate.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidate.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidate()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidate()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLValueFunctionValidate extends XMLValueFunction{
 	 * @return the value of the '<em>Content Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType2
 	 * @see #setContentOption(XMLContentType2)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidate_ContentOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidate_ContentOption()
 	 * @model
 	 * @generated
 	 */
@@ -70,7 +70,7 @@ public interface XMLValueFunctionValidate extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Content</em>' containment reference.
 	 * @see #setValidateContent(XMLValueFunctionValidateContent)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidate_ValidateContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidate_ValidateContent()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateContent#getValueFunctionValidate
 	 * @model opposite="valueFunctionValidate" containment="true" required="true"
 	 * @generated
@@ -98,7 +98,7 @@ public interface XMLValueFunctionValidate extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate According To</em>' containment reference.
 	 * @see #setValidateAccordingTo(XMLValueFunctionValidateAccordingTo)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidate_ValidateAccordingTo()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidate_ValidateAccordingTo()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingTo#getValueFunctionValidate
 	 * @model opposite="valueFunctionValidate" containment="true"
 	 * @generated

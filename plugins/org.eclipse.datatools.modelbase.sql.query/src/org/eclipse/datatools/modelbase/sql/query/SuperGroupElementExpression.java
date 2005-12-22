@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElementExpression.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: SuperGroupElementExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElementExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElementExpression()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface SuperGroupElementExpression extends SuperGroupElement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Super Group Element Sublist</em>' container reference.
 	 * @see #setSuperGroupElementSublist(SuperGroupElementSublist)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElementExpression_SuperGroupElementSublist()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElementExpression_SuperGroupElementSublist()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist#getSuperGroupElementExprList
 	 * @model opposite="superGroupElementExprList"
 	 * @generated
@@ -64,7 +64,7 @@ public interface SuperGroupElementExpression extends SuperGroupElement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Expr</em>' containment reference.
 	 * @see #setGroupingExpr(GroupingExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElementExpression_GroupingExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElementExpression_GroupingExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingExpression#getSuperGroupElementExpr
 	 * @model opposite="superGroupElementExpr" containment="true" required="true"
 	 * @generated

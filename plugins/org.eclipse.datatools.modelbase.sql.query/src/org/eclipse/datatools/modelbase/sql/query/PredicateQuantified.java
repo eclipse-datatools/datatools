@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantified.java,v 1.1 2004/11/15 23:23:20 bpayton Exp $
+ * $Id: PredicateQuantified.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -13,7 +13,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantified()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantified()
  * @model abstract="true"
  * @generated
  */

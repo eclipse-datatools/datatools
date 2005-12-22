@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByValueExpression.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: OrderByValueExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByValueExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByValueExpression()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface OrderByValueExpression extends OrderBySpecification{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByValueExpression_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByValueExpression_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getOrderByValueExpr
 	 * @model opposite="orderByValueExpr" containment="true" required="true"
 	 * @generated

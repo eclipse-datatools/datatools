@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSearchContentImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: ValueExpressionCaseSearchContentImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
 import org.eclipse.emf.common.notify.Notification;
@@ -74,7 +74,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getValueExpressionCaseSearchContent();
+		return SQLQueryModelPackage.eINSTANCE.getValueExpressionCaseSearchContent();
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 		QueryValueExpression oldValueExpr = valueExpr;
 		valueExpr = newValueExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -110,14 +110,14 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 		if (newValueExpr != valueExpr) {
 			NotificationChain msgs = null;
 			if (valueExpr != null)
-				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, QueryValueExpression.class, msgs);
+				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, QueryValueExpression.class, msgs);
 			if (newValueExpr != null)
-				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, QueryValueExpression.class, msgs);
+				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, QueryValueExpression.class, msgs);
 			msgs = basicSetValueExpr(newValueExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 		QuerySearchCondition oldSearchCondition = searchCondition;
 		searchCondition = newSearchCondition;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, oldSearchCondition, newSearchCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, oldSearchCondition, newSearchCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -153,14 +153,14 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 		if (newSearchCondition != searchCondition) {
 			NotificationChain msgs = null;
 			if (searchCondition != null)
-				msgs = ((InternalEObject)searchCondition).eInverseRemove(this, SQLQueryPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, QuerySearchCondition.class, msgs);
+				msgs = ((InternalEObject)searchCondition).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, QuerySearchCondition.class, msgs);
 			if (newSearchCondition != null)
-				msgs = ((InternalEObject)newSearchCondition).eInverseAdd(this, SQLQueryPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, QuerySearchCondition.class, msgs);
+				msgs = ((InternalEObject)newSearchCondition).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, QuerySearchCondition.class, msgs);
 			msgs = basicSetSearchCondition(newSearchCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, newSearchCondition, newSearchCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, newSearchCondition, newSearchCondition));
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 * @generated
 	 */
     public ValueExpressionCaseSearch getValueExprCaseSearch() {
-		if (eContainerFeatureID != SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH) return null;
 		return (ValueExpressionCaseSearch)eContainer;
 	}
 
@@ -179,19 +179,19 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 * @generated
 	 */
     public void setValueExprCaseSearch(ValueExpressionCaseSearch newValueExprCaseSearch) {
-		if (newValueExprCaseSearch != eContainer || (eContainerFeatureID != SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH && newValueExprCaseSearch != null)) {
+		if (newValueExprCaseSearch != eContainer || (eContainerFeatureID != SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH && newValueExprCaseSearch != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSearch))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSearch != null)
-				msgs = ((InternalEObject)newValueExprCaseSearch).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST, ValueExpressionCaseSearch.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearch, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
+				msgs = ((InternalEObject)newValueExprCaseSearch).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST, ValueExpressionCaseSearch.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearch, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, newValueExprCaseSearch, newValueExprCaseSearch));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, newValueExprCaseSearch, newValueExprCaseSearch));
 	}
 
 	/**
@@ -202,20 +202,20 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 					if (valueExpr != null)
-						msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, null, msgs);
+						msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, null, msgs);
 					return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 					if (searchCondition != null)
-						msgs = ((InternalEObject)searchCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, null, msgs);
+						msgs = ((InternalEObject)searchCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, null, msgs);
 					return basicSetSearchCondition((QuerySearchCondition)otherEnd, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -233,16 +233,16 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 					return basicSetValueExpr(null, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 					return basicSetSearchCondition(null, msgs);
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
-					return eBasicSetContainer(null, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+					return eBasicSetContainer(null, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -258,8 +258,8 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST, ValueExpressionCaseSearch.class, msgs);
+				case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST, ValueExpressionCaseSearch.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -274,21 +274,21 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
 				return getName();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
 				return getLabel();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 				return getValueExpr();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 				return getSearchCondition();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
 				return getValueExprCaseSearch();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -301,30 +301,30 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 				setSearchCondition((QuerySearchCondition)newValue);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
 				setValueExprCaseSearch((ValueExpressionCaseSearch)newValue);
 				return;
 		}
@@ -338,28 +338,28 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)null);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 				setSearchCondition((QuerySearchCondition)null);
 				return;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
 				setValueExprCaseSearch((ValueExpressionCaseSearch)null);
 				return;
 		}
@@ -373,21 +373,21 @@ public class ValueExpressionCaseSearchContentImpl extends SQLQueryObjectImpl imp
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR:
 				return valueExpr != null;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION:
 				return searchCondition != null;
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH:
 				return getValueExprCaseSearch() != null;
 		}
 		return eDynamicIsSet(eFeature);

@@ -2,28 +2,28 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: SQLQuerySwitch.java,v 1.1 2005/12/16 13:11:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
+
 import java.util.List;
+
+import org.eclipse.datatools.modelbase.sql.query.*;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
 import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
 import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
-
-import org.eclipse.datatools.modelbase.sql.query.*;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,49 +35,49 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage
  * @generated
  */
 public class SQLQueryModelSwitch {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static SQLQueryPackage modelPackage;
+    protected static SQLQueryModelPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SQLQueryModelSwitch() {
+    public SQLQueryModelSwitch() {
 		if (modelPackage == null) {
-			modelPackage = SQLQueryPackage.eINSTANCE;
+			modelPackage = SQLQueryModelPackage.eINSTANCE;
 		}
 	}
 
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+    public Object doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+    protected Object doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
@@ -93,13 +93,13 @@ public class SQLQueryModelSwitch {
 	/**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+    protected Object doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case SQLQueryPackage.QUERY_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_STATEMENT: {
 				QueryStatement queryStatement = (QueryStatement)theEObject;
 				Object result = caseQueryStatement(queryStatement);
 				if (result == null) result = caseSQLQueryObject(queryStatement);
@@ -111,7 +111,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT: {
 				QueryDeleteStatement queryDeleteStatement = (QueryDeleteStatement)theEObject;
 				Object result = caseQueryDeleteStatement(queryDeleteStatement);
 				if (result == null) result = caseQueryChangeStatement(queryDeleteStatement);
@@ -126,7 +126,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_INSERT_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_INSERT_STATEMENT: {
 				QueryInsertStatement queryInsertStatement = (QueryInsertStatement)theEObject;
 				Object result = caseQueryInsertStatement(queryInsertStatement);
 				if (result == null) result = caseQueryChangeStatement(queryInsertStatement);
@@ -141,7 +141,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_SELECT_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT: {
 				QuerySelectStatement querySelectStatement = (QuerySelectStatement)theEObject;
 				Object result = caseQuerySelectStatement(querySelectStatement);
 				if (result == null) result = caseQueryStatement(querySelectStatement);
@@ -154,7 +154,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_UPDATE_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT: {
 				QueryUpdateStatement queryUpdateStatement = (QueryUpdateStatement)theEObject;
 				Object result = caseQueryUpdateStatement(queryUpdateStatement);
 				if (result == null) result = caseQueryChangeStatement(queryUpdateStatement);
@@ -169,7 +169,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.UPDATE_ASSIGNMENT_EXPRESSION: {
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION: {
 				UpdateAssignmentExpression updateAssignmentExpression = (UpdateAssignmentExpression)theEObject;
 				Object result = caseUpdateAssignmentExpression(updateAssignmentExpression);
 				if (result == null) result = caseSQLQueryObject(updateAssignmentExpression);
@@ -179,7 +179,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.CURSOR_REFERENCE: {
+			case SQLQueryModelPackage.CURSOR_REFERENCE: {
 				CursorReference cursorReference = (CursorReference)theEObject;
 				Object result = caseCursorReference(cursorReference);
 				if (result == null) result = caseSQLQueryObject(cursorReference);
@@ -189,7 +189,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_SEARCH_CONDITION: {
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION: {
 				QuerySearchCondition querySearchCondition = (QuerySearchCondition)theEObject;
 				Object result = caseQuerySearchCondition(querySearchCondition);
 				if (result == null) result = caseSQLQueryObject(querySearchCondition);
@@ -200,7 +200,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_EXPRESSION_BODY: {
+			case SQLQueryModelPackage.QUERY_EXPRESSION_BODY: {
 				QueryExpressionBody queryExpressionBody = (QueryExpressionBody)theEObject;
 				Object result = caseQueryExpressionBody(queryExpressionBody);
 				if (result == null) result = caseTableExpression(queryExpressionBody);
@@ -212,7 +212,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION: {
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION: {
 				QueryValueExpression queryValueExpression = (QueryValueExpression)theEObject;
 				Object result = caseQueryValueExpression(queryValueExpression);
 				if (result == null) result = caseSQLQueryObject(queryValueExpression);
@@ -223,7 +223,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_EXPRESSION_ROOT: {
+			case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT: {
 				QueryExpressionRoot queryExpressionRoot = (QueryExpressionRoot)theEObject;
 				Object result = caseQueryExpressionRoot(queryExpressionRoot);
 				if (result == null) result = caseSQLQueryObject(queryExpressionRoot);
@@ -234,7 +234,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUES_ROW: {
+			case SQLQueryModelPackage.VALUES_ROW: {
 				ValuesRow valuesRow = (ValuesRow)theEObject;
 				Object result = caseValuesRow(valuesRow);
 				if (result == null) result = caseSQLQueryObject(valuesRow);
@@ -244,7 +244,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_VALUES: {
+			case SQLQueryModelPackage.QUERY_VALUES: {
 				QueryValues queryValues = (QueryValues)theEObject;
 				Object result = caseQueryValues(queryValues);
 				if (result == null) result = caseQueryExpressionBody(queryValues);
@@ -257,7 +257,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_REFERENCE: {
+			case SQLQueryModelPackage.TABLE_REFERENCE: {
 				TableReference tableReference = (TableReference)theEObject;
 				Object result = caseTableReference(tableReference);
 				if (result == null) result = caseSQLQueryObject(tableReference);
@@ -267,7 +267,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_EXPRESSION: {
+			case SQLQueryModelPackage.TABLE_EXPRESSION: {
 				TableExpression tableExpression = (TableExpression)theEObject;
 				Object result = caseTableExpression(tableExpression);
 				if (result == null) result = caseTableReference(tableExpression);
@@ -278,7 +278,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_JOINED: {
+			case SQLQueryModelPackage.TABLE_JOINED: {
 				TableJoined tableJoined = (TableJoined)theEObject;
 				Object result = caseTableJoined(tableJoined);
 				if (result == null) result = caseTableReference(tableJoined);
@@ -289,7 +289,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.WITH_TABLE_SPECIFICATION: {
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION: {
 				WithTableSpecification withTableSpecification = (WithTableSpecification)theEObject;
 				Object result = caseWithTableSpecification(withTableSpecification);
 				if (result == null) result = caseSQLQueryObject(withTableSpecification);
@@ -299,7 +299,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE: {
+			case SQLQueryModelPackage.PREDICATE: {
 				Predicate predicate = (Predicate)theEObject;
 				Object result = casePredicate(predicate);
 				if (result == null) result = caseQuerySearchCondition(predicate);
@@ -311,7 +311,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SEARCH_CONDITION_COMBINED: {
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED: {
 				SearchConditionCombined searchConditionCombined = (SearchConditionCombined)theEObject;
 				Object result = caseSearchConditionCombined(searchConditionCombined);
 				if (result == null) result = caseQuerySearchCondition(searchConditionCombined);
@@ -323,7 +323,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION: {
+			case SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION: {
 				OrderByValueExpression orderByValueExpression = (OrderByValueExpression)theEObject;
 				Object result = caseOrderByValueExpression(orderByValueExpression);
 				if (result == null) result = caseOrderBySpecification(orderByValueExpression);
@@ -334,7 +334,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_COMBINED: {
+			case SQLQueryModelPackage.QUERY_COMBINED: {
 				QueryCombined queryCombined = (QueryCombined)theEObject;
 				Object result = caseQueryCombined(queryCombined);
 				if (result == null) result = caseQueryExpressionBody(queryCombined);
@@ -347,7 +347,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_SELECT: {
+			case SQLQueryModelPackage.QUERY_SELECT: {
 				QuerySelect querySelect = (QuerySelect)theEObject;
 				Object result = caseQuerySelect(querySelect);
 				if (result == null) result = caseQueryExpressionBody(querySelect);
@@ -360,7 +360,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_SPECIFICATION: {
+			case SQLQueryModelPackage.GROUPING_SPECIFICATION: {
 				GroupingSpecification groupingSpecification = (GroupingSpecification)theEObject;
 				Object result = caseGroupingSpecification(groupingSpecification);
 				if (result == null) result = caseSQLQueryObject(groupingSpecification);
@@ -370,7 +370,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_RESULT_SPECIFICATION: {
+			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION: {
 				QueryResultSpecification queryResultSpecification = (QueryResultSpecification)theEObject;
 				Object result = caseQueryResultSpecification(queryResultSpecification);
 				if (result == null) result = caseSQLQueryObject(queryResultSpecification);
@@ -380,7 +380,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS: {
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS: {
 				ResultTableAllColumns resultTableAllColumns = (ResultTableAllColumns)theEObject;
 				Object result = caseResultTableAllColumns(resultTableAllColumns);
 				if (result == null) result = caseQueryResultSpecification(resultTableAllColumns);
@@ -391,7 +391,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.RESULT_COLUMN: {
+			case SQLQueryModelPackage.RESULT_COLUMN: {
 				ResultColumn resultColumn = (ResultColumn)theEObject;
 				Object result = caseResultColumn(resultColumn);
 				if (result == null) result = caseQueryResultSpecification(resultColumn);
@@ -402,7 +402,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_BASIC: {
+			case SQLQueryModelPackage.PREDICATE_BASIC: {
 				PredicateBasic predicateBasic = (PredicateBasic)theEObject;
 				Object result = casePredicateBasic(predicateBasic);
 				if (result == null) result = casePredicate(predicateBasic);
@@ -415,7 +415,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_QUANTIFIED: {
+			case SQLQueryModelPackage.PREDICATE_QUANTIFIED: {
 				PredicateQuantified predicateQuantified = (PredicateQuantified)theEObject;
 				Object result = casePredicateQuantified(predicateQuantified);
 				if (result == null) result = casePredicate(predicateQuantified);
@@ -428,7 +428,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_BETWEEN: {
+			case SQLQueryModelPackage.PREDICATE_BETWEEN: {
 				PredicateBetween predicateBetween = (PredicateBetween)theEObject;
 				Object result = casePredicateBetween(predicateBetween);
 				if (result == null) result = casePredicate(predicateBetween);
@@ -441,7 +441,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_EXISTS: {
+			case SQLQueryModelPackage.PREDICATE_EXISTS: {
 				PredicateExists predicateExists = (PredicateExists)theEObject;
 				Object result = casePredicateExists(predicateExists);
 				if (result == null) result = casePredicate(predicateExists);
@@ -454,7 +454,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_IN: {
+			case SQLQueryModelPackage.PREDICATE_IN: {
 				PredicateIn predicateIn = (PredicateIn)theEObject;
 				Object result = casePredicateIn(predicateIn);
 				if (result == null) result = casePredicate(predicateIn);
@@ -467,7 +467,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_LIKE: {
+			case SQLQueryModelPackage.PREDICATE_LIKE: {
 				PredicateLike predicateLike = (PredicateLike)theEObject;
 				Object result = casePredicateLike(predicateLike);
 				if (result == null) result = casePredicate(predicateLike);
@@ -480,7 +480,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_IS_NULL: {
+			case SQLQueryModelPackage.PREDICATE_IS_NULL: {
 				PredicateIsNull predicateIsNull = (PredicateIsNull)theEObject;
 				Object result = casePredicateIsNull(predicateIsNull);
 				if (result == null) result = casePredicate(predicateIsNull);
@@ -493,7 +493,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_QUANTIFIED_VALUE_SELECT: {
+			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT: {
 				PredicateQuantifiedValueSelect predicateQuantifiedValueSelect = (PredicateQuantifiedValueSelect)theEObject;
 				Object result = casePredicateQuantifiedValueSelect(predicateQuantifiedValueSelect);
 				if (result == null) result = casePredicateQuantified(predicateQuantifiedValueSelect);
@@ -507,7 +507,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_QUANTIFIED_ROW_SELECT: {
+			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT: {
 				PredicateQuantifiedRowSelect predicateQuantifiedRowSelect = (PredicateQuantifiedRowSelect)theEObject;
 				Object result = casePredicateQuantifiedRowSelect(predicateQuantifiedRowSelect);
 				if (result == null) result = casePredicateQuantified(predicateQuantifiedRowSelect);
@@ -521,7 +521,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_IN_VALUE_SELECT: {
+			case SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT: {
 				PredicateInValueSelect predicateInValueSelect = (PredicateInValueSelect)theEObject;
 				Object result = casePredicateInValueSelect(predicateInValueSelect);
 				if (result == null) result = casePredicateIn(predicateInValueSelect);
@@ -535,7 +535,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_IN_VALUE_LIST: {
+			case SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST: {
 				PredicateInValueList predicateInValueList = (PredicateInValueList)theEObject;
 				Object result = casePredicateInValueList(predicateInValueList);
 				if (result == null) result = casePredicateIn(predicateInValueList);
@@ -549,7 +549,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.PREDICATE_IN_VALUE_ROW_SELECT: {
+			case SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT: {
 				PredicateInValueRowSelect predicateInValueRowSelect = (PredicateInValueRowSelect)theEObject;
 				Object result = casePredicateInValueRowSelect(predicateInValueRowSelect);
 				if (result == null) result = casePredicateIn(predicateInValueRowSelect);
@@ -563,7 +563,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_SIMPLE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_SIMPLE: {
 				ValueExpressionSimple valueExpressionSimple = (ValueExpressionSimple)theEObject;
 				Object result = caseValueExpressionSimple(valueExpressionSimple);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionSimple);
@@ -576,7 +576,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_COLUMN: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN: {
 				ValueExpressionColumn valueExpressionColumn = (ValueExpressionColumn)theEObject;
 				Object result = caseValueExpressionColumn(valueExpressionColumn);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionColumn);
@@ -589,7 +589,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_VARIABLE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE: {
 				ValueExpressionVariable valueExpressionVariable = (ValueExpressionVariable)theEObject;
 				Object result = caseValueExpressionVariable(valueExpressionVariable);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionVariable);
@@ -602,7 +602,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_SCALAR_SELECT: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT: {
 				ValueExpressionScalarSelect valueExpressionScalarSelect = (ValueExpressionScalarSelect)theEObject;
 				Object result = caseValueExpressionScalarSelect(valueExpressionScalarSelect);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionScalarSelect);
@@ -615,7 +615,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_LABELED_DURATION: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION: {
 				ValueExpressionLabeledDuration valueExpressionLabeledDuration = (ValueExpressionLabeledDuration)theEObject;
 				Object result = caseValueExpressionLabeledDuration(valueExpressionLabeledDuration);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionLabeledDuration);
@@ -628,7 +628,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE: {
 				ValueExpressionCase valueExpressionCase = (ValueExpressionCase)theEObject;
 				Object result = caseValueExpressionCase(valueExpressionCase);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionCase);
@@ -641,7 +641,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CAST: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CAST: {
 				ValueExpressionCast valueExpressionCast = (ValueExpressionCast)theEObject;
 				Object result = caseValueExpressionCast(valueExpressionCast);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionCast);
@@ -654,7 +654,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_NULL_VALUE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NULL_VALUE: {
 				ValueExpressionNullValue valueExpressionNullValue = (ValueExpressionNullValue)theEObject;
 				Object result = caseValueExpressionNullValue(valueExpressionNullValue);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionNullValue);
@@ -667,7 +667,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_DEFAULT_VALUE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_DEFAULT_VALUE: {
 				ValueExpressionDefaultValue valueExpressionDefaultValue = (ValueExpressionDefaultValue)theEObject;
 				Object result = caseValueExpressionDefaultValue(valueExpressionDefaultValue);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionDefaultValue);
@@ -680,7 +680,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_FUNCTION: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION: {
 				ValueExpressionFunction valueExpressionFunction = (ValueExpressionFunction)theEObject;
 				Object result = caseValueExpressionFunction(valueExpressionFunction);
 				if (result == null) result = caseValueExpressionAtomic(valueExpressionFunction);
@@ -693,7 +693,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_COMBINED: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED: {
 				ValueExpressionCombined valueExpressionCombined = (ValueExpressionCombined)theEObject;
 				Object result = caseValueExpressionCombined(valueExpressionCombined);
 				if (result == null) result = caseQueryValueExpression(valueExpressionCombined);
@@ -705,7 +705,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_SETS: {
+			case SQLQueryModelPackage.GROUPING_SETS: {
 				GroupingSets groupingSets = (GroupingSets)theEObject;
 				Object result = caseGroupingSets(groupingSets);
 				if (result == null) result = caseGroupingSpecification(groupingSets);
@@ -716,7 +716,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING: {
+			case SQLQueryModelPackage.GROUPING: {
 				Grouping grouping = (Grouping)theEObject;
 				Object result = caseGrouping(grouping);
 				if (result == null) result = caseGroupingSpecification(grouping);
@@ -727,7 +727,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_SETS_ELEMENT: {
+			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT: {
 				GroupingSetsElement groupingSetsElement = (GroupingSetsElement)theEObject;
 				Object result = caseGroupingSetsElement(groupingSetsElement);
 				if (result == null) result = caseSQLQueryObject(groupingSetsElement);
@@ -737,7 +737,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_SETS_ELEMENT_SUBLIST: {
+			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST: {
 				GroupingSetsElementSublist groupingSetsElementSublist = (GroupingSetsElementSublist)theEObject;
 				Object result = caseGroupingSetsElementSublist(groupingSetsElementSublist);
 				if (result == null) result = caseGroupingSetsElement(groupingSetsElementSublist);
@@ -748,7 +748,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_SETS_ELEMENT_EXPRESSION: {
+			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION: {
 				GroupingSetsElementExpression groupingSetsElementExpression = (GroupingSetsElementExpression)theEObject;
 				Object result = caseGroupingSetsElementExpression(groupingSetsElementExpression);
 				if (result == null) result = caseGroupingSetsElement(groupingSetsElementExpression);
@@ -759,7 +759,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SUPER_GROUP: {
+			case SQLQueryModelPackage.SUPER_GROUP: {
 				SuperGroup superGroup = (SuperGroup)theEObject;
 				Object result = caseSuperGroup(superGroup);
 				if (result == null) result = caseGrouping(superGroup);
@@ -771,7 +771,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.GROUPING_EXPRESSION: {
+			case SQLQueryModelPackage.GROUPING_EXPRESSION: {
 				GroupingExpression groupingExpression = (GroupingExpression)theEObject;
 				Object result = caseGroupingExpression(groupingExpression);
 				if (result == null) result = caseGrouping(groupingExpression);
@@ -783,7 +783,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SUPER_GROUP_ELEMENT: {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT: {
 				SuperGroupElement superGroupElement = (SuperGroupElement)theEObject;
 				Object result = caseSuperGroupElement(superGroupElement);
 				if (result == null) result = caseSQLQueryObject(superGroupElement);
@@ -793,7 +793,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SUPER_GROUP_ELEMENT_SUBLIST: {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_SUBLIST: {
 				SuperGroupElementSublist superGroupElementSublist = (SuperGroupElementSublist)theEObject;
 				Object result = caseSuperGroupElementSublist(superGroupElementSublist);
 				if (result == null) result = caseSuperGroupElement(superGroupElementSublist);
@@ -804,7 +804,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SUPER_GROUP_ELEMENT_EXPRESSION: {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION: {
 				SuperGroupElementExpression superGroupElementExpression = (SuperGroupElementExpression)theEObject;
 				Object result = caseSuperGroupElementExpression(superGroupElementExpression);
 				if (result == null) result = caseSuperGroupElement(superGroupElementExpression);
@@ -815,7 +815,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH: {
 				ValueExpressionCaseSearch valueExpressionCaseSearch = (ValueExpressionCaseSearch)theEObject;
 				Object result = caseValueExpressionCaseSearch(valueExpressionCaseSearch);
 				if (result == null) result = caseValueExpressionCase(valueExpressionCaseSearch);
@@ -829,7 +829,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE: {
 				ValueExpressionCaseSimple valueExpressionCaseSimple = (ValueExpressionCaseSimple)theEObject;
 				Object result = caseValueExpressionCaseSimple(valueExpressionCaseSimple);
 				if (result == null) result = caseValueExpressionCase(valueExpressionCaseSimple);
@@ -843,7 +843,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_ELSE: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE: {
 				ValueExpressionCaseElse valueExpressionCaseElse = (ValueExpressionCaseElse)theEObject;
 				Object result = caseValueExpressionCaseElse(valueExpressionCaseElse);
 				if (result == null) result = caseSQLQueryObject(valueExpressionCaseElse);
@@ -853,7 +853,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT: {
 				ValueExpressionCaseSearchContent valueExpressionCaseSearchContent = (ValueExpressionCaseSearchContent)theEObject;
 				Object result = caseValueExpressionCaseSearchContent(valueExpressionCaseSearchContent);
 				if (result == null) result = caseSQLQueryObject(valueExpressionCaseSearchContent);
@@ -863,7 +863,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT: {
 				ValueExpressionCaseSimpleContent valueExpressionCaseSimpleContent = (ValueExpressionCaseSimpleContent)theEObject;
 				Object result = caseValueExpressionCaseSimpleContent(valueExpressionCaseSimpleContent);
 				if (result == null) result = caseSQLQueryObject(valueExpressionCaseSimpleContent);
@@ -873,7 +873,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_IN_DATABASE: {
+			case SQLQueryModelPackage.TABLE_IN_DATABASE: {
 				TableInDatabase tableInDatabase = (TableInDatabase)theEObject;
 				Object result = caseTableInDatabase(tableInDatabase);
 				if (result == null) result = caseTableExpression(tableInDatabase);
@@ -885,7 +885,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_FUNCTION: {
+			case SQLQueryModelPackage.TABLE_FUNCTION: {
 				TableFunction tableFunction = (TableFunction)theEObject;
 				Object result = caseTableFunction(tableFunction);
 				if (result == null) result = caseTableExpression(tableFunction);
@@ -897,7 +897,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SQL_QUERY_OBJECT: {
+			case SQLQueryModelPackage.SQL_QUERY_OBJECT: {
 				SQLQueryObject sqlQueryObject = (SQLQueryObject)theEObject;
 				Object result = caseSQLQueryObject(sqlQueryObject);
 				if (result == null) result = caseSQLObject(sqlQueryObject);
@@ -906,7 +906,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT: {
 				QueryChangeStatement queryChangeStatement = (QueryChangeStatement)theEObject;
 				Object result = caseQueryChangeStatement(queryChangeStatement);
 				if (result == null) result = caseQueryStatement(queryChangeStatement);
@@ -920,7 +920,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.COLUMN_NAME: {
+			case SQLQueryModelPackage.COLUMN_NAME: {
 				ColumnName columnName = (ColumnName)theEObject;
 				Object result = caseColumnName(columnName);
 				if (result == null) result = caseSQLQueryObject(columnName);
@@ -930,7 +930,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_NESTED: {
+			case SQLQueryModelPackage.TABLE_NESTED: {
 				TableNested tableNested = (TableNested)theEObject;
 				Object result = caseTableNested(tableNested);
 				if (result == null) result = caseTableReference(tableNested);
@@ -941,7 +941,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.QUERY_MERGE_STATEMENT: {
+			case SQLQueryModelPackage.QUERY_MERGE_STATEMENT: {
 				QueryMergeStatement queryMergeStatement = (QueryMergeStatement)theEObject;
 				Object result = caseQueryMergeStatement(queryMergeStatement);
 				if (result == null) result = caseQueryChangeStatement(queryMergeStatement);
@@ -956,7 +956,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.SEARCH_CONDITION_NESTED: {
+			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED: {
 				SearchConditionNested searchConditionNested = (SearchConditionNested)theEObject;
 				Object result = caseSearchConditionNested(searchConditionNested);
 				if (result == null) result = caseQuerySearchCondition(searchConditionNested);
@@ -968,7 +968,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_NESTED: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED: {
 				ValueExpressionNested valueExpressionNested = (ValueExpressionNested)theEObject;
 				Object result = caseValueExpressionNested(valueExpressionNested);
 				if (result == null) result = caseQueryValueExpression(valueExpressionNested);
@@ -980,7 +980,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.VALUE_EXPRESSION_ATOMIC: {
+			case SQLQueryModelPackage.VALUE_EXPRESSION_ATOMIC: {
 				ValueExpressionAtomic valueExpressionAtomic = (ValueExpressionAtomic)theEObject;
 				Object result = caseValueExpressionAtomic(valueExpressionAtomic);
 				if (result == null) result = caseQueryValueExpression(valueExpressionAtomic);
@@ -992,7 +992,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.ORDER_BY_SPECIFICATION: {
+			case SQLQueryModelPackage.ORDER_BY_SPECIFICATION: {
 				OrderBySpecification orderBySpecification = (OrderBySpecification)theEObject;
 				Object result = caseOrderBySpecification(orderBySpecification);
 				if (result == null) result = caseSQLQueryObject(orderBySpecification);
@@ -1002,7 +1002,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.ORDER_BY_ORDINAL: {
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL: {
 				OrderByOrdinal orderByOrdinal = (OrderByOrdinal)theEObject;
 				Object result = caseOrderByOrdinal(orderByOrdinal);
 				if (result == null) result = caseOrderBySpecification(orderByOrdinal);
@@ -1013,7 +1013,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.TABLE_CORRELATION: {
+			case SQLQueryModelPackage.TABLE_CORRELATION: {
 				TableCorrelation tableCorrelation = (TableCorrelation)theEObject;
 				Object result = caseTableCorrelation(tableCorrelation);
 				if (result == null) result = caseSQLQueryObject(tableCorrelation);
@@ -1023,7 +1023,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.UPDATE_SOURCE: {
+			case SQLQueryModelPackage.UPDATE_SOURCE: {
 				UpdateSource updateSource = (UpdateSource)theEObject;
 				Object result = caseUpdateSource(updateSource);
 				if (result == null) result = caseSQLQueryObject(updateSource);
@@ -1033,7 +1033,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.UPDATE_SOURCE_EXPR_LIST: {
+			case SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST: {
 				UpdateSourceExprList updateSourceExprList = (UpdateSourceExprList)theEObject;
 				Object result = caseUpdateSourceExprList(updateSourceExprList);
 				if (result == null) result = caseUpdateSource(updateSourceExprList);
@@ -1044,7 +1044,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.UPDATE_SOURCE_QUERY: {
+			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY: {
 				UpdateSourceQuery updateSourceQuery = (UpdateSourceQuery)theEObject;
 				Object result = caseUpdateSourceQuery(updateSourceQuery);
 				if (result == null) result = caseUpdateSource(updateSourceQuery);
@@ -1055,7 +1055,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.ORDER_BY_RESULT_COLUMN: {
+			case SQLQueryModelPackage.ORDER_BY_RESULT_COLUMN: {
 				OrderByResultColumn orderByResultColumn = (OrderByResultColumn)theEObject;
 				Object result = caseOrderByResultColumn(orderByResultColumn);
 				if (result == null) result = caseOrderBySpecification(orderByResultColumn);
@@ -1066,7 +1066,7 @@ public class SQLQueryModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLQueryPackage.WITH_TABLE_REFERENCE: {
+			case SQLQueryModelPackage.WITH_TABLE_REFERENCE: {
 				WithTableReference withTableReference = (WithTableReference)theEObject;
 				Object result = caseWithTableReference(withTableReference);
 				if (result == null) result = caseTableExpression(withTableReference);
@@ -1085,1381 +1085,1381 @@ public class SQLQueryModelSwitch {
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryStatement(QueryStatement object) {
+    public Object caseQueryStatement(QueryStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Delete Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Delete Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryDeleteStatement(QueryDeleteStatement object) {
+    public Object caseQueryDeleteStatement(QueryDeleteStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Insert Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Insert Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryInsertStatement(QueryInsertStatement object) {
+    public Object caseQueryInsertStatement(QueryInsertStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Select Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Select Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQuerySelectStatement(QuerySelectStatement object) {
+    public Object caseQuerySelectStatement(QuerySelectStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Update Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Update Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryUpdateStatement(QueryUpdateStatement object) {
+    public Object caseQueryUpdateStatement(QueryUpdateStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Update Assignment Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Update Assignment Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUpdateAssignmentExpression(UpdateAssignmentExpression object) {
+    public Object caseUpdateAssignmentExpression(UpdateAssignmentExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Cursor Reference</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Cursor Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCursorReference(CursorReference object) {
+    public Object caseCursorReference(CursorReference object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Search Condition</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Search Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQuerySearchCondition(QuerySearchCondition object) {
+    public Object caseQuerySearchCondition(QuerySearchCondition object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Expression Body</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Expression Body</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryExpressionBody(QueryExpressionBody object) {
+    public Object caseQueryExpressionBody(QueryExpressionBody object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Value Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Value Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryValueExpression(QueryValueExpression object) {
+    public Object caseQueryValueExpression(QueryValueExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Expression Root</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Expression Root</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryExpressionRoot(QueryExpressionRoot object) {
+    public Object caseQueryExpressionRoot(QueryExpressionRoot object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Values Row</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Values Row</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValuesRow(ValuesRow object) {
+    public Object caseValuesRow(ValuesRow object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Values</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Values</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryValues(QueryValues object) {
+    public Object caseQueryValues(QueryValues object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Reference</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableReference(TableReference object) {
+    public Object caseTableReference(TableReference object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableExpression(TableExpression object) {
+    public Object caseTableExpression(TableExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Joined</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Joined</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableJoined(TableJoined object) {
+    public Object caseTableJoined(TableJoined object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>With Table Specification</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>With Table Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWithTableSpecification(WithTableSpecification object) {
+    public Object caseWithTableSpecification(WithTableSpecification object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicate(Predicate object) {
+    public Object casePredicate(Predicate object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Search Condition Combined</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Search Condition Combined</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSearchConditionCombined(SearchConditionCombined object) {
+    public Object caseSearchConditionCombined(SearchConditionCombined object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Order By Value Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Order By Value Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOrderByValueExpression(OrderByValueExpression object) {
+    public Object caseOrderByValueExpression(OrderByValueExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Combined</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Combined</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryCombined(QueryCombined object) {
+    public Object caseQueryCombined(QueryCombined object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQuerySelect(QuerySelect object) {
+    public Object caseQuerySelect(QuerySelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Specification</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingSpecification(GroupingSpecification object) {
+    public Object caseGroupingSpecification(GroupingSpecification object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Result Specification</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Result Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryResultSpecification(QueryResultSpecification object) {
+    public Object caseQueryResultSpecification(QueryResultSpecification object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Result Table All Columns</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Result Table All Columns</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseResultTableAllColumns(ResultTableAllColumns object) {
+    public Object caseResultTableAllColumns(ResultTableAllColumns object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Result Column</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Result Column</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseResultColumn(ResultColumn object) {
+    public Object caseResultColumn(ResultColumn object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Basic</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Basic</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateBasic(PredicateBasic object) {
+    public Object casePredicateBasic(PredicateBasic object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Quantified</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Quantified</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateQuantified(PredicateQuantified object) {
+    public Object casePredicateQuantified(PredicateQuantified object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Between</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Between</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateBetween(PredicateBetween object) {
+    public Object casePredicateBetween(PredicateBetween object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Exists</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Exists</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateExists(PredicateExists object) {
+    public Object casePredicateExists(PredicateExists object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate In</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate In</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateIn(PredicateIn object) {
+    public Object casePredicateIn(PredicateIn object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Like</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Like</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateLike(PredicateLike object) {
+    public Object casePredicateLike(PredicateLike object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Is Null</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Is Null</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateIsNull(PredicateIsNull object) {
+    public Object casePredicateIsNull(PredicateIsNull object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Quantified Value Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Quantified Value Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateQuantifiedValueSelect(PredicateQuantifiedValueSelect object) {
+    public Object casePredicateQuantifiedValueSelect(PredicateQuantifiedValueSelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate Quantified Row Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate Quantified Row Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateQuantifiedRowSelect(PredicateQuantifiedRowSelect object) {
+    public Object casePredicateQuantifiedRowSelect(PredicateQuantifiedRowSelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate In Value Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate In Value Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateInValueSelect(PredicateInValueSelect object) {
+    public Object casePredicateInValueSelect(PredicateInValueSelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate In Value List</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate In Value List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateInValueList(PredicateInValueList object) {
+    public Object casePredicateInValueList(PredicateInValueList object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Predicate In Value Row Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Predicate In Value Row Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePredicateInValueRowSelect(PredicateInValueRowSelect object) {
+    public Object casePredicateInValueRowSelect(PredicateInValueRowSelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Simple</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Simple</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionSimple(ValueExpressionSimple object) {
+    public Object caseValueExpressionSimple(ValueExpressionSimple object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Column</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Column</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionColumn(ValueExpressionColumn object) {
+    public Object caseValueExpressionColumn(ValueExpressionColumn object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Variable</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionVariable(ValueExpressionVariable object) {
+    public Object caseValueExpressionVariable(ValueExpressionVariable object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Scalar Select</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Scalar Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionScalarSelect(ValueExpressionScalarSelect object) {
+    public Object caseValueExpressionScalarSelect(ValueExpressionScalarSelect object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Labeled Duration</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Labeled Duration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionLabeledDuration(ValueExpressionLabeledDuration object) {
+    public Object caseValueExpressionLabeledDuration(ValueExpressionLabeledDuration object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCase(ValueExpressionCase object) {
+    public Object caseValueExpressionCase(ValueExpressionCase object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Cast</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Cast</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCast(ValueExpressionCast object) {
+    public Object caseValueExpressionCast(ValueExpressionCast object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Null Value</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Null Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionNullValue(ValueExpressionNullValue object) {
+    public Object caseValueExpressionNullValue(ValueExpressionNullValue object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Default Value</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Default Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionDefaultValue(ValueExpressionDefaultValue object) {
+    public Object caseValueExpressionDefaultValue(ValueExpressionDefaultValue object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Function</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Function</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionFunction(ValueExpressionFunction object) {
+    public Object caseValueExpressionFunction(ValueExpressionFunction object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Combined</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Combined</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCombined(ValueExpressionCombined object) {
+    public Object caseValueExpressionCombined(ValueExpressionCombined object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Sets</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Sets</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingSets(GroupingSets object) {
+    public Object caseGroupingSets(GroupingSets object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGrouping(Grouping object) {
+    public Object caseGrouping(Grouping object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Sets Element</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Sets Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingSetsElement(GroupingSetsElement object) {
+    public Object caseGroupingSetsElement(GroupingSetsElement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Sets Element Sublist</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Sets Element Sublist</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingSetsElementSublist(GroupingSetsElementSublist object) {
+    public Object caseGroupingSetsElementSublist(GroupingSetsElementSublist object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Sets Element Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Sets Element Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingSetsElementExpression(GroupingSetsElementExpression object) {
+    public Object caseGroupingSetsElementExpression(GroupingSetsElementExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Super Group</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Super Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSuperGroup(SuperGroup object) {
+    public Object caseSuperGroup(SuperGroup object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Grouping Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Grouping Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseGroupingExpression(GroupingExpression object) {
+    public Object caseGroupingExpression(GroupingExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Super Group Element</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Super Group Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSuperGroupElement(SuperGroupElement object) {
+    public Object caseSuperGroupElement(SuperGroupElement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Super Group Element Sublist</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Super Group Element Sublist</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSuperGroupElementSublist(SuperGroupElementSublist object) {
+    public Object caseSuperGroupElementSublist(SuperGroupElementSublist object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Super Group Element Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Super Group Element Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSuperGroupElementExpression(SuperGroupElementExpression object) {
+    public Object caseSuperGroupElementExpression(SuperGroupElementExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case Search</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case Search</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCaseSearch(ValueExpressionCaseSearch object) {
+    public Object caseValueExpressionCaseSearch(ValueExpressionCaseSearch object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case Simple</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case Simple</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCaseSimple(ValueExpressionCaseSimple object) {
+    public Object caseValueExpressionCaseSimple(ValueExpressionCaseSimple object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case Else</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case Else</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCaseElse(ValueExpressionCaseElse object) {
+    public Object caseValueExpressionCaseElse(ValueExpressionCaseElse object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case Search Content</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case Search Content</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCaseSearchContent(ValueExpressionCaseSearchContent object) {
+    public Object caseValueExpressionCaseSearchContent(ValueExpressionCaseSearchContent object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Case Simple Content</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Case Simple Content</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionCaseSimpleContent(ValueExpressionCaseSimpleContent object) {
+    public Object caseValueExpressionCaseSimpleContent(ValueExpressionCaseSimpleContent object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table In Database</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table In Database</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableInDatabase(TableInDatabase object) {
+    public Object caseTableInDatabase(TableInDatabase object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Function</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Function</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableFunction(TableFunction object) {
+    public Object caseTableFunction(TableFunction object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Query Object</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>SQL Query Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLQueryObject(SQLQueryObject object) {
+    public Object caseSQLQueryObject(SQLQueryObject object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Change Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Change Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryChangeStatement(QueryChangeStatement object) {
+    public Object caseQueryChangeStatement(QueryChangeStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Column Name</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Column Name</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseColumnName(ColumnName object) {
+    public Object caseColumnName(ColumnName object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Nested</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Nested</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableNested(TableNested object) {
+    public Object caseTableNested(TableNested object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Merge Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Merge Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryMergeStatement(QueryMergeStatement object) {
+    public Object caseQueryMergeStatement(QueryMergeStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Search Condition Nested</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Search Condition Nested</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSearchConditionNested(SearchConditionNested object) {
+    public Object caseSearchConditionNested(SearchConditionNested object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Nested</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Nested</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionNested(ValueExpressionNested object) {
+    public Object caseValueExpressionNested(ValueExpressionNested object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression Atomic</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression Atomic</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpressionAtomic(ValueExpressionAtomic object) {
+    public Object caseValueExpressionAtomic(ValueExpressionAtomic object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Order By Specification</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Order By Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOrderBySpecification(OrderBySpecification object) {
+    public Object caseOrderBySpecification(OrderBySpecification object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Order By Ordinal</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Order By Ordinal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOrderByOrdinal(OrderByOrdinal object) {
+    public Object caseOrderByOrdinal(OrderByOrdinal object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Correlation</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Table Correlation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableCorrelation(TableCorrelation object) {
+    public Object caseTableCorrelation(TableCorrelation object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Update Source</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Update Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUpdateSource(UpdateSource object) {
+    public Object caseUpdateSource(UpdateSource object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Update Source Expr List</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Update Source Expr List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUpdateSourceExprList(UpdateSourceExprList object) {
+    public Object caseUpdateSourceExprList(UpdateSourceExprList object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Update Source Query</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Update Source Query</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseUpdateSourceQuery(UpdateSourceQuery object) {
+    public Object caseUpdateSourceQuery(UpdateSourceQuery object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Order By Result Column</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Order By Result Column</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseOrderByResultColumn(OrderByResultColumn object) {
+    public Object caseOrderByResultColumn(OrderByResultColumn object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>With Table Reference</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>With Table Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseWithTableReference(WithTableReference object) {
+    public Object caseWithTableReference(WithTableReference object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEModelElement(EModelElement object) {
+    public Object caseEModelElement(EModelElement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseENamedElement(ENamedElement object) {
+    public Object caseENamedElement(ENamedElement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>SQL Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLObject(SQLObject object) {
+    public Object caseSQLObject(SQLObject object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>SQL Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLStatement(SQLStatement object) {
+    public Object caseSQLStatement(SQLStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Data Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>SQL Data Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLDataStatement(SQLDataStatement object) {
+    public Object caseSQLDataStatement(SQLDataStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Data Change Statement</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>SQL Data Change Statement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLDataChangeStatement(SQLDataChangeStatement object) {
+    public Object caseSQLDataChangeStatement(SQLDataChangeStatement object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Search Condition</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Search Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSearchCondition(SearchCondition object) {
+    public Object caseSearchCondition(SearchCondition object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Value Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Value Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseValueExpression(ValueExpression object) {
+    public Object caseValueExpression(ValueExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>Query Expression</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>Query Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQueryExpression(QueryExpression object) {
+    public Object caseQueryExpression(QueryExpression object) {
 		return null;
 	}
 
 	/**
 	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch, but this is the last case anyway.
-	 * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch, but this is the last case anyway.
+     * <!-- end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+    public Object defaultCase(EObject object) {
 		return null;
 	}
 
-} //SQLQueryModelSwitch
+} //SQLQuerySwitch

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryChangeStatementImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: QueryChangeStatementImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -10,7 +10,7 @@ package org.eclipse.datatools.modelbase.sql.query.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryChangeStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
@@ -45,7 +45,7 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getQueryChangeStatement();
+		return SQLQueryModelPackage.eINSTANCE.getQueryChangeStatement();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -75,9 +75,9 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
+				case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -93,15 +93,15 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__NAME:
 				return getName();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__LABEL:
 				return getLabel();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -114,21 +114,21 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	 */
 	public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__LABEL:
 				setLabel((String)newValue);
 				return;
 		}
@@ -142,19 +142,19 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	 */
 	public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
 		}
@@ -168,15 +168,15 @@ public abstract class QueryChangeStatementImpl extends QueryStatementImpl implem
 	 */
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.QUERY_CHANGE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_CHANGE_STATEMENT__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		}
 		return eDynamicIsSet(eFeature);

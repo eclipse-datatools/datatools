@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunctionTarget.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLSerializeFunctionTarget.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunctionTarget()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunctionTarget()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface XMLSerializeFunctionTarget extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serialize Function</em>' container reference.
 	 * @see #setSerializeFunction(XMLSerializeFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunctionTarget_SerializeFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunctionTarget_SerializeFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLSerializeFunction#getSerializeTarget
 	 * @model opposite="serializeTarget" required="true"
 	 * @generated
@@ -64,7 +64,7 @@ public interface XMLSerializeFunctionTarget extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunctionTarget_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunctionTarget_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

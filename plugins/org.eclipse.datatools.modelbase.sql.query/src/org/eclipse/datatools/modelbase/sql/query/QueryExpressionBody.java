@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionBody.java,v 1.6 2005/02/03 22:58:55 bpayton Exp $
+ * $Id: QueryExpressionBody.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -24,7 +24,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody()
  * @model abstract="true"
  * @generated
  */
@@ -40,7 +40,7 @@ public interface QueryExpressionBody extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expression</em>' container reference.
 	 * @see #setQueryExpression(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_QueryExpression()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_QueryExpression()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuery
 	 * @model opposite="query"
 	 * @generated
@@ -68,7 +68,7 @@ public interface QueryExpressionBody extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Combined Left</em>' container reference.
 	 * @see #setCombinedLeft(QueryCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_CombinedLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_CombinedLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryCombined#getLeftQuery
 	 * @model opposite="leftQuery"
 	 * @generated
@@ -96,7 +96,7 @@ public interface QueryExpressionBody extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Combined Right</em>' container reference.
 	 * @see #setCombinedRight(QueryCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_CombinedRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_CombinedRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryCombined#getRightQuery
 	 * @model opposite="rightQuery"
 	 * @generated
@@ -124,7 +124,7 @@ public interface QueryExpressionBody extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predicate Exists</em>' container reference.
 	 * @see #setPredicateExists(PredicateExists)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_PredicateExists()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_PredicateExists()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateExists#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -152,7 +152,7 @@ public interface QueryExpressionBody extends TableExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Source Query</em>' container reference.
 	 * @see #setUpdateSourceQuery(UpdateSourceQuery)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_UpdateSourceQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_UpdateSourceQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery#getQueryExpr
 	 * @model opposite="queryExpr" required="true"
 	 * @generated
@@ -180,7 +180,7 @@ public interface QueryExpressionBody extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Table Specification</em>' container reference.
 	 * @see #setWithTableSpecification(WithTableSpecification)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionBody_WithTableSpecification()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionBody_WithTableSpecification()
 	 * @see org.eclipse.datatools.modelbase.sql.query.WithTableSpecification#getWithTableQueryExpr
 	 * @model opposite="withTableQueryExpr" required="true"
 	 * @generated

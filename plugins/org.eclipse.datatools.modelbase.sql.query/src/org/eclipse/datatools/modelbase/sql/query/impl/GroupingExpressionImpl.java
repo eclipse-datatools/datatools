@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingExpressionImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: GroupingExpressionImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -13,7 +13,7 @@ import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -64,7 +64,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getGroupingExpression();
+		return SQLQueryModelPackage.eINSTANCE.getGroupingExpression();
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 		QueryValueExpression oldValueExpr = valueExpr;
 		valueExpr = newValueExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, oldValueExpr, newValueExpr);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, oldValueExpr, newValueExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -100,14 +100,14 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 		if (newValueExpr != valueExpr) {
 			NotificationChain msgs = null;
 			if (valueExpr != null)
-				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, QueryValueExpression.class, msgs);
+				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, QueryValueExpression.class, msgs);
 			if (newValueExpr != null)
-				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, QueryValueExpression.class, msgs);
+				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, QueryValueExpression.class, msgs);
 			msgs = basicSetValueExpr(newValueExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, newValueExpr, newValueExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, newValueExpr, newValueExpr));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 * @generated
 	 */
     public SuperGroupElementExpression getSuperGroupElementExpr() {
-		if (eContainerFeatureID != SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR) return null;
 		return (SuperGroupElementExpression)eContainer;
 	}
 
@@ -126,19 +126,19 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 * @generated
 	 */
     public void setSuperGroupElementExpr(SuperGroupElementExpression newSuperGroupElementExpr) {
-		if (newSuperGroupElementExpr != eContainer || (eContainerFeatureID != SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR && newSuperGroupElementExpr != null)) {
+		if (newSuperGroupElementExpr != eContainer || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR && newSuperGroupElementExpr != null)) {
 			if (EcoreUtil.isAncestor(this, newSuperGroupElementExpr))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSuperGroupElementExpr != null)
-				msgs = ((InternalEObject)newSuperGroupElementExpr).eInverseAdd(this, SQLQueryPackage.SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR, SuperGroupElementExpression.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newSuperGroupElementExpr, SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
+				msgs = ((InternalEObject)newSuperGroupElementExpr).eInverseAdd(this, SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR, SuperGroupElementExpression.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newSuperGroupElementExpr, SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, newSuperGroupElementExpr, newSuperGroupElementExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, newSuperGroupElementExpr, newSuperGroupElementExpr));
 	}
 
 	/**
@@ -149,24 +149,24 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 					if (valueExpr != null)
-						msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, null, msgs);
+						msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, null, msgs);
 					return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -184,18 +184,18 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__DEPENDENCIES:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
-					return eBasicSetContainer(null, SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+					return eBasicSetContainer(null, SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 					return basicSetValueExpr(null, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
-					return eBasicSetContainer(null, SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+					return eBasicSetContainer(null, SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -211,12 +211,12 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__GROUP_BY_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING, GroupingSetsElementExpression.class, msgs);
-				case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR, SuperGroupElementExpression.class, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__GROUP_BY_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING, GroupingSetsElementExpression.class, msgs);
+				case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR, SuperGroupElementExpression.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -231,23 +231,23 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.GROUPING_EXPRESSION__NAME:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__NAME:
 				return getName();
-			case SQLQueryPackage.GROUPING_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.GROUPING_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.GROUPING_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__LABEL:
 				return getLabel();
-			case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
 				return getQuerySelect();
-			case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
 				return getGroupingSetsElementExpr();
-			case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 				return getValueExpr();
-			case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
 				return getSuperGroupElementExpr();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -260,33 +260,33 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__NAME:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
 				setGroupingSetsElementExpr((GroupingSetsElementExpression)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)newValue);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
 				setSuperGroupElementExpr((SuperGroupElementExpression)newValue);
 				return;
 		}
@@ -300,31 +300,31 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__NAME:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)null);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
 				setGroupingSetsElementExpr((GroupingSetsElementExpression)null);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)null);
 				return;
-			case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
 				setSuperGroupElementExpr((SuperGroupElementExpression)null);
 				return;
 		}
@@ -338,23 +338,23 @@ public class GroupingExpressionImpl extends GroupingImpl implements GroupingExpr
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.GROUPING_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.GROUPING_EXPRESSION__NAME:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.GROUPING_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.GROUPING_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.GROUPING_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.GROUPING_EXPRESSION__QUERY_SELECT:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__QUERY_SELECT:
 				return getQuerySelect() != null;
-			case SQLQueryPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__GROUPING_SETS_ELEMENT_EXPR:
 				return getGroupingSetsElementExpr() != null;
-			case SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR:
 				return valueExpr != null;
-			case SQLQueryPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
+			case SQLQueryModelPackage.GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR:
 				return getSuperGroupElementExpr() != null;
 		}
 		return eDynamicIsSet(eFeature);

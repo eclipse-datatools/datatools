@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunction.java,v 1.3 2005/09/29 03:17:12 bpayton Exp $
+ * $Id: XMLValueFunction.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -18,7 +18,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunction()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunction()
  * @model abstract="true"
  * @generated
  */

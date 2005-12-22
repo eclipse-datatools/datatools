@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSearchContent.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionCaseSearchContent.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearchContent()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearchContent()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface ValueExpressionCaseSearchContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearchContent_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearchContent_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCaseSearchContent
 	 * @model opposite="valueExprCaseSearchContent" containment="true" required="true"
 	 * @generated
@@ -65,7 +65,7 @@ public interface ValueExpressionCaseSearchContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Search Condition</em>' containment reference.
 	 * @see #setSearchCondition(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearchContent_SearchCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearchContent_SearchCondition()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getValueExprCaseSearchContent
 	 * @model opposite="valueExprCaseSearchContent" containment="true" required="true"
 	 * @generated
@@ -93,7 +93,7 @@ public interface ValueExpressionCaseSearchContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Search</em>' container reference.
 	 * @see #setValueExprCaseSearch(ValueExpressionCaseSearch)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSearchContent_ValueExprCaseSearch()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSearchContent_ValueExprCaseSearch()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch#getSearchContentList
 	 * @model opposite="searchContentList"
 	 * @generated

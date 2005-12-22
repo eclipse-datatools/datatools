@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElementContentItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionElementContentItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentItem()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLValueFunctionElementContentItem extends QueryValueExpression
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentItem_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentItem_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface XMLValueFunctionElementContentItem extends QueryValueExpression
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Content List</em>' container reference.
 	 * @see #setElementContentList(XMLValueFunctionElementContentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentItem_ElementContentList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentItem_ElementContentList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentList#getElementContentListChildren
 	 * @model opposite="elementContentListChildren" required="true"
 	 * @generated

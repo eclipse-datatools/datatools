@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementExpression.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: GroupingSetsElementExpression.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElementExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElementExpression()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface GroupingSetsElementExpression extends GroupingSetsElement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Sets Element Sublist</em>' container reference.
 	 * @see #setGroupingSetsElementSublist(GroupingSetsElementSublist)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElementExpression_GroupingSetsElementSublist()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElementExpression_GroupingSetsElementSublist()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist#getGroupingSetsElementExprList
 	 * @model opposite="groupingSetsElementExprList"
 	 * @generated
@@ -64,7 +64,7 @@ public interface GroupingSetsElementExpression extends GroupingSetsElement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping</em>' containment reference.
 	 * @see #setGrouping(Grouping)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElementExpression_Grouping()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElementExpression_Grouping()
 	 * @see org.eclipse.datatools.modelbase.sql.query.Grouping#getGroupingSetsElementExpr
 	 * @model opposite="groupingSetsElementExpr" containment="true" required="true"
 	 * @generated

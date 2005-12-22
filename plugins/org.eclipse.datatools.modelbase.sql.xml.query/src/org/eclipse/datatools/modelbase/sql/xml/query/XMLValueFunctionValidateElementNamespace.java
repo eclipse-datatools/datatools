@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateElementNamespace.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionValidateElementNamespace.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementNamespace()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementNamespace()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface XMLValueFunctionValidateElementNamespace extends SQLQueryObject
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>No Namespace</em>' attribute.
 	 * @see #setNoNamespace(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementNamespace_NoNamespace()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementNamespace_NoNamespace()
 	 * @model default="false"
 	 * @generated
 	 */
@@ -64,7 +64,7 @@ public interface XMLValueFunctionValidateElementNamespace extends SQLQueryObject
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespace URI</em>' attribute.
 	 * @see #setNamespaceURI(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementNamespace_NamespaceURI()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementNamespace_NamespaceURI()
 	 * @model
 	 * @generated
 	 */
@@ -91,7 +91,7 @@ public interface XMLValueFunctionValidateElementNamespace extends SQLQueryObject
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Element</em>' container reference.
 	 * @see #setValidateElement(XMLValueFunctionValidateElement)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateElementNamespace_ValidateElement()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateElementNamespace_ValidateElement()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElement#getValidateElementNamespace
 	 * @model opposite="validateElementNamespace" required="true"
 	 * @generated

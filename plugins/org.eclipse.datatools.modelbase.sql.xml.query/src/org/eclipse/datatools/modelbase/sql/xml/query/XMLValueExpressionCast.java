@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueExpressionCast.java,v 1.5 2005/10/25 21:27:10 bpayton Exp $
+ * $Id: XMLValueExpressionCast.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueExpressionCast()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueExpressionCast()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLValueExpressionCast extends ValueExpressionCast{
 	 * @return the value of the '<em>Passing Mechanism</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
 	 * @see #setPassingMechanism(XMLPassingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueExpressionCast_PassingMechanism()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueExpressionCast_PassingMechanism()
 	 * @model
 	 * @generated
 	 */

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElementContentItemImpl.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionElementContentItemImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -24,7 +24,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
@@ -38,7 +38,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
 import org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentItem;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentList;
 import org.eclipse.emf.common.notify.Notification;
@@ -95,7 +95,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLValueFunctionElementContentItem();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionElementContentItem();
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 		QueryValueExpression oldValueExpr = valueExpr;
 		valueExpr = newValueExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, oldValueExpr, newValueExpr);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, oldValueExpr, newValueExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -131,14 +131,14 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 		if (newValueExpr != valueExpr) {
 			NotificationChain msgs = null;
 			if (valueExpr != null)
-				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, null, msgs);
+				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, null, msgs);
 			if (newValueExpr != null)
-				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, null, msgs);
+				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, null, msgs);
 			msgs = basicSetValueExpr(newValueExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, newValueExpr, newValueExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR, newValueExpr, newValueExpr));
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 * @generated
 	 */
     public XMLValueFunctionElementContentList getElementContentList() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST) return null;
 		return (XMLValueFunctionElementContentList)eContainer;
 	}
 
@@ -157,19 +157,19 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 * @generated
 	 */
     public void setElementContentList(XMLValueFunctionElementContentList newElementContentList) {
-		if (newElementContentList != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST && newElementContentList != null)) {
+		if (newElementContentList != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST && newElementContentList != null)) {
 			if (EcoreUtil.isAncestor(this, newElementContentList))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newElementContentList != null)
-				msgs = ((InternalEObject)newElementContentList).eInverseAdd(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, XMLValueFunctionElementContentList.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newElementContentList, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
+				msgs = ((InternalEObject)newElementContentList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, XMLValueFunctionElementContentList.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newElementContentList, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, newElementContentList, newElementContentList));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, newElementContentList, newElementContentList));
 	}
 
 	/**
@@ -180,136 +180,136 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -327,78 +327,78 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
 					return basicSetDataType(null, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
 					return basicSetValueExpr(null, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -414,70 +414,70 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, XMLValueFunctionElementContentList.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, XMLValueFunctionElementContentList.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -492,85 +492,85 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
 				return getUnaryOperator();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
 				return getDataType();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
 				return getValuesRow();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
 				return getOrderByValueExpr();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
 				return getResultColumn();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
 				return getBasicRight();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
 				return getBasicLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
 				return getLikePattern();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
 				return getLikeMatching();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
 				return getPredicateNull();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
 				return getInValueListRight();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
 				return getInValueListLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
 				return getInValueRowSelectLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
 				return getInValueSelectLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
 				return getQuantifiedRowSelectLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
 				return getQuantifiedValueSelectLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
 				return getBetweenLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
 				return getBetweenRight1();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
 				return getBetweenRight2();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
 				return getValueExprCast();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
 				return getValueExprFunction();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
 				return getValueExprCombinedLeft();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
 				return getValueExprCombinedRight();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
 				return getGroupingExpr();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
 				return getValueExprCaseElse();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
 				return getValueExprCaseSimple();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				return getValueExprCaseSimpleContentWhen();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				return getValueExprCaseSimpleContentResult();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				return getValueExprCaseSearchContent();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
 				return getLikeEscape();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
 				return getValueExprLabeledDuration();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
 				return getNest();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
 				return getUpdateSourceExprList();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
 				return getValueExpr();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
 				return getElementContentList();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -583,126 +583,126 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
 				setUnaryOperator((ValueExpressionUnaryOperator)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
 				setDataType((DataType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
 				setValuesRow((ValuesRow)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
 				setOrderByValueExpr((OrderByValueExpression)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
 				setResultColumn((ResultColumn)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
 				setBasicRight((PredicateBasic)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
 				setBasicLeft((PredicateBasic)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
 				setLikePattern((PredicateLike)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
 				setLikeMatching((PredicateLike)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
 				setPredicateNull((PredicateIsNull)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
 				setInValueListRight((PredicateInValueList)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
 				setInValueListLeft((PredicateInValueList)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
 				setInValueRowSelectLeft((PredicateInValueRowSelect)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
 				setInValueSelectLeft((PredicateInValueSelect)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
 				setQuantifiedRowSelectLeft((PredicateQuantifiedRowSelect)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
 				setQuantifiedValueSelectLeft((PredicateQuantifiedValueSelect)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
 				setBetweenLeft((PredicateBetween)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
 				setBetweenRight1((PredicateBetween)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
 				setBetweenRight2((PredicateBetween)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
 				setValueExprCast((ValueExpressionCast)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
 				setValueExprFunction((ValueExpressionFunction)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
 				setValueExprCombinedLeft((ValueExpressionCombined)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
 				setValueExprCombinedRight((ValueExpressionCombined)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
 				setGroupingExpr((GroupingExpression)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
 				setValueExprCaseElse((ValueExpressionCaseElse)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
 				setValueExprCaseSimple((ValueExpressionCaseSimple)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				setValueExprCaseSimpleContentWhen((ValueExpressionCaseSimpleContent)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				setValueExprCaseSimpleContentResult((ValueExpressionCaseSimpleContent)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
 				setLikeEscape((PredicateLike)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
 				setValueExprLabeledDuration((ValueExpressionLabeledDuration)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
 				setNest((ValueExpressionNested)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
 				setUpdateSourceExprList((UpdateSourceExprList)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
 				setElementContentList((XMLValueFunctionElementContentList)newValue);
 				return;
 		}
@@ -716,124 +716,124 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
 				setUnaryOperator(UNARY_OPERATOR_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
 				setDataType((DataType)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
 				setValuesRow((ValuesRow)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
 				setOrderByValueExpr((OrderByValueExpression)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
 				setResultColumn((ResultColumn)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
 				setBasicRight((PredicateBasic)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
 				setBasicLeft((PredicateBasic)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
 				setLikePattern((PredicateLike)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
 				setLikeMatching((PredicateLike)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
 				setPredicateNull((PredicateIsNull)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
 				setInValueListRight((PredicateInValueList)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
 				setInValueListLeft((PredicateInValueList)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
 				setInValueRowSelectLeft((PredicateInValueRowSelect)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
 				setInValueSelectLeft((PredicateInValueSelect)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
 				setQuantifiedRowSelectLeft((PredicateQuantifiedRowSelect)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
 				setQuantifiedValueSelectLeft((PredicateQuantifiedValueSelect)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
 				setBetweenLeft((PredicateBetween)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
 				setBetweenRight1((PredicateBetween)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
 				setBetweenRight2((PredicateBetween)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
 				setValueExprCast((ValueExpressionCast)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
 				setValueExprFunction((ValueExpressionFunction)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
 				setValueExprCombinedLeft((ValueExpressionCombined)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
 				setValueExprCombinedRight((ValueExpressionCombined)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
 				setGroupingExpr((GroupingExpression)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
 				setValueExprCaseElse((ValueExpressionCaseElse)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
 				setValueExprCaseSimple((ValueExpressionCaseSimple)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				setValueExprCaseSimpleContentWhen((ValueExpressionCaseSimpleContent)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				setValueExprCaseSimpleContentResult((ValueExpressionCaseSimpleContent)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
 				setLikeEscape((PredicateLike)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
 				setValueExprLabeledDuration((ValueExpressionLabeledDuration)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
 				setNest((ValueExpressionNested)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
 				setUpdateSourceExprList((UpdateSourceExprList)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
 				setElementContentList((XMLValueFunctionElementContentList)null);
 				return;
 		}
@@ -847,85 +847,85 @@ public class XMLValueFunctionElementContentItemImpl extends QueryValueExpression
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UNARY_OPERATOR:
 				return unaryOperator != UNARY_OPERATOR_EDEFAULT;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__DATA_TYPE:
 				return dataType != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUES_ROW:
 				return getValuesRow() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ORDER_BY_VALUE_EXPR:
 				return getOrderByValueExpr() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__RESULT_COLUMN:
 				return getResultColumn() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_RIGHT:
 				return getBasicRight() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BASIC_LEFT:
 				return getBasicLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_PATTERN:
 				return getLikePattern() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_MATCHING:
 				return getLikeMatching() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PREDICATE_NULL:
 				return getPredicateNull() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_RIGHT:
 				return getInValueListRight() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_LIST_LEFT:
 				return getInValueListLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_ROW_SELECT_LEFT:
 				return getInValueRowSelectLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__IN_VALUE_SELECT_LEFT:
 				return getInValueSelectLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_ROW_SELECT_LEFT:
 				return getQuantifiedRowSelectLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__QUANTIFIED_VALUE_SELECT_LEFT:
 				return getQuantifiedValueSelectLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_LEFT:
 				return getBetweenLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT1:
 				return getBetweenRight1() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__BETWEEN_RIGHT2:
 				return getBetweenRight2() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CAST:
 				return getValueExprCast() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_FUNCTION:
 				return getValueExprFunction() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_LEFT:
 				return getValueExprCombinedLeft() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_COMBINED_RIGHT:
 				return getValueExprCombinedRight() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__GROUPING_EXPR:
 				return getGroupingExpr() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_ELSE:
 				return getValueExprCaseElse() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE:
 				return getValueExprCaseSimple() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				return getValueExprCaseSimpleContentWhen() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				return getValueExprCaseSimpleContentResult() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				return getValueExprCaseSearchContent() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LIKE_ESCAPE:
 				return getLikeEscape() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR_LABELED_DURATION:
 				return getValueExprLabeledDuration() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__NEST:
 				return getNest() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__UPDATE_SOURCE_EXPR_LIST:
 				return getUpdateSourceExprList() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR:
 				return valueExpr != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST:
 				return getElementContentList() != null;
 		}
 		return eDynamicIsSet(eFeature);

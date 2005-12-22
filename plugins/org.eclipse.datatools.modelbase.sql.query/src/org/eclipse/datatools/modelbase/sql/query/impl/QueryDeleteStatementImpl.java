@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDeleteStatementImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: QueryDeleteStatementImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.CursorReference;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -101,7 +101,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getQueryDeleteStatement();
+		return SQLQueryModelPackage.eINSTANCE.getQueryDeleteStatement();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		CursorReference oldWhereCurrentOfClause = whereCurrentOfClause;
 		whereCurrentOfClause = newWhereCurrentOfClause;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, oldWhereCurrentOfClause, newWhereCurrentOfClause);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, oldWhereCurrentOfClause, newWhereCurrentOfClause);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -137,14 +137,14 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		if (newWhereCurrentOfClause != whereCurrentOfClause) {
 			NotificationChain msgs = null;
 			if (whereCurrentOfClause != null)
-				msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, CursorReference.class, msgs);
+				msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, CursorReference.class, msgs);
 			if (newWhereCurrentOfClause != null)
-				msgs = ((InternalEObject)newWhereCurrentOfClause).eInverseAdd(this, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, CursorReference.class, msgs);
+				msgs = ((InternalEObject)newWhereCurrentOfClause).eInverseAdd(this, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, CursorReference.class, msgs);
 			msgs = basicSetWhereCurrentOfClause(newWhereCurrentOfClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, newWhereCurrentOfClause, newWhereCurrentOfClause));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, newWhereCurrentOfClause, newWhereCurrentOfClause));
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		boolean oldWhereClauseESet = whereClauseESet;
 		whereClauseESet = true;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, oldWhereClause, newWhereClause, !oldWhereClauseESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, oldWhereClause, newWhereClause, !oldWhereClauseESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -182,9 +182,9 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		if (newWhereClause != whereClause) {
 			NotificationChain msgs = null;
 			if (whereClause != null)
-				msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
+				msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
 			if (newWhereClause != null)
-				msgs = ((InternalEObject)newWhereClause).eInverseAdd(this, SQLQueryPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
+				msgs = ((InternalEObject)newWhereClause).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
 			msgs = basicSetWhereClause(newWhereClause, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -192,7 +192,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 			boolean oldWhereClauseESet = whereClauseESet;
 			whereClauseESet = true;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, newWhereClause, newWhereClause, !oldWhereClauseESet));
+				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, newWhereClause, newWhereClause, !oldWhereClauseESet));
     	}
 	}
 
@@ -207,7 +207,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		boolean oldWhereClauseESet = whereClauseESet;
 		whereClauseESet = false;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, oldWhereClause, null, oldWhereClauseESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, oldWhereClause, null, oldWhereClauseESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -221,7 +221,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
     public void unsetWhereClause() {
 		if (whereClause != null) {
 			NotificationChain msgs = null;
-			msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
+			msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, QuerySearchCondition.class, msgs);
 			msgs = basicUnsetWhereClause(msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -229,7 +229,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 			boolean oldWhereClauseESet = whereClauseESet;
 			whereClauseESet = false;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, null, null, oldWhereClauseESet));
+				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, null, null, oldWhereClauseESet));
     	}
 	}
 
@@ -262,7 +262,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		boolean oldTargetTableESet = targetTableESet;
 		targetTableESet = true;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, oldTargetTable, newTargetTable, !oldTargetTableESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, oldTargetTable, newTargetTable, !oldTargetTableESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -277,9 +277,9 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		if (newTargetTable != targetTable) {
 			NotificationChain msgs = null;
 			if (targetTable != null)
-				msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
+				msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
 			if (newTargetTable != null)
-				msgs = ((InternalEObject)newTargetTable).eInverseAdd(this, SQLQueryPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
+				msgs = ((InternalEObject)newTargetTable).eInverseAdd(this, SQLQueryModelPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
 			msgs = basicSetTargetTable(newTargetTable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -287,7 +287,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 			boolean oldTargetTableESet = targetTableESet;
 			targetTableESet = true;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, newTargetTable, newTargetTable, !oldTargetTableESet));
+				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, newTargetTable, newTargetTable, !oldTargetTableESet));
     	}
 	}
 
@@ -302,7 +302,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 		boolean oldTargetTableESet = targetTableESet;
 		targetTableESet = false;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, oldTargetTable, null, oldTargetTableESet);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, oldTargetTable, null, oldTargetTableESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -316,7 +316,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
     public void unsetTargetTable() {
 		if (targetTable != null) {
 			NotificationChain msgs = null;
-			msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
+			msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__DELETE_STATEMENT, TableInDatabase.class, msgs);
 			msgs = basicUnsetTargetTable(msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -324,7 +324,7 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 			boolean oldTargetTableESet = targetTableESet;
 			targetTableESet = false;
 			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, null, null, oldTargetTableESet));
+				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, null, null, oldTargetTableESet));
     	}
 	}
 
@@ -345,19 +345,19 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 					if (whereCurrentOfClause != null)
-						msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
+						msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
 					return basicSetWhereCurrentOfClause((CursorReference)otherEnd, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 					if (whereClause != null)
-						msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, null, msgs);
+						msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, null, msgs);
 					return basicSetWhereClause((QuerySearchCondition)otherEnd, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 					if (targetTable != null)
-						msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, null, msgs);
+						msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE, null, msgs);
 					return basicSetTargetTable((TableInDatabase)otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -376,15 +376,15 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 					return basicSetWhereCurrentOfClause(null, msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 					return basicUnsetWhereClause(msgs);
-				case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+				case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 					return basicUnsetTargetTable(msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -400,21 +400,21 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__NAME:
 				return getName();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__LABEL:
 				return getLabel();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 				return getWhereCurrentOfClause();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 				return getWhereClause();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 				return getTargetTable();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -427,30 +427,30 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 				setWhereCurrentOfClause((CursorReference)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 				setWhereClause((QuerySearchCondition)newValue);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 				setTargetTable((TableInDatabase)newValue);
 				return;
 		}
@@ -464,28 +464,28 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 				setWhereCurrentOfClause((CursorReference)null);
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 				unsetWhereClause();
 				return;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 				unsetTargetTable();
 				return;
 		}
@@ -499,21 +499,21 @@ public class QueryDeleteStatementImpl extends QueryChangeStatementImpl implement
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__NAME:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__LABEL:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
 				return whereCurrentOfClause != null;
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE:
 				return isSetWhereClause();
-			case SQLQueryPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
+			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT__TARGET_TABLE:
 				return isSetTargetTable();
 		}
 		return eDynamicIsSet(eFeature);

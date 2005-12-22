@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CursorReference.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: CursorReference.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getCursorReference()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getCursorReference()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface CursorReference extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Statement</em>' container reference.
 	 * @see #setUpdateStatement(QueryUpdateStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getCursorReference_UpdateStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getCursorReference_UpdateStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getWhereCurrentOfClause
 	 * @model opposite="whereCurrentOfClause"
 	 * @generated
@@ -64,7 +64,7 @@ public interface CursorReference extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Delete Statement</em>' container reference.
 	 * @see #setDeleteStatement(QueryDeleteStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getCursorReference_DeleteStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getCursorReference_DeleteStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement#getWhereCurrentOfClause
 	 * @model opposite="whereCurrentOfClause"
 	 * @generated

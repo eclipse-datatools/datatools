@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryArgumentList.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLQueryArgumentList.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList()
  * @model
  * @generated
  */
@@ -47,7 +47,7 @@ public interface XMLQueryArgumentList extends SQLQueryObject{
 	 * @return the value of the '<em>Passing Mechanism</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
 	 * @see #setPassingMechanism(XMLPassingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList_PassingMechanism()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList_PassingMechanism()
 	 * @model
 	 * @generated
 	 */
@@ -75,7 +75,7 @@ public interface XMLQueryArgumentList extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predicate Exists</em>' container reference.
 	 * @see #setPredicateExists(XMLPredicateExists)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList_PredicateExists()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList_PredicateExists()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryArgList
 	 * @model opposite="xqueryArgList" required="true"
 	 * @generated
@@ -103,7 +103,7 @@ public interface XMLQueryArgumentList extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Arg List Children</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList_XqueryArgListChildren()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList_XqueryArgListChildren()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentItem#getXqueryArgList
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentItem" opposite="xqueryArgList" containment="true" required="true"
 	 * @generated
@@ -121,7 +121,7 @@ public interface XMLQueryArgumentList extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Query</em>' container reference.
 	 * @see #setValueFunctionQuery(XMLValueFunctionQuery)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList_ValueFunctionQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList_ValueFunctionQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery#getXqueryArgList
 	 * @model opposite="xqueryArgList" required="true"
 	 * @generated
@@ -149,7 +149,7 @@ public interface XMLQueryArgumentList extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Function</em>' container reference.
 	 * @see #setTableFunction(XMLTableFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryArgumentList_TableFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryArgumentList_TableFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction#getXqueryArgList
 	 * @model opposite="xqueryArgList" required="true"
 	 * @generated

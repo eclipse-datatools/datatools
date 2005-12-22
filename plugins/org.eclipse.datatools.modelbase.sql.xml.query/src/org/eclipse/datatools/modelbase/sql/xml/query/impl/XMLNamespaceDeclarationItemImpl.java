@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationItemImpl.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationItemImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -11,7 +11,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationItem;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration;
 import org.eclipse.emf.common.notify.Notification;
@@ -76,7 +76,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLNamespaceDeclarationItem();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLNamespaceDeclarationItem();
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 		String oldUri = uri;
 		uri = newUri;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__URI, oldUri, uri));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__URI, oldUri, uri));
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 * @generated
 	 */
     public XMLNamespacesDeclaration getNamespacesDecl() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL) return null;
 		return (XMLNamespacesDeclaration)eContainer;
 	}
 
@@ -116,19 +116,19 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 * @generated
 	 */
     public void setNamespacesDecl(XMLNamespacesDeclaration newNamespacesDecl) {
-		if (newNamespacesDecl != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL && newNamespacesDecl != null)) {
+		if (newNamespacesDecl != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL && newNamespacesDecl != null)) {
 			if (EcoreUtil.isAncestor(this, newNamespacesDecl))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newNamespacesDecl != null)
-				msgs = ((InternalEObject)newNamespacesDecl).eInverseAdd(this, SQLXMLQueryPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newNamespacesDecl, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
+				msgs = ((InternalEObject)newNamespacesDecl).eInverseAdd(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newNamespacesDecl, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, newNamespacesDecl, newNamespacesDecl));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, newNamespacesDecl, newNamespacesDecl));
 	}
 
 	/**
@@ -139,12 +139,12 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -162,12 +162,12 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -183,8 +183,8 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -199,19 +199,19 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
 				return getUri();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
 				return getNamespacesDecl();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -224,27 +224,27 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
 				setUri((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)newValue);
 				return;
 		}
@@ -258,25 +258,25 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
 				setUri(URI_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)null);
 				return;
 		}
@@ -290,19 +290,19 @@ public class XMLNamespaceDeclarationItemImpl extends SQLQueryObjectImpl implemen
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL:
 				return getNamespacesDecl() != null;
 		}
 		return eDynamicIsSet(eFeature);

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroup.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: SuperGroup.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroup()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroup()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface SuperGroup extends Grouping{
 	 * @return the value of the '<em>Super Group Type</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupType
 	 * @see #setSuperGroupType(SuperGroupType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroup_SuperGroupType()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroup_SuperGroupType()
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface SuperGroup extends Grouping{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Super Group Element List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroup_SuperGroupElementList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroup_SuperGroupElementList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupElement#getSuperGroup
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.SuperGroupElement" opposite="superGroup" containment="true"
 	 * @generated

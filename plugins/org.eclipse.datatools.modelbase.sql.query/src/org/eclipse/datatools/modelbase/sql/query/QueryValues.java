@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValues.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryValues.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValues()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValues()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface QueryValues extends QueryExpressionBody{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values Row List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValues_ValuesRowList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValues_ValuesRowList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValuesRow#getQueryValues
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValuesRow" opposite="queryValues" containment="true" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionForest.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionForest.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForest()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForest()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface XMLValueFunctionForest extends XMLValueFunction{
 	 * @return the value of the '<em>Null Handling Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNullHandlingType
 	 * @see #setNullHandlingOption(XMLNullHandlingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForest_NullHandlingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForest_NullHandlingOption()
 	 * @model
 	 * @generated
 	 */
@@ -73,7 +73,7 @@ public interface XMLValueFunctionForest extends XMLValueFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForest_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForest_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -101,7 +101,7 @@ public interface XMLValueFunctionForest extends XMLValueFunction{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Forest Content List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForest_ForestContentList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForest_ForestContentList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem#getValueFunctionForest
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem" opposite="valueFunctionForest" containment="true"
 	 * @generated
@@ -119,7 +119,7 @@ public interface XMLValueFunctionForest extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespaces Decl</em>' containment reference.
 	 * @see #setNamespacesDecl(XMLNamespacesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionForest_NamespacesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForest_NamespacesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration#getValueFunctionForest
 	 * @model opposite="valueFunctionForest" containment="true"
 	 * @generated

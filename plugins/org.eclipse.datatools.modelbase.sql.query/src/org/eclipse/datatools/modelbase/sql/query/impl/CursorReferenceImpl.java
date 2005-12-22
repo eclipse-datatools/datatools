@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CursorReferenceImpl.java,v 1.1 2005/12/16 13:11:12 bpayton Exp $
+ * $Id: CursorReferenceImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -12,7 +12,7 @@ import java.util.Collection;
 import org.eclipse.datatools.modelbase.sql.query.CursorReference;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -52,7 +52,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getCursorReference();
+		return SQLQueryModelPackage.eINSTANCE.getCursorReference();
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 * @generated
 	 */
     public QueryUpdateStatement getUpdateStatement() {
-		if (eContainerFeatureID != SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT) return null;
 		return (QueryUpdateStatement)eContainer;
 	}
 
@@ -71,19 +71,19 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 * @generated
 	 */
     public void setUpdateStatement(QueryUpdateStatement newUpdateStatement) {
-		if (newUpdateStatement != eContainer || (eContainerFeatureID != SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT && newUpdateStatement != null)) {
+		if (newUpdateStatement != eContainer || (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT && newUpdateStatement != null)) {
 			if (EcoreUtil.isAncestor(this, newUpdateStatement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUpdateStatement != null)
-				msgs = ((InternalEObject)newUpdateStatement).eInverseAdd(this, SQLQueryPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryUpdateStatement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
+				msgs = ((InternalEObject)newUpdateStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryUpdateStatement.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, newUpdateStatement, newUpdateStatement));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, newUpdateStatement, newUpdateStatement));
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 * @generated
 	 */
     public QueryDeleteStatement getDeleteStatement() {
-		if (eContainerFeatureID != SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT) return null;
 		return (QueryDeleteStatement)eContainer;
 	}
 
@@ -102,19 +102,19 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 * @generated
 	 */
     public void setDeleteStatement(QueryDeleteStatement newDeleteStatement) {
-		if (newDeleteStatement != eContainer || (eContainerFeatureID != SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT && newDeleteStatement != null)) {
+		if (newDeleteStatement != eContainer || (eContainerFeatureID != SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT && newDeleteStatement != null)) {
 			if (EcoreUtil.isAncestor(this, newDeleteStatement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDeleteStatement != null)
-				msgs = ((InternalEObject)newDeleteStatement).eInverseAdd(this, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryDeleteStatement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newDeleteStatement, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
+				msgs = ((InternalEObject)newDeleteStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryDeleteStatement.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newDeleteStatement, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, newDeleteStatement, newDeleteStatement));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, newDeleteStatement, newDeleteStatement));
 	}
 
 	/**
@@ -125,16 +125,16 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+				case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+				case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
+				case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -152,14 +152,14 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+				case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__DEPENDENCIES:
+				case SQLQueryModelPackage.CURSOR_REFERENCE__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
+				case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, msgs);
+				case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -175,10 +175,10 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryUpdateStatement.class, msgs);
-				case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryDeleteStatement.class, msgs);
+				case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryUpdateStatement.class, msgs);
+				case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, QueryDeleteStatement.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -193,19 +193,19 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.CURSOR_REFERENCE__NAME:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__NAME:
 				return getName();
-			case SQLQueryPackage.CURSOR_REFERENCE__DEPENDENCIES:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.CURSOR_REFERENCE__DESCRIPTION:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.CURSOR_REFERENCE__LABEL:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__LABEL:
 				return getLabel();
-			case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
 				return getUpdateStatement();
-			case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
 				return getDeleteStatement();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -218,27 +218,27 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__NAME:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DEPENDENCIES:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DESCRIPTION:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__LABEL:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
 				setUpdateStatement((QueryUpdateStatement)newValue);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
 				setDeleteStatement((QueryDeleteStatement)newValue);
 				return;
 		}
@@ -252,25 +252,25 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__NAME:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DEPENDENCIES:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DESCRIPTION:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__LABEL:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
 				setUpdateStatement((QueryUpdateStatement)null);
 				return;
-			case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
 				setDeleteStatement((QueryDeleteStatement)null);
 				return;
 		}
@@ -284,19 +284,19 @@ public class CursorReferenceImpl extends SQLQueryObjectImpl implements CursorRef
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.CURSOR_REFERENCE__EANNOTATIONS:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.CURSOR_REFERENCE__NAME:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.CURSOR_REFERENCE__DEPENDENCIES:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.CURSOR_REFERENCE__DESCRIPTION:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.CURSOR_REFERENCE__LABEL:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT:
 				return getUpdateStatement() != null;
-			case SQLQueryPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
+			case SQLQueryModelPackage.CURSOR_REFERENCE__DELETE_STATEMENT:
 				return getDeleteStatement() != null;
 		}
 		return eDynamicIsSet(eFeature);

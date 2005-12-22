@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElement.java,v 1.4 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionElement.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -27,7 +27,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLValueFunctionElement extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Name</em>' attribute.
 	 * @see #setElementName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement_ElementName()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement_ElementName()
 	 * @model
 	 * @generated
 	 */
@@ -70,7 +70,7 @@ public interface XMLValueFunctionElement extends XMLValueFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -98,7 +98,7 @@ public interface XMLValueFunctionElement extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespaces Decl</em>' containment reference.
 	 * @see #setNamespacesDecl(XMLNamespacesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement_NamespacesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement_NamespacesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration#getValueFunctionElement
 	 * @model opposite="valueFunctionElement" containment="true"
 	 * @generated
@@ -126,7 +126,7 @@ public interface XMLValueFunctionElement extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Attributes Decl</em>' containment reference.
 	 * @see #setAttributesDecl(XMLAttributesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement_AttributesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement_AttributesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAttributesDeclaration#getValueFunctionElement
 	 * @model opposite="valueFunctionElement" containment="true"
 	 * @generated
@@ -154,7 +154,7 @@ public interface XMLValueFunctionElement extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Content List</em>' containment reference.
 	 * @see #setElementContentList(XMLValueFunctionElementContentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElement_ElementContentList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElement_ElementContentList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentList#getValueFunctionElement
 	 * @model opposite="valueFunctionElement" containment="true"
 	 * @generated

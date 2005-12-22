@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByResultColumn.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: OrderByResultColumn.java,v 1.1 2005/12/16 13:11:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByResultColumn()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByResultColumn()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface OrderByResultColumn extends OrderBySpecification{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Col</em>' reference.
 	 * @see #setResultCol(ResultColumn)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByResultColumn_ResultCol()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByResultColumn_ResultCol()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ResultColumn#getOrderByResultCol
 	 * @model opposite="orderByResultCol" required="true"
 	 * @generated

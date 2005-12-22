@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionPI.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionPI.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionPI()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionPI()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface XMLValueFunctionPI extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Name</em>' attribute.
 	 * @see #setTargetName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionPI_TargetName()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionPI_TargetName()
 	 * @model
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface XMLValueFunctionPI extends XMLValueFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionPI_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionPI_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface XMLValueFunctionPI extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>PI Content</em>' containment reference.
 	 * @see #setPIContent(XMLValueFunctionPIContent)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionPI_PIContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionPI_PIContent()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionPIContent#getValueFunctionPI
 	 * @model opposite="valueFunctionPI" containment="true"
 	 * @generated

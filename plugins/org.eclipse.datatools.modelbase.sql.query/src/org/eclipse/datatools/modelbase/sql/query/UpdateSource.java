@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSource.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: UpdateSource.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSource()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSource()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface UpdateSource extends SQLQueryObject{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Assignment Expr</em>' container reference.
 	 * @see #setUpdateAssignmentExpr(UpdateAssignmentExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSource_UpdateAssignmentExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSource_UpdateAssignmentExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateSource
 	 * @model opposite="updateSource"
 	 * @generated

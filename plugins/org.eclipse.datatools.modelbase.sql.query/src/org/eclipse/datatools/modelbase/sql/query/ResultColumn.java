@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultColumn.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ResultColumn.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getResultColumn()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getResultColumn()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ResultColumn extends QueryResultSpecification{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getResultColumn_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getResultColumn_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getResultColumn
 	 * @model opposite="resultColumn" containment="true" required="true"
 	 * @generated
@@ -66,7 +66,7 @@ public interface ResultColumn extends QueryResultSpecification{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Order By Result Col</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getResultColumn_OrderByResultCol()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getResultColumn_OrderByResultCol()
 	 * @see org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn#getResultCol
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn" opposite="resultCol"
 	 * @generated

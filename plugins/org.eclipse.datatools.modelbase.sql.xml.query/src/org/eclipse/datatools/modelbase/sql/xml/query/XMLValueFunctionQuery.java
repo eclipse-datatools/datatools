@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionQuery.java,v 1.5 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionQuery.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,7 +26,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQuery()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQuery()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface XMLValueFunctionQuery extends XMLValueFunction{
 	 * @return the value of the '<em>Empty Handling Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLEmptyHandlingType
 	 * @see #setEmptyHandlingOption(XMLEmptyHandlingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQuery_EmptyHandlingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQuery_EmptyHandlingOption()
 	 * @model
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface XMLValueFunctionQuery extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Expr</em>' containment reference.
 	 * @see #setXqueryExpr(XMLQueryExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQuery_XqueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQuery_XqueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getValueFunctionQuery
 	 * @model opposite="valueFunctionQuery" containment="true" required="true"
 	 * @generated
@@ -99,7 +99,7 @@ public interface XMLValueFunctionQuery extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Arg List</em>' containment reference.
 	 * @see #setXqueryArgList(XMLQueryArgumentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQuery_XqueryArgList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQuery_XqueryArgList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getValueFunctionQuery
 	 * @model opposite="valueFunctionQuery" containment="true"
 	 * @generated
@@ -127,7 +127,7 @@ public interface XMLValueFunctionQuery extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Returning</em>' containment reference.
 	 * @see #setQueryReturning(XMLValueFunctionQueryReturning)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQuery_QueryReturning()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQuery_QueryReturning()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQueryReturning#getValueFunctionQuery
 	 * @model opposite="valueFunctionQuery" containment="true"
 	 * @generated

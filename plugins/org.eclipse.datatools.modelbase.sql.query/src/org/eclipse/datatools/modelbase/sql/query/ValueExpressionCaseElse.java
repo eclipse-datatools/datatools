@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseElse.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionCaseElse.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseElse()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseElse()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface ValueExpressionCaseElse extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case</em>' container reference.
 	 * @see #setValueExprCase(ValueExpressionCase)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseElse_ValueExprCase()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseElse_ValueExprCase()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCase#getCaseElse
 	 * @model opposite="caseElse"
 	 * @generated
@@ -64,7 +64,7 @@ public interface ValueExpressionCaseElse extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseElse_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseElse_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCaseElse
 	 * @model opposite="valueExprCaseElse" containment="true"
 	 * @generated

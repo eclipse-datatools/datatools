@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionVariable.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionVariable.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionVariable()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionVariable()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ValueExpressionVariable extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Select</em>' container reference.
 	 * @see #setQuerySelect(QuerySelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionVariable_QuerySelect()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionVariable_QuerySelect()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getIntoClause
 	 * @model opposite="intoClause"
 	 * @generated

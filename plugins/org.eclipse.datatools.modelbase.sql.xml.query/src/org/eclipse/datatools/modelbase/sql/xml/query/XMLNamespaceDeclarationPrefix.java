@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationPrefix.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationPrefix.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationPrefix()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationPrefix()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface XMLNamespaceDeclarationPrefix extends XMLNamespaceDeclarationIt
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Prefix</em>' attribute.
 	 * @see #setPrefix(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationPrefix_Prefix()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationPrefix_Prefix()
 	 * @model
 	 * @generated
 	 */

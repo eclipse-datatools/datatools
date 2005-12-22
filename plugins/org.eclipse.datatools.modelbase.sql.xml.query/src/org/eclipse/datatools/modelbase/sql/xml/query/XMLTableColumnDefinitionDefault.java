@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionDefault.java,v 1.1 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionDefault.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionDefault()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionDefault()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLTableColumnDefinitionDefault extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionDefault_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionDefault_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface XMLTableColumnDefinitionDefault extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Definition Regular</em>' container reference.
 	 * @see #setColumnDefinitionRegular(XMLTableColumnDefinitionRegular)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionDefault_ColumnDefinitionRegular()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionDefault_ColumnDefinitionRegular()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionRegular#getColumnDefinitionDefault
 	 * @model opposite="columnDefinitionDefault" required="true"
 	 * @generated

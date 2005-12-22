@@ -19,7 +19,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
 import org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
@@ -28,7 +28,7 @@ import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
-import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryFactoryImpl;
+import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 
 
@@ -128,7 +128,7 @@ public class JoinHelper {
      */
     public static TableJoined addJoinedTable(List fromClause, TableReference joinSource, TableReference joinTarget, int joinType) {
         // Create a new joined tables object and set its content.
-        SQLQueryFactory factory = SQLQueryFactoryImpl.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.eINSTANCE;
         TableJoined joinedTable = factory.createTableJoined();
         joinedTable.setTableRefLeft(joinSource);
         joinedTable.setTableRefRight(joinTarget);
@@ -152,7 +152,7 @@ public class JoinHelper {
      * @return the new PredicateBasic object
      */
     public static PredicateBasic buildPredicateBasic(QueryValueExpression leftExpr, QueryValueExpression rightExpr, String oper) {
-        SQLQueryFactory factory = SQLQueryFactoryImpl.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.eINSTANCE;
         PredicateBasic pred = factory.createPredicateBasic();
         pred.setLeftValueExpr(leftExpr);
         pred.setRightValueExpr(rightExpr);
@@ -179,7 +179,7 @@ public class JoinHelper {
             newCondition = pred;
         }
         else {
-            SQLQueryFactory factory = SQLQueryFactoryImpl.eINSTANCE;
+            SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.eINSTANCE;
             SearchConditionCombined combined = factory.createSearchConditionCombined();
             combined.setLeftCondition(currentSearchCon);
             combined.setRightCondition(pred);

@@ -11,7 +11,6 @@
 package org.eclipse.datatools.modelbase.sql.query.util;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPlugin;
 
 
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableCorrelation.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: TableCorrelation.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableCorrelation()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableCorrelation()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface TableCorrelation extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Expr</em>' container reference.
 	 * @see #setTableExpr(TableExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableCorrelation_TableExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableCorrelation_TableExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableExpression#getTableCorrelation
 	 * @model opposite="tableCorrelation"
 	 * @generated
@@ -65,7 +65,7 @@ public interface TableCorrelation extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Name List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableCorrelation_ColumnNameList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableCorrelation_ColumnNameList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ColumnName#getTableCorrelation
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ColumnName" opposite="tableCorrelation" containment="true"
 	 * @generated

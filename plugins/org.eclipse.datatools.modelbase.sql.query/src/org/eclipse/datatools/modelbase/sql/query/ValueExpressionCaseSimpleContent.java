@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimpleContent.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionCaseSimpleContent.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimpleContent()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimpleContent()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface ValueExpressionCaseSimpleContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Simple</em>' container reference.
 	 * @see #setValueExprCaseSimple(ValueExpressionCaseSimple)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimpleContent_ValueExprCaseSimple()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimpleContent_ValueExprCaseSimple()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple#getContentList
 	 * @model opposite="contentList"
 	 * @generated
@@ -65,7 +65,7 @@ public interface ValueExpressionCaseSimpleContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>When Value Expr</em>' containment reference.
 	 * @see #setWhenValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimpleContent_WhenValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimpleContent_WhenValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCaseSimpleContentWhen
 	 * @model opposite="valueExprCaseSimpleContentWhen" containment="true" required="true"
 	 * @generated
@@ -93,7 +93,7 @@ public interface ValueExpressionCaseSimpleContent extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Value Expr</em>' containment reference.
 	 * @see #setResultValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionCaseSimpleContent_ResultValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCaseSimpleContent_ResultValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprCaseSimpleContentResult
 	 * @model opposite="valueExprCaseSimpleContentResult" containment="true" required="true"
 	 * @generated

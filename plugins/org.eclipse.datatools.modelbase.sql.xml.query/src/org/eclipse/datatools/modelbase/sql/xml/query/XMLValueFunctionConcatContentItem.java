@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionConcatContentItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionConcatContentItem.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionConcatContentItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcatContentItem()
  * @model
  * @generated
  */
@@ -42,7 +42,7 @@ public interface XMLValueFunctionConcatContentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Concat</em>' container reference.
 	 * @see #setValueFunctionConcat(XMLValueFunctionConcat)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionConcatContentItem_ValueFunctionConcat()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcatContentItem_ValueFunctionConcat()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcat#getConcatContentList
 	 * @model opposite="concatContentList" required="true"
 	 * @generated
@@ -69,7 +69,7 @@ public interface XMLValueFunctionConcatContentItem extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionConcatContentItem_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcatContentItem_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

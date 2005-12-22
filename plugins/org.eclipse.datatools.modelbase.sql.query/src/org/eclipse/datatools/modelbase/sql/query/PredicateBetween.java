@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateBetween.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: PredicateBetween.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBetween()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBetween()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface PredicateBetween extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Not Between</em>' attribute.
 	 * @see #setNotBetween(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBetween_NotBetween()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBetween_NotBetween()
 	 * @model
 	 * @generated
 	 */
@@ -64,7 +64,7 @@ public interface PredicateBetween extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Value Expr</em>' containment reference.
 	 * @see #setLeftValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBetween_LeftValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBetween_LeftValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getBetweenLeft
 	 * @model opposite="betweenLeft" containment="true" required="true"
 	 * @generated
@@ -92,7 +92,7 @@ public interface PredicateBetween extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Value Expr1</em>' containment reference.
 	 * @see #setRightValueExpr1(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBetween_RightValueExpr1()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBetween_RightValueExpr1()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getBetweenRight1
 	 * @model opposite="betweenRight1" containment="true" required="true"
 	 * @generated
@@ -120,7 +120,7 @@ public interface PredicateBetween extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Value Expr2</em>' containment reference.
 	 * @see #setRightValueExpr2(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBetween_RightValueExpr2()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBetween_RightValueExpr2()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getBetweenRight2
 	 * @model opposite="betweenRight2" containment="true" required="true"
 	 * @generated

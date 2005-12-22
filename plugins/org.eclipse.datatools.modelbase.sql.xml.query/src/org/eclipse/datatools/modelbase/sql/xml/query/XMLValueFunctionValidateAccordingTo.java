@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingTo.java,v 1.4 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingTo.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingTo()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingTo()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface XMLValueFunctionValidateAccordingTo extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Validate</em>' container reference.
 	 * @see #setValueFunctionValidate(XMLValueFunctionValidate)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingTo_ValueFunctionValidate()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingTo_ValueFunctionValidate()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidate#getValidateAccordingTo
 	 * @model opposite="validateAccordingTo" required="true"
 	 * @generated
@@ -65,7 +65,7 @@ public interface XMLValueFunctionValidateAccordingTo extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Validate Element</em>' containment reference.
 	 * @see #setValidateElement(XMLValueFunctionValidateElement)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionValidateAccordingTo_ValidateElement()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingTo_ValidateElement()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElement#getValidateAccordingTo
 	 * @model opposite="validateAccordingTo" containment="true"
 	 * @generated

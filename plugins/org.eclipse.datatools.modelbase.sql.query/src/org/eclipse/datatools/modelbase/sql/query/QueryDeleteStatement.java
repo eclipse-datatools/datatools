@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDeleteStatement.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: QueryDeleteStatement.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryDeleteStatement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryDeleteStatement()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface QueryDeleteStatement extends QueryChangeStatement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Where Current Of Clause</em>' containment reference.
 	 * @see #setWhereCurrentOfClause(CursorReference)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryDeleteStatement_WhereCurrentOfClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryDeleteStatement_WhereCurrentOfClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.CursorReference#getDeleteStatement
 	 * @model opposite="deleteStatement" containment="true"
 	 * @generated
@@ -67,7 +67,7 @@ public interface QueryDeleteStatement extends QueryChangeStatement{
 	 * @see #isSetWhereClause()
 	 * @see #unsetWhereClause()
 	 * @see #setWhereClause(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryDeleteStatement_WhereClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryDeleteStatement_WhereClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getDeleteStatement
 	 * @model opposite="deleteStatement" containment="true" unsettable="true"
 	 * @generated
@@ -122,7 +122,7 @@ public interface QueryDeleteStatement extends QueryChangeStatement{
 	 * @see #isSetTargetTable()
 	 * @see #unsetTargetTable()
 	 * @see #setTargetTable(TableInDatabase)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryDeleteStatement_TargetTable()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryDeleteStatement_TargetTable()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableInDatabase#getDeleteStatement
 	 * @model opposite="deleteStatement" containment="true" unsettable="true" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElementContentList.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionElementContentList.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentList()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentList()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLValueFunctionElementContentList extends SQLQueryObject{
 	 * @return the value of the '<em>Null Handling Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNullHandlingType
 	 * @see #setNullHandlingOption(XMLNullHandlingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentList_NullHandlingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentList_NullHandlingOption()
 	 * @model
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface XMLValueFunctionElementContentList extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Element</em>' container reference.
 	 * @see #setValueFunctionElement(XMLValueFunctionElement)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentList_ValueFunctionElement()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentList_ValueFunctionElement()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElement#getElementContentList
 	 * @model opposite="elementContentList" required="true"
 	 * @generated
@@ -97,7 +97,7 @@ public interface XMLValueFunctionElementContentList extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Content List Children</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionElementContentList_ElementContentListChildren()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionElementContentList_ElementContentListChildren()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentItem#getElementContentList
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentItem" opposite="elementContentList" containment="true"
 	 * @generated

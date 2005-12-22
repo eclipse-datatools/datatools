@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionParseContent.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionParseContent.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParseContent()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParseContent()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface XMLValueFunctionParseContent extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Parse</em>' container reference.
 	 * @see #setValueFunctionParse(XMLValueFunctionParse)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParseContent_ValueFunctionParse()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParseContent_ValueFunctionParse()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionParse#getParseContent
 	 * @model opposite="parseContent" required="true"
 	 * @generated
@@ -64,7 +64,7 @@ public interface XMLValueFunctionParseContent extends QueryValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionParseContent_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionParseContent_ValueExpr()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateFunction.java,v 1.3 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLAggregateFunction.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateFunction()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction()
  * @model
  * @generated
  */
@@ -44,7 +44,7 @@ public interface XMLAggregateFunction extends ValueExpressionFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateFunction_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -72,7 +72,7 @@ public interface XMLAggregateFunction extends ValueExpressionFunction{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sort Spec List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLAggregateFunction_SortSpecList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_SortSpecList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification" opposite="aggregateFunction" containment="true"
 	 * @generated

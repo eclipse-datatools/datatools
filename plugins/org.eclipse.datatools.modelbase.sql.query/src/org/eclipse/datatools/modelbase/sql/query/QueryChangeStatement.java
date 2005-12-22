@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryChangeStatement.java,v 1.2 2004/12/04 00:09:23 bpayton Exp $
+ * $Id: QueryChangeStatement.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -15,7 +15,7 @@ import org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryChangeStatement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryChangeStatement()
  * @model abstract="true"
  * @generated
  */

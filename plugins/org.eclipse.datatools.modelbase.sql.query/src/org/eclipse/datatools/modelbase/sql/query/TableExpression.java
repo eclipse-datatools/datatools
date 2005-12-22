@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpression.java,v 1.8 2005/02/15 21:44:44 bpayton Exp $
+ * $Id: TableExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression()
  * @model abstract="true"
  * @generated
  */
@@ -39,7 +39,7 @@ public interface TableExpression extends TableReference{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableExpression_ColumnList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ColumnList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getParentTableExpr
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="parentTableExpr" containment="true"
 	 * @generated
@@ -57,7 +57,7 @@ public interface TableExpression extends TableReference{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Correlation</em>' containment reference.
 	 * @see #setTableCorrelation(TableCorrelation)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableExpression_TableCorrelation()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_TableCorrelation()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getTableExpr
 	 * @model opposite="tableExpr" containment="true"
 	 * @generated
@@ -85,7 +85,7 @@ public interface TableExpression extends TableReference{
    * </p>
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Table All Columns</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableExpression_ResultTableAllColumns()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ResultTableAllColumns()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns#getTableExpr
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns" opposite="tableExpr"
 	 * @generated
@@ -103,7 +103,7 @@ public interface TableExpression extends TableReference{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Columns</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableExpression_ValueExprColumns()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ValueExprColumns()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="tableExpr"
 	 * @generated

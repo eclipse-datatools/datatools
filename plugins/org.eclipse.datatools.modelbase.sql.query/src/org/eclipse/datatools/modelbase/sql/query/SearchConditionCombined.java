@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionCombined.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: SearchConditionCombined.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionCombined()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionCombined()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface SearchConditionCombined extends QuerySearchCondition{
 	 * @return the value of the '<em>Combined Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator
 	 * @see #setCombinedOperator(SearchConditionCombinedOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionCombined_CombinedOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionCombined_CombinedOperator()
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface SearchConditionCombined extends QuerySearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Condition</em>' containment reference.
 	 * @see #setLeftCondition(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionCombined_LeftCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionCombined_LeftCondition()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getCombinedLeft
 	 * @model opposite="combinedLeft" containment="true" required="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface SearchConditionCombined extends QuerySearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Condition</em>' containment reference.
 	 * @see #setRightCondition(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSearchConditionCombined_RightCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSearchConditionCombined_RightCondition()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getCombinedRight
 	 * @model opposite="combinedRight" containment="true" required="true"
 	 * @generated

@@ -2,19 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableFunctionImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
+ * $Id: XMLTableFunctionImpl.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableNested;
 import org.eclipse.datatools.modelbase.sql.query.impl.TableFunctionImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionItem;
@@ -111,7 +111,7 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLTableFunction();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLTableFunction();
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 		String oldTableRowPattern = tableRowPattern;
 		tableRowPattern = newTableRowPattern;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN, oldTableRowPattern, tableRowPattern));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN, oldTableRowPattern, tableRowPattern));
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 		XMLQueryArgumentList oldXqueryArgList = xqueryArgList;
 		xqueryArgList = newXqueryArgList;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, oldXqueryArgList, newXqueryArgList);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, oldXqueryArgList, newXqueryArgList);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -168,14 +168,14 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 		if (newXqueryArgList != xqueryArgList) {
 			NotificationChain msgs = null;
 			if (xqueryArgList != null)
-				msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, SQLXMLQueryPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, XMLQueryArgumentList.class, msgs);
+				msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, XMLQueryArgumentList.class, msgs);
 			if (newXqueryArgList != null)
-				msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, XMLQueryArgumentList.class, msgs);
+				msgs = ((InternalEObject)newXqueryArgList).eInverseAdd(this, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, XMLQueryArgumentList.class, msgs);
 			msgs = basicSetXqueryArgList(newXqueryArgList, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, newXqueryArgList, newXqueryArgList));
 	}
 
 	/**
@@ -185,7 +185,7 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 */
     public EList getColumnDefList() {
 		if (columnDefList == null) {
-			columnDefList = new EObjectContainmentWithInverseEList(XMLTableColumnDefinitionItem.class, this, SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, SQLXMLQueryPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION);
+			columnDefList = new EObjectContainmentWithInverseEList(XMLTableColumnDefinitionItem.class, this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION);
 		}
 		return columnDefList;
 	}
@@ -208,7 +208,7 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 		XMLNamespacesDeclaration oldNamespacesDecl = namespacesDecl;
 		namespacesDecl = newNamespacesDecl;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, oldNamespacesDecl, newNamespacesDecl);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, oldNamespacesDecl, newNamespacesDecl);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -223,14 +223,14 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 		if (newNamespacesDecl != namespacesDecl) {
 			NotificationChain msgs = null;
 			if (namespacesDecl != null)
-				msgs = ((InternalEObject)namespacesDecl).eInverseRemove(this, SQLXMLQueryPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION, XMLNamespacesDeclaration.class, msgs);
+				msgs = ((InternalEObject)namespacesDecl).eInverseRemove(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION, XMLNamespacesDeclaration.class, msgs);
 			if (newNamespacesDecl != null)
-				msgs = ((InternalEObject)newNamespacesDecl).eInverseAdd(this, SQLXMLQueryPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION, XMLNamespacesDeclaration.class, msgs);
+				msgs = ((InternalEObject)newNamespacesDecl).eInverseAdd(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__TABLE_FUNCTION, XMLNamespacesDeclaration.class, msgs);
 			msgs = basicSetNamespacesDecl(newNamespacesDecl, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, newNamespacesDecl, newNamespacesDecl));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, newNamespacesDecl, newNamespacesDecl));
 	}
 
 	/**
@@ -241,43 +241,43 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 					return ((InternalEList)getColumnList()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 					if (tableCorrelation != null)
-						msgs = ((InternalEObject)tableCorrelation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION, null, msgs);
+						msgs = ((InternalEObject)tableCorrelation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION, null, msgs);
 					return basicSetTableCorrelation((TableCorrelation)otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 					return ((InternalEList)getResultTableAllColumns()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 					return ((InternalEList)getValueExprColumns()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 					if (xqueryArgList != null)
-						msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, null, msgs);
+						msgs = ((InternalEObject)xqueryArgList).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, null, msgs);
 					return basicSetXqueryArgList((XMLQueryArgumentList)otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 					return ((InternalEList)getColumnDefList()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 					if (namespacesDecl != null)
-						msgs = ((InternalEObject)namespacesDecl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, null, msgs);
+						msgs = ((InternalEObject)namespacesDecl).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL, null, msgs);
 					return basicSetNamespacesDecl((XMLNamespacesDeclaration)otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -296,31 +296,31 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 					return ((InternalEList)getColumnList()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 					return basicSetTableCorrelation(null, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 					return ((InternalEList)getResultTableAllColumns()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 					return ((InternalEList)getValueExprColumns()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 					return basicSetXqueryArgList(null, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 					return ((InternalEList)getColumnDefList()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 					return basicSetNamespacesDecl(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -337,14 +337,14 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
-				case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
+				case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -359,39 +359,39 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
 				return getTableJoinedRight();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
 				return getTableJoinedLeft();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
 				return getQuerySelect();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
 				return getNest();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 				return getColumnList();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 				return getTableCorrelation();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 				return getResultTableAllColumns();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 				return getValueExprColumns();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
 				return getTableRowPattern();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 				return getXqueryArgList();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 				return getColumnDefList();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 				return getNamespacesDecl();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -404,61 +404,61 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
 				setTableJoinedRight((TableJoined)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
 				setTableJoinedLeft((TableJoined)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
 				setNest((TableNested)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 				getColumnList().clear();
 				getColumnList().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 				setTableCorrelation((TableCorrelation)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 				getResultTableAllColumns().clear();
 				getResultTableAllColumns().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 				getValueExprColumns().clear();
 				getValueExprColumns().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
 				setTableRowPattern((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 				setXqueryArgList((XMLQueryArgumentList)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 				getColumnDefList().clear();
 				getColumnDefList().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)newValue);
 				return;
 		}
@@ -472,55 +472,55 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
 				setTableJoinedRight((TableJoined)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
 				setTableJoinedLeft((TableJoined)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
 				setNest((TableNested)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 				getColumnList().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 				setTableCorrelation((TableCorrelation)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 				getResultTableAllColumns().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 				getValueExprColumns().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
 				setTableRowPattern(TABLE_ROW_PATTERN_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 				setXqueryArgList((XMLQueryArgumentList)null);
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 				getColumnDefList().clear();
 				return;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)null);
 				return;
 		}
@@ -534,39 +534,39 @@ public class XMLTableFunctionImpl extends TableFunctionImpl implements XMLTableF
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAME:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__LABEL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_RIGHT:
 				return getTableJoinedRight() != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_JOINED_LEFT:
 				return getTableJoinedLeft() != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__QUERY_SELECT:
 				return getQuerySelect() != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NEST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NEST:
 				return getNest() != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_LIST:
 				return columnList != null && !columnList.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_CORRELATION:
 				return tableCorrelation != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__RESULT_TABLE_ALL_COLUMNS:
 				return resultTableAllColumns != null && !resultTableAllColumns.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__VALUE_EXPR_COLUMNS:
 				return valueExprColumns != null && !valueExprColumns.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__TABLE_ROW_PATTERN:
 				return TABLE_ROW_PATTERN_EDEFAULT == null ? tableRowPattern != null : !TABLE_ROW_PATTERN_EDEFAULT.equals(tableRowPattern);
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST:
 				return xqueryArgList != null;
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST:
 				return columnDefList != null && !columnDefList.isEmpty();
-			case SQLXMLQueryPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__NAMESPACES_DECL:
 				return namespacesDecl != null;
 		}
 		return eDynamicIsSet(eFeature);

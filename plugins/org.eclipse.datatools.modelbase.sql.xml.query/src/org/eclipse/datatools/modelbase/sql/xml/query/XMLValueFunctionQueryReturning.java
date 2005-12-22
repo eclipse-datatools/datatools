@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionQueryReturning.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionQueryReturning.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQueryReturning()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQueryReturning()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface XMLValueFunctionQueryReturning extends SQLQueryObject{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQueryReturning_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQueryReturning_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface XMLValueFunctionQueryReturning extends SQLQueryObject{
 	 * @return the value of the '<em>Passing Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
 	 * @see #setPassingOption(XMLPassingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQueryReturning_PassingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQueryReturning_PassingOption()
 	 * @model
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface XMLValueFunctionQueryReturning extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Query</em>' container reference.
 	 * @see #setValueFunctionQuery(XMLValueFunctionQuery)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionQueryReturning_ValueFunctionQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionQueryReturning_ValueFunctionQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery#getQueryReturning
 	 * @model opposite="queryReturning" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ColumnName.java,v 1.7 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ColumnName.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getColumnName()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getColumnName()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface ColumnName extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Correlation</em>' container reference.
 	 * @see #setTableCorrelation(TableCorrelation)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getColumnName_TableCorrelation()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getColumnName_TableCorrelation()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getColumnNameList
 	 * @model opposite="columnNameList"
 	 * @generated
@@ -64,7 +64,7 @@ public interface ColumnName extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Table Specification</em>' container reference.
 	 * @see #setWithTableSpecification(WithTableSpecification)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getColumnName_WithTableSpecification()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getColumnName_WithTableSpecification()
 	 * @see org.eclipse.datatools.modelbase.sql.query.WithTableSpecification#getColumnNameList
 	 * @model opposite="columnNameList" required="true"
 	 * @generated

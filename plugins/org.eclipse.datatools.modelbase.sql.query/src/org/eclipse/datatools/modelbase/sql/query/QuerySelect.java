@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelect.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QuerySelect.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface QuerySelect extends QueryExpressionBody{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Distinct</em>' attribute.
 	 * @see #setDistinct(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_Distinct()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_Distinct()
 	 * @model
 	 * @generated
 	 */
@@ -70,7 +70,7 @@ public interface QuerySelect extends QueryExpressionBody{
 	 * @see #isSetHavingClause()
 	 * @see #unsetHavingClause()
 	 * @see #setHavingClause(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_HavingClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_HavingClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getQuerySelectHaving
 	 * @model opposite="querySelectHaving" containment="true" unsettable="true"
 	 * @generated
@@ -125,7 +125,7 @@ public interface QuerySelect extends QueryExpressionBody{
 	 * @see #isSetWhereClause()
 	 * @see #unsetWhereClause()
 	 * @see #setWhereClause(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_WhereClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_WhereClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getQuerySelectWhere
 	 * @model opposite="querySelectWhere" containment="true" unsettable="true"
 	 * @generated
@@ -178,7 +178,7 @@ public interface QuerySelect extends QueryExpressionBody{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Group By Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_GroupByClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_GroupByClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingSpecification#getQuerySelect
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.GroupingSpecification" opposite="querySelect" containment="true"
 	 * @generated
@@ -196,7 +196,7 @@ public interface QuerySelect extends QueryExpressionBody{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Select Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_SelectClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_SelectClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification#getQuerySelect
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification" opposite="querySelect" containment="true"
 	 * @generated
@@ -214,7 +214,7 @@ public interface QuerySelect extends QueryExpressionBody{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>From Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_FromClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_FromClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableReference#getQuerySelect
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.TableReference" opposite="querySelect" containment="true" required="true"
 	 * @generated
@@ -232,7 +232,7 @@ public interface QuerySelect extends QueryExpressionBody{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Into Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySelect_IntoClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySelect_IntoClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable#getQuerySelect
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable" opposite="querySelect" containment="true"
 	 * @generated

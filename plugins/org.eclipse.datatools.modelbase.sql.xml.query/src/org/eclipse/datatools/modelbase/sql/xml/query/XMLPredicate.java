@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicate.java,v 1.3 2005/09/29 03:17:13 bpayton Exp $
+ * $Id: XMLPredicate.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -19,7 +19,7 @@ import org.eclipse.datatools.modelbase.sql.query.Predicate;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPredicate()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicate()
  * @model abstract="true"
  * @generated
  */

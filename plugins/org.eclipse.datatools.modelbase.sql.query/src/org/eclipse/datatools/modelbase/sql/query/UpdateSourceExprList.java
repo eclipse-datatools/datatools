@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceExprList.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: UpdateSourceExprList.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSourceExprList()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceExprList()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface UpdateSourceExprList extends UpdateSource{
    * </p>
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSourceExprList_ValueExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceExprList_ValueExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="updateSourceExprList" containment="true" required="true"
 	 * @generated

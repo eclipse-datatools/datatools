@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantifiedRowSelect.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: PredicateQuantifiedRowSelect.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedRowSelect()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedRowSelect()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface PredicateQuantifiedRowSelect extends PredicateQuantified{
 	 * @return the value of the '<em>Quantified Type</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType
 	 * @see #setQuantifiedType(PredicateQuantifiedType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedRowSelect_QuantifiedType()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedRowSelect_QuantifiedType()
 	 * @model
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface PredicateQuantifiedRowSelect extends PredicateQuantified{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedRowSelect_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedRowSelect_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuantifiedRowSelectRight
 	 * @model opposite="quantifiedRowSelectRight" containment="true" required="true"
 	 * @generated
@@ -95,7 +95,7 @@ public interface PredicateQuantifiedRowSelect extends PredicateQuantified{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedRowSelect_ValueExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedRowSelect_ValueExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getQuantifiedRowSelectLeft
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="quantifiedRowSelectLeft" containment="true" required="true"
 	 * @generated

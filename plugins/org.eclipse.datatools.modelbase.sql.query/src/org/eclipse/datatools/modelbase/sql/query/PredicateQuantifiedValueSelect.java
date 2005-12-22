@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantifiedValueSelect.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateQuantifiedValueSelect.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedValueSelect()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedValueSelect()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface PredicateQuantifiedValueSelect extends PredicateQuantified{
 	 * @return the value of the '<em>Quantified Type</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType
 	 * @see #setQuantifiedType(PredicateQuantifiedType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedValueSelect_QuantifiedType()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedValueSelect_QuantifiedType()
 	 * @model
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface PredicateQuantifiedValueSelect extends PredicateQuantified{
 	 * @return the value of the '<em>Comparison Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator
 	 * @see #setComparisonOperator(PredicateComparisonOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedValueSelect_ComparisonOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedValueSelect_ComparisonOperator()
 	 * @model
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface PredicateQuantifiedValueSelect extends PredicateQuantified{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedValueSelect_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedValueSelect_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getQuantifiedValueSelectRight
 	 * @model opposite="quantifiedValueSelectRight" containment="true" required="true"
 	 * @generated
@@ -124,7 +124,7 @@ public interface PredicateQuantifiedValueSelect extends PredicateQuantified{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateQuantifiedValueSelect_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateQuantifiedValueSelect_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getQuantifiedValueSelectLeft
 	 * @model opposite="quantifiedValueSelectLeft" containment="true" required="true"
 	 * @generated

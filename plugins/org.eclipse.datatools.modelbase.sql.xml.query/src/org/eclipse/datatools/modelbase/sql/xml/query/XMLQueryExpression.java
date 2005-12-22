@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryExpression.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLQueryExpression.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryExpression()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryExpression()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLQueryExpression extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Expr Content</em>' attribute.
 	 * @see #setXqueryExprContent(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryExpression_XqueryExprContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryExpression_XqueryExprContent()
 	 * @model
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface XMLQueryExpression extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predicate Exists</em>' container reference.
 	 * @see #setPredicateExists(XMLPredicateExists)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryExpression_PredicateExists()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryExpression_PredicateExists()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryExpr
 	 * @model opposite="xqueryExpr" required="true"
 	 * @generated
@@ -96,7 +96,7 @@ public interface XMLQueryExpression extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Query</em>' container reference.
 	 * @see #setValueFunctionQuery(XMLValueFunctionQuery)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLQueryExpression_ValueFunctionQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLQueryExpression_ValueFunctionQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionQuery#getXqueryExpr
 	 * @model opposite="xqueryExpr" required="true"
 	 * @generated

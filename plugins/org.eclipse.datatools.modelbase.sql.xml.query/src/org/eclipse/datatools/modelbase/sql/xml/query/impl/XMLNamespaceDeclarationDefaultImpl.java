@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationDefaultImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationDefaultImpl.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationDefault;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration;
 import org.eclipse.emf.common.notify.Notification;
@@ -71,7 +71,7 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLNamespaceDeclarationDefault();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLNamespaceDeclarationDefault();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 		boolean oldNoDefault = noDefault;
 		noDefault = newNoDefault;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT, oldNoDefault, noDefault));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT, oldNoDefault, noDefault));
 	}
 
 	/**
@@ -103,12 +103,12 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL, msgs);
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -126,12 +126,12 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL, msgs);
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -147,8 +147,8 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
+				case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST, XMLNamespacesDeclaration.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -163,21 +163,21 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
 				return getUri();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
 				return getNamespacesDecl();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
 				return isNoDefault() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -190,30 +190,30 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
 				setUri((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
 				setNoDefault(((Boolean)newValue).booleanValue());
 				return;
 		}
@@ -227,28 +227,28 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
 				setUri(URI_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
 				setNamespacesDecl((XMLNamespacesDeclaration)null);
 				return;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
 				setNoDefault(NO_DEFAULT_EDEFAULT);
 				return;
 		}
@@ -262,21 +262,21 @@ public class XMLNamespaceDeclarationDefaultImpl extends XMLNamespaceDeclarationI
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NAMESPACES_DECL:
 				return getNamespacesDecl() != null;
-			case SQLXMLQueryPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
+			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT:
 				return noDefault != NO_DEFAULT_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);

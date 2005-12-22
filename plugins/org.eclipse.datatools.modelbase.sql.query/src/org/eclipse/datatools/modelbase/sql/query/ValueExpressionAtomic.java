@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionAtomic.java,v 1.2 2005/02/02 00:49:53 bpayton Exp $
+ * $Id: ValueExpressionAtomic.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -13,7 +13,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionAtomic()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionAtomic()
  * @model abstract="true"
  * @generated
  */

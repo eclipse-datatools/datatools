@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationItem.java,v 1.2 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationItem.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationItem()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationItem()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface XMLNamespaceDeclarationItem extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Uri</em>' attribute.
 	 * @see #setUri(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationItem_Uri()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationItem_Uri()
 	 * @model
 	 * @generated
 	 */
@@ -63,7 +63,7 @@ public interface XMLNamespaceDeclarationItem extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespaces Decl</em>' container reference.
 	 * @see #setNamespacesDecl(XMLNamespacesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespaceDeclarationItem_NamespacesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespaceDeclarationItem_NamespacesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration#getNamespaceDecltemList
 	 * @model opposite="namespaceDecltemList" required="true"
 	 * @generated

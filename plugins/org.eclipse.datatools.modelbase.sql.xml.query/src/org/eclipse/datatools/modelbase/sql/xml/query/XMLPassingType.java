@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPassingType.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
+ * $Id: XMLPassingType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- begin-model-doc -->
  * Represents the possible values for the XML passing mechanism clause.  A value of NONE indicates that the passing mechanism clause should be omitted.
  * <!-- end-model-doc -->
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPassingType()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPassingType()
  * @model
  * @generated
  */

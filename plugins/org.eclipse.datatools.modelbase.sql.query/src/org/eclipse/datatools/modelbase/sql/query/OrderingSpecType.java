@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderingSpecType.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
+ * $Id: OrderingSpecType.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Ordering Spec Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderingSpecType()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderingSpecType()
  * @model
  * @generated
  */

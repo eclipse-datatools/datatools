@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Grouping.java,v 1.5 2005/02/03 22:58:54 bpayton Exp $
+ * $Id: Grouping.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGrouping()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGrouping()
  * @model abstract="true"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface Grouping extends GroupingSpecification{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Sets Element Expr</em>' container reference.
 	 * @see #setGroupingSetsElementExpr(GroupingSetsElementExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGrouping_GroupingSetsElementExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGrouping_GroupingSetsElementExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression#getGrouping
 	 * @model opposite="grouping"
 	 * @generated

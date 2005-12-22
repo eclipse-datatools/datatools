@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryInsertStatement.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryInsertStatement.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryInsertStatement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryInsertStatement()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface QueryInsertStatement extends QueryChangeStatement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Query</em>' containment reference.
 	 * @see #setSourceQuery(QueryExpressionRoot)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryInsertStatement_SourceQuery()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryInsertStatement_SourceQuery()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot#getInsertStatement
 	 * @model opposite="insertStatement" containment="true"
 	 * @generated
@@ -67,7 +67,7 @@ public interface QueryInsertStatement extends QueryChangeStatement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source Values Row List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryInsertStatement_SourceValuesRowList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryInsertStatement_SourceValuesRowList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValuesRow#getInsertStatement
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValuesRow" opposite="insertStatement" containment="true"
 	 * @generated
@@ -87,7 +87,7 @@ public interface QueryInsertStatement extends QueryChangeStatement{
 	 * @see #isSetTargetTable()
 	 * @see #unsetTargetTable()
 	 * @see #setTargetTable(TableInDatabase)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryInsertStatement_TargetTable()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryInsertStatement_TargetTable()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableInDatabase#getInsertStatement
 	 * @model opposite="insertStatement" containment="true" unsettable="true" required="true"
 	 * @generated
@@ -140,7 +140,7 @@ public interface QueryInsertStatement extends QueryChangeStatement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Column List</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryInsertStatement_TargetColumnList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryInsertStatement_TargetColumnList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getInsertStatement
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="insertStatement"
 	 * @generated

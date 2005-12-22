@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementSublist.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: GroupingSetsElementSublist.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElementSublist()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElementSublist()
  * @model
  * @generated
  */
@@ -36,7 +36,7 @@ public interface GroupingSetsElementSublist extends GroupingSetsElement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Sets Element Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getGroupingSetsElementSublist_GroupingSetsElementExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getGroupingSetsElementSublist_GroupingSetsElementExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression#getGroupingSetsElementSublist
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression" opposite="groupingSetsElementSublist" containment="true" required="true"
 	 * @generated

@@ -61,7 +61,7 @@
 	    (object Class_Category "SQLModel"
 		is_unit    	TRUE
 		is_loaded  	FALSE
-		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\src\\model\\SQLModel.cat"
+		file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel.cat"
 		quid       	"3E9B1F8201C1")
 	    (object Class_Category "SQLQueryModel"
 		is_unit    	TRUE

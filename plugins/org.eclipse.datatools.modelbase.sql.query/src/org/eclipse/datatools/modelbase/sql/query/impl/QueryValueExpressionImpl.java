@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValueExpressionImpl.java,v 1.2 2005/12/17 01:46:21 bpayton Exp $
+ * $Id: QueryValueExpressionImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -22,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect;
 import org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
@@ -136,7 +136,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getQueryValueExpression();
+		return SQLQueryModelPackage.eINSTANCE.getQueryValueExpression();
 	}
 
 	/**
@@ -157,7 +157,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 		ValueExpressionUnaryOperator oldUnaryOperator = unaryOperator;
 		unaryOperator = newUnaryOperator == null ? UNARY_OPERATOR_EDEFAULT : newUnaryOperator;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR, oldUnaryOperator, unaryOperator));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR, oldUnaryOperator, unaryOperator));
 	}
 
 	/**
@@ -178,7 +178,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 		DataType oldDataType = dataType;
 		dataType = newDataType;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, oldDataType, newDataType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, oldDataType, newDataType);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -193,14 +193,14 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 		if (newDataType != dataType) {
 			NotificationChain msgs = null;
 			if (dataType != null)
-				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, null, msgs);
+				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, null, msgs);
 			if (newDataType != null)
-				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, null, msgs);
+				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, null, msgs);
 			msgs = basicSetDataType(newDataType, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, newDataType, newDataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE, newDataType, newDataType));
 	}
 
 	/**
@@ -209,7 +209,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValuesRow getValuesRow() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW) return null;
 		return (ValuesRow)eContainer;
 	}
 
@@ -219,19 +219,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValuesRow(ValuesRow newValuesRow) {
-		if (newValuesRow != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW && newValuesRow != null)) {
+		if (newValuesRow != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW && newValuesRow != null)) {
 			if (EcoreUtil.isAncestor(this, newValuesRow))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValuesRow != null)
-				msgs = ((InternalEObject)newValuesRow).eInverseAdd(this, SQLQueryPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValuesRow, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
+				msgs = ((InternalEObject)newValuesRow).eInverseAdd(this, SQLQueryModelPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValuesRow, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, newValuesRow, newValuesRow));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, newValuesRow, newValuesRow));
 	}
 
 	/**
@@ -240,7 +240,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public OrderByValueExpression getOrderByValueExpr() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR) return null;
 		return (OrderByValueExpression)eContainer;
 	}
 
@@ -250,19 +250,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setOrderByValueExpr(OrderByValueExpression newOrderByValueExpr) {
-		if (newOrderByValueExpr != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR && newOrderByValueExpr != null)) {
+		if (newOrderByValueExpr != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR && newOrderByValueExpr != null)) {
 			if (EcoreUtil.isAncestor(this, newOrderByValueExpr))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOrderByValueExpr != null)
-				msgs = ((InternalEObject)newOrderByValueExpr).eInverseAdd(this, SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newOrderByValueExpr, SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
+				msgs = ((InternalEObject)newOrderByValueExpr).eInverseAdd(this, SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newOrderByValueExpr, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, newOrderByValueExpr, newOrderByValueExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, newOrderByValueExpr, newOrderByValueExpr));
 	}
 
 	/**
@@ -271,7 +271,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ResultColumn getResultColumn() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN) return null;
 		return (ResultColumn)eContainer;
 	}
 
@@ -281,19 +281,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setResultColumn(ResultColumn newResultColumn) {
-		if (newResultColumn != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN && newResultColumn != null)) {
+		if (newResultColumn != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN && newResultColumn != null)) {
 			if (EcoreUtil.isAncestor(this, newResultColumn))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newResultColumn != null)
-				msgs = ((InternalEObject)newResultColumn).eInverseAdd(this, SQLQueryPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newResultColumn, SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
+				msgs = ((InternalEObject)newResultColumn).eInverseAdd(this, SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newResultColumn, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, newResultColumn, newResultColumn));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, newResultColumn, newResultColumn));
 	}
 
 	/**
@@ -302,7 +302,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateBasic getBasicRight() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT) return null;
 		return (PredicateBasic)eContainer;
 	}
 
@@ -312,19 +312,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setBasicRight(PredicateBasic newBasicRight) {
-		if (newBasicRight != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT && newBasicRight != null)) {
+		if (newBasicRight != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT && newBasicRight != null)) {
 			if (EcoreUtil.isAncestor(this, newBasicRight))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBasicRight != null)
-				msgs = ((InternalEObject)newBasicRight).eInverseAdd(this, SQLQueryPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBasicRight, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
+				msgs = ((InternalEObject)newBasicRight).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newBasicRight, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, newBasicRight, newBasicRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, newBasicRight, newBasicRight));
 	}
 
 	/**
@@ -333,7 +333,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateBasic getBasicLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT) return null;
 		return (PredicateBasic)eContainer;
 	}
 
@@ -343,19 +343,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setBasicLeft(PredicateBasic newBasicLeft) {
-		if (newBasicLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT && newBasicLeft != null)) {
+		if (newBasicLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT && newBasicLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newBasicLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBasicLeft != null)
-				msgs = ((InternalEObject)newBasicLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBasicLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
+				msgs = ((InternalEObject)newBasicLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newBasicLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, newBasicLeft, newBasicLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, newBasicLeft, newBasicLeft));
 	}
 
 	/**
@@ -364,7 +364,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateLike getLikePattern() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN) return null;
 		return (PredicateLike)eContainer;
 	}
 
@@ -374,19 +374,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setLikePattern(PredicateLike newLikePattern) {
-		if (newLikePattern != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN && newLikePattern != null)) {
+		if (newLikePattern != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN && newLikePattern != null)) {
 			if (EcoreUtil.isAncestor(this, newLikePattern))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLikePattern != null)
-				msgs = ((InternalEObject)newLikePattern).eInverseAdd(this, SQLQueryPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newLikePattern, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
+				msgs = ((InternalEObject)newLikePattern).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newLikePattern, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, newLikePattern, newLikePattern));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, newLikePattern, newLikePattern));
 	}
 
 	/**
@@ -395,7 +395,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateLike getLikeMatching() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING) return null;
 		return (PredicateLike)eContainer;
 	}
 
@@ -405,19 +405,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setLikeMatching(PredicateLike newLikeMatching) {
-		if (newLikeMatching != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING && newLikeMatching != null)) {
+		if (newLikeMatching != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING && newLikeMatching != null)) {
 			if (EcoreUtil.isAncestor(this, newLikeMatching))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLikeMatching != null)
-				msgs = ((InternalEObject)newLikeMatching).eInverseAdd(this, SQLQueryPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newLikeMatching, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
+				msgs = ((InternalEObject)newLikeMatching).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newLikeMatching, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, newLikeMatching, newLikeMatching));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, newLikeMatching, newLikeMatching));
 	}
 
 	/**
@@ -426,7 +426,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateIsNull getPredicateNull() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL) return null;
 		return (PredicateIsNull)eContainer;
 	}
 
@@ -436,19 +436,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setPredicateNull(PredicateIsNull newPredicateNull) {
-		if (newPredicateNull != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL && newPredicateNull != null)) {
+		if (newPredicateNull != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL && newPredicateNull != null)) {
 			if (EcoreUtil.isAncestor(this, newPredicateNull))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newPredicateNull != null)
-				msgs = ((InternalEObject)newPredicateNull).eInverseAdd(this, SQLQueryPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newPredicateNull, SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
+				msgs = ((InternalEObject)newPredicateNull).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newPredicateNull, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, newPredicateNull, newPredicateNull));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, newPredicateNull, newPredicateNull));
 	}
 
 	/**
@@ -457,7 +457,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateInValueList getInValueListRight() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT) return null;
 		return (PredicateInValueList)eContainer;
 	}
 
@@ -467,19 +467,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setInValueListRight(PredicateInValueList newInValueListRight) {
-		if (newInValueListRight != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT && newInValueListRight != null)) {
+		if (newInValueListRight != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT && newInValueListRight != null)) {
 			if (EcoreUtil.isAncestor(this, newInValueListRight))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newInValueListRight != null)
-				msgs = ((InternalEObject)newInValueListRight).eInverseAdd(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newInValueListRight, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
+				msgs = ((InternalEObject)newInValueListRight).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newInValueListRight, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, newInValueListRight, newInValueListRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, newInValueListRight, newInValueListRight));
 	}
 
 	/**
@@ -488,7 +488,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateInValueList getInValueListLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT) return null;
 		return (PredicateInValueList)eContainer;
 	}
 
@@ -498,19 +498,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setInValueListLeft(PredicateInValueList newInValueListLeft) {
-		if (newInValueListLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT && newInValueListLeft != null)) {
+		if (newInValueListLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT && newInValueListLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newInValueListLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newInValueListLeft != null)
-				msgs = ((InternalEObject)newInValueListLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newInValueListLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
+				msgs = ((InternalEObject)newInValueListLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newInValueListLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, newInValueListLeft, newInValueListLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, newInValueListLeft, newInValueListLeft));
 	}
 
 	/**
@@ -519,7 +519,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateInValueRowSelect getInValueRowSelectLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT) return null;
 		return (PredicateInValueRowSelect)eContainer;
 	}
 
@@ -529,19 +529,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setInValueRowSelectLeft(PredicateInValueRowSelect newInValueRowSelectLeft) {
-		if (newInValueRowSelectLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT && newInValueRowSelectLeft != null)) {
+		if (newInValueRowSelectLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT && newInValueRowSelectLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newInValueRowSelectLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newInValueRowSelectLeft != null)
-				msgs = ((InternalEObject)newInValueRowSelectLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newInValueRowSelectLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
+				msgs = ((InternalEObject)newInValueRowSelectLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newInValueRowSelectLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, newInValueRowSelectLeft, newInValueRowSelectLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, newInValueRowSelectLeft, newInValueRowSelectLeft));
 	}
 
 	/**
@@ -550,7 +550,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateInValueSelect getInValueSelectLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT) return null;
 		return (PredicateInValueSelect)eContainer;
 	}
 
@@ -560,19 +560,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setInValueSelectLeft(PredicateInValueSelect newInValueSelectLeft) {
-		if (newInValueSelectLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT && newInValueSelectLeft != null)) {
+		if (newInValueSelectLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT && newInValueSelectLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newInValueSelectLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newInValueSelectLeft != null)
-				msgs = ((InternalEObject)newInValueSelectLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newInValueSelectLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
+				msgs = ((InternalEObject)newInValueSelectLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newInValueSelectLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, newInValueSelectLeft, newInValueSelectLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, newInValueSelectLeft, newInValueSelectLeft));
 	}
 
 	/**
@@ -581,7 +581,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateQuantifiedRowSelect getQuantifiedRowSelectLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT) return null;
 		return (PredicateQuantifiedRowSelect)eContainer;
 	}
 
@@ -591,19 +591,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setQuantifiedRowSelectLeft(PredicateQuantifiedRowSelect newQuantifiedRowSelectLeft) {
-		if (newQuantifiedRowSelectLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT && newQuantifiedRowSelectLeft != null)) {
+		if (newQuantifiedRowSelectLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT && newQuantifiedRowSelectLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newQuantifiedRowSelectLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuantifiedRowSelectLeft != null)
-				msgs = ((InternalEObject)newQuantifiedRowSelectLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuantifiedRowSelectLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
+				msgs = ((InternalEObject)newQuantifiedRowSelectLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newQuantifiedRowSelectLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, newQuantifiedRowSelectLeft, newQuantifiedRowSelectLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, newQuantifiedRowSelectLeft, newQuantifiedRowSelectLeft));
 	}
 
 	/**
@@ -612,7 +612,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateQuantifiedValueSelect getQuantifiedValueSelectLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT) return null;
 		return (PredicateQuantifiedValueSelect)eContainer;
 	}
 
@@ -622,19 +622,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setQuantifiedValueSelectLeft(PredicateQuantifiedValueSelect newQuantifiedValueSelectLeft) {
-		if (newQuantifiedValueSelectLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT && newQuantifiedValueSelectLeft != null)) {
+		if (newQuantifiedValueSelectLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT && newQuantifiedValueSelectLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newQuantifiedValueSelectLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuantifiedValueSelectLeft != null)
-				msgs = ((InternalEObject)newQuantifiedValueSelectLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuantifiedValueSelectLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
+				msgs = ((InternalEObject)newQuantifiedValueSelectLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newQuantifiedValueSelectLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, newQuantifiedValueSelectLeft, newQuantifiedValueSelectLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, newQuantifiedValueSelectLeft, newQuantifiedValueSelectLeft));
 	}
 
 	/**
@@ -643,7 +643,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateBetween getBetweenLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT) return null;
 		return (PredicateBetween)eContainer;
 	}
 
@@ -653,19 +653,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setBetweenLeft(PredicateBetween newBetweenLeft) {
-		if (newBetweenLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT && newBetweenLeft != null)) {
+		if (newBetweenLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT && newBetweenLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newBetweenLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBetweenLeft != null)
-				msgs = ((InternalEObject)newBetweenLeft).eInverseAdd(this, SQLQueryPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBetweenLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
+				msgs = ((InternalEObject)newBetweenLeft).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newBetweenLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, newBetweenLeft, newBetweenLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, newBetweenLeft, newBetweenLeft));
 	}
 
 	/**
@@ -674,7 +674,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateBetween getBetweenRight1() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1) return null;
 		return (PredicateBetween)eContainer;
 	}
 
@@ -684,19 +684,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setBetweenRight1(PredicateBetween newBetweenRight1) {
-		if (newBetweenRight1 != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1 && newBetweenRight1 != null)) {
+		if (newBetweenRight1 != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1 && newBetweenRight1 != null)) {
 			if (EcoreUtil.isAncestor(this, newBetweenRight1))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBetweenRight1 != null)
-				msgs = ((InternalEObject)newBetweenRight1).eInverseAdd(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBetweenRight1, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
+				msgs = ((InternalEObject)newBetweenRight1).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newBetweenRight1, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, newBetweenRight1, newBetweenRight1));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, newBetweenRight1, newBetweenRight1));
 	}
 
 	/**
@@ -705,7 +705,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateBetween getBetweenRight2() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2) return null;
 		return (PredicateBetween)eContainer;
 	}
 
@@ -715,19 +715,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setBetweenRight2(PredicateBetween newBetweenRight2) {
-		if (newBetweenRight2 != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2 && newBetweenRight2 != null)) {
+		if (newBetweenRight2 != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2 && newBetweenRight2 != null)) {
 			if (EcoreUtil.isAncestor(this, newBetweenRight2))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBetweenRight2 != null)
-				msgs = ((InternalEObject)newBetweenRight2).eInverseAdd(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBetweenRight2, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
+				msgs = ((InternalEObject)newBetweenRight2).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newBetweenRight2, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, newBetweenRight2, newBetweenRight2));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, newBetweenRight2, newBetweenRight2));
 	}
 
 	/**
@@ -736,7 +736,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCast getValueExprCast() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST) return null;
 		return (ValueExpressionCast)eContainer;
 	}
 
@@ -746,19 +746,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCast(ValueExpressionCast newValueExprCast) {
-		if (newValueExprCast != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST && newValueExprCast != null)) {
+		if (newValueExprCast != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST && newValueExprCast != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCast))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCast != null)
-				msgs = ((InternalEObject)newValueExprCast).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCast, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
+				msgs = ((InternalEObject)newValueExprCast).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCast, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, newValueExprCast, newValueExprCast));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, newValueExprCast, newValueExprCast));
 	}
 
 	/**
@@ -767,7 +767,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionFunction getValueExprFunction() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION) return null;
 		return (ValueExpressionFunction)eContainer;
 	}
 
@@ -777,19 +777,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprFunction(ValueExpressionFunction newValueExprFunction) {
-		if (newValueExprFunction != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION && newValueExprFunction != null)) {
+		if (newValueExprFunction != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION && newValueExprFunction != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprFunction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprFunction != null)
-				msgs = ((InternalEObject)newValueExprFunction).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprFunction, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
+				msgs = ((InternalEObject)newValueExprFunction).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprFunction, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, newValueExprFunction, newValueExprFunction));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, newValueExprFunction, newValueExprFunction));
 	}
 
 	/**
@@ -798,7 +798,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCombined getValueExprCombinedLeft() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT) return null;
 		return (ValueExpressionCombined)eContainer;
 	}
 
@@ -808,19 +808,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCombinedLeft(ValueExpressionCombined newValueExprCombinedLeft) {
-		if (newValueExprCombinedLeft != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT && newValueExprCombinedLeft != null)) {
+		if (newValueExprCombinedLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT && newValueExprCombinedLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCombinedLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCombinedLeft != null)
-				msgs = ((InternalEObject)newValueExprCombinedLeft).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCombinedLeft, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
+				msgs = ((InternalEObject)newValueExprCombinedLeft).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCombinedLeft, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, newValueExprCombinedLeft, newValueExprCombinedLeft));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, newValueExprCombinedLeft, newValueExprCombinedLeft));
 	}
 
 	/**
@@ -829,7 +829,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCombined getValueExprCombinedRight() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT) return null;
 		return (ValueExpressionCombined)eContainer;
 	}
 
@@ -839,19 +839,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCombinedRight(ValueExpressionCombined newValueExprCombinedRight) {
-		if (newValueExprCombinedRight != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT && newValueExprCombinedRight != null)) {
+		if (newValueExprCombinedRight != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT && newValueExprCombinedRight != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCombinedRight))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCombinedRight != null)
-				msgs = ((InternalEObject)newValueExprCombinedRight).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCombinedRight, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
+				msgs = ((InternalEObject)newValueExprCombinedRight).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCombinedRight, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, newValueExprCombinedRight, newValueExprCombinedRight));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, newValueExprCombinedRight, newValueExprCombinedRight));
 	}
 
 	/**
@@ -860,7 +860,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public GroupingExpression getGroupingExpr() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR) return null;
 		return (GroupingExpression)eContainer;
 	}
 
@@ -870,19 +870,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setGroupingExpr(GroupingExpression newGroupingExpr) {
-		if (newGroupingExpr != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR && newGroupingExpr != null)) {
+		if (newGroupingExpr != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR && newGroupingExpr != null)) {
 			if (EcoreUtil.isAncestor(this, newGroupingExpr))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newGroupingExpr != null)
-				msgs = ((InternalEObject)newGroupingExpr).eInverseAdd(this, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newGroupingExpr, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
+				msgs = ((InternalEObject)newGroupingExpr).eInverseAdd(this, SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newGroupingExpr, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, newGroupingExpr, newGroupingExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, newGroupingExpr, newGroupingExpr));
 	}
 
 	/**
@@ -891,7 +891,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCaseElse getValueExprCaseElse() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE) return null;
 		return (ValueExpressionCaseElse)eContainer;
 	}
 
@@ -901,19 +901,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseElse(ValueExpressionCaseElse newValueExprCaseElse) {
-		if (newValueExprCaseElse != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE && newValueExprCaseElse != null)) {
+		if (newValueExprCaseElse != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE && newValueExprCaseElse != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseElse))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseElse != null)
-				msgs = ((InternalEObject)newValueExprCaseElse).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseElse, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
+				msgs = ((InternalEObject)newValueExprCaseElse).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseElse, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, newValueExprCaseElse, newValueExprCaseElse));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, newValueExprCaseElse, newValueExprCaseElse));
 	}
 
 	/**
@@ -922,7 +922,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCaseSimple getValueExprCaseSimple() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE) return null;
 		return (ValueExpressionCaseSimple)eContainer;
 	}
 
@@ -932,19 +932,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseSimple(ValueExpressionCaseSimple newValueExprCaseSimple) {
-		if (newValueExprCaseSimple != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE && newValueExprCaseSimple != null)) {
+		if (newValueExprCaseSimple != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE && newValueExprCaseSimple != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSimple))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSimple != null)
-				msgs = ((InternalEObject)newValueExprCaseSimple).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimple, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
+				msgs = ((InternalEObject)newValueExprCaseSimple).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimple, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, newValueExprCaseSimple, newValueExprCaseSimple));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, newValueExprCaseSimple, newValueExprCaseSimple));
 	}
 
 	/**
@@ -953,7 +953,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCaseSimpleContent getValueExprCaseSimpleContentWhen() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN) return null;
 		return (ValueExpressionCaseSimpleContent)eContainer;
 	}
 
@@ -963,19 +963,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseSimpleContentWhen(ValueExpressionCaseSimpleContent newValueExprCaseSimpleContentWhen) {
-		if (newValueExprCaseSimpleContentWhen != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN && newValueExprCaseSimpleContentWhen != null)) {
+		if (newValueExprCaseSimpleContentWhen != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN && newValueExprCaseSimpleContentWhen != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSimpleContentWhen))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSimpleContentWhen != null)
-				msgs = ((InternalEObject)newValueExprCaseSimpleContentWhen).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimpleContentWhen, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
+				msgs = ((InternalEObject)newValueExprCaseSimpleContentWhen).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimpleContentWhen, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, newValueExprCaseSimpleContentWhen, newValueExprCaseSimpleContentWhen));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, newValueExprCaseSimpleContentWhen, newValueExprCaseSimpleContentWhen));
 	}
 
 	/**
@@ -984,7 +984,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCaseSimpleContent getValueExprCaseSimpleContentResult() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT) return null;
 		return (ValueExpressionCaseSimpleContent)eContainer;
 	}
 
@@ -994,19 +994,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseSimpleContentResult(ValueExpressionCaseSimpleContent newValueExprCaseSimpleContentResult) {
-		if (newValueExprCaseSimpleContentResult != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT && newValueExprCaseSimpleContentResult != null)) {
+		if (newValueExprCaseSimpleContentResult != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT && newValueExprCaseSimpleContentResult != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSimpleContentResult))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSimpleContentResult != null)
-				msgs = ((InternalEObject)newValueExprCaseSimpleContentResult).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimpleContentResult, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
+				msgs = ((InternalEObject)newValueExprCaseSimpleContentResult).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSimpleContentResult, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, newValueExprCaseSimpleContentResult, newValueExprCaseSimpleContentResult));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, newValueExprCaseSimpleContentResult, newValueExprCaseSimpleContentResult));
 	}
 
 	/**
@@ -1015,7 +1015,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionCaseSearchContent getValueExprCaseSearchContent() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT) return null;
 		return (ValueExpressionCaseSearchContent)eContainer;
 	}
 
@@ -1025,19 +1025,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseSearchContent(ValueExpressionCaseSearchContent newValueExprCaseSearchContent) {
-		if (newValueExprCaseSearchContent != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT && newValueExprCaseSearchContent != null)) {
+		if (newValueExprCaseSearchContent != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT && newValueExprCaseSearchContent != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSearchContent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSearchContent != null)
-				msgs = ((InternalEObject)newValueExprCaseSearchContent).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearchContent, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				msgs = ((InternalEObject)newValueExprCaseSearchContent).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearchContent, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, newValueExprCaseSearchContent, newValueExprCaseSearchContent));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, newValueExprCaseSearchContent, newValueExprCaseSearchContent));
 	}
 
 	/**
@@ -1046,7 +1046,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public PredicateLike getLikeEscape() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE) return null;
 		return (PredicateLike)eContainer;
 	}
 
@@ -1056,19 +1056,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setLikeEscape(PredicateLike newLikeEscape) {
-		if (newLikeEscape != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE && newLikeEscape != null)) {
+		if (newLikeEscape != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE && newLikeEscape != null)) {
 			if (EcoreUtil.isAncestor(this, newLikeEscape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newLikeEscape != null)
-				msgs = ((InternalEObject)newLikeEscape).eInverseAdd(this, SQLQueryPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newLikeEscape, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
+				msgs = ((InternalEObject)newLikeEscape).eInverseAdd(this, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newLikeEscape, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, newLikeEscape, newLikeEscape));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, newLikeEscape, newLikeEscape));
 	}
 
 	/**
@@ -1077,7 +1077,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public ValueExpressionLabeledDuration getValueExprLabeledDuration() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION) return null;
 		return (ValueExpressionLabeledDuration)eContainer;
 	}
 
@@ -1087,19 +1087,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprLabeledDuration(ValueExpressionLabeledDuration newValueExprLabeledDuration) {
-		if (newValueExprLabeledDuration != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION && newValueExprLabeledDuration != null)) {
+		if (newValueExprLabeledDuration != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION && newValueExprLabeledDuration != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprLabeledDuration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprLabeledDuration != null)
-				msgs = ((InternalEObject)newValueExprLabeledDuration).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprLabeledDuration, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
+				msgs = ((InternalEObject)newValueExprLabeledDuration).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueExprLabeledDuration, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, newValueExprLabeledDuration, newValueExprLabeledDuration));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, newValueExprLabeledDuration, newValueExprLabeledDuration));
 	}
 
 	/**
@@ -1108,7 +1108,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
   public ValueExpressionNested getNest() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST) return null;
 		return (ValueExpressionNested)eContainer;
 	}
 
@@ -1118,19 +1118,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
   public void setNest(ValueExpressionNested newNest) {
-		if (newNest != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST && newNest != null)) {
+		if (newNest != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST && newNest != null)) {
 			if (EcoreUtil.isAncestor(this, newNest))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newNest != null)
-				msgs = ((InternalEObject)newNest).eInverseAdd(this, SQLQueryPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
+				msgs = ((InternalEObject)newNest).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST, newNest, newNest));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, newNest, newNest));
 	}
 
 	/**
@@ -1139,7 +1139,7 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
   public UpdateSourceExprList getUpdateSourceExprList() {
-		if (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST) return null;
+		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST) return null;
 		return (UpdateSourceExprList)eContainer;
 	}
 
@@ -1149,19 +1149,19 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
   public void setUpdateSourceExprList(UpdateSourceExprList newUpdateSourceExprList) {
-		if (newUpdateSourceExprList != eContainer || (eContainerFeatureID != SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST && newUpdateSourceExprList != null)) {
+		if (newUpdateSourceExprList != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST && newUpdateSourceExprList != null)) {
 			if (EcoreUtil.isAncestor(this, newUpdateSourceExprList))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUpdateSourceExprList != null)
-				msgs = ((InternalEObject)newUpdateSourceExprList).eInverseAdd(this, SQLQueryPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newUpdateSourceExprList, SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
+				msgs = ((InternalEObject)newUpdateSourceExprList).eInverseAdd(this, SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newUpdateSourceExprList, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, newUpdateSourceExprList, newUpdateSourceExprList));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, newUpdateSourceExprList, newUpdateSourceExprList));
 	}
 
     /**
@@ -1192,132 +1192,132 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -1335,74 +1335,74 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
 					return basicSetDataType(null, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
-					return eBasicSetContainer(null, SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -1418,68 +1418,68 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
-				case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUES_ROW__EXPR_LIST, ValuesRow.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR, OrderByValueExpression.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR, ResultColumn.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BASIC__RIGHT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BASIC__LEFT_VALUE_EXPR, PredicateBasic.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IS_NULL__VALUE_EXPR, PredicateIsNull.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST, PredicateInValueList.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST__VALUE_EXPR, PredicateInValueList.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST, PredicateInValueRowSelect.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT__VALUE_EXPR, PredicateInValueSelect.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST, PredicateQuantifiedRowSelect.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR, PredicateQuantifiedValueSelect.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__LEFT_VALUE_EXPR, PredicateBetween.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1, PredicateBetween.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2, PredicateBetween.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CAST__VALUE_EXPR, ValueExpressionCast.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST, ValueExpressionFunction.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR, ValueExpressionCombined.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.GROUPING_EXPRESSION__VALUE_EXPR, GroupingExpression.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR, ValueExpressionCaseElse.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, ValueExpressionCaseSimple.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR, ValueExpressionCaseSimpleContent.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR, ValueExpressionCaseSearchContent.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, PredicateLike.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR, ValueExpressionLabeledDuration.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR, ValueExpressionNested.class, msgs);
+				case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST, UpdateSourceExprList.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -1494,81 +1494,81 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NAME:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NAME:
 				return getName();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL:
 				return getLabel();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
 				return getUnaryOperator();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
 				return getDataType();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
 				return getValuesRow();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
 				return getOrderByValueExpr();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
 				return getResultColumn();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
 				return getBasicRight();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
 				return getBasicLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
 				return getLikePattern();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
 				return getLikeMatching();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
 				return getPredicateNull();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
 				return getInValueListRight();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
 				return getInValueListLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
 				return getInValueRowSelectLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
 				return getInValueSelectLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
 				return getQuantifiedRowSelectLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
 				return getQuantifiedValueSelectLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
 				return getBetweenLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
 				return getBetweenRight1();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
 				return getBetweenRight2();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
 				return getValueExprCast();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
 				return getValueExprFunction();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
 				return getValueExprCombinedLeft();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
 				return getValueExprCombinedRight();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
 				return getGroupingExpr();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
 				return getValueExprCaseElse();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
 				return getValueExprCaseSimple();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				return getValueExprCaseSimpleContentWhen();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				return getValueExprCaseSimpleContentResult();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				return getValueExprCaseSearchContent();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
 				return getLikeEscape();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
 				return getValueExprLabeledDuration();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
 				return getNest();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
 				return getUpdateSourceExprList();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -1581,120 +1581,120 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NAME:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
 				setUnaryOperator((ValueExpressionUnaryOperator)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
 				setDataType((DataType)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
 				setValuesRow((ValuesRow)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
 				setOrderByValueExpr((OrderByValueExpression)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
 				setResultColumn((ResultColumn)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
 				setBasicRight((PredicateBasic)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
 				setBasicLeft((PredicateBasic)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
 				setLikePattern((PredicateLike)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
 				setLikeMatching((PredicateLike)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
 				setPredicateNull((PredicateIsNull)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
 				setInValueListRight((PredicateInValueList)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
 				setInValueListLeft((PredicateInValueList)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
 				setInValueRowSelectLeft((PredicateInValueRowSelect)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
 				setInValueSelectLeft((PredicateInValueSelect)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
 				setQuantifiedRowSelectLeft((PredicateQuantifiedRowSelect)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
 				setQuantifiedValueSelectLeft((PredicateQuantifiedValueSelect)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
 				setBetweenLeft((PredicateBetween)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
 				setBetweenRight1((PredicateBetween)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
 				setBetweenRight2((PredicateBetween)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
 				setValueExprCast((ValueExpressionCast)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
 				setValueExprFunction((ValueExpressionFunction)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
 				setValueExprCombinedLeft((ValueExpressionCombined)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
 				setValueExprCombinedRight((ValueExpressionCombined)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
 				setGroupingExpr((GroupingExpression)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
 				setValueExprCaseElse((ValueExpressionCaseElse)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
 				setValueExprCaseSimple((ValueExpressionCaseSimple)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				setValueExprCaseSimpleContentWhen((ValueExpressionCaseSimpleContent)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				setValueExprCaseSimpleContentResult((ValueExpressionCaseSimpleContent)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
 				setLikeEscape((PredicateLike)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
 				setValueExprLabeledDuration((ValueExpressionLabeledDuration)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
 				setNest((ValueExpressionNested)newValue);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
 				setUpdateSourceExprList((UpdateSourceExprList)newValue);
 				return;
 		}
@@ -1708,118 +1708,118 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NAME:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
 				setUnaryOperator(UNARY_OPERATOR_EDEFAULT);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
 				setDataType((DataType)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
 				setValuesRow((ValuesRow)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
 				setOrderByValueExpr((OrderByValueExpression)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
 				setResultColumn((ResultColumn)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
 				setBasicRight((PredicateBasic)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
 				setBasicLeft((PredicateBasic)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
 				setLikePattern((PredicateLike)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
 				setLikeMatching((PredicateLike)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
 				setPredicateNull((PredicateIsNull)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
 				setInValueListRight((PredicateInValueList)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
 				setInValueListLeft((PredicateInValueList)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
 				setInValueRowSelectLeft((PredicateInValueRowSelect)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
 				setInValueSelectLeft((PredicateInValueSelect)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
 				setQuantifiedRowSelectLeft((PredicateQuantifiedRowSelect)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
 				setQuantifiedValueSelectLeft((PredicateQuantifiedValueSelect)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
 				setBetweenLeft((PredicateBetween)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
 				setBetweenRight1((PredicateBetween)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
 				setBetweenRight2((PredicateBetween)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
 				setValueExprCast((ValueExpressionCast)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
 				setValueExprFunction((ValueExpressionFunction)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
 				setValueExprCombinedLeft((ValueExpressionCombined)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
 				setValueExprCombinedRight((ValueExpressionCombined)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
 				setGroupingExpr((GroupingExpression)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
 				setValueExprCaseElse((ValueExpressionCaseElse)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
 				setValueExprCaseSimple((ValueExpressionCaseSimple)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				setValueExprCaseSimpleContentWhen((ValueExpressionCaseSimpleContent)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				setValueExprCaseSimpleContentResult((ValueExpressionCaseSimpleContent)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
 				setLikeEscape((PredicateLike)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
 				setValueExprLabeledDuration((ValueExpressionLabeledDuration)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
 				setNest((ValueExpressionNested)null);
 				return;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
 				setUpdateSourceExprList((UpdateSourceExprList)null);
 				return;
 		}
@@ -1833,81 +1833,81 @@ public abstract class QueryValueExpressionImpl extends SQLQueryObjectImpl implem
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NAME:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LABEL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UNARY_OPERATOR:
 				return unaryOperator != UNARY_OPERATOR_EDEFAULT;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__DATA_TYPE:
 				return dataType != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW:
 				return getValuesRow() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR:
 				return getOrderByValueExpr() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__RESULT_COLUMN:
 				return getResultColumn() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_RIGHT:
 				return getBasicRight() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BASIC_LEFT:
 				return getBasicLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN:
 				return getLikePattern() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING:
 				return getLikeMatching() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PREDICATE_NULL:
 				return getPredicateNull() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT:
 				return getInValueListRight() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT:
 				return getInValueListLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT:
 				return getInValueRowSelectLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT:
 				return getInValueSelectLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT:
 				return getQuantifiedRowSelectLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT:
 				return getQuantifiedValueSelectLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_LEFT:
 				return getBetweenLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1:
 				return getBetweenRight1() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2:
 				return getBetweenRight2() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST:
 				return getValueExprCast() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION:
 				return getValueExprFunction() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT:
 				return getValueExprCombinedLeft() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT:
 				return getValueExprCombinedRight() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__GROUPING_EXPR:
 				return getGroupingExpr() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE:
 				return getValueExprCaseElse() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE:
 				return getValueExprCaseSimple() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN:
 				return getValueExprCaseSimpleContentWhen() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT:
 				return getValueExprCaseSimpleContentResult() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT:
 				return getValueExprCaseSearchContent() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE:
 				return getLikeEscape() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION:
 				return getValueExprLabeledDuration() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__NEST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__NEST:
 				return getNest() != null;
-			case SQLQueryPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
+			case SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST:
 				return getUpdateSourceExprList() != null;
 		}
 		return eDynamicIsSet(eFeature);

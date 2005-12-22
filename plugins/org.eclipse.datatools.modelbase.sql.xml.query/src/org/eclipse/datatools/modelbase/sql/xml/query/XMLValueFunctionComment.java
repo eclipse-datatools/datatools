@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionComment.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLValueFunctionComment.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -24,7 +24,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionComment()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionComment()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLValueFunctionComment extends XMLValueFunction{
 	 * @return the value of the '<em>Returning Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
 	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionComment_ReturningOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionComment_ReturningOption()
 	 * @model
 	 * @generated
 	 */
@@ -69,7 +69,7 @@ public interface XMLValueFunctionComment extends XMLValueFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Comment Content</em>' containment reference.
 	 * @see #setCommentContent(XMLValueFunctionCommentContent)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLValueFunctionComment_CommentContent()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionComment_CommentContent()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionCommentContent#getValueFunctionComment
 	 * @model opposite="valueFunctionComment" containment="true" required="true"
 	 * @generated

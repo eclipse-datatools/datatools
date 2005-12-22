@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByOrdinalImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: OrderByOrdinalImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -13,7 +13,7 @@ import org.eclipse.datatools.modelbase.sql.query.NullOrderingType;
 import org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal;
 import org.eclipse.datatools.modelbase.sql.query.OrderingSpecType;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -74,7 +74,7 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getOrderByOrdinal();
+		return SQLQueryModelPackage.eINSTANCE.getOrderByOrdinal();
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 		int oldOrdinalValue = ordinalValue;
 		ordinalValue = newOrdinalValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE, oldOrdinalValue, ordinalValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE, oldOrdinalValue, ordinalValue));
 	}
 
 	/**
@@ -106,12 +106,12 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -129,12 +129,12 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -150,8 +150,8 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, QuerySelectStatement.class, msgs);
+				case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE, QuerySelectStatement.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -166,25 +166,25 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NAME:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NAME:
 				return getName();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCRIPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__LABEL:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__LABEL:
 				return getLabel();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCENDING:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCENDING:
 				return isDescending() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
 				return getOrderingSpecOption();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
 				return getNullOrderingOption();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
 				return getSelectStatement();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
 				return new Integer(getOrdinalValue());
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -197,36 +197,36 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NAME:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCRIPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__LABEL:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCENDING:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCENDING:
 				setDescending(((Boolean)newValue).booleanValue());
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
 				setOrderingSpecOption((OrderingSpecType)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
 				setNullOrderingOption((NullOrderingType)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
 				setSelectStatement((QuerySelectStatement)newValue);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
 				setOrdinalValue(((Integer)newValue).intValue());
 				return;
 		}
@@ -240,34 +240,34 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NAME:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCRIPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__LABEL:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCENDING:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCENDING:
 				setDescending(DESCENDING_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
 				setOrderingSpecOption(ORDERING_SPEC_OPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
 				setNullOrderingOption(NULL_ORDERING_OPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
 				setSelectStatement((QuerySelectStatement)null);
 				return;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
 				setOrdinalValue(ORDINAL_VALUE_EDEFAULT);
 				return;
 		}
@@ -281,25 +281,25 @@ public class OrderByOrdinalImpl extends OrderBySpecificationImpl implements Orde
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NAME:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCRIPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.ORDER_BY_ORDINAL__LABEL:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.ORDER_BY_ORDINAL__DESCENDING:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__DESCENDING:
 				return descending != DESCENDING_EDEFAULT;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDERING_SPEC_OPTION:
 				return orderingSpecOption != ORDERING_SPEC_OPTION_EDEFAULT;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__NULL_ORDERING_OPTION:
 				return nullOrderingOption != NULL_ORDERING_OPTION_EDEFAULT;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__SELECT_STATEMENT:
 				return getSelectStatement() != null;
-			case SQLQueryPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
+			case SQLQueryModelPackage.ORDER_BY_ORDINAL__ORDINAL_VALUE:
 				return ordinalValue != ORDINAL_VALUE_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceQuery.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: UpdateSourceQuery.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSourceQuery()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceQuery()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface UpdateSourceQuery extends UpdateSource{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expr</em>' containment reference.
 	 * @see #setQueryExpr(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateSourceQuery_QueryExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateSourceQuery_QueryExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getUpdateSourceQuery
 	 * @model opposite="updateSourceQuery" containment="true" required="true"
 	 * @generated

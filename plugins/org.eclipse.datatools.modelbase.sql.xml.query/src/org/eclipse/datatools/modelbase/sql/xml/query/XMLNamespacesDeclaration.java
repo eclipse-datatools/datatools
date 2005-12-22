@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNamespacesDeclaration.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLNamespacesDeclaration.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespacesDeclaration()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespacesDeclaration()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLNamespacesDeclaration extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespace Decltem List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespacesDeclaration_NamespaceDecltemList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespacesDeclaration_NamespaceDecltemList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationItem#getNamespacesDecl
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespaceDeclarationItem" opposite="namespacesDecl" containment="true" required="true"
 	 * @generated
@@ -59,7 +59,7 @@ public interface XMLNamespacesDeclaration extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Element</em>' container reference.
 	 * @see #setValueFunctionElement(XMLValueFunctionElement)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespacesDeclaration_ValueFunctionElement()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespacesDeclaration_ValueFunctionElement()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElement#getNamespacesDecl
 	 * @model opposite="namespacesDecl" required="true"
 	 * @generated
@@ -87,7 +87,7 @@ public interface XMLNamespacesDeclaration extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Function Forest</em>' container reference.
 	 * @see #setValueFunctionForest(XMLValueFunctionForest)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespacesDeclaration_ValueFunctionForest()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespacesDeclaration_ValueFunctionForest()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getNamespacesDecl
 	 * @model opposite="namespacesDecl" required="true"
 	 * @generated
@@ -115,7 +115,7 @@ public interface XMLNamespacesDeclaration extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Function</em>' container reference.
 	 * @see #setTableFunction(XMLTableFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLNamespacesDeclaration_TableFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLNamespacesDeclaration_TableFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableFunction#getNamespacesDecl
 	 * @model opposite="namespacesDecl" required="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultTableAllColumns.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ResultTableAllColumns.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getResultTableAllColumns()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getResultTableAllColumns()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ResultTableAllColumns extends QueryResultSpecification{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Expr</em>' reference.
 	 * @see #setTableExpr(TableExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getResultTableAllColumns_TableExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getResultTableAllColumns_TableExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableExpression#getResultTableAllColumns
 	 * @model opposite="resultTableAllColumns" required="true"
 	 * @generated

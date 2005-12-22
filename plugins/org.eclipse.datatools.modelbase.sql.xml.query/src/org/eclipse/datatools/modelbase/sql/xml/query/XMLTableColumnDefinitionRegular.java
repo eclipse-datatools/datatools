@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionRegular.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionRegular.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -23,7 +23,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionRegular()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionRegular()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface XMLTableColumnDefinitionRegular extends XMLTableColumnDefinitio
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Type</em>' containment reference.
 	 * @see #setDataType(DataType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionRegular_DataType()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionRegular_DataType()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface XMLTableColumnDefinitionRegular extends XMLTableColumnDefinitio
 	 * @return the value of the '<em>Passing Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
 	 * @see #setPassingOption(XMLPassingType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionRegular_PassingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionRegular_PassingOption()
 	 * @model
 	 * @generated
 	 */
@@ -93,7 +93,7 @@ public interface XMLTableColumnDefinitionRegular extends XMLTableColumnDefinitio
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Column Pattern</em>' attribute.
 	 * @see #setTableColumnPattern(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionRegular_TableColumnPattern()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionRegular_TableColumnPattern()
 	 * @model
 	 * @generated
 	 */
@@ -120,7 +120,7 @@ public interface XMLTableColumnDefinitionRegular extends XMLTableColumnDefinitio
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Definition Default</em>' containment reference.
 	 * @see #setColumnDefinitionDefault(XMLTableColumnDefinitionDefault)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableColumnDefinitionRegular_ColumnDefinitionDefault()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableColumnDefinitionRegular_ColumnDefinitionDefault()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionDefault#getColumnDefinitionRegular
 	 * @model opposite="columnDefinitionRegular" containment="true"
 	 * @generated

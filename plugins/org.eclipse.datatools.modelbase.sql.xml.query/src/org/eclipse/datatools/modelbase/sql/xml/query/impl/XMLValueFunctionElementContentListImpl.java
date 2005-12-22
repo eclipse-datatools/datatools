@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionElementContentListImpl.java,v 1.2 2005/10/22 01:40:26 bpayton Exp $
+ * $Id: XMLValueFunctionElementContentListImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -11,7 +11,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLNullHandlingType;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElement;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionElementContentItem;
@@ -92,7 +92,7 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLValueFunctionElementContentList();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionElementContentList();
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 		XMLNullHandlingType oldNullHandlingOption = nullHandlingOption;
 		nullHandlingOption = newNullHandlingOption == null ? NULL_HANDLING_OPTION_EDEFAULT : newNullHandlingOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION, oldNullHandlingOption, nullHandlingOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION, oldNullHandlingOption, nullHandlingOption));
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 * @generated
 	 */
     public XMLValueFunctionElement getValueFunctionElement() {
-		if (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT) return null;
+		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT) return null;
 		return (XMLValueFunctionElement)eContainer;
 	}
 
@@ -132,19 +132,19 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 * @generated
 	 */
     public void setValueFunctionElement(XMLValueFunctionElement newValueFunctionElement) {
-		if (newValueFunctionElement != eContainer || (eContainerFeatureID != SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
+		if (newValueFunctionElement != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
 			if (EcoreUtil.isAncestor(this, newValueFunctionElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eContainer != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueFunctionElement != null)
-				msgs = ((InternalEObject)newValueFunctionElement).eInverseAdd(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST, XMLValueFunctionElement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueFunctionElement, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
+				msgs = ((InternalEObject)newValueFunctionElement).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST, XMLValueFunctionElement.class, msgs);
+			msgs = eBasicSetContainer((InternalEObject)newValueFunctionElement, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, newValueFunctionElement, newValueFunctionElement));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, newValueFunctionElement, newValueFunctionElement));
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 */
     public EList getElementContentListChildren() {
 		if (elementContentListChildren == null) {
-			elementContentListChildren = new EObjectContainmentWithInverseEList(XMLValueFunctionElementContentItem.class, this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST);
+			elementContentListChildren = new EObjectContainmentWithInverseEList(XMLValueFunctionElementContentItem.class, this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST);
 		}
 		return elementContentListChildren;
 	}
@@ -167,13 +167,13 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 					return ((InternalEList)getElementContentListChildren()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -192,13 +192,13 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 					return ((InternalEList)getElementContentListChildren()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -215,8 +215,8 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
     public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST, XMLValueFunctionElement.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST, XMLValueFunctionElement.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -231,21 +231,21 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
 				return getNullHandlingOption();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
 				return getValueFunctionElement();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 				return getElementContentListChildren();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -258,30 +258,30 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
 				setNullHandlingOption((XMLNullHandlingType)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
 				setValueFunctionElement((XMLValueFunctionElement)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 				getElementContentListChildren().clear();
 				getElementContentListChildren().addAll((Collection)newValue);
 				return;
@@ -296,28 +296,28 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
 				setNullHandlingOption(NULL_HANDLING_OPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
 				setValueFunctionElement((XMLValueFunctionElement)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 				getElementContentListChildren().clear();
 				return;
 		}
@@ -331,21 +331,21 @@ public class XMLValueFunctionElementContentListImpl extends SQLQueryObjectImpl i
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION:
 				return nullHandlingOption != NULL_HANDLING_OPTION_EDEFAULT;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT:
 				return getValueFunctionElement() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN:
 				return elementContentListChildren != null && !elementContentListChildren.isEmpty();
 		}
 		return eDynamicIsSet(eFeature);

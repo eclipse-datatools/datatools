@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionNested.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionNested.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionNested()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionNested()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface ValueExpressionNested extends QueryValueExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nested Value Expr</em>' containment reference.
 	 * @see #setNestedValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionNested_NestedValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionNested_NestedValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getNest
 	 * @model opposite="nest" containment="true" required="true"
 	 * @generated

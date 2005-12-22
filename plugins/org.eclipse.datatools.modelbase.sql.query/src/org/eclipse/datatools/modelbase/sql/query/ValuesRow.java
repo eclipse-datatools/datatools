@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValuesRow.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: ValuesRow.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValuesRow()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValuesRow()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface ValuesRow extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Insert Statement</em>' container reference.
 	 * @see #setInsertStatement(QueryInsertStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValuesRow_InsertStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValuesRow_InsertStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getSourceValuesRowList
 	 * @model opposite="sourceValuesRowList"
 	 * @generated
@@ -66,7 +66,7 @@ public interface ValuesRow extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Expr List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValuesRow_ExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValuesRow_ExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValuesRow
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryValueExpression" opposite="valuesRow" containment="true" required="true"
 	 * @generated
@@ -84,7 +84,7 @@ public interface ValuesRow extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Values</em>' container reference.
 	 * @see #setQueryValues(QueryValues)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValuesRow_QueryValues()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValuesRow_QueryValues()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValues#getValuesRowList
 	 * @model opposite="valuesRowList" required="true"
 	 * @generated

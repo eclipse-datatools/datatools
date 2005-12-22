@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableReference.java,v 1.4 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: WithTableReference.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableReference()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableReference()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface WithTableReference extends TableExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Table Specification</em>' reference.
 	 * @see #setWithTableSpecification(WithTableSpecification)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getWithTableReference_WithTableSpecification()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getWithTableReference_WithTableSpecification()
 	 * @see org.eclipse.datatools.modelbase.sql.query.WithTableSpecification#getWithTableReferences
 	 * @model opposite="withTableReferences" required="true"
 	 * @generated

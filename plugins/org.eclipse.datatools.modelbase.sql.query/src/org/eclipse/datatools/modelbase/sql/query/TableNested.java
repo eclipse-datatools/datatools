@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableNested.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: TableNested.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableNested()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableNested()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface TableNested extends TableReference{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nested Table Ref</em>' containment reference.
 	 * @see #setNestedTableRef(TableReference)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getTableNested_NestedTableRef()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableNested_NestedTableRef()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableReference#getNest
 	 * @model opposite="nest" containment="true" required="true"
 	 * @generated

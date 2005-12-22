@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultTableAllColumnsImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: ResultTableAllColumnsImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -60,7 +60,7 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryPackage.eINSTANCE.getResultTableAllColumns();
+		return SQLQueryModelPackage.eINSTANCE.getResultTableAllColumns();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 			tableExpr = (TableExpression)eResolveProxy((InternalEObject)tableExpr);
 			if (tableExpr != oldTableExpr) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, oldTableExpr, tableExpr));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, oldTableExpr, tableExpr));
 			}
 		}
 		return tableExpr;
@@ -98,7 +98,7 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 		TableExpression oldTableExpr = tableExpr;
 		tableExpr = newTableExpr;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, oldTableExpr, newTableExpr);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, oldTableExpr, newTableExpr);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -113,14 +113,14 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 		if (newTableExpr != tableExpr) {
 			NotificationChain msgs = null;
 			if (tableExpr != null)
-				msgs = ((InternalEObject)tableExpr).eInverseRemove(this, SQLQueryPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
+				msgs = ((InternalEObject)tableExpr).eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
 			if (newTableExpr != null)
-				msgs = ((InternalEObject)newTableExpr).eInverseAdd(this, SQLQueryPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
+				msgs = ((InternalEObject)newTableExpr).eInverseAdd(this, SQLQueryModelPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
 			msgs = basicSetTableExpr(newTableExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, newTableExpr, newTableExpr));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR, newTableExpr, newTableExpr));
 	}
 
 	/**
@@ -131,15 +131,15 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT, msgs);
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT, msgs);
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 					if (tableExpr != null)
-						msgs = ((InternalEObject)tableExpr).eInverseRemove(this, SQLQueryPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
+						msgs = ((InternalEObject)tableExpr).eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS, TableExpression.class, msgs);
 					return basicSetTableExpr((TableExpression)otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -158,13 +158,13 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT, msgs);
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+					return eBasicSetContainer(null, SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT, msgs);
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 					return basicSetTableExpr(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -181,8 +181,8 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
+				case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -197,19 +197,19 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
 				return getName();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
 				return getDependencies();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
 				return getDescription();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
 				return getLabel();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
 				return getQuerySelect();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 				if (resolve) return getTableExpr();
 				return basicGetTableExpr();
 		}
@@ -223,27 +223,27 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
 				setName((String)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
 				setQuerySelect((QuerySelect)newValue);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 				setTableExpr((TableExpression)newValue);
 				return;
 		}
@@ -257,25 +257,25 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
 				setQuerySelect((QuerySelect)null);
 				return;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 				setTableExpr((TableExpression)null);
 				return;
 		}
@@ -289,19 +289,19 @@ public class ResultTableAllColumnsImpl extends QueryResultSpecificationImpl impl
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__QUERY_SELECT:
 				return getQuerySelect() != null;
-			case SQLQueryPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
+			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR:
 				return tableExpr != null;
 		}
 		return eDynamicIsSet(eFeature);

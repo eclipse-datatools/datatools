@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryUpdateStatement.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryUpdateStatement.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryUpdateStatement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryUpdateStatement()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface QueryUpdateStatement extends QueryChangeStatement{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assignment Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryUpdateStatement_AssignmentClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryUpdateStatement_AssignmentClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getUpdateStatement
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression" opposite="updateStatement" containment="true" required="true"
 	 * @generated
@@ -57,7 +57,7 @@ public interface QueryUpdateStatement extends QueryChangeStatement{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Where Current Of Clause</em>' containment reference.
 	 * @see #setWhereCurrentOfClause(CursorReference)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryUpdateStatement_WhereCurrentOfClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryUpdateStatement_WhereCurrentOfClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.CursorReference#getUpdateStatement
 	 * @model opposite="updateStatement" containment="true"
 	 * @generated
@@ -87,7 +87,7 @@ public interface QueryUpdateStatement extends QueryChangeStatement{
 	 * @see #isSetWhereClause()
 	 * @see #unsetWhereClause()
 	 * @see #setWhereClause(QuerySearchCondition)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryUpdateStatement_WhereClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryUpdateStatement_WhereClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition#getUpdateStatement
 	 * @model opposite="updateStatement" containment="true" unsettable="true"
 	 * @generated
@@ -142,7 +142,7 @@ public interface QueryUpdateStatement extends QueryChangeStatement{
 	 * @see #isSetTargetTable()
 	 * @see #unsetTargetTable()
 	 * @see #setTargetTable(TableInDatabase)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryUpdateStatement_TargetTable()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryUpdateStatement_TargetTable()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableInDatabase#getUpdateStatement
 	 * @model opposite="updateStatement" containment="true" unsettable="true" required="true"
 	 * @generated

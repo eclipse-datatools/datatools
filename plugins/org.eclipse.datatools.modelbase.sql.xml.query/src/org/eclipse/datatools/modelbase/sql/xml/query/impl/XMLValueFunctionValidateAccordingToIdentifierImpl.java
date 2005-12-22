@@ -2,13 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToIdentifierImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToIdentifierImpl.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidate;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingToIdentifier;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElement;
@@ -93,7 +93,7 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryPackage.eINSTANCE.getXMLValueFunctionValidateAccordingToIdentifier();
+		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionValidateAccordingToIdentifier();
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 		String oldSchemaName = schemaName;
 		schemaName = newSchemaName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME, oldSchemaName, schemaName));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME, oldSchemaName, schemaName));
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 		String oldRegisteredXMLSchemaName = registeredXMLSchemaName;
 		registeredXMLSchemaName = newRegisteredXMLSchemaName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME, oldRegisteredXMLSchemaName, registeredXMLSchemaName));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME, oldRegisteredXMLSchemaName, registeredXMLSchemaName));
 	}
 
 	/**
@@ -146,15 +146,15 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
 					if (eContainer != null)
 						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 					if (validateElement != null)
-						msgs = ((InternalEObject)validateElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT, null, msgs);
+						msgs = ((InternalEObject)validateElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT, null, msgs);
 					return basicSetValidateElement((XMLValueFunctionValidateElement)otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
@@ -173,13 +173,13 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
-					return eBasicSetContainer(null, SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE, msgs);
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 					return basicSetValidateElement(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -196,8 +196,8 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
 		if (eContainerFeatureID >= 0) {
 			switch (eContainerFeatureID) {
-				case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
-					return eContainer.eInverseRemove(this, SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, XMLValueFunctionValidate.class, msgs);
+				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, XMLValueFunctionValidate.class, msgs);
 				default:
 					return eDynamicBasicRemoveFromContainer(msgs);
 			}
@@ -212,23 +212,23 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	 */
     public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 				return getEAnnotations();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
 				return getName();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
 				return getDependencies();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
 				return getDescription();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
 				return getLabel();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
 				return getValueFunctionValidate();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 				return getValidateElement();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
 				return getSchemaName();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
 				return getRegisteredXMLSchemaName();
 		}
 		return eDynamicGet(eFeature, resolve);
@@ -241,33 +241,33 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	 */
     public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
 				setName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
 				setLabel((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
 				setValueFunctionValidate((XMLValueFunctionValidate)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 				setValidateElement((XMLValueFunctionValidateElement)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
 				setSchemaName((String)newValue);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
 				setRegisteredXMLSchemaName((String)newValue);
 				return;
 		}
@@ -281,31 +281,31 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	 */
     public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
 				getDependencies().clear();
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
 				setValueFunctionValidate((XMLValueFunctionValidate)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 				setValidateElement((XMLValueFunctionValidateElement)null);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
 				setSchemaName(SCHEMA_NAME_EDEFAULT);
 				return;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
 				setRegisteredXMLSchemaName(REGISTERED_XML_SCHEMA_NAME_EDEFAULT);
 				return;
 		}
@@ -319,23 +319,23 @@ public class XMLValueFunctionValidateAccordingToIdentifierImpl extends XMLValueF
 	 */
     public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALUE_FUNCTION_VALIDATE:
 				return getValueFunctionValidate() != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__VALIDATE_ELEMENT:
 				return validateElement != null;
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME:
 				return SCHEMA_NAME_EDEFAULT == null ? schemaName != null : !SCHEMA_NAME_EDEFAULT.equals(schemaName);
-			case SQLXMLQueryPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME:
 				return REGISTERED_XML_SCHEMA_NAME_EDEFAULT == null ? registeredXMLSchemaName != null : !REGISTERED_XML_SCHEMA_NAME_EDEFAULT.equals(registeredXMLSchemaName);
 		}
 		return eDynamicIsSet(eFeature);

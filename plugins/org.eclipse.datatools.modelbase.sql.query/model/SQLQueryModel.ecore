@@ -4,7 +4,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="query"
     nsURI="http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"
     nsPrefix="org.eclipse.datatools.modelbase.sql.query">
-  <eClassifiers xsi:type="ecore:EClass" name="QueryStatement" abstract="true" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//statements/SQLDataStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryStatement" abstract="true" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//statements/SQLDataStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="QueryDeleteStatement" eSuperTypes="#//QueryChangeStatement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="whereCurrentOfClause" eType="#//CursorReference"
         containment="true" eOpposite="#//CursorReference/deleteStatement"/>
@@ -54,7 +54,7 @@
         transient="true" eOpposite="#//QueryDeleteStatement/whereCurrentOfClause"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QuerySearchCondition" abstract="true"
-      eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//expressions/SearchCondition">
+      eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/SearchCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="negatedCondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This represents NOT ( &lt;searchCondition> ).  This attribute and paren can not both be true at the same time."/>
@@ -95,9 +95,9 @@
         lowerBound="1" eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/withTableQueryExpr"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryValueExpression" abstract="true"
-      eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//expressions/ValueExpression">
+      eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/ValueExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unaryOperator" eType="#//ValueExpressionUnaryOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//datatypes/DataType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DataType"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valuesRow" eType="#//ValuesRow"
         transient="true" eOpposite="#//ValuesRow/exprList"/>
@@ -162,7 +162,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateSourceExprList" eType="#//UpdateSourceExprList"
         transient="true" eOpposite="#//UpdateSourceExprList/valueExprList"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionRoot" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//expressions/QueryExpression">
+  <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionRoot" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/QueryExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
         transient="true" eOpposite="#//QueryInsertStatement/sourceQuery"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="selectStatement" eType="#//QuerySelectStatement"
@@ -420,7 +420,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterList" upperBound="-1"
         eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/valueExprFunction"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//routines/Function"/>
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Function"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionCombined" eSuperTypes="#//QueryValueExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="combinedOperator" eType="#//ValueExpressionCombinedOperator"/>
@@ -583,7 +583,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
         transient="true" eOpposite="#//QueryInsertStatement/targetTable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="databaseTable" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//tables/Table"/>
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Table"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="derivedColumnList" upperBound="-1"
         eType="#//ValueExpressionColumn" eOpposite="#//ValueExpressionColumn/tableInDatabase">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -592,14 +592,14 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableFunction" eSuperTypes="#//TableExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SQLQueryObject" abstract="true" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//schema/SQLObject">
+  <eClassifiers xsi:type="ecore:EClass" name="SQLQueryObject" abstract="true" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eOperations name="getSQL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="setSQL">
       <eParameters name="sqlText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryChangeStatement" abstract="true"
-      eSuperTypes="#//QueryStatement ../../org.eclipse.datatools.modelbase.sql/src/model/sqlmodel.ecore#//statements/SQLDataChangeStatement"/>
+      eSuperTypes="#//QueryStatement ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//statements/SQLDataChangeStatement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ColumnName" eSuperTypes="#//SQLQueryObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="tableCorrelation" eType="#//TableCorrelation"
         transient="true" eOpposite="#//TableCorrelation/columnNameList"/>

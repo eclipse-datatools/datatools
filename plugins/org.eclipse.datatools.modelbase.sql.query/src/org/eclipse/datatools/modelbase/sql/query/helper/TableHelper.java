@@ -53,7 +53,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
@@ -306,7 +306,7 @@ public class TableHelper {
 	                // now we found a ResultColumn in the this subquery
 	                // but obviously there is not yet a representing columnExpression
 	                // for this TableExpression which is a Subquery, we create one
-	                ValueExpressionColumn resultColExpr = SQLQueryFactory.eINSTANCE.createValueExpressionColumn();
+	                ValueExpressionColumn resultColExpr = SQLQueryModelFactory.eINSTANCE.createValueExpressionColumn();
 	                resultColExpr.setName(columnName);
 	                tableQuery.getColumnList().add(resultColExpr);
 	                
@@ -690,7 +690,7 @@ public class TableHelper {
       List rdbColumnList;
       List cList;
       //SQLQueryFactory factory = new SQLQueryFactoryImpl();
-      SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+      SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
       tableInDB = factory.createTableInDatabase();
       tableInDB.setDatabaseTable(table);
       String tableName = table.getName();
@@ -727,7 +727,7 @@ public class TableHelper {
     Iterator colItr = rdbColumnList.iterator();
     List columnList = tableInDB.getColumnList();
     columnList.clear(); // clean out the previously populated columns
-    SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+    SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
     while (colItr.hasNext()) {
       Column col = (Column) colItr.next();
       ValueExpressionColumn valueExprColumn = null;
@@ -2839,7 +2839,7 @@ public static void removeColumnExpressionFromTableIfDuplicate(ValueExpressionCol
 	 */
 	public static void setTableAliasInTableExpression(TableExpression tableExpr, String alias) {
 		if (alias.trim().length() > 0) {
-	        TableCorrelation tableCorr = SQLQueryFactory.eINSTANCE.createTableCorrelation() ;
+	        TableCorrelation tableCorr = SQLQueryModelFactory.eINSTANCE.createTableCorrelation() ;
 	        tableCorr.setName(alias.trim().toUpperCase());
 	        tableExpr.setTableCorrelation(tableCorr) ;
 		}

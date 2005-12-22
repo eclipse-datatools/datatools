@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionColumn.java,v 1.8 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: ValueExpressionColumn.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn()
  * @model
  * @generated
  */
@@ -45,7 +45,7 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assignment Expr Target</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn_AssignmentExprTarget()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_AssignmentExprTarget()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression#getTargetColumnList
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression" opposite="targetColumnList"
 	 * @generated
@@ -63,7 +63,7 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parent Table Expr</em>' container reference.
 	 * @see #setParentTableExpr(TableExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn_ParentTableExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_ParentTableExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableExpression#getColumnList
 	 * @model opposite="columnList" unsettable="true" required="true"
 	 * @generated
@@ -91,7 +91,7 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Expr</em>' reference.
 	 * @see #setTableExpr(TableExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn_TableExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_TableExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableExpression#getValueExprColumns
 	 * @model opposite="valueExprColumns" required="true"
 	 * @generated
@@ -118,7 +118,7 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Table In Database</em>' reference.
 	 * @see #setTableInDatabase(TableInDatabase)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn_TableInDatabase()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_TableInDatabase()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableInDatabase#getDerivedColumnList
 	 * @model opposite="derivedColumnList"
 	 * @generated
@@ -146,7 +146,7 @@ public interface ValueExpressionColumn extends ValueExpressionAtomic{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Insert Statement</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getValueExpressionColumn_InsertStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionColumn_InsertStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getTargetColumnList
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement" opposite="targetColumnList"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicateValid.java,v 1.4 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLPredicateValid.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  * <!-- end-model-doc -->
  *
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLPredicateValid()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateValid()
  * @model
  * @generated
  */

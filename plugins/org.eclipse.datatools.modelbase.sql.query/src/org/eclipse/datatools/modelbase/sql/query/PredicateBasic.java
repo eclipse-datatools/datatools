@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateBasic.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateBasic.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,7 +21,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBasic()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBasic()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface PredicateBasic extends Predicate{
 	 * @return the value of the '<em>Comparison Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator
 	 * @see #setComparisonOperator(PredicateComparisonOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBasic_ComparisonOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBasic_ComparisonOperator()
 	 * @model
 	 * @generated
 	 */
@@ -66,7 +66,7 @@ public interface PredicateBasic extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Right Value Expr</em>' containment reference.
 	 * @see #setRightValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBasic_RightValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBasic_RightValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getBasicRight
 	 * @model opposite="basicRight" containment="true" required="true"
 	 * @generated
@@ -94,7 +94,7 @@ public interface PredicateBasic extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Left Value Expr</em>' containment reference.
 	 * @see #setLeftValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateBasic_LeftValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateBasic_LeftValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getBasicLeft
 	 * @model opposite="basicLeft" containment="true" required="true"
 	 * @generated

@@ -45,7 +45,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroup;
@@ -62,7 +62,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable;
 import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
-import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryFactoryImpl;
+import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryLogger;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
@@ -342,7 +342,7 @@ public class StatementHelper {
      * @return new ValueExpressionColumn
      */
     public static ValueExpressionColumn createColumnExpression(String name) {
-        ValueExpressionColumn colExpr = SQLQueryFactory.eINSTANCE.createValueExpressionColumn();
+        ValueExpressionColumn colExpr = SQLQueryModelFactory.eINSTANCE.createValueExpressionColumn();
         colExpr.setName(name);
         return colExpr;
     }
@@ -354,14 +354,14 @@ public class StatementHelper {
      * @return the created ColumnName
      */
     public static ColumnName createColumnName(String name) {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         ColumnName newCN = factory.createColumnName();
         newCN.setName(name);
         return newCN;
     }
 
     public static QueryDeleteStatement createDeleteStatement(String name) {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QueryDeleteStatement sqlDeleteStatement = factory.createQueryDeleteStatement();
         sqlDeleteStatement.setName(name);
         return sqlDeleteStatement;
@@ -440,7 +440,7 @@ public class StatementHelper {
      */
 
     public static QueryInsertStatement createInsertStatement(String name) {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QueryInsertStatement sqlInsertStatement = factory.createQueryInsertStatement();
         sqlInsertStatement.setName(name);
         return sqlInsertStatement;
@@ -452,7 +452,7 @@ public class StatementHelper {
      * @return the created QueryCombined
      */
     public static QueryCombined createQueryCombined() {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QueryCombined queryCombined = factory.createQueryCombined();
         return queryCombined;
     }
@@ -464,7 +464,7 @@ public class StatementHelper {
      * @return the created QuerySelectStatement statement
      */
     public static QuerySelectStatement createQueryCombinedStatement(String name) {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QuerySelectStatement sqlSelectStatement = factory.createQuerySelectStatement();
         sqlSelectStatement.setName(name);
         QueryExpressionRoot qroot = createQueryExpressionRoot(sqlSelectStatement);
@@ -481,7 +481,7 @@ public class StatementHelper {
      * @return the created QueryExpressionRoot Object
      */
     public static QueryExpressionRoot createQueryExpressionRoot() {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QueryExpressionRoot expRoot = factory.createQueryExpressionRoot();
         return expRoot;
     }
@@ -507,7 +507,7 @@ public class StatementHelper {
      * @return the created QuerySelect Object
      */
     public static QuerySelect createQuerySelect() {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QuerySelect select = factory.createQuerySelect();
         return select;
     }
@@ -552,7 +552,7 @@ public class StatementHelper {
      * @return the created QuerySelecteStatement
      */
     public static QuerySelectStatement createQuerySelectStatement(String aName) {
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QuerySelectStatement sqlSelectStatement = factory.createQuerySelectStatement();
         sqlSelectStatement.setName(aName);
         return sqlSelectStatement;
@@ -604,7 +604,7 @@ public class StatementHelper {
      * sqlUpdateStatement; }
      */
     public static QueryUpdateStatement createUpdateStatement(String name) {
-        SQLQueryFactory factory = SQLQueryFactoryImpl.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.eINSTANCE;
         QueryUpdateStatement sqlUpdateStatement = factory.createQueryUpdateStatement();
         sqlUpdateStatement.setName(name);
         return sqlUpdateStatement;
@@ -618,7 +618,7 @@ public class StatementHelper {
      */
     public static QuerySelectStatement createWithStatement(String name) {
 
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QuerySelectStatement sqlSelectStatement = factory.createQuerySelectStatement();
         sqlSelectStatement.setName(name);
         QueryExpressionRoot qroot = createQueryExpressionRoot(sqlSelectStatement);
@@ -647,7 +647,7 @@ public class StatementHelper {
         WithTableReference withTableRef = null;
 
         if (withTableSpec != null) {
-            withTableRef = SQLQueryFactory.eINSTANCE.createWithTableReference();
+            withTableRef = SQLQueryModelFactory.eINSTANCE.createWithTableReference();
             withTableRef.setWithTableSpecification(withTableSpec);
             withTableRef.setName(withTableSpec.getName());
 
@@ -2956,7 +2956,7 @@ public class StatementHelper {
                     }
 
                     if (resultCol != null) {
-                        OrderByResultColumn newOrderByRC = SQLQueryFactory.eINSTANCE.createOrderByResultColumn();
+                        OrderByResultColumn newOrderByRC = SQLQueryModelFactory.eINSTANCE.createOrderByResultColumn();
                         newOrderByRC.setResultCol(resultCol);
                         newOrderByRC.setOrderingSpecOption(orderByVE.getOrderingSpecOption());
                         newOrderByRC.setNullOrderingOption(orderByVE.getNullOrderingOption());
@@ -3425,7 +3425,7 @@ public class StatementHelper {
      * @return
      */
     public QueryInsertStatement createInsertStatement(String name, boolean addToDb) {
-        SQLQueryFactory factory = new SQLQueryFactoryImpl();
+        SQLQueryModelFactory factory = new SQLQueryModelFactoryImpl();
         QueryInsertStatement sqlInsertStatement = factory.createQueryInsertStatement();
         sqlInsertStatement.setName(name);
 
@@ -3439,7 +3439,7 @@ public class StatementHelper {
 
     public QuerySelectStatement createSelectStatement(String name) {
 
-        SQLQueryFactory factory = SQLQueryFactory.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
         QuerySelectStatement sqlSelectStatement = factory.createQuerySelectStatement();
         sqlSelectStatement.setName(name);
         return sqlSelectStatement;
@@ -3452,7 +3452,7 @@ public class StatementHelper {
      * @return
      */
     public QueryUpdateStatement createUpdateStatement(String name, boolean addToDb) {
-        SQLQueryFactory factory = SQLQueryFactoryImpl.eINSTANCE;
+        SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.eINSTANCE;
         QueryUpdateStatement sqlUpdateStatement = factory.createQueryUpdateStatement();
         sqlUpdateStatement.setName(name);
         if (addToDb) {

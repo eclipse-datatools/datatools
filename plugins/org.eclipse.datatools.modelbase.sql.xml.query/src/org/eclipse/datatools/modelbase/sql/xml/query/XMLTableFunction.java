@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableFunction.java,v 1.3 2005/10/22 01:40:25 bpayton Exp $
+ * $Id: XMLTableFunction.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableFunction()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableFunction()
  * @model
  * @generated
  */
@@ -40,7 +40,7 @@ public interface XMLTableFunction extends TableFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Row Pattern</em>' attribute.
 	 * @see #setTableRowPattern(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableFunction_TableRowPattern()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableFunction_TableRowPattern()
 	 * @model
 	 * @generated
 	 */
@@ -67,7 +67,7 @@ public interface XMLTableFunction extends TableFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Xquery Arg List</em>' containment reference.
 	 * @see #setXqueryArgList(XMLQueryArgumentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableFunction_XqueryArgList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableFunction_XqueryArgList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getTableFunction
 	 * @model opposite="tableFunction" containment="true"
 	 * @generated
@@ -95,7 +95,7 @@ public interface XMLTableFunction extends TableFunction{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Column Def List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableFunction_ColumnDefList()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableFunction_ColumnDefList()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionItem#getTableFunction
 	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLTableColumnDefinitionItem" opposite="tableFunction" containment="true" required="true"
 	 * @generated
@@ -113,7 +113,7 @@ public interface XMLTableFunction extends TableFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Namespaces Decl</em>' containment reference.
 	 * @see #setNamespacesDecl(XMLNamespacesDeclaration)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLTableFunction_NamespacesDecl()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLTableFunction_NamespacesDecl()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNamespacesDeclaration#getTableFunction
 	 * @model opposite="tableFunction" containment="true"
 	 * @generated

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValueExpression.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryValueExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -55,7 +55,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression()
  * @model abstract="true"
  * @generated
  */
@@ -72,7 +72,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
 	 * @return the value of the '<em>Unary Operator</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator
 	 * @see #setUnaryOperator(ValueExpressionUnaryOperator)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_UnaryOperator()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_UnaryOperator()
 	 * @model
 	 * @generated
 	 */
@@ -99,7 +99,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Type</em>' containment reference.
 	 * @see #setDataType(DataType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_DataType()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_DataType()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -126,7 +126,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values Row</em>' container reference.
 	 * @see #setValuesRow(ValuesRow)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValuesRow()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValuesRow()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValuesRow#getExprList
 	 * @model opposite="exprList"
 	 * @generated
@@ -154,7 +154,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Order By Value Expr</em>' container reference.
 	 * @see #setOrderByValueExpr(OrderByValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_OrderByValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_OrderByValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -182,7 +182,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Result Column</em>' container reference.
 	 * @see #setResultColumn(ResultColumn)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ResultColumn()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ResultColumn()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ResultColumn#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -210,7 +210,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Basic Right</em>' container reference.
 	 * @see #setBasicRight(PredicateBasic)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_BasicRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_BasicRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateBasic#getRightValueExpr
 	 * @model opposite="rightValueExpr"
 	 * @generated
@@ -238,7 +238,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Basic Left</em>' container reference.
 	 * @see #setBasicLeft(PredicateBasic)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_BasicLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_BasicLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateBasic#getLeftValueExpr
 	 * @model opposite="leftValueExpr"
 	 * @generated
@@ -266,7 +266,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Like Pattern</em>' container reference.
 	 * @see #setLikePattern(PredicateLike)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_LikePattern()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_LikePattern()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateLike#getPatternValueExpr
 	 * @model opposite="patternValueExpr"
 	 * @generated
@@ -294,7 +294,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Like Matching</em>' container reference.
 	 * @see #setLikeMatching(PredicateLike)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_LikeMatching()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_LikeMatching()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateLike#getMatchingValueExpr
 	 * @model opposite="matchingValueExpr"
 	 * @generated
@@ -322,7 +322,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Predicate Null</em>' container reference.
 	 * @see #setPredicateNull(PredicateIsNull)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_PredicateNull()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_PredicateNull()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateIsNull#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -350,7 +350,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value List Right</em>' container reference.
 	 * @see #setInValueListRight(PredicateInValueList)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_InValueListRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_InValueListRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueList#getValueExprList
 	 * @model opposite="valueExprList"
 	 * @generated
@@ -378,7 +378,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value List Left</em>' container reference.
 	 * @see #setInValueListLeft(PredicateInValueList)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_InValueListLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_InValueListLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueList#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -406,7 +406,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value Row Select Left</em>' container reference.
 	 * @see #setInValueRowSelectLeft(PredicateInValueRowSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_InValueRowSelectLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_InValueRowSelectLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect#getValueExprList
 	 * @model opposite="valueExprList"
 	 * @generated
@@ -434,7 +434,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value Select Left</em>' container reference.
 	 * @see #setInValueSelectLeft(PredicateInValueSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_InValueSelectLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_InValueSelectLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -462,7 +462,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quantified Row Select Left</em>' container reference.
 	 * @see #setQuantifiedRowSelectLeft(PredicateQuantifiedRowSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_QuantifiedRowSelectLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_QuantifiedRowSelectLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect#getValueExprList
 	 * @model opposite="valueExprList"
 	 * @generated
@@ -490,7 +490,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quantified Value Select Left</em>' container reference.
 	 * @see #setQuantifiedValueSelectLeft(PredicateQuantifiedValueSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_QuantifiedValueSelectLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_QuantifiedValueSelectLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -518,7 +518,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Between Left</em>' container reference.
 	 * @see #setBetweenLeft(PredicateBetween)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_BetweenLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_BetweenLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateBetween#getLeftValueExpr
 	 * @model opposite="leftValueExpr"
 	 * @generated
@@ -546,7 +546,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Between Right1</em>' container reference.
 	 * @see #setBetweenRight1(PredicateBetween)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_BetweenRight1()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_BetweenRight1()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateBetween#getRightValueExpr1
 	 * @model opposite="rightValueExpr1"
 	 * @generated
@@ -574,7 +574,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Between Right2</em>' container reference.
 	 * @see #setBetweenRight2(PredicateBetween)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_BetweenRight2()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_BetweenRight2()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateBetween#getRightValueExpr2
 	 * @model opposite="rightValueExpr2"
 	 * @generated
@@ -602,7 +602,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Cast</em>' container reference.
 	 * @see #setValueExprCast(ValueExpressionCast)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCast()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCast()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -630,7 +630,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Function</em>' container reference.
 	 * @see #setValueExprFunction(ValueExpressionFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprFunction()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprFunction()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction#getParameterList
 	 * @model opposite="parameterList"
 	 * @generated
@@ -658,7 +658,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Combined Left</em>' container reference.
 	 * @see #setValueExprCombinedLeft(ValueExpressionCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCombinedLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCombinedLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined#getLeftValueExpr
 	 * @model opposite="leftValueExpr"
 	 * @generated
@@ -686,7 +686,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Combined Right</em>' container reference.
 	 * @see #setValueExprCombinedRight(ValueExpressionCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCombinedRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCombinedRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined#getRightValueExpr
 	 * @model opposite="rightValueExpr"
 	 * @generated
@@ -714,7 +714,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Grouping Expr</em>' container reference.
 	 * @see #setGroupingExpr(GroupingExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_GroupingExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_GroupingExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.GroupingExpression#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -742,7 +742,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Else</em>' container reference.
 	 * @see #setValueExprCaseElse(ValueExpressionCaseElse)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCaseElse()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCaseElse()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -770,7 +770,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Simple</em>' container reference.
 	 * @see #setValueExprCaseSimple(ValueExpressionCaseSimple)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCaseSimple()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCaseSimple()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -798,7 +798,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Simple Content When</em>' container reference.
 	 * @see #setValueExprCaseSimpleContentWhen(ValueExpressionCaseSimpleContent)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCaseSimpleContentWhen()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCaseSimpleContentWhen()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent#getWhenValueExpr
 	 * @model opposite="whenValueExpr"
 	 * @generated
@@ -826,7 +826,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Simple Content Result</em>' container reference.
 	 * @see #setValueExprCaseSimpleContentResult(ValueExpressionCaseSimpleContent)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCaseSimpleContentResult()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCaseSimpleContentResult()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent#getResultValueExpr
 	 * @model opposite="resultValueExpr"
 	 * @generated
@@ -854,7 +854,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Search Content</em>' container reference.
 	 * @see #setValueExprCaseSearchContent(ValueExpressionCaseSearchContent)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprCaseSearchContent()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprCaseSearchContent()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -882,7 +882,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Like Escape</em>' container reference.
 	 * @see #setLikeEscape(PredicateLike)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_LikeEscape()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_LikeEscape()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateLike#getEscapeValueExpr
 	 * @model opposite="escapeValueExpr"
 	 * @generated
@@ -910,7 +910,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Labeled Duration</em>' container reference.
 	 * @see #setValueExprLabeledDuration(ValueExpressionLabeledDuration)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_ValueExprLabeledDuration()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprLabeledDuration()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration#getValueExpr
 	 * @model opposite="valueExpr"
 	 * @generated
@@ -938,7 +938,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest</em>' container reference.
 	 * @see #setNest(ValueExpressionNested)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_Nest()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_Nest()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested#getNestedValueExpr
 	 * @model opposite="nestedValueExpr"
 	 * @generated
@@ -966,7 +966,7 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Source Expr List</em>' container reference.
 	 * @see #setUpdateSourceExprList(UpdateSourceExprList)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryValueExpression_UpdateSourceExprList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_UpdateSourceExprList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList#getValueExprList
 	 * @model opposite="valueExprList"
 	 * @generated

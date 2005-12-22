@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateLike.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateLike.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateLike()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateLike()
  * @model
  * @generated
  */
@@ -37,7 +37,7 @@ public interface PredicateLike extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Not Like</em>' attribute.
 	 * @see #setNotLike(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateLike_NotLike()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateLike_NotLike()
 	 * @model
 	 * @generated
 	 */
@@ -64,7 +64,7 @@ public interface PredicateLike extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pattern Value Expr</em>' containment reference.
 	 * @see #setPatternValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateLike_PatternValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateLike_PatternValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getLikePattern
 	 * @model opposite="likePattern" containment="true" required="true"
 	 * @generated
@@ -92,7 +92,7 @@ public interface PredicateLike extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matching Value Expr</em>' containment reference.
 	 * @see #setMatchingValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateLike_MatchingValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateLike_MatchingValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getLikeMatching
 	 * @model opposite="likeMatching" containment="true" required="true"
 	 * @generated
@@ -120,7 +120,7 @@ public interface PredicateLike extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Escape Value Expr</em>' containment reference.
 	 * @see #setEscapeValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateLike_EscapeValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateLike_EscapeValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getLikeEscape
 	 * @model opposite="likeEscape" containment="true"
 	 * @generated

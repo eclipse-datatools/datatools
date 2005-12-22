@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySearchCondition.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QuerySearchCondition.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -30,7 +30,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition()
  * @model abstract="true"
  * @generated
  */
@@ -44,7 +44,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Negated Condition</em>' attribute.
 	 * @see #setNegatedCondition(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_NegatedCondition()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_NegatedCondition()
 	 * @model
 	 * @generated
 	 */
@@ -71,7 +71,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Statement</em>' container reference.
 	 * @see #setUpdateStatement(QueryUpdateStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_UpdateStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_UpdateStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getWhereClause
 	 * @model opposite="whereClause"
 	 * @generated
@@ -99,7 +99,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Delete Statement</em>' container reference.
 	 * @see #setDeleteStatement(QueryDeleteStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_DeleteStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_DeleteStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement#getWhereClause
 	 * @model opposite="whereClause"
 	 * @generated
@@ -127,7 +127,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Table Joined</em>' container reference.
 	 * @see #setTableJoined(TableJoined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_TableJoined()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_TableJoined()
 	 * @see org.eclipse.datatools.modelbase.sql.query.TableJoined#getJoinCondition
 	 * @model opposite="joinCondition"
 	 * @generated
@@ -155,7 +155,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Combined Left</em>' container reference.
 	 * @see #setCombinedLeft(SearchConditionCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_CombinedLeft()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_CombinedLeft()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined#getLeftCondition
 	 * @model opposite="leftCondition"
 	 * @generated
@@ -183,7 +183,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Combined Right</em>' container reference.
 	 * @see #setCombinedRight(SearchConditionCombined)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_CombinedRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_CombinedRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined#getRightCondition
 	 * @model opposite="rightCondition"
 	 * @generated
@@ -211,7 +211,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Select Having</em>' container reference.
 	 * @see #setQuerySelectHaving(QuerySelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_QuerySelectHaving()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_QuerySelectHaving()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getHavingClause
 	 * @model opposite="havingClause"
 	 * @generated
@@ -239,7 +239,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Select Where</em>' container reference.
 	 * @see #setQuerySelectWhere(QuerySelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_QuerySelectWhere()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_QuerySelectWhere()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelect#getWhereClause
 	 * @model opposite="whereClause"
 	 * @generated
@@ -267,7 +267,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Case Search Content</em>' container reference.
 	 * @see #setValueExprCaseSearchContent(ValueExpressionCaseSearchContent)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_ValueExprCaseSearchContent()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_ValueExprCaseSearchContent()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent#getSearchCondition
 	 * @model opposite="searchCondition"
 	 * @generated
@@ -295,7 +295,7 @@ public interface QuerySearchCondition extends SQLQueryObject, SearchCondition{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Nest</em>' container reference.
 	 * @see #setNest(SearchConditionNested)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQuerySearchCondition_Nest()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQuerySearchCondition_Nest()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionNested#getNestedCondition
 	 * @model opposite="nestedCondition"
 	 * @generated

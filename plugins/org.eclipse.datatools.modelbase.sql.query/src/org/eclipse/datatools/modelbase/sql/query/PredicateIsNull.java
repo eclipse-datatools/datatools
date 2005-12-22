@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateIsNull.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: PredicateIsNull.java,v 1.1 2005/12/16 13:11:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -20,7 +20,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateIsNull()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateIsNull()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface PredicateIsNull extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Not Null</em>' attribute.
 	 * @see #setNotNull(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateIsNull_NotNull()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateIsNull_NotNull()
 	 * @model
 	 * @generated
 	 */
@@ -62,7 +62,7 @@ public interface PredicateIsNull extends Predicate{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr</em>' containment reference.
 	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getPredicateIsNull_ValueExpr()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getPredicateIsNull_ValueExpr()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getPredicateNull
 	 * @model opposite="predicateNull" containment="true" required="true"
 	 * @generated

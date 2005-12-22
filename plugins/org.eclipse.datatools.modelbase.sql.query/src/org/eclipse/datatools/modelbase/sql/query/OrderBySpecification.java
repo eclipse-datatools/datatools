@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderBySpecification.java,v 1.6 2005/10/22 01:35:22 bpayton Exp $
+ * $Id: OrderBySpecification.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderBySpecification()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification()
  * @model abstract="true"
  * @generated
  */
@@ -37,7 +37,7 @@ public interface OrderBySpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Descending</em>' attribute.
 	 * @see #setDescending(boolean)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderBySpecification_Descending()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification_Descending()
 	 * @model
 	 * @generated
 	 */
@@ -65,7 +65,7 @@ public interface OrderBySpecification extends SQLQueryObject{
 	 * @return the value of the '<em>Ordering Spec Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.OrderingSpecType
 	 * @see #setOrderingSpecOption(OrderingSpecType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderBySpecification_OrderingSpecOption()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification_OrderingSpecOption()
 	 * @model
 	 * @generated
 	 */
@@ -94,7 +94,7 @@ public interface OrderBySpecification extends SQLQueryObject{
 	 * @return the value of the '<em>Null Ordering Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.query.NullOrderingType
 	 * @see #setNullOrderingOption(NullOrderingType)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderBySpecification_NullOrderingOption()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification_NullOrderingOption()
 	 * @model
 	 * @generated
 	 */
@@ -122,7 +122,7 @@ public interface OrderBySpecification extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Select Statement</em>' container reference.
 	 * @see #setSelectStatement(QuerySelectStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderBySpecification_SelectStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderBySpecification_SelectStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement#getOrderByClause
 	 * @model opposite="orderByClause"
 	 * @generated

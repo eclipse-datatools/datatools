@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionRoot.java,v 1.8 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: QueryExpressionRoot.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot()
  * @model
  * @generated
  */
@@ -46,7 +46,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Insert Statement</em>' container reference.
 	 * @see #setInsertStatement(QueryInsertStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_InsertStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_InsertStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement#getSourceQuery
 	 * @model opposite="sourceQuery"
 	 * @generated
@@ -74,7 +74,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Select Statement</em>' container reference.
 	 * @see #setSelectStatement(QuerySelectStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_SelectStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_SelectStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -102,7 +102,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>With Clause</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_WithClause()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_WithClause()
 	 * @see org.eclipse.datatools.modelbase.sql.query.WithTableSpecification#getQueryExpressionRoot
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.WithTableSpecification" opposite="queryExpressionRoot" containment="true"
 	 * @generated
@@ -120,7 +120,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query</em>' containment reference.
 	 * @see #setQuery(QueryExpressionBody)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_Query()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_Query()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody#getQueryExpression
 	 * @model opposite="queryExpression" containment="true" required="true"
 	 * @generated
@@ -148,7 +148,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value Row Select Right</em>' container reference.
 	 * @see #setInValueRowSelectRight(PredicateInValueRowSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_InValueRowSelectRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_InValueRowSelectRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -176,7 +176,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>In Value Select Right</em>' container reference.
 	 * @see #setInValueSelectRight(PredicateInValueSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_InValueSelectRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_InValueSelectRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -204,7 +204,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quantified Row Select Right</em>' container reference.
 	 * @see #setQuantifiedRowSelectRight(PredicateQuantifiedRowSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_QuantifiedRowSelectRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_QuantifiedRowSelectRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -232,7 +232,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Quantified Value Select Right</em>' container reference.
 	 * @see #setQuantifiedValueSelectRight(PredicateQuantifiedValueSelect)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_QuantifiedValueSelectRight()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_QuantifiedValueSelectRight()
 	 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect#getQueryExpr
 	 * @model opposite="queryExpr"
 	 * @generated
@@ -260,7 +260,7 @@ public interface QueryExpressionRoot extends SQLQueryObject, QueryExpression{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value Expr Scalar Selects</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getQueryExpressionRoot_ValueExprScalarSelects()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryExpressionRoot_ValueExprScalarSelects()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect#getQueryExpr
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect" opposite="queryExpr"
 	 * @generated

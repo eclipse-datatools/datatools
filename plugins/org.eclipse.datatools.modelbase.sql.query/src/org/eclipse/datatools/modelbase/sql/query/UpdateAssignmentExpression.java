@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateAssignmentExpression.java,v 1.6 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: UpdateAssignmentExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateAssignmentExpression()
  * @model
  * @generated
  */
@@ -38,7 +38,7 @@ public interface UpdateAssignmentExpression extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Statement</em>' container reference.
 	 * @see #setUpdateStatement(QueryUpdateStatement)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_UpdateStatement()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateAssignmentExpression_UpdateStatement()
 	 * @see org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement#getAssignmentClause
 	 * @model opposite="assignmentClause"
 	 * @generated
@@ -66,7 +66,7 @@ public interface UpdateAssignmentExpression extends SQLQueryObject{
      * </p>
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Column List</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_TargetColumnList()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateAssignmentExpression_TargetColumnList()
 	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getAssignmentExprTarget
 	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="assignmentExprTarget" required="true"
 	 * @generated
@@ -84,7 +84,7 @@ public interface UpdateAssignmentExpression extends SQLQueryObject{
    * <!-- end-user-doc -->
 	 * @return the value of the '<em>Update Source</em>' containment reference.
 	 * @see #setUpdateSource(UpdateSource)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getUpdateAssignmentExpression_UpdateSource()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getUpdateAssignmentExpression_UpdateSource()
 	 * @see org.eclipse.datatools.modelbase.sql.query.UpdateSource#getUpdateAssignmentExpr
 	 * @model opposite="updateAssignmentExpr" containment="true" required="true"
 	 * @generated

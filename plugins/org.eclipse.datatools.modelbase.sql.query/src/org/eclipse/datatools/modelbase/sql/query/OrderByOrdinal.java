@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByOrdinal.java,v 1.7 2005/10/22 01:35:21 bpayton Exp $
+ * $Id: OrderByOrdinal.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByOrdinal()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByOrdinal()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface OrderByOrdinal extends OrderBySpecification{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ordinal Value</em>' attribute.
 	 * @see #setOrdinalValue(int)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getOrderByOrdinal_OrdinalValue()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getOrderByOrdinal_OrdinalValue()
 	 * @model
 	 * @generated
 	 */

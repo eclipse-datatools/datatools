@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElement.java,v 1.5 2005/02/03 22:58:54 bpayton Exp $
+ * $Id: SuperGroupElement.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -19,7 +19,7 @@ package org.eclipse.datatools.modelbase.sql.query;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElement()
+ * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElement()
  * @model abstract="true"
  * @generated
  */
@@ -35,7 +35,7 @@ public interface SuperGroupElement extends SQLQueryObject{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Super Group</em>' container reference.
 	 * @see #setSuperGroup(SuperGroup)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryPackage#getSuperGroupElement_SuperGroup()
+	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElement_SuperGroup()
 	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSuperGroupElementList
 	 * @model opposite="superGroupElementList"
 	 * @generated

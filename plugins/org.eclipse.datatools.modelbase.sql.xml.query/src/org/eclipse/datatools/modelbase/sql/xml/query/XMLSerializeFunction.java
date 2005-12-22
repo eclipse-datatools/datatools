@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunction.java,v 1.4 2005/10/25 21:27:10 bpayton Exp $
+ * $Id: XMLSerializeFunction.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -24,7 +24,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction;
  * </ul>
  * </p>
  *
- * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction()
+ * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction()
  * @model
  * @generated
  */
@@ -41,7 +41,7 @@ public interface XMLSerializeFunction extends ValueExpressionFunction{
 	 * @return the value of the '<em>Content Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType
 	 * @see #setContentOption(XMLContentType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction_ContentOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction_ContentOption()
 	 * @model
 	 * @generated
 	 */
@@ -68,7 +68,7 @@ public interface XMLSerializeFunction extends ValueExpressionFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serialize Version</em>' attribute.
 	 * @see #setSerializeVersion(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction_SerializeVersion()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction_SerializeVersion()
 	 * @model
 	 * @generated
 	 */
@@ -96,7 +96,7 @@ public interface XMLSerializeFunction extends ValueExpressionFunction{
 	 * @return the value of the '<em>Declaration Option</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLDeclarationType
 	 * @see #setDeclarationOption(XMLDeclarationType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction_DeclarationOption()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction_DeclarationOption()
 	 * @model
 	 * @generated
 	 */
@@ -124,7 +124,7 @@ public interface XMLSerializeFunction extends ValueExpressionFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serialize Target</em>' containment reference.
 	 * @see #setSerializeTarget(XMLSerializeFunctionTarget)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction_SerializeTarget()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction_SerializeTarget()
 	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLSerializeFunctionTarget#getSerializeFunction
 	 * @model opposite="serializeFunction" containment="true" required="true"
 	 * @generated
@@ -151,7 +151,7 @@ public interface XMLSerializeFunction extends ValueExpressionFunction{
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serialize Encoding</em>' containment reference.
 	 * @see #setSerializeEncoding(XMLSerializeFunctionEncoding)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryPackage#getXMLSerializeFunction_SerializeEncoding()
+	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLSerializeFunction_SerializeEncoding()
 	 * @model containment="true"
 	 * @generated
 	 */
