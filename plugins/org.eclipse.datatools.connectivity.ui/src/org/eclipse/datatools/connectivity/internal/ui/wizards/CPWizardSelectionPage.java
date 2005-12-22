@@ -38,6 +38,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.IWizardNode;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -89,8 +91,6 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 
 	class TableContentProvider implements IStructuredContentProvider {
 
-		private ConnectionProfileManager manager = ConnectionProfileManager
-				.getInstance();
 		private String wizardCategory;
 
 		public void dispose() {
@@ -102,31 +102,44 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 		}
 
 		public Object[] getElements(Object inputElement) {
-			Collection wizards = manager.getNewWizards().values();
-			Collection wizardCats = manager.getWizardCategories().values();
-			List wizardNodes = new ArrayList();
-			IProfileWizardProvider wizardProvider;
-			if (wizards != null) {
-				for (Iterator itr = wizards.iterator(); itr.hasNext();) {
-					wizardProvider = (IProfileWizardProvider) itr.next();
-					if (wizardProvider.getCategory().equals(wizardCategory)) {
-						wizardNodes.add(new CPWizardNode(wizardProvider));
-					}
-				}
-			}
-			if (wizardCats != null) {
-				for (Iterator itr = wizardCats.iterator(); itr.hasNext();) {
-					wizardProvider = (IProfileWizardProvider) itr.next();
-					if (wizardProvider.getCategory().equals(wizardCategory)) {
-						wizardNodes.add(new CPCategoryWizardNode(wizardProvider));
-					}
-				}
-			}
+			Collection wizardNodes = getCatagoryItems(wizardCategory);
 			return (CPWizardNode[]) wizardNodes
 					.toArray(new CPWizardNode[wizardNodes.size()]);
 		}
 	}
 
+	/**
+	 * Get wizard for specified catagory
+	 * @param wizardCategory
+	 * @return
+	 */
+	public List getCatagoryItems(String wizardCategory) {
+		ConnectionProfileManager manager = ConnectionProfileManager
+				.getInstance();
+		Collection wizards = manager.getNewWizards().values();
+		Collection wizardCats = manager.getWizardCategories().values();
+		List wizardNodes = new ArrayList();
+		IProfileWizardProvider wizardProvider;
+		if (wizards != null) {
+			for (Iterator itr = wizards.iterator(); itr.hasNext();) {
+				wizardProvider = (IProfileWizardProvider) itr.next();
+				if (wizardProvider.getCategory().equals(wizardCategory)) {
+					wizardNodes.add(new CPWizardNode(wizardProvider));
+				}
+			}
+		}
+		if (wizardCats != null) {
+			for (Iterator itr = wizardCats.iterator(); itr.hasNext();) {
+				wizardProvider = (IProfileWizardProvider) itr.next();
+				if (wizardProvider.getCategory().equals(wizardCategory)) {
+					wizardNodes.add(new CPCategoryWizardNode(wizardProvider));
+				}
+			}
+		}
+
+		return wizardNodes;
+	}
+	
 	protected CPWizardSelectionPage(String id) {
 		super(id);
 		setTitle(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -234,6 +247,10 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 	protected void initWizard(IWizard wizard) {
 		IProfileWizardProvider wizardProvider = ((CPWizardNode) getSelectedNode())
 				.getProvider();
+		initWizard(wizard, wizardProvider);
+	}
+	
+	private void initWizard(IWizard wizard, IProfileWizardProvider wizardProvider) {    
 		if (wizard instanceof ICPWizard) {
 			((ICPWizard) wizard)
 					.initProviderID(((ProfileWizardProvider) wizardProvider)
@@ -246,4 +263,42 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 			catWizard.setWindowTitle(getWizard().getWindowTitle());
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.sybase.stf.common.ui.wizards.WizardSelectionPage#getNextPage()
+	 */
+	public IWizardPage getNextPage() {
+		IWizardNode selectedNode = this.getSelectedNode();
+		if (selectedNode == null)
+			return null;
+		
+		IProfileWizardProvider wizardProvider = ((CPWizardNode) getSelectedNode())
+				.getProvider();
+		boolean isCreated = selectedNode.isContentCreated();
+		IWizard wizard = selectedNode.getWizard();
+
+		if (wizard == null) {
+			setSelectedNode(null);	
+			return null;
+		}
+
+		if (wizard instanceof NewCategoryWizard) {
+			List categoryItems = getCatagoryItems(wizardProvider.getId());
+			if (categoryItems.size() == 1) {
+				// Get next wizard and the wizard provider for next page.
+				IWizardNode wizardNode = (IWizardNode) categoryItems.get(0);
+				isCreated = wizardNode.isContentCreated();
+				wizard = wizardNode.getWizard();
+				wizardProvider = ((CPWizardNode) wizardNode).getProvider();
+			}
+		}
+		
+		if (!isCreated) {
+			initWizard(wizard, wizardProvider);
+			// Allow the wizard to create its pages
+			wizard.addPages();
+		}
+
+		return wizard.getStartingPage();
+	}	
 }
