@@ -135,6 +135,24 @@ public class ProfileManager {
 	}
 
 	/**
+	 * Get connection profile by instance ID
+	 * 
+	 * @param id
+	 * @return IConnectionProfile
+	 */
+	public IConnectionProfile getProfileByInstanceID(String id) {
+		IConnectionProfile[] cps = getProfiles();
+		IConnectionProfile cp = null;
+		for (int i = 0; i < cps.length; i++) {
+			if (cps[i].getInstanceID().equals(id)) {
+				cp = cps[i];
+				break;
+			}
+		}
+		return cp;
+	}
+
+	/**
 	 * Get connection profiles by connection profile(cp) provider ID associated
 	 * with each cp
 	 * 

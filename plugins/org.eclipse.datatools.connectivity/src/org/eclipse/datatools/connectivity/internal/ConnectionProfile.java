@@ -59,6 +59,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private ListenerList mPropertyListeners = new ListenerList(2);
 	private ListenerList mConnectListeners = new ListenerList(2);
 	private boolean mIsCreating;
+	private String mInstanceID;
 
 	public ConnectionProfile(String name, String desc, String providerID) {
 		this(name, desc, providerID, "", false);
@@ -71,6 +72,12 @@ public class ConnectionProfile extends PlatformObject implements
 
 	public ConnectionProfile(String name, String desc, String providerID,
 								String parentProfile, boolean autoConnect) {
+		this(name, desc, providerID, parentProfile, autoConnect, null);
+	}
+
+	public ConnectionProfile(String name, String desc, String providerID,
+								String parentProfile, boolean autoConnect,
+								String instanceID) {
 		mName = name;
 		mDescription = desc;
 		mProfileId = providerID;
@@ -79,6 +86,7 @@ public class ConnectionProfile extends PlatformObject implements
 		mParentProfile = parentProfile;
 		mAutoConnect = autoConnect;
 		mIsCreating = true;
+		mInstanceID = instanceID;
 	}
 
 	/*
@@ -125,6 +133,13 @@ public class ConnectionProfile extends PlatformObject implements
 	 */
 	public void setDescription(String desc) {
 		mDescription = desc;
+	}
+
+	public String getInstanceID() {
+		if (mInstanceID == null) {
+			mInstanceID = UUID.createUUID().toString();
+		}
+		return mInstanceID;
 	}
 
 	/*

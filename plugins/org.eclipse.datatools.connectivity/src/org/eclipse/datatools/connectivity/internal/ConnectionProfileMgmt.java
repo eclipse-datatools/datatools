@@ -77,6 +77,8 @@ public class ConnectionProfileMgmt {
 	private final static String LITERAL_YES = "Yes"; //$NON-NLS-1$
 
 	private final static String LITERAL_NO = "No"; //$NON-NLS-1$
+	
+	private final static String PROFILEID = "id"; //$NON-NLS-1$
 
 	private static IPath storageLocation = null;
 
@@ -162,6 +164,7 @@ public class ConnectionProfileMgmt {
 								PROFILEPARENT,
 								cp.getParentProfile() == null ? "" : cp.getParentProfile().getName()); //$NON-NLS-1$ 
 				xmlChild.putString(PROVIDERID, cp.getProviderId());
+				xmlChild.putString(PROFILEID, cp.getInstanceID());
 				Properties props = cp.getBaseProperties();
 				String keys = keysToString(props.keys());
 				xmlChild.putString(PROPKEYS, keys);
@@ -312,6 +315,7 @@ public class ConnectionProfileMgmt {
 	 */
 	public static IConnectionProfile[] loadCPs(File file, ICipherProvider isp)
 			throws IOException, WorkbenchException, GeneralSecurityException {
+		IConnectionProfile retVal[];
 		if (!file.exists())
 			return new IConnectionProfile[0];
 		InputStream is, fis = new FileInputStream(file);
@@ -325,21 +329,20 @@ public class ConnectionProfileMgmt {
 		Reader reader = new BufferedReader(isr);
 		ConnectionProfile cp;
 		ArrayList cps = new ArrayList();
+		boolean updatedIDs = false;
 		try {
 			IMemento xmlMemento = XMLMemento.createReadRoot(reader), xmlExtraChild;
 			IMemento[] xmlChildren = xmlMemento.getChildren(CHILDNAME);
 			for (int i = 0; i < xmlChildren.length; i++) {
+				updatedIDs = xmlChildren[i].getString(PROFILEID) == null;
 				cp = new ConnectionProfile(xmlChildren[i]
 						.getString(PROFILENAME), xmlChildren[i]
 						.getString(PROFILEDESC), xmlChildren[i]
 						.getString(PROVIDERID), xmlChildren[i]
-						.getString(PROFILEPARENT));
-				if (xmlChildren[i].getString(PROFILEAUTOCONNECT) == null)
-					cp.setAutoConnect(false);
-				else
-					cp.setAutoConnect(xmlChildren[i].getString(
-							PROFILEAUTOCONNECT).equals(LITERAL_YES) ? true
-							: false);
+						.getString(PROFILEPARENT), LITERAL_YES
+						.equals(xmlChildren[i].getString(PROFILEAUTOCONNECT)),
+						xmlChildren[i].getString(PROFILEID));
+
 				// Make sure this is initialized so that UI components know
 				// to connect when they are opened.
 				cp.internalSetConnected(cp.isAutoConnect());
@@ -369,7 +372,11 @@ public class ConnectionProfileMgmt {
 		finally {
 			reader.close();
 		}
-		return (IConnectionProfile[]) cps.toArray(new IConnectionProfile[0]);
+		retVal = (IConnectionProfile[]) cps.toArray(new IConnectionProfile[cps.size()]);
+		if (updatedIDs) {
+			saveCPs(retVal,file, isp);
+		}
+		return retVal;
 	}
 
 	/**

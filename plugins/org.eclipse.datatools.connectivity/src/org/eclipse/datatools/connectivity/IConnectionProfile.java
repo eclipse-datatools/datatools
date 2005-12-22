@@ -60,6 +60,11 @@ public interface IConnectionProfile {
 	 * @return whether it's autoconnect or not
 	 */
 	boolean isAutoConnect();
+	
+	/**
+	 * @return the static ID for this connection profile
+	 */
+	String getInstanceID();
 
 	/**
 	 * This method returns the connection profile that this connection profile
