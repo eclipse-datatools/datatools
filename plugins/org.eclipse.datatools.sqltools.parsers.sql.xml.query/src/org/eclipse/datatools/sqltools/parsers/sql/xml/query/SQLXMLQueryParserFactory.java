@@ -21,7 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
-import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLAttributeDeclarationItem;
@@ -78,7 +78,7 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateEle
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementName;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateElementNamespace;
 import org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType;
-import org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryPackageImpl;
+import org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactory;
 
 
@@ -86,7 +86,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserFactory;
 public class SQLXMLQueryParserFactory extends SQLQueryParserFactory {
 
     
-    static SQLXMLQueryFactory sqlXMLQueryFactory = null;
+    static SQLXMLQueryModelFactory sqlXMLQueryFactory = null;
     
     /**
      * int constant for {@link XXMLConentType#CONTENT}
@@ -257,10 +257,10 @@ public class SQLXMLQueryParserFactory extends SQLQueryParserFactory {
      * initializes this <code>SQLXMLQueryParserFactory</code> 
      */
     private void init() {
-        if (SQLXMLQueryFactory.eINSTANCE == null) {
-            SQLXMLQueryPackageImpl.init();
+        if (SQLXMLQueryModelFactory.eINSTANCE == null) {
+            SQLXMLQueryModelPackageImpl.init();
         }
-        sqlXMLQueryFactory = SQLXMLQueryFactory.eINSTANCE;
+        sqlXMLQueryFactory = SQLXMLQueryModelFactory.eINSTANCE;
     }
     
     

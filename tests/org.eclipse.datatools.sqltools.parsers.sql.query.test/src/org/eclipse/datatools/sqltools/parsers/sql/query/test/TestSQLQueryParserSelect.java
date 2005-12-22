@@ -30,7 +30,7 @@ import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroup;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupElement;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist;
@@ -1676,7 +1676,7 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
 
             System.out.println("\n\nbefore:\n"+query.getSQL());
             
-            SQLQueryFactory sqlQueryFactory = SQLQueryFactory.eINSTANCE;
+            SQLQueryModelFactory sqlQueryFactory = SQLQueryModelFactory.eINSTANCE;
            
             // get the column we want to add to the SELECT clause from the table in the FROM clause
             // say we know it's the first table in the list and it's not of type TableInDatabase here!

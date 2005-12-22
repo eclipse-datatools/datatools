@@ -74,7 +74,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
 import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryFactory;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
@@ -116,7 +116,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
-import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryPackageImpl;
+import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
@@ -161,7 +161,7 @@ public class SQLQueryParserFactory implements SQLParserFactory,SQLQueryParserFac
 
 
   static  SQLSchemaFactory rdbFactory           = null;
-  static  SQLQueryFactory  sqlQueryModelFactory = null;
+  static  SQLQueryModelFactory  sqlQueryModelFactory = null;
   static  SQLTablesFactory tableFactory         = null; //hetty
 
   // TODO: wherever we use delimitedIdentifierQuote change to quote property in source format
@@ -587,10 +587,10 @@ public SQLQueryParserFactory() {
   if (SQLSchemaFactory.eINSTANCE == null)
     SQLSchemaPackageImpl.init();
   rdbFactory = SQLSchemaFactory.eINSTANCE;
-  if (SQLQueryFactory.eINSTANCE == null) {
-    SQLQueryPackageImpl.init();
+  if (SQLQueryModelFactory.eINSTANCE == null) {
+    SQLQueryModelPackageImpl.init();
   }
-  sqlQueryModelFactory = SQLQueryFactory.eINSTANCE;
+  sqlQueryModelFactory = SQLQueryModelFactory.eINSTANCE;
 
   tableFactory = SQLTablesFactory.eINSTANCE;
 }
