@@ -26,12 +26,15 @@
       <import plugin="org.eclipse.datatools.sqltools.editor.core"/>
       <import plugin="org.eclipse.datatools.connectivity"/>
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
+      <import plugin="org.eclipse.datatools.sqltools.common.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity.db.generic"/>
+      <import plugin="org.eclipse.datatools.connectivity.ui"/>
    </requires>
    <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
-            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.SQLEditorActionContributor"
             default="true"
             extensions="ddl,sql,sqlpage"
             icon="images/qrydoc.gif"
