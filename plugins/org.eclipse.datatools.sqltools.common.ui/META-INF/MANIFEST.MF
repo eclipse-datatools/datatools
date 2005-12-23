@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SQL Tools Common UI Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.sqltools.common.ui.internal.Activator
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.sqltools.common.ui.util
