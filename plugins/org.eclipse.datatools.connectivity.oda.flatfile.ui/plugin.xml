@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="org.eclipse.datatools.connectivity.oda.flatfile.ui"
+   name="%plugin.name"
+   version="3.0.0"
+   provider-name="Eclipse.org"
+   class="org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin">
+
+   <runtime>
+      <library name="oda-flatfileui.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity"/>
+      <import plugin="org.eclipse.datatools.connectivity.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.profile"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.flatfile"/>
+   </requires>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="%oda.parent.category.id"
+            name="%oda.parent.category.name"/>
+      <category
+            id="%category.id"
+            name="%category.name"
+            parentCategory="%oda.parent.category.id"/>
+      <configurationType id="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"/>
+      <connectionProfile
+            category="%category.id"
+            configurationType="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"
+            icon="icons/file.gif"
+            id="%connection.profile.id"
+            name="%connection.profile.name"/>
+      <connectionFactory
+            id="org.eclipse.datatools.connectivity.oda.IConnection"
+            name="%oda.connection.factory.name"
+            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
+            profile="%connection.profile.id"/>
+      <connectionFactory
+            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
+            name="%ping.factory.name"
+            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
+            profile="%connection.profile.id"/>
+      <newWizard
+            id="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewProfileWizard"
+            name="%newwizard.name"
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewProfileWizard"
+            description="%newwizard.description"
+            icon="icons/fieldlist.ico"
+            profile="%connection.profile.id"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            id="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.ProfilePropertyPage"
+            name="%profile.propertypage.name"
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.ProfilePropertyPage"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="%connection.profile.id"/>
+      </page>
+   </extension>
+
+</plugin>
