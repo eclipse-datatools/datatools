@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+import org.eclipse.datatools.connectivity.internal.UUID;
 import org.eclipse.jface.util.ListenerList;
 
 /**
@@ -217,7 +218,8 @@ public class ProfileManager {
 			String providerID, Properties baseProperties, String parentProfile,
 			boolean autoConnect) throws ConnectionProfileException {
 		ConnectionProfile profile = new ConnectionProfile(name, description,
-				providerID, parentProfile, autoConnect);
+				providerID, parentProfile, autoConnect, UUID.createUUID()
+						.toString());
 		profile.setBaseProperties(baseProperties);
 		addProfile(profile);
 		profile.setCreated();
