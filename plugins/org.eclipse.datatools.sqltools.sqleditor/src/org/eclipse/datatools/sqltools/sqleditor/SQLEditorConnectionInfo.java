@@ -7,10 +7,15 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
+import java.sql.Connection;
+
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
+import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 
@@ -20,61 +25,84 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
  */
 public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
+	public static SQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId()); 
 	private DatabaseVendorDefinitionId _dbVendorId = null;
 	private DatabaseVendorDefinition _dbVendor = null;
 	private String _profileName = null;
-	private IConnectionProfile _profile = null;
 	private String _databaseName = null;
 	private Database _database = null;
 	private String _defaultSchemaName = null;
+	private Connection _sharedConn = null;
 	
+	/**
+	 * Constructs a <code>SQLEditorConnectionInfo</code> by
+	 * <code>DatabaseVendorDefinitionId</code>. This is used when connction
+	 * profile information is not available.
+	 * 
+	 * @param dbVendorId <code>DatabaseVendorDefinitionId</code>
+	 */
+	public SQLEditorConnectionInfo( DatabaseVendorDefinitionId dbVendorId) {
+		super();
+		_dbVendorId = dbVendorId;
+	}
+
+	public SQLEditorConnectionInfo( String profileName, String dbName) {
+		this(profileName, dbName, null);
+	}
 	
 	public SQLEditorConnectionInfo( String profileName, String dbName, String schemaName) {
 		super();
 		_profileName = profileName;
-		_dbVendorId = ProfileUtil.getVendorIdentifier(profileName);
+		_dbVendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
 		_databaseName = dbName;
 		_defaultSchemaName = schemaName;
 	}
+	
+	public DatabaseVendorDefinitionId getDatabaseVendorDefinitionId() {
+		return _dbVendorId;
+	}
 
 	public DatabaseVendorDefinition getDatabaseVendorDefinition() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO: get _dbVendor by _dbVendorId
+		return _dbVendor;
 	}
-
+	
 	public IConnectionProfile getConnectionProfile() {
-		// TODO Auto-generated method stub
-		return null;
+		return ProfileManager.getInstance().getProfileByName(_profileName);
 	}
 
+	public String getConnectionProfileName() {
+		return _profileName;
+	}
+	
 	public Database getDatabase() {
-		// TODO Auto-generated method stub
-		return null;
+		//TODO: get _database from _databaseName
+		return _database;
+	}
+
+
+	public String getDatabaseName() {
+		return _databaseName;
 	}
 
 	public String getDefaultSchemaName() {
-		// TODO Auto-generated method stub
-		return null;
+		return _defaultSchemaName;
 	}
 
-	public void setConnectionProfile(IConnectionProfile connInfo) {
-		// TODO Auto-generated method stub
-
+	public void setConnectionProfileName(String profileName) {
+		_profileName = profileName;
 	}
 
 	public void setDatabase(Database database) {
-		// TODO Auto-generated method stub
-
+		_database = database;
 	}
 
 	public void setDefaultSchemaName(String schemaName) {
-		// TODO Auto-generated method stub
-
+		_defaultSchemaName = schemaName;
 	}
 
-	public void setDatabaseVendorDefinition(DatabaseVendorDefinition dbVendorDef) {
-		// TODO Auto-generated method stub
-
+	public void setDatabaseVendorDefinitionId(DatabaseVendorDefinitionId dbVendorDefId) {
+		_dbVendorId = dbVendorDefId;
 	}
 
 	/**
@@ -101,8 +129,38 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	 */
 	public static SQLEditorConnectionInfo decode(String code)
 	{
-		//TODO
-		return null;
+		if (code == null || !code.matches(".*:.*:.*:.*"))
+		{
+			SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLEditorConnectionInfo.decode.error", new String[]{code}));
+			return DEFAULT_SQLEDITOR_CONNECTION_INFO;
+		}
+		int i = 0;
+		int j = code.indexOf(':');
+		String dbVendorId = code.substring(i, j);
+		i = j + 1;
+		j = code.indexOf(':', i);
+		String profileName = code.substring(i, j);
+		i = j + 1;
+		j = code.indexOf(':', i);
+		String dbName = code.substring(i, j);
+		i = j + 1;
+		j = code.length();
+		String schemaName = code.substring(i, j);
+		if (profileName.endsWith(""))
+		{
+			if (dbVendorId.equals(""))
+			{
+				return DEFAULT_SQLEDITOR_CONNECTION_INFO;
+			}
+			else
+			{
+				return new SQLEditorConnectionInfo(new DatabaseVendorDefinitionId(dbVendorId));
+			}
+		}
+		else
+		{
+			return new SQLEditorConnectionInfo(profileName, dbName, schemaName);	
+		}
 	}
 
     public String getName()
@@ -112,4 +170,21 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
         code.append(_databaseName == null? "":_databaseName.toString());
         return code.toString();
     }
+
+    /**
+     * Retrieves the sharable connection from IControlConnection, which in turn delegates to the connectivity layer.
+     */
+	public Connection getSharedConnection() {
+		if (_sharedConn == null && getConnectionProfile() != null && getConnectionProfile().isConnected())
+		{
+			//we need to connect
+			try {
+				_sharedConn = ProfileUtil.getReusableConnection(new DatabaseIdentifier(_profileName, _databaseName));
+			} catch (Exception e) {
+				SQLEditorPlugin.getDefault().log(e);
+			}
+		}
+		return _sharedConn;
+	}
+
 }

@@ -23,4 +23,5 @@ public interface EditorConstants
      * Marker type contant for SQL syntax errors.
      */
     public static final String SYNTAX_MARKER_TYPE      = SQLEditorPlugin.PLUGIN_ID + ".syntaxproblem";             //$NON-NLS-1$
+    
 }

@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
-import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLDisconnectAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContentOutlinePage;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
@@ -31,6 +30,7 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.jface.text.source.ISourceViewerExtension2;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
@@ -98,12 +98,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         a = new TextOperationAction( bundle, "ContentFormat.", this, ISourceViewer.FORMAT ); //$NON-NLS-1$
         setAction( "ContentFormat", a ); //$NON-NLS-1$
 
-        a = new SQLConnectAction( bundle, "SQLEditor.connectAction." ); //$NON-NLS-1$
-        setAction( "SQLEditor.connectAction", a ); //$NON-NLS-1$
-
-        a = new SQLDisconnectAction( bundle, "SQLEditor.disconnectAction." ); //$NON-NLS-1$
-        setAction( "SQLEditor.disconnectAction", a ); //$NON-NLS-1$
-        
     }
 
     /**
@@ -286,14 +280,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         addAction( menu, "ContentFormat" ); //$NON-NLS-1$
 
         menu.add( new Separator() );
-        if (getConnectionInfo() == null) {
-            addAction( menu, "SQLEditor.connectAction" ); //$NON-NLS-1$
-        }
-        else {
-            addAction( menu, "SQLEditor.disconnectAction" ); //$NON-NLS-1$
-        }
         addAction( menu, "SQLEditor.runAction" ); //$NON-NLS-1$
-        addAction( menu, "SQLEditor.setStatementTerminatorAction" ); //$NON-NLS-1$
     }
 
     /**
@@ -340,9 +327,9 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     }
 
     /**
-     * Gets the connection profile object for this editor.
+     * Gets the connection info object of the editor input of this editor.
      * 
-     * @return the current connection profile object if the editor has one,
+     * @return the current connection info object if the editor has one,
      *         otherwise null
      */
     public ISQLEditorConnectionInfo getConnectionInfo() {
@@ -353,6 +340,33 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         return null;
     }
 
+    /**
+	 * Sets the connection info object of the editor input of this editor. Also
+	 * updates connection related features such as actions, status line, syntax highlighting, and syntax validation, etc.
+	 * 
+	 * @param connInfo
+	 *            the new connection info object
+	 */
+    public void setConnectionInfo(ISQLEditorConnectionInfo connInfo) {
+    	if (getEditorInput() instanceof ISQLEditorInput)
+    	{
+    		((ISQLEditorInput)getEditorInput()).setConnectionInfo(connInfo);
+
+    		//reset the SourceViewer for correct syntax highlight
+            ((ISourceViewerExtension2) getSourceViewer()).unconfigure();
+            getSourceViewer().configure(
+                new SQLSourceViewerConfiguration(this));
+
+            //TODO: implement the following functions
+//            refreshActionStatus();
+//            updateStatusLine();
+//            _fSQLUpdater.run();
+//
+//            fireConnectionProfileAttached();
+    		
+    	}
+    }
+    
     /**
      * Gets the <code>Database</code> object associated with this input.
      * 
@@ -532,7 +546,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             if (actionBars != null) {
                 IStatusLineManager statusLineMgr = actionBars.getStatusLineManager();
                 ISQLEditorConnectionInfo connInfo = getConnectionInfo();
-                if (connInfo != null) {
+                if (connInfo != null && connInfo.getConnectionProfile() != null) {
                     statusLineMgr.setErrorMessage( null );
                     String connStatus = connInfo.getConnectionProfile().getName() ;
                     statusLineMgr.setMessage( connStatus );
