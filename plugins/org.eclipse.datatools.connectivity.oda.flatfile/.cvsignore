@@ -1,4 +1,6 @@
 bin
-oda-flatfile.jar
+*.jar
+*.zip
 testdatabase
+utestreports
 vss*.scc
