@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
-import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
  * This interface is used to uniquely identifies a stored procedure, or trigger, or event handler, etc. Different
@@ -308,7 +307,6 @@ public class ProcIdentifierImpl implements ProcIdentifier
         /**
          * modify this method in CR378414 since user can configure the "quoted_identifier" option
          */
-        IPreferenceStore store = EditorCorePlugin.getDefault().getPreferenceStore();
         String db = null;
         String ownerName = null;
         String procName = null;

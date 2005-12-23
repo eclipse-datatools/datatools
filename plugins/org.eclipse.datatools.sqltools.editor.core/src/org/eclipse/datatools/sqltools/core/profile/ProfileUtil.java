@@ -7,11 +7,27 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.core.profile;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
+import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
+import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
+import org.eclipse.datatools.sqltools.core.IControlConnection;
+import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
 
 /**
  * Utility class for <code>IConnectionProfile</code> in connectivity layer. Encapsulating all the code to processing
@@ -32,7 +48,7 @@ public class ProfileUtil
      */
     public static DatabaseVendorDefinition getDatabaseVendorDefinition(String profileName)
     {
-        DatabaseVendorDefinitionId id = getVendorIdentifier(profileName);
+        DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
         //TODO get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
         return null;
     }
@@ -68,24 +84,33 @@ public class ProfileUtil
      * @param profileName
      * @return
      */
-    public static DatabaseVendorDefinitionId getVendorIdentifier(String profileName)
+    public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(String profileName)
     {
-        try
-        {
-        	IConnectionProfile profile = getProfile(profileName);
-            // TODO: now we still get vendor and version from connection profile properties. Later should get them from
-            // driver which declares these information when contributing.
-            // NOTE: we can't use the following approach for now because it's not reliable. If for some reason, (such as
-            // build version incompatible),
-            // Enterprise Explorer can't connect to server, we'll fail to get product and version info.
-            String vendorName = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_NAME);
-            String version = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
-            return new DatabaseVendorDefinitionId(vendorName, version);
-        }
-        catch (NoSuchProfileException e)
-        {
-            return null;
-        }
+    	IConnectionProfile profile = null;
+		try {
+			profile = getProfile(profileName);
+		} catch (NoSuchProfileException e) {
+			EditorCorePlugin.getDefault().log(e);
+		}
+    	if (profile != null)
+    	{
+    		String driverID = profile.getBaseProperties().getProperty(
+    				ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
+    		if (driverID == null) {
+    			EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.getdriver", profileName));
+    		}
+    		else
+    		{
+	    		DriverInstance driver = DriverManager.getInstance().getDriverInstanceByID(driverID);
+	    		if (driver != null)
+	    		{
+	    			String vendor = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+	    			String version = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+					return new DatabaseVendorDefinitionId(vendor, version);
+	    		}
+    		}
+    	}
+    	return DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId(); 
     }
 
     /**
@@ -134,4 +159,139 @@ public class ProfileUtil
         }
     }
     
+    /**
+     * Gets the shared connection from the control connection 
+     * @param databaseIdentifier database identifier used to locate the IControlConnection
+     * @return the shared connection managed by the IControlConnection
+     * @throws SQLException
+     * @throws NoSuchProfileException
+     */
+    public static Connection getReusableConnection(DatabaseIdentifier databaseIdentifier) throws SQLException, NoSuchProfileException
+    {
+        IControlConnection c = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(databaseIdentifier);
+        if (c == null)
+        {
+        	throw new SQLException(Messages.getString("ProfileUtil.error.getReusableConnection", databaseIdentifier.toString()));
+        }
+        return c.getReusableConnection();
+    }
+
+    
+    /**
+     * Returns a connection from the connection layer
+     * 
+     * @param profile
+     * @param dbName
+     * @return jdbc connection
+     */
+    public static Connection createConnection(IConnectionProfile profile, String dbName)
+    {
+        try
+        {
+            Connection conn = null;
+            // try to use IConnectionProfile
+            IConnection c = profile.createConnection("java.sql.Connection");
+            if (c != null)
+            {
+                Object rawConn = c.getRawConnection();
+                if (rawConn instanceof Connection)
+                {
+                    conn = (Connection) rawConn;
+                }
+                else if (rawConn instanceof ConnectionInfoImpl)
+                {
+                    conn = (Connection) ((ConnectionInfoImpl) rawConn).getSharedConnection();
+                }
+                else
+                {
+                    throw new SQLException(Messages.getString("ProfileUtil.unkown.connection.type", c
+                        .getClass().getName(), profile.getName()));
+                }
+
+            }
+            return conn;
+        }
+        catch (Exception e)
+        {
+            EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.create.connection", profile.getName()),e);
+            return null;
+        }
+    }
+    
+    /**
+     * 
+     * This method is used to verify if this profile is database profile.
+     * 
+     * @author Li Huang
+     * @param connectProfile
+     * @return true means this profile is database profile
+     */
+    public static boolean isDatabaseProfile(IConnectionProfile connectionProfile)
+    {
+
+        /**
+         * If connectionProfileName changed, connectionProfile will be null
+         */
+        if (connectionProfile != null)
+        {
+            connectionProfile.getCategory();
+            if (connectionProfile.getCategory().getId().equalsIgnoreCase(SQLToolsConstants.DB_CP_CATEGORY))
+            {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    /**
+     * Retrieves the database name list located at the server identified by profileName
+     * @param profileName
+     * @return
+     */
+    public static List getDatabaseList(String profileName)
+    {
+        List list = new ArrayList();
+        ResultSet rs = null;
+        try
+        {
+        	IControlConnection controlConn = null;
+        	IControlConnection[] controlConns = EditorCorePlugin.getControlConnectionManager().getControlConnections(profileName);
+        	if (controlConns == null || controlConns.length <1)
+        	{
+        		controlConn = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(new DatabaseIdentifier(profileName, ""));
+        	}
+        	else
+        	{
+        		controlConn = controlConns[0];
+        	}
+            rs = controlConn.getReusableConnection().getMetaData().getCatalogs();
+            while (rs.next())
+            {
+                list.add(rs.getObject("TABLE_CAT"));
+            }
+        }
+        catch (Exception e)
+        {
+            EditorCorePlugin.getDefault().log(e);
+        }
+        finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+            }
+            catch (SQLException e)
+            {
+            	EditorCorePlugin.getDefault().log(e);
+            }
+        }
+        return list;
+
+    }
+
 }

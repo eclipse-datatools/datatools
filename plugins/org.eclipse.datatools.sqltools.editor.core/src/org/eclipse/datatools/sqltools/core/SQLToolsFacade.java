@@ -5,10 +5,12 @@
  */
 package org.eclipse.datatools.sqltools.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistry;
 
 /**
  * This should be the central place to query about contributed <code>IDBFactory</code>s.
@@ -43,7 +45,7 @@ public class SQLToolsFacade
      * 
      * @return
      */
-    public static DatabaseFactoryRegistry getRegistry()
+    private static DatabaseFactoryRegistry getRegistry()
     {
         return EditorCorePlugin.getDatabaseFactoryRegistry();
     }
@@ -60,12 +62,33 @@ public class SQLToolsFacade
     }
 
     /**
+     * Returns the database definition names which has associated <code>IDBFactory</code>s.
+     * 
+     * @return Full database definition names including product name and version
+     */
+    public static Collection getSupportedDBDefinitionNames()
+    {
+        Collection c = getRegistry().getFactories();
+        int size = c.size();
+        ArrayList names = new ArrayList();
+        for (int i = 0; i < size; i++)
+        {
+        	String vendor = ((IDBFactory)c).getDatabaseVendorDefinitionId().getProductName();
+        	String version = ((IDBFactory)c).getDatabaseVendorDefinitionId().getVersion();
+        	
+            names.add( vendor + "_" + version); 
+        }
+        return names;
+    }
+
+
+    /**
      * Gets the <code>IDBFactory</code> object by the database definition name.
      * 
      * @param dbDefName database definition name, which is product name appended by "_" and version.
      * @return <code>IDBFactory</code> object
      */
-    public static IDBFactory getDBFactoryByDBName(String dbDefName)
+    public static IDBFactory getDBFactoryByDBDefName(String dbDefName)
     {
         return getRegistry().getDBFactoryByName(dbDefName);
     }
@@ -101,7 +124,7 @@ public class SQLToolsFacade
             else if (fs != null && fs.size() >= 1)
             {
                 // note: version could be null. In that case, we always try to get the latest version
-            	DatabaseVendorDefinitionId vendorId = ProfileUtil.getVendorIdentifier(profileName);
+            	DatabaseVendorDefinitionId vendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
                 String realVersion = vendorId.getVersion();
                 
                 DatabaseVendorDefinitionId.VersionComparator comp = new DatabaseVendorDefinitionId.VersionComparator();
@@ -109,7 +132,7 @@ public class SQLToolsFacade
                 for (Iterator iter = fs.iterator(); iter.hasNext();)
                 {
                     IDBFactory factory = (IDBFactory) iter.next();
-                    int compare = comp.compare(realVersion, factory.getDatabaseVendorDefinition().getVersion());
+                    int compare = comp.compare(realVersion, factory.getDatabaseVendorDefinitionId().getVersion());
                     if (compare == 0)
                     {
                         return factory;

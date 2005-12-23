@@ -7,9 +7,12 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.editor.core.connection;
 
+import java.sql.Connection;
+
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 
 /**
  * This interface defines all the connection information require by a <code>SQLEditor</code>.
@@ -30,9 +33,18 @@ public interface ISQLEditorConnectionInfo {
      * to do parsing, syntax highlighting, and syntax validation.
      * 
      * @return the <code>DatabaseVendorDefinition</code> object associated with this input, can never be null.
-     * A <code>CommonDatabaseVendorDefinition</code> object will be return if not specified.
+     * A default <code>DatabaseVendorDefinition</code> object will be return if not specified.
      */
     public DatabaseVendorDefinition getDatabaseVendorDefinition();
+    
+    /**
+     * Gets the <code>DatabaseVendorDefinitionId</code> object associated with this input.
+     * The <code>DatabaseVendorDefinitionId</code> object identifies a <code>DatabaseVendorDefinition</code> object
+     * 
+     * @return the <code>DatabaseVendorDefinitionId</code> object associated with this input, can never be null.
+     * A default <code>DatabaseVendorDefinitionId</code> object will be return if not specified.
+     */
+    public DatabaseVendorDefinitionId getDatabaseVendorDefinitionId();
     
     /**
      * Gets the <code>IConnectionProfile</code> object associated with this input.
@@ -40,10 +52,20 @@ public interface ISQLEditorConnectionInfo {
      * to connect to a database.
      * 
      * @return the <code>IConnectionProfile</code> object associated with this input
-     * or <code>null</code> if none
+     * or <code>null</code> if none or profile name is invalid
      */
     public IConnectionProfile getConnectionProfile();
 
+    /**
+     * Gets the <code>IConnectionProfile</code> name associated with this input.
+     * The <code>IConnectionProfile</code> object contains the information needed
+     * to connect to a database.
+     * 
+     * @return the <code>IConnectionProfile</code> name associated with this input
+     * or <code>null</code> if none
+     */
+    public String getConnectionProfileName();
+    
     /**
      * Gets the <code>Database</code> object associated with this input.  The
      * <code>Database</code> object provides access to database metadata (catalog)
@@ -55,6 +77,15 @@ public interface ISQLEditorConnectionInfo {
     public Database getDatabase();
     
     /**
+     * Gets the database name associated with this input. 
+     * @see #getDatabase()
+     * 
+     * @return the database name associated with this input, or
+     * <code>null</code> if none
+     */
+    public String getDatabaseName();
+    
+    /**
      * Gets the default schema name to use with the connection or database
      * associated with this input.
      * 
@@ -63,12 +94,12 @@ public interface ISQLEditorConnectionInfo {
     public String getDefaultSchemaName();
     
     /**
-     * Sets the <code>IConnectionProfile</code> associated with this input to the given 
+     * Sets the <code>IConnectionProfile</code> name associated with this input to the given 
      * object.
      * 
-     * @param connInfo the <code>IConnectionProfile</code> object to set
+     * @param profileName the <code>IConnectionProfile</code> name to set
      */
-    public void setConnectionProfile( IConnectionProfile connInfo );
+    public void setConnectionProfileName( String profileName );
 
     /**
      * Sets the <code>Database</code> object associated with this input to the
@@ -87,13 +118,19 @@ public interface ISQLEditorConnectionInfo {
     public void setDefaultSchemaName( String schemaName );
 
     /**
-     * Sets the <code>DatabaseVendorDefinition</code> associated with this input to the given 
+     * Sets the <code>DatabaseVendorDefinitionId</code> associated with this input to the given 
      * object.
      * 
-     * @param dbVendorDef the <code>DatabaseVendorDefinition</code> object to set
+     * @param dbVendorDefId the <code>DatabaseVendorDefinitionId</code> object to set
      */
-    public void setDatabaseVendorDefinition(DatabaseVendorDefinition dbVendorDef);
+    public void setDatabaseVendorDefinitionId(DatabaseVendorDefinitionId dbVendorDefId);
 
+	/**
+	 * Retrieves the shared connection.
+	 * @return if no shared connection set, return null.
+	 */
+	public Connection getSharedConnection();
+	
 
 	/**
 	 * Encodes the given <code>ISQLEditorConnectionInfo</code> object for persistency.

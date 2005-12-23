@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.modelbase.dbdefinition,
  org.eclipse.datatools.connectivity,
  org.eclipse.datatools.modelbase.sql,
- org.eclipse.datatools.sqltools.sql
+ org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.connectivity.sqm.core
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.core.dbitem,

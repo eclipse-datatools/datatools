@@ -5,6 +5,8 @@ package org.eclipse.datatools.sqltools.core;
 
 import java.util.Comparator;
 
+import org.eclipse.jface.util.Assert;
+
 /**
  * A class to uniquely identify a database definition, represented by product name and version.
  * 
@@ -78,6 +80,17 @@ public class DatabaseVendorDefinitionId implements Comparable
         this._version = version;
     }
 
+    /**
+     * Constructs the <code>DatabaseVendorDefinitionId</code> object by product name + "_" + version.
+     * @param dbDefName product name + "_" + version.
+     */
+    public DatabaseVendorDefinitionId(String dbDefName)
+    {
+    	Assert.isTrue((dbDefName != null && dbDefName.indexOf('_')>0));
+    	this._vendorName = dbDefName.substring(0, dbDefName.indexOf('_'));
+    	this._version = dbDefName.substring(dbDefName.indexOf('_')+1);
+    }
+    
     /**
      * Returns the product name
      */

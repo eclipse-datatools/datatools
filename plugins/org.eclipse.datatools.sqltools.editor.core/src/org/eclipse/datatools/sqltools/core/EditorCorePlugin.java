@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.core;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
+import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistry;
+import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistryImpl;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -115,7 +117,21 @@ public class EditorCorePlugin extends AbstractUIPlugin {
  		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
  				INTERNAL_ERROR, Messages.getString("plugin.internal_error"), e); //$NON-NLS-1$
  	}
-     
+
+    public IStatus createErrorStatus(String message, Throwable e) {
+        return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+                INTERNAL_ERROR, message, e);
+    }
+    
+    /**
+     * Logs an error message with an exception.
+     * 
+     * @param e Exception.
+     */
+    public void log(String message, Throwable e) {
+        log(createErrorStatus(message, e));
+    }
+
     public static DatabaseFactoryRegistry getDatabaseFactoryRegistry()
     {
         return DatabaseFactoryRegistryImpl.INSTANCE;
