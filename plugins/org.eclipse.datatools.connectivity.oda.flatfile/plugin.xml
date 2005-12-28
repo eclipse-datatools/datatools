@@ -31,18 +31,18 @@
                name="connectionProperties">
             <property
                   type="string"
-                  defaultDisplayName="Home Folder"
+                  defaultDisplayName="%datasource.property.home"
                   canInherit="true"
                   name="HOME"/>
             <property
                   type="string"
-                  defaultDisplayName="Character Set"
+                  defaultDisplayName="%datasource.property.charset"
                   canInherit="true"
                   name="CHARSET"/>
             <property
                   type="string"
                   canInherit="true"
-                  defaultDisplayName="Includes Data Type (Yes/No)"
+                  defaultDisplayName="%datasource.property.incltypeline"
                   name="INCLTYPELINE"/>                 
          </propertyGroup>
          </properties>
