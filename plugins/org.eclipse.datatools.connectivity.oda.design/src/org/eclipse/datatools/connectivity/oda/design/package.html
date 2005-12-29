@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+
+ *************************************************************************
+ * Copyright (c) 2005, 2006 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *  
+ *************************************************************************
+
+-->
+</head>
+<body bgcolor="white">
+
+[<b>Provisional</b>] Defines an Open Data Access (ODA) design session
+that allows a custom ODA designer tool to specify the
+slice of data to access at run-time.  
+<p>
+The ODA design-time framework provides the capability for a
+third-party data source provider to optionally provide its own
+custom designer.  An ODA custom designer is a data-source-specific 
+query builder that provides own custom UI for an user to explore its 
+meta-data and build a data set query.  
+Most of the metadata are specific to individual data sources.
+A custom designer is expected to encapsulate the specific knowledge and 
+context of its underlying data source.  
+<br>An ODA host uses a generic set of design 
+information for its data access.  The data access design 
+is modeled and defined in this ODA Design Session API.
+<p>
+When a new data source is designed, an ODA design-time host application
+would initiate and request a new ODA design session with the data source's custom
+ODA designer.  An user would step through the data-source-specific
+design task in a custom ODA designer.  When finished, a data access design 
+is created and passed to the ODA host in a response to the 
+design session it has initiated.
+<p>
+The ODA host would in turn adapt the data access design to its
+host-specific design components and persistent format.
+<br>The data access design may be edited in a later design session.
+An ODA host would request another design session, and pass the
+last session's pertinent information to the custom ODA designer.
+After a user completes editing of the data access design, a revised
+design is again passed to the ODA host for updates.
+<p>
+The <code>OdaDesignSession</code> interface is the starting point of 
+the API in the ODA design-time framework.  It contains a
+<code>DesignSessionRequest</code> and <code>DesignSessionResponse</code>,
+each of which contains pertinent design session information and 
+a <code>DataAccessDesign</code>.
+
+<!-- Put @see and @since tags down here. -->
+@since 3.0
+
+</body>
+</html>
