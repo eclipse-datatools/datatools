@@ -27,7 +27,7 @@ public interface IPlanDrawer
      * 
      * @param document the exeuction plan
      */
-    public void drawQuery(IExecutionPlanDocument document);
+    public void drawPlan(IExecutionPlanDocument document);
 
     /**
      * Initializes the drawer, this method will be invoked after the drawer is constructed

@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * <ul>
  * <li>Name: This will be displayed at the top of this node
  * <li>Tooltip: When the mouse is hovered on this node, the tooltip will be displayed
- * <li>Detail: The detail information will be displayed on the detail panel
+ * <li>Detail: The detail information will be displayed on the detail panel, it is expected to be a HTML document
  * <li>Label1: If it is not null, it will be displayed using the first label of this node, consumer can set what they need
  * <li>Label2: If it is not null, it will be displayed using the second label of this node, consumer can set what they need
  * <li>Two boolean fields: To indicate if the label should be highlighted or not
@@ -34,7 +34,7 @@ public abstract class TreePlanNodeComponent
     private String                _name;
     /* The tooltip of this node */
     private String                _tip;
-    /* The detail information of this node */
+    /* The detail information of this node, it is expected to be a HTML document */
     private String                _detail;
     /* The data of this node, consumer can put anything */
     private Object                _data;
@@ -243,7 +243,7 @@ public abstract class TreePlanNodeComponent
 
     /**
      * Checks if should highlight label 1
-     * @return <code>true</code> label 1 should be highlighted
+     * @return <code>true</code> if label 1 should be highlighted
      */
     public boolean isLabel1Highlighted()
     {
@@ -261,7 +261,7 @@ public abstract class TreePlanNodeComponent
     
     /**
      * Checks if should highlight label 2
-     * @return <code>true</code> label 2 should be highlighted
+     * @return <code>true</code> if label 2 should be highlighted
      */
     public boolean isLabel2Highlighted()
     {

@@ -40,7 +40,7 @@ public abstract class AbstractPlanDrawer implements IPlanDrawer
         _browser = browser;
     }
 
-    public abstract void drawQuery(IExecutionPlanDocument query);
+    public abstract void drawPlan(IExecutionPlanDocument query);
 
     public abstract void init();
 
