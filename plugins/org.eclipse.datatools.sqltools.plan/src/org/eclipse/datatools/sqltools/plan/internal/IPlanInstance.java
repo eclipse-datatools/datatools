@@ -1,0 +1,82 @@
+/*******************************************************************************
+ * Copyright (c) 2005 Sybase, Inc.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.datatools.sqltools.plan.internal;
+
+import org.eclipse.datatools.sqltools.plan.PlanRequest;
+
+/**
+ * This class encapsulates the following information a sql plan:
+ * <ul>
+ * <li>The plan request
+ * <li>Raw data of the execution plan
+ * <li>Model for drawing purpose (An array of <code>IExecutionPlanDocument</code>)
+ * <li>Result of the execution plan
+ * </ul>
+ * 
+ * @author Hui Cao 
+ */
+public interface IPlanInstance
+{
+    public static final int RUNNING = 0;
+    public static final int SUCCESS = 1;
+    public static final int FAILED  = 2;
+
+    /**
+     * Failed because of the throwable
+     * 
+     * @param th the throwable
+     */
+    public void finishFail(Throwable th);
+
+    /**
+     * Successfully finished with the return plan's raw data
+     * 
+     * @param rawPlan the plan's raw data
+     */
+    public void finishSuccess(Object rawPlan);
+
+    /**
+     * Returns the fail reason throwable
+     * 
+     * @return <code>null</code> if not finished yet, or not fail.
+     */
+    public Throwable getFailThrowable();
+
+    /**
+     * Returns the plan request
+     * 
+     * @return the plan request
+     */
+    public PlanRequest getPlanRequest();
+
+    /**
+     * Returns the raw data of this plan
+     * 
+     * @return the raw data of this plan
+     */
+    public Object getRawPlan();
+
+    /**
+     * Returns the current status
+     * 
+     * @return @see #RUNNING
+     * @see #SUCCESS
+     * @see #FAILED
+     */
+    public int getStatus();
+    
+    /**
+     * Checks if this plan is finished or not
+     * 
+     * @return <code>true</code> if finished (success or fail), <code>false</code> otherwise
+     */
+    public boolean isFinished();
+}
