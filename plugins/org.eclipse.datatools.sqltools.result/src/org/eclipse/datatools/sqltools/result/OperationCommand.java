@@ -133,7 +133,7 @@ public class OperationCommand
      * @param actionId the action type
      * @return the action string
      */
-    public String getActionString(int actionId)
+    public static String getActionString(int actionId)
     {
         switch (actionId)
         {

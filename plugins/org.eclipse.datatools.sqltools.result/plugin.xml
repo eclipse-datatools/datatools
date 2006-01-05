@@ -19,6 +19,10 @@
             class="org.eclipse.datatools.sqltools.result.internal.preference.ExportFormatPreferencePage"
             id="org.eclipse.datatools.sqltools.result.exportFormat"
             name="%SQLResultsView.export.options"/>
+      <page
+            class="org.eclipse.datatools.sqltools.result.internal.preference.ResultHistoryPage"
+            id="org.eclipse.datatools.sqltools.result.resultHistory"
+            name="%SQLResultsView.history.page"/>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -55,6 +59,10 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M1+BREAK"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.datatools.sqltools.result.internal.preference.ResultsViewPreferenceInitializer"/>
    </extension>
 
 </plugin>

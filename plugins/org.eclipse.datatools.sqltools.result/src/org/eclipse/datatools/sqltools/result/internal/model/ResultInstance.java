@@ -45,7 +45,9 @@ public class ResultInstance implements IResultInstance
     private Runnable         _terminateHandler;
     private List             _parameters;
     private String           _date;
-
+    
+    private int              _execFrequency;
+    
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
         this._resultManager = resultmanager;
@@ -53,6 +55,7 @@ public class ResultInstance implements IResultInstance
         _resultList = new ArrayList(5);
         this._terminateHandler = terminateHandler;
         _date = Constants.FORMATTER.format(new Date());
+        _execFrequency = 1;
     }
 
     public void morePlainMessage(String msg)
@@ -211,5 +214,15 @@ public class ResultInstance implements IResultInstance
     public List getParameters()
     {
         return _parameters;
+    }
+
+    public int getFrequency()
+    {
+        return _execFrequency;
+    }
+
+    public void increaseFrequency()
+    {
+        _execFrequency ++;        
     } 
 }
