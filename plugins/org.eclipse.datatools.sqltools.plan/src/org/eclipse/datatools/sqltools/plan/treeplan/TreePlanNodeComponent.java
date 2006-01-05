@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * <li>Detail: The detail information will be displayed on the detail panel
  * <li>Label1: If it is not null, it will be displayed using the first label of this node, consumer can set what they need
  * <li>Label2: If it is not null, it will be displayed using the second label of this node, consumer can set what they need
+ * <li>Two boolean fields: To indicate if the label should be highlighted or not
  * </ul>
  * 
  * @author Dafan Yang
@@ -30,18 +31,21 @@ import java.util.ArrayList;
 public abstract class TreePlanNodeComponent
 {
     /* The name of this node, it will be displayed on the top of this node */
-    private String                    _name;
+    private String                _name;
     /* The tooltip of this node */
-    private String                    _tip;
+    private String                _tip;
     /* The detail information of this node */
-    private String                    _detail;
+    private String                _detail;
     /* The data of this node, consumer can put anything */
-    private Object                    _data;
+    private Object                _data;
     /* If it is not null, it will be displayed using the first label of this node, consumer can set what they need */
-    private String                    _label1;
+    private String                _label1;
+    /* Used to control if label 1 should be highlighted */
+    private boolean               _isLabel1Highlighted;
     /* If it is not null, it will be displayed using the second label of this node, consumer can set what they need */
-    private String                    _label2;
-
+    private String                _label2;
+    /* Used to control if label 2 should be highlighted */
+    private boolean               _isLabel2Highlighted;
     /* The parent node of this node, if this node is root node, its parent is null */
     private TreePlanNodeComponent _parent;
     
@@ -235,5 +239,41 @@ public abstract class TreePlanNodeComponent
     public void setLabel2(String label2)
     {
         this._label2 = label2;
+    }
+
+    /**
+     * Checks if should highlight label 1
+     * @return <code>true</code> label 1 should be highlighted
+     */
+    public boolean isLabel1Highlighted()
+    {
+        return _isLabel1Highlighted;
+    }
+
+    /**
+     * Sets _isLabel1Highlighted
+     * @param label1Highlighted the new value
+     */
+    public void setLabel1Highlighted(boolean label1Highlighted)
+    {
+        _isLabel1Highlighted = label1Highlighted;
+    }
+    
+    /**
+     * Checks if should highlight label 2
+     * @return <code>true</code> label 2 should be highlighted
+     */
+    public boolean isLabel2Highlighted()
+    {
+        return _isLabel2Highlighted;
+    }
+
+    /**
+     * Sets _isLabel2Highlighted
+     * @param label2Highlighted the new value
+     */
+    public void setLabel2Highlighted(boolean label2Highlighted)
+    {
+        _isLabel2Highlighted = label2Highlighted;
     }
 }
