@@ -10,10 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
@@ -21,13 +24,14 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContent
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.ISourceViewerExtension2;
@@ -44,6 +48,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -63,8 +68,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     private SQLEditorContentOutlinePage fOutlinePage;
     /** The projection (code folding) support object. */
     private ProjectionSupport fProjectionSupport;
-    /** The SQL code scanner, which is used for colorizing the edit text. */
-    private SQLCodeScanner fSQLCodeScanner;
     /** The document setup participant object, which is used partition the edit text. */
     private SQLEditorDocumentSetupParticipant fDocSetupParticipant;
     /** The content assist proposal service for database objects. */
@@ -98,6 +101,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         a = new TextOperationAction( bundle, "ContentFormat.", this, ISourceViewer.FORMAT ); //$NON-NLS-1$
         setAction( "ContentFormat", a ); //$NON-NLS-1$
 
+        
     }
 
     /**
@@ -350,13 +354,54 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     public void setConnectionInfo(ISQLEditorConnectionInfo connInfo) {
     	if (getEditorInput() instanceof ISQLEditorInput)
     	{
+    		ISQLEditorConnectionInfo oldConnInfo = getConnectionInfo();
     		((ISQLEditorInput)getEditorInput()).setConnectionInfo(connInfo);
+    		
+    		//save the document to persistent the connection info with the input
+            IRunnableWithProgress progressOp = new IRunnableWithProgress()
+            {
+                public void run(IProgressMonitor monitor)
+                {
+                    doSave(monitor);
+                }
+            }
+            ;
 
-    		//reset the SourceViewer for correct syntax highlight
-            ((ISourceViewerExtension2) getSourceViewer()).unconfigure();
-            getSourceViewer().configure(
-                new SQLSourceViewerConfiguration(this));
+            try
+            {
+                // Do the save.
+                Workbench.getInstance().getActiveWorkbenchWindow().run(false, true, progressOp);
+            }
+            catch (InvocationTargetException e)
+            {
+                Throwable targetExc = e.getTargetException();
+                String title = SQLEditorResources.getString("EditorManager.operationFailed", new Object[]
+                {
+                    SQLEditorResources.getString("Save")
+                }
+                ); //$NON-NLS-1$
+                IStatus status = new Status(IStatus.WARNING, SQLEditorPlugin.PLUGIN_ID, IStatus.OK,targetExc.getMessage(), targetExc );
+                SQLEditorPlugin.getDefault().log(status);
+                MessageDialog.openError(getEditorSite().getShell(), SQLEditorResources.getString("common.error"), //$NON-NLS-1$
+                title + ':' + targetExc.getMessage());
+            }
+            catch (InterruptedException e)
+            {
+                // Ignore. The user pressed cancel.
+                return;
+            }
 
+            if (connInfo != null && !connInfo.getDatabaseVendorDefinitionId().equals(oldConnInfo.getDatabaseVendorDefinitionId()))
+    		{
+    			//when the database definition is different, reset the SourceViewer for correct syntax highlight
+            	((ISourceViewerExtension2) getSourceViewer()).unconfigure();
+            	SQLSourceViewerConfiguration configuration = createSourceViewerConfiguration();
+            	setSourceViewerConfiguration( configuration );
+            	getSourceViewer().configure(configuration);
+            	//we have to do this since only configuring the source viewer doesn't work. PresentationReconciler won't get notified of the document changed event. 
+            	setInput(getEditorInput());
+            }
+                
             //TODO: implement the following functions
 //            refreshActionStatus();
 //            updateStatusLine();
@@ -443,19 +488,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      */
     public ResourceBundle getResourceBundle() {
         return SQLEditorResources.getResourceBundle();
-    }
-
-    /**
-     * Gets the SQL source code text scanner. Creates a default one if it
-     * doesn't exist yet.
-     * 
-     * @return the SQL source code text scanner
-     */
-    public SQLCodeScanner getSQLCodeScanner() {
-        if (fSQLCodeScanner == null) {
-            fSQLCodeScanner = new SQLCodeScanner( SQLEditorPlugin.getDefault().getSQLColorProvider() );
-        }
-        return fSQLCodeScanner;
     }
 
     /**
@@ -581,6 +613,15 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     public ISQLEditorConnectionInfo requestConnectionFromUser() {
         //TODO: call "SQL connection" dialog
         return null;
+    }
+
+    /**
+     * Makes the source viewer public.
+     * @return The source viewer used to create this editor
+     */
+    public ISourceViewer getSV()
+    {
+        return getSourceViewer();
     }
 
 

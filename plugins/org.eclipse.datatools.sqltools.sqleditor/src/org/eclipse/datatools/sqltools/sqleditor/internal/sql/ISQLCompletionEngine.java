@@ -14,6 +14,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * Compute proposals.
@@ -29,7 +30,8 @@ public interface ISQLCompletionEngine {
      * @param doc The document
      * @param partition document partition
      * @param documentOffset current offset in the document
+     * @param selection the range of the current selection in coordinates of this viewer's document
      *  
      */
-    public ICompletionProposal[] computeProposals( IDocument doc, ITypedRegion partition, int documentOffset );
+    public ICompletionProposal[] computeProposals( IDocument doc, ITypedRegion partition, int documentOffset, Point selection );
 }

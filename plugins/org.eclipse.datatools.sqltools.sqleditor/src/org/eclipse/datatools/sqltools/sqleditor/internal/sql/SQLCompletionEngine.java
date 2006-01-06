@@ -21,6 +21,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * This class computes proposals for text completion.
@@ -53,7 +54,7 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
      * @see ISQLCompletionEngine#computeProposals(IDocument, ITypedRegion, int,
      *      IDBProposalsService)
      */
-    public ICompletionProposal[] computeProposals( IDocument doc, ITypedRegion partition, int documentOffset ) {
+    public ICompletionProposal[] computeProposals(IDocument doc, ITypedRegion partition, int documentOffset, Point selection ) {
         ICompletionProposal[] result = null;
 
         if (doc != null && partition != null && documentOffset >= 0) {
@@ -68,12 +69,13 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
             // is requested.
             int offset = getPartitionOffset( doc, partition, documentOffset, partition.getOffset() );
 
-            // Sort proposals
+            
             try {
                 sortingString = doc.get( offset, documentOffset - offset );            
            
                 docOffsetChar = doc.getChar( documentOffset - 1 );
                 
+                //TODO should get DB objects proposal based on context type from parser, instead of the '.' char
                 if (docOffsetChar == '.') {
                     StringTokenizer tokenizer = new StringTokenizer(sortingString, "."); //$NON-NLS-1$
                     List tokenList = new ArrayList();
@@ -84,10 +86,12 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
                     proposalList = fProposalFactory.getDBObjectProposals( tokenList );
                       
                 }
+
             }
             catch (BadLocationException exc) {
             }
 
+            //Sort proposals            
             Vector pList = sortProposals( proposalList, sortingString, false );
 
             result = new ICompletionProposal[pList.size()];
@@ -97,6 +101,7 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
                 replacementStr = displayStr;
                 Image image = null;
                 String additionalInfo = null;
+                int relevance = SQLCompletionProposal.OTHER;
                 if (pList.get( i ) instanceof SQLDBProposal) {
                     SQLDBProposal dbProposal = (SQLDBProposal) pList.get( i );
                     String parentNameUC = dbProposal.getParentName().toUpperCase();
@@ -117,12 +122,14 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
                     image = ((SQLDBProposal) pList.get( i )).getImage();
                     additionalInfo = ((SQLDBProposal) pList.get( i )).getParentName() + "." //$NON-NLS-1$
                             + ((SQLDBProposal) pList.get( i )).getName();
+                    
+                    relevance = getRelevance(dbProposal.getType());
                 }
                 
                	if (pList.size() <= proposalList.size()) {   
                		if (replacementStr != null &&  documentOffset >= 0) { 
-               			result[resultIdx] = new SQLCompletionProposal( additionalInfo, replacementStr, documentOffset,
-                           documentOffset, 0, image, displayStr, null );
+               			result[resultIdx] = new SQLCompletionProposal( replacementStr, documentOffset,
+                           documentOffset, replacementStr.length(), image, displayStr, null, additionalInfo, relevance);
                			resultIdx++;
                		}	
                	}
@@ -134,16 +141,38 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
     }
 
     /**
-     * Returns the document offset to the start of the "word" where content
-     * assist is requested.
-     * 
-     * @param doc the current document
-     * @param partition document partition region. A region consists of offset,
-     *            length, and type.
-     * @param documentOffset offset into the document
-     * @param offset offset in the document to start of the name preceeding the
-     *            activation character
+     * Converts SQLDBProposal db object type to SQLCompletionProposal 
+     * @param dbObjectType
+     * @return
      */
+    private int getRelevance(int dbObjectType)
+    {
+    	switch (dbObjectType) {
+		case SQLDBProposal.SCHEMA_OBJTYPE:
+			return SQLCompletionProposal.OTHER;
+		case SQLDBProposal.TABLE_OBJTYPE:
+			return SQLCompletionProposal.TABLE;
+		case SQLDBProposal.TABLECOLUMN_OBJTYPE:
+			return SQLCompletionProposal.COLUMN;
+		default:
+			return SQLCompletionProposal.OTHER;
+		}
+    }
+    /**
+	 * Returns the document offset to the start of the "word" where content
+	 * assist is requested.
+	 * 
+	 * @param doc
+	 *            the current document
+	 * @param partition
+	 *            document partition region. A region consists of offset,
+	 *            length, and type.
+	 * @param documentOffset
+	 *            offset into the document
+	 * @param offset
+	 *            offset in the document to start of the name preceeding the
+	 *            activation character
+	 */
     public int getPartitionOffset( IDocument doc, ITypedRegion partition, int documentOffset, int offset ) {
         boolean loop = true;
 

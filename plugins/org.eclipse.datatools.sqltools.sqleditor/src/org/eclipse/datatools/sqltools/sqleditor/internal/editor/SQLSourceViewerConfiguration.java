@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
+import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.BestMatchHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAnnotationHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAutoIndentStrategy;
+import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCompletionProcessor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDoubleClickStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
@@ -189,7 +192,14 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         reconciler.setDocumentPartitioning( docPartitioning );
 
         // Add a "damager-repairer" for changes in default text (SQL code).
-        DefaultDamagerRepairer dr = new DefaultDamagerRepairer( getSQLEditor().getSQLCodeScanner() );
+        SQLCodeScanner sqlCodeScanner = new SQLCodeScanner( SQLEditorPlugin.getDefault().getSQLColorProvider() );
+        IDBFactory factory = SQLToolsFacade.getDBFactoryByVendorIdentifier(getSQLEditor().getConnectionInfo().getDatabaseVendorDefinitionId());
+        if (factory != null)
+        {
+            sqlCodeScanner.setSQLSyntax(factory.getSQLService().getSQLSyntax());
+        }
+        DefaultDamagerRepairer dr = new DefaultDamagerRepairer(sqlCodeScanner );
+        
         reconciler.setDamager( dr, IDocument.DEFAULT_CONTENT_TYPE );
         reconciler.setRepairer( dr, IDocument.DEFAULT_CONTENT_TYPE );
         

@@ -34,10 +34,22 @@ public class PreferenceConstants
     public static final String PAGE_PLAN                               = SQLEditorPlugin.PLUGIN_ID + ".queryplan";
     // end: preference page ids
 
+    public static final String EXECUTE_SQL_ERROR_MODE = "PreferenceConstants.EXECUTE_SQL_ERROR_MODE";
+
+	public static final String EXPLAIN_SQL_ERROR_MODE = "PreferenceConstants.EXPLAIN_SQL_ERROR_MODE";
+
+	public static final String PROMPT_MODE_ALWAYS = "PreferenceConstants.PROMPT_MODE_ALWAYS";
+
+	public static final String PROMPT_MODE_NEVER = "PreferenceConstants.PROMPT_MODE_NEVER";
+
+	public static final String PROMPT_MODE_PROMPT = "PreferenceConstants.PROMPT_MODE_PROMPT";
+
+
 
     /**
-     * A named preference that defines whether hint to make hover sticky should be shown.
-     */
+	 * A named preference that defines whether hint to make hover sticky should
+	 * be shown.
+	 */
     public static final String EDITOR_SHOW_TEXT_HOVER_AFFORDANCE = "PreferenceConstants.EDITOR_SHOW_TEXT_HOVER_AFFORDANCE"; //$NON-NLS-1$
 
     /**

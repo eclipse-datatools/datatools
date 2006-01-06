@@ -40,20 +40,43 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	 * profile information is not available.
 	 * 
 	 * @param dbVendorId <code>DatabaseVendorDefinitionId</code>
+	 * @see DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId()
 	 */
 	public SQLEditorConnectionInfo( DatabaseVendorDefinitionId dbVendorId) {
 		super();
 		_dbVendorId = dbVendorId;
 	}
 
-	public SQLEditorConnectionInfo( String profileName, String dbName) {
-		this(profileName, dbName, null);
+	/**
+	 * Constructs a <code>SQLEditorConnectionInfo</code>. 
+	 * 
+	 * @param dbVendorId <code>DatabaseVendorDefinitionId</code>, can be null if clients want it to be created from <code>profileName</code>
+	 * @param profileName connection profile name
+	 * @param dbName database name
+	 */
+	public SQLEditorConnectionInfo(DatabaseVendorDefinitionId dbVendorId, String profileName, String dbName) {
+		this(dbVendorId, profileName, dbName, null);
 	}
 	
-	public SQLEditorConnectionInfo( String profileName, String dbName, String schemaName) {
+	/**
+	 * Constructs a <code>SQLEditorConnectionInfo</code>. 
+	 * 
+	 * @param dbVendorId <code>DatabaseVendorDefinitionId</code>, can be null if clients want it to be created from <code>profileName</code>
+	 * @param profileName connection profile name
+	 * @param dbName database name
+	 * @param schemaName default schema name
+	 */
+	public SQLEditorConnectionInfo(DatabaseVendorDefinitionId dbVendorId, String profileName, String dbName, String schemaName) {
 		super();
 		_profileName = profileName;
-		_dbVendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
+		if (dbVendorId == null)
+		{
+			_dbVendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
+		}
+		else
+		{
+			_dbVendorId = dbVendorId;
+		}
 		_databaseName = dbName;
 		_defaultSchemaName = schemaName;
 	}
@@ -159,7 +182,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 		}
 		else
 		{
-			return new SQLEditorConnectionInfo(profileName, dbName, schemaName);	
+			return new SQLEditorConnectionInfo(null, profileName, dbName, schemaName);	
 		}
 	}
 

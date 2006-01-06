@@ -23,6 +23,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationPresenter;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * This class implements a content assist processor for SQL code.
@@ -75,6 +76,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
     protected IContextInformationValidator fValidator = new Validator();
 
     private ISQLCompletionEngine fCompletionEngine;
+    private ISQLCompletionEngine fParserCompletionEngine;
     private Comparator fComparator;
     private ISQLDBProposalsService fDBProposalsService;
 
@@ -86,6 +88,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
         setCompletionProposalAutoActivationCharacters( completionChars );
 
         fCompletionEngine = new SQLCompletionEngine();
+        fParserCompletionEngine = new SQLParserCompletionEngine();
         fComparator = new CompletionProposalComparator();
         fDBProposalsService = null;
     }
@@ -125,7 +128,26 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
             else
                 partition = viewer.getDocument().getPartition( documentOffset );
 
-            result = fCompletionEngine.computeProposals( doc, partition, documentOffset );
+            Point selection = viewer.getSelectedRange();
+            ICompletionProposal[] result1 = null;
+            result1 = fCompletionEngine.computeProposals( doc, partition, documentOffset, selection );
+            ICompletionProposal[] result2 = null;
+            result2 = fParserCompletionEngine.computeProposals( doc, partition, documentOffset, selection );
+            if (result1 == null)
+            {
+            	result = result2;
+            }
+            else if (result2 == null)
+            {
+            	result = result1;
+            }
+            else
+            {
+            	result = new ICompletionProposal[result1.length + result2.length];
+            	System.arraycopy(result1, 0, result, 0, result1.length);
+            	System.arraycopy(result2, 0, result, result1.length, result2.length);
+            }
+            
         }
         catch (BadLocationException x) {
         }

@@ -24,4 +24,19 @@ public interface EditorConstants
      */
     public static final String SYNTAX_MARKER_TYPE      = SQLEditorPlugin.PLUGIN_ID + ".syntaxproblem";             //$NON-NLS-1$
     
+    /**
+     * Data source explorer view id
+     */
+	public static String DATA_SOURCE_EXPLORER = "org.eclipse.datatools.connectivity.DataSourceExplorerNavigator";
+	
+	/**
+	 * Results view id
+	 */
+	public static String RESULTS_VIEW = "org.eclipse.datatools.sqltools.result.resultView";
+	
+	/**
+	 * Error Log view id
+	 */
+	public static String LOG_VIEW = "org.eclipse.pde.runtime.LogView";
+	
 }

@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.utils;
 
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.jface.text.rules.IWordDetector;
 
 /**
@@ -25,23 +24,33 @@ public class SQLWordDetector implements IWordDetector {
      * @see org.eclipse.jface.text.rules.IWordDetector#isWordStart(char)
      */
     public boolean isWordStart( char c ) {
-        String[] reservedWords = SQLCodeScanner.getSQLKeywords();
-        for (int i = 0; i < reservedWords.length; i++) {
-            if ( (reservedWords[i].charAt(0) == c)
-              || (reservedWords[i].toLowerCase().charAt(0) == c) ) {
-                return true;
-            }
-        }   
-
-        String[] datatypes = SQLCodeScanner.getSQLDatatypes();
-        for (int i = 0; i < datatypes.length; i++) {
-            if ( (datatypes[i].charAt(0) == c)
-              || (datatypes[i].toLowerCase().charAt(0) == c) ) {
-                return true;
-            }
+//        String[] reservedWords = SQLCodeScanner.getSQLKeywords();
+//        for (int i = 0; i < reservedWords.length; i++) {
+//            if ( (reservedWords[i].charAt(0) == c)
+//              || (reservedWords[i].toLowerCase().charAt(0) == c) ) {
+//                return true;
+//            }
+//        }   
+//
+//        String[] datatypes = SQLCodeScanner.getSQLDatatypes();
+//        for (int i = 0; i < datatypes.length; i++) {
+//            if ( (datatypes[i].charAt(0) == c)
+//              || (datatypes[i].toLowerCase().charAt(0) == c) ) {
+//                return true;
+//            }
+//        }
+//
+//        return false;
+        if (Character.isJavaIdentifierStart(c))
+        {
+            return true;
         }
-
+        if (c == '@')
+        {
+            return true;
+        }
         return false;
+
     }
 
     /**
@@ -50,22 +59,25 @@ public class SQLWordDetector implements IWordDetector {
      * @see org.eclipse.jface.text.rules.IWordDetector#isWordPart(char)
      */
     public boolean isWordPart( char c ) {
-        String[] keywords = SQLCodeScanner.getSQLKeywords();
-        for (int i = 0; i < keywords.length; i++) {
-            if ( (keywords[i].indexOf(c) != -1)
-              || (keywords[i].toLowerCase().indexOf(c) != -1) ) {
-                return true;
-            }
+//        String[] keywords = SQLCodeScanner.getSQLKeywords();
+//        for (int i = 0; i < keywords.length; i++) {
+//            if ( (keywords[i].indexOf(c) != -1)
+//              || (keywords[i].toLowerCase().indexOf(c) != -1) ) {
+//                return true;
+//            }
+//        }
+//
+//        String[] datatypes = SQLCodeScanner.getSQLDatatypes();
+//        for (int i = 0; i < datatypes.length; i++) {
+//            if ( (datatypes[i].indexOf(c) != -1)
+//              || (datatypes[i].toLowerCase().indexOf(c) != -1) ) {
+//                return true;
+//            }
+//        }
+    	if (Character.isJavaIdentifierPart(c))
+        {
+            return true;
         }
-
-        String[] datatypes = SQLCodeScanner.getSQLDatatypes();
-        for (int i = 0; i < datatypes.length; i++) {
-            if ( (datatypes[i].indexOf(c) != -1)
-              || (datatypes[i].toLowerCase().indexOf(c) != -1) ) {
-                return true;
-            }
-        }
-
         return false;
     }
 

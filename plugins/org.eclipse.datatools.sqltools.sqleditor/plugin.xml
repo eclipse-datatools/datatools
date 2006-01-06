@@ -32,6 +32,9 @@
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.datatools.sqltools.editor.core"/>
       <import plugin="org.eclipse.datatools.sqltools.sql"/>
+      <import plugin="org.eclipse.datatools.sqltools.result" export="true"/>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.debug.ui"/>
    </requires>
 
    <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->
@@ -70,5 +73,37 @@
          </factory> 
    </extension> 
 
+   <!-- perspectives -->      
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Database Development"
+            icon="icons/editor/DB_dev_perspective.gif"
+            class="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"
+            id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+      </perspective>
+   </extension>
    
+    <!-- next are how to hook DTP SQL Editor perspective/actions with other perspectives/actions of eclipse -->
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <!-- extension to the DTP editor perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+	    	 <actionSet
+               id="org.eclipse.debug.ui.breakpointActionSet">
+             </actionSet>
+
+
+             <!-- Add View Shortcuts !-->
+            <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
+            <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
+                        
+            <!-- Add Perspective shortcuts !-->
+            <perspectiveShortcut id="ConfigPerspective" />
+            <perspectiveShortcut id="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective" />
+                  
+        </perspectiveExtension>
+
+    </extension>
+    
 </plugin>
