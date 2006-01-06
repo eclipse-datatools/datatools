@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="org.eclipse.datatools.sqltools.db.derby.dbFactory"
+         name="Derby Support"
+         point="org.eclipse.datatools.sqltools.editor.core.dbFactories">
+      <dbFactory
+            factoryClass="org.eclipse.datatools.sqltools.db.derby.core.DerbyFactory"
+            product="Derby"
+            version="10.x"/>
+   </extension>
+
+</plugin>

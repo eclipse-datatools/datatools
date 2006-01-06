@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Derby Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.derby;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.sqltools.db.derby.Activator
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.sqltools.editor.core,
+ org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.sqltools.db.generic
+Eclipse-LazyStart: true
