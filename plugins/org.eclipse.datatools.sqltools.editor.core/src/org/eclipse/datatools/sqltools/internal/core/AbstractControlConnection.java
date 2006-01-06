@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Assert;
+//import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -67,7 +67,7 @@ public abstract class AbstractControlConnection implements IControlConnection
      */
     public AbstractControlConnection(IControlConnectionManager manager, DatabaseIdentifier databaseIdentifier)
     {
-    	Assert.isTrue(manager instanceof ControlConnectionManager);
+//    	Assert.isTrue(manager instanceof ControlConnectionManager);
         this._manager = (ControlConnectionManager)manager;
         this._databaseIdentifier = databaseIdentifier;
     }
