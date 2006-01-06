@@ -41,7 +41,7 @@ public class ControlConnectionManager implements IControlConnectionManager
     /**
      * databaseIdentifier --> IControlConnection mapping
      */ 
-    Map          _controlConnectionMap = new HashMap();
+    public Map          _controlConnectionMap = new HashMap();
 
     /* (non-Javadoc)
      * @see com.sybase.stf.dmp.core.IControlConnectionManager#getControlConnection(java.lang.String)
@@ -186,7 +186,7 @@ public class ControlConnectionManager implements IControlConnectionManager
      * This should only be called from AbstractControlConnection.
      * @param connection
      */
-    protected void remove(IControlConnection connection)
+    public void remove(IControlConnection connection)
     {
         _controlConnectionMap.remove(connection.getDatabaseIdentifier());
         fireDetached(connection);

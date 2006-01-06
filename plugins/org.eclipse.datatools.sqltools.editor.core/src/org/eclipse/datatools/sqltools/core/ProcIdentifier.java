@@ -1,10 +1,14 @@
-/***********************************************************************************************************************
- * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
- * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Sybase, Inc. - initial API and implementation
- **********************************************************************************************************************/
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
 
 package org.eclipse.datatools.sqltools.core;
 
@@ -20,6 +24,7 @@ public interface ProcIdentifier
     public static final int TYPE_UDF = 1;
     public static final int TYPE_EVENT = 2;
     public static final int TYPE_TRIGGER = 3;
+    public static final int TYPE_SQL = 4; //represents all the other types
 
     public static final String PROP_OWNER = "OWNER"; //$NON-NLS-1$
     public static final String PROP_NAME = "NAME"; //$NON-NLS-1$

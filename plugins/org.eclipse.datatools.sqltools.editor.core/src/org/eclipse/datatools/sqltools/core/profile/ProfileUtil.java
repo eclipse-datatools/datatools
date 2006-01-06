@@ -39,7 +39,14 @@ import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
  */
 public class ProfileUtil
 {
-	
+	//FIXME shall we use ConnectionProfileConstants.PROP_UID or IDBDriverDefinitionConstants.USERNAME_PROP_ID?
+    public static final String UID                = ConnectionProfileConstants.PROP_UID;
+    public static final String PWD                = ConnectionProfileConstants.PROP_PWD;
+    public static final String DRIVERDEFINITIONID = ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID;
+    public static final String DATABASENAME       = IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID;
+    public static final String URL                = IDBDriverDefinitionConstants.URL_PROP_ID;
+    public static final String DRIVERCLASS        = IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID;
+
     /**
      * Returns the associated DatabaseVendorDefinition object from the given connection profile.
      * The DatabaseVendorDefinition object is contributed by vendor tool plugins.
@@ -48,7 +55,7 @@ public class ProfileUtil
      */
     public static DatabaseVendorDefinition getDatabaseVendorDefinition(String profileName)
     {
-        DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
+        //DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
         //TODO get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
         return null;
     }
@@ -180,6 +187,25 @@ public class ProfileUtil
     /**
      * Returns a connection from the connection layer
      * 
+     * @param profileName
+     * @param dbName
+     * @return jdbc connection
+     * @see #createConnection(IConnectionProfile, String)
+     */
+    public static Connection createConnection(String profileName, String dbName)
+    {
+    	try {
+			Connection conn = createConnection(getProfile(profileName), dbName);
+			return conn;
+		} catch (NoSuchProfileException e) {
+			EditorCorePlugin.getDefault().log(e);
+			return null;
+		}
+    }
+    
+    /**
+     * Returns a connection from the connection layer
+     * 
      * @param profile
      * @param dbName
      * @return jdbc connection
@@ -189,8 +215,7 @@ public class ProfileUtil
         try
         {
             Connection conn = null;
-            // try to use IConnectionProfile
-            IConnection c = profile.createConnection("java.sql.Connection");
+            IConnection c = createIConnection(profile, "java.sql.Connection");
             if (c != null)
             {
                 Object rawConn = c.getRawConnection();
@@ -217,6 +242,23 @@ public class ProfileUtil
             return null;
         }
     }
+
+    /**
+     * Returns a connection from the connection layer
+     * 
+     * @param profile
+     * @param factoryName the connection factory name
+     * @return the base interface for working with connections created from connection profiles.
+     */
+    public static IConnection createIConnection(IConnectionProfile profile, String factoryName) {
+    	if (profile.isConnected())
+    	{
+    		//FIXME: we have to disconnect it since only one shared connection is allowed and there's no API for us to get the shared connection.
+    		profile.disconnect();
+    	}
+		IConnection c = profile.createConnection(factoryName);
+		return c;
+	}
     
     /**
      * 
@@ -228,10 +270,6 @@ public class ProfileUtil
      */
     public static boolean isDatabaseProfile(IConnectionProfile connectionProfile)
     {
-
-        /**
-         * If connectionProfileName changed, connectionProfile will be null
-         */
         if (connectionProfile != null)
         {
             connectionProfile.getCategory();
@@ -244,12 +282,33 @@ public class ProfileUtil
 
     }
 
+    /**
+     * 
+     * This method is used to verify if this profile is database profile.
+     * 
+     * @param profileName
+     * @return true means this profile is database profile
+     */
+    public static boolean isDatabaseProfile(String profileName)
+    {
+    	try {
+    		return isDatabaseProfile(getProfile(profileName));
+		} catch (NoSuchProfileException e) {
+			return false;
+		}
+    }
+    
 
     /**
-     * Retrieves the database name list located at the server identified by profileName
-     * @param profileName
-     * @return
-     */
+	 * Retrieves the database name list located at the server identified by
+	 * profileName. This method will first try to get the database list from
+	 * DatabaseMetadata. if failed, will use the default database name defined
+	 * in the connection profile.
+	 * 
+	 * @param profileName
+	 *            connection profile name
+	 * @return database name list.
+	 */
     public static List getDatabaseList(String profileName)
     {
         List list = new ArrayList();
@@ -271,6 +330,15 @@ public class ProfileUtil
             {
                 list.add(rs.getObject("TABLE_CAT"));
             }
+            if (list.isEmpty())
+            {
+            	IConnectionProfile profile = getProfile(profileName);
+            	String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
+            	if (dbname != null)
+            	{
+            		list.add(dbname);
+            	}
+            }
         }
         catch (Exception e)
         {
@@ -291,6 +359,25 @@ public class ProfileUtil
             }
         }
         return list;
+
+    }
+
+    /**
+     * Returns all the connection profiles belonging to the database category.
+     * @return connection profile name array
+     */
+    public static String[] getDatabaseProfiles()
+    {
+        IConnectionProfile[] profiles = ProfileManager.getInstance().getProfiles();
+        ArrayList DBProfileNames = new ArrayList();
+        for (int i = 0; i < profiles.length; i++)
+        {
+            if (isDatabaseProfile(profiles[i]))
+            {
+                DBProfileNames.add(profiles[i].getName());
+            }
+        }
+        return (String[])DBProfileNames.toArray(new String[DBProfileNames.size()]);
 
     }
 

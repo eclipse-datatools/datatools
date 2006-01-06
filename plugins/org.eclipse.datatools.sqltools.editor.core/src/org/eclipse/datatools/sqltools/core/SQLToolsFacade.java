@@ -1,8 +1,14 @@
-/**
- * Created on 2004-11-16
- * 
- * Copyright (c) Sybase, Inc. 2004-2006 All rights reserved.
- */
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.sqltools.core;
 
 import java.util.ArrayList;
@@ -69,15 +75,14 @@ public class SQLToolsFacade
     public static Collection getSupportedDBDefinitionNames()
     {
         Collection c = getRegistry().getFactories();
-        int size = c.size();
         ArrayList names = new ArrayList();
-        for (int i = 0; i < size; i++)
-        {
-        	String vendor = ((IDBFactory)c).getDatabaseVendorDefinitionId().getProductName();
-        	String version = ((IDBFactory)c).getDatabaseVendorDefinitionId().getVersion();
-        	
-            names.add( vendor + "_" + version); 
-        }
+        for (Iterator iter = c.iterator(); iter.hasNext();) {
+			IDBFactory factory = (IDBFactory) iter.next();
+			String vendor = factory.getDatabaseVendorDefinitionId().getProductName();
+			String version = factory.getDatabaseVendorDefinitionId().getVersion();
+			
+			names.add( vendor + "_" + version); 
+		}
         return names;
     }
 
@@ -90,7 +95,7 @@ public class SQLToolsFacade
      */
     public static IDBFactory getDBFactoryByDBDefName(String dbDefName)
     {
-        return getRegistry().getDBFactoryByName(dbDefName);
+        return getDBFactoryByVendorIdentifier(new DatabaseVendorDefinitionId(dbDefName));
     }
 
     /**
@@ -100,7 +105,7 @@ public class SQLToolsFacade
      */
     public static IDBFactory getDBFactoryByVendorIdentifier(DatabaseVendorDefinitionId vendorId)
     {
-        return getRegistry().getDBFactoryByVendorIdentifier(vendorId);
+        return getDBFactory(null, vendorId);
     }
 
     /**
@@ -113,51 +118,7 @@ public class SQLToolsFacade
      */
     public static IDBFactory getDBFactoryByProfileName(String profileName)
     {
-        try
-        {
-            String profileId = ProfileUtil.getConnectionProfileId(profileName);
-            Collection fs = getRegistry().getDBFactoryByConnectionProfileId(profileId);
-            if (fs != null && fs.size() == 1)
-            {
-                return (IDBFactory) fs.iterator().next();
-            }
-            else if (fs != null && fs.size() >= 1)
-            {
-                // note: version could be null. In that case, we always try to get the latest version
-            	DatabaseVendorDefinitionId vendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
-                String realVersion = vendorId.getVersion();
-                
-                DatabaseVendorDefinitionId.VersionComparator comp = new DatabaseVendorDefinitionId.VersionComparator();
-                IDBFactory last = null;
-                for (Iterator iter = fs.iterator(); iter.hasNext();)
-                {
-                    IDBFactory factory = (IDBFactory) iter.next();
-                    int compare = comp.compare(realVersion, factory.getDatabaseVendorDefinitionId().getVersion());
-                    if (compare == 0)
-                    {
-                        return factory;
-                    }
-                    else if (compare < 0)
-                    {
-                        if (last != null)
-                        {
-                            return last;
-                        }
-                        else
-                        {
-                            return factory;
-                        }
-                    }
-                    last = factory;
-                }
-                return last;
-            }
-            return null;
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
+		return getDBFactoryByVendorIdentifier(ProfileUtil.getDatabaseVendorDefinitionId(profileName));
     }
 
 
@@ -166,20 +127,20 @@ public class SQLToolsFacade
      * Gets the <code>IDBFactory</code> object. This is a utility method for getDBFactoryByProfileName(String
      * profileName) and getDBFactoryByDBName(String dbName). It will try to use the first parameter then the second.
      * 
-     * @param databaseIdentifier <code>DatabaseIdentifier</code> which contains connection profile name
-     * @param dbDefName database definition name, which is product name appended by "_" and version.
+     * @param databaseIdentifier <code>DatabaseIdentifier</code> which contains connection profile name, can be null
+     * @param id <code>DatabaseVendorDefinitionId</code> object represented by product name and version, can be null
      * @return <code>IDBFactory</code> object
      */
-    public static IDBFactory getDBFactory(DatabaseIdentifier databaseIdentifier, String dbDefName)
+    public static IDBFactory getDBFactory(DatabaseIdentifier databaseIdentifier, DatabaseVendorDefinitionId vendorId)
     {
         IDBFactory f = null;
         if (databaseIdentifier != null)
         {
             f = getDBFactoryByProfileName(databaseIdentifier.getProfileName());
         }
-        if (f == null && dbDefName != null)
+        if (f == null && vendorId != null)
         {
-            f = getRegistry().getDBFactoryByName(dbDefName);
+            f = getRegistry().getDBFactoryByVendorIdentifier(vendorId);
         }
         if (f == null)
         {
