@@ -26,11 +26,11 @@ public interface SQLParserConstants
      */
     public final static int SCOPE_DEFAULT              = 0x0001;
     /**
-     * Scope constant indicating catalog .
+     * Scope constant indicating catalog list information is required.
      */
     public final static int SCOPE_CATALOGS             = 0x0002;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating schema list information is required.
      */
     public final static int SCOPE_SCHEMAS              = 0x0004;
     /**
@@ -42,33 +42,37 @@ public interface SQLParserConstants
      */
     public final static int SCOPE_VIEWS                = 0x0010;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating column list information is required.
      */
     public final static int SCOPE_COLUMNS              = 0x0020;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating index list information is required.
      */
     public final static int SCOPE_INDEXES              = 0x0040;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating data type list information is required.
      */
     public final static int SCOPE_DATA_TYPES           = 0x0080;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating procedure list information is required.
      */
     public final static int SCOPE_STORED_PROCEDURES    = 0x0100;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating function list information is required.
      */
     public final static int SCOPE_FUNCTIONS            = 0x0200;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating trigger list information is required.
      */
     public final static int SCOPE_TRIGGERS             = 0x0400;
     /**
-     * Scope constant indicating the default scope.
+     * Scope constant indicating event list information is required.
      */
     public final static int SCOPE_EVENTS               = 0x0800;
+    /**
+     * Scope constant indicating variable list information is required.
+     */
+    public final static int SCOPE_VARIABLES               = 0x1000;
 
     // SQL statement types
 

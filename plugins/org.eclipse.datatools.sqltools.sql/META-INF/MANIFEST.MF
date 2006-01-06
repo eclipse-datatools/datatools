@@ -8,7 +8,7 @@ Bundle-Activator: org.eclipse.datatools.sqltools.sql.internal.SQLActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.jface.text,
+ org.eclipse.jface.text;visibility:=reexport,
  org.eclipse.ui.editors
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.sql.connection,

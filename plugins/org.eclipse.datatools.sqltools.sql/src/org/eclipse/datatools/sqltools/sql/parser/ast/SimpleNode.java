@@ -485,5 +485,26 @@ public class SimpleNode implements Node
         }
         return text.toString();
     }
+    
+    /**
+     *  Accepts the visitor. 
+     */
+    public Object jjtAccept(ISQLParserVisitor visitor, Object data) {
+      return visitor.visit(this, data);
+    }
+
+    /**
+     *  Accepts the visitor for all children. 
+     */
+    public Object acceptChildren(ISQLParserVisitor visitor, Object data) {
+      if (_children != null) {
+        for (int i = 0; i < _children.length; ++i) {
+          _children[i].jjtAccept(visitor, data);
+        }
+      }
+      return data;
+    }
+
+    
 }
 
