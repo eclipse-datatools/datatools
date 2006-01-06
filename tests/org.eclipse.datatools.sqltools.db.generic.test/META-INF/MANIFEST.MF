@@ -11,3 +11,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.sql,
  org.junit
 Eclipse-LazyStart: true
+Bundle-ClassPath: genericdbtest.jar

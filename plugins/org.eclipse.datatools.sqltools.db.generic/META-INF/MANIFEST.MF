@@ -6,6 +6,7 @@ Bundle-Version: 0.7.0
 Bundle-Activator: org.eclipse.datatools.sqltools.db.generic.internal.GenericPlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
+Bundle-ClassPath: genericdb.jar
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.datatools.sqltools.sql,
@@ -15,3 +16,4 @@ Export-Package: org.eclipse.datatools.sqltools.db.generic,
  org.eclipse.datatools.sqltools.db.generic.parser,
  org.eclipse.datatools.sqltools.db.generic.service,
  org.eclipse.datatools.sqltools.db.generic.sql
+
