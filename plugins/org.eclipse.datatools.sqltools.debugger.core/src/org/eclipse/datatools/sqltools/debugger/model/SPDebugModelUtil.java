@@ -225,7 +225,7 @@ public class SPDebugModelUtil
      */
     public static boolean supportCondition(SPLineBreakpoint bp) throws CoreException
     {
-        IDBHelper helper = SQLToolsFacade.getDBFactory(bp.getProcIdentifier().getDatabaseIdentifier(), "").getDBHelper();
+        IDBHelper helper = SQLToolsFacade.getDBFactory(bp.getProcIdentifier().getDatabaseIdentifier(), null).getDBHelper();
         if (helper != null )
         {
             return helper.supportsConditionBreakpoint();
