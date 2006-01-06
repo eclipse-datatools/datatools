@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
-import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
+import org.eclipse.core.internal.runtime.Assert;
 
 /**
  * The <code>Parameter</code> represents an in/out parameter for routine objects.
@@ -43,20 +43,13 @@ public class Parameter
      * @see #IN_OUT
      * @param paramValue value of this parameter
      * @param paramDataType data type of this parameter
-     * @exception Exception - if the paramName is null or empty, or paramType is incorrect
      */
-    public Parameter(String paramName, String paramType, String paramValue, String paramDataType) throws Exception
+    public Parameter(String paramName, String paramType, String paramValue, String paramDataType)
     {
-        if (paramName == null || paramName.trim().equals(""))
-        {
-            throw new Exception(Messages.getString("Parameter.constructor.error"));
-        }
-        if (paramType == null
-                || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType.trim().equals(
-                        IN_OUT)))
-        {
-            throw new Exception(Messages.getString("Parameter.constructor.error"));
-        }
+        Assert.isTrue(paramName != null && !paramName.trim().equals(""));
+        Assert
+                .isTrue(!(paramType == null || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType
+                        .trim().equals(IN_OUT))));
         _paramName = paramName;
         _paramType = paramType;
         _paramDataType = (paramDataType == null)?"":paramDataType;

@@ -108,16 +108,8 @@ import org.eclipse.ui.PartInitException;
  */
 public class ResultsViewAPI
 {
-    private static ILogger        _log     = ResultsViewPlugin.getLogger(null);
     private static ResultsViewAPI _instance;
-    private IResultManager        _manager = ResultsViewPlugin.getResultManager();
-    private IWorkbenchPage        _activePage;
-
-    private ResultsViewAPI()
-    {
-
-    }
-
+    private static ILogger        _log     = ResultsViewPlugin.getLogger(null);
     /**
      * Returns the instance of <code>ResultsViewAPI</code>
      * 
@@ -131,45 +123,43 @@ public class ResultsViewAPI
         }
         return _instance;
     }
+    private IWorkbenchPage        _activePage;
+
+    private IResultManager        _manager = ResultsViewPlugin.getResultManager();
+
+    private ResultsViewAPI()
+    {
+
+    }
 
     /**
-     * Creates a new result instance given the <code>OperationCommand</code> instance
+     * Returns the current status of the given operation command
      * 
-     * @param cmd the operation request, can not be null
-     * @param terminateHandler handler used to teminate this item, can be null
-     * @return <code>true</code> if the creation succeeds; <code>false</code> otherwise
+     * @param cmd the operation command
+     * @return the current status of corresponding result instance, returns -1 if the operation command is
+     *         <code>null</code> or the corresponding result instance is not found
+     * @see OperationCommand#STATUS_STARTED
+     * @see OperationCommand#STATUS_RUNNING
+     * @see OperationCommand#STATUS_SUCCEEDED
+     * @see OperationCommand#STATUS_FAILED
+     * @see OperationCommand#STATUS_TERMINATED
+     * @see OperationCommand#STATUS_WARNING
+     * @see OperationCommand#STATUS_CRITICAL_ERROR
      */
-    public boolean createNewInstance(OperationCommand cmd, Runnable terminateHandler)
+    public int getCurrentStatus(OperationCommand cmd)
     {
-        if (!checkView())
+        if(cmd == null)
         {
-            return false;
+            return -1;
         }
-
-        // check if the OperationCommand instance is valid
-        if (cmd == null)
-        {
-            return false;
-        }
-        else
-        {
-            if (cmd.getScript() == null)
-            {
-                return false;
-            }
-        }
-
-        //this instance may exist
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
-            return true;
+            return instance.getStatus();
         }
-
-        instance = _manager.createNewResultInstance(cmd, terminateHandler);
-        return instance == null ? false : true;
+        return -1;   
     }
-
+    
     /**
      * Appends a plain message to the result instance, when using multiple windows display mode, this kind of messages
      * will be displayed on "Message" tab
@@ -196,6 +186,41 @@ public class ResultsViewAPI
             return true;
         }
         return false;
+    }
+
+    /**
+     * Appends an instance of <code>IResultSetObject</code> to SQL Results View.
+     * 
+     * @param cmd the operation request, should not be null
+     * @param rs the instance of <code>IResultSetObject</code>
+     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
+     */
+    public boolean appendResultSet(OperationCommand cmd, IResultSetObject rs)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        if (cmd == null)
+        {
+            return false;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        try
+        {
+            if (instance != null)
+            {
+                instance.moreResultSet(rs);
+                return true;
+            }
+            return false;
+        }
+        catch (Exception e)
+        {
+            _log.error("ResultsViewAPI.append.resultset.error", e);
+            return false;
+        }
     }
 
     /**
@@ -231,6 +256,61 @@ public class ResultsViewAPI
             _log.error("ResultsViewAPI.append.resultset.error", e);
             return false;
         }
+    }
+
+    /**
+     * Appends a status message to the result instance, when using multiple windows display mode, this kind of messages
+     * will be displayed on "Status" tab
+     * 
+     * @param cmd the operation request, should not be null
+     * @param message the message string, should not be null
+     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
+     */
+    public boolean appendStatusMessage(OperationCommand cmd, String message)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        if (cmd == null || message == null)
+        {
+            return false;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            instance.moreStatusMessage(message);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Appends an update count message to the result instance.
+     * 
+     * @param cmd the operation request, should not be null
+     * @param count the update count number, should greater than or equals to 0
+     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
+     */
+    public boolean appendUpdateCountMessage(OperationCommand cmd, int count)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        if (cmd == null || count < 0)
+        {
+            return false;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            instance.moreUpdateCount(count);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -281,159 +361,6 @@ public class ResultsViewAPI
         }
     }
 
-    /**
-     * Appends an instance of <code>IResultSetObject</code> to SQL Results View.
-     * 
-     * @param cmd the operation request, should not be null
-     * @param rs the instance of <code>IResultSetObject</code>
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean appendResultSet(OperationCommand cmd, IResultSetObject rs)
-    {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        if (cmd == null)
-        {
-            return false;
-        }
-        IResultInstance instance = _manager.getInstance(cmd);
-        try
-        {
-            if (instance != null)
-            {
-                instance.moreResultSet(rs);
-                return true;
-            }
-            return false;
-        }
-        catch (Exception e)
-        {
-            _log.error("ResultsViewAPI.append.resultset.error", e);
-            return false;
-        }
-    }
-
-    /**
-     * Appends an update count message to the result instance.
-     * 
-     * @param cmd the operation request, should not be null
-     * @param count the update count number, should greater than or equals to 0
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean appendUpdateCountMessage(OperationCommand cmd, int count)
-    {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        if (cmd == null || count < 0)
-        {
-            return false;
-        }
-        IResultInstance instance = _manager.getInstance(cmd);
-        if (instance != null)
-        {
-            instance.moreUpdateCount(count);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Appends a status message to the result instance, when using multiple windows display mode, this kind of messages
-     * will be displayed on "Status" tab
-     * 
-     * @param cmd the operation request, should not be null
-     * @param message the message string, should not be null
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean appendStatusMessage(OperationCommand cmd, String message)
-    {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        if (cmd == null || message == null)
-        {
-            return false;
-        }
-        IResultInstance instance = _manager.getInstance(cmd);
-        if (instance != null)
-        {
-            instance.moreStatusMessage(message);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Updates the status of the result instance.
-     * 
-     * @param cmd the operation request, should not be null
-     * @param status the new status (There are 7 statuses defined in <code>OperationCommand</code>)
-     * @see OperationCommand#STATUS_STARTED
-     * @see OperationCommand#STATUS_RUNNING
-     * @see OperationCommand#STATUS_SUCCEEDED
-     * @see OperationCommand#STATUS_FAILED
-     * @see OperationCommand#STATUS_TERMINATED
-     * @see OperationCommand#STATUS_WARNING
-     * @see OperationCommand#STATUS_CRITICAL_ERROR
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean updateStatus(OperationCommand cmd, int status)
-    {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        if (cmd == null || status < OperationCommand.STATUS_STARTED || status > OperationCommand.STATUS_CRITICAL_ERROR)
-        {
-            return false;
-        }
-        IResultInstance instance = _manager.getInstance(cmd);
-        if (instance != null)
-        {
-            instance.updateStatus(status);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Shows the parameters on SQL Results View. If there are already parameters displayed, the old parameters will be
-     * cleared.
-     * 
-     * @param cmd he operation request, should not be null
-     * @param params a list of <code>Parameter</code> instances
-     * @see Parameter
-     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
-     */
-    public boolean showParameters(OperationCommand cmd, List params)
-    {
-        if (!checkView())
-        {
-            return false;
-        }
-
-        if (cmd == null || params == null)
-        {
-            return false;
-        }
-        IResultInstance instance = _manager.getInstance(cmd);
-        if (instance != null)
-        {
-            instance.showParameters(params);
-            return true;
-        }
-        return false;
-    }
-    
     /**
      * Checks if the SQL Results View is active, if not, create it and bring it to the top.
      * 
@@ -498,5 +425,118 @@ public class ResultsViewAPI
             }
         });
         return true;
+    }
+
+    /**
+     * Creates a new result instance given the <code>OperationCommand</code> instance
+     * 
+     * @param cmd the operation request, can not be null
+     * @param terminateHandler handler used to teminate this item, can be null
+     * @return <code>true</code> if the creation succeeds; <code>false</code> otherwise
+     */
+    public boolean createNewInstance(OperationCommand cmd, Runnable terminateHandler)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        // check if the OperationCommand instance is valid
+        if (cmd == null)
+        {
+            return false;
+        }
+        else
+        {
+            if (cmd.getScript() == null)
+            {
+                return false;
+            }
+        }
+
+        //this instance may exist
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            return true;
+        }
+
+        instance = _manager.createNewResultInstance(cmd, terminateHandler);
+        return instance == null ? false : true;
+    }
+
+    /**
+     * Shows the parameters on SQL Results View. If there are already parameters displayed, the old parameters will be
+     * cleared.
+     * 
+     * @param cmd he operation request, should not be null
+     * @param params a list of <code>Parameter</code> instances
+     * @see Parameter
+     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
+     */
+    public boolean showParameters(OperationCommand cmd, List params)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        if (cmd == null || params == null)
+        {
+            return false;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            instance.showParameters(params);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * Updates the status of the result instance. Note that some simple logical check will be performed.
+     * 
+     * @param cmd the operation request, should not be null
+     * @param status the new status (There are 7 statuses defined in <code>OperationCommand</code>)
+     * @see OperationCommand#STATUS_STARTED
+     * @see OperationCommand#STATUS_RUNNING
+     * @see OperationCommand#STATUS_SUCCEEDED
+     * @see OperationCommand#STATUS_FAILED
+     * @see OperationCommand#STATUS_TERMINATED
+     * @see OperationCommand#STATUS_WARNING
+     * @see OperationCommand#STATUS_CRITICAL_ERROR
+     * @return <code>true</code> if operation succeeds; <code>false</code> otherwise
+     */
+    public boolean updateStatus(OperationCommand cmd, int status)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+        synchronized (cmd)
+        {
+            if (cmd == null || status < OperationCommand.STATUS_STARTED
+                    || status > OperationCommand.STATUS_CRITICAL_ERROR)
+            {
+                return false;
+            }
+            IResultInstance instance = _manager.getInstance(cmd);
+            if (instance != null)
+            {
+                if (instance.isFinished())
+                {
+                    return false;
+                }
+                if (instance.getStatus() == OperationCommand.STATUS_RUNNING
+                        && status == OperationCommand.STATUS_STARTED)
+                {
+                    return false;
+                }
+                instance.updateStatus(status);
+                return true;
+            }
+            return false;
+        }
     }
 }

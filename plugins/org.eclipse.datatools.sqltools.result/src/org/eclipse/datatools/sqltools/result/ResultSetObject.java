@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.internal.runtime.Assert;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
-import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 import org.eclipse.datatools.sqltools.result.internal.utils.SQLUtil;
 
 /**
@@ -191,33 +191,19 @@ public class ResultSetObject implements IResultSetObject
      * @param columnNames column name array
      * @param columnTypes column type array (refer java.sql.Types)
      * @param columnDisplaySizes column display size array
-     * @exception Exception - if validation fails
      */
     public ResultSetObject(List rows, String[] columnNames, int[] columnTypes, int[] columnDisplaySizes)
-            throws Exception
     {
-        if (rows == null || columnNames == null || columnDisplaySizes == null || columnTypes == null)
-        {
-            throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
-        }
+        Assert.isTrue(!(rows == null || columnNames == null || columnDisplaySizes == null || columnTypes == null));
         int columnCount = columnNames.length;
-        if (columnTypes.length != columnCount || columnDisplaySizes.length != columnCount)
-        {
-            throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
-        }
+        Assert.isTrue(!(columnTypes.length != columnCount || columnDisplaySizes.length != columnCount));
 
         Iterator iter = rows.iterator();
         while (iter.hasNext())
         {
             Object obj = iter.next();
-            if (obj == null)
-            {
-                throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
-            }
-            if (!(obj instanceof IResultSetRow))
-            {
-                throw new Exception(Messages.getString("ResultSetObject.constructor.error"));
-            }
+            Assert.isNotNull(obj);
+            Assert.isTrue(obj instanceof IResultSetRow);
         }
         for (int i = 0; i < columnCount; i++)
         {
