@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="org.eclipse.datatools.sqltools.db.generic" default="build.jars" basedir=".">
+
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="false"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="true"/>
+	<property name="compilerArg" value=""/>
+	<property name="javacSource" value="1.3"/>
+	<property name="javacTarget" value="1.2"/>
+	<path id="path_bootclasspath">
+		<fileset dir="${java.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+	<property name="bundleJavacSource" value="${javacSource}"/>
+	<property name="bundleJavacTarget" value="${javacTarget}"/>
+	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+
+	<target name="init" depends="properties">
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/org.eclipse.datatools.sqltools.db.generic">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+
+        <property name="dtp.parser.generic.dir" value="${basedir}/src/org/eclipse/datatools/sqltools/db/generic/parser"/>
+        <property name="3rdpartyplugins.dir" value="${basedir}/../../3rdpartyplugins"/>
+        <condition property="generic.parser.test">
+        	<istrue value="${parser.test}"/>
+        </condition>
+		
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.db.generic for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip destfile="${plugin.destination}/org.eclipse.datatools.sqltools.db.generic_0.7.0.jar" basedir="${temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0" filesonly="false" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="@dot" depends="init" unless="@dot" description="Create jar: org.eclipse.datatools.sqltools.db.generic @dot.">
+		<delete dir="${temp.folder}/@dot.bin"/>
+		<mkdir dir="${temp.folder}/@dot.bin"/>
+		<path id="@dot.classpath">
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.ui_3.2.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.runtime_3.1.0.v20051027.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.osgi_3.2.0.v20051030.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.help_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.swt_3.1.0.v3212c.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.swt.win32.win32.x86_3.1.0.v3212.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.jface_3.2.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.commands_3.2.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.ui.workbench_3.2.0.jar"/>
+			<pathelement path="../../../eclipse/eclipse32/eclipse/plugins/org.eclipse.ui.workbench.compatibility_3.2.0/compatibility.jar"/>
+			<pathelement path="../../../eclipse/eclipse32/eclipse/plugins/org.eclipse.ui.workbench.compatibility_3.2.0/@dot"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.expressions_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.resources_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.resources.compatibility_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.resources.win32_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.runtime.compatibility_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.update.configurator_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.ant.core_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.variables_3.1.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.filesystem_1.0.0.jar"/>
+			<pathelement path="..\..\..\eclipse\eclipse32\eclipse\plugins\org.eclipse.core.filesystem.win32.x86_1.0.0.jar"/>
+		</path>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/@dot.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bundleBootClasspath}" source="${bundleJavacSource}" target="${bundleJavacTarget}"		>
+			<compilerarg line="${compilerArg}"/>
+			<classpath refid="@dot.classpath" />
+			<src path="src/"			/>
+		</javac>
+		<!-- Copy necessary resources -->
+		<copy todir="${temp.folder}/@dot.bin" failonerror="true" overwrite="false">
+			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"			/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<copy todir="${build.result.folder}/@dot" failonerror="true" overwrite="false">
+			<fileset dir="${temp.folder}/@dot.bin"			/>
+		</copy>
+		<delete dir="${temp.folder}/@dot.bin"/>
+	</target>
+
+	<target name="src.zip" depends="init" unless="src.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip destfile="${build.result.folder}/src.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/" includes="**/*.java"			/>
+		</zip>
+	</target>
+
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
+		<available property="@dot" file="${build.result.folder}/@dot"/>
+		<antcall target="@dot"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="src.zip" file="${build.result.folder}/src.zip"/>
+		<antcall target="src.zip"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0"/>
+		<copy todir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}/@dot" includes="**"			/>
+		</copy>
+		<copy todir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}" includes="META-INF/,null"			/>
+		</copy>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0"/>
+		<copy file="${build.result.folder}/src.zip" todir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0" failonerror="false" overwrite="false"/>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0"/>
+		<copy file="${temp.folder}/@dot.bin.log" todir="${destination.temp.folder}/org.eclipse.datatools.sqltools.db.generic_0.7.0" failonerror="false" overwrite="false"/>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.db.generic of all the zips, jars and logs created.">
+		<delete dir="${build.result.folder}/@dot"/>
+		<delete file="${build.result.folder}/src.zip"/>
+		<delete file="${plugin.destination}/org.eclipse.datatools.sqltools.db.generic_0.7.0.jar"/>
+		<delete file="${plugin.destination}/org.eclipse.datatools.sqltools.db.generic_0.7.0.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="D:/myproj/32workspace/org.eclipse.datatools.sqltools.db.generic" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"			/>
+		</delete>
+		<zip destfile="${plugin.destination}/org.eclipse.datatools.sqltools.db.generic_0.7.0.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<!-- Only when user provide parser.test property, will this task be called -->
+	<target name="dtp.parser.test" depends="init" if="generic.parser.test">
+		<uptodate property="generic.parser.uptodate"
+			srcfile="${basedir}/grammar/sql.jjt"
+			targetfile="${dtp.parser.generic.dir}/GenericSQLParser.java"
+		/>
+		<echo message="Generic parser uptodate check result: ${generic.parser.uptodate}" />
+	</target>
+	
+	<target name="dtp.parser.generic.build" depends="init,dtp.parser.test" unless="generic.parser.uptodate">
+		<echo>${3rdpartyplugins.dir}</echo>
+        <mkdir dir="${dtp.parser.generic.dir}"/>
+        <delete failonerror="false" file="${dtp.parser.generic.dir}/sql.jj"/>
+		<!-- set all files to archive -->
+		<attrib readonly="false">
+			<fileset dir="${dtp.parser.generic.dir}" includes="**/*.*"/>
+		</attrib>
+		<jjtree javacchome="${3rdpartyplugins.dir}/javacc-3.2" target="${basedir}/grammar/sql.jjt"  outputdirectory="${dtp.parser.generic.dir}">
+		</jjtree>
+		<javacc javacchome="${3rdpartyplugins.dir}/javacc-3.2" target="${dtp.parser.generic.dir}/sql.jj" ignorecase="true" debugparser="false" debugtokenmanager="false" debuglookahead="false" static="false" forcelacheck="false" errorreporting="true" javaunicodeescape="true" outputdirectory="${dtp.parser.generic.dir}">
+		</javacc>
+		<delete failonerror="false" file="${dtp.parser.generic.dir}/sql.jj"/>
+        <delete failonerror="false" file="${dtp.parser.generic.dir}/Token.java"/>
+        <delete failonerror="false" file="${dtp.parser.generic.dir}/TokenMgrError.java"/>
+        <delete failonerror="false" file="${dtp.parser.generic.dir}/JavaCharStream.java"/>
+        <delete failonerror="false" file="${dtp.parser.generic.dir}/ParseException.java"/>
+	</target>
+
+</project>

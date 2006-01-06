@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="org.eclipse.datatools.sqltools.db.generic.dbFactory"
+         name="Generic Database Support"
+         point="org.eclipse.datatools.sqltools.editor.core.dbFactories">
+      <dbFactory
+            description="Data tools generic database support"
+            factoryClass="org.eclipse.datatools.sqltools.db.generic.GenericDBFactory"
+            product="Generic Database"
+            version="0.7.x"/>
+   </extension>
+
+</plugin>

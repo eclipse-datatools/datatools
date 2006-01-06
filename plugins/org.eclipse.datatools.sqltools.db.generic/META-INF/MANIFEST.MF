@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Generic Database Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.generic;singleton:=true
+Bundle-Version: 0.7.0
+Bundle-Activator: org.eclipse.datatools.sqltools.db.generic.internal.GenericPlugin
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.sqltools.editor.core
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.sqltools.db.generic,
+ org.eclipse.datatools.sqltools.db.generic.parser,
+ org.eclipse.datatools.sqltools.db.generic.service,
+ org.eclipse.datatools.sqltools.db.generic.sql
