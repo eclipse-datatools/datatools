@@ -10,7 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
-import org.eclipse.core.internal.runtime.Assert;
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 
 /**
  * The <code>Parameter</code> represents an in/out parameter for routine objects.
@@ -46,10 +47,10 @@ public class Parameter
      */
     public Parameter(String paramName, String paramType, String paramValue, String paramDataType)
     {
-        Assert.isTrue(paramName != null && !paramName.trim().equals(""));
-        Assert
-                .isTrue(!(paramType == null || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType
-                        .trim().equals(IN_OUT))));
+    	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.getString("Parameter.constructor.error"));
+    	Assert.isLegal(!(paramType == null
+                || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType.trim().equals(
+                        IN_OUT))), Messages.getString("Parameter.constructor.error"));
         _paramName = paramName;
         _paramType = paramType;
         _paramDataType = (paramDataType == null)?"":paramDataType;
