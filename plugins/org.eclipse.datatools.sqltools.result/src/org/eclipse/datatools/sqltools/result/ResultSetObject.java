@@ -26,10 +26,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.internal.utils.SQLUtil;
+import org.eclipse.jface.util.Assert;
 
 /**
  * A standard implementation of <code>IResultSetObject</code> with cache mechanism. The consumer can use constructor
@@ -194,16 +194,16 @@ public class ResultSetObject implements IResultSetObject
      */
     public ResultSetObject(List rows, String[] columnNames, int[] columnTypes, int[] columnDisplaySizes)
     {
-//        Assert.isTrue(!(rows == null || columnNames == null || columnDisplaySizes == null || columnTypes == null));
+        Assert.isTrue(!(rows == null || columnNames == null || columnDisplaySizes == null || columnTypes == null));
         int columnCount = columnNames.length;
-//        Assert.isTrue(!(columnTypes.length != columnCount || columnDisplaySizes.length != columnCount));
+        Assert.isTrue(!(columnTypes.length != columnCount || columnDisplaySizes.length != columnCount));
 
         Iterator iter = rows.iterator();
         while (iter.hasNext())
         {
             Object obj = iter.next();
-//            Assert.isNotNull(obj);
-//            Assert.isTrue(obj instanceof IResultSetRow);
+            Assert.isNotNull(obj);
+            Assert.isTrue(obj instanceof IResultSetRow);
         }
         for (int i = 0; i < columnCount; i++)
         {
