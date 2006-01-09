@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-//import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -33,6 +32,7 @@ import org.eclipse.datatools.sqltools.core.profile.Messages;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.contentassist.model.IDatatype;
+import org.eclipse.jface.util.Assert;
 
 
 /**
@@ -67,7 +67,7 @@ public abstract class AbstractControlConnection implements IControlConnection
      */
     public AbstractControlConnection(IControlConnectionManager manager, DatabaseIdentifier databaseIdentifier)
     {
-//    	Assert.isTrue(manager instanceof ControlConnectionManager);
+    	Assert.isTrue(manager instanceof ControlConnectionManager);
         this._manager = (ControlConnectionManager)manager;
         this._databaseIdentifier = databaseIdentifier;
     }
