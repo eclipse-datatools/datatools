@@ -55,6 +55,11 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 					mProfilePage.getProfileDescription(), mProviderID,
 					getProfileProperties(), getParentProfile(),
 					mProfilePage.getAutoConnect());
+			
+			if (mProfilePage.getAutoConnect()) {
+				ProfileManager.getInstance().getProfileByName(
+						mProfilePage.getProfileName()).connect(null);
+			}
 		}
 		catch (ConnectionProfileException e) {
 			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
