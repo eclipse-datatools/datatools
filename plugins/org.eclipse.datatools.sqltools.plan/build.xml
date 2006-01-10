@@ -12,9 +12,9 @@
  *  
  ***************************************************************************
  -->
-<project name="org.eclipse.datatools.sqltools.db.generic" default="build.jars" basedir=".">
+<project name="org.eclipse.datatools.sqltools.plan" default="build.jars" basedir=".">
 	<import file="../org.eclipse.datatools.build/common_build.xml" optional="true"/>
-	<property name="module.name" value="org.eclipse.datatools.sqltools.db.generic"/>
+	<property name="module.name" value="org.eclipse.datatools.sqltools.plan"/>
 
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
@@ -23,11 +23,9 @@
 	<property name="eclipse.home" location="."/>
 	<property file="build.properties"/>
 	<!-- JavaDoc settings -->
-	<!-- No JavaDoc for this plugin -->
-	<property name="add.javadoc" value="false"/>
-	<property name="javadocWindowTitle" value="DTP SQL Development Tools Generic Database Support"/>
-	<property name="javadocDocTitle" value="DTP SQL Development Tools Generic Database Support API (Internal)"/>
-	<property name="javadocPackages" value="org.eclipse.datatools.sqltools.db.generic.*"/>
+	<property name="javadocWindowTitle" value="DTP SQL Development Tools Execution Plan Framework"/>
+	<property name="javadocDocTitle" value="DTP SQL Development Tools Execution Plan Framework API (Internal)"/>
+	<property name="javadocPackages" value="org.eclipse.datatools.sqltools.plan.*"/>
 	<property name="javadocFooter" value="&lt;i>Copyright &#169;  2006 Sybase, Inc. and others. All rights reserved. &lt;/i>"/>
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="true"/>
@@ -41,6 +39,7 @@
 			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="${eclipse.home}/plugins">
+			<!-- Include jared plug-ins -->
 			<include name="org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.ui_*.jar"/>
@@ -49,15 +48,8 @@
 			<include name="org.eclipse.jface_*.jar"/>
 			<include name="org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*.jar"/>
-			<include name="org.eclipse.jface.text_*.jar"/>
-			<include name="org.eclipse.text_*.jar"/>
-			<!-- Include jared EMF plug-ins -->
-			<include name="org.eclipse.emf.ecore_*.jar"/>
-			<include name="org.eclipse.emf.common_*.jar"/>
-			<include name="org.eclipse.emf.ecore.sdo_*.jar"/>
-			<include name="org.eclipse.emf.commonj.sdo_*.jar"/>
-			<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
-			<include name="org.eclipse.emf.ecore.change_*.jar"/>
+			<!-- Dependency on GEF -->
+			<include name="org.eclipse.draw2d_*.jar"/>
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
@@ -66,33 +58,7 @@
 			<include name="org.eclipse.swt.*_*/org.eclipse.swt.*_*.jar"/>
 			<include name="org.eclipse.jface_*/org.eclipse.jface_*.jar"/>
 			<include name="org.eclipse.core.commands_*/org.eclipse.core.commands_*.jar"/>
-			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>
-			<include name="org.eclipse.jface.text_*/org.eclipse.jface.text_*.jar"/>
-			<include name="org.eclipse.text_*/org.eclipse.text_*.jar"/>
-			<!-- Include expanded EMF plug-ins -->
-			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
-			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
-			<include name="org.eclipse.emf.ecore_*/org.eclipse.emf.ecore*.jar"/>
-			<include name="org.eclipse.emf.common_*/org.eclipse.emf.common*.jar"/>
-			<include name="org.eclipse.emf.ecore.sdo_*/org.eclipse.emf.ecore.sdo*.jar"/>
-			<include name="org.eclipse.emf.commonj.sdo_*/org.eclipse.emf.commonj.sdo*.jar"/>
-			<include name="org.eclipse.emf.ecore.xmi_*/org.eclipse.emf.ecore.xmi*.jar"/>
-			<include name="org.eclipse.emf.ecore.change_*/org.eclipse.emf.ecore.change*.jar"/>
-		</fileset>
-		<!-- Dependencies on other DTP plug-ins, built before this one -->
-		<fileset dir="../">
-			<include  name="org.eclipse.datatools.sqltools.sql/bin/"/>
-			<include  name="org.eclipse.datatools.sqltools.sql/sqltools.jar"/>
-			<include  name="org.eclipse.datatools.sqltools.editor.core/bin/"/>
-			<include  name="org.eclipse.datatools.sqltools.editor.core/sqleditorframe.jar"/>
-			<include  name="org.eclipse.datatools.modelbase.dbdefinition/bin"/>
-			<include  name="org.eclipse.datatools.modelbase.dbdefinition/databasedefinition.jar"/>
-			<include  name="org.eclipse.datatools.modelbase.sql/bin/"/>
-			<include  name="org.eclipse.datatools.modelbase.sql/sqlmodel.jar"/>
-			<include  name="org.eclipse.datatools.connectivity/bin/"/>
-			<include  name="org.eclipse.datatools.connectivity/connectivity.jar"/>
-			<include  name="org.eclipse.datatools.connectivity.sqm.core/bin"/>
-			<include  name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>		
+			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>			
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
@@ -115,7 +81,7 @@
 
 	</target>
 
-	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.db.generic for an update site.">
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.plan for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
@@ -126,51 +92,51 @@
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<target name="genericdb.jar" depends="init" unless="genericdb.jar" description="Create jar: org.eclipse.datatools.sqltools.db.generic genericdb.jar.">
-		<delete dir="${temp.folder}/genericdb.jar.bin"/>
-		<mkdir dir="${temp.folder}/genericdb.jar.bin"/>
+	<target name="sqlplan.jar" depends="init" unless="sqlplan.jar" description="Create jar: org.eclipse.datatools.sqltools.plan sqlplan.jar.">
+		<delete dir="${temp.folder}/sqlplan.jar.bin"/>
+		<mkdir dir="${temp.folder}/sqlplan.jar.bin"/>
 		<!-- compile the source code -->
-		<javac destdir="${temp.folder}/genericdb.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}"		>
+		<javac destdir="${temp.folder}/sqlplan.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}"		>
 			<compilerarg line="${compilerArg}"/>
 			<classpath refid="path_bootclasspath"/>
 			<src path="src/"/>
 			</javac>
 		<!-- Copy necessary resources -->
-		<copy todir="${temp.folder}/genericdb.jar.bin" failonerror="true" overwrite="false">
+		<copy todir="${temp.folder}/sqlplan.jar.bin" failonerror="true" overwrite="false">
 			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"			/>
 		</copy>
 		<mkdir dir="${build.result.folder}"/>
-		<jar destfile="${build.result.folder}/genericdb.jar" basedir="${temp.folder}/genericdb.jar.bin"/>
-		<delete dir="${temp.folder}/genericdb.jar.bin"/>
+		<jar destfile="${build.result.folder}/sqlplan.jar" basedir="${temp.folder}/sqlplan.jar.bin"/>
+		<delete dir="${temp.folder}/sqlplan.jar.bin"/>
 	</target>
 
-	<target name="genericdbsrc.zip" depends="init" unless="genericdbsrc.zip">
+	<target name="sqlplansrc.zip" depends="init" unless="sqlplansrc.zip">
 		<mkdir dir="${build.result.folder}"/>
-		<zip destfile="${build.result.folder}/genericdbsrc.zip" filesonly="false" whenempty="skip" update="false">
+		<zip destfile="${build.result.folder}/sqlplansrc.zip" filesonly="false" whenempty="skip" update="false">
 			<fileset dir="src/" includes="**/*.java"			/>
 		</zip>
 	</target>
 
-	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
-		<available property="genericdb.jar" file="${build.result.folder}/genericdb.jar"/>
-		<antcall target="genericdb.jar"/>
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.plan.">
+		<available property="sqlplan.jar" file="${build.result.folder}/sqlplan.jar"/>
+		<antcall target="sqlplan.jar"/>
 	</target>
 
 	<target name="build.sources" depends="init">
-		<available property="genericdbsrc.zip" file="${build.result.folder}/genericdbsrc.zip"/>
-		<antcall target="genericdbsrc.zip"/>
+		<available property="sqlplansrc.zip" file="${build.result.folder}/sqlplansrc.zip"/>
+		<antcall target="sqlplansrc.zip"/>
 	</target>
 
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${build.result.folder}" includes="genericdb.jar"			/>
+			<fileset dir="${build.result.folder}" includes="sqlplan.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,genericdb.jar,genericdb.jar,META-INF/,about.html,grammar/"			/>
+			<fileset dir="${basedir}" includes="META-INF/,sqlplan.jar,plugin.xml,about.html,schema/"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
-			<fileset dir="${basedir}" includes="genericdbsrc.zip"/>
+			<fileset dir="${basedir}" includes="sqlplansrc.zip"/>
 		</copy>
 	</target>
 
@@ -179,28 +145,28 @@
 
 	<target name="gather.sources" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
-		<copy file="${build.result.folder}/genericdbsrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy file="${build.result.folder}/sqlplansrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 	</target>
 
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
-		<copy file="${temp.folder}/genericdb.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy file="${temp.folder}/sqlplan.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 	</target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.db.generic of all the zips, jars and logs created.">
-		<delete file="${build.result.folder}/genericdb.jar"/>
-		<delete file="${build.result.folder}/genericdbsrc.zip"/>
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.plan of all the zips, jars and logs created.">
+		<delete file="${build.result.folder}/sqlplan.jar"/>
+		<delete file="${build.result.folder}/sqlplansrc.zip"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.jar"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.zip"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.sqltools.db.generic" property="resourcePath"/>
+		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.sqltools.plan" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
-	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.plan.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>

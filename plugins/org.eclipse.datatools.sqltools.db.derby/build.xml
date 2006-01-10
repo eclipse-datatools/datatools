@@ -12,9 +12,9 @@
  *  
  ***************************************************************************
  -->
-<project name="org.eclipse.datatools.sqltools.db.generic" default="build.jars" basedir=".">
+<project name="org.eclipse.datatools.sqltools.db.derby" default="build.jars" basedir=".">
 	<import file="../org.eclipse.datatools.build/common_build.xml" optional="true"/>
-	<property name="module.name" value="org.eclipse.datatools.sqltools.db.generic"/>
+	<property name="module.name" value="org.eclipse.datatools.sqltools.db.derby"/>
 
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>
@@ -25,10 +25,11 @@
 	<!-- JavaDoc settings -->
 	<!-- No JavaDoc for this plugin -->
 	<property name="add.javadoc" value="false"/>
-	<property name="javadocWindowTitle" value="DTP SQL Development Tools Generic Database Support"/>
-	<property name="javadocDocTitle" value="DTP SQL Development Tools Generic Database Support API (Internal)"/>
-	<property name="javadocPackages" value="org.eclipse.datatools.sqltools.db.generic.*"/>
+	<property name="javadocWindowTitle" value="DTP SQL Development Tools Apache Derby Support"/>
+	<property name="javadocDocTitle" value="DTP SQL Development Tools Apache Derby Support API (Internal)"/>
+	<property name="javadocPackages" value="org.eclipse.datatools.sqltools.db.derby.*"/>
 	<property name="javadocFooter" value="&lt;i>Copyright &#169;  2006 Sybase, Inc. and others. All rights reserved. &lt;/i>"/>
+
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="true"/>
 	<property name="javacDebugInfo" value="on"/>
@@ -92,7 +93,9 @@
 			<include  name="org.eclipse.datatools.connectivity/bin/"/>
 			<include  name="org.eclipse.datatools.connectivity/connectivity.jar"/>
 			<include  name="org.eclipse.datatools.connectivity.sqm.core/bin"/>
-			<include  name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>		
+			<include  name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
+			<include  name="org.eclipse.datatools.sqltools.db.generic/bin/"/>
+			<include  name="org.eclipse.datatools.sqltools.db.generic/genericdb.jar"/>		
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
@@ -115,7 +118,7 @@
 
 	</target>
 
-	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.db.generic for an update site.">
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.sqltools.db.derby for an update site.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
@@ -126,51 +129,51 @@
 		<delete dir="${temp.folder}"/>
 	</target>
 
-	<target name="genericdb.jar" depends="init" unless="genericdb.jar" description="Create jar: org.eclipse.datatools.sqltools.db.generic genericdb.jar.">
-		<delete dir="${temp.folder}/genericdb.jar.bin"/>
-		<mkdir dir="${temp.folder}/genericdb.jar.bin"/>
+	<target name="sqlderby.jar" depends="init" unless="sqlderby.jar" description="Create jar: org.eclipse.datatools.sqltools.db.derby sqlderby.jar.">
+		<delete dir="${temp.folder}/sqlderby.jar.bin"/>
+		<mkdir dir="${temp.folder}/sqlderby.jar.bin"/>
 		<!-- compile the source code -->
-		<javac destdir="${temp.folder}/genericdb.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}"		>
+		<javac destdir="${temp.folder}/sqlderby.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}"		>
 			<compilerarg line="${compilerArg}"/>
 			<classpath refid="path_bootclasspath"/>
 			<src path="src/"/>
 			</javac>
 		<!-- Copy necessary resources -->
-		<copy todir="${temp.folder}/genericdb.jar.bin" failonerror="true" overwrite="false">
+		<copy todir="${temp.folder}/sqlderby.jar.bin" failonerror="true" overwrite="false">
 			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"			/>
 		</copy>
 		<mkdir dir="${build.result.folder}"/>
-		<jar destfile="${build.result.folder}/genericdb.jar" basedir="${temp.folder}/genericdb.jar.bin"/>
-		<delete dir="${temp.folder}/genericdb.jar.bin"/>
+		<jar destfile="${build.result.folder}/sqlderby.jar" basedir="${temp.folder}/sqlderby.jar.bin"/>
+		<delete dir="${temp.folder}/sqlderby.jar.bin"/>
 	</target>
 
-	<target name="genericdbsrc.zip" depends="init" unless="genericdbsrc.zip">
+	<target name="sqlderbysrc.zip" depends="init" unless="sqlderbysrc.zip">
 		<mkdir dir="${build.result.folder}"/>
-		<zip destfile="${build.result.folder}/genericdbsrc.zip" filesonly="false" whenempty="skip" update="false">
+		<zip destfile="${build.result.folder}/sqlderbysrc.zip" filesonly="false" whenempty="skip" update="false">
 			<fileset dir="src/" includes="**/*.java"			/>
 		</zip>
 	</target>
 
-	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
-		<available property="genericdb.jar" file="${build.result.folder}/genericdb.jar"/>
-		<antcall target="genericdb.jar"/>
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.sqltools.db.derby.">
+		<available property="sqlderby.jar" file="${build.result.folder}/sqlderby.jar"/>
+		<antcall target="sqlderby.jar"/>
 	</target>
 
 	<target name="build.sources" depends="init">
-		<available property="genericdbsrc.zip" file="${build.result.folder}/genericdbsrc.zip"/>
-		<antcall target="genericdbsrc.zip"/>
+		<available property="sqlderbysrc.zip" file="${build.result.folder}/sqlderbysrc.zip"/>
+		<antcall target="sqlderbysrc.zip"/>
 	</target>
 
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${build.result.folder}" includes="genericdb.jar"			/>
+			<fileset dir="${build.result.folder}" includes="sqlderby.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,genericdb.jar,genericdb.jar,META-INF/,about.html,grammar/"			/>
+			<fileset dir="${basedir}" includes="plugin.xml,.,sqlderby.jar,META-INF/,about.html,icons/"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
-			<fileset dir="${basedir}" includes="genericdbsrc.zip"/>
+			<fileset dir="${basedir}" includes="sqlderbysrc.zip"/>
 		</copy>
 	</target>
 
@@ -179,28 +182,28 @@
 
 	<target name="gather.sources" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
-		<copy file="${build.result.folder}/genericdbsrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy file="${build.result.folder}/sqlderbysrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 	</target>
 
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
-		<copy file="${temp.folder}/genericdb.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy file="${temp.folder}/sqlderby.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 	</target>
 
-	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.db.generic of all the zips, jars and logs created.">
-		<delete file="${build.result.folder}/genericdb.jar"/>
-		<delete file="${build.result.folder}/genericdbsrc.zip"/>
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.db.derby of all the zips, jars and logs created.">
+		<delete file="${build.result.folder}/sqlderby.jar"/>
+		<delete file="${build.result.folder}/sqlderbysrc.zip"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.jar"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.zip"/>
 		<delete dir="${temp.folder}"/>
 	</target>
 
 	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
-		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.sqltools.db.generic" property="resourcePath"/>
+		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.sqltools.db.derby" property="resourcePath"/>
 		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
 	</target>
 
-	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.db.generic.">
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.sqltools.db.derby.">
 		<delete dir="${temp.folder}"/>
 		<mkdir dir="${temp.folder}"/>
 		<antcall target="build.jars"/>
