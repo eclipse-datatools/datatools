@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *************************************************************************
+ * Copyright (c) 2005 Sybase, Inc. and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Sybase, Inc.  - initial API and implementation
+ *  
+ ***************************************************************************
+ -->
+<project name="org.eclipse.datatools.connectivity.ui.dse" default="build.jars" basedir=".">
+	<import file="../org.eclipse.datatools.build/common_build.xml" optional="true"/>
+	<property name="module.name" value="org.eclipse.datatools.connectivity.ui.dse"/>
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+	<property name="eclipse.home" location="."/>
+	<property file="build.properties"/>
+	<!-- JavaDoc settings -->
+	<property name="javadocWindowTitle" value="DTP Data Source Explorer"/>
+	<property name="javadocDocTitle" value="DTP Data Source Explorer"/>
+	<property name="javadocPackages" value="org.eclipse.datatools.connectivity.ui.dse.*"/>
+	<property name="javadocFooter" value="&lt;i>Copyright &#169;  2005 Sybase, Inc. and others. All rights reserved. &lt;/i>"/>
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="true"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="true"/>
+	<property name="javacSource" value="${javac.source}"/>
+	<property name="javacTarget" value="${javac.target}"/>
+	<property name="compilerArg" value=""/>
+	<path id="path_bootclasspath">
+		<fileset dir="${java.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${eclipse.home}/plugins">
+			<!-- Include jared plug-ins -->
+			<include name="org.eclipse.ui_*.jar"/>
+			<include name="org.eclipse.swt_*.jar"/>
+			<include name="org.eclipse.swt.*_*.jar"/>
+			<include name="org.eclipse.jface_*.jar"/>
+			<include name="org.eclipse.core.commands_*.jar"/>
+			<include name="org.eclipse.ui.workbench_*.jar"/>
+			<include name="org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*.jar"/>
+			<include name="org.eclipse.core.resources_*.jar"/>
+			<include name="org.eclipse.ui.ide_*.jar"/>
+			<include name="org.eclipse.ui.views_*.jar"/>
+			<!-- Include expanded plug-ins -->
+			<include name="org.eclipse.ui_*/org.eclipse.ui_*.jar"/>
+			<include name="org.eclipse.swt_*/org.eclipse.swt_*.jar"/>
+			<include name="org.eclipse.swt.*_*/org.eclipse.swt.*_*.jar"/>
+			<include name="org.eclipse.jface_*/org.eclipse.jface_*.jar"/>
+			<include name="org.eclipse.core.commands_*/org.eclipse.core.commands_*.jar"/>
+			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>
+			<include name="org.eclipse.core.runtime_/org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
+			<include name="org.eclipse.core.resources_*/org.eclipse.core.resources_*.jar"/>
+			<include name="org.eclipse.ui.ide_*/org.eclipse.ui.ide_*.jar"/>
+			<include name="org.eclipse.ui.views_*/org.eclipse.ui.views_*.jar"/>
+			<include name="org.eclipse.ui.navigator_*/navigator.jar"/>
+			<include name="org.eclipse.ui.navigator.resources_*/navigator_resources.jar"/>
+		</fileset>
+		<!-- Dependencies on other DTP plug-ins, built before this one -->
+		<fileset dir="../">
+			<include name="org.eclipse.datatools.connectivity/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
+			<include name="org.eclipse.datatools.connectivity.ui/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.ui/connectivityui.jar"/>
+			<include name="org.eclipse.datatools.connectivity.navigator.views/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.navigator.views/navigator.jar"/>
+			<include name="org.eclipse.datatools.connectivity.navigator.common/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.navigator.common/dtpnavigator.jar"/>
+		</fileset>
+	</path>
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+	<target name="init" depends="properties">
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/${module.name}">
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+	</target>
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+	</target>
+	<target name="build.update.jar" depends="init" description="Build the plug-in: org.eclipse.datatools.connectivity.ui.dse for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.jar" basedir="${temp.folder}/${module.name}_${plugin.version}" filesonly="false" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+	<target name="dse.jar" depends="init" unless="dse.jar" description="Create jar: org.eclipse.datatools.connectivity.ui.dse dse.jar.">
+		<delete dir="${temp.folder}/dse.jar.bin"/>
+		<mkdir dir="${temp.folder}/dse.jar.bin"/>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/dse.jar.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bootclasspath}" source="${javacSource}" target="${javacTarget}">
+			<compilerarg line="${compilerArg}"/>
+			<classpath refid="path_bootclasspath"/>
+			<src path="src/"/>
+		</javac>
+		<!-- Copy necessary resources -->
+		<copy todir="${temp.folder}/dse.jar.bin" failonerror="true" overwrite="false">
+			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"/>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<jar destfile="${build.result.folder}/dse.jar" basedir="${temp.folder}/dse.jar.bin"/>
+		<delete dir="${temp.folder}/dse.jar.bin"/>
+	</target>
+	<target name="dsesrc.zip" depends="init" unless="dsesrc.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<zip destfile="${build.result.folder}/dsesrc.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/" includes="**/*.java"/>
+		</zip>
+	</target>
+	<target name="build.jars" depends="init" description="Build all the jars for the plug-in: org.eclipse.datatools.connectivity.ui.dse.">
+		<available property="dse.jar" file="${build.result.folder}/dse.jar"/>
+		<antcall target="dse.jar"/>
+	</target>
+	<target name="build.sources" depends="init">
+		<available property="dsesrc.zip" file="${build.result.folder}/dsesrc.zip"/>
+		<antcall target="dsesrc.zip"/>
+	</target>
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}" includes="dse.jar"/>
+		</copy>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}" includes="META-INF/,plugin.xml,about.html,dse.jar,icons/,plugin.properties"/>
+		</copy>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes="dsesrc.zip"/>
+		</copy>
+	</target>
+	<target name="build.zips" depends="init"/>
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy file="${build.result.folder}/dsesrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+	</target>
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
+		<copy file="${temp.folder}/dse.jar.bin.log" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+	</target>
+	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.connectivity.ui.dse of all the zips, jars and logs created.">
+		<delete file="${build.result.folder}/dse.jar"/>
+		<delete file="${build.result.folder}/dsesrc.zip"/>
+		<delete file="${plugin.destination}/${module.name}_${plugin.version}.jar"/>
+		<delete file="${plugin.destination}/${module.name}_${plugin.version}.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="C:/V3/3.1/eclipse/workspace-dtp/org.eclipse.datatools.connectivity.ui.dse" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: org.eclipse.datatools.connectivity.ui.dse.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}" includes="**/*.bin.log"/>
+		</delete>
+		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+</project>
