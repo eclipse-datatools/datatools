@@ -60,6 +60,11 @@
 			<include name="org.eclipse.core.commands_*/org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>			
 		</fileset>
+		<!-- Dependencies on other DTP plug-ins, built before this one -->
+		<fileset dir="../">
+			<include name="org.eclipse.datatools.sqltools.common.ui/bin/"/>
+			<include name="org.eclipse.datatools.sqltools.common.ui/sqltoolscommonui.jar"/>	
+		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 
