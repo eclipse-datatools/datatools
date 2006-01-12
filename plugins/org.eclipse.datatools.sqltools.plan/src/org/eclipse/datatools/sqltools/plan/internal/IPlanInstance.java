@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal;
 
+import org.eclipse.datatools.sqltools.plan.IExecutionPlanDocument;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 
 /**
@@ -25,8 +26,19 @@ import org.eclipse.datatools.sqltools.plan.PlanRequest;
  */
 public interface IPlanInstance
 {
+    /**
+     * Indicates that this plan is generating, still not finished
+     */
     public static final int RUNNING = 0;
+    
+    /**
+     * Indicates that the plan is successfully generated
+     */
     public static final int SUCCESS = 1;
+    
+    /**
+     * Indicates it's failed to generated the execution plan
+     */
     public static final int FAILED  = 2;
 
     /**
@@ -79,4 +91,19 @@ public interface IPlanInstance
      * @return <code>true</code> if finished (success or fail), <code>false</code> otherwise
      */
     public boolean isFinished();
+    
+    /**
+     * Returns the execution plan documents of this plan. The documents are parsed from raw data of this execution plan
+     * 
+     * @return the execution plan documents of this plan
+     */
+    public IExecutionPlanDocument[] getPlanDocuments();
+    
+    /**
+     * Sets the execution plan documents, they should be parsed from the raw data. Note: this is for performance
+     * consideration, that is, we don't need to parse the raw data every time when it is shown
+     * 
+     * @param docs the execution plan documents
+     */
+    public void setPlanDocuments(IExecutionPlanDocument[] docs);
 }

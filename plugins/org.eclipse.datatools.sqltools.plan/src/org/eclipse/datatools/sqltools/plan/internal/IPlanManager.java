@@ -59,4 +59,11 @@ public interface IPlanManager
      * @param listener a listener
      */
     public void removePlanManagerListener(IPlanManagerListener listener);
+    
+    /**
+     * Returns the plan instance identified by given plan request
+     * 
+     * @return the plan instance identified by given plan request
+     */
+    public IPlanInstance getPlanInstance(PlanRequest request);
 }

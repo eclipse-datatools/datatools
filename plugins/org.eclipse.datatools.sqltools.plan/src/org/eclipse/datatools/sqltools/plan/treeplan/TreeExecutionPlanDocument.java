@@ -19,6 +19,7 @@ import org.eclipse.datatools.sqltools.plan.IExecutionPlanDocument;
  * This is the model for tree-structure graphic execution plan. <code>TreePlanDrawer</code> is responsible for drawing
  * a tree-structure graphic plan on a <code>Canvas</code>
  * 
+ * @see TreePlanDrawer
  * @author Dafan Yang
  */
 public class TreeExecutionPlanDocument implements IExecutionPlanDocument

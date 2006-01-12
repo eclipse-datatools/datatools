@@ -26,15 +26,41 @@ package org.eclipse.datatools.sqltools.plan;
  */
 public class PlanRequest
 {
+    /**
+     * Graphic execution plan
+     */
     public static final int GRAPHIC_PLAN = 1;
+    
+    /**
+     * Text execution plan
+     */
     public static final int TEXT_PLAN    = 0;
+    
+    /**
+     * Make the SQL Execution Plan view visible and activated
+     */
+    
+    public static final int VIEW_ACTIVATE = 1;
+
+    /**
+     * 
+     */
+    public static final int VIEW_VISIBLE  = 2;
+    
+    /**
+     * Make the SQL Execution Plan view to be made created but not necessarily be made visible
+     */
+    public static final int VIEW_CREATE   = 3;
+    
     /* The database definition id, use "product_name"_"version" to uniquely identify a database product */
     private String          _databaseDefinitionId;
     /* The plan type, can be TEXT_PLAN or GRAPHIC_PLAN */
     private int             _planType;
     /* The SQL statement from which the execution plan is generated */
     private String          _sql;
-
+    /* The show view mode */
+    private int             _mode;
+    
     /**
      * Constructs a plan request
      * 
@@ -42,8 +68,9 @@ public class PlanRequest
      * @param databaseDefinitionId the database definition id, use "product_name"_"version" to uniquely identify a
      *            database product
      * @param planType the plan type, can be TEXT_PLAN or GRAPHIC_PLAN
+     * @param mode the show view mode
      */
-    public PlanRequest(String sql, String databaseDefinitionId, int planType)
+    public PlanRequest(String sql, String databaseDefinitionId, int planType, int mode)
     {
         super();
         this._sql = sql;
@@ -55,6 +82,15 @@ public class PlanRequest
         else
         {
             this._planType = planType;
+        }
+        
+        if(mode != VIEW_ACTIVATE && mode != VIEW_CREATE && mode != VIEW_VISIBLE)
+        {
+            _mode = VIEW_ACTIVATE;
+        }
+        else
+        {
+            _mode = mode;
         }
     }
 
@@ -116,5 +152,15 @@ public class PlanRequest
     public void setSql(String sql)
     {
         this._sql = sql;
+    }
+
+    /**
+     * Returns the show view mode
+     * 
+     * @return the show view mode
+     */
+    public int getMode()
+    {
+        return _mode;
     }
 }

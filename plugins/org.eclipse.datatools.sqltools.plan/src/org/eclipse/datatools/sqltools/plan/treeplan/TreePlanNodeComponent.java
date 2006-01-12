@@ -58,10 +58,13 @@ public abstract class TreePlanNodeComponent
      * @param detail detail information of this node
      * @param data data of this node, consumer can put anything
      * @param label1 first label
+     * @param isLabel1Highlighted used to control if label 1 should be highlighted 
      * @param label2 second label
+     * @param isLabel2Highlighted used to control if label 2 should be highlighted
      * @param parent parent node of this node
      */
-    public TreePlanNodeComponent(String name, String tip, String detail, Object data, String label1, String label2, TreePlanNodeComponent parent)
+    public TreePlanNodeComponent(String name, String tip, String detail, Object data, String label1,
+            boolean isLabel1Highlighted, String label2, boolean isLabel2Highlighted, TreePlanNodeComponent parent)
     {
         super();
         this._name = name == null ? "" : name;
@@ -71,6 +74,8 @@ public abstract class TreePlanNodeComponent
         this._label1 = label1 == null ? "" : label1;
         this._label2 = label2 == null ? "" : label2;
         this._parent = parent;
+        this._isLabel1Highlighted = isLabel1Highlighted;
+        this._isLabel2Highlighted = isLabel2Highlighted;
     }
 
     /**

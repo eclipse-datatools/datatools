@@ -28,6 +28,15 @@ public abstract class AbstractPlanDrawer implements IPlanDrawer
     protected IExecutionPlanDocument _planDoc;
 
     /**
+     * The invoker should call <code>setCanvas()</code> and <code>setBrowser()</code> after contruct a plan drawer
+     * using this contructor.
+     * 
+     */
+    public AbstractPlanDrawer()
+    {
+        _lws = new LightweightSystem(_canvas);
+    }
+    /**
      * Constructor
      * 
      * @param canvas the canvas, will be used to display graphic plan
@@ -40,7 +49,7 @@ public abstract class AbstractPlanDrawer implements IPlanDrawer
         _browser = browser;
     }
 
-    public abstract void drawPlan(IExecutionPlanDocument query);
+    public abstract void drawPlan(IExecutionPlanDocument planDoc);
 
     public abstract void init();
 

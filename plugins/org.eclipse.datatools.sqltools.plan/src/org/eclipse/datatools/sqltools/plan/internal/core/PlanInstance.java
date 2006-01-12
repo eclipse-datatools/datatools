@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.core;
 
+import org.eclipse.datatools.sqltools.plan.IExecutionPlanDocument;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 
@@ -20,13 +21,14 @@ import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
  */
 public class PlanInstance implements IPlanInstance
 {
-    private Throwable   _failThrowable = null;
-    private PlanManager _planManager;
-    private PlanRequest _planRequest;
+    private Throwable                _failThrowable = null;
+    private PlanManager              _planManager;
+    private PlanRequest              _planRequest;
     /* The raw data of execution plan */
-    private Object      _rawPlan;
-    private int         _status        = RUNNING;
-
+    private Object                   _rawPlan;
+    private int                      _status        = RUNNING;
+    private IExecutionPlanDocument[] _planDocs;
+    
     public PlanInstance(PlanManager planManager, PlanRequest planRequest)
     {
         this._planManager = planManager;
@@ -124,5 +126,15 @@ public class PlanInstance implements IPlanInstance
     public void setRawPlan(Object plan)
     {
         _rawPlan = plan;
+    }
+
+    public IExecutionPlanDocument[] getPlanDocuments()
+    {
+        return _planDocs;
+    }
+
+    public void setPlanDocuments(IExecutionPlanDocument[] docs)
+    {
+        _planDocs = docs;
     }
 }

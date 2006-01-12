@@ -19,10 +19,10 @@ import java.util.ArrayList;
  */
 public class TreePlanNodeLeaf extends TreePlanNodeComponent
 {
-
-    public TreePlanNodeLeaf(String name, String tip, String detail, Object data, String label1, String label2, TreePlanNodeComponent parent)
+    public TreePlanNodeLeaf(String name, String tip, String detail, Object data, String label1,
+            boolean isLabel1Highlighted, String label2, boolean isLabel2Highlighted, TreePlanNodeComponent parent)
     {
-        super(name, tip, detail, data, label1, label2, parent);
+        super(name, tip, detail, data, label1, isLabel1Highlighted, label2, isLabel2Highlighted, parent);
     }
 
     /*

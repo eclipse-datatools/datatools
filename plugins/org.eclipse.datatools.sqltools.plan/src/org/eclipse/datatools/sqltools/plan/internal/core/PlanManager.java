@@ -11,8 +11,10 @@
 package org.eclipse.datatools.sqltools.plan.internal.core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
@@ -28,12 +30,12 @@ import org.eclipse.jface.util.ListenerList;
  */
 public class PlanManager implements IPlanManager
 {
-    ListenerList     _listeners         = new ListenerList();
-    List             _plans             = new ArrayList();
-
+    ListenerList _listeners = new ListenerList();
+    List         _plans     = new ArrayList();
+    Map          _map       = new HashMap();
     /**
      * Constructor
-     *
+     * 
      */
     public PlanManager()
     {
@@ -53,12 +55,13 @@ public class PlanManager implements IPlanManager
      * (non-Javadoc)
      * @see org.eclipse.datatools.sqltools.plan.internal.IPlanManager#createNewPlanInstance(org.eclipse.datatools.sqltools.plan.PlanRequest)
      */
-    public IPlanInstance createNewPlanInstance(PlanRequest operation)
+    public IPlanInstance createNewPlanInstance(PlanRequest request)
     {
-        IPlanInstance instance = new PlanInstance(this, operation);
+        IPlanInstance instance = new PlanInstance(this, request);
         synchronized (_plans)
         {
             _plans.add(instance);
+            _map.put(request, instance);
         }
         this.fireAdded(instance);
         return instance;
@@ -131,6 +134,7 @@ public class PlanManager implements IPlanManager
                 IPlanInstance instance = (IPlanInstance) iter.next();
                 if (instance.isFinished())
                 {
+                    _map.remove(instance.getPlanRequest());
                     iter.remove();
                     removed = true;
                 }
@@ -152,6 +156,7 @@ public class PlanManager implements IPlanManager
         synchronized (_plans)
         {
             removed = _plans.remove(instance);
+            _map.remove(instance.getPlanRequest());
         }
         if (removed)
         {
@@ -166,5 +171,10 @@ public class PlanManager implements IPlanManager
     public void removePlanManagerListener(IPlanManagerListener listener)
     {
         _listeners.remove(listener);
+    }
+
+    public IPlanInstance getPlanInstance(PlanRequest request)
+    {
+        return (IPlanInstance)_map.get(request);
     }
 }
