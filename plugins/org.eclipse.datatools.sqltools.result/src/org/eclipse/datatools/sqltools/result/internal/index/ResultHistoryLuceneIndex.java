@@ -29,6 +29,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Searcher;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
+import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -41,8 +42,11 @@ import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 public class ResultHistoryLuceneIndex implements IResultHistoryIndex
 {
     private static ILogger      _log             = ResultsViewPlugin.getLogger(null);
-    private static final String FIELD_OPERATION  = "operation";
-    private static final String FIELD_IDENTIFIER = "identifier";
+    private static final String FIELD_OPERATION  = "operation";                      //$NON-NLS-1$                        //$NON-NLS-1$
+    private static final String FIELD_ACTION     = "action";                         //$NON-NLS-1$
+    private static final String FIELD_CONSUMER   = "consumer";                       //$NON-NLS-1$
+    private static final String FIELD_FREQ       = "frequency";                      //$NON-NLS-1$
+    private static final String FIELD_IDENTIFIER = "identifier";                     //$NON-NLS-1$
     private static int          ID               = 10000;
     private Map                 _id2result;
     private Map                 _result2id;
@@ -81,41 +85,45 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
 
     public void addResults(IResultInstance[] instances)
     {
-        if (instances != null)
+        synchronized (this)
         {
-            try
+            if (instances != null)
             {
-                // Append new document to the index
-                _writer = new IndexWriter(_ramDir, _analyzer, false);
-                for (int i = 0; i < instances.length; i++)
+                try
                 {
-                    IResultInstance instance = instances[i];
-                    if (instance != null)
+                    // Append new document to the index
+                    _writer = new IndexWriter(_ramDir, _analyzer, false);
+                    for (int i = 0; i < instances.length; i++)
                     {
-                        Document doc = new Document();
-                        doc.add(Field.Text(FIELD_OPERATION, instance.getOperationCommand().getScript()));
-                        synchronized (this)
+                        IResultInstance instance = instances[i];
+                        if (instance != null)
                         {
+                            Document doc = new Document();
+                            doc.add(Field.Text(FIELD_OPERATION, instance.getOperationCommand().getScript()));
+                            doc.add(Field.Text(FIELD_ACTION, OperationCommand.getActionString(instance
+                                    .getOperationCommand().getActionType())));
+                            doc.add(Field.Text(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName()));
+                            doc.add(Field.Text(FIELD_FREQ, Integer.toString(instance.getFrequency())));
                             doc.add(Field.Keyword(FIELD_IDENTIFIER, Integer.toString(ID)));
                             _id2result.put(Integer.toString(ID), instance);
                             _result2id.put(instance, Integer.toString(ID));
                             ID++;
+                            try
+                            {
+                                _writer.addDocument(doc);
+                            }
+                            catch (IOException ioe)
+                            {
+                                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                            }
                         }
-                        try
-                        {
-                            _writer.addDocument(doc);
-                        }
-                        catch (IOException ioe)
-                        {
-                            _log.error("ResultHistoryLuceneIndex.io.error", ioe);
-                        }
+                        _writer.close();
                     }
-                    _writer.close();
                 }
-            }
-            catch (IOException ioe)
-            {
-                _log.error("ResultHistoryLuceneIndex.io.error", ioe);
+                catch (IOException ioe)
+                {
+                    _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                }
             }
         }
     }
@@ -130,69 +138,84 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
 
     public void removeResults(IResultInstance[] instances)
     {
-        try
+        synchronized (this)
         {
-            IndexReader reader = IndexReader.open(_ramDir);
-            if(instances != null)
+            try
             {
-                IResultInstance instance = null;
-                for(int i=0;i<instances.length;i++)
+                IndexReader reader = IndexReader.open(_ramDir);
+                if(instances != null)
                 {
-                    instance = instances[i];
-                    if(instance != null)
+                    IResultInstance instance = null;
+                    for(int i=0;i<instances.length;i++)
                     {
-                        String id = (String)_result2id.get(instance);
-                        _result2id.remove(instance);
-                        _id2result.remove(id);
-                        
-                        if(id != null)
+                        instance = instances[i];
+                        if(instance != null)
                         {
-                            try
+                            String id = (String)_result2id.get(instance);
+                            _result2id.remove(instance);
+                            _id2result.remove(id);
+                            
+                            if(id != null)
                             {
-                                reader.delete(new Term(FIELD_IDENTIFIER, id));
-                            }
-                            catch(IOException ioe)
-                            {
-                                _log.error("ResultHistoryLuceneIndex.io.error", ioe);
+                                try
+                                {
+                                    reader.delete(new Term(FIELD_IDENTIFIER, id));
+                                }
+                                catch(IOException ioe)
+                                {
+                                    _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                                }
                             }
                         }
                     }
+                    reader.close();
                 }
-                reader.close();
             }
-        }
-        catch(IOException ioe)
-        {
-            _log.error("ResultHistoryLuceneIndex.io.error", ioe);
+            catch(IOException ioe)
+            {
+                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+            }
         }
     }
 
     public IResultInstance[] search(String expression)
     {
-        QueryParser parser = new QueryParser(FIELD_OPERATION, _analyzer);
-        try
+        synchronized (this)
         {
-            Query query = parser.parse(expression);
-            Searcher searcher = new IndexSearcher(_ramDir);
-            Hits hits = searcher.search(query);
-            int count = hits.length();
-            IResultInstance[] instances = new IResultInstance[count];
-            
-            for(int i=0;i<count;i++)
+            QueryParser parser = new QueryParser(FIELD_OPERATION, _analyzer);
+            try
             {
-                Document doc = hits.doc(i);
-                instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
+                Query query = parser.parse(expression);
+                Searcher searcher = new IndexSearcher(_ramDir);
+                Hits hits = searcher.search(query);
+                int count = hits.length();
+                IResultInstance[] instances = new IResultInstance[count];
+                
+                for(int i=0;i<count;i++)
+                {
+                    Document doc = hits.doc(i);
+                    instances[i] = (IResultInstance)_id2result.get(doc.getField(FIELD_IDENTIFIER).stringValue());
+                }
+                return instances;
             }
-            return instances;
+            catch(ParseException pe)
+            {
+                // Ignore
+            }
+            catch(IOException ioe)
+            {
+                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+            }
+            return new IResultInstance[0];
         }
-        catch(ParseException pe)
+    }
+
+    public void refreshResult(IResultInstance instance)
+    {
+        synchronized (instance)
         {
-            _log.error("ResultHistoryLuceneIndex.parser.error", pe);
+            removeResult(instance);
+            addResult(instance);
         }
-        catch(IOException ioe)
-        {
-            _log.error("ResultHistoryLuceneIndex.io.error", ioe);
-        }
-        return new IResultInstance[0];
     }
 }

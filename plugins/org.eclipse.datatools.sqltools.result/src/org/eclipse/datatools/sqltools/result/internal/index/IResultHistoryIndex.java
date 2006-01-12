@@ -48,6 +48,12 @@ public interface IResultHistoryIndex
     public void removeResults(IResultInstance[] instances);
     
     /**
+     * Refreshes the given result instance
+     * @param instance a result instance
+     */
+    public void refreshResult(IResultInstance instance);
+    
+    /**
      * Searches the index by the given expression and returns the searching results
      * 
      * @param expression the search expression

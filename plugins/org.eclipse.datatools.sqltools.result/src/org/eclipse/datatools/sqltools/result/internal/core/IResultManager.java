@@ -36,6 +36,13 @@ public interface IResultManager
      * @param instance the result instance
      */
     public void removeResultInstance(IResultInstance instance);
+    
+    /**
+     * Removes the specified result instances.
+     * 
+     * @param instances the result instances
+     */
+    public void removeResultInstances(IResultInstance[] instances);
 
     /**
      * Creates a new result instance that support external client to terminate.

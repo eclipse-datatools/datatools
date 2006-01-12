@@ -131,7 +131,7 @@ public class ResultSetObject implements IResultSetObject
                         {
                             dir.mkdir();
                         }
-                        _backupFile = File.createTempFile(String.valueOf(resultset.hashCode()), ".result", dir);
+                        _backupFile = File.createTempFile(String.valueOf(resultset.hashCode()), ".result", dir); //$NON-NLS-1$
                         _backupFile.deleteOnExit();
                         if (_backupFile.exists())
                         {
@@ -213,7 +213,7 @@ public class ResultSetObject implements IResultSetObject
             }
             if (columnNames[i] == null)
             {
-                columnNames[i] = "";
+                columnNames[i] = ""; //$NON-NLS-1$
             }
         }
 
@@ -349,7 +349,7 @@ public class ResultSetObject implements IResultSetObject
                 }
                 catch (Exception e)
                 {
-                    _log.error("ResultSetObjectImpl.error.iterator", e);
+                    _log.error("ResultSetObjectImpl.error.iterator", e); //$NON-NLS-1$
                 }
             }
         }
@@ -384,7 +384,7 @@ public class ResultSetObject implements IResultSetObject
                     }
                     catch (IOException e)
                     {
-                        _log.error("ResultSetObjectImpl.error.next", e);
+                        _log.error("ResultSetObjectImpl.error.next", e); //$NON-NLS-1$
                     }
                 }
             }

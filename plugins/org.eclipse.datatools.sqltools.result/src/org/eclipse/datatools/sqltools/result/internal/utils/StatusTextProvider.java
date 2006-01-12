@@ -30,11 +30,11 @@ public class StatusTextProvider
     {
         if(updateCount == 1)
         {
-            return Messages.getString("StatusTextProvider.update.count.single", String.valueOf(updateCount)) + _LINESEPARATOR;
+            return Messages.getString("StatusTextProvider.update.count.single", String.valueOf(updateCount)) + _LINESEPARATOR; //$NON-NLS-1$
         }
         else
         {
-            return Messages.getString("StatusTextProvider.update.count.complex", String.valueOf(updateCount)) + _LINESEPARATOR;
+            return Messages.getString("StatusTextProvider.update.count.complex", String.valueOf(updateCount)) + _LINESEPARATOR; //$NON-NLS-1$
         }
     }
     

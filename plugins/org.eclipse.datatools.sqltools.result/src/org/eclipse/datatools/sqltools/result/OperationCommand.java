@@ -71,10 +71,10 @@ public class OperationCommand
         {
             _actionType = type;
         }
-        _sqlScript = script == null ? "" : script;
-        _consumerName = consumerName == null ? "" : consumerName;
-        _profileName = profileName == null ? "" : profileName;
-        _databaseName = databaseName == null ? "" : databaseName;
+        _sqlScript = script == null ? "" : script; //$NON-NLS-1$
+        _consumerName = consumerName == null ? "" : consumerName; //$NON-NLS-1$
+        _profileName = profileName == null ? "" : profileName; //$NON-NLS-1$
+        _databaseName = databaseName == null ? "" : databaseName; //$NON-NLS-1$
     }
 
     /**
@@ -138,9 +138,9 @@ public class OperationCommand
         switch (actionId)
         {
             case ACTION_EXECUTE:
-                return Messages.getString("OperationCommand.action.execute");
+                return Messages.getString("OperationCommand.action.execute"); //$NON-NLS-1$
             default:
-                return Messages.getString("OperationCommand.unknown.action");
+                return Messages.getString("OperationCommand.unknown.action"); //$NON-NLS-1$
         }
     }
     
@@ -183,21 +183,21 @@ public class OperationCommand
         switch (statusId)
         {
             case STATUS_STARTED:
-                return Messages.getString("OperationCommand.status.started");
+                return Messages.getString("OperationCommand.status.started"); //$NON-NLS-1$
             case STATUS_RUNNING:
-                return Messages.getString("OperationCommand.status.running");
+                return Messages.getString("OperationCommand.status.running"); //$NON-NLS-1$
             case STATUS_SUCCEEDED:
-                return Messages.getString("OperationCommand.status.succeeded");
+                return Messages.getString("OperationCommand.status.succeeded"); //$NON-NLS-1$
             case STATUS_FAILED:
-                return Messages.getString("OperationCommand.status.failed");
+                return Messages.getString("OperationCommand.status.failed"); //$NON-NLS-1$
             case STATUS_TERMINATED:
-                return Messages.getString("OperationCommand.status.terminated");
+                return Messages.getString("OperationCommand.status.terminated"); //$NON-NLS-1$
             case STATUS_WARNING:
-                return Messages.getString("OperationCommand.status.warning");
+                return Messages.getString("OperationCommand.status.warning"); //$NON-NLS-1$
             case STATUS_CRITICAL_ERROR:
-                return Messages.getString("OperationCommand.status.critical");
+                return Messages.getString("OperationCommand.status.critical"); //$NON-NLS-1$
             default:
-                return Messages.getString("OperationCommand.status.unknown");
+                return Messages.getString("OperationCommand.status.unknown"); //$NON-NLS-1$
         }
     }
 }

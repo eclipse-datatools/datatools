@@ -37,22 +37,33 @@ public class HistoryIndexListener implements IResultManagerListener
 
     public void resultInstanceAppended(IResultInstance instance, ResultItem result, int index)
     {
+        // Do nothing for now
     }
 
     public void allResultInstancesRemoved()
     {
+        //TODO: Implement method to remove all documents in index
     }
 
     public void resultInstanceStatusUpdated(IResultInstance instance)
     {
+        // Do nothing for now
     }
 
     public void resultInstanceReset(IResultInstance instance)
     {
+        IResultHistoryIndex index = ResultsViewPlugin.getDefault().getResultHistoryIndex();
+        index.refreshResult(instance);
     }
 
     public void parametersShow(IResultInstance instance, List params)
     {
+        // Do nothing for now
     }
 
+    public void resultInstancesRemoved(IResultInstance[] instances)
+    {
+        IResultHistoryIndex index = ResultsViewPlugin.getDefault().getResultHistoryIndex();
+        index.removeResults(instances);
+    }
 }

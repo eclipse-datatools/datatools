@@ -62,7 +62,7 @@ public class ResultInstance implements IResultInstance
     {
         if (msg == null)
         {
-            msg = "";
+            msg = ""; //$NON-NLS-1$
         }
         moreResultItem(new ResultItem(msg, true));
     }
@@ -71,7 +71,7 @@ public class ResultInstance implements IResultInstance
     {
         if (msg == null)
         {
-            msg = "";
+            msg = ""; //$NON-NLS-1$
         }
         moreResultItem(new ResultItem(msg, false));
     }
@@ -103,7 +103,7 @@ public class ResultInstance implements IResultInstance
         }
         catch (Exception e)
         {
-            _log.error("ResultInstance.error.moreResultSet", e);
+            _log.error("ResultInstance.error.moreResultSet", e); //$NON-NLS-1$
             return;
         }
         moreResultItem(new ResultItem(r));
@@ -150,6 +150,11 @@ public class ResultInstance implements IResultInstance
         {
             _terminateHandler.run();
         }
+        _status = OperationCommand.STATUS_TERMINATED;
+        if (_resultManager != null)
+        {
+            _resultManager.fireStatusUpdated(this);
+        }
     }
 
     public void dispose()
@@ -185,6 +190,7 @@ public class ResultInstance implements IResultInstance
     public void resetInstance()
     {
         _resultList = new ArrayList(5);
+        _parameters = null;
         _status = OperationCommand.STATUS_STARTED;
         if (_resultManager != null)
         {
@@ -223,6 +229,11 @@ public class ResultInstance implements IResultInstance
 
     public void increaseFrequency()
     {
-        _execFrequency ++;        
+        _execFrequency ++;
+        // Fire the status updated event to cause the result history to refresh itself
+        if (_resultManager != null)
+        {
+            _resultManager.fireStatusUpdated(this);
+        }
     } 
 }

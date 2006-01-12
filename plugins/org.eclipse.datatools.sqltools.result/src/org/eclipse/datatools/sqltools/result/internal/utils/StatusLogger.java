@@ -620,9 +620,9 @@ public class StatusLogger implements ILogger
     {
         if (_rb == null)
         {
-            IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, "No resource bundle has been set for the Logger", null);
+            IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.getString("StatusLogger.no.bundle"), null); //$NON-NLS-1$
             _log.log(status);
-            return key + " possible args: {0}, {1}, {2}, {3}";
+            return key + Messages.getString("StatusLogger.possible.args"); //$NON-NLS-1$
         }
         else
         {
@@ -632,9 +632,9 @@ public class StatusLogger implements ILogger
             }
             catch (MissingResourceException ee)
             {
-                IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, "No resource is associated with key \"" + key + "\".", null);
+                IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.getString("StatusLogger.no.bundle.1") + key + "\".", null); //$NON-NLS-1$
                 _log.log(status);
-                return key + " possible args: {0}, {1}, {2}, {3}";
+                return key + Messages.getString("StatusLogger.possible.args.1"); //$NON-NLS-1$
             }
         }
     }

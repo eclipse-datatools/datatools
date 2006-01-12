@@ -30,9 +30,9 @@ public class Parameter
     private String             _paramValue;
     private String             _paramDataType;
     /* parameter types */
-    public static final String INPUT  = "INPUT";
-    public static final String OUTPUT = "OUTPUT";
-    public static final String IN_OUT = "IN/OUT";
+    public static final String INPUT  = "INPUT"; //$NON-NLS-1$
+    public static final String OUTPUT = "OUTPUT"; //$NON-NLS-1$
+    public static final String IN_OUT = "IN/OUT"; //$NON-NLS-1$
 
     /**
      * Constructs a parameter. A simple validation will be performed during the construction
@@ -47,14 +47,14 @@ public class Parameter
      */
     public Parameter(String paramName, String paramType, String paramValue, String paramDataType)
     {
-    	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.getString("Parameter.constructor.error"));
+    	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.getString("Parameter.constructor.error")); //$NON-NLS-1$ //$NON-NLS-2$
     	Assert.isLegal(!(paramType == null
                 || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType.trim().equals(
-                        IN_OUT))), Messages.getString("Parameter.constructor.error"));
+                        IN_OUT))), Messages.getString("Parameter.constructor.error")); //$NON-NLS-1$
         _paramName = paramName;
         _paramType = paramType;
-        _paramDataType = (paramDataType == null)?"":paramDataType;
-        _paramValue = (paramValue == null)?"":paramValue;
+        _paramDataType = (paramDataType == null)?"":paramDataType; //$NON-NLS-1$
+        _paramValue = (paramValue == null)?"":paramValue; //$NON-NLS-1$
     }
 
     /**

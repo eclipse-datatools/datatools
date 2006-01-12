@@ -175,7 +175,7 @@ public class ResultsViewAPI
             return false;
         }
 
-        if (cmd == null || message == null || message.equals(""))
+        if (cmd == null || message == null || message.equals("")) //$NON-NLS-1$
         {
             return false;
         }
@@ -218,7 +218,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e);
+            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -253,7 +253,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e);
+            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -340,7 +340,7 @@ public class ResultsViewAPI
         }
         catch(Exception dex)
         {
-            _log.error("ResultsViewAPI.notwellformed.xml", dex);
+            _log.error("ResultsViewAPI.notwellformed.xml", dex); //$NON-NLS-1$
             return false;
         }
         
@@ -356,7 +356,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e);
+            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -420,7 +420,7 @@ public class ResultsViewAPI
                 }
                 catch (PartInitException ex)
                 {
-                    _log.error("ResultsViewAPI.checkview.error", ex);
+                    _log.error("ResultsViewAPI.checkview.error", ex); //$NON-NLS-1$
                 }
             }
         });
@@ -458,7 +458,7 @@ public class ResultsViewAPI
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
-            return true;
+            return false;
         }
 
         instance = _manager.createNewResultInstance(cmd, terminateHandler);
