@@ -49,6 +49,7 @@
 			<include name="org.eclipse.ui.workbench_*.jar"/>
 			<include name="org.eclipse.jface.text_*.jar"/>
 			<include name="org.eclipse.text_*.jar"/>
+			<include name="org.eclipse.debug.core_*.jar"/>
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
@@ -60,6 +61,7 @@
 			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>
 			<include name="org.eclipse.jface.text_*/org.eclipse.jface.text_*.jar"/>
 			<include name="org.eclipse.text_*/org.eclipse.text_*.jar"/>
+			<include name="org.eclipse.debug.core_*/org.eclipse.debug.core_*.jar"/>
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
