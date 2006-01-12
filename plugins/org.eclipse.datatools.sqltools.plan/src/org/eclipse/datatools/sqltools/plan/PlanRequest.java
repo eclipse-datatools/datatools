@@ -74,7 +74,7 @@ public class PlanRequest
     {
         super();
         this._sql = sql;
-        this._databaseDefinitionId = databaseDefinitionId;
+        this._databaseDefinitionId = databaseDefinitionId == null?"":databaseDefinitionId;
         if (planType != TEXT_PLAN && planType != GRAPHIC_PLAN)
         {
             this._planType = TEXT_PLAN;
