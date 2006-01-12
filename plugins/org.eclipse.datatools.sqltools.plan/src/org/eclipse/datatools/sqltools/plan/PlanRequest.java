@@ -73,7 +73,7 @@ public class PlanRequest
     public PlanRequest(String sql, String databaseDefinitionId, int planType, int mode)
     {
         super();
-        this._sql = sql;
+        this._sql = sql == null ? "" : sql;
         this._databaseDefinitionId = databaseDefinitionId == null?"":databaseDefinitionId;
         if (planType != TEXT_PLAN && planType != GRAPHIC_PLAN)
         {
