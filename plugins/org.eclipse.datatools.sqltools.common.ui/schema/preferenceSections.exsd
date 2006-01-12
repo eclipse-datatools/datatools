@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.common.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.common.ui" id="preferenceSections" name="DTP Preference Sections"/>
+      </appInfo>
+      <documentation>
+         This extension point provides a way for data server vendors to contribute preference controls to an existing DTP preference page. All preference settings will appear in a tab with the vendor name as the title.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="section" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="section">
+      <complexType>
+         <attribute name="dbdefinitionid" type="string" use="required">
+            <annotation>
+               <documentation>
+                  db definition id to be defined by Model Base project. (For now, clients should use productName_version for this attribute.)
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified class implementing org.eclipse.datatools.common.ui.preferences.IDataServerPreferenceSection.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.common.ui.preferences.IDataServerPreferenceSection"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="page" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The preference page id. The page should extend AbstractDBPreferenceFieldPage so that vendor specific setting can appear.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="launchConfig" type="boolean">
+            <annotation>
+               <documentation>
+                  Whether this section can be reused in launch configuration dialog. If true, &quot;class&quot; should implement org.eclipse.datatools.common.ui.preferences.IDataServerLaunchPreferenceSection.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
