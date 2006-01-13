@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.sqltools.sql.parser.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -34,6 +35,7 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner {
     // Define constants for SQL comments, literals, and identifiers.
     public final static String SQL_DEFAULT              = "__default_sql_block__"; //$NON-NLS-1$
     public final static String SQL_COMMENT              = "__sql_comment__"; //$NON-NLS-1$
+    public final static String SQL_MULTILINE_COMMENT    = "__sql_multiline_comment";
     public final static String SQL_QUOTED_LITERAL       = "__sql_quoted_literal__"; //$NON-NLS-1$
     public final static String SQL_DELIMITED_IDENTIFIER = "__sql_delimited_identifier__"; //$NON-NLS-1$
 
@@ -118,4 +120,35 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner {
         setPredicateRules( result );
     }
         
+    /**
+	 * Constructs an instance of this class using an instance of ISQLSyntax.
+	 * Creates rules based on the ISQLSyntax object to parse comment partitions
+	 * in an SQL document.
+	 */
+    public SQLPartitionScanner(ISQLSyntax sqlSyntax) {
+    	super();
+    	
+    	List rules= new ArrayList();
+    	
+    	// Add rules for comments, quoted literals, and delimited identifiers.
+    	rules.add( new EndOfLineRule( "--", new Token( SQL_COMMENT )));
+    	rules.add( new SingleLineRule( "'", "'", new Token( SQL_QUOTED_LITERAL ), '\\' ));
+    	rules.add( new SingleLineRule( "\"", "\"", new Token( SQL_DELIMITED_IDENTIFIER ), '\\' ));
+    	
+    	//database specific rules
+    	if (sqlSyntax != null)
+    	{
+            String[] singleLineComments = sqlSyntax.getSingleLineComments();
+            for (int i = 0; i < singleLineComments.length; i++)
+            {
+                // Add rule for single line comments.
+                rules.add(new EndOfLineRule(singleLineComments[i], new Token( SQL_COMMENT )));
+            }
+    	}
+    	
+    	IPredicateRule[] result= new IPredicateRule[ rules.size() ];
+    	rules.toArray( result );
+    	setPredicateRules( result );
+    }
+    
 } // end class

@@ -38,5 +38,11 @@ public interface EditorConstants
 	 * Error Log view id
 	 */
 	public static String LOG_VIEW = "org.eclipse.pde.runtime.LogView";
+
+	/**
+	 * The length of SQL statement short description 
+	 */
+    public static final int    SQL_SHORT_DESC_LENGTH   = 40;
+
 	
 }

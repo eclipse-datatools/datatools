@@ -79,7 +79,7 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
     /**
      * Context menu id for selected sql execution action.
      */
-	public static final String EXECTUE_SELECTION_SQL_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".ExecuteSelectionAction";
+	public static final String EXECUTE_SELECTION_SQL_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".ExecuteSelectionAction";
 
     /**
      * Context menu id for show information action.

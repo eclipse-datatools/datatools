@@ -78,7 +78,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             name="Database Development"
-            icon="icons/editor/DB_dev_perspective.gif"
+            icon="icons/DB_dev_perspective.gif"
             class="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"
             id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
       </perspective>
@@ -104,6 +104,39 @@
                   
         </perspectiveExtension>
 
+    </extension>
+
+    <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="%category.datatools.name"
+            description="%category.datatools.description"
+            id="org.eclipse.datatools.sqltools.sqleditor.category">
+      </category>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.execute.select"
+            id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.bindings">
+      <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
+            carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"
+            sequence="M1+M3+X"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.internal.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
+            sequence="M3+X"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
     
 </plugin>
