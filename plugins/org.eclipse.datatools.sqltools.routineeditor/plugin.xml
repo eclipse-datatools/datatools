@@ -2,5 +2,76 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension-point id="documentprovider" name="SQL Routine Editor document provider" schema="schema/documentprovider.exsd"/>
+   <extension-point id="launchConfigurationTypes" name="SQL Launch Configuration Types" schema="schema/launchConfigurationTypes.exsd"/>
+
+     <!-- launch configuration type.-->
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            name="Eclipse Data Tools"
+            delegate="org.eclipse.datatools.sqltools.routineeditor.launching.SPLaunchConfigurationDelegate"
+            modes="run,debug"
+            id="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType">
+      </launchConfigurationType>
+   </extension>
+   
+   <!-- launch configuration tab group -->
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType"
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.launching.RoutineExecuteTabGroup"
+            id="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationTabGroup">
+            <launchMode 
+                  mode="debug"
+                  perspective="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+            </launchMode>
+            <launchMode
+                  mode="run">
+            </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+   
+   <!-- launch shortcut -->
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.launching.SPLaunchShortcut"
+            icon="icons/debug_exc.gif"
+            id="org.eclipse.datatools.sqltools.routineeditor.SPshortcut"
+            label="SQL Routine"
+            modes="run,debug">
+         <contextualLaunch>
+            <contextLabel
+                  label="SQL Routine"
+                  mode="run"/>
+            <contextLabel
+                  label="SQL Routine"
+                  mode="debug"/>
+            <enablement>
+               <with variable="selection">
+                  <iterate>
+                     <or>
+                        <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput"/>
+                        <instanceof value="org.eclipse.datatools.sqltools.core.ProcIdentifier"/>
+                        <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                     </or>
+                  </iterate>
+                  <count value="1"/>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+  
+   <extension
+          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+     <launchConfigurationTypeImage
+     	id="org.eclipse.datatools.sqltools.routineeditor.launching.LaunchConfigurationTypeImage"
+	    configTypeID="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType"
+    	icon="icons/launch_configuration.gif">
+	 </launchConfigurationTypeImage>
+          
+   </extension>
 
 </plugin>
