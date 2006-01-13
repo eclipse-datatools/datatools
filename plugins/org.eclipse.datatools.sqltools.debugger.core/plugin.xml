@@ -155,4 +155,15 @@
         
     </extension>        
 
+   <!-- DTP routine launch configuration type.-->
+   <extension
+         point="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes">
+      <launchConfigurationType
+            name="Eclipse Data Tools"
+            delegate="org.eclipse.datatools.sqltools.debugger.launching.SPDebuggerLaunchConfigurationDelegate"
+            modes="debug"
+            id="org.eclipse.datatools.sqltools.debugger.core.launchConfigurationType">
+      </launchConfigurationType>
+   </extension>
+
 </plugin>
