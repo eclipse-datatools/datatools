@@ -236,6 +236,72 @@
       </driverTemplate>
    </extension> 
    
+   <extension 
+       point="org.eclipse.datatools.connectivity.driverExtension">     
+    <category 
+          id="org.eclipse.datatools.connectivity.sqm.core.driverCategory" 
+          name="Database"/>   
+    <driverTemplate 
+          createDefault="false" 
+          emptyJarListIsOK="false" 
+          id="org.eclipse.datatools.connectivity.db.oracle.genericDriverTemplate" 
+          jarList="classes12.jar" 
+          name="Oracle JDBC Driver for Oracle 10" 
+          parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory" > 
+       <properties> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.driverClass" 
+                name="Driver Class" 
+                value="oracle.jdbc.OracleDriver" 
+                required="true" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.vendor" 
+                name="Vendor" 
+                value="Oracle" 
+                required="true" 
+                visible="false"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.version" 
+                name="Version" 
+                value="10" 
+                required="true" 
+                visible="false"/>   
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.databaseName" 
+                name="Database Name" 
+                value="db" 
+                required="true" 
+                visible="true"/>                             
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.URL" 
+                name="Connection URL" 
+                value="jdbc:oracle:thin:@server:1521:db" 
+                required="true" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.username" 
+                name="User ID" 
+                value="" 
+                required="false" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.connectivity.sqm.core.password" 
+                name="Password" 
+                value="" 
+                required="false" 
+                visible="true"/> 
+       </properties> 
+    </driverTemplate> 
+ </extension> 
+ 
 <!--      <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
