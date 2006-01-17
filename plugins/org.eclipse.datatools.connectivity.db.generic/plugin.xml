@@ -1,72 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
- <extension
-         point="org.eclipse.datatools.connectivity.driverExtension">    
-      <category
-            id="org.eclipse.datatools.connectivity.sqm.core.driverCategory"
-            name="Database"/>   
-      <driverTemplate
-            createDefault="false"
-            emptyJarListIsOK="false"
-            id="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
-            jarList="C:\Documents and Settings\Administrator\Desktop\Derby\derby.jar"
-            name="Derby Embedded JDBC Driver for Derby 10.0"
-            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
-         <properties>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
-                  name="Driver Class"
-                  value="org.apache.derby.jdbc.EmbeddedDriver"
-                  required="true"
-                  visible="true"/>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
-                  name="Vendor"
-                  value="Derby"
-                  required="true"
-                  visible="false"/>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.version"
-                  name="Version"
-                  value="10.0"
-                  required="true"
-                  visible="false"/>   
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
-                  name="Database Name"
-                  value="SAMPLE"
-                  required="true"
-                  visible="true"/>                             
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
-                  name="Connection URL"
-                  value="jdbc:derby:C:\DerbyDatabases\MyDB;create=true"
-                  required="true"
-                  visible="true"/>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.username"
-                  name="User ID"
-                  value=""
-                  required="false"
-                  visible="true"/>
-            <property
-                  generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.password"
-                  name="Password"
-                  value=""
-                  required="false"
-                  visible="true"/>
-         </properties>
-      </driverTemplate>
-   </extension>
-   
+ 
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <category
