@@ -136,7 +136,7 @@
 			<fileset dir="${build.result.folder}" includes="sqltoolscommonui.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,sqltoolscommonui.jar,icons/,about.html"			/>
+			<fileset dir="${basedir}" includes="META-INF/,sqltoolscommonui.jar,icons/,schema/,plugin.xml,about.html"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqltoolscommonuisrc.zip"/>
