@@ -138,7 +138,7 @@
 			<fileset dir="${build.result.folder}" includes="sqlplan.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,sqlplan.jar,plugin.xml,about.html,schema/"			/>
+			<fileset dir="${basedir}" includes="META-INF/,sqlplan.jar,icons/,plugin.properties,plugin.xml,about.html,schema/"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqlplansrc.zip"/>
