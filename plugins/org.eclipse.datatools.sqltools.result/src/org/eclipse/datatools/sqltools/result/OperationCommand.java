@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.Serializable;
+
 import org.eclipse.datatools.sqltools.result.internal.utils.Images;
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 import org.eclipse.swt.graphics.Image;
@@ -25,30 +27,34 @@ import org.eclipse.swt.graphics.Image;
  * @see org.eclipse.datatools.sqltools.result.ResultsViewAPI
  * @author Dafan Yang
  */
-public class OperationCommand
+public class OperationCommand implements Serializable
 {
+    /**
+     * Comment for <code>serialVersionUID</code>
+     */
+    private static final long serialVersionUID      = 9026813441175593165L;
     /* type of the operation */
-    private int             _actionType;
+    private int               _actionType;
     /* script of this operation, for example, SQL statement */
-    private String          _sqlScript;
+    private String            _sqlScript;
     /* name of the consumer */
-    private String          _consumerName;
+    private String            _consumerName;
     /* connection profile name */
-    private String          _profileName;
+    private String            _profileName;
     /* database name */
-    private String          _databaseName;
+    private String            _databaseName;
 
     /* 7 statuses defined */
-    public static final int STATUS_CRITICAL_ERROR = 7;
-    public static final int STATUS_WARNING        = 6;
-    public static final int STATUS_TERMINATED     = 5;
-    public static final int STATUS_FAILED         = 4;
-    public static final int STATUS_SUCCEEDED      = 3;
-    public static final int STATUS_RUNNING        = 2;
-    public static final int STATUS_STARTED        = 1;
+    public static final int   STATUS_CRITICAL_ERROR = 7;
+    public static final int   STATUS_WARNING        = 6;
+    public static final int   STATUS_TERMINATED     = 5;
+    public static final int   STATUS_FAILED         = 4;
+    public static final int   STATUS_SUCCEEDED      = 3;
+    public static final int   STATUS_RUNNING        = 2;
+    public static final int   STATUS_STARTED        = 1;
 
     /* 1 action type(s) defined */
-    public static final int ACTION_EXECUTE        = 1;
+    public static final int   ACTION_EXECUTE        = 1;
 
     /**
      * Constructs an instance of OperationCommand.

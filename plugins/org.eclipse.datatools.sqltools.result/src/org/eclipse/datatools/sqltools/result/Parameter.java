@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.Serializable;
+
 import org.eclipse.datatools.sqltools.result.internal.utils.Messages;
 import org.eclipse.jface.util.Assert;
 
@@ -23,16 +25,20 @@ import org.eclipse.jface.util.Assert;
  * @see org.eclipse.datatools.sqltools.result.ResultsViewAPI
  * @author Dafan Yang
  */
-public class Parameter
+public class Parameter implements Serializable
 {
+    /**
+     * Comment for <code>serialVersionUID</code>
+     */
+    private static final long  serialVersionUID = 1L;
     private String             _paramName;
     private String             _paramType;
     private String             _paramValue;
     private String             _paramDataType;
     /* parameter types */
-    public static final String INPUT  = "INPUT"; //$NON-NLS-1$
-    public static final String OUTPUT = "OUTPUT"; //$NON-NLS-1$
-    public static final String IN_OUT = "IN/OUT"; //$NON-NLS-1$
+    public static final String INPUT            = "INPUT"; //$NON-NLS-1$
+    public static final String OUTPUT           = "OUTPUT"; //$NON-NLS-1$
+    public static final String IN_OUT           = "IN/OUT"; //$NON-NLS-1$
 
     /**
      * Constructs a parameter. A simple validation will be performed during the construction

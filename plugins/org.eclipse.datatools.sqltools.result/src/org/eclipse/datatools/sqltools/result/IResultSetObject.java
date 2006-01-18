@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 /**
@@ -32,7 +33,7 @@ import java.util.Iterator;
  * @see org.eclipse.datatools.sqltools.result.IResultSetRow
  * @author Dafan Yang
  */
-public interface IResultSetObject
+public interface IResultSetObject extends Serializable
 {
     /**
      * Returns the column count

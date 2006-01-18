@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.core;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.OperationCommand;
@@ -21,7 +22,7 @@ import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
  *
  * @author Dafan Yang
  */
-public interface IResultManager
+public interface IResultManager extends Serializable
 {
     /**
      * Returns all currently available result instances.

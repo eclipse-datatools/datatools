@@ -10,13 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.Serializable;
+
 /**
  * The <code>IResultSetRow</code> represents a row in <code>IResultSetObject</code>.
  * 
  * @see org.eclipse.datatools.sqltools.result.IResultSetObject
  * @author Dafan Yang
  */
-public interface IResultSetRow
+public interface IResultSetRow extends Serializable
 {
     /**
      * Returns the data of this row

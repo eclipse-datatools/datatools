@@ -32,21 +32,25 @@ import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
  */
 public class ResultInstance implements IResultInstance
 {
-    private static ILogger   _log    = ResultsViewPlugin.getLogger(null);
+    /**
+     * Comment for <code>serialVersionUID</code>
+     */
+    private static final long  serialVersionUID = 1L;
+    private static ILogger     _log             = ResultsViewPlugin.getLogger(null);
     /* the operation command */
-    private OperationCommand _operationCommand;
+    private OperationCommand   _operationCommand;
     /* the manager */
-    private IResultManager   _resultManager;
+    private IResultManager     _resultManager;
     /* the result item list */
-    private List             _resultList;
+    private List               _resultList;
     /* initial status is STATUS_STARTED */
-    private int              _status = OperationCommand.STATUS_STARTED;
+    private int                _status          = OperationCommand.STATUS_STARTED;
     /* handler to terminate this instance */
-    private Runnable         _terminateHandler;
-    private List             _parameters;
-    private String           _date;
-    
-    private int              _execFrequency;
+    transient private Runnable _terminateHandler;
+    private List               _parameters;
+    private String             _date;
+
+    private int                _execFrequency;
     
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {

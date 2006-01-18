@@ -67,16 +67,20 @@ import org.eclipse.jface.util.Assert;
  */
 public class ResultSetObject implements IResultSetObject
 {
-    private String[]       _columnNames;
-    private List           _rows;
-    private int[]          _columnTypes;
-    private int[]          _columnDisplaySizes;
+    /**
+     * Comment for <code>serialVersionUID</code>
+     */
+    private static final long serialVersionUID = 1L;
+    private String[]          _columnNames;
+    private List              _rows;
+    private int[]             _columnTypes;
+    private int[]             _columnDisplaySizes;
     // total row count loaded into memory
-    private int            _rowCountLoaded;
+    private int               _rowCountLoaded;
     // total row count of the JDBC result set
-    private int            _totalRowCount;
-    private File           _backupFile;
-    private static ILogger _log = ResultsViewPlugin.getLogger(null);
+    private int               _totalRowCount;
+    private File              _backupFile;
+    private static ILogger    _log             = ResultsViewPlugin.getLogger(null);
 
     /**
      * Constructs a ResultSetObject instance from a JDBC ResultSet object

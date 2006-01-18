@@ -117,8 +117,8 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                                 _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
                             }
                         }
-                        _writer.close();
                     }
+                    _writer.close();
                 }
                 catch (IOException ioe)
                 {
