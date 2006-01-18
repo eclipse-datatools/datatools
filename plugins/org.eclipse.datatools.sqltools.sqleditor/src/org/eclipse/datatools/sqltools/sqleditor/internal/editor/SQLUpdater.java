@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IDBFactory;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
@@ -188,7 +187,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         removeMarkers(false);
 
         SQLParser pp = null;
-        _portableTarget = EditorCorePlugin.getDefault().getPreferenceStore().getString(
+        _portableTarget = SQLEditorPlugin.getDefault().getPreferenceStore().getString(
             PreferenceConstants.EDITOR_PORTABILITY_CHECK_TARGET);
         if (_portableTarget != null)
         {

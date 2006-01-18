@@ -14,9 +14,9 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sql.connection.IConnectionTracker;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -37,7 +37,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         public void run()
         {
 
-            IPreferenceStore store = EditorCorePlugin.getDefault().getPreferenceStore();
+            IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
             MessageDialogWithToggle dlg = MessageDialogWithToggle.openYesNoQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()
                 , Messages.getString("GroupSQLResultRunnable.title"), //$NON-NLS-1$
                 Messages.getString("GroupSQLResultRunnable.message"), //$NON-NLS-1$
@@ -154,7 +154,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                         return Status.CANCEL_STATUS;
                     }
 
-                    IPreferenceStore store = EditorCorePlugin.getDefault().getPreferenceStore();
+                    IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
                     String errorpm = store.getString(PreferenceConstants.EXECUTE_SQL_ERROR_MODE);
                     if (errorpm == null || errorpm.equals("") || PreferenceConstants.PROMPT_MODE_PROMPT.equals(errorpm)) //$NON-NLS-1$
                     {

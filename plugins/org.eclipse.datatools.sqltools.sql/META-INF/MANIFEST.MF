@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text;visibility:=reexport,
  org.eclipse.ui.editors
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true 
+Eclipse-LazyStart: false
 Export-Package: org.eclipse.datatools.sqltools.sql.connection,
  org.eclipse.datatools.sqltools.sql.parser,
  org.eclipse.datatools.sqltools.sql.parser.ast,

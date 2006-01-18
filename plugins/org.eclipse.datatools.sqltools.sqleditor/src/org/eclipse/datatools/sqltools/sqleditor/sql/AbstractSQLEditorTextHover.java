@@ -9,8 +9,8 @@ package org.eclipse.datatools.sqltools.sqleditor.sql;
 
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
@@ -96,7 +96,7 @@ public abstract class AbstractSQLEditorTextHover implements ITextHover, ITextHov
      */
     protected String getTooltipAffordanceString()
     {
-        if (!EditorCorePlugin.getDefault().getPreferenceStore().getBoolean(
+        if (!SQLEditorPlugin.getDefault().getPreferenceStore().getBoolean(
         PreferenceConstants.EDITOR_SHOW_TEXT_HOVER_AFFORDANCE))
         {
             return null;

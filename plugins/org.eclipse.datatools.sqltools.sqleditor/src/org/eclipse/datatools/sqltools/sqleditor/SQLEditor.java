@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IDBFactory;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
@@ -47,6 +46,7 @@ import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.IDocumentPartitioner;
@@ -516,10 +516,12 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                     SQLEditorResources.getString("Save")
                 }
                 ); //$NON-NLS-1$
-                IStatus status = new Status(IStatus.WARNING, SQLEditorPlugin.PLUGIN_ID, IStatus.OK,targetExc.getMessage(), targetExc );
+                String message = targetExc.getMessage();
+                message = message == null? "":message;
+				IStatus status = new Status(IStatus.WARNING, SQLEditorPlugin.PLUGIN_ID, IStatus.OK,message, targetExc );
                 SQLEditorPlugin.getDefault().log(status);
                 MessageDialog.openError(getEditorSite().getShell(), SQLEditorResources.getString("common.error"), //$NON-NLS-1$
-                title + ':' + targetExc.getMessage());
+                title + ':' + message);
             }
             catch (InterruptedException e)
             {
@@ -749,7 +751,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             {
                 getSourceViewer().getDocument().removeDocumentListener(_fSQLUpdater);
             }
-            EditorCorePlugin.getDefault().getPreferenceStore().removePropertyChangeListener(_fSQLUpdater);
+            IPreferenceStore preferenceStore = SQLEditorPlugin.getDefault().getPreferenceStore();
+            if (preferenceStore != null)
+            {
+            	preferenceStore.removePropertyChangeListener(_fSQLUpdater);
+            }
             getSite().getShell().getDisplay().timerExec(-1, _fSQLUpdater);
         }
         catch (RuntimeException e)
@@ -768,14 +774,18 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                 _fSQLUpdater = new SQLUpdater(this);
 
                 getSourceViewer().getDocument().addDocumentListener(_fSQLUpdater);
-                EditorCorePlugin.getDefault().getPreferenceStore().addPropertyChangeListener(_fSQLUpdater);
+                IPreferenceStore preferenceStore = SQLEditorPlugin.getDefault().getPreferenceStore();
+                if (preferenceStore != null)
+                {
+                	preferenceStore.addPropertyChangeListener(_fSQLUpdater);
+                }
 				_fSQLUpdater.run();
             }
         }
         catch (Throwable e)
         {
             // Might caught LookaheadSuccess
-            SQLEditorPlugin.getDefault().log("SQLEditor.error.while.trying.to.install.sql.updater", e); //$NON-NLS-1$
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLEditor.error.while.trying.to.install.sql.updater"), e); //$NON-NLS-1$
         }
     }
 
