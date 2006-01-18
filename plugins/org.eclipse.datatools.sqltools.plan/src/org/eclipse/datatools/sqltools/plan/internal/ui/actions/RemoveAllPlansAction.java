@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
+import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
 import org.eclipse.jface.action.Action;
@@ -39,7 +40,16 @@ public class RemoveAllPlansAction extends Action
 
     public void update()
     {
-        setEnabled(PlanViewPlugin.getPlanManager().getAllPlanInstances().length != 0);
+        boolean shouldEnable = false;
+        IPlanInstance[] instances = PlanViewPlugin.getPlanManager().getAllPlanInstances();
+        for(int i=0;i<instances.length;i++)
+        {
+            if(instances[i].isFinished())
+            {
+                shouldEnable = true;
+                break;
+            }
+        }
+        setEnabled(shouldEnable);
     }
-
 }

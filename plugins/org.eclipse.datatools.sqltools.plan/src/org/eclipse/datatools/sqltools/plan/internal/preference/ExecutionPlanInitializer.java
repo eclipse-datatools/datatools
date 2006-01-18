@@ -26,5 +26,8 @@ public class ExecutionPlanInitializer extends AbstractPreferenceInitializer
         IPreferenceStore store = PlanViewPlugin.getDefault().getPreferenceStore();
         store.setDefault(PreferenceConstants.VERTICAL_LAYOUT_PLAN_VIEW, false);
         store.setDefault(PreferenceConstants.HORIZONTAL_LAYOUT_PLAN_VIEW, true);
+        store.setDefault(PreferenceConstants.EXPORT_FORMAT_DEFAULT_ENCODEING, true);
+        store.setDefault(PreferenceConstants.EXPORT_FORMAT_OTHER_ENCODEING, false);
+        store.setDefault(PreferenceConstants.EXPORT_FORMAT_OTHER_ENCODEING_SELECTION, -1);
     }
 }

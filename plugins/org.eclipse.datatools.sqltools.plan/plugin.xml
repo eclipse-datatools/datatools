@@ -5,10 +5,14 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            category="org.eclipse.datatools"
             class="org.eclipse.datatools.sqltools.plan.internal.ui.view.PlanView"
             icon="icons/sqlplan.gif"
             id="org.eclipse.datatools.sqltools.plan.planView"
             name="%PlanView.name"/>
+      <category
+            id="org.eclipse.datatools"
+            name="%DataTools.name"/>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">

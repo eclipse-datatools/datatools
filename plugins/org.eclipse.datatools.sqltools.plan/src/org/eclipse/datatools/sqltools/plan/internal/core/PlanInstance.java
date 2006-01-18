@@ -25,7 +25,7 @@ public class PlanInstance implements IPlanInstance
     private PlanManager              _planManager;
     private PlanRequest              _planRequest;
     /* The raw data of execution plan */
-    private Object                   _rawPlan;
+    private String                   _rawPlan;
     private int                      _status        = RUNNING;
     private IExecutionPlanDocument[] _planDocs;
     
@@ -53,7 +53,7 @@ public class PlanInstance implements IPlanInstance
      * (non-Javadoc)
      * @see org.eclipse.datatools.sqltools.plan.internal.IPlanInstance#finishSuccess(java.lang.Object)
      */
-    public void finishSuccess(Object rawPlan)
+    public void finishSuccess(String rawPlan)
     {
         _status = SUCCESS;
         this._rawPlan = rawPlan;
@@ -85,7 +85,7 @@ public class PlanInstance implements IPlanInstance
      * (non-Javadoc)
      * @see org.eclipse.datatools.sqltools.plan.internal.IPlanInstance#getRawPlan()
      */
-    public Object getRawPlan()
+    public String getRawPlan()
     {
         return _rawPlan;
     }
@@ -123,7 +123,7 @@ public class PlanInstance implements IPlanInstance
      * 
      * @param rawPlan the plan's raw data
      */
-    public void setRawPlan(Object plan)
+    public void setRawPlan(String plan)
     {
         _rawPlan = plan;
     }

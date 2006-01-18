@@ -26,5 +26,5 @@ public interface IPlanParser
      * @param rawPlan the raw data of execution plan
      * @return the execution plan documents
      */
-    public IExecutionPlanDocument[] parsePlan(Object rawPlan);
+    public IExecutionPlanDocument[] parsePlan(String rawPlan);
 }

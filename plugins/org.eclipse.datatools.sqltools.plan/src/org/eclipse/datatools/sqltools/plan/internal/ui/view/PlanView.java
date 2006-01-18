@@ -20,9 +20,11 @@ import org.eclipse.datatools.sqltools.plan.internal.IPlanManagerListener;
 import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
+import org.eclipse.datatools.sqltools.plan.internal.ui.actions.LoadPlanAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.PlanDropDownAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.RemoveAllPlansAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.RemovePlanAction;
+import org.eclipse.datatools.sqltools.plan.internal.ui.actions.SavePlanAction;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.jface.action.Action;
@@ -67,6 +69,8 @@ public class PlanView extends ViewPart
     private PlanDropDownAction     _plansDropDownAction;
     private RemovePlanAction       _removePlanAction;
     private RemoveAllPlansAction   _removeAllPlansAction;
+    private SavePlanAction         _savePlanAction;
+    private LoadPlanAction         _loadPlanAction;
     private Action                 _preferenceAction;
     private static final String    _LINE_BREAK       = System.getProperty("line.separator");
     private VerticalLayoutAction   _vLayoutAction;
@@ -135,6 +139,8 @@ public class PlanView extends ViewPart
         createStandardGroups(tbm);
         tbm.appendToGroup(GROUP_REMOVE, _removePlanAction);
         tbm.appendToGroup(GROUP_REMOVE, _removeAllPlansAction);
+        tbm.appendToGroup(GROUP_IO, _savePlanAction);
+        tbm.appendToGroup(GROUP_IO, _loadPlanAction);
         tbm.appendToGroup(GROUP_HISTORY, _plansDropDownAction);
         _preferenceAction = new Action(Messages.getString("PlanView.preference")) //$NON-NLS-1$
         {
@@ -167,6 +173,8 @@ public class PlanView extends ViewPart
         _removePlanAction = new RemovePlanAction(this);
         _removeAllPlansAction = new RemoveAllPlansAction();
         _plansDropDownAction = new PlanDropDownAction(this);
+        _savePlanAction = new SavePlanAction();
+        _loadPlanAction = new LoadPlanAction();
         updateActions();
     }
 
@@ -175,6 +183,7 @@ public class PlanView extends ViewPart
         _removePlanAction.update();
         _removeAllPlansAction.update();
         _plansDropDownAction.update();
+        _savePlanAction.update();
     }
 
     /*
@@ -239,7 +248,7 @@ public class PlanView extends ViewPart
                     }
                     else
                     {
-                        Object rawPlan;
+                        String rawPlan;
                         if (instance.getStatus() == IPlanInstance.SUCCESS)
                         {
                             rawPlan = instance.getRawPlan();
@@ -265,7 +274,7 @@ public class PlanView extends ViewPart
                                 case PlanRequest.TEXT_PLAN:
                                     control = _textPlan;
                                     _textPlan.setText(Messages.getString("PlanView.sql") + "\n" + instance.getPlanRequest().getSql() + "\n" //$NON-NLS-1$
-                                            + rawPlan.toString());
+                                            + rawPlan);
                                     break;
                                 default:
                                     break;
@@ -273,7 +282,7 @@ public class PlanView extends ViewPart
                         }
                         else if (instance.getStatus() == IPlanInstance.FAILED)
                         {
-                            String errorMsg = instance.getFailThrowable().toString();
+                            String errorMsg = instance.getFailThrowable().getMessage();
                             _textPlan.setText(errorMsg);
                             control = _textPlan;
                         }

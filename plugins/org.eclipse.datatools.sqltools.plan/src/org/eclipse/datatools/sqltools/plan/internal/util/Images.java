@@ -85,6 +85,21 @@ public class Images
     public static final String          IMG_FAILED_PLAN           = NAME_PREFIX + "failed_plan.gif";
     public static final ImageDescriptor DESC_FAILED_PLAN          = createManaged(IMG_FAILED_PLAN);
     
+    // Export plan
+    public static final String          IMG_EXPORT_PLAN           = NAME_PREFIX + "export_plan.gif";
+    public static final ImageDescriptor DESC_EXPORT_PLAN          = createManaged(IMG_EXPORT_PLAN);
+    
+    // Export plan (disable)
+    public static final String          IMG_EXPORT_PLAN_DISABLE   = NAME_PREFIX + "export_plan_disable.gif";
+    public static final ImageDescriptor DESC_EXPORT_PLAN_DISABLE  = createManaged(IMG_EXPORT_PLAN_DISABLE);
+
+    // Import plan
+    public static final String          IMG_IMPORT_PLAN           = NAME_PREFIX + "import_plan.gif";
+    public static final ImageDescriptor DESC_IMPORT_PLAN          = createManaged(IMG_IMPORT_PLAN);
+
+    // Import plan (disable)
+    public static final String          IMG_IMPORT_PLAN_DISABLE   = NAME_PREFIX + "import_plan_disable.gif";
+    public static final ImageDescriptor DESC_IMPORT_PLAN_DISABLE  = createManaged(IMG_IMPORT_PLAN_DISABLE);
     /**
      * Returns the image managed under the given key in this registry.
      * 

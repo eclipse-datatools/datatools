@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan;
 
+
 /**
  * Start point to use EPV (SQL Execution Plan View), every time when the consumer needs to display an execution plan on
  * EPV, it must construct an instance of <code>PlanRequest</code> first. This class encapsulates all necessary

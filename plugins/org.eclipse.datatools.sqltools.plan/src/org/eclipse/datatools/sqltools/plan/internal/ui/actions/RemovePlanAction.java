@@ -59,6 +59,6 @@ public class RemovePlanAction extends Action
 
     public void update()
     {
-        setEnabled(_planView.getCurrentPlan() != null);
+        setEnabled(_planView.getCurrentPlan() != null && _planView.getCurrentPlan().isFinished());
     }
 }

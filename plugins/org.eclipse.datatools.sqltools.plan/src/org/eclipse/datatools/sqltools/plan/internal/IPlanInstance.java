@@ -53,7 +53,7 @@ public interface IPlanInstance
      * 
      * @param rawPlan the plan's raw data
      */
-    public void finishSuccess(Object rawPlan);
+    public void finishSuccess(String rawPlan);
 
     /**
      * Returns the fail reason throwable
@@ -74,7 +74,7 @@ public interface IPlanInstance
      * 
      * @return the raw data of this plan
      */
-    public Object getRawPlan();
+    public String getRawPlan();
 
     /**
      * Returns the current status

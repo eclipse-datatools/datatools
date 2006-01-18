@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
+import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -32,6 +33,24 @@ public class Messages
         catch (MissingResourceException e)
         {
             return '!' + key + '!';
+        }
+    }
+    
+    public static String getString(String key, Object[] args)
+    {
+        try
+        {
+            return MessageFormat.format(RESOURCE_BUNDLE.getString(key), args);
+        }
+        catch (MissingResourceException e)
+        {
+            StringBuffer argString = new StringBuffer(key);
+            argString.append(":");
+            for (int i = 0; i < args.length; i++)
+            {
+                argString.append(args[i]);
+            }
+            return argString.toString();
         }
     }
 }

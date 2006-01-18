@@ -104,7 +104,7 @@ public class EPVFacade
      * @param request the plan request
      * @param rawPlan the raw data of execution plan
      */
-    public void planGenerated(PlanRequest request, Object rawPlan)
+    public void planGenerated(PlanRequest request, String rawPlan)
     {
         if(request == null)
         {
