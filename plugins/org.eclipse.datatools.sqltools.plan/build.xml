@@ -51,6 +51,7 @@
 			<!-- Dependency on GEF -->
 			<include name="org.eclipse.draw2d_*.jar"/>
 			<!-- Include expanded plug-ins -->
+			<include name="org.eclipse.draw2d_*/*.jar"/>
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.ui_*/org.eclipse.ui_*.jar"/>
