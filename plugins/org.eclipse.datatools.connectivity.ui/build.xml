@@ -61,6 +61,7 @@
 			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>
 			<include name="org.eclipse.ui.views_*/org.eclipse.ui.views_*.jar"/>
 			<include name="org.eclipse.ui.navigator_*/navigator.jar"/>
+			<include name="org.eclipse.core.expressions_*/org.eclipse.core.expressions_*.jar"/>
 		</fileset>
 		<!-- Dependencies on other DTP plug-ins, built before this one -->
 		<fileset dir="../">

@@ -14,6 +14,7 @@ import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -44,6 +45,14 @@ public class DSEPlugin extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		/* 
+		 * Note that this is here to correct an issue with plug-in
+		 * loading not loading the org.eclipse.datatools.connectivity.ui
+		 * plug-in in time to make plug-in xml based filters work
+		 * correctly. So we are forcing the plug-in to load early.
+		 * If there is a better solution to this, please let us know.
+		 */
+		ConnectivityUIPlugin.getDefault();
 	}
 
 	/**

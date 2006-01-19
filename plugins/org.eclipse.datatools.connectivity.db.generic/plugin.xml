@@ -342,6 +342,9 @@
                <or>
                   <and>
                      <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+				     <test
+						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
+						value="java.sql.Connection"/>
                   </and>
                   <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
                   <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>

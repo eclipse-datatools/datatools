@@ -54,4 +54,14 @@
             id="org.eclipse.datatools.connectivity"
             name="Connection Profiles"/>
    </extension>
+
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileActionFilter"
+            id="org.eclipse.datatools.connectivity.ui"
+            namespace="org.eclipse.datatools.connectivity.profile.property"
+            properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID"
+            type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+   </extension>
 </plugin>
