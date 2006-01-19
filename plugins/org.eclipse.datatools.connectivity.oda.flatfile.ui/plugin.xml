@@ -27,12 +27,12 @@
             id="%oda.parent.category.id"
             name="%oda.parent.category.name"/>
       <category
-            id="%category.id"
-            name="%category.name"
+            id="%oda.data.source.id"
+            name="%oda.data.source.name"
             parentCategory="%oda.parent.category.id"/>
       <configurationType id="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"/>
       <connectionProfile
-            category="%category.id"
+            category="%oda.data.source.id"
             configurationType="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"
             icon="icons/file.gif"
             id="%connection.profile.id"
@@ -48,7 +48,7 @@
             class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
             profile="%connection.profile.id"/>
       <newWizard
-            id="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewProfileWizard"
+            id="%oda.data.source.id"
             name="%newwizard.name"
             class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewProfileWizard"
             description="%newwizard.description"
@@ -59,7 +59,7 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            id="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.ProfilePropertyPage"
+            id="%oda.data.source.id"
             name="%profile.propertypage.name"
             class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.ProfilePropertyPage"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
