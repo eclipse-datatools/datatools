@@ -49,6 +49,7 @@
 			<include name="org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*.jar"/>
 			<include name="org.eclipse.ui.views_*.jar"/>
+			<include name="org.eclipse.core.expressions_*.jar"/>
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
