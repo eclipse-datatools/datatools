@@ -20,7 +20,5 @@ public class Constants
     public static String ODA_COMPONENT_NAME = "DTP Open Data Access";
     public static String ODA_COMPONENT_VERSION = "3.0";
     
-    // Generic ODA property names
-    public static String ODA_DATA_SOURCE_ID_PROP = "OdaDataSourceElementId";
-    public static String ODA_DATA_SET_ID_PROP = "OdaDataSetElementId";
+    public static final String EMPTY_STRING = "";
 }

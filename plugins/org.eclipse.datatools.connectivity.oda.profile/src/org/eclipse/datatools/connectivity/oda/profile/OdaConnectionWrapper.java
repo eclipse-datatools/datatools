@@ -14,8 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.profile;
 
-import java.util.Properties;
-
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.VersionProviderConnection;
@@ -40,9 +38,8 @@ public class OdaConnectionWrapper extends VersionProviderConnection
     {
         super( profile, OdaConnectionFactory.class );
         
-        Properties props = profile.getBaseProperties();
-        m_odaDataSourceId = props.getProperty( Constants.ODA_DATA_SOURCE_ID_PROP );
-        String dataSetId = props.getProperty( Constants.ODA_DATA_SET_ID_PROP );
+        // ODA profiles use the odaDataSourceId as its profile identifier
+        m_odaDataSourceId = profile.getProviderId();
 
         try
         {
@@ -50,16 +47,26 @@ public class OdaConnectionWrapper extends VersionProviderConnection
             // which returns a wrapped oda.IConnection object
             m_odaConnectionHelper = getOdaConnectionHelper( m_odaDataSourceId );
             m_connectException = null;
-
-            // should be able to get metadata, without first open a connection
-            m_odaMetadataHelper = m_odaConnectionHelper.getMetaData( dataSetId );
-            updateVersionCache();
         }
         catch( OdaException e )
         {
             m_connectException = e;
             clearVersionCache();
+            return;
         }
+
+        try
+        {
+            // should be able to get metadata, without first open a connection;
+            // tries with a non-specific data set type
+            m_odaMetadataHelper = 
+                m_odaConnectionHelper.getMetaData( Constants.EMPTY_STRING );
+        }
+        catch( OdaException e )
+        {
+            // ignore, ok to not have version info available
+        }
+        updateVersionCache();
     }
 
     public Object getRawConnection()
