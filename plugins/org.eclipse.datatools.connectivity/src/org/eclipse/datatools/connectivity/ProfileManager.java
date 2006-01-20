@@ -251,21 +251,47 @@ public class ProfileManager {
 	}
 
 	/**
-	 * Add a connection profile object to the profiles cache
-	 * 
+	 * Add a connection profile object to the profiles cache.
+	 * Throws ConnectionProfileException if the new profile's name 
+     * already exists in cache.
 	 * @param profile
 	 * @throws ConnectionProfileException
 	 */
 	public void addProfile(IConnectionProfile profile)
 			throws ConnectionProfileException {
+        addProfile( profile, false );
+    }
+    
+    /**
+     * Add a connection profile object to the profiles cache.
+     * If the new profile's name already exists in cache,
+     * replace the cached profile with the given profile 
+     * provided the replaceExisting flag is true;
+     * otherwise, throws ConnectionProfileException.
+     * @param profile
+     * @param replaceExisting
+     * @throws ConnectionProfileException
+     */
+    public void addProfile( IConnectionProfile profile, boolean replaceExisting )
+            throws ConnectionProfileException {
+        // check if the new profile's name already exists in profiles cache
 		IConnectionProfile[] cps = getProfiles();
 		for (int i = 0; i < cps.length; i++) {
-			if (cps[i].getName().equals(profile.getName()))
-				throw new ConnectionProfileException(ConnectivityPlugin
+			if (cps[i].getName().equals(profile.getName())) {
+                if ( ! replaceExisting )
+                    throw new ConnectionProfileException(ConnectivityPlugin
 						.getDefault().getResourceString("profile.duplicate", //$NON-NLS-1$
 								new Object[] { profile.getName()}));
+                
+                // replace existing cached profile of same name with the new profile
+                if( cps[i] != profile )
+                    modifyProfile( profile );
+                return;
+            }
 		}
 
+        // add new profile to profile caches
+        
 		mProfiles = new IConnectionProfile[cps.length + 1];
 		if (cps.length != 0)
 			System.arraycopy(cps, 0, mProfiles, 0, cps.length);
@@ -388,6 +414,7 @@ public class ProfileManager {
 		mIsDirty = true;
 
 		fireProfileChanged(profile, oldName, oldDesc, oldAutoConnect);
+        saveChanges();
 	}
 
 	/**
