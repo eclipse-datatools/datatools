@@ -35,25 +35,25 @@
             category="%oda.data.source.id"
             configurationType="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"
             icon="icons/file.gif"
-            id="%connection.profile.id"
+            id="%oda.data.source.id"
             name="%connection.profile.name"/>
       <connectionFactory
             id="org.eclipse.datatools.connectivity.oda.IConnection"
             name="%oda.connection.factory.name"
             class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            profile="%connection.profile.id"/>
+            profile="%oda.data.source.id"/>
       <connectionFactory
             id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
             name="%ping.factory.name"
             class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            profile="%connection.profile.id"/>
+            profile="%oda.data.source.id"/>
       <newWizard
             id="%oda.data.source.id"
             name="%newwizard.name"
-            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewProfileWizard"
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewFFProfileWizard"
             description="%newwizard.description"
             icon="icons/fieldlist.ico"
-            profile="%connection.profile.id"/>
+            profile="%oda.data.source.id"/>
    </extension>
 
    <extension
@@ -65,7 +65,7 @@
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"
-               value="%connection.profile.id"/>
+               value="%oda.data.source.id"/>
       </page>
    </extension>
 
