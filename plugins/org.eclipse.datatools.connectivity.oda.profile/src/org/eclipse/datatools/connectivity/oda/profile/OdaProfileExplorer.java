@@ -50,10 +50,12 @@ public class OdaProfileExplorer
 
     /**
      * Returns a collection of identifiers of all connection profile 
-     * instances of a given ODA data source extension type, and
-     * caches the matching profiles for subsequent use.
-     * This looks for profiles kept in the current profile storage location.
-     * The connection profiles' instance Id and display name
+     * instances of a given ODA data source extension type.
+     * The profile instances are searched in the current 
+     * profile storage location with default file name.
+     * It also caches the matching profiles and saves in the
+     * current profile storage file for subsequent use.
+     * <br>The connection profiles' instance Id and display name
      * are stored as the key and value in the returned Properties instance.
      * Returns an empty <code>Properties</code> if there are 
      * no matching connection profiles found in default store.
@@ -76,10 +78,11 @@ public class OdaProfileExplorer
 
     /**
      * Returns a collection of identifiers of all connection profile 
-     * instances of a given ODA data source extension type, and
-     * caches the matching profiles for subsequent use.
-     * This looks for profiles kept in the given profile storage location.
-     * The connection profiles' instance Id and display name
+     * instances of a given ODA data source extension type.
+     * The profile instances are searched in the given profile storage file.
+     * It also caches the matching profiles and saves in the
+     * given profile storage file for subsequent use.
+     * <br>The connection profiles' instance Id and display name
      * are stored as the key and value in the returned Properties instance.
      * Returns an empty <code>Properties</code> if there are 
      * no matching connection profiles found in given storageFile.
@@ -193,7 +196,7 @@ public class OdaProfileExplorer
      * Returns the profile in cache with given instance id.
      * @throws IllegalArgumentException if instance is not found.
      */
-    private IConnectionProfile getProfile( String profileInstanceId )
+    IConnectionProfile getProfile( String profileInstanceId )
     {
         IConnectionProfile profile =
             ProfileManager.getInstance().getProfileByInstanceID( profileInstanceId );
