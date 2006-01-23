@@ -19,15 +19,18 @@
       <page
             class="org.eclipse.datatools.sqltools.result.internal.preference.SQLResultsViewPage"
             id="org.eclipse.datatools.sqltools.result.displayOption"
-            name="%SQLResultsView.display.options"/>
+            name="%SQLResultsView.display.options"
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
       <page
             class="org.eclipse.datatools.sqltools.result.internal.preference.ExportFormatPreferencePage"
             id="org.eclipse.datatools.sqltools.result.exportFormat"
-            name="%SQLResultsView.export.options"/>
+            name="%SQLResultsView.export.options"
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
       <page
             class="org.eclipse.datatools.sqltools.result.internal.preference.ResultHistoryPage"
             id="org.eclipse.datatools.sqltools.result.resultHistory"
-            name="%SQLResultsView.history.page"/>
+            name="%SQLResultsView.history.page"
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

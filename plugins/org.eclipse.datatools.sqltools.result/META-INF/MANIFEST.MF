@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity,
  org.apache.lucene
 Export-Package: org.eclipse.datatools.sqltools.result
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true
+Eclipse-AutoStop: true
