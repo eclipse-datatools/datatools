@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.sql,
  org.eclipse.datatools.sqltools.routineeditor,
  org.eclipse.datatools.sqltools.common.ui
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true
+Eclipse-AutoStop: true

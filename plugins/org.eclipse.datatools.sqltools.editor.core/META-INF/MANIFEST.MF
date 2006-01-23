@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.sql;visibility:=reexport,
  org.eclipse.datatools.connectivity.sqm.core;visibility:=reexport
 Eclipse-AutoStart: true
-Eclipse-LazyStart: false
+Eclipse-AutoStop: true
 Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.core.dbitem,
  org.eclipse.datatools.sqltools.core.profile,

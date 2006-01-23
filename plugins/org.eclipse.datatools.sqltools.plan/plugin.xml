@@ -19,7 +19,8 @@
       <page
             class="org.eclipse.datatools.sqltools.plan.internal.preference.ExecutionPlanPage"
             id="org.eclipse.datatools.sqltools.plan.executionPlanPage"
-            name="%PlanView.preferencePage.title"/>
+            name="%PlanView.preferencePage.title"
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

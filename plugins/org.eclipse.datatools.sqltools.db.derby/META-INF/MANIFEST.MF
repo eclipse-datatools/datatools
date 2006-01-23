@@ -15,4 +15,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.modelbase.sql,
  org.eclipse.datatools.modelbase.dbdefinition,
  org.eclipse.datatools.sqltools.db.generic
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true
+Eclipse-AutoStop: true
