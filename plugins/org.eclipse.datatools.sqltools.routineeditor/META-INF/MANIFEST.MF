@@ -18,7 +18,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.debug.core,
  org.eclipse.debug.ui,
- org.eclipse.datatools.modelbase.sql.query,
  org.eclipse.datatools.sqltools.common.ui
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
