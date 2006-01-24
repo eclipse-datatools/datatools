@@ -35,7 +35,7 @@ public class DriverManager {
 
 	private static DriverManager sInstance;
 
-	public static DriverManager getInstance() {
+	public static synchronized DriverManager getInstance() {
 		if (sInstance == null) {
 			sInstance = new DriverManager();
 		}

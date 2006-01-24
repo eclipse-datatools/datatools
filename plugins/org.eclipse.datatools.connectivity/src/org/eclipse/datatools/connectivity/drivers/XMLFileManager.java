@@ -145,7 +145,7 @@ public class XMLFileManager {
 	 * @throws IOException
 	 * @throws WorkbenchException
 	 */
-	public static IPropertySet[] loadPropertySets() throws IOException,
+	public static synchronized IPropertySet[] loadPropertySets() throws IOException,
 			WorkbenchException {
 		IPath path = getStorageLocation();
 		path = path.append(mFileName);

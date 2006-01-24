@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
@@ -36,7 +37,7 @@ import org.eclipse.jface.util.ListenerList;
  * 
  * @author shongxum
  */
-public class ProfileManager {
+public class ProfileManager implements IAdaptable {
 
 	private static ProfileManager mManager = null;
 
@@ -560,4 +561,9 @@ public class ProfileManager {
 	public void setDirty(boolean isDirty) {
 		mIsDirty = isDirty;
 	}
+
+	public Object getAdapter(Class adapter) {
+		return Platform.getAdapterManager().getAdapter(this, adapter);
+	}
+
 }

@@ -621,9 +621,11 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 		
 		open();
 		Connection connection = (Connection) super.getRawConnection();
-		this.setSharedConnection(connection);
-        new DatabaseProviderHelper().setDatabase(connection,
-                this, this.getDatabaseName());
+		if (connection != null) {
+			this.setSharedConnection(connection);
+	        new DatabaseProviderHelper().setDatabase(connection,
+	                this, this.getDatabaseName());
+		}
 	}
 
 	private void test(){

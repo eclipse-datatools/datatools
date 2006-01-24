@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
+
 /**
  * The base interface for working with connections created from connection
  * profiles.
@@ -19,7 +20,7 @@ package org.eclipse.datatools.connectivity;
  * Created on Jan 15, 2004
  */
 public interface IConnection {
-
+	
 	/**
 	 * Returns the native object representing the connection to the server. For
 	 * example, a java.sql.Connection object for a JDBC connection.
@@ -40,4 +41,10 @@ public interface IConnection {
 	 * @return exception thrown when connecting to the server
 	 */
 	Throwable getConnectException();
+	
+	/**
+	 * @return the connection profile used to create this connection.
+	 */
+	IConnectionProfile getConnectionProfile();
+	
 }

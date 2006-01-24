@@ -19,15 +19,46 @@ import java.util.EventObject;
  */
 public class ConnectEvent extends EventObject {
 
+	private IManagedConnection mConnection;
+	private Object mContext;
+
 	/**
 	 * 
 	 */
 	public ConnectEvent(IConnectionProfile profile) {
-		super(profile);
+		this(profile, null);
 	}
 
+	public ConnectEvent(IConnectionProfile profile, IManagedConnection connection) {
+		this(profile, connection, null);
+	}
+
+	public ConnectEvent(IConnectionProfile profile, IManagedConnection connection,
+						Object context) {
+		super(profile);
+		mConnection = connection;
+		mContext = context;
+	}
+
+	/**
+	 * @return the connection profile associated with this event
+	 */
 	public IConnectionProfile getConnectionProfile() {
 		return (IConnectionProfile) getSource();
+	}
+
+	/**
+	 * @return the managed connection associated with this event
+	 */
+	public IManagedConnection getConnection() {
+		return mConnection;
+	}
+
+	/**
+	 * @return the connection specific context associated with this event
+	 */
+	public Object getContext() {
+		return mContext;
 	}
 
 }

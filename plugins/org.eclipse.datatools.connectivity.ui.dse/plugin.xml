@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             category="org.eclipse.datatools"
-            class="org.eclipse.ui.navigator.CommonNavigator"
+            class="org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView"
             icon="icons/full/cview16/enterprise_explorer.gif"
             id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
             name="%DSE.Name">
@@ -273,7 +273,7 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider"
-            icon="platform:/plugin/org.eclipse.datatools.connectivity.dsexplorer/icons/enterprise_explorer.gif"
+            icon="platform:/plugin/org.eclipse.datatools.connectivity.dsexplorer/icons/full/cview16/enterprise_explorer.gif"
             id="org.eclipse.datatools.connectivity.dsexplorer.content"
             labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
             name="%DSE.content"
@@ -290,7 +290,6 @@
          </actionProvider>
          <enablement>
             <or>
-               <adapt type="org.eclipse.core.resources.IWorkspaceRoot"/>
                <adapt type="org.eclipse.datatools.connectivity.ICategory"/>
                <adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
                <adapt type="org.eclipse.datatools.connectivity.ProfileManager"/>

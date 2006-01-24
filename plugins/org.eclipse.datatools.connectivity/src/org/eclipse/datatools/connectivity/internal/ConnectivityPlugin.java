@@ -134,7 +134,14 @@ public class ConnectivityPlugin extends AbstractUIPlugin {
 	}
 
 	public IStatus createErrorStatus(Throwable e) {
+		String message;
+		if (e == null || e.getMessage() == null) {
+			message = getResourceString("plugin.internal_error"); //$NON-NLS-1$
+		}
+		else {
+			message = e.getMessage();
+		}
 		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
-				INTERNAL_ERROR, getResourceString("plugin.internal_error"), e); //$NON-NLS-1$
+				INTERNAL_ERROR, message, e);
 	}
 }

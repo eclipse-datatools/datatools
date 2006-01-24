@@ -12,14 +12,20 @@ package org.eclipse.datatools.connectivity.internal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -27,19 +33,23 @@ import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.ConnectEvent;
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectListener;
 import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ProfileRule;
 import org.eclipse.jface.util.ListenerList;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPropertyListener;
+import org.eclipse.ui.progress.IProgressConstants;
 
 /**
  * @author rcernich, shongxum
@@ -60,6 +70,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private ListenerList mConnectListeners = new ListenerList(2);
 	private boolean mIsCreating;
 	private String mInstanceID;
+	private Map mFactoryIDToManagedConnection;
 
 	public ConnectionProfile(String name, String desc, String providerID) {
 		this(name, desc, providerID, "", false);
@@ -87,6 +98,8 @@ public class ConnectionProfile extends PlatformObject implements
 		mAutoConnect = autoConnect;
 		mIsCreating = true;
 		mInstanceID = instanceID;
+		
+		initManagedConnections();
 	}
 
 	/*
@@ -309,6 +322,13 @@ public class ConnectionProfile extends PlatformObject implements
 				uid, pwd);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#getSharedConnection(java.lang.String)
+	 */
+	public IManagedConnection getManagedConnection(String type) {
+		return (IManagedConnection) mFactoryIDToManagedConnection.get(type);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -364,11 +384,7 @@ public class ConnectionProfile extends PlatformObject implements
 					connect(listener);
 					while (!listener.finished) {
 						display.readAndDispatch();
-						try {
-							Thread.sleep(100);
-						}
-						catch (InterruptedException e) {
-						}
+						Thread.yield();
 					}
 					result[0] = listener.result;
 				}
@@ -493,6 +509,51 @@ public class ConnectionProfile extends PlatformObject implements
 	public int hashCode() {
 		return getName().hashCode();
 	}
+	
+	private void initManagedConnections() {
+		Map connectionFactories = mProvider.getConnectionFactories();
+		connectionFactories.remove(ConnectionProfileConstants.PING_FACTORY_ID);
+		mFactoryIDToManagedConnection = new HashMap(connectionFactories.size());
+		for (Iterator it = connectionFactories.keySet().iterator(); it.hasNext();) {
+			String factoryID = (String)it.next();
+			mFactoryIDToManagedConnection.put(factoryID,new ManagedConnection(factoryID));
+		}
+	}
+
+	private void addFailureMarker(IStatus result) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		Map map = new HashMap(3);
+		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
+				"marker.error", new String[] { getName(),result.getMessage()})); //$NON-NLS-1$
+		map.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
+		map.put(IMarker.LOCATION, getName());
+		map.put(IMarker.TRANSIENT, Boolean.TRUE.toString());
+
+		try {
+			IMarker marker = resource
+					.createMarker("org.eclipse.datatools.connectivity.ui.profileFailure"); //$NON-NLS-1$
+			marker.setAttributes(map);
+		}
+		catch (CoreException e) {
+		}
+	}
+
+	private void removeOldFailureMarkers() {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		try {
+			IMarker[] markers = resource.findMarkers(
+					"org.eclipse.datatools.connectivity.ui.profileFailure", true, //$NON-NLS-1$
+					IResource.DEPTH_INFINITE);
+			for (int i = 0; i < markers.length; i++) {
+				if (markers[i].getAttribute(IMarker.LOCATION, new String())
+						.equals(getName())) {
+					markers[i].delete();
+				}
+			}
+		}
+		catch (CoreException e) {
+		}
+	}
 
 	private static class JobChangeListener extends JobChangeAdapter {
 
@@ -530,47 +591,92 @@ public class ConnectionProfile extends PlatformObject implements
 			}
 
 			IStatus retVal;
+			Map connectionFactories = mProvider.getConnectionFactories();
+			connectionFactories.remove(ConnectionProfileConstants.PING_FACTORY_ID);
 
-			monitor.beginTask(getName(), mConnectListeners.size() + 1);
+			monitor.beginTask(getName(), mConnectListeners.size()
+					+ connectionFactories.size() + 1);
 
-			mConnected = true;
+			// Create a group monitor
+			IProgressMonitor group = Platform.getJobManager()
+					.createProgressGroup();
+			group.beginTask(getName(), IProgressMonitor.UNKNOWN);
 
-			List statuses = new ArrayList();
-			boolean someOK = false;
-			int severity = 0;
+			// Create shared connections
+			List connectionJobs = new ArrayList(connectionFactories.size());
+			for (Iterator it = connectionFactories.values().iterator(); it
+					.hasNext();) {
+				CreateConnectionJob connectionJob = new CreateConnectionJob(
+						(IConnectionFactoryProvider) it.next(),
+						ConnectionProfile.this, this);
+				connectionJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
+				connectionJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionJob.schedule();
+				connectionJobs.add(connectionJob);
+			}
+
+			// Notify any connect listeners
+			List connectionEventJobs = new ArrayList(mConnectListeners.size());
 			ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
 			Object[] listeners = mConnectListeners.getListeners();
 			for (int index = 0, count = listeners.length; index < count; ++index) {
-				try {
-					((IConnectListener) listeners[index]).openConnection(event);
-					someOK = true;
-					statuses.add(Status.OK_STATUS);
-				}
-				catch (CoreException e) {
-					IStatus status = e.getStatus();
-					statuses.add(status);
-					someOK = someOK || (status.getSeverity() == IStatus.OK)
-							|| (status.getSeverity() == IStatus.INFO);
-					severity |= status.getSeverity();
-				}
-				monitor.worked(1);
+				OpenConnectionEventJob connectionEventJob = new OpenConnectionEventJob(
+						(IConnectListener) listeners[index], event, this);
+				connectionEventJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
+				connectionEventJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionEventJob.schedule();
+				connectionEventJobs.add(connectionEventJob);
 			}
 
-			// For backward compatibility with setConnected()
-			firePropertyChangedEvent(PROP_CONNECTED);
+			// Wait for everyone to connect
+			try {
+				Platform.getJobManager().join(this, monitor);
+			}
+			catch (OperationCanceledException e) {
+				// TODO: RJC: Cleanup any connections that got created
+				e.printStackTrace();
+			}
+			catch (InterruptedException e) {
+				// TODO: What exaclty???
+				e.printStackTrace();
+			}
+			
+			removeOldFailureMarkers();
+
+			List statuses = new ArrayList(connectionJobs.size());
+			boolean someOK = false;
+			int severity = 0;
+			for (Iterator it = connectionJobs.iterator(); it.hasNext();) {
+				CreateConnectionJob connectionJob = (CreateConnectionJob) it
+						.next();
+				IStatus status = connectionJob.getResult();
+				String factoryID = connectionJob.getConnectionFactoryProvider()
+						.getId();
+				if (status.getSeverity() == IStatus.ERROR) {
+					addFailureMarker(status);
+				}
+				else {
+					someOK = someOK || (status.getSeverity() == IStatus.OK)
+							|| (status.getSeverity() == IStatus.INFO);
+				}
+				severity |= status.getSeverity();
+				statuses.add(status);
+
+				ManagedConnection managedConnection = (ManagedConnection) mFactoryIDToManagedConnection
+						.get(factoryID);
+				managedConnection.setConnection(connectionJob.getConnection());
+			}
+
+			if (someOK) {
+				// Changes the connected flag since somebody actually connected
+				mConnected = true;
+				// Notify any property listeners of a state change
+				firePropertyChangedEvent(PROP_CONNECTED);
+			}
 			monitor.worked(1);
 
 			if (severity == IStatus.OK) { // all OK
 				retVal = Status.OK_STATUS;
-			}
-			else if (someOK) {
-				retVal = new ConnectMultiStatus(IStatus.ERROR,
-						(IStatus[]) statuses.toArray(new IStatus[statuses
-								.size()]), ConnectivityPlugin.getDefault()
-								.getResourceString(
-										"ConnectJob.status.info", //$NON-NLS-1$
-										new Object[] { ConnectionProfile.this
-												.getName()}));
 			}
 			else {
 				retVal = new ConnectMultiStatus(IStatus.ERROR,
@@ -580,17 +686,50 @@ public class ConnectionProfile extends PlatformObject implements
 										"ConnectJob.status.error", //$NON-NLS-1$
 										new Object[] { ConnectionProfile.this
 												.getName()}));
-				mConnected = false;
-
-				// For backward compatibility with setConnected()
-				firePropertyChangedEvent(PROP_CONNECTED);
 			}
+			
+			monitor.done();
 
 			return retVal;
 		}
 
 		public boolean belongsTo(Object family) {
 			return ConnectionProfile.this.equals(family);
+		}
+	}
+	
+	public class OpenConnectionEventJob extends Job {
+
+		private IConnectListener mListener;
+		private ConnectEvent mEvent;
+		private Object mFamily;
+
+		public OpenConnectionEventJob(IConnectListener listener,
+										ConnectEvent event, Object family) {
+			super(ConnectivityPlugin.getDefault().getResourceString(
+					"OpenConnectionEventJob.name",
+					new Object[] { event.getConnectionProfile().getName()}));
+			setSystem(true);
+			mListener = listener;
+			mEvent = event;
+			mFamily = family;
+		}
+
+		public boolean belongsTo(Object family) {
+			return mFamily != null && family == mFamily;
+		}
+
+		protected IStatus run(IProgressMonitor monitor) {
+			IStatus status = Status.OK_STATUS;
+			monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
+			try {
+				mListener.openConnection(mEvent);
+			}
+			catch (CoreException e) {
+				status = e.getStatus();
+			}
+			monitor.done();
+			return status;
 		}
 	}
 
@@ -620,46 +759,96 @@ public class ConnectionProfile extends PlatformObject implements
 
 			IStatus retVal;
 
-			monitor.beginTask(getName(), mConnectListeners.size() + 1);
+			monitor.beginTask(getName(), mConnectListeners.size()
+					+ mFactoryIDToManagedConnection.size() + 1);
 
-			Object[] listeners = mConnectListeners.getListeners();
-			ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
-			for (int index = 0, count = listeners.length; index < count; ++index) {
-				if (!((IConnectListener) listeners[index]).okToClose(event)) {
+			// Check to make sure nobody is using the connection
+			for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); it
+					.hasNext();) {
+				if (!((ManagedConnection) it.next()).okToClose()) {
 					monitor.setCanceled(true);
 					return Status.CANCEL_STATUS;
 				}
 			}
 
-			mConnected = false;
-
-			List statuses = new ArrayList();
-			boolean someOK = false;
-			int severity = 0;
+			Object[] listeners = mConnectListeners.getListeners();
+			ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
 			for (int index = 0, count = listeners.length; index < count; ++index) {
 				try {
-					((IConnectListener) listeners[index])
-							.closeConnection(event);
+					if (!((IConnectListener) listeners[index]).okToClose(event)) {
+						monitor.setCanceled(true);
+						return Status.CANCEL_STATUS;
+					}
 				}
-				catch (CoreException e) {
-					IStatus status = e.getStatus();
-					statuses.add(status);
-					someOK = someOK && status.getSeverity() == IStatus.OK
-							|| status.getSeverity() == IStatus.INFO;
-					severity |= status.getSeverity();
+				catch (Exception e) {
+					ConnectivityPlugin.getDefault().log(e);
 				}
-				monitor.worked(1);
 			}
 
-			// For backward compatibility with setConnected()
+			// Create a group monitor
+			IProgressMonitor group = Platform.getJobManager()
+					.createProgressGroup();
+			group.beginTask(getName(), IProgressMonitor.UNKNOWN);
+
+			// Close shared connections
+			List connectionJobs = new ArrayList(mFactoryIDToManagedConnection
+					.size());
+			for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); it
+					.hasNext();) {
+				CloseManagedConnectionJob connectionJob = new CloseManagedConnectionJob(
+						(ManagedConnection) it.next(), this);
+				connectionJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
+				connectionJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionJob.schedule();
+				connectionJobs.add(connectionJob);
+			}
+
+			// Notify any connect listeners
+			List connectionEventJobs = new ArrayList(mConnectListeners.size());
+			for (int index = 0, count = listeners.length; index < count; ++index) {
+				CloseConnectionEventJob connectionEventJob = new CloseConnectionEventJob(
+						(IConnectListener) listeners[index], event, this);
+				connectionEventJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
+				connectionEventJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionEventJob.schedule();
+				connectionEventJobs.add(connectionEventJob);
+			}
+
+			// Wait for everyone to connect
+			try {
+				Platform.getJobManager().join(this, monitor);
+			}
+			catch (OperationCanceledException e) {
+				// TODO: RJC: This puts us in a weird state, should we recreate
+				// any connections that were closed
+				return Status.CANCEL_STATUS;
+			}
+			catch (InterruptedException e) {
+				// TODO: What exaclty???
+			}
+
+			List statuses = new ArrayList(connectionJobs.size());
+			int severity = 0;
+			for (Iterator it = connectionJobs.iterator(); it.hasNext();) {
+				CloseManagedConnectionJob connectionJob = (CloseManagedConnectionJob) it
+						.next();
+				IStatus status = connectionJob.getResult();
+				severity |= status.getSeverity();
+				statuses.add(status);
+			}
+
+			// Changes the connected flag
+			mConnected = false;
+			// Notify any property listeners of a state change
 			firePropertyChangedEvent(PROP_CONNECTED);
+
 			monitor.worked(1);
 
 			if (severity == IStatus.OK) { // all OK
 				retVal = Status.OK_STATUS;
 			}
-			else if (someOK) {
-				retVal = new ConnectMultiStatus(IStatus.INFO,
+			else {
+				retVal = new ConnectMultiStatus(IStatus.ERROR,
 						(IStatus[]) statuses.toArray(new IStatus[statuses
 								.size()]), ConnectivityPlugin.getDefault()
 								.getResourceString(
@@ -667,21 +856,49 @@ public class ConnectionProfile extends PlatformObject implements
 										new Object[] { ConnectionProfile.this
 												.getName()}));
 			}
-			else {
-				retVal = new ConnectMultiStatus(IStatus.ERROR,
-						(IStatus[]) statuses.toArray(new IStatus[statuses
-								.size()]), ConnectivityPlugin.getDefault()
-								.getResourceString(
-										"DisconnectJob.status.error", //$NON-NLS-1$
-										new Object[] { ConnectionProfile.this
-												.getName()}));
-			}
+
+			monitor.done();
 
 			return retVal;
 		}
 
 		public boolean belongsTo(Object family) {
 			return ConnectionProfile.this.equals(family);
+		}
+	}
+
+	public class CloseConnectionEventJob extends Job {
+
+		private IConnectListener mListener;
+		private ConnectEvent mEvent;
+		private Object mFamily;
+
+		public CloseConnectionEventJob(IConnectListener listener,
+										ConnectEvent event, Object family) {
+			super(ConnectivityPlugin.getDefault().getResourceString(
+					"OpenConnectionEventJob.name",
+					new Object[] { event.getConnectionProfile().getName()}));
+			setSystem(true);
+			mListener = listener;
+			mEvent = event;
+			mFamily = family;
+		}
+
+		public boolean belongsTo(Object family) {
+			return mFamily != null && family == mFamily;
+		}
+
+		protected IStatus run(IProgressMonitor monitor) {
+			IStatus status = Status.OK_STATUS;
+			monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
+			try {
+				mListener.closeConnection(mEvent);
+			}
+			catch (CoreException e) {
+				status = e.getStatus();
+			}
+			monitor.done();
+			return status;
 		}
 	}
 

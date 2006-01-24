@@ -21,6 +21,8 @@ import org.eclipse.core.runtime.CoreException;
  * 
  * @author rcernich
  * 
+ * @deprecated
+ * 
  * Created on May 24, 2005
  */
 public interface IConnectListener {

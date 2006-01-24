@@ -177,6 +177,8 @@ public interface IConnectionProfile {
 	 * Add a connect listener to this profile.
 	 * 
 	 * @param listener
+	 * 
+	 * @deprecated use IManagedConnection.removeConnectionListener()
 	 */
 	void addConnectListener(IConnectListener listener);
 
@@ -184,8 +186,18 @@ public interface IConnectionProfile {
 	 * Remove a connect listener from this profile.
 	 * 
 	 * @param listener
+	 * 
+	 * @deprecated use IManagedConnection.removeConnectionListener()
 	 */
 	void removeConnectListener(IConnectListener listener);
+	
+	/**
+	 * @param type the ID of the connection factory responsible for creating the
+	 *        connection
+	 * 
+	 * @return the managed connection
+	 */
+	IManagedConnection getManagedConnection(String type);
 
 	/**
 	 * Add property listener to this profile. Property events sent:
