@@ -11,10 +11,11 @@
 package org.eclipse.datatools.modelbase.sql.query.util;
 
 import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
+
+import com.ibm.icu.text.StringCharacterIterator;
 
 
 

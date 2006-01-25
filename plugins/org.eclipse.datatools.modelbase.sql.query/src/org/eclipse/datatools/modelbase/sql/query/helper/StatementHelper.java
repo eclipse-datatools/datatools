@@ -11,7 +11,6 @@
 package org.eclipse.datatools.modelbase.sql.query.helper;
 
 import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -66,12 +65,14 @@ import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQueryLogger;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
+import com.ibm.icu.text.StringCharacterIterator;
 
 
 public class StatementHelper {
