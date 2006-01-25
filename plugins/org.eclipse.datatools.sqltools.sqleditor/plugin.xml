@@ -35,6 +35,7 @@
       <import plugin="org.eclipse.datatools.sqltools.result" export="true"/>
       <import plugin="org.eclipse.debug.core"/>
       <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="com.ibm.icu"/>
    </requires>
 
    <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->

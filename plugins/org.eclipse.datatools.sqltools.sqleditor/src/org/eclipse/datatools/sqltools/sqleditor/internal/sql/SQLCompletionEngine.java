@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.StringTokenizer;
 import java.util.Vector;
 
 import org.eclipse.jface.text.BadLocationException;
@@ -22,6 +21,8 @@ import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * This class computes proposals for text completion.
