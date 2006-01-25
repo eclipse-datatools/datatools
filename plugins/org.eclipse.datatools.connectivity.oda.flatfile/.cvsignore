@@ -4,3 +4,4 @@ bin
 testdatabase
 utestreports
 vss*.scc
+plugin_*.properties
