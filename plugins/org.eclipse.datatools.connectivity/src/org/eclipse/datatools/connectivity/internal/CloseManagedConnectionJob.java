@@ -21,10 +21,15 @@ public class CloseManagedConnectionJob extends Job {
 	private ManagedConnection mConnection;
 
 	public CloseManagedConnectionJob(ManagedConnection connection, Object family) {
-		super(ConnectivityPlugin.getDefault().getResourceString(
-				"CloseManagedConnectionJob.name",
-				new Object[] { connection.getFactoryID(),
-						connection.getConnectionProfile().getName()}));
+		super(ConnectivityPlugin.getDefault()
+				.getResourceString(
+						"CloseManagedConnectionJob.name",
+						new Object[] {
+								connection.getConnectionProfile().getProvider()
+										.getConnectionFactory(
+												connection.getFactoryID())
+										.getName(),
+								connection.getConnectionProfile().getName()}));
 		setUser(true);
 		mConnection = connection;
 		mFamily = family;
@@ -42,7 +47,11 @@ public class CloseManagedConnectionJob extends Job {
 					.getDefault().getResourceString(
 							"CloseManagedConnectionJob.error",
 							new Object[] {
-									mConnection.getFactoryID(),
+									mConnection.getConnectionProfile()
+											.getProvider()
+											.getConnectionFactory(
+													mConnection.getFactoryID())
+											.getName(),
 									mConnection.getConnectionProfile()
 											.getName(), e.getMessage()}), e);
 		}

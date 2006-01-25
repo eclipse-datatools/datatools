@@ -29,7 +29,7 @@ public class CreateConnectionJob extends Job {
 								IConnectionProfile profile, Object family) {
 		super(ConnectivityPlugin.getDefault().getResourceString(
 				"CreateConnectionJob.name",
-				new Object[] { factory.getId(), profile.getName()}));
+				new Object[] { factory.getName(), profile.getName()}));
 		setUser(true);
 		mFactory = factory;
 		mProfile = profile;
@@ -59,7 +59,8 @@ public class CreateConnectionJob extends Job {
 						ConnectivityPlugin.getDefault().getResourceString(
 								"CreateConnectionJob.error",
 								new Object[] {
-										getConnectionFactoryProvider().getId(),
+										getConnectionFactoryProvider()
+												.getName(),
 										getConnectionProfile().getName(),
 										mConnection.getConnectException()
 												.getMessage()}), mConnection
@@ -72,7 +73,7 @@ public class CreateConnectionJob extends Job {
 					.getDefault().getResourceString(
 							"CreateConnectionJob.error",
 							new Object[] {
-									getConnectionFactoryProvider().getId(),
+									getConnectionFactoryProvider().getName(),
 									getConnectionProfile().getName(),
 									e.getMessage()}), e);
 		}

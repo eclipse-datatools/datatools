@@ -20,8 +20,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.Driver;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -38,9 +36,11 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.datatools.connectivity.DriverConnectionBase;
+import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
+import org.eclipse.datatools.connectivity.VersionProviderConnection;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.ResourceUtil;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
@@ -55,7 +55,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 
-public class ConnectionInfoImpl extends DriverConnectionBase implements ConnectionInfo {
+public class ConnectionInfoImpl extends VersionProviderConnection implements ConnectionInfo {
 	private static final String PASSWORD = "password"; //$NON-NLS-1$
 	private static final String USER = "user"; //$NON-NLS-1$
 
@@ -75,14 +75,10 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 	private Collection filterListeners = new LinkedList();
 	private Collection projects = null;
 	private boolean detectDefinition = false;
+	private IConnection jdbcConnection;
 	
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
-	public static final String TECHNOLOGY_NAME = "JDBC"; //TODO Externalize??
 
-	private Version mTechVersion = Version.NULL_VERSION;
-	private Version mServerVersion = Version.NULL_VERSION;
-	private String mServerName;
-	
 	public String getName() {
 		return this.name;
 	}
@@ -619,8 +615,8 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 		
 		this.name = "conn1"; // TODO get name from connection profile
 		
-		open();
-		Connection connection = (Connection) super.getRawConnection();
+		jdbcConnection = profile.createConnection(Connection.class.getName());
+		Connection connection = (Connection) jdbcConnection.getRawConnection();
 		if (connection != null) {
 			this.setSharedConnection(connection);
 	        new DatabaseProviderHelper().setDatabase(connection,
@@ -644,47 +640,26 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 		}
 	}
 	
-	protected Object createConnection(ClassLoader cl) throws Throwable {
-		Properties props = getConnectionProfile().getBaseProperties();
-		String driverClass = props.getProperty(
-				IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);
-		String connectURL = props
-				.getProperty(IDBDriverDefinitionConstants.URL_PROP_ID);
-		String uid = props.getProperty(IDBDriverDefinitionConstants.USERNAME_PROP_ID);
-		String pwd = props.getProperty(IDBDriverDefinitionConstants.PASSWORD_PROP_ID);
-
-		Properties connectionProps = new Properties();
-
-		if (uid != null) {
-			connectionProps.setProperty("user", uid);
+	public void close() {
+		if (getSharedConnection() != null) {
+			setSharedConnection(null);
 		}
-		if (pwd != null) {
-			connectionProps.setProperty("password", pwd);
+		if (jdbcConnection != null) {
+			jdbcConnection.close();
+			jdbcConnection = null;
 		}
-
-		Driver jdbcDriver = (Driver) cl.loadClass(driverClass).newInstance();
-		return jdbcDriver.connect(connectURL, connectionProps);
 	}
 
-	public void close() {
-		Connection connection = (Connection) super.getRawConnection();
-		if (connection != null) {
-			try {
-				connection.close();
-			}
-			catch (SQLException e) {
-				// RJC Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	public Throwable getConnectException() {
+		return jdbcConnection.getConnectException();
 	}
 
 	public String getProviderName() {
-		return mServerName;
+		return ((IServerVersionProvider)jdbcConnection).getProviderName();
 	}
 
 	public Version getProviderVersion() {
-		return mServerVersion;
+		return ((IServerVersionProvider)jdbcConnection).getProviderVersion();
 	}
 
 	protected String getTechnologyRootKey() {
@@ -692,56 +667,13 @@ public class ConnectionInfoImpl extends DriverConnectionBase implements Connecti
 	}
 
 	public String getTechnologyName() {
-		return TECHNOLOGY_NAME;
+		return ((IServerVersionProvider)jdbcConnection).getTechnologyName();
 	}
 
 	public Version getTechnologyVersion() {
-		return mTechVersion;
+		return ((IServerVersionProvider)jdbcConnection).getTechnologyVersion();
 	}
 
-	protected void initVersions() {
-		try {
-			DatabaseMetaData dbmd = ((Connection) super.getRawConnection())
-					.getMetaData();
-			try {
-				mServerName = dbmd.getDatabaseProductName();
-			}
-			catch (Throwable e) {
-			}
-			try {
-				String versionString = dbmd.getDatabaseProductVersion();
-				if (versionString.indexOf('/') > 0) {
-					// Special handling for ASE
-					String versionComps[] = versionString.split("/", 4);
-					if (versionComps.length > 2) {
-						versionString = versionComps[1];
-						if (versionComps.length > 3) {
-							versionString += '.' + (versionComps[2]
-									.startsWith("EBF") ? versionComps[2]
-									.substring(3).trim() : versionComps[2]);
-						}
-						if (versionComps[0].length() > 0
-								&& !versionComps[0].equals(mServerName)) {
-							// Special case for ASIQ
-							mServerName = versionComps[0];
-						}
-					}
-				}
-				mServerVersion = Version.valueOf(versionString);
-			}
-			catch (Throwable e) {
-			}
-			try {
-				mTechVersion = new Version(dbmd.getJDBCMajorVersion(), dbmd
-						.getJDBCMinorVersion(), 0, new String());
-			}
-			catch (Throwable e) {
-			}
-		}
-		catch (SQLException e) {
-		}
-	}
-	
 	public Object getRawConnection() {
 		return this;
 	}
