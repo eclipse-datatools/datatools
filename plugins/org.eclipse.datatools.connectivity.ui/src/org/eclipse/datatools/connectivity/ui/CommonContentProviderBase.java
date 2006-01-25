@@ -19,8 +19,10 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
+import org.eclipse.ui.navigator.INavigatorContentService;
 
 /**
  * @author rcernich
@@ -34,6 +36,7 @@ public abstract class CommonContentProviderBase implements
 	private Map mConnectionToExtensionNode = new HashMap();
 	private ITreeContentProvider mDelegate;
 	private IExtensionStateModel mStateModel;
+	private Viewer mViewer;
 
 	protected CommonContentProviderBase(ITreeContentProvider contentProvider) {
 		super();
@@ -94,7 +97,8 @@ public abstract class CommonContentProviderBase implements
 				children = new Object[0];
 			}
 			else {
-				children = new Object[] { extension};
+				children = extensionVisible(extension) ? new Object[] { extension}
+						: getChildren(extension);
 			}
 		}
 		else if (parentElement instanceof IContentExtension) {
@@ -129,6 +133,10 @@ public abstract class CommonContentProviderBase implements
 			// check to see if the returned parent is the connection
 			if (mConnectionToExtensionNode.containsKey(parent)) {
 				parent = mConnectionToExtensionNode.get(parent);
+				if (parent != null
+						&& !extensionVisible((IContentExtension) parent)) {
+					parent = getParent(parent);
+				}
 			}
 		}
 		return parent;
@@ -142,7 +150,8 @@ public abstract class CommonContentProviderBase implements
 				return false;
 			}
 			else {
-				return true;
+				return extensionVisible(extension) ? true
+						: hasChildren(extension);
 			}
 		}
 		if (element instanceof IContentExtension) {
@@ -160,6 +169,7 @@ public abstract class CommonContentProviderBase implements
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		mDelegate.inputChanged(viewer, oldInput, newInput);
+		mViewer = viewer;
 	}
 
 	public boolean equals(Object obj) {
@@ -172,6 +182,24 @@ public abstract class CommonContentProviderBase implements
 
 	public int hashCode() {
 		return mDelegate.hashCode();
+	}
+
+	private boolean extensionVisible(IContentExtension extension) {
+		if (!(mViewer instanceof CommonViewer)) {
+			// Short circuit if the viewer is not a CommonViewer
+			return true;
+		}
+		CommonViewer viewer = (CommonViewer) mViewer;
+		INavigatorContentService contentService = viewer
+				.getNavigatorContentService();
+		ITreeContentProvider[] contentProviders = contentService
+				.findRelevantContentProviders(extension.getConnectionProfile());
+		/*
+		 * check for more than two contentproviders since the list will include
+		 * the root content provider for the view.
+		 */
+		return extension.isVisible()
+				|| (contentProviders != null && contentProviders.length > 2);
 	}
 
 }

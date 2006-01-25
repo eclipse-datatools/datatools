@@ -67,7 +67,6 @@ public interface IContentExtension {
 
 	/**
 	 * @return true if this content extension node should be visible
-	 * @deprecated
 	 */
 	boolean isVisible();
 }

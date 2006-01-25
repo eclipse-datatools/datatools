@@ -13,7 +13,6 @@ package org.eclipse.datatools.connectivity.ui;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileConnectionManager;
 
 /**
  * @author rcernich
@@ -34,10 +33,6 @@ public abstract class ManagedContentExtensionBase extends PlatformObject
 		super();
 		mConnectionProfile = profile;
 		mFactoryID = factoryID;
-
-		ProfileConnectionManager.getProfileConnectionManagerInstance()
-				.manageProfileConnection(getConnectionProfile(),
-						getFactoryID(), this);
 	}
 
 	public String getFactoryID() {
@@ -54,9 +49,6 @@ public abstract class ManagedContentExtensionBase extends PlatformObject
 	}
 
 	public void dispose() {
-		ProfileConnectionManager.getProfileConnectionManagerInstance()
-				.unmanageProfileConnection(getConnectionProfile(),
-						getFactoryID(), this);
 	}
 
 	/*
@@ -81,8 +73,8 @@ public abstract class ManagedContentExtensionBase extends PlatformObject
 	 * @see org.eclipse.datatools.connectivity.IContentExtension#getConnection()
 	 */
 	public IConnection getConnection() {
-		return ProfileConnectionManager.getProfileConnectionManagerInstance()
-				.getConnection(getConnectionProfile(), getFactoryID());
+		return getConnectionProfile().getManagedConnection(getFactoryID())
+				.getConnection();
 	}
 
 }

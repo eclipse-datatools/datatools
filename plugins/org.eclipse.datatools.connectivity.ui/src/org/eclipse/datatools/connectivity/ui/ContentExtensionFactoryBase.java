@@ -50,7 +50,12 @@ public abstract class ContentExtensionFactoryBase extends ContentExtensionBase {
 	 */
 	public void closeConnection() {
 		if (mConnection != null) {
-			mConnection.close();
+			try {
+				mConnection.close();
+			}
+			catch (RuntimeException e) {
+				e.printStackTrace();
+			}
 			mConnection = null;
 		}
 	}

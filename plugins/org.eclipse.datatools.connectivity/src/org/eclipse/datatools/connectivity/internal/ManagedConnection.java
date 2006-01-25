@@ -20,9 +20,11 @@ import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.ConnectEvent;
 import org.eclipse.datatools.connectivity.IConnection;
-import org.eclipse.datatools.connectivity.IManagedConnectionListener;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
+import org.eclipse.datatools.connectivity.IManagedConnectionListener;
+import org.eclipse.datatools.connectivity.IServerVersionProvider;
+import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 
@@ -134,6 +136,9 @@ public class ManagedConnection implements IManagedConnection {
 		if (mConnection == null) {
 			return null;
 		}
+		if (mConnection instanceof IServerVersionProvider) {
+			return new RestrictedVersionProviderConnection();
+		}
 		return new RestrictedConnection();
 	}
 
@@ -225,6 +230,28 @@ public class ManagedConnection implements IManagedConnection {
 		public Object getRawConnection() {
 			return mConnection.getRawConnection();
 		}
+	}
+	
+	private class RestrictedVersionProviderConnection extends
+			RestrictedConnection implements IServerVersionProvider {
+
+		public String getProviderName() {
+			return ((IServerVersionProvider) mConnection).getProviderName();
+		}
+
+		public Version getProviderVersion() {
+			return ((IServerVersionProvider) mConnection).getProviderVersion();
+		}
+
+		public String getTechnologyName() {
+			return ((IServerVersionProvider) mConnection).getTechnologyName();
+		}
+
+		public Version getTechnologyVersion() {
+			return ((IServerVersionProvider) mConnection)
+					.getTechnologyVersion();
+		}
+
 	}
 
 	private static class JobChangeListener extends JobChangeAdapter {
