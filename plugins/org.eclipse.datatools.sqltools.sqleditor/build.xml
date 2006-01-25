@@ -59,6 +59,7 @@
 			<include name="org.eclipse.ui.views_*.jar"/>
 			<include name="org.eclipse.debug.core_*.jar"/>
 			<include name="org.eclipse.debug.ui_*.jar"/>
+			<include name="com.ibm.icu_*.jar"/>
 			<!-- Include jared EMF plug-ins -->
 			<include name="org.eclipse.emf.ecore_*.jar"/>
 			<include name="org.eclipse.emf.common_*.jar"/>
