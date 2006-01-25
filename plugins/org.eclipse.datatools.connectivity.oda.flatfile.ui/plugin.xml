@@ -15,10 +15,10 @@
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.datatools.connectivity"/>
-      <import plugin="org.eclipse.datatools.connectivity.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.design.ui"/>
       <import plugin="org.eclipse.datatools.connectivity.oda.profile"/>
-      <import plugin="org.eclipse.datatools.connectivity.oda.flatfile"/>
+      <import plugin="org.eclipse.datatools.connectivity.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity"/>
    </requires>
 
    <extension
@@ -50,7 +50,7 @@
       <newWizard
             id="%oda.data.source.id"
             name="%newwizard.name"
-            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.NewFFProfileWizard"
+            class="org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.NewDataSourceWizard"
             description="%newwizard.description"
             icon="icons/fieldlist.ico"
             profile="%oda.data.source.id"/>
@@ -61,7 +61,7 @@
       <page
             id="%oda.data.source.id"
             name="%profile.propertypage.name"
-            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.ProfilePropertyPage"
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderPropertyPage"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"

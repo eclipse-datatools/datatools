@@ -20,11 +20,8 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.profile.wizards.NewDataSourceWizard;
-import org.eclipse.jface.wizard.IWizard;
 
 /**
  * The ODA Profile Explorer is a singleton class that provides
@@ -44,7 +41,7 @@ public class OdaProfileExplorer
         return sm_instance;
     }
 
-    private OdaProfileExplorer()
+    protected OdaProfileExplorer()
     {
     }
 
@@ -165,38 +162,12 @@ public class OdaProfileExplorer
         IConnectionProfile profile = getProfile( profileInstanceId );        
         return profile.getBaseProperties();
     }
-    
-    /**
-     * Returns the ODA custom wizard provided by an
-     * ODA data source designer that implements the 
-     * connection profile extension point.
-     * @param profileInstanceId the instance id of a connection profile
-     * @return  the ODA custom wizard, or null if no wizard is provided
-     * @throws OdaException if the profile provider has not implemented 
-     *                      the expected Oda wizard type
-     */
-    public NewDataSourceWizard getCustomWizard( String profileInstanceId )
-        throws OdaException
-    {
-        // ODA profiles use the odaDataSourceId as its profile identifier
-        String odaDataSourceId = getProfile( profileInstanceId ).getProviderId();
-        IWizard dataSourceWizard =
-            ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
-        
-        if( dataSourceWizard == null )
-            return null;    // has not implemented a new data source wizard
-        
-        if( dataSourceWizard instanceof NewDataSourceWizard == false )
-            throw newOdaException( "invalid.oda.wizard", odaDataSourceId ); //$NON-NLS-1$
 
-        return (NewDataSourceWizard) dataSourceWizard;       
-    }
-    
     /*
      * Returns the profile in cache with given instance id.
      * @throws IllegalArgumentException if instance is not found.
      */
-    IConnectionProfile getProfile( String profileInstanceId )
+    public IConnectionProfile getProfile( String profileInstanceId )
     {
         IConnectionProfile profile =
             ProfileManager.getInstance().getProfileByInstanceID( profileInstanceId );
@@ -205,13 +176,13 @@ public class OdaProfileExplorer
         return profile;
     }
     
-    private OdaException newOdaException( String messageId, Object msgArgument )
+    protected OdaException newOdaException( String messageId, Object msgArgument )
     {
         // TODO - get localized message text
         return new OdaException( messageId );
     }
     
-    private OdaException newOdaException( Throwable cause )
+    protected OdaException newOdaException( Throwable cause )
     {
         OdaException ex = new OdaException();
         ex.initCause( cause );
