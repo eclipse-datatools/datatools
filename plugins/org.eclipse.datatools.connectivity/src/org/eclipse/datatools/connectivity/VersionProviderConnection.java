@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 
 /**
  * Use this class a a base class for your versioned connection implementation.
@@ -86,7 +87,7 @@ public abstract class VersionProviderConnection implements IConnection,
 		}
 		if (saveProps) {
 			mProfile.internalSetProperties(mProfile.getProviderId(), props);
-			ProfileManager.getInstance().saveChanges();
+			InternalProfileManager.getInstance().saveChanges();
 		}
 	}
 

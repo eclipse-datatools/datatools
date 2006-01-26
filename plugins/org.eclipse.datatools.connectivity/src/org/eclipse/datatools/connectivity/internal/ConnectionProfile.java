@@ -43,7 +43,6 @@ import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
-import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ProfileRule;
 import org.eclipse.jface.util.ListenerList;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -164,7 +163,7 @@ public class ConnectionProfile extends PlatformObject implements
 		if (mParentProfile == null || mParentProfile.length() == 0) {
 			return null;
 		}
-		return ProfileManager.getInstance().getProfileByName(mParentProfile);
+		return InternalProfileManager.getInstance().getProfileByName(mParentProfile);
 	}
 
 	/*
@@ -215,7 +214,7 @@ public class ConnectionProfile extends PlatformObject implements
 		Properties newProps = new Properties();
 		newProps.putAll(props);
 		mPropertiesMap.put(type, newProps);
-		ProfileManager.getInstance().setDirty(true);
+		InternalProfileManager.getInstance().setDirty(true);
 	}
 
 	/*
@@ -477,7 +476,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private void notifyManager() {
 		if (!mIsCreating)
 			try {
-				ProfileManager.getInstance().modifyProfile(this);
+				InternalProfileManager.getInstance().modifyProfile(this);
 			}
 			catch (ConnectionProfileException e) {
 				ConnectivityPlugin.getDefault().log(e);
@@ -508,6 +507,25 @@ public class ConnectionProfile extends PlatformObject implements
 	 */
 	public int hashCode() {
 		return getName().hashCode();
+	}
+	
+	/*package*/ void dispose() {
+		Job disconnectJob = new DisconnectJob(true);
+		disconnectJob.schedule();
+		try {
+			disconnectJob.join();
+		}
+		catch (InterruptedException e) {
+		}
+		mPropertyListeners.clear();
+		mConnectListeners.clear();
+		for (Iterator it = mFactoryIDToManagedConnection.values()
+				.iterator(); it.hasNext();) {
+			ManagedConnection managedConnection = (ManagedConnection) it
+					.next();
+			managedConnection.dispose();
+		}
+		mFactoryIDToManagedConnection.clear();
 	}
 	
 	private void initManagedConnections() {
@@ -735,13 +753,20 @@ public class ConnectionProfile extends PlatformObject implements
 
 	public class DisconnectJob extends Job {
 
+		private boolean mForce;
+		
+		public DisconnectJob() {
+			this(false);
+		}
+		
 		/**
 		 * @param name
 		 */
-		public DisconnectJob() {
+		public DisconnectJob(boolean force) {
 			super(ConnectivityPlugin.getDefault().getResourceString(
 					"DisconnectJob.name", //$NON-NLS-1$
 					new Object[] { ConnectionProfile.this.getName()}));
+			mForce = force;
 			setUser(true);
 			setSystem(false);
 			setRule(new ProfileRule(ConnectionProfile.this));
@@ -763,25 +788,28 @@ public class ConnectionProfile extends PlatformObject implements
 					+ mFactoryIDToManagedConnection.size() + 1);
 
 			// Check to make sure nobody is using the connection
-			for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); it
-					.hasNext();) {
-				if (!((ManagedConnection) it.next()).okToClose()) {
-					monitor.setCanceled(true);
-					return Status.CANCEL_STATUS;
-				}
-			}
-
 			Object[] listeners = mConnectListeners.getListeners();
 			ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
-			for (int index = 0, count = listeners.length; index < count; ++index) {
-				try {
-					if (!((IConnectListener) listeners[index]).okToClose(event)) {
+			if (!mForce) {
+				for (Iterator it = mFactoryIDToManagedConnection.values()
+						.iterator(); it.hasNext();) {
+					if (!((ManagedConnection) it.next()).okToClose()) {
 						monitor.setCanceled(true);
 						return Status.CANCEL_STATUS;
 					}
 				}
-				catch (Exception e) {
-					ConnectivityPlugin.getDefault().log(e);
+
+				for (int index = 0, count = listeners.length; index < count; ++index) {
+					try {
+						if (!((IConnectListener) listeners[index])
+								.okToClose(event)) {
+							monitor.setCanceled(true);
+							return Status.CANCEL_STATUS;
+						}
+					}
+					catch (Exception e) {
+						ConnectivityPlugin.getDefault().log(e);
+					}
 				}
 			}
 
@@ -901,7 +929,7 @@ public class ConnectionProfile extends PlatformObject implements
 			return status;
 		}
 	}
-
+	
 	private static class ConnectMultiStatus extends MultiStatus {
 
 		public ConnectMultiStatus(int severity, IStatus[] newChildren,

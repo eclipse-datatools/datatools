@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -62,8 +61,8 @@ public class ConnectivityPlugin extends AbstractUIPlugin {
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
+		InternalProfileManager.getInstance().dispose();
 		super.stop(context);
-		ProfileManager.getInstance().saveChanges();
 	}
 
 	/**

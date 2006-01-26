@@ -129,7 +129,7 @@ public class ManagedConnection implements IManagedConnection {
 	}
 
 	public boolean isConnected() {
-		return mConnection == null || mConnection.getConnectException() != null;
+		return mConnection != null && mConnection.getConnectException() != null;
 	}
 
 	public IConnection getConnection() {
@@ -211,6 +211,17 @@ public class ManagedConnection implements IManagedConnection {
 				ConnectivityPlugin.getDefault().log(e);
 			}
 		}
+	}
+	
+	/*package*/ void dispose() {
+		if (isConnected()) {
+			try {
+				close();
+			}
+			catch (Exception e) {
+			}
+		}
+		mListeners.clear();
 	}
 
 	private class RestrictedConnection implements IConnection {

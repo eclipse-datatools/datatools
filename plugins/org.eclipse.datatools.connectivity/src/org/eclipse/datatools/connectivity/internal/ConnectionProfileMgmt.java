@@ -343,10 +343,6 @@ public class ConnectionProfileMgmt {
 						.equals(xmlChildren[i].getString(PROFILEAUTOCONNECT)),
 						xmlChildren[i].getString(PROFILEID));
 
-				// Make sure this is initialized so that UI components know
-				// to connect when they are opened.
-				cp.internalSetConnected(cp.isAutoConnect());
-
 				// Note: If we can't find a provider associated with the cp, we
 				// should abandon it.
 				if (cp.getProvider() == null)
