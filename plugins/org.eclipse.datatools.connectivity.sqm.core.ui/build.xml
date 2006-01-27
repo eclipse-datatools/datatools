@@ -55,6 +55,7 @@
 			<include name="org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*.jar"/>
 			<include name="org.eclipse.core.resources_*.jar"/>
+			<include name="com.ibm.icu_*.jar"/>
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>

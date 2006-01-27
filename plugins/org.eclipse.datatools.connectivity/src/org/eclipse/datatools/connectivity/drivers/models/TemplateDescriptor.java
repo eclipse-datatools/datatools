@@ -11,7 +11,6 @@
 package org.eclipse.datatools.connectivity.drivers.models;
 
 import java.io.IOException;
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -28,6 +27,8 @@ import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.jface.util.Assert;
 import org.eclipse.jface.util.SafeRunnable;
+
+import com.ibm.icu.text.Collator;
 
 /**
  * Represents a driver template which is provided by the

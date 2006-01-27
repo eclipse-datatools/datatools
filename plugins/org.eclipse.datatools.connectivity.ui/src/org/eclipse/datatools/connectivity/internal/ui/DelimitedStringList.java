@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
-import java.util.StringTokenizer;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -28,6 +27,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * Composite that provides a method of managing a delimited list of strings.

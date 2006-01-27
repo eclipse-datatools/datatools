@@ -13,7 +13,6 @@ package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -60,6 +59,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * Dialog used to edit a driver instance.

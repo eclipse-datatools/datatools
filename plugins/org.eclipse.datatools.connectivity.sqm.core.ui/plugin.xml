@@ -22,6 +22,7 @@
       <import plugin="org.eclipse.datatools.connectivity.sqm.core"/>
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.core.resources"/>
+      <import plugin="com.ibm.icu"/>
    </requires>
 
    <extension-point id="labelService" name="labelService" schema="schema/labelService.exsd"/>

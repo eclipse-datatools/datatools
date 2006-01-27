@@ -9,7 +9,6 @@
  */
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.services;
 
-import java.text.Collator;
 import java.util.Locale;
 
 import org.eclipse.core.resources.IResource;
@@ -19,6 +18,8 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+
+import com.ibm.icu.text.Collator;
 
 /**
  * @author ljulien

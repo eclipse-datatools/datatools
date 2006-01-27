@@ -12,10 +12,11 @@ package org.eclipse.datatools.connectivity.drivers;
 
 import java.io.File;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * Validates a driver instance.

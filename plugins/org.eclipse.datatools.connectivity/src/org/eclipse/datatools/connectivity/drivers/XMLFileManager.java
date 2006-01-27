@@ -21,13 +21,14 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * Basic XML file manager

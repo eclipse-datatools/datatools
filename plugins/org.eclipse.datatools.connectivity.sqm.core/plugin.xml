@@ -19,6 +19,7 @@
       <import plugin="org.eclipse.datatools.modelbase.sql"/>
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.datatools.connectivity"/>
+      <import plugin="com.ibm.icu"/>
    </requires>
 
    <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>

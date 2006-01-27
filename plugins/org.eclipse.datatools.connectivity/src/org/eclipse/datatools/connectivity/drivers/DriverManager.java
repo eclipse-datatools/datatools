@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -25,6 +24,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.ui.WorkbenchException;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * This class provides a management-level interface for drivers.

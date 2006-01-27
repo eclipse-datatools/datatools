@@ -28,7 +28,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
@@ -40,6 +39,8 @@ import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * This class is used for connection profiles management such as loading and

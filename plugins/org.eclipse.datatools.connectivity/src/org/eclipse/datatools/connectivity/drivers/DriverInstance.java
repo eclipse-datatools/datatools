@@ -15,9 +15,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
-import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * @author brianf

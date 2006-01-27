@@ -13,7 +13,6 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IElementIDProvider;
@@ -23,6 +22,8 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.containment.Containm
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ConnectionNodeUtil;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * @author ljulien
