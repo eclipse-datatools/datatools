@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Generic DB UI Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.db.generic.ui; singleton:=true
+Bundle-Version: 0.0.7
+Bundle-Activator: org.eclipse.datatools.connectivity.db.generic.ui.GenericDBUIPlugin
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.connectivity.db.generic
+Eclipse-AutoStart: true
+Bundle-ClassPath: genericdbui.jar
+Export-Package: org.eclipse.datatools.connectivity.db.generic.ui
