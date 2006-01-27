@@ -19,7 +19,6 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.DriverConnectionBase;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.IDBDriverDefinitionConstants;
 
 public class JDBCConnection extends DriverConnectionBase {
 

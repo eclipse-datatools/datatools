@@ -68,6 +68,8 @@
 			<include name="org.eclipse.datatools.modelbase.sql/sqlmodel.jar"/>
 			<include name="org.eclipse.datatools.connectivity/bin/*"/>
 			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/genericdb.jar"/>
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>

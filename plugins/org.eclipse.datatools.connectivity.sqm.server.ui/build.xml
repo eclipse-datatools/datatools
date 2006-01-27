@@ -84,6 +84,10 @@
 			<include name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
 			<include name="org.eclipse.datatools.connectivity.sqm.core.ui/bin/*"/>
 			<include name="org.eclipse.datatools.connectivity.sqm.core.ui/rdb.core.ui.jar"/>
+			<include name="org.eclipse.datatools.connectivity/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
+			<include name="org.eclipse.datatools.connectivity.ui/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.ui/connectivityui.jar"/>
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>

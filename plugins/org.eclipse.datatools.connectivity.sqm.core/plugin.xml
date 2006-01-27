@@ -20,6 +20,7 @@
       <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
       <import plugin="org.eclipse.datatools.connectivity"/>
       <import plugin="com.ibm.icu"/>
+      <import plugin="org.eclipse.datatools.connectivity.db.generic"/>
    </requires>
 
    <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
@@ -93,5 +94,13 @@
             class="UserDefinedType"
             provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.UserDefinedTypeContainmentProvider">
       </containment>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory"
+            id="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"
+            name="SQL Model Connection"
+            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
 </plugin>

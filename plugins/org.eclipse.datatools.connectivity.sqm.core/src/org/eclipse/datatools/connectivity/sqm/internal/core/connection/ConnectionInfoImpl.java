@@ -41,6 +41,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.VersionProviderConnection;
+import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.ResourceUtil;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;

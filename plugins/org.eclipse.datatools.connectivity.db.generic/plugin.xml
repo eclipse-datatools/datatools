@@ -16,11 +16,6 @@
             id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
             name="SQL Model-JDBC Connection"/>
       <connectionFactory
-            class="org.eclipse.datatools.connectivity.db.generic.SQMConnectionFactory"
-            id="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"
-            name="SQL Model Connection"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
-      <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="java.sql.Connection"
             name="JDBC Connection"
@@ -30,26 +25,14 @@
             id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
             name="Ping Connection Factory"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
-      <newWizard
-            class="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
-            icon="icons/new_db_element.gif"
-            id="org.eclipse.datatools.connectivity.db.generic.NewConnectionProfileWizard"
-            name="SQL Model-JDBC Connection"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
-   </extension>
-   <extension
-         point="org.eclipse.ui.propertyPages">
-      <page
-            class="org.eclipse.datatools.connectivity.db.generic.GenericDBProfilePropertyPage"
-            id="org.eclipse.datatools.connectivity.db.derby.profileProperties"
-            name="JDBC Connection Properties"
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
-         <filter
-               name="org.eclipse.datatools.profile.property.id"
-               value="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
-      </page>
    </extension>
    
+	<extension
+         point="org.eclipse.datatools.connectivity.driverExtension">    
+      <category
+            id="org.eclipse.datatools.connectivity.db.driverCategory"
+            name="Database"/>
+    </extension>
     <extension
          point="org.eclipse.datatools.connectivity.driverExtension">     
       <driverTemplate
@@ -58,53 +41,53 @@
             id="org.eclipse.datatools.connectivity.db.db2udb.genericDriverTemplate"
             jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cisuz.jar"
             name="IBM DB2 Universal for DB2 UDB V8.2"
-            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
                   name="Driver Class"
                   value="com.ibm.db2.jcc.DB2Driver"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
                   name="Vendor"
                   value="DB2 UDB"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.version"
+                  id="org.eclipse.datatools.connectivity.db.version"
                   name="Version"
                   value="V8.2"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
                   name="Database Name"
                   value="SAMPLE"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
+                  id="org.eclipse.datatools.connectivity.db.URL"
                   name="Connection URL"
                   value="jdbc:db2://localhost:50000/SAMPLE"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.username"
+                  id="org.eclipse.datatools.connectivity.db.username"
                   name="User ID"
                   value=""
                   required="false"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.password"
+                  id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
                   value=""
                   required="false"
@@ -121,53 +104,53 @@
             id="org.eclipse.datatools.connectivity.db.sybase.genericDriverTemplate"
             jarList="jconn2.jar"
             name="Sybase JDBC Driver for Sybase 12.x"
-            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
                   name="Driver Class"
                   value="com.sybase.jdbc2.jdbc.SybDriver"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
                   name="Vendor"
                   value="Sybase"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.version"
+                  id="org.eclipse.datatools.connectivity.db.version"
                   name="Version"
                   value="12.x"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
                   name="Database Name"
                   value="database"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
+                  id="org.eclipse.datatools.connectivity.db.URL"
                   name="Connection URL"
                   value="jdbc:sybase:Tds:host:port/database"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.username"
+                  id="org.eclipse.datatools.connectivity.db.username"
                   name="User ID"
                   value=""
                   required="false"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.password"
+                  id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
                   value=""
                   required="false"
@@ -184,53 +167,53 @@
             id="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
             jarList=""
             name="Generic JDBC Driver"
-            parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.driverClass"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
                   name="Driver Class"
                   value=""
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.vendor"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
                   name="Vendor"
                   value="Generic JDBC"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.version"
+                  id="org.eclipse.datatools.connectivity.db.version"
                   name="Version"
                   value="1.0"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.databaseName"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
                   name="Database Name"
                   value="SAMPLE"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.URL"
+                  id="org.eclipse.datatools.connectivity.db.URL"
                   name="Connection URL"
                   value="jdbc:"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.username"
+                  id="org.eclipse.datatools.connectivity.db.username"
                   name="User ID"
                   value=""
                   required="false"
                   visible="true"/>
             <property
                   generated="false"
-                  id="org.eclipse.datatools.connectivity.sqm.core.password"
+                  id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
                   value=""
                   required="false"
@@ -240,62 +223,59 @@
    </extension>   
    <extension 
        point="org.eclipse.datatools.connectivity.driverExtension">     
-    <category 
-          id="org.eclipse.datatools.connectivity.sqm.core.driverCategory" 
-          name="Database"/>   
     <driverTemplate 
           createDefault="false" 
           emptyJarListIsOK="false" 
           id="org.eclipse.datatools.connectivity.db.oracle.genericDriverTemplate" 
           jarList="classes12.jar" 
           name="Oracle JDBC Driver for Oracle 10" 
-          parentCategory="org.eclipse.datatools.connectivity.sqm.core.driverCategory" > 
+          parentCategory="org.eclipse.datatools.connectivity.db.driverCategory" > 
        <properties> 
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.driverClass" 
+                id="org.eclipse.datatools.connectivity.db.driverClass" 
                 name="Driver Class" 
                 value="oracle.jdbc.OracleDriver" 
                 required="true" 
                 visible="true"/> 
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.vendor" 
+                id="org.eclipse.datatools.connectivity.db.vendor" 
                 name="Vendor" 
                 value="Oracle" 
                 required="true" 
                 visible="false"/> 
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.version" 
+                id="org.eclipse.datatools.connectivity.db.version" 
                 name="Version" 
                 value="10" 
                 required="true" 
                 visible="false"/>   
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.databaseName" 
+                id="org.eclipse.datatools.connectivity.db.databaseName" 
                 name="Database Name" 
                 value="db" 
                 required="true" 
                 visible="true"/>                             
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.URL" 
+                id="org.eclipse.datatools.connectivity.db.URL" 
                 name="Connection URL" 
                 value="jdbc:oracle:thin:@server:1521:db" 
                 required="true" 
                 visible="true"/> 
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.username" 
+                id="org.eclipse.datatools.connectivity.db.username" 
                 name="User ID" 
                 value="" 
                 required="false" 
                 visible="true"/> 
           <property 
                 generated="false" 
-                id="org.eclipse.datatools.connectivity.sqm.core.password" 
+                id="org.eclipse.datatools.connectivity.db.password" 
                 name="Password" 
                 value="" 
                 required="false" 
@@ -304,66 +284,4 @@
     </driverTemplate> 
  </extension> 
  
- 
-<!--      <extension
-         point="org.eclipse.ui.navigator.navigatorContent">
-      <navigatorContent
-            contentProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelContentProviderExtension"
-            id="org.eclipse.datatools.connectivity.db.sqlModelContent"
-            labelProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelLabelProviderExtension"
-            name="SQL Model Content Extension">
-         <enablement>
-            <or>
-	            <and>
-	               <objectState
-	                     name="org.eclipse.datatools.connectivity.profile.property.factoryID"
-	                     value="java.sql.Connection">
-	               </objectState>
-	               <objectClass
-	                     name="org.eclipse.datatools.connectivity.IConnectionProfile">
-	               </objectClass>
-	            </and>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.schema.SQLObject">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.connectivity.db.generic.SQLModelContentExtension">
-               </objectClass>
-            </or>
-         </enablement>
-      </navigatorContent>
-   </extension> -->
-      <extension
-            point="org.eclipse.ui.navigator.navigatorContent">
-         <navigatorContent
-               contentProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelContentProviderExtension"
-               id="org.eclipse.datatools.connectivity.db.sqlModelContent"
-               labelProvider="org.eclipse.datatools.connectivity.db.generic.SQLModelLabelProviderExtension"
-               name="SQL Model Content Extension">
-            <enablement>
-               <or>
-                  <and>
-                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-				     <test
-						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
-						value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
-                  </and>
-                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
-                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
-                  <instanceof value="org.eclipse.datatools.connectivity.db.generic.SQLModelContentExtension"/>
-               </or>
-            </enablement>
-         </navigatorContent>
-      </extension>
-      <extension
-            point="org.eclipse.ui.navigator.viewer">
-         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
-            <includes>
-               <contentExtension pattern="org.eclipse.datatools.connectivity.db.sqlModelContent"/>
-            </includes>
-         </viewerContentBinding>
-      </extension>  
 </plugin>
