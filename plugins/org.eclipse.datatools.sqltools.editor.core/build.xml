@@ -53,7 +53,6 @@
 			<include name="org.eclipse.ui.editors_*.jar"/>
 			<include name="org.eclipse.core.filebuffers_*.jar"/>
 			<include name="org.eclipse.debug.core_*.jar"/>
-			<include name="org.eclipse.debug.ui_*.jar"/>
 			<include name="org.eclipse.emf.ecore_*.jar"/>
 			<include name="org.eclipse.emf.common_*.jar"/>
 			<include name="org.eclipse.emf.ecore.sdo_*.jar"/>
@@ -76,7 +75,6 @@
 			<include name="org.eclipse.ui.editors_*/org.eclipse.ui.editors_*.jar"/>
 			<include name="org.eclipse.core.filebuffers_*/org.eclipse.core.filebuffers_*.jar"/>
 			<include name="org.eclipse.debug.core_*/org.eclipse.debug.core_*.jar"/>
-			<include name="org.eclipse.debug.ui_*/org.eclipse.debug.ui_*.jar"/>
 			<include name="org.eclipse.emf.ecore_*/org.eclipse.emf.ecore_*.jar"/>
 			<include name="org.eclipse.emf.common_*/org.eclipse.emf.common_*.jar"/>
 			<include name="org.eclipse.emf.ecore.sdo_*/org.eclipse.emf.ecore.sdo*.jar"/>
@@ -96,6 +94,8 @@
 			<include name="org.eclipse.datatools.sqltools.sql/sqltools.jar"/>
 			<include name="org.eclipse.datatools.connectivity.sqm.core/bin/*"/>
 			<include name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/bin/*"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/genericdb.jar"/>
 		</fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
