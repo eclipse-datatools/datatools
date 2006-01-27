@@ -50,6 +50,7 @@
 			<include name="org.eclipse.jface.text_*.jar"/>
 			<include name="org.eclipse.text_*.jar"/>
 			<include name="org.eclipse.debug.core_*.jar"/>
+			<include name="com.ibm.icu_*.jar"/>
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>

@@ -15,9 +15,10 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
+
+import com.ibm.icu.util.StringTokenizer;
 
 /**
  * This interface is used to uniquely identifies a stored procedure, or trigger, or event handler, etc. Different

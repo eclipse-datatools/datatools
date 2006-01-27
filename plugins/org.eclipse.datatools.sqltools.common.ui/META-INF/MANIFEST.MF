@@ -10,7 +10,8 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text,
- org.eclipse.debug.core
+ org.eclipse.debug.core,
+ com.ibm.icu
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
 Export-Package: org.eclipse.datatools.sqltools.common.ui.preferences,

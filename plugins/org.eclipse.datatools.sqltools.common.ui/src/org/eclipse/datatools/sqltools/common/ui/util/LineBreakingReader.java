@@ -14,9 +14,10 @@ package org.eclipse.datatools.sqltools.common.ui.util;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.text.BreakIterator;
 
 import org.eclipse.swt.graphics.GC;
+
+import com.ibm.icu.text.BreakIterator;
 
 /*
  * Not a real reader. Could change if requested

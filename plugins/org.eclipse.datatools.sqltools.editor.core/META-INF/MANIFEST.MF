@@ -17,7 +17,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity;visibility:=reexport,
  org.eclipse.datatools.modelbase.sql;visibility:=reexport,
  org.eclipse.datatools.sqltools.sql;visibility:=reexport,
- org.eclipse.datatools.connectivity.sqm.core;visibility:=reexport
+ org.eclipse.datatools.connectivity.sqm.core;visibility:=reexport,
+ com.ibm.icu
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
 Export-Package: org.eclipse.datatools.sqltools.core,
