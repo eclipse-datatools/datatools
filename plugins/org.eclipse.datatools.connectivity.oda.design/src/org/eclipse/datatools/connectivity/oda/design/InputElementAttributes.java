@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputElementAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -51,6 +51,13 @@ public interface InputElementAttributes extends EObject
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
+    /**
+     * Indicates whether this input element has either
+     * static or dynamic value choices defined.
+     * @return  true if any type of value choices is defined
+     */
+    boolean hasValueChoices();
+    
     /**
      * Returns the value of the '<em><b>Default Scalar Value</b></em>' attribute.
      * <!-- begin-user-doc -->

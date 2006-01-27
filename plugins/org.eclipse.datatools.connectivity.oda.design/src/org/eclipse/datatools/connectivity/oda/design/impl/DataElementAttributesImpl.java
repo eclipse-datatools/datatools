@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataElementAttributesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -251,6 +252,58 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDataElementAttributes();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicablePrecision(short, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
+     */
+    public void setApplicablePrecision( short value, OdaScalarDataType odaDataType )
+    {
+        switch( odaDataType.getValue() )
+        {
+            // precision is not applicable for these data types
+            case OdaScalarDataType.DATE: 
+            case OdaScalarDataType.TIME: 
+            case OdaScalarDataType.TIMESTAMP: 
+                setPrecision( PRECISION_EDEFAULT );
+                break;
+            case OdaScalarDataType.DOUBLE: 
+            case OdaScalarDataType.INTEGER: 
+            case OdaScalarDataType.STRING: 
+            case OdaScalarDataType.DECIMAL: 
+            case OdaScalarDataType.BLOB: 
+            case OdaScalarDataType.CLOB:
+            default:
+                setPrecision( value );
+                break;
+        }        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicableScale(short, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
+     */
+    public void setApplicableScale( short value, OdaScalarDataType odaDataType )
+    {
+        switch( odaDataType.getValue() )
+        {
+            // scale is not applicable for these data types
+            case OdaScalarDataType.DATE: 
+            case OdaScalarDataType.TIME: 
+            case OdaScalarDataType.TIMESTAMP: 
+            case OdaScalarDataType.STRING: 
+            case OdaScalarDataType.BLOB: 
+            case OdaScalarDataType.CLOB:
+                setScale( SCALE_EDEFAULT );
+                break;
+            case OdaScalarDataType.INTEGER: 
+                setScale( (short) 0 );
+                break;
+            case OdaScalarDataType.DOUBLE: 
+            case OdaScalarDataType.DECIMAL: 
+            default:
+                setScale( value );
+                break;
+        }        
     }
 
     /* (non-Javadoc)

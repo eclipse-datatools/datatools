@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSetDesign.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -53,6 +53,14 @@ public interface DataSetDesign extends EObject
      * @generated
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Returns the ODA data source element ID of the
+     * dataSourceDesign that supports this type of data set.  
+     * Could be null, if nested within another dataSetDesign, 
+     * to share the container's dataSourceDesign.
+     */
+    public String getOdaExtensionDataSourceId();
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.

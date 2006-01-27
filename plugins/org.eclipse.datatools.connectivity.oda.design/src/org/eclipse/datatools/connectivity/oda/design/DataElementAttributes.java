@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataElementAttributes.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -50,6 +50,36 @@ public interface DataElementAttributes extends EObject
      * @generated
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getPrecision <em>Precision</em>}' attribute
+     * that is applicable for the given ODA data type.
+     * This provides the application logic on setting the applicable value
+     * for the given data type, and would return
+     * the applicable value in <code>getPrecision</code> method. 
+     * @param value the new value of the '<em>Precision</em>' attribute.
+     * @param odaDataType   the ODA data type of this data element
+     * @see #setPrecision()
+     * @see #isSetPrecision()
+     * @see #unsetPrecision()
+     * @see #getPrecision()
+     */
+    void setApplicablePrecision( short value, OdaScalarDataType odaDataType );
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getScale <em>Scale</em>}' attribute
+     * that is applicable for the given ODA data type.
+     * This provides the application logic on setting the applicable value
+     * for the given data type, and would return
+     * the applicable value in <code>getScale</code> method. 
+     * @param value the new value of the '<em>Scale</em>' attribute.
+     * @param odaDataType   the ODA data type of this data element
+     * @see #setScale()
+     * @see #isSetScale()
+     * @see #unsetScale()
+     * @see #getScale()
+     */
+    void setApplicableScale( short value, OdaScalarDataType odaDataType );
     
     /**
      * Indicates whether this data element is defined to allow a null value.
@@ -194,7 +224,8 @@ public interface DataElementAttributes extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Maximum number of decimal digits.  A value of -1 indicates this attribute is not applicable.
+     * Maximum number of decimal digits in a numeric value, or the length of a non-numeric value.  
+     * A value of -1 indicates this attribute is not applicable.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Precision</em>' attribute.
      * @see #isSetPrecision()

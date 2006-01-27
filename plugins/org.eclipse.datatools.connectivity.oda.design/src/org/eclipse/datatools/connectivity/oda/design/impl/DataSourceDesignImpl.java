@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSourceDesignImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -223,11 +223,27 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     }
 
     /**
+     * Returns the data source element ID defined in an ODA extension plugin manifest.  
+     * If null value is specified, defaults to be same as the 
+     * ODA extension id assuming only one dataSource element 
+     * is defined in the manifest.
+     */
+    public String getOdaExtensionDataSourceId()
+    {
+        String assignedValue = getOdaExtensionDataSourceIdGen();
+        if( assignedValue != null )
+            return assignedValue;
+        
+        // null, default to be the same as the ODA extension id 
+        return getOdaExtensionId();
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getOdaExtensionDataSourceId()
+    public String getOdaExtensionDataSourceIdGen()
     {
         return m_odaExtensionDataSourceId;
     }

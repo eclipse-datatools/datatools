@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataAccessDesignImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -79,6 +79,16 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDataAccessDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getOdaExtensionDataSourceId()
+     */
+    public String getOdaExtensionDataSourceId()
+    {
+        DataSetDesign dataSet = getDataSetDesign();
+        return ( dataSet == null ) ? null :
+                dataSet.getOdaExtensionDataSourceId();
     }
 
     /**

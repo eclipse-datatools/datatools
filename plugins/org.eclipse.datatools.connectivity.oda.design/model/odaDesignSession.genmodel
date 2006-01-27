@@ -7,7 +7,7 @@
     templateDirectory="/org.eclipse.datatools.connectivity.oda.design/src/templates"
     runtimeJar="true" dynamicTemplates="true" modelName="OdaDesignSession" editPluginClass="org.eclipse.datatools.connectivity.oda.design.provider.OdaDesignSessionEditPlugin"
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
-    generateSchema="true" nonNLSMarkers="true" runtimeCompatibility="false">
+    generateSchema="true" nonNLSMarkers="true" codeFormatting="true">
   <foreignModel>file:/E:/lchan/doc/JaRP/DataEngine/Schema/odaDesignSession.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">

@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputElementUIHintsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 
@@ -99,11 +100,31 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
     }
 
     /**
+     * Returns the prompt style if set, or defaults to
+     * to TextField if no static and dynamic value choices are 
+     * defined in container element, InputElementAttributes; 
+     * otherwise, defaults to SelectableList.
+     */
+    public InputPromptControlStyle getPromptStyle()
+    {
+        if( isSetPromptStyle() )
+            return getPromptStyleGen();
+        
+        // not set, applies default based on settings of
+        // the container element, InputElementAttributes
+        assert( eContainer() instanceof InputElementAttributes );
+        InputElementAttributes parent = (InputElementAttributes) eContainer();
+        return parent.hasValueChoices() ?
+                InputPromptControlStyle.SELECTABLE_LIST_LITERAL :
+                InputPromptControlStyle.TEXT_FIELD_LITERAL ;
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public InputPromptControlStyle getPromptStyle()
+    public InputPromptControlStyle getPromptStyleGen()
     {
         return m_promptStyle;
     }

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputElementAttributesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -214,6 +214,15 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getInputElementAttributes();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#hasValueChoices()
+     */
+    public boolean hasValueChoices()
+    {
+        return( getStaticValueChoices() != null ||
+                getDynamicValueChoices() != null );
     }
 
     /**
