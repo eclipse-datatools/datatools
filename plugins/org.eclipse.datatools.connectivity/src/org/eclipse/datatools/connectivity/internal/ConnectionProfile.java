@@ -587,7 +587,7 @@ public class ConnectionProfile extends PlatformObject implements
 	public class ConnectJob extends Job {
 
 		/**
-		 * @param name
+		 * 
 		 */
 		public ConnectJob() {
 			super(ConnectivityPlugin.getDefault().getResourceString(
@@ -760,7 +760,7 @@ public class ConnectionProfile extends PlatformObject implements
 		}
 		
 		/**
-		 * @param name
+		 * @param force
 		 */
 		public DisconnectJob(boolean force) {
 			super(ConnectivityPlugin.getDefault().getResourceString(

@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import com.ibm.icu.util.StringTokenizer;
 
 /**
+ * Collection of Driver properties
  * @author brianf
  */
 public class DriverInstance {
@@ -30,6 +31,10 @@ public class DriverInstance {
 	private Properties mInstanceProps;
 	private ClassLoader mClassLoader;
 
+	/**
+	 * Basic constructor. Picks up template details from the property set.
+	 * @param instance An instance of an IPropertySet object
+	 */
 	public DriverInstance(IPropertySet instance) {
 		this.mInstance = instance;
 		this.mInstanceProps = this.mInstance.getBaseProperties();
@@ -42,20 +47,38 @@ public class DriverInstance {
 		}
 	}
 
+	/**
+	 * Constructor to pass an explicit template along with the property set.
+	 * @param template TemplateDescriptor
+	 * @param instance IPropertySet
+	 */
 	public DriverInstance(TemplateDescriptor template, IPropertySet instance) {
 		this.mTemplate = template;
 		this.mInstance = instance;
 		this.mInstanceProps = this.mInstance.getBaseProperties();
 	}
 
+	/**
+	 * Return the name of the Driver instance
+	 * @return String Driver name
+	 */
 	public String getName() {
 		return this.mInstance.getName();
 	}
 
+	/**
+	 * Return the id of the Driver instance
+	 * @return String Driver ID
+	 */
 	public String getId() {
 		return this.mInstance.getID();
 	}
 
+	/**
+	 * Return the jar list for the driver instance as a 
+	 * comma-delimited string.
+	 * @return String Comma-delimited jar list
+	 */
 	public String getJarList() {
 		if (this.mInstanceProps != null) {
 			if (this.mInstanceProps
@@ -68,6 +91,11 @@ public class DriverInstance {
 		return null;
 	}
 
+	/**
+	 * Return the jar list for the driver instance as an
+	 * array.
+	 * @return String[] String array of jar paths
+	 */
 	public String[] getJarListAsArray() {
 		if (this.mInstanceProps != null && getJarList() != null) {
 			if (getJarList().length() == 0)
@@ -79,6 +107,11 @@ public class DriverInstance {
 		return null;
 	}
 
+	/**
+	 * Retrieve a property value by name.
+	 * @param name Property name
+	 * @return String Property value
+	 */
 	public String getNamedProperty(String name) {
 		String rtnStr = ""; //$NON-NLS-1$
 		if (this.mInstanceProps != null) {
@@ -93,6 +126,11 @@ public class DriverInstance {
 		return rtnStr;
 	}
 
+	/**
+	 * Retrieve a property value by property id.
+	 * @param id Property ID
+	 * @return String Property value
+	 */
 	public String getProperty(String id) {
 		String rtnStr = null;
 		if (mInstanceProps != null) {
@@ -101,6 +139,10 @@ public class DriverInstance {
 		return rtnStr == null ? new String() : rtnStr;
 	}
 
+	/**
+	 * Get the Template the Driver Instance was based on.
+	 * @return TemplateDescriptor Template information
+	 */
 	public TemplateDescriptor getTemplate() {
 		return this.mTemplate;
 	}
@@ -114,10 +156,20 @@ public class DriverInstance {
 		return pieces;
 	}
 
+	/**
+	 * Returns the actual property set for the driver instance.
+	 * @return IPropertySet 
+	 */
 	public IPropertySet getPropertySet() {
 		return this.mInstance;
 	}
 
+	/**
+	 * Returns a default class loader (no parent) and loads
+	 * the files from the jar list.
+	 * @return ClassLoader URLClassLoader with jar list pre-loaded
+	 * @throws Exception
+	 */
 	public ClassLoader getClassLoader() throws Exception {
 		if (mClassLoader == null) {
 			mClassLoader = createClassLoader(null);
@@ -125,6 +177,13 @@ public class DriverInstance {
 		return mClassLoader;
 	}
 
+	/**
+	 * Creates a ClassLoader for the Driver Instance and loads
+	 * the files from the jar list.
+	 * @param parentCL ClassLoader parent
+	 * @return ClassLoader URLClassLoader with jar list pre-loaded
+	 * @throws Exception 
+	 */
 	public ClassLoader createClassLoader(ClassLoader parentCL) throws Exception {
 		String jarList = getJarList();
 		if ((jarList == null || jarList.trim().length() == 0)
@@ -149,6 +208,9 @@ public class DriverInstance {
 		return URLClassLoader.newInstance(jars, parentCL);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof DriverInstance) {
 			return obj == this
@@ -157,6 +219,9 @@ public class DriverInstance {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	public int hashCode() {
 		return getId().hashCode();
 	}

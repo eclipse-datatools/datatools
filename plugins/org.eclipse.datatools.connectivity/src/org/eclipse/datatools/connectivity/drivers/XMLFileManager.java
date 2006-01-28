@@ -199,7 +199,7 @@ public class XMLFileManager {
 	/**
 	 * Return the file name
 	 * 
-	 * @return
+	 * @return String
 	 */
 	public static String getFileName() {
 		return mFileName;
@@ -207,11 +207,16 @@ public class XMLFileManager {
 
 	/**
 	 * Set the file name
+	 * @param name
 	 */
 	public static void setFileName(String name) {
 		mFileName = name;
 	}
 
+	/**
+	 * Returns date last the file was last modified
+	 * @return String
+	 */
 	public static String getFileDateTimeStamp() {
 		IPath path = getStorageLocation();
 		path = path.append(mFileName);

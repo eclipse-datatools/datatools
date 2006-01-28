@@ -29,8 +29,7 @@ public class DriversProvider {
 
 	/**
 	 * Returns an instance of the provider
-	 * 
-	 * @return
+	 * @return DriversProvider
 	 */
 	public static DriversProvider getInstance() {
 		if (provider == null)

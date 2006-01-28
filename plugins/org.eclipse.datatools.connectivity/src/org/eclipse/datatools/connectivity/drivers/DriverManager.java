@@ -36,6 +36,10 @@ public class DriverManager {
 
 	private static DriverManager sInstance;
 
+	/**
+	 * Retrieve an instance of the DriverManager
+	 * @return DriverManager
+	 */
 	public static synchronized DriverManager getInstance() {
 		if (sInstance == null) {
 			sInstance = new DriverManager();
@@ -47,6 +51,11 @@ public class DriverManager {
 		resetDefaultInstances();
 	}
 
+	/**
+	 * Retrieve a DriverInstance by Id
+	 * @param id ID of the driver
+	 * @return DriverInstance
+	 */
 	public DriverInstance getDriverInstanceByID(String id) {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
@@ -69,6 +78,11 @@ public class DriverManager {
 		return null;
 	}
 
+	/**
+	 * Retrieve a DriverInstance by name.
+	 * @param name Name of the driver
+	 * @return Driver Instance
+	 */
 	public DriverInstance getDriverInstanceByName(String name) {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
@@ -91,6 +105,10 @@ public class DriverManager {
 		return null;
 	}
 
+	/**
+	 * Return a comma-delimited list of all jars for all drivers.
+	 * @return String
+	 */
 	public String getFullJarList() {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
@@ -152,6 +170,10 @@ public class DriverManager {
 		return null;
 	}
 
+	/**
+	 * Return an array of all jars for all drivers.
+	 * @return String[]
+	 */
 	public String[] getFullJarListAsArray() {
 		if (getFullJarList() != null) {
 			if (getFullJarList().length() == 0)
@@ -163,6 +185,10 @@ public class DriverManager {
 		return null;
 	}
 
+	/**
+	 * Returns an array of valid driver instances
+	 * @return DriverInstance[]
+	 */
 	public DriverInstance[] getValidDriverInstances() {
 		DriverInstance[] array = new DriverInstance[0];
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
@@ -195,6 +221,14 @@ public class DriverManager {
 		return array;
 	}
 
+	/**
+	 * Create a new DriverInstance based on the incoming templateID,
+	 * driver name, and jar list.
+	 * @param templateID String ID of the template
+	 * @param name String name to give the driver
+	 * @param jarList String jar list to give the driver
+	 * @return DriverInstance
+	 */
 	public DriverInstance createNewDriverInstance(String templateID,
 			String name, String jarList) {
 		IPropertySet pset = createDefaultInstance(templateID);
@@ -209,6 +243,11 @@ public class DriverManager {
 		return getDriverInstanceByID(pset.getID());
 	}
 
+	/**
+	 * Removes a driver instance based on the id.
+	 * @param id String ID of the driver instance
+	 * @return true on success, false otherwise
+	 */
 	public boolean removeDriverInstance(String id) {
 		boolean rtnFlag = false;
 		if (getDriverInstanceByID(id) != null) {
@@ -243,6 +282,10 @@ public class DriverManager {
 		return rtnFlag;
 	}
 
+	/**
+	 * Adds a new driver instance to the Drivers file
+	 * @param pset IPropertySet
+	 */
 	private void addDriverInstance(IPropertySet pset) {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
@@ -263,6 +306,12 @@ public class DriverManager {
 		}
 	}
 
+	/**
+	 * Parses the incoming string by the token.
+	 * @param str_list String list
+	 * @param token Token to use to break up the string
+	 * @return String array 
+	 */
 	private String[] parseString(String str_list, String token) {
 		StringTokenizer tk = new StringTokenizer(str_list, token);
 		String[] pieces = new String[tk.countTokens()];
@@ -346,6 +395,11 @@ public class DriverManager {
 		}
 	}
 
+	/**
+	 * Creates a default instance of the driver.
+	 * @param id String ID of driver
+	 * @return IPropertySet
+	 */
 	public IPropertySet createDefaultInstance(String id) {
 		TemplateDescriptor template = TemplateDescriptor
 				.getDriverTemplateDescriptor(id);
@@ -353,6 +407,11 @@ public class DriverManager {
 		return pset;
 	}
 
+	/**
+	 * Creates an empty instance of the template
+	 * @param template IPropertySet
+	 * @return IPropertySet
+	 */
 	private IPropertySet createInstance(TemplateDescriptor template) {
 		return createDefaultInstance(template, true);
 	}
@@ -361,12 +420,18 @@ public class DriverManager {
 	 * Create a default instance of a driver template.
 	 * 
 	 * @param template
-	 * @return
+	 * @return IPropertySet
 	 */
 	private IPropertySet createDefaultInstance(TemplateDescriptor template) {
 		return createDefaultInstance(template, false);
 	}
 
+	/**
+	 * Creates a default instance of the template
+	 * @param template TemplateDescriptor to use
+	 * @param override Boolean flag indicating if the template should be overridden
+	 * @return IPropertySet object
+	 */
 	private IPropertySet createDefaultInstance(TemplateDescriptor template,
 			boolean override) {
 
@@ -417,6 +482,13 @@ public class DriverManager {
 		return null;
 	}
 
+	/**
+	 * Updates the jar list if it contains any [PLUGIN] tags, replacing them
+	 * with the actual path referenced. For instance, the install location in 
+	 * the file system for the given plugin.
+	 * @param template TemplateDescriptor
+	 * @return String Updated jar list
+	 */
 	private String updatePluginJarList(TemplateDescriptor template) {
 		String jarList = template.getJarList();
 

@@ -130,7 +130,7 @@ public class ConnectionProfileMgmt {
 	 * 
 	 * @param cps
 	 * @param file
-	 * @param useEncryption
+	 * @param isp
 	 * @throws IOException
 	 */
 	public static void saveCPs(IConnectionProfile[] cps, File file,
@@ -309,8 +309,8 @@ public class ConnectionProfileMgmt {
 	 * Load all connection profiles from storage
 	 * 
 	 * @param file
-	 * @param needDecryption
-	 * @return
+	 * @param isp
+	 * @return IConnectionProfile[]
 	 * @throws IOException
 	 * @throws WorkbenchException
 	 */

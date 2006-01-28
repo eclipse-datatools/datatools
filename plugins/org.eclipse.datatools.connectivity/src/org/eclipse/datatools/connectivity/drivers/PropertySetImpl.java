@@ -107,8 +107,6 @@ public class PropertySetImpl implements IPropertySet {
 
 	/**
 	 * Clones the property set and returns the clone object.
-	 * 
-	 * @see java.lang.Object#clone()
 	 */
 	public Object clone() {
 		Properties cloneProps = (Properties) getBaseProperties().clone();

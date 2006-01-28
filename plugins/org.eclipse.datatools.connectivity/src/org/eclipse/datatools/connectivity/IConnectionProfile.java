@@ -226,8 +226,6 @@ public interface IConnectionProfile {
 	 * This method is a shortcut for getProvider().getProviderId().
 	 * 
 	 * @return the id of the provider managing this profile
-	 * 
-	 * @see IConnectionProfileProvider#getProviderId()
 	 */
 	String getProviderId();
 
@@ -262,7 +260,7 @@ public interface IConnectionProfile {
 	 * This method is a shortcut for
 	 * getProvider()getConnectionFactory(factoryId).createConnection(this).
 	 * 
-	 * @param factoryId the connection factory id
+	 * @param factory the connection factory id
 	 * 
 	 * @return a connection if successful; otherwise null
 	 * 

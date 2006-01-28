@@ -116,8 +116,7 @@ public class TemplateDescriptor implements Comparable {
 
 	/**
 	 * Returns the parent category of the template
-	 * 
-	 * @return
+	 * @return CategoryDescriptor
 	 */
 	public CategoryDescriptor getParent() {
 		Collection col = Arrays.asList(CategoryDescriptor

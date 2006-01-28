@@ -36,12 +36,18 @@ public class DriverValidator {
 
 	/**
 	 * Constructor
+	 * @param template
+	 * @param instance
 	 */
 	public DriverValidator(TemplateDescriptor template, IPropertySet instance) {
 		this.mTemplate = template;
 		this.mInstance = instance;
 	}
 
+	/**
+	 * Driver validator constructor 
+	 * @param driverInstance
+	 */
 	public DriverValidator(DriverInstance driverInstance) {
 		this.mTemplate = driverInstance.getTemplate();
 		this.mInstance = driverInstance.getPropertySet();
@@ -50,7 +56,7 @@ public class DriverValidator {
 	/**
 	 * Return the error message.
 	 * 
-	 * @return
+	 * @return String of error message
 	 */
 	public String getMessage() {
 		return this.mMessage;
@@ -59,7 +65,7 @@ public class DriverValidator {
 	/**
 	 * Return true/false if the driver instance is valid
 	 * 
-	 * @return
+	 * @return boolean true if valid, false otherwise
 	 */
 	public boolean isValid() {
 		this.mMessage = null;

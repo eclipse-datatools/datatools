@@ -95,7 +95,7 @@ public class CategoryDescriptor implements Comparable {
 	 * Returns a category descriptor matching the id or null.
 	 * 
 	 * @param id
-	 * @return
+	 * @return CategoryDescriptor
 	 */
 	public static CategoryDescriptor getCategoryDescriptor(String id) {
 		if (fgCategoryDescriptors == null) {
@@ -110,10 +110,10 @@ public class CategoryDescriptor implements Comparable {
 	}
 
 	/**
-	 * Returns a list of all root categories (i.e. those with no parent
-	 * category).
+	 * Returns a list of all root categories (for example 
+	 * those with no parent category).
 	 * 
-	 * @return
+	 * @return CategoryDescriptor[]
 	 */
 	public static CategoryDescriptor[] getRootCategories() {
 		Collection col = Arrays.asList(getCategoryDescriptors());
@@ -129,7 +129,7 @@ public class CategoryDescriptor implements Comparable {
 	}
 
 	/**
-	 * @return
+	 * @return CategoryDescriptor
 	 */
 	public CategoryDescriptor getParent() {
 		if (getParentCategory() != null) {
@@ -146,6 +146,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns a list of all child categories for this category.
+	 * @return List
 	 */
 	public List getChildCategories() {
 		Collection col = Arrays.asList(getCategoryDescriptors());
@@ -163,6 +164,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns a list of all associated driver types for this category.
+	 * @return List
 	 */
 	public List getAssociatedDriverTypes() {
 		Collection col = Arrays.asList(TemplateDescriptor
@@ -181,6 +183,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns the category id.
+	 * @return String ID
 	 */
 	public String getId() {
 		return this.fElement.getAttribute(ID_ATTRIBUTE);
@@ -188,6 +191,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns the category parent.
+	 * @return String 
 	 */
 	public String getParentCategory() {
 		return this.fElement.getAttribute(PARENTCATEGORY_ATTRIBUTE);
@@ -195,6 +199,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns the configuration element.
+	 * @return IConfigurationElement
 	 */
 	public IConfigurationElement getElement() {
 		return this.fElement;
@@ -202,6 +207,7 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Returns the name.
+	 * @return String
 	 */
 	public String getName() {
 		String name = this.fElement.getAttribute(NAME_ATTRIBUTE);
@@ -223,8 +229,9 @@ public class CategoryDescriptor implements Comparable {
 		return description;
 	}
 
-	/*
+	/* (non-Javadoc)
 	 * Implements a method from IComparable
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */
 	public int compareTo(Object o) {
 		if (o instanceof CategoryDescriptor)
@@ -235,6 +242,8 @@ public class CategoryDescriptor implements Comparable {
 
 	/**
 	 * Creates the category descriptors.
+	 * @param elements
+	 * @return
 	 */
 	private static CategoryDescriptor[] createCategoryDescriptors(
 			IConfigurationElement[] elements) {
@@ -271,7 +280,6 @@ public class CategoryDescriptor implements Comparable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	public String toString() {
