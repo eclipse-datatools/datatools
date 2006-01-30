@@ -32,7 +32,6 @@ public class NewConnectionProfileWizard
 	public NewConnectionProfileWizard() {
 		setWindowTitle(GenericDBPlugin.getDefault().getResourceString(
 				"NewConnectionProfileWizard.title")); //$NON-NLS-1$
-		mProviderID = IDBConnectionProfileConstants.CONNECTION_PROFILE_ID;
 	}
 
     /**

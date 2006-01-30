@@ -52,6 +52,8 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 
 	// stashed driver instance
 	private DriverInstance mDriverInstance;
+	
+	private String mDriverCategory;
 
 	/**
 	 * Constructor
@@ -64,6 +66,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 				"GenericDBProfileDetailsWizardPage.title")); //$NON-NLS-1$
 		setDescription(GenericDBPlugin.getDefault().getResourceString(
 				"GenericDBProfileDetailsWizardPage.msg")); //$NON-NLS-1$
+		setDriverCategory(IDBDriverDefinitionConstants.DATABASE_CATEGORY_ID);
 	}
 
 	/*
@@ -79,8 +82,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 		// set up the drivers combo
 		this.combo.setLabelText(GenericDBPlugin.getDefault().getResourceString(
 				"GenericDBProfileDetailsWizardPage.driverCombo.label")); //$NON-NLS-1$
-		this.combo
-				.setCategory(IDBDriverDefinitionConstants.DATABASE_CATEGORY_ID);
+		this.combo.setCategory(getDriverCategory());
 		this.combo.setNullDriverIsValid(false);
 		this.combo.createContents(content);
 		if (this.combo.getErrorMessage() != null) {
@@ -404,6 +406,19 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	public void setErrorMessage(String newMessage) {
 		super.setErrorMessage(newMessage);
 		isValid();
+	}
+
+	
+	public String getDriverCategory() {
+		return mDriverCategory;
+	}
+
+	
+	public void setDriverCategory(String driverCategoryFilter) {
+		mDriverCategory = driverCategoryFilter;
+		if (combo != null) {
+			combo.setCategory(mDriverCategory);
+		}
 	}
 
 }

@@ -49,9 +49,12 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 	private DelimitedStringList mDBConnProps;
 	private DriverInstance mDriverInstance;
 
+	private String mDriverCategory;
+
 	public GenericDBProfilePropertyPage() {
 		super();
 		noDefaultAndApplyButton();
+		setDriverCategory(IDBDriverDefinitionConstants.DATABASE_CATEGORY_ID);
 	}
 
 	/**
@@ -64,8 +67,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 
 		this.combo.setLabelText(GenericDBPlugin.getDefault().getResourceString(
 				"GenericDBProfileDetailsWizardPage.driverCombo.label")); //$NON-NLS-1$
-		this.combo
-				.setCategory(IDBDriverDefinitionConstants.DATABASE_CATEGORY_ID);
+		this.combo.setCategory(getDriverCategory());
 		this.combo.setNullDriverIsValid(false);
 		this.combo.createContents(content);
 		if (this.combo.getErrorMessage() != null) {
@@ -303,5 +305,18 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		super.setErrorMessage(newMessage);
 		isValid();
 	}
+
+	public String getDriverCategory() {
+		return mDriverCategory;
+	}
+
+	
+	public void setDriverCategory(String driverCategoryFilter) {
+		mDriverCategory = driverCategoryFilter;
+		if (combo != null) {
+			combo.setCategory(mDriverCategory);
+		}
+	}
+
 }
 
