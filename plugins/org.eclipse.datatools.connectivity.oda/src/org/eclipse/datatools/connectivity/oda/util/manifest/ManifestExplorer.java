@@ -48,7 +48,7 @@ public class ManifestExplorer
 	private static Logger sm_logger = Logger.getLogger( sm_loggerName );
 
 	private static final String DTP_ODA_EXT_POINT = 
-	    	"org.eclipse.datatools.connectivity.oda.dataSource";
+	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
 	
 	/**
 	 * Gets the <code>ManifestExplorer</code> instance to  
@@ -88,13 +88,13 @@ public class ManifestExplorer
 			try
 			{
 				IConfigurationElement dsElement = getDataSourceElement( extension );
-				String dataSourceId = dsElement.getAttribute( "id" );
+				String dataSourceId = dsElement.getAttribute( "id" );  //$NON-NLS-1$
 				String dataSourceDisplayName = getElementDisplayName( dsElement );
 				extensionIds.setProperty( dataSourceId, dataSourceDisplayName );
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
+				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 			}
 		}
 		
@@ -203,7 +203,7 @@ public class ManifestExplorer
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
+				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 			}
 		}
 		
@@ -230,11 +230,11 @@ public class ManifestExplorer
 				 */
 				IConfigurationElement dataSourceElement = 
 				    		getDataSourceElement( extension );
-				extnDataSourceId = dataSourceElement.getAttribute( "id" );
+				extnDataSourceId = dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
+				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 				continue;
 			}
 			
@@ -249,38 +249,53 @@ public class ManifestExplorer
 		return null;
 	}
 	
-	private IExtension[] getExtensions( String extPoint )
-	{
-		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-		IExtensionPoint extensionPoint = 
-			pluginRegistry.getExtensionPoint( extPoint );
-		if ( extensionPoint == null )
-		    return null;
-		return extensionPoint.getExtensions();
-	}
-	
 	private IExtension[] getDataSourceExtensions()
 	{
 		return getExtensions( DTP_ODA_EXT_POINT );
 	}
 	
 	// Package static helper methods
+    
+    /*
+     * Returns all the plugin extensions that implements the given
+     * extension point.
+     */
+    public static IExtension[] getExtensions( String extPoint )
+    {
+        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+        IExtensionPoint extensionPoint = 
+            pluginRegistry.getExtensionPoint( extPoint );
+        if ( extensionPoint == null )
+            return null;
+        return extensionPoint.getExtensions();
+    }
 	
 	/*
 	 * Returns the dataSource element of the given data source extension.
 	 */
 	static IConfigurationElement getDataSourceElement( IExtension extension ) 
 		throws OdaException
+    {
+        return getDataSourceElement( extension, "dataSource" );  //$NON-NLS-1$
+    }
+    
+    /*
+     * Returns the dataSource element of the given data source extension
+     * and element name.
+     */
+    public static IConfigurationElement getDataSourceElement( IExtension extension,
+            String elementName ) 
+        throws OdaException
 	{
 		IConfigurationElement[] configElements = extension.getConfigurationElements();
 		for( int i = 0, n = configElements.length; i < n; i++ )
 		{
 			IConfigurationElement configElement = configElements[i];
-			if( ! configElement.getName().equalsIgnoreCase( "dataSource" ) )
+			if( ! configElement.getName().equalsIgnoreCase( elementName ) )
 			    continue;
 
 			// validate that the data source element has an id
-			String dataSourceId = configElement.getAttribute( "id" );	
+			String dataSourceId = configElement.getAttribute( "id" );	//$NON-NLS-1$
 			if( dataSourceId == null || dataSourceId.length() == 0 )
 				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
 
@@ -301,11 +316,11 @@ public class ManifestExplorer
 		for( int i = 0, size = configElements.length; i < size; i++ )
 		{
 			IConfigurationElement configElement = configElements[i];
-			if( ! configElement.getName().equalsIgnoreCase( "dataSet" ) )
+			if( ! configElement.getName().equalsIgnoreCase( "dataSet" ) )  //$NON-NLS-1$
 			    continue;
 			
 			// validate that the data set definition has an id
-			String dataSetTypeId = configElement.getAttribute( "id" );
+			String dataSetTypeId = configElement.getAttribute( "id" );  //$NON-NLS-1$
 			if( dataSetTypeId == null || dataSetTypeId.length() == 0 )
 				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SET_TYPE_ID_DEFINED,
 															new Object[] { dataSourceElementId } ) );		
@@ -326,29 +341,29 @@ public class ManifestExplorer
 	 */ 
 	static String getElementDisplayName( IConfigurationElement dsElement )
 	{
-	    String displayName = dsElement.getAttribute( "defaultDisplayName" );
+	    String displayName = dsElement.getAttribute( "defaultDisplayName" );  //$NON-NLS-1$
 
 	    // Default to its id or name, if no display name is specified
 		if ( displayName == null || displayName.length() == 0 )
 		{
-		    displayName = dsElement.getAttribute( "name" );
+		    displayName = dsElement.getAttribute( "name" );  //$NON-NLS-1$
 		    if ( displayName == null )  // no such attribute
-			    displayName = dsElement.getAttribute( "id" );
+			    displayName = dsElement.getAttribute( "id" );  //$NON-NLS-1$
 		}
 		
 		return displayName;
 	}
 
 	
-	static String getLocalizedMessage( int errorNumber )
+	public static String getLocalizedMessage( int errorNumber )
 	{
 		ResourceManager manager = 
-			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources", 
+			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$ 
 												   Locale.getDefault() );
-		return ( manager != null ) ? manager.getString( errorNumber ) : "";
+		return ( manager != null ) ? manager.getString( errorNumber ) : "";  //$NON-NLS-1$
 	}
 	
-	static String getLocalizedMessage( int errorNumber, Object[] arguments )
+    public static String getLocalizedMessage( int errorNumber, Object[] arguments )
 	{
 		return MessageFormat.format( getLocalizedMessage( errorNumber ), arguments );
 	}

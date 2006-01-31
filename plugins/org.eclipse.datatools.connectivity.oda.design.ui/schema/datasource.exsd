@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda.design.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda.design.ui" id="dataSource" name="Open Data Access Designer UI Extension Point"/>
+      </appInfo>
+      <documentation>
+         This extension point provides extensibility to the Open Data Access (ODA) Designer UI framework, through which an user may define an ODA data source design.  
+&lt;br&gt;An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to provide a customized ODA designer.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="dataSourceUI"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dataSourceUI">
+      <annotation>
+         <documentation>
+            Allows providers to provide customized dialog page(s) support for an user to create a new ODA data access design definition.
+The element defines children elements for the data source wizard page(s) and editor page(s).
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="newDataSourceWizard"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified ID that uniquely identifies the ODA data source extension within an ODA consumer application&apos;s environment.  Its value must match that of the &lt;i&gt;dataSource.id&lt;/i&gt; attribute defined in the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension of the same ODA driver.  
+If implementing the &lt;i&gt;org.eclipse.datatools.connectivity.connectionProfile&lt;/i&gt; extension point, its value must also match that of its &lt;i&gt;connectionProfile.id&lt;/i&gt; attribute.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="newDataSourceWizard">
+      <annotation>
+         <documentation>
+            This element defines the customizable behavior of the new data source wizard dialog that allows an user to create a new ODA data source definition.  It includes specifying the customized wizard page that an extension would add to the new data source wizard dialog (org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.NewDataSourceWizard).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="windowTitle" type="string">
+            <annotation>
+               <documentation>
+                  The customized title of the new data source wizard window.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="includesProgressMonitor" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  Indicates whether the new data source wizard should include a progress monitor.  Default value is &quot;true&quot;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pageTitle" type="string">
+            <annotation>
+               <documentation>
+                  The page title of the new data source wizard&apos;s first customized page.  Its value, if specified, overrides any title that may have been set by the wizard page&apos;s constructor.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pageClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully quailfied class name that implements the first wizard page for creating a new customized ODA data source definition.
+&lt;br&gt;This class must extend from the ODA abstract base class, &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceWizardPage&lt;/i&gt;.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceWizardPage"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         3.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;extension
+	point=&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;&gt;
+    &lt;dataSourceUI id=&quot;%oda.data.source.id&quot;&gt;
+        &lt;newDataSourceWizard
+			pageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;
+            pageTitle=&quot;Select Folder&quot;
+            windowTitle=&quot;New Flat File Data Source Profile&quot;
+            includesProgressMonitor=&quot;true&quot;/&gt;
+    &lt;/dataSourceUI&gt;
+&lt;/extension&gt;
+
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         An extension must implement the related dialog pages defined in the extension&apos;s schema. See the abstract base classes&apos; JavaDoc documentation in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui&lt;/i&gt; project for more information.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The plug-in &lt;i&gt;org.eclipse.datatools.connectivity.oda.flatfile.ui&lt;/i&gt;, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA Design UI extension.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2006 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>

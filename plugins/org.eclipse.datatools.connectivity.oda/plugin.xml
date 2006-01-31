@@ -13,7 +13,13 @@
       <library name="odaconsumer-helper.jar">
          <export name="*"/>
       </library>
-      <library name="lib/birt-core.jar"/>
+      <library name="lib/birt-core.jar">
+         <export name="org.eclipse.birt.core.framework.*"/>
+         <export name="org.eclipse.birt.core.framework.eclipse.*"/>
+         <export name="org.eclipse.birt.core.framework.parser.*"/>
+         <export name="org.eclipse.birt.core.framework.server.*"/>
+         <export name="org.eclipse.birt.core.plugin.*"/>
+      </library>
    </runtime>
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
