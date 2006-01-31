@@ -68,5 +68,15 @@
                value="%oda.data.source.id"/>
       </page>
    </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.oda.design.ui.dataSource">
+      <dataSourceUI id="%oda.data.source.id">
+         <newDataSourceWizard
+               includesProgressMonitor="false"
+               pageClass="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage"
+               pageTitle="%wizard.data.source.page.title"
+               windowTitle="%wizard.window.title"/>
+      </dataSourceUI>
+   </extension>
 
 </plugin>
