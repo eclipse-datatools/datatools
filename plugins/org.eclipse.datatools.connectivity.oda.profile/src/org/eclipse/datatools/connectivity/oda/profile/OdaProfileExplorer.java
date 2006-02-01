@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.profile;
 
 import java.io.File;
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
@@ -34,6 +35,10 @@ public class OdaProfileExplorer
 {
     private static OdaProfileExplorer sm_instance = null;
 
+    /**
+     * Static method to return the singleton instance.
+     * @return
+     */
     public static OdaProfileExplorer getInstance()
     {
         if( sm_instance == null )
@@ -52,18 +57,18 @@ public class OdaProfileExplorer
      * profile storage location with default file name.
      * It also caches the matching profiles and saves in the
      * current profile storage file for subsequent use.
-     * <br>The connection profiles' instance Id and display name
-     * are stored as the key and value in the returned Properties instance.
-     * Returns an empty <code>Properties</code> if there are 
-     * no matching connection profiles found in default store.
      * @param odaDataSourceId   the unique id of the data source element
      *                      in an ODA data source extension.
-     * @return  a <code>Properties</code> containing the instanceId
+     * @return  a <code>Map</code> containing the instance Id
      *          and display name of all existing profiles of given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are 
+     *          no matching connection profiles found in default store.
      * @throws OdaException if unable to read from default storageFile, 
      *                      or to cache the found profiles
      */
-    public Properties getProfiles( String odaDataSourceId )
+    public Map getProfiles( String odaDataSourceId )
         throws OdaException
     {
         // use the current storage location and default store filename
@@ -78,33 +83,24 @@ public class OdaProfileExplorer
      * instances of a given ODA data source extension type.
      * The profile instances are searched in the given profile storage file.
      * It also caches the matching profiles and saves in the
-     * given profile storage file for subsequent use.
-     * <br>The connection profiles' instance Id and display name
-     * are stored as the key and value in the returned Properties instance.
-     * Returns an empty <code>Properties</code> if there are 
-     * no matching connection profiles found in given storageFile.
+     * current profile storage file for subsequent use.
      * @param odaDataSourceId   the unique id of the data source element
      *                      in an ODA data source extension.
      * @param storageFile   a file that stores profile instances
-     * @return  a <code>Properties</code> containing the instanceId
+     * @return  a <code>Map</code> containing the instance Id
      *          and display name of all existing profiles of given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are 
+     *          no matching connection profiles found in default store.
      * @throws OdaException if unable to read from given storageFile,
      *                      or to cache the found profiles
      */
-    public Properties getProfiles( String odaDataSourceId,
-                                   File storageFile ) 
+    public Map getProfiles( String odaDataSourceId, File storageFile ) 
         throws OdaException
     {
         // first load all profiles found in given storage file
-        IConnectionProfile[] profilesInFile;
-        try
-        {
-            profilesInFile = ConnectionProfileMgmt.loadCPs( storageFile );
-        }
-        catch( Exception ex )
-        {
-             throw newOdaException( ex );
-        }
+        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
 
         // return those profile ids that match given oda data source type,
         // and add them in the ProfileManager's profiles cache
@@ -131,6 +127,27 @@ public class OdaProfileExplorer
         }
         
         return profileIds;
+    }
+
+    /*
+	 * Reads and returns the profiles found in given storage file.
+     * @param storageFile
+     * @return
+     * @throws OdaException
+     */
+    private IConnectionProfile[] loadProfiles( File storageFile ) 
+        throws OdaException
+    {
+        IConnectionProfile[] profilesInFile;
+        try
+        {
+            profilesInFile = ConnectionProfileMgmt.loadCPs( storageFile );
+        }
+        catch( Exception ex )
+        {
+             throw newOdaException( ex );
+        }
+        return profilesInFile;
     }
     
     /*
@@ -163,8 +180,12 @@ public class OdaProfileExplorer
         return profile.getBaseProperties();
     }
 
-    /*
+    /**
      * Returns the profile in cache with given instance id.
+     * @param profileInstanceId     the unique instance id of a profile
+     *                              in cache, as found in the collection
+     *                              returned by the getProfiles methods
+     * @return  the instance of matching profile
      * @throws IllegalArgumentException if instance is not found.
      */
     public IConnectionProfile getProfile( String profileInstanceId )
@@ -174,6 +195,28 @@ public class OdaProfileExplorer
         if( profile == null )
             throw new IllegalArgumentException( profileInstanceId );
         return profile;
+    }
+    
+    /**
+     * Finds and returns the profile instance in given storage file
+     * that matches the given profile instance name.
+     * @param profileName   The unique name of a connection profile instance.
+     * @param storageFile   a file that stores profile instances
+     * @return  the matching profile instance, or null if not found
+     */
+    public IConnectionProfile getProfileByName( String profileName,
+                                                File storageFile )
+        throws OdaException
+    {
+        // first load all profiles found in given storage file
+        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
+
+        for( int i = 0; i < profilesInFile.length; i++ ) 
+        {
+            if( profilesInFile[i].getName().equals( profileName ) )
+                return profilesInFile[i];   // a match
+        }
+        return null;    // no match is found
     }
     
     protected OdaException newOdaException( String messageId, Object msgArgument )
