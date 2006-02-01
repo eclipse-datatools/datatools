@@ -45,7 +45,8 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         {
             // calls the oda.IDriver.getConnection( dataSourceId ) 
             // which returns a wrapped oda.IConnection object
-            m_odaConnectionHelper = getOdaConnectionHelper( m_odaDataSourceId );
+            getOdaConnectionHelper( m_odaDataSourceId );
+            assert( m_odaConnectionHelper != null );
             m_connectException = null;
         }
         catch( OdaException e )
@@ -146,25 +147,60 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         return Constants.ODA_COMPONENT_NAME;
     }
 
+    // Provides additional connection services for use by the
+    // ODA framework.
+    
+    /**
+     * Attempts to establish a live connection based on the 
+     * connection properties of the profile instance
+     * used to create this connection. 
+     * It is up to individual ODA driver to process the 
+     * connection properties. 
+     * @throws  OdaException if the underlying ODA driver 
+     *                       fails to open a live connection
+     */
+    public void open() throws OdaException
+    {
+        assert( getRawConnection() instanceof IConnection );
+        IConnection odaConn = (IConnection) getRawConnection();
+
+        odaConn.open( getConnectionProfile().getBaseProperties() );
+    }
+    
     private IConnection getOdaConnectionHelper( String odaDataSourceElementId )
         throws OdaException
     {
-        if( m_odaDriverHelper == null )
-        {
-            ExtensionManifest driverManifest = 
-                ManifestExplorer.getInstance().getExtensionManifest( odaDataSourceElementId );
-    
-            if( driverManifest != null )
-                m_odaDriverHelper = new OdaDriver( driverManifest );
-        }
+        if( m_odaConnectionHelper != null )
+            return m_odaConnectionHelper;
         
-        if( m_odaDriverHelper == null )
-        {           
-            // error handling; TODO - externalize error message
-            throw new OdaException( "Unable to locate the ODA driver: " + odaDataSourceElementId );
+        IDriver odaDriver = getOdaDriverHelper( odaDataSourceElementId );
+        
+        assert( odaDriver != null );    // should have thrown OdaException
+        m_odaConnectionHelper = odaDriver.getConnection( odaDataSourceElementId );
+        return m_odaConnectionHelper;
+    }
+
+    private IDriver getOdaDriverHelper( String odaDataSourceElementId ) 
+        throws OdaException
+    {
+        if( m_odaDriverHelper != null )
+            return m_odaDriverHelper;
+
+        ExtensionManifest driverManifest = null;
+        try
+        {
+            driverManifest = ManifestExplorer.getInstance().getExtensionManifest( odaDataSourceElementId );
+        }
+        catch( IllegalArgumentException ex )
+        {
+            OdaException odaEx = new OdaException();
+            odaEx.initCause( ex );
+            throw odaEx;
         }
 
-        return m_odaDriverHelper.getConnection( odaDataSourceElementId );
+        assert( driverManifest != null );
+        m_odaDriverHelper = new OdaDriver( driverManifest );
+        return m_odaDriverHelper;
     }
     
 }
