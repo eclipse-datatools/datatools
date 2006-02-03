@@ -39,7 +39,7 @@ public class OdaProfileExplorer
      * Static method to return the singleton instance.
      * @return
      */
-    public static OdaProfileExplorer getInstance()
+    public static synchronized OdaProfileExplorer getInstance()
     {
         if( sm_instance == null )
             sm_instance = new OdaProfileExplorer();
@@ -219,13 +219,13 @@ public class OdaProfileExplorer
         return null;    // no match is found
     }
     
-    protected OdaException newOdaException( String messageId, Object msgArgument )
+    public static OdaException newOdaException( String messageId, Object msgArgument )
     {
         // TODO - get localized message text
         return new OdaException( messageId );
     }
     
-    protected OdaException newOdaException( Throwable cause )
+    public static OdaException newOdaException( Throwable cause )
     {
         OdaException ex = new OdaException();
         ex.initCause( cause );
