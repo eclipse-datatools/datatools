@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataAccessDesign.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: DataAccessDesign.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -74,4 +74,19 @@ public interface DataAccessDesign extends EObject
      */
     void setDataSetDesign( DataSetDesign value );
 
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSetDesign <em>Data Set Design</em>}' containment reference
+     * with a new data set design associated with given
+     * data source design.
+     * @param dataSourceDesign
+     */
+    void setNewDataSetDesign( DataSourceDesign dataSourceDesign );
+
+    /**
+     * Returns the value of the Data Source Design associated
+     * with the Data Set.
+     * @return the value of the '<em>Data Source Design</em>' containment reference.
+     */
+    DataSourceDesign getDataSourceDesign();
+    
 } // DataAccessDesign

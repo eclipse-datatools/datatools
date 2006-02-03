@@ -11,10 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: PropertyImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
 import org.eclipse.datatools.connectivity.oda.design.Property;
@@ -94,6 +95,18 @@ public class PropertyImpl extends EObjectImpl implements Property
         return DesignPackage.eINSTANCE.getProperty();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Property#setNameValue(java.lang.String, java.lang.String)
+     */
+    public void setNameValue( String name, String value )
+    {
+        NameValuePair newPair = DesignFactory.eINSTANCE.createNameValuePair();
+        newPair.setName( name );
+        newPair.setValue( value );
+        
+        setNameValue( newPair );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

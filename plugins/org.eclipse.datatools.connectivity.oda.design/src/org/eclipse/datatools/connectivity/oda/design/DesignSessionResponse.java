@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignSessionResponse.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -127,6 +127,14 @@ public interface DesignSessionResponse extends EObject
      * @generated
      */
     void setDataAccessDesign( DataAccessDesign value );
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse#getDataAccessDesign <em>Data Access Design</em>}' containment reference
+     * with a new data access design with a
+     * new data set associated with given data source design.
+     * @param dataSourceDesign
+     */
+    void setNewDataAccessDesign( DataSourceDesign dataSourceDesign );
 
     /**
      * Returns the value of the '<em><b>Designer State</b></em>' containment reference.

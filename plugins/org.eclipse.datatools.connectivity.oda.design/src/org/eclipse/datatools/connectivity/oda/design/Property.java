@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: Property.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -45,6 +45,14 @@ public interface Property extends EObject
      * @generated
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.Property#getNameValue <em>Name Value</em>}' containment reference
+     * with the pair values.
+     * @param name
+     * @param value
+     */
+    void setNameValue( String name, String value );
 
     /**
      * Returns the value of the '<em><b>Name Value</b></em>' containment reference.

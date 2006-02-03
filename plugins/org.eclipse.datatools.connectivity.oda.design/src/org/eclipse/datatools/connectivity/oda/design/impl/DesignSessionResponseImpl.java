@@ -11,11 +11,13 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignSessionResponseImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
@@ -122,6 +124,18 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDesignSessionResponse();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse#setNewDataAccessDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     */
+    public void setNewDataAccessDesign( DataSourceDesign dataSourceDesign )
+    {
+        DataAccessDesign newAccessDesign =
+            DesignFactory.eINSTANCE.createDataAccessDesign();
+        newAccessDesign.setNewDataSetDesign( dataSourceDesign );
+        
+        setDataAccessDesign( newAccessDesign );        
     }
 
     /**

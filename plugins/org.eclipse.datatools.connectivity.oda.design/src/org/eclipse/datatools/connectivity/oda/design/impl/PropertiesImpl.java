@@ -11,12 +11,13 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: PropertiesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
@@ -84,6 +85,16 @@ public class PropertiesImpl extends EObjectImpl implements Properties
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getProperties();
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#addProperty(java.lang.String, java.lang.String)
+     */
+    public void addProperty( String propName, String propValue )
+    {
+        Property newProp = DesignFactory.eINSTANCE.createProperty();
+        newProp.setNameValue( propName, propValue );
+        getProperties().add( newProp );
     }
 
     /**

@@ -11,12 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id: DataAccessDesignImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DataAccessDesignImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -89,6 +91,32 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
         DataSetDesign dataSet = getDataSetDesign();
         return ( dataSet == null ) ? null :
                 dataSet.getOdaExtensionDataSourceId();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSourceDesign()
+     */
+    public DataSourceDesign getDataSourceDesign()
+    {
+        if( getDataSetDesign() == null )
+            return null;
+        
+        return getDataSetDesign().getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#setNewDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     */
+    public void setNewDataSetDesign( DataSourceDesign dataSourceDesign )
+    {
+        if( dataSourceDesign == null )
+            return;     // no need to create an empty data set; leaves as empty
+        
+        DataSetDesign newDataSet =
+            DesignFactory.eINSTANCE.createDataSetDesign();
+        newDataSet.setDataSourceDesign( dataSourceDesign );
+        
+        setDataSetDesign( newDataSet );
     }
 
     /**

@@ -11,14 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: OdaDesignSessionImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -91,6 +94,59 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getOdaDesignSession();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewRequest(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     */
+    public void setNewRequest( DataSourceDesign dataSourceDesign )
+    {
+        DesignSessionRequest newRequest =
+            DesignFactory.eINSTANCE.createDesignSessionRequest();
+        newRequest.setNewDataAccessDesign( dataSourceDesign );
+
+        setRequest( newRequest );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewResponse(boolean, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     */
+    public void setNewResponse( boolean isSessionOk, 
+                                DataSourceDesign dataSourceDesign )
+    {
+        DesignSessionResponse newResponse =
+            DesignFactory.eINSTANCE.createDesignSessionResponse();
+        
+        if( isSessionOk )
+            newResponse.setSessionStatus( SessionStatus.OK_LITERAL );
+        else
+            newResponse.setSessionStatus( SessionStatus.ERROR_LITERAL );
+
+        newResponse.setNewDataAccessDesign( dataSourceDesign );
+        
+        setResponse( newResponse );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getRequestDataSourceDesign()
+     */
+    public DataSourceDesign getRequestDataSourceDesign()
+    {
+        if( getRequest() == null )
+            return null;
+        
+        return getRequest().getDataAccessDesign().getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponseDataSourceDesign()
+     */
+    public DataSourceDesign getResponseDataSourceDesign()
+    {
+        if( getResponse() == null )
+            return null;
+        
+        return getResponse().getDataAccessDesign().getDataSourceDesign();
     }
 
     /**

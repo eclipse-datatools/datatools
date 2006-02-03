@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: Properties.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -47,6 +47,14 @@ public interface Properties extends EObject
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
+    /**
+     * Adds the given property name and value as a NameValuePair to the
+     * '<em><b>Properties</b></em>' containment reference list.
+     * @param propName
+     * @param propValue
+     */
+    void addProperty( String propName, String propValue );
+    
     /**
      * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.Property}.
