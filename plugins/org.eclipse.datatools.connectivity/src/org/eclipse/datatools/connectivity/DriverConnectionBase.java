@@ -13,6 +13,21 @@ package org.eclipse.datatools.connectivity;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 
+/**
+ * Base implementation for a connection that uses the driver framework.
+ * Sub-classes should invoke open() from their constructor to create the
+ * connection.
+ * 
+ * This class takes care of working with the driver management framework,
+ * including setting up the class loader required for locating connection
+ * classes.
+ * 
+ * This class depends on the
+ * <code>org.eclipse.datatools.connectivity.ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID</code>
+ * property being set on the connection profile.
+ * 
+ * @author rcernich
+ */
 public abstract class DriverConnectionBase extends VersionProviderConnection {
 
 	private DriverInstance mDriver;
@@ -23,6 +38,9 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 		super(profile, factoryClass);
 	}
 
+	/**
+	 * opens a connection to the server identified by the connection profile.
+	 */
 	public void open() {
 		if (mConnection != null) {
 			close();
@@ -34,18 +52,43 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 		internalCreateConnection();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IConnection#getRawConnection()
+	 */
 	public Object getRawConnection() {
 		return mConnection;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IConnection#getConnectException()
+	 */
 	public Throwable getConnectException() {
 		return mConnectException;
 	}
 
+	/**
+	 * Creates the connection to the server identified by the connection
+	 * profile.
+	 * 
+	 * @param cl created from the driver definition (if a class path was
+	 *        specified)
+	 * @return the new connection
+	 * @throws Throwable any error that occurred when trying to create the
+	 *         connection
+	 */
 	protected abstract Object createConnection(ClassLoader cl) throws Throwable;
 	
+	/**
+	 * Initialize version information from the server.
+	 */
 	protected abstract void initVersions();
 
+	/**
+	 * Returns the parent class loader that should be used as the parent to the
+	 * class loader created from the driver definition.
+	 * 
+	 * @return the parent class loader
+	 */
 	protected ClassLoader getParentClassLoader() {
 		return null;
 	}
@@ -73,6 +116,11 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 		}
 	}
 
+	/**
+	 * @return the driver definition referenced by the connection profile.
+	 * 
+	 * @throws Exception if the driver cannot be located.
+	 */
 	protected DriverInstance getDriverDefinition() throws Exception {
 		if (mDriver == null) {
 			String driverID = getConnectionProfile()

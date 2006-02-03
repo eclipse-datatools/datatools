@@ -14,6 +14,7 @@ package org.eclipse.datatools.connectivity;
  * This interface is used for accessing functionality specific to configuration
  * types.
  * 
+ * @deprecated
  * @author rcernich
  * 
  * Created on Jan 15, 2004

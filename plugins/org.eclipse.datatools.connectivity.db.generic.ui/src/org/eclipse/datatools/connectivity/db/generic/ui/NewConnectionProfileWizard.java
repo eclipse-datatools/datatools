@@ -50,7 +50,7 @@ public class NewConnectionProfileWizard
 		props.setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
 				this.mPropPage.getDriverID());
 		props.setProperty(
-				IDBConnectionProfileConstants.PROP_CONNECTION_PROPERTIES,
+				IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID,
 				this.mPropPage.getDBConnProps());
 		props.setProperty(IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID, this.mPropPage
 				.getDriverClass());

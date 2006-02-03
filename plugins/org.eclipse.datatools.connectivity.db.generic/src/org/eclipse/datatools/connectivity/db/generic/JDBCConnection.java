@@ -20,6 +20,18 @@ import org.eclipse.datatools.connectivity.DriverConnectionBase;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 
+/**
+ * NON-API
+ * 
+ * IConnection implementation for <code>java.sql.Connection</code> objects.
+ * This object is responsible for openening and closing JDBC connections.
+ * 
+ * The property keys specified in
+ * <code>org.eclipse.datatools.connectivity.db.generic.IDBConnectionProfileConstants</code>
+ * are used to create the connection.
+ * 
+ * Version information is provided by using <code>java.sql.DatabaseMetaData</code>.
+ */
 public class JDBCConnection extends DriverConnectionBase {
 
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
@@ -38,13 +50,13 @@ public class JDBCConnection extends DriverConnectionBase {
 	protected Object createConnection(ClassLoader cl) throws Throwable {
 		Properties props = getConnectionProfile().getBaseProperties();
 		String driverClass = getDriverDefinition().getProperty(
-				IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);
+				IDBConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
 		String connectURL = props
-				.getProperty(IDBDriverDefinitionConstants.URL_PROP_ID);
+				.getProperty(IDBConnectionProfileConstants.URL_PROP_ID);
 		String uid = props
-				.getProperty(IDBDriverDefinitionConstants.USERNAME_PROP_ID);
+				.getProperty(IDBConnectionProfileConstants.USERNAME_PROP_ID);
 		String pwd = props
-				.getProperty(IDBDriverDefinitionConstants.PASSWORD_PROP_ID);
+				.getProperty(IDBConnectionProfileConstants.PASSWORD_PROP_ID);
 
 		Properties connectionProps = new Properties();
 

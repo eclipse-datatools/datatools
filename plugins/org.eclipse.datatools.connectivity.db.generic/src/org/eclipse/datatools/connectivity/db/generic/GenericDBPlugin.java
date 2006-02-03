@@ -20,6 +20,7 @@ import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
+ * NON-API
  */
 public class GenericDBPlugin extends AbstractUIPlugin {
 

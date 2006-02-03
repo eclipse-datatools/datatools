@@ -14,6 +14,12 @@ package org.eclipse.datatools.connectivity.ui;
 import org.eclipse.ui.IActionFilter;
 
 
+/**
+ * Constants used when evalutating connection profile state through
+ * IActionFilter or IPropertyTester
+ * 
+ * TODO: remove duplicate entries.
+ */
 public interface IConnectionProfileActionFilter extends IActionFilter {
 	
 	/**

@@ -34,6 +34,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
+ * This class allows the user to edit connection properties for the generic DB
+ * connection profile.
+ * 
  * @author ledunnel
  */
 public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
@@ -186,7 +189,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		props.setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
 				driverID);
 		props.setProperty(
-				IDBConnectionProfileConstants.PROP_CONNECTION_PROPERTIES,
+				IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID,
 				this.mDBConnProps.getSelection());	
 		props.setProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID, getPropertyFromDriverInstance(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID));		
 		props.setProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, getPropertyFromDriverInstance(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID));		
@@ -215,7 +218,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		}
 
 		String connectionProps = profile.getBaseProperties().getProperty(
-				IDBConnectionProfileConstants.PROP_CONNECTION_PROPERTIES);
+				IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID);
 		if (connectionProps != null) {
 			this.mDBConnProps.setSelection(connectionProps);
 		}
@@ -311,8 +314,14 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 	}
 
 	
-	public void setDriverCategory(String driverCategoryFilter) {
-		mDriverCategory = driverCategoryFilter;
+	/**
+	 * Sets the driver category that should be used for displaying available
+	 * driver defnitions.
+	 * 
+	 * @param driverCategory
+	 */
+	public void setDriverCategory(String driverCategory) {
+		mDriverCategory = driverCategory;
 		if (combo != null) {
 			combo.setCategory(mDriverCategory);
 		}

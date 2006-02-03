@@ -17,9 +17,25 @@ package org.eclipse.datatools.connectivity;
  */
 public interface IProfileListener {
 
+	/**
+	 * The specified profile has been added.
+	 * 
+	 * @param profile
+	 */
 	public void profileAdded(IConnectionProfile profile);
 
+	/**
+	 * The specified profile has been deleted.
+	 * 
+	 * @param profile
+	 */
 	public void profileDeleted(IConnectionProfile profile);
 
+	/**
+	 * The specified profile has been modified.  Modification includes
+	 * changes to any properties, the name, auto-connect flag, etc.
+	 * 
+	 * @param profile
+	 */
 	public void profileChanged(IConnectionProfile profile);
 }

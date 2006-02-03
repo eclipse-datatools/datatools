@@ -15,8 +15,21 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFactory;
 
 /**
- * @author ledunnel
+ * <code>org.eclipse.datatools.connectivity.IConnectionFactory</code> for
+ * creating
+ * <code>org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo</code>
+ * connections.
  * 
+ * To use this class in a custom DB connection profile, you must make sure your
+ * profile contains a <code>java.sql.Connection</code> connection factory, as
+ * well as a
+ * <code>org.eclipse.datatools.connectivity.ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID</code>
+ * property. Additionally, the driver specified must contain the following
+ * properties from
+ * <code>org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants</code>:
+ * DATABASE_VENDOR_PROP_ID, DATABASE_VERSION_PROP_ID, DATABASE_NAME_PROP_ID.
+ * 
+ * @author ledunnel
  */
 public class SQMConnectionFactory extends ConnectionFactory {
 	public SQMConnectionFactory() {

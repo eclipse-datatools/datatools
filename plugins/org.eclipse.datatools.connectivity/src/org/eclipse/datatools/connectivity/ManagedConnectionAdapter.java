@@ -23,19 +23,34 @@ public class ManagedConnectionAdapter implements IManagedConnectionListener {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#opened(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
 	public void opened(ConnectEvent event) {
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#modified(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
 	public void modified(ConnectEvent event) {
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#okToClose(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
 	public boolean okToClose(ConnectEvent event) {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#aboutToClose(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
 	public void aboutToClose(ConnectEvent event) {
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#closed(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
 	public void closed(ConnectEvent event) {
 	}
 

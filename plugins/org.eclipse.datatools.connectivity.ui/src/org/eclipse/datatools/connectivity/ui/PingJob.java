@@ -23,6 +23,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.progress.UIJob;
 
+/**
+ * Executes a ping operation as a background job.
+ */
 public class PingJob extends Job {
 
 	private IConnectionProfile icp;

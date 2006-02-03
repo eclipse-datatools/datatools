@@ -29,6 +29,11 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.ui.progress.UIJob;
 
 /**
+ * This class can be used by UI components to refresh a connection profile
+ * within a TreeViewer.  This job synchronizes with other profile jobs and
+ * ensures that refresh(profile) is invoked only once per tree viewer per connection
+ * profile.
+ * 
  * @author rcernich
  * 
  * Created on May 24, 2005
@@ -58,6 +63,10 @@ public class RefreshProfileJob extends UIJob {
 		}
 	};
 
+	/**
+	 * @param profile the connection profile to refresh
+	 * @param viewer the viewer containing the profile
+	 */
 	public static void scheduleRefreshProfileJob(IConnectionProfile profile,
 			TreeViewer viewer) {
 		RefreshProfileJob newJob;

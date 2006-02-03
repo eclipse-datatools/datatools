@@ -11,6 +11,10 @@
 package org.eclipse.datatools.connectivity;
 
 /**
+ * Provides version information about the server and technology supported by
+ * the server to the connection profile framework.  The provider version is
+ * only collected by connections created from the "ping" connection factory.
+ * 
  * @author rcernich
  * 
  * Created on May 31, 2005
@@ -18,7 +22,7 @@ package org.eclipse.datatools.connectivity;
 public interface IServerVersionProvider {
 
 	/**
-	 * @return the version of the server (e.g. ASE 12.5)
+	 * @return the version of the server (e.g. 12.5)
 	 */
 	Version getProviderVersion();
 
@@ -28,8 +32,7 @@ public interface IServerVersionProvider {
 	String getProviderName();
 
 	/**
-	 * @return the version of the technology running on the server (e.g. JMS
-	 *         1.1)
+	 * @return the version of the technology running on the server (e.g. 1.1)
 	 */
 	Version getTechnologyVersion();
 

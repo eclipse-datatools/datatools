@@ -21,6 +21,15 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 /**
+ * NON-API
+ * 
+ * A simple reference count based connection pool. This class manages the life
+ * cycle of connections by handling <code>ConnectEvent</code>s through a
+ * registered <code>IConnectListener</code>. Connections are only managed for
+ * those profiles and connection factories registered with the manager by a
+ * client (i.e. if no client has registered with the connection manager, no
+ * connections are made).
+ * 
  * @author brianf, rcernich
  */
 public class ProfileConnectionManager {

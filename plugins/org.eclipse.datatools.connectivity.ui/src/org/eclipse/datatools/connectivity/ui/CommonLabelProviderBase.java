@@ -21,6 +21,17 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
 
+/**
+ * Base label provider class that can be extended for adding content to a
+ * connection profile using a navigatorContent extension.
+ * 
+ * Manages the labels for IContentExtension. Labels from the connection object
+ * on down is provided by the delegate label provider.
+ * 
+ * This class allows clients to plug-in existing label providers for a
+ * connection type.
+ * 
+ */
 public class CommonLabelProviderBase implements ICommonLabelProvider {
 
 	private IExtensionStateModel mStateModel;

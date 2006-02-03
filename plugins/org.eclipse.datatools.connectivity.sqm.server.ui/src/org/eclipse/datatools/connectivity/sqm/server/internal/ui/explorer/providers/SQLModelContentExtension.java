@@ -17,6 +17,10 @@ import org.eclipse.datatools.connectivity.ui.ManagedContentExtensionBase;
 import org.eclipse.swt.graphics.Image;
 
 /**
+ * Represents the root of the SQL model content contribution. Wraps a
+ * <code>org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo</code>
+ * connection in the navigator.
+ * 
  * @see IContentExtension
  */
 public class SQLModelContentExtension extends ManagedContentExtensionBase {

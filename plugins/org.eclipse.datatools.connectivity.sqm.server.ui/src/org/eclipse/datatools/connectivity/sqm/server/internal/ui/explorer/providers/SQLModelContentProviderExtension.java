@@ -16,9 +16,8 @@ import org.eclipse.datatools.connectivity.ui.CommonContentProviderBase;
 import org.eclipse.datatools.connectivity.ui.IContentExtension;
 
 /**
- * This class implements the navigatorContent extension and supplies workspace
- * resources.
- * 
+ * This class is a content provider implemention for navigatorContent
+ * extensions. This class provides SQL model content to the navigator.
  */
 public class SQLModelContentProviderExtension extends CommonContentProviderBase {
 

@@ -10,11 +10,22 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.db.generic;
 
-public interface IDBConnectionProfileConstants {
-	
+/**
+ * Constant definitions for property keys used to identify DB connection profile
+ * properties.
+ */
+public interface IDBConnectionProfileConstants extends
+		IDBDriverDefinitionConstants {
+
+	/**
+	 * The connection profile ID for the generic DB connection profile type.
+	 */
 	public static final String CONNECTION_PROFILE_ID = "org.eclipse.datatools.connectivity.db.generic.connectionProfile";
 
-	public static final String PROP_PREFIX = "org.eclipse.datatools.connectivity.db.generic.";//$NON-NLS-1$
-	public static final String PROP_CONNECTION_PROPERTIES = PROP_PREFIX + "connectionProperties";
+	/**
+	 * Property used to store JDBC connection properties (i.e. properties passed
+	 * as a <code>Properties</code> object to <code>java.sql.Driver.connect()</code>).
+	 */
+	public static final String CONNECTION_PROPERTIES_PROP_ID = PROP_PREFIX + "connectionProperties";
 
 }

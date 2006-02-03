@@ -13,6 +13,9 @@ package org.eclipse.datatools.connectivity;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 
 /**
+ * Can be used to synchronize a <code>Job</code> with other <code>Job</code>s
+ * affecting a specific profile.
+ * 
  * @author rcernich
  * 
  * Created on May 24, 2005
@@ -21,6 +24,9 @@ public class ProfileRule implements ISchedulingRule {
 
 	private IConnectionProfile mProfile;
 
+	/**
+	 * @param profile the profile to synchronize against
+	 */
 	public ProfileRule(IConnectionProfile profile) {
 		super();
 		if (profile == null) {

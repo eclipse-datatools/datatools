@@ -11,6 +11,8 @@
 package org.eclipse.datatools.connectivity;
 
 /**
+ * Base exception type for connection profile operations.
+ * 
  * @author rcernich
  * 
  * Created on Jan 15, 2004
@@ -22,7 +24,6 @@ public class ConnectionProfileException extends Exception {
 	 */
 	public ConnectionProfileException() {
 		super();
-		// XXX Auto-generated constructor stub
 	}
 
 	/**
@@ -30,7 +31,6 @@ public class ConnectionProfileException extends Exception {
 	 */
 	public ConnectionProfileException(String message) {
 		super(message);
-		// XXX Auto-generated constructor stub
 	}
 
 	/**
@@ -39,7 +39,6 @@ public class ConnectionProfileException extends Exception {
 	 */
 	public ConnectionProfileException(String message, Throwable cause) {
 		super(message, cause);
-		// XXX Auto-generated constructor stub
 	}
 
 	/**
@@ -47,7 +46,6 @@ public class ConnectionProfileException extends Exception {
 	 */
 	public ConnectionProfileException(Throwable cause) {
 		super(cause);
-		// XXX Auto-generated constructor stub
 	}
 
 }

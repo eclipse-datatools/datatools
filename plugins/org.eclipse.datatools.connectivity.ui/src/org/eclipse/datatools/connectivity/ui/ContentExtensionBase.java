@@ -24,6 +24,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionFilter;
 
 /**
+ * Base implementation for IContentExtension. Registers a connect listener with
+ * the profile to manage the life cycle of the connection wrapped by this
+ * object.
+ * 
  * @author shongxum
  */
 public abstract class ContentExtensionBase extends PlatformObject implements
@@ -83,16 +87,15 @@ public abstract class ContentExtensionBase extends PlatformObject implements
 		return mConnectionProfile;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * Extenders should open a connection
 	 * 
 	 * @see org.eclipse.datatools.connectivity.IContentExtension#openConnection()
 	 */
 	public abstract void openConnection();
 
 	/**
-	 * Clients who's calling this api should make sure the raw connection object
-	 * cached in IConnection is released.
+	 * Extenders should make sure the IConnection is closed.
 	 * 
 	 * @see org.eclipse.datatools.connectivity.ui.IContentExtension#closeConnection()
 	 */

@@ -35,6 +35,11 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PropertyPage;
 
 /**
+ * Base property page implementation for connection profiles.
+ * 
+ * This implementation takes care of updating the connection profile when
+ * OK is pressed.
+ * 
  * @author shongxum
  */
 public abstract class ProfileDetailsPropertyPage extends PropertyPage {

@@ -5,6 +5,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
 
 /**
+ * NON-API
+ * 
  * The main plugin class to be used in the desktop.
  */
 public class GenericDBUIPlugin extends AbstractUIPlugin {

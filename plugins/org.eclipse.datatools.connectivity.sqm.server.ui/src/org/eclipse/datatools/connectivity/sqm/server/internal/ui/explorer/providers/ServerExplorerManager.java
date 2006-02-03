@@ -18,6 +18,8 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServe
 
 
 /**
+ * NON-API
+ * 
  * @author ljulien
  */
 public class ServerExplorerManager

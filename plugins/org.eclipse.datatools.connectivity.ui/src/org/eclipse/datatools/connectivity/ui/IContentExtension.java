@@ -16,7 +16,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * This interface is used by the CommonContentProviderBase for managing user
- * extensions to connection profiles in the Enterprise Navigator.
+ * extensions to connection profiles through navigatorContent extensions.
  * 
  * @author rcernich, shongxum
  * 

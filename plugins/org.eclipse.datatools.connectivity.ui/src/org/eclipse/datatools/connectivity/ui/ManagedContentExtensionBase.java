@@ -15,6 +15,9 @@ import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 
 /**
+ * Base implementation for IContentExtension.  Connection life cycle management
+ * is delegated to the IConnectionProfile.getManagedConnection().
+ * 
  * @author rcernich
  * 
  * Created on Jun 20, 2005

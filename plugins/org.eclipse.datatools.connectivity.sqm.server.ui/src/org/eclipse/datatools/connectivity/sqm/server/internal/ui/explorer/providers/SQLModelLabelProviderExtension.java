@@ -13,6 +13,10 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.label.ServerExplorerLabelProvider;
 import org.eclipse.datatools.connectivity.ui.CommonLabelProviderBase;
 
+/**
+ * This class is a label provider implemention for navigatorContent
+ * extensions. This class provides SQL model labels to the navigator.
+ */
 public class SQLModelLabelProviderExtension extends CommonLabelProviderBase {
 
 	public SQLModelLabelProviderExtension() {

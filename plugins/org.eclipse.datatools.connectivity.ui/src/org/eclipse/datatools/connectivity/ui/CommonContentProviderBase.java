@@ -25,6 +25,16 @@ import org.eclipse.ui.navigator.IExtensionStateModel;
 import org.eclipse.ui.navigator.INavigatorContentService;
 
 /**
+ * Base content provider class that can be extended for adding content to a
+ * connection profile using a navigatorContent extension.
+ * 
+ * Manages the associations between IConnectionProfile, IContentExtension and
+ * the connection object. Content from the connection object on down is provided
+ * by the delegate content provider.
+ * 
+ * This class allows clients to plug-in existing content providers for a
+ * connection type.
+ * 
  * @author rcernich
  * 
  * Created on Apr 20, 2004
@@ -38,11 +48,24 @@ public abstract class CommonContentProviderBase implements
 	private IExtensionStateModel mStateModel;
 	private Viewer mViewer;
 
+	/**
+	 * The delegate content provider should be minimally capable of handling
+	 * the connection object wrapped by the content extension.
+	 * 
+	 * @param contentProvider the delegate content provider.
+	 */
 	protected CommonContentProviderBase(ITreeContentProvider contentProvider) {
 		super();
 		mDelegate = contentProvider;
 	}
 
+	/**
+	 * Create a content extension object for the specified profile
+	 * 
+	 * @param profile
+	 * 
+	 * @return a new content extension object
+	 */
 	protected abstract IContentExtension createContentExtension(
 			IConnectionProfile profile);
 
@@ -57,24 +80,45 @@ public abstract class CommonContentProviderBase implements
 		mStateModel = null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.ui.navigator.ICommonContentProvider#init(org.eclipse.ui.navigator.IExtensionStateModel, org.eclipse.ui.IMemento)
+	 */
 	public void init(IExtensionStateModel aStateModel, IMemento aMemento) {
 		mStateModel = aStateModel;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.ui.navigator.IMementoAware#restoreState(org.eclipse.ui.IMemento)
+	 */
 	public void restoreState(IMemento aMemento) {
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.ui.navigator.IMementoAware#saveState(org.eclipse.ui.IMemento)
+	 */
 	public void saveState(IMemento aMemento) {
 	}
 
+	/**
+	 * @return the delegate contente provider
+	 */
 	protected ITreeContentProvider getDelegate() {
 		return mDelegate;
 	}
 
+	/**
+	 * @return the state model
+	 */
 	protected IExtensionStateModel getStateModel() {
 		return mStateModel;
 	}
 
+	/**
+	 * @param profile
+	 * 
+	 * @return the contente extension for the specified profile.  A content
+	 * extension will be created if one does not already exist.
+	 */
 	public IContentExtension getContentExtension(IConnectionProfile profile) {
 		IContentExtension extension = (IContentExtension) mProfileToExtensionNode
 				.get(profile);
@@ -88,6 +132,19 @@ public abstract class CommonContentProviderBase implements
 		return extension;
 	}
 
+	/*
+	 * Returns the children of the specified parentElement.
+	 * 
+	 * If the parent element is a IConnectionProfile, a IContentExtension is
+	 * returned if the IContentExtension.isVisible() or if more than one
+	 * extension exists, otherwise it returns
+	 * getChildren(IContentExtension.getConnection()).
+	 * 
+	 * If the parent is a IContentExtension,
+	 * getChildren(IContentExtension.getConnection()) is returned.
+	 * 
+	 * If the parent is anything else, mDelegate.getChildren() is invoked.
+	 */
 	public Object[] getChildren(Object parentElement) {
 		Object[] children = null;
 		if (parentElement instanceof IConnectionProfile) {
@@ -114,6 +171,16 @@ public abstract class CommonContentProviderBase implements
 		return children;
 	}
 
+	/*
+	 * If the elemet is an IContentExtension,
+	 * IContentExtension.getConnectionProfile() is returned.
+	 * 
+	 * If the element is a "connection" object, the IContentExtension associated
+	 * with that connection is returned if the content extension is visible,
+	 * otherwise the connection profile is returned.
+	 * 
+	 * For all other objects, mDelegate.getParent() is returned.
+	 */
 	public Object getParent(Object element) {
 		Object parent = null;
 		if (element instanceof IConnectionProfile) {

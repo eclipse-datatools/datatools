@@ -14,6 +14,10 @@ import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 
 /**
+ * Extends ContentExtensionBase by implementing the openConnection() and
+ * closeConnection() methods using the connection factory specified to 
+ * create the connection.
+ * 
  * @author shongxum
  */
 public abstract class ContentExtensionFactoryBase extends ContentExtensionBase {

@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * This class gathers the properties for a JDBC connection profile.
+ * This class gathers the properties for the generic DB connection profile.
  * 
  * @author brianf
  */
@@ -414,8 +414,14 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	}
 
 	
-	public void setDriverCategory(String driverCategoryFilter) {
-		mDriverCategory = driverCategoryFilter;
+	/**
+	 * Sets the driver category that should be used for displaying available
+	 * driver defnitions.
+	 * 
+	 * @param driverCategory
+	 */
+	public void setDriverCategory(String driverCategory) {
+		mDriverCategory = driverCategory;
 		if (combo != null) {
 			combo.setCategory(mDriverCategory);
 		}
