@@ -44,8 +44,8 @@ public class ManifestExplorer
 	private static ManifestExplorer sm_instance = null;
 	
     // trace logging variables
-	private static String sm_loggerName = ManifestExplorer.class.getPackage().getName();
-	private static Logger sm_logger = Logger.getLogger( sm_loggerName );
+	private static String sm_loggerName;
+	private static Logger sm_logger;
 
 	private static final String DTP_ODA_EXT_POINT = 
 	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
@@ -58,7 +58,13 @@ public class ManifestExplorer
 	public static ManifestExplorer getInstance()
 	{
 	    if( sm_instance == null )
+        {
 	        sm_instance = new ManifestExplorer();
+            
+            // works around bug in some J2EE server; see Bugzilla #126073
+            sm_loggerName = sm_instance.getClass().getPackage().getName();
+            sm_logger = Logger.getLogger( sm_loggerName );
+        }
 		return sm_instance;
 	}
 	
@@ -276,14 +282,14 @@ public class ManifestExplorer
 	static IConfigurationElement getDataSourceElement( IExtension extension ) 
 		throws OdaException
     {
-        return getDataSourceElement( extension, "dataSource" );  //$NON-NLS-1$
+        return getNamedElement( extension, "dataSource" );  //$NON-NLS-1$
     }
     
     /*
-     * Returns the dataSource element of the given data source extension
+     * Returns the configuration element of the given extension
      * and element name.
      */
-    public static IConfigurationElement getDataSourceElement( IExtension extension,
+    public static IConfigurationElement getNamedElement( IExtension extension,
             String elementName ) 
         throws OdaException
 	{
@@ -294,9 +300,9 @@ public class ManifestExplorer
 			if( ! configElement.getName().equalsIgnoreCase( elementName ) )
 			    continue;
 
-			// validate that the data source element has an id
-			String dataSourceId = configElement.getAttribute( "id" );	//$NON-NLS-1$
-			if( dataSourceId == null || dataSourceId.length() == 0 )
+			// validate that the element has an id attribute with non-empty value
+			String idValue = configElement.getAttribute( "id" );	//$NON-NLS-1$
+			if( idValue == null || idValue.length() == 0 )
 				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
 
 			return configElement;	// expects only one such element

@@ -33,7 +33,7 @@ public class UIExtensionManifest
     UIExtensionManifest( IExtension dataSourceExtn ) throws OdaException
     {
         IConfigurationElement dataSourceElement = 
-            ManifestExplorer.getDataSourceElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
+            ManifestExplorer.getNamedElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
         assert( dataSourceElement != null );
 
         m_namespace = dataSourceExtn.getNamespace();

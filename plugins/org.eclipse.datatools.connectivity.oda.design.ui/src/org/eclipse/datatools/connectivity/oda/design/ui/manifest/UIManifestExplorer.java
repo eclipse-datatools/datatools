@@ -19,6 +19,8 @@ import java.util.logging.Logger;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.birt.core.framework.IExtension;
+import org.eclipse.birt.core.framework.IExtensionRegistry;
+import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
@@ -35,11 +37,14 @@ public class UIManifestExplorer
     private static UIManifestExplorer sm_instance = null;
     
     // trace logging variables
-    private static String sm_loggerName = UIManifestExplorer.class.getPackage().getName();
-    private static Logger sm_logger = Logger.getLogger( sm_loggerName );
+    private static String sm_loggerName;
+    private static Logger sm_logger;
 
     private static final String DTP_ODA_UI_EXT_POINT = 
             "org.eclipse.datatools.connectivity.oda.design.ui.dataSource";  //$NON-NLS-1$
+    private static final String UI_PROPERTY_PAGE_EXT_PT = 
+            "org.eclipse.ui.propertyPages";  //$NON-NLS-1$
+    private static final String PAGE_ELEMENT_NAME = "page";  //$NON-NLS-1$
     
     /**
      * Returns the <code>UIManifestExplorer</code> instance to  
@@ -49,7 +54,12 @@ public class UIManifestExplorer
     public static UIManifestExplorer getInstance()
     {
         if( sm_instance == null )
+        {
             sm_instance = new UIManifestExplorer();
+            // works around bug in some J2EE servers; see Bugzilla #126073
+            sm_loggerName = sm_instance.getClass().getPackage().getName();
+            sm_logger = Logger.getLogger( sm_loggerName );
+        }
         return sm_instance;
     }
 
@@ -58,16 +68,15 @@ public class UIManifestExplorer
     }
     
     /**
-     * Returns the extension configuration information found 
-     * in the plugin manifest file of the ODA data source UI extension
-     * that contains the specified data source element and 
+     * Finds and returns the extension configuration information defined 
+     * in the plugin manifest of the ODA data source UI extension that
      * implements the DTP ODA design-time extension point -
-     * org.eclipse.datatools.connectivity.oda.design.ui.dataSource.
+     * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>.
      * @param dataSourceId  the unique id of the data source element
-     *                      in the data source extension.
+     *                      in the ODA designer data source extension.
      * @return              the UI extension manifest information
-     * @throws OdaException if the extension manifest is invalid.
-     * @throws IllegalArgumentException if no extension is found.
+     * @throws OdaException if the extension manifest is invalid
+     * @throws IllegalArgumentException if no extension is found
      */
     public UIExtensionManifest getExtensionManifest( String dataSourceId ) 
         throws OdaException
@@ -82,8 +91,8 @@ public class UIManifestExplorer
     }
 
     /**
-     * Returns the extension configuration information found 
-     * in the plugin manifest file of the data source extension
+     * Finds and returns the extension configuration information defined 
+     * in the plugin manifest of the data source extension
      * that contains the specified data source element and 
      * implements the specified ODA extension point.
      * @param dataSourceId      the unique id of the data source element
@@ -135,7 +144,7 @@ public class UIManifestExplorer
                  * one dataSource element.
                  */
                 IConfigurationElement dataSourceElement = 
-                    ManifestExplorer.getDataSourceElement( extension, 
+                    ManifestExplorer.getNamedElement( extension, 
                             UIExtensionManifest.DATA_SOURCE_ELEMENT_NAME );
                 extnDataSourceId = dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
             }
@@ -155,5 +164,70 @@ public class UIManifestExplorer
         
         return null;
     }
+    
+    /**
+     * Finds and returns the propertyPages extension configuration element 
+     * in the plugin manifest of an extended ODA Designer UI plugin,
+     * which implements the 
+     * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code> and
+     * <code>org.eclipse.ui.propertyPages</code> extension points.
+     * @param odaDataSourceId  an ODA data source extension element ID
+     * @return  the configuration element of the <code>org.eclipse.ui.propertyPages</code>
+     *          extension
+     */
+    public IConfigurationElement getPropertyPageElement( String odaDataSourceId )
+    {
+        String odaUIPluginId = getOdaDesignerId( odaDataSourceId );
+        
+        // find all the extensions of the ODA UI plugin
+        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+        IExtension[] extensions = pluginRegistry.getExtensions( odaUIPluginId );
+        
+        // look for the propertyPage extension element
+        for( int i = 0; i < extensions.length; i++ )
+        {
+            String extnPointId = extensions[i].getExtensionPointUniqueIdentifier();
+            if( ! extnPointId.equals( UI_PROPERTY_PAGE_EXT_PT ) )
+                continue;   // check next extension
+            
+            try
+            {
+                // check whether the extension is for the given ODA data source id
+                IConfigurationElement element =
+                    ManifestExplorer.getNamedElement( extensions[i],
+                        PAGE_ELEMENT_NAME );
+                if( odaDataSourceId.equals( element.getAttribute( "id" ) ))  //$NON-NLS-1$
+                        return element;     // found matching element
+            }
+            catch( OdaException e )
+            {
+                continue;   // ignore, check next extension
+            }
+        }
+        
+        return null;    // none is found
+    }
 
+    /**
+     * Finds the plugin id that implements the
+     * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>
+     * extension point for the given ODA run-time data source element id.
+     * @param odaDataSourceId   an ODA data source extension element ID
+     * @return
+     */
+    public String getOdaDesignerId( String odaDataSourceId )
+    {
+        UIExtensionManifest manifest;
+        try
+        {
+            manifest = getExtensionManifest( odaDataSourceId );
+        }
+        catch( Exception e )
+        {
+            return null;
+        }
+         
+        return ( manifest == null ) ?
+                null : manifest.getNamespace();
+    }
 }

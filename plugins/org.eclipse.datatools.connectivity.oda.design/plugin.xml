@@ -15,7 +15,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: plugin.xml,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 -->
 
@@ -23,7 +23,7 @@
     name = "%pluginName"
     id = "org.eclipse.datatools.connectivity.oda.design"
     version = "3.0.0"
-    provider-name = "%providerName">
+    provider-name = "Eclipse.org">
 
   <requires>
     <import plugin="org.eclipse.core.runtime" />
