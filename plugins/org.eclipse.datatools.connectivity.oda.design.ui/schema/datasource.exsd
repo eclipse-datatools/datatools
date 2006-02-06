@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.datatools.connectivity.oda.design.ui">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.connectivity.oda.design.ui" id="dataSource" name="Open Data Access Designer UI Extension Point"/>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda.design.ui" id="dataSource" name="Open Data Access Designer"/>
       </appInfo>
       <documentation>
          This extension point provides extensibility to the Open Data Access (ODA) Designer UI framework, through which an user may define an ODA data source design.  
@@ -121,17 +121,20 @@ If implementing the &lt;i&gt;org.eclipse.datatools.connectivity.connectionProfil
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         &lt;extension
-	point=&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;&gt;
-    &lt;dataSourceUI id=&quot;%oda.data.source.id&quot;&gt;
-        &lt;newDataSourceWizard
-			pageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;
-            pageTitle=&quot;Select Folder&quot;
-            windowTitle=&quot;New Flat File Data Source Profile&quot;
-            includesProgressMonitor=&quot;true&quot;/&gt;
-    &lt;/dataSourceUI&gt;
-&lt;/extension&gt;
-
+         &lt;p&gt;
+   &lt;pre&gt;
+   &lt;extension
+  point=&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;&gt;
+      &lt;dataSourceUI id=&quot;%oda.data.source.id&quot;&gt;
+         &lt;newDataSourceWizard
+               pageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;
+               pageTitle=&quot;Select Folder&quot;
+               windowTitle=&quot;New Flat File Data Source Profile&quot;
+               includesProgressMonitor=&quot;false&quot;/&gt;
+      &lt;/dataSourceUI&gt;
+   &lt;/extension&gt; 
+   &lt;/pre&gt;
+&lt;/p&gt;
       </documentation>
    </annotation>
 

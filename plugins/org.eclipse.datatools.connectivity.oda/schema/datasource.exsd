@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.datatools.connectivity.oda">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access Extension"/>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access"/>
       </appInfo>
       <documentation>
          This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
@@ -474,135 +474,130 @@ The configured values are passed through to the driver&apos;s implementation of 
       <documentation>
          &lt;p&gt;
    &lt;pre&gt;
-&lt;extension
-         id=&quot;Id&quot;
-         name=&quot;Name&quot;
+   &lt;extension
          point=&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;&gt;
       &lt;dataSource
-            odaVersion=&quot;2.0&quot;
-   driverClass=&quot;org.eclipse.birt.report.data.oda.jdbc.OdaJdbcDriver&quot;
-            id=&quot;org.eclipse.birt.report.data.oda.jdbc&quot;&gt;
-           
-            &lt;properties&gt;
-             &lt;propertyGroup
-                 defaultDisplayName=&quot;Connection Properties&quot;
-                 name=&quot;connectionProperties&quot;&gt;
-              &lt;property
-                    type=&quot;string&quot;
-                    defaultDisplayName=&quot;JDBC Driver Class&quot;
-                    canInherit=&quot;true&quot;
-                    name=&quot;odaDriverClass&quot;/&gt;
-              &lt;property
-                    type=&quot;string&quot;
-                    defaultDisplayName=&quot;JDBC Driver URL&quot;
-                    canInherit=&quot;true&quot;
-                    name=&quot;odaURL&quot;/&gt;
-              &lt;property
-                    type=&quot;string&quot;
-                    defaultDisplayName=&quot;Data Source&quot;
-                    canInherit=&quot;true&quot;
-                    name=&quot;odaDataSource&quot;/&gt;
-              &lt;property
-                    type=&quot;string&quot;
-                    defaultDisplayName=&quot;User Name&quot;
-                    canInherit=&quot;true&quot;
-                    name=&quot;odaUser&quot;/&gt;
-              &lt;property
-                    type=&quot;string&quot;
-                    defaultDisplayName=&quot;Password&quot;
-                    canInherit=&quot;true&quot;
-                    name=&quot;odaPassword&quot;/&gt;
-           &lt;/propertyGroup&gt;
-            &lt;/properties&gt;
+            odaVersion=&quot;3.0&quot;
+            driverClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver&quot;
+            defaultDisplayName=&quot;Flat File Data Source&quot;
+            id=&quot;org.eclipse.datatools.connectivity.oda.flatfile&quot;
+            setThreadContextClassLoader=&quot;false&quot;&gt;
+         &lt;properties&gt;
+         &lt;propertyGroup
+               defaultDisplayName=&quot;Connection Properties&quot;
+               name=&quot;connectionProperties&quot;&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  defaultDisplayName=&quot;Home Folder&quot;
+                  canInherit=&quot;true&quot;
+                  name=&quot;HOME&quot;/&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  defaultDisplayName=&quot;Character Set&quot;
+                  canInherit=&quot;true&quot;
+                  name=&quot;CHARSET&quot;/&gt;
+            &lt;property
+                  type=&quot;string&quot;
+                  canInherit=&quot;true&quot;
+                  defaultDisplayName=&quot;Includes Data Type (Yes/No)&quot;
+                  name=&quot;INCLTYPELINE&quot;/&gt;                 
+         &lt;/propertyGroup&gt;
+         &lt;/properties&gt;
       &lt;/dataSource&gt;
       &lt;dataSet
-            defaultDisplayName=&quot;JdbcSelectDataSet&amp;quot;&quot;
-         id=&quot;org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet&quot;&gt;
-        &lt;dataTypeMapping
-                   nativeDataType=&quot;BIT&quot;
-                   nativeDataTypeCode=&quot;-7&quot;
-                   odaScalarDataType=&quot;Integer&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;TINYINT&quot;
-                   nativeDataTypeCode=&quot;-6&quot;
-                   odaScalarDataType=&quot;Integer&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;SMALLINT&quot;
-                   nativeDataTypeCode=&quot;5&quot;
-                   odaScalarDataType=&quot;Integer&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;INTEGER&quot;
-                   nativeDataTypeCode=&quot;4&quot;
-                   odaScalarDataType=&quot;Integer&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;BIGINT&quot;
-                   nativeDataTypeCode=&quot;-5&quot;
-                   odaScalarDataType=&quot;Decimal&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;FLOAT&quot;
-                   nativeDataTypeCode=&quot;6&quot;
-                   odaScalarDataType=&quot;Double&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;REAL&quot;
-                   nativeDataTypeCode=&quot;7&quot;
-                   odaScalarDataType=&quot;Double&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;DOUBLE&quot;
-                   nativeDataTypeCode=&quot;8&quot;
-                   odaScalarDataType=&quot;Double&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;NUMERIC&quot;
-                   nativeDataTypeCode=&quot;2&quot;
-                   odaScalarDataType=&quot;Decimal&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;DECIMAL&quot;
-                   nativeDataTypeCode=&quot;3&quot;
-                   odaScalarDataType=&quot;Decimal&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;CHAR&quot;
-                   nativeDataTypeCode=&quot;1&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;VARCHAR&quot;
-                   nativeDataTypeCode=&quot;12&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;LONGVARCHAR&quot;
-                   nativeDataTypeCode=&quot;-1&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;DATE&quot;
-                   nativeDataTypeCode=&quot;91&quot;
-                   odaScalarDataType=&quot;Date&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;TIME&quot;
-                   nativeDataTypeCode=&quot;92&quot;
-                   odaScalarDataType=&quot;Time&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;TIMESTAMP&quot;
-                   nativeDataTypeCode=&quot;93&quot;
-                   odaScalarDataType=&quot;Timestamp&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;BINARY&quot;
-                   nativeDataTypeCode=&quot;-2&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;VARBINARY&quot;
-                   nativeDataTypeCode=&quot;-3&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;LONGVARBINARY&quot;
-                   nativeDataTypeCode=&quot;-4&quot;
-                   odaScalarDataType=&quot;String&quot;/&gt;
-             &lt;dataTypeMapping
-                   nativeDataType=&quot;BOOLEAN&quot;
-                   nativeDataTypeCode=&quot;16&quot;
-                   odaScalarDataType=&quot;Integer&quot;/&gt;
+            defaultDisplayName=&quot;Flat File Data Set&quot;
+            id=&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BIT&quot;
+                  nativeDataTypeCode=&quot;-7&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TINYINT&quot;
+                  nativeDataTypeCode=&quot;-6&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;SMALLINT&quot;
+                  nativeDataTypeCode=&quot;5&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;INTEGER&quot;
+                  nativeDataTypeCode=&quot;4&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BIGINT&quot;
+                  nativeDataTypeCode=&quot;-5&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;FLOAT&quot;
+                  nativeDataTypeCode=&quot;6&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;REAL&quot;
+                  nativeDataTypeCode=&quot;7&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DOUBLE&quot;
+                  nativeDataTypeCode=&quot;8&quot;
+                  odaScalarDataType=&quot;Double&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;NUMERIC&quot;
+                  nativeDataTypeCode=&quot;2&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DECIMAL&quot;
+                  nativeDataTypeCode=&quot;3&quot;
+                  odaScalarDataType=&quot;Decimal&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;CHAR&quot;
+                  nativeDataTypeCode=&quot;1&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;VARCHAR&quot;
+                  nativeDataTypeCode=&quot;12&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;LONGVARCHAR&quot;
+                  nativeDataTypeCode=&quot;-1&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;DATE&quot;
+                  nativeDataTypeCode=&quot;91&quot;
+                  odaScalarDataType=&quot;Date&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TIME&quot;
+                  nativeDataTypeCode=&quot;92&quot;
+                  odaScalarDataType=&quot;Time&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;TIMESTAMP&quot;
+                  nativeDataTypeCode=&quot;93&quot;
+                  odaScalarDataType=&quot;Timestamp&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BINARY&quot;
+                  nativeDataTypeCode=&quot;-2&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;VARBINARY&quot;
+                  nativeDataTypeCode=&quot;-3&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;LONGVARBINARY&quot;
+                  nativeDataTypeCode=&quot;-4&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BOOLEAN&quot;
+                  nativeDataTypeCode=&quot;16&quot;
+                  odaScalarDataType=&quot;Integer&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;BLOB&quot;
+                  nativeDataTypeCode=&quot;2004&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
+            &lt;dataTypeMapping
+                  nativeDataType=&quot;CLOB&quot;
+                  nativeDataTypeCode=&quot;2005&quot;
+                  odaScalarDataType=&quot;String&quot;/&gt;
       &lt;/dataSet&gt;
-        
- &lt;/extension&gt;
- 
-  &lt;/pre&gt;
+   &lt;/extension&gt; 
+   &lt;/pre&gt;
 &lt;/p&gt;
       </documentation>
    </annotation>
@@ -636,7 +631,7 @@ These concrete classes are provided for use as templates or base classes to aid 
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         Copyright (c) 2004-2005 Actuate Corporation.
+         Copyright (c) 2004-2006 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>
