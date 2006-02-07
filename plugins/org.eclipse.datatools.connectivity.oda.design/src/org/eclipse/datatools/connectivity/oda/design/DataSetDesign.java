@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -59,6 +59,8 @@ public interface DataSetDesign extends EObject
      * dataSourceDesign that supports this type of data set.  
      * Could be null, if nested within another dataSetDesign, 
      * to share the container's dataSourceDesign.
+     * @see #getDataSourceDesign()
+     * @generated NOT
      */
     public String getOdaExtensionDataSourceId();
 
@@ -158,6 +160,16 @@ public interface DataSetDesign extends EObject
      * @generated
      */
     void setQuery( DataSetQuery value );
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getQuery <em>Query</em>}' containment reference
+     * with the given query text attribute.
+     * @param queryText the value of the '<em>Query Text</em>' attribute
+     *                  of the new '<em>Query</em>' containment reference
+     * @see #setQuery()
+	 * @generated NOT
+     */
+    void setNewQuery( String queryText );
 
     /**
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
