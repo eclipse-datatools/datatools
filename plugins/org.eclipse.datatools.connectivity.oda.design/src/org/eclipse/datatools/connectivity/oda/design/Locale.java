@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: Locale.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -50,11 +50,14 @@ public interface Locale extends EObject
     /**
      * Returns the locale value as a java.util.Locale object.
      * @return	a java.util.Locale object
+     * @generated NOT
      */
     java.util.Locale getLocale();
     
     /**
      * Sets all the locale values.
+     * @param   a java.util.Locale object
+     * @generated NOT
      */
     void setLocale( java.util.Locale locale );
     
@@ -67,6 +70,7 @@ public interface Locale extends EObject
      * The variant value, if any, is ignored.
      * Examples: "en", "de", "de_DE".
      * @return	a string representation of the locale's language and country.
+     * @generated NOT
      */
     String toLanguageCountryString();
     

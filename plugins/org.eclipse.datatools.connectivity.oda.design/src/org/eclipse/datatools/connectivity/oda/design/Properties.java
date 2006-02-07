@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Properties.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: Properties.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -52,6 +52,7 @@ public interface Properties extends EObject
      * '<em><b>Properties</b></em>' containment reference list.
      * @param propName
      * @param propValue
+     * @generated NOT
      */
     void addProperty( String propName, String propValue );
     

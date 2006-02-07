@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterDefinition.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -53,6 +53,8 @@ public interface ParameterDefinition extends EObject
      * Indicates whether this parameter is defined to take input value.
      * @return	true if this parameter is defined to take input value; 
      * 			false otherwise.
+     * @see #getInOutMode()
+     * @generated NOT
      */
     boolean isInput();
     
@@ -60,6 +62,8 @@ public interface ParameterDefinition extends EObject
      * Indicates whether this parameter is defined to have output value.
      * @return 	true if this parameter is defined to have output value;
      * 			false otherwise.
+     * @see #getInOutMode()
+     * @generated NOT
      */
     boolean isOutput();
     
@@ -67,6 +71,8 @@ public interface ParameterDefinition extends EObject
      * Indicates whether this is a scalar parameter.
      * @return	true if this parameter has a scalar data type;
      * 			false if it is a complex parameter with nested fields.
+     * @see #getFields()
+     * @generated NOT
      */
     boolean isScalar();
 

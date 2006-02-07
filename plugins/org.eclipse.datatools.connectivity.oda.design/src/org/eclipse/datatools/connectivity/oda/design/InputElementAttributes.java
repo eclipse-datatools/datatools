@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: InputElementAttributes.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -55,6 +55,9 @@ public interface InputElementAttributes extends EObject
      * Indicates whether this input element has either
      * static or dynamic value choices defined.
      * @return  true if any type of value choices is defined
+     * @see #getStaticValueChoices()
+     * @see #getDynamicValueChoices()
+     * @generated NOT
      */
     boolean hasValueChoices();
     

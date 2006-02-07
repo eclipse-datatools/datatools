@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterFieldDefinition.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -51,6 +51,7 @@ public interface ParameterFieldDefinition extends EObject
      * Indicates whether this parameter field is part of a complex input parameter.
      * @return	true if this parameter field is part of a complex input parameter; 
      * 			false otherwise.
+     * @generated NOT
      */
     boolean isInput();
     
@@ -58,6 +59,7 @@ public interface ParameterFieldDefinition extends EObject
      * Indicates whether this parameter field is part of a complex output parameter.
      * @return 	true if this parameter field is part of a complex output parameter;
      * 			false otherwise.
+     * @generated NOT
      */
     boolean isOutput();
 

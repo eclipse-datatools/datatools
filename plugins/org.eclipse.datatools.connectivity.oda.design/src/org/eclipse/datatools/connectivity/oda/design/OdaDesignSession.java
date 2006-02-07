@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -72,6 +72,8 @@ public interface OdaDesignSession extends EObject
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getRequest <em>Request</em>}' containment reference
      * with a new request associated with the given data source design. 
      * @param dataSourceDesign
+     * @see #setRequest(DesignSessionRequest)
+     * @generated NOT
      */
     void setNewRequest( DataSourceDesign dataSourceDesign );
     
@@ -101,6 +103,8 @@ public interface OdaDesignSession extends EObject
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponse <em>Response</em>}' containment reference
      * with a new response associated with the given data source design. 
      * @param dataSourceDesign
+     * @see #setResponse(DesignSessionResponse)
+     * @generated NOT
      */
     void setNewResponse( boolean isSessionOk, DataSourceDesign dataSourceDesign );
 
@@ -108,6 +112,8 @@ public interface OdaDesignSession extends EObject
      * Gets the Data Source Design associated with the
      * top level Data Set in the Request session.
      * @return the value of the '<em>Data Source Design</em>' containment reference.
+     * @see #getRequest()
+     * @generated NOT
      */
     DataSourceDesign getRequestDataSourceDesign();
 
@@ -115,6 +121,8 @@ public interface OdaDesignSession extends EObject
      * Gets the Data Source Design associated with the
      * top level Data Set in the Response session.
      * @return the value of the '<em>Data Source Design</em>' containment reference.
+     * @see #getResponse()
+     * @generated NOT
      */
    DataSourceDesign getResponseDataSourceDesign();
     

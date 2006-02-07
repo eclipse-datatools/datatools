@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributes.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: DataElementAttributes.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -63,6 +63,7 @@ public interface DataElementAttributes extends EObject
      * @see #isSetPrecision()
      * @see #unsetPrecision()
      * @see #getPrecision()
+     * @generated NOT
      */
     void setApplicablePrecision( short value, OdaScalarDataType odaDataType );
 
@@ -78,6 +79,7 @@ public interface DataElementAttributes extends EObject
      * @see #isSetScale()
      * @see #unsetScale()
      * @see #getScale()
+     * @generated NOT
      */
     void setApplicableScale( short value, OdaScalarDataType odaDataType );
     
@@ -86,6 +88,8 @@ public interface DataElementAttributes extends EObject
      * Defaults to false if its nullability is unknown.
      * @return	true if the data element allows a null value;
      * 			false otherwise.
+	 * @see #getNullability()
+     * @generated NOT
      */
     boolean allowsNull();
 

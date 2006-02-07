@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequest.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: DesignSessionRequest.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -75,6 +75,8 @@ public interface DesignSessionRequest extends EObject
      * with a new data access design with a
      * new data set associated with given data source design.
      * @param dataSourceDesign
+     * @see #setDataAccessDesign(DataAccessDesign)
+     * @generated NOT
      */
     void setNewDataAccessDesign( DataSourceDesign dataSourceDesign );
 
