@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
@@ -232,6 +233,16 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign
         DataSourceDesign dataSource = getDataSourceDesign();
         return ( dataSource == null ) ? null :
                 dataSource.getOdaExtensionDataSourceId();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#setNewQuery(java.lang.String)
+     */
+    public void setNewQuery( String queryText )
+    {
+        DataSetQuery newQuery = DesignFactory.eINSTANCE.createDataSetQuery();
+        newQuery.setQueryText( queryText );
+        setQuery( newQuery );
     }
 
     /**
