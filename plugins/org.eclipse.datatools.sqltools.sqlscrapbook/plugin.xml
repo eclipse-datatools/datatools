@@ -29,6 +29,7 @@
       <import plugin="org.eclipse.datatools.sqltools.common.ui"/>
       <import plugin="org.eclipse.datatools.connectivity.db.generic"/>
       <import plugin="org.eclipse.datatools.connectivity.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity.db.generic.ui"/>
    </requires>
    <extension
          point="org.eclipse.ui.editors">
