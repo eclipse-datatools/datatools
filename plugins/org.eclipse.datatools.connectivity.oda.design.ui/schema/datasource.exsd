@@ -143,7 +143,9 @@ If implementing the &lt;i&gt;org.eclipse.datatools.connectivity.connectionProfil
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         An extension must implement the related dialog pages defined in the extension&apos;s schema. See the abstract base classes&apos; JavaDoc documentation in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui&lt;/i&gt; project for more information.
+         [&lt;b&gt;Experimental&lt;/b&gt;] This package API and extension point are going through iterative development cycles, and will likely change.
+&lt;br&gt;
+An extension must implement the related dialog pages defined in the extension&apos;s schema. See the abstract base classes&apos; JavaDoc documentation in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui&lt;/i&gt; project for more information.
       </documentation>
    </annotation>
 
