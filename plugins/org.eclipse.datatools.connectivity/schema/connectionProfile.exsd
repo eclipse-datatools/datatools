@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.datatools.connectivity">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.connectivity" id="connectionProfile" name="Connection Profile Extension"/>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="connectionProfile" name="Connection Profile"/>
       </appInfo>
       <documentation>
          This extension point provides a place for plug-ins to add support for different types of connection profiles.  It also allows extensions to extend the capabilities of defined extension points.
@@ -37,7 +37,6 @@
 &lt;li&gt;&lt;samp&gt;org.eclipse.datatools.connectivity.profile.property.supportsPing&lt;/samp&gt; - &lt;/li&gt;Use for filtering profile instances implementing a ping connection factory (shortcut for name=org.eclipse.datatools.connectivity.profile.property.factoryID, value=org.eclipse.datatools.connectivity.connectionFactory.pingFactory).
 &lt;/ul&gt;
 &lt;/p&gt;
-
       </documentation>
    </annotation>
 

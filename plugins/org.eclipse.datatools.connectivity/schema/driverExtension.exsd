@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.datatools.connectivity">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.datatools.connectivity" id="driverExtension" name="Driver Definition Extension"/>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="driverExtension" name="Driver Definition"/>
       </appInfo>
       <documentation>
          &lt;p&gt;
