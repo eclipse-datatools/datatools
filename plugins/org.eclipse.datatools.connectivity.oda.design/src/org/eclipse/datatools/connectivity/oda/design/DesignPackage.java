@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignPackage.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,9 +34,11 @@ import org.eclipse.emf.ecore.EReference;
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory
+ * @model kind="package"
  * @generated
  */
-public interface DesignPackage extends EPackage{
+public interface DesignPackage extends EPackage
+{
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -74,7 +76,8 @@ public interface DesignPackage extends EPackage{
      * <!-- end-user-doc -->
      * @generated
      */
-    DesignPackage eINSTANCE = org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl.init();
+    DesignPackage eINSTANCE = org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl
+            .init();
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl <em>Axis Attributes</em>}' class.
@@ -545,33 +548,41 @@ public interface DesignPackage extends EPackage{
     int DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES = 5;
 
     /**
+     * The feature id for the '<em><b>Linked Profile Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME = 6;
+
+    /**
+     * The feature id for the '<em><b>Linked Profile Store File Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = 7;
+
+    /**
      * The number of structural features of the the '<em>Data Source Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 6;
+    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 8;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl <em>Property Attributes</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getPropertyAttributes()
-     * @generated
-     */
-    int PROPERTY_ATTRIBUTES = 28;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>er State</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerState()
      * @generated
      */
-    int DESIGN_ER_STATE = 9;
+    int DESIGNER_STATE = 9;
 
     /**
      * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -580,7 +591,7 @@ public interface DesignPackage extends EPackage{
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE__VERSION = 0;
+    int DESIGNER_STATE__VERSION = 0;
 
     /**
      * The feature id for the '<em><b>State Content</b></em>' containment reference.
@@ -589,26 +600,26 @@ public interface DesignPackage extends EPackage{
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE__STATE_CONTENT = 1;
+    int DESIGNER_STATE__STATE_CONTENT = 1;
 
     /**
-     * The number of structural features of the the '<em>er State</em>' class.
+     * The number of structural features of the the '<em>Designer State</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE_FEATURE_COUNT = 2;
+    int DESIGNER_STATE_FEATURE_COUNT = 2;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateContentImpl <em>er State Content</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateContentImpl <em>Designer State Content</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateContentImpl
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerStateContent()
      * @generated
      */
-    int DESIGN_ER_STATE_CONTENT = 10;
+    int DESIGNER_STATE_CONTENT = 10;
 
     /**
      * The feature id for the '<em><b>State Content As String</b></em>' attribute.
@@ -617,7 +628,7 @@ public interface DesignPackage extends EPackage{
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING = 0;
+    int DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING = 0;
 
     /**
      * The feature id for the '<em><b>State Content As Blob</b></em>' attribute.
@@ -626,16 +637,16 @@ public interface DesignPackage extends EPackage{
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB = 1;
+    int DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB = 1;
 
     /**
-     * The number of structural features of the the '<em>er State Content</em>' class.
+     * The number of structural features of the the '<em>Designer State Content</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DESIGN_ER_STATE_CONTENT_FEATURE_COUNT = 2;
+    int DESIGNER_STATE_CONTENT_FEATURE_COUNT = 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignSessionRequestImpl <em>Session Request</em>}' class.
@@ -1393,6 +1404,16 @@ public interface DesignPackage extends EPackage{
     int PROPERTY_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl <em>Property Attributes</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getPropertyAttributes()
+     * @generated
+     */
+    int PROPERTY_ATTRIBUTES = 28;
+
+    /**
      * The feature id for the '<em><b>Display Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1763,7 +1784,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Axis Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.AxisType
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
@@ -1773,7 +1794,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
@@ -1783,7 +1804,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
@@ -1793,7 +1814,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
@@ -1822,7 +1843,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
@@ -1832,7 +1853,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
@@ -1842,7 +1863,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
@@ -1852,7 +1873,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Session Status Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
@@ -1862,7 +1883,7 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
@@ -1872,12 +1893,11 @@ public interface DesignPackage extends EPackage{
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
     int TEXT_WRAP_TYPE_OBJECT = 56;
-
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes <em>Axis Attributes</em>}'.
@@ -2344,10 +2364,32 @@ public interface DesignPackage extends EPackage{
     EReference getDataSourceDesign_PrivateProperties();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>er State</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName <em>Linked Profile Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>er State</em>'.
+     * @return the meta object for the attribute '<em>Linked Profile Name</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName()
+     * @see #getDataSourceDesign()
+     * @generated
+     */
+    EAttribute getDataSourceDesign_LinkedProfileName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Linked Profile Store File Path</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath()
+     * @see #getDataSourceDesign()
+     * @generated
+     */
+    EAttribute getDataSourceDesign_LinkedProfileStoreFilePath();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>Designer State</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Designer State</em>'.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignerState
      * @generated
      */
@@ -2376,10 +2418,10 @@ public interface DesignPackage extends EPackage{
     EReference getDesignerState_StateContent();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerStateContent <em>er State Content</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerStateContent <em>Designer State Content</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>er State Content</em>'.
+     * @return the meta object for class '<em>Designer State Content</em>'.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignerStateContent
      * @generated
      */
@@ -2714,7 +2756,7 @@ public interface DesignPackage extends EPackage{
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Prompt Style</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.InputElementUIHints#getPromptStyleGen()
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementUIHints#getPromptStyle()
      * @see #getInputElementUIHints()
      * @generated
      */
@@ -3297,17 +3339,6 @@ public interface DesignPackage extends EPackage{
     EClass getValueFormatHints();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplayFormat <em>Display Format</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Display Format</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplayFormat()
-     * @see #getValueFormatHints()
-     * @generated
-     */
-    EAttribute getValueFormatHints_DisplayFormat();
-
-    /**
      * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplaySize <em>Display Size</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3317,6 +3348,17 @@ public interface DesignPackage extends EPackage{
      * @generated
      */
     EAttribute getValueFormatHints_DisplaySize();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplayFormat <em>Display Format</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Display Format</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplayFormat()
+     * @see #getValueFormatHints()
+     * @generated
+     */
+    EAttribute getValueFormatHints_DisplayFormat();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getTextFormatType <em>Text Format Type</em>}'.
@@ -3452,45 +3494,49 @@ public interface DesignPackage extends EPackage{
     EEnum getTextWrapType();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.AxisType <em>Axis Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Axis Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Axis Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.AxisType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.AxisType"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='AxisType:Object' baseType='AxisType'" 
      * @generated
      */
     EDataType getAxisTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Element Nullability Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Element Nullability Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.ElementNullability"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='ElementNullability:Object' baseType='ElementNullability'" 
      * @generated
      */
     EDataType getElementNullabilityObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Horizontal Alignment Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Horizontal Alignment Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='HorizontalAlignment:Object' baseType='HorizontalAlignment'" 
      * @generated
      */
     EDataType getHorizontalAlignmentObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Input Prompt Control Style Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Input Prompt Control Style Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='InputPromptControlStyle:Object' baseType='InputPromptControlStyle'" 
      * @generated
      */
     EDataType getInputPromptControlStyleObject();
@@ -3501,6 +3547,7 @@ public interface DesignPackage extends EPackage{
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Native Data Type Code</em>'.
      * @model instanceClass="short"
+     *        extendedMetaData="name='NativeDataTypeCode' baseType='http://www.eclipse.org/emf/2003/XMLType#short'" 
      * @generated
      */
     EDataType getNativeDataTypeCode();
@@ -3512,72 +3559,79 @@ public interface DesignPackage extends EPackage{
      * @return the meta object for data type '<em>Native Data Type Code Object</em>'.
      * @see java.lang.Short
      * @model instanceClass="java.lang.Short"
+     *        extendedMetaData="name='NativeDataTypeCode:Object' baseType='NativeDataTypeCode'" 
      * @generated
      */
     EDataType getNativeDataTypeCodeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Oda Complex Data Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Oda Complex Data Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='OdaComplexDataType:Object' baseType='OdaComplexDataType'" 
      * @generated
      */
     EDataType getOdaComplexDataTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Oda Scalar Data Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Oda Scalar Data Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='OdaScalarDataType:Object' baseType='OdaScalarDataType'" 
      * @generated
      */
     EDataType getOdaScalarDataTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Parameter Mode Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Parameter Mode Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.ParameterMode"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='ParameterMode:Object' baseType='ParameterMode'" 
      * @generated
      */
     EDataType getParameterModeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Session Status Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Session Status Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.SessionStatus"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='SessionStatus:Object' baseType='SessionStatus'" 
      * @generated
      */
     EDataType getSessionStatusObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Text Format Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Text Format Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.TextFormatType"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='TextFormatType:Object' baseType='TextFormatType'" 
      * @generated
      */
     EDataType getTextFormatTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Text Wrap Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Text Wrap Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.TextWrapType"
+     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
+     *        extendedMetaData="name='TextWrapType:Object' baseType='TextWrapType'" 
      * @generated
      */
     EDataType getTextWrapTypeObject();

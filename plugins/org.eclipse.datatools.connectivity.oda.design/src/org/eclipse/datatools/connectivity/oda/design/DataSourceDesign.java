@@ -11,9 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSourceDesign.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
+
+import java.io.File;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,11 +36,13 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getPublicProperties <em>Public Properties</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getPrivateProperties <em>Private Properties</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName <em>Linked Profile Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign()
- * @model 
+ * @model extendedMetaData="name='DataSourceDesign' kind='elementOnly'"
  * @generated
  */
 public interface DataSourceDesign extends EObject
@@ -61,6 +65,7 @@ public interface DataSourceDesign extends EObject
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_Name()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
     String getName();
@@ -86,6 +91,7 @@ public interface DataSourceDesign extends EObject
      * @see #setOdaExtensionId(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_OdaExtensionId()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     extendedMetaData="kind='element' name='odaExtensionId' namespace='##targetNamespace'"
      * @generated
      */
     String getOdaExtensionId();
@@ -111,6 +117,7 @@ public interface DataSourceDesign extends EObject
      * @see #setOdaExtensionDataSourceId(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_OdaExtensionDataSourceId()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     extendedMetaData="kind='element' name='odaExtensionDataSourceId' namespace='##targetNamespace'"
      * @generated
      */
     String getOdaExtensionDataSourceId();
@@ -133,6 +140,7 @@ public interface DataSourceDesign extends EObject
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_DisplayName()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayName();
@@ -158,6 +166,7 @@ public interface DataSourceDesign extends EObject
      * @see #setPublicProperties(Properties)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_PublicProperties()
      * @model containment="true" resolveProxies="false"
+     extendedMetaData="kind='element' name='publicProperties' namespace='##targetNamespace'"
      * @generated
      */
     Properties getPublicProperties();
@@ -183,6 +192,7 @@ public interface DataSourceDesign extends EObject
      * @see #setPrivateProperties(Properties)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_PrivateProperties()
      * @model containment="true" resolveProxies="false"
+     extendedMetaData="kind='element' name='privateProperties' namespace='##targetNamespace'"
      * @generated
      */
     Properties getPrivateProperties();
@@ -197,4 +207,86 @@ public interface DataSourceDesign extends EObject
      */
     void setPrivateProperties( Properties value );
 
+    /**
+     * Returns the value of the '<em><b>Linked Profile Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The name of a linked connection profile.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Linked Profile Name</em>' attribute.
+     * @see #setLinkedProfileName(String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_LinkedProfileName()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     extendedMetaData="kind='element' name='linkedProfileName' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getLinkedProfileName();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName <em>Linked Profile Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Linked Profile Name</em>' attribute.
+     * @see #getLinkedProfileName()
+     * @generated
+     */
+    void setLinkedProfileName( String value );
+
+    /**
+     * Returns the value of the '<em><b>Linked Profile Store File Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The name of a linked connection profile where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Linked Profile Store File Path</em>' attribute.
+     * @see #setLinkedProfileStoreFilePath(String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_LinkedProfileStoreFilePath()
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     extendedMetaData="kind='element' name='linkedProfileStoreFilePath' namespace='##targetNamespace'"
+     * @generated
+     */
+    String getLinkedProfileStoreFilePath();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Linked Profile Store File Path</em>' attribute.
+     * @see #getLinkedProfileStoreFilePath()
+     * @generated
+     */
+    void setLinkedProfileStoreFilePath( String value );
+
+    /**
+     * Returns the profile storage file
+     * where the linked profile is stored.
+     * @return  the linked profile storage file,
+     *          or null value if no profile store is set
+     * @see #getLinkedProfileStoreFilePath()
+     * @see #setLinkedProfileStoreFile(File)
+     * @generated NOT
+     */
+    File getLinkedProfileStoreFile();
+
+    /**
+     * Sets the profile storage file
+     * where the linked profile is stored.
+     * @param storageFile the profile storage file;
+     *                  null value unsets any linked profile store
+     * @see #getLinkedProfileStoreFile()
+     * @see #getLinkedProfileStoreFilePath()
+     * @generated NOT
+     */
+    void setLinkedProfileStoreFile( File storageFile );
+
+    /**
+     * Indicates whether the data source design has a link
+     * to an external connection profile in a profile store.
+     * @return  true if a link is specified; false otherwise
+     * @generated NOT
+     */
+    boolean hasLinkToProfile();
+    
 } // DataSourceDesign

@@ -11,11 +11,13 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignFactoryImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.*;
+
+import org.eclipse.emf.common.util.AbstractEnumerator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -42,7 +44,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * Creates and instance of the factory.
+     * Creates an instance of the factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -57,47 +59,83 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public EObject create(EClass eClass)
+    public EObject create( EClass eClass )
     {
-        switch (eClass.getClassifierID())
+        switch( eClass.getClassifierID() )
         {
-            case DesignPackage.AXIS_ATTRIBUTES: return createAxisAttributes();
-            case DesignPackage.COLUMN_DEFINITION: return createColumnDefinition();
-            case DesignPackage.DATA_ACCESS_DESIGN: return createDataAccessDesign();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES: return createDataElementAttributes();
-            case DesignPackage.DATA_ELEMENT_UI_HINTS: return createDataElementUIHints();
-            case DesignPackage.DATA_SET_DESIGN: return createDataSetDesign();
-            case DesignPackage.DATA_SET_PARAMETERS: return createDataSetParameters();
-            case DesignPackage.DATA_SET_QUERY: return createDataSetQuery();
-            case DesignPackage.DATA_SOURCE_DESIGN: return createDataSourceDesign();
-            case DesignPackage.DESIGN_ER_STATE: return createDesignerState();
-            case DesignPackage.DESIGN_ER_STATE_CONTENT: return createDesignerStateContent();
-            case DesignPackage.DESIGN_SESSION_REQUEST: return createDesignSessionRequest();
-            case DesignPackage.DESIGN_SESSION_RESPONSE: return createDesignSessionResponse();
-            case DesignPackage.DOCUMENT_ROOT: return createDocumentRoot();
-            case DesignPackage.DYNAMIC_VALUES_QUERY: return createDynamicValuesQuery();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES: return createInputElementAttributes();
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS: return createInputElementUIHints();
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES: return createInputParameterAttributes();
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS: return createInputParameterUIHints();
-            case DesignPackage.LOCALE: return createLocale();
-            case DesignPackage.NAME_VALUE_PAIR: return createNameValuePair();
-            case DesignPackage.ODA_DESIGN_SESSION: return createOdaDesignSession();
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES: return createOutputElementAttributes();
-            case DesignPackage.PARAMETER_DEFINITION: return createParameterDefinition();
-            case DesignPackage.PARAMETER_FIELD_DEFINITION: return createParameterFieldDefinition();
-            case DesignPackage.PARAMETER_FIELDS: return createParameterFields();
-            case DesignPackage.PROPERTIES: return createProperties();
-            case DesignPackage.PROPERTY: return createProperty();
-            case DesignPackage.PROPERTY_ATTRIBUTES: return createPropertyAttributes();
-            case DesignPackage.RESULT_SET_COLUMNS: return createResultSetColumns();
-            case DesignPackage.RESULT_SET_DEFINITION: return createResultSetDefinition();
-            case DesignPackage.RESULT_SETS: return createResultSets();
-            case DesignPackage.SCALAR_VALUE_CHOICES: return createScalarValueChoices();
-            case DesignPackage.SCALAR_VALUE_DEFINITION: return createScalarValueDefinition();
-            case DesignPackage.VALUE_FORMAT_HINTS: return createValueFormatHints();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case DesignPackage.AXIS_ATTRIBUTES:
+            return createAxisAttributes();
+        case DesignPackage.COLUMN_DEFINITION:
+            return createColumnDefinition();
+        case DesignPackage.DATA_ACCESS_DESIGN:
+            return createDataAccessDesign();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
+            return createDataElementAttributes();
+        case DesignPackage.DATA_ELEMENT_UI_HINTS:
+            return createDataElementUIHints();
+        case DesignPackage.DATA_SET_DESIGN:
+            return createDataSetDesign();
+        case DesignPackage.DATA_SET_PARAMETERS:
+            return createDataSetParameters();
+        case DesignPackage.DATA_SET_QUERY:
+            return createDataSetQuery();
+        case DesignPackage.DATA_SOURCE_DESIGN:
+            return createDataSourceDesign();
+        case DesignPackage.DESIGNER_STATE:
+            return createDesignerState();
+        case DesignPackage.DESIGNER_STATE_CONTENT:
+            return createDesignerStateContent();
+        case DesignPackage.DESIGN_SESSION_REQUEST:
+            return createDesignSessionRequest();
+        case DesignPackage.DESIGN_SESSION_RESPONSE:
+            return createDesignSessionResponse();
+        case DesignPackage.DOCUMENT_ROOT:
+            return createDocumentRoot();
+        case DesignPackage.DYNAMIC_VALUES_QUERY:
+            return createDynamicValuesQuery();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
+            return createInputElementAttributes();
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS:
+            return createInputElementUIHints();
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES:
+            return createInputParameterAttributes();
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS:
+            return createInputParameterUIHints();
+        case DesignPackage.LOCALE:
+            return createLocale();
+        case DesignPackage.NAME_VALUE_PAIR:
+            return createNameValuePair();
+        case DesignPackage.ODA_DESIGN_SESSION:
+            return createOdaDesignSession();
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES:
+            return createOutputElementAttributes();
+        case DesignPackage.PARAMETER_DEFINITION:
+            return createParameterDefinition();
+        case DesignPackage.PARAMETER_FIELD_DEFINITION:
+            return createParameterFieldDefinition();
+        case DesignPackage.PARAMETER_FIELDS:
+            return createParameterFields();
+        case DesignPackage.PROPERTIES:
+            return createProperties();
+        case DesignPackage.PROPERTY:
+            return createProperty();
+        case DesignPackage.PROPERTY_ATTRIBUTES:
+            return createPropertyAttributes();
+        case DesignPackage.RESULT_SET_COLUMNS:
+            return createResultSetColumns();
+        case DesignPackage.RESULT_SET_DEFINITION:
+            return createResultSetDefinition();
+        case DesignPackage.RESULT_SETS:
+            return createResultSets();
+        case DesignPackage.SCALAR_VALUE_CHOICES:
+            return createScalarValueChoices();
+        case DesignPackage.SCALAR_VALUE_DEFINITION:
+            return createScalarValueDefinition();
+        case DesignPackage.VALUE_FORMAT_HINTS:
+            return createValueFormatHints();
+        default:
+            throw new IllegalArgumentException(
+                    "The class '" + eClass.getName() + "' is not a valid classifier" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -106,96 +144,125 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object createFromString(EDataType eDataType, String initialValue)
+    public Object createFromString( EDataType eDataType, String initialValue )
     {
-        switch (eDataType.getClassifierID())
+        switch( eDataType.getClassifierID() )
         {
-            case DesignPackage.AXIS_TYPE:
-            {
-                AxisType result = AxisType.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.ELEMENT_NULLABILITY:
-            {
-                ElementNullability result = ElementNullability.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.HORIZONTAL_ALIGNMENT:
-            {
-                HorizontalAlignment result = HorizontalAlignment.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
-            {
-                InputPromptControlStyle result = InputPromptControlStyle.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.ODA_COMPLEX_DATA_TYPE:
-            {
-                OdaComplexDataType result = OdaComplexDataType.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.ODA_SCALAR_DATA_TYPE:
-            {
-                OdaScalarDataType result = OdaScalarDataType.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.PARAMETER_MODE:
-            {
-                ParameterMode result = ParameterMode.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.SESSION_STATUS:
-            {
-                SessionStatus result = SessionStatus.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.TEXT_FORMAT_TYPE:
-            {
-                TextFormatType result = TextFormatType.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.TEXT_WRAP_TYPE:
-            {
-                TextWrapType result = TextWrapType.get(initialValue);
-                if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                return result;
-            }
-            case DesignPackage.AXIS_TYPE_OBJECT:
-                return createAxisTypeObjectFromString(eDataType, initialValue);
-            case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
-                return createElementNullabilityObjectFromString(eDataType, initialValue);
-            case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
-                return createHorizontalAlignmentObjectFromString(eDataType, initialValue);
-            case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
-                return createInputPromptControlStyleObjectFromString(eDataType, initialValue);
-            case DesignPackage.NATIVE_DATA_TYPE_CODE:
-                return createNativeDataTypeCodeFromString(eDataType, initialValue);
-            case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
-                return createNativeDataTypeCodeObjectFromString(eDataType, initialValue);
-            case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
-                return createOdaComplexDataTypeObjectFromString(eDataType, initialValue);
-            case DesignPackage.ODA_SCALAR_DATA_TYPE_OBJECT:
-                return createOdaScalarDataTypeObjectFromString(eDataType, initialValue);
-            case DesignPackage.PARAMETER_MODE_OBJECT:
-                return createParameterModeObjectFromString(eDataType, initialValue);
-            case DesignPackage.SESSION_STATUS_OBJECT:
-                return createSessionStatusObjectFromString(eDataType, initialValue);
-            case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
-                return createTextFormatTypeObjectFromString(eDataType, initialValue);
-            case DesignPackage.TEXT_WRAP_TYPE_OBJECT:
-                return createTextWrapTypeObjectFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case DesignPackage.AXIS_TYPE:
+        {
+            AxisType result = AxisType.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.ELEMENT_NULLABILITY:
+        {
+            ElementNullability result = ElementNullability.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.HORIZONTAL_ALIGNMENT:
+        {
+            HorizontalAlignment result = HorizontalAlignment.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
+        {
+            InputPromptControlStyle result = InputPromptControlStyle
+                    .get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.ODA_COMPLEX_DATA_TYPE:
+        {
+            OdaComplexDataType result = OdaComplexDataType.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.ODA_SCALAR_DATA_TYPE:
+        {
+            OdaScalarDataType result = OdaScalarDataType.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.PARAMETER_MODE:
+        {
+            ParameterMode result = ParameterMode.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.SESSION_STATUS:
+        {
+            SessionStatus result = SessionStatus.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.TEXT_FORMAT_TYPE:
+        {
+            TextFormatType result = TextFormatType.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.TEXT_WRAP_TYPE:
+        {
+            TextWrapType result = TextWrapType.get( initialValue );
+            if( result == null )
+                throw new IllegalArgumentException(
+                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            return result;
+        }
+        case DesignPackage.AXIS_TYPE_OBJECT:
+            return createAxisTypeObjectFromString( eDataType, initialValue );
+        case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
+            return createElementNullabilityObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
+            return createHorizontalAlignmentObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
+            return createInputPromptControlStyleObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.NATIVE_DATA_TYPE_CODE:
+            return createNativeDataTypeCodeFromString( eDataType, initialValue );
+        case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
+            return createNativeDataTypeCodeObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
+            return createOdaComplexDataTypeObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.ODA_SCALAR_DATA_TYPE_OBJECT:
+            return createOdaScalarDataTypeObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.PARAMETER_MODE_OBJECT:
+            return createParameterModeObjectFromString( eDataType, initialValue );
+        case DesignPackage.SESSION_STATUS_OBJECT:
+            return createSessionStatusObjectFromString( eDataType, initialValue );
+        case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
+            return createTextFormatTypeObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.TEXT_WRAP_TYPE_OBJECT:
+            return createTextWrapTypeObjectFromString( eDataType, initialValue );
+        default:
+            throw new IllegalArgumentException(
+                    "The datatype '" + eDataType.getName() + "' is not a valid classifier" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -204,56 +271,64 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertToString(EDataType eDataType, Object instanceValue)
+    public String convertToString( EDataType eDataType, Object instanceValue )
     {
-        switch (eDataType.getClassifierID())
+        switch( eDataType.getClassifierID() )
         {
-            case DesignPackage.AXIS_TYPE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.ELEMENT_NULLABILITY:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.HORIZONTAL_ALIGNMENT:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.ODA_COMPLEX_DATA_TYPE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.ODA_SCALAR_DATA_TYPE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.PARAMETER_MODE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.SESSION_STATUS:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.TEXT_FORMAT_TYPE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.TEXT_WRAP_TYPE:
-                return instanceValue == null ? null : instanceValue.toString();
-            case DesignPackage.AXIS_TYPE_OBJECT:
-                return convertAxisTypeObjectToString(eDataType, instanceValue);
-            case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
-                return convertElementNullabilityObjectToString(eDataType, instanceValue);
-            case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
-                return convertHorizontalAlignmentObjectToString(eDataType, instanceValue);
-            case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
-                return convertInputPromptControlStyleObjectToString(eDataType, instanceValue);
-            case DesignPackage.NATIVE_DATA_TYPE_CODE:
-                return convertNativeDataTypeCodeToString(eDataType, instanceValue);
-            case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
-                return convertNativeDataTypeCodeObjectToString(eDataType, instanceValue);
-            case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
-                return convertOdaComplexDataTypeObjectToString(eDataType, instanceValue);
-            case DesignPackage.ODA_SCALAR_DATA_TYPE_OBJECT:
-                return convertOdaScalarDataTypeObjectToString(eDataType, instanceValue);
-            case DesignPackage.PARAMETER_MODE_OBJECT:
-                return convertParameterModeObjectToString(eDataType, instanceValue);
-            case DesignPackage.SESSION_STATUS_OBJECT:
-                return convertSessionStatusObjectToString(eDataType, instanceValue);
-            case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
-                return convertTextFormatTypeObjectToString(eDataType, instanceValue);
-            case DesignPackage.TEXT_WRAP_TYPE_OBJECT:
-                return convertTextWrapTypeObjectToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case DesignPackage.AXIS_TYPE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.ELEMENT_NULLABILITY:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.HORIZONTAL_ALIGNMENT:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.ODA_COMPLEX_DATA_TYPE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.ODA_SCALAR_DATA_TYPE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.PARAMETER_MODE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.SESSION_STATUS:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.TEXT_FORMAT_TYPE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.TEXT_WRAP_TYPE:
+            return instanceValue == null ? null : instanceValue.toString();
+        case DesignPackage.AXIS_TYPE_OBJECT:
+            return convertAxisTypeObjectToString( eDataType, instanceValue );
+        case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
+            return convertElementNullabilityObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
+            return convertHorizontalAlignmentObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
+            return convertInputPromptControlStyleObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.NATIVE_DATA_TYPE_CODE:
+            return convertNativeDataTypeCodeToString( eDataType, instanceValue );
+        case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
+            return convertNativeDataTypeCodeObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
+            return convertOdaComplexDataTypeObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.ODA_SCALAR_DATA_TYPE_OBJECT:
+            return convertOdaScalarDataTypeObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.PARAMETER_MODE_OBJECT:
+            return convertParameterModeObjectToString( eDataType, instanceValue );
+        case DesignPackage.SESSION_STATUS_OBJECT:
+            return convertSessionStatusObjectToString( eDataType, instanceValue );
+        case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
+            return convertTextFormatTypeObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.TEXT_WRAP_TYPE_OBJECT:
+            return convertTextWrapTypeObjectToString( eDataType, instanceValue );
+        default:
+            throw new IllegalArgumentException(
+                    "The datatype '" + eDataType.getName() + "' is not a valid classifier" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -647,9 +722,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AxisType createAxisTypeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createAxisTypeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (AxisType)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getAxisType(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getAxisType(), initialValue );
     }
 
     /**
@@ -657,9 +734,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertAxisTypeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertAxisTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getAxisType(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getAxisType(), instanceValue );
     }
 
     /**
@@ -667,9 +746,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public ElementNullability createElementNullabilityObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createElementNullabilityObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (ElementNullability)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getElementNullability(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getElementNullability(), initialValue );
     }
 
     /**
@@ -677,9 +758,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertElementNullabilityObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertElementNullabilityObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getElementNullability(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getElementNullability(), instanceValue );
     }
 
     /**
@@ -687,9 +770,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public HorizontalAlignment createHorizontalAlignmentObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createHorizontalAlignmentObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (HorizontalAlignment)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getHorizontalAlignment(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getHorizontalAlignment(), initialValue );
     }
 
     /**
@@ -697,9 +782,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertHorizontalAlignmentObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertHorizontalAlignmentObjectToString(
+            EDataType eDataType, Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getHorizontalAlignment(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getHorizontalAlignment(), instanceValue );
     }
 
     /**
@@ -707,9 +794,12 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public InputPromptControlStyle createInputPromptControlStyleObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createInputPromptControlStyleObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (InputPromptControlStyle)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getInputPromptControlStyle(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getInputPromptControlStyle(),
+                initialValue );
     }
 
     /**
@@ -717,9 +807,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertInputPromptControlStyleObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertInputPromptControlStyleObjectToString(
+            EDataType eDataType, Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getInputPromptControlStyle(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getInputPromptControlStyle(), instanceValue );
     }
 
     /**
@@ -727,9 +819,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Short createNativeDataTypeCodeFromString(EDataType eDataType, String initialValue)
+    public Short createNativeDataTypeCodeFromString( EDataType eDataType,
+            String initialValue )
     {
-        return (Short)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.eINSTANCE.getShort(), initialValue);
+        return (Short) XMLTypeFactory.eINSTANCE.createFromString(
+                XMLTypePackage.eINSTANCE.getShort(), initialValue );
     }
 
     /**
@@ -737,9 +831,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertNativeDataTypeCodeToString(EDataType eDataType, Object instanceValue)
+    public String convertNativeDataTypeCodeToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.eINSTANCE.getShort(), instanceValue);
+        return XMLTypeFactory.eINSTANCE.convertToString(
+                XMLTypePackage.eINSTANCE.getShort(), instanceValue );
     }
 
     /**
@@ -747,9 +843,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Short createNativeDataTypeCodeObjectFromString(EDataType eDataType, String initialValue)
+    public Short createNativeDataTypeCodeObjectFromString( EDataType eDataType,
+            String initialValue )
     {
-        return (Short)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getNativeDataTypeCode(), initialValue);
+        return (Short) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getNativeDataTypeCode(), initialValue );
     }
 
     /**
@@ -757,9 +855,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertNativeDataTypeCodeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertNativeDataTypeCodeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getNativeDataTypeCode(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getNativeDataTypeCode(), instanceValue );
     }
 
     /**
@@ -767,9 +867,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public OdaComplexDataType createOdaComplexDataTypeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createOdaComplexDataTypeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (OdaComplexDataType)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getOdaComplexDataType(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getOdaComplexDataType(), initialValue );
     }
 
     /**
@@ -777,9 +879,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertOdaComplexDataTypeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertOdaComplexDataTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getOdaComplexDataType(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getOdaComplexDataType(), instanceValue );
     }
 
     /**
@@ -787,9 +891,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public OdaScalarDataType createOdaScalarDataTypeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createOdaScalarDataTypeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (OdaScalarDataType)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getOdaScalarDataType(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getOdaScalarDataType(), initialValue );
     }
 
     /**
@@ -797,9 +903,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertOdaScalarDataTypeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertOdaScalarDataTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getOdaScalarDataType(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getOdaScalarDataType(), instanceValue );
     }
 
     /**
@@ -807,9 +915,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public ParameterMode createParameterModeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createParameterModeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (ParameterMode)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getParameterMode(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getParameterMode(), initialValue );
     }
 
     /**
@@ -817,9 +927,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertParameterModeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertParameterModeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getParameterMode(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getParameterMode(), instanceValue );
     }
 
     /**
@@ -827,9 +939,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public SessionStatus createSessionStatusObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createSessionStatusObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (SessionStatus)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getSessionStatus(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getSessionStatus(), initialValue );
     }
 
     /**
@@ -837,9 +951,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertSessionStatusObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertSessionStatusObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getSessionStatus(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getSessionStatus(), instanceValue );
     }
 
     /**
@@ -847,9 +963,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public TextFormatType createTextFormatTypeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createTextFormatTypeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (TextFormatType)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getTextFormatType(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getTextFormatType(), initialValue );
     }
 
     /**
@@ -857,9 +975,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertTextFormatTypeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertTextFormatTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getTextFormatType(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getTextFormatType(), instanceValue );
     }
 
     /**
@@ -867,9 +987,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public TextWrapType createTextWrapTypeObjectFromString(EDataType eDataType, String initialValue)
+    public AbstractEnumerator createTextWrapTypeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (TextWrapType)DesignFactory.eINSTANCE.createFromString(DesignPackage.eINSTANCE.getTextWrapType(), initialValue);
+        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
+                DesignPackage.eINSTANCE.getTextWrapType(), initialValue );
     }
 
     /**
@@ -877,9 +999,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertTextWrapTypeObjectToString(EDataType eDataType, Object instanceValue)
+    public String convertTextWrapTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString(DesignPackage.eINSTANCE.getTextWrapType(), instanceValue);
+        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
+                .getTextWrapType(), instanceValue );
     }
 
     /**
@@ -889,7 +1013,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      */
     public DesignPackage getDesignPackage()
     {
-        return (DesignPackage)getEPackage();
+        return (DesignPackage) getEPackage();
     }
 
     /**

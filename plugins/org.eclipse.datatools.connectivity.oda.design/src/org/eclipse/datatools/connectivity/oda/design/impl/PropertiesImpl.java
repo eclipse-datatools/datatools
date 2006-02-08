@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id: PropertiesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: PropertiesImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -86,15 +87,49 @@ public class PropertiesImpl extends EObjectImpl implements Properties
     {
         return DesignPackage.eINSTANCE.getProperties();
     }
-    
+
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.Properties#addProperty(java.lang.String, java.lang.String)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#findProperty(java.lang.String)
      */
-    public void addProperty( String propName, String propValue )
+    public Property findProperty( String propName )
     {
-        Property newProp = DesignFactory.eINSTANCE.createProperty();
-        newProp.setNameValue( propName, propValue );
-        getProperties().add( newProp );
+        Iterator iter = getProperties().iterator();
+        while( iter.hasNext() )
+        {
+            Property prop = (Property) iter.next();
+            if( propName.equalsIgnoreCase( prop.getName() ) )
+                return prop; // matching property name
+        }
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#setProperty(java.lang.String, java.lang.String)
+     */
+    public void setProperty( String propName, String propValue )
+    {
+        Property prop = findProperty( propName );
+        if( prop != null )
+        {
+            prop.setNameValue( propName, propValue );
+            return; // done
+        }
+
+        // no existing property with given name, add a new one
+        prop = DesignFactory.eINSTANCE.createProperty();
+        prop.setNameValue( propName, propValue );
+        getProperties().add( prop );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#unsetProperty(java.lang.String)
+     */
+    public void unsetProperty( String propName )
+    {
+        Property prop = findProperty( propName );
+        if( prop == null )
+            return; // done, nothing to remove
+        getProperties().remove( prop );
     }
 
     /**
@@ -104,9 +139,10 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public EList getProperties()
     {
-        if (m_properties == null)
+        if( m_properties == null )
         {
-            m_properties = new EObjectContainmentEList(Property.class, this, DesignPackage.PROPERTIES__PROPERTIES);
+            m_properties = new EObjectContainmentEList( Property.class, this,
+                    DesignPackage.PROPERTIES__PROPERTIES );
         }
         return m_properties;
     }
@@ -116,19 +152,22 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, Class baseClass, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        if( featureID >= 0 )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
+            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
             {
-                case DesignPackage.PROPERTIES__PROPERTIES:
-                    return ((InternalEList)getProperties()).basicRemove(otherEnd, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+            case DesignPackage.PROPERTIES__PROPERTIES:
+                return ((InternalEList) getProperties()).basicRemove( otherEnd,
+                        msgs );
+            default:
+                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
+                        msgs );
             }
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return eBasicSetContainer( null, featureID, msgs );
     }
 
     /**
@@ -138,12 +177,12 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public Object eGet( EStructuralFeature eFeature, boolean resolve )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.PROPERTIES__PROPERTIES:
-                return getProperties();
+        case DesignPackage.PROPERTIES__PROPERTIES:
+            return getProperties();
         }
-        return eDynamicGet(eFeature, resolve);
+        return eDynamicGet( eFeature, resolve );
     }
 
     /**
@@ -153,14 +192,14 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public void eSet( EStructuralFeature eFeature, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.PROPERTIES__PROPERTIES:
-                getProperties().clear();
-                getProperties().addAll((Collection)newValue);
-                return;
+        case DesignPackage.PROPERTIES__PROPERTIES:
+            getProperties().clear();
+            getProperties().addAll( (Collection) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        eDynamicSet( eFeature, newValue );
     }
 
     /**
@@ -170,13 +209,13 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public void eUnset( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.PROPERTIES__PROPERTIES:
-                getProperties().clear();
-                return;
+        case DesignPackage.PROPERTIES__PROPERTIES:
+            getProperties().clear();
+            return;
         }
-        eDynamicUnset(eFeature);
+        eDynamicUnset( eFeature );
     }
 
     /**
@@ -186,12 +225,12 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public boolean eIsSet( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.PROPERTIES__PROPERTIES:
-                return m_properties != null && !m_properties.isEmpty();
+        case DesignPackage.PROPERTIES__PROPERTIES:
+            return m_properties != null && !m_properties.isEmpty();
         }
-        return eDynamicIsSet(eFeature);
+        return eDynamicIsSet( eFeature );
     }
 
 } //PropertiesImpl

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -125,6 +125,17 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
         newResponse.setNewDataAccessDesign( dataSourceDesign );
         
         setResponse( newResponse );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setResponseInCancelledState()
+     */
+    public void setResponseInCancelledState()
+    {
+        DesignSessionResponse newResponse =
+            DesignFactory.eINSTANCE.createDesignSessionResponse();
+        newResponse.setSessionStatus( SessionStatus.USER_CANCELLED_LITERAL );
+        setResponse( newResponse );        
     }
 
     /* (non-Javadoc)

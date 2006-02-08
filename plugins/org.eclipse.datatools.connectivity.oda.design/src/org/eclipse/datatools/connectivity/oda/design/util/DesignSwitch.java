@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignSwitch.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -174,14 +174,14 @@ public class DesignSwitch {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case DesignPackage.DESIGN_ER_STATE:
+            case DesignPackage.DESIGNER_STATE:
             {
                 DesignerState designerState = (DesignerState)theEObject;
                 Object result = caseDesignerState(designerState);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case DesignPackage.DESIGN_ER_STATE_CONTENT:
+            case DesignPackage.DESIGNER_STATE_CONTENT:
             {
                 DesignerStateContent designerStateContent = (DesignerStateContent)theEObject;
                 Object result = caseDesignerStateContent(designerStateContent);

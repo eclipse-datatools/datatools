@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Property.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: Property.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getProperty()
- * @model 
+ * @model extendedMetaData="name='Property' kind='elementOnly'"
  * @generated
  */
 public interface Property extends EObject
@@ -47,6 +47,22 @@ public interface Property extends EObject
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
     /**
+     * Returns the name of the '<em><b>Name Value</b></em>' containment reference.
+     * @return  the property name, or null if none is specified
+     * @see #getNameValue()
+     * @generated NOT
+     */
+    String getName();
+
+    /**
+     * Returns the value of the '<em><b>Name Value</b></em>' containment reference.
+     * @return  the property value, or null if none is specified
+     * @see #getNameValue()
+     * @generated NOT
+     */
+    String getValue();
+
+    /**
      * Returns the value of the '<em><b>Name Value</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -57,6 +73,7 @@ public interface Property extends EObject
      * @see #setNameValue(NameValuePair)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getProperty_NameValue()
      * @model containment="true" resolveProxies="false" required="true"
+     extendedMetaData="kind='element' name='nameValue' namespace='##targetNamespace'"
      * @generated
      */
     NameValuePair getNameValue();
@@ -92,6 +109,7 @@ public interface Property extends EObject
      * @see #setDesignAttributes(PropertyAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getProperty_DesignAttributes()
      * @model containment="true" resolveProxies="false"
+     extendedMetaData="kind='element' name='designAttributes' namespace='##targetNamespace'"
      * @generated
      */
     PropertyAttributes getDesignAttributes();

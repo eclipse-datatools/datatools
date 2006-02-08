@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignerStateImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -122,7 +122,7 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
         String oldVersion = m_version;
         m_version = newVersion;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_ER_STATE__VERSION, oldVersion, m_version));
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__VERSION, oldVersion, m_version));
     }
 
     /**
@@ -146,7 +146,7 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
         m_stateContent = newStateContent;
         if (eNotificationRequired())
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_ER_STATE__STATE_CONTENT, oldStateContent, newStateContent);
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__STATE_CONTENT, oldStateContent, newStateContent);
             if (msgs == null) msgs = notification; else msgs.add(notification);
         }
         return msgs;
@@ -163,14 +163,14 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
         {
             NotificationChain msgs = null;
             if (m_stateContent != null)
-                msgs = ((InternalEObject)m_stateContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_ER_STATE__STATE_CONTENT, null, msgs);
+                msgs = ((InternalEObject)m_stateContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGNER_STATE__STATE_CONTENT, null, msgs);
             if (newStateContent != null)
-                msgs = ((InternalEObject)newStateContent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_ER_STATE__STATE_CONTENT, null, msgs);
+                msgs = ((InternalEObject)newStateContent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGNER_STATE__STATE_CONTENT, null, msgs);
             msgs = basicSetStateContent(newStateContent, msgs);
             if (msgs != null) msgs.dispatch();
         }
         else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_ER_STATE__STATE_CONTENT, newStateContent, newStateContent));
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__STATE_CONTENT, newStateContent, newStateContent));
     }
 
     /**
@@ -184,7 +184,7 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
         {
             switch (eDerivedStructuralFeatureID(featureID, baseClass))
             {
-                case DesignPackage.DESIGN_ER_STATE__STATE_CONTENT:
+                case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
                     return basicSetStateContent(null, msgs);
                 default:
                     return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
@@ -202,9 +202,9 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE__VERSION:
+            case DesignPackage.DESIGNER_STATE__VERSION:
                 return getVersion();
-            case DesignPackage.DESIGN_ER_STATE__STATE_CONTENT:
+            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
                 return getStateContent();
         }
         return eDynamicGet(eFeature, resolve);
@@ -219,10 +219,10 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE__VERSION:
+            case DesignPackage.DESIGNER_STATE__VERSION:
                 setVersion((String)newValue);
                 return;
-            case DesignPackage.DESIGN_ER_STATE__STATE_CONTENT:
+            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
                 setStateContent((DesignerStateContent)newValue);
                 return;
         }
@@ -238,10 +238,10 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE__VERSION:
+            case DesignPackage.DESIGNER_STATE__VERSION:
                 setVersion(VERSION_EDEFAULT);
                 return;
-            case DesignPackage.DESIGN_ER_STATE__STATE_CONTENT:
+            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
                 setStateContent((DesignerStateContent)null);
                 return;
         }
@@ -257,9 +257,9 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE__VERSION:
+            case DesignPackage.DESIGNER_STATE__VERSION:
                 return VERSION_EDEFAULT == null ? m_version != null : !VERSION_EDEFAULT.equals(m_version);
-            case DesignPackage.DESIGN_ER_STATE__STATE_CONTENT:
+            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
                 return m_stateContent != null;
         }
         return eDynamicIsSet(eFeature);

@@ -11,21 +11,24 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -42,12 +45,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getDisplayName <em>Display Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getPublicProperties <em>Public Properties</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getPrivateProperties <em>Private Properties</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileName <em>Linked Profile Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesign
+public class DataSourceDesignImpl extends EObjectImpl implements
+        DataSourceDesign
 {
     /**
      * <!-- begin-user-doc -->
@@ -157,6 +163,46 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     protected Properties m_privateProperties = null;
 
     /**
+     * The default value of the '{@link #getLinkedProfileName() <em>Linked Profile Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLinkedProfileName()
+     * @generated
+     * @ordered
+     */
+    protected static final String LINKED_PROFILE_NAME_EDEFAULT = null; //$NON-NLS-1$
+
+    /**
+     * The cached value of the '{@link #getLinkedProfileName() <em>Linked Profile Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLinkedProfileName()
+     * @generated
+     * @ordered
+     */
+    protected String m_linkedProfileName = LINKED_PROFILE_NAME_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getLinkedProfileStoreFilePath() <em>Linked Profile Store File Path</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLinkedProfileStoreFilePath()
+     * @generated
+     * @ordered
+     */
+    protected static final String LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getLinkedProfileStoreFilePath() <em>Linked Profile Store File Path</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLinkedProfileStoreFilePath()
+     * @generated
+     * @ordered
+     */
+    protected String m_linkedProfileStoreFilePath = LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -195,8 +241,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     {
         String oldName = m_name;
         m_name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__NAME, oldName, m_name));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__NAME, oldName, m_name ) );
     }
 
     /**
@@ -218,22 +265,21 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     {
         String oldOdaExtensionId = m_odaExtensionId;
         m_odaExtensionId = newOdaExtensionId;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID, oldOdaExtensionId, m_odaExtensionId));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID,
+                    oldOdaExtensionId, m_odaExtensionId ) );
     }
 
-    /**
-     * Returns the data source element ID defined in an ODA extension plugin manifest.  
-     * If null value is specified, defaults to be same as the 
-     * ODA extension id assuming only one dataSource element 
-     * is defined in the manifest.
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getOdaExtensionDataSourceId()
      */
     public String getOdaExtensionDataSourceId()
     {
         String assignedValue = getOdaExtensionDataSourceIdGen();
         if( assignedValue != null )
             return assignedValue;
-        
+
         // null, default to be the same as the ODA extension id 
         return getOdaExtensionId();
     }
@@ -257,8 +303,12 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     {
         String oldOdaExtensionDataSourceId = m_odaExtensionDataSourceId;
         m_odaExtensionDataSourceId = newOdaExtensionDataSourceId;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID, oldOdaExtensionDataSourceId, m_odaExtensionDataSourceId));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID,
+                    oldOdaExtensionDataSourceId, m_odaExtensionDataSourceId ) );
     }
 
     /**
@@ -280,8 +330,10 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME, oldDisplayName, m_displayName));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME,
+                    oldDisplayName, m_displayName ) );
     }
 
     /**
@@ -299,14 +351,21 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetPublicProperties( Properties newPublicProperties, NotificationChain msgs )
+    public NotificationChain basicSetPublicProperties(
+            Properties newPublicProperties, NotificationChain msgs )
     {
         Properties oldPublicProperties = m_publicProperties;
         m_publicProperties = newPublicProperties;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES, oldPublicProperties, newPublicProperties);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES,
+                    oldPublicProperties, newPublicProperties );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -318,18 +377,31 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public void setPublicProperties( Properties newPublicProperties )
     {
-        if (newPublicProperties != m_publicProperties)
+        if( newPublicProperties != m_publicProperties )
         {
             NotificationChain msgs = null;
-            if (m_publicProperties != null)
-                msgs = ((InternalEObject)m_publicProperties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES, null, msgs);
-            if (newPublicProperties != null)
-                msgs = ((InternalEObject)newPublicProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES, null, msgs);
-            msgs = basicSetPublicProperties(newPublicProperties, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_publicProperties != null )
+                msgs = ((InternalEObject) m_publicProperties)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES,
+                                null, msgs );
+            if( newPublicProperties != null )
+                msgs = ((InternalEObject) newPublicProperties)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES,
+                                null, msgs );
+            msgs = basicSetPublicProperties( newPublicProperties, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES, newPublicProperties, newPublicProperties));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES,
+                    newPublicProperties, newPublicProperties ) );
     }
 
     /**
@@ -347,14 +419,21 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetPrivateProperties( Properties newPrivateProperties, NotificationChain msgs )
+    public NotificationChain basicSetPrivateProperties(
+            Properties newPrivateProperties, NotificationChain msgs )
     {
         Properties oldPrivateProperties = m_privateProperties;
         m_privateProperties = newPrivateProperties;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES, oldPrivateProperties, newPrivateProperties);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES,
+                    oldPrivateProperties, newPrivateProperties );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -366,18 +445,31 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public void setPrivateProperties( Properties newPrivateProperties )
     {
-        if (newPrivateProperties != m_privateProperties)
+        if( newPrivateProperties != m_privateProperties )
         {
             NotificationChain msgs = null;
-            if (m_privateProperties != null)
-                msgs = ((InternalEObject)m_privateProperties).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES, null, msgs);
-            if (newPrivateProperties != null)
-                msgs = ((InternalEObject)newPrivateProperties).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES, null, msgs);
-            msgs = basicSetPrivateProperties(newPrivateProperties, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_privateProperties != null )
+                msgs = ((InternalEObject) m_privateProperties)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES,
+                                null, msgs );
+            if( newPrivateProperties != null )
+                msgs = ((InternalEObject) newPrivateProperties)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES,
+                                null, msgs );
+            msgs = basicSetPrivateProperties( newPrivateProperties, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES, newPrivateProperties, newPrivateProperties));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES,
+                    newPrivateProperties, newPrivateProperties ) );
     }
 
     /**
@@ -385,21 +477,127 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public String getLinkedProfileName()
     {
-        if (featureID >= 0)
+        return m_linkedProfileName;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLinkedProfileName( String newLinkedProfileName )
+    {
+        String oldLinkedProfileName = m_linkedProfileName;
+        m_linkedProfileName = newLinkedProfileName;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME,
+                    oldLinkedProfileName, m_linkedProfileName ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getLinkedProfileStoreFilePath()
+    {
+        return m_linkedProfileStoreFilePath;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setLinkedProfileStoreFilePath(
+            String newLinkedProfileStoreFilePath )
+    {
+        String oldLinkedProfileStoreFilePath = m_linkedProfileStoreFilePath;
+        m_linkedProfileStoreFilePath = newLinkedProfileStoreFilePath;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH,
+                    oldLinkedProfileStoreFilePath, m_linkedProfileStoreFilePath ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFile()
+     */
+    public File getLinkedProfileStoreFile()
+    {
+        String storeFilePath = getLinkedProfileStoreFilePath();
+        if( storeFilePath == null || storeFilePath.length() == 0 )
+            return null;
+
+        return new File( storeFilePath );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setLinkedProfileStoreFile(java.io.File)
+     */
+    public void setLinkedProfileStoreFile( File storageFile )
+    {
+        if( storageFile == null )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
+            setLinkedProfileStoreFilePath( null );
+            return; // done
+        }
+
+        String filePath = null;
+        try
+        {
+            filePath = Platform.asLocalURL( storageFile.toURI().toURL() )
+                    .getPath();
+        }
+        catch( MalformedURLException e )
+        {
+            // ignore invalid file
+        }
+        catch( IOException e )
+        {
+            // ignore invalid file
+        }
+
+        setLinkedProfileStoreFilePath( filePath );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#hasLinkToProfile()
+     */
+    public boolean hasLinkToProfile()
+    {
+        String profileName = getLinkedProfileName();
+        return ( profileName != null && 
+                 profileName.length() > 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, Class baseClass, NotificationChain msgs )
+    {
+        if( featureID >= 0 )
+        {
+            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
             {
-                case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                    return basicSetPublicProperties(null, msgs);
-                case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                    return basicSetPrivateProperties(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+                return basicSetPublicProperties( null, msgs );
+            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+                return basicSetPrivateProperties( null, msgs );
+            default:
+                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
+                        msgs );
             }
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return eBasicSetContainer( null, featureID, msgs );
     }
 
     /**
@@ -409,22 +607,26 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public Object eGet( EStructuralFeature eFeature, boolean resolve )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_SOURCE_DESIGN__NAME:
-                return getName();
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
-                return getOdaExtensionId();
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
-                return getOdaExtensionDataSourceId();
-            case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-                return getDisplayName();
-            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                return getPublicProperties();
-            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                return getPrivateProperties();
+        case DesignPackage.DATA_SOURCE_DESIGN__NAME:
+            return getName();
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
+            return getOdaExtensionId();
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
+            return getOdaExtensionDataSourceId();
+        case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
+            return getDisplayName();
+        case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+            return getPublicProperties();
+        case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+            return getPrivateProperties();
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME:
+            return getLinkedProfileName();
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
+            return getLinkedProfileStoreFilePath();
         }
-        return eDynamicGet(eFeature, resolve);
+        return eDynamicGet( eFeature, resolve );
     }
 
     /**
@@ -434,28 +636,34 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public void eSet( EStructuralFeature eFeature, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_SOURCE_DESIGN__NAME:
-                setName((String)newValue);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
-                setOdaExtensionId((String)newValue);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
-                setOdaExtensionDataSourceId((String)newValue);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-                setDisplayName((String)newValue);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                setPublicProperties((Properties)newValue);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                setPrivateProperties((Properties)newValue);
-                return;
+        case DesignPackage.DATA_SOURCE_DESIGN__NAME:
+            setName( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
+            setOdaExtensionId( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
+            setOdaExtensionDataSourceId( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
+            setDisplayName( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+            setPublicProperties( (Properties) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+            setPrivateProperties( (Properties) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME:
+            setLinkedProfileName( (String) newValue );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
+            setLinkedProfileStoreFilePath( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        eDynamicSet( eFeature, newValue );
     }
 
     /**
@@ -465,28 +673,34 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public void eUnset( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_SOURCE_DESIGN__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
-                setOdaExtensionId(ODA_EXTENSION_ID_EDEFAULT);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
-                setOdaExtensionDataSourceId(ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-                setDisplayName(DISPLAY_NAME_EDEFAULT);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                setPublicProperties((Properties)null);
-                return;
-            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                setPrivateProperties((Properties)null);
-                return;
+        case DesignPackage.DATA_SOURCE_DESIGN__NAME:
+            setName( NAME_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
+            setOdaExtensionId( ODA_EXTENSION_ID_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
+            setOdaExtensionDataSourceId( ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
+            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+            setPublicProperties( (Properties) null );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+            setPrivateProperties( (Properties) null );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME:
+            setLinkedProfileName( LINKED_PROFILE_NAME_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
+            setLinkedProfileStoreFilePath( LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        eDynamicUnset( eFeature );
     }
 
     /**
@@ -496,22 +710,35 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public boolean eIsSet( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_SOURCE_DESIGN__NAME:
-                return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT.equals(m_name);
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
-                return ODA_EXTENSION_ID_EDEFAULT == null ? m_odaExtensionId != null : !ODA_EXTENSION_ID_EDEFAULT.equals(m_odaExtensionId);
-            case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
-                return ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT == null ? m_odaExtensionDataSourceId != null : !ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT.equals(m_odaExtensionDataSourceId);
-            case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
-                return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null : !DISPLAY_NAME_EDEFAULT.equals(m_displayName);
-            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                return m_publicProperties != null;
-            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                return m_privateProperties != null;
+        case DesignPackage.DATA_SOURCE_DESIGN__NAME:
+            return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
+                    .equals( m_name );
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_ID:
+            return ODA_EXTENSION_ID_EDEFAULT == null ? m_odaExtensionId != null
+                    : !ODA_EXTENSION_ID_EDEFAULT.equals( m_odaExtensionId );
+        case DesignPackage.DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID:
+            return ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT == null ? m_odaExtensionDataSourceId != null
+                    : !ODA_EXTENSION_DATA_SOURCE_ID_EDEFAULT
+                            .equals( m_odaExtensionDataSourceId );
+        case DesignPackage.DATA_SOURCE_DESIGN__DISPLAY_NAME:
+            return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null
+                    : !DISPLAY_NAME_EDEFAULT.equals( m_displayName );
+        case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+            return m_publicProperties != null;
+        case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+            return m_privateProperties != null;
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME:
+            return LINKED_PROFILE_NAME_EDEFAULT == null ? m_linkedProfileName != null
+                    : !LINKED_PROFILE_NAME_EDEFAULT
+                            .equals( m_linkedProfileName );
+        case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
+            return LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT == null ? m_linkedProfileStoreFilePath != null
+                    : !LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT
+                            .equals( m_linkedProfileStoreFilePath );
         }
-        return eDynamicIsSet(eFeature);
+        return eDynamicIsSet( eFeature );
     }
 
     /**
@@ -521,19 +748,41 @@ public class DataSourceDesignImpl extends EObjectImpl implements DataSourceDesig
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: "); //$NON-NLS-1$
-        result.append(m_name);
-        result.append(", odaExtensionId: "); //$NON-NLS-1$
-        result.append(m_odaExtensionId);
-        result.append(", odaExtensionDataSourceId: "); //$NON-NLS-1$
-        result.append(m_odaExtensionDataSourceId);
-        result.append(", displayName: "); //$NON-NLS-1$
-        result.append(m_displayName);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (name: " ); //$NON-NLS-1$
+        result.append( m_name );
+        result.append( ", odaExtensionId: " ); //$NON-NLS-1$
+        result.append( m_odaExtensionId );
+        result.append( ", odaExtensionDataSourceId: " ); //$NON-NLS-1$
+        result.append( m_odaExtensionDataSourceId );
+        result.append( ", displayName: " ); //$NON-NLS-1$
+        result.append( m_displayName );
+        result.append( ", linkedProfileName: " ); //$NON-NLS-1$
+        result.append( m_linkedProfileName );
+        result.append( ", linkedProfileStoreFilePath: " ); //$NON-NLS-1$
+        result.append( m_linkedProfileStoreFilePath );
+        result.append( ')' );
         return result.toString();
+    }
+
+    /**
+     * A convenience method to return a non-null Properties, 
+     * for use to assign public properties.
+     * @return
+     * @generated NOT
+     */
+    protected Properties getPublicPropertiesForEdit()
+    {
+        if( getPublicProperties() == null )
+        {
+            Properties newProps = DesignFactory.eINSTANCE.createProperties();
+            setPublicProperties( newProps );
+        }
+
+        return getPublicProperties();
     }
 
 } //DataSourceDesignImpl

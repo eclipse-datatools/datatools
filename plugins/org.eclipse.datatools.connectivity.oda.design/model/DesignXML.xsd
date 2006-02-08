@@ -184,7 +184,7 @@
     </xsd:attribute>
     <xsd:attribute name="precision" default="-1" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>Maximum number of decimal digits.  A value of -1 indicates this attribute is not applicable.</xsd:documentation>
+        <xsd:documentation>Maximum number of decimal digits in a numeric value, or the length of a non-numeric value.  A value of -1 indicates this attribute is not applicable.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="scale" default="-1" type="xsd:string">
@@ -330,6 +330,16 @@
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="displayName" type="xsd:string"/>
+    <xsd:attribute name="linkedProfileName" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The name of a linked connection profile.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="linkedProfileStoreFilePath" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The name of a linked connection profile where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <xsd:element name="DataSourceDesign" type="design:DataSourceDesign">
     <xsd:annotation>
@@ -487,7 +497,7 @@
     </xsd:attribute>
     <xsd:attribute name="editable" default="true" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>Indicates whether this element value is editable or read-only in the host designer.  Applicable only if its container is visible, e.g. for public properties and input parameters.</xsd:documentation>
+        <xsd:documentation>Indicates whether this element value is editable or read-only in the host designer.  A host designer can further design whether to hide this attribute.  Applicable only if its container is visible, e.g. for public properties and input parameters.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="optional" default="false" type="xsd:string">

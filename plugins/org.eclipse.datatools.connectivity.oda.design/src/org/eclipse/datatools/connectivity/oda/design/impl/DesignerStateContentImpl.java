@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignerStateContentImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -129,7 +129,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
         String oldStateContentAsString = m_stateContentAsString;
         m_stateContentAsString = newStateContentAsString;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING, oldStateContentAsString, m_stateContentAsString));
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING, oldStateContentAsString, m_stateContentAsString));
     }
 
     /**
@@ -152,7 +152,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
         byte[] oldStateContentAsBlob = m_stateContentAsBlob;
         m_stateContentAsBlob = newStateContentAsBlob;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB, oldStateContentAsBlob, m_stateContentAsBlob));
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB, oldStateContentAsBlob, m_stateContentAsBlob));
     }
 
     /**
@@ -164,9 +164,9 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
                 return getStateContentAsString();
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
                 return getStateContentAsBlob();
         }
         return eDynamicGet(eFeature, resolve);
@@ -181,10 +181,10 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
                 setStateContentAsString((String)newValue);
                 return;
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
                 setStateContentAsBlob((byte[])newValue);
                 return;
         }
@@ -200,10 +200,10 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
                 setStateContentAsString(STATE_CONTENT_AS_STRING_EDEFAULT);
                 return;
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
                 setStateContentAsBlob(STATE_CONTENT_AS_BLOB_EDEFAULT);
                 return;
         }
@@ -219,9 +219,9 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         switch (eDerivedStructuralFeatureID(eFeature))
         {
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
                 return STATE_CONTENT_AS_STRING_EDEFAULT == null ? m_stateContentAsString != null : !STATE_CONTENT_AS_STRING_EDEFAULT.equals(m_stateContentAsString);
-            case DesignPackage.DESIGN_ER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
                 return STATE_CONTENT_AS_BLOB_EDEFAULT == null ? m_stateContentAsBlob != null : !STATE_CONTENT_AS_BLOB_EDEFAULT.equals(m_stateContentAsBlob);
         }
         return eDynamicIsSet(eFeature);
