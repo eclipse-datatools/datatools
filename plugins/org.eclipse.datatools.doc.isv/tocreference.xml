@@ -3,13 +3,13 @@
 
 <toc label="Reference" link_to="toc.xml#reference"> 
 	<topic label="API Reference"> 
-	<topic label="org.eclipse.datatools.connectivity" href="html/reference/api/org/eclipse/datatools/connectivity/package-summary.html"/>
+		<topic label="org.eclipse.datatools.connectivity" href="html/reference/api/org/eclipse/datatools/connectivity/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.db.generic" href="html/reference/api/org/eclipse/datatools/connectivity/db/generic/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.db.generic.ui" href="html/reference/api/org/eclipse/datatools/connectivity/db/generic/ui/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.drivers" href="html/reference/api/org/eclipse/datatools/connectivity/drivers/package-summary.html"/>
-		<topic label="org.eclipse.datatools.connectivity.drivers.models" href="html/reference/api/org/eclipse/datatools/connectivity/drivers/models/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.oda" href="html/reference/api/org/eclipse/datatools/connectivity/oda/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.oda.design" href="html/reference/api/org/eclipse/datatools/connectivity/oda/design/package-summary.html"/>
+		<topic label="org.eclipse.datatools.connectivity.oda.design.ui.designsession" href="html/reference/api/org/eclipse/datatools/connectivity/oda/design/ui/designsession/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.oda.design.ui.manifest" href="html/reference/api/org/eclipse/datatools/connectivity/oda/design/ui/manifest/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards" href="html/reference/api/org/eclipse/datatools/connectivity/oda/design/ui/profile/wizards/package-summary.html"/>
 		<topic label="org.eclipse.datatools.connectivity.oda.util.manifest" href="html/reference/api/org/eclipse/datatools/connectivity/oda/util/manifest/package-summary.html"/>
