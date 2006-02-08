@@ -10,10 +10,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+
 /**
  * @author ljulien
  */
-public interface IFilterNode
+public interface IFilterNode extends IVirtualNode
 {
     public final static String SEPARATOR = "::"; //$NON-NLS-1$
     public String getFilterName ();

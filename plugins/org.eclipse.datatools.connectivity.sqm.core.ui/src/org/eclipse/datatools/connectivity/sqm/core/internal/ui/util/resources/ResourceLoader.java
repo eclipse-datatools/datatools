@@ -141,7 +141,7 @@ public class ResourceLoader
         }
         catch (Throwable e)
         {
-        	return NO_RESOURCE_FOUND;
+        	return stringID;
         }
     }
 }
