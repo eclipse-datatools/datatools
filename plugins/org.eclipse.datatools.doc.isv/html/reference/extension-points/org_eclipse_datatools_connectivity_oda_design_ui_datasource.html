@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Open Data Access Designer UI Extension Point</title>
+<title>Open Data Access Designer</title>
 <style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
 <style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
 </HEAD>
 <BODY>
-<H1><CENTER>Open Data Access Designer UI Extension Point</CENTER></H1>
+<H1><CENTER>Open Data Access Designer</CENTER></H1>
 <p></p>
 <h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.oda.design.ui.dataSource<p></p>
 <h6 class=CaptionFigColumn id=header>Since: </h6>3.0
@@ -48,19 +48,25 @@ This element defines the customizable behavior of the new data source wizard dia
 <li><b>pageClass</b> - A fully quailfied class name that implements the first wizard page for creating a new customized ODA data source definition.
 <br>This class must extend from the ODA abstract base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceWizardPage</i>.</li>
 </ul>
-<br><h6 class=CaptionFigColumn id=header>Examples: </h6><extension
- point="org.eclipse.datatools.connectivity.oda.design.ui.dataSource">
-    <dataSourceUI id="%oda.data.source.id">
-        <newDataSourceWizard
-   pageClass="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage"
-            pageTitle="Select Folder"
-            windowTitle="New Flat File Data Source Profile"
-            includesProgressMonitor="true"/>
-    </dataSourceUI>
-</extension>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><p>
+   <pre>
+   <p class=code id=tag>&lt;extension
+  point=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;</p><p class=code id=tag>&gt;</p>
+      <p class=code id=tag>&lt;dataSourceUI id=<p class=code id=cstring>&quot;%oda.data.source.id&quot;</p><p class=code id=tag>&gt;</p>
+         <p class=code id=tag>&lt;newDataSourceWizard
+               pageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;</p><p class=code id=tag>
+               pageTitle=<p class=code id=cstring>&quot;Select Folder&quot;</p><p class=code id=tag>
+               windowTitle=<p class=code id=cstring>&quot;New Flat File Data Source Profile&quot;</p><p class=code id=tag>
+               includesProgressMonitor=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>/&gt;</p>
+      <p class=code id=tag>&lt;/dataSourceUI&gt;</p>
+   <p class=code id=tag>&lt;/extension&gt;</p> 
+   </pre>
+</p>
 <p></p>
 
-<h6 class=CaptionFigColumn id=header>API Information: </h6>An extension must implement the related dialog pages defined in the extension's schema. See the abstract base classes' JavaDoc documentation in the <i>org.eclipse.datatools.connectivity.oda.design.ui</i> project for more information.
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[<b>Experimental</b>] This package API and extension point are going through iterative development cycles, and will likely change.
+<br>
+An extension must implement the related dialog pages defined in the extension's schema. See the abstract base classes' JavaDoc documentation in the <i>org.eclipse.datatools.connectivity.oda.design.ui</i> project for more information.
 <p></p>
 
 <h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>The plug-in <i>org.eclipse.datatools.connectivity.oda.flatfile.ui</i>, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA Design UI extension.

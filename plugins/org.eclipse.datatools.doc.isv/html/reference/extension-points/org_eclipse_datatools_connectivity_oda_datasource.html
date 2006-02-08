@@ -1,12 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<title>Open Data Access Extension</title>
+<title>Open Data Access</title>
 <style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
 <style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
 </HEAD>
 <BODY>
-<H1><CENTER>Open Data Access Extension</CENTER></H1>
+<H1><CENTER>Open Data Access</CENTER></H1>
 <p></p>
 <h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.oda.dataSource<p></p>
 <h6 class=CaptionFigColumn id=header>Since: </h6>3.0
@@ -169,135 +169,130 @@ A collection of property definitions in a data source extension or its supported
 <br><br>
 <h6 class=CaptionFigColumn id=header>Examples: </h6><p>
    <pre>
-<p class=code id=tag>&lt;extension
-         id=<p class=code id=cstring>&quot;Id&quot;</p><p class=code id=tag>
-         name=<p class=code id=cstring>&quot;Name&quot;</p><p class=code id=tag>
+   <p class=code id=tag>&lt;extension
          point=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;</p><p class=code id=tag>&gt;</p>
       <p class=code id=tag>&lt;dataSource
-            odaVersion=<p class=code id=cstring>&quot;2.0&quot;</p><p class=code id=tag>
-   driverClass=<p class=code id=cstring>&quot;org.eclipse.birt.report.data.oda.jdbc.OdaJdbcDriver&quot;</p><p class=code id=tag>
-            id=<p class=code id=cstring>&quot;org.eclipse.birt.report.data.oda.jdbc&quot;</p><p class=code id=tag>&gt;</p>
-           
-            <p class=code id=tag>&lt;properties&gt;</p>
-             <p class=code id=tag>&lt;propertyGroup
-                 defaultDisplayName=<p class=code id=cstring>&quot;Connection Properties&quot;</p><p class=code id=tag>
-                 name=<p class=code id=cstring>&quot;connectionProperties&quot;</p><p class=code id=tag>&gt;</p>
-              <p class=code id=tag>&lt;property
-                    type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
-                    defaultDisplayName=<p class=code id=cstring>&quot;JDBC Driver Class&quot;</p><p class=code id=tag>
-                    canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
-                    name=<p class=code id=cstring>&quot;odaDriverClass&quot;</p><p class=code id=tag>/&gt;</p>
-              <p class=code id=tag>&lt;property
-                    type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
-                    defaultDisplayName=<p class=code id=cstring>&quot;JDBC Driver URL&quot;</p><p class=code id=tag>
-                    canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
-                    name=<p class=code id=cstring>&quot;odaURL&quot;</p><p class=code id=tag>/&gt;</p>
-              <p class=code id=tag>&lt;property
-                    type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
-                    defaultDisplayName=<p class=code id=cstring>&quot;Data Source&quot;</p><p class=code id=tag>
-                    canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
-                    name=<p class=code id=cstring>&quot;odaDataSource&quot;</p><p class=code id=tag>/&gt;</p>
-              <p class=code id=tag>&lt;property
-                    type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
-                    defaultDisplayName=<p class=code id=cstring>&quot;User Name&quot;</p><p class=code id=tag>
-                    canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
-                    name=<p class=code id=cstring>&quot;odaUser&quot;</p><p class=code id=tag>/&gt;</p>
-              <p class=code id=tag>&lt;property
-                    type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
-                    defaultDisplayName=<p class=code id=cstring>&quot;Password&quot;</p><p class=code id=tag>
-                    canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
-                    name=<p class=code id=cstring>&quot;odaPassword&quot;</p><p class=code id=tag>/&gt;</p>
-           <p class=code id=tag>&lt;/propertyGroup&gt;</p>
-            <p class=code id=tag>&lt;/properties&gt;</p>
+            odaVersion=<p class=code id=cstring>&quot;3.0&quot;</p><p class=code id=tag>
+            driverClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver&quot;</p><p class=code id=tag>
+            defaultDisplayName=<p class=code id=cstring>&quot;Flat File Data Source&quot;</p><p class=code id=tag>
+            id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile&quot;</p><p class=code id=tag>
+            setThreadContextClassLoader=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
+         <p class=code id=tag>&lt;properties&gt;</p>
+         <p class=code id=tag>&lt;propertyGroup
+               defaultDisplayName=<p class=code id=cstring>&quot;Connection Properties&quot;</p><p class=code id=tag>
+               name=<p class=code id=cstring>&quot;connectionProperties&quot;</p><p class=code id=tag>&gt;</p>
+            <p class=code id=tag>&lt;property
+                  type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
+                  defaultDisplayName=<p class=code id=cstring>&quot;Home Folder&quot;</p><p class=code id=tag>
+                  canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
+                  name=<p class=code id=cstring>&quot;HOME&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;property
+                  type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
+                  defaultDisplayName=<p class=code id=cstring>&quot;Character Set&quot;</p><p class=code id=tag>
+                  canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
+                  name=<p class=code id=cstring>&quot;CHARSET&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;property
+                  type=<p class=code id=cstring>&quot;string&quot;</p><p class=code id=tag>
+                  canInherit=<p class=code id=cstring>&quot;true&quot;</p><p class=code id=tag>
+                  defaultDisplayName=<p class=code id=cstring>&quot;Includes Data Type (Yes/No)&quot;</p><p class=code id=tag>
+                  name=<p class=code id=cstring>&quot;INCLTYPELINE&quot;</p><p class=code id=tag>/&gt;</p>                 
+         <p class=code id=tag>&lt;/propertyGroup&gt;</p>
+         <p class=code id=tag>&lt;/properties&gt;</p>
       <p class=code id=tag>&lt;/dataSource&gt;</p>
       <p class=code id=tag>&lt;dataSet
-            defaultDisplayName=<p class=code id=cstring>&quot;JdbcSelectDataSet&amp;quot;&quot;</p><p class=code id=tag>
-         id=<p class=code id=cstring>&quot;org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet&quot;</p><p class=code id=tag>&gt;</p>
-        <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;BIT&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-7&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;TINYINT&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-6&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;SMALLINT&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;5&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;INTEGER&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;4&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;BIGINT&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-5&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;FLOAT&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;6&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;REAL&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;7&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;DOUBLE&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;8&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;NUMERIC&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;2&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;DECIMAL&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;3&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;CHAR&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;1&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;VARCHAR&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;12&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;LONGVARCHAR&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-1&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;DATE&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;91&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Date&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;TIME&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;92&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Time&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;TIMESTAMP&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;93&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Timestamp&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;BINARY&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-2&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;VARBINARY&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-3&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;LONGVARBINARY&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;-4&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
-             <p class=code id=tag>&lt;dataTypeMapping
-                   nativeDataType=<p class=code id=cstring>&quot;BOOLEAN&quot;</p><p class=code id=tag>
-                   nativeDataTypeCode=<p class=code id=cstring>&quot;16&quot;</p><p class=code id=tag>
-                   odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            defaultDisplayName=<p class=code id=cstring>&quot;Flat File Data Set&quot;</p><p class=code id=tag>
+            id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</p><p class=code id=tag>&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;BIT&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-7&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;TINYINT&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-6&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;SMALLINT&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;5&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;INTEGER&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;4&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;BIGINT&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-5&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;FLOAT&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;6&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;REAL&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;7&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;DOUBLE&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;8&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Double&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;NUMERIC&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;2&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;DECIMAL&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;3&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Decimal&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;CHAR&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;1&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;VARCHAR&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;12&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;LONGVARCHAR&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-1&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;DATE&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;91&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Date&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;TIME&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;92&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Time&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;TIMESTAMP&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;93&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Timestamp&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;BINARY&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-2&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;VARBINARY&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-3&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;LONGVARBINARY&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;-4&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;BOOLEAN&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;16&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;BLOB&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;2004&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
+            <p class=code id=tag>&lt;dataTypeMapping
+                  nativeDataType=<p class=code id=cstring>&quot;CLOB&quot;</p><p class=code id=tag>
+                  nativeDataTypeCode=<p class=code id=cstring>&quot;2005&quot;</p><p class=code id=tag>
+                  odaScalarDataType=<p class=code id=cstring>&quot;String&quot;</p><p class=code id=tag>/&gt;</p>
       <p class=code id=tag>&lt;/dataSet&gt;</p>
-        
- <p class=code id=tag>&lt;/extension&gt;</p>
- 
-  </pre>
+   <p class=code id=tag>&lt;/extension&gt;</p> 
+   </pre>
 </p>
 <p></p>
 
@@ -315,7 +310,7 @@ These concrete classes are provided for use as templates or base classes to aid 
 
 <br>
 <p class=note id=copyright>
-Copyright (c) 2004-2005 Actuate Corporation.
+Copyright (c) 2004-2006 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 <p></p>
 
