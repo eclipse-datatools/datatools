@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 public class SQLEditorResources {
 
-	private static final String RESOURCE_BUNDLE = "org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources"; //$NON-NLS-1$
+	private static final String RESOURCE_BUNDLE = "org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources"; //$NON-NLS-1$
 
 	private static ResourceBundle fgResourceBundle;
 

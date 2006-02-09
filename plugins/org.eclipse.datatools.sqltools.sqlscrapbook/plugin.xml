@@ -35,7 +35,7 @@
          point="org.eclipse.ui.editors">
       <editor
             class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
-            contributorClass="org.eclipse.datatools.sqltools.sqleditor.SQLEditorActionContributor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
             default="true"
             extensions="ddl,sql,sqlpage"
             icon="images/qrydoc.gif"
