@@ -24,6 +24,7 @@
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.junit" optional="true"/>
+      <import plugin="com.ibm.icu"/>
    </requires>
 
 	<extension-point id="dataSource" name="Open Data Access Design and Run-time Extension" schema="schema/datasource.exsd"/>

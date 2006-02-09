@@ -19,8 +19,9 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Hashtable;
+
+import com.ibm.icu.text.SimpleDateFormat;
 
 /**
  *	LogManager is a static class that maintains a set of named 
