@@ -18,6 +18,8 @@ import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 
 /**
  * This class provides the default implementation for <code>ISQLEditorConnectionInfo</code>.

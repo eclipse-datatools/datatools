@@ -13,7 +13,7 @@ import java.util.Iterator;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.sql.AbstractSQLEditorTextHover;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;

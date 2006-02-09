@@ -10,9 +10,9 @@ package org.eclipse.datatools.sqltools.sqleditor.sql;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
 import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.IInformationControl;

@@ -10,8 +10,8 @@ import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.sql.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.debug.core.ILaunchConfiguration;
 

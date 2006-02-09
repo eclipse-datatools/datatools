@@ -27,7 +27,7 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerMessages;
 import org.eclipse.datatools.sqltools.debugger.model.SPDebugModelUtil;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.LineBreakpoint;
@@ -46,7 +46,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
     /**
      * Marker attribute key contant for rountine object identifier.
      */
-    public static final String ATTR_PROCIDENTIFIER     = SQLEditorPlugin.PLUGIN_ID + ".procIdentifier";               //$NON-NLS-1$
+    public static final String ATTR_PROCIDENTIFIER     = DebuggerCorePlugin.PLUGIN_ID + ".procIdentifier";               //$NON-NLS-1$
 
     /**
      * Breakpoint attribute describing the breakpoint condition.

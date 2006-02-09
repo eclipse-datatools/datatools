@@ -30,5 +30,5 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.editor.contentassist.model,
  org.eclipse.datatools.sqltools.editor.core.connection,
  org.eclipse.datatools.sqltools.editor.template,
- org.eclipse.datatools.sqltools.internal.core,
+ org.eclipse.datatools.sqltools.internal.core;x-internal:=true,
  org.eclipse.datatools.sqltools.launching

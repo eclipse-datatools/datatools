@@ -19,7 +19,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ISQLService;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.result.GroupSQLResultRunnable;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ErrorDialog;

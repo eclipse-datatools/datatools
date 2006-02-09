@@ -13,8 +13,8 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.sql.parser.ISQLSyntax;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;

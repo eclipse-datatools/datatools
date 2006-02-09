@@ -11,7 +11,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.debug.internal.ui.ImageDescriptorRegistry;
 import org.eclipse.debug.internal.ui.views.launch.ImageImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;

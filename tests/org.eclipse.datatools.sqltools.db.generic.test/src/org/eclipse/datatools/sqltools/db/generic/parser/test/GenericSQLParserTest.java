@@ -9,32 +9,37 @@
  * Contributors:
  *     Sybase, Inc. - initial API and implementation
  *******************************************************************************/
-package org.eclipse.datatools.sqltools.db.generic.service;
+package org.eclipse.datatools.sqltools.db.generic.parser.test;
 
+import java.net.URL;
 
-import org.eclipse.datatools.sqltools.core.services.DefaultSQLService;
 import org.eclipse.datatools.sqltools.db.generic.parser.GenericSQLParser;
-import org.eclipse.datatools.sqltools.db.generic.sql.GenericSQLSyntax;
-import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
-import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 
 /**
  * @author Hui Cao
- * 
+ *
  */
-public class GenericSQLService extends DefaultSQLService{
+public class GenericSQLParserTest extends ParserTest
+{
 
-	public GenericSQLContextType getSQLContextType() {
-		return super.getSQLContextType();
-	}
+    protected ParserTest getParserTestCase()
+    {
+        return this;
+    }
 
-	public SQLParser getSQLParser() {
-		return GenericSQLParser.getInstance();
-	}
-
-	public ISQLSyntax getSQLSyntax() {
-		return new GenericSQLSyntax();
-	}
-	
+    protected SQLParser getParser()
+    {
+        return GenericSQLParser.getInstance();
+    }
+    /* (non-Javadoc)
+     * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.tests.ParserTest#getTestFileName()
+     */
+    protected String[] getTestFileNames()
+    {
+        URL url = this.getClass().getResource("scripts.sql");
+        String[] files = new String[1];
+        files[0]= url.getFile();
+        return files;
+    }
 }

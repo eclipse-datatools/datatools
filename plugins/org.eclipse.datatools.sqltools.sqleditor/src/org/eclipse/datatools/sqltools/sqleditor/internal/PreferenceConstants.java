@@ -7,7 +7,6 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal;
 
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 
 /**
  * Preference constants used in the SQL Editor preference store. 

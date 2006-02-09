@@ -14,7 +14,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;

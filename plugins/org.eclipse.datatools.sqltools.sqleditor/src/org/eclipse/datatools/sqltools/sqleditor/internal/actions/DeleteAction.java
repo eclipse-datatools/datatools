@@ -12,7 +12,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeclareComma;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeclareKeyword;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.IStructuredSelection;

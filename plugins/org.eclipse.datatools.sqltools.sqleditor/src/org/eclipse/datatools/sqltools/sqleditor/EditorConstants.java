@@ -7,6 +7,8 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+
 
 /**
  * This interface defines all public constants for the SQL Editor plug-in.

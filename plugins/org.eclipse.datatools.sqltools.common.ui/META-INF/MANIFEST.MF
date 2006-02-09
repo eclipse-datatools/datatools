@@ -15,4 +15,4 @@ Require-Bundle: org.eclipse.ui,
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
 Export-Package: org.eclipse.datatools.sqltools.common.ui.preferences,
- org.eclipse.datatools.sqltools.common.ui.util
+ org.eclipse.datatools.sqltools.common.ui.util;x-friends:="org.eclipse.datatools.sqltools.sqlscrapbook"

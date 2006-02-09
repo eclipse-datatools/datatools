@@ -13,7 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 import org.eclipse.datatools.sqltools.core.IDBFactory;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.BestMatchHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAnnotationHover;

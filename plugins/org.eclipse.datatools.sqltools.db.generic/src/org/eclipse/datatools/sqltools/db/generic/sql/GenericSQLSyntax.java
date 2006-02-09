@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.db.generic.sql;
 
-import org.eclipse.datatools.sqltools.sql.parser.ISQLSyntax;
+import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 
 /**
  * @author Hui Cao

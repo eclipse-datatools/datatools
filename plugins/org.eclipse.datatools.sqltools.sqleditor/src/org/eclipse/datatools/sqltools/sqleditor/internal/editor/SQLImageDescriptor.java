@@ -5,8 +5,8 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.resource.CompositeImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.Assert;

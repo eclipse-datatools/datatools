@@ -20,3 +20,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.common.ui
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
+Export-Package: org.eclipse.datatools.sqltools.debugger.breakpoint,
+ org.eclipse.datatools.sqltools.debugger.core,
+ org.eclipse.datatools.sqltools.debugger.model

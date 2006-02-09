@@ -7,7 +7,6 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal;
 
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
 
 /**
  * Help context ids for the SQL Editor plugin.

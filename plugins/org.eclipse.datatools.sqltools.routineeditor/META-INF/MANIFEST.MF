@@ -22,9 +22,6 @@ Require-Bundle: org.eclipse.ui,
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
 Export-Package: org.eclipse.datatools.sqltools.routineeditor,
- org.eclipse.datatools.sqltools.routineeditor.launching,
- org.eclipse.datatools.sqltools.routineeditor.parameter,
- org.eclipse.datatools.sqltools.routineeditor.result,
- org.eclipse.datatools.sqltools.routineeditor.ui.launching,
- org.eclipse.datatools.sqltools.routineeditor.util
+ org.eclipse.datatools.sqltools.routineeditor.launching;x-friends:="org.eclipse.datatools.sqltools.debugger.core",
+ org.eclipse.datatools.sqltools.routineeditor.result
 Bundle-ClassPath: routineeditor.jar

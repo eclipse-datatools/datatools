@@ -12,7 +12,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParamDefList;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;

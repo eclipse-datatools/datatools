@@ -14,7 +14,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Image;
 

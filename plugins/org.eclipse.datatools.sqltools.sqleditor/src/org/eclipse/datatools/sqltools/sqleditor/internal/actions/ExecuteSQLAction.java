@@ -8,8 +8,8 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.ui.PlatformUI;
 
 /**

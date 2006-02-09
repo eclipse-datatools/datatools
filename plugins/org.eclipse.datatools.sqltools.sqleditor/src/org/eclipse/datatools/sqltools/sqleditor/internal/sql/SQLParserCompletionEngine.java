@@ -149,26 +149,17 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			int[][] expectedTokenSequences, SQLParser parser) {
 		List proposals = new ArrayList();
 
-		int maxLookAhead = 0;
-		for (int i = 0; i < expectedTokenSequences.length; i++) {
-			int n = expectedTokenSequences[i].length - 1;
-			if (n > maxLookAhead) {
-				maxLookAhead = n;
-			}
-		}
-
 		int replacementOffset = (_fWordOffset >= 0 ? _fWordOffset + 1 : 0);
 		int replacementLength = (_fDocumentOffset > _fWordOffset ? _fDocumentOffset
 				- (_fWordOffset + 1) + _selection.y
 				: _fDocumentOffset);
 		for (int i = 0; i < expectedTokenSequences.length; i++) {
-			int maxLookIndex = expectedTokenSequences[i].length - 1;
-			if (maxLookIndex < maxLookAhead) {
-				continue;
-			}
-			int idex = expectedTokenSequences[i][maxLookIndex];
-
-			String expected = removeQuotes(tokenImage[idex]);
+			StringBuffer sb = new StringBuffer();
+            for (int j = 0; j < expectedTokenSequences[i].length; j++)
+            {
+                sb.append(tokenImage[expectedTokenSequences[i][j]]).append(" "); //$NON-NLS-1$
+            }
+			String expected = removeQuotes(sb.toString());
 
 			// operator
 			if (!(Character.isLetter(expected.charAt(0)))) {

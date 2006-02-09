@@ -19,7 +19,7 @@ import org.eclipse.ui.texteditor.ResourceAction;
 /**
  * This class implements the "Disconnect" action for the SQL Editor.
  * 
- * @see org.eclipse.datatools.sqltools.sqleditor.SQLEditorActionContributor
+ * @see org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor
  * @see org.eclipse.ui.texteditor.ResourceAction
  */
 public class SQLDisconnectAction extends ResourceAction {

@@ -12,7 +12,7 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.text.Assert;
 import org.eclipse.jface.text.BadLocationException;

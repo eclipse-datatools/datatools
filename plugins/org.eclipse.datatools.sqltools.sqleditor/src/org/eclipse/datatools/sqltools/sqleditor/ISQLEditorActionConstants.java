@@ -7,6 +7,7 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 
 /**

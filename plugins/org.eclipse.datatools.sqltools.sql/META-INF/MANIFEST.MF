@@ -12,9 +12,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
-Export-Package: org.eclipse.datatools.sqltools.sql.connection,
- org.eclipse.datatools.sqltools.sql.parser,
- org.eclipse.datatools.sqltools.sql.parser.ast,
- org.eclipse.datatools.sqltools.sql.parser.util,
- org.eclipse.datatools.sqltools.sql.util
+Export-Package: org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.sqltools.sql.parser;x-internal:=true,
+ org.eclipse.datatools.sqltools.sql.parser.ast;x-internal:=true,
+ org.eclipse.datatools.sqltools.sql.parser.util;x-internal:=true,
+ org.eclipse.datatools.sqltools.sql.util;x-friends:="org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor"
 Bundle-Vendor: eclipse.org

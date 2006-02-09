@@ -13,8 +13,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.editor.core
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
-Export-Package: org.eclipse.datatools.sqltools.db.generic,
- org.eclipse.datatools.sqltools.db.generic.parser,
- org.eclipse.datatools.sqltools.db.generic.service,
- org.eclipse.datatools.sqltools.db.generic.sql
+Export-Package: org.eclipse.datatools.sqltools.db.generic;x-internal:=true,
+ org.eclipse.datatools.sqltools.db.generic.parser;x-internal:=true,
+ org.eclipse.datatools.sqltools.db.generic.service;x-internal:=true,
+ org.eclipse.datatools.sqltools.db.generic.sql;x-internal:=true
 

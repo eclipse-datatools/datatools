@@ -13,7 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.sql.parser.ISQLSyntax;
+import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordDetector;
 import org.eclipse.jface.text.TextAttribute;
