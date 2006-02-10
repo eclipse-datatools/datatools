@@ -14,11 +14,9 @@
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.datatools.connectivity.oda.profile"/>
-      <import plugin="org.eclipse.datatools.connectivity.ui"/>
-      <import plugin="org.eclipse.datatools.connectivity.oda"/>
-      <import plugin="org.eclipse.datatools.connectivity"/>
-      <import plugin="org.eclipse.datatools.connectivity.oda.design"/>
+      <import plugin="org.eclipse.datatools.connectivity.ui" export="true"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.profile" export="true"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.design" export="true"/>
    </requires>
    <extension-point id="dataSource" name="Open Data Access Designer UI Extension Point" schema="schema/datasource.exsd"/>
 
