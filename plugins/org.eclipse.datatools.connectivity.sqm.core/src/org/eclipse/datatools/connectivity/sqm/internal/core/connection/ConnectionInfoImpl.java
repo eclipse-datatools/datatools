@@ -58,8 +58,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 public class ConnectionInfoImpl extends VersionProviderConnection implements ConnectionInfo {
 	
-	private static Map sDatabaseToConnectionInfo = new HashMap();
-
 	private static final String PASSWORD = "password"; //$NON-NLS-1$
 	private static final String USER = "user"; //$NON-NLS-1$
 
@@ -83,17 +81,6 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
 	
-	public static ConnectionInfo getConnectionInfoForDatabase(Database database) {
-		ConnectionInfo connection = null;
-		synchronized (sDatabaseToConnectionInfo) {
-			if (sDatabaseToConnectionInfo.containsKey(database)) {
-				connection = (ConnectionInfo) sDatabaseToConnectionInfo
-						.get(database);
-			}
-		}
-		return connection;
-	}
-
 	public String getName() {
 		return this.name;
 	}
@@ -256,7 +243,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			if(this.sharedDatabase == null) {
 				this.sharedDatabase = database;
 				
-				addDatabaseToConnectionInfoMapEntry();
+				DatabaseConnectionRegistry.getInstance().registerConnectionForDatabase(this,database);
 
 				Collection c = new LinkedList();
 				c.addAll(this.listeners);
@@ -285,7 +272,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		if(this.sharedDatabase == null) throw new IllegalStateException();
 		Database database = this.sharedDatabase;
 
-		removeDatabaseToConnectionInfoMapEntry();
+		DatabaseConnectionRegistry.getInstance().unregisterConnectionForDatabase(database);
 
 		this.sharedDatabase = null;
 		Collection c = new LinkedList();
@@ -300,18 +287,6 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 				this.removeConnectionSharingListener(l);
 			}
 		}				
-	}
-
-	private void addDatabaseToConnectionInfoMapEntry() {
-		synchronized (sDatabaseToConnectionInfo) {
-			sDatabaseToConnectionInfo.put(getSharedDatabase(), this);
-		}
-	}
-	
-	private void removeDatabaseToConnectionInfoMapEntry() {
-		synchronized (sDatabaseToConnectionInfo) {
-			sDatabaseToConnectionInfo.remove(getSharedDatabase());
-		}
 	}
 
 	public boolean addConnectionSharingListener(ConnectionSharingListener listener) {
@@ -567,27 +542,24 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 	
 	private void loadFilterInfo() {
-		IPath path = RDBCorePlugin.getDefault().getStateLocation();
-		path = path.append(ConnectionInfo.CONNECTION  + this.name + "/" + ConnectionInfo.FILTER + "." + ConnectionInfo.INFO_FILE_EXTENSION); //$NON-NLS-1$ //$NON-NLS-2$
-		File file = path.toFile();
-
-		Hashtable filters = null;
-		if(file.exists()) {
-			try {
-				InputStream input = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(input);
-		
-				filters = (Hashtable) ois.readObject();
-				ois.close();
-			}
-			catch(Exception e) {
+		Properties props = getConnectionProfile().getBaseProperties();
+		this.filters = new Hashtable();
+		for (Iterator it = props.entrySet().iterator(); it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			String key = (String) entry.getKey();
+			if (key != null
+					&& key.startsWith(ConnectionFilter.FILTER_PROP_PREFIX)) {
+				String predicate = (String) entry.getValue();
+				if (predicate != null && predicate.length() > 0) {
+					String filterID = key
+							.substring(ConnectionFilter.FILTER_PROP_PREFIX
+									.length());
+					ConnectionFilter filter = new ConnectionFilterImpl(
+							predicate);
+					filters.put(filterID, filter);
+				}
 			}
 		}
-
-		if (filters == null) {
-			filters = new Hashtable();
-		}
-		this.filters =  filters;
 	}
 
 	public boolean addFilterListener(ConnectionFilterListener listener) {

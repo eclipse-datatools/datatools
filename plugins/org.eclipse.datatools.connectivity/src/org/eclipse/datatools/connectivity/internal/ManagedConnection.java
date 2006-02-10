@@ -129,7 +129,7 @@ public class ManagedConnection implements IManagedConnection {
 	}
 
 	public boolean isConnected() {
-		return mConnection != null && mConnection.getConnectException() != null;
+		return mConnection != null && mConnection.getConnectException() == null;
 	}
 
 	public IConnection getConnection() {

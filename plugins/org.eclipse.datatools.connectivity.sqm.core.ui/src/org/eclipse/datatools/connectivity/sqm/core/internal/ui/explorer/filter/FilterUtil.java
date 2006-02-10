@@ -13,6 +13,8 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -43,11 +45,10 @@ public class FilterUtil
     
     public static boolean hasFilter (IFilterNode filterNode)
     {
-    	return false;
-//        Database database = getDatabase (getFilterParent (filterNode));
-//        ConnectionInfo connectionInfo = database != null ? manager.getConnectionInfo(database) : null;
-//        return connectionInfo != null && connectionInfo.getFilter(filterNode.getFilterName()) != null ? true : false;
-//    
+        Database database = getDatabase (getFilterParent (filterNode));
+        ConnectionInfo connectionInfo = database != null ? DatabaseConnectionRegistry.getInstance().getConnectionForDatabase(database) : null;
+        return connectionInfo != null && connectionInfo.getFilter(filterNode.getFilterName()) != null ? true : false;
+    
     }
 }
 

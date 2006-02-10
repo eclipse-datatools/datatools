@@ -308,23 +308,34 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
-          name="Schema Filter"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"/>
- </extension>
- <extension
-       point="org.eclipse.ui.propertyPages">
+          name="Default Schema Filter"
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.factoryID"
+            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+    </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
           name="Default Table Filter"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"/>
- </extension>
- <extension
-       point="org.eclipse.ui.propertyPages">
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.factoryID"
+            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+    </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
           name="Default Stored Procedure Filter"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.factoryID"
+            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+    </page>
+    <page
+          class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
+          id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
+          name="Filter Settings"
+          objectClass="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
  </extension>
 </plugin>

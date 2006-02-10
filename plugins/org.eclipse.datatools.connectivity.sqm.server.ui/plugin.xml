@@ -50,6 +50,13 @@
                   <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
                </or>
             </enablement>
+            <actionProvider
+            		id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider"
+            		class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider">
+            <enablement>
+               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
+            </enablement>
+            </actionProvider>
          </navigatorContent>
       </extension>
       <extension
