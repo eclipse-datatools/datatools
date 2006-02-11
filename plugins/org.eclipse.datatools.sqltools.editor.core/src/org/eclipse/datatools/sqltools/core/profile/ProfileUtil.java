@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
@@ -167,20 +168,25 @@ public class ProfileUtil
     }
     
     /**
-     * Gets the shared connection from the control connection 
-     * @param databaseIdentifier database identifier used to locate the IControlConnection
-     * @return the shared connection managed by the IControlConnection
+     * Gets the shared connection from the connection profile 
+     * TODO Now this method delegates to IConnectionProfile, which doesn't manage a connection for each
+     * database. 
+     * @param databaseIdentifier database identifier used to locate the connection profile
+     * @return the shared connection managed by the connection profile
      * @throws SQLException
      * @throws NoSuchProfileException
      */
     public static Connection getReusableConnection(DatabaseIdentifier databaseIdentifier) throws SQLException, NoSuchProfileException
     {
-        IControlConnection c = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(databaseIdentifier);
-        if (c == null)
-        {
-        	throw new SQLException(Messages.getString("ProfileUtil.error.getReusableConnection", databaseIdentifier.toString()));
-        }
-        return c.getReusableConnection();
+    	IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+    	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
+    	if (managedConn == null || !managedConn.isConnected())
+    	{
+    		throw new SQLException(Messages.getString("ProfileUtil.error.getReusableConnection", databaseIdentifier.toString()));
+    	}
+    	
+    	IConnection iconn = managedConn.getConnection();
+    	return (Connection)iconn.getRawConnection();
     }
 
     
@@ -215,7 +221,7 @@ public class ProfileUtil
         try
         {
             Connection conn = null;
-            IConnection c = createIConnection(profile, "java.sql.Connection");
+            IConnection c = profile.createConnection("java.sql.Connection");
             if (c != null)
             {
                 Object rawConn = c.getRawConnection();
@@ -243,23 +249,6 @@ public class ProfileUtil
         }
     }
 
-    /**
-     * Returns a connection from the connection layer
-     * 
-     * @param profile
-     * @param factoryName the connection factory name
-     * @return the base interface for working with connections created from connection profiles.
-     */
-    public static IConnection createIConnection(IConnectionProfile profile, String factoryName) {
-    	if (profile.isConnected())
-    	{
-    		//FIXME: we have to disconnect it since only one shared connection is allowed and there's no API for us to get the shared connection.
-    		profile.disconnect();
-    	}
-		IConnection c = profile.createConnection(factoryName);
-		return c;
-	}
-    
     /**
      * 
      * This method is used to verify if this profile is database profile.
@@ -312,27 +301,26 @@ public class ProfileUtil
     public static List getDatabaseList(String profileName)
     {
         List list = new ArrayList();
+        Connection conn = null;
         ResultSet rs = null;
-        try
-        {
-        	IControlConnection controlConn = null;
-        	IControlConnection[] controlConns = EditorCorePlugin.getControlConnectionManager().getControlConnections(profileName);
-        	if (controlConns == null || controlConns.length <1)
+        try {
+        	IConnectionProfile profile = getProfile(profileName);
+        	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
+        	if (!managedConn.isConnected())
         	{
-        		controlConn = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(new DatabaseIdentifier(profileName, ""));
+        		profile.connect();
         	}
-        	else
-        	{
-        		controlConn = controlConns[0];
-        	}
-            rs = controlConn.getReusableConnection().getMetaData().getCatalogs();
+        	
+        	IConnection iconn = managedConn.getConnection();
+			conn = (Connection)iconn.getRawConnection();
+
+			rs = conn.getMetaData().getCatalogs();
             while (rs.next())
             {
                 list.add(rs.getObject("TABLE_CAT"));
             }
             if (list.isEmpty())
             {
-            	IConnectionProfile profile = getProfile(profileName);
             	String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
             	if (dbname != null)
             	{

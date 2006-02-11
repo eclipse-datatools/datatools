@@ -16,7 +16,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
 import org.eclipse.datatools.sqltools.editor.contentassist.ContentAssistQueryRequest;
 import org.eclipse.datatools.sqltools.editor.contentassist.model.DBObject;
@@ -109,18 +108,11 @@ public interface IControlConnection extends IAdaptable
 
     /**
 	 * Returns the wrapped connection object. This is a convenience method which
-	 * gets the jdbc connection from getIConnection().
-	 * @see getIConnection()
+	 * gets the jdbc connection from connection profile.
+	 * 
 	 * @return the wrapped connection object
 	 */
     public Connection getReusableConnection();
-
-    /**
-     * Returns the wrapped <code>IConnection</code> object
-     * 
-     * @return the wrapped <code>IConnection</code> object
-     */
-    public IConnection getIConnection();
 
     /**
      * Saves the specified routine object into database.

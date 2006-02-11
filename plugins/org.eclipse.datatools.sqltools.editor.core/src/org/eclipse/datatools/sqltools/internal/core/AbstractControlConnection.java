@@ -17,9 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.sqltools.core.ConnectionException;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
@@ -42,8 +40,6 @@ import org.eclipse.jface.util.Assert;
  */
 public abstract class AbstractControlConnection implements IControlConnection
 {
-
-	protected IConnection _connection = null;
     protected Set                     _skipConnections   = new HashSet();
 
     protected DatabaseIdentifier _databaseIdentifier;
@@ -314,38 +310,12 @@ public abstract class AbstractControlConnection implements IControlConnection
     }
 
     
-    public IConnection getIConnection() {
-    	if (_connection == null)
-    	{
-        	IConnectionProfile profile;
-			try {
-				profile = ProfileUtil.getProfile(getDatabaseIdentifier().getProfileName());
-				_connection = ProfileUtil.createIConnection(profile, "java.sql.Connection");
-			} catch (NoSuchProfileException e) {
-				EditorCorePlugin.getDefault().log(e);
-			}
-    	}
-		return _connection;
-	}
-    
-    
-
 	public Connection getReusableConnection() {
-		IConnection c = getIConnection();
-        if (c != null)
-        {
-            Object rawConn = c.getRawConnection();
-            if (rawConn instanceof Connection)
-            {
-                return (Connection) rawConn;
-            }
-            else if (rawConn instanceof ConnectionInfoImpl)
-            {
-            	return (Connection) ((ConnectionInfoImpl) rawConn).getSharedConnection();
-            }
-        }
-		
-		return null;
+		try {
+			return ProfileUtil.getReusableConnection(_databaseIdentifier);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/*
