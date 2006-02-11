@@ -80,12 +80,29 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
         {
             processError(Messages.getString("ExecuteSQLActionDelegate.error.execute"), e, null); //$NON-NLS-1$
         }
+        finally {
+			if (conn != null) {
+				try {
+					Connection sharedConn = ProfileUtil.getReusableConnection(databaseIdentifier);
+					//Only close the connection when it's not the shared connection, 
+					//e.g. for embeded derby, only one connection per VM is allowed.
+					if (conn != sharedConn)
+					{
+						conn.close();
+					}
+				} catch (Throwable ex) {
+					// skip
+				}
+			}
+		}
     }
 
     /**
-     * Whether we should pop up a dialog to prompt user for variable values. Default is false.
-     * @return
-     */
+	 * Whether we should pop up a dialog to prompt user for variable values.
+	 * Default is false.
+	 * 
+	 * @return
+	 */
     protected boolean promptVariable()
     {
         return false;

@@ -101,7 +101,7 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     {
     	if (_command == null)
     	{
-    		return new OperationCommand(OperationCommand.ACTION_EXECUTE, _sql, "SQL Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
+    		_command = new OperationCommand(OperationCommand.ACTION_EXECUTE, _sql, "SQL Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
     	}
     	return _command;
     }

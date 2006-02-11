@@ -107,6 +107,16 @@
 
     </extension>
 
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            name="%context.editingSQL.name"
+            description="%context.editingSQL.description"
+            parentId="org.eclipse.ui.textEditorScope"
+            id="org.eclipse.datatools.sqltools.SQLEditorScope">
+      </context>
+   </extension>
+   
     <extension
          point="org.eclipse.ui.commands">
       <category
@@ -129,14 +139,14 @@
       <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
             carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
       <key
-            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"
             sequence="M1+M3+X"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
-            schemeId="org.eclipse.internal.defaultAcceleratorConfiguration"/>
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSQLAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
       <key
-            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
             sequence="M3+X"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
     

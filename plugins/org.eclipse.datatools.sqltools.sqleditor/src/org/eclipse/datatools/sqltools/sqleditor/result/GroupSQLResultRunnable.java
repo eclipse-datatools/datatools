@@ -124,7 +124,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                 {
                     monitor.subTask(Messages.getString("GroupSQLResultRunnable.group", "" + i));
                 }
-                _currentJob = new SimpleSQLResultRunnable(getConnection(), _groups[i], false, _tracker, monitor,
+                _currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
                     getDatabaseIdentifier(), null);
                 _currentJob.setProgressGroup(monitor, 1);
                 _currentJob.schedule();
@@ -135,9 +135,9 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                 }
                 catch (InterruptedException e)
                 {
-                	synchronized (getOperationCommand()) {
-	                	resultsViewAPI.appendStatusMessage(getOperationCommand(), e.getLocalizedMessage());
-	                	resultsViewAPI.updateStatus(getOperationCommand(), OperationCommand.STATUS_FAILED);
+                	synchronized (_currentJob.getOperationCommand()) {
+	                	resultsViewAPI.appendStatusMessage(_currentJob.getOperationCommand(), e.getLocalizedMessage());
+	                	resultsViewAPI.updateStatus(_currentJob.getOperationCommand(), OperationCommand.STATUS_FAILED);
                 	}
                 }
                 monitor.worked(1);
@@ -146,10 +146,10 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     _currentJob.terminateExecution();
                     return Status.CANCEL_STATUS;
                 }
-                else if (resultsViewAPI.getCurrentStatus(getOperationCommand()) != OperationCommand.STATUS_SUCCEEDED && i < _groups.length - 1)
+                else if (resultsViewAPI.getCurrentStatus(_currentJob.getOperationCommand()) != OperationCommand.STATUS_SUCCEEDED && i < _groups.length - 1)
                 {
                     //since we'll kill the connection during terminating, there's no way to continue
-                    if (resultsViewAPI.getCurrentStatus(getOperationCommand()) == OperationCommand.STATUS_TERMINATED)
+                    if (resultsViewAPI.getCurrentStatus(_currentJob.getOperationCommand()) == OperationCommand.STATUS_TERMINATED)
                     {
                         return Status.CANCEL_STATUS;
                     }
@@ -191,17 +191,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             if (_postRun != null)
             {
             	PlatformUI.getWorkbench().getDisplay().syncExec(_postRun);
-            }
-            if (_conn != null)
-            {
-                try
-                {
-                    _conn.close();
-                }
-                catch (Throwable ex)
-                {
-                    // skip
-                }
             }
         }
         return Status.OK_STATUS;
