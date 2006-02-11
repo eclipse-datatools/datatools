@@ -36,20 +36,17 @@ public class GenericParsingResult extends ParsingResult {
 
 	protected ArrayList findCursorNames(IDocument document, int offset,
 			SimpleNode node) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList();
 	}
 
 	protected HashMap findVariables(IDocument document, int offset,
 			SimpleNode node) {
-		// TODO Auto-generated method stub
-		return null;
+		return new HashMap();
 	}
 
 	protected HashMap findCursors(IDocument document, int offset,
 			SimpleNode node) {
-		// TODO Auto-generated method stub
-		return null;
+		return new HashMap();
 	}
 
 	public boolean isValidObjectsFormats(ArrayList tokenLists) {
@@ -63,13 +60,11 @@ public class GenericParsingResult extends ParsingResult {
 	}
 
 	public ArrayList getPrefix(ArrayList tokenLists, Node node) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList();
 	}
 
 	public ArrayList getUnSharableTempTables(IDocument document, int offset) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ArrayList();
 	}
 
 }
