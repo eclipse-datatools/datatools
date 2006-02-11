@@ -515,10 +515,12 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				_combodbName.removeAll();
 				String profileName = _comboProfileName.getText();
 				if (profileName != null) {
+					_combodbName.removeAll();
 					List list = ProfileUtil.getDatabaseList(profileName);
 					Iterator iterator = list.iterator();
 					while (iterator.hasNext()) {
-						_combodbName.add(iterator.next().toString());
+						String dbname = iterator.next().toString();
+						_combodbName.add(dbname);
 					}
 				}
 
