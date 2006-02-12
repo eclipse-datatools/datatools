@@ -11,22 +11,20 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputParameterAttributesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -91,6 +89,24 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getInputParameterAttributes();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes#setUiGroupPromptDisplayName(java.lang.String)
+     * @generated NOT
+     */
+    public void setUiGroupPromptDisplayName( String value )
+    {
+        // sets attribute in current UIHints, if exists;
+        // otherwise, creates a new one
+        InputParameterUIHints uiHints = getUiHints();
+        boolean hasNoUIHints = ( uiHints == null );
+        if( hasNoUIHints )
+            uiHints = DesignFactory.eINSTANCE.createInputParameterUIHints();
+        uiHints.setGroupPromptDisplayName( value );
+        
+        if( hasNoUIHints )
+            setUiHints( uiHints );
     }
 
     /**

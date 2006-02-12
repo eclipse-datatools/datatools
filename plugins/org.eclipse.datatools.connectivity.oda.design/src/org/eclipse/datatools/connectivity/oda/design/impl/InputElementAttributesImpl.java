@@ -11,23 +11,22 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: InputElementAttributesImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
+import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -218,11 +217,30 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#hasValueChoices()
+     * @generated NOT
      */
     public boolean hasValueChoices()
     {
         return( getStaticValueChoices() != null ||
                 getDynamicValueChoices() != null );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#setUiPromptStyle(org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle)
+     * @generated NOT
+     */
+    public void setUiPromptStyle( InputPromptControlStyle value )
+    {
+        // sets attribute in current UIHints, if exists;
+        // otherwise, creates a new one
+        InputElementUIHints uiHints = getUiHints();
+        boolean hasNoUIHints = ( uiHints == null );
+        if( hasNoUIHints )
+            uiHints = DesignFactory.eINSTANCE.createInputElementUIHints();
+        uiHints.setPromptStyle( value );
+        
+        if( hasNoUIHints )
+            setUiHints( uiHints );       
     }
 
     /**

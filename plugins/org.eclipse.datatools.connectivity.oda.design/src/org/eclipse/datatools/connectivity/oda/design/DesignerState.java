@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignerState.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -95,5 +95,23 @@ public interface DesignerState extends EObject
      * @generated
      */
     void setStateContent( DesignerStateContent value );
+
+    /**
+     * Sets the value of the <em>State Content As String</em> attribute
+     * in a new <em>State Content</em> containment reference.
+     * @param value the String content value of the new '<em>State Content</em>' containment reference.
+     * @see #setStateContent(DesignerStateContent)
+     * @generated NOT
+     */
+    void setNewStateContentAsString( String value );
+
+    /**
+     * Sets the value of the <em>State Content As Blob</em> attribute
+     * in a new <em>State Content</em> containment reference.
+     * @param value the Blob content value of the new '<em>State Content</em>' containment reference.
+     * @see #setStateContent(DesignerStateContent)
+     * @generated NOT
+     */
+    void setNewStateContentAsBlob( byte[] value );
 
 } // DesignerState

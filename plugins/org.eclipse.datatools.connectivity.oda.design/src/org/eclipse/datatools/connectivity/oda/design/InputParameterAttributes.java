@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputParameterAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -89,5 +89,14 @@ public interface InputParameterAttributes extends EObject
      * @generated
      */
     void setUiHints( InputParameterUIHints value );
+
+    /**
+     * Sets the value of the <em>Group Prompt Display Name</em> attribute
+     * in the element's UI hints.
+     * @param value the new value of the '<em>Group Prompt Display Name</em>' attribute.
+     * @see #setUiHints(InputParameterUIHints)
+     * @generated NOT
+     */
+    void setUiGroupPromptDisplayName( String value );
 
 } // InputParameterAttributes

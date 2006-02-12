@@ -11,21 +11,19 @@
  *  
  *************************************************************************
  *
- * $Id: DesignerStateImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DesignerStateImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -100,6 +98,36 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDesignerState();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignerState#setStateContentAsString(java.lang.String)
+     * @generated NOT
+     */
+    public void setNewStateContentAsString( String value )
+    {
+        // creates a new state content with the given value,
+        // overrides any existing content
+        DesignerStateContent content = 
+                DesignFactory.eINSTANCE.createDesignerStateContent();
+        content.setStateContentAsString( value );
+
+        setStateContent( content );        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignerState#setStateContentAsBlob(byte[])
+     * @generated NOT
+     */
+    public void setNewStateContentAsBlob( byte[] value )
+    {
+        // creates a new state content with the given value,
+        // overrides any existing content
+        DesignerStateContent content = 
+                DesignFactory.eINSTANCE.createDesignerStateContent();
+        content.setStateContentAsBlob( value );
+
+        setStateContent( content );
     }
 
     /**

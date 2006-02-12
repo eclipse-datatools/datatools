@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributes.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: DataElementAttributes.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -404,4 +404,22 @@ public interface DataElementAttributes extends EObject
      */
     void setUiHints( DataElementUIHints value );
 
+    /**
+     * Sets the value of the <em>Display Name</em> attribute
+     * in the element's UI hints.
+     * @param value the new value of the '<em>Display Name</em>' attribute.
+     * @see #setUiHints(DataElementUIHints)
+     * @generated NOT
+     */
+    void setUiDisplayName( String value );
+
+    /**
+     * Sets the value of the <em>Description</em> attribute
+     * in the element's UI hints.
+     * @param value the new value of the '<em>Description</em>' attribute.
+     * @see #setUiHints(DataElementUIHints)
+     * @generated NOT
+     */
+    void setUiDescription( String value );
+    
 } // DataElementAttributes

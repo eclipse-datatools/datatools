@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributes.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: InputElementAttributes.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -310,5 +310,15 @@ public interface InputElementAttributes extends EObject
      * @generated
      */
     void setUiHints( InputElementUIHints value );
+
+    /**
+     * Sets the value of the <em>Prompt Style</em> attribute
+     * in the element's UI hints.
+     * @param value the new value of the '<em>Prompt Style</em>' attribute.
+     * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
+     * @see #setUiHints(InputElementUIHints)
+     * @generated NOT
+     */
+    void setUiPromptStyle( InputPromptControlStyle value );
 
 } // InputElementAttributes

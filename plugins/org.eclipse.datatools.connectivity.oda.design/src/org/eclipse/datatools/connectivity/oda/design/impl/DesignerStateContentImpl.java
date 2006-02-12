@@ -11,18 +11,15 @@
  *  
  *************************************************************************
  *
- * $Id: DesignerStateContentImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DesignerStateContentImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -118,13 +115,25 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         return m_stateContentAsString;
     }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignerStateContent#setStateContentAsString(java.lang.String)
+     * @generated NOT
+     */
+    public void setStateContentAsString( String newStateContentAsString )
+    {
+        setStateContentAsStringGen( newStateContentAsString );
+        
+        // reset value of alternate content type 
+        setStateContentAsBlobGen( null );
+    }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStateContentAsString( String newStateContentAsString )
+    private void setStateContentAsStringGen( String newStateContentAsString )
     {
         String oldStateContentAsString = m_stateContentAsString;
         m_stateContentAsString = newStateContentAsString;
@@ -142,12 +151,24 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
         return m_stateContentAsBlob;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignerStateContent#setStateContentAsBlob(byte[])
+     * @generated NOT
+     */
+    public void setStateContentAsBlob( byte[] newStateContentAsBlob )
+    {
+        setStateContentAsBlobGen( newStateContentAsBlob );
+
+        // reset value of alternate content type 
+        setStateContentAsStringGen( null );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setStateContentAsBlob( byte[] newStateContentAsBlob )
+    private void setStateContentAsBlobGen( byte[] newStateContentAsBlob )
     {
         byte[] oldStateContentAsBlob = m_stateContentAsBlob;
         m_stateContentAsBlob = newStateContentAsBlob;
