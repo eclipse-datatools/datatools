@@ -21,7 +21,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Hashtable;
 
-import com.ibm.icu.text.SimpleDateFormat;
+// temporarily rollback ICU4J implementation due to Bugzilla #127221
+// import com.ibm.icu.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  *	LogManager is a static class that maintains a set of named 
