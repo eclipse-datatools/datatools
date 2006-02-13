@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Connection Profile</title>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
+<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+</HEAD>
+<BODY>
+<H1><CENTER>Connection Profile</CENTER></H1>
+<p></p>
+<h6 class=CaptionFigColumn id=header>Identifier: </h6>org.eclipse.datatools.connectivity.connectionProfile<p></p>
+<h6 class=CaptionFigColumn id=header>Since: </h6>DTP v. 0.x
+<p></p>
+
+<p>
+<h6 class=CaptionFigColumn id=header>Description: </h6>This extension point provides a place for plug-ins to add support for different types of connection profiles.  It also allows extensions to extend the capabilities of defined extension points.
+
+<p>Connection profiles are defined using the <samp>connectionProfile</samp> element.  A connection profile will belong to a single category and a single configuration type.  Categories are used for grouping like types of connection profiles (e.g. queue, database, etc.).  Configuration types are used for specifying the type of configuration information provided by the profile (e.g. New Era Open Transport, JDBC, etc.).</p>
+
+<p>The provider must define a corresponding <samp>newWizard</samp> element for creating the resource.</p>
+
+<p>The provider must define a corresponding <samp>org.eclipse.ui.propertyPages</samp> for editing the connection profile's properties.  The provider should ensure a <samp>filter</samp> element is defined to verify the selected connection profile's provider ID matches the <samp>id</samp> specified for the <samp>connectionProfile</samp> (this is accomplished using the <samp>org.eclipse.datatools.profile.property.id</samp> property).  <samp>org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage</samp> is a base property page implementation intended to be extended by connection profile providers for this purpose.</p>
+
+<p>Connection factories supporting a given profile may be registered using the <samp>connectionFactory</samp> element.  Connection factories allow plug-ins to create a connection to a server from a connection profile.  A connection profile provider should provide a connection factory extension.  Ideally, a connection factory's ID should correspond with the type of object created when connected (e.g. <samp>java.sql.Connection</samp>).  A connection profile provider should implement a <samp>connectionFactory</samp> with an ID of <samp>org.eclipse.datatools.connectivity.connectionFactory.pingFactory</samp> to enable the ping functionality provided in the base implementations and framework.<p/>
+
+<p>Connection profiles may be extended by other plug-ins by defining the following extension elements:
+<ul>
+<li><samp>connectionFactory - </samp></li>This element enables a plug-in to provide connection creation support for the specified connection profile.
+<li><samp>profileExtension - </samp></li>This element enables a plug-in to provide additional configuration properties for the specified connection profile.  If you are extending a connection profile in this manner and these properties need to be specified when connecting to the server defined by the connection profile, you will need to provide a connection factory extension that makes use of the additional properties.
+</ul>
+</p>
+
+<p>Tooling providers can choose to integrate with connection profiles using a variety of mechanisms.  Tooling can be keyed to a specific profile type (by checking the profile's ID attribute; e.g. the mechanism used for contributing property pages as noted above).  Tooling can also be keyed to work with profiles with a specified connection factory (e.g. DB specific tooling might be keyed to use any profile with a <samp>java.sql.Connection</samp> factory).  This approach allows tooling to work with any type of connection profile that can be represented through a particular connection API.</p>
+
+<p>The following filter properties are provided for filtering connection profile instances: (These are defined in <samp>org.eclipse.datatools.connectivity.ui.IConnectionProfileActionFilter</samp>.)
+<ul>
+<li><samp>org.eclipse.datatools.profile.property.id</samp> - </li>Use for filtering profile instances of a specific type.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.categoryID</samp> - </li>Use for filtering profile instances belonging to a specific category.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.factoryID</samp> - </li>Use for filtering profile instances implementing a specific type of connection factory.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.hasExtendedProperties</samp> - </li>Use for filtering profile instances with one or more <samp>profileExtension</samp>s defined.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.extensionID</samp> - </li>Use for filtering profile instances implementing a specific type of <samp>profileExtension</samp>.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.containingViewID</samp> - </li>Use for filtering profile instances contained within a specific view.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.isConnected</samp> - </li>Use for filtering profile instances based on their connection state.
+<li><samp>org.eclipse.datatools.connectivity.profile.property.supportsPing</samp> - </li>Use for filtering profile instances implementing a ping connection factory (shortcut for name=org.eclipse.datatools.connectivity.profile.property.factoryID, value=org.eclipse.datatools.connectivity.connectionFactory.pingFactory).
+</ul>
+</p></p>
+<p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.category">category</a>* , <a href="#e.configurationType">configurationType</a>* , <a href="#e.connectionProfile">connectionProfile</a>* , <a href="#e.connectionFactory">connectionFactory</a>* , <a href="#e.profileExtension">profileExtension</a>* , <a href="#e.newWizard">newWizard</a>* , <a href="#e.wizardCategory">wizardCategory</a>*)*&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST extension</p>
+<p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>point</b> - a fully qualified identifier of the target extension point, <samp>org.eclipse.datatools.connectivity.connectionProfile</samp></li>
+<li><b>id</b> - an optional identifier of the extension instance</li>
+<li><b>name</b> - an optional name of the extension instance</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.category">category</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST category</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>parentCategory&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to identify a category.  Categories are used to group related connection profile types (e.g. databases).</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The id of this category.  This value is referenced by <samp>connectionProfile</samp> elements.</li>
+<li><b>parentCategory</b> - The id of a parent category, if this category has a parent.</li>
+<li><b>name</b> - The display name for this category.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.connectionProfile">connectionProfile</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST connectionProfile</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>configurationType&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>icon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>maintainConnection&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to define a connection profile type.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The id of this connection profile.  This must uniquely identify this connection profile.</li>
+<li><b>name</b> - The display name for this connection profile type.</li>
+<li><b>category</b> - The category that this connection profile belongs to.  This must map back to a <samp>category/id</samp>.</li>
+<li><b>configurationType</b> - The configuration type for this connection profile.  This must map back to a <samp>configurationType/id</samp>.</li>
+<li><b>icon</b> - The plug-in relative path to an image file.  This image will be used to identify resources of this type in the servers view.</li>
+<li><b>maintainConnection</b> - </li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.configurationType">configurationType</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST configurationType</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to identify a configuration type.  A configuration type is used for determining the format of the configuration data used by a connection profile.  For example, "New Era Open Transport" or "JDBC Connection URL"</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The unique identifier for this configuration type.</li>
+<li><b>name</b> - The name of this configuration type.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.connectionFactory">connectionFactory</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST connectionFactory</p>
+<p class=code id=dtdAttlist>profile&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element defines a connection factory that can be used to create connections to a server using the properties stored in a connection profile resource.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>profile</b> - The connection profile supported by this factory.  This should reference a <samp>connectionProfile/id</samp>.</li>
+<li><b>name</b> - The name of this connection factory.</li>
+<li><b>id</b> - The unique identifier for this connection factory.  This id may be used by plug-ins to retrieve an instance of this connection factory.</li>
+<li><b>class</b> - The class that implements this connection factory.  The specified class must be an instance of IConnectionFactory.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.profileExtension">profileExtension</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST profileExtension</p>
+<p class=code id=dtdAttlist>profile&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to define an extension that provides support for setting additional properties on a connection profile.  When implementing this extension point, you should also implement a connection factory if required.</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>profile</b> - The connection profile that this extension supports.  This should map to a <samp>connectionProfile/id</samp>.</li>
+<li><b>name</b> - The name of this extension.</li>
+<li><b>id</b> - A unique identifier for this extension.</li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.newWizard">newWizard</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST newWizard</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>icon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>description&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>profile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>category&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<p class=ConfigMarkup id=elementDesc>
+This element is used to identify a connection profile wizard. A wizard is used to create a connection profile</p>
+<br>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - The unique identifier for the new wizard.</li>
+<li><b>name</b> - </li>
+<li><b>class</b> - The class that implements this new wizard.  The specified class must be an instance of IWizard.  <samp>org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard</samp> is a base implementation intended to be extended by connection profile providers.  <samp>org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage</samp> is a base wizard page implementation intended for use with the above wizard implementation.</li>
+<li><b>icon</b> - The plug-in relative path to an image file.  This image will be used to identify the new wizard.</li>
+<li><b>description</b> - Description of the new wizard.</li>
+<li><b>profile</b> - The connection profile supported by this new wizard.  This should reference a <samp>connectionProfile/id</samp>.</li>
+<li><b>category</b> - </li>
+</ul>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.wizardCategory">wizardCategory</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST wizardCategory</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>parentCategory&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>icon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>wizardTitle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>wizardDescription&nbsp;CDATA #IMPLIED&gt;</p>
+<p></p>
+<ul class=ConfigMarkup id=attlistDesc>
+<li><b>id</b> - This element is used to identify a wizard category.  Categories are used to group related connection profile wizards (e.g. databases).</li>
+<li><b>parentCategory</b> - The id of a parent category, if this category has a parent.</li>
+<li><b>name</b> - The display name for this category.</li>
+<li><b>icon</b> - The plug-in relative path to an image file.  This image will be used to identify wizard category in the new connection profile wizard.</li>
+<li><b>description</b> - Description of the new wizard category.</li>
+<li><b>wizardTitle</b> - wizard title</li>
+<li><b>wizardDescription</b> - wizard description</li>
+</ul>
+<br><h6 class=CaptionFigColumn id=header>Examples: </h6><pre>
+ <p class=code id=tag>&lt;extension
+   id=<p class=code id=cstring>&quot;sample&quot;</p><p class=code id=tag>
+   name=<p class=code id=cstring>&quot;Sample Server Extension&quot;</p><p class=code id=tag>
+   point=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.connectionProfile&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;category
+    name=<p class=code id=cstring>&quot;Sample Server Category&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleCategory&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/category&gt;</p>
+  <p class=code id=tag>&lt;configurationType
+    name=<p class=code id=cstring>&quot;Sample Configuration Type&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConfigurationType&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/configurationType&gt;</p>
+  <p class=code id=tag>&lt;connectionFactory
+    profile=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;</p><p class=code id=tag>
+    name=<p class=code id=cstring>&quot;Shared Connection Factory&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sharedConnectionFactory&quot;</p><p class=code id=tag>
+    class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.SharedConnectionFactory&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/connectionFactory&gt;</p>
+  <p class=code id=tag>&lt;connectionFactory
+    profile=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;</p><p class=code id=tag>
+    name=<p class=code id=cstring>&quot;Ping Connection Factory&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.connectionFactory.pingFactory&quot;</p><p class=code id=tag>
+    class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.SharedConnectionFactory&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/connectionFactory&gt;</p>
+  <p class=code id=tag>&lt;profileExtension
+    profile=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;</p><p class=code id=tag>
+    name=<p class=code id=cstring>&quot;Sample Extraneous Properties&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfileExtension&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/profileExtension&gt;</p>
+  <p class=code id=tag>&lt;connectionProfile
+    configurationType=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConfigurationType&quot;</p><p class=code id=tag>
+    name=<p class=code id=cstring>&quot;Sample Connection Profile&quot;</p><p class=code id=tag>
+    icon=<p class=code id=cstring>&quot;icons/sample.gif&quot;</p><p class=code id=tag>
+    category=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleCategory&quot;</p><p class=code id=tag>
+    id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.example.sampleConnectionProfile&quot;</p><p class=code id=tag>&gt;</p>
+  <p class=code id=tag>&lt;/connectionProfile&gt;</p>
+ <p class=code id=tag>&lt;/extension&gt;</p>
+</pre>
+<p></p>
+
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[Enter API information here.]
+<p></p>
+
+<br>
+<p class=note id=copyright>
+<p>Copyright (c) 2004-2005 Sybase, Inc.</p>
+<p>All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></p>
+
+<p>Contributors: rcernich - initial API and implementation</p>
+<p></p>
+
+</p>
+</BODY>
+</HTML>
