@@ -93,8 +93,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		this.mDBPWDText = (Text) createLabelTextPair(content, GenericDBPlugin
 				.getDefault().getResourceString(
 						"GenericDBProfileDetailsWizardPage.password.label"), //$NON-NLS-1$, 
-				this.mDBPWDText, SWT.BORDER, GridData.FILL_HORIZONTAL); //$NON-NLS-1$
-		this.mDBPWDText.setEchoChar('*');
+				this.mDBPWDText, SWT.BORDER | SWT.PASSWORD, GridData.FILL_HORIZONTAL); //$NON-NLS-1$
 
 		Composite spacer = new Composite(content, SWT.NULL);
 		GridData gdata = new GridData(GridData.FILL_HORIZONTAL);

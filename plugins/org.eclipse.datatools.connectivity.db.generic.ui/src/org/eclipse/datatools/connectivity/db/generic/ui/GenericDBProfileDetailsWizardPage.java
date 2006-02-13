@@ -107,8 +107,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 		this.mDBPWDText = (Text) createLabelTextPair(content, GenericDBPlugin
 				.getDefault().getResourceString(
 						"GenericDBProfileDetailsWizardPage.password.label"), //$NON-NLS-1$
-				this.mDBPWDText, SWT.BORDER, GridData.FILL_HORIZONTAL);
-		this.mDBPWDText.setEchoChar('*');
+				this.mDBPWDText, SWT.BORDER | SWT.PASSWORD, GridData.FILL_HORIZONTAL);
 
 		// spacer
 		Composite spacer = new Composite(content, SWT.NULL);
