@@ -27,7 +27,9 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
-import com.ibm.icu.text.DateFormat;
+//temporarily rollback ICU4J implementation due to Bugzilla #127221
+//import com.ibm.icu.text.DateFormat;
+import java.text.DateFormat;
 
 /**
  * Flat file data provider's implementation of the ODA IResultSet interface.
