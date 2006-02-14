@@ -21,9 +21,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Hashtable;
 
-// temporarily rollback ICU4J implementation due to Bugzilla #127221
-// import com.ibm.icu.text.SimpleDateFormat;
-import java.text.SimpleDateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 
 /**
  *	LogManager is a static class that maintains a set of named 
@@ -34,6 +32,7 @@ import java.text.SimpleDateFormat;
 public class LogManager
 {
 	private static Hashtable m_loggers = new Hashtable();
+    private static SimpleDateFormat sm_dateFormat;
 
 	private LogManager()
 	{
@@ -235,7 +234,7 @@ public class LogManager
     	// check if the file name ends with the ".log" suffix and has the 
     	// same prefix
     	if( ! origFilename.startsWith( newLogPrefix ) || 
-    		! origFilename.endsWith( ".log" ) )
+    		! origFilename.endsWith( ".log" ) ) //$NON-NLS-1$
     		return true;
     	
     	// validate whether the portion between the prefix and the log file 
@@ -252,7 +251,7 @@ public class LogManager
     	
     	try
 		{
-    		if( sm_dateFormat.parse( origTimetamp ) == null )
+    		if( getDateFormat().parse( origTimetamp ) == null )
     			return true;
 		}
     	catch( ParseException ex )
@@ -270,7 +269,7 @@ public class LogManager
     private static void setLoggerLevel( Logger logger, int logLevel )
     {
     	// set to the specified level
-    	Level level = new Level( "", logLevel );
+    	Level level = new Level( "", logLevel ); //$NON-NLS-1$
     	logger.setLevel( level );
     }
 
@@ -322,22 +321,26 @@ public class LogManager
     	return (Logger) m_loggers.get( loggerName );
     }
 
-    private static final SimpleDateFormat sm_dateFormat = 
-    	new SimpleDateFormat( "yyyyMMdd-HHmmss" );
+    private static SimpleDateFormat getDateFormat()
+    {
+        if( sm_dateFormat == null ) 
+            sm_dateFormat = new SimpleDateFormat( "yyyyMMdd-HHmmss" ); //$NON-NLS-1$
+        return sm_dateFormat;
+    }
     
     // logic to generate the proper file name:
     // <logDirectory>/<logPrefix>-YYYYMMDD-HHmmss.log
     private static String generateFileName( String logDirectory,
     										String logPrefix )
     {
-    	String logfileName = ( logDirectory.endsWith( "/" ) ||
-    						   logDirectory.endsWith( "\\" ) ) ?
-    						 logDirectory : logDirectory + "/";
+    	String logfileName = ( logDirectory.endsWith( "/" ) || //$NON-NLS-1$
+    						   logDirectory.endsWith( "\\" ) ) ? //$NON-NLS-1$
+    						 logDirectory : logDirectory + "/"; //$NON-NLS-1$
 
-    	logfileName += logPrefix + "-";
+    	logfileName += logPrefix + "-"; //$NON-NLS-1$
     	
     	Timestamp timestamp = new Timestamp( System.currentTimeMillis() );
-    	logfileName += sm_dateFormat.format( timestamp ) + ".log";
+    	logfileName += getDateFormat().format( timestamp ) + ".log"; //$NON-NLS-1$
     	
     	return logfileName;
     }
