@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
 import java.util.Iterator;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
@@ -23,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
+import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
@@ -176,6 +178,29 @@ public class DesignSessionUtil
         return designProps;
     }
     
+    /**
+     * Returns the connection profile instance referenced or linked by
+     * the given data source design.
+     * @param dataSourceDesign
+     * @return  linked connection profile instance, or null
+     *          if no external profile is referenced
+     * @throws OdaException if referenced connection profile is not found
+     */
+    public static IConnectionProfile getLinkedProfile( DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        if( ! dataSourceDesign.hasLinkToProfile() )
+            return null;
+
+        String linkedProfileName = dataSourceDesign.getLinkedProfileName();
+        IConnectionProfile profile = OdaProfileExplorer.getInstance()
+            .getProfileByName( linkedProfileName,
+                    dataSourceDesign.getLinkedProfileStoreFile() );
+        if( profile == null )   // not found
+            throw new OdaException( "Unable to locate the linked profile: " + linkedProfileName );
+        return profile;
+    }
+        
     /**
      * Find and return the property definition specified in
      * an ODA extension that implements the 
