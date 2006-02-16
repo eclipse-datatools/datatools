@@ -545,7 +545,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		if (isValid) {
 			setMessage(DEFAULT_MESSAGE);
 			setErrorMessage(null);
-
+			setValid(isValid);
 		}
 		return isValid;
 	}
