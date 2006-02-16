@@ -156,7 +156,7 @@
 			<fileset dir="${build.result.folder}" includes="sqlresult.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,sqlresult.jar,src/,about.html,icons/,plugin.properties,plugin.xml"			/>
+			<fileset dir="${basedir}" includes="META-INF/,sqlresult.jar,about.html,icons/,plugin.properties,plugin.xml"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqlresultsrc.zip"/>
