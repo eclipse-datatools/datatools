@@ -84,6 +84,8 @@ public class NewDriverDialog extends TitleAreaDialog {
 
 	// flag indicating whether we should edit the new
 	// instance immediately or not.
+	// NOTE: this flag only remembers user's choice, so when the driver don't support
+	// editImmediately, we won't change this flag.
 	private boolean mEditImmediately = true;
 
 	/**
@@ -162,6 +164,14 @@ public class NewDriverDialog extends TitleAreaDialog {
 									.setText(descriptor.getName());
 							NewDriverDialog.this.mDriverTemplateDescriptor = descriptor;
 							// NewDriverDialog.this.mOKButton.setEnabled(true);
+							if (!needEditImmediately(descriptor)) {
+								NewDriverDialog.this.mEditImmediatelyButton.setEnabled(false);
+								NewDriverDialog.this.mEditImmediatelyButton.setSelection(false);
+							}
+							else {
+								NewDriverDialog.this.mEditImmediatelyButton.setEnabled(true);
+								NewDriverDialog.this.mEditImmediatelyButton.setSelection(mEditImmediately);
+							}
 						}
 						// else {
 						// NewDriverDialog.this.mOKButton.setEnabled(false);
@@ -357,6 +367,11 @@ public class NewDriverDialog extends TitleAreaDialog {
 
 		saveState();
 
+		// after saveState, user's choice of "edit immediately" has been saved,
+		// we reset this flag to the current selection's corresponding state, so
+		// getEditImmediately() will return correct value.
+		mEditImmediately = mEditImmediatelyButton.getSelection();
+		
 		super.okPressed();
 	}
 
@@ -412,5 +427,9 @@ public class NewDriverDialog extends TitleAreaDialog {
 			}
 		}
 
+	}
+	
+	protected boolean needEditImmediately(TemplateDescriptor descriptor) {
+		return !descriptor.getEmptyJarListIsOKFlag() || descriptor.hasVisibleProperties();
 	}
 }

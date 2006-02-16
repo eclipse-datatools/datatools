@@ -788,22 +788,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 	 * Determine if the template has visible properties
 	 */
 	private boolean hasVisibleProperties() {
-		boolean flag = false;
-		if (this.descriptor != null) {
-			IConfigurationElement[] templateprops = this.descriptor
-					.getProperties();
-			if (templateprops != null && templateprops.length > 0) {
-				for (int i = 0; i < templateprops.length; i++) {
-					IConfigurationElement prop = templateprops[i];
-					String visible = prop.getAttribute("visible"); //$NON-NLS-1$
-					if (visible == null || (visible.equals("true"))) { //$NON-NLS-1$
-						flag = true;
-						break;
-					}
-				}
-			}
-		}
-		return flag;
+		return this.descriptor == null ? false: this.descriptor.hasVisibleProperties();
 	}
 
 	/*

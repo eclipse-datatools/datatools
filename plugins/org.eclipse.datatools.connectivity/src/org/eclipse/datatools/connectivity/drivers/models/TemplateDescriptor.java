@@ -314,4 +314,22 @@ public class TemplateDescriptor implements Comparable {
 		return (TemplateDescriptor[]) result
 				.toArray(new TemplateDescriptor[result.size()]);
 	}
+	
+	/**
+	 * Determine if the template has visible properties 
+	 * @return
+	 */
+    public boolean hasVisibleProperties() {
+		IConfigurationElement[] templateprops = this.getProperties();
+		if (templateprops != null && templateprops.length > 0) {
+			for (int i=0; i < templateprops.length; i++) {
+				IConfigurationElement prop = templateprops[i];
+				String visible = prop.getAttribute("visible"); //$NON-NLS-1$
+				if (visible == null || (visible.equals("true"))) { //$NON-NLS-1$
+					return true;
+				}					
+			}
+		}
+		return false;
+    }
 }
