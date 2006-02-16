@@ -134,7 +134,7 @@
 			<fileset dir="${build.result.folder}" includes="sqlparser.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,about.html,sqlparser.jar,thirdparty/lpg.jar,plugin.properties,META-INF/"/>
+			<fileset dir="${basedir}" includes="plugin.xml,about.html,sqlparser.jar,plugin.properties,META-INF/"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqlparsersrc.zip"/>
@@ -145,7 +145,7 @@
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
 		<copy file="${build.result.folder}/sqlparsersrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
-			<fileset dir="${basedir}" includes="src/,thirdparty/lpg.jar,plugin.xml,.classpath,.project,build.properties,plugin.properties"/>
+			<fileset dir="${basedir}" includes="src/,plugin.xml,.classpath,.project,build.properties,plugin.properties"/>
 		</copy>
 	</target>
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
