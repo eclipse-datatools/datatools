@@ -139,6 +139,9 @@
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="connectivityui.jar"/>
 		</copy>
+		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}" includes="connectivityuisrc.zip"/>
+		</copy>
 	</target>
 	<target name="build.zips" depends="init"/>
 	<target name="gather.sources" depends="init" if="destination.temp.folder">
