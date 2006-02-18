@@ -11,11 +11,13 @@
  *  
  *************************************************************************
  *
- * $Id: Locale.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: Locale.java,v 1.2 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
 import org.eclipse.emf.ecore.EObject;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,18 +50,18 @@ public interface Locale extends EObject
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
     /**
-     * Returns the locale value as a java.util.Locale object.
-     * @return	a java.util.Locale object
+     * Returns the locale value as an ULocale object.
+     * @return	a com.ibm.icu.util.ULocale object
      * @generated NOT
      */
-    java.util.Locale getLocale();
+    ULocale getLocale();
     
     /**
      * Sets all the locale values.
-     * @param   a java.util.Locale object
+     * @param   a ULocale object
      * @generated NOT
      */
-    void setLocale( java.util.Locale locale );
+    void setLocale( ULocale locale );
     
     /**
      * Getter for the programmatic name of the entire locale, 

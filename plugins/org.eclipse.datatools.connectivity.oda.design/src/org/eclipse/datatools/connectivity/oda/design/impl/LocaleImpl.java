@@ -11,20 +11,19 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: LocaleImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * <!-- begin-user-doc -->
@@ -144,23 +143,25 @@ public class LocaleImpl extends EObjectImpl implements Locale
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Locale#getLocale()
+     * @generated NOT
      */
-    public java.util.Locale getLocale()
+    public ULocale getLocale()
     {
         // if none is explicitly set, or the required language is missing,
         // returns JVM locale default
         if( ! hasLanguage() )
-            return java.util.Locale.getDefault();
+            return ULocale.getDefault();
         
-        return new java.util.Locale( getLanguageGen(), 
-			                		toNonNullString( getCountry() ), 
-			                        toNonNullString( getVariant() ));
+        return new ULocale( getLanguageGen(), 
+			                toNonNullString( getCountry() ), 
+			                toNonNullString( getVariant() ));
     }
     
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.Locale#setLocale(java.util.Locale)
+     * @see org.eclipse.datatools.connectivity.oda.design.Locale#setLocale(ULocale)
+     * @generated NOT
      */
-    public void setLocale( java.util.Locale locale )
+    public void setLocale( ULocale locale )
     {
         // util Locale does not return null attribute
         if( locale.getLanguage().length() == 0 )
@@ -185,7 +186,7 @@ public class LocaleImpl extends EObjectImpl implements Locale
     public String toLanguageCountryString()
     {
         // gets the util Locale, which could be the JVM default
-        java.util.Locale theLocale = getLocale();
+        ULocale theLocale = getLocale();
         
         String strValue = theLocale.getLanguage();
         if( theLocale.getCountry().length() != 0 )
