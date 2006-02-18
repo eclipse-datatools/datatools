@@ -17,7 +17,6 @@ package org.eclipse.datatools.connectivity.oda.util.manifest;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +30,8 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
 import org.eclipse.datatools.connectivity.oda.util.ResourceCache;
 import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * The Manifest Explorer is the entry point to explore and access
@@ -365,7 +366,7 @@ public class ManifestExplorer
 	{
 		ResourceManager manager = 
 			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$ 
-												   Locale.getDefault() );
+												   ULocale.getDefault() );
 		return ( manager != null ) ? manager.getString( errorNumber ) : "";  //$NON-NLS-1$
 	}
 	

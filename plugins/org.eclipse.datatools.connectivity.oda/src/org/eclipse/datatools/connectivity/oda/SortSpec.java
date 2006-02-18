@@ -16,11 +16,12 @@ package org.eclipse.datatools.connectivity.oda;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
 import org.eclipse.datatools.connectivity.oda.util.ResourceCache;
 import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * A class that encapsulates one or more sort keys for 
@@ -42,7 +43,7 @@ public class SortSpec
 	
 	private int m_sortMode;
 	private List m_sortKeys;
-	private Locale m_locale = Locale.US;
+	private ULocale m_locale = ULocale.US;
 	
 	/**
 	 * Instantiates a <code>SortSpec</code> object for the defined
@@ -264,7 +265,7 @@ public class SortSpec
 	 * to return localized error messages. The default locale is <code>en_US</code>.
 	 * @param locale	the locale used for localizing error messages.
 	 */
-	public void setLocale( Locale locale )
+	public void setLocale( ULocale locale )
 	{
 		m_locale = locale;
 	}

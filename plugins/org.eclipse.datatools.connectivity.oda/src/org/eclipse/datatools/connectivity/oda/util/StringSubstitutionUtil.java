@@ -19,10 +19,11 @@ package org.eclipse.datatools.connectivity.oda.util;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * StringSubstitutionUtil is a general utility that any ODA provider can use, 
@@ -811,7 +812,7 @@ public final class StringSubstitutionUtil
 	{
 		ResourceManager manager = 
 			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$
-												   Locale.getDefault() );
+												   ULocale.getDefault() );
 		return ( manager != null ) ? manager.getString( errorNumber ) : ""; //$NON-NLS-1$
 	}
 	
