@@ -124,10 +124,10 @@ public final class StringSubstitutionUtil
 	 		   								   String startDelimiter, 
 											   boolean requiresNamedDelimiters )
 	{
-		String context = "StringSubstitutionUtil.getDelimitedStringCount( " +
-						 text + ", " + startDelimiter + ", " + 
-						 requiresNamedDelimiters + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.getDelimitedStringCount( " + //$NON-NLS-1$
+						 text + ", " + startDelimiter + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+						 requiresNamedDelimiters + " )\t"; //$NON-NLS-1$
+		log( context + "Called." ); //$NON-NLS-1$
 	
 		sanityCheck( text, startDelimiter );
 	
@@ -141,7 +141,7 @@ public final class StringSubstitutionUtil
 		int numOfDelimitedStrings = 0;
 		while( ( index = text.indexOf( startDelimiter, index ) ) >= 0 )
 		{
-			log( context + "index: " + index );
+			log( context + "index: " + index ); //$NON-NLS-1$
 	
 			int endIndex = getDelimitedStringEndIndex( stringBuffer, index, 
 						   							   startDelimiterLength,
@@ -156,7 +156,7 @@ public final class StringSubstitutionUtil
 			index = endIndex + 1;
 		}
 	
-		log( context + "Exiting: " + numOfDelimitedStrings );
+		log( context + "Exiting: " + numOfDelimitedStrings ); //$NON-NLS-1$
 		return numOfDelimitedStrings;
 	}
 	
@@ -208,10 +208,10 @@ public final class StringSubstitutionUtil
 											   String endDelimiter,
 											   boolean requiresNamedDelimiters )
 	{
-		String context = "StringSubstitutionUtil.getDelimitedStringCount( " +
-		 				 text + ", " + startDelimiter + ", " + endDelimiter + 
-						 ", " + requiresNamedDelimiters +" )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.getDelimitedStringCount( " + //$NON-NLS-1$
+		 				 text + ", " + startDelimiter + ", " + endDelimiter +  //$NON-NLS-1$ //$NON-NLS-2$
+						 ", " + requiresNamedDelimiters +" )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 
 		sanityCheck( text, startDelimiter, endDelimiter );
 
@@ -229,7 +229,7 @@ public final class StringSubstitutionUtil
 		int numOfDelimitedStrings = 0;
 		while( ( startIndex = text.indexOf( startDelimiter, currIndex ) ) >= 0 )
 		{
-			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex );
+			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex ); //$NON-NLS-1$ //$NON-NLS-2$
 
 			currIndex = startIndex + startDelimiterLength;
 
@@ -250,7 +250,7 @@ public final class StringSubstitutionUtil
 			currIndex = endIndex;
 		}
 
-		log( context + "Exiting: " + numOfDelimitedStrings );
+		log( context + "Exiting: " + numOfDelimitedStrings ); //$NON-NLS-1$
 		return numOfDelimitedStrings;		
 	}
 	
@@ -275,10 +275,10 @@ public final class StringSubstitutionUtil
 											String startDelimiter,
 											List substitutionList )
 	{
-		String context = "StringSubstitutionUtil.substituteByIndex( " + 
-						 text + ", " + startDelimiter + ", " + 
-						 substitutionList + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.substituteByIndex( " +  //$NON-NLS-1$
+						 text + ", " + startDelimiter + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+						 substitutionList + " )\t"; //$NON-NLS-1$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		sanityCheck( text, startDelimiter, substitutionList );
 		
@@ -294,7 +294,7 @@ public final class StringSubstitutionUtil
 		// find the index of the delimiter
 		while( ( index = stringBuffer.toString().indexOf( startDelimiter, index ) ) >= 0 )
 		{
-			log( context + "index: " + index );
+			log( context + "index: " + index ); //$NON-NLS-1$
 			
 			int endIndex = getDelimitedStringEndIndex( stringBuffer, index, 
 													   startDelimiterLength,
@@ -327,7 +327,7 @@ public final class StringSubstitutionUtil
 		
 		String ret = stringBuffer.toString();
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret; 
 	}
 
@@ -355,10 +355,10 @@ public final class StringSubstitutionUtil
 											String endDelimiter,
 											List substitutionList )
 	{
-		String context = "StringSubstitutionUtil.substituteByIndex( " + 
-						 text + ", " + startDelimiter + ", " + endDelimiter + 
-						 ", " + substitutionList + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.substituteByIndex( " +  //$NON-NLS-1$
+						 text + ", " + startDelimiter + ", " + endDelimiter +  //$NON-NLS-1$ //$NON-NLS-2$
+						 ", " + substitutionList + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		sanityCheck( text, startDelimiter, endDelimiter, 
 					 substitutionList );
@@ -378,7 +378,7 @@ public final class StringSubstitutionUtil
 		int currIndex = 0;
 		while( ( startIndex = stringBuffer.toString().indexOf( startDelimiter, currIndex ) ) >= 0 )
 		{
-			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex );
+			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex ); //$NON-NLS-1$ //$NON-NLS-2$
 			
 			currIndex = startIndex + startDelimiterLength;
 			
@@ -413,7 +413,7 @@ public final class StringSubstitutionUtil
 
 		String ret = stringBuffer.toString();
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret;
 	}
 	
@@ -438,9 +438,9 @@ public final class StringSubstitutionUtil
 										   String startDelimiter,
 										   Map nameValues )
 	{
-		String context = "StringSubstitutionUtil.substituteByName( " + 
-						 text + ", " + startDelimiter + ", " + nameValues + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.substituteByName( " +  //$NON-NLS-1$
+						 text + ", " + startDelimiter + ", " + nameValues + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		sanityCheck( text, startDelimiter, nameValues );
 		
@@ -455,7 +455,7 @@ public final class StringSubstitutionUtil
 		// find the index of the delimiter
 		while( ( index = stringBuffer.toString().indexOf( startDelimiter, index ) ) >= 0 )
 		{
-			log( context + "index: " + index );
+			log( context + "index: " + index ); //$NON-NLS-1$
 			
 			int endIndex = getDelimitedStringEndIndex( stringBuffer, index, 
 													   startDelimiterLength,
@@ -473,7 +473,7 @@ public final class StringSubstitutionUtil
 			if( replacementString == null )
 			{
 			    String message = getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL );
-			    message += " [" + delimitedString + "]";
+			    message += " [" + delimitedString + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 				throw newIllegalArgumentException( message );
 			}
 			
@@ -483,7 +483,7 @@ public final class StringSubstitutionUtil
 		
 		String ret = stringBuffer.toString();
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret;
 	}
 	
@@ -511,10 +511,10 @@ public final class StringSubstitutionUtil
 										   String endDelimiter,
 										   Map nameValues )
 	{
-		String context = "StringSubstitutionUtil.substituteByName( " + 
-						 text + ", " + startDelimiter + ", " + endDelimiter + 
-						 ", " + nameValues + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.substituteByName( " +  //$NON-NLS-1$
+						 text + ", " + startDelimiter + ", " + endDelimiter +  //$NON-NLS-1$ //$NON-NLS-2$
+						 ", " + nameValues + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		sanityCheck( text, startDelimiter, 
 					 endDelimiter, nameValues );
@@ -533,7 +533,7 @@ public final class StringSubstitutionUtil
 		int currIndex = 0;
 		while( ( startIndex = stringBuffer.toString().indexOf( startDelimiter, currIndex ) ) >= 0 )
 		{
-			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex );
+			log( context + "startIndex: " + startIndex + ", currIndex: " + currIndex ); //$NON-NLS-1$ //$NON-NLS-2$
 			
 			currIndex = startIndex + startDelimiterLength;
 			
@@ -556,7 +556,7 @@ public final class StringSubstitutionUtil
 			if( replacementString == null )
 			{
 			    String message = getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL );
-			    message += " [" + delimitedString + "]";
+			    message += " [" + delimitedString + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 				throw newIllegalArgumentException( message );
 			}
 			
@@ -567,7 +567,7 @@ public final class StringSubstitutionUtil
 
 		String ret = stringBuffer.toString();
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret;
 	}
 
@@ -642,15 +642,15 @@ public final class StringSubstitutionUtil
 												   int startDelimiterLength, 
 												   boolean requiresNamedDelimiters )
 	{
-		String context = "StringSubstitutionUtil.getDelimitedStringEndIndex( " +
-						 stringBuffer + ", " + index + ", " +
-						 startDelimiterLength + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.getDelimitedStringEndIndex( " + //$NON-NLS-1$
+						 stringBuffer + ", " + index + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 startDelimiterLength + " )\t"; //$NON-NLS-1$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		// check whether it's really a start delimiter
 		if( ! isStartDelimiter( index, stringBuffer ) )
 		{
-			log( context + "Not a start delimiter. Exiting: -1" );
+			log( context + "Not a start delimiter. Exiting: -1" ); //$NON-NLS-1$
 			return -1;
 		}
 		
@@ -671,11 +671,11 @@ public final class StringSubstitutionUtil
 			  ( endIndex < stringBuffer.length() &&
 			  	! Character.isWhitespace( stringBuffer.charAt( endIndex ) ) ) ) )
 		{
-			log( context + "Not an embedded marker. Exiting: -1" );
+			log( context + "Not an embedded marker. Exiting: -1" ); //$NON-NLS-1$
 			return -1;
 		}
 
-		log( context + "Exiting: " + endIndex );
+		log( context + "Exiting: " + endIndex ); //$NON-NLS-1$
 		return endIndex; 
 	}
 	
@@ -685,10 +685,10 @@ public final class StringSubstitutionUtil
 												   String endDelimiter,
 												   boolean requiresNamedDelimiters )
 	{
-		String context = "StringSubstitutional.getDelimitedStringEndIndex( " +
-						 stringBuffer + ", " + startIndex + ", " + 
-						 startDelimiterLength + ", " + endDelimiter + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutional.getDelimitedStringEndIndex( " + //$NON-NLS-1$
+						 stringBuffer + ", " + startIndex + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+						 startDelimiterLength + ", " + endDelimiter + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		int currIndex = startIndex + startDelimiterLength;
 		int endDelimiterLength = endDelimiter.length();
@@ -697,7 +697,7 @@ public final class StringSubstitutionUtil
 		String string = stringBuffer.toString();
 		while( ( endIndex = string.indexOf( endDelimiter, currIndex ) ) >= 0 )
 		{
-			log( context + "endIndex: " + endIndex + ", currIndex: " + currIndex );
+			log( context + "endIndex: " + endIndex + ", currIndex: " + currIndex ); //$NON-NLS-1$ //$NON-NLS-2$
 			
 			// check whether it's really an end delimiter
 			if( isEndDelimiter( startIndex + startDelimiterLength, endIndex,
@@ -708,7 +708,7 @@ public final class StringSubstitutionUtil
 			currIndex = endIndex + endDelimiterLength;
 		}		
 		
-		log( context + "Exiting: " + endIndex );
+		log( context + "Exiting: " + endIndex ); //$NON-NLS-1$
 		return endIndex;
 	}
 
@@ -731,14 +731,14 @@ public final class StringSubstitutionUtil
 	private static boolean isStartDelimiter( int startDelimiterIndex,
 											 StringBuffer stringBuffer )
 	{
-		String context = "StringSubstitutionUtil.isStartDelimiter( " + 
-						 startDelimiterIndex + ", " + stringBuffer + " )\t";
-		log( context + "Called." );
+		String context = "StringSubstitutionUtil.isStartDelimiter( " +  //$NON-NLS-1$
+						 startDelimiterIndex + ", " + stringBuffer + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		// it's a start delimiter if it's at the beginning of the string
 		if( startDelimiterIndex == 0 )
 		{
-			log( context + "Beginning of string. Exiting: " + true );
+			log( context + "Beginning of string. Exiting: " + true ); //$NON-NLS-1$
 			return true;
 		}
 		
@@ -748,7 +748,7 @@ public final class StringSubstitutionUtil
 		boolean ret = ( ! isStringMarkerCharacter( prevChar ) &&
 				 		! isEscapeCharacter( prevChar ) );
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret;
 	}
 	
@@ -756,17 +756,17 @@ public final class StringSubstitutionUtil
 										   int endDelimiterLength, String string,
 										   boolean requiresNamedDelimiters )
 	{
-		String context = "StringSubsitutionUtil.isEndDelimiter( " + 
-						 afterStartDelimiterIndex + ", " + endIndex + ", " + 
-						 endDelimiterLength + ", " + string + " )\t";
-		log( context + "Called." );
+		String context = "StringSubsitutionUtil.isEndDelimiter( " +  //$NON-NLS-1$
+						 afterStartDelimiterIndex + ", " + endIndex + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+						 endDelimiterLength + ", " + string + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		log( context + "Called." ); //$NON-NLS-1$
 		
 		// if the end delimiter occurs right after the start delimiter and 
 		// we require named delimiters, then it's not an end delimiter.
 		if( endIndex == afterStartDelimiterIndex &&
 			requiresNamedDelimiters )
 		{
-			log( context + "Requires a named delimiter. Exiting: " + false );
+			log( context + "Requires a named delimiter. Exiting: " + false ); //$NON-NLS-1$
 			return false;
 		}
 		
@@ -776,7 +776,7 @@ public final class StringSubstitutionUtil
 		if( endIndex - 1 >= afterStartDelimiterIndex &&
 			isEscapeCharacter( string.charAt( endIndex - 1 ) ) )
 		{
-			log( context + "End delimiter escaped. Exiting: " + false );
+			log( context + "End delimiter escaped. Exiting: " + false ); //$NON-NLS-1$
 			return false;
 		}
 		
@@ -785,7 +785,7 @@ public final class StringSubstitutionUtil
 		boolean ret = !( endIndex + endDelimiterLength < string.length() &&
 					  	 isStringMarkerCharacter( string.charAt( endIndex + endDelimiterLength ) ) );
 		
-		log( context + "Exiting: " + ret );
+		log( context + "Exiting: " + ret ); //$NON-NLS-1$
 		return ret;
 	}
 	
@@ -810,9 +810,9 @@ public final class StringSubstitutionUtil
 	static String getLocalizedMessage( int errorNumber )
 	{
 		ResourceManager manager = 
-			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources", 
+			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$
 												   Locale.getDefault() );
-		return ( manager != null ) ? manager.getString( errorNumber ) : "";
+		return ( manager != null ) ? manager.getString( errorNumber ) : ""; //$NON-NLS-1$
 	}
 	
 	static String getLocalizedMessage( int errorNumber, Object[] arguments )
