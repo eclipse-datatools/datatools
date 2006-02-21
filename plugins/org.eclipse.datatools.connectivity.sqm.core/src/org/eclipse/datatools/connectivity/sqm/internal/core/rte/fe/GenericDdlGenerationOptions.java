@@ -30,7 +30,7 @@ public class GenericDdlGenerationOptions {
 	
 
 	public static EngineeringOption[] createDDLGenerationOptions(EngineeringOptionCategory[] categories) {
-        ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
+        ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
 
         EngineeringOptionCategory general_options =null;
         EngineeringOptionCategory additional_element =null;
@@ -58,7 +58,7 @@ public class GenericDdlGenerationOptions {
     }
 
 	public static EngineeringOptionCategory[] createDDLGenerationOptionCategories() {
-        ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
+        ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
 
         Vector categoryVec = new Vector();
         categoryVec.add(new EngineeringOptionCategory(EngineeringOptionCategoryID.GENERATE_OPTIONS,resource.getString("GENERATION_OPTIONS"), resource.getString("GENERATION_OPTIONS_DES"))); //$NON-NLS-1$ //$NON-NLS-2$
