@@ -14,6 +14,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl.ServerExplorerContentProviderNav;
 import org.eclipse.datatools.connectivity.ui.CommonContentProviderBase;
 import org.eclipse.datatools.connectivity.ui.IContentExtension;
+import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 
 /**
  * This class is a content provider implemention for navigatorContent
@@ -28,5 +29,10 @@ public class SQLModelContentProviderExtension extends CommonContentProviderBase 
 	protected IContentExtension createContentExtension(
 			IConnectionProfile profile) {
 		return new SQLModelContentExtension(profile);
+	}
+
+	public void init(ICommonContentExtensionSite aConfig) {
+		// TODO Auto-generated method stub
+		
 	}
 }

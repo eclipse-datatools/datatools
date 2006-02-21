@@ -18,6 +18,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
 
@@ -131,6 +132,11 @@ public class CommonLabelProviderBase implements ICommonLabelProvider {
 
 	public int hashCode() {
 		return mDelegate.hashCode();
+	}
+
+	public void init(ICommonContentExtensionSite aConfig) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

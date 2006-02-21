@@ -21,8 +21,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.internal.navigator.NavigatorContentService;
 import org.eclipse.ui.navigator.CommonNavigator;
-import org.eclipse.ui.navigator.internal.extensions.NavigatorContentProvider;
 
 /**
  * @author shongxum, brianf
@@ -78,14 +78,15 @@ public class ShowCategoryAction implements IViewActionDelegate {
 					currentInput instanceof ProfileManager ||
 					currentInput instanceof IWorkspaceRoot ||
 					currentInput instanceof IConnectionProfile ) {
+				NavigatorContentService ncs = (NavigatorContentService) commonNav.getNavigatorContentService();
 				ITreeContentProvider[] providers = 
-					commonNav.getNavigatorContentService().findRootContentProviders(currentInput);
+					ncs.findRootContentProviders(currentInput);
 				if (providers != null && providers.length > 0) {
 					for (int i = 0; i < providers.length; i++) {
-						NavigatorContentProvider ncp = (NavigatorContentProvider) providers[i];
-						if (ncp.getDelegateContentProvider() instanceof ConnectionProfileContentProvider ) {
+						ITreeContentProvider ncp = (ITreeContentProvider) providers[i];
+						if (ncp instanceof ConnectionProfileContentProvider ) {
 							ConnectionProfileContentProvider provider =
-								(ConnectionProfileContentProvider) ncp.getDelegateContentProvider();
+								(ConnectionProfileContentProvider) ncp;
 							provider.setShowCategories(flag);
 						}
 					}

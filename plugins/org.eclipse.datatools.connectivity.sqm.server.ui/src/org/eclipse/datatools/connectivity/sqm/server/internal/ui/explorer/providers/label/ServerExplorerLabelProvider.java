@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
 
@@ -83,6 +84,11 @@ public class ServerExplorerLabelProvider extends LabelProvider implements ICommo
 	}
 
 	public void saveState(IMemento aMemento) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void init(ICommonContentExtensionSite aConfig) {
 		// TODO Auto-generated method stub
 		
 	}

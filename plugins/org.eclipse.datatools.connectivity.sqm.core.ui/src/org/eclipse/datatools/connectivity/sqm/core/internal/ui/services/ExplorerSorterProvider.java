@@ -26,7 +26,7 @@ import com.ibm.icu.text.Collator;
  */
 public class ExplorerSorterProvider implements IExplorerSorterService
 {
-	private Collator collator = Collator.getInstance(Locale.getDefault());
+//	private Collator collator = Collator.getInstance();//Locale.getDefault());
 	private ContainmentService containment = RDBCorePlugin.getDefault().getContainmentService();
 
 	private boolean isValid (Object element1, Object element2)
@@ -66,7 +66,7 @@ public class ExplorerSorterProvider implements IExplorerSorterService
         {
             String string1 = getName (element1);
             String string2 = getName (element2);
-            return string1 != null && string2 != null ? collator.getCollationKey(string1).compareTo(collator.getCollationKey(string2)) : -1;
+            return string1 != null && string2 != null ? string1.compareTo(string2)  : -1;//collator.getCollationKey(string1).compareTo(collator.getCollationKey(string2)) : -1;
         }
         return -1;
     }

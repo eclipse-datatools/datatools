@@ -2,11 +2,7 @@
 <projectDescription>
 	<name>org.eclipse.datatools.connectivity</name>
 	<comment></comment>
-	<projects>
-		<project>com.sybase.suade.common</project>
-		<project>com.sybase.suade.core.navigator.common</project>
-		<project>com.sybase.suade.core.navigator.views</project>
-	</projects>
+	<projects/>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>

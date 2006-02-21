@@ -19,7 +19,9 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.internal.navigator.NavigatorContentService;
 import org.eclipse.ui.navigator.CommonViewer;
+import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
 import org.eclipse.ui.navigator.INavigatorContentService;
@@ -85,6 +87,10 @@ public abstract class CommonContentProviderBase implements
 	 */
 	public void init(IExtensionStateModel aStateModel, IMemento aMemento) {
 		mStateModel = aStateModel;
+	}
+
+	public void init(ICommonContentExtensionSite aConfig) {
+		mStateModel = aConfig.getExtensionStateModel();
 	}
 
 	/* (non-Javadoc)
@@ -259,8 +265,10 @@ public abstract class CommonContentProviderBase implements
 		CommonViewer viewer = (CommonViewer) mViewer;
 		INavigatorContentService contentService = viewer
 				.getNavigatorContentService();
-		ITreeContentProvider[] contentProviders = contentService
-				.findRelevantContentProviders(extension.getConnectionProfile());
+		NavigatorContentService ncs = (NavigatorContentService) contentService;
+		
+		ITreeContentProvider[] contentProviders = ncs
+				.findRootContentProviders(extension.getConnectionProfile());
 		/*
 		 * check for more than two contentproviders since the list will include
 		 * the root content provider for the view.

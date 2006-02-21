@@ -19,13 +19,17 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.dialogs.PropertyDialogAction;
-import org.eclipse.ui.navigator.ICommonActionProvider;
+import org.eclipse.ui.navigator.CommonActionProvider;
+import org.eclipse.ui.navigator.ICommonActionExtensionSite;
+import org.eclipse.ui.navigator.ICommonViewerSite;
 import org.eclipse.ui.navigator.INavigatorContentService;
 
 
-public class SQLModelContentActionProvider implements ICommonActionProvider {
+public class SQLModelContentActionProvider extends CommonActionProvider {
 	
 	private PropertyDialogAction mPropertiesAction;
+	private ICommonViewerSite mViewSite;
+	private StructuredViewer mStructViewer;
 
 	public SQLModelContentActionProvider() {
 		super();
@@ -34,8 +38,9 @@ public class SQLModelContentActionProvider implements ICommonActionProvider {
 	public void init(String anExtensionId, IViewPart aViewPart,
 			INavigatorContentService aContentService,
 			StructuredViewer aStructuredViewer) {
-		mPropertiesAction = new PropertyDialogAction(aViewPart.getViewSite()
-				.getShell(), aViewPart.getViewSite().getSelectionProvider());
+		mPropertiesAction = new PropertyDialogAction(
+				mStructViewer.getControl().getShell(), 
+				mViewSite.getSelectionProvider());
 	}
 
 	public void dispose() {
@@ -44,20 +49,25 @@ public class SQLModelContentActionProvider implements ICommonActionProvider {
 	public void setActionContext(ActionContext aContext) {
 	}
 
-	public boolean fillContextMenu(IMenuManager aMenu) {
+	public void fillContextMenu(IMenuManager aMenu) {
 		aMenu.add(new Separator("additions"));
 		aMenu.add(mPropertiesAction);
-		return true;
+		return;
 	}
 
-	public boolean fillActionBars(IActionBars theActionBars) {
-		return false;
+	public void fillActionBars(IActionBars theActionBars) {
+		return;
 	}
 
 	public void restoreState(IMemento aMemento) {
 	}
 
 	public void saveState(IMemento aMemento) {
+	}
+
+	public void init(ICommonActionExtensionSite aConfig) {
+		this.mViewSite = aConfig.getViewSite();
+		this.mStructViewer = aConfig.getStructuredViewer();
 	}
 
 }

@@ -37,19 +37,6 @@
                id="org.eclipse.datatools.connectivity.db.sqlModelContent"
                labelProvider="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelLabelProviderExtension"
                name="SQL Model Content Extension">
-            <enablement>
-               <or>
-                  <and>
-                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-				     <test
-						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
-						value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
-                  </and>
-                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
-                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
-                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
-               </or>
-            </enablement>
             <actionProvider
             		id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider"
             		class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider">
@@ -57,6 +44,21 @@
                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
             </enablement>
             </actionProvider>
+            <triggerPoints>
+                  <and>
+                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+				     <test
+						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
+						value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+                  </and>
+            </triggerPoints>
+            <possibleChildren>
+               <or>
+                  <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
+               </or>
+            </possibleChildren>
          </navigatorContent>
       </extension>
       <extension
