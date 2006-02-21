@@ -11,10 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -22,14 +23,11 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -98,6 +96,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewRequest(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
      */
     public void setNewRequest( DataSourceDesign dataSourceDesign )
     {
@@ -110,6 +109,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewResponse(boolean, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
      */
     public void setNewResponse( boolean isSessionOk, 
                                 DataSourceDesign dataSourceDesign )
@@ -129,6 +129,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setResponseInCancelledState()
+     * @generated NOT
      */
     public void setResponseInCancelledState()
     {
@@ -140,24 +141,54 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getRequestDataSourceDesign()
+     * @generated NOT
      */
     public DataSourceDesign getRequestDataSourceDesign()
     {
-        if( getRequest() == null )
+        if( getRequest() == null ||
+            getRequest().getDataAccessDesign() == null )
             return null;
         
         return getRequest().getDataAccessDesign().getDataSourceDesign();
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getRequestDataSetDesign()
+     * @generated NOT
+     */
+    public DataSetDesign getRequestDataSetDesign()
+    {
+        if( getRequest() == null ||
+            getRequest().getDataAccessDesign() == null )
+            return null;
+        
+        return getRequest().getDataAccessDesign().getDataSetDesign();
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponseDataSourceDesign()
+     * @generated NOT
      */
     public DataSourceDesign getResponseDataSourceDesign()
     {
-        if( getResponse() == null )
+        if( getResponse() == null ||
+            getResponse().getDataAccessDesign() == null )
             return null;
         
         return getResponse().getDataAccessDesign().getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponseDataSetDesign()
+     * @generated NOT
+     */
+    public DataSetDesign getResponseDataSetDesign()
+    {
+        if( getResponse() == null ||
+            getResponse().getDataAccessDesign() == null )
+            return null;
+        
+        return getResponse().getDataAccessDesign().getDataSetDesign();
     }
 
     /**

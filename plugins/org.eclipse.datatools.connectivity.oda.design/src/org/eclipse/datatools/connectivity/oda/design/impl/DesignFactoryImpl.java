@@ -11,20 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.*;
 
 import org.eclipse.emf.common.util.AbstractEnumerator;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
@@ -1027,4 +1024,29 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         return DesignPackage.eINSTANCE;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createRequestDesignSession(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
+     */
+    public OdaDesignSession createRequestDesignSession( DataSourceDesign dataSourceDesign )
+    {
+        OdaDesignSession newSession = createOdaDesignSession();
+        newSession.setNewRequest( dataSourceDesign );
+        return newSession;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createResponseDesignSession(boolean, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
+     */
+    public OdaDesignSession createResponseDesignSession( boolean isSessionOk, DataSourceDesign dataSourceDesign )
+    {
+        // create a design session with an empty DataAccessDesign in the request
+        OdaDesignSession newSession = createRequestDesignSession( null );
+
+        // sets a new response with the given session status and DataSourceDesign
+        newSession.setNewResponse( isSessionOk, dataSourceDesign );
+        return newSession;
+    }
+  
 } //DesignFactoryImpl

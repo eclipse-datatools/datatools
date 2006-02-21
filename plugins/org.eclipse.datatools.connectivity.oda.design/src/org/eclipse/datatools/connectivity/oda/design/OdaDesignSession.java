@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -101,7 +101,11 @@ public interface OdaDesignSession extends EObject
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponse <em>Response</em>}' containment reference
-     * with a new response associated with the given data source design. 
+     * with a new response that contains the given session status
+     * and DataSourceDesign.
+     * <br>This method may be used by an ODA driver's design UI extension
+     * to update this design session with a response that contains
+     * the edited data source design definition.
      * @param dataSourceDesign
      * @see #setResponse(DesignSessionResponse)
      * @generated NOT
@@ -119,19 +123,41 @@ public interface OdaDesignSession extends EObject
     /**
      * Gets the Data Source Design associated with the
      * top level Data Set in the Request session.
-     * @return the value of the '<em>Data Source Design</em>' containment reference.
+     * @return the value of the '<em>Data Source Design</em>' containment reference;
+     *          could be null if none is specified.
      * @see #getRequest()
      * @generated NOT
      */
     DataSourceDesign getRequestDataSourceDesign();
+    
+    /**
+     * Gets the Data Set Design associated with the
+     * Request session.
+     * @return the value of the '<em>Data Set Design</em>' containment reference;
+     *          could be null if none is specified.
+     * @see #getRequest()
+     * @generated NOT
+     */
+    DataSetDesign getRequestDataSetDesign();
 
     /**
      * Gets the Data Source Design associated with the
      * top level Data Set in the Response session.
-     * @return the value of the '<em>Data Source Design</em>' containment reference.
+     * @return the value of the '<em>Data Source Design</em>' containment reference;
+     *          could be null if none is specified.
      * @see #getResponse()
      * @generated NOT
      */
    DataSourceDesign getResponseDataSourceDesign();
+
+   /**
+    * Gets the Data Set Design associated with the
+    * Response session.
+    * @return the value of the '<em>Data Set Design</em>' containment reference;
+    *          could be null if none is specified.
+    * @see #getResponse()
+    * @generated NOT
+    */
+   DataSetDesign getResponseDataSetDesign();
     
 } // OdaDesignSession
