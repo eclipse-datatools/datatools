@@ -37,6 +37,10 @@
                id="org.eclipse.datatools.connectivity.db.sqlModelContent"
                labelProvider="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelLabelProviderExtension"
                name="SQL Model Content Extension">
+            <commonSorter
+            	id ="org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.ExplorerSorterProvider"
+            	class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.ExplorerSorterProvider">
+            </commonSorter>   
             <actionProvider
             		id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider"
             		class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentActionProvider">
