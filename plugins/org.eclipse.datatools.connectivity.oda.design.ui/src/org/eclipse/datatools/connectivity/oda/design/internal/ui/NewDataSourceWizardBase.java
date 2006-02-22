@@ -374,7 +374,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         }
         
         newDesign.setPublicProperties(
-                DesignSessionUtil.createDataSourceDesignProperties( 
+                DesignSessionUtil.createDataSourcePublicProperties( 
                             getOdaDataSourceId(),
                             getProfileProperties() ));
     

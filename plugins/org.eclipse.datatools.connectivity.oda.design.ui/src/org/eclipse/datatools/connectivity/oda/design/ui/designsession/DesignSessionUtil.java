@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
+import java.util.Iterator;
+
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -37,18 +39,18 @@ public class DesignSessionUtil
     }
     
     /**
-     * Creates an ODA design public property collection for the properties
-     * defined in an ODA runtime extension manifest, with the property values 
-     * collected from the given profile property collection.
+     * Creates an ODA design property collection for the public properties
+     * defined in an ODA runtime extension manifest.  Their corresponding values 
+     * are collected from the given profile property collection.
      * @param odaDataSourceId   the ODA extension data source element ID
-     * @param profileProps      java.util.properties, such as those collected from a connection profile
+     * @param utilProps      java.util.properties, such as those collected from a connection profile
      * @return  ODA design public property collection for inclusion
      *          in an OdaDesignSession's Data Source Design
      * @throws OdaException
      */
-    public static Properties createDataSourceDesignProperties( 
+    public static Properties createDataSourcePublicProperties( 
                 String odaDataSourceId,
-                java.util.Properties profileProps )
+                java.util.Properties utilProps )
             throws OdaException
     {
         // first get the public property definition in the ODA driver's runtime plugin manifest
@@ -65,8 +67,61 @@ public class DesignSessionUtil
         for( int i = 0; i < publicPropDefns.length; i++ )
         {
             String propName = publicPropDefns[i].getName();
-            String propValue = profileProps.getProperty( propName );
+            String propValue = utilProps.getProperty( propName );
             designProps.setProperty( propName, propValue );
+        }
+        return designProps;
+    }
+    
+    /**
+     * Creates an ODA design property collection for those given properties
+     * that are not defined in an ODA runtime extension manifest. 
+     * These are properties that are not publicly defined. 
+     * Their corresponding values 
+     * are collected from the given profile property collection.
+     * @param odaDataSourceId   the ODA extension data source element ID
+     * @param utilProps a java.util.Properties collection,
+     *                  such as those collected from a connection profile
+     * @return  ODA design non-public property collection for inclusion
+     *          in an OdaDesignSession's Data Source Design
+     * @throws OdaException
+     */
+    public static Properties createDataSourceNonPublicProperties( 
+                String odaDataSourceId,
+                java.util.Properties utilProps )
+        throws OdaException
+    {
+        // first get the public property definition in the ODA driver's runtime plugin manifest
+        org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns = 
+            getPublicPropertiesDefn( odaDataSourceId );
+    
+        // create a new design Properties collection
+        Properties designProps = 
+            DesignFactory.eINSTANCE.createProperties();
+        
+        // for each defined public property name, get its corresponding
+        // value in the profile, and create design property with name and value
+        // in collection
+        Iterator iter = utilProps.keySet().iterator();
+        while( iter.hasNext() )
+        {
+            String utilPropName = (String) iter.next();
+
+            boolean isPublicProp = false;
+            for( int i = 0; i < publicPropDefns.length; i++ )
+            {
+                if( utilPropName.equalsIgnoreCase( 
+                        publicPropDefns[i].getName() ))
+                {
+                    isPublicProp = true;
+                    break;
+                }
+            }
+            if( isPublicProp )
+                continue;   // skip public property
+
+            String propValue = utilProps.getProperty( utilPropName );
+            designProps.setProperty( utilPropName, propValue );
         }
         return designProps;
     }

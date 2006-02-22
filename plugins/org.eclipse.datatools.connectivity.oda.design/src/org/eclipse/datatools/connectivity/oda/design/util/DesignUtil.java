@@ -11,14 +11,16 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignUtil.java,v 1.1 2006/02/21 11:20:09 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
 
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -120,9 +122,9 @@ public class DesignUtil
 
     /**
      * Converts the given design properties defined in an 
-     * ODA data source or data set design definition, and returns 
-     * as a java.util.Properties collection.
-     * @param designProps   ODA design properties
+     * ODA data source or data set design definition, to
+     * a java.util.Properties collection.
+     * @param designProps   the ODA design properties to convert from
      * @return              converted properties in a java.util.Properties collection
      */
     public static java.util.Properties convertDesignProperties( Properties designProps )
@@ -140,5 +142,31 @@ public class DesignUtil
         }
         return propCollection;
     }
+    
+    /**
+     * Converts the given java.util.Properties collection 
+     * to ODA design properties that can be applied in an 
+     * ODA data source or data set design definition.
+     * @param utilProps the java.util.Properties collection to convert from
+     * @return          converted properties in a design properties collection
+     */
+    public static Properties convertToDesignProperties( 
+                                java.util.Properties utilProps )
+    {
+        Properties designProps = 
+            DesignFactory.eINSTANCE.createProperties();
+        if( utilProps == null || utilProps.size() == 0 )
+            return designProps;  // return an empty collection
+        
+        Iterator iter = utilProps.entrySet().iterator();
+        while( iter.hasNext() )
+        {
+            Entry utilProp = (Entry) iter.next();
+            designProps.setProperty( (String) utilProp.getKey(), 
+                                    (String) utilProp.getValue() );
+        }
 
+        return designProps;   
+    }
+    
 }
