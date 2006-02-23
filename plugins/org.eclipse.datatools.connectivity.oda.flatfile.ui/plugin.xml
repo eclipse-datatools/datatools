@@ -21,9 +21,6 @@
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <category
-            id="%oda.parent.category.id"
-            name="%oda.parent.category.name"/>
-      <category
             id="%oda.data.source.id"
             name="%oda.data.source.name"
             parentCategory="%oda.parent.category.id"/>

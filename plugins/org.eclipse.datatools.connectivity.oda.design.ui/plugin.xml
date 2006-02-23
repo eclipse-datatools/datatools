@@ -19,5 +19,11 @@
       <import plugin="org.eclipse.datatools.connectivity.oda.design" export="true"/>
    </requires>
    <extension-point id="dataSource" name="Open Data Access Designer UI Extension Point" schema="schema/datasource.exsd"/>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="%oda.parent.category.id"
+            name="%oda.parent.category.name"/>
+   </extension>
 
 </plugin>
