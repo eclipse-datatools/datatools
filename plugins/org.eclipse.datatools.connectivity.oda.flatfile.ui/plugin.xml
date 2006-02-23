@@ -44,7 +44,7 @@
       <newWizard
             id="%oda.data.source.id"
             name="%newwizard.name"
-            class="org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.NewDataSourceWizard"
+            class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard"
             description="%newwizard.description"
             icon="icons/fieldlist.ico"
             profile="%oda.data.source.id"/>
