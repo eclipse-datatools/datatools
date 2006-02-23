@@ -99,7 +99,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                         if (instance != null)
                         {
                             Document doc = new Document();
-                            doc.add(Field.Text(FIELD_OPERATION, instance.getOperationCommand().getScript()));
+                            doc.add(Field.Text(FIELD_OPERATION, instance.getOperationCommand().getDisplayString()));
                             doc.add(Field.Text(FIELD_ACTION, OperationCommand.getActionString(instance
                                     .getOperationCommand().getActionType())));
                             doc.add(Field.Text(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName()));

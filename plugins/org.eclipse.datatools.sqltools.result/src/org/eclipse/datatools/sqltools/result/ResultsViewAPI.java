@@ -448,7 +448,7 @@ public class ResultsViewAPI
         }
         else
         {
-            if (cmd.getScript() == null)
+            if (cmd.getDisplayString() == null)
             {
                 return false;
             }

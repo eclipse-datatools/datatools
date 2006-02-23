@@ -35,14 +35,16 @@ public class OperationCommand implements Serializable
     private static final long serialVersionUID      = 9026813441175593165L;
     /* type of the operation */
     private int               _actionType;
-    /* script of this operation, for example, SQL statement */
-    private String            _sqlScript;
+    /* display string of this operation (will be used to query), for example, SQL statement */
+    private String            _displayStr;
     /* name of the consumer */
     private String            _consumerName;
     /* connection profile name */
     private String            _profileName;
     /* database name */
     private String            _databaseName;
+    /* consumer can use this field to store anything, this field will be persisted so it can be used for re-execution purpose */
+    private Serializable      _data;
 
     /* 7 statuses defined */
     public static final int   STATUS_CRITICAL_ERROR = 7;
@@ -61,12 +63,12 @@ public class OperationCommand implements Serializable
      * 
      * @param type the action type, should be one of the types defined in this class(for now, we have only 1 type)
      * @see #ACTION_EXECUTE
-     * @param script for example SQL statement, should not be null
+     * @param displayStr string used to display, for example SQL statement, should not be null
      * @param consumerName name of the caller
      * @param profileName connection profile name, should not be null
      * @param databaseName database name, should not be null
      */
-    public OperationCommand(int type, String script, String consumerName, String profileName, String databaseName)
+    public OperationCommand(int type, String displayStr, String consumerName, String profileName, String databaseName)
     {
         // will append the condition when action types are increased
         if(type != ACTION_EXECUTE)
@@ -77,19 +79,29 @@ public class OperationCommand implements Serializable
         {
             _actionType = type;
         }
-        _sqlScript = script == null ? "" : script; //$NON-NLS-1$
+        _displayStr = displayStr == null ? "" : displayStr; //$NON-NLS-1$
         _consumerName = consumerName == null ? "" : consumerName; //$NON-NLS-1$
         _profileName = profileName == null ? "" : profileName; //$NON-NLS-1$
         _databaseName = databaseName == null ? "" : databaseName; //$NON-NLS-1$
     }
+    
+    /**
+     * Construstor
+     * @param data consumer can use this field to store anything
+     */
+    public OperationCommand(int type, String displayStr, String consumerName, String profileName, String databaseName, Serializable data)
+    {
+        this(type, displayStr, consumerName, profileName, databaseName);
+        _data = data;
+    }
 
     /**
-     * Returns the script of this operation
-     * @return the script of this operation
+     * Returns the display string of this operation
+     * @return the display string of this operation
      */
-    public String getScript()
+    public String getDisplayString()
     {
-        return _sqlScript;
+        return _displayStr;
     }
 
     /**
@@ -205,5 +217,23 @@ public class OperationCommand implements Serializable
             default:
                 return Messages.getString("OperationCommand.status.unknown"); //$NON-NLS-1$
         }
+    }
+
+    /**
+     * Returns the data
+     * @return the data
+     */
+    public Serializable getData()
+    {
+        return _data;
+    }
+
+    /**
+     * Sets the data
+     * @param _data the data
+     */
+    public void setData(Serializable _data)
+    {
+        this._data = _data;
     }
 }

@@ -31,9 +31,15 @@ public class Parameter implements Serializable
      * Comment for <code>serialVersionUID</code>
      */
     private static final long  serialVersionUID = 1L;
+    /* Name of this parameter */
     private String             _paramName;
+    /* Type of this parameter */
     private String             _paramType;
+    /* Value of this parameter, it is IN value by default */
     private String             _paramValue;
+    /* OUT value of this parameter */
+    private String             _paramOutValue;
+    /* Data type of this parameter */
     private String             _paramDataType;
     /* parameter types */
     public static final String INPUT            = "INPUT"; //$NON-NLS-1$
@@ -61,6 +67,17 @@ public class Parameter implements Serializable
         _paramType = paramType;
         _paramDataType = (paramDataType == null)?"":paramDataType; //$NON-NLS-1$
         _paramValue = (paramValue == null)?"":paramValue; //$NON-NLS-1$
+        _paramOutValue = "";
+    }
+    
+    /**
+     * Constructor
+     * @param paramOutValue out value of this parameter
+     */
+    public Parameter(String paramName, String paramType, String paramValue, String paramDataType, String paramOutValue)
+    {
+        this(paramName, paramType, paramValue, paramDataType);
+        _paramOutValue = paramOutValue == null ? "" : paramOutValue;
     }
 
     /**
@@ -100,5 +117,14 @@ public class Parameter implements Serializable
     public String getParamValue()
     {
         return _paramValue;
+    }
+
+    /**
+     * Returns the OUT value of this parameter
+     * @return the OUT value of this parameter
+     */
+    public String getParamOutValue()
+    {
+        return _paramOutValue;
     }
 }
