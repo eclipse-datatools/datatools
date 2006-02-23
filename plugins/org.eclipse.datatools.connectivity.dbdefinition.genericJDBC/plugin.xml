@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.connectivity.dbdefinition.mysql"
    name="%pluginName"
-   version="0.7.0"
+   version="0.7.0.200602241"
    provider-name="%providerName">
    
    <extension
