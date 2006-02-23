@@ -19,8 +19,8 @@ import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
-import org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceEditorPage;
-import org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.NewDataSourceWizard;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.jface.wizard.IWizard;
 

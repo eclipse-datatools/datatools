@@ -33,7 +33,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
-import org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.osgi.framework.Bundle;
