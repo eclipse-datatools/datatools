@@ -113,7 +113,7 @@
 			<fileset dir="${build.result.folder}" includes="lexer.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,about.html,lexer.jar,thirdparty/,META-INF/"/>
+			<fileset dir="${basedir}" includes="plugin.xml,about.html,lexer.jar,META-INF/"/>
 		</copy>
 			<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="lexersrc.zip"/>

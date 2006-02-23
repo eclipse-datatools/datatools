@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.sqltools.sqleditor"
    name="Eclipse Data Tools Platform SQL Editor"
-   version="0.7.0"
+   version="0.7.0.200602241"
    provider-name="eclipse.org"
    class="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin">
 
