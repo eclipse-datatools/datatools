@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP SQL Editor Core Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.editor.core;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.200602241
 Bundle-Activator: org.eclipse.datatools.sqltools.core.EditorCorePlugin
 Bundle-Localization: plugin
 Bundle-ClassPath: sqleditorframe.jar

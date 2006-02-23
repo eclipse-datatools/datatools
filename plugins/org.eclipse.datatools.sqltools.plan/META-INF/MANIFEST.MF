@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Execution Plan View Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.plan;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.200602241
 Bundle-Activator: org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin
 Bundle-Vendor: eclipse.org
 Bundle-Localization: plugin

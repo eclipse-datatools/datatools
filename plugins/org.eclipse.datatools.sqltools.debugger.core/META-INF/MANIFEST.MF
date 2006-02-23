@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Debugger Framework
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.debugger.core;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.200602241
 Bundle-ClassPath: sqldebugcore.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin
 Bundle-Vendor: eclipse.org
