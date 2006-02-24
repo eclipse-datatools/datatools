@@ -15,7 +15,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -27,7 +27,7 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
  */
 public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
-	public static SQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId()); 
+	public static SQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId()); 
 	private DatabaseVendorDefinitionId _dbVendorId = null;
 	private DatabaseVendorDefinition _dbVendor = null;
 	private String _profileName = null;

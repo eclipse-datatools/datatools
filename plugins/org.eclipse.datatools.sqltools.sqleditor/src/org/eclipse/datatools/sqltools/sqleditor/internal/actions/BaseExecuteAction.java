@@ -13,10 +13,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
-import org.eclipse.datatools.sqltools.core.services.ISQLService;
+import org.eclipse.datatools.sqltools.core.services.ConnectionService;
+import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -49,15 +50,16 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
         Connection conn = null;
         try
         {
-            conn = ProfileUtil.createConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname());
+            SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByProfileName(databaseIdentifier.getProfileName());
+            ConnectionService conService = f.getConnectionService();
+            conn = conService.createConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname());
 
             String[] groups = new String[] 
             {
                 sql
             }
             ;
-            IDBFactory f = SQLToolsFacade.getDBFactoryByProfileName(databaseIdentifier.getProfileName());
-            ISQLService sqlService = f.getSQLService();
+            SQLService sqlService = f.getSQLService();
             if (sqlService != null)
             {
                 groups = sqlService.splitSQL(sql);
@@ -66,10 +68,11 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             _job = new GroupSQLResultRunnable(conn, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations());
             _job.setUser(true);
             _job.schedule();
+            _job.join();
 
             // In fact, currently, this ExecuteParallelRunnable is especially used for "Show plan while executing SQL
             // statements in vendor option page"
-            Runnable parallelRunnable = f.createExecuteParallelRunnable(getSQLStatements(), databaseIdentifier);
+            Runnable parallelRunnable = f.getExecutionService().createExecuteParallelRunnable(getSQLStatements(), databaseIdentifier);
             if(parallelRunnable != null)
             {
                 new Thread(parallelRunnable).start();
@@ -81,20 +84,8 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             processError(Messages.getString("ExecuteSQLActionDelegate.error.execute"), e, null); //$NON-NLS-1$
         }
         finally {
-			if (conn != null) {
-				try {
-					Connection sharedConn = ProfileUtil.getReusableConnection(databaseIdentifier);
-					//Only close the connection when it's not the shared connection, 
-					//e.g. for embeded derby, only one connection per VM is allowed.
-					if (conn != sharedConn)
-					{
-						conn.close();
-					}
-				} catch (Throwable ex) {
-					// skip
-				}
-			}
-		}
+        	ProfileUtil.closeConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname(), conn);
+        }
     }
 
     /**

@@ -19,16 +19,19 @@ import java.io.Reader;
 
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 
 /**
  * This class implements the IStorage interface to facilitate launching the SQL
  * Editor from an editor input that isn't based on a file.
  */
-public class SQLEditorStorage implements IStorage {
+public class SQLEditorStorage implements IStorage 
+{
     /** The contents of this storage object */
     private InputStream fContents;
     /** The name of this storage object */
     private String fName;
+    private String contentsString;
 
     /**
      * Creates an instance of this class with the given string as the storage
@@ -36,8 +39,9 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @param source the source content for this object
      */
-    public SQLEditorStorage( String source ) {
-        this( null, source );
+    public SQLEditorStorage( String source ) 
+    {
+        this( SQLEditorResources.getString("SQLEditorStorage.default.name"), source );
     }
 
     /**
@@ -47,7 +51,8 @@ public class SQLEditorStorage implements IStorage {
      * @param name the name for this storage object
      * @param source the content source for this object
      */
-    public SQLEditorStorage( String name, String source ) {
+    public SQLEditorStorage( String name, String source ) 
+    {
         super();
         setName( name );
         setContents( new ByteArrayInputStream( source.getBytes() ) );
@@ -59,7 +64,8 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
      */
-    public Object getAdapter( Class key ) {
+    public Object getAdapter( Class key ) 
+    {
         return null;
     }
 
@@ -69,7 +75,8 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @see org.eclipse.core.resources.IStorage#getContents()
      */
-    public InputStream getContents() {
+    public InputStream getContents() 
+    {
         return fContents;
     }
 
@@ -78,38 +85,53 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @return the content as a string
      */
-    public String getContentsString() {
-        String contentsString = ""; //$NON-NLS-1$
-        
-        InputStream contentsStream = getContents();
-        
-        // The following code was adapted from StorageDocumentProvider.setDocumentContent method.
-        Reader in = null;
-        try {
-            in = new BufferedReader( new InputStreamReader( contentsStream ));
-            StringBuffer buffer = new StringBuffer();
-            char[] readBuffer = new char[2048];
-            int n = in.read( readBuffer );
-            while (n > 0) {
-                buffer.append( readBuffer, 0, n );
-                n = in.read( readBuffer );
+    public String getContentsString() 
+    {
+        //only read the input stream once 
+        if (contentsString == null)
+        {
+            contentsString = "";
+            InputStream contentsStream = getContents();
+
+            // The following code was adapted from StorageDocumentProvider.setDocumentContent method.
+            Reader in = null;
+            try 
+            {
+                in = new BufferedReader( new InputStreamReader( contentsStream ));
+                StringBuffer buffer = new StringBuffer();
+                char[] readBuffer = new char[2048];
+                int n = in.read( readBuffer );
+                while (n > 0) 
+                {
+                    buffer.append( readBuffer, 0, n );
+                    n = in.read( readBuffer );
+                }
+                contentsString = buffer.toString();
             }
-            contentsString = buffer.toString();
-        } catch (IOException x) {
-            // ignore and save empty content
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException x) {
-                    // ignore, too late to do anything here
+            catch (IOException x) 
+            {
+                // ignore and save empty content
+            }
+            finally 
+            {
+                if (in != null) 
+                {
+                    try 
+                    {
+                        in.close();
+                    }
+                    catch (IOException x) 
+                    {
+                        // ignore, too late to do anything here
+                    }
                 }
             }
+
         }
 
         return contentsString;
     }
-    
+
     /**
      * Returns the full path of this storage. This default implementation
      * returns null.
@@ -117,7 +139,8 @@ public class SQLEditorStorage implements IStorage {
      * @return <code>null</null>
      * @see org.eclipse.core.resources.IStorage#getFullPath()
      */
-    public IPath getFullPath() {
+    public IPath getFullPath() 
+    {
         return null;
     }
 
@@ -129,7 +152,8 @@ public class SQLEditorStorage implements IStorage {
      * @return the name of this storage object
      * @see org.eclipse.core.resources.IStorage#getName()
      */
-    public String getName() {
+    public String getName() 
+    {
         return fName;
     }
 
@@ -139,7 +163,8 @@ public class SQLEditorStorage implements IStorage {
      * @return false, since this storage is not read only
      * @see org.eclipse.core.resources.IStorage#isReadOnly()
      */
-    public boolean isReadOnly() {
+    public boolean isReadOnly() 
+    {
         return false;
     }
 
@@ -149,7 +174,8 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @param contents the contents stream to use
      */
-    public void setContents( InputStream contents ) {
+    public void setContents( InputStream contents ) 
+    {
         fContents = contents;
     }
 
@@ -158,7 +184,8 @@ public class SQLEditorStorage implements IStorage {
      * 
      * @param name the name of this storage object
      */
-    public void setName( String name ) {
+    public void setName( String name ) 
+    {
         fName = name;
     }
 

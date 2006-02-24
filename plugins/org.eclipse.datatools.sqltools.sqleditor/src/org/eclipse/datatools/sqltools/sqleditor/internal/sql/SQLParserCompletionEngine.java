@@ -15,13 +15,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
-import org.eclipse.datatools.sqltools.sql.parser.SQLWord;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
 import org.eclipse.jface.text.IDocument;
@@ -70,8 +69,8 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			ITypedRegion partition, int documentOffset, Point selection) {
 		_editor = (SQLEditor) Workbench.getInstance()
 				.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		IDBFactory factory = SQLToolsFacade
-				.getDBFactoryByVendorIdentifier(_editor.getConnectionInfo()
+		SQLDevToolsConfiguration factory = SQLToolsFacade
+				.getConfigurationByVendorIdentifier(_editor.getConnectionInfo()
 						.getDatabaseVendorDefinitionId());
 		_parser = factory.getSQLService().getSQLParser();
 		if (_parser == null) {

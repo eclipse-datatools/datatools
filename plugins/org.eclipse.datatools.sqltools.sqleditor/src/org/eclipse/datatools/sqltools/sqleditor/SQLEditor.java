@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
@@ -509,7 +509,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             try
             {
                 // Do the save.
-                Workbench.getInstance().getActiveWorkbenchWindow().run(false, true, progressOp);
+                PlatformUI.getWorkbench().getActiveWorkbenchWindow().run(false, true, progressOp);
             }
             catch (InvocationTargetException e)
             {
@@ -857,7 +857,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     	IDocument document = getDocumentProvider().getDocument(getEditorInput());
     	DatabaseVendorDefinitionId vendorId = getConnectionInfo().getDatabaseVendorDefinitionId(); 
 
-    	IDBFactory factory = SQLToolsFacade.getDBFactoryByVendorIdentifier(vendorId);
+    	SQLDevToolsConfiguration factory = SQLToolsFacade.getConfigurationByVendorIdentifier(vendorId);
         SQLPartitionScanner _sqlPartitionSanner = new SQLPartitionScanner(factory.getSQLService().getSQLSyntax());
         if (document instanceof IDocumentExtension3)
         {

@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -193,7 +193,7 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
 
         // Add a "damager-repairer" for changes in default text (SQL code).
         SQLCodeScanner sqlCodeScanner = new SQLCodeScanner( SQLEditorPlugin.getDefault().getSQLColorProvider() );
-        IDBFactory factory = SQLToolsFacade.getDBFactoryByVendorIdentifier(getSQLEditor().getConnectionInfo().getDatabaseVendorDefinitionId());
+        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfigurationByVendorIdentifier(getSQLEditor().getConnectionInfo().getDatabaseVendorDefinitionId());
         if (factory != null)
         {
             sqlCodeScanner.setSQLSyntax(factory.getSQLService().getSQLSyntax());

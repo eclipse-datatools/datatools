@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
@@ -161,7 +161,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     private void update()
     {
         //both outline and annotation depend on the same parsing process
-        IDBFactory f =SQLToolsFacade.getDBFactoryByVendorIdentifier(_editor.getConnectionInfo().getDatabaseVendorDefinitionId());
+        SQLDevToolsConfiguration f =SQLToolsFacade.getConfigurationByVendorIdentifier(_editor.getConnectionInfo().getDatabaseVendorDefinitionId());
         SQLParser p = f.getSQLService().getSQLParser();
         ISourceViewer viewer = _editor.getSV();
         if (viewer == null)
@@ -191,7 +191,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
             PreferenceConstants.EDITOR_PORTABILITY_CHECK_TARGET);
         if (_portableTarget != null)
         {
-        	IDBFactory pf =SQLToolsFacade.getDBFactoryByDBDefName(_portableTarget);
+        	SQLDevToolsConfiguration pf =SQLToolsFacade.getConfigurationByDBDefName(_portableTarget);
         	pp = pf.getSQLService().getSQLParser();
         	if (pp != null && !(pp.getClass().equals(p.getClass())))
         	{
