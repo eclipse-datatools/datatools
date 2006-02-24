@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform Derby SQL Tools Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.derby;singleton:=true
-Bundle-Version: 0.7.0.200602241
+Bundle-Version: 0.7.0.200602242
 Bundle-Activator: org.eclipse.datatools.sqltools.db.derby.Activator
 Bundle-Vendor: eclipse.org
 Bundle-Localization: plugin
@@ -14,6 +14,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity,
  org.eclipse.datatools.modelbase.sql,
  org.eclipse.datatools.modelbase.dbdefinition,
- org.eclipse.datatools.sqltools.db.generic
+ org.eclipse.datatools.sqltools.db.generic,
+ org.eclipse.datatools.sqltools.routineeditor,
+ org.eclipse.datatools.sqltools.sqleditor,
+ org.eclipse.core.resources,
+ org.eclipse.debug.core
 Eclipse-AutoStart: true
 Eclipse-AutoStop: true
