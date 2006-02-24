@@ -11,22 +11,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.db.generic.parser;
 
-import java.util.ArrayList;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 import org.eclipse.datatools.sqltools.db.generic.internal.GenericPlugin;
-import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
-import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
-import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
-import org.eclipse.datatools.sqltools.sql.parser.ParseException;
-import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
+import org.eclipse.datatools.sqltools.db.generic.internal.Messages;
 import org.eclipse.datatools.sqltools.sql.parser.JavaCharStream;
+import org.eclipse.datatools.sqltools.sql.parser.ParseException;
+import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
+import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sql.parser.TokenMgrError;
-import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
+import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
+import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
 import org.eclipse.datatools.sqltools.sql.parser.util.ParserUtil;
-import org.eclipse.datatools.sqltools.db.generic.internal.Messages;
-import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 
 
 /**

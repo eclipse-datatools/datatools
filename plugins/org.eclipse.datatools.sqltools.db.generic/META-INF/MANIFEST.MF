@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Generic Database Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.generic;singleton:=true
-Bundle-Version: 0.7.0.200602241
+Bundle-Version: 0.7.0.200602242
 Bundle-Activator: org.eclipse.datatools.sqltools.db.generic.internal.GenericPlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin

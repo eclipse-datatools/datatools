@@ -12,7 +12,7 @@
 package org.eclipse.datatools.sqltools.db.generic.service;
 
 
-import org.eclipse.datatools.sqltools.core.services.DefaultSQLService;
+import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.db.generic.parser.GenericSQLParser;
 import org.eclipse.datatools.sqltools.db.generic.sql.GenericSQLSyntax;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
@@ -23,7 +23,7 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
  * @author Hui Cao
  * 
  */
-public class GenericSQLService extends DefaultSQLService{
+public class GenericSQLService extends SQLService{
 
 	public GenericSQLContextType getSQLContextType() {
 		return super.getSQLContextType();

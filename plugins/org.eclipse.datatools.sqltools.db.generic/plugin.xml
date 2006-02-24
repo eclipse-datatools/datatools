@@ -2,12 +2,12 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension
-         id="org.eclipse.datatools.sqltools.db.generic.dbFactory"
+         id="org.eclipse.datatools.sqltools.db.generic.dbConfiguration"
          name="Generic Database Support"
-         point="org.eclipse.datatools.sqltools.editor.core.dbFactories">
-      <dbFactory
+         point="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
+      <dbConfiguration
             description="Data tools generic database support"
-            factoryClass="org.eclipse.datatools.sqltools.db.generic.GenericDBFactory"
+            configurationClass="org.eclipse.datatools.sqltools.db.generic.GenericDBConfiguration"
             product="Generic Database"
             version="0.7.x"/>
    </extension>
