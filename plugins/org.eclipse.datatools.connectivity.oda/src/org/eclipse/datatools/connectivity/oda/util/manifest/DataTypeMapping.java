@@ -66,7 +66,7 @@ public class DataTypeMapping
 		for( int i = 0; i < length; i++ )
 		{
 			m_alternativeDataTypes[i] = 
-				alternativeDataTypes[i].getAttribute( "odaScalarType" );
+				alternativeDataTypes[i].getAttribute( "odaScalarDataType" );
 			sanityCheckOdaScalarType( m_alternativeDataTypes[i], true /* isForAlternatives */ );
 		}
 	}
