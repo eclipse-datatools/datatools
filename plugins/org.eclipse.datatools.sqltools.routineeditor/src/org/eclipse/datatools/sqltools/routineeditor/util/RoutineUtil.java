@@ -11,12 +11,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.routineeditor.util;
 
-import java.sql.DatabaseMetaData;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 
@@ -25,27 +27,6 @@ import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
  * 
  */
 public class RoutineUtil {
-
-    /**
-     * @return "exec ", "call ", "TRIGGER EVENT " or "" based on type
-     */
-    public static String getCallablePrefix(int type)
-    {
-        String prefix = "";
-        switch (type)
-        {
-            case ProcIdentifier.TYPE_SP:
-                prefix = "exec ";
-                break;
-            case ProcIdentifier.TYPE_UDF:
-                prefix = "select ";
-                break;
-            case ProcIdentifier.TYPE_EVENT:
-                prefix = "TRIGGER EVENT ";
-                break;
-        }
-        return prefix;
-    }
 
     /**
      * @return "exec ", "call ", "TRIGGER EVENT " or "" based on type
@@ -82,7 +63,8 @@ public class RoutineUtil {
         StringBuffer buffer = new StringBuffer(20);
         buffer.append("{?=");
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
-        buffer.append(getCallableStatementPrefix(type));
+		SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(proc.getDatabaseIdentifier().getProfileName());
+        buffer.append(config.getExecutionService().getCallableStatementPrefix(proc.getType()));
         String procName = null;
 
         if (proc != null)
@@ -101,30 +83,28 @@ public class RoutineUtil {
             {
                 String name = pds[i].getName();
 
-                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnIn
-                || pds[i].getParmType() == DatabaseMetaData.procedureColumnInOut
-                    || pds[i].getParmType() == DatabaseMetaData.procedureColumnOut
-                    || pds[i].getParmType() == DatabaseMetaData.procedureColumnUnknown)
+                if (name.equals(procName))
                 {
-                    if (name.equals(procName))
-                    {
-                        continue;
-                    }
-                    if (j != 0)
-                    {
-                        buffer.append(",?"); //$NON-NLS-1$
-                    }
-                    else
-                    {
-                        buffer.append("?");
-                    }
-                    j++;
+                    continue;
                 }
+                if (j != 0)
+                {
+                    buffer.append(",?"); //$NON-NLS-1$
+                }
+                else
+                {
+                    buffer.append("?");
+                }
+                j++;
             }
             if (type == ProcIdentifier.TYPE_UDF || type == ProcIdentifier.TYPE_SP)
             {
                 buffer.append(")"); //$NON-NLS-1$
             }
+        }
+        else
+        {
+        	buffer.append("()");
         }
         buffer.append("}");
         return buffer.toString();
@@ -142,7 +122,8 @@ public class RoutineUtil {
     {
         StringBuffer buffer = new StringBuffer(20);
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
-        buffer.append(getCallableStatementPrefix(type));
+		SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(proc.getDatabaseIdentifier().getProfileName());
+        buffer.append(config.getExecutionService().getCallableStatementPrefix(proc.getType()));
         String LINESEPARATOR = System.getProperty("line.separator");
 
         String procName = null;
@@ -165,8 +146,8 @@ public class RoutineUtil {
                 String name = pds[i].getName();
                 String prefix = "";
 
-                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnIn
-                || pds[i].getParmType() == DatabaseMetaData.procedureColumnInOut)
+                if (pds[i].getParmType() == ParameterMode.IN
+                || pds[i].getParmType() == ParameterMode.INOUT)
                 {
                     String value =null;
                     if (values!=null && values.size()>=(k+1))
@@ -194,8 +175,7 @@ public class RoutineUtil {
 
                     j++;
                 }
-                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnOut
-                || pds[i].getParmType() == DatabaseMetaData.procedureColumnUnknown)
+                if (pds[i].getParmType() == ParameterMode.OUT)
                 {
                     if (name.equals(procName))
                     {
@@ -238,7 +218,8 @@ public class RoutineUtil {
     {
         StringBuffer buffer = new StringBuffer(20);
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
-        buffer.append(getCallablePrefix(type));
+		SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(proc.getDatabaseIdentifier().getProfileName());
+        buffer.append(config.getExecutionService().getCallableStatementPrefix(proc.getType()));
 
         if (proc != null)
         buffer.append(proc.getCallableString(quoted_id));

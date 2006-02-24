@@ -74,4 +74,60 @@
           
    </extension>
 
+   <extension
+         point="org.eclipse.ui.popupMenus">
+         <objectContribution 
+             id="org.eclipse.datatools.sqltools.routineeditor.objectContribution1"
+            objectClass="org.eclipse.datatools.modelbase.sql.tables.Trigger">
+	         <action
+	               label="%Routineeditor.edit"
+	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction">
+	               <enablement>
+	               <or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+			       </or>
+	            </enablement>
+	         </action>
+	         <visibility>
+			    	<or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+			      	</or>
+	         </visibility>
+		 </objectContribution>
+         <objectContribution 
+             id="org.eclipse.datatools.sqltools.routineeditor.objectContribution2"
+            objectClass="org.eclipse.datatools.modelbase.sql.routines.Routine">
+	         <action
+	               label="%Routineeditor.edit"
+	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction"
+	               menubarPath="slot1"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction">
+	               <enablement>
+	               <or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+			       </or>
+	            </enablement>
+	         </action>
+	         <visibility>
+			    	<or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+			      	</or>
+	         </visibility>
+		 </objectContribution>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
+            default="true"
+            icon="images/qrydoc.gif"
+            id="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            name="%RoutineEditor.name"/>
+   </extension>
 </plugin>

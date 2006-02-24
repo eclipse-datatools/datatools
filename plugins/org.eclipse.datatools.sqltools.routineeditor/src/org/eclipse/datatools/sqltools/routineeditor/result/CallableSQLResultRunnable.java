@@ -13,20 +13,21 @@ package org.eclipse.datatools.sqltools.routineeditor.result;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
+import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.IDBHelper;
 import org.eclipse.datatools.sqltools.core.ISqlDataValidator;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.Parameter;
@@ -48,15 +49,15 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 public class CallableSQLResultRunnable extends ResultSupportRunnable
 {
 
-    Connection              _connection;
-    String                  _sql;
-    String                  _detailSql;
-    boolean                 _closeCon;
-    IConnectionTracker      _tracker;
-    ILaunchConfiguration    _configuration;
-    ParameterInOutWrapper[] _pws;
-    String                  _procName;
-	private OperationCommand operationCommand;
+    protected Connection              _connection;
+    protected String                  _sql;
+    protected String                  _detailSql;
+    protected boolean                 _closeCon;
+    protected IConnectionTracker      _tracker;
+    protected ILaunchConfiguration    _configuration;
+    protected ParameterInOutWrapper[] _pws;
+    protected String                  _procName;
+    protected OperationCommand _operationCommand;
 
     /**
      * 
@@ -95,11 +96,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
      */
     protected OperationCommand getOperationCommand()
     {
-    	if (operationCommand == null)
+    	if (_operationCommand == null)
     	{
-    		operationCommand = new OperationCommand(OperationCommand.ACTION_EXECUTE, _detailSql, "Routine Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
+    		_operationCommand = new OperationCommand(OperationCommand.ACTION_EXECUTE, _detailSql, "Routine Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
     	}
-		return operationCommand;
+		return _operationCommand;
     }
 
     /**
@@ -121,14 +122,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             int sqlType = pws[i].getParameterDescriptor().getSqlDataType();
             int paramType = pws[i].getParameterDescriptor().getParmType();
             String name = pws[i].getParameterDescriptor().getName();
-            if (paramType == DatabaseMetaData.procedureColumnIn)
+            if (paramType == ParameterMode.IN)
             {
                 j++;
             }
-            else if (paramType == DatabaseMetaData.procedureColumnUnknown //FIXME treat UNKNOWN type as OUT type
-            || paramType == DatabaseMetaData.procedureColumnReturn
-                || paramType == DatabaseMetaData.procedureColumnOut
-                || paramType == DatabaseMetaData.procedureColumnInOut)
+            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
             {
 
                 if (name.equals(_procName))
@@ -191,14 +189,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             int paramType = pws[i].getParameterDescriptor().getParmType();
             String paramTypeName = pws[i].getParameterDescriptor().getParamTypeAsString();
             String name = pws[i].getParameterDescriptor().getName();
-            if (paramType == DatabaseMetaData.procedureColumnIn)
+            if (paramType == ParameterMode.IN)
             {
                 j++;
             }
-            else if (paramType == DatabaseMetaData.procedureColumnUnknown //FIXME treat UNKNOWN type as OUT type
-            || paramType == DatabaseMetaData.procedureColumnReturn
-                || paramType == DatabaseMetaData.procedureColumnOut
-                || paramType == DatabaseMetaData.procedureColumnInOut)
+            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
             {
                 if (name.equals(_procName))
                 {
@@ -235,7 +230,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         {
         	RoutineEditorActivator.getDefault().log(e);
         }
-        IDBHelper helper = SQLToolsFacade.getDBFactory(getDatabaseIdentifier(), null).getDBHelper();
+        DBHelper helper = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), null).getDBHelper();
         for (int i = 0; i < pws.length; i++)
         {
             int sqlType = pws[i].getParameterDescriptor().getSqlDataType();
@@ -247,12 +242,12 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             String paramTypeName = pws[i].getParameterDescriptor().getParamTypeAsString();
             String name = pws[i].getParameterDescriptor().getName();
 
-            if (paramType == DatabaseMetaData.procedureColumnOut || paramType == DatabaseMetaData.procedureColumnReturn)
+            if (paramType == ParameterMode.OUT)
             {
                 j++;
             }
-            else if (paramType == DatabaseMetaData.procedureColumnIn
-            || paramType == DatabaseMetaData.procedureColumnInOut)
+            else if (paramType == ParameterMode.IN
+            || paramType == ParameterMode.INOUT)
             {
                 j++;
                 String value = null;
@@ -271,7 +266,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
                     Object v = null;
                     try 
                     {
-                        ISqlDataValidator validator = SQLToolsFacade.getDBFactory(getDatabaseIdentifier(), null).getSQLDataService().getSQLDataValidator(getDatabaseIdentifier());
+                        ISqlDataValidator validator = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), null).getSQLDataService().getSQLDataValidator(getDatabaseIdentifier());
                         v = validator.convert(pws[i].getParameterDescriptor().getTypeName(), value, getDatabaseIdentifier());
                     }
                     catch (Exception e1) 
@@ -353,7 +348,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         {
         	resultsViewAPI.showParameters(getOperationCommand(), convert(_pws));
         }
-        return true;
+        return super.handleSuccess(moreResult);
     }
     
     /**
@@ -392,7 +387,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             {
                 if (_closeCon)
                 {
-                    connection.close();
+                    ProfileUtil.closeConnection(this._databaseIdentifier.getProfileName(), this._databaseIdentifier.getDBname(), connection);
                 }
             }
         }

@@ -22,12 +22,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.IDBFactory;
-import org.eclipse.datatools.sqltools.core.IDatabaseConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.IDatabaseConfiguration.NotSupportedConfigurationException;
+import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
@@ -402,21 +402,21 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
      * @param configuration
      * @param proc
      */
-    private static boolean readQuotedIDConfig(ILaunchConfiguration configuration, ProcIdentifier proc)
+    public static boolean readQuotedIDConfig(ILaunchConfiguration configuration, ProcIdentifier proc)
     {
-        boolean quoted_id = true;
-        IDBFactory factory = SQLToolsFacade.getDBFactory(proc.getDatabaseIdentifier(), null);
-        IDatabaseConfiguration config = factory.getDatabaseConfiguration(proc.getDatabaseIdentifier());
+        boolean quoted_id = false;
+        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfiguration(proc.getDatabaseIdentifier(), null);
+        IDatabaseSetting config = factory.getDatabaseSetting(proc.getDatabaseIdentifier());
         if (config != null)
         {
             try
             {
-                Boolean value = (Boolean)config.getLaunchConfigProperty(configuration, IDatabaseConfiguration.C_QUOTED_IDENTIFIER);
+                Boolean value = (Boolean)config.getLaunchConfigProperty(configuration, IDatabaseSetting.C_QUOTED_IDENTIFIER);
                 quoted_id = value.booleanValue();
             }
-            catch (NotSupportedConfigurationException e)
+            catch (NotSupportedSettingException e)
             {
-                RoutineEditorActivator.getDefault().log(Messages.getString("NotSupportedConfigurationException.cause", IDatabaseConfiguration.C_QUOTED_IDENTIFIER));
+                RoutineEditorActivator.getDefault().log(Messages.getString("NotSupportedSettingException.cause", IDatabaseSetting.C_QUOTED_IDENTIFIER));
             }
         }
         return quoted_id;
