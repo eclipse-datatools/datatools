@@ -35,12 +35,12 @@ public class DataTypeMapping
 					 String dataSetTypeName ) throws OdaException
 	{
 		
-		m_nativeType = dataTypeMapping.getAttribute( "nativeDataType" );
+		m_nativeType = dataTypeMapping.getAttribute( "nativeDataType" ); //$NON-NLS-1$
 		if( m_nativeType == null )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_NATIVE_TYPE_NAME_DEFINED,
 																	   new Object[] { dataSetTypeName } ) );
 		
-		String nativeDataTypeCode = dataTypeMapping.getAttribute( "nativeDataTypeCode" );
+		String nativeDataTypeCode = dataTypeMapping.getAttribute( "nativeDataTypeCode" ); //$NON-NLS-1$
 		if( nativeDataTypeCode == null )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_NATIVE_TYPE_CODE_DEFINED,
 																	   new Object[] { m_nativeType, dataSetTypeName } ) );
@@ -55,18 +55,18 @@ public class DataTypeMapping
 																	   new Object[] { m_nativeType, nativeDataTypeCode, dataSetTypeName } ) );
 		}
 
-		m_odaScalarType = dataTypeMapping.getAttribute( "odaScalarDataType" );
+		m_odaScalarType = dataTypeMapping.getAttribute( "odaScalarDataType" ); //$NON-NLS-1$
 		sanityCheckOdaScalarType( m_odaScalarType, false /* isForAlternatives */ );
 		
 		IConfigurationElement[] alternativeDataTypes = 
-			dataTypeMapping.getChildren( "alternativeOdaDataType" );
+			dataTypeMapping.getChildren( "alternativeOdaDataType" ); //$NON-NLS-1$
 		int length = alternativeDataTypes.length;
 		m_alternativeDataTypes = new String[length];
 		
 		for( int i = 0; i < length; i++ )
 		{
 			m_alternativeDataTypes[i] = 
-				alternativeDataTypes[i].getAttribute( "odaScalarDataType" );
+				alternativeDataTypes[i].getAttribute( "odaScalarDataType" ); //$NON-NLS-1$
 			sanityCheckOdaScalarType( m_alternativeDataTypes[i], true /* isForAlternatives */ );
 		}
 	}
@@ -80,15 +80,15 @@ public class DataTypeMapping
 																	   OdaResources.NO_ODA_SCALAR_DATA_TYPE_DEFINED_1,
 																	   new Object[] { m_nativeType } ) );
 			
-		if( ! odaScalarType.equalsIgnoreCase( "Date" ) &&
-			! odaScalarType.equalsIgnoreCase( "Double" ) &&
-			! odaScalarType.equalsIgnoreCase( "Integer" ) &&
-			! odaScalarType.equalsIgnoreCase( "String" ) &&
-			! odaScalarType.equalsIgnoreCase( "Time" ) &&
-			! odaScalarType.equalsIgnoreCase( "Timestamp" ) &&
-			! odaScalarType.equalsIgnoreCase( "Decimal" ) &&
-			! odaScalarType.equalsIgnoreCase( "Blob" ) &&
-			! odaScalarType.equalsIgnoreCase( "Clob" ) )
+		if( ! odaScalarType.equalsIgnoreCase( "Date" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Double" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Integer" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "String" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Time" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Timestamp" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Decimal" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Blob" ) && //$NON-NLS-1$
+			! odaScalarType.equalsIgnoreCase( "Clob" ) ) //$NON-NLS-1$
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_ODA_SCALAR_DATA_TYPE_VALUE,
 																	   new Object[] { odaScalarType, m_nativeType } ) );
 	}
