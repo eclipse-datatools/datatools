@@ -16,12 +16,14 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
-import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistry;
+import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
 
 /**
- * This should be the central place to query about contributed <code>IDBFactory</code>s.
- * Unlike <code>DatabaseFactoryRegistry</code>, a <code>DefaultDBFactory</code> will be used 
- * if no registered <code>IDBFactory</code>.
+ * This should be the central place to query about contributed
+ * <code>SQLDevToolsConfiguration</code>s. Unlike
+ * <code>SQLDevToolsConfigRegistry</code>, the default
+ * <code>SQLDevToolsConfiguration</code> will be used if no registered
+ * <code>SQLDevToolsConfiguration</code>.
  * 
  * @author Hui Cao
  * 
@@ -30,7 +32,7 @@ public class SQLToolsFacade
 {
 
     private static SQLToolsFacade   _instance = new SQLToolsFacade();
-    private static DefaultDBFactory _default  = new DefaultDBFactory();
+    private static SQLDevToolsConfiguration _default  = new SQLDevToolsConfiguration();
 
     private SQLToolsFacade()
     {
@@ -51,7 +53,7 @@ public class SQLToolsFacade
      * 
      * @return
      */
-    private static DatabaseFactoryRegistry getRegistry()
+    private static SQLDevToolsConfigRegistry getRegistry()
     {
         return EditorCorePlugin.getDatabaseFactoryRegistry();
     }
@@ -61,23 +63,23 @@ public class SQLToolsFacade
      * 
      * @return
      */
-    public static Collection getDBFactories()
+    public static Collection getConfigurations()
     {
-        Collection c = getRegistry().getFactories();
+        Collection c = getRegistry().getConfigurations();
         return c;
     }
 
     /**
-     * Returns the database definition names which has associated <code>IDBFactory</code>s.
+     * Returns the database definition names which has associated <code>SQLDevToolsConfiguration</code>s.
      * 
      * @return Full database definition names including product name and version
      */
     public static Collection getSupportedDBDefinitionNames()
     {
-        Collection c = getRegistry().getFactories();
+        Collection c = getRegistry().getConfigurations();
         ArrayList names = new ArrayList();
         for (Iterator iter = c.iterator(); iter.hasNext();) {
-			IDBFactory factory = (IDBFactory) iter.next();
+			SQLDevToolsConfiguration factory = (SQLDevToolsConfiguration) iter.next();
 			String vendor = factory.getDatabaseVendorDefinitionId().getProductName();
 			String version = factory.getDatabaseVendorDefinitionId().getVersion();
 			
@@ -88,59 +90,59 @@ public class SQLToolsFacade
 
 
     /**
-     * Gets the <code>IDBFactory</code> object by the database definition name.
+     * Gets the <code>SQLDevToolsConfiguration</code> object by the database definition name.
      * 
      * @param dbDefName database definition name, which is product name appended by "_" and version.
-     * @return <code>IDBFactory</code> object
+     * @return <code>SQLDevToolsConfiguration</code> object
      */
-    public static IDBFactory getDBFactoryByDBDefName(String dbDefName)
+    public static SQLDevToolsConfiguration getConfigurationByDBDefName(String dbDefName)
     {
-        return getDBFactoryByVendorIdentifier(new DatabaseVendorDefinitionId(dbDefName));
+        return getConfigurationByVendorIdentifier(new DatabaseVendorDefinitionId(dbDefName));
     }
 
     /**
-     * Gets the <code>IDBFactory</code> object by the <code>DatabaseVendorDefinitionId</code> object
+     * Gets the <code>SQLDevToolsConfiguration</code> object by the <code>DatabaseVendorDefinitionId</code> object
      * @param id <code>DatabaseVendorDefinitionId</code> object represented by product name and version
-     * @return <code>IDBFactory</code> object
+     * @return <code>SQLDevToolsConfiguration</code> object
      */
-    public static IDBFactory getDBFactoryByVendorIdentifier(DatabaseVendorDefinitionId vendorId)
+    public static SQLDevToolsConfiguration getConfigurationByVendorIdentifier(DatabaseVendorDefinitionId vendorId)
     {
-        return getDBFactory(null, vendorId);
+        return getConfiguration(null, vendorId);
     }
 
     /**
-     * Gets the <code>IDBFactory</code> object by the connection profile name. Since different versions of a database
+     * Gets the <code>SQLDevToolsConfiguration</code> object by the connection profile name. Since different versions of a database
      * may use the same connection profile provider id, we'll compare the real version of the server with the version
-     * string declared for the <code>IDBFactory</code> and finds the most suitable one.
+     * string declared for the <code>SQLDevToolsConfiguration</code> and finds the most suitable one.
      * 
      * @param profileName connection profile name
-     * @return <code>IDBFactory</code> object
+     * @return <code>SQLDevToolsConfiguration</code> object
      */
-    public static IDBFactory getDBFactoryByProfileName(String profileName)
+    public static SQLDevToolsConfiguration getConfigurationByProfileName(String profileName)
     {
-		return getDBFactoryByVendorIdentifier(ProfileUtil.getDatabaseVendorDefinitionId(profileName));
+		return getConfigurationByVendorIdentifier(ProfileUtil.getDatabaseVendorDefinitionId(profileName));
     }
 
 
 
     /**
-     * Gets the <code>IDBFactory</code> object. This is a utility method for getDBFactoryByProfileName(String
+     * Gets the <code>SQLDevToolsConfiguration</code> object. This is a utility method for getDBFactoryByProfileName(String
      * profileName) and getDBFactoryByDBName(String dbName). It will try to use the first parameter then the second.
      * 
      * @param databaseIdentifier <code>DatabaseIdentifier</code> which contains connection profile name, can be null
      * @param id <code>DatabaseVendorDefinitionId</code> object represented by product name and version, can be null
-     * @return <code>IDBFactory</code> object
+     * @return <code>SQLDevToolsConfiguration</code> object
      */
-    public static IDBFactory getDBFactory(DatabaseIdentifier databaseIdentifier, DatabaseVendorDefinitionId vendorId)
+    public static SQLDevToolsConfiguration getConfiguration(DatabaseIdentifier databaseIdentifier, DatabaseVendorDefinitionId vendorId)
     {
-        IDBFactory f = null;
+        SQLDevToolsConfiguration f = null;
         if (databaseIdentifier != null)
         {
-            f = getDBFactoryByProfileName(databaseIdentifier.getProfileName());
+            f = getConfigurationByProfileName(databaseIdentifier.getProfileName());
         }
         if (f == null && vendorId != null)
         {
-            f = getRegistry().getDBFactoryByVendorIdentifier(vendorId);
+            f = getRegistry().getConfigurationByVendorIdentifier(vendorId);
         }
         if (f == null)
         {

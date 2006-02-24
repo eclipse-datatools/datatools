@@ -14,8 +14,8 @@ package org.eclipse.datatools.sqltools.core;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
-import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistry;
-import org.eclipse.datatools.sqltools.internal.core.DatabaseFactoryRegistryImpl;
+import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
+import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -133,9 +133,9 @@ public class EditorCorePlugin extends AbstractUIPlugin {
         log(createErrorStatus(message, e));
     }
 
-    public static DatabaseFactoryRegistry getDatabaseFactoryRegistry()
+    public static SQLDevToolsConfigRegistry getDatabaseFactoryRegistry()
     {
-        return DatabaseFactoryRegistryImpl.INSTANCE;
+        return SQLDevToolsConfigRegistryImpl.INSTANCE;
     }
     
 }

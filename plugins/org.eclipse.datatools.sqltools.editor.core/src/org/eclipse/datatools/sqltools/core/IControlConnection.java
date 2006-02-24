@@ -154,9 +154,9 @@ public interface IControlConnection extends IAdaptable
     /**
      * Creates a routine object in the database by executing the definition statement
      * 
-     * @param sql the routine definition
+     * @param sql the ddl statements
      */
-    public void createRoutine(String sql) throws SQLException;
+    public void createRoutine(String[] sql) throws SQLException;
 
     /**
      * Refreshs all the cached routine object definitions. Wrapper method for connectivity layer.

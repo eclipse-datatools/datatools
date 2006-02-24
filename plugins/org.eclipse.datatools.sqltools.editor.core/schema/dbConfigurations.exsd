@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.editor.core">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.editor.core" id="dbConfigurations" name="Database Contributions to SQL Development Tools"/>
+      </appInfo>
+      <documentation>
+         This extension point provides support for SQL development. Extensions register a dbConfiguration of the type &lt;code&gt;org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration&lt;/code&gt; which will be responsible for creating vendor-specific algorithms that will be used to customize the default behavior of the SQL Dev Tools framework.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="dbConfiguration" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dbConfiguration">
+      <complexType>
+         <attribute name="configurationClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a fully qualified name of the Java class of the type &lt;code&gt;org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration&lt;/code&gt; which will be responsible for providing database specific classes.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="product" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the DBMS name
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="version" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the DBMS version
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  optional description
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supportsDebugging" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Whether the factory supports debugging. If true, the factoryClass should implement &lt;code&gt;org.eclipse.datatools.sqltools.debugger.core.IDBDebuggerFactory&lt;/code&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;&lt;pre&gt;
+&lt;extension
+         point=&quot;org.eclipse.datatools.sqltools.editor.core.dbConfigurations&quot;&gt;
+      &lt;dbConfiguration
+            product=&quot;Sybase Adaptive Server Enterprise&quot;
+            version=&quot;12.5.x&quot;
+            configurationClass=&quot;com.sybase.stf.dmp.ase.ASEConfiguration&quot;
+            &gt;
+      &lt;/dbConfiguration&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;&lt;/p&gt;
+   Contributes an ASE extenstion to the SQL editor. Note: SQL Dev Tools uses product and version information to find the associated database model definition contributed via the DTP dbdefinition extension point.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Value of the attribute dbConfiguration must be a fully qualified name of a Java class that extends the class org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2005 Sybase, Inc.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ Contributors:
+ Sybase, Inc. - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

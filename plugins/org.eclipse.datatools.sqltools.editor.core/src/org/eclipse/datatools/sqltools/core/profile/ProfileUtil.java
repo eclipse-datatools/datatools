@@ -1,10 +1,14 @@
-/***********************************************************************************************************************
- * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
- * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Sybase, Inc. - initial API and implementation
- **********************************************************************************************************************/
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.profile;
 
 import java.sql.Connection;
@@ -21,13 +25,15 @@ import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
-import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.core.IControlConnection;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
 
 /**
@@ -54,11 +60,11 @@ public class ProfileUtil
      * @param profile
      * @return
      */
-    public static DatabaseVendorDefinition getDatabaseVendorDefinition(String profileName)
+    public static DatabaseDefinition getDatabaseDefinition(String profileName)
     {
-        //DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
-        //TODO get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
-        return null;
+        DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
+        //get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
+        return RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(id.getProductName(), id.getVersion());
     }
 
     /**
@@ -118,7 +124,7 @@ public class ProfileUtil
 	    		}
     		}
     	}
-    	return DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId(); 
+    	return SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
     }
 
     /**
@@ -167,6 +173,47 @@ public class ProfileUtil
         }
     }
     
+    
+    /**
+	 * Returns the SQL model <code>Database</code> object identified by
+	 * <code>databaseIdentifier</code>.
+	 * <p>
+	 * Note: this method can only return one Database object for one connection
+	 * profile. This problem should be addressed in multiple database
+	 * environment, such as ASE.
+	 * </p>
+	 * 
+	 * @return the SQL model <code>Database</code> object
+	 */
+    public static Database getDatabase(DatabaseIdentifier databaseIdentifier)
+    {
+    	try {
+    		IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+    		if (!profile.isConnected())
+    		{
+    			profile.connect();
+    		}
+    		IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
+			IConnection ic = mc.getConnection();
+			Object rawConn = ic.getRawConnection();
+			if (rawConn instanceof ConnectionInfo)
+			{
+				ConnectionInfo ci = (ConnectionInfo)rawConn;
+				String expectedDB = databaseIdentifier.getDBname(); 
+				String realDB = ci.getDatabaseName(); 
+				if ( expectedDB != null && !expectedDB.equals(realDB))
+				{
+					//this should not happen if connection profile can handle multiple db well
+					EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.wrong.database.name", realDB, databaseIdentifier.getProfileName(), expectedDB));
+				}
+				return ci.getSharedDatabase();
+			}
+		} catch (NoSuchProfileException e) {
+			EditorCorePlugin.getDefault().log(e);
+		}
+		return null;
+    }
+
     /**
      * Gets the shared connection from the connection profile 
      * TODO Now this method delegates to IConnectionProfile, which doesn't manage a connection for each
@@ -249,6 +296,42 @@ public class ProfileUtil
         }
     }
 
+    /**
+	 * Closes the given connection object. This method checks the shared
+	 * connection maintained by connectivity layer.
+	 * 
+	 * @param profileName
+	 * @param dbName
+	 * @param conn
+	 */
+    public static void closeConnection(String profileName, String dbName, Connection conn)
+    {
+		if (conn != null) {
+			try {
+				Connection sharedConn = ProfileUtil.getReusableConnection(new DatabaseIdentifier(profileName, dbName));
+				//Only close the connection when it's not the shared connection, 
+				//e.g. for embeded derby, only one connection per VM is allowed.
+				if (conn != sharedConn)
+				{
+					conn.close();
+				}
+//				else
+//				{
+//					// but it's necessary to call IConnection.close. e.g. for
+//					// EmbededDerbyJDBCConnection, this operation will decrease the
+//					// reference count.
+//					IConnectionProfile profile = getProfile(profileName);
+//					IManagedConnection mc = profile.getManagedConnection(Connection.class.getName());
+//					IConnection ic = mc.getConnection();
+//					ic.close();
+//				}
+			} catch (Throwable ex) {
+				// skip
+			}
+		}
+    }
+    
+    
     /**
      * 
      * This method is used to verify if this profile is database profile.

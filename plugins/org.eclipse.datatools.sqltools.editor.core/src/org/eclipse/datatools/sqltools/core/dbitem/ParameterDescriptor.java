@@ -1,15 +1,20 @@
-/***********************************************************************************************************************
- * Copyright (c) 2005 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
- * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Sybase, Inc. - initial API and implementation
- **********************************************************************************************************************/
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.dbitem;
 
 import java.sql.DatabaseMetaData;
 import java.sql.Types;
 
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 
 /**
@@ -31,6 +36,18 @@ public class ParameterDescriptor
     String             _defaultValue;
     String             _sqlTypeNameFromParser; // parsed from editor
 
+    /**
+     * Constructs a ParameterDescriptor
+     * @param databaseIdentifier
+     * @param name parameter name
+     * @param parmType @see #org.eclipse.datatools.modelbase.sql.routines.ParameterMode
+     * @param sqlDataType data type defined in <code>java.sql.Types</code>
+     * @param precision parameter precision 
+     * @param scale parameter scale
+     * @param typeName parameter type name
+     * @param nullable @see <code>DatabaseMetaData</code>
+     * @param comment optional comment 
+     */
     public ParameterDescriptor(DatabaseIdentifier databaseIdentifier, String name, int parmType, int sqlDataType,
         int precision, short scale, String typeName, short nullable, String comment)
     {
@@ -132,22 +149,23 @@ public class ParameterDescriptor
      */
     public String getParamTypeAsString()
     {
-        switch (_parmType)
-        {
-            case DatabaseMetaData.procedureColumnIn:
-                return "IN"; //$NON-NLS-1$
-            case DatabaseMetaData.procedureColumnInOut:
-                return "INOUT"; //$NON-NLS-1$
-            case DatabaseMetaData.procedureColumnOut:
-                return "OUT"; //$NON-NLS-1$
-            case DatabaseMetaData.procedureColumnResult:
-                return "RESULT"; //$NON-NLS-1$
-            case DatabaseMetaData.procedureColumnReturn:
-                return "RETURN"; //$NON-NLS-1$
-            case DatabaseMetaData.procedureColumnUnknown:
-            default:
-                return "UNKNOWN"; //$NON-NLS-1$
-        }
+    	return ParameterMode.get(_parmType).toString();
+//    	switch (_parmType)
+//        {
+//            case DatabaseMetaData.procedureColumnIn:
+//                return "IN"; //$NON-NLS-1$
+//            case DatabaseMetaData.procedureColumnInOut:
+//                return "INOUT"; //$NON-NLS-1$
+//            case DatabaseMetaData.procedureColumnOut:
+//                return "OUT"; //$NON-NLS-1$
+//            case DatabaseMetaData.procedureColumnResult:
+//                return "RESULT"; //$NON-NLS-1$
+//            case DatabaseMetaData.procedureColumnReturn:
+//                return "RETURN"; //$NON-NLS-1$
+//            case DatabaseMetaData.procedureColumnUnknown:
+//            default:
+//                return "UNKNOWN"; //$NON-NLS-1$
+//        }
     }
 
     /**

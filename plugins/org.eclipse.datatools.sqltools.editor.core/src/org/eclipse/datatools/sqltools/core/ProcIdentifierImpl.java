@@ -210,6 +210,12 @@ public class ProcIdentifierImpl implements ProcIdentifier
         try
         {
             int type = Integer.parseInt(typestr);
+            SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(profile);
+	        if (config != null)
+	        {
+	        	DBHelper h = config.getDBHelper();
+	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER));  
+	        }
             return new ProcIdentifierImpl(type, new DatabaseIdentifier(profile, dbname), map);
         }
         catch(NumberFormatException ex)
@@ -233,6 +239,12 @@ public class ProcIdentifierImpl implements ProcIdentifier
         try
         {
             int type = Integer.parseInt(typestr);
+            SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(profile);
+	        if (config != null)
+	        {
+	        	DBHelper h = config.getDBHelper();
+	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER));  
+	        }
             return new ProcIdentifierImpl(type, new DatabaseIdentifier(profile, dbname), map);
         }
         catch(NumberFormatException ex)
