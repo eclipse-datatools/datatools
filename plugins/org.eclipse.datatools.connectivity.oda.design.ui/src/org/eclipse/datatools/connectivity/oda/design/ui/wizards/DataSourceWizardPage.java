@@ -17,17 +17,20 @@ package org.eclipse.datatools.connectivity.oda.design.ui.wizards;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardCorePage;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * The abstract base class for implementation of customized
- * ODA data source wizard page(s).  
+ * The abstract base class for implementation of a customized
+ * ODA data source wizard page.  
  * An ODA data source UI extension must extend this to
  * provide customized wizard page with page control and related behavior.
+ * This must be used as the base class of 
+ * the <i>newWizard.class</i> attribute defined in the
+ * <code>org.eclipse.datatools.connectivity.connectionProfile</code> extension point.
  */
-public abstract class DataSourceWizardPage extends DataSourceWizardCorePage
+public abstract class DataSourceWizardPage extends DataSourceWizardPageCore
 {
     /**
      * Creates customized control for this wizard page under the

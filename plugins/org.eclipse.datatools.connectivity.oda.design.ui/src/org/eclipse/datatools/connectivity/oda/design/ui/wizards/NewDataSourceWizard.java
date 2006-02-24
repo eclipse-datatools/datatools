@@ -18,12 +18,12 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.NewDataSourceWi
 
 /**
  * The ODA data source wizard's public class that 
- * may be specified directly
- * in the newWizard.class attribute
- * of the <code>org.eclipse.datatools.connectivity.connectionProfile</code> extension point.
+ * may be used directly or serves as the base class of 
+ * the newWizard.class attribute defined in the
+ * <code>org.eclipse.datatools.connectivity.connectionProfile</code> extension point.
  * <br>An ODA data source extension must also
  * implement the <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>
- * extension point to provide custom wizard page. 
+ * extension point to provide its custom wizard page. 
  * <br>All inherited methods are internal API.
  */
 public class NewDataSourceWizard extends NewDataSourceWizardBase

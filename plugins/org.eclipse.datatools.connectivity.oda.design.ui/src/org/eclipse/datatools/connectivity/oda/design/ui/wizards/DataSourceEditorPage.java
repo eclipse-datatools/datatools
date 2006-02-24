@@ -18,17 +18,18 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorCorePage;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * The abstract base class for implementation of customized
- * ODA data source editor page(s).  
- * An ODA data source UI extension must extend this base class to
+ * The abstract base class for implementation of a customized
+ * ODA data source property page.  
+ * <br>An ODA data source UI extension must extend this base class to
  * provide customized property page with page control 
- * and related behavior.
+ * and related behavior, and implements the 
+ * <code>org.eclipse.ui.propertyPages</code> extension point.
  */
-public abstract class DataSourceEditorPage extends DataSourceEditorCorePage
+public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
 {    
     /**
      * Creates and initializes custom control for this wizard page 
