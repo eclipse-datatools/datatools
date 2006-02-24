@@ -226,8 +226,6 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     /**
      * Returns the finished design session with a response
      * that contains the edited data source design.
-     * <br>This method must be called only after performOk is
-     * done.
      * <br>If the edited data source design has error,
      * the returned design session would contain a response
      * with an error session status.
@@ -239,11 +237,15 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     public OdaDesignSession getEditSessionResponse() throws OdaException
     {
         // verify that edit session is in correct state
-        if( ! isInOdaDesignSession() ||
-            m_designSession.getResponse() == null )
+        if( ! isInOdaDesignSession() )
         {
             throw new OdaException( "Invalid state found in design session" );
         }
+        
+        // if no response is not available, perhaps performOk is not called;
+        // go ahead and trigger to finish the current edit session
+        if( m_designSession.getResponse() == null )
+            finishEditSession();
         
         OdaDesignSession responseSession = m_designSession;
         m_designSession = null;     // reset for next session
@@ -269,10 +271,10 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
             // TODO error handling
             editedDataSource = null;
         }
-    
+            
+        // update design session with edited data source design, which
+        // could be null if error had occurred
         boolean isSessionOk = ( editedDataSource != null );
-        
-        // update design session with edited data source design
         assert( m_designSession != null );
         m_designSession.setNewResponse( isSessionOk, editedDataSource );
         return isSessionOk;
