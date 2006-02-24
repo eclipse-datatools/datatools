@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.sqltools.sqlscrapbook"
    name="%pluginName"
-   version="0.7.0.200602241"
+   version="0.7.0.200602242"
    provider-name="%providerName"
    class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin">
 
@@ -40,7 +40,7 @@
             extensions="ddl,sql,sqlpage"
             icon="images/qrydoc.gif"
             id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
-            name="SQL Editor"/>
+            name="%ScrapbookEditor.name"/>
    </extension>
 
 

@@ -25,9 +25,8 @@ import org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWiza
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.DefaultDBFactory;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.core.IDBFactory;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
@@ -86,7 +85,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	private String _dbName = null;
 
-	private DatabaseVendorDefinitionId _dbVendorId = DefaultDBFactory
+	private DatabaseVendorDefinitionId _dbVendorId = SQLDevToolsConfiguration
 			.getDefaultInstance().getDatabaseVendorDefinitionId();
 
 	private boolean _isConnected = false;
@@ -316,7 +315,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 */
 	public void handleEvent(Event event) {
 		if (event.widget == _create) {
-			IDBFactory f = SQLToolsFacade.getDBFactoryByDBDefName(_comboType.getText());
+			SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByDBDefName(_comboType.getText());
 			if (f == null) {
 				return;
 			}
@@ -585,8 +584,8 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * creation)
 	 */
 	private void selectTypebyProfile(String profileName) {
-		IDBFactory factory = SQLToolsFacade
-				.getDBFactoryByProfileName(profileName);
+		SQLDevToolsConfiguration factory = SQLToolsFacade
+				.getConfigurationByProfileName(profileName);
 		if (factory != null) {
 			String dbDefName = factory.getDatabaseVendorDefinitionId()
 					.toString();
