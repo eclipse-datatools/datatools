@@ -113,22 +113,22 @@ public class DataSetDesignSession
     
     /**
      * If the design session is finished or cancelled,
-     * returns the completed design session containing the
-     * edited data set design in the session response;
+     * returns the completed design session containing a
+     * data set design in the session response;
      * otherwise, returns null.
      * <br>A completed response contains the new or updated 
      * data set design instance, and the designer state. 
-     * @return  a completed design session with the session response
+     * @return  a completed ODA design with the session response
      *          and the original request.
      */
-    public OdaDesignSession getResponseSession()
+    public OdaDesignSession getOdaDesign()
     {
         // TODO
         return null;
     }
     
     /**
-     * Returns the ODA wizard for use within this design session
+     * Returns an ODA wizard for use within this design session
      * to create a new, extended ODA data set design instance.
      * @return  a wizard instance to embed in a wizard dialog
      *          for use within this started design session
@@ -141,7 +141,7 @@ public class DataSetDesignSession
     }
 
     /** 
-     * Returns the customized starting wizard page
+     * Returns a customized starting wizard page
      * for use within this design session to create or edit
      * an extended ODA data set design instance.
      * @return  a customized wizard page

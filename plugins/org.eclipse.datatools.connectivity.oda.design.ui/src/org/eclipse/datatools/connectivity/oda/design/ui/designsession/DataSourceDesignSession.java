@@ -47,8 +47,9 @@ public class DataSourceDesignSession
      * <br>This supports a simplified request for an editable session, 
      * using the default system locale.
      * @param odaDataSourceId   an ODA data source extension element id 
-     * @param aDataSourceName   a unique name that identifies a data source design instance
-     * @return  a design session started to create a new data set design
+     * @param aDataSourceName   a unique name that identifies a 
+     *                          data source design instance
+     * @return  a design session started to create a new data source design
      * @throws OdaException
      */
     public static DataSourceDesignSession startNewDesign( 
@@ -224,22 +225,22 @@ public class DataSourceDesignSession
     
     /**
      * If the design session is finished or cancelled,
-     * returns the completed design session containing the
-     * edited data source design in the session response;
+     * returns the completed design session containing a
+     * data source design in the session response;
      * otherwise, returns null.
      * <br>A completed response contains the new or updated 
      * data source design instance, and the designer state. 
-     * @return  a completed design session with the session response
+     * @return  a completed ODA design with the session response
      *          and the original request.
      */
-    public OdaDesignSession getResponseSession()
+    public OdaDesignSession getOdaDesign()
     {
         // TODO
         return null;
     }
     
     /**
-     * Returns the ODA wizard for use within this design session
+     * Returns an ODA wizard for use within this design session
      * to create a new, extended ODA data source design instance.
      * @return  a wizard instance to embed in a wizard dialog
      *          for use within this started design session
@@ -252,7 +253,7 @@ public class DataSourceDesignSession
     }
 
     /** 
-     * Returns the customized starting wizard page
+     * Returns a customized starting wizard page
      * for use within this design session to create
      * a new, extended ODA data source design instance.
      * @return  a customized wizard page to add in a wizard
@@ -266,7 +267,7 @@ public class DataSourceDesignSession
     }
     
     /**
-     * Returns the ODA wizard extended from the base wizard 
+     * Returns an ODA wizard extended from the base wizard 
      * provided by the ODA Designer UI framework.
      * @return  a NewDataSourceWizard instance
      * @throws OdaException
@@ -281,7 +282,7 @@ public class DataSourceDesignSession
     }
 
     /**
-     * Returns the customized editor page
+     * Returns a customized editor page
      * for use within a design session to edit 
      * an extended ODA data source design instance.
      * @return  a customized property page
@@ -296,9 +297,10 @@ public class DataSourceDesignSession
     }
     
     /**
-     * Returns the customized editor page's adaptable element 
+     * Returns a customized editor page's adaptable element 
      * that represents the
-     * the extended ODA data source design instance being edited.
+     * the extended ODA data source design instance that is
+     * being edited.
      * @return
      */
     public IAdaptable getEditPropertyPageElement()
@@ -315,7 +317,7 @@ public class DataSourceDesignSession
     }
     
     /**
-     * Returns the ODA data source editor page  
+     * Returns an ODA data source editor page  
      * provided by the ODA Designer UI framework that
      * extends from the base DataSourceEditorPage property page.
      * @return
