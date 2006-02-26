@@ -182,14 +182,14 @@ public class DesignSessionUtil
      * @return
      */
     public static boolean hasValidOdaDesignUIExtension( 
-                                    String odaDataSouceId )
+                                    String odaDataSourceId )
     {
         Object manifest;
         try
         {
             manifest =
                 UIManifestExplorer.getInstance()
-                    .getExtensionManifest( odaDataSouceId );
+                    .getExtensionManifest( odaDataSourceId );
         }
         catch( OdaException ex )
         {
@@ -219,15 +219,15 @@ public class DesignSessionUtil
      * @throws OdaException if error in reading from given storageFile,
      *                      or in processing the found profiles
      */
-    public static Map getProfileIdentifiers( String odaDataSouceId, 
+    public static Map getProfileIdentifiers( String odaDataSourceId, 
                                             File storageFile ) 
         throws OdaException
     {
         if( storageFile == null )
             return OdaProfileExplorer.getInstance().getProfiles( 
-                    odaDataSouceId );
+                    odaDataSourceId );
         return OdaProfileExplorer.getInstance().getProfiles( 
-                odaDataSouceId, storageFile );
+                odaDataSourceId, storageFile );
     }
 
 }
