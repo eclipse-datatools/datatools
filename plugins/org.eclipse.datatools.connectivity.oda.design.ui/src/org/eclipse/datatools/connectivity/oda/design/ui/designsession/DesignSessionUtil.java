@@ -14,14 +14,16 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
+import java.io.File;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
-import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
+import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
@@ -167,8 +169,65 @@ public class DesignSessionUtil
         }
         catch( IllegalArgumentException ex )
         {
-            throw DesignerUtil.newOdaException( ex );
+            throw new OdaException( ex );
         }        
+    }
+    
+    /**
+     * Indicates whether the given ODA data source type has
+     * implemented a valid 
+     * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>
+     * extension point.
+     * @param odaDataSourceId   an ODA data source extension type's element id 
+     * @return
+     */
+    public static boolean hasValidOdaDesignUIExtension( 
+                                    String odaDataSouceId )
+    {
+        Object manifest;
+        try
+        {
+            manifest =
+                UIManifestExplorer.getInstance()
+                    .getExtensionManifest( odaDataSouceId );
+        }
+        catch( OdaException ex )
+        {
+            // has invalid manifest
+            manifest = null;
+        }
+
+        return ( manifest != null );
+    }
+    
+    /**
+     * Returns a collection of identifiers of 
+     * all connection profile instances for
+     * the given ODA data source extension type.
+     * The profile instances are searched in the given profile storage file.
+     * It also caches the matching profiles for subsequent use.
+     * @param odaDataSourceId   an ODA data source extension type's element id 
+     * @param storageFile   a file that stores profile instances;
+     *                      may be null, which means to use the
+     *                      default DTP profiles storage file
+     * @return  a <code>Map</code> containing the instance Id
+     *          and display name of all existing profiles of the given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are 
+     *          no matching connection profiles found in given storageFile.
+     * @throws OdaException if error in reading from given storageFile,
+     *                      or in processing the found profiles
+     */
+    public static Map getProfileIdentifiers( String odaDataSouceId, 
+                                            File storageFile ) 
+        throws OdaException
+    {
+        if( storageFile == null )
+            return OdaProfileExplorer.getInstance().getProfiles( 
+                    odaDataSouceId );
+        return OdaProfileExplorer.getInstance().getProfiles( 
+                odaDataSouceId, storageFile );
     }
 
 }

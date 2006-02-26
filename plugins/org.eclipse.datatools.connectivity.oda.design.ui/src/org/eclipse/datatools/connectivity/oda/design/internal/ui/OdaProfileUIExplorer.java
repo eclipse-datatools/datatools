@@ -77,8 +77,17 @@ public class OdaProfileUIExplorer
         throws OdaException
     {
         assert( odaDataSourceId != null );
-        IWizard dataSourceWizard =
-            ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
+        IWizard dataSourceWizard;
+        try
+        {
+            dataSourceWizard = ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
+        }
+        catch( RuntimeException e )
+        {
+            // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129425
+            // work around - handle it as not found
+            dataSourceWizard = null;
+        }
         
         if( dataSourceWizard == null )
             return null;    // has not implemented a new data source wizard
@@ -111,11 +120,11 @@ public class OdaProfileUIExplorer
         Object propPage = null;
         try
         {
-            propPage = pageElement.createExecutableExtension( "class" );
+            propPage = pageElement.createExecutableExtension( "class" ); //$NON-NLS-1$
         }
         catch( FrameworkException ex )
         {
-            throw DesignerUtil.newOdaException( ex );
+            throw new OdaException( ex );
         }
 
         if( propPage instanceof DataSourceEditorPage )

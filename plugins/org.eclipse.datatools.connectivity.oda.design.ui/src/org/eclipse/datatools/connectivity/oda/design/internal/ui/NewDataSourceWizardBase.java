@@ -51,7 +51,10 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
 {
     private String m_odaDataSourceId;
     private String m_odaDesignerPluginId;
-    private Properties m_profileProps;
+
+    // create and initialize common properties for the new profile
+    private Properties m_profileProps = new Properties();
+
     private DataSourceWizardPage m_startPage;
     private UIExtensionManifest m_manifest;
 
@@ -59,10 +62,18 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     private DataSourceDesign m_dataSourceDesign;
     private LinkedProfile m_linkedProfile;
 
-    public NewDataSourceWizardBase()
+    private static final String ODA_UI_EXT_PT = 
+    	"org.eclipse.datatools.connectivity.oda.design.ui.dataSource"; //$NON-NLS-1$
+    
+    protected NewDataSourceWizardBase( String odaDataSourceId )
+        throws OdaException
     {
-        // create and initialize common properties for the new profile
-        m_profileProps = new Properties();
+        initialize( odaDataSourceId, null, 
+                    "New Data Source" );
+    }
+
+    protected NewDataSourceWizardBase()
+    {
     }
     
     /* (non-Javadoc)
@@ -74,36 +85,73 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     {
         // ODA profiles use the odaDataSourceId as its profile identifier
         // which uniquely identifies an ODA run-time data source extension
-        m_odaDataSourceId = 
+        String odaDataSourceId = 
             newWizardElement.getAttribute( ProfileWizardProvider.ATTR_PROFILE );
-        if( m_odaDataSourceId == null || m_odaDataSourceId.length() == 0 )
+        if( odaDataSourceId == null || odaDataSourceId.length() == 0 )
             throw new CoreException( 
                     new Status( IStatus.ERROR, 
                             newWizardElement.getNamespace(), 
                             IStatus.OK,
-                    "Missing ODA Data Source ID in the Profile attribute.", null ));
+                            "Missing ODA Data Source ID in the Profile attribute.", 
+                            null ) );
+
+        // the oda ui plugin extension that implements the custom wizard
+        String odaDesignerPluginId = newWizardElement.getNamespace();
+
+        // use newWizard extension's name attribute as default title
+        String wizardName = 
+            newWizardElement.getAttribute( ProfileWizardProvider.ATTR_NAME );
         
-        initProviderID( m_odaDataSourceId );               
-
-        // the plugin that implements the custom wizard page
-        m_odaDesignerPluginId = newWizardElement.getNamespace();
-
-        // find the oda.design.ui.dataSource extension manifest content
         try
         {
-            m_manifest = 
-                UIManifestExplorer.getInstance().getExtensionManifest( 
-                        m_odaDataSourceId );
+            initialize( odaDataSourceId, odaDesignerPluginId, wizardName );
         }
         catch( OdaException ex )
         {
             throw new CoreException( 
                     new Status( IStatus.ERROR, 
-                            m_odaDesignerPluginId, 
+                            odaDesignerPluginId, 
                             IStatus.OK,
-                    "Invalid manifest content in the oda.design.ui.dataSource extension.", ex ));
+                            "Invalid plug-in manifest content in the oda.design.ui.dataSource extension.", 
+                            ex ));
         }
+    }
+    
+    /**
+     * Initialize the wizard's context.
+     * @param odaDataSourceId   ODA runtime data source element id
+     * @param odaDesignerId     ODA design-time extension's plugin namespace
+     * @param defaultWizardTitle    default window title to use
+     *            if none is specified in newDataSourceWizard element in
+     *            oda.design.ui.dataSource extension
+     * @throws OdaException
+     */
+    protected void initialize( String odaDataSourceId, 
+                                String odaDesignerId,
+                                String defaultWizardTitle )
+        throws OdaException
+    {
+        m_odaDataSourceId = odaDataSourceId;        
+        initProviderID( m_odaDataSourceId );               
         
+        // find the oda.design.ui.dataSource extension manifest content
+        m_manifest = 
+                UIManifestExplorer.getInstance().getExtensionManifest( 
+                        m_odaDataSourceId );
+        if( m_manifest == null )
+        {
+            // TODO - uses default wizard page
+            String messageText = "The ODA data source extension has not implemented the ODA UI extension point ({0})";
+            String errorMessage = MessageFormat.format( messageText, new Object[]{ ODA_UI_EXT_PT } );
+            OdaException odaEx = new OdaException( errorMessage );
+            odaEx.initCause( new IllegalArgumentException( m_odaDataSourceId ) );
+            throw odaEx;
+        }
+
+        m_odaDesignerPluginId = 
+            ( odaDesignerId != null && odaDesignerId.length() > 0 ) ?
+                odaDesignerId : m_manifest.getNamespace();
+       
         // set wizard behavior as defined by extension
         DataSourceWizardInfo wizardInfo = 
                 m_manifest.getDataSourceWizardInfo();
@@ -114,9 +162,8 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
 
         // custom data source wizard window title
         String windowTitle = wizardInfo.getWindowTitle();
-        // use newWizard extension's name attribute as default 
         if( windowTitle == null || windowTitle.length() == 0 )
-            windowTitle = newWizardElement.getAttribute( ProfileWizardProvider.ATTR_NAME );
+            windowTitle = defaultWizardTitle;
         setWindowTitle( windowTitle );        
     }
 

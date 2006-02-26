@@ -27,12 +27,12 @@ import org.eclipse.swt.widgets.Composite;
 public abstract class DataSetWizardPageCore extends WizardPage
 {
 
-    public DataSetWizardPageCore( String pageName )
+    protected DataSetWizardPageCore( String pageName )
     {
         super( pageName );
     }
 
-    public DataSetWizardPageCore( String pageName, String title,
+    protected DataSetWizardPageCore( String pageName, String title,
             ImageDescriptor titleImage )
     {
         super( pageName, title, titleImage );

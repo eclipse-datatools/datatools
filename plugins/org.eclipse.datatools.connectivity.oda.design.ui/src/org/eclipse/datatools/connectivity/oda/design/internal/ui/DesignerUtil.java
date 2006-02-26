@@ -15,6 +15,9 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  *  Internal utility class to provide services
@@ -22,11 +25,32 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class DesignerUtil
 {
-    public static OdaException newOdaException( Throwable cause )
+    /**
+     * Validates and adapts the given data source design
+	 * for editing.
+     * <br>The adaptable element returned is a copy of the  
+     * DataSourceDesign instance found in given session's request.
+     * @param designSession
+     * @return	an adaptable data source design as an element 
+     * that can be edited in a data source property page
+     * @throws OdaException
+     */
+    public static AdaptableDataSourceProfile 
+        getAdaptableDataSourceDesign( OdaDesignSession designSession )
+    throws OdaException
     {
-        OdaException odaEx = new OdaException();
-        odaEx.initCause( cause );
-        return odaEx;
+        if( designSession == null )
+            throw new OdaException( "Illegal argument; must not be null." );
+        
+        DataSourceDesign dataSourceDesign =
+            designSession.getRequestDataSourceDesign();
+        if( dataSourceDesign == null )
+            throw new OdaException( "Missing data source design in OdaDesignSession argument." );
+
+        DataSourceDesign editDataSourceDesign = 
+            (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
+        
+        return new AdaptableDataSourceProfile( editDataSourceDesign );
     }
 
 }

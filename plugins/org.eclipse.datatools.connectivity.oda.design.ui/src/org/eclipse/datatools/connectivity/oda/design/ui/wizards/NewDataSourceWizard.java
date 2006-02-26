@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.wizards;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.NewDataSourceWizardBase;
 
 /**
@@ -28,6 +29,11 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.NewDataSourceWi
  */
 public class NewDataSourceWizard extends NewDataSourceWizardBase
 {
+    public NewDataSourceWizard( String odaDataSourceId )
+        throws OdaException
+    {
+        super( odaDataSourceId );
+    }
 
     public NewDataSourceWizard()
     {

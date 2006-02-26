@@ -33,7 +33,7 @@ public abstract class DataSourceWizardPageCore extends
     /*
      * Implements base class constructor.
      */
-    public DataSourceWizardPageCore( String name )
+    protected DataSourceWizardPageCore( String name )
     {
         super( name );
     }
@@ -41,7 +41,7 @@ public abstract class DataSourceWizardPageCore extends
     /*
      * Implements base class constructor.
      */
-    public DataSourceWizardPageCore( String pageName, String title,
+    protected DataSourceWizardPageCore( String pageName, String title,
             ImageDescriptor titleImage )
     {
         super( pageName, title, titleImage );

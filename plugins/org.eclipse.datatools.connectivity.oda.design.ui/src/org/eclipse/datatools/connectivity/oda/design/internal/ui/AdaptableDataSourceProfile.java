@@ -83,12 +83,12 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     }
     
     /**
-     * 
+     * Indicates whether this is associated with an external profile in a profile store.
      * @return
      */
     public boolean hasLinkedProfile()
     {
-        return ( getLinkedProfile() != null );
+        return ( m_linkedProfile != null );
     }
     
     /**

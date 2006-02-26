@@ -98,6 +98,17 @@ public class OdaException extends Exception
 		m_nextException = null;
 	}
 	
+    /**
+     * Instantiates an OdaException object whose message text 
+     * defaults to null, and initialized with given cause.
+     * @param cause     cause of exception
+     */
+    public OdaException( Throwable cause )
+    {
+        super();
+        initCause( cause );
+    }
+    
 	/**
 	 * Returns the SQLSTATE of this <code>OdaException</code> object.
 	 * @return	the SQLSTATE value.

@@ -74,9 +74,9 @@ public class UIManifestExplorer
      * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>.
      * @param dataSourceId  the unique id of the data source element
      *                      in the ODA designer data source extension.
-     * @return              the UI extension manifest information
+     * @return              the UI extension manifest information;
+     *                      or null, if no extension is found
      * @throws OdaException if the extension manifest is invalid
-     * @throws IllegalArgumentException if no extension is found
      */
     public UIExtensionManifest getExtensionManifest( String dataSourceId ) 
         throws OdaException
@@ -84,10 +84,7 @@ public class UIManifestExplorer
         UIExtensionManifest manifest = 
             getExtensionManifest( dataSourceId, DTP_ODA_UI_EXT_POINT );
         
-        if( manifest != null )
-            return manifest;
-    
-        throw new IllegalArgumentException( dataSourceId );
+        return manifest;
     }
 
     /**
@@ -102,15 +99,18 @@ public class UIManifestExplorer
      *                          or null if no extension configuration is found.
      * @throws OdaException     if the extension manifest is invalid.
      */
-    private UIExtensionManifest getExtensionManifest( String dataSourceId, 
-                                                   String extensionPoint ) 
+    private UIExtensionManifest getExtensionManifest( 
+                                        String dataSourceId, 
+                                        String extensionPoint ) 
         throws OdaException
     {
         if ( dataSourceId == null || dataSourceId.length() == 0 )
-            throw new IllegalArgumentException( dataSourceId );
+            throw new OdaException(
+                    new IllegalArgumentException( dataSourceId ) );
         
         if ( extensionPoint == null || extensionPoint.length() == 0 )
-            throw new IllegalArgumentException( extensionPoint );
+            throw new OdaException(
+                    new IllegalArgumentException( extensionPoint ) );
     
         IExtension[] extensions = 
             ManifestExplorer.getExtensions( extensionPoint );
@@ -150,7 +150,7 @@ public class UIManifestExplorer
             }
             catch( OdaException ex )
             {
-                sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );
+                sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex ); //$NON-NLS-1$
                 continue;
             }
             
@@ -230,4 +230,5 @@ public class UIManifestExplorer
         return ( manifest == null ) ?
                 null : manifest.getNamespace();
     }
+
 }

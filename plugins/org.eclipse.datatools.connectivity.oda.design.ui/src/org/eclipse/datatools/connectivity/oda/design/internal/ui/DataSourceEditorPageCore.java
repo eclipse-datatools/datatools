@@ -17,14 +17,14 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
-import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * The core implementation of the Data Source Editor Page base class 
@@ -39,7 +39,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private OdaDesignSession m_designSession;
     private Properties m_dataSourceProps;
 
-    public DataSourceEditorPageCore()
+    protected DataSourceEditorPageCore()
     {
         super();
         noDefaultAndApplyButton();
@@ -101,6 +101,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         {
             // ok to ignore
         }
+
         if( profile != null )
             return profile.getBaseProperties();  
         return null;
@@ -126,39 +127,21 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
      * provided in the design session's request.
      * @return
      */
-    protected DataSourceDesign getNewEditingDataSource()
+    protected DataSourceDesign getEditingDataSource()
     {
-        if( m_designSession == null )
-        {        
-/*            // initialize edit design session on the property page's element
-            IAdaptable element = getElement();
-            assert( element != null );
-            IConnectionProfile profile = (IConnectionProfile) element
-                                .getAdapter( IConnectionProfile.class );
-            
-            if( ! ( profile instanceof AdaptableDataSourceProfile ) )
-                throw new IllegalStateException( "" );
-            AdaptableDataSourceProfile dataSourceProfile = 
-                (AdaptableDataSourceProfile) profile;
-            try
-            {
-                initEditSession( dataSourceProfile.getDesignSession() );
-            }
-            catch( OdaException e )
-            {
-                // TODO error handling
-                return null;
-            }
-*/        
+        IAdaptable element = getElement();
+        if( element == null || 
+            ! ( element instanceof AdaptableDataSourceProfile ) )
+        {
+            return DesignFactory.eINSTANCE.createDataSourceDesign();
         }
         
         // should have thrown exception within init if it failed
-        assert( m_designSession != null ); 
 
         DataSourceDesign dataSourceDesign =
-            m_designSession.getRequestDataSourceDesign();
+            ((AdaptableDataSourceProfile) element).getDataSourceDesign();
         assert( dataSourceDesign != null );
-        return (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
+        return dataSourceDesign;
     }
 
     /**
@@ -171,30 +154,18 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
      */
     public void initEditSession( OdaDesignSession requestSession ) throws OdaException
     {
-        if( requestSession == null )
-            throw new OdaException( "Illegal OdaDesignSession; must not be null." );
-        DataSourceDesign dataSourceDesign =
-            requestSession.getRequestDataSourceDesign();
-        if( dataSourceDesign == null )
-            throw new OdaException( "Missing data source design in OdaDesignSession instance." );
-        
-        // look up externally defined properties if linked to profile
-        IConnectionProfile linkedProfile =
-            DesignSessionUtil.getLinkedProfile( dataSourceDesign );
-        Properties initialProps = null;
-        if( linkedProfile != null )     // has linked profile
-            initialProps = linkedProfile.getBaseProperties();
-        
-        // no externally defined properties, use the collection
-        // of public and private properties embedded in given data source design
-        if( initialProps == null )
+        // check if already initialized with same design session
+        if( getElement() != null )
         {
-            initialProps = DesignUtil.convertDataSourceProperties(
-                                dataSourceDesign );
+            if( getElement() instanceof AdaptableDataSourceProfile &&
+                m_designSession == requestSession  )
+                return;     // already initialized
         }
-        
-        // Updates the editor page's property values 
-        updateDataSourceProperties( initialProps );        
+            
+        // associate a copy of the request's data source design 
+        // as the element being edited in this page
+        setElement( DesignerUtil.getAdaptableDataSourceDesign( 
+                                              requestSession ) );
     
         // hold on design session info till finish editing
         m_designSession = requestSession;   
@@ -295,7 +266,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // gets a copy of the data source design, and updates
         // with the pubic properties collected by
         // this editor page
-        DataSourceDesign editedDesign = getNewEditingDataSource();
+        DataSourceDesign editedDesign = getEditingDataSource();
 
         editedDesign.setPublicProperties(
                 DesignSessionUtil.createDataSourcePublicProperties( 

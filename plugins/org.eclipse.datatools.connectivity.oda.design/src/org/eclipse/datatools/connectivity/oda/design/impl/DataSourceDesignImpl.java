@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.4 2006/02/24 01:29:03 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -21,7 +21,6 @@ import java.net.MalformedURLException;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.emf.common.notify.Notification;
@@ -806,23 +805,6 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         result.append( m_linkedProfileStoreFilePath );
         result.append( ')' );
         return result.toString();
-    }
-
-    /**
-     * A convenience method to return a non-null Properties, 
-     * for use to assign public properties.
-     * @return
-     * @generated NOT
-     */
-    protected Properties getPublicPropertiesForEdit()
-    {
-        if( getPublicProperties() == null )
-        {
-            Properties newProps = DesignFactory.eINSTANCE.createProperties();
-            setPublicProperties( newProps );
-        }
-
-        return getPublicProperties();
     }
 
 } //DataSourceDesignImpl

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.1 2006/02/21 11:20:09 lchan Exp $
+ * $Id: DesignUtil.java,v 1.2 2006/02/22 04:34:12 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
  */
 public class DesignUtil
 {
+    
     // class has static methods only; not intended to instantiate
     private DesignUtil()
     {
@@ -129,18 +130,28 @@ public class DesignUtil
      */
     public static java.util.Properties convertDesignProperties( Properties designProps )
     {
-        java.util.Properties propCollection = new java.util.Properties();
+        java.util.Properties utilProps = new java.util.Properties();
         if( designProps == null || designProps.getProperties() == null )
-            return propCollection;  // return an empty collection
+            return utilProps;  // return an empty collection
         
         Iterator itr = designProps.getProperties().iterator();
         while( itr.hasNext() )
         {
             Property designProp = (Property) itr.next();
-            propCollection.setProperty( designProp.getNameValue().getName(),
-                                    designProp.getNameValue().getValue() );
+
+            // util collection does not allow null name or value;
+            // excludes the property in such case, which would allow
+            // consumer to get a null value 
+            // when a property name is not found in collection
+            if( designProp.getNameValue() == null ||
+                designProp.getNameValue().getName() == null ||
+                designProp.getNameValue().getValue() == null )
+                continue;   // skip property
+            
+            utilProps.setProperty( designProp.getNameValue().getName(),
+                                   designProp.getNameValue().getValue() );
         }
-        return propCollection;
+        return utilProps;
     }
     
     /**
