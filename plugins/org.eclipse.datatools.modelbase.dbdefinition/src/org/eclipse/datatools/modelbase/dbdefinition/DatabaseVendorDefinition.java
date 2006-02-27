@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getQueryDefinition <em>Query Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSQLSyntaxDefinition <em>SQL Syntax Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getNicknameDefinition <em>Nickname Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -56,6 +57,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isNicknameSupported <em>Nickname Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isQuotedDMLSupported <em>Quoted DML Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isQuotedDDLSupported <em>Quoted DDL Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -617,6 +621,85 @@ public interface DatabaseVendorDefinition extends EObject{
 	void setQuotedDDLSupported(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Event Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Event Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event Supported</em>' attribute.
+	 * @see #setEventSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_EventSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isEventSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Event Supported</em>' attribute.
+	 * @see #isEventSupported()
+	 * @generated
+	 */
+	void setEventSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Sql UDF Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sql UDF Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sql UDF Supported</em>' attribute.
+	 * @see #setSqlUDFSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SqlUDFSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isSqlUDFSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported <em>Sql UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sql UDF Supported</em>' attribute.
+	 * @see #isSqlUDFSupported()
+	 * @generated
+	 */
+	void setSqlUDFSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Stored Procedure Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Stored Procedure Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Stored Procedure Supported</em>' attribute.
+	 * @see #setStoredProcedureSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_StoredProcedureSupported()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isStoredProcedureSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported <em>Stored Procedure Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Stored Procedure Supported</em>' attribute.
+	 * @see #isStoredProcedureSupported()
+	 * @generated
+	 */
+	void setStoredProcedureSupported(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition}.
 	 * <!-- begin-user-doc -->
@@ -959,5 +1042,31 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @generated
 	 */
 	void setNicknameDefinition(NicknameDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Debugger Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Debugger Definition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Debugger Definition</em>' containment reference.
+	 * @see #setDebuggerDefinition(DebuggerDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_DebuggerDefinition()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	DebuggerDefinition getDebuggerDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Debugger Definition</em>' containment reference.
+	 * @see #getDebuggerDefinition()
+	 * @generated
+	 */
+	void setDebuggerDefinition(DebuggerDefinition value);
 
 } // DatabaseVendorDefinition

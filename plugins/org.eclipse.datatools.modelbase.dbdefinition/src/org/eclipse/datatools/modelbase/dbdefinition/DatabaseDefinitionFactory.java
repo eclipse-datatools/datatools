@@ -165,6 +165,15 @@ public interface DatabaseDefinitionFactory extends EFactory{
 	NicknameDefinition createNicknameDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Debugger Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Debugger Definition</em>'.
+	 * @generated
+	 */
+	DebuggerDefinition createDebuggerDefinition();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

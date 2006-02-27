@@ -16,6 +16,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ExtendedDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
@@ -60,6 +61,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getQueryDefinition <em>Query Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getSQLSyntaxDefinition <em>SQL Syntax Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getNicknameDefinition <em>Nickname Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -81,6 +83,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isNicknameSupported <em>Nickname Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isQuotedDMLSupported <em>Quoted DML Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isQuotedDDLSupported <em>Quoted DDL Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isEventSupported <em>Event Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -226,6 +231,16 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected NicknameDefinition nicknameDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getDebuggerDefinition() <em>Debugger Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDebuggerDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected DebuggerDefinition debuggerDefinition = null;
 
 	/**
 	 * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
@@ -646,6 +661,66 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected boolean quotedDDLSupported = QUOTED_DDL_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isEventSupported() <em>Event Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEventSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean EVENT_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isEventSupported() <em>Event Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isEventSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean eventSupported = EVENT_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSqlUDFSupported() <em>Sql UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSqlUDFSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SQL_UDF_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSqlUDFSupported() <em>Sql UDF Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSqlUDFSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sqlUDFSupported = SQL_UDF_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isStoredProcedureSupported() <em>Stored Procedure Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStoredProcedureSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean STORED_PROCEDURE_SUPPORTED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isStoredProcedureSupported() <em>Stored Procedure Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isStoredProcedureSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean storedProcedureSupported = STORED_PROCEDURE_SUPPORTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1104,6 +1179,69 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		quotedDDLSupported = newQuotedDDLSupported;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED, oldQuotedDDLSupported, quotedDDLSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isEventSupported() {
+		return eventSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEventSupported(boolean newEventSupported) {
+		boolean oldEventSupported = eventSupported;
+		eventSupported = newEventSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED, oldEventSupported, eventSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSqlUDFSupported() {
+		return sqlUDFSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSqlUDFSupported(boolean newSqlUDFSupported) {
+		boolean oldSqlUDFSupported = sqlUDFSupported;
+		sqlUDFSupported = newSqlUDFSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED, oldSqlUDFSupported, sqlUDFSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isStoredProcedureSupported() {
+		return storedProcedureSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoredProcedureSupported(boolean newStoredProcedureSupported) {
+		boolean oldStoredProcedureSupported = storedProcedureSupported;
+		storedProcedureSupported = newStoredProcedureSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED, oldStoredProcedureSupported, storedProcedureSupported));
 	}
 
 	/**
@@ -1651,6 +1789,49 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DebuggerDefinition getDebuggerDefinition() {
+		return debuggerDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDebuggerDefinition(DebuggerDefinition newDebuggerDefinition, NotificationChain msgs) {
+		DebuggerDefinition oldDebuggerDefinition = debuggerDefinition;
+		debuggerDefinition = newDebuggerDefinition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, oldDebuggerDefinition, newDebuggerDefinition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDebuggerDefinition(DebuggerDefinition newDebuggerDefinition) {
+		if (newDebuggerDefinition != debuggerDefinition) {
+			NotificationChain msgs = null;
+			if (debuggerDefinition != null)
+				msgs = ((InternalEObject)debuggerDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, null, msgs);
+			if (newDebuggerDefinition != null)
+				msgs = ((InternalEObject)newDebuggerDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, null, msgs);
+			msgs = basicSetDebuggerDefinition(newDebuggerDefinition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, newDebuggerDefinition, newDebuggerDefinition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
@@ -1682,6 +1863,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 					return basicSetSQLSyntaxDefinition(null, msgs);
 				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 					return basicSetNicknameDefinition(null, msgs);
+				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+					return basicSetDebuggerDefinition(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -1724,6 +1907,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return getSQLSyntaxDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				return getNicknameDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				return getDebuggerDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return getVendor();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -1766,6 +1951,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return isQuotedDMLSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				return isQuotedDDLSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				return isEventSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				return isSqlUDFSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				return isStoredProcedureSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -1820,6 +2011,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				setNicknameDefinition((NicknameDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				setDebuggerDefinition((DebuggerDefinition)newValue);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor((String)newValue);
@@ -1884,6 +2078,15 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				setQuotedDDLSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				setEventSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				setSqlUDFSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				setStoredProcedureSupported(((Boolean)newValue).booleanValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -1936,6 +2139,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				setNicknameDefinition((NicknameDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				setDebuggerDefinition((DebuggerDefinition)null);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor(VENDOR_EDEFAULT);
@@ -2000,6 +2206,15 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				setQuotedDDLSupported(QUOTED_DDL_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				setEventSupported(EVENT_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				setSqlUDFSupported(SQL_UDF_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				setStoredProcedureSupported(STORED_PROCEDURE_SUPPORTED_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -2039,6 +2254,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return sqlSyntaxDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				return nicknameDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				return debuggerDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -2081,6 +2298,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return quotedDMLSupported != QUOTED_DML_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				return quotedDDLSupported != QUOTED_DDL_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				return eventSupported != EVENT_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				return sqlUDFSupported != SQL_UDF_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				return storedProcedureSupported != STORED_PROCEDURE_SUPPORTED_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -2136,6 +2359,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		result.append(quotedDMLSupported);
 		result.append(", quotedDDLSupported: "); //$NON-NLS-1$
 		result.append(quotedDDLSupported);
+		result.append(", eventSupported: "); //$NON-NLS-1$
+		result.append(eventSupported);
+		result.append(", sqlUDFSupported: "); //$NON-NLS-1$
+		result.append(sqlUDFSupported);
+		result.append(", storedProcedureSupported: "); //$NON-NLS-1$
+		result.append(storedProcedureSupported);
 		result.append(')');
 		return result.toString();
 	}

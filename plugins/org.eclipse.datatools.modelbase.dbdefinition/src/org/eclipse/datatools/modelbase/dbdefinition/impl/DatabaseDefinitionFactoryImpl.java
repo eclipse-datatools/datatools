@@ -57,6 +57,7 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 			case DatabaseDefinitionPackage.QUERY_DEFINITION: return createQueryDefinition();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION: return createSQLSyntaxDefinition();
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION: return createNicknameDefinition();
+			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION: return createDebuggerDefinition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -304,6 +305,16 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public NicknameDefinition createNicknameDefinition() {
 		NicknameDefinitionImpl nicknameDefinition = new NicknameDefinitionImpl();
 		return nicknameDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DebuggerDefinition createDebuggerDefinition() {
+		DebuggerDefinitionImpl debuggerDefinition = new DebuggerDefinitionImpl();
+		return debuggerDefinition;
 	}
 
 	/**

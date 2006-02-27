@@ -108,6 +108,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/queryDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/SQLSyntaxDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/nicknameDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/debuggerDefinition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/vendor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constraintsSupported"/>
@@ -129,6 +130,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/nicknameSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/quotedDMLSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/quotedDDLSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/eventSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/sqlUDFSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/storedProcedureSupported"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//PredefinedDataTypeDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSupported"/>
@@ -282,6 +286,9 @@
     <genClasses ecoreClass="dbdefinition.ecore#//NicknameDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//NicknameDefinition/constraintSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//NicknameDefinition/indexSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//DebuggerDefinition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DebuggerDefinition/conditionSupported"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

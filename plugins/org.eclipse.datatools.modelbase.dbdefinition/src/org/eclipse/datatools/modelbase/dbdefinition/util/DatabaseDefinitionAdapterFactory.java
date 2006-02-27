@@ -118,6 +118,9 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 			public Object caseNicknameDefinition(NicknameDefinition object) {
 				return createNicknameDefinitionAdapter();
 			}
+			public Object caseDebuggerDefinition(DebuggerDefinition object) {
+				return createDebuggerDefinitionAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -343,6 +346,20 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNicknameDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition <em>Debugger Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition
+	 * @generated
+	 */
+	public Adapter createDebuggerDefinitionAdapter() {
 		return null;
 	}
 

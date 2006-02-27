@@ -33,6 +33,8 @@
         eType="#//SQLSyntaxDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nicknameDefinition" lowerBound="1"
         eType="#//NicknameDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="debuggerDefinition" lowerBound="1"
+        eType="#//DebuggerDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintsSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -64,6 +66,10 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quotedDDLSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sqlUDFSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storedProcedureSupported"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredefinedDataTypeDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lengthSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -368,5 +374,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="NicknameDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DebuggerDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -201,13 +201,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION = 13;
 
 	/**
+	 * The feature id for the '<em><b>Debugger Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = 14;
+
+	/**
 	 * The feature id for the '<em><b>Vendor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VENDOR = 14;
+	int DATABASE_VENDOR_DEFINITION__VENDOR = 15;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -216,7 +225,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VERSION = 15;
+	int DATABASE_VENDOR_DEFINITION__VERSION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Constraints Supported</b></em>' attribute.
@@ -225,7 +234,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 16;
+	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 17;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
@@ -234,7 +243,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 17;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 18;
 
 	/**
 	 * The feature id for the '<em><b>Trigger Supported</b></em>' attribute.
@@ -243,7 +252,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 18;
+	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 19;
 
 	/**
 	 * The feature id for the '<em><b>Snapshot View Supported</b></em>' attribute.
@@ -252,7 +261,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 19;
+	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 20;
 
 	/**
 	 * The feature id for the '<em><b>Join Supported</b></em>' attribute.
@@ -261,7 +270,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 20;
+	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 21;
 
 	/**
 	 * The feature id for the '<em><b>View Trigger Supported</b></em>' attribute.
@@ -270,7 +279,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 21;
+	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Tablespaces Supported</b></em>' attribute.
@@ -279,7 +288,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 22;
+	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 23;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Comment Length</b></em>' attribute.
@@ -288,7 +297,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 23;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 24;
 
 	/**
 	 * The feature id for the '<em><b>Sequence Supported</b></em>' attribute.
@@ -297,7 +306,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 24;
+	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 25;
 
 	/**
 	 * The feature id for the '<em><b>MQT Supported</b></em>' attribute.
@@ -306,7 +315,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 25;
+	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 26;
 
 	/**
 	 * The feature id for the '<em><b>Schema Supported</b></em>' attribute.
@@ -315,7 +324,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 26;
+	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 27;
 
 	/**
 	 * The feature id for the '<em><b>Alias Supported</b></em>' attribute.
@@ -324,7 +333,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 27;
+	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 28;
 
 	/**
 	 * The feature id for the '<em><b>Synonym Supported</b></em>' attribute.
@@ -333,7 +342,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 28;
+	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 29;
 
 	/**
 	 * The feature id for the '<em><b>User Defined Type Supported</b></em>' attribute.
@@ -342,7 +351,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 29;
+	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 30;
 
 	/**
 	 * The feature id for the '<em><b>Domain Supported</b></em>' attribute.
@@ -351,7 +360,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 30;
+	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 31;
 
 	/**
 	 * The feature id for the '<em><b>SQL Statement Supported</b></em>' attribute.
@@ -360,7 +369,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 31;
+	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 32;
 
 	/**
 	 * The feature id for the '<em><b>Nickname Supported</b></em>' attribute.
@@ -369,7 +378,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 32;
+	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 33;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DML Supported</b></em>' attribute.
@@ -378,7 +387,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 33;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 34;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DDL Supported</b></em>' attribute.
@@ -387,7 +396,34 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 34;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 35;
+
+	/**
+	 * The feature id for the '<em><b>Event Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = 36;
+
+	/**
+	 * The feature id for the '<em><b>Sql UDF Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = 37;
+
+	/**
+	 * The feature id for the '<em><b>Stored Procedure Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 38;
 
 	/**
 	 * The number of structural features of the the '<em>Database Vendor Definition</em>' class.
@@ -396,7 +432,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 35;
+	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
@@ -1790,6 +1826,34 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int NICKNAME_DEFINITION_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl <em>Debugger Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDebuggerDefinition()
+	 * @generated
+	 */
+	int DEBUGGER_DEFINITION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Condition Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEBUGGER_DEFINITION__CONDITION_SUPPORTED = 0;
+
+	/**
+	 * The number of structural features of the the '<em>Debugger Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEBUGGER_DEFINITION_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.CheckOption <em>Check Option</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1797,7 +1861,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getCheckOption()
 	 * @generated
 	 */
-	int CHECK_OPTION = 15;
+	int CHECK_OPTION = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType <em>Default Value Type</em>}' enum.
@@ -1807,7 +1871,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDefaultValueType()
 	 * @generated
 	 */
-	int DEFAULT_VALUE_TYPE = 16;
+	int DEFAULT_VALUE_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType <em>Language Type</em>}' enum.
@@ -1817,7 +1881,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLanguageType()
 	 * @generated
 	 */
-	int LANGUAGE_TYPE = 17;
+	int LANGUAGE_TYPE = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle <em>Parameter Style</em>}' enum.
@@ -1827,7 +1891,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParameterStyle()
 	 * @generated
 	 */
-	int PARAMETER_STYLE = 18;
+	int PARAMETER_STYLE = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}' enum.
@@ -1837,7 +1901,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentDeleteDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_DELETE_DRI_RULE_TYPE = 19;
+	int PARENT_DELETE_DRI_RULE_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}' enum.
@@ -1847,7 +1911,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentUpdateDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_UPDATE_DRI_RULE_TYPE = 20;
+	int PARENT_UPDATE_DRI_RULE_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ProcedureType <em>Procedure Type</em>}' enum.
@@ -1857,7 +1921,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getProcedureType()
 	 * @generated
 	 */
-	int PROCEDURE_TYPE = 21;
+	int PROCEDURE_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType <em>Table Space Type</em>}' enum.
@@ -1867,7 +1931,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableSpaceType()
 	 * @generated
 	 */
-	int TABLE_SPACE_TYPE = 22;
+	int TABLE_SPACE_TYPE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology <em>Percent Free Terminology</em>}' enum.
@@ -1877,7 +1941,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPercentFreeTerminology()
 	 * @generated
 	 */
-	int PERCENT_FREE_TERMINOLOGY = 23;
+	int PERCENT_FREE_TERMINOLOGY = 24;
 
 
 	/**
@@ -1888,7 +1952,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLengthUnit()
 	 * @generated
 	 */
-	int LENGTH_UNIT = 24;
+	int LENGTH_UNIT = 25;
 
 
 	/**
@@ -2133,6 +2197,39 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getDatabaseVendorDefinition_QuotedDDLSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Event Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_EventSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported <em>Sql UDF Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sql UDF Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_SqlUDFSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported <em>Stored Procedure Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Stored Procedure Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_StoredProcedureSupported();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2285,6 +2382,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EReference getDatabaseVendorDefinition_NicknameDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Debugger Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EReference getDatabaseVendorDefinition_DebuggerDefinition();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition <em>Predefined Data Type Definition</em>}'.
@@ -3789,6 +3897,27 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getNicknameDefinition_IndexSupported();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition <em>Debugger Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Debugger Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition
+	 * @generated
+	 */
+	EClass getDebuggerDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition#isConditionSupported <em>Condition Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition#isConditionSupported()
+	 * @see #getDebuggerDefinition()
+	 * @generated
+	 */
+	EAttribute getDebuggerDefinition_ConditionSupported();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition#getDefaultDataTypeDefinition <em>Default Data Type Definition</em>}'.
