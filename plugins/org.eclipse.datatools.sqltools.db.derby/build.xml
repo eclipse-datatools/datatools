@@ -42,16 +42,22 @@
 			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="${eclipse.home}/plugins">
-			<include name="org.eclipse.core.runtime_*.jar"/>
-			<include name="org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.ui_*.jar"/>
 			<include name="org.eclipse.swt_*.jar"/>
 			<include name="org.eclipse.swt.*_*.jar"/>
 			<include name="org.eclipse.jface_*.jar"/>
 			<include name="org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*.jar"/>
+			<include name="org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.jface.text_*.jar"/>
 			<include name="org.eclipse.text_*.jar"/>
+			<include name="org.eclipse.ui.editors_*.jar"/>
+			<include name="org.eclipse.core.filebuffers_*.jar"/>
+			<include name="org.eclipse.ui.views_*.jar"/>
+			<include name="org.eclipse.ui.workbench.texteditor_*.jar"/>
+			<include name="org.eclipse.core.resources_*.jar"/>
+			<include name="org.eclipse.debug.core_*.jar"/>
 			<!-- Include jared EMF plug-ins -->
 			<include name="org.eclipse.emf.ecore_*.jar"/>
 			<include name="org.eclipse.emf.common_*.jar"/>
@@ -60,16 +66,22 @@
 			<include name="org.eclipse.emf.ecore.xmi_*.jar"/>
 			<include name="org.eclipse.emf.ecore.change_*.jar"/>
 			<!-- Include expanded plug-ins -->
-			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
-			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.ui_*/org.eclipse.ui_*.jar"/>
 			<include name="org.eclipse.swt_*/org.eclipse.swt_*.jar"/>
 			<include name="org.eclipse.swt.*_*/org.eclipse.swt.*_*.jar"/>
 			<include name="org.eclipse.jface_*/org.eclipse.jface_*.jar"/>
 			<include name="org.eclipse.core.commands_*/org.eclipse.core.commands_*.jar"/>
 			<include name="org.eclipse.ui.workbench_*/org.eclipse.ui.workbench_*.jar"/>
+			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
+			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
 			<include name="org.eclipse.jface.text_*/org.eclipse.jface.text_*.jar"/>
 			<include name="org.eclipse.text_*/org.eclipse.text_*.jar"/>
+			<include name="org.eclipse.ui.editors_*/org.eclipse.ui.editors_*.jar"/>
+			<include name="org.eclipse.core.filebuffers_*/org.eclipse.core.filebuffers_*.jar"/>
+			<include name="org.eclipse.ui.views_*/org.eclipse.ui.views_*.jar"/>
+			<include name="org.eclipse.ui.workbench.texteditor_*/org.eclipse.ui.workbench.texteditor_*.jar"/>
+			<include name="org.eclipse.core.resources_*/org.eclipse.core.resources_*.jar"/>
+			<include name="org.eclipse.debug.core_*/org.eclipse.debug.core_*.jar"/>
 			<!-- Include expanded EMF plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
