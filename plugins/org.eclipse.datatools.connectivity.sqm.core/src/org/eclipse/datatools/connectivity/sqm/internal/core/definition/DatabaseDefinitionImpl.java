@@ -34,6 +34,7 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCProvide
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
@@ -1252,6 +1253,26 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		else {
 			return false;
 		}
+	}
+	
+	public boolean supportsEvents() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isEventSupported();
+	}
+		
+	public boolean supportsSQLUDFs() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isSqlUDFSupported();
+	}
+		
+	public boolean supportsStoredProcedures() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isStoredProcedureSupported();
+	}
+		
+	public DebuggerDefinition getDebuggerDefinition() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.getDebuggerDefinition();
 	}
 	
 	private DatabaseVendorDefinition loadDatabaseDefinition() {
