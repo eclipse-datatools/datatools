@@ -58,6 +58,7 @@
 			<include name="org.eclipse.ui.workbench.texteditor_*.jar"/>
 			<include name="org.eclipse.core.resources_*.jar"/>
 			<include name="org.eclipse.debug.core_*.jar"/>
+			<include name="org.eclipse.ui.ide_*.jar"/>
 			<!-- Include jared EMF plug-ins -->
 			<include name="org.eclipse.emf.ecore_*.jar"/>
 			<include name="org.eclipse.emf.common_*.jar"/>
@@ -82,6 +83,7 @@
 			<include name="org.eclipse.ui.workbench.texteditor_*/org.eclipse.ui.workbench.texteditor_*.jar"/>
 			<include name="org.eclipse.core.resources_*/org.eclipse.core.resources_*.jar"/>
 			<include name="org.eclipse.debug.core_*/org.eclipse.debug.core_*.jar"/>
+			<include name="org.eclipse.ui.ide_*/org.eclipse.ui.ide_*.jar"/>
 			<!-- Include expanded EMF plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
