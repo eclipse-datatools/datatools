@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.5 2006/02/21 11:20:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -121,20 +121,20 @@ public interface OdaDesignSession extends EObject
     void setResponseInCancelledState();
     
     /**
-     * Gets the Data Source Design associated with the
-     * top level Data Set in the Request session.
+     * Obtains the Data Source Design associated with the
+     * top-level Data Set in the Request session.
      * @return the value of the '<em>Data Source Design</em>' containment reference;
-     *          could be null if none is specified.
+     *          may be null if none is specified.
      * @see #getRequest()
      * @generated NOT
      */
     DataSourceDesign getRequestDataSourceDesign();
     
     /**
-     * Gets the Data Set Design associated with the
+     * Obtains the top-level Data Set Design associated with the
      * Request session.
      * @return the value of the '<em>Data Set Design</em>' containment reference;
-     *          could be null if none is specified.
+     *          may be null if none is specified.
      * @see #getRequest()
      * @generated NOT
      */

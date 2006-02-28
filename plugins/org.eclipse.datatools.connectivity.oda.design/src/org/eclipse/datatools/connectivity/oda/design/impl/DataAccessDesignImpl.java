@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataAccessDesignImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: DataAccessDesignImpl.java,v 1.3 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -54,6 +54,11 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
     public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
     /**
+     * @generated NOT
+     */
+    public static final String EMPTY_STR = ""; //$NON-NLS-1$
+    
+    /**
      * The cached value of the '{@link #getDataSetDesign() <em>Data Set Design</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -85,6 +90,7 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getOdaExtensionDataSourceId()
+     * @generated NOT
      */
     public String getOdaExtensionDataSourceId()
     {
@@ -95,6 +101,7 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#getDataSourceDesign()
+     * @generated NOT
      */
     public DataSourceDesign getDataSourceDesign()
     {
@@ -106,6 +113,7 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataAccessDesign#setNewDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
      */
     public void setNewDataSetDesign( DataSourceDesign dataSourceDesign )
     {
@@ -114,8 +122,13 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
         
         DataSetDesign newDataSet =
             DesignFactory.eINSTANCE.createDataSetDesign();
+        // set empty strings for required attributes in data set design
+        newDataSet.setName( EMPTY_STR );
+        newDataSet.setNewQuery( EMPTY_STR );
+
+        // associate the given data source design to the empty data set
         newDataSet.setDataSourceDesign( dataSourceDesign );
-        
+
         setDataSetDesign( newDataSet );
     }
 

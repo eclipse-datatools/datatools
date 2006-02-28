@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequest.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: DesignSessionRequest.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -47,6 +47,26 @@ public interface DesignSessionRequest extends EObject
      * @generated
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Obtains the Data Source Design associated with the
+     * top level Data Set in this Request session.
+     * @return the value of the '<em>Data Source Design</em>' containment reference;
+     *          may be null if none is specified.
+     * @see #getDataAccessDesign()
+     * @generated NOT
+     */
+    DataSourceDesign getDataSourceDesign();
+    
+    /**
+     * Obtains the top-level Data Set Design associated with this
+     * Request session.
+     * @return the value of the '<em>Data Set Design</em>' containment reference;
+     *          may be null if none is specified.
+     * @see #getDataAccessDesign()
+     * @generated NOT
+     */
+    DataSetDesign getDataSetDesign();
 
     /**
      * Returns the value of the '<em><b>Data Access Design</b></em>' containment reference.

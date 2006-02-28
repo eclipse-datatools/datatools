@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequestImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: DesignSessionRequestImpl.java,v 1.2 2006/02/03 04:16:16 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -32,6 +33,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * <!-- begin-user-doc -->
@@ -139,14 +142,41 @@ public class DesignSessionRequestImpl extends EObjectImpl implements DesignSessi
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#setNewDataAccessDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
      */
     public void setNewDataAccessDesign( DataSourceDesign dataSourceDesign )
     {
+        setSessionLocale( createDefaultLocale() );
+
         DataAccessDesign newAccessDesign =
             DesignFactory.eINSTANCE.createDataAccessDesign();
         newAccessDesign.setNewDataSetDesign( dataSourceDesign );
         
         setDataAccessDesign( newAccessDesign );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#getDataSourceDesign()
+     * @generated NOT
+     */
+    public DataSourceDesign getDataSourceDesign()
+    {
+        if( getDataSetDesign() == null )
+            return null;
+            
+        return getDataSetDesign().getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#getDataSetDesign()
+     * @generated NOT
+     */
+    public DataSetDesign getDataSetDesign()
+    {
+        if( getDataAccessDesign() == null )
+            return null;
+            
+        return getDataAccessDesign().getDataSetDesign();
     }
 
     /**
@@ -248,11 +278,27 @@ public class DesignSessionRequestImpl extends EObjectImpl implements DesignSessi
     }
 
     /**
+     * Returns the current session's locale.
+     * If none is specified, returns the system default locale.
+     * @generated NOT
+     */
+    public Locale getSessionLocale()
+    {
+        Locale sessionLocale = getSessionLocaleGen();
+        if( sessionLocale != null )
+            return sessionLocale;
+        
+        sessionLocale = DesignFactory.eINSTANCE.createLocale();
+        sessionLocale.setLocale( ULocale.getDefault() );
+        return sessionLocale;        
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public Locale getSessionLocale()
+    public Locale getSessionLocaleGen()
     {
         return m_sessionLocale;
     }
@@ -473,6 +519,19 @@ public class DesignSessionRequestImpl extends EObjectImpl implements DesignSessi
         if (m_editableESet) result.append(m_editable); else result.append("<unset>"); //$NON-NLS-1$
         result.append(')');
         return result.toString();
+    }
+    
+    /**
+     * Creates and returns a Locale instance with the 
+     * default system locale settings.
+     * @return  a Locale instance with the system default locale settings
+     * @generated NOT
+     */
+    protected Locale createDefaultLocale()
+    {
+        Locale sessionLocale = DesignFactory.eINSTANCE.createLocale();
+        sessionLocale.setLocale( ULocale.getDefault() );
+        return sessionLocale;
     }
 
 } //DesignSessionRequestImpl

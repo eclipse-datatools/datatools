@@ -11,11 +11,12 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionResponseImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DesignSessionResponseImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -128,6 +129,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse#setNewDataAccessDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
      */
     public void setNewDataAccessDesign( DataSourceDesign dataSourceDesign )
     {
@@ -136,6 +138,30 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
         newAccessDesign.setNewDataSetDesign( dataSourceDesign );
         
         setDataAccessDesign( newAccessDesign );        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse#getDataSourceDesign()
+     * @generated NOT
+     */
+    public DataSourceDesign getDataSourceDesign()
+    {
+        if( getDataSetDesign() == null )
+            return null;
+            
+        return getDataSetDesign().getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse#getDataSetDesign()
+     * @generated NOT
+     */
+    public DataSetDesign getDataSetDesign()
+    {
+        if( getDataAccessDesign() == null )
+            return null;
+            
+        return getDataAccessDesign().getDataSetDesign();
     }
 
     /**

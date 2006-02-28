@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.4 2006/02/21 11:20:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -145,11 +145,10 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public DataSourceDesign getRequestDataSourceDesign()
     {
-        if( getRequest() == null ||
-            getRequest().getDataAccessDesign() == null )
+        if( getRequest() == null )
             return null;
         
-        return getRequest().getDataAccessDesign().getDataSourceDesign();
+        return getRequest().getDataSourceDesign();
     }
 
     /* (non-Javadoc)
@@ -158,11 +157,10 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public DataSetDesign getRequestDataSetDesign()
     {
-        if( getRequest() == null ||
-            getRequest().getDataAccessDesign() == null )
+        if( getRequest() == null )
             return null;
         
-        return getRequest().getDataAccessDesign().getDataSetDesign();
+        return getRequest().getDataSetDesign();
     }
 
     /* (non-Javadoc)
@@ -171,11 +169,10 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public DataSourceDesign getResponseDataSourceDesign()
     {
-        if( getResponse() == null ||
-            getResponse().getDataAccessDesign() == null )
+        if( getResponse() == null )
             return null;
         
-        return getResponse().getDataAccessDesign().getDataSourceDesign();
+        return getResponse().getDataSourceDesign();
     }
 
     /* (non-Javadoc)
@@ -184,11 +181,10 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public DataSetDesign getResponseDataSetDesign()
     {
-        if( getResponse() == null ||
-            getResponse().getDataAccessDesign() == null )
+        if( getResponse() == null )
             return null;
         
-        return getResponse().getDataAccessDesign().getDataSetDesign();
+        return getResponse().getDataSetDesign();
     }
 
     /**

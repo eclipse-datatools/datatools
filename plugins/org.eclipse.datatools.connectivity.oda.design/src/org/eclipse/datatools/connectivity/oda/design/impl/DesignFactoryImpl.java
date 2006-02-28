@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.3 2006/02/21 11:20:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -1025,6 +1025,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createDesignSessionRequest(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     * @generated NOT
+     */
+    public DesignSessionRequest createDesignSessionRequest( DataSourceDesign dataSourceDesign )
+    {
+        DesignSessionRequest newRequest = createDesignSessionRequest();
+        newRequest.setNewDataAccessDesign( dataSourceDesign );
+        return newRequest;
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createRequestDesignSession(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      * @generated NOT
      */
@@ -1048,5 +1059,5 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         newSession.setNewResponse( isSessionOk, dataSourceDesign );
         return newSession;
     }
-  
+    
 } //DesignFactoryImpl
