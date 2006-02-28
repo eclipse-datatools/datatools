@@ -16,7 +16,6 @@ package org.eclipse.datatools.connectivity.oda.design.ui.wizards;
 
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore;
 import org.eclipse.swt.widgets.Composite;
@@ -50,25 +49,25 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
      */
     public abstract Properties collectCustomProperties( Properties profileProps );
 
-    /**
-     * Sub-class may override this method to further update
-     * the given data source design, as needed.
-     * <br>Examples of data source design updates include 
-     * setting its private properties,
-     * and a property's design attributes specified dynamically 
-     * per data source instance.
-     * <br>This method is called when performing finish on a
-     * data source editing session.
-     * @param design
-     * @return
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      */
     protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
-        // sub-class may override, and update the given data source design
+        // default implementation does nothing;
+        // sub-class may override to update the given data source design
         return design;
     }
-
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#cleanup()
+     */
+    protected void cleanup()
+    {
+        // default implementation does nothing;
+        // sub-class may override        
+    }
+
     public DataSourceEditorPage()
     {
         super();
@@ -92,28 +91,6 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
         Properties props = getDataSourceProperties();
         // calls abstract method provided by custom page extension
         return collectCustomProperties( props );
-    }
-
-    /**
-     * Performs finish on the current ODA design session to
-     * edit a data source design definition.
-     * Calls subclass extended method to provide further
-     * updates to the data source design definition.
-     * @return  a new instance of edited data source design definition
-     * @throws OdaException
-     */
-    protected DataSourceDesign finishEditDataSource()
-        throws OdaException
-    {
-        // gets a copy of the data source design, and updates
-        // with the pubic properties collected by
-        // this editor page
-        DataSourceDesign editedDesign = super.finishEditDataSource();
-
-        // let subclass implementation further specifies the data source design
-        editedDesign = 
-            collectDataSourceDesign( editedDesign );
-        return editedDesign;
     }
     
 }

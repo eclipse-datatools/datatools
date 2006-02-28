@@ -56,24 +56,26 @@ public abstract class DataSourceWizardPage extends DataSourceWizardPageCore
      */
     public abstract Properties collectCustomProperties();
 
-    /**
-     * Sub-class may override the method to further update
-     * the given data source design, as needed.
-     * <br>Examples of data source design updates include 
-     * setting its private properties,
-     * and a property's design attributes specified dynamically 
-     * per data source instance.
-     * <br>This method is called when the wizard performs finish.
-     * @param design
-     * @return
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      */
-    public DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
+    protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
-        // sub-class may override
+        // default implementation does nothing;
+        // sub-class may override to update the given data source design
         return design;
     }
 
-    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#cleanup()
+     */
+    protected void cleanup()
+    {
+        // default implementation does nothing;
+        // sub-class may override
+    }
+
     /**
      * Constructor with single argument for wizard page name.
      * This single-argument constructor is used by the 

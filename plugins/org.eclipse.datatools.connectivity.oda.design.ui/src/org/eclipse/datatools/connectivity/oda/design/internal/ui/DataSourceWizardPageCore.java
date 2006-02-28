@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -29,7 +31,28 @@ import org.eclipse.jface.wizard.IWizardPage;
 public abstract class DataSourceWizardPageCore extends
         ConnectionProfileDetailsPage
 {
+    /**
+     * Sub-class may override the method to further update
+     * the given data source design, as needed.
+     * <br>Examples of custom data source design updates include 
+     * setting its private properties, and
+     * dynamically define a property's design attributes  
+     * per design instance.
+     * <br>This method is called when the wizard performs finish.
+     * @param design    a data source design instance for further updates
+     * @return  the updated data source design instance
+     */
+    protected abstract DataSourceDesign collectDataSourceDesign( 
+                                    DataSourceDesign design );
 
+    /**
+     * Cleans up before the page is disposed.
+     * Default implementation does nothing.  Sub-class
+     * may override to clean up custom operations such as
+     * closing a connection.
+     */
+    protected abstract void cleanup();
+    
     /*
      * Implements base class constructor.
      */
@@ -69,6 +92,33 @@ public abstract class DataSourceWizardPageCore extends
         if( getWizard() instanceof NewDataSourceWizardBase )
             return (NewDataSourceWizardBase) getWizard();
         return null;
+    }
+    
+    /**
+     * Performs finish to
+     * create a new data source design instance.
+     * Calls a subclass extended method to provide further
+     * updates to the given data source design instance.
+     * @return  the updated data source design instance
+     * @throws OdaException
+     */
+    public DataSourceDesign finishDataSourceDesign(
+                                DataSourceDesign design )
+        throws OdaException
+    {
+        // calls abstract method provided by custom extension
+        // to further specify its data source design
+        return collectDataSourceDesign( design );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+     */
+    public void dispose()
+    {
+        // calls abstract method provided by custom extension
+        cleanup();
+        super.dispose();
     }
 
 }

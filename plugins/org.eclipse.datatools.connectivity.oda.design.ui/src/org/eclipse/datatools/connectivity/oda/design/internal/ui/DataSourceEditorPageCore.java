@@ -39,6 +39,30 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private OdaDesignSession m_designSession;
     private Properties m_dataSourceProps;
 
+    /**
+     * Sub-class may override this method to further update
+     * the given data source design, as needed.
+     * <br>Examples of custom data source design updates include 
+     * setting its private properties, and
+     * dynamically define a property's design attributes  
+     * per design instance.
+     * <br>This method is called when performing finish on a
+     * data source editing session.
+     * @param design    a data source design instance for further updates
+     * @return  the updated data source design instance
+     */
+    protected abstract DataSourceDesign collectDataSourceDesign( 
+                                    DataSourceDesign design );
+
+    /**
+     * Cleans up before the page is disposed.
+     * Default implementation does nothing.  Sub-class
+     * may override to clean up custom operations such as
+     * closing a connection.
+     */
+    protected abstract void cleanup();
+
+    
     protected DataSourceEditorPageCore()
     {
         super();
@@ -235,7 +259,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         DataSourceDesign editedDataSource = null;
         try
         {
-            editedDataSource = finishEditDataSource();
+            editedDataSource = finishDataSourceDesign();
         }
         catch( OdaException e )
         {
@@ -250,14 +274,16 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         m_designSession.setNewResponse( isSessionOk, editedDataSource );
         return isSessionOk;
     }
-
+    
     /**
      * Performs finish on the current ODA design session to
-     * edit a data source design definition.
-     * @return  a new instance of edited data source design definition
+     * edit a data source design instance.
+     * Calls subclass extended method to provide further
+     * updates to the data source design instance.
+     * @return  the edited data source design instance
      * @throws OdaException
      */
-    protected DataSourceDesign finishEditDataSource()
+    protected DataSourceDesign finishDataSourceDesign()
         throws OdaException
     {
         if( ! isInOdaDesignSession() )
@@ -272,7 +298,20 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
                 DesignSessionUtil.createDataSourcePublicProperties( 
                         editedDesign.getOdaExtensionDataSourceId(),
                         collectProperties() ));
-        return editedDesign;
+
+        // calls abstract method provided by custom extension
+        // to further specify its data source design
+        return collectDataSourceDesign( editedDesign );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+     */
+    public void dispose()
+    {
+        // calls abstract method provided by custom extension
+        cleanup();
+        super.dispose();
     }
 
 }

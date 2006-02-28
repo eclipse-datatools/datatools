@@ -435,7 +435,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         }
         
         // let subclass implementation further specifies the data source design
-        return getCustomWizardPage().collectDataSourceDesign( newDesign );
+        return getCustomWizardPage().finishDataSourceDesign( newDesign );
     }
     
     /**
