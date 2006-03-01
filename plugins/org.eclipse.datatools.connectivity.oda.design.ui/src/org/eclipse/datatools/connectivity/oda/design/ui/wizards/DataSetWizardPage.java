@@ -30,8 +30,6 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class DataSetWizardPage extends DataSetWizardPageCore
 {
-    private DataSetDesign m_dataSetDesign;
-    
     /**
      * Creates customized control for this wizard page under the
      * given parent composite.
@@ -48,18 +46,26 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
      */
     public abstract void setInitialDesign( DataSetDesign dataSetDesign );
 
-    /**
-     * Returns the updated data set design instance with values 
-     * collected in the custom wizard page(s).
-     * <br>This method is called when the wizard performs finish.
-     * @return
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
      */
-    public DataSetDesign collectDataSetDesign()
+    protected DataSetDesign collectDataSetDesign( DataSetDesign design )
     {
-        // TODO
-        return m_dataSetDesign;
+        // default implementation does nothing;
+        // sub-class may override to update the given data set design
+        return design;
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#cleanup()
+     */
+    protected void cleanup()
+    {
+        // default implementation does nothing;
+        // sub-class may override
+    }
+
     /**
      * Constructor with single argument for wizard page name.
      * This single-argument constructor is used by the 

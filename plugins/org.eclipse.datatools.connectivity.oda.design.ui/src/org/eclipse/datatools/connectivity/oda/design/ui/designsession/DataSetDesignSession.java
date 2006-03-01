@@ -15,14 +15,17 @@
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DataSourceDesignSession.ProfileReference;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 
 /**
- * A design session for use by an ODA host designer
- * to create or edit an extended ODA data set design instance.
+ * An UI design session for use by an ODA host designer
+ * to interact and communicate with custom ODA UI extensions to
+ * create or edit an extended ODA data set design instance.
  */
 public class DataSetDesignSession
 {
@@ -32,18 +35,45 @@ public class DataSetDesignSession
      * data set design instance with the given name.
      * <br>This supports a simplified request for an editable session, 
      * using the default system locale.
-     * @param odaDataSourceId   an ODA data source extension element id 
-     * @param odaDataSetId      an ODA data set element id;
-     *              may be null if the data source extension 
-     *              supports only one type of data set  
-     * @param aDataSetName   a unique name that identifies a data set 
+     * @param newDataSetName   a unique name that identifies a data set 
      *          design instance
+     * @param odaDataSetId      an ODA data set element id;
+     *              may be null if the associated data source extension 
+     *              supports only one type of data set 
+     * @param dataSourceDesign  the associated data source design instance
      * @return  a design session started to create a new data set design
      * @throws OdaException
      */
     public static DataSetDesignSession startNewDesign( 
-            String odaDataSourceId, String odaDataSetId, 
-            String aDataSetName )
+                                String newDataSetName,
+                                String odaDataSetId, 
+                                DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        // TODO 
+        return null;
+    }
+    
+    /**
+     * Restarts the design session to create a new 
+     * data set design instance with the given name
+     * for the given ODA data set type.
+     * <br>Restarting a design session on the same 
+     * ODA data set type would preserve any
+     * user edits made on the session's custom wizard page.
+     * @param newDataSetName   a unique name that identifies a data set 
+     *          design instance
+     * @param odaDataSetId      an ODA data set element id;
+     *              may be null if the associated data source extension 
+     *              supports only one type of data set 
+     * @param dataSourceDesign  the associated data source design instance
+     * @throws OdaException
+     * @see #startNewDesign(String, String, ProfileReference, DesignSessionRequest)
+     */
+    public static DataSetDesignSession restartNewDesign( 
+                                String newDataSetName,
+                                String odaDataSetId, 
+                                DataSourceDesign dataSourceDesign )
         throws OdaException
     {
         // TODO 
@@ -60,7 +90,8 @@ public class DataSetDesignSession
      *          a new design, or edit the requested data set design
      * @throws OdaException
      */
-    public static DataSetDesignSession startRequestedDesign( DesignSessionRequest request )
+    public static DataSetDesignSession startEditDesign( 
+                                DesignSessionRequest request )
         throws OdaException
     {
         // TODO
@@ -72,14 +103,14 @@ public class DataSetDesignSession
      */  
     private DataSetDesignSession()
     {
-        super();
     }
 
     /**
      * Returns the session request that has started
-     * this design session.
+     * this design session.  May return null if none
+     * was used to start this design session.
      * @return  the design session request, which may specify
-     *                  the original data set design to edit
+     *          the original data set design to edit
      */
     public DesignSessionRequest getRequest()
     {
@@ -94,34 +125,24 @@ public class DataSetDesignSession
      * and maps into a session response with the new or updated
      * data set design instance.
      * <br>This method must be called only after the corresponding 
-     * wizard or editor has performed finish.
+     * wizard or editor page has performed finish.
+     * @return  a completed ODA design with the session response
+     *          and the original request, if any.
      */
-    public void finish() throws OdaException
+    public OdaDesignSession finish() throws OdaException
     {
         // TODO 
+        return null;
     }
     
     /**
      * Performs cancel on this design session.
-     * The design session is then cancelled and contains
+     * The design session is then cancelled and returns a
      * session response with a user_cancelled state.
+     * @return  the completed design session containing a
+     *          session response with a user_cancelled state
      */
-    public void cancel()
-    {
-        // TODO
-    }
-    
-    /**
-     * If the design session is finished or cancelled,
-     * returns the completed design session containing a
-     * data set design in the session response;
-     * otherwise, returns null.
-     * <br>A completed response contains the new or updated 
-     * data set design instance, and the designer state. 
-     * @return  a completed ODA design with the session response
-     *          and the original request.
-     */
-    public OdaDesignSession getOdaDesign()
+    public OdaDesignSession cancel()
     {
         // TODO
         return null;

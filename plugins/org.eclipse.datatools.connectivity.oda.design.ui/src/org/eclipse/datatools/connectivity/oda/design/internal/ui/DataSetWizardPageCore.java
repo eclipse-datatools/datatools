@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;
@@ -26,12 +28,39 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class DataSetWizardPageCore extends WizardPage
 {
+    /**
+     * Sub-class may override the method to further update
+     * the given data set design, as needed.
+     * <br>Examples of custom data set design updates include 
+     * setting its data set query parameters, result set definition,
+     * private properties, and
+     * dynamically define a public property's design attributes  
+     * per design instance.
+     * @param design    a data set design instance for further updates
+     * @return  the updated data set design instance
+     */
+    protected abstract DataSetDesign collectDataSetDesign( 
+            DataSetDesign design );
 
+    /**
+     * Cleans up before the page is disposed.
+     * Default implementation does nothing.  Sub-class
+     * may override to clean up custom operations such as
+     * releasing resources associated to its data set query execution.
+     */
+    protected abstract void cleanup();
+   
+    /*
+     * Implements base class constructor.
+     */
     protected DataSetWizardPageCore( String pageName )
     {
         super( pageName );
     }
 
+    /*
+     * Implements base class constructor.
+     */
     protected DataSetWizardPageCore( String pageName, String title,
             ImageDescriptor titleImage )
     {
@@ -44,6 +73,23 @@ public abstract class DataSetWizardPageCore extends WizardPage
     public void createControl( Composite parent )
     {
         // TODO Auto-generated method stub
+    }
+    
+    /**
+     * Performs finish to
+     * create or edit a data set design instance.
+     * Calls a subclass extended method to provide further
+     * updates to the given data set design instance.
+     * @return  the updated data set design instance
+     * @throws OdaException
+     */
+    public DataSetDesign finishDataSetDesign(
+                                DataSetDesign design )
+        throws OdaException
+    {
+        // calls abstract method provided by custom extension
+        // to further specify its data set design
+        return collectDataSetDesign( design );
     }
 
 }
