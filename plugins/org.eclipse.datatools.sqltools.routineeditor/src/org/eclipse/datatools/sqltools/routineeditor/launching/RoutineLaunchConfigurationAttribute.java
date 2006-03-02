@@ -29,7 +29,7 @@ package org.eclipse.datatools.sqltools.routineeditor.launching;
  */
 public interface RoutineLaunchConfigurationAttribute
 {
-    static final String ROUTINE_LAUNCH_CONFIGURATION_TYPE          = "org.eclipse.datatools.sqltools.launching.launchConfigurationType";
+    static final String ROUTINE_LAUNCH_CONFIGURATION_TYPE          = "org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType";
 
     // connection profile
     static final String ROUTINE_LAUNCH_PROFILENAME                 = "org.eclipse.datatools.sqltools.debug.launching.profileName";

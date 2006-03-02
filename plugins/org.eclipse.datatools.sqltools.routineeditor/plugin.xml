@@ -55,6 +55,7 @@
                         <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput"/>
                         <instanceof value="org.eclipse.datatools.sqltools.core.ProcIdentifier"/>
                         <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                        <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
                      </or>
                   </iterate>
                   <count value="1"/>
@@ -91,6 +92,18 @@
 			       </or>
 	            </enablement>
 	         </action>
+	         <action
+	               label="%Routineeditor.run"
+	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
+	               menubarPath="slot2"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction">
+	               <enablement>
+	               <or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+			       </or>
+	            </enablement>
+	         </action>
 	         <visibility>
 			    	<or>
 				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
@@ -106,6 +119,18 @@
 	               menubarPath="slot1"
 	               enablesFor="1"
 	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction">
+	               <enablement>
+	               <or>
+				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+			       </or>
+	            </enablement>
+	         </action>
+	         <action
+	               label="%Routineeditor.run"
+	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
+	               menubarPath="slot2"
+	               enablesFor="1"
+	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction">
 	               <enablement>
 	               <or>
 				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>

@@ -33,6 +33,7 @@ public class EditorPerspective implements IPerspectiveFactory, EditorConstants
         //Left
         IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, 0.25f, editorArea);
         left.addView(EditorConstants.DATA_SOURCE_EXPLORER);
+        left.addView(IPageLayout.ID_RES_NAV);
 
         // Bottom 
         IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.75f, editorArea);

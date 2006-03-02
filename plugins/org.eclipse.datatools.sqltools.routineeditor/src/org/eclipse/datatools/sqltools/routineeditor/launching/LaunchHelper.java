@@ -47,7 +47,7 @@ import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 public class LaunchHelper implements RoutineLaunchConfigurationAttribute
 {
 
-    public static ILaunchConfigurationType getDMPLaunchConfigType()
+    public static ILaunchConfigurationType getLaunchConfigType()
     {
         return DebugPlugin.getDefault().getLaunchManager().getLaunchConfigurationType(ROUTINE_LAUNCH_CONFIGURATION_TYPE);
     }
@@ -66,7 +66,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
     {
         ILaunchConfigurationWorkingCopy wc = null;
 
-        ILaunchConfigurationType configType = getDMPLaunchConfigType();
+        ILaunchConfigurationType configType = getLaunchConfigType();
         wc = configType.newInstance(null, "externalCon" + connid);
         wc.setAttribute(ROUTINE_LAUNCH_PROFILENAME, databaseIdentifier.getProfileName());
         wc.setAttribute(ROUTINE_LAUNCH_DATABASENAME, databaseIdentifier.getDBname());

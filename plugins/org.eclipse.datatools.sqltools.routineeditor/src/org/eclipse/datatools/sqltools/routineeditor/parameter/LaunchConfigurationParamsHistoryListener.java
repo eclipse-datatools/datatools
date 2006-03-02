@@ -66,7 +66,7 @@ public class LaunchConfigurationParamsHistoryListener implements ILaunchConfigur
         // a newly-created launch configuration or renamed configuration
         try
         {
-            if ((configuration.getType() == LaunchHelper.getDMPLaunchConfigType()) && _moveFrom != null)
+            if ((configuration.getType() == LaunchHelper.getLaunchConfigType()) && _moveFrom != null)
             {
                 ArrayList configs = readExistingConfigurations(configuration);
                 if (configs.size() != 0)

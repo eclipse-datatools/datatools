@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLUtility;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.IEditorInput;
@@ -39,9 +40,12 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
         if (document == null) {
             document = new Document("");
         }
-
+        
+        // The connection info is restored in SQLScrapbookEditorInput
 		// Attempt show Message Connection through SQLScrapbookEditorInput		
-        if (element instanceof SQLScrapbookEditorInput) ((SQLScrapbookEditorInput)element).showMessageConnection();		
+        if (element instanceof SQLScrapbookEditorInput) {
+			((SQLScrapbookEditorInput) element).showMessageConnection();
+		}
 		
         return document;
     }

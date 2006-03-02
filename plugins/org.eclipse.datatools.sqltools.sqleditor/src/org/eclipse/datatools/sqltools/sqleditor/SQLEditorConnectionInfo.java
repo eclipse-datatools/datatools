@@ -171,7 +171,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 		i = j + 1;
 		j = code.length();
 		String schemaName = code.substring(i, j);
-		if (profileName.endsWith(""))
+		if (profileName.equals(""))
 		{
 			if (dbVendorId.equals(""))
 			{
