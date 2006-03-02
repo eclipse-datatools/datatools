@@ -34,7 +34,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.ConnectionException;
-import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
@@ -50,6 +49,7 @@ import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.contentassist.model.IDatatype;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.util.Assert;
 
@@ -239,16 +239,6 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	public ProcIdentifier[] getAllProcs() throws SQLException {
 		Database db = ProfileUtil.getDatabase(_databaseIdentifier);
 		ArrayList procs = new ArrayList();
-		SQLDevToolsConfiguration config = SQLToolsFacade
-				.getConfigurationByProfileName(_databaseIdentifier
-						.getProfileName());
-		DBHelper h = null;
-		if (config != null) {
-			h = config.getDBHelper();
-		} else {
-			h = new DBHelper();
-		}
-
 		if (db != null) {
 			EList schemas = db.getSchemas();
 			Iterator i = schemas.iterator();
@@ -260,29 +250,14 @@ public abstract class AbstractControlConnection implements IControlConnection {
 					EList triggers = table.getTriggers();
 					for (Iterator itera = triggers.iterator(); itera.hasNext();) {
 						Trigger trigger = (Trigger) itera.next();
-						procs.add(h.getProcIdentifier(_databaseIdentifier, trigger
-								.getName(), ProcIdentifier.TYPE_TRIGGER, table
-								.getName(), schema.getName()));
+						procs.add(SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, trigger));
 					}
 				}
 				
 				EList routines = schema.getRoutines();
 				for (Iterator iter = routines.iterator(); iter.hasNext();) {
 					Routine routine = (Routine) iter.next();
-					if (routine instanceof Procedure) {
-						procs.add(h.getProcIdentifier(_databaseIdentifier,
-								routine.getName(), ProcIdentifier.TYPE_SP,
-								null, schema.getName()));
-					} else if (routine instanceof Function) {
-						procs.add(h.getProcIdentifier(_databaseIdentifier,
-								routine.getName(), ProcIdentifier.TYPE_UDF,
-								null, schema.getName()));
-					}
-					/*
-					 * else if (routine instanceof Event) { procs.add(new
-					 * ProcIdentifierImpl(ProcIdentifier.TYPE_EVENT,
-					 * _databaseIdentifier, map)); }
-					 */
+					SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, routine);
 				}
 			}
 		}

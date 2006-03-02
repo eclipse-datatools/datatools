@@ -119,43 +119,5 @@ public class DBHelper {
 	{
 		return jdbcType;
 	}
-	
-    /**
-     * @deprecated will move to {@link DatabaseDefinition} 
-     */
-    public boolean supportsProcedures()
-    {
-    	return true;
-    }
 
-    /**
-     * @deprecated will move to {@link DatabaseDefinition} 
-     */
-    public boolean supportsSQLUDF()
-    {
-    	return true;
-    }
-    
-    /**
-     * @deprecated will move to {@link DatabaseDefinition} 
-     */
-    public boolean supportsTrigger()
-    {
-    	return true;
-    }
-    
-    /**
-     * @deprecated will move to {@link DatabaseDefinition} 
-     */
-    public boolean supportsEvent()
-    {
-    	return false;
-    }
-    /**
-     * @deprecated will move to {@link DatabaseDefinition} 
-     */
-    public boolean supportsConditionBreakpoint()
-    {
-    	return false;
-    }    
 }
