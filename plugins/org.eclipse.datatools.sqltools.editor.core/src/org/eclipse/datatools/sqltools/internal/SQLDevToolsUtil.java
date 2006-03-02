@@ -31,7 +31,7 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 
 /**
  * 
- * @author hcao
+ * @author Hui Cao
  * 
  */
 public class SQLDevToolsUtil {
