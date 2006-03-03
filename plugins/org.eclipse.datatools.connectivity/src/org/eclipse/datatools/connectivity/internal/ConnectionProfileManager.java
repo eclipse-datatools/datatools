@@ -113,6 +113,10 @@ public class ConnectionProfileManager {
 	}
 
 	public IWizard getNewWizard(String id) {
+		Object profileWizard = 
+			(ProfileWizardProvider) getNewWizards().get(id);
+		if (profileWizard == null)
+			return null;
 		return ((ProfileWizardProvider) getNewWizards().get(id)).getWizard();
 	}
 
