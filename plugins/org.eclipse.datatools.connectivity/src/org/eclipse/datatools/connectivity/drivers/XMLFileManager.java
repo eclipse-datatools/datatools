@@ -13,10 +13,12 @@ package org.eclipse.datatools.connectivity.drivers;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -113,9 +115,12 @@ public class XMLFileManager {
 		File file = path.toFile();
 		if (!file.exists())
 			file.createNewFile();
-		Writer writer = new BufferedWriter(new FileWriter(file));
+		OutputStream outs = new FileOutputStream(file);
+		Writer writer = null;
 		IPropertySet ps;
 		try {
+			OutputStreamWriter outw = new OutputStreamWriter(outs, "UTF8"); //$NON-NLS-1$
+			writer = new BufferedWriter(outw);
 			for (int i = 0; i < pss.length; i++) {
 				ps = pss[i];
 				xmlChild = xmlMemento.createChild(CHILDNAME);
@@ -135,7 +140,8 @@ public class XMLFileManager {
 			xmlMemento.save(writer);
 		}
 		finally {
-			writer.close();
+			if (writer != null)
+				writer.close();
 		}
 	}
 
@@ -153,7 +159,9 @@ public class XMLFileManager {
 		File file = path.toFile();
 		if (!file.exists())
 			return new IPropertySet[0];
-		Reader reader = new BufferedReader(new FileReader(file));
+		FileInputStream fis = new FileInputStream(file);
+		InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
+		BufferedReader reader = new BufferedReader(isr);
 		IPropertySet ps;
 		ArrayList pss = new ArrayList();
 		try {
@@ -171,7 +179,8 @@ public class XMLFileManager {
 			}
 		}
 		finally {
-			reader.close();
+			if (reader != null)
+				reader.close();
 		}
 		return (IPropertySet[]) pss.toArray(new IPropertySet[0]);
 	}
