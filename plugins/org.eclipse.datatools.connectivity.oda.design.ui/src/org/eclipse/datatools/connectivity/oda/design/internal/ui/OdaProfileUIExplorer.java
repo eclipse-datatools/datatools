@@ -77,22 +77,12 @@ public class OdaProfileUIExplorer
         throws OdaException
     {
         assert( odaDataSourceId != null );
-        IWizard dataSourceWizard;
-        try
-        {
-            dataSourceWizard = ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
-        }
-        catch( RuntimeException e )
-        {
-            // https://bugs.eclipse.org/bugs/show_bug.cgi?id=129425
-            // work around - handle it as not found
-            dataSourceWizard = null;
-        }
+        IWizard dataSourceWizard = 
+            ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
         
         if( dataSourceWizard == null )
             return null;    // has not implemented a new data source wizard
         
-        // TODO - localized messages
         if( dataSourceWizard instanceof NewDataSourceWizard == false )
             throw OdaProfileExplorer.newOdaException( "invalid.oda.wizard", odaDataSourceId );
 
