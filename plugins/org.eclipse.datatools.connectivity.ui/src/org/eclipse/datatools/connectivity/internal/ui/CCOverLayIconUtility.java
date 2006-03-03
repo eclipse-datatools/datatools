@@ -26,10 +26,10 @@ import org.eclipse.swt.graphics.Point;
 public class CCOverLayIconUtility {
 
 	private final static URL BASE_URL = ConnectivityUIPlugin.getDefault()
-			.getBundle().getEntry("/");
+			.getBundle().getEntry("/"); //$NON-NLS-1$
 
 	public static final ImageDescriptor RUNNING = create(
-			"icons/full/ovr16/", "obj_ovr_server.gif"); //$NON-NLS-1$
+			"icons/full/ovr16/", "obj_ovr_server.gif"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	private static CCOverLayIconUtility _Default;
 

@@ -107,7 +107,7 @@ public class CPPropetyPage extends PropertyPage {
 			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
 					.getDefault().getResourceString("dialog.exception.title"), //$NON-NLS-1$
 					ConnectivityUIPlugin.getDefault().getResourceString(
-							"dialog.exception.message",
+							"dialog.exception.message", //$NON-NLS-1$
 							new Object[] { e.getMessage()}), e); //$NON-NLS-1$
 		}
 		return true;

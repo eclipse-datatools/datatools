@@ -59,14 +59,14 @@ public class CPVersionPropertyPage extends PropertyPage implements
 
 		IConnectionProfile profile = getConnectionProfile();
 		setDescription(ConnectivityUIPlugin.getDefault()
-				.getResourceString("CPVersionPropertyPage.desc",
+				.getResourceString("CPVersionPropertyPage.desc", //$NON-NLS-1$
 						new Object[] { profile.getName()}));
 
 		Properties props = profile.getBaseProperties();
 		if (props.getProperty(ConnectionProfileConstants.PROP_SERVER_NAME) == null) {
 			Label label = new Label(content, SWT.NULL);
 			label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"CPVersionPropertyPage.label.versionUnavailable"));
+					"CPVersionPropertyPage.label.versionUnavailable")); //$NON-NLS-1$
 			GridData data = new GridData(GridData.FILL_HORIZONTAL);
 			label.setLayoutData(data);
 		}
@@ -115,7 +115,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 				label = new Label(content, SWT.NULL);
 				label.setText(ConnectivityUIPlugin.getDefault()
 						.getResourceString(
-								"CPVersionPropertyPage.label.techVersions"));
+								"CPVersionPropertyPage.label.techVersions")); //$NON-NLS-1$
 				data = new GridData();
 				data.horizontalSpan = 2;
 				label.setLayoutData(data);

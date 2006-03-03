@@ -167,7 +167,7 @@ public class ImportProfilesDialog extends Dialog {
 			reader.close();
 			isr.close();
 			fis.close();
-			if (line.matches(".*xml.*")) {
+			if (line.matches(".*xml.*")) { //$NON-NLS-1$
 				// not encrpyted
 				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
 						.getText()), null);

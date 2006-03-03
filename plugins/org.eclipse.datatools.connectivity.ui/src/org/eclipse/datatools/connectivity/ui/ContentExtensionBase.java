@@ -53,7 +53,7 @@ public abstract class ContentExtensionBase extends PlatformObject implements
 							ConnectivityUIPlugin.INTERNAL_ERROR,
 							ConnectivityUIPlugin.getDefault()
 									.getResourceString(
-											"error.contentExtension",
+											"error.contentExtension", //$NON-NLS-1$
 											new String[] {
 													getLabel(),
 													getConnectionProfile()

@@ -56,7 +56,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class CPWizardSelectionPage extends WizardSelectionPage {
 
-	private String category = "";
+	private String category = ""; //$NON-NLS-1$
 	private TableViewer tableViewer;
 
 	private ViewerFilter viewerFilter = new ViewerFilter() {

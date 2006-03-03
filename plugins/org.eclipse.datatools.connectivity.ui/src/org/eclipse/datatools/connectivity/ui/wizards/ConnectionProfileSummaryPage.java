@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.ui.wizards;
 
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ISummaryDataSource;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
@@ -58,7 +59,7 @@ public class ConnectionProfileSummaryPage extends SummaryWizardPage {
 			}
 		});
 		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
-		button.setText("Test Connection");
+		button.setText(ConnectivityUIPlugin.getDefault().getResourceString("ConnectionProfileSummaryPage.button.testConnection")); //$NON-NLS-1$
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
 				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_SUMMARY_PAGE);
 

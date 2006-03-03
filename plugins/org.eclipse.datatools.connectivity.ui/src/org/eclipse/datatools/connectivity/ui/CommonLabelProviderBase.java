@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.ui;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -80,9 +81,10 @@ public class CommonLabelProviderBase implements ICommonLabelProvider {
 				Version techVersion = isvp.getTechnologyVersion();
 				String techName = isvp.getTechnologyName();
 				if (techName != null && techName.length() > 0) {
-					sb.append(" (");
+					sb.append(" ("); //$NON-NLS-1$
 					sb.append(techName).append(' ');
-					sb.append("v. ").append(techVersion.toString()).append(')');
+					sb.append(ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"));//$NON-NLS-1$
+					sb.append(' ' + techVersion.toString()).append(')');
 				}
 			}
 			return sb.toString();

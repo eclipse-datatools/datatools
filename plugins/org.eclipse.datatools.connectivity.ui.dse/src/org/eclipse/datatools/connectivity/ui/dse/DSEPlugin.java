@@ -79,7 +79,7 @@ public class DSEPlugin extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin(
-				"org.eclipse.datatools.connectivity.ui.dse", path);
+				"org.eclipse.datatools.connectivity.ui.dse", path); //$NON-NLS-1$
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class DSEPlugin extends AbstractUIPlugin {
 		try {
 			if (resourceBundle == null)
 				resourceBundle = ResourceBundle
-						.getBundle("org.eclipse.datatools.connectivity.ui.dse.resources");
+						.getBundle("org.eclipse.datatools.connectivity.ui.dse.resources"); //$NON-NLS-1$
 		}
 		catch (MissingResourceException x) {
 			resourceBundle = null;

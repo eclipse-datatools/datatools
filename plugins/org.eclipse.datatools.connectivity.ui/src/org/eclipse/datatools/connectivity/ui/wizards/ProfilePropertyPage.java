@@ -110,11 +110,11 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 								ConnectivityUIPlugin
 										.getDefault()
 										.getResourceString(
-												"ConnectionProfileDetailsPage.AskConfirmation"),
+												"ConnectionProfileDetailsPage.AskConfirmation"), //$NON-NLS-1$
 								ConnectivityUIPlugin
 										.getDefault()
 										.getResourceString(
-												"ConnectionProfileDetailsPage.AskReconnect"))) {
+												"ConnectionProfileDetailsPage.AskReconnect"))) { //$NON-NLS-1$
 					profile.disconnect(null);
 					profile.connect(null);
 				}

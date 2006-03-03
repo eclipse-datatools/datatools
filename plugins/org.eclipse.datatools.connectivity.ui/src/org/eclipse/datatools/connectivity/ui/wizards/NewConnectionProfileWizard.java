@@ -59,7 +59,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 		catch (ConnectionProfileException e) {
 			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
 					.getDefault().getResourceString(
-							"NewConnectionProfileWizard.create.failure"), e
+							"NewConnectionProfileWizard.create.failure"), e //$NON-NLS-1$
 					.getLocalizedMessage(), e);
 			return false;
 		}
@@ -114,7 +114,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 * @return
 	 */
 	public String getParentProfile() {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/*

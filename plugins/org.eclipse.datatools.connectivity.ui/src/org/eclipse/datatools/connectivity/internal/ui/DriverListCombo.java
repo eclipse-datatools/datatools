@@ -379,31 +379,31 @@ public class DriverListCombo {
 	private boolean passesFilter(TemplateDescriptor template, IPropertySet pset) {
 		boolean rtn = true;
 		if (this.mFilter != null && template != null && pset != null) {
-			String[] filters = parseString(this.mFilter, ",");
+			String[] filters = parseString(this.mFilter, ","); //$NON-NLS-1$
 			for (int i = 0; i < filters.length; i++) {
 				String filter = filters[i];
-				String args[] = parseString(filter, "=");
+				String args[] = parseString(filter, "="); //$NON-NLS-1$
 				String arg = args[0].trim();
 				String value = args[1].trim();
-				if (arg.equals("id")) {
+				if (arg.equals("id")) { //$NON-NLS-1$
 					if (pset.getID().indexOf(value) == -1) {
 						rtn = false;
 						break;
 					}
 				}
-				else if (arg.equals("name")) {
+				else if (arg.equals("name")) { //$NON-NLS-1$
 					if (pset.getName().indexOf(value) == -1) {
 						rtn = false;
 						break;
 					}
 				}
-				else if (arg.equals("templateID")) {
+				else if (arg.equals("templateID")) { //$NON-NLS-1$
 					if (template.getId().indexOf(value) == -1) {
 						rtn = false;
 						break;
 					}
 				}
-				else if (arg.equals("templateIDStartsWith")) {
+				else if (arg.equals("templateIDStartsWith")) { //$NON-NLS-1$
 					if (!template.getId().startsWith(value)) {
 						rtn = false;
 						break;

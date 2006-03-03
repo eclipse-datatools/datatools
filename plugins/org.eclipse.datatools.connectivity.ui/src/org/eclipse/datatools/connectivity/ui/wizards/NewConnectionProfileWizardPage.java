@@ -224,7 +224,7 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 									.getDefault()
 									.getResourceString(
 											"NewConnectionProfileWizardPage.summary_autoconnect"), //$NON-NLS-1$
-							"" + getAutoConnect()});
+							"" + getAutoConnect()}); //$NON-NLS-1$
 		}
 
 		return data;

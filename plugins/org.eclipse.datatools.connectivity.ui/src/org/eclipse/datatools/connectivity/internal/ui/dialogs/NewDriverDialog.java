@@ -242,7 +242,7 @@ public class NewDriverDialog extends TitleAreaDialog {
 		}
 
 		if (testName != null
-				&& (testName.startsWith(" ") || testName.endsWith(" "))) {
+				&& (testName.startsWith(" ") || testName.endsWith(" "))) { //$NON-NLS-1$ //$NON-NLS-2$
 			isOk = false;
 			String errorMessage = DriverMgmtMessages
 					.getString("NewDriverDialog.driverNameNoSpaces"); //$NON-NLS-1$

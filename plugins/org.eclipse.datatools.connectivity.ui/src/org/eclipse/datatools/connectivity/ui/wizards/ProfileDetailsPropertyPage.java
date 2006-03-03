@@ -68,7 +68,7 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 		IConnectionProfile cp = getConnectionProfile();
 		ConnectionProfile profile = new ConnectionProfile(cp.getName(), cp
 				.getDescription(), cp.getProviderId(),
-				cp.getParentProfile() == null ? "" : cp.getParentProfile()
+				cp.getParentProfile() == null ? "" : cp.getParentProfile() //$NON-NLS-1$
 						.getName(), false);
 		profile.setBaseProperties(collectProperties());
 
