@@ -63,6 +63,9 @@ public class PingJob extends Job {
 				: new RuntimeException(ConnectivityUIPlugin.getDefault()
 						.getResourceString("actions.ping.failure"))) //$NON-NLS-1$
 				.schedule();
+		
+		con.close();
+		
 		return Status.OK_STATUS;
 	}
 
