@@ -25,6 +25,7 @@ import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.GenerateType;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
 import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
@@ -104,6 +105,13 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * @generated
 	 */
 	private EClass databaseEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -547,8 +555,71 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatabase_AuthorizationIds() {
+	public EReference getDatabase_Events() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabase_AuthorizationIds() {
+		return (EReference)databaseEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEvent() {
+		return eventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvent_For() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvent_Condition() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvent_Action() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEvent_Enabled() {
+		return (EAttribute)eventEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEvent_Database() {
+		return (EReference)eventEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -656,7 +727,15 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEAttribute(databaseEClass, DATABASE__VENDOR);
 		createEAttribute(databaseEClass, DATABASE__VERSION);
 		createEReference(databaseEClass, DATABASE__SCHEMAS);
+		createEReference(databaseEClass, DATABASE__EVENTS);
 		createEReference(databaseEClass, DATABASE__AUTHORIZATION_IDS);
+
+		eventEClass = createEClass(EVENT);
+		createEAttribute(eventEClass, EVENT__FOR);
+		createEAttribute(eventEClass, EVENT__CONDITION);
+		createEAttribute(eventEClass, EVENT__ACTION);
+		createEAttribute(eventEClass, EVENT__ENABLED);
+		createEReference(eventEClass, EVENT__DATABASE);
 
 		// Create enums
 		generateTypeEEnum = createEEnum(GENERATE_TYPE);
@@ -706,6 +785,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		sqlObjectEClass.getESuperTypes().add(theEcorePackage.getENamedElement());
 		sequenceEClass.getESuperTypes().add(this.getTypedElement());
 		databaseEClass.getESuperTypes().add(this.getSQLObject());
+		eventEClass.getESuperTypes().add(this.getSQLObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(identitySpecifierEClass, IdentitySpecifier.class, "IdentitySpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -778,9 +858,17 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEAttribute(getDatabase_Vendor(), ecorePackage.getEString(), "vendor", null, 0, 1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabase_Version(), ecorePackage.getEString(), "version", null, 0, 1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_Schemas(), this.getSchema(), this.getSchema_Database(), "schemas", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabase_Events(), this.getEvent(), this.getEvent_Database(), "events", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_AuthorizationIds(), theSQLAccessControlPackage.getAuthorizationIdentifier(), null, "authorizationIds", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(databaseEClass, this.getList(), "getUserDefinedTypes"); //$NON-NLS-1$
+
+		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getEvent_For(), ecorePackage.getEString(), "for", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEvent_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEvent_Action(), ecorePackage.getEString(), "action", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEvent_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEvent_Database(), this.getDatabase(), this.getDatabase_Events(), "Database", null, 1, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(generateTypeEEnum, GenerateType.class, "GenerateType"); //$NON-NLS-1$

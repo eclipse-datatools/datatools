@@ -117,6 +117,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="schemas" upperBound="-1"
           eType="#//schema/Schema" eOpposite="#//schema/Schema/database"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+          eType="#//schema/Event" eOpposite="#//schema/Event/Database"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationIds" upperBound="-1"
           eType="#//accesscontrol/AuthorizationIdentifier"/>
     </eClassifiers>
@@ -128,6 +130,30 @@
       <eLiterals name="CASCADE" value="2"/>
       <eLiterals name="SET_NULL" value="3"/>
       <eLiterals name="SET_DEFAULT" value="4"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//schema/SQLObject">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="for" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="the type of object on which the event applies"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="the condition to be satisfied inorder to activate the event"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="the action that the event performs after being activated"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="event state"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Database" lowerBound="1"
+          eType="#//schema/Database" eOpposite="#//schema/Database/events"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="constraints" nsURI="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"

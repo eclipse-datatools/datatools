@@ -18,6 +18,7 @@ import java.util.Vector;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.notify.Notification;
@@ -41,6 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getEvents <em>Events</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getAuthorizationIds <em>Authorization Ids</em>}</li>
  * </ul>
  * </p>
@@ -97,6 +99,16 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @ordered
 	 */
 	protected EList schemas = null;
+
+	/**
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList events = null;
 
 	/**
 	 * The cached value of the '{@link #getAuthorizationIds() <em>Authorization Ids</em>}' reference list.
@@ -185,6 +197,18 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getEvents() {
+		if (events == null) {
+			events = new EObjectWithInverseResolvingEList(Event.class, this, SQLSchemaPackage.DATABASE__EVENTS, SQLSchemaPackage.EVENT__DATABASE);
+		}
+		return events;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList getAuthorizationIds() {
 		if (authorizationIds == null) {
 			authorizationIds = new EObjectResolvingEList(AuthorizationIdentifier.class, this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS);
@@ -228,6 +252,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case SQLSchemaPackage.DATABASE__SCHEMAS:
 					return ((InternalEList)getSchemas()).basicAdd(otherEnd, msgs);
+				case SQLSchemaPackage.DATABASE__EVENTS:
+					return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -251,6 +277,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
 				case SQLSchemaPackage.DATABASE__SCHEMAS:
 					return ((InternalEList)getSchemas()).basicRemove(otherEnd, msgs);
+				case SQLSchemaPackage.DATABASE__EVENTS:
+					return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -281,6 +309,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return getVersion();
 			case SQLSchemaPackage.DATABASE__SCHEMAS:
 				return getSchemas();
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				return getEvents();
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				return getAuthorizationIds();
 		}
@@ -321,6 +351,10 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				getSchemas().clear();
 				getSchemas().addAll((Collection)newValue);
 				return;
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				getEvents().clear();
+				getEvents().addAll((Collection)newValue);
+				return;
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				getAuthorizationIds().clear();
 				getAuthorizationIds().addAll((Collection)newValue);
@@ -360,6 +394,9 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 			case SQLSchemaPackage.DATABASE__SCHEMAS:
 				getSchemas().clear();
 				return;
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				getEvents().clear();
+				return;
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				getAuthorizationIds().clear();
 				return;
@@ -390,6 +427,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
 			case SQLSchemaPackage.DATABASE__SCHEMAS:
 				return schemas != null && !schemas.isEmpty();
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				return events != null && !events.isEmpty();
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				return authorizationIds != null && !authorizationIds.isEmpty();
 		}

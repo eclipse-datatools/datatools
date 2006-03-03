@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -180,6 +180,28 @@ public class SQLSchemaItemProviderAdapterFactory extends SQLSchemaAdapterFactory
 		}
 
 		return databaseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.schema.Event} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EventItemProvider eventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Event}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createEventAdapter() {
+		if (eventItemProvider == null) {
+			eventItemProvider = new EventItemProvider(this);
+		}
+
+		return eventItemProvider;
 	}
 
 	/**

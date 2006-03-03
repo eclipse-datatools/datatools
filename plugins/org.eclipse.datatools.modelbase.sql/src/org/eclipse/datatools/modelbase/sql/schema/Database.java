@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Database#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Database#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Database#getSchemas <em>Schemas</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Database#getEvents <em>Events</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Database#getAuthorizationIds <em>Authorization Ids</em>}</li>
  * </ul>
  * </p>
@@ -103,6 +104,24 @@ public interface Database extends SQLObject{
 	 * @generated
 	 */
 	EList getSchemas();
+
+	/**
+	 * Returns the value of the '<em><b>Events</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.Event}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.Event#getDatabase <em>Database</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Events</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Events</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDatabase_Events()
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#getDatabase
+	 * @model type="org.eclipse.datatools.modelbase.sql.schema.Event" opposite="Database"
+	 * @generated
+	 */
+	EList getEvents();
 
 	/**
 	 * Returns the value of the '<em><b>Authorization Ids</b></em>' reference list.

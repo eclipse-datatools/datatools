@@ -155,6 +155,15 @@ public class SQLSchemaSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLSchemaPackage.EVENT: {
+				Event event = (Event)theEObject;
+				Object result = caseEvent(event);
+				if (result == null) result = caseSQLObject(event);
+				if (result == null) result = caseENamedElement(event);
+				if (result == null) result = caseEModelElement(event);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -261,6 +270,21 @@ public class SQLSchemaSwitch {
 	 * @generated
 	 */
 	public Object caseDatabase(Database object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseEvent(Event object) {
 		return null;
 	}
 

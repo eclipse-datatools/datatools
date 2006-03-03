@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DatabaseItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
+ * $Id$
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -10,11 +10,14 @@ package org.eclipse.datatools.modelbase.sql.schema.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,18 +28,18 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Database} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Event} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DatabaseItemProvider
+public class EventItemProvider
 	extends SQLObjectItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
+	implements	
+		IEditingDomainItemProvider,	
+		IStructuredItemContentProvider,	
+		ITreeItemContentProvider,	
+		IItemLabelProvider,	
 		IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -44,7 +47,7 @@ public class DatabaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DatabaseItemProvider(AdapterFactory adapterFactory) {
+	public EventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -58,29 +61,29 @@ public class DatabaseItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addVendorPropertyDescriptor(object);
-			addVersionPropertyDescriptor(object);
-			addSchemasPropertyDescriptor(object);
-			addEventsPropertyDescriptor(object);
-			addAuthorizationIdsPropertyDescriptor(object);
+			addForPropertyDescriptor(object);
+			addConditionPropertyDescriptor(object);
+			addActionPropertyDescriptor(object);
+			addEnabledPropertyDescriptor(object);
+			addDatabasePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Vendor feature.
+	 * This adds a property descriptor for the For feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVendorPropertyDescriptor(Object object) {
+	protected void addForPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Database_vendor_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Database_vendor_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Vendor(),
+				 getString("_UI_Event_for_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_for_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.eINSTANCE.getEvent_For(),
 				 true,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -88,19 +91,19 @@ public class DatabaseItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Version feature.
+	 * This adds a property descriptor for the Condition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addVersionPropertyDescriptor(Object object) {
+	protected void addConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Database_version_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Database_version_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Version(),
+				 getString("_UI_Event_condition_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_condition_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.eINSTANCE.getEvent_Condition(),
 				 true,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -108,19 +111,59 @@ public class DatabaseItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Schemas feature.
+	 * This adds a property descriptor for the Action feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSchemasPropertyDescriptor(Object object) {
+	protected void addActionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Database_schemas_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Database_schemas_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Schemas(),
+				 getString("_UI_Event_action_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_action_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.eINSTANCE.getEvent_Action(),
+				 true,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Event_enabled_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_enabled_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.eINSTANCE.getEvent_Enabled(),
+				 true,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Database feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatabasePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Event_Database_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_Database_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.eINSTANCE.getEvent_Database(),
 				 true,
 				 null,
 				 null,
@@ -128,53 +171,13 @@ public class DatabaseItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Events feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEventsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Database_events_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Database_events_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Events(),
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Authorization Ids feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAuthorizationIdsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Database_authorizationIds_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Database_authorizationIds_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_AuthorizationIds(),
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This returns Database.gif.
+	 * This returns Event.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Database"); //$NON-NLS-1$
+		return getResourceLocator().getImage("full/obj16/Event"); //$NON-NLS-1$
 	}
 
 	/**
@@ -184,10 +187,10 @@ public class DatabaseItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((Database)object).getName();
+		String label = ((Event)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Database_type") : //$NON-NLS-1$
-			getString("_UI_Database_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_Event_type") : //$NON-NLS-1$
+			getString("_UI_Event_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -200,9 +203,11 @@ public class DatabaseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Database.class)) {
-			case SQLSchemaPackage.DATABASE__VENDOR:
-			case SQLSchemaPackage.DATABASE__VERSION:
+		switch (notification.getFeatureID(Event.class)) {
+			case SQLSchemaPackage.EVENT__FOR:
+			case SQLSchemaPackage.EVENT__CONDITION:
+			case SQLSchemaPackage.EVENT__ACTION:
+			case SQLSchemaPackage.EVENT__ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

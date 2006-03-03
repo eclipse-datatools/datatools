@@ -749,13 +749,22 @@ public interface SQLSchemaPackage extends EPackage{
 	int DATABASE__SCHEMAS = SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Events</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE__EVENTS = SQL_OBJECT_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Authorization Ids</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE__AUTHORIZATION_IDS = SQL_OBJECT_FEATURE_COUNT + 3;
+	int DATABASE__AUTHORIZATION_IDS = SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the the '<em>Database</em>' class.
@@ -764,7 +773,116 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 4;
+	int DATABASE_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl <em>Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getEvent()
+	 * @generated
+	 */
+	int EVENT = 7;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__EANNOTATIONS = SQL_OBJECT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__NAME = SQL_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__DEPENDENCIES = SQL_OBJECT__DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__DESCRIPTION = SQL_OBJECT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__LABEL = SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>For</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__FOR = SQL_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__CONDITION = SQL_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__ACTION = SQL_OBJECT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__ENABLED = SQL_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__DATABASE = SQL_OBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The number of structural features of the the '<em>Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}' enum.
@@ -774,7 +892,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getGenerateType()
 	 * @generated
 	 */
-	int GENERATE_TYPE = 7;
+	int GENERATE_TYPE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType <em>Referential Action Type</em>}' enum.
@@ -784,7 +902,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getReferentialActionType()
 	 * @generated
 	 */
-	int REFERENTIAL_ACTION_TYPE = 8;
+	int REFERENTIAL_ACTION_TYPE = 9;
 
 	/**
 	 * The meta object id for the '<em>Date</em>' data type.
@@ -794,7 +912,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDate()
 	 * @generated
 	 */
-	int DATE = 9;
+	int DATE = 10;
 
 	/**
 	 * The meta object id for the '<em>List</em>' data type.
@@ -804,7 +922,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getList()
 	 * @generated
 	 */
-	int LIST = 10;
+	int LIST = 11;
 
 
 	/**
@@ -1186,6 +1304,17 @@ public interface SQLSchemaPackage extends EPackage{
 	EReference getDatabase_Schemas();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Database#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Events</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Database#getEvents()
+	 * @see #getDatabase()
+	 * @generated
+	 */
+	EReference getDatabase_Events();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Database#getAuthorizationIds <em>Authorization Ids</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1195,6 +1324,71 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 */
 	EReference getDatabase_AuthorizationIds();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.Event <em>Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event
+	 * @generated
+	 */
+	EClass getEvent();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.schema.Event#getFor <em>For</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>For</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#getFor()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_For();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.schema.Event#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#getCondition()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_Condition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.schema.Event#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Action</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#getAction()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_Action();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.schema.Event#isEnabled <em>Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Enabled</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#isEnabled()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_Enabled();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.schema.Event#getDatabase <em>Database</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Database</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Event#getDatabase()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EReference getEvent_Database();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}'.
