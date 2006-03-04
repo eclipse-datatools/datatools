@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.connectivity.oda.design.ui"
    name="%plugin.name"
-   version="3.0.0.200603011"
+   version="3.0.0.200603061"
    provider-name="Eclipse.org">
 
    <runtime>

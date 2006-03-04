@@ -30,7 +30,7 @@ public class DataSourceWizardInfo
     private String m_pageTitle;
     private String m_pageClassName;
     
-    public DataSourceWizardInfo( IConfigurationElement wizardElement )
+    DataSourceWizardInfo( IConfigurationElement wizardElement )
         throws OdaException
     {
         // required attribute

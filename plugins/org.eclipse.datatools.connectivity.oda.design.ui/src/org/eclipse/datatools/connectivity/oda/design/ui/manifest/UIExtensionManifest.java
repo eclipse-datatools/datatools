@@ -14,6 +14,10 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.Set;
+
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.birt.core.framework.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -25,13 +29,18 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
  */
 public class UIExtensionManifest
 {
-    public static final String DATA_SOURCE_ELEMENT_NAME = "dataSourceUI";
+    static final String DATA_SOURCE_ELEMENT_NAME = "dataSourceUI"; //$NON-NLS-1$
+    static final String DATA_SET_ELEMENT_NAME = "dataSetUI"; //$NON-NLS-1$
+    static final String DATA_SOURCE_WIZARD_ELEMENT_NAME = "newDataSourceWizard";  //$NON-NLS-1$
+
     private String m_namespace;
     private String m_dataSourceElementId;
     private DataSourceWizardInfo m_dataSourceWizardInfo;
+    private Hashtable m_dataSetUIElements;
 
     UIExtensionManifest( IExtension dataSourceExtn ) throws OdaException
     {
+        // first process the dataSourceUI element
         IConfigurationElement dataSourceElement = 
             ManifestExplorer.getNamedElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
         assert( dataSourceElement != null );
@@ -43,21 +52,53 @@ public class UIExtensionManifest
         assert( m_dataSourceElementId != null && 
                 m_dataSourceElementId.length() > 0 );
 
-        // newDataSourceWizard element
-        final String wizardElementName = "newDataSourceWizard";  //$NON-NLS-1$
-        IConfigurationElement[] newWizardElements = dataSourceElement.getChildren( wizardElementName );
-        if( newWizardElements.length < 1 )
-            // TODO - NLS
-            throw new OdaException( "Invalid extension; missing required element: " + wizardElementName ); 
+        // newDataSourceWizard element associated with dataSourceUI
+        IConfigurationElement[] newWizardElements = 
+            dataSourceElement.getChildren( DATA_SOURCE_WIZARD_ELEMENT_NAME );
+        if( newWizardElements.length < 1 )  // expects one element
+            throw new OdaException( "Invalid extension; missing required element: " + DATA_SOURCE_WIZARD_ELEMENT_NAME ); 
         m_dataSourceWizardInfo = new DataSourceWizardInfo( newWizardElements[0] );
+
+        // data set UI definition elements in the same extension
+        m_dataSetUIElements = getDataSetUIElements( dataSourceExtn );
     }
 
     private UIExtensionManifest()
     {
     }
+    
+    /**
+     * Returns a collection of dataSetUI elements in the given extension.
+     */
+    private Hashtable getDataSetUIElements( IExtension extension )
+        throws OdaException
+    {
+        Hashtable dataSetElements = new Hashtable();
+        IConfigurationElement[] configElements =
+            ManifestExplorer.getNamedElements( extension, DATA_SET_ELEMENT_NAME );
+        for( int i = 0, size = configElements.length; i < size; i++ )
+        {
+            IConfigurationElement configElement = configElements[i];
+
+            String dataSetId = configElement.getAttribute( "id" );  //$NON-NLS-1$
+
+            // if duplicated data set ids exist in the extension,  
+            // only the last one applies
+            dataSetElements.put( dataSetId, 
+                            new DataSetUIElement( configElement ) );
+        }
+        
+        // TODO - restore error condition after all data sets are migrated
+        if( dataSetElements.size() < 1 )    // expects one or more
+//            throw new OdaException( "Missing dataSetUI elements in " + extension.getUniqueIdentifier() );
+            return null;
+        
+        return dataSetElements;
+    }
 
     /**
-     * @return Returns the m_namespace.
+     * Returns the extension plugin namespace.
+     * @return
      */
     public String getNamespace()
     {
@@ -65,7 +106,10 @@ public class UIExtensionManifest
     }
 
     /**
-     * @return Returns the m_dataSourceElementId.
+     * Returns the fully qualified ID that uniquely identifies 
+     * the ODA data source extension within an ODA consumer 
+     * application's environment.
+     * @return the attribute value in <i>dataSourceUI.id</i>
      */
     public String getDataSourceElementId()
     {
@@ -73,11 +117,83 @@ public class UIExtensionManifest
     }
 
     /**
-     * @return Returns the m_dataSourceWizardInfo.
+     * Returns the definition of customizable behavior of a 
+     * data source wizard that allows an user to create 
+     * a new ODA data source design instance.
+     * @return the attribute value in <i>dataSourceUI.newDataSourceWizard</i>
      */
     public DataSourceWizardInfo getDataSourceWizardInfo()
     {
         return m_dataSourceWizardInfo;
+    }
+    
+    /**
+     * Returns an array of DataSetUIElement instances that
+     * represent the dataSetUI elements defined in
+     * this data source extension.
+     * @return  an array of data set ui elements 
+     */
+    public DataSetUIElement[] getDataSetUIElements()
+    {
+        if( m_dataSetUIElements == null )
+            return new DataSetUIElement[0];
+        
+        Collection dataSetUIs = m_dataSetUIElements.values();
+        return (DataSetUIElement[]) dataSetUIs.toArray( 
+                    new DataSetUIElement[ dataSetUIs.size() ] );
+    }
+    
+    /**
+     * Returns an array of ids of the dataSetUI elements 
+     * defined in this data source extension.
+     * @return  an array of data set element ids.
+     */
+    public String[] getDataSetUIElementIDs()
+    {
+        if( m_dataSetUIElements == null )
+            return new String[0];
+        
+        Set dataSetIDs = m_dataSetUIElements.keySet();
+        return (String[]) dataSetIDs.toArray( 
+                    new String[ dataSetIDs.size() ] );
+    }
+    
+    /**
+     * Returns the DataSetUIElement instance that
+     * represents the dataSetUI element with the given id
+     * defined in this data source extension.
+     * If the given data set element id is null and the data source UI
+     * extension has only one data set element, that
+     * data set element will be returned by default.
+     * @param dataSetElementID  the id of the data set ui element.
+     * @return  the data set element definition.
+     * @throws OdaException if there is no data set ui definition associated 
+     *                   with the specified data set element id, or 
+     *                   if there are more than one data set elements 
+     *                   that match the id.
+     */
+    public DataSetUIElement getDataSetUIElement( String dataSetElementID ) 
+        throws OdaException
+    {
+        if( dataSetElementID == null )
+        {
+            // find default data set element and return it if found
+            if( m_dataSetUIElements == null ||
+                m_dataSetUIElements.size() != 1 )
+                throw new OdaException( "Missing data set element id" );
+
+            Collection dataSetTypes = m_dataSetUIElements.values();
+            assert( dataSetTypes.size() == 1 );
+            return (DataSetUIElement) dataSetTypes.toArray()[0];
+        }
+        
+        DataSetUIElement dataSetUIDefn = 
+            (DataSetUIElement) m_dataSetUIElements.get( dataSetElementID );
+
+        if( dataSetUIDefn == null )
+            throw new OdaException( "Invalid data set element id: " + dataSetElementID );
+        
+        return dataSetUIDefn;
     }
 
 }

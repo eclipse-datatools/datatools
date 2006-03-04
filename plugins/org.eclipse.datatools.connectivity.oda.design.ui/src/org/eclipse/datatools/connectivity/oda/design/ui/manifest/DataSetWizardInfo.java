@@ -1,0 +1,64 @@
+/*
+ *************************************************************************
+ * Copyright (c) 2006 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *  
+ *************************************************************************
+ */
+
+package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
+
+import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.datatools.connectivity.oda.OdaException;
+
+/**
+ * Represents the customizable behavior defined by an ODA UI Extension
+ * for its data set wizard that allows an user to create 
+ * a new ODA data set design instance. 
+ * It encapsulates the content of the <i>newDataSetWizard</i> element
+ * defined in the ODA Design UI extension point.
+ */
+public class DataSetWizardInfo
+{
+    private static final String WIZARD_CLASS_ATTRIBUTE = "dataSetUI.newDataSetWizard.class"; //$NON-NLS-1$
+    
+    private String m_className;
+    private String m_windowTitle;
+    
+    DataSetWizardInfo( IConfigurationElement dataSetWizardElement ) 
+        throws OdaException
+    {
+        m_className = dataSetWizardElement.getAttribute( "class" ); //$NON-NLS-1$
+        if( m_className == null || m_className.length() == 0 )
+            throw new OdaException( "Missing attribute value in " + WIZARD_CLASS_ATTRIBUTE );
+
+        m_windowTitle = dataSetWizardElement.getAttribute( "windowTitle" );         //$NON-NLS-1$
+    }
+
+    /**
+     * Returns the full class name of the data set wizard.
+     * <br>The wizard class must either use or extend from the ODA 
+     * framework's wizard base class.  See plugin schema for details.
+     * @return the full class name of the data set wizard
+     */
+    public String getWizardClassName()
+    {
+        return m_className;
+    }
+
+    /**
+     * Returns the customized title of the data set wizard window.
+     * @return  customized window title; may be null, if none is specified
+     */
+    public String getWizardWindowTitle()
+    {
+        return m_windowTitle;
+    }
+
+}
