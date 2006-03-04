@@ -1,21 +1,23 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2006 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
 import java.util.ArrayList;
+import java.util.Properties;
+
+import org.eclipse.birt.core.framework.IConfigurationElement;
 
 /**
  * The definition of a property defined by an ODA data source extension or 
@@ -26,6 +28,12 @@ import java.util.ArrayList;
  */
 public class Property
 {
+    private static final String VISIBILITY_LOCK = "lock"; //$NON-NLS-1$
+    private static final String VISIBILITY_CHANGE = "change"; //$NON-NLS-1$
+    private static final String VISIBILITY_HIDE = "hide"; //$NON-NLS-1$
+    private static final String LITERAL_TRUE = "true"; //$NON-NLS-1$
+    private static final String LITERAL_FALSE = "false"; //$NON-NLS-1$
+    
     private String m_name;
     private String m_displayName;
     private String m_groupName;
@@ -51,34 +59,34 @@ public class Property
             String groupName, String groupDisplayName )
     {
         // no validation is done; up to the consumer to process
-        m_name = propertyElement.getAttribute( "name" );
+        m_name = propertyElement.getAttribute( "name" ); //$NON-NLS-1$
         m_displayName = ManifestExplorer.getElementDisplayName( propertyElement );  
         m_groupName = groupName;
         m_groupDisplayName = groupDisplayName;
-        m_type = propertyElement.getAttribute( "type" );
-        m_defaultValue = propertyElement.getAttribute( "defaultValue" );
+        m_type = propertyElement.getAttribute( "type" ); //$NON-NLS-1$
+        m_defaultValue = propertyElement.getAttribute( "defaultValue" ); //$NON-NLS-1$
 
         m_isEncryptable = false;
-        String encryptableValue = propertyElement.getAttribute( "isEncryptable" );
+        String encryptableValue = propertyElement.getAttribute( "isEncryptable" ); //$NON-NLS-1$
  		if( encryptableValue != null )
 		{
-		    if ( encryptableValue.equalsIgnoreCase( "true" ) || 
-		         encryptableValue.equalsIgnoreCase( "false" ) )
+		    if ( encryptableValue.equalsIgnoreCase( LITERAL_TRUE ) || 
+		         encryptableValue.equalsIgnoreCase( LITERAL_FALSE ) )
 		        m_isEncryptable = Boolean.valueOf( encryptableValue ).booleanValue();
 		}
 
  		m_canInherit = true;
-        String canInherit = propertyElement.getAttribute( "canInherit" );
+        String canInherit = propertyElement.getAttribute( "canInherit" ); //$NON-NLS-1$
 		if( canInherit != null )
 		{
-		    if ( canInherit.equalsIgnoreCase( "true" ) || 
-			     canInherit.equalsIgnoreCase( "false" ) )
+		    if ( canInherit.equalsIgnoreCase( LITERAL_TRUE ) || 
+			     canInherit.equalsIgnoreCase( LITERAL_FALSE ) )
 		        m_canInherit = Boolean.valueOf( canInherit ).booleanValue();
 		}
 		
 		// choice elements
 		IConfigurationElement[] choiceElements = 
-		    propertyElement.getChildren( "choice" );
+		    propertyElement.getChildren( "choice" ); //$NON-NLS-1$
 		int numChoices = choiceElements.length;
 		if ( numChoices <= 0 )
 		    return;		// done
@@ -190,4 +198,55 @@ public class Property
         return m_choices;
     }
 
+    /**
+     * Indicates whether this property should be visible
+     * per the definition specified in the properties element.
+     * @param propertiesVisibility  the collection of property visibility
+     *          defined for the element associated with
+     *          this property
+     * @return  true if property is defined to be visible;
+     *          false otherwise
+     */
+    public boolean isVisible( Properties propertiesVisibility )
+    {
+        String visibility = 
+            getVisibility( getName(), propertiesVisibility );
+        if( visibility.equalsIgnoreCase( VISIBILITY_HIDE ) )
+            return false;
+        return true;
+    }
+
+    /**
+     * Indicates whether this property value should be editable,
+     * per the definition specified in the properties element.
+     * @param propertiesVisibility  the collection of property visibility
+     *          defined for the element associated with
+     *          this property
+     * @return  true if property is defined to be editable;
+     *          false if the property value should be read only.
+     */
+    public boolean isEditable( Properties propertiesVisibility )
+    {
+        String visibility = 
+            getVisibility( getName(), propertiesVisibility );
+        if( visibility.equalsIgnoreCase( VISIBILITY_HIDE ) ||
+            visibility.equalsIgnoreCase( VISIBILITY_LOCK ) )
+            return false;
+        return true;
+    }
+    
+    /**
+     * Finds the property visibility value.
+     */
+    private String getVisibility( String propName, 
+                            Properties propertiesVisibility )
+    {
+        if( propertiesVisibility == null || 
+            propertiesVisibility.size() == 0 )
+            return VISIBILITY_CHANGE;   // default
+        
+        assert( propName != null );
+        return propertiesVisibility.getProperty( 
+                            propName, VISIBILITY_CHANGE );
+    }
 }
