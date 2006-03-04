@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.profile;
 
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.VersionProviderConnection;
@@ -27,6 +28,16 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 public class OdaConnectionWrapper extends VersionProviderConnection
 {
+    private static final String EMPTY_STR = ""; //$NON-NLS-1$
+    private static final Version ODA_UNKNOWN_VERSION = 
+        new Version( 3, 0, 0, EMPTY_STR ) 
+        {
+            public String toString() 
+            {
+                return ConnectionProfileConstants.UNKNOWN_VERSION;
+            }
+        };
+    
     private String m_odaDataSourceId;
 
     private IConnection m_odaConnectionHelper;
@@ -67,14 +78,25 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         {
             // ignore, ok to not have version info available
         }
+        
+        if( ! canProvideVersionMetaData() )
+            m_odaMetadataHelper = null; // reset
+        
+        // update profile with version info
         updateVersionCache();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IConnection#getRawConnection()
+     */
     public Object getRawConnection()
     {
         return m_odaConnectionHelper;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IConnection#close()
+     */
     public void close()
     {
         if( getRawConnection() == null )
@@ -92,11 +114,17 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         }
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IConnection#getConnectException()
+     */
     public Throwable getConnectException()
     {
         return m_connectException;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.VersionProviderConnection#getTechnologyRootKey()
+     */
     protected String getTechnologyRootKey()
     {
         if( m_odaDataSourceId == null || m_odaDataSourceId.length() == 0 )
@@ -104,10 +132,13 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         return m_odaDataSourceId;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IServerVersionProvider#getProviderVersion()
+     */
     public Version getProviderVersion()
     {
         if( m_odaMetadataHelper == null )
-            return null;
+            return ODA_UNKNOWN_VERSION;
         
         try
         {
@@ -117,13 +148,16 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         {
             // ignore
         }
-        return Version.valueOf( "" );
+        return ODA_UNKNOWN_VERSION;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IServerVersionProvider#getProviderName()
+     */
     public String getProviderName()
     {
         if( m_odaMetadataHelper == null )
-            return null;
+            return EMPTY_STR;
         
         try
         {
@@ -137,11 +171,17 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         return getTechnologyRootKey();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IServerVersionProvider#getTechnologyVersion()
+     */
     public Version getTechnologyVersion()
     {
         return Version.valueOf( Constants.ODA_COMPONENT_VERSION );
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IServerVersionProvider#getTechnologyName()
+     */
     public String getTechnologyName()
     {
         return Constants.ODA_COMPONENT_NAME;
@@ -161,9 +201,9 @@ public class OdaConnectionWrapper extends VersionProviderConnection
      */
     public void open() throws OdaException
     {
-        assert( getRawConnection() instanceof IConnection );
-        IConnection odaConn = (IConnection) getRawConnection();
-
+        IConnection odaConn = m_odaConnectionHelper;
+        assert( odaConn != null );
+        
         odaConn.open( getConnectionProfile().getBaseProperties() );
     }
     
@@ -203,4 +243,25 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         return m_odaDriverHelper;
     }
     
+    private boolean canProvideVersionMetaData()
+    {
+        if( m_odaMetadataHelper == null )
+            return false;
+        
+        // validate whether the underlying IDataSetMetaData implementation 
+        // is capable of providing version info in current state
+        try
+        {
+            getProviderVersion();
+            getProviderName();
+        }
+        catch( RuntimeException e )
+        {
+            // TODO - a connection may need to first open 
+            // to obtain metadata
+            
+            return false;
+        }
+        return true;
+    }
 }
