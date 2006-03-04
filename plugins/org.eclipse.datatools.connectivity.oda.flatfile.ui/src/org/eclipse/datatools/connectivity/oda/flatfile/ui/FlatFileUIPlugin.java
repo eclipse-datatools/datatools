@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.flatfile.ui;
 
-import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
@@ -25,7 +24,7 @@ public class FlatFileUIPlugin extends Plugin
         super.start( context );
         if( isDebugging() )
         {
-            Platform.intializeTracing( getBundle().getSymbolicName() );
+            // TODO - set up logger based on debug option
         }
     }
 }
