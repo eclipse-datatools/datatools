@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.connectivity.oda.flatfile.ui"
    name="%plugin.name"
-   version="3.0.0.200603011"
+   version="3.0.0.200603061"
    provider-name="Eclipse.org"
    class="org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin">
 
@@ -55,7 +55,7 @@
       <page
             id="%oda.data.source.id"
             name="%profile.propertypage.name"
-            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderPropertyPage"
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderPropertyPage"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"
@@ -67,7 +67,7 @@
       <dataSourceUI id="%oda.data.source.id">
          <newDataSourceWizard
                includesProgressMonitor="false"
-               pageClass="org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage"
+               pageClass="org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderSelectionWizardPage"
                pageTitle="%wizard.data.source.page.title"
                windowTitle="%wizard.window.title"/>
       </dataSourceUI>
