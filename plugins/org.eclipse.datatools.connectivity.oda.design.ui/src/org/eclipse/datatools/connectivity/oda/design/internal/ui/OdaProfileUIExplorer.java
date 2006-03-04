@@ -117,10 +117,15 @@ public class OdaProfileUIExplorer
             throw new OdaException( ex );
         }
 
-        if( propPage instanceof DataSourceEditorPage )
-            return (DataSourceEditorPage) propPage;
+        if( ! ( propPage instanceof DataSourceEditorPage ) )
+            return null;    // the implemented property page is not an ODA extended page
 
-        return null;    // the implemented property page is not an ODA extended page
+        String pageName = pageElement.getAttribute( "name" ); //$NON-NLS-1$
+        if( pageName == null || pageName.length() == 0 )
+            pageName = "Custom Data Source Properties";
+        ((DataSourceEditorPage) propPage).setTitle( pageName );
+
+        return (DataSourceEditorPage) propPage;
     }
 
 }
