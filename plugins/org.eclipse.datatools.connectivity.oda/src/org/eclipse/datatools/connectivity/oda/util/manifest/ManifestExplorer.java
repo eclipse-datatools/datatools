@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2006 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -286,15 +286,37 @@ public class ManifestExplorer
         return getNamedElement( extension, "dataSource" );  //$NON-NLS-1$
     }
     
-    /*
+    /**
      * Returns the configuration element of the given extension
      * and element name.
+     * <br>For internal use only.
      */
     public static IConfigurationElement getNamedElement( IExtension extension,
             String elementName ) 
         throws OdaException
+    {
+        IConfigurationElement[] configElements =
+                        getNamedElements( extension, elementName );
+        if( configElements.length == 0 )
+            throw new OdaException( getLocalizedMessage( OdaResources.NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED ) );
+
+        return configElements[0];   // returns the first matching element
+    }
+    
+    /**
+     * Returns a collection of configuration elements with the given name
+     * in the given extension.  
+     * Validates that each element has an id attribute defined.
+     * @return a collection of matching configuration elements
+     * <br>For internal use only.
+     */
+    public static IConfigurationElement[] getNamedElements( 
+                                            IExtension extension,
+                                            String elementName ) 
+        throws OdaException
 	{
 		IConfigurationElement[] configElements = extension.getConfigurationElements();
+        ArrayList matchedElements = new ArrayList();
 		for( int i = 0, n = configElements.length; i < n; i++ )
 		{
 			IConfigurationElement configElement = configElements[i];
@@ -304,33 +326,31 @@ public class ManifestExplorer
 			// validate that the element has an id attribute with non-empty value
 			String idValue = configElement.getAttribute( "id" );	//$NON-NLS-1$
 			if( idValue == null || idValue.length() == 0 )
-				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
+				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SET_TYPE_ID_DEFINED ) );
 
-			return configElement;	// expects only one such element
+            matchedElements.add( configElement );
 		}
 		
-		throw new OdaException( getLocalizedMessage( OdaResources.NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED ) );
+		return (IConfigurationElement[]) matchedElements.toArray( 
+                    new IConfigurationElement[ matchedElements.size() ] );
 	}
 	
 	/*
 	 * Returns a collection of dataSet elements of the given data source extension.
 	 */
-	static Hashtable getDataSetElements( IExtension extension, String dataSourceElementId )
+	static Hashtable getDataSetElements( IExtension extension, 
+            String dataSourceElementId )
 		throws OdaException
 	{
-		IConfigurationElement[] configElements = extension.getConfigurationElements();
+        IConfigurationElement[] configElements =
+            getNamedElements( extension, "dataSet" ); //$NON-NLS-1$
 		Hashtable dataSetElements = new Hashtable();
 		for( int i = 0, size = configElements.length; i < size; i++ )
 		{
 			IConfigurationElement configElement = configElements[i];
-			if( ! configElement.getName().equalsIgnoreCase( "dataSet" ) )  //$NON-NLS-1$
-			    continue;
-			
-			// validate that the data set definition has an id
+
 			String dataSetTypeId = configElement.getAttribute( "id" );  //$NON-NLS-1$
-			if( dataSetTypeId == null || dataSetTypeId.length() == 0 )
-				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SET_TYPE_ID_DEFINED,
-															new Object[] { dataSourceElementId } ) );		
+
 			// if duplicated data set type ids exist in the extension,  
 			// only the last one applies
 			dataSetElements.put( dataSetTypeId, new DataSetType( configElement ) );
@@ -341,7 +361,7 @@ public class ManifestExplorer
 														new Object[] { dataSourceElementId } ) );
 		return dataSetElements;
 	}
-	
+
 	/*
 	 * Encapsulates the logic of finding the most appropriate
 	 * display name to use for the given element.
