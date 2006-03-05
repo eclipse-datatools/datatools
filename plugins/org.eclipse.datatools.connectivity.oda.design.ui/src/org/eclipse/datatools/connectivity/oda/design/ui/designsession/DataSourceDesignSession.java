@@ -43,9 +43,10 @@ import org.eclipse.ui.dialogs.PropertyPage;
 public class DataSourceDesignSession
 {
     private String m_odaDataSourceId;
-    private NewDataSourceWizard m_wizard;
-    private DataSourceEditorPage m_editorPage;
     private OdaDesignSession m_designSession;
+    private NewDataSourceWizard m_wizard;
+    private ProfileReference m_wizardProfileRef;
+    private DataSourceEditorPage m_editorPage;
     
     /**
      * Starts a design session to create a new 
@@ -157,10 +158,13 @@ public class DataSourceDesignSession
             // TODO
         }
         
-        // verifies that the given profile does exist in cache
+        // verifies that the given profile does exist in cache;
+        // if wizard was initialize w/ same profileRef,
+        // do not change any user edits on wizard page
         Properties profileProps = null;
         String profileName = null;
-        if( profileRef != null )
+        if( profileRef != null && 
+            ! profileRef.equals( m_wizardProfileRef ) )
         {
             profileProps = getProfileProperties( profileRef.getInstanceId() );
             profileName = OdaProfileExplorer.getInstance().
@@ -170,9 +174,8 @@ public class DataSourceDesignSession
         }
         
         // initialize wizard with given name and properties, if any
-        // TODO - if wizard was initialize w/ same profileRef,
-        // do not change any user edits on wizard page
         initWizard( wizard, newDataSourceName, profileProps );
+        m_wizardProfileRef = profileRef;
 
         if( profileRef != null && profileRef.maintainExternalLink() )
             wizard.setLinkedProfile( profileName, profileRef.getStorageFile() );
@@ -401,6 +404,8 @@ public class DataSourceDesignSession
             m_editorPage.dispose();
             m_editorPage = null;
         }
+
+        m_wizardProfileRef = null;
     }
         
     /**
@@ -481,7 +486,8 @@ public class DataSourceDesignSession
             profileNamePage.setPageComplete( true );
         }
         
-        // pass given properties to wizard for initialization
+        // pass given properties to wizard for initialization;
+        // if none is specified, keep wizard's existing properties
         if( dataSourceProps != null &&
             ! dataSourceProps.isEmpty() )
         {
@@ -715,6 +721,9 @@ public class DataSourceDesignSession
         
         public boolean equals( ProfileReference aProfileRef )
         {
+            if( aProfileRef == null )
+                return false;
+            
             return( this.m_profileInstanceId.equals( aProfileRef.m_profileInstanceId ) &&
                 this.m_storageFile.equals( aProfileRef.m_storageFile ) &&
                 this.m_maintainLink == aProfileRef.m_maintainLink );
