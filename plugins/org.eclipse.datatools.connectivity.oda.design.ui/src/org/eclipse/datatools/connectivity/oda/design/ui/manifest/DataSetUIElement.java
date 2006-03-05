@@ -161,11 +161,11 @@ public class DataSetUIElement
     }
     
     /**
-     * Returns an array of ids of the dataSetUI elements 
-     * defined in this data source extension.
-     * @return  an array of data set element ids.
+     * Returns an array of ids of the dataSetPage elements 
+     * defined in this data set ui element.
+     * @return  an array of data set page ids.
      */
-    public String[] getDataSetUIElementIDs()
+    public String[] getPageIds()
     {
         if( m_dataSetPages == null )
             return new String[0];
