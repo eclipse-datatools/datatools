@@ -51,6 +51,6 @@ public class GenericDBUIPlugin extends AbstractUIPlugin {
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.connectivity.db.generic.ui", path);
+		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.connectivity.db.generic.ui", path); //$NON-NLS-1$
 	}
 }

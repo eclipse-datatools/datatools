@@ -228,7 +228,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	 * @return
 	 */
 	public String getVendor() {
-		String vendor = "";
+		String vendor = ""; //$NON-NLS-1$
 		if (this.mDriverInstance != null) {
 			vendor = this.mDriverInstance
 					.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
@@ -242,7 +242,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	 * @return
 	 */
 	public String getVersion() {
-		String version = "";
+		String version = ""; //$NON-NLS-1$
 		if (this.mDriverInstance != null) {
 			version = this.mDriverInstance
 					.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
@@ -256,7 +256,7 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	 * @return
 	 */
 	public String getDriverClass() {
-		String driverClass = "";
+		String driverClass = ""; //$NON-NLS-1$
 		if (this.mDriverInstance != null) {
 			driverClass = this.mDriverInstance
 					.getProperty(IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);

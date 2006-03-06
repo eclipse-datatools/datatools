@@ -61,10 +61,10 @@ public class JDBCConnection extends DriverConnectionBase {
 		Properties connectionProps = new Properties();
 
 		if (uid != null) {
-			connectionProps.setProperty("user", uid);
+			connectionProps.setProperty("user", uid); //$NON-NLS-1$
 		}
 		if (pwd != null) {
-			connectionProps.setProperty("password", pwd);
+			connectionProps.setProperty("password", pwd); //$NON-NLS-1$
 		}
 
 		Driver jdbcDriver = (Driver) cl.loadClass(driverClass).newInstance();
@@ -117,12 +117,12 @@ public class JDBCConnection extends DriverConnectionBase {
 				String versionString = dbmd.getDatabaseProductVersion();
 				if (versionString.indexOf('/') > 0) {
 					// Special handling for ASE
-					String versionComps[] = versionString.split("/", 4);
+					String versionComps[] = versionString.split("/", 4); //$NON-NLS-1$
 					if (versionComps.length > 2) {
 						versionString = versionComps[1];
 						if (versionComps.length > 3) {
 							versionString += '.' + (versionComps[2]
-									.startsWith("EBF") ? versionComps[2]
+									.startsWith("EBF") ? versionComps[2] //$NON-NLS-1$
 									.substring(3).trim() : versionComps[2]);
 						}
 						if (versionComps[0].length() > 0

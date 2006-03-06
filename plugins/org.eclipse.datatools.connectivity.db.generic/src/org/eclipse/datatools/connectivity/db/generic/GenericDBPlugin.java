@@ -67,7 +67,7 @@ public class GenericDBPlugin extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin(
-				"org.eclipse.datatools.connectivity.db.generic", path);
+				"org.eclipse.datatools.connectivity.db.generic", path); //$NON-NLS-1$
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class GenericDBPlugin extends AbstractUIPlugin {
 		try {
 			if (resourceBundle == null)
 				resourceBundle = ResourceBundle
-						.getBundle("org.eclipse.datatools.connectivity.db.generic.resources");
+						.getBundle("org.eclipse.datatools.connectivity.db.generic.resources"); //$NON-NLS-1$
 		}
 		catch (MissingResourceException x) {
 			resourceBundle = null;

@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Generic DB UI Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.db.generic.ui; singleton:=true
 Bundle-Version: 0.7.0.200602241
 Bundle-Activator: org.eclipse.datatools.connectivity.db.generic.ui.GenericDBUIPlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

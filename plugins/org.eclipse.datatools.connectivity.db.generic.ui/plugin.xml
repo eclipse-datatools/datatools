@@ -15,7 +15,7 @@
       <page
             class="org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfilePropertyPage"
             id="org.eclipse.datatools.connectivity.db.generic.profileProperties"
-            name="JDBC Connection Properties"
+            name="%page.name.jdbcConnectionProperties"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"

@@ -20,12 +20,12 @@ public interface IDBConnectionProfileConstants extends
 	/**
 	 * The connection profile ID for the generic DB connection profile type.
 	 */
-	public static final String CONNECTION_PROFILE_ID = "org.eclipse.datatools.connectivity.db.generic.connectionProfile";
+	public static final String CONNECTION_PROFILE_ID = "org.eclipse.datatools.connectivity.db.generic.connectionProfile"; //$NON-NLS-1$
 
 	/**
 	 * Property used to store JDBC connection properties (i.e. properties passed
 	 * as a <code>Properties</code> object to <code>java.sql.Driver.connect()</code>).
 	 */
-	public static final String CONNECTION_PROPERTIES_PROP_ID = PROP_PREFIX + "connectionProperties";
+	public static final String CONNECTION_PROPERTIES_PROP_ID = PROP_PREFIX + "connectionProperties"; //$NON-NLS-1$
 
 }
