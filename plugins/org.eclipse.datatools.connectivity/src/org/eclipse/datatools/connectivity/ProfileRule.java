@@ -30,7 +30,7 @@ public class ProfileRule implements ISchedulingRule {
 	public ProfileRule(IConnectionProfile profile) {
 		super();
 		if (profile == null) {
-			throw new IllegalArgumentException("profile == null");
+			throw new IllegalArgumentException("profile == null"); //$NON-NLS-1$
 		}
 		mProfile = profile;
 	}

@@ -28,7 +28,7 @@ public class CreateConnectionJob extends Job {
 	public CreateConnectionJob(IConnectionFactoryProvider factory,
 								IConnectionProfile profile, Object family) {
 		super(ConnectivityPlugin.getDefault().getResourceString(
-				"CreateConnectionJob.name",
+				"CreateConnectionJob.name", //$NON-NLS-1$
 				new Object[] { factory.getName(), profile.getName()}));
 		setUser(true);
 		mFactory = factory;
@@ -57,7 +57,7 @@ public class CreateConnectionJob extends Job {
 				status = new Status(IStatus.ERROR, ConnectivityPlugin
 						.getDefault().getBundle().getSymbolicName(), -1,
 						ConnectivityPlugin.getDefault().getResourceString(
-								"CreateConnectionJob.error",
+								"CreateConnectionJob.error", //$NON-NLS-1$
 								new Object[] {
 										getConnectionFactoryProvider()
 												.getName(),
@@ -71,7 +71,7 @@ public class CreateConnectionJob extends Job {
 			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
 					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
 					.getDefault().getResourceString(
-							"CreateConnectionJob.error",
+							"CreateConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									getConnectionFactoryProvider().getName(),
 									getConnectionProfile().getName(),

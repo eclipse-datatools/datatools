@@ -72,7 +72,7 @@ public class ConnectivityPlugin extends AbstractUIPlugin {
 		try {
 			if (resourceBundle == null)
 				resourceBundle = ResourceBundle
-						.getBundle("org.eclipse.datatools.connectivity.internal.resources");
+						.getBundle("org.eclipse.datatools.connectivity.internal.resources"); //$NON-NLS-1$
 		}
 		catch (MissingResourceException x) {
 			resourceBundle = null;

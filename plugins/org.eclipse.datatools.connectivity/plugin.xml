@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-   <extension-point id="connectionProfile" name="Connection Profile Extension" schema="schema/connectionProfile.exsd"/>
-   <extension-point id="driverExtension" name="driverExtension" schema="schema/driverExtension.exsd"/>
+   <extension-point id="connectionProfile" name="%extension-point.name.connectionProfile" schema="schema/connectionProfile.exsd"/>
+   <extension-point id="driverExtension" name="%extension-point.name.driverExtension" schema="schema/driverExtension.exsd"/>
 
 </plugin>

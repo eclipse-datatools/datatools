@@ -285,7 +285,7 @@ public class ProfileConnectionManager {
 								ConnectivityPlugin.INTERNAL_ERROR,
 								ConnectivityPlugin.getDefault()
 										.getResourceString(
-												"error.connect",
+												"error.connect", //$NON-NLS-1$
 												new String[] { event
 														.getConnectionProfile()
 														.getName()}), con

@@ -56,7 +56,7 @@
       </wizard>
       <category
             id="org.eclipse.datatools.connectivity"
-            name="Connection Profiles"/>
+            name="%category.name.connectionProfiles"/>
    </extension>
 
    <extension

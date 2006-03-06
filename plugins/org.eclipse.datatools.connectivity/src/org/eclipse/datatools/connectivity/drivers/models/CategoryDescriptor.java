@@ -257,7 +257,7 @@ public class CategoryDescriptor implements Comparable {
 				Platform
 						.run(new SafeRunnable(
 								DriverMgmtMessages
-										.getString("CategoryDescriptor.msg.categoryDescriptorCreationError")) { // "CategoryDescriptor.categoryDescriptorCreationError.message")
+										.getString("CategoryDescriptor.msg.categoryDescriptorCreationError")) { // "CategoryDescriptor.categoryDescriptorCreationError.message") //$NON-NLS-1$
 
 							// {
 							// //$NON-NLS-1$

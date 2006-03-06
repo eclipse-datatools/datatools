@@ -53,7 +53,7 @@ public class ConnectionProfileMgmt {
 
 	public final static String FILENAME = "ServerProfiles.dat"; //$NON-NLS-1$
 
-	public final static String DEFAULTCP_FILENAME = "WorkSpaceServerConnectionProfiles.xml";
+	public final static String DEFAULTCP_FILENAME = "WorkSpaceServerConnectionProfiles.xml"; //$NON-NLS-1$
 
 	private final static String ROOTNAME = "DataTools.ServerProfiles"; //$NON-NLS-1$
 
@@ -295,7 +295,7 @@ public class ConnectionProfileMgmt {
 		reader.close();
 		isr.close();
 		fis.close();
-		if (line.matches(".*xml.*")) {
+		if (line.matches(".*xml.*")) { //$NON-NLS-1$
 			// not encrpyted
 			return loadCPs(file, null);
 		}

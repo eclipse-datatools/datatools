@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity;
 
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 /**
  * Base implementation for a connection that uses the driver framework.
@@ -104,7 +105,7 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 			if (mConnection == null) {
 				// Connect attempt failed without throwing an exception.
 				// We'll generate one for them.
-				throw new Exception("Connection failed with unspecified error.");
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.unknown")); //$NON-NLS-1$
 			}
 
 			initVersions();
@@ -128,13 +129,13 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 					.getProperty(
 							ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
 			if (driverID == null) {
-				throw new Exception("Driver definition not specified.");
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotSpecified")); //$NON-NLS-1$
 			}
 
 			mDriver = DriverManager.getInstance().getDriverInstanceByID(
 					driverID);
 			if (mDriver == null) {
-				throw new Exception("Driver definition could not be found.");
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotFound")); //$NON-NLS-1$
 			}
 		}
 

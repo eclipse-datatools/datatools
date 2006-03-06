@@ -58,7 +58,7 @@ public class DefaultCipherProvider implements ICipherProvider {
 					.getDefault()
 					.getBundle()
 					.getResource(
-							"org/eclipse/datatools/connectivity/internal/security/cpkey");
+							"org/eclipse/datatools/connectivity/internal/security/cpkey"); //$NON-NLS-1$
 
 			ois = new ObjectInputStream(url.openStream());
 

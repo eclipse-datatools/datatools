@@ -189,7 +189,7 @@ public class DriverInstance {
 		if ((jarList == null || jarList.trim().length() == 0)
 				&& !getTemplate().getEmptyJarListIsOKFlag()) {
 			throw new Exception(
-					"Invalid driver definition; JAR list not defined.");
+					DriverMgmtMessages.getString("DriverInstance.error.jarListNotDefined")); //$NON-NLS-1$
 		}
 
 		String[] jarStrings = getJarListAsArray();
@@ -199,7 +199,7 @@ public class DriverInstance {
 				jars[index] = new File(jarStrings[index]).toURL();
 			}
 			catch (MalformedURLException e) {
-				throw new Exception("Invalid driver class path", e);
+				throw new Exception(DriverMgmtMessages.getString("DriverInstance.error.invalidClassPath"), e); //$NON-NLS-1$
 			}
 		}
 		if (parentCL == null) {

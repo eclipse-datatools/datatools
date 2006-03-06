@@ -12,7 +12,7 @@
       </view>
       <category
             id="org.eclipse.datatools"
-            name="Data Tools"/>
+            name="%category.name.dataTools"/>
    </extension>
    <extension
          point="org.eclipse.ui.viewActions">

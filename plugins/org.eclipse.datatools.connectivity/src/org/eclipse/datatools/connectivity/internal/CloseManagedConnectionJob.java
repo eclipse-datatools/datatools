@@ -23,7 +23,7 @@ public class CloseManagedConnectionJob extends Job {
 	public CloseManagedConnectionJob(ManagedConnection connection, Object family) {
 		super(ConnectivityPlugin.getDefault()
 				.getResourceString(
-						"CloseManagedConnectionJob.name",
+						"CloseManagedConnectionJob.name", //$NON-NLS-1$
 						new Object[] {
 								connection.getConnectionProfile().getProvider()
 										.getConnectionFactory(
@@ -45,7 +45,7 @@ public class CloseManagedConnectionJob extends Job {
 			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
 					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
 					.getDefault().getResourceString(
-							"CloseManagedConnectionJob.error",
+							"CloseManagedConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									mConnection.getConnectionProfile()
 											.getProvider()

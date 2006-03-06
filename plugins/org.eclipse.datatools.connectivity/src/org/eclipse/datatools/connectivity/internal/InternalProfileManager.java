@@ -183,7 +183,7 @@ public class InternalProfileManager {
 	public void createProfile(String name, String description,
 			String providerID, Properties baseProperties)
 			throws ConnectionProfileException {
-		createProfile(name, description, providerID, baseProperties, "", false);
+		createProfile(name, description, providerID, baseProperties, "", false); //$NON-NLS-1$
 	}
 
 	/**
@@ -238,14 +238,14 @@ public class InternalProfileManager {
 		int i = 0;
 		do {
 			profileName = ConnectivityPlugin.getDefault().getResourceString(
-					"duplicate.profile.name",
+					"duplicate.profile.name", //$NON-NLS-1$
 					new Object[] { cp.getName(), new Integer(i)});
 			i++;
 		}
 		while (getProfileByName(profileName) != null);
 		Properties props = (Properties) cp.getBaseProperties().clone();
 		createProfile(profileName, cp.getDescription(), cp.getProviderId(),
-				props, cp.getParentProfile() == null ? "" : cp
+				props, cp.getParentProfile() == null ? "" : cp //$NON-NLS-1$
 						.getParentProfile().getName(), cp.isAutoConnect());
 		return profileName;
 	}

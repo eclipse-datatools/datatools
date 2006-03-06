@@ -152,13 +152,13 @@ public class TemplateDescriptor implements Comparable {
 		if (jarList == null) {
 			jarList = new String();
 		}
-		if (!jarList.matches(".*" + PLUGIN_LOC + ".*"))
+		if (!jarList.matches(".*" + PLUGIN_LOC + ".*")) //$NON-NLS-1$ //$NON-NLS-2$
 			return jarList;
 		try {
 			String pluginID = this.fElement.getDeclaringExtension()
 					.getNamespace();
 			String pluginLoc = Platform.resolve(
-					Platform.getBundle(pluginID).getEntry("")).getFile();
+					Platform.getBundle(pluginID).getEntry("")).getFile(); //$NON-NLS-1$
 			if (pluginLoc.charAt(0) == '/')
 				pluginLoc = pluginLoc.substring(1);
 			if (pluginLoc.charAt(pluginLoc.length() - 1) == '/')
@@ -294,7 +294,7 @@ public class TemplateDescriptor implements Comparable {
 				Platform
 						.run(new SafeRunnable(
 								DriverMgmtMessages
-										.getString("TemplateDescriptor.msg.driverTypeDescriptorCreationError")) { // "TemplateDescriptor.driverTypeDescriptorCreationError.message")
+										.getString("TemplateDescriptor.msg.driverTypeDescriptorCreationError")) { // "TemplateDescriptor.driverTypeDescriptorCreationError.message") //$NON-NLS-1$
 
 							// {
 							// //$NON-NLS-1$

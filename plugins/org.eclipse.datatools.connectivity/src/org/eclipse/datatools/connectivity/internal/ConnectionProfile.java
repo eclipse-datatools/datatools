@@ -72,7 +72,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private Map mFactoryIDToManagedConnection;
 
 	public ConnectionProfile(String name, String desc, String providerID) {
-		this(name, desc, providerID, "", false);
+		this(name, desc, providerID, "", false); //$NON-NLS-1$
 	}
 
 	public ConnectionProfile(String name, String desc, String providerID,
@@ -725,7 +725,7 @@ public class ConnectionProfile extends PlatformObject implements
 		public OpenConnectionEventJob(IConnectListener listener,
 										ConnectEvent event, Object family) {
 			super(ConnectivityPlugin.getDefault().getResourceString(
-					"OpenConnectionEventJob.name",
+					"OpenConnectionEventJob.name", //$NON-NLS-1$
 					new Object[] { event.getConnectionProfile().getName()}));
 			setSystem(true);
 			mListener = listener;
@@ -904,7 +904,7 @@ public class ConnectionProfile extends PlatformObject implements
 		public CloseConnectionEventJob(IConnectListener listener,
 										ConnectEvent event, Object family) {
 			super(ConnectivityPlugin.getDefault().getResourceString(
-					"OpenConnectionEventJob.name",
+					"OpenConnectionEventJob.name", //$NON-NLS-1$
 					new Object[] { event.getConnectionProfile().getName()}));
 			setSystem(true);
 			mListener = listener;
