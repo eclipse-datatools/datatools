@@ -4,7 +4,7 @@ Bundle-Name: Eclipse Data Tools Platform Derby SQL Tools Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.derby;singleton:=true
 Bundle-Version: 0.7.0.200602242
 Bundle-Activator: org.eclipse.datatools.sqltools.db.derby.Activator
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Bundle-ClassPath: sqlderby.jar
 Require-Bundle: org.eclipse.ui,
