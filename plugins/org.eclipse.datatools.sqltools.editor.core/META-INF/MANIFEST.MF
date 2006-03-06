@@ -35,3 +35,4 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.internal;x-internal:=true,
  org.eclipse.datatools.sqltools.internal.core;x-internal:=true,
  org.eclipse.datatools.sqltools.launching
+Bundle-Vendor: Eclipse.org

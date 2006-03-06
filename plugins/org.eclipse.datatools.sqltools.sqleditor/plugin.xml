@@ -4,7 +4,7 @@
    id="org.eclipse.datatools.sqltools.sqleditor"
    name="Eclipse Data Tools Platform SQL Editor"
    version="0.7.0.200602242"
-   provider-name="eclipse.org"
+   provider-name="Eclipse.org"
    class="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin">
 
    <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>

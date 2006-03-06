@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.xml.query
 Bundle-Version: 0.7.0.200602241
 Bundle-ClassPath: sqlxmlqueryparser.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.xml.query.SQLXMLQueryParserPlugin
-Bundle-Vendor: IBM
+Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.sqltools.parsers.sql.xml.query
 Require-Bundle: org.eclipse.core.runtime,

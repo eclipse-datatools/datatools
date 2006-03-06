@@ -17,4 +17,4 @@ Export-Package: org.eclipse.datatools.sqltools.sql,
  org.eclipse.datatools.sqltools.sql.parser.ast;x-internal:=true,
  org.eclipse.datatools.sqltools.sql.parser.util;x-internal:=true,
  org.eclipse.datatools.sqltools.sql.util;x-friends:="org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor"
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: Eclipse.org

@@ -6,7 +6,7 @@ Bundle-Version: 0.7.0.200602241
 Bundle-ClassPath: lexer.jar,
  thirdparty/lpg.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.lexer.LexerPlugin
-Bundle-Vendor: IBM
+Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: com.ibm.lpg,
  org.eclipse.datatools.sqltools.parsers.sql.lexer
