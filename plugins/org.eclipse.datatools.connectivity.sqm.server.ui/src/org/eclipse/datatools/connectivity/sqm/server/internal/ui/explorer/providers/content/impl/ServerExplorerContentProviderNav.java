@@ -61,7 +61,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
 
     private static final Object[] EMPTY_ELEMENT_ARRAY = new Object[0];
-    private static final String KNOWN_SERVERS = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.KNOWN_SERVERS");
+    private static final String KNOWN_SERVERS = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.KNOWN_SERVERS"); //$NON-NLS-1$
 
     private static final IVirtualNodeServiceFactory virtualNodeFactory = IDataToolsUIServiceManager.INSTANCE.getVirtualNodeServiceFactory();
  //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
@@ -93,7 +93,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     private void initializeLayoutExtensionProviders()
     {
         IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.server.ui",
+        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.server.ui", //$NON-NLS-1$
                 "serverExplorerLayoutExtension"); //$NON-NLS-1$ //$NON-NLS-2$
         IExtension[] extensions = extensionPoint.getExtensions();
         for (int i = 0; i < extensions.length; ++i)
@@ -104,7 +104,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
                 try
                 {
                     IServerExplorerLayoutExtensionProvider layout = (IServerExplorerLayoutExtensionProvider) configElements[j]
-                            .createExecutableExtension("class");
+                            .createExecutableExtension("class"); //$NON-NLS-1$
                     layout.enableLayout(isVirtualNodeLayoutSelected() ? Layout.VNODE : Layout.HIERARCHICAL);
                     layoutProvidersExtensionList.add(layout);
                 }

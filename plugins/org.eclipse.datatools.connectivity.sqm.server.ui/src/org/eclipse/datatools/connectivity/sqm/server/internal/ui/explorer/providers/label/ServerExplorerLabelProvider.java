@@ -31,7 +31,7 @@ public class ServerExplorerLabelProvider extends LabelProvider implements ICommo
 {
 	private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
 	private static final IDataToolsUIServiceManager imageService = IDataToolsUIServiceManager.INSTANCE;
-	private static final String EXTERNAL_DEPENDENCY = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.EXTERNAL_DEPENDENCY");
+	private static final String EXTERNAL_DEPENDENCY = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.EXTERNAL_DEPENDENCY"); //$NON-NLS-1$
 
 	/**
      * @return the Image associated with this element

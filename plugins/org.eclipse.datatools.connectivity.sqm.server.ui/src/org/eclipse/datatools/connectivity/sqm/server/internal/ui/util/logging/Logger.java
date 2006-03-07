@@ -63,6 +63,6 @@ public class Logger
 	{
 		String className = owner != null ? owner.getClass().getName() : null;
 		logger.log(new Status(IStatus.ERROR, ServerUIPlugin.getDefault().getBundle().getSymbolicName(),
-				IStatus.ERROR, "Detected in Class : " + className, exception));
+				IStatus.ERROR, "Detected in Class : " + className, exception)); //$NON-NLS-1$
 	}
 }

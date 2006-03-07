@@ -15,7 +15,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.util;
  */
 public class ServerToolsUIConstants
 {
-	public static final String SERVER_EXPLORER_VIEW_ID = "org.eclipse.datatools.connectivity.sqm.server.ui.navigator.serverExplorer";
-	public static final String PROJECT_EXPLORER_VIEW_ID = "com.ibm.datatools.project.ui.projectExplorer";
-	public static final String SERVER_STATUS_DECORATION = "com.ibm.datatools.project.internal.ui.explorer.ServerStateDecoration";
+	public static final String SERVER_EXPLORER_VIEW_ID = "org.eclipse.datatools.connectivity.sqm.server.ui.navigator.serverExplorer"; //$NON-NLS-1$
+	public static final String PROJECT_EXPLORER_VIEW_ID = "com.ibm.datatools.project.ui.projectExplorer"; //$NON-NLS-1$
+	public static final String SERVER_STATUS_DECORATION = "com.ibm.datatools.project.internal.ui.explorer.ServerStateDecoration"; //$NON-NLS-1$
 }

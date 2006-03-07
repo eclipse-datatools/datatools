@@ -48,7 +48,7 @@ public class ServerUIPlugin extends AbstractUIPlugin
 
     public static URL getInstallURL()
     {
-        return getDefault().getBundle().getEntry("/");
+        return getDefault().getBundle().getEntry("/"); //$NON-NLS-1$
     }
     
     public void start(BundleContext context) throws Exception 

@@ -50,7 +50,7 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 	}
 
 	public void fillContextMenu(IMenuManager aMenu) {
-		aMenu.add(new Separator("additions"));
+		aMenu.add(new Separator("additions")); //$NON-NLS-1$
 		aMenu.add(mPropertiesAction);
 		return;
 	}

@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.ui.IContentExtension;
 import org.eclipse.datatools.connectivity.ui.ManagedContentExtensionBase;
 import org.eclipse.swt.graphics.Image;
@@ -24,6 +25,8 @@ import org.eclipse.swt.graphics.Image;
  * @see IContentExtension
  */
 public class SQLModelContentExtension extends ManagedContentExtensionBase {
+	private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
+	private static final String LABEL = resourceLoader.queryString("SQL_MODEL_CONTENT_EXTENSION_LABEL"); //$NON-NLS-1$
 
 	public SQLModelContentExtension(IConnectionProfile profile) {
 		super(profile, ConnectionInfo.class.getName());
@@ -34,7 +37,7 @@ public class SQLModelContentExtension extends ManagedContentExtensionBase {
 	}
 
 	public String getLabel() {
-		return "SQL Model Content";
+		return LABEL;
 	}
 
 	public boolean isVisible() {

@@ -33,9 +33,9 @@ public class TransientEObjectUtil implements IElementIDProvider
     private static final ContainmentService containment = RDBCorePlugin.getDefault().getContainmentService();
  //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
     
-    private static final String SEPARATOR = "#";
-    private static final String VIRTUAL_SEPARATOR = "/";
-    private static final String NULL = "";
+    private static final String SEPARATOR = "#"; //$NON-NLS-1$
+    private static final String VIRTUAL_SEPARATOR = "/"; //$NON-NLS-1$
+    private static final String NULL = ""; //$NON-NLS-1$
 
     private static final Stack stack = new Stack ();
     

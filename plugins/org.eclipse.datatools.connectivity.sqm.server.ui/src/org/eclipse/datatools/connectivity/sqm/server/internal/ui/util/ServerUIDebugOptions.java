@@ -31,5 +31,5 @@ public class ServerUIDebugOptions
 	
 	private static final String PLUGIN = ServerUIPlugin.getDefault().getBundle().getSymbolicName();
 	
-	public static final ServerUIDebugOptions SERVER_EXPLORER_LOG = new ServerUIDebugOptions (PLUGIN + "/serverExplorer/log");
+	public static final ServerUIDebugOptions SERVER_EXPLORER_LOG = new ServerUIDebugOptions (PLUGIN + "/serverExplorer/log"); //$NON-NLS-1$
 }

@@ -24,9 +24,9 @@ import org.eclipse.swt.graphics.Image;
 public class ResourceLoader
 {
 	private static final ServerUIPlugin plugin = ServerUIPlugin.getDefault();
-	private static final String RESOURCE_PATH = "org/eclipse/datatools/connectivity/sqm/server/internal/ui/l10n/";
-	private static final String UI_RESOURCES = "datatoolsServerUI";
-	private static final String NO_RESOURCE_FOUND = "NO_RESOURCE_FOUND";
+	private static final String RESOURCE_PATH = "org/eclipse/datatools/connectivity/sqm/server/internal/ui/l10n/"; //$NON-NLS-1$
+	private static final String UI_RESOURCES = "datatoolsServerUI"; //$NON-NLS-1$
+	private static final String NO_RESOURCE_FOUND = "NO_RESOURCE_FOUND"; //$NON-NLS-1$
 
 	private ResourceBundle bundle;
 	
