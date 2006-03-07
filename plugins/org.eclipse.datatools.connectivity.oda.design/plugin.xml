@@ -15,14 +15,14 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.5 2006/02/26 08:04:34 lchan Exp $
+ * $Id: plugin.xml,v 1.6 2006/02/28 21:02:29 lchan Exp $
  */
 -->
 
 <plugin
     name = "%pluginName"
     id = "org.eclipse.datatools.connectivity.oda.design"
-    version = "3.0.0.200603011"
+    version = "3.0.0.200603071"
     provider-name = "Eclipse.org">
 
   <requires>
