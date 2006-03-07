@@ -27,9 +27,9 @@
       <import plugin="org.eclipse.datatools.connectivity"/>
    </requires>
 
-   <extension-point id="labelService" name="labelService" schema="schema/labelService.exsd"/>
-   <extension-point id="elementID" name="elementID" schema="schema/elementID.exsd"/>
-   <extension-point id="markerNavigationProvider" name="markerNavigationProvider" schema="schema/markerNavigationProvider.exsd"/>
+   <extension-point id="labelService" name="%LABEL_SERVICE_EXTENSION_POINT_NAME" schema="schema/labelService.exsd"/>
+   <extension-point id="elementID" name="%ELEMENT_ID_EXTENSION_POINT_NAME" schema="schema/elementID.exsd"/>
+   <extension-point id="markerNavigationProvider" name="%MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME" schema="schema/markerNavigationProvider.exsd"/>
 
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -308,7 +308,7 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
-          name="Default Schema Filter"
+          name="%DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME"
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
@@ -317,7 +317,7 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
-          name="Default Table Filter"
+          name="%DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME"
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
@@ -326,7 +326,7 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
-          name="Default Stored Procedure Filter"
+          name="%DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME"
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
@@ -335,7 +335,7 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
-          name="Filter Settings"
+          name="%FILTER_SETTINGS_PROPERTY_PAGE_NAME"
           objectClass="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
  </extension>
 </plugin>
