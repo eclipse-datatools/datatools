@@ -11,10 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.4 2006/02/21 11:20:09 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.5 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
@@ -123,6 +124,27 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
             newResponse.setSessionStatus( SessionStatus.ERROR_LITERAL );
 
         newResponse.setNewDataAccessDesign( dataSourceDesign );
+        
+        setResponse( newResponse );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewResponse(boolean, org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+     */
+    public void setNewResponse( boolean isSessionOk, DataSetDesign dataSetDesign )
+    {
+        DesignSessionResponse newResponse =
+            DesignFactory.eINSTANCE.createDesignSessionResponse();
+        
+        if( isSessionOk )
+            newResponse.setSessionStatus( SessionStatus.OK_LITERAL );
+        else
+            newResponse.setSessionStatus( SessionStatus.ERROR_LITERAL );
+
+        DataAccessDesign newDataAccess =
+            DesignFactory.eINSTANCE.createDataAccessDesign();
+        newDataAccess.setDataSetDesign( dataSetDesign );
+        newResponse.setDataAccessDesign( newDataAccess );
         
         setResponse( newResponse );
     }

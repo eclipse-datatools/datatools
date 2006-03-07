@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertiesImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: PropertiesImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -90,6 +90,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Properties#findProperty(java.lang.String)
+     * @generated NOT
      */
     public Property findProperty( String propName )
     {
@@ -104,7 +105,20 @@ public class PropertiesImpl extends EObjectImpl implements Properties
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#getProperty(java.lang.String)
+     * @generated NOT
+     */
+    public String getProperty( String propName )
+    {
+        Property prop = findProperty( propName );
+        if( prop != null )
+            return prop.getValue();
+        return null;
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Properties#setProperty(java.lang.String, java.lang.String)
+     * @generated NOT
      */
     public void setProperty( String propName, String propValue )
     {
@@ -123,6 +137,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Properties#unsetProperty(java.lang.String)
+     * @generated NOT
      */
     public void unsetProperty( String propName )
     {

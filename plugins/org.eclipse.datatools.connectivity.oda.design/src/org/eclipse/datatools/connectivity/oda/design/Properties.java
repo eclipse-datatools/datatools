@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Properties.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
+ * $Id: Properties.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -57,6 +57,16 @@ public interface Properties extends EObject
      * @generated NOT
      */
     Property findProperty( String propName );
+    
+    /**
+     * Returns the value of the named Property in the
+     * '<em><b>Properties</b></em>' containment reference list.
+     * @param propName  property name
+     * @return  the value of the given named property; 
+     *          may be null if no property is found with given name
+     * @generated NOT
+     */
+    String getProperty( String propName );
 
     /**
      * Sets the value in the Property with given name in the
@@ -73,6 +83,7 @@ public interface Properties extends EObject
      * Removes the Property with given name in the
      * '<em><b>Properties</b></em>' containment reference list.
      * @param propName
+     * @generated NOT
      */
     void unsetProperty( String propName );
 

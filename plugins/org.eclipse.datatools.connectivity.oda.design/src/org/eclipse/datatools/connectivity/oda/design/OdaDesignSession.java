@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.5 2006/02/21 11:20:09 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.6 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -111,6 +111,19 @@ public interface OdaDesignSession extends EObject
      * @generated NOT
      */
     void setNewResponse( boolean isSessionOk, DataSourceDesign dataSourceDesign );
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponse <em>Response</em>}' containment reference
+     * with a new response that contains the given session status
+     * and DataSetDesign instance.
+     * <br>This method may be used by an ODA driver's design UI extension
+     * to update this design session with a response that contains
+     * the edited data set design definition.
+     * @param dataSetDesign
+     * @see #setResponse(DesignSessionResponse)
+     * @generated NOT
+     */
+    void setNewResponse( boolean isSessionOk, DataSetDesign dataSetDesign );
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getResponse <em>Response</em>}' containment reference
