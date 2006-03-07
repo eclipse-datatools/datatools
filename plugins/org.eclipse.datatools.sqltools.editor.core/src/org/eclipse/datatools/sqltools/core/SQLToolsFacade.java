@@ -32,7 +32,7 @@ public class SQLToolsFacade
 {
 
     private static SQLToolsFacade   _instance = new SQLToolsFacade();
-    private static SQLDevToolsConfiguration _default  = new SQLDevToolsConfiguration();
+    private static SQLDevToolsConfiguration _default  = SQLDevToolsConfiguration.getDefaultInstance();
 
     private SQLToolsFacade()
     {

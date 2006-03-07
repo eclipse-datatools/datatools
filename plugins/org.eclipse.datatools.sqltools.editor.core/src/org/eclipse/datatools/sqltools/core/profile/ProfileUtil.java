@@ -35,6 +35,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 
 /**
  * Utility class for <code>IConnectionProfile</code> in connectivity layer. Encapsulating all the code to processing
@@ -437,7 +438,7 @@ public class ProfileUtil
      * Returns all the connection profiles belonging to the database category.
      * @return connection profile name array
      */
-    public static String[] getDatabaseProfiles()
+    public static String[] getSupportedDatabaseProfiles()
     {
         IConnectionProfile[] profiles = ProfileManager.getInstance().getProfiles();
         ArrayList DBProfileNames = new ArrayList();
@@ -445,7 +446,11 @@ public class ProfileUtil
         {
             if (isDatabaseProfile(profiles[i]))
             {
-                DBProfileNames.add(profiles[i].getName());
+            	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfigurationByProfileName(profiles[i].getName());
+            	if (conf != null && !conf.equals(SQLDevToolsConfiguration.getDefaultInstance()))
+            	{
+            		DBProfileNames.add(profiles[i].getName());
+            	}
             }
         }
         return (String[])DBProfileNames.toArray(new String[DBProfileNames.size()]);
