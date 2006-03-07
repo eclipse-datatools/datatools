@@ -278,7 +278,7 @@ public class LabelService implements ILabelService
     	// TODO: Fix this code
    //     String connectionName = connectionManager.getConnectionInfo(((ICatalogObject)object).getCatalogDatabase()).getName();
     //    return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName});
-    	return MessageFormat.format(CONNECTION_NAME, new String [] {name, "NO_NAME_FOUND"});
+    	return MessageFormat.format(CONNECTION_NAME, new String [] {name, "NO_NAME_FOUND"}); //$NON-NLS-1$
     }
     
     private String buildProjectName (IProject project, String name)

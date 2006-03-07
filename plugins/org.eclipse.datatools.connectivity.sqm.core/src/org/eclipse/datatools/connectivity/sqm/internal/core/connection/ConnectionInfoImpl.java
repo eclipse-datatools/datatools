@@ -618,7 +618,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		this.setDatabaseDefinition(dbDef);
 		this.setDatabaseName(databaseName);
 		
-		this.name = "conn1"; // TODO get name from connection profile
+		this.name = "conn1"; // TODO get name from connection profile //$NON-NLS-1$
 		
 		jdbcConnection = profile.createConnection(Connection.class.getName());
 		Connection connection = (Connection) jdbcConnection.getRawConnection();
@@ -636,7 +636,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		
 		while (schemasIter.hasNext()){
 			Schema schema = (Schema)schemasIter.next();
-			System.out.println("Schema " + schema.getName() + " has tables:");
+			System.out.println("Schema " + schema.getName() + " has tables:"); //$NON-NLS-1$ //$NON-NLS-2$
 			EList tables = schema.getTables();
 			Iterator tableIter = tables.iterator();
 			while(tableIter.hasNext()){		

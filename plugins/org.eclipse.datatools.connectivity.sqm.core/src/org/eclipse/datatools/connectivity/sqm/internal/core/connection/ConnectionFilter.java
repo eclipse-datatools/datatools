@@ -74,7 +74,7 @@ public interface ConnectionFilter extends Serializable{
 	public static final String XSR_OBJECTS_FILTER = "DatatoolsXMLSchemasFilterPredicate"; //$NON-NLS-1$
 	public static final String XML_SCHEMA_DOC_FILTER = "DatatoolsXMLSchemaDocsFilterPredicate"; //$NON-NLS-1$
 
-	public static final String FILTER_PROP_PREFIX = "org.eclipse.datatools.connectivity.filter.";
+	public static final String FILTER_PROP_PREFIX = "org.eclipse.datatools.connectivity.filter."; //$NON-NLS-1$
 	public static final String SCHEMA_FILTER_PROP_ID = FILTER_PROP_PREFIX+ConnectionFilter.SCHEMA_FILTER;
 	public static final String DEFAULT_TABLE_FILTER_PROP_ID = FILTER_PROP_PREFIX+ConnectionFilter.TABLE_FILTER;
 	public static final String DEFAULT_STORED_PROCEDURE_FILTER_PROP_ID = FILTER_PROP_PREFIX+ConnectionFilter.STORED_PROCEDURE_FILTER;
