@@ -74,47 +74,4 @@
          </viewerContentBinding>
       </extension>  
 
-<!-- Refresh Menu -->
-   <extension
-         point="org.eclipse.ui.popupMenus">
-
-      <objectContribution
-            objectClass="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"
-            id="org.eclipse.datatools.connectivity.sqm.server.ui.explorer.popupMenus">
-         <action
-               label="%rdb.server.ui.actions.refresh"
-               icon="platform:/plugin/org.eclipse.datatools.connectivity.sqm.core.ui/icons/refresh.gif"
-               class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.eclipse.datatools.connectivity.sqm.server.ui.explorer.popupMenus.refresh">
-         </action>
-         <visibility>
-            <or>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.schema.Database">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.schema.Schema">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.tables.Table">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.schema.Sequence">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.datatools.modelbase.sql.routines.Procedure">
-               </objectClass>
-               <objectClass
-               		 name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode">
-               </objectClass>
-            </or>
-         </visibility>
-      </objectContribution>
-   </extension>
-
 </plugin>
