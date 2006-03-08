@@ -1,32 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-<plugin
-   id="org.eclipse.datatools.connectivity.oda"
-   name="DTP Open Data Access"
-   version="3.0.0.200603061"
-   provider-name="Eclipse.org">
-
-   <runtime>
-      <library name="oda.jar">
-         <export name="*"/>
-      </library>
-      <library name="odaconsumer-helper.jar">
-         <export name="*"/>
-      </library>
-      <library name="lib/birt-core.jar">
-         <export name="org.eclipse.birt.core.framework.*"/>
-         <export name="org.eclipse.birt.core.framework.eclipse.*"/>
-         <export name="org.eclipse.birt.core.framework.parser.*"/>
-         <export name="org.eclipse.birt.core.framework.server.*"/>
-         <export name="org.eclipse.birt.core.plugin.*"/>
-      </library>
-   </runtime>
-   <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.junit" optional="true"/>
-      <import plugin="com.ibm.icu" export="true"/>
-   </requires>
-
-	<extension-point id="dataSource" name="Open Data Access Design and Run-time Extension" schema="schema/datasource.exsd"/>
-
+<plugin>
+    	<extension-point id="dataSource" name="Open Data Access Design and Run-time Extension" schema="schema/datasource.exsd"/>
 </plugin>
