@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -35,14 +36,23 @@ import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.TableDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
+import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
+import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
+import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
@@ -50,10 +60,20 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataLinkDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.IntervalDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -94,7 +114,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			this.factory = DefaultDataModelElementFactory.INSTANCE;				
 			
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "dataModelElementFactory"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "dataModelElementFactory"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -124,7 +144,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public ICatalogProvider getDatabaseCatalogProvider() {
 		if(this.catalogProvider == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "catalog"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "catalog"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -158,7 +178,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DDLParser getDdlParser() {
 		if(this.parser == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlParser"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlParser"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -187,7 +207,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DDLGenerator getDDLGenerator() {
 		if(this.ddlGenerator == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -222,7 +242,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DeltaDDLGenerator getDeltaDDLGenerator() {
 		if(this.ddlGenerator == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -416,6 +436,20 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataType = SQLDataTypesFactory.eINSTANCE.createIntervalDataType();
 				predefinedDataType.setName((String)predefinedDataTypeDefinition.getName().get(0));		
 				predefinedDataType.setPrimitiveType(primitiveType);
+				if (predefinedDataTypeDefinition.isLeadingFieldQualifierSupported()) {
+					FieldQualifierDefinition leadingFieldQualifierDefinition = predefinedDataTypeDefinition.getDefaultLeadingFieldQualifierDefinition();
+					if (leadingFieldQualifierDefinition != null) {
+						((IntervalDataType)predefinedDataType).setLeadingQualifier(leadingFieldQualifierDefinition.getName());
+						((IntervalDataType)predefinedDataType).setLeadingFieldPrecision(leadingFieldQualifierDefinition.getDefaultPrecision());
+					}
+				}
+				if (predefinedDataTypeDefinition.isTrailingFieldQualifierSupported()) {
+					FieldQualifierDefinition trailingFieldQualifierDefinition = predefinedDataTypeDefinition.getDefaultTrailingFieldQualifierDefinition();
+					if (trailingFieldQualifierDefinition != null) {
+						((IntervalDataType)predefinedDataType).setTrailingQualifier(trailingFieldQualifierDefinition.getName());
+						((IntervalDataType)predefinedDataType).setTrailingFieldPrecision(trailingFieldQualifierDefinition.getDefaultPrecision());
+					}
+				}
 			}
 			break;
 			
@@ -550,17 +584,20 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			break;
 			
 			case PrimitiveType.BINARY: {
-				String temp = predefinedDataType.getName();
-				int ind = temp.indexOf(")");//$NON-NLS-1$
-				if (ind >0) {
-					predefinedDataTypeFormattedName = temp.substring(0, ind);
-					predefinedDataTypeFormattedName += ((BinaryStringDataType)predefinedDataType).getLength(); 
-					predefinedDataTypeFormattedName += temp.substring(ind, temp.length());
-				} else {
-					predefinedDataTypeFormattedName = temp;
-					PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-					if (predefinedDataTypeDefinition.isLengthSupported()) {
-						predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+				predefinedDataTypeFormattedName = predefinedDataType.getName();
+				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataType.getName());
+				if (predefinedDataTypeDefinition != null) {
+					if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
+						String temp = predefinedDataTypeDefinition.getDisplayName();
+						if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
+							predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((BinaryStringDataType)predefinedDataType).getLength())});
+						}
+					}
+					else {
+						if (predefinedDataTypeDefinition.isLengthSupported() &&
+								(((BinaryStringDataType)predefinedDataType).getLength() > 0) ) {
+							predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
 					}
 				}
 			}
@@ -569,24 +606,28 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.BINARY_LARGE_OBJECT: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isLengthSupported()) {
+				if (predefinedDataTypeDefinition.isLengthSupported() &&
+						(((BinaryStringDataType)predefinedDataType).getLength() > 0) ) {
 					predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			break;
 			
 			case PrimitiveType.BINARY_VARYING: {
-				String temp = predefinedDataType.getName();
-				int ind = temp.indexOf(")");//$NON-NLS-1$
-				if (ind >0) {
-					predefinedDataTypeFormattedName = temp.substring(0, ind);
-					predefinedDataTypeFormattedName += ((BinaryStringDataType)predefinedDataType).getLength(); 
-					predefinedDataTypeFormattedName += temp.substring(ind, temp.length());
-				} else {
-					predefinedDataTypeFormattedName = temp;
-					PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-					if (predefinedDataTypeDefinition.isLengthSupported()) {
-						predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+				predefinedDataTypeFormattedName = predefinedDataType.getName();
+				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataType.getName());
+				if (predefinedDataTypeDefinition != null) {
+					if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
+						String temp = predefinedDataTypeDefinition.getDisplayName();
+						if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
+							predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((BinaryStringDataType)predefinedDataType).getLength())});
+						}
+					}
+					else {
+						if (predefinedDataTypeDefinition.isLengthSupported() &&
+								(((BinaryStringDataType)predefinedDataType).getLength() > 0) ) {
+							predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
 					}
 				}
 			}
@@ -600,7 +641,8 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.CHARACTER: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isLengthSupported()) {
+				if (predefinedDataTypeDefinition.isLengthSupported() &&
+						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
 					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
@@ -609,7 +651,8 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.CHARACTER_LARGE_OBJECT: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isLengthSupported()) {
+				if (predefinedDataTypeDefinition.isLengthSupported() &&
+						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
 					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
@@ -618,7 +661,8 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.CHARACTER_VARYING: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isLengthSupported()) {
+				if (predefinedDataTypeDefinition.isLengthSupported() &&
+						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
 					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
@@ -633,7 +677,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
 				if ( predefinedDataTypeDefinition.isPrecisionSupported() && predefinedDataTypeDefinition.isScaleSupported() ) {
-					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + "," + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
 			}
 			break;
@@ -646,7 +690,8 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.FLOAT: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isPrecisionSupported()) {
+				if (predefinedDataTypeDefinition.isPrecisionSupported() &&
+						(((ApproximateNumericDataType)predefinedDataType).getPrecision() > 0) ) {
 					predefinedDataTypeFormattedName += "(" + ((ApproximateNumericDataType)predefinedDataType).getPrecision() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
@@ -658,19 +703,55 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			break;
 			
 			case PrimitiveType.INTERVAL: {
-				String temp = predefinedDataType.getName();
-				/*int ind = temp.indexOf(")"); //$NON-NLS-1$
-				if (ind >0) {
-					predefinedDataTypeFormattedName = temp.substring(0, ind);
-					predefinedDataTypeFormattedName += ((BinaryStringDataType)predefinedDataType).getLength(); 
-					predefinedDataTypeFormattedName += temp.substring(ind, temp.length());
-				} else { */
-					predefinedDataTypeFormattedName = temp;
-					PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-					if (predefinedDataTypeDefinition.isPrecisionSupported()) {
-						predefinedDataTypeFormattedName += "(" + ((IntervalDataType)predefinedDataType).getFractionalSecondsPrecision() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+				predefinedDataTypeFormattedName = predefinedDataType.getName();
+				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataType.getName());
+				if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
+					String temp = predefinedDataTypeDefinition.getDisplayName();
+					Vector parameterList = new Vector();
+					IntervalQualifierType leadingQualifier = ((IntervalDataType)predefinedDataType).getLeadingQualifier();
+					IntervalQualifierType trailingQualifier = ((IntervalDataType)predefinedDataType).getTrailingQualifier();
+					
+					if (  (leadingQualifier == null) && (trailingQualifier == null) ) {
+						predefinedDataTypeFormattedName = predefinedDataType.getName();
+						break;
 					}
-				//}
+					
+					if (  (leadingQualifier != null) && (leadingQualifier.toString().length() > 0) ) {
+						String leadingQualifierString = leadingQualifier.toString();
+						int leadingPrecision = ((IntervalDataType)predefinedDataType).getLeadingFieldPrecision();
+						FieldQualifierDefinition fieldQualifierDefinition = this.getLeadingFieldQualifierDefinition(predefinedDataTypeDefinition, leadingQualifierString);
+						int defaultLeadingPrecision = 0;
+						if (fieldQualifierDefinition != null) {
+							defaultLeadingPrecision = fieldQualifierDefinition.getDefaultPrecision();
+						}
+						if ( (leadingPrecision > 0) && (leadingPrecision != defaultLeadingPrecision) ) {
+							leadingQualifierString += "(" + Integer.toString(leadingPrecision) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+						parameterList.add(leadingQualifierString);
+					}
+					
+					
+					if ( (trailingQualifier != null) && (trailingQualifier.toString().length() > 0) ) {
+						String trailingQualifierString = trailingQualifier.toString();
+						int trailingPrecision = ((IntervalDataType)predefinedDataType).getTrailingFieldPrecision();
+						FieldQualifierDefinition fieldQualifierDefinition = this.getTrailingFieldQualifierDefinition(predefinedDataTypeDefinition, trailingQualifierString);
+						int defaultTrailingPrecision = 0;
+						if (fieldQualifierDefinition != null) {
+							defaultTrailingPrecision = fieldQualifierDefinition.getDefaultPrecision();
+						}
+						if ( (trailingPrecision > 0) && (trailingPrecision != defaultTrailingPrecision) )  {
+								trailingQualifierString += "(" + Integer.toString(trailingPrecision) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+						parameterList.add(trailingQualifierString);
+					}
+					
+					Object[] parameters = new Object[parameterList.size()];
+					for(int i=0; i<parameters.length; i++) {
+						parameters[i] = parameterList.get(i);
+					}
+					
+					predefinedDataTypeFormattedName = MessageFormat.format(temp, parameters);
+				}
 			}
 			break;
 			
@@ -705,7 +786,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
 				if ( predefinedDataTypeDefinition.isPrecisionSupported() && predefinedDataTypeDefinition.isScaleSupported() ) {
-					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + "," + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
 			}
 			break;
@@ -751,12 +832,46 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		return predefinedDataTypeFormattedName;
 	}
 	
+	public FieldQualifierDefinition getLeadingFieldQualifierDefinition(PredefinedDataTypeDefinition predefinedDataTypeDefinition, String fieldQualifierName) {
+		Iterator leadingFieldQualifierDefinitionIter = predefinedDataTypeDefinition.getLeadingFieldQualifierDefinition().iterator();
+		while(leadingFieldQualifierDefinitionIter.hasNext()) {
+			FieldQualifierDefinition fieldQualifierDefinition = (FieldQualifierDefinition)leadingFieldQualifierDefinitionIter.next();
+			if (fieldQualifierDefinition.getName().toString().equals(fieldQualifierName)) {
+				return fieldQualifierDefinition;
+			}
+		}
+		
+		return null;
+	}
+	
+	public FieldQualifierDefinition getTrailingFieldQualifierDefinition(PredefinedDataTypeDefinition predefinedDataTypeDefinition, String fieldQualifierName) {
+		Iterator trailingFieldQualifierDefinitionIter = predefinedDataTypeDefinition.getTrailingFieldQualifierDefinition().iterator();
+		while(trailingFieldQualifierDefinitionIter.hasNext()) {
+			FieldQualifierDefinition fieldQualifierDefinition = (FieldQualifierDefinition)trailingFieldQualifierDefinitionIter.next();
+			if (fieldQualifierDefinition.getName().toString().equals(fieldQualifierName)) {
+				return fieldQualifierDefinition;
+			}
+		}
+		
+		return null;
+	}
 	
 	public Iterator getSequenceSupportedPredefinedDataTypes() {
 		this.loadDatabaseDefinition();
 		SequenceDefinition sequenceDefinition = this.databaseVendorDefinition.getSequenceDefinition();
 		if (sequenceDefinition != null) {
 			return sequenceDefinition.getPredefinedDataTypeDefinitions().iterator();
+		}
+		else {
+			return (new Vector()).iterator();
+		}
+	}
+	
+	public Iterator getIdentityColumnSupportedPredefinedDataTypes() {
+		this.loadDatabaseDefinition();
+		ColumnDefinition columnDefinition = this.databaseVendorDefinition.getColumnDefinition();
+		if (columnDefinition != null) {
+			return columnDefinition.getIdentityColumnDataTypeDefinitions().iterator();
 		}
 		else {
 			return (new Vector()).iterator();
@@ -810,7 +925,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			return columnDefinition.isComputedSupported();
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 	
@@ -844,6 +959,11 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public boolean supportsMQT() {
 		this.loadDatabaseDefinition();
 		return this.databaseVendorDefinition.isMQTSupported();
+	}
+	
+	public boolean supportsMQTIndex() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isMQTIndexSupported();
 	}
 	
 	public boolean supportsClusteredIndexes() {
@@ -905,6 +1025,134 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		int len =  this.databaseVendorDefinition.getMaximumIdentifierLength();
 		if(len == 0) len = 128;
 		return len;
+	}
+	
+	public int getDatabaseMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		int len =  this.databaseVendorDefinition.getMaximumIdentifierLength();
+		if(len == 0) len = 128;
+		return len;
+	}
+	
+	public int getSchemaMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		SchemaDefinition schemaDefinition = this.databaseVendorDefinition.getSchemaDefinition();
+		if (schemaDefinition != null) {
+			return schemaDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getTableMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		TableDefinition tableDefinition = this.databaseVendorDefinition.getTableDefinition();
+		if (tableDefinition != null) {
+			return tableDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getViewMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		ViewDefinition viewDefinition = this.databaseVendorDefinition.getViewDefinition();
+		if (viewDefinition != null) {
+			return viewDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getColumnMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		ColumnDefinition columnDefinition = this.databaseVendorDefinition.getColumnDefinition();
+		if (columnDefinition != null) {
+			return columnDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getTriggerMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		TriggerDefinition triggerDefinition = this.databaseVendorDefinition.getTriggerDefinition();
+		if (triggerDefinition != null) {
+			return triggerDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getPrimarykeyIdentifierLength() {
+		this.loadDatabaseDefinition();
+		ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+		if (constraintDefinition != null) {
+			return constraintDefinition.getMaximumPrimaryKeyIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getForeignKeyMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+		if (constraintDefinition != null) {
+			return constraintDefinition.getMaximumForeignKeyIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getCheckConstraintMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+		if (constraintDefinition != null) {
+			return constraintDefinition.getMaximumCheckConstraintIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getNicknameMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		NicknameDefinition nicknameDefinition = this.databaseVendorDefinition.getNicknameDefinition();
+		if (nicknameDefinition != null) {
+			return nicknameDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getUserDefinedTypeMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		UserDefinedTypeDefinition udtDefinition = this.databaseVendorDefinition.getUdtDefinition();
+		if (udtDefinition != null) {
+			return udtDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
+	}
+	
+	public int getTablespaceMaximumIdentifierLength() {
+		this.loadDatabaseDefinition();
+		TableSpaceDefinition tablespaceDefinition = this.databaseVendorDefinition.getTableSpaceDefinition();
+		if (tablespaceDefinition != null) {
+			return tablespaceDefinition.getMaximumIdentifierLength();
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	public int queryMaxCheckExpression() {
@@ -1040,7 +1288,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			return triggerDefinition.isWhenClauseSupported();
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 	
@@ -1201,9 +1449,91 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		}
 	}
 	
+	public String getSQLTerminationCharacter() {
+		this.loadDatabaseDefinition();
+		SQLSyntaxDefinition sqlSyntaxDefinition = this.databaseVendorDefinition.getSQLSyntaxDefinition();
+		if (sqlSyntaxDefinition != null) {
+			return sqlSyntaxDefinition.getTerminationCharacter();
+		}
+		else {
+			return ";"; //$NON-NLS-1$
+		}
+	}
+	
 	public int getMaximumIdentifierLength() {
 		this.loadDatabaseDefinition();
 		return this.databaseVendorDefinition.getMaximumIdentifierLength();
+	}
+	
+	public int getMaximumIdentifierLength(SQLObject sqlObject) {
+		int maximumLength = 0;
+		
+		this.loadDatabaseDefinition();
+		if (sqlObject instanceof Database) {
+			maximumLength = this.databaseVendorDefinition.getMaximumIdentifierLength();
+		}
+		else if (sqlObject instanceof Schema) {
+			SchemaDefinition schemaDefinition = this.databaseVendorDefinition.getSchemaDefinition();
+			if (schemaDefinition != null) {
+				maximumLength = schemaDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof BaseTable) {
+			TableDefinition tableDefinition = this.databaseVendorDefinition.getTableDefinition();
+			if (tableDefinition != null) {
+				maximumLength = tableDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof ViewTable) {
+			ViewDefinition viewDefinition = this.databaseVendorDefinition.getViewDefinition();
+			if (viewDefinition != null) {
+				maximumLength = viewDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof Column) {
+			ColumnDefinition columnDefinition = this.databaseVendorDefinition.getColumnDefinition();
+			if (columnDefinition != null) {
+				maximumLength = columnDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof PrimaryKey) {
+			ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+			if (constraintDefinition != null) {
+				maximumLength = constraintDefinition.getMaximumPrimaryKeyIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof ForeignKey) {
+			ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+			if (constraintDefinition != null) {
+				maximumLength = constraintDefinition.getMaximumForeignKeyIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof CheckConstraint) {
+			ConstraintDefinition constraintDefinition = this.databaseVendorDefinition.getConstraintDefinition();
+			if (constraintDefinition != null) {
+				maximumLength = constraintDefinition.getMaximumCheckConstraintIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof Trigger) {
+			TriggerDefinition triggerDefinition = this.databaseVendorDefinition.getTriggerDefinition();
+			if (triggerDefinition != null) {
+				maximumLength = triggerDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof UserDefinedType) {
+			UserDefinedTypeDefinition udtDefinition = this.databaseVendorDefinition.getUdtDefinition();
+			if (udtDefinition != null) {
+				maximumLength = udtDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else if (sqlObject instanceof Procedure) {
+			StoredProcedureDefinition storedProcedureDefinition = this.databaseVendorDefinition.getStoredProcedureDefinition();
+			if (storedProcedureDefinition != null) {
+				maximumLength = storedProcedureDefinition.getMaximumIdentifierLength();
+			}
+		}
+		
+		return maximumLength;
 	}
 	
 	public boolean isSQLKeyword(String word) {
@@ -1253,6 +1583,12 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		else {
 			return false;
 		}
+	}
+	
+	public boolean supportsXML()
+	{
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isXmlSupported();	
 	}
 	
 	public boolean supportsEvents() {
