@@ -1,13 +1,18 @@
-/*
- *+------------------------------------------------------------------------+
- *| Licensed Materials - Property of IBM                                   |
- *| (C) Copyright IBM Corp. 2003.  All Rights Reserved.                    |
- *|                                                                        |
- *| US Government Users Restricted Rights - Use, duplication or disclosure |
- *| restricted by GSA ADP Schedule Contract with IBM Corp.                 |
- *+------------------------------------------------------------------------+
- */
+/*******************************************************************************
+ * Copyright (c) 2003 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.services;
+
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshAction;
+import org.eclipse.jface.viewers.StructuredSelection;
 
 
 /**
@@ -17,9 +22,8 @@ public class ServerExplorerRefreshService implements IServerExplorerRefreshServi
 {
     public void refresh(Object objectToRefresh)
     {
-    	// TODO:  Fix this code to for refresh service
-//        RefreshAction action = new RefreshAction();
-//        action.selectionChanged(null, new StructuredSelection(objectToRefresh));
-//        action.run(null);
+        RefreshAction action = new RefreshAction();
+        action.selectionChanged(null, new StructuredSelection(objectToRefresh));
+        action.run(null);
     }
 }
