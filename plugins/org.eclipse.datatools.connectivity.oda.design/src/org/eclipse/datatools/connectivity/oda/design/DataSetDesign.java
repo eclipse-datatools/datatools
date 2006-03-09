@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.3 2006/02/07 05:53:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -152,6 +152,18 @@ public interface DataSetDesign extends EObject
     DataSetQuery getQuery();
 
     /**
+     * Returns the value of the '<em><b>Query Text</b></em>' attribute
+     * in the associated '<em><b>Query</b></em>' containment reference.
+     * The query command text to execute at runtime to retrieve data for this data set.  
+     * The query syntax is specific to a data source; could be an empty string.
+     * @return the value of the '<em>Query Text</em>' attribute;
+     *          may be null if no Query is defined
+     * @see #getQuery
+     * @generated NOT
+     */
+    String getQueryText();
+
+    /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getQuery <em>Query</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -165,11 +177,11 @@ public interface DataSetDesign extends EObject
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getQuery <em>Query</em>}' containment reference
      * with the given query text attribute.
      * @param queryText the value of the '<em>Query Text</em>' attribute
-     *                  of the new '<em>Query</em>' containment reference
+     *                  of the '<em>Query</em>' containment reference
      * @see #setQuery()
 	 * @generated NOT
      */
-    void setNewQuery( String queryText );
+    void setQueryText( String queryText );
 
     /**
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
@@ -265,6 +277,27 @@ public interface DataSetDesign extends EObject
      */
     void setResultSets( ResultSets value );
 
+    /**
+     * Returns the primary result set's definition in the 
+     * '<em><b>Result Sets</b></em>' containment reference.
+     * @return the primary result set's definition
+     * @see #getPrimaryResultSetName()
+     * @see #getResultSets()
+     * @generated NOT
+     */
+    ResultSetDefinition getPrimaryResultSet();
+    
+    /**
+     * Sets the primary result set's definition in the 
+     * '<em><b>Result Sets</b></em>' containment reference.
+     * @param resultSet the primary result set's definition;
+     *                  a null value is ignored
+     * @see #setPrimaryResultSetName(String)
+     * @see #setResultSets(ResultSets)
+     * @generated NOT
+     */
+    void setPrimaryResultSet( ResultSetDefinition resultSetDefn );
+    
     /**
      * Returns the value of the '<em><b>Primary Result Set Name</b></em>' attribute.
      * <!-- begin-user-doc -->

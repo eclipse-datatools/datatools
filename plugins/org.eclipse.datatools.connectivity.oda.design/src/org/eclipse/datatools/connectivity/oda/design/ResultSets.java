@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSets.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -47,6 +47,40 @@ public interface ResultSets extends EObject{
      */
     String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
 
+    /**
+     * Finds and returns a named result set definition that
+     * matches the specified name.
+     * This only matches against those result sets that 
+     * have a name defined.  
+     * A result set name is case-sensitive.
+     * @param resultSetName
+     * @return  the matching result set definition; or null
+     *          if no match is found
+     * @generated NOT
+     */
+    ResultSetDefinition findResultSetDefinition( String resultSetName );
+    
+    /**
+     * Inserts the specified result set definition 
+     * at the specified position in 
+     * the '<em><b>Result Set Definitions</b></em>' containment reference list.
+     * Shifts the element currently at that position 
+     * (if any) and any subsequent elements to the right 
+     * (adds one to their indices). 
+     * @param index the 0-based index at which the specified element is to be inserted
+     * @param resultSetDefn result set definition to be inserted
+     * @generated NOT
+     */
+    void addResultSetDefinition( int index, ResultSetDefinition resultSetDefn );
+
+    /**
+     * Appends the specified result set definition to the end
+     * of the '<em><b>Result Set Definitions</b></em>' containment reference list.
+     * @param resultSetDefn result set definition to be inserted
+     * @generated NOT
+     */
+    void addResultSetDefinition( ResultSetDefinition resultSetDefn );
+    
     /**
      * Returns the value of the '<em><b>Result Set Definitions</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition}.

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ValueFormatHints.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints()
- * @model 
+ * @model extendedMetaData="name='ValueFormatHints' kind='elementOnly'"
  * @generated
  */
 public interface ValueFormatHints extends EObject
@@ -60,12 +60,13 @@ public interface ValueFormatHints extends EObject
      * @return the value of the '<em>Display Size</em>' attribute.
      * @see #isSetDisplaySize()
      * @see #unsetDisplaySize()
-     * @see #setDisplaySize(short)
+     * @see #setDisplaySize(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_DisplaySize()
-     * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Short"
+     * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
+     extendedMetaData="kind='element' name='displaySize' namespace='##targetNamespace'"
      * @generated
      */
-    short getDisplaySize();
+    int getDisplaySize();
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplaySize <em>Display Size</em>}' attribute.
@@ -77,7 +78,7 @@ public interface ValueFormatHints extends EObject
      * @see #getDisplaySize()
      * @generated
      */
-    void setDisplaySize( short value );
+    void setDisplaySize( int value );
 
     /**
      * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints#getDisplaySize <em>Display Size</em>}' attribute.
@@ -85,7 +86,7 @@ public interface ValueFormatHints extends EObject
      * <!-- end-user-doc -->
      * @see #isSetDisplaySize()
      * @see #getDisplaySize()
-     * @see #setDisplaySize(short)
+     * @see #setDisplaySize(int)
      * @generated
      */
     void unsetDisplaySize();
@@ -97,7 +98,7 @@ public interface ValueFormatHints extends EObject
      * @return whether the value of the '<em>Display Size</em>' attribute is set.
      * @see #unsetDisplaySize()
      * @see #getDisplaySize()
-     * @see #setDisplaySize(short)
+     * @see #setDisplaySize(int)
      * @generated
      */
     boolean isSetDisplaySize();
@@ -113,6 +114,7 @@ public interface ValueFormatHints extends EObject
      * @see #setDisplayFormat(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_DisplayFormat()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     extendedMetaData="kind='element' name='displayFormat' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayFormat();
@@ -143,6 +145,7 @@ public interface ValueFormatHints extends EObject
      * @see #setTextFormatType(TextFormatType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_TextFormatType()
      * @model default="Plain" unique="false" unsettable="true"
+     extendedMetaData="kind='element' name='textFormatType' namespace='##targetNamespace'"
      * @generated
      */
     TextFormatType getTextFormatType();
@@ -199,6 +202,7 @@ public interface ValueFormatHints extends EObject
      * @see #setHorizontalAlignment(HorizontalAlignment)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_HorizontalAlignment()
      * @model default="Automatic" unique="false" unsettable="true"
+     extendedMetaData="kind='element' name='horizontalAlignment' namespace='##targetNamespace'"
      * @generated
      */
     HorizontalAlignment getHorizontalAlignment();
@@ -255,6 +259,7 @@ public interface ValueFormatHints extends EObject
      * @see #setTextWrapType(TextWrapType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_TextWrapType()
      * @model default="None" unique="false" unsettable="true"
+     extendedMetaData="kind='element' name='textWrapType' namespace='##targetNamespace'"
      * @generated
      */
     TextWrapType getTextWrapType();

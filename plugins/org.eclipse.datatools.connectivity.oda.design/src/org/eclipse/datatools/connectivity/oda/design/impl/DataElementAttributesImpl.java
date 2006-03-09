@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -48,7 +48,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DataElementAttributesImpl extends EObjectImpl implements DataElementAttributes
+public class DataElementAttributesImpl extends EObjectImpl implements
+        DataElementAttributes
 {
     /**
      * <!-- begin-user-doc -->
@@ -114,7 +115,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected static final short NATIVE_DATA_TYPE_CODE_EDEFAULT = 0;
+    protected static final int NATIVE_DATA_TYPE_CODE_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getNativeDataTypeCode() <em>Native Data Type Code</em>}' attribute.
@@ -124,7 +125,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected short m_nativeDataTypeCode = NATIVE_DATA_TYPE_CODE_EDEFAULT;
+    protected int m_nativeDataTypeCode = NATIVE_DATA_TYPE_CODE_EDEFAULT;
 
     /**
      * This is true if the Native Data Type Code attribute has been set.
@@ -143,7 +144,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected static final short PRECISION_EDEFAULT = -1;
+    protected static final int PRECISION_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
@@ -153,7 +154,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected short m_precision = PRECISION_EDEFAULT;
+    protected int m_precision = PRECISION_EDEFAULT;
 
     /**
      * This is true if the Precision attribute has been set.
@@ -172,7 +173,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected static final short SCALE_EDEFAULT = -1;
+    protected static final int SCALE_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getScale() <em>Scale</em>}' attribute.
@@ -182,7 +183,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * @generated
      * @ordered
      */
-    protected short m_scale = SCALE_EDEFAULT;
+    protected int m_scale = SCALE_EDEFAULT;
 
     /**
      * This is true if the Scale attribute has been set.
@@ -253,57 +254,57 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicablePrecision(short, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicablePrecision(int, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
      * @generated NOT
      */
-    public void setApplicablePrecision( short value, OdaScalarDataType odaDataType )
+    public void setApplicablePrecision( int value, OdaScalarDataType odaDataType )
     {
         switch( odaDataType.getValue() )
         {
-            // precision is not applicable for these data types
-            case OdaScalarDataType.DATE: 
-            case OdaScalarDataType.TIME: 
-            case OdaScalarDataType.TIMESTAMP: 
-                setPrecision( PRECISION_EDEFAULT );
-                break;
-            case OdaScalarDataType.DOUBLE: 
-            case OdaScalarDataType.INTEGER: 
-            case OdaScalarDataType.STRING: 
-            case OdaScalarDataType.DECIMAL: 
-            case OdaScalarDataType.BLOB: 
-            case OdaScalarDataType.CLOB:
-            default:
-                setPrecision( value );
-                break;
-        }        
+        // precision is not applicable for these data types
+        case OdaScalarDataType.DATE:
+        case OdaScalarDataType.TIME:
+        case OdaScalarDataType.TIMESTAMP:
+            setPrecision( PRECISION_EDEFAULT );
+            break;
+        case OdaScalarDataType.DOUBLE:
+        case OdaScalarDataType.INTEGER:
+        case OdaScalarDataType.STRING:
+        case OdaScalarDataType.DECIMAL:
+        case OdaScalarDataType.BLOB:
+        case OdaScalarDataType.CLOB:
+        default:
+            setPrecision( value );
+            break;
+        }
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicableScale(short, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setApplicableScale(int, org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType)
      * @generated NOT
      */
-    public void setApplicableScale( short value, OdaScalarDataType odaDataType )
+    public void setApplicableScale( int value, OdaScalarDataType odaDataType )
     {
         switch( odaDataType.getValue() )
         {
-            // scale is not applicable for these data types
-            case OdaScalarDataType.DATE: 
-            case OdaScalarDataType.TIME: 
-            case OdaScalarDataType.TIMESTAMP: 
-            case OdaScalarDataType.STRING: 
-            case OdaScalarDataType.BLOB: 
-            case OdaScalarDataType.CLOB:
-                setScale( SCALE_EDEFAULT );
-                break;
-            case OdaScalarDataType.INTEGER: 
-                setScale( (short) 0 );
-                break;
-            case OdaScalarDataType.DOUBLE: 
-            case OdaScalarDataType.DECIMAL: 
-            default:
-                setScale( value );
-                break;
-        }        
+        // scale is not applicable for these data types
+        case OdaScalarDataType.DATE:
+        case OdaScalarDataType.TIME:
+        case OdaScalarDataType.TIMESTAMP:
+        case OdaScalarDataType.STRING:
+        case OdaScalarDataType.BLOB:
+        case OdaScalarDataType.CLOB:
+            setScale( SCALE_EDEFAULT );
+            break;
+        case OdaScalarDataType.INTEGER:
+            setScale( (short) 0 );
+            break;
+        case OdaScalarDataType.DOUBLE:
+        case OdaScalarDataType.DECIMAL:
+        default:
+            setScale( value );
+            break;
+        }
     }
 
     /* (non-Javadoc)
@@ -312,7 +313,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public boolean allowsNull()
     {
-        return ( getNullability().getValue() == ElementNullability.NULLABLE );
+        return (getNullability().getValue() == ElementNullability.NULLABLE);
     }
 
     /* (non-Javadoc)
@@ -324,11 +325,11 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
         // sets attribute in current UIHints, if exists;
         // otherwise, creates a new one
         DataElementUIHints uiHints = getUiHints();
-        boolean hasNoUIHints = ( uiHints == null );
+        boolean hasNoUIHints = (uiHints == null);
         if( hasNoUIHints )
             uiHints = DesignFactory.eINSTANCE.createDataElementUIHints();
         uiHints.setDisplayName( value );
-        
+
         if( hasNoUIHints )
             setUiHints( uiHints );
     }
@@ -342,11 +343,11 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
         // sets attribute in current UIHints, if exists;
         // otherwise, creates a new one
         DataElementUIHints uiHints = getUiHints();
-        boolean hasNoUIHints = ( uiHints == null );
+        boolean hasNoUIHints = (uiHints == null);
         if( hasNoUIHints )
             uiHints = DesignFactory.eINSTANCE.createDataElementUIHints();
         uiHints.setDescription( value );
-        
+
         if( hasNoUIHints )
             setUiHints( uiHints );
     }
@@ -370,8 +371,10 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
     {
         String oldName = m_name;
         m_name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME, oldName, m_name));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME, oldName,
+                    m_name ) );
     }
 
     /**
@@ -395,8 +398,10 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
         m_position = newPosition;
         boolean oldPositionESet = m_positionESet;
         m_positionESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION, oldPosition, m_position, !oldPositionESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION,
+                    oldPosition, m_position, !oldPositionESet ) );
     }
 
     /**
@@ -410,8 +415,10 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
         boolean oldPositionESet = m_positionESet;
         m_position = POSITION_EDEFAULT;
         m_positionESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION, oldPosition, POSITION_EDEFAULT, oldPositionESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION,
+                    oldPosition, POSITION_EDEFAULT, oldPositionESet ) );
     }
 
     /**
@@ -429,7 +436,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public short getNativeDataTypeCode()
+    public int getNativeDataTypeCode()
     {
         return m_nativeDataTypeCode;
     }
@@ -439,14 +446,19 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setNativeDataTypeCode( short newNativeDataTypeCode )
+    public void setNativeDataTypeCode( int newNativeDataTypeCode )
     {
-        short oldNativeDataTypeCode = m_nativeDataTypeCode;
+        int oldNativeDataTypeCode = m_nativeDataTypeCode;
         m_nativeDataTypeCode = newNativeDataTypeCode;
         boolean oldNativeDataTypeCodeESet = m_nativeDataTypeCodeESet;
         m_nativeDataTypeCodeESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE, oldNativeDataTypeCode, m_nativeDataTypeCode, !oldNativeDataTypeCodeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE,
+                    oldNativeDataTypeCode, m_nativeDataTypeCode,
+                    !oldNativeDataTypeCodeESet ) );
     }
 
     /**
@@ -456,12 +468,17 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void unsetNativeDataTypeCode()
     {
-        short oldNativeDataTypeCode = m_nativeDataTypeCode;
+        int oldNativeDataTypeCode = m_nativeDataTypeCode;
         boolean oldNativeDataTypeCodeESet = m_nativeDataTypeCodeESet;
         m_nativeDataTypeCode = NATIVE_DATA_TYPE_CODE_EDEFAULT;
         m_nativeDataTypeCodeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE, oldNativeDataTypeCode, NATIVE_DATA_TYPE_CODE_EDEFAULT, oldNativeDataTypeCodeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.UNSET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE,
+                    oldNativeDataTypeCode, NATIVE_DATA_TYPE_CODE_EDEFAULT,
+                    oldNativeDataTypeCodeESet ) );
     }
 
     /**
@@ -479,7 +496,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public short getPrecision()
+    public int getPrecision()
     {
         return m_precision;
     }
@@ -489,14 +506,16 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPrecision( short newPrecision )
+    public void setPrecision( int newPrecision )
     {
-        short oldPrecision = m_precision;
+        int oldPrecision = m_precision;
         m_precision = newPrecision;
         boolean oldPrecisionESet = m_precisionESet;
         m_precisionESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION, oldPrecision, m_precision, !oldPrecisionESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION,
+                    oldPrecision, m_precision, !oldPrecisionESet ) );
     }
 
     /**
@@ -506,12 +525,14 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void unsetPrecision()
     {
-        short oldPrecision = m_precision;
+        int oldPrecision = m_precision;
         boolean oldPrecisionESet = m_precisionESet;
         m_precision = PRECISION_EDEFAULT;
         m_precisionESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION, oldPrecision, PRECISION_EDEFAULT, oldPrecisionESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION,
+                    oldPrecision, PRECISION_EDEFAULT, oldPrecisionESet ) );
     }
 
     /**
@@ -529,7 +550,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public short getScale()
+    public int getScale()
     {
         return m_scale;
     }
@@ -539,14 +560,16 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setScale( short newScale )
+    public void setScale( int newScale )
     {
-        short oldScale = m_scale;
+        int oldScale = m_scale;
         m_scale = newScale;
         boolean oldScaleESet = m_scaleESet;
         m_scaleESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE, oldScale, m_scale, !oldScaleESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE, oldScale,
+                    m_scale, !oldScaleESet ) );
     }
 
     /**
@@ -556,12 +579,14 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void unsetScale()
     {
-        short oldScale = m_scale;
+        int oldScale = m_scale;
         boolean oldScaleESet = m_scaleESet;
         m_scale = SCALE_EDEFAULT;
         m_scaleESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE, oldScale, SCALE_EDEFAULT, oldScaleESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE, oldScale,
+                    SCALE_EDEFAULT, oldScaleESet ) );
     }
 
     /**
@@ -592,11 +617,14 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
     public void setNullability( ElementNullability newNullability )
     {
         ElementNullability oldNullability = m_nullability;
-        m_nullability = newNullability == null ? NULLABILITY_EDEFAULT : newNullability;
+        m_nullability = newNullability == null ? NULLABILITY_EDEFAULT
+                : newNullability;
         boolean oldNullabilityESet = m_nullabilityESet;
         m_nullabilityESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY, oldNullability, m_nullability, !oldNullabilityESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY,
+                    oldNullability, m_nullability, !oldNullabilityESet ) );
     }
 
     /**
@@ -610,8 +638,10 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
         boolean oldNullabilityESet = m_nullabilityESet;
         m_nullability = NULLABILITY_EDEFAULT;
         m_nullabilityESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY, oldNullability, NULLABILITY_EDEFAULT, oldNullabilityESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY,
+                    oldNullability, NULLABILITY_EDEFAULT, oldNullabilityESet ) );
     }
 
     /**
@@ -639,14 +669,21 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetUiHints( DataElementUIHints newUiHints, NotificationChain msgs )
+    public NotificationChain basicSetUiHints( DataElementUIHints newUiHints,
+            NotificationChain msgs )
     {
         DataElementUIHints oldUiHints = m_uiHints;
         m_uiHints = newUiHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS, oldUiHints, newUiHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS,
+                    oldUiHints, newUiHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -658,18 +695,31 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void setUiHints( DataElementUIHints newUiHints )
     {
-        if (newUiHints != m_uiHints)
+        if( newUiHints != m_uiHints )
         {
             NotificationChain msgs = null;
-            if (m_uiHints != null)
-                msgs = ((InternalEObject)m_uiHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS, null, msgs);
-            if (newUiHints != null)
-                msgs = ((InternalEObject)newUiHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS, null, msgs);
-            msgs = basicSetUiHints(newUiHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_uiHints != null )
+                msgs = ((InternalEObject) m_uiHints)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            if( newUiHints != null )
+                msgs = ((InternalEObject) newUiHints)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            msgs = basicSetUiHints( newUiHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS, newUiHints, newUiHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS,
+                    newUiHints, newUiHints ) );
     }
 
     /**
@@ -677,19 +727,21 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, Class baseClass, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        if( featureID >= 0 )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
+            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
             {
-                case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                    return basicSetUiHints(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+                return basicSetUiHints( null, msgs );
+            default:
+                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
+                        msgs );
             }
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return eBasicSetContainer( null, featureID, msgs );
     }
 
     /**
@@ -699,24 +751,24 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public Object eGet( EStructuralFeature eFeature, boolean resolve )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
-                return getName();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
-                return new Integer(getPosition());
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
-                return new Short(getNativeDataTypeCode());
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
-                return new Short(getPrecision());
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
-                return new Short(getScale());
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
-                return getNullability();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                return getUiHints();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
+            return getName();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
+            return new Integer( getPosition() );
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
+            return new Integer( getNativeDataTypeCode() );
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
+            return new Integer( getPrecision() );
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
+            return new Integer( getScale() );
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
+            return getNullability();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return getUiHints();
         }
-        return eDynamicGet(eFeature, resolve);
+        return eDynamicGet( eFeature, resolve );
     }
 
     /**
@@ -726,31 +778,31 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void eSet( EStructuralFeature eFeature, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
-                setName((String)newValue);
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
-                setPosition(((Integer)newValue).intValue());
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
-                setNativeDataTypeCode(((Short)newValue).shortValue());
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
-                setPrecision(((Short)newValue).shortValue());
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
-                setScale(((Short)newValue).shortValue());
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
-                setNullability((ElementNullability)newValue);
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                setUiHints((DataElementUIHints)newValue);
-                return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
+            setName( (String) newValue );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
+            setPosition( ((Integer) newValue).intValue() );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
+            setNativeDataTypeCode( ((Integer) newValue).intValue() );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
+            setPrecision( ((Integer) newValue).intValue() );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
+            setScale( ((Integer) newValue).intValue() );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
+            setNullability( (ElementNullability) newValue );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+            setUiHints( (DataElementUIHints) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        eDynamicSet( eFeature, newValue );
     }
 
     /**
@@ -760,31 +812,31 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public void eUnset( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
-                unsetPosition();
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
-                unsetNativeDataTypeCode();
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
-                unsetPrecision();
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
-                unsetScale();
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
-                unsetNullability();
-                return;
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                setUiHints((DataElementUIHints)null);
-                return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
+            setName( NAME_EDEFAULT );
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
+            unsetPosition();
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
+            unsetNativeDataTypeCode();
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
+            unsetPrecision();
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
+            unsetScale();
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
+            unsetNullability();
+            return;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+            setUiHints( (DataElementUIHints) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        eDynamicUnset( eFeature );
     }
 
     /**
@@ -794,24 +846,25 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public boolean eIsSet( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
-                return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT.equals(m_name);
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
-                return isSetPosition();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
-                return isSetNativeDataTypeCode();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
-                return isSetPrecision();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
-                return isSetScale();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
-                return isSetNullability();
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                return m_uiHints != null;
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
+            return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
+                    .equals( m_name );
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__POSITION:
+            return isSetPosition();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE:
+            return isSetNativeDataTypeCode();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__PRECISION:
+            return isSetPrecision();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__SCALE:
+            return isSetScale();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NULLABILITY:
+            return isSetNullability();
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return m_uiHints != null;
         }
-        return eDynamicIsSet(eFeature);
+        return eDynamicIsSet( eFeature );
     }
 
     /**
@@ -821,22 +874,38 @@ public class DataElementAttributesImpl extends EObjectImpl implements DataElemen
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: "); //$NON-NLS-1$
-        result.append(m_name);
-        result.append(", position: "); //$NON-NLS-1$
-        if (m_positionESet) result.append(m_position); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", nativeDataTypeCode: "); //$NON-NLS-1$
-        if (m_nativeDataTypeCodeESet) result.append(m_nativeDataTypeCode); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", precision: "); //$NON-NLS-1$
-        if (m_precisionESet) result.append(m_precision); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", scale: "); //$NON-NLS-1$
-        if (m_scaleESet) result.append(m_scale); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", nullability: "); //$NON-NLS-1$
-        if (m_nullabilityESet) result.append(m_nullability); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (name: " ); //$NON-NLS-1$
+        result.append( m_name );
+        result.append( ", position: " ); //$NON-NLS-1$
+        if( m_positionESet )
+            result.append( m_position );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", nativeDataTypeCode: " ); //$NON-NLS-1$
+        if( m_nativeDataTypeCodeESet )
+            result.append( m_nativeDataTypeCode );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", precision: " ); //$NON-NLS-1$
+        if( m_precisionESet )
+            result.append( m_precision );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", scale: " ); //$NON-NLS-1$
+        if( m_scaleESet )
+            result.append( m_scale );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", nullability: " ); //$NON-NLS-1$
+        if( m_nullabilityESet )
+            result.append( m_nullability );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

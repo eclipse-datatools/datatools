@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ValueFormatHintsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -63,7 +63,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * @generated
      * @ordered
      */
-    protected static final short DISPLAY_SIZE_EDEFAULT = -1;
+    protected static final int DISPLAY_SIZE_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getDisplaySize() <em>Display Size</em>}' attribute.
@@ -73,7 +73,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * @generated
      * @ordered
      */
-    protected short m_displaySize = DISPLAY_SIZE_EDEFAULT;
+    protected int m_displaySize = DISPLAY_SIZE_EDEFAULT;
 
     /**
      * This is true if the Display Size attribute has been set.
@@ -230,8 +230,10 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
     {
         String oldDisplayFormat = m_displayFormat;
         m_displayFormat = newDisplayFormat;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT, oldDisplayFormat, m_displayFormat));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT,
+                    oldDisplayFormat, m_displayFormat ) );
     }
 
     /**
@@ -239,7 +241,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public short getDisplaySize()
+    public int getDisplaySize()
     {
         return m_displaySize;
     }
@@ -249,14 +251,16 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDisplaySize( short newDisplaySize )
+    public void setDisplaySize( int newDisplaySize )
     {
-        short oldDisplaySize = m_displaySize;
+        int oldDisplaySize = m_displaySize;
         m_displaySize = newDisplaySize;
         boolean oldDisplaySizeESet = m_displaySizeESet;
         m_displaySizeESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE, oldDisplaySize, m_displaySize, !oldDisplaySizeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE,
+                    oldDisplaySize, m_displaySize, !oldDisplaySizeESet ) );
     }
 
     /**
@@ -266,12 +270,14 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      */
     public void unsetDisplaySize()
     {
-        short oldDisplaySize = m_displaySize;
+        int oldDisplaySize = m_displaySize;
         boolean oldDisplaySizeESet = m_displaySizeESet;
         m_displaySize = DISPLAY_SIZE_EDEFAULT;
         m_displaySizeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE, oldDisplaySize, DISPLAY_SIZE_EDEFAULT, oldDisplaySizeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE,
+                    oldDisplaySize, DISPLAY_SIZE_EDEFAULT, oldDisplaySizeESet ) );
     }
 
     /**
@@ -302,11 +308,14 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
     public void setTextFormatType( TextFormatType newTextFormatType )
     {
         TextFormatType oldTextFormatType = m_textFormatType;
-        m_textFormatType = newTextFormatType == null ? TEXT_FORMAT_TYPE_EDEFAULT : newTextFormatType;
+        m_textFormatType = newTextFormatType == null ? TEXT_FORMAT_TYPE_EDEFAULT
+                : newTextFormatType;
         boolean oldTextFormatTypeESet = m_textFormatTypeESet;
         m_textFormatTypeESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE, oldTextFormatType, m_textFormatType, !oldTextFormatTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE,
+                    oldTextFormatType, m_textFormatType, !oldTextFormatTypeESet ) );
     }
 
     /**
@@ -320,8 +329,11 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
         boolean oldTextFormatTypeESet = m_textFormatTypeESet;
         m_textFormatType = TEXT_FORMAT_TYPE_EDEFAULT;
         m_textFormatTypeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE, oldTextFormatType, TEXT_FORMAT_TYPE_EDEFAULT, oldTextFormatTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE,
+                    oldTextFormatType, TEXT_FORMAT_TYPE_EDEFAULT,
+                    oldTextFormatTypeESet ) );
     }
 
     /**
@@ -349,14 +361,19 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setHorizontalAlignment( HorizontalAlignment newHorizontalAlignment )
+    public void setHorizontalAlignment(
+            HorizontalAlignment newHorizontalAlignment )
     {
         HorizontalAlignment oldHorizontalAlignment = m_horizontalAlignment;
-        m_horizontalAlignment = newHorizontalAlignment == null ? HORIZONTAL_ALIGNMENT_EDEFAULT : newHorizontalAlignment;
+        m_horizontalAlignment = newHorizontalAlignment == null ? HORIZONTAL_ALIGNMENT_EDEFAULT
+                : newHorizontalAlignment;
         boolean oldHorizontalAlignmentESet = m_horizontalAlignmentESet;
         m_horizontalAlignmentESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT, oldHorizontalAlignment, m_horizontalAlignment, !oldHorizontalAlignmentESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT,
+                    oldHorizontalAlignment, m_horizontalAlignment,
+                    !oldHorizontalAlignmentESet ) );
     }
 
     /**
@@ -370,8 +387,11 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
         boolean oldHorizontalAlignmentESet = m_horizontalAlignmentESet;
         m_horizontalAlignment = HORIZONTAL_ALIGNMENT_EDEFAULT;
         m_horizontalAlignmentESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT, oldHorizontalAlignment, HORIZONTAL_ALIGNMENT_EDEFAULT, oldHorizontalAlignmentESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT,
+                    oldHorizontalAlignment, HORIZONTAL_ALIGNMENT_EDEFAULT,
+                    oldHorizontalAlignmentESet ) );
     }
 
     /**
@@ -402,11 +422,14 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
     public void setTextWrapType( TextWrapType newTextWrapType )
     {
         TextWrapType oldTextWrapType = m_textWrapType;
-        m_textWrapType = newTextWrapType == null ? TEXT_WRAP_TYPE_EDEFAULT : newTextWrapType;
+        m_textWrapType = newTextWrapType == null ? TEXT_WRAP_TYPE_EDEFAULT
+                : newTextWrapType;
         boolean oldTextWrapTypeESet = m_textWrapTypeESet;
         m_textWrapTypeESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE, oldTextWrapType, m_textWrapType, !oldTextWrapTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE,
+                    oldTextWrapType, m_textWrapType, !oldTextWrapTypeESet ) );
     }
 
     /**
@@ -420,8 +443,11 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
         boolean oldTextWrapTypeESet = m_textWrapTypeESet;
         m_textWrapType = TEXT_WRAP_TYPE_EDEFAULT;
         m_textWrapTypeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE, oldTextWrapType, TEXT_WRAP_TYPE_EDEFAULT, oldTextWrapTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE,
+                    oldTextWrapType, TEXT_WRAP_TYPE_EDEFAULT,
+                    oldTextWrapTypeESet ) );
     }
 
     /**
@@ -439,22 +465,22 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve)
+    public Object eGet( EStructuralFeature eFeature, boolean resolve )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
-                return new Short(getDisplaySize());
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
-                return getDisplayFormat();
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
-                return getTextFormatType();
-            case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
-                return getHorizontalAlignment();
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
-                return getTextWrapType();
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
+            return new Integer( getDisplaySize() );
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
+            return getDisplayFormat();
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
+            return getTextFormatType();
+        case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
+            return getHorizontalAlignment();
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
+            return getTextWrapType();
         }
-        return eDynamicGet(eFeature, resolve);
+        return eDynamicGet( eFeature, resolve );
     }
 
     /**
@@ -462,27 +488,27 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet(EStructuralFeature eFeature, Object newValue)
+    public void eSet( EStructuralFeature eFeature, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
-                setDisplaySize(((Short)newValue).shortValue());
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
-                setDisplayFormat((String)newValue);
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
-                setTextFormatType((TextFormatType)newValue);
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
-                setHorizontalAlignment((HorizontalAlignment)newValue);
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
-                setTextWrapType((TextWrapType)newValue);
-                return;
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
+            setDisplaySize( ((Integer) newValue).intValue() );
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
+            setDisplayFormat( (String) newValue );
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
+            setTextFormatType( (TextFormatType) newValue );
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
+            setHorizontalAlignment( (HorizontalAlignment) newValue );
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
+            setTextWrapType( (TextWrapType) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        eDynamicSet( eFeature, newValue );
     }
 
     /**
@@ -490,27 +516,27 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset(EStructuralFeature eFeature)
+    public void eUnset( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
-                unsetDisplaySize();
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
-                setDisplayFormat(DISPLAY_FORMAT_EDEFAULT);
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
-                unsetTextFormatType();
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
-                unsetHorizontalAlignment();
-                return;
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
-                unsetTextWrapType();
-                return;
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
+            unsetDisplaySize();
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
+            setDisplayFormat( DISPLAY_FORMAT_EDEFAULT );
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
+            unsetTextFormatType();
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
+            unsetHorizontalAlignment();
+            return;
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
+            unsetTextWrapType();
+            return;
         }
-        eDynamicUnset(eFeature);
+        eDynamicUnset( eFeature );
     }
 
     /**
@@ -518,22 +544,23 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet(EStructuralFeature eFeature)
+    public boolean eIsSet( EStructuralFeature eFeature )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( eDerivedStructuralFeatureID( eFeature ) )
         {
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
-                return isSetDisplaySize();
-            case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
-                return DISPLAY_FORMAT_EDEFAULT == null ? m_displayFormat != null : !DISPLAY_FORMAT_EDEFAULT.equals(m_displayFormat);
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
-                return isSetTextFormatType();
-            case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
-                return isSetHorizontalAlignment();
-            case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
-                return isSetTextWrapType();
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
+            return isSetDisplaySize();
+        case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_FORMAT:
+            return DISPLAY_FORMAT_EDEFAULT == null ? m_displayFormat != null
+                    : !DISPLAY_FORMAT_EDEFAULT.equals( m_displayFormat );
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE:
+            return isSetTextFormatType();
+        case DesignPackage.VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT:
+            return isSetHorizontalAlignment();
+        case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
+            return isSetTextWrapType();
         }
-        return eDynamicIsSet(eFeature);
+        return eDynamicIsSet( eFeature );
     }
 
     /**
@@ -543,20 +570,33 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (displaySize: "); //$NON-NLS-1$
-        if (m_displaySizeESet) result.append(m_displaySize); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", displayFormat: "); //$NON-NLS-1$
-        result.append(m_displayFormat);
-        result.append(", textFormatType: "); //$NON-NLS-1$
-        if (m_textFormatTypeESet) result.append(m_textFormatType); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", horizontalAlignment: "); //$NON-NLS-1$
-        if (m_horizontalAlignmentESet) result.append(m_horizontalAlignment); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", textWrapType: "); //$NON-NLS-1$
-        if (m_textWrapTypeESet) result.append(m_textWrapType); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (displaySize: " ); //$NON-NLS-1$
+        if( m_displaySizeESet )
+            result.append( m_displaySize );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", displayFormat: " ); //$NON-NLS-1$
+        result.append( m_displayFormat );
+        result.append( ", textFormatType: " ); //$NON-NLS-1$
+        if( m_textFormatTypeESet )
+            result.append( m_textFormatType );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", horizontalAlignment: " ); //$NON-NLS-1$
+        if( m_horizontalAlignmentESet )
+            result.append( m_horizontalAlignment );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", textWrapType: " ); //$NON-NLS-1$
+        if( m_textWrapTypeESet )
+            result.append( m_textWrapType );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

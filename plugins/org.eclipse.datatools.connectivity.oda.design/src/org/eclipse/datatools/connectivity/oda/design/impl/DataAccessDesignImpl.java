@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataAccessDesignImpl.java,v 1.3 2006/02/03 04:16:15 lchan Exp $
+ * $Id: DataAccessDesignImpl.java,v 1.4 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -124,7 +124,7 @@ public class DataAccessDesignImpl extends EObjectImpl implements DataAccessDesig
             DesignFactory.eINSTANCE.createDataSetDesign();
         // set empty strings for required attributes in data set design
         newDataSet.setName( EMPTY_STR );
-        newDataSet.setNewQuery( EMPTY_STR );
+        newDataSet.setQueryText( EMPTY_STR );
 
         // associate the given data source design to the empty data set
         newDataSet.setDataSourceDesign( dataSourceDesign );

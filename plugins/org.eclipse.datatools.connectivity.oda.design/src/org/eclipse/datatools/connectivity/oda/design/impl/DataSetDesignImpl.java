@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.3 2006/02/07 05:53:25 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.4 2006/02/24 01:29:03 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -227,6 +228,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getOdaExtensionDataSourceId()
+     * @generated NOT
      */
     public String getOdaExtensionDataSourceId()
     {
@@ -236,13 +238,69 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#setNewQuery(java.lang.String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getQueryText()
+     * @generated NOT
      */
-    public void setNewQuery( String queryText )
+    public String getQueryText()
     {
-        DataSetQuery newQuery = DesignFactory.eINSTANCE.createDataSetQuery();
-        newQuery.setQueryText( queryText );
-        setQuery( newQuery );
+        DataSetQuery query = getQuery();
+        if( query == null )
+            return null;
+        return query.getQueryText();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#setQueryText(java.lang.String)
+     * @generated NOT
+     */
+    public void setQueryText( String queryText )
+    {
+        DataSetQuery query = getQuery();
+        if( query == null )
+        {
+            query = DesignFactory.eINSTANCE.createDataSetQuery();
+            setQuery( query );
+        }
+        query.setQueryText( queryText );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getPrimaryResultSet()
+     * @generated NOT
+     */
+    public ResultSetDefinition getPrimaryResultSet()
+    {
+        if( getResultSets() == null ||
+            getResultSets().getResultSetDefinitions().size() == 0 )
+            return null;
+        
+        String primaryName = getPrimaryResultSetName();
+        if( primaryName == null || primaryName.length() == 0 )
+        {
+            // takes the first one in collection
+            return (ResultSetDefinition) 
+                getResultSets().getResultSetDefinitions().get(0);
+        }
+        
+        // try search by name
+        return getResultSets().findResultSetDefinition( primaryName );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#setPrimaryResultSet(org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition)
+     * @generated NOT
+     */
+    public void setPrimaryResultSet( ResultSetDefinition resultSetDefn )
+    {
+        if( resultSetDefn == null )
+            return;     // nothing to set
+        
+        if( getResultSets() == null )
+            setResultSets( DesignFactory.eINSTANCE.createResultSets() );
+        getResultSets().addResultSetDefinition( 0, resultSetDefn );
+        
+        if( resultSetDefn.getName() != null )   // has name
+            setPrimaryResultSetName( resultSetDefn.getName() );        
     }
 
     /**

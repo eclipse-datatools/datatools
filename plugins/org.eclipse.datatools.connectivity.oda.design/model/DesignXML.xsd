@@ -337,7 +337,7 @@
     </xsd:attribute>
     <xsd:attribute name="linkedProfileStoreFilePath" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>The name of a linked connection profile where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.</xsd:documentation>
+        <xsd:documentation>The full path name of a linked connection profiles storage file where the linked profile is to be located at run-time.  A null value indicates to use the default DTP profiles storage file.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>

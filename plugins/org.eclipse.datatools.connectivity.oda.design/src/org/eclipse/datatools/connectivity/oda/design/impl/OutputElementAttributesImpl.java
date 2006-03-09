@@ -11,10 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: OutputElementAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
@@ -147,11 +148,24 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
     }
 
     /**
+     * Returns a non-null ValueFormatHints.
+     * If none is defined, returns one with default values.
+     * @generated NOT
+     */
+    public ValueFormatHints getFormattingHints()
+    {
+        if( getFormattingHintsGen() != null )
+            return getFormattingHintsGen();
+        
+        return DesignFactory.eINSTANCE.createValueFormatHints();
+    }
+    
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public ValueFormatHints getFormattingHints()
+    public ValueFormatHints getFormattingHintsGen()
     {
         return m_formattingHints;
     }

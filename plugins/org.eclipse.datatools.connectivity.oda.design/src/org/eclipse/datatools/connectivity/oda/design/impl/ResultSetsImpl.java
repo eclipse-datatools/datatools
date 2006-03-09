@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSetsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -116,6 +116,51 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getResultSets();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSets#findResultSetDefinition(java.lang.String)
+     * @generated NOT
+     */
+    public ResultSetDefinition findResultSetDefinition( String resultSetName )
+    {
+        if( m_resultSetDefinitions == null ||
+            resultSetName == null ||
+            resultSetName.length() == 0 )
+            return null;
+
+        EList defns = getResultSetDefinitions();
+        for( int i = 0; i < defns.size(); i++ )
+        {
+            ResultSetDefinition defn = 
+                (ResultSetDefinition) defns.get(i);
+            if( resultSetName.equals( defn.getName() ))
+                    return defn;
+        }
+        
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSets#addResultSetDefinition(int, org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition)
+     * @generated NOT
+     */
+    public void addResultSetDefinition( int index, ResultSetDefinition resultSetDefn )
+    {
+        if( resultSetDefn == null )
+            return;     // nothing to add
+        getResultSetDefinitions().add( index, resultSetDefn );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSets#addResultSetDefinition(org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition)
+     * @generated NOT
+     */
+    public void addResultSetDefinition( ResultSetDefinition resultSetDefn )
+    {
+        if( resultSetDefn == null )
+            return;     // nothing to add
+        getResultSetDefinitions().add( resultSetDefn );
     }
 
     /**
