@@ -709,13 +709,22 @@ public interface SQLTablesPackage extends EPackage{
 	int BASE_TABLE__CONSTRAINTS = TABLE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Referencing Foreign Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASE_TABLE__REFERENCING_FOREIGN_KEYS = TABLE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the the '<em>Base Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BASE_TABLE_FEATURE_COUNT = TABLE_FEATURE_COUNT + 1;
+	int BASE_TABLE_FEATURE_COUNT = TABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl <em>Temporary Table</em>}' class.
@@ -870,6 +879,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int TEMPORARY_TABLE__CONSTRAINTS = BASE_TABLE__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Referencing Foreign Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS = BASE_TABLE__REFERENCING_FOREIGN_KEYS;
 
 	/**
 	 * The feature id for the '<em><b>Local</b></em>' attribute.
@@ -1051,6 +1069,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int PERSISTENT_TABLE__CONSTRAINTS = BASE_TABLE__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Referencing Foreign Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS = BASE_TABLE__REFERENCING_FOREIGN_KEYS;
 
 	/**
 	 * The number of structural features of the the '<em>Persistent Table</em>' class.
@@ -1679,6 +1706,17 @@ public interface SQLTablesPackage extends EPackage{
 	 * @generated
 	 */
 	EReference getBaseTable_Constraints();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable#getReferencingForeignKeys <em>Referencing Foreign Keys</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referencing Foreign Keys</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.tables.BaseTable#getReferencingForeignKeys()
+	 * @see #getBaseTable()
+	 * @generated
+	 */
+	EReference getBaseTable_ReferencingForeignKeys();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.tables.Column <em>Column</em>}'.

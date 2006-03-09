@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.routines;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+
 import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
 
 /**
@@ -36,6 +38,16 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * <parameter type> ::= <data type> [ <locator indication> ] 
  * 
  * <locator indication> ::= AS LOCATOR
+ * 
+ * ---------------------
+ * from Information technology - Database languages - SQL - Part 14: XML-Related Specifications (SQL/XML)
+ * 
+ * 12.7 <SQL-invoked routine>
+ * <parameter type> ::= <data type> [ <locator indication> ] [ <document or content> ] [ <string type option> ]
+ * <returns data type> ::= <data type> [ <locator indication> ] [ <document or content> ] [ <string type option> ]
+ * <string type option> ::= AS <character string type>
+ * 
+ * Both [ <document or content> ] [ <string type option> ] are in support of the XML enhancements to SQL:2003.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -44,6 +56,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#isLocator <em>Locator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getRoutine <em>Routine</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getStringTypeOption <em>String Type Option</em>}</li>
  * </ul>
  * </p>
  *
@@ -157,5 +170,31 @@ public interface Parameter extends TypedElement{
 	 * @generated
 	 */
 	void setRoutine(Routine value);
+
+	/**
+	 * Returns the value of the '<em><b>String Type Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>String Type Option</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>String Type Option</em>' containment reference.
+	 * @see #setStringTypeOption(CharacterStringDataType)
+	 * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameter_StringTypeOption()
+	 * @model containment="true"
+	 * @generated
+	 */
+	CharacterStringDataType getStringTypeOption();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getStringTypeOption <em>String Type Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>String Type Option</em>' containment reference.
+	 * @see #getStringTypeOption()
+	 * @generated
+	 */
+	void setStringTypeOption(CharacterStringDataType value);
 
 } // Parameter

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NicknameDefinition.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: NicknameDefinition.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#isConstraintSupported <em>Constraint Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#isIndexSupported <em>Index Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,5 +78,31 @@ public interface NicknameDefinition extends EObject{
 	 * @generated
 	 */
 	void setIndexSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getNicknameDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // NicknameDefinition

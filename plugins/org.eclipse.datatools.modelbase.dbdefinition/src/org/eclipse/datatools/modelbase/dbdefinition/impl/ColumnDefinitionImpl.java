@@ -10,13 +10,21 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
+import java.util.Collection;
+
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
+import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +33,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#getIdentityColumnDataTypeDefinitions <em>Identity Column Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentitySupported <em>Identity Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isComputedSupported <em>Computed Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentityStartValueSupported <em>Identity Start Value Supported</em>}</li>
@@ -32,12 +41,23 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentityMinimumSupported <em>Identity Minimum Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentityMaximumSupported <em>Identity Maximum Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#isIdentityCycleSupported <em>Identity Cycle Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinition {
+	/**
+	 * The cached value of the '{@link #getIdentityColumnDataTypeDefinitions() <em>Identity Column Data Type Definitions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentityColumnDataTypeDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList identityColumnDataTypeDefinitions = null;
+
 	/**
 	 * The default value of the '{@link #isIdentitySupported() <em>Identity Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -66,7 +86,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean COMPUTED_SUPPORTED_EDEFAULT = false;
+	protected static final boolean COMPUTED_SUPPORTED_EDEFAULT = true;
 
 	/**
 	 * The cached value of the '{@link #isComputedSupported() <em>Computed Supported</em>}' attribute.
@@ -179,6 +199,26 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	protected boolean identityCycleSupported = IDENTITY_CYCLE_SUPPORTED_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -194,6 +234,18 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 */
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.eINSTANCE.getColumnDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getIdentityColumnDataTypeDefinitions() {
+		if (identityColumnDataTypeDefinitions == null) {
+			identityColumnDataTypeDefinitions = new EObjectResolvingEList(PredefinedDataTypeDefinition.class, this, DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS);
+		}
+		return identityColumnDataTypeDefinitions;
 	}
 
 	/**
@@ -348,8 +400,31 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
+				return getIdentityColumnDataTypeDefinitions();
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
 				return isIdentitySupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__COMPUTED_SUPPORTED:
@@ -364,6 +439,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 				return isIdentityMaximumSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				return isIdentityCycleSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -375,6 +452,10 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 */
 	public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
+				getIdentityColumnDataTypeDefinitions().clear();
+				getIdentityColumnDataTypeDefinitions().addAll((Collection)newValue);
+				return;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
 				setIdentitySupported(((Boolean)newValue).booleanValue());
 				return;
@@ -396,6 +477,9 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				setIdentityCycleSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -407,6 +491,9 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 */
 	public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
+				getIdentityColumnDataTypeDefinitions().clear();
+				return;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
 				setIdentitySupported(IDENTITY_SUPPORTED_EDEFAULT);
 				return;
@@ -428,6 +515,9 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				setIdentityCycleSupported(IDENTITY_CYCLE_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -439,6 +529,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 */
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
+				return identityColumnDataTypeDefinitions != null && !identityColumnDataTypeDefinitions.isEmpty();
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
 				return identitySupported != IDENTITY_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__COMPUTED_SUPPORTED:
@@ -453,6 +545,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 				return identityMaximumSupported != IDENTITY_MAXIMUM_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED:
 				return identityCycleSupported != IDENTITY_CYCLE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -480,6 +574,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 		result.append(identityMaximumSupported);
 		result.append(", identityCycleSupported: "); //$NON-NLS-1$
 		result.append(identityCycleSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

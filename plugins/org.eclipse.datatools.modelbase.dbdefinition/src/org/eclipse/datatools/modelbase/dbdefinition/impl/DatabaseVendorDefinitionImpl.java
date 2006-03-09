@@ -23,12 +23,15 @@ import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TableDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -61,6 +64,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getQueryDefinition <em>Query Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getSQLSyntaxDefinition <em>SQL Syntax Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getNicknameDefinition <em>Nickname Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getSchemaDefinition <em>Schema Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVersion <em>Version</em>}</li>
@@ -83,6 +88,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isNicknameSupported <em>Nickname Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isQuotedDMLSupported <em>Quoted DML Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isQuotedDDLSupported <em>Quoted DDL Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isXmlSupported <em>Xml Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isMQTIndexSupported <em>MQT Index Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isEventSupported <em>Event Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
@@ -231,6 +238,26 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected NicknameDefinition nicknameDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getSchemaDefinition() <em>Schema Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSchemaDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected SchemaDefinition schemaDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getViewDefinition() <em>View Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getViewDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected ViewDefinition viewDefinition = null;
 
 	/**
 	 * The cached value of the '{@link #getDebuggerDefinition() <em>Debugger Definition</em>}' containment reference.
@@ -661,6 +688,46 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected boolean quotedDDLSupported = QUOTED_DDL_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isXmlSupported() <em>Xml Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isXmlSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean XML_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isXmlSupported() <em>Xml Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isXmlSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean xmlSupported = XML_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isMQTIndexSupported() <em>MQT Index Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMQTIndexSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MQT_INDEX_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isMQTIndexSupported() <em>MQT Index Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isMQTIndexSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean mQTIndexSupported = MQT_INDEX_SUPPORTED_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isEventSupported() <em>Event Supported</em>}' attribute.
@@ -1179,6 +1246,48 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		quotedDDLSupported = newQuotedDDLSupported;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED, oldQuotedDDLSupported, quotedDDLSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isXmlSupported() {
+		return xmlSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setXmlSupported(boolean newXmlSupported) {
+		boolean oldXmlSupported = xmlSupported;
+		xmlSupported = newXmlSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED, oldXmlSupported, xmlSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isMQTIndexSupported() {
+		return mQTIndexSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMQTIndexSupported(boolean newMQTIndexSupported) {
+		boolean oldMQTIndexSupported = mQTIndexSupported;
+		mQTIndexSupported = newMQTIndexSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED, oldMQTIndexSupported, mQTIndexSupported));
 	}
 
 	/**
@@ -1789,6 +1898,92 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SchemaDefinition getSchemaDefinition() {
+		return schemaDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSchemaDefinition(SchemaDefinition newSchemaDefinition, NotificationChain msgs) {
+		SchemaDefinition oldSchemaDefinition = schemaDefinition;
+		schemaDefinition = newSchemaDefinition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, oldSchemaDefinition, newSchemaDefinition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSchemaDefinition(SchemaDefinition newSchemaDefinition) {
+		if (newSchemaDefinition != schemaDefinition) {
+			NotificationChain msgs = null;
+			if (schemaDefinition != null)
+				msgs = ((InternalEObject)schemaDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, null, msgs);
+			if (newSchemaDefinition != null)
+				msgs = ((InternalEObject)newSchemaDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, null, msgs);
+			msgs = basicSetSchemaDefinition(newSchemaDefinition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION, newSchemaDefinition, newSchemaDefinition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViewDefinition getViewDefinition() {
+		return viewDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetViewDefinition(ViewDefinition newViewDefinition, NotificationChain msgs) {
+		ViewDefinition oldViewDefinition = viewDefinition;
+		viewDefinition = newViewDefinition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, oldViewDefinition, newViewDefinition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setViewDefinition(ViewDefinition newViewDefinition) {
+		if (newViewDefinition != viewDefinition) {
+			NotificationChain msgs = null;
+			if (viewDefinition != null)
+				msgs = ((InternalEObject)viewDefinition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, null, msgs);
+			if (newViewDefinition != null)
+				msgs = ((InternalEObject)newViewDefinition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, null, msgs);
+			msgs = basicSetViewDefinition(newViewDefinition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION, newViewDefinition, newViewDefinition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DebuggerDefinition getDebuggerDefinition() {
 		return debuggerDefinition;
 	}
@@ -1863,6 +2058,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 					return basicSetSQLSyntaxDefinition(null, msgs);
 				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 					return basicSetNicknameDefinition(null, msgs);
+				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+					return basicSetSchemaDefinition(null, msgs);
+				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+					return basicSetViewDefinition(null, msgs);
 				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 					return basicSetDebuggerDefinition(null, msgs);
 				default:
@@ -1907,6 +2106,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return getSQLSyntaxDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				return getNicknameDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				return getSchemaDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				return getViewDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				return getDebuggerDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
@@ -1951,6 +2154,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return isQuotedDMLSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				return isQuotedDDLSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				return isXmlSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				return isMQTIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
 				return isEventSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
@@ -2011,6 +2218,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				setNicknameDefinition((NicknameDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				setSchemaDefinition((SchemaDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				setViewDefinition((ViewDefinition)newValue);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				setDebuggerDefinition((DebuggerDefinition)newValue);
@@ -2078,6 +2291,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				setQuotedDDLSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				setXmlSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				setMQTIndexSupported(((Boolean)newValue).booleanValue());
+				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
 				setEventSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -2139,6 +2358,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				setNicknameDefinition((NicknameDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				setSchemaDefinition((SchemaDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				setViewDefinition((ViewDefinition)null);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				setDebuggerDefinition((DebuggerDefinition)null);
@@ -2206,6 +2431,12 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				setQuotedDDLSupported(QUOTED_DDL_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				setXmlSupported(XML_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				setMQTIndexSupported(MQT_INDEX_SUPPORTED_EDEFAULT);
+				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
 				setEventSupported(EVENT_SUPPORTED_EDEFAULT);
 				return;
@@ -2254,6 +2485,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return sqlSyntaxDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
 				return nicknameDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				return schemaDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				return viewDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				return debuggerDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
@@ -2298,6 +2533,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return quotedDMLSupported != QUOTED_DML_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
 				return quotedDDLSupported != QUOTED_DDL_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				return xmlSupported != XML_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				return mQTIndexSupported != MQT_INDEX_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
 				return eventSupported != EVENT_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
@@ -2359,6 +2598,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		result.append(quotedDMLSupported);
 		result.append(", quotedDDLSupported: "); //$NON-NLS-1$
 		result.append(quotedDDLSupported);
+		result.append(", xmlSupported: "); //$NON-NLS-1$
+		result.append(xmlSupported);
+		result.append(", mQTIndexSupported: "); //$NON-NLS-1$
+		result.append(mQTIndexSupported);
 		result.append(", eventSupported: "); //$NON-NLS-1$
 		result.append(eventSupported);
 		result.append(", sqlUDFSupported: "); //$NON-NLS-1$

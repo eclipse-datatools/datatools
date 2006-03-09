@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#isInsteadOfTriggerSupported <em>Instead Of Trigger Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#isRowTriggerReferenceSupported <em>Row Trigger Reference Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#isTableTriggerReferenceSupported <em>Table Trigger Reference Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -298,5 +299,31 @@ public interface TriggerDefinition extends EObject{
 	 * @generated
 	 */
 	void setTableTriggerReferenceSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTriggerDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // TriggerDefinition

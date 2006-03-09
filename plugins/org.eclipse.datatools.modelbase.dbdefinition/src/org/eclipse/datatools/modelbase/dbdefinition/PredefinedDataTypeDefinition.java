@@ -22,6 +22,10 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingFieldQualifierDefinition <em>Leading Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingFieldQualifierDefinition <em>Trailing Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingFieldQualifierDefinition <em>Default Trailing Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingFieldQualifierDefinition <em>Default Leading Field Qualifier Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSupported <em>Length Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isScaleSupported <em>Scale Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isPrecisionSupported <em>Precision Supported</em>}</li>
@@ -53,12 +57,13 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultScale <em>Default Scale</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getCutoffPrecision <em>Cutoff Precision</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthUnit <em>Length Unit</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingPrecision <em>Trailing Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingPrecision <em>Default Trailing Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingPrecisionSupported <em>Trailing Precision Supported</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingPrecision <em>Leading Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingPrecision <em>Default Leading Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingPrecisionSupported <em>Leading Precision Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isOrderingSupported <em>Ordering Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isGroupingSupported <em>Grouping Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isDisplayNameSupported <em>Display Name Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +72,90 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface PredefinedDataTypeDefinition extends EObject{
+	/**
+	 * Returns the value of the '<em><b>Leading Field Qualifier Definition</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Leading Field Qualifier Definition</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Leading Field Qualifier Definition</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition()
+	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition" containment="true"
+	 * @generated
+	 */
+	EList getLeadingFieldQualifierDefinition();
+
+	/**
+	 * Returns the value of the '<em><b>Trailing Field Qualifier Definition</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Trailing Field Qualifier Definition</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trailing Field Qualifier Definition</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition()
+	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition" containment="true"
+	 * @generated
+	 */
+	EList getTrailingFieldQualifierDefinition();
+
+	/**
+	 * Returns the value of the '<em><b>Default Trailing Field Qualifier Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Trailing Field Qualifier Definition</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Trailing Field Qualifier Definition</em>' reference.
+	 * @see #setDefaultTrailingFieldQualifierDefinition(FieldQualifierDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition()
+	 * @model
+	 * @generated
+	 */
+	FieldQualifierDefinition getDefaultTrailingFieldQualifierDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingFieldQualifierDefinition <em>Default Trailing Field Qualifier Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Trailing Field Qualifier Definition</em>' reference.
+	 * @see #getDefaultTrailingFieldQualifierDefinition()
+	 * @generated
+	 */
+	void setDefaultTrailingFieldQualifierDefinition(FieldQualifierDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Leading Field Qualifier Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Leading Field Qualifier Definition</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Leading Field Qualifier Definition</em>' reference.
+	 * @see #setDefaultLeadingFieldQualifierDefinition(FieldQualifierDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition()
+	 * @model
+	 * @generated
+	 */
+	FieldQualifierDefinition getDefaultLeadingFieldQualifierDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingFieldQualifierDefinition <em>Default Leading Field Qualifier Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Leading Field Qualifier Definition</em>' reference.
+	 * @see #getDefaultLeadingFieldQualifierDefinition()
+	 * @generated
+	 */
+	void setDefaultLeadingFieldQualifierDefinition(FieldQualifierDefinition value);
+
 	/**
 	 * Returns the value of the '<em><b>Length Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -513,8 +602,7 @@ public interface PredefinedDataTypeDefinition extends EObject{
 
 	/**
 	 * Returns the value of the '<em><b>Default Value Types</b></em>' attribute list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType}.
-	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType}.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Value Types</em>' attribute list isn't clear,
@@ -522,9 +610,8 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default Value Types</em>' attribute list.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultValueTypes()
-	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType"
+	 * @model type="java.lang.String"
 	 * @generated
 	 */
 	EList getDefaultValueTypes();
@@ -846,159 +933,187 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	void setLengthUnit(LengthUnit value);
 
 	/**
-	 * Returns the value of the '<em><b>Trailing Precision</b></em>' attribute.
+	 * Returns the value of the '<em><b>Ordering Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Trailing Precision</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Ordering Supported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trailing Precision</em>' attribute.
-	 * @see #setTrailingPrecision(int)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingPrecision()
-	 * @model
+	 * @return the value of the '<em>Ordering Supported</em>' attribute.
+	 * @see #setOrderingSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_OrderingSupported()
+	 * @model default="true"
 	 * @generated
 	 */
-	int getTrailingPrecision();
+	boolean isOrderingSupported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingPrecision <em>Trailing Precision</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isOrderingSupported <em>Ordering Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trailing Precision</em>' attribute.
-	 * @see #getTrailingPrecision()
+	 * @param value the new value of the '<em>Ordering Supported</em>' attribute.
+	 * @see #isOrderingSupported()
 	 * @generated
 	 */
-	void setTrailingPrecision(int value);
+	void setOrderingSupported(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Trailing Precision</b></em>' attribute.
+	 * Returns the value of the '<em><b>Grouping Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Default Trailing Precision</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Grouping Supported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Trailing Precision</em>' attribute.
-	 * @see #setDefaultTrailingPrecision(int)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultTrailingPrecision()
-	 * @model
+	 * @return the value of the '<em>Grouping Supported</em>' attribute.
+	 * @see #setGroupingSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_GroupingSupported()
+	 * @model default="true"
 	 * @generated
 	 */
-	int getDefaultTrailingPrecision();
+	boolean isGroupingSupported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingPrecision <em>Default Trailing Precision</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isGroupingSupported <em>Grouping Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Trailing Precision</em>' attribute.
-	 * @see #getDefaultTrailingPrecision()
+	 * @param value the new value of the '<em>Grouping Supported</em>' attribute.
+	 * @see #isGroupingSupported()
 	 * @generated
 	 */
-	void setDefaultTrailingPrecision(int value);
+	void setGroupingSupported(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Trailing Precision Supported</b></em>' attribute.
+	 * Returns the value of the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Trailing Precision Supported</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Display Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Trailing Precision Supported</em>' attribute.
-	 * @see #setTrailingPrecisionSupported(boolean)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingPrecisionSupported()
+	 * @return the value of the '<em>Display Name</em>' attribute.
+	 * @see #setDisplayName(String)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DisplayName()
 	 * @model
 	 * @generated
 	 */
-	boolean isTrailingPrecisionSupported();
+	String getDisplayName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingPrecisionSupported <em>Trailing Precision Supported</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDisplayName <em>Display Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Trailing Precision Supported</em>' attribute.
-	 * @see #isTrailingPrecisionSupported()
+	 * @param value the new value of the '<em>Display Name</em>' attribute.
+	 * @see #getDisplayName()
 	 * @generated
 	 */
-	void setTrailingPrecisionSupported(boolean value);
+	void setDisplayName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Leading Precision</b></em>' attribute.
+	 * Returns the value of the '<em><b>Display Name Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Leading Precision</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Display Name Supported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Leading Precision</em>' attribute.
-	 * @see #setLeadingPrecision(int)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingPrecision()
+	 * @return the value of the '<em>Display Name Supported</em>' attribute.
+	 * @see #setDisplayNameSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DisplayNameSupported()
 	 * @model
 	 * @generated
 	 */
-	int getLeadingPrecision();
+	boolean isDisplayNameSupported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingPrecision <em>Leading Precision</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isDisplayNameSupported <em>Display Name Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Leading Precision</em>' attribute.
-	 * @see #getLeadingPrecision()
+	 * @param value the new value of the '<em>Display Name Supported</em>' attribute.
+	 * @see #isDisplayNameSupported()
 	 * @generated
 	 */
-	void setLeadingPrecision(int value);
+	void setDisplayNameSupported(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Leading Precision</b></em>' attribute.
+	 * Returns the value of the '<em><b>Leading Field Qualifier Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Default Leading Precision</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Leading Field Qualifier Supported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Leading Precision</em>' attribute.
-	 * @see #setDefaultLeadingPrecision(int)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_DefaultLeadingPrecision()
+	 * @return the value of the '<em>Leading Field Qualifier Supported</em>' attribute.
+	 * @see #setLeadingFieldQualifierSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported()
 	 * @model
 	 * @generated
 	 */
-	int getDefaultLeadingPrecision();
+	boolean isLeadingFieldQualifierSupported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingPrecision <em>Default Leading Precision</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Leading Precision</em>' attribute.
-	 * @see #getDefaultLeadingPrecision()
+	 * @param value the new value of the '<em>Leading Field Qualifier Supported</em>' attribute.
+	 * @see #isLeadingFieldQualifierSupported()
 	 * @generated
 	 */
-	void setDefaultLeadingPrecision(int value);
+	void setLeadingFieldQualifierSupported(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Leading Precision Supported</b></em>' attribute.
+	 * Returns the value of the '<em><b>Trailing Field Qualifier Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Leading Precision Supported</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Trailing Field Qualifier Supported</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Leading Precision Supported</em>' attribute.
-	 * @see #setLeadingPrecisionSupported(boolean)
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LeadingPrecisionSupported()
+	 * @return the value of the '<em>Trailing Field Qualifier Supported</em>' attribute.
+	 * @see #setTrailingFieldQualifierSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported()
 	 * @model
 	 * @generated
 	 */
-	boolean isLeadingPrecisionSupported();
+	boolean isTrailingFieldQualifierSupported();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingPrecisionSupported <em>Leading Precision Supported</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Leading Precision Supported</em>' attribute.
-	 * @see #isLeadingPrecisionSupported()
+	 * @param value the new value of the '<em>Trailing Field Qualifier Supported</em>' attribute.
+	 * @see #isTrailingFieldQualifierSupported()
 	 * @generated
 	 */
-	void setLeadingPrecisionSupported(boolean value);
+	void setTrailingFieldQualifierSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Field Qualifier Separator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Field Qualifier Separator</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Field Qualifier Separator</em>' attribute.
+	 * @see #setFieldQualifierSeparator(String)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_FieldQualifierSeparator()
+	 * @model
+	 * @generated
+	 */
+	String getFieldQualifierSeparator();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Field Qualifier Separator</em>' attribute.
+	 * @see #getFieldQualifierSeparator()
+	 * @generated
+	 */
+	void setFieldQualifierSeparator(String value);
 
 } // PredefinedDataTypeDefinition

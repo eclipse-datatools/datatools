@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#getFillFactor <em>Fill Factor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#isUnique <em>Unique</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#isSystemGenerated <em>System Generated</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#getMembers <em>Members</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.Index#getForeignKey <em>Foreign Key</em>}</li>
@@ -148,6 +149,32 @@ public interface Index extends SQLObject{
 	 * @generated
 	 */
 	void setUnique(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>System Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>System Generated</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>System Generated</em>' attribute.
+	 * @see #setSystemGenerated(boolean)
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getIndex_SystemGenerated()
+	 * @model
+	 * @generated
+	 */
+	boolean isSystemGenerated();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.constraints.Index#isSystemGenerated <em>System Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>System Generated</em>' attribute.
+	 * @see #isSystemGenerated()
+	 * @generated
+	 */
+	void setSystemGenerated(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Members</b></em>' containment reference list.

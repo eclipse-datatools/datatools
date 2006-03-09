@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isDefaultValueSupported <em>Default Value Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isDistinctTypeSupported <em>Distinct Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#isStructuredTypeSupported <em>Structured Type Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,6 +94,26 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * @ordered
 	 */
 	protected boolean structuredTypeSupported = STRUCTURED_TYPE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,6 +201,27 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED:
@@ -188,6 +230,8 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 				return isDistinctTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				return isStructuredTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -207,6 +251,9 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 				return;
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				setStructuredTypeSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -228,6 +275,9 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				setStructuredTypeSupported(STRUCTURED_TYPE_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -245,6 +295,8 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 				return distinctTypeSupported != DISTINCT_TYPE_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED:
 				return structuredTypeSupported != STRUCTURED_TYPE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -264,6 +316,8 @@ public class UserDefinedTypeDefinitionImpl extends EObjectImpl implements UserDe
 		result.append(distinctTypeSupported);
 		result.append(", structuredTypeSupported: "); //$NON-NLS-1$
 		result.append(structuredTypeSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

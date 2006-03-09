@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSyntaxDefinitionImpl.java,v 1.3 2005/06/15 18:16:00 ledunnel Exp $
+ * $Id: SQLSyntaxDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -10,11 +10,14 @@ import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
+import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
@@ -29,6 +32,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SQLSyntaxDefinitionImpl#getKeywords <em>Keywords</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SQLSyntaxDefinitionImpl#getOperators <em>Operators</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SQLSyntaxDefinitionImpl#getTerminationCharacter <em>Termination Character</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +58,26 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * @ordered
 	 */
 	protected EList operators = null;
+
+	/**
+	 * The default value of the '{@link #getTerminationCharacter() <em>Termination Character</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTerminationCharacter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TERMINATION_CHARACTER_EDEFAULT = ";"; //$NON-NLS-1$
+
+	/**
+	 * The cached value of the '{@link #getTerminationCharacter() <em>Termination Character</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTerminationCharacter()
+	 * @generated
+	 * @ordered
+	 */
+	protected String terminationCharacter = TERMINATION_CHARACTER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,12 +126,35 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTerminationCharacter() {
+		return terminationCharacter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTerminationCharacter(String newTerminationCharacter) {
+		String oldTerminationCharacter = terminationCharacter;
+		terminationCharacter = newTerminationCharacter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER, oldTerminationCharacter, terminationCharacter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__KEYWORDS:
 				return getKeywords();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__OPERATORS:
 				return getOperators();
+			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
+				return getTerminationCharacter();
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -127,6 +174,9 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 				getOperators().clear();
 				getOperators().addAll((Collection)newValue);
 				return;
+			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
+				setTerminationCharacter((String)newValue);
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -144,6 +194,9 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__OPERATORS:
 				getOperators().clear();
 				return;
+			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
+				setTerminationCharacter(TERMINATION_CHARACTER_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -159,6 +212,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 				return keywords != null && !keywords.isEmpty();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__OPERATORS:
 				return operators != null && !operators.isEmpty();
+			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
+				return TERMINATION_CHARACTER_EDEFAULT == null ? terminationCharacter != null : !TERMINATION_CHARACTER_EDEFAULT.equals(terminationCharacter);
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -176,6 +231,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 		result.append(keywords);
 		result.append(", operators: "); //$NON-NLS-1$
 		result.append(operators);
+		result.append(", terminationCharacter: "); //$NON-NLS-1$
+		result.append(terminationCharacter);
 		result.append(')');
 		return result.toString();
 	}

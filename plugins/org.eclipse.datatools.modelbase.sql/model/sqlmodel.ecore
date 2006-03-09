@@ -229,6 +229,8 @@
           upperBound="-1" eType="#//tables/Column"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="uniqueIndex" eType="#//constraints/Index"
           eOpposite="#//constraints/Index/ForeignKey"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedTable" eType="#//tables/BaseTable"
+          eOpposite="#//tables/BaseTable/referencingForeignKeys"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UniqueConstraint" eSuperTypes="#//constraints/ReferenceConstraint">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -259,6 +261,7 @@
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemGenerated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" lowerBound="1"
           upperBound="-1" eType="#//constraints/IndexMember" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="table" lowerBound="1"
@@ -281,7 +284,7 @@
       <eLiterals name="DESC" value="1"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="datatypes" nsURI="http:///org/eclipse/datatools/modelbase/datatypes.ecore"
+  <eSubpackages name="datatypes" nsURI="http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"
       nsPrefix="SQLDataTypes">
     <eClassifiers xsi:type="ecore:EClass" name="UserDefinedType" abstract="true" eSuperTypes="#//datatypes/DataType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -420,6 +423,7 @@
       <eLiterals name="HOUR" value="3"/>
       <eLiterals name="MINUTE" value="4"/>
       <eLiterals name="SECOND" value="5"/>
+      <eLiterals name="FRACTION" value="6"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DistinctUserDefinedType" eSuperTypes="#//datatypes/UserDefinedType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -580,7 +584,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="IntegerDataType" eSuperTypes="#//datatypes/ExactNumericDataType"/>
     <eClassifiers xsi:type="ecore:EClass" name="XMLDataType" eSuperTypes="#//datatypes/PredefinedDataType"/>
   </eSubpackages>
-  <eSubpackages name="expressions" nsURI="http:///org/eclipse/datatools/modelbase/expressions.ecore"
+  <eSubpackages name="expressions" nsURI="http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"
       nsPrefix="SQLExpressions">
     <eClassifiers xsi:type="ecore:EClass" name="QueryExpression" abstract="true" interface="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -687,7 +691,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//schema/TypedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="From 5WD-02-Foundation-2002-12&#xD;&#xA;11.49 &lt;SQL-invoked routine>&#xD;&#xA;&lt;SQL parameter declaration> ::= [ &lt;parameter mode> ] [ &lt;SQL parameter name> ] &lt;parameter type> [ RESULT ]&#xD;&#xA;&#xD;&#xA;4.23 SQL-invoked routines&#xD;&#xA;For every SQL parameter whose &lt;SQL parameter declaration> contains &lt;locator indication>, an indication that the SQL parameter is a locator parameter.&#xD;&#xA;&#xD;&#xA;4.26.4 Locators&#xD;&#xA;A host parameter, an SQL parameter of an external routine, or the value returned by an external function may be specified to be a locator by specifying AS LOCATOR. A locator is an SQL-session object, rather than SQL-data, that can be used to reference an SQL-data instance. A locator is either a large object locator, an user-defined type locator, or an array locator. A large object locator&#xD;&#xA;is one of the following:&#xD;&#xA;- Binary large object locator, a value of which identifies a binary large object.&#xD;&#xA;- Character large object locator, a value of which identifies a character large object.&#xD;&#xA;- National character large object locator, a value of which identifies a national character large object.&#xD;&#xA;&#xD;&#xA;11.49 &lt;SQL-invoked routine>&#xD;&#xA;&lt;parameter type> ::= &lt;data type> [ &lt;locator indication> ] &#xD;&#xA;&#xD;&#xA;&lt;locator indication> ::= AS LOCATOR"/>
+        <details key="documentation" value="From 5WD-02-Foundation-2002-12&#xD;&#xA;11.49 &lt;SQL-invoked routine>&#xD;&#xA;&lt;SQL parameter declaration> ::= [ &lt;parameter mode> ] [ &lt;SQL parameter name> ] &lt;parameter type> [ RESULT ]&#xD;&#xA;&#xD;&#xA;4.23 SQL-invoked routines&#xD;&#xA;For every SQL parameter whose &lt;SQL parameter declaration> contains &lt;locator indication>, an indication that the SQL parameter is a locator parameter.&#xD;&#xA;&#xD;&#xA;4.26.4 Locators&#xD;&#xA;A host parameter, an SQL parameter of an external routine, or the value returned by an external function may be specified to be a locator by specifying AS LOCATOR. A locator is an SQL-session object, rather than SQL-data, that can be used to reference an SQL-data instance. A locator is either a large object locator, an user-defined type locator, or an array locator. A large object locator&#xD;&#xA;is one of the following:&#xD;&#xA;- Binary large object locator, a value of which identifies a binary large object.&#xD;&#xA;- Character large object locator, a value of which identifies a character large object.&#xD;&#xA;- National character large object locator, a value of which identifies a national character large object.&#xD;&#xA;&#xD;&#xA;11.49 &lt;SQL-invoked routine>&#xD;&#xA;&lt;parameter type> ::= &lt;data type> [ &lt;locator indication> ] &#xD;&#xA;&#xD;&#xA;&lt;locator indication> ::= AS LOCATOR&#xD;&#xA;&#xD;&#xA;---------------------&#xD;&#xA;from Information technology - Database languages - SQL - Part 14: XML-Related Specifications (SQL/XML)&#xD;&#xA;&#xD;&#xA;12.7 &lt;SQL-invoked routine>&#xD;&#xA;&lt;parameter type> ::= &lt;data type> [ &lt;locator indication> ] [ &lt;document or content> ] [ &lt;string type option> ]&#xD;&#xA;&lt;returns data type> ::= &lt;data type> [ &lt;locator indication> ] [ &lt;document or content> ] [ &lt;string type option> ]&#xD;&#xA;&lt;string type option> ::= AS &lt;character string type>&#xD;&#xA;&#xD;&#xA;Both [ &lt;document or content> ] [ &lt;string type option> ] are in support of the XML enhancements to SQL:2003."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//routines/ParameterMode">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -701,6 +705,8 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="routine" lowerBound="1"
           eType="#//routines/Routine" transient="true" eOpposite="#//routines/Routine/parameters"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stringTypeOption" eType="#//datatypes/CharacterStringDataType"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Procedure" eSuperTypes="#//routines/Routine">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -872,6 +878,8 @@
       <eOperations name="getPrimaryKey" eType="#//constraints/PrimaryKey"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
           eType="#//constraints/TableConstraint" containment="true" eOpposite="#//constraints/TableConstraint/BaseTable"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencingForeignKeys"
+          upperBound="-1" eType="#//constraints/ForeignKey" eOpposite="#//constraints/ForeignKey/referencedTable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="CheckType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

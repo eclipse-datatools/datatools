@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#isEditProcSupported <em>Edit Proc Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#isEncodingSupported <em>Encoding Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#isValidProcSupported <em>Valid Proc Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -162,5 +163,31 @@ public interface TableDefinition extends EObject{
 	 * @generated
 	 */
 	void setValidProcSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // TableDefinition

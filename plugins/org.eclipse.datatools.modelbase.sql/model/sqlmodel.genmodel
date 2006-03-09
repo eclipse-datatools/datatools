@@ -151,6 +151,7 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/uniqueConstraint"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/referencedMembers"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/uniqueIndex"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/ForeignKey/referencedTable"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//constraints/UniqueConstraint">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/UniqueConstraint/ForeignKey"/>
@@ -161,6 +162,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/clustered"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/fillFactor"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/unique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//constraints/Index/systemGenerated"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/members"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/table"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//constraints/Index/ForeignKey"/>
@@ -172,7 +174,7 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLDataTypes" basePackage="org.eclipse.datatools.modelbase.sql"
-        ecorePackage="sqlmodel.ecore#//datatypes">
+        disposableProviderFactory="true" ecorePackage="sqlmodel.ecore#//datatypes">
       <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/CoercibilityType">
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/IMPLICIT"/>
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/CoercibilityType/EXPLICIT"/>
@@ -186,6 +188,7 @@
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/HOUR"/>
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/MINUTE"/>
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/SECOND"/>
+        <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/IntervalQualifierType/FRACTION"/>
       </genEnums>
       <genEnums ecoreEnum="sqlmodel.ecore#//datatypes/OrderingType">
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/OrderingType/EQUALS"/>
@@ -245,22 +248,22 @@
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/UnlinkOption/DELETE"/>
         <genEnumLiterals ecoreEnumLiteral="sqlmodel.ecore#//datatypes/UnlinkOption/NONE"/>
       </genEnums>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/UserDefinedType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/UserDefinedType">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedType/schema"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedType/ordering"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/DataType">
         <genOperations ecoreOperation="sqlmodel.ecore#//datatypes/DataType/setContainer">
           <genParameters ecoreParameter="sqlmodel.ecore#//datatypes/DataType/setContainer/newContainer"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/PredefinedDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/PredefinedDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/PredefinedDataType/primitiveType"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/CollectionDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/CollectionDataType">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/CollectionDataType/element"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/NumericalDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/NumericalDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/NumericalDataType/precision"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/CharacterStringDataType">
@@ -273,10 +276,10 @@
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/RowDataType">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/RowDataType/fields"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ArrayDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ArrayDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/ArrayDataType/maxCardinality"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/MultisetDataType"/>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/MultisetDataType"/>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/BooleanDataType"/>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/IntervalDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/IntervalDataType/leadingQualifier"/>
@@ -324,12 +327,12 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/Field/scopeCheck"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/Field/scopeChecked"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ReferenceDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ReferenceDataType">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ReferenceDataType/scopeTable"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/ReferenceDataType/referencedType"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ConstructedDataType"/>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/SQLDataType"/>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ConstructedDataType"/>
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/SQLDataType"/>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DataLinkDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/length"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/DataLinkDataType/linkControl"/>
@@ -345,7 +348,7 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//datatypes/UserDefinedTypeOrdering/orderingRoutine"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/DateDataType"/>
-      <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ExactNumericDataType">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//datatypes/ExactNumericDataType">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//datatypes/ExactNumericDataType/scale"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/ApproximateNumericDataType"/>
@@ -353,20 +356,20 @@
       <genClasses ecoreClass="sqlmodel.ecore#//datatypes/XMLDataType"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLExpressions" basePackage="org.eclipse.datatools.modelbase.sql"
-        ecorePackage="sqlmodel.ecore#//expressions">
-      <genClasses ecoreClass="sqlmodel.ecore#//expressions/QueryExpression">
+        disposableProviderFactory="true" ecorePackage="sqlmodel.ecore#//expressions">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/QueryExpression">
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/QueryExpression/getSQL"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/QueryExpression/setSQL">
           <genParameters ecoreParameter="sqlmodel.ecore#//expressions/QueryExpression/setSQL/sqlText"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//expressions/ValueExpression">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/ValueExpression">
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/ValueExpression/getSQL"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/ValueExpression/setSQL">
           <genParameters ecoreParameter="sqlmodel.ecore#//expressions/ValueExpression/setSQL/sqlText"/>
         </genOperations>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//expressions/SearchCondition">
+      <genClasses image="false" ecoreClass="sqlmodel.ecore#//expressions/SearchCondition">
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/SearchCondition/getSQL"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//expressions/SearchCondition/setSQL">
           <genParameters ecoreParameter="sqlmodel.ecore#//expressions/SearchCondition/setSQL/sqlText"/>
@@ -417,6 +420,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Parameter/mode"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Parameter/locator"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Parameter/routine"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Parameter/stringTypeOption"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//routines/Procedure">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Procedure/maxResultSets"/>
@@ -508,6 +512,7 @@
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//tables/BaseTable">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/BaseTable/constraints"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//tables/BaseTable/referencingForeignKeys"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getUniqueConstraints"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getForeignKeys"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//tables/BaseTable/getPrimaryKey"/>

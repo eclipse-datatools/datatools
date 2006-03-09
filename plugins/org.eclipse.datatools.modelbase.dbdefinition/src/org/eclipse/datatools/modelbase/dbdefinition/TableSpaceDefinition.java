@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#isContainerInitialSizeSupported <em>Container Initial Size Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#isContainerExtentSizeSupported <em>Container Extent Size Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#getTableSpaceType <em>Table Space Type</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -317,5 +318,31 @@ public interface TableSpaceDefinition extends EObject{
 	 * @generated
 	 */
 	EList getTableSpaceType();
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getTableSpaceDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // TableSpaceDefinition

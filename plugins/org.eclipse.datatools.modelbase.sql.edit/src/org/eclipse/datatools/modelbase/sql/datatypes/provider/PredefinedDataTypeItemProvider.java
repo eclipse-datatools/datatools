@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredefinedDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: PredefinedDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -83,16 +83,6 @@ public class PredefinedDataTypeItemProvider
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns PredefinedDataType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/PredefinedDataType"); //$NON-NLS-1$
 	}
 
 	/**

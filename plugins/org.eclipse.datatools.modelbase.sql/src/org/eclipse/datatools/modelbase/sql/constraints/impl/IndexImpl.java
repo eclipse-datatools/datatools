@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#isClustered <em>Clustered</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getFillFactor <em>Fill Factor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#isUnique <em>Unique</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#isSystemGenerated <em>System Generated</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getMembers <em>Members</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getTable <em>Table</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl#getForeignKey <em>Foreign Key</em>}</li>
@@ -122,6 +123,26 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @ordered
 	 */
 	protected boolean unique = UNIQUE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSystemGenerated() <em>System Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSystemGenerated()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SYSTEM_GENERATED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSystemGenerated() <em>System Generated</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSystemGenerated()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean systemGenerated = SYSTEM_GENERATED_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getMembers() <em>Members</em>}' containment reference list.
@@ -309,6 +330,27 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSystemGenerated() {
+		return systemGenerated;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSystemGenerated(boolean newSystemGenerated) {
+		boolean oldSystemGenerated = systemGenerated;
+		systemGenerated = newSystemGenerated;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLConstraintsPackage.INDEX__SYSTEM_GENERATED, oldSystemGenerated, systemGenerated));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList getMembers() {
 		if (members == null) {
 			members = new EObjectContainmentEList(IndexMember.class, this, SQLConstraintsPackage.INDEX__MEMBERS);
@@ -484,6 +526,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 				return new Integer(getFillFactor());
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				return isUnique() ? Boolean.TRUE : Boolean.FALSE;
+			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
+				return isSystemGenerated() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.INDEX__MEMBERS:
 				return getMembers();
 			case SQLConstraintsPackage.INDEX__TABLE:
@@ -532,6 +576,9 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 				return;
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				setUnique(((Boolean)newValue).booleanValue());
+				return;
+			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
+				setSystemGenerated(((Boolean)newValue).booleanValue());
 				return;
 			case SQLConstraintsPackage.INDEX__MEMBERS:
 				getMembers().clear();
@@ -586,6 +633,9 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				setUnique(UNIQUE_EDEFAULT);
 				return;
+			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
+				setSystemGenerated(SYSTEM_GENERATED_EDEFAULT);
+				return;
 			case SQLConstraintsPackage.INDEX__MEMBERS:
 				getMembers().clear();
 				return;
@@ -627,6 +677,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 				return fillFactor != FILL_FACTOR_EDEFAULT;
 			case SQLConstraintsPackage.INDEX__UNIQUE:
 				return unique != UNIQUE_EDEFAULT;
+			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
+				return systemGenerated != SYSTEM_GENERATED_EDEFAULT;
 			case SQLConstraintsPackage.INDEX__MEMBERS:
 				return members != null && !members.isEmpty();
 			case SQLConstraintsPackage.INDEX__TABLE:
@@ -654,6 +706,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 		result.append(fillFactor);
 		result.append(", unique: "); //$NON-NLS-1$
 		result.append(unique);
+		result.append(", systemGenerated: "); //$NON-NLS-1$
+		result.append(systemGenerated);
 		result.append(')');
 		return result.toString();
 	}

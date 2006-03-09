@@ -12,6 +12,7 @@ package org.eclipse.datatools.modelbase.sql.routines.impl;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#isLocator <em>Locator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getRoutine <em>Routine</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl#getStringTypeOption <em>String Type Option</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,16 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * @ordered
 	 */
 	protected boolean locator = LOCATOR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getStringTypeOption() <em>String Type Option</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringTypeOption()
+	 * @generated
+	 * @ordered
+	 */
+	protected CharacterStringDataType stringTypeOption = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,6 +192,49 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public CharacterStringDataType getStringTypeOption() {
+		return stringTypeOption;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetStringTypeOption(CharacterStringDataType newStringTypeOption, NotificationChain msgs) {
+		CharacterStringDataType oldStringTypeOption = stringTypeOption;
+		stringTypeOption = newStringTypeOption;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, oldStringTypeOption, newStringTypeOption);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStringTypeOption(CharacterStringDataType newStringTypeOption) {
+		if (newStringTypeOption != stringTypeOption) {
+			NotificationChain msgs = null;
+			if (stringTypeOption != null)
+				msgs = ((InternalEObject)stringTypeOption).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, null, msgs);
+			if (newStringTypeOption != null)
+				msgs = ((InternalEObject)newStringTypeOption).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, null, msgs);
+			msgs = basicSetStringTypeOption(newStringTypeOption, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION, newStringTypeOption, newStringTypeOption));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
 		if (featureID >= 0) {
 			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
@@ -214,6 +269,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 					return basicSetContainedType(null, msgs);
 				case SQLRoutinesPackage.PARAMETER__ROUTINE:
 					return eBasicSetContainer(null, SQLRoutinesPackage.PARAMETER__ROUTINE, msgs);
+				case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+					return basicSetStringTypeOption(null, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -266,6 +323,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 				return isLocator() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
 				return getRoutine();
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				return getStringTypeOption();
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -309,6 +368,9 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
 				setRoutine((Routine)newValue);
 				return;
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				setStringTypeOption((CharacterStringDataType)newValue);
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -350,6 +412,9 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
 				setRoutine((Routine)null);
 				return;
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				setStringTypeOption((CharacterStringDataType)null);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -381,6 +446,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 				return locator != LOCATOR_EDEFAULT;
 			case SQLRoutinesPackage.PARAMETER__ROUTINE:
 				return getRoutine() != null;
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				return stringTypeOption != null;
 		}
 		return eDynamicIsSet(eFeature);
 	}

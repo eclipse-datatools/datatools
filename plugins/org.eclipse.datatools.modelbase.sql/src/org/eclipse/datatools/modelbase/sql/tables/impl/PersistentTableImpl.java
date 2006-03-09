@@ -81,6 +81,8 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 					return ((InternalEList)getIndex()).basicAdd(otherEnd, msgs);
 				case SQLTablesPackage.PERSISTENT_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicAdd(otherEnd, msgs);
+				case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -116,6 +118,8 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 					return ((InternalEList)getIndex()).basicRemove(otherEnd, msgs);
 				case SQLTablesPackage.PERSISTENT_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicRemove(otherEnd, msgs);
+				case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -165,6 +169,8 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 				return isUpdatable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLTablesPackage.PERSISTENT_TABLE__CONSTRAINTS:
 				return getConstraints();
+			case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+				return getReferencingForeignKeys();
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -225,6 +231,10 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 				getConstraints().clear();
 				getConstraints().addAll((Collection)newValue);
 				return;
+			case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				getReferencingForeignKeys().addAll((Collection)newValue);
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -278,6 +288,9 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 			case SQLTablesPackage.PERSISTENT_TABLE__CONSTRAINTS:
 				getConstraints().clear();
 				return;
+			case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -321,6 +334,8 @@ public class PersistentTableImpl extends BaseTableImpl implements PersistentTabl
 				return isUpdatable() != UPDATABLE_EDEFAULT;
 			case SQLTablesPackage.PERSISTENT_TABLE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
+			case SQLTablesPackage.PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS:
+				return referencingForeignKeys != null && !referencingForeignKeys.isEmpty();
 		}
 		return eDynamicIsSet(eFeature);
 	}

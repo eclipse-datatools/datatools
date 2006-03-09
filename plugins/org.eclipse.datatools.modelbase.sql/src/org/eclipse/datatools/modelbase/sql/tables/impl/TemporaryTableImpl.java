@@ -170,6 +170,8 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 					return ((InternalEList)getIndex()).basicAdd(otherEnd, msgs);
 				case SQLTablesPackage.TEMPORARY_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicAdd(otherEnd, msgs);
+				case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -205,6 +207,8 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 					return ((InternalEList)getIndex()).basicRemove(otherEnd, msgs);
 				case SQLTablesPackage.TEMPORARY_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicRemove(otherEnd, msgs);
+				case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -254,6 +258,8 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 				return isUpdatable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLTablesPackage.TEMPORARY_TABLE__CONSTRAINTS:
 				return getConstraints();
+			case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+				return getReferencingForeignKeys();
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
 				return isLocal() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLTablesPackage.TEMPORARY_TABLE__DELETE_ON_COMMIT:
@@ -318,6 +324,10 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 				getConstraints().clear();
 				getConstraints().addAll((Collection)newValue);
 				return;
+			case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				getReferencingForeignKeys().addAll((Collection)newValue);
+				return;
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
 				setLocal(((Boolean)newValue).booleanValue());
 				return;
@@ -377,6 +387,9 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 			case SQLTablesPackage.TEMPORARY_TABLE__CONSTRAINTS:
 				getConstraints().clear();
 				return;
+			case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				return;
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
 				setLocal(LOCAL_EDEFAULT);
 				return;
@@ -426,6 +439,8 @@ public class TemporaryTableImpl extends BaseTableImpl implements TemporaryTable 
 				return isUpdatable() != UPDATABLE_EDEFAULT;
 			case SQLTablesPackage.TEMPORARY_TABLE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
+			case SQLTablesPackage.TEMPORARY_TABLE__REFERENCING_FOREIGN_KEYS:
+				return referencingForeignKeys != null && !referencingForeignKeys.isEmpty();
 			case SQLTablesPackage.TEMPORARY_TABLE__LOCAL:
 				return local != LOCAL_EDEFAULT;
 			case SQLTablesPackage.TEMPORARY_TABLE__DELETE_ON_COMMIT:

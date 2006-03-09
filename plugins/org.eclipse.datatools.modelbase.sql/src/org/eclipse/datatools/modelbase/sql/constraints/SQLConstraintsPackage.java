@@ -747,13 +747,22 @@ public interface SQLConstraintsPackage extends EPackage{
 	int FOREIGN_KEY__UNIQUE_INDEX = REFERENCE_CONSTRAINT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Referenced Table</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__REFERENCED_TABLE = REFERENCE_CONSTRAINT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the the '<em>Foreign Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOREIGN_KEY_FEATURE_COUNT = REFERENCE_CONSTRAINT_FEATURE_COUNT + 6;
+	int FOREIGN_KEY_FEATURE_COUNT = REFERENCE_CONSTRAINT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl <em>Unique Constraint</em>}' class.
@@ -1083,13 +1092,22 @@ public interface SQLConstraintsPackage extends EPackage{
 	int INDEX__UNIQUE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>System Generated</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX__SYSTEM_GENERATED = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX__MEMBERS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+	int INDEX__MEMBERS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' reference.
@@ -1098,7 +1116,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX__TABLE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
+	int INDEX__TABLE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Foreign Key</b></em>' reference list.
@@ -1107,7 +1125,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX__FOREIGN_KEY = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 6;
+	int INDEX__FOREIGN_KEY = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Included Members</b></em>' containment reference list.
@@ -1116,7 +1134,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX__INCLUDED_MEMBERS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 7;
+	int INDEX__INCLUDED_MEMBERS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the the '<em>Index</em>' class.
@@ -1125,7 +1143,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 8;
+	int INDEX_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl <em>Index Member</em>}' class.
@@ -1456,6 +1474,17 @@ public interface SQLConstraintsPackage extends EPackage{
 	EReference getForeignKey_UniqueIndex();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable <em>Referenced Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Referenced Table</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable()
+	 * @see #getForeignKey()
+	 * @generated
+	 */
+	EReference getForeignKey_ReferencedTable();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint <em>Unique Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1539,6 +1568,17 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getIndex_Unique();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.constraints.Index#isSystemGenerated <em>System Generated</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>System Generated</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.Index#isSystemGenerated()
+	 * @see #getIndex()
+	 * @generated
+	 */
+	EAttribute getIndex_SystemGenerated();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.constraints.Index#getMembers <em>Members</em>}'.

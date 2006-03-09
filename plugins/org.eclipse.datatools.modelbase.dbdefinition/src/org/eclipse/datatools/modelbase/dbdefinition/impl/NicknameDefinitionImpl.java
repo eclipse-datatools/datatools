@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NicknameDefinitionImpl.java,v 1.2 2005/06/15 18:16:00 ledunnel Exp $
+ * $Id: NicknameDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#isConstraintSupported <em>Constraint Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#isIndexSupported <em>Index Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +72,26 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * @ordered
 	 */
 	protected boolean indexSupported = INDEX_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,12 +158,35 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED:
 				return isConstraintSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -159,6 +203,9 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 				return;
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				setIndexSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -177,6 +224,9 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				setIndexSupported(INDEX_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -192,6 +242,8 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 				return constraintSupported != CONSTRAINT_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__INDEX_SUPPORTED:
 				return indexSupported != INDEX_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -209,6 +261,8 @@ public class NicknameDefinitionImpl extends EObjectImpl implements NicknameDefin
 		result.append(constraintSupported);
 		result.append(", indexSupported: "); //$NON-NLS-1$
 		result.append(indexSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

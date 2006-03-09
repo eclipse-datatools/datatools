@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NumericalDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: NumericalDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -83,16 +83,6 @@ public class NumericalDataTypeItemProvider
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
-	}
-
-	/**
-	 * This returns NumericalDataType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/NumericalDataType"); //$NON-NLS-1$
 	}
 
 	/**

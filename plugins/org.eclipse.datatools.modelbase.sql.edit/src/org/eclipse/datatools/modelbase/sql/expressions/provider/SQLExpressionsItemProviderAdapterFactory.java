@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLExpressionsItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:32 ledunnel Exp $
+ * $Id: SQLExpressionsItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -33,7 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SQLExpressionsItemProviderAdapterFactory extends SQLExpressionsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier {
+public class SQLExpressionsItemProviderAdapterFactory extends SQLExpressionsAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -225,6 +226,18 @@ public class SQLExpressionsItemProviderAdapterFactory extends SQLExpressionsAdap
 		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
+	}
+
+	/**
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void dispose() {
+		if (queryExpressionDefaultItemProvider != null) queryExpressionDefaultItemProvider.dispose();
+		if (searchConditionDefaultItemProvider != null) searchConditionDefaultItemProvider.dispose();
+		if (valueExpressionDefaultItemProvider != null) valueExpressionDefaultItemProvider.dispose();
 	}
 
 }

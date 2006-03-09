@@ -45,7 +45,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///org/eclipse/datatools/modelbase/expressions.ecore"; //$NON-NLS-1$
+	String eNS_URI = "http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

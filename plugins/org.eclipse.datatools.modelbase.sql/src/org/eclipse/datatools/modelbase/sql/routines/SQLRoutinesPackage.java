@@ -421,13 +421,22 @@ public interface SQLRoutinesPackage extends EPackage{
 	int PARAMETER__ROUTINE = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>String Type Option</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__STRING_TYPE_OPTION = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int PARAMETER_FEATURE_COUNT = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl <em>Procedure</em>}' class.
@@ -2058,6 +2067,17 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @generated
 	 */
 	EReference getParameter_Routine();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.routines.Parameter#getStringTypeOption <em>String Type Option</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>String Type Option</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.routines.Parameter#getStringTypeOption()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EReference getParameter_StringTypeOption();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.routines.Procedure <em>Procedure</em>}'.

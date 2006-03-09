@@ -201,13 +201,31 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION = 13;
 
 	/**
+	 * The feature id for the '<em><b>Schema Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION = 14;
+
+	/**
+	 * The feature id for the '<em><b>View Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION = 15;
+
+	/**
 	 * The feature id for the '<em><b>Debugger Definition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = 14;
+	int DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Vendor</b></em>' attribute.
@@ -216,7 +234,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VENDOR = 15;
+	int DATABASE_VENDOR_DEFINITION__VENDOR = 17;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -225,7 +243,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VERSION = 16;
+	int DATABASE_VENDOR_DEFINITION__VERSION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Constraints Supported</b></em>' attribute.
@@ -234,7 +252,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 17;
+	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 19;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
@@ -243,7 +261,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 18;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 20;
 
 	/**
 	 * The feature id for the '<em><b>Trigger Supported</b></em>' attribute.
@@ -252,7 +270,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 19;
+	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 21;
 
 	/**
 	 * The feature id for the '<em><b>Snapshot View Supported</b></em>' attribute.
@@ -261,7 +279,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 20;
+	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Join Supported</b></em>' attribute.
@@ -270,7 +288,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 21;
+	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 23;
 
 	/**
 	 * The feature id for the '<em><b>View Trigger Supported</b></em>' attribute.
@@ -279,7 +297,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 22;
+	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 24;
 
 	/**
 	 * The feature id for the '<em><b>Tablespaces Supported</b></em>' attribute.
@@ -288,7 +306,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 23;
+	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 25;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Comment Length</b></em>' attribute.
@@ -297,7 +315,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 24;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 26;
 
 	/**
 	 * The feature id for the '<em><b>Sequence Supported</b></em>' attribute.
@@ -306,7 +324,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 25;
+	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 27;
 
 	/**
 	 * The feature id for the '<em><b>MQT Supported</b></em>' attribute.
@@ -315,7 +333,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 26;
+	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 28;
 
 	/**
 	 * The feature id for the '<em><b>Schema Supported</b></em>' attribute.
@@ -324,7 +342,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 27;
+	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 29;
 
 	/**
 	 * The feature id for the '<em><b>Alias Supported</b></em>' attribute.
@@ -333,7 +351,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 28;
+	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 30;
 
 	/**
 	 * The feature id for the '<em><b>Synonym Supported</b></em>' attribute.
@@ -342,7 +360,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 29;
+	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 31;
 
 	/**
 	 * The feature id for the '<em><b>User Defined Type Supported</b></em>' attribute.
@@ -351,7 +369,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 30;
+	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 32;
 
 	/**
 	 * The feature id for the '<em><b>Domain Supported</b></em>' attribute.
@@ -360,7 +378,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 31;
+	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 33;
 
 	/**
 	 * The feature id for the '<em><b>SQL Statement Supported</b></em>' attribute.
@@ -369,7 +387,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 32;
+	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 34;
 
 	/**
 	 * The feature id for the '<em><b>Nickname Supported</b></em>' attribute.
@@ -378,7 +396,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 33;
+	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 35;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DML Supported</b></em>' attribute.
@@ -387,7 +405,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 34;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 36;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DDL Supported</b></em>' attribute.
@@ -396,7 +414,25 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 35;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 37;
+
+	/**
+	 * The feature id for the '<em><b>Xml Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__XML_SUPPORTED = 38;
+
+	/**
+	 * The feature id for the '<em><b>MQT Index Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED = 39;
 
 	/**
 	 * The feature id for the '<em><b>Event Supported</b></em>' attribute.
@@ -405,7 +441,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = 36;
+	int DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = 40;
 
 	/**
 	 * The feature id for the '<em><b>Sql UDF Supported</b></em>' attribute.
@@ -414,7 +450,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = 37;
+	int DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = 41;
 
 	/**
 	 * The feature id for the '<em><b>Stored Procedure Supported</b></em>' attribute.
@@ -423,7 +459,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 38;
+	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 42;
 
 	/**
 	 * The number of structural features of the the '<em>Database Vendor Definition</em>' class.
@@ -432,7 +468,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 39;
+	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
@@ -445,13 +481,49 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int PREDEFINED_DATA_TYPE_DEFINITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Leading Field Qualifier Definition</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Trailing Field Qualifier Definition</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Default Trailing Field Qualifier Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Default Leading Field Qualifier Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION = 3;
+
+	/**
 	 * The feature id for the '<em><b>Length Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED = 0;
+	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED = 4;
 
 	/**
 	 * The feature id for the '<em><b>Scale Supported</b></em>' attribute.
@@ -460,7 +532,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED = 1;
+	int PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Precision Supported</b></em>' attribute.
@@ -469,7 +541,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__PRECISION_SUPPORTED = 2;
+	int PREDEFINED_DATA_TYPE_DEFINITION__PRECISION_SUPPORTED = 6;
 
 	/**
 	 * The feature id for the '<em><b>Key Constraint Supported</b></em>' attribute.
@@ -478,7 +550,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__KEY_CONSTRAINT_SUPPORTED = 3;
+	int PREDEFINED_DATA_TYPE_DEFINITION__KEY_CONSTRAINT_SUPPORTED = 7;
 
 	/**
 	 * The feature id for the '<em><b>Identity Supported</b></em>' attribute.
@@ -487,7 +559,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__IDENTITY_SUPPORTED = 4;
+	int PREDEFINED_DATA_TYPE_DEFINITION__IDENTITY_SUPPORTED = 8;
 
 	/**
 	 * The feature id for the '<em><b>Multiple Columns Supported</b></em>' attribute.
@@ -496,7 +568,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MULTIPLE_COLUMNS_SUPPORTED = 5;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MULTIPLE_COLUMNS_SUPPORTED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Nullable Supported</b></em>' attribute.
@@ -505,7 +577,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__NULLABLE_SUPPORTED = 6;
+	int PREDEFINED_DATA_TYPE_DEFINITION__NULLABLE_SUPPORTED = 10;
 
 	/**
 	 * The feature id for the '<em><b>Default Supported</b></em>' attribute.
@@ -514,7 +586,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SUPPORTED = 7;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SUPPORTED = 11;
 
 	/**
 	 * The feature id for the '<em><b>Clustering Supported</b></em>' attribute.
@@ -523,7 +595,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__CLUSTERING_SUPPORTED = 8;
+	int PREDEFINED_DATA_TYPE_DEFINITION__CLUSTERING_SUPPORTED = 12;
 
 	/**
 	 * The feature id for the '<em><b>Fill Factor Supported</b></em>' attribute.
@@ -532,7 +604,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__FILL_FACTOR_SUPPORTED = 9;
+	int PREDEFINED_DATA_TYPE_DEFINITION__FILL_FACTOR_SUPPORTED = 13;
 
 	/**
 	 * The feature id for the '<em><b>Bit Data Supported</b></em>' attribute.
@@ -541,7 +613,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED = 10;
+	int PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED = 14;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Value</b></em>' attribute.
@@ -550,7 +622,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE = 11;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Value</b></em>' attribute.
@@ -559,7 +631,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE = 12;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Length</b></em>' attribute.
@@ -568,7 +640,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH = 13;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH = 17;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Precision</b></em>' attribute.
@@ -577,7 +649,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION = 14;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Scale</b></em>' attribute.
@@ -586,7 +658,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE = 15;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Minimum Scale</b></em>' attribute.
@@ -595,7 +667,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE = 16;
+	int PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Default Value Types</b></em>' attribute list.
@@ -604,7 +676,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES = 17;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES = 21;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
@@ -613,7 +685,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE = 18;
+	int PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute list.
@@ -622,7 +694,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__NAME = 19;
+	int PREDEFINED_DATA_TYPE_DEFINITION__NAME = 23;
 
 	/**
 	 * The feature id for the '<em><b>Jdbc Enum Type</b></em>' attribute.
@@ -631,7 +703,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE = 20;
+	int PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Character Set</b></em>' attribute list.
@@ -640,7 +712,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET = 21;
+	int PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET = 25;
 
 	/**
 	 * The feature id for the '<em><b>Encoding Scheme</b></em>' attribute list.
@@ -649,7 +721,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME = 22;
+	int PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME = 26;
 
 	/**
 	 * The feature id for the '<em><b>Character Set Suffix</b></em>' attribute.
@@ -658,7 +730,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET_SUFFIX = 23;
+	int PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET_SUFFIX = 27;
 
 	/**
 	 * The feature id for the '<em><b>Encoding Scheme Suffix</b></em>' attribute.
@@ -667,7 +739,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME_SUFFIX = 24;
+	int PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME_SUFFIX = 28;
 
 	/**
 	 * The feature id for the '<em><b>Java Class Name</b></em>' attribute.
@@ -676,7 +748,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME = 25;
+	int PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME = 29;
 
 	/**
 	 * The feature id for the '<em><b>Default Length</b></em>' attribute.
@@ -685,7 +757,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH = 26;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH = 30;
 
 	/**
 	 * The feature id for the '<em><b>Default Precision</b></em>' attribute.
@@ -694,7 +766,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION = 27;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION = 31;
 
 	/**
 	 * The feature id for the '<em><b>Default Scale</b></em>' attribute.
@@ -703,7 +775,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE = 28;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Cutoff Precision</b></em>' attribute.
@@ -712,7 +784,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION = 29;
+	int PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION = 33;
 
 	/**
 	 * The feature id for the '<em><b>Length Unit</b></em>' attribute.
@@ -721,61 +793,70 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT = 30;
+	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT = 34;
 
 	/**
-	 * The feature id for the '<em><b>Trailing Precision</b></em>' attribute.
+	 * The feature id for the '<em><b>Ordering Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION = 31;
+	int PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED = 35;
 
 	/**
-	 * The feature id for the '<em><b>Default Trailing Precision</b></em>' attribute.
+	 * The feature id for the '<em><b>Grouping Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION = 32;
+	int PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED = 36;
 
 	/**
-	 * The feature id for the '<em><b>Trailing Precision Supported</b></em>' attribute.
+	 * The feature id for the '<em><b>Display Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED = 33;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME = 37;
 
 	/**
-	 * The feature id for the '<em><b>Leading Precision</b></em>' attribute.
+	 * The feature id for the '<em><b>Display Name Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION = 34;
+	int PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED = 38;
 
 	/**
-	 * The feature id for the '<em><b>Default Leading Precision</b></em>' attribute.
+	 * The feature id for the '<em><b>Leading Field Qualifier Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION = 35;
+	int PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED = 39;
 
 	/**
-	 * The feature id for the '<em><b>Leading Precision Supported</b></em>' attribute.
+	 * The feature id for the '<em><b>Trailing Field Qualifier Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED = 36;
+	int PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED = 40;
+
+	/**
+	 * The feature id for the '<em><b>Field Qualifier Separator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR = 41;
 
 	/**
 	 * The number of structural features of the the '<em>Predefined Data Type Definition</em>' class.
@@ -784,7 +865,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 37;
+	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
@@ -896,13 +977,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE = 10;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 11;
+
+	/**
 	 * The number of structural features of the the '<em>Table Space Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_SPACE_DEFINITION_FEATURE_COUNT = 11;
+	int TABLE_SPACE_DEFINITION_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl <em>Stored Procedure Definition</em>}' class.
@@ -1041,13 +1131,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 14;
+
+	/**
 	 * The number of structural features of the the '<em>Stored Procedure Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORED_PROCEDURE_DEFINITION_FEATURE_COUNT = 14;
+	int STORED_PROCEDURE_DEFINITION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl <em>Trigger Definition</em>}' class.
@@ -1150,13 +1249,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED = 9;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 10;
+
+	/**
 	 * The number of structural features of the the '<em>Trigger Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRIGGER_DEFINITION_FEATURE_COUNT = 10;
+	int TRIGGER_DEFINITION_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl <em>Column Definition</em>}' class.
@@ -1169,13 +1277,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int COLUMN_DEFINITION = 5;
 
 	/**
+	 * The feature id for the '<em><b>Identity Column Data Type Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS = 0;
+
+	/**
 	 * The feature id for the '<em><b>Identity Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_SUPPORTED = 0;
+	int COLUMN_DEFINITION__IDENTITY_SUPPORTED = 1;
 
 	/**
 	 * The feature id for the '<em><b>Computed Supported</b></em>' attribute.
@@ -1184,7 +1301,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__COMPUTED_SUPPORTED = 1;
+	int COLUMN_DEFINITION__COMPUTED_SUPPORTED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Identity Start Value Supported</b></em>' attribute.
@@ -1193,7 +1310,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_START_VALUE_SUPPORTED = 2;
+	int COLUMN_DEFINITION__IDENTITY_START_VALUE_SUPPORTED = 3;
 
 	/**
 	 * The feature id for the '<em><b>Identity Increment Supported</b></em>' attribute.
@@ -1202,7 +1319,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_INCREMENT_SUPPORTED = 3;
+	int COLUMN_DEFINITION__IDENTITY_INCREMENT_SUPPORTED = 4;
 
 	/**
 	 * The feature id for the '<em><b>Identity Minimum Supported</b></em>' attribute.
@@ -1211,7 +1328,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_MINIMUM_SUPPORTED = 4;
+	int COLUMN_DEFINITION__IDENTITY_MINIMUM_SUPPORTED = 5;
 
 	/**
 	 * The feature id for the '<em><b>Identity Maximum Supported</b></em>' attribute.
@@ -1220,7 +1337,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_MAXIMUM_SUPPORTED = 5;
+	int COLUMN_DEFINITION__IDENTITY_MAXIMUM_SUPPORTED = 6;
 
 	/**
 	 * The feature id for the '<em><b>Identity Cycle Supported</b></em>' attribute.
@@ -1229,7 +1346,16 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED = 6;
+	int COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED = 7;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 8;
 
 	/**
 	 * The number of structural features of the the '<em>Column Definition</em>' class.
@@ -1238,7 +1364,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_DEFINITION_FEATURE_COUNT = 7;
+	int COLUMN_DEFINITION_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl <em>Constraint Definition</em>}' class.
@@ -1341,13 +1467,40 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int CONSTRAINT_DEFINITION__CHECK_OPTION = 9;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Primary Key Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH = 10;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Foreign Key Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH = 11;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Check Constraint Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH = 12;
+
+	/**
 	 * The number of structural features of the the '<em>Constraint Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_DEFINITION_FEATURE_COUNT = 10;
+	int CONSTRAINT_DEFINITION_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl <em>Index Definition</em>}' class.
@@ -1414,13 +1567,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED = 5;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 6;
+
+	/**
 	 * The number of structural features of the the '<em>Index Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDEX_DEFINITION_FEATURE_COUNT = 6;
+	int INDEX_DEFINITION_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ExtendedDefinitionImpl <em>Extended Definition</em>}' class.
@@ -1515,13 +1677,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TABLE_DEFINITION__VALID_PROC_SUPPORTED = 4;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 5;
+
+	/**
 	 * The number of structural features of the the '<em>Table Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_DEFINITION_FEATURE_COUNT = 5;
+	int TABLE_DEFINITION_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl <em>Sequence Definition</em>}' class.
@@ -1661,13 +1832,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED = 2;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 3;
+
+	/**
 	 * The number of structural features of the the '<em>User Defined Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DEFINED_TYPE_DEFINITION_FEATURE_COUNT = 3;
+	int USER_DEFINED_TYPE_DEFINITION_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl <em>Query Definition</em>}' class.
@@ -1780,13 +1960,22 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int SQL_SYNTAX_DEFINITION__OPERATORS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Termination Character</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER = 2;
+
+	/**
 	 * The number of structural features of the the '<em>SQL Syntax Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQL_SYNTAX_DEFINITION_FEATURE_COUNT = 2;
+	int SQL_SYNTAX_DEFINITION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl <em>Nickname Definition</em>}' class.
@@ -1817,13 +2006,169 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int NICKNAME_DEFINITION__INDEX_SUPPORTED = 1;
 
 	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 2;
+
+	/**
 	 * The number of structural features of the the '<em>Nickname Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NICKNAME_DEFINITION_FEATURE_COUNT = 2;
+	int NICKNAME_DEFINITION_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SchemaDefinitionImpl <em>Schema Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.SchemaDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getSchemaDefinition()
+	 * @generated
+	 */
+	int SCHEMA_DEFINITION = 15;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 0;
+
+	/**
+	 * The number of structural features of the the '<em>Schema Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA_DEFINITION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl <em>View Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getViewDefinition()
+	 * @generated
+	 */
+	int VIEW_DEFINITION = 16;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 0;
+
+	/**
+	 * The number of structural features of the the '<em>View Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_DEFINITION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl <em>Field Qualifier Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getFieldQualifierDefinition()
+	 * @generated
+	 */
+	int FIELD_QUALIFIER_DEFINITION = 17;
+
+	/**
+	 * The feature id for the '<em><b>Valid Trailing Field Qualifier Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Precision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Default Precision</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION = 3;
+
+	/**
+	 * The feature id for the '<em><b>Precision Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED = 4;
+
+	/**
+	 * The feature id for the '<em><b>Maximum Scale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Default Scale</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Scale Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED = 7;
+
+	/**
+	 * The number of structural features of the the '<em>Field Qualifier Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD_QUALIFIER_DEFINITION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl <em>Debugger Definition</em>}' class.
@@ -1833,7 +2178,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDebuggerDefinition()
 	 * @generated
 	 */
-	int DEBUGGER_DEFINITION = 15;
+	int DEBUGGER_DEFINITION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Condition Supported</b></em>' attribute.
@@ -1861,17 +2206,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getCheckOption()
 	 * @generated
 	 */
-	int CHECK_OPTION = 16;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType <em>Default Value Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDefaultValueType()
-	 * @generated
-	 */
-	int DEFAULT_VALUE_TYPE = 17;
+	int CHECK_OPTION = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType <em>Language Type</em>}' enum.
@@ -1881,7 +2216,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLanguageType()
 	 * @generated
 	 */
-	int LANGUAGE_TYPE = 18;
+	int LANGUAGE_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle <em>Parameter Style</em>}' enum.
@@ -1891,7 +2226,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParameterStyle()
 	 * @generated
 	 */
-	int PARAMETER_STYLE = 19;
+	int PARAMETER_STYLE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}' enum.
@@ -1901,7 +2236,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentDeleteDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_DELETE_DRI_RULE_TYPE = 20;
+	int PARENT_DELETE_DRI_RULE_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}' enum.
@@ -1911,7 +2246,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentUpdateDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_UPDATE_DRI_RULE_TYPE = 21;
+	int PARENT_UPDATE_DRI_RULE_TYPE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ProcedureType <em>Procedure Type</em>}' enum.
@@ -1921,7 +2256,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getProcedureType()
 	 * @generated
 	 */
-	int PROCEDURE_TYPE = 22;
+	int PROCEDURE_TYPE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType <em>Table Space Type</em>}' enum.
@@ -1931,7 +2266,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableSpaceType()
 	 * @generated
 	 */
-	int TABLE_SPACE_TYPE = 23;
+	int TABLE_SPACE_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology <em>Percent Free Terminology</em>}' enum.
@@ -1941,7 +2276,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPercentFreeTerminology()
 	 * @generated
 	 */
-	int PERCENT_FREE_TERMINOLOGY = 24;
+	int PERCENT_FREE_TERMINOLOGY = 26;
 
 
 	/**
@@ -1952,7 +2287,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLengthUnit()
 	 * @generated
 	 */
-	int LENGTH_UNIT = 25;
+	int LENGTH_UNIT = 27;
 
 
 	/**
@@ -2197,6 +2532,28 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getDatabaseVendorDefinition_QuotedDDLSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isXmlSupported <em>Xml Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Xml Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isXmlSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_XmlSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isMQTIndexSupported <em>MQT Index Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>MQT Index Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isMQTIndexSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_MQTIndexSupported();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2384,6 +2741,28 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EReference getDatabaseVendorDefinition_NicknameDefinition();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSchemaDefinition <em>Schema Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Schema Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSchemaDefinition()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EReference getDatabaseVendorDefinition_SchemaDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition <em>View Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>View Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EReference getDatabaseVendorDefinition_ViewDefinition();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2403,6 +2782,50 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EClass getPredefinedDataTypeDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingFieldQualifierDefinition <em>Leading Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Leading Field Qualifier Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingFieldQualifierDefinition()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EReference getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingFieldQualifierDefinition <em>Trailing Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Trailing Field Qualifier Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingFieldQualifierDefinition()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EReference getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingFieldQualifierDefinition <em>Default Trailing Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Trailing Field Qualifier Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingFieldQualifierDefinition()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EReference getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingFieldQualifierDefinition <em>Default Leading Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Leading Field Qualifier Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingFieldQualifierDefinition()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EReference getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSupported <em>Length Supported</em>}'.
@@ -2746,70 +3169,81 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getPredefinedDataTypeDefinition_LengthUnit();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingPrecision <em>Trailing Precision</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isOrderingSupported <em>Ordering Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Trailing Precision</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getTrailingPrecision()
+	 * @return the meta object for the attribute '<em>Ordering Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isOrderingSupported()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_TrailingPrecision();
+	EAttribute getPredefinedDataTypeDefinition_OrderingSupported();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingPrecision <em>Default Trailing Precision</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isGroupingSupported <em>Grouping Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Trailing Precision</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultTrailingPrecision()
+	 * @return the meta object for the attribute '<em>Grouping Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isGroupingSupported()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_DefaultTrailingPrecision();
+	EAttribute getPredefinedDataTypeDefinition_GroupingSupported();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingPrecisionSupported <em>Trailing Precision Supported</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDisplayName <em>Display Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Trailing Precision Supported</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingPrecisionSupported()
+	 * @return the meta object for the attribute '<em>Display Name</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDisplayName()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_TrailingPrecisionSupported();
+	EAttribute getPredefinedDataTypeDefinition_DisplayName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingPrecision <em>Leading Precision</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isDisplayNameSupported <em>Display Name Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Leading Precision</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLeadingPrecision()
+	 * @return the meta object for the attribute '<em>Display Name Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isDisplayNameSupported()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_LeadingPrecision();
+	EAttribute getPredefinedDataTypeDefinition_DisplayNameSupported();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingPrecision <em>Default Leading Precision</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Leading Precision</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getDefaultLeadingPrecision()
+	 * @return the meta object for the attribute '<em>Leading Field Qualifier Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingFieldQualifierSupported()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_DefaultLeadingPrecision();
+	EAttribute getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingPrecisionSupported <em>Leading Precision Supported</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Leading Precision Supported</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingPrecisionSupported()
+	 * @return the meta object for the attribute '<em>Trailing Field Qualifier Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingFieldQualifierSupported()
 	 * @see #getPredefinedDataTypeDefinition()
 	 * @generated
 	 */
-	EAttribute getPredefinedDataTypeDefinition_LeadingPrecisionSupported();
+	EAttribute getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Field Qualifier Separator</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getFieldQualifierSeparator()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_FieldQualifierSeparator();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition <em>Table Space Definition</em>}'.
@@ -2941,6 +3375,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getTableSpaceDefinition_TableSpaceType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition#getMaximumIdentifierLength()
+	 * @see #getTableSpaceDefinition()
+	 * @generated
+	 */
+	EAttribute getTableSpaceDefinition_MaximumIdentifierLength();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition <em>Stored Procedure Definition</em>}'.
@@ -3107,6 +3552,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getStoredProcedureDefinition_ProcedureType();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getMaximumIdentifierLength()
+	 * @see #getStoredProcedureDefinition()
+	 * @generated
+	 */
+	EAttribute getStoredProcedureDefinition_MaximumIdentifierLength();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition <em>Trigger Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3227,6 +3683,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getTriggerDefinition_TableTriggerReferenceSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition#getMaximumIdentifierLength()
+	 * @see #getTriggerDefinition()
+	 * @generated
+	 */
+	EAttribute getTriggerDefinition_MaximumIdentifierLength();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition <em>Column Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3235,6 +3702,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EClass getColumnDefinition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getIdentityColumnDataTypeDefinitions <em>Identity Column Data Type Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Identity Column Data Type Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getIdentityColumnDataTypeDefinitions()
+	 * @see #getColumnDefinition()
+	 * @generated
+	 */
+	EReference getColumnDefinition_IdentityColumnDataTypeDefinitions();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentitySupported <em>Identity Supported</em>}'.
@@ -3312,6 +3790,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getColumnDefinition_IdentityCycleSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getMaximumIdentifierLength()
+	 * @see #getColumnDefinition()
+	 * @generated
+	 */
+	EAttribute getColumnDefinition_MaximumIdentifierLength();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition <em>Constraint Definition</em>}'.
@@ -3434,6 +3923,39 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getConstraintDefinition_CheckOption();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumPrimaryKeyIdentifierLength <em>Maximum Primary Key Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Primary Key Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumPrimaryKeyIdentifierLength()
+	 * @see #getConstraintDefinition()
+	 * @generated
+	 */
+	EAttribute getConstraintDefinition_MaximumPrimaryKeyIdentifierLength();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumForeignKeyIdentifierLength <em>Maximum Foreign Key Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Foreign Key Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumForeignKeyIdentifierLength()
+	 * @see #getConstraintDefinition()
+	 * @generated
+	 */
+	EAttribute getConstraintDefinition_MaximumForeignKeyIdentifierLength();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumCheckConstraintIdentifierLength <em>Maximum Check Constraint Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Check Constraint Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumCheckConstraintIdentifierLength()
+	 * @see #getConstraintDefinition()
+	 * @generated
+	 */
+	EAttribute getConstraintDefinition_MaximumCheckConstraintIdentifierLength();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition <em>Index Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3508,6 +4030,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getIndexDefinition_IncludedColumnsSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#getMaximumIdentifierLength()
+	 * @see #getIndexDefinition()
+	 * @generated
+	 */
+	EAttribute getIndexDefinition_MaximumIdentifierLength();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.ExtendedDefinition <em>Extended Definition</em>}'.
@@ -3605,6 +4138,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getTableDefinition_ValidProcSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.TableDefinition#getMaximumIdentifierLength()
+	 * @see #getTableDefinition()
+	 * @generated
+	 */
+	EAttribute getTableDefinition_MaximumIdentifierLength();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition <em>Sequence Definition</em>}'.
@@ -3748,6 +4292,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getUserDefinedTypeDefinition_StructuredTypeSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#getMaximumIdentifierLength()
+	 * @see #getUserDefinedTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getUserDefinedTypeDefinition_MaximumIdentifierLength();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition <em>Query Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3867,6 +4422,17 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	EAttribute getSQLSyntaxDefinition_Operators();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition#getTerminationCharacter <em>Termination Character</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Termination Character</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition#getTerminationCharacter()
+	 * @see #getSQLSyntaxDefinition()
+	 * @generated
+	 */
+	EAttribute getSQLSyntaxDefinition_TerminationCharacter();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition <em>Nickname Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3897,6 +4463,157 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EAttribute getNicknameDefinition_IndexSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition#getMaximumIdentifierLength()
+	 * @see #getNicknameDefinition()
+	 * @generated
+	 */
+	EAttribute getNicknameDefinition_MaximumIdentifierLength();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition <em>Schema Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Schema Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition
+	 * @generated
+	 */
+	EClass getSchemaDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition#getMaximumIdentifierLength()
+	 * @see #getSchemaDefinition()
+	 * @generated
+	 */
+	EAttribute getSchemaDefinition_MaximumIdentifierLength();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition <em>View Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>View Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition
+	 * @generated
+	 */
+	EClass getViewDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Identifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition#getMaximumIdentifierLength()
+	 * @see #getViewDefinition()
+	 * @generated
+	 */
+	EAttribute getViewDefinition_MaximumIdentifierLength();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition <em>Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Field Qualifier Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition
+	 * @generated
+	 */
+	EClass getFieldQualifierDefinition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getValidTrailingFieldQualifierDefinitions <em>Valid Trailing Field Qualifier Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Valid Trailing Field Qualifier Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getValidTrailingFieldQualifierDefinitions()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EReference getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getName()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getMaximumPrecision <em>Maximum Precision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Precision</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getMaximumPrecision()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_MaximumPrecision();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getDefaultPrecision <em>Default Precision</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Precision</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getDefaultPrecision()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_DefaultPrecision();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#isPrecisionSupported <em>Precision Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Precision Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#isPrecisionSupported()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_PrecisionSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getMaximumScale <em>Maximum Scale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Maximum Scale</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getMaximumScale()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_MaximumScale();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getDefaultScale <em>Default Scale</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Scale</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#getDefaultScale()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_DefaultScale();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#isScaleSupported <em>Scale Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scale Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition#isScaleSupported()
+	 * @see #getFieldQualifierDefinition()
+	 * @generated
+	 */
+	EAttribute getFieldQualifierDefinition_ScaleSupported();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition <em>Debugger Definition</em>}'.
@@ -3939,16 +4656,6 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	EEnum getCheckOption();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType <em>Default Value Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Default Value Type</em>'.
-	 * @see org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType
-	 * @generated
-	 */
-	EEnum getDefaultValueType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType <em>Language Type</em>}'.

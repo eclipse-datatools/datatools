@@ -19,6 +19,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType;
 import org.eclipse.datatools.modelbase.dbdefinition.ExtendedDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.LanguageType;
 import org.eclipse.datatools.modelbase.dbdefinition.LengthUnit;
@@ -31,6 +32,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition
 import org.eclipse.datatools.modelbase.dbdefinition.ProcedureType;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TableDefinition;
@@ -38,6 +40,8 @@ import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType;
 import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
+
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
@@ -172,6 +176,27 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass schemaDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass viewDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fieldQualifierDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass debuggerDefinitionEClass = null;
 
 	/**
@@ -180,13 +205,6 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	private EEnum checkOptionEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum defaultValueTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -338,24 +356,6 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	public EAttribute getDatabaseVendorDefinition_Vendor() {
-		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(15);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDatabaseVendorDefinition_Version() {
-		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(16);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDatabaseVendorDefinition_ConstraintsSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -364,7 +364,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MaximumIdentifierLength() {
+	public EAttribute getDatabaseVendorDefinition_Version() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -373,7 +373,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_TriggerSupported() {
+	public EAttribute getDatabaseVendorDefinition_ConstraintsSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -382,7 +382,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SnapshotViewSupported() {
+	public EAttribute getDatabaseVendorDefinition_MaximumIdentifierLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -391,7 +391,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_JoinSupported() {
+	public EAttribute getDatabaseVendorDefinition_TriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -400,7 +400,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_ViewTriggerSupported() {
+	public EAttribute getDatabaseVendorDefinition_SnapshotViewSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -409,7 +409,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_TablespacesSupported() {
+	public EAttribute getDatabaseVendorDefinition_JoinSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -418,7 +418,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MaximumCommentLength() {
+	public EAttribute getDatabaseVendorDefinition_ViewTriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -427,7 +427,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SequenceSupported() {
+	public EAttribute getDatabaseVendorDefinition_TablespacesSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(25);
 	}
 
@@ -436,7 +436,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MQTSupported() {
+	public EAttribute getDatabaseVendorDefinition_MaximumCommentLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(26);
 	}
 
@@ -445,7 +445,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SchemaSupported() {
+	public EAttribute getDatabaseVendorDefinition_SequenceSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(27);
 	}
 
@@ -454,7 +454,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_AliasSupported() {
+	public EAttribute getDatabaseVendorDefinition_MQTSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(28);
 	}
 
@@ -463,7 +463,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SynonymSupported() {
+	public EAttribute getDatabaseVendorDefinition_SchemaSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(29);
 	}
 
@@ -472,7 +472,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_UserDefinedTypeSupported() {
+	public EAttribute getDatabaseVendorDefinition_AliasSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(30);
 	}
 
@@ -481,7 +481,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_DomainSupported() {
+	public EAttribute getDatabaseVendorDefinition_SynonymSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(31);
 	}
 
@@ -490,7 +490,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SQLStatementSupported() {
+	public EAttribute getDatabaseVendorDefinition_UserDefinedTypeSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(32);
 	}
 
@@ -499,7 +499,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_NicknameSupported() {
+	public EAttribute getDatabaseVendorDefinition_DomainSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(33);
 	}
 
@@ -508,7 +508,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_QuotedDMLSupported() {
+	public EAttribute getDatabaseVendorDefinition_SQLStatementSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(34);
 	}
 
@@ -517,7 +517,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_QuotedDDLSupported() {
+	public EAttribute getDatabaseVendorDefinition_NicknameSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(35);
 	}
 
@@ -526,7 +526,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_EventSupported() {
+	public EAttribute getDatabaseVendorDefinition_QuotedDMLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(36);
 	}
 
@@ -535,7 +535,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SqlUDFSupported() {
+	public EAttribute getDatabaseVendorDefinition_QuotedDDLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(37);
 	}
 
@@ -544,8 +544,44 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_StoredProcedureSupported() {
+	public EAttribute getDatabaseVendorDefinition_XmlSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(38);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_MQTIndexSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(39);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_EventSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(40);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_SqlUDFSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(41);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_StoredProcedureSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(42);
 	}
 
 	/**
@@ -679,8 +715,26 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatabaseVendorDefinition_DebuggerDefinition() {
+	public EReference getDatabaseVendorDefinition_SchemaDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabaseVendorDefinition_ViewDefinition() {
+		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabaseVendorDefinition_DebuggerDefinition() {
+		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -697,43 +751,43 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition() {
+		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition() {
+		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition() {
+		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition() {
+		return (EReference)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getPredefinedDataTypeDefinition_LengthSupported() {
-		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPredefinedDataTypeDefinition_ScaleSupported() {
-		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPredefinedDataTypeDefinition_PrecisionSupported() {
-		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPredefinedDataTypeDefinition_KeyConstraintSupported() {
-		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPredefinedDataTypeDefinition_IdentitySupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -742,7 +796,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MultipleColumnsSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_ScaleSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -751,7 +805,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_NullableSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_PrecisionSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -760,7 +814,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_KeyConstraintSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -769,7 +823,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_ClusteringSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_IdentitySupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -778,7 +832,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_FillFactorSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_MultipleColumnsSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -787,7 +841,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_BitDataSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_NullableSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -796,7 +850,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MaximumValue() {
+	public EAttribute getPredefinedDataTypeDefinition_DefaultSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(11);
 	}
 
@@ -805,7 +859,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MinimumValue() {
+	public EAttribute getPredefinedDataTypeDefinition_ClusteringSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(12);
 	}
 
@@ -814,7 +868,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MaximumLength() {
+	public EAttribute getPredefinedDataTypeDefinition_FillFactorSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(13);
 	}
 
@@ -823,7 +877,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MaximumPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_BitDataSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -832,7 +886,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MaximumScale() {
+	public EAttribute getPredefinedDataTypeDefinition_MaximumValue() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -841,7 +895,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_MinimumScale() {
+	public EAttribute getPredefinedDataTypeDefinition_MinimumValue() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(16);
 	}
 
@@ -850,7 +904,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultValueTypes() {
+	public EAttribute getPredefinedDataTypeDefinition_MaximumLength() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(17);
 	}
 
@@ -859,7 +913,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_PrimitiveType() {
+	public EAttribute getPredefinedDataTypeDefinition_MaximumPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -868,7 +922,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_Name() {
+	public EAttribute getPredefinedDataTypeDefinition_MaximumScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -877,7 +931,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_JdbcEnumType() {
+	public EAttribute getPredefinedDataTypeDefinition_MinimumScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -886,7 +940,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_CharacterSet() {
+	public EAttribute getPredefinedDataTypeDefinition_DefaultValueTypes() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -895,7 +949,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_EncodingScheme() {
+	public EAttribute getPredefinedDataTypeDefinition_PrimitiveType() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -904,7 +958,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_CharacterSetSuffix() {
+	public EAttribute getPredefinedDataTypeDefinition_Name() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -913,7 +967,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_EncodingSchemeSuffix() {
+	public EAttribute getPredefinedDataTypeDefinition_JdbcEnumType() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -922,7 +976,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_JavaClassName() {
+	public EAttribute getPredefinedDataTypeDefinition_CharacterSet() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(25);
 	}
 
@@ -931,7 +985,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultLength() {
+	public EAttribute getPredefinedDataTypeDefinition_EncodingScheme() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(26);
 	}
 
@@ -940,7 +994,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_CharacterSetSuffix() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(27);
 	}
 
@@ -949,7 +1003,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultScale() {
+	public EAttribute getPredefinedDataTypeDefinition_EncodingSchemeSuffix() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(28);
 	}
 
@@ -958,7 +1012,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_CutoffPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_JavaClassName() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(29);
 	}
 
@@ -967,7 +1021,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_LengthUnit() {
+	public EAttribute getPredefinedDataTypeDefinition_DefaultLength() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(30);
 	}
 
@@ -976,7 +1030,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_TrailingPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_DefaultPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(31);
 	}
 
@@ -985,7 +1039,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultTrailingPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_DefaultScale() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(32);
 	}
 
@@ -994,7 +1048,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_TrailingPrecisionSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_CutoffPrecision() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(33);
 	}
 
@@ -1003,7 +1057,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_LeadingPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_LengthUnit() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(34);
 	}
 
@@ -1012,7 +1066,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_DefaultLeadingPrecision() {
+	public EAttribute getPredefinedDataTypeDefinition_OrderingSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(35);
 	}
 
@@ -1021,8 +1075,53 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPredefinedDataTypeDefinition_LeadingPrecisionSupported() {
+	public EAttribute getPredefinedDataTypeDefinition_GroupingSupported() {
 		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(36);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_DisplayName() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(37);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_DisplayNameSupported() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(38);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(39);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(40);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_FieldQualifierSeparator() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(41);
 	}
 
 	/**
@@ -1131,6 +1230,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EAttribute getTableSpaceDefinition_TableSpaceType() {
 		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableSpaceDefinition_MaximumIdentifierLength() {
+		return (EAttribute)tableSpaceDefinitionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1273,6 +1381,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getStoredProcedureDefinition_MaximumIdentifierLength() {
+		return (EAttribute)storedProcedureDefinitionEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTriggerDefinition() {
 		return triggerDefinitionEClass;
 	}
@@ -1372,6 +1489,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTriggerDefinition_MaximumIdentifierLength() {
+		return (EAttribute)triggerDefinitionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getColumnDefinition() {
 		return columnDefinitionEClass;
 	}
@@ -1381,8 +1507,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentitySupported() {
-		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(0);
+	public EReference getColumnDefinition_IdentityColumnDataTypeDefinitions() {
+		return (EReference)columnDefinitionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1390,7 +1516,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_ComputedSupported() {
+	public EAttribute getColumnDefinition_IdentitySupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1399,7 +1525,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentityStartValueSupported() {
+	public EAttribute getColumnDefinition_ComputedSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1408,7 +1534,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentityIncrementSupported() {
+	public EAttribute getColumnDefinition_IdentityStartValueSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -1417,7 +1543,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentityMinimumSupported() {
+	public EAttribute getColumnDefinition_IdentityIncrementSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -1426,7 +1552,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentityMaximumSupported() {
+	public EAttribute getColumnDefinition_IdentityMinimumSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -1435,8 +1561,26 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getColumnDefinition_IdentityCycleSupported() {
+	public EAttribute getColumnDefinition_IdentityMaximumSupported() {
 		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColumnDefinition_IdentityCycleSupported() {
+		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColumnDefinition_MaximumIdentifierLength() {
+		return (EAttribute)columnDefinitionEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1543,6 +1687,33 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getConstraintDefinition_MaximumPrimaryKeyIdentifierLength() {
+		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstraintDefinition_MaximumForeignKeyIdentifierLength() {
+		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstraintDefinition_MaximumCheckConstraintIdentifierLength() {
+		return (EAttribute)constraintDefinitionEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIndexDefinition() {
 		return indexDefinitionEClass;
 	}
@@ -1599,6 +1770,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EAttribute getIndexDefinition_IncludedColumnsSupported() {
 		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIndexDefinition_MaximumIdentifierLength() {
+		return (EAttribute)indexDefinitionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1680,6 +1860,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EAttribute getTableDefinition_ValidProcSupported() {
 		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTableDefinition_MaximumIdentifierLength() {
+		return (EAttribute)tableDefinitionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1804,6 +1993,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUserDefinedTypeDefinition_MaximumIdentifierLength() {
+		return (EAttribute)userDefinedTypeDefinitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQueryDefinition() {
 		return queryDefinitionEClass;
 	}
@@ -1903,6 +2101,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSQLSyntaxDefinition_TerminationCharacter() {
+		return (EAttribute)sqlSyntaxDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNicknameDefinition() {
 		return nicknameDefinitionEClass;
 	}
@@ -1923,6 +2130,132 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EAttribute getNicknameDefinition_IndexSupported() {
 		return (EAttribute)nicknameDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNicknameDefinition_MaximumIdentifierLength() {
+		return (EAttribute)nicknameDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSchemaDefinition() {
+		return schemaDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSchemaDefinition_MaximumIdentifierLength() {
+		return (EAttribute)schemaDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getViewDefinition() {
+		return viewDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getViewDefinition_MaximumIdentifierLength() {
+		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFieldQualifierDefinition() {
+		return fieldQualifierDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions() {
+		return (EReference)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_Name() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_MaximumPrecision() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_DefaultPrecision() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_PrecisionSupported() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_MaximumScale() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_DefaultScale() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFieldQualifierDefinition_ScaleSupported() {
+		return (EAttribute)fieldQualifierDefinitionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1959,15 +2292,6 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EEnum getCheckOption() {
 		return checkOptionEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getDefaultValueType() {
-		return defaultValueTypeEEnum;
 	}
 
 	/**
@@ -2085,6 +2409,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION);
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION);
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION);
+		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION);
+		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION);
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VENDOR);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VERSION);
@@ -2107,11 +2433,17 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__XML_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED);
 
 		predefinedDataTypeDefinitionEClass = createEClass(PREDEFINED_DATA_TYPE_DEFINITION);
+		createEReference(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION);
+		createEReference(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION);
+		createEReference(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION);
+		createEReference(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__PRECISION_SUPPORTED);
@@ -2143,12 +2475,13 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION);
-		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR);
 
 		tableSpaceDefinitionEClass = createEClass(TABLE_SPACE_DEFINITION);
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__TYPE_SUPPORTED);
@@ -2162,6 +2495,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__CONTAINER_INITIAL_SIZE_SUPPORTED);
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__CONTAINER_EXTENT_SIZE_SUPPORTED);
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE);
+		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		storedProcedureDefinitionEClass = createEClass(STORED_PROCEDURE_DEFINITION);
 		createEAttribute(storedProcedureDefinitionEClass, STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED);
@@ -2178,6 +2512,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(storedProcedureDefinitionEClass, STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE);
 		createEAttribute(storedProcedureDefinitionEClass, STORED_PROCEDURE_DEFINITION__FUNCTION_LANGUAGE_TYPE);
 		createEAttribute(storedProcedureDefinitionEClass, STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE);
+		createEAttribute(storedProcedureDefinitionEClass, STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		triggerDefinitionEClass = createEClass(TRIGGER_DEFINITION);
 		createEAttribute(triggerDefinitionEClass, TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH);
@@ -2190,8 +2525,10 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(triggerDefinitionEClass, TRIGGER_DEFINITION__INSTEAD_OF_TRIGGER_SUPPORTED);
 		createEAttribute(triggerDefinitionEClass, TRIGGER_DEFINITION__ROW_TRIGGER_REFERENCE_SUPPORTED);
 		createEAttribute(triggerDefinitionEClass, TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED);
+		createEAttribute(triggerDefinitionEClass, TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		columnDefinitionEClass = createEClass(COLUMN_DEFINITION);
+		createEReference(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS);
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_SUPPORTED);
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__COMPUTED_SUPPORTED);
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_START_VALUE_SUPPORTED);
@@ -2199,6 +2536,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_MINIMUM_SUPPORTED);
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_MAXIMUM_SUPPORTED);
 		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED);
+		createEAttribute(columnDefinitionEClass, COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		constraintDefinitionEClass = createEClass(CONSTRAINT_DEFINITION);
 		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED);
@@ -2211,6 +2549,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__PARENT_UPDATE_DRI_RULE_TYPE);
 		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__PARENT_DELETE_DRI_RULE_TYPE);
 		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__CHECK_OPTION);
+		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH);
+		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH);
+		createEAttribute(constraintDefinitionEClass, CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH);
 
 		indexDefinitionEClass = createEClass(INDEX_DEFINITION);
 		createEAttribute(indexDefinitionEClass, INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY);
@@ -2219,6 +2560,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(indexDefinitionEClass, INDEX_DEFINITION__CLUSTER_CHANGEABLE);
 		createEAttribute(indexDefinitionEClass, INDEX_DEFINITION__FILL_FACTOR_SUPPORTED);
 		createEAttribute(indexDefinitionEClass, INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED);
+		createEAttribute(indexDefinitionEClass, INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		extendedDefinitionEClass = createEClass(EXTENDED_DEFINITION);
 		createEAttribute(extendedDefinitionEClass, EXTENDED_DEFINITION__NAME);
@@ -2230,6 +2572,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__EDIT_PROC_SUPPORTED);
 		createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__ENCODING_SUPPORTED);
 		createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__VALID_PROC_SUPPORTED);
+		createEAttribute(tableDefinitionEClass, TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		sequenceDefinitionEClass = createEClass(SEQUENCE_DEFINITION);
 		createEReference(sequenceDefinitionEClass, SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS);
@@ -2246,6 +2589,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(userDefinedTypeDefinitionEClass, USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED);
 		createEAttribute(userDefinedTypeDefinitionEClass, USER_DEFINED_TYPE_DEFINITION__DISTINCT_TYPE_SUPPORTED);
 		createEAttribute(userDefinedTypeDefinitionEClass, USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED);
+		createEAttribute(userDefinedTypeDefinitionEClass, USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
 
 		queryDefinitionEClass = createEClass(QUERY_DEFINITION);
 		createEAttribute(queryDefinitionEClass, QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING);
@@ -2259,17 +2603,34 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		sqlSyntaxDefinitionEClass = createEClass(SQL_SYNTAX_DEFINITION);
 		createEAttribute(sqlSyntaxDefinitionEClass, SQL_SYNTAX_DEFINITION__KEYWORDS);
 		createEAttribute(sqlSyntaxDefinitionEClass, SQL_SYNTAX_DEFINITION__OPERATORS);
+		createEAttribute(sqlSyntaxDefinitionEClass, SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER);
 
 		nicknameDefinitionEClass = createEClass(NICKNAME_DEFINITION);
 		createEAttribute(nicknameDefinitionEClass, NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED);
 		createEAttribute(nicknameDefinitionEClass, NICKNAME_DEFINITION__INDEX_SUPPORTED);
+		createEAttribute(nicknameDefinitionEClass, NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
+
+		schemaDefinitionEClass = createEClass(SCHEMA_DEFINITION);
+		createEAttribute(schemaDefinitionEClass, SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
+
+		viewDefinitionEClass = createEClass(VIEW_DEFINITION);
+		createEAttribute(viewDefinitionEClass, VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
+
+		fieldQualifierDefinitionEClass = createEClass(FIELD_QUALIFIER_DEFINITION);
+		createEReference(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__NAME);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE);
+		createEAttribute(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED);
 
 		debuggerDefinitionEClass = createEClass(DEBUGGER_DEFINITION);
 		createEAttribute(debuggerDefinitionEClass, DEBUGGER_DEFINITION__CONDITION_SUPPORTED);
 
 		// Create enums
 		checkOptionEEnum = createEEnum(CHECK_OPTION);
-		defaultValueTypeEEnum = createEEnum(DEFAULT_VALUE_TYPE);
 		languageTypeEEnum = createEEnum(LANGUAGE_TYPE);
 		parameterStyleEEnum = createEEnum(PARAMETER_STYLE);
 		parentDeleteDRIRuleTypeEEnum = createEEnum(PARENT_DELETE_DRI_RULE_TYPE);
@@ -2324,6 +2685,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEReference(getDatabaseVendorDefinition_QueryDefinition(), this.getQueryDefinition(), null, "queryDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabaseVendorDefinition_SQLSyntaxDefinition(), this.getSQLSyntaxDefinition(), null, "SQLSyntaxDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabaseVendorDefinition_NicknameDefinition(), this.getNicknameDefinition(), null, "nicknameDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabaseVendorDefinition_SchemaDefinition(), this.getSchemaDefinition(), null, "schemaDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabaseVendorDefinition_ViewDefinition(), this.getViewDefinition(), null, "viewDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabaseVendorDefinition_DebuggerDefinition(), this.getDebuggerDefinition(), null, "debuggerDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_Vendor(), ecorePackage.getEString(), "vendor", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_Version(), ecorePackage.getEString(), "version", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2346,11 +2709,17 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getDatabaseVendorDefinition_NicknameSupported(), ecorePackage.getEBoolean(), "nicknameSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_QuotedDMLSupported(), ecorePackage.getEBoolean(), "quotedDMLSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getDatabaseVendorDefinition_QuotedDDLSupported(), ecorePackage.getEBoolean(), "quotedDDLSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getDatabaseVendorDefinition_XmlSupported(), ecorePackage.getEBoolean(), "xmlSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDatabaseVendorDefinition_MQTIndexSupported(), ecorePackage.getEBoolean(), "mQTIndexSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_EventSupported(), ecorePackage.getEBoolean(), "eventSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_SqlUDFSupported(), ecorePackage.getEBoolean(), "sqlUDFSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_StoredProcedureSupported(), ecorePackage.getEBoolean(), "storedProcedureSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(predefinedDataTypeDefinitionEClass, PredefinedDataTypeDefinition.class, "PredefinedDataTypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition(), this.getFieldQualifierDefinition(), null, "leadingFieldQualifierDefinition", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition(), this.getFieldQualifierDefinition(), null, "trailingFieldQualifierDefinition", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition(), this.getFieldQualifierDefinition(), null, "defaultTrailingFieldQualifierDefinition", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition(), this.getFieldQualifierDefinition(), null, "defaultLeadingFieldQualifierDefinition", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_LengthSupported(), ecorePackage.getEBoolean(), "lengthSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_ScaleSupported(), ecorePackage.getEBoolean(), "scaleSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_PrecisionSupported(), ecorePackage.getEBoolean(), "precisionSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2368,7 +2737,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getPredefinedDataTypeDefinition_MaximumPrecision(), ecorePackage.getEInt(), "maximumPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_MaximumScale(), ecorePackage.getEInt(), "maximumScale", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_MinimumScale(), ecorePackage.getEInt(), "minimumScale", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_DefaultValueTypes(), this.getDefaultValueType(), "defaultValueTypes", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_DefaultValueTypes(), ecorePackage.getEString(), "defaultValueTypes", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_PrimitiveType(), theSQLDataTypesPackage.getPrimitiveType(), "primitiveType", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_Name(), ecorePackage.getEString(), "name", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_JdbcEnumType(), ecorePackage.getEInt(), "jdbcEnumType", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2382,12 +2751,13 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getPredefinedDataTypeDefinition_DefaultScale(), ecorePackage.getEInt(), "defaultScale", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_CutoffPrecision(), ecorePackage.getEInt(), "cutoffPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_LengthUnit(), this.getLengthUnit(), "lengthUnit", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_TrailingPrecision(), ecorePackage.getEInt(), "trailingPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_DefaultTrailingPrecision(), ecorePackage.getEInt(), "defaultTrailingPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_TrailingPrecisionSupported(), ecorePackage.getEBoolean(), "trailingPrecisionSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_LeadingPrecision(), ecorePackage.getEInt(), "leadingPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_DefaultLeadingPrecision(), ecorePackage.getEInt(), "defaultLeadingPrecision", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getPredefinedDataTypeDefinition_LeadingPrecisionSupported(), ecorePackage.getEBoolean(), "leadingPrecisionSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_OrderingSupported(), ecorePackage.getEBoolean(), "orderingSupported", "true", 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getPredefinedDataTypeDefinition_GroupingSupported(), ecorePackage.getEBoolean(), "groupingSupported", "true", 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getPredefinedDataTypeDefinition_DisplayName(), ecorePackage.getEString(), "displayName", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_DisplayNameSupported(), ecorePackage.getEBoolean(), "displayNameSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported(), ecorePackage.getEBoolean(), "leadingFieldQualifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported(), ecorePackage.getEBoolean(), "trailingFieldQualifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_FieldQualifierSeparator(), ecorePackage.getEString(), "fieldQualifierSeparator", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tableSpaceDefinitionEClass, TableSpaceDefinition.class, "TableSpaceDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableSpaceDefinition_TypeSupported(), ecorePackage.getEBoolean(), "typeSupported", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2401,6 +2771,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getTableSpaceDefinition_ContainerInitialSizeSupported(), ecorePackage.getEBoolean(), "containerInitialSizeSupported", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableSpaceDefinition_ContainerExtentSizeSupported(), ecorePackage.getEBoolean(), "containerExtentSizeSupported", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableSpaceDefinition_TableSpaceType(), this.getTableSpaceType(), "tableSpaceType", null, 0, -1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableSpaceDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(storedProcedureDefinitionEClass, StoredProcedureDefinition.class, "StoredProcedureDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStoredProcedureDefinition_NullInputActionSupported(), ecorePackage.getEBoolean(), "nullInputActionSupported", null, 0, 1, StoredProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2417,6 +2788,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getStoredProcedureDefinition_LanguageType(), this.getLanguageType(), "languageType", null, 0, -1, StoredProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getStoredProcedureDefinition_FunctionLanguageType(), this.getLanguageType(), "functionLanguageType", null, 0, -1, StoredProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getStoredProcedureDefinition_ProcedureType(), this.getProcedureType(), "procedureType", null, 0, -1, StoredProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStoredProcedureDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, StoredProcedureDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(triggerDefinitionEClass, TriggerDefinition.class, "TriggerDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTriggerDefinition_MaximumReferencePartLength(), ecorePackage.getEInt(), "maximumReferencePartLength", null, 0, 1, TriggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2429,15 +2801,18 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getTriggerDefinition_InsteadOfTriggerSupported(), ecorePackage.getEBoolean(), "insteadOfTriggerSupported", null, 0, 1, TriggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTriggerDefinition_RowTriggerReferenceSupported(), ecorePackage.getEBoolean(), "rowTriggerReferenceSupported", null, 0, 1, TriggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTriggerDefinition_TableTriggerReferenceSupported(), ecorePackage.getEBoolean(), "tableTriggerReferenceSupported", null, 0, 1, TriggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTriggerDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, TriggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(columnDefinitionEClass, ColumnDefinition.class, "ColumnDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getColumnDefinition_IdentityColumnDataTypeDefinitions(), this.getPredefinedDataTypeDefinition(), null, "identityColumnDataTypeDefinitions", null, 1, -1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getColumnDefinition_IdentitySupported(), ecorePackage.getEBoolean(), "identitySupported", null, 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getColumnDefinition_ComputedSupported(), ecorePackage.getEBoolean(), "computedSupported", null, 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getColumnDefinition_ComputedSupported(), ecorePackage.getEBoolean(), "computedSupported", "true", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumnDefinition_IdentityStartValueSupported(), ecorePackage.getEBoolean(), "identityStartValueSupported", "false", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumnDefinition_IdentityIncrementSupported(), ecorePackage.getEBoolean(), "identityIncrementSupported", "false", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumnDefinition_IdentityMinimumSupported(), ecorePackage.getEBoolean(), "identityMinimumSupported", "false", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumnDefinition_IdentityMaximumSupported(), ecorePackage.getEBoolean(), "identityMaximumSupported", "false", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumnDefinition_IdentityCycleSupported(), ecorePackage.getEBoolean(), "identityCycleSupported", "false", 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getColumnDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(constraintDefinitionEClass, ConstraintDefinition.class, "ConstraintDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getConstraintDefinition_DeferrableConstraintSupported(), ecorePackage.getEBoolean(), "deferrableConstraintSupported", null, 0, 1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2450,6 +2825,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getConstraintDefinition_ParentUpdateDRIRuleType(), this.getParentUpdateDRIRuleType(), "parentUpdateDRIRuleType", null, 0, -1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraintDefinition_ParentDeleteDRIRuleType(), this.getParentDeleteDRIRuleType(), "parentDeleteDRIRuleType", null, 0, -1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraintDefinition_CheckOption(), this.getCheckOption(), "checkOption", null, 0, -1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraintDefinition_MaximumPrimaryKeyIdentifierLength(), ecorePackage.getEInt(), "maximumPrimaryKeyIdentifierLength", null, 0, 1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraintDefinition_MaximumForeignKeyIdentifierLength(), ecorePackage.getEInt(), "maximumForeignKeyIdentifierLength", null, 0, 1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getConstraintDefinition_MaximumCheckConstraintIdentifierLength(), ecorePackage.getEInt(), "maximumCheckConstraintIdentifierLength", null, 0, 1, ConstraintDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(indexDefinitionEClass, IndexDefinition.class, "IndexDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIndexDefinition_PercentFreeTerminology(), this.getPercentFreeTerminology(), "percentFreeTerminology", null, 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2458,6 +2836,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getIndexDefinition_ClusterChangeable(), ecorePackage.getEBoolean(), "clusterChangeable", null, 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getIndexDefinition_FillFactorSupported(), ecorePackage.getEBoolean(), "fillFactorSupported", null, 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getIndexDefinition_IncludedColumnsSupported(), ecorePackage.getEBoolean(), "includedColumnsSupported", "false", 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getIndexDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, IndexDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(extendedDefinitionEClass, ExtendedDefinition.class, "ExtendedDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getExtendedDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, ExtendedDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2469,6 +2848,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getTableDefinition_EditProcSupported(), ecorePackage.getEBoolean(), "editProcSupported", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableDefinition_EncodingSupported(), ecorePackage.getEBoolean(), "encodingSupported", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableDefinition_ValidProcSupported(), ecorePackage.getEBoolean(), "validProcSupported", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, TableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(sequenceDefinitionEClass, SequenceDefinition.class, "SequenceDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getSequenceDefinition_PredefinedDataTypeDefinitions(), this.getPredefinedDataTypeDefinition(), null, "predefinedDataTypeDefinitions", null, 1, -1, SequenceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2485,6 +2865,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getUserDefinedTypeDefinition_DefaultValueSupported(), ecorePackage.getEBoolean(), "defaultValueSupported", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getUserDefinedTypeDefinition_DistinctTypeSupported(), ecorePackage.getEBoolean(), "distinctTypeSupported", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getUserDefinedTypeDefinition_StructuredTypeSupported(), ecorePackage.getEBoolean(), "structuredTypeSupported", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getUserDefinedTypeDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(queryDefinitionEClass, QueryDefinition.class, "QueryDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getQueryDefinition_IdentifierQuoteString(), ecorePackage.getEString(), "identifierQuoteString", "\"", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -2498,10 +2879,28 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEClass(sqlSyntaxDefinitionEClass, SQLSyntaxDefinition.class, "SQLSyntaxDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSQLSyntaxDefinition_Keywords(), ecorePackage.getEString(), "keywords", null, 0, -1, SQLSyntaxDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getSQLSyntaxDefinition_Operators(), ecorePackage.getEString(), "operators", null, 0, -1, SQLSyntaxDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSQLSyntaxDefinition_TerminationCharacter(), ecorePackage.getEString(), "terminationCharacter", ";", 0, 1, SQLSyntaxDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(nicknameDefinitionEClass, NicknameDefinition.class, "NicknameDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNicknameDefinition_ConstraintSupported(), ecorePackage.getEBoolean(), "constraintSupported", null, 0, 1, NicknameDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getNicknameDefinition_IndexSupported(), ecorePackage.getEBoolean(), "indexSupported", null, 0, 1, NicknameDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getNicknameDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, NicknameDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(schemaDefinitionEClass, SchemaDefinition.class, "SchemaDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSchemaDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, SchemaDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(viewDefinitionEClass, ViewDefinition.class, "ViewDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getViewDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, ViewDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(fieldQualifierDefinitionEClass, FieldQualifierDefinition.class, "FieldQualifierDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions(), this.getFieldQualifierDefinition(), null, "validTrailingFieldQualifierDefinitions", null, 0, -1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_Name(), theSQLDataTypesPackage.getIntervalQualifierType(), "name", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_MaximumPrecision(), ecorePackage.getEInt(), "maximumPrecision", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_DefaultPrecision(), ecorePackage.getEInt(), "defaultPrecision", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_PrecisionSupported(), ecorePackage.getEBoolean(), "precisionSupported", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_MaximumScale(), ecorePackage.getEInt(), "maximumScale", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_DefaultScale(), ecorePackage.getEInt(), "defaultScale", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFieldQualifierDefinition_ScaleSupported(), ecorePackage.getEBoolean(), "scaleSupported", null, 0, 1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(debuggerDefinitionEClass, DebuggerDefinition.class, "DebuggerDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDebuggerDefinition_ConditionSupported(), ecorePackage.getEBoolean(), "conditionSupported", null, 0, 1, DebuggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2511,18 +2910,6 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		addEEnumLiteral(checkOptionEEnum, CheckOption.NONE_LITERAL);
 		addEEnumLiteral(checkOptionEEnum, CheckOption.CASCADE_LITERAL);
 		addEEnumLiteral(checkOptionEEnum, CheckOption.LOCAL_LITERAL);
-
-		initEEnum(defaultValueTypeEEnum, DefaultValueType.class, "DefaultValueType"); //$NON-NLS-1$
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_DATE_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_ID_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_PATH_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_TIME_STAMP_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_TIME_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.CURRENT_USER_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.EXPRESSION_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.LITERAL_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.NO_DEFAULT_LITERAL);
-		addEEnumLiteral(defaultValueTypeEEnum, DefaultValueType.NULL_LITERAL);
 
 		initEEnum(languageTypeEEnum, LanguageType.class, "LanguageType"); //$NON-NLS-1$
 		addEEnumLiteral(languageTypeEEnum, LanguageType.SQL_LITERAL);

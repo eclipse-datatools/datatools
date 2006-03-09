@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#isContainerInitialSizeSupported <em>Container Initial Size Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#isContainerExtentSizeSupported <em>Container Extent Size Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#getTableSpaceType <em>Table Space Type</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -256,6 +257,26 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * @ordered
 	 */
 	protected EList tableSpaceType = null;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -502,6 +523,27 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
@@ -526,6 +568,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 				return isContainerExtentSizeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE:
 				return getTableSpaceType();
+			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -571,6 +615,9 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 				getTableSpaceType().clear();
 				getTableSpaceType().addAll((Collection)newValue);
 				return;
+			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -615,6 +662,9 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE:
 				getTableSpaceType().clear();
 				return;
+			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -648,6 +698,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 				return containerExtentSizeSupported != CONTAINER_EXTENT_SIZE_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE:
 				return tableSpaceType != null && !tableSpaceType.isEmpty();
+			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -683,6 +735,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 		result.append(containerExtentSizeSupported);
 		result.append(", tableSpaceType: "); //$NON-NLS-1$
 		result.append(tableSpaceType);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

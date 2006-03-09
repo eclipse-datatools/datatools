@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalQualifierType.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: IntervalQualifierType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -97,6 +97,21 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	public static final int SECOND = 5;
 
 	/**
+	 * The '<em><b>FRACTION</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>FRACTION</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #FRACTION_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int FRACTION = 6;
+
+	/**
 	 * The '<em><b>YEAR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -181,6 +196,16 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	public static final IntervalQualifierType SECOND_LITERAL = new IntervalQualifierType(SECOND, "SECOND"); //$NON-NLS-1$
 
 	/**
+	 * The '<em><b>FRACTION</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #FRACTION
+	 * @generated
+	 * @ordered
+	 */
+	public static final IntervalQualifierType FRACTION_LITERAL = new IntervalQualifierType(FRACTION, "FRACTION"); //$NON-NLS-1$
+
+	/**
 	 * An array of all the '<em><b>Interval Qualifier Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,6 +219,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 			HOUR_LITERAL,
 			MINUTE_LITERAL,
 			SECOND_LITERAL,
+			FRACTION_LITERAL,
 		};
 
 	/**
@@ -234,6 +260,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 			case HOUR: return HOUR_LITERAL;
 			case MINUTE: return MINUTE_LITERAL;
 			case SECOND: return SECOND_LITERAL;
+			case FRACTION: return FRACTION_LITERAL;
 		}
 		return null;	
 	}

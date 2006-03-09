@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#isClusterChangeable <em>Cluster Changeable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#isFillFactorSupported <em>Fill Factor Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#isIncludedColumnsSupported <em>Included Columns Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -193,5 +194,31 @@ public interface IndexDefinition extends EObject{
 	 * @generated
 	 */
 	void setIncludedColumnsSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getIndexDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // IndexDefinition

@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#isClusterChangeable <em>Cluster Changeable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#isFillFactorSupported <em>Fill Factor Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#isIncludedColumnsSupported <em>Included Columns Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -157,6 +158,26 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * @ordered
 	 */
 	protected boolean includedColumnsSupported = INCLUDED_COLUMNS_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -307,6 +328,27 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
@@ -321,6 +363,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 				return isFillFactorSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				return isIncludedColumnsSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -349,6 +393,9 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 				return;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				setIncludedColumnsSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -379,6 +426,9 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				setIncludedColumnsSupported(INCLUDED_COLUMNS_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -402,6 +452,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 				return fillFactorSupported != FILL_FACTOR_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED:
 				return includedColumnsSupported != INCLUDED_COLUMNS_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -427,6 +479,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 		result.append(fillFactorSupported);
 		result.append(", includedColumnsSupported: "); //$NON-NLS-1$
 		result.append(includedColumnsSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

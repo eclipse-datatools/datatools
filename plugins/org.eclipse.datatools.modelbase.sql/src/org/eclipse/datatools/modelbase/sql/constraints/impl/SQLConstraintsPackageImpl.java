@@ -425,6 +425,15 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getForeignKey_ReferencedTable() {
+		return (EReference)foreignKeyEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUniqueConstraint() {
 		return uniqueConstraintEClass;
 	}
@@ -497,8 +506,8 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndex_Members() {
-		return (EReference)indexEClass.getEStructuralFeatures().get(4);
+	public EAttribute getIndex_SystemGenerated() {
+		return (EAttribute)indexEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -506,7 +515,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndex_Table() {
+	public EReference getIndex_Members() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -515,7 +524,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndex_ForeignKey() {
+	public EReference getIndex_Table() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -524,8 +533,17 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIndex_IncludedMembers() {
+	public EReference getIndex_ForeignKey() {
 		return (EReference)indexEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIndex_IncludedMembers() {
+		return (EReference)indexEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -627,6 +645,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		createEReference(foreignKeyEClass, FOREIGN_KEY__UNIQUE_CONSTRAINT);
 		createEReference(foreignKeyEClass, FOREIGN_KEY__REFERENCED_MEMBERS);
 		createEReference(foreignKeyEClass, FOREIGN_KEY__UNIQUE_INDEX);
+		createEReference(foreignKeyEClass, FOREIGN_KEY__REFERENCED_TABLE);
 
 		uniqueConstraintEClass = createEClass(UNIQUE_CONSTRAINT);
 		createEReference(uniqueConstraintEClass, UNIQUE_CONSTRAINT__FOREIGN_KEY);
@@ -638,6 +657,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		createEAttribute(indexEClass, INDEX__CLUSTERED);
 		createEAttribute(indexEClass, INDEX__FILL_FACTOR);
 		createEAttribute(indexEClass, INDEX__UNIQUE);
+		createEAttribute(indexEClass, INDEX__SYSTEM_GENERATED);
 		createEReference(indexEClass, INDEX__MEMBERS);
 		createEReference(indexEClass, INDEX__TABLE);
 		createEReference(indexEClass, INDEX__FOREIGN_KEY);
@@ -719,6 +739,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		initEReference(getForeignKey_UniqueConstraint(), this.getUniqueConstraint(), this.getUniqueConstraint_ForeignKey(), "uniqueConstraint", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getForeignKey_ReferencedMembers(), theSQLTablesPackage.getColumn(), null, "referencedMembers", null, 1, -1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getForeignKey_UniqueIndex(), this.getIndex(), this.getIndex_ForeignKey(), "uniqueIndex", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getForeignKey_ReferencedTable(), theSQLTablesPackage.getBaseTable(), theSQLTablesPackage.getBaseTable_ReferencingForeignKeys(), "referencedTable", null, 0, 1, ForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(uniqueConstraintEClass, UniqueConstraint.class, "UniqueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getUniqueConstraint_ForeignKey(), this.getForeignKey(), this.getForeignKey_UniqueConstraint(), "ForeignKey", null, 0, -1, UniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -730,6 +751,7 @@ public class SQLConstraintsPackageImpl extends EPackageImpl implements SQLConstr
 		initEAttribute(getIndex_Clustered(), ecorePackage.getEBoolean(), "clustered", "false", 0, 1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getIndex_FillFactor(), ecorePackage.getEInt(), "fillFactor", "0", 0, 1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getIndex_Unique(), ecorePackage.getEBoolean(), "unique", "false", 0, 1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getIndex_SystemGenerated(), ecorePackage.getEBoolean(), "systemGenerated", null, 0, 1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIndex_Members(), this.getIndexMember(), null, "members", null, 1, -1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIndex_Table(), theSQLTablesPackage.getTable(), theSQLTablesPackage.getTable_Index(), "table", null, 1, 1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getIndex_ForeignKey(), this.getForeignKey(), this.getForeignKey_UniqueIndex(), "ForeignKey", null, 0, -1, Index.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getLanguageType <em>Language Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getFunctionLanguageType <em>Function Language Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getProcedureType <em>Procedure Type</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -291,6 +292,26 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @ordered
 	 */
 	protected EList procedureType = null;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -573,6 +594,27 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
@@ -603,6 +645,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 				return getFunctionLanguageType();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE:
 				return getProcedureType();
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -660,6 +704,9 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 				getProcedureType().clear();
 				getProcedureType().addAll((Collection)newValue);
 				return;
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -713,6 +760,9 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE:
 				getProcedureType().clear();
 				return;
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -752,6 +802,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 				return functionLanguageType != null && !functionLanguageType.isEmpty();
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE:
 				return procedureType != null && !procedureType.isEmpty();
+			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -793,6 +845,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 		result.append(functionLanguageType);
 		result.append(", procedureType: "); //$NON-NLS-1$
 		result.append(procedureType);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

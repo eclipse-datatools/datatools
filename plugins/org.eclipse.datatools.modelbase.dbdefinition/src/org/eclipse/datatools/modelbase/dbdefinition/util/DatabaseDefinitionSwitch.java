@@ -182,6 +182,24 @@ public class DatabaseDefinitionSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DatabaseDefinitionPackage.SCHEMA_DEFINITION: {
+				SchemaDefinition schemaDefinition = (SchemaDefinition)theEObject;
+				Object result = caseSchemaDefinition(schemaDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DatabaseDefinitionPackage.VIEW_DEFINITION: {
+				ViewDefinition viewDefinition = (ViewDefinition)theEObject;
+				Object result = caseViewDefinition(viewDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION: {
+				FieldQualifierDefinition fieldQualifierDefinition = (FieldQualifierDefinition)theEObject;
+				Object result = caseFieldQualifierDefinition(fieldQualifierDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION: {
 				DebuggerDefinition debuggerDefinition = (DebuggerDefinition)theEObject;
 				Object result = caseDebuggerDefinition(debuggerDefinition);
@@ -414,6 +432,51 @@ public class DatabaseDefinitionSwitch {
 	 * @generated
 	 */
 	public Object caseNicknameDefinition(NicknameDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Schema Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Schema Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSchemaDefinition(SchemaDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>View Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>View Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseViewDefinition(ViewDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Field Qualifier Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Field Qualifier Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseFieldQualifierDefinition(FieldQualifierDefinition object) {
 		return null;
 	}
 

@@ -118,6 +118,15 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 			public Object caseNicknameDefinition(NicknameDefinition object) {
 				return createNicknameDefinitionAdapter();
 			}
+			public Object caseSchemaDefinition(SchemaDefinition object) {
+				return createSchemaDefinitionAdapter();
+			}
+			public Object caseViewDefinition(ViewDefinition object) {
+				return createViewDefinitionAdapter();
+			}
+			public Object caseFieldQualifierDefinition(FieldQualifierDefinition object) {
+				return createFieldQualifierDefinitionAdapter();
+			}
 			public Object caseDebuggerDefinition(DebuggerDefinition object) {
 				return createDebuggerDefinitionAdapter();
 			}
@@ -346,6 +355,48 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNicknameDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition <em>Schema Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition
+	 * @generated
+	 */
+	public Adapter createSchemaDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition <em>View Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition
+	 * @generated
+	 */
+	public Adapter createViewDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition <em>Field Qualifier Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition
+	 * @generated
+	 */
+	public Adapter createFieldQualifierDefinitionAdapter() {
 		return null;
 	}
 

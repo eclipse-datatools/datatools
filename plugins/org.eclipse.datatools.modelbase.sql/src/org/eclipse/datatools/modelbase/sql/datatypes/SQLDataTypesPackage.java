@@ -47,7 +47,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http:///org/eclipse/datatools/modelbase/datatypes.ecore"; //$NON-NLS-1$
+	String eNS_URI = "http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.

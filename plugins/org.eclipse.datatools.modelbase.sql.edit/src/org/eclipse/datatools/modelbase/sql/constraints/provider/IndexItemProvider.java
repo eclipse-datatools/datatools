@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IndexItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
+ * $Id: IndexItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -67,6 +67,7 @@ public class IndexItemProvider
 			addClusteredPropertyDescriptor(object);
 			addFillFactorPropertyDescriptor(object);
 			addUniquePropertyDescriptor(object);
+			addSystemGeneratedPropertyDescriptor(object);
 			addTablePropertyDescriptor(object);
 			addForeignKeyPropertyDescriptor(object);
 		}
@@ -147,6 +148,26 @@ public class IndexItemProvider
 				 getString("_UI_Index_unique_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_unique_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getIndex_Unique(),
+				 true,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the System Generated feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSystemGeneratedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Index_systemGenerated_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Index_systemGenerated_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLConstraintsPackage.eINSTANCE.getIndex_SystemGenerated(),
 				 true,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
@@ -259,6 +280,7 @@ public class IndexItemProvider
 			case SQLConstraintsPackage.INDEX__CLUSTERED:
 			case SQLConstraintsPackage.INDEX__FILL_FACTOR:
 			case SQLConstraintsPackage.INDEX__UNIQUE:
+			case SQLConstraintsPackage.INDEX__SYSTEM_GENERATED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case SQLConstraintsPackage.INDEX__MEMBERS:

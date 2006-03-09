@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -44,6 +45,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl#getReferencingForeignKeys <em>Referencing Foreign Keys</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,16 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	 * @ordered
 	 */
 	protected EList constraints = null;
+
+	/**
+	 * The cached value of the '{@link #getReferencingForeignKeys() <em>Referencing Foreign Keys</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencingForeignKeys()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList referencingForeignKeys = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -88,6 +100,18 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 			constraints = new EObjectContainmentWithInverseEList(TableConstraint.class, this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE);
 		}
 		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getReferencingForeignKeys() {
+		if (referencingForeignKeys == null) {
+			referencingForeignKeys = new EObjectWithInverseResolvingEList(ForeignKey.class, this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE);
+		}
+		return referencingForeignKeys;
 	}
 
 	/**
@@ -168,6 +192,8 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 					return ((InternalEList)getIndex()).basicAdd(otherEnd, msgs);
 				case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicAdd(otherEnd, msgs);
+				case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicAdd(otherEnd, msgs);
 				default:
 					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
 			}
@@ -203,6 +229,8 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 					return ((InternalEList)getIndex()).basicRemove(otherEnd, msgs);
 				case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
 					return ((InternalEList)getConstraints()).basicRemove(otherEnd, msgs);
+				case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+					return ((InternalEList)getReferencingForeignKeys()).basicRemove(otherEnd, msgs);
 				default:
 					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
 			}
@@ -252,6 +280,8 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				return isUpdatable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
 				return getConstraints();
+			case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+				return getReferencingForeignKeys();
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -312,6 +342,10 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				getConstraints().clear();
 				getConstraints().addAll((Collection)newValue);
 				return;
+			case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				getReferencingForeignKeys().addAll((Collection)newValue);
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -365,6 +399,9 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
 				getConstraints().clear();
 				return;
+			case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+				getReferencingForeignKeys().clear();
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -408,6 +445,8 @@ public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 				return isUpdatable() != UPDATABLE_EDEFAULT;
 			case SQLTablesPackage.BASE_TABLE__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
+			case SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS:
+				return referencingForeignKeys != null && !referencingForeignKeys.isEmpty();
 		}
 		return eDynamicIsSet(eFeature);
 	}

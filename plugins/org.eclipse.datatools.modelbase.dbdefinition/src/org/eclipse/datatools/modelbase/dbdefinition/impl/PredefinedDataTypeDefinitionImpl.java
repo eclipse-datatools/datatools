@@ -13,17 +13,25 @@ package org.eclipse.datatools.modelbase.dbdefinition.impl;
 import java.util.Collection;
 
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage;
+import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DefaultValueType;
 import org.eclipse.datatools.modelbase.dbdefinition.LengthUnit;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +40,10 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLeadingFieldQualifierDefinition <em>Leading Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getTrailingFieldQualifierDefinition <em>Trailing Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDefaultTrailingFieldQualifierDefinition <em>Default Trailing Field Qualifier Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDefaultLeadingFieldQualifierDefinition <em>Default Leading Field Qualifier Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLengthSupported <em>Length Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isScaleSupported <em>Scale Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isPrecisionSupported <em>Precision Supported</em>}</li>
@@ -63,18 +75,59 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDefaultScale <em>Default Scale</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getCutoffPrecision <em>Cutoff Precision</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLengthUnit <em>Length Unit</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getTrailingPrecision <em>Trailing Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDefaultTrailingPrecision <em>Default Trailing Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isTrailingPrecisionSupported <em>Trailing Precision Supported</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLeadingPrecision <em>Leading Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDefaultLeadingPrecision <em>Default Leading Precision</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLeadingPrecisionSupported <em>Leading Precision Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isOrderingSupported <em>Ordering Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isGroupingSupported <em>Grouping Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getDisplayName <em>Display Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isDisplayNameSupported <em>Display Name Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements PredefinedDataTypeDefinition {
+	/**
+	 * The cached value of the '{@link #getLeadingFieldQualifierDefinition() <em>Leading Field Qualifier Definition</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLeadingFieldQualifierDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList leadingFieldQualifierDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getTrailingFieldQualifierDefinition() <em>Trailing Field Qualifier Definition</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTrailingFieldQualifierDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList trailingFieldQualifierDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getDefaultTrailingFieldQualifierDefinition() <em>Default Trailing Field Qualifier Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultTrailingFieldQualifierDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected FieldQualifierDefinition defaultTrailingFieldQualifierDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getDefaultLeadingFieldQualifierDefinition() <em>Default Leading Field Qualifier Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultLeadingFieldQualifierDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected FieldQualifierDefinition defaultLeadingFieldQualifierDefinition = null;
+
 	/**
 	 * The default value of the '{@link #isLengthSupported() <em>Length Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -656,124 +709,144 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	protected LengthUnit lengthUnit = LENGTH_UNIT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTrailingPrecision() <em>Trailing Precision</em>}' attribute.
+	 * The default value of the '{@link #isOrderingSupported() <em>Ordering Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTrailingPrecision()
+	 * @see #isOrderingSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int TRAILING_PRECISION_EDEFAULT = 0;
+	protected static final boolean ORDERING_SUPPORTED_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #getTrailingPrecision() <em>Trailing Precision</em>}' attribute.
+	 * The cached value of the '{@link #isOrderingSupported() <em>Ordering Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTrailingPrecision()
+	 * @see #isOrderingSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected int trailingPrecision = TRAILING_PRECISION_EDEFAULT;
+	protected boolean orderingSupported = ORDERING_SUPPORTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultTrailingPrecision() <em>Default Trailing Precision</em>}' attribute.
+	 * The default value of the '{@link #isGroupingSupported() <em>Grouping Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultTrailingPrecision()
+	 * @see #isGroupingSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DEFAULT_TRAILING_PRECISION_EDEFAULT = 0;
+	protected static final boolean GROUPING_SUPPORTED_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #getDefaultTrailingPrecision() <em>Default Trailing Precision</em>}' attribute.
+	 * The cached value of the '{@link #isGroupingSupported() <em>Grouping Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultTrailingPrecision()
+	 * @see #isGroupingSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected int defaultTrailingPrecision = DEFAULT_TRAILING_PRECISION_EDEFAULT;
+	protected boolean groupingSupported = GROUPING_SUPPORTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isTrailingPrecisionSupported() <em>Trailing Precision Supported</em>}' attribute.
+	 * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTrailingPrecisionSupported()
+	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean TRAILING_PRECISION_SUPPORTED_EDEFAULT = false;
+	protected static final String DISPLAY_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #isTrailingPrecisionSupported() <em>Trailing Precision Supported</em>}' attribute.
+	 * The cached value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isTrailingPrecisionSupported()
+	 * @see #getDisplayName()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean trailingPrecisionSupported = TRAILING_PRECISION_SUPPORTED_EDEFAULT;
+	protected String displayName = DISPLAY_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getLeadingPrecision() <em>Leading Precision</em>}' attribute.
+	 * The default value of the '{@link #isDisplayNameSupported() <em>Display Name Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeadingPrecision()
+	 * @see #isDisplayNameSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int LEADING_PRECISION_EDEFAULT = 0;
+	protected static final boolean DISPLAY_NAME_SUPPORTED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getLeadingPrecision() <em>Leading Precision</em>}' attribute.
+	 * The cached value of the '{@link #isDisplayNameSupported() <em>Display Name Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLeadingPrecision()
+	 * @see #isDisplayNameSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected int leadingPrecision = LEADING_PRECISION_EDEFAULT;
+	protected boolean displayNameSupported = DISPLAY_NAME_SUPPORTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultLeadingPrecision() <em>Default Leading Precision</em>}' attribute.
+	 * The default value of the '{@link #isLeadingFieldQualifierSupported() <em>Leading Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultLeadingPrecision()
+	 * @see #isLeadingFieldQualifierSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int DEFAULT_LEADING_PRECISION_EDEFAULT = 0;
+	protected static final boolean LEADING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #getDefaultLeadingPrecision() <em>Default Leading Precision</em>}' attribute.
+	 * The cached value of the '{@link #isLeadingFieldQualifierSupported() <em>Leading Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultLeadingPrecision()
+	 * @see #isLeadingFieldQualifierSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected int defaultLeadingPrecision = DEFAULT_LEADING_PRECISION_EDEFAULT;
+	protected boolean leadingFieldQualifierSupported = LEADING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isLeadingPrecisionSupported() <em>Leading Precision Supported</em>}' attribute.
+	 * The default value of the '{@link #isTrailingFieldQualifierSupported() <em>Trailing Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLeadingPrecisionSupported()
+	 * @see #isTrailingFieldQualifierSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean LEADING_PRECISION_SUPPORTED_EDEFAULT = false;
+	protected static final boolean TRAILING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isLeadingPrecisionSupported() <em>Leading Precision Supported</em>}' attribute.
+	 * The cached value of the '{@link #isTrailingFieldQualifierSupported() <em>Trailing Field Qualifier Supported</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isLeadingPrecisionSupported()
+	 * @see #isTrailingFieldQualifierSupported()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean leadingPrecisionSupported = LEADING_PRECISION_SUPPORTED_EDEFAULT;
+	protected boolean trailingFieldQualifierSupported = TRAILING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFieldQualifierSeparator() <em>Field Qualifier Separator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFieldQualifierSeparator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FIELD_QUALIFIER_SEPARATOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFieldQualifierSeparator() <em>Field Qualifier Separator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFieldQualifierSeparator()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fieldQualifierSeparator = FIELD_QUALIFIER_SEPARATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -791,6 +864,106 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	protected EClass eStaticClass() {
 		return DatabaseDefinitionPackage.eINSTANCE.getPredefinedDataTypeDefinition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getLeadingFieldQualifierDefinition() {
+		if (leadingFieldQualifierDefinition == null) {
+			leadingFieldQualifierDefinition = new EObjectContainmentEList(FieldQualifierDefinition.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION);
+		}
+		return leadingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getTrailingFieldQualifierDefinition() {
+		if (trailingFieldQualifierDefinition == null) {
+			trailingFieldQualifierDefinition = new EObjectContainmentEList(FieldQualifierDefinition.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION);
+		}
+		return trailingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldQualifierDefinition getDefaultTrailingFieldQualifierDefinition() {
+		if (defaultTrailingFieldQualifierDefinition != null && defaultTrailingFieldQualifierDefinition.eIsProxy()) {
+			FieldQualifierDefinition oldDefaultTrailingFieldQualifierDefinition = defaultTrailingFieldQualifierDefinition;
+			defaultTrailingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy((InternalEObject)defaultTrailingFieldQualifierDefinition);
+			if (defaultTrailingFieldQualifierDefinition != oldDefaultTrailingFieldQualifierDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION, oldDefaultTrailingFieldQualifierDefinition, defaultTrailingFieldQualifierDefinition));
+			}
+		}
+		return defaultTrailingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldQualifierDefinition basicGetDefaultTrailingFieldQualifierDefinition() {
+		return defaultTrailingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultTrailingFieldQualifierDefinition(FieldQualifierDefinition newDefaultTrailingFieldQualifierDefinition) {
+		FieldQualifierDefinition oldDefaultTrailingFieldQualifierDefinition = defaultTrailingFieldQualifierDefinition;
+		defaultTrailingFieldQualifierDefinition = newDefaultTrailingFieldQualifierDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION, oldDefaultTrailingFieldQualifierDefinition, defaultTrailingFieldQualifierDefinition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldQualifierDefinition getDefaultLeadingFieldQualifierDefinition() {
+		if (defaultLeadingFieldQualifierDefinition != null && defaultLeadingFieldQualifierDefinition.eIsProxy()) {
+			FieldQualifierDefinition oldDefaultLeadingFieldQualifierDefinition = defaultLeadingFieldQualifierDefinition;
+			defaultLeadingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy((InternalEObject)defaultLeadingFieldQualifierDefinition);
+			if (defaultLeadingFieldQualifierDefinition != oldDefaultLeadingFieldQualifierDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION, oldDefaultLeadingFieldQualifierDefinition, defaultLeadingFieldQualifierDefinition));
+			}
+		}
+		return defaultLeadingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldQualifierDefinition basicGetDefaultLeadingFieldQualifierDefinition() {
+		return defaultLeadingFieldQualifierDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultLeadingFieldQualifierDefinition(FieldQualifierDefinition newDefaultLeadingFieldQualifierDefinition) {
+		FieldQualifierDefinition oldDefaultLeadingFieldQualifierDefinition = defaultLeadingFieldQualifierDefinition;
+		defaultLeadingFieldQualifierDefinition = newDefaultLeadingFieldQualifierDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION, oldDefaultLeadingFieldQualifierDefinition, defaultLeadingFieldQualifierDefinition));
 	}
 
 	/**
@@ -1157,7 +1330,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public EList getDefaultValueTypes() {
 		if (defaultValueTypes == null) {
-			defaultValueTypes = new EDataTypeUniqueEList(DefaultValueType.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES);
+			defaultValueTypes = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES);
 		}
 		return defaultValueTypes;
 	}
@@ -1413,8 +1586,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getTrailingPrecision() {
-		return trailingPrecision;
+	public boolean isOrderingSupported() {
+		return orderingSupported;
 	}
 
 	/**
@@ -1422,11 +1595,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTrailingPrecision(int newTrailingPrecision) {
-		int oldTrailingPrecision = trailingPrecision;
-		trailingPrecision = newTrailingPrecision;
+	public void setOrderingSupported(boolean newOrderingSupported) {
+		boolean oldOrderingSupported = orderingSupported;
+		orderingSupported = newOrderingSupported;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION, oldTrailingPrecision, trailingPrecision));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED, oldOrderingSupported, orderingSupported));
 	}
 
 	/**
@@ -1434,8 +1607,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDefaultTrailingPrecision() {
-		return defaultTrailingPrecision;
+	public boolean isGroupingSupported() {
+		return groupingSupported;
 	}
 
 	/**
@@ -1443,11 +1616,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultTrailingPrecision(int newDefaultTrailingPrecision) {
-		int oldDefaultTrailingPrecision = defaultTrailingPrecision;
-		defaultTrailingPrecision = newDefaultTrailingPrecision;
+	public void setGroupingSupported(boolean newGroupingSupported) {
+		boolean oldGroupingSupported = groupingSupported;
+		groupingSupported = newGroupingSupported;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION, oldDefaultTrailingPrecision, defaultTrailingPrecision));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED, oldGroupingSupported, groupingSupported));
 	}
 
 	/**
@@ -1455,8 +1628,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isTrailingPrecisionSupported() {
-		return trailingPrecisionSupported;
+	public String getDisplayName() {
+		return displayName;
 	}
 
 	/**
@@ -1464,11 +1637,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTrailingPrecisionSupported(boolean newTrailingPrecisionSupported) {
-		boolean oldTrailingPrecisionSupported = trailingPrecisionSupported;
-		trailingPrecisionSupported = newTrailingPrecisionSupported;
+	public void setDisplayName(String newDisplayName) {
+		String oldDisplayName = displayName;
+		displayName = newDisplayName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED, oldTrailingPrecisionSupported, trailingPrecisionSupported));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME, oldDisplayName, displayName));
 	}
 
 	/**
@@ -1476,8 +1649,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getLeadingPrecision() {
-		return leadingPrecision;
+	public boolean isDisplayNameSupported() {
+		return displayNameSupported;
 	}
 
 	/**
@@ -1485,11 +1658,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeadingPrecision(int newLeadingPrecision) {
-		int oldLeadingPrecision = leadingPrecision;
-		leadingPrecision = newLeadingPrecision;
+	public void setDisplayNameSupported(boolean newDisplayNameSupported) {
+		boolean oldDisplayNameSupported = displayNameSupported;
+		displayNameSupported = newDisplayNameSupported;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION, oldLeadingPrecision, leadingPrecision));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED, oldDisplayNameSupported, displayNameSupported));
 	}
 
 	/**
@@ -1497,8 +1670,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getDefaultLeadingPrecision() {
-		return defaultLeadingPrecision;
+	public boolean isLeadingFieldQualifierSupported() {
+		return leadingFieldQualifierSupported;
 	}
 
 	/**
@@ -1506,11 +1679,11 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultLeadingPrecision(int newDefaultLeadingPrecision) {
-		int oldDefaultLeadingPrecision = defaultLeadingPrecision;
-		defaultLeadingPrecision = newDefaultLeadingPrecision;
+	public void setLeadingFieldQualifierSupported(boolean newLeadingFieldQualifierSupported) {
+		boolean oldLeadingFieldQualifierSupported = leadingFieldQualifierSupported;
+		leadingFieldQualifierSupported = newLeadingFieldQualifierSupported;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION, oldDefaultLeadingPrecision, defaultLeadingPrecision));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED, oldLeadingFieldQualifierSupported, leadingFieldQualifierSupported));
 	}
 
 	/**
@@ -1518,8 +1691,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLeadingPrecisionSupported() {
-		return leadingPrecisionSupported;
+	public boolean isTrailingFieldQualifierSupported() {
+		return trailingFieldQualifierSupported;
 	}
 
 	/**
@@ -1527,11 +1700,51 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLeadingPrecisionSupported(boolean newLeadingPrecisionSupported) {
-		boolean oldLeadingPrecisionSupported = leadingPrecisionSupported;
-		leadingPrecisionSupported = newLeadingPrecisionSupported;
+	public void setTrailingFieldQualifierSupported(boolean newTrailingFieldQualifierSupported) {
+		boolean oldTrailingFieldQualifierSupported = trailingFieldQualifierSupported;
+		trailingFieldQualifierSupported = newTrailingFieldQualifierSupported;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED, oldLeadingPrecisionSupported, leadingPrecisionSupported));
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED, oldTrailingFieldQualifierSupported, trailingFieldQualifierSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getFieldQualifierSeparator() {
+		return fieldQualifierSeparator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFieldQualifierSeparator(String newFieldQualifierSeparator) {
+		String oldFieldQualifierSeparator = fieldQualifierSeparator;
+		fieldQualifierSeparator = newFieldQualifierSeparator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR, oldFieldQualifierSeparator, fieldQualifierSeparator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
+				case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+					return ((InternalEList)getLeadingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
+				case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+					return ((InternalEList)getTrailingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
+				default:
+					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
+			}
+		}
+		return eBasicSetContainer(null, featureID, msgs);
 	}
 
 	/**
@@ -1541,6 +1754,16 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+				return getLeadingFieldQualifierDefinition();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+				return getTrailingFieldQualifierDefinition();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION:
+				if (resolve) return getDefaultTrailingFieldQualifierDefinition();
+				return basicGetDefaultTrailingFieldQualifierDefinition();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION:
+				if (resolve) return getDefaultLeadingFieldQualifierDefinition();
+				return basicGetDefaultLeadingFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED:
 				return isLengthSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED:
@@ -1603,18 +1826,20 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return new Integer(getCutoffPrecision());
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				return getLengthUnit();
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION:
-				return new Integer(getTrailingPrecision());
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION:
-				return new Integer(getDefaultTrailingPrecision());
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED:
-				return isTrailingPrecisionSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION:
-				return new Integer(getLeadingPrecision());
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION:
-				return new Integer(getDefaultLeadingPrecision());
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED:
-				return isLeadingPrecisionSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
+				return isOrderingSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED:
+				return isGroupingSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME:
+				return getDisplayName();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED:
+				return isDisplayNameSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED:
+				return isLeadingFieldQualifierSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED:
+				return isTrailingFieldQualifierSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
+				return getFieldQualifierSeparator();
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -1626,6 +1851,20 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public void eSet(EStructuralFeature eFeature, Object newValue) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+				getLeadingFieldQualifierDefinition().clear();
+				getLeadingFieldQualifierDefinition().addAll((Collection)newValue);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+				getTrailingFieldQualifierDefinition().clear();
+				getTrailingFieldQualifierDefinition().addAll((Collection)newValue);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION:
+				setDefaultTrailingFieldQualifierDefinition((FieldQualifierDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION:
+				setDefaultLeadingFieldQualifierDefinition((FieldQualifierDefinition)newValue);
+				return;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED:
 				setLengthSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -1723,23 +1962,26 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				setLengthUnit((LengthUnit)newValue);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION:
-				setTrailingPrecision(((Integer)newValue).intValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
+				setOrderingSupported(((Boolean)newValue).booleanValue());
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION:
-				setDefaultTrailingPrecision(((Integer)newValue).intValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED:
+				setGroupingSupported(((Boolean)newValue).booleanValue());
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED:
-				setTrailingPrecisionSupported(((Boolean)newValue).booleanValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME:
+				setDisplayName((String)newValue);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION:
-				setLeadingPrecision(((Integer)newValue).intValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED:
+				setDisplayNameSupported(((Boolean)newValue).booleanValue());
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION:
-				setDefaultLeadingPrecision(((Integer)newValue).intValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED:
+				setLeadingFieldQualifierSupported(((Boolean)newValue).booleanValue());
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED:
-				setLeadingPrecisionSupported(((Boolean)newValue).booleanValue());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED:
+				setTrailingFieldQualifierSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
+				setFieldQualifierSeparator((String)newValue);
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -1752,6 +1994,18 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public void eUnset(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+				getLeadingFieldQualifierDefinition().clear();
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+				getTrailingFieldQualifierDefinition().clear();
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION:
+				setDefaultTrailingFieldQualifierDefinition((FieldQualifierDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION:
+				setDefaultLeadingFieldQualifierDefinition((FieldQualifierDefinition)null);
+				return;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED:
 				setLengthSupported(LENGTH_SUPPORTED_EDEFAULT);
 				return;
@@ -1845,23 +2099,26 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				setLengthUnit(LENGTH_UNIT_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION:
-				setTrailingPrecision(TRAILING_PRECISION_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
+				setOrderingSupported(ORDERING_SUPPORTED_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION:
-				setDefaultTrailingPrecision(DEFAULT_TRAILING_PRECISION_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED:
+				setGroupingSupported(GROUPING_SUPPORTED_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED:
-				setTrailingPrecisionSupported(TRAILING_PRECISION_SUPPORTED_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME:
+				setDisplayName(DISPLAY_NAME_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION:
-				setLeadingPrecision(LEADING_PRECISION_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED:
+				setDisplayNameSupported(DISPLAY_NAME_SUPPORTED_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION:
-				setDefaultLeadingPrecision(DEFAULT_LEADING_PRECISION_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED:
+				setLeadingFieldQualifierSupported(LEADING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT);
 				return;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED:
-				setLeadingPrecisionSupported(LEADING_PRECISION_SUPPORTED_EDEFAULT);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED:
+				setTrailingFieldQualifierSupported(TRAILING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
+				setFieldQualifierSeparator(FIELD_QUALIFIER_SEPARATOR_EDEFAULT);
 				return;
 		}
 		eDynamicUnset(eFeature);
@@ -1874,6 +2131,14 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+				return leadingFieldQualifierDefinition != null && !leadingFieldQualifierDefinition.isEmpty();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+				return trailingFieldQualifierDefinition != null && !trailingFieldQualifierDefinition.isEmpty();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION:
+				return defaultTrailingFieldQualifierDefinition != null;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION:
+				return defaultLeadingFieldQualifierDefinition != null;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED:
 				return lengthSupported != LENGTH_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED:
@@ -1936,18 +2201,20 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return cutoffPrecision != CUTOFF_PRECISION_EDEFAULT;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT:
 				return lengthUnit != LENGTH_UNIT_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION:
-				return trailingPrecision != TRAILING_PRECISION_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_PRECISION:
-				return defaultTrailingPrecision != DEFAULT_TRAILING_PRECISION_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_PRECISION_SUPPORTED:
-				return trailingPrecisionSupported != TRAILING_PRECISION_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION:
-				return leadingPrecision != LEADING_PRECISION_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_PRECISION:
-				return defaultLeadingPrecision != DEFAULT_LEADING_PRECISION_EDEFAULT;
-			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_PRECISION_SUPPORTED:
-				return leadingPrecisionSupported != LEADING_PRECISION_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED:
+				return orderingSupported != ORDERING_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED:
+				return groupingSupported != GROUPING_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME:
+				return DISPLAY_NAME_EDEFAULT == null ? displayName != null : !DISPLAY_NAME_EDEFAULT.equals(displayName);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED:
+				return displayNameSupported != DISPLAY_NAME_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED:
+				return leadingFieldQualifierSupported != LEADING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED:
+				return trailingFieldQualifierSupported != TRAILING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
+				return FIELD_QUALIFIER_SEPARATOR_EDEFAULT == null ? fieldQualifierSeparator != null : !FIELD_QUALIFIER_SEPARATOR_EDEFAULT.equals(fieldQualifierSeparator);
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -2023,18 +2290,20 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 		result.append(cutoffPrecision);
 		result.append(", lengthUnit: "); //$NON-NLS-1$
 		result.append(lengthUnit);
-		result.append(", trailingPrecision: "); //$NON-NLS-1$
-		result.append(trailingPrecision);
-		result.append(", defaultTrailingPrecision: "); //$NON-NLS-1$
-		result.append(defaultTrailingPrecision);
-		result.append(", trailingPrecisionSupported: "); //$NON-NLS-1$
-		result.append(trailingPrecisionSupported);
-		result.append(", leadingPrecision: "); //$NON-NLS-1$
-		result.append(leadingPrecision);
-		result.append(", defaultLeadingPrecision: "); //$NON-NLS-1$
-		result.append(defaultLeadingPrecision);
-		result.append(", leadingPrecisionSupported: "); //$NON-NLS-1$
-		result.append(leadingPrecisionSupported);
+		result.append(", orderingSupported: "); //$NON-NLS-1$
+		result.append(orderingSupported);
+		result.append(", groupingSupported: "); //$NON-NLS-1$
+		result.append(groupingSupported);
+		result.append(", displayName: "); //$NON-NLS-1$
+		result.append(displayName);
+		result.append(", displayNameSupported: "); //$NON-NLS-1$
+		result.append(displayNameSupported);
+		result.append(", leadingFieldQualifierSupported: "); //$NON-NLS-1$
+		result.append(leadingFieldQualifierSupported);
+		result.append(", trailingFieldQualifierSupported: "); //$NON-NLS-1$
+		result.append(trailingFieldQualifierSupported);
+		result.append(", fieldQualifierSeparator: "); //$NON-NLS-1$
+		result.append(fieldQualifierSeparator);
 		result.append(')');
 		return result.toString();
 	}

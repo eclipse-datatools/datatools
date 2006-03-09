@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BaseTableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: BaseTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -17,6 +17,7 @@ import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -58,8 +59,29 @@ public class BaseTableItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addReferencingForeignKeysPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Referencing Foreign Keys feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencingForeignKeysPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BaseTable_referencingForeignKeys_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_BaseTable_referencingForeignKeys_feature", "_UI_BaseTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLTablesPackage.eINSTANCE.getBaseTable_ReferencingForeignKeys(),
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**

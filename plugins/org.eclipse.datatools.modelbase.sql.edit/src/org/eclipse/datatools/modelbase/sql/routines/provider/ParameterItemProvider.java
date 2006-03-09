@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: ParameterItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -10,8 +10,12 @@ package org.eclipse.datatools.modelbase.sql.routines.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
+
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+
 import org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin;
 import org.eclipse.datatools.modelbase.sql.schema.provider.TypedElementItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -108,6 +112,22 @@ public class ParameterItemProvider
 	}
 
 	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption());
+		}
+		return childrenFeatures;
+	}
+
+	/**
 	 * This returns Parameter.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,6 +165,9 @@ public class ParameterItemProvider
 			case SQLRoutinesPackage.PARAMETER__LOCATOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -158,6 +181,33 @@ public class ParameterItemProvider
 	 */
 	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption(),
+				 SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption();
+
+		if (qualify) {
+			return getString
+				("_UI_CreateChild_text2", //$NON-NLS-1$
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**

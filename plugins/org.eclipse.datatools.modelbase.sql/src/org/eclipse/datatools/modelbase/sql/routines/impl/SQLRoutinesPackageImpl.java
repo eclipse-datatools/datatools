@@ -408,6 +408,15 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getParameter_StringTypeOption() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProcedure() {
 		return procedureEClass;
 	}
@@ -642,6 +651,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		createEAttribute(parameterEClass, PARAMETER__MODE);
 		createEAttribute(parameterEClass, PARAMETER__LOCATOR);
 		createEReference(parameterEClass, PARAMETER__ROUTINE);
+		createEReference(parameterEClass, PARAMETER__STRING_TYPE_OPTION);
 
 		procedureEClass = createEClass(PROCEDURE);
 		createEAttribute(procedureEClass, PROCEDURE__MAX_RESULT_SETS);
@@ -698,6 +708,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 
 		// Obtain other dependent packages
 		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
 		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
 
 		// Add supertypes to classes
@@ -734,6 +745,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		initEAttribute(getParameter_Mode(), this.getParameterMode(), "mode", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getParameter_Locator(), ecorePackage.getEBoolean(), "locator", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getParameter_Routine(), this.getRoutine(), this.getRoutine_Parameters(), "routine", null, 1, 1, Parameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getParameter_StringTypeOption(), theSQLDataTypesPackage.getCharacterStringDataType(), null, "stringTypeOption", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(procedureEClass, Procedure.class, "Procedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getProcedure_MaxResultSets(), ecorePackage.getEInt(), "maxResultSets", null, 0, 1, Procedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

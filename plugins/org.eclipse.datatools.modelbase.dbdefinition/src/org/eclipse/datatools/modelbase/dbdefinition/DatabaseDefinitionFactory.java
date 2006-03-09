@@ -165,6 +165,33 @@ public interface DatabaseDefinitionFactory extends EFactory{
 	NicknameDefinition createNicknameDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Schema Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Schema Definition</em>'.
+	 * @generated
+	 */
+	SchemaDefinition createSchemaDefinition();
+
+	/**
+	 * Returns a new object of class '<em>View Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>View Definition</em>'.
+	 * @generated
+	 */
+	ViewDefinition createViewDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Field Qualifier Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Field Qualifier Definition</em>'.
+	 * @generated
+	 */
+	FieldQualifierDefinition createFieldQualifierDefinition();
+
+	/**
 	 * Returns a new object of class '<em>Debugger Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

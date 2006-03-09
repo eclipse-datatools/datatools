@@ -35,6 +35,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getQueryDefinition <em>Query Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSQLSyntaxDefinition <em>SQL Syntax Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getNicknameDefinition <em>Nickname Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSchemaDefinition <em>Schema Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVersion <em>Version</em>}</li>
@@ -57,6 +59,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isNicknameSupported <em>Nickname Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isQuotedDMLSupported <em>Quoted DML Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isQuotedDDLSupported <em>Quoted DDL Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isXmlSupported <em>Xml Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isMQTIndexSupported <em>MQT Index Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
@@ -621,6 +625,58 @@ public interface DatabaseVendorDefinition extends EObject{
 	void setQuotedDDLSupported(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Xml Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xml Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xml Supported</em>' attribute.
+	 * @see #setXmlSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_XmlSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isXmlSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isXmlSupported <em>Xml Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xml Supported</em>' attribute.
+	 * @see #isXmlSupported()
+	 * @generated
+	 */
+	void setXmlSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>MQT Index Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>MQT Index Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>MQT Index Supported</em>' attribute.
+	 * @see #setMQTIndexSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_MQTIndexSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isMQTIndexSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isMQTIndexSupported <em>MQT Index Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>MQT Index Supported</em>' attribute.
+	 * @see #isMQTIndexSupported()
+	 * @generated
+	 */
+	void setMQTIndexSupported(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Event Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -1042,6 +1098,58 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @generated
 	 */
 	void setNicknameDefinition(NicknameDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Schema Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Schema Definition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Schema Definition</em>' containment reference.
+	 * @see #setSchemaDefinition(SchemaDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_SchemaDefinition()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	SchemaDefinition getSchemaDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSchemaDefinition <em>Schema Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Schema Definition</em>' containment reference.
+	 * @see #getSchemaDefinition()
+	 * @generated
+	 */
+	void setSchemaDefinition(SchemaDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>View Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>View Definition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>View Definition</em>' containment reference.
+	 * @see #setViewDefinition(ViewDefinition)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_ViewDefinition()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	ViewDefinition getViewDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition <em>View Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>View Definition</em>' containment reference.
+	 * @see #getViewDefinition()
+	 * @generated
+	 */
+	void setViewDefinition(ViewDefinition value);
 
 	/**
 	 * Returns the value of the '<em><b>Debugger Definition</b></em>' containment reference.

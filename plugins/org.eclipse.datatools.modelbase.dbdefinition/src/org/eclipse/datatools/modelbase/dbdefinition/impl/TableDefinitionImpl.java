@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isEditProcSupported <em>Edit Proc Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isEncodingSupported <em>Encoding Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#isValidProcSupported <em>Valid Proc Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,6 +136,26 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * @ordered
 	 */
 	protected boolean validProcSupported = VALID_PROC_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -264,6 +285,27 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
@@ -276,6 +318,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 				return isEncodingSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				return isValidProcSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -301,6 +345,9 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 				return;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				setValidProcSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -328,6 +375,9 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				setValidProcSupported(VALID_PROC_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -349,6 +399,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 				return encodingSupported != ENCODING_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__VALID_PROC_SUPPORTED:
 				return validProcSupported != VALID_PROC_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -372,6 +424,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 		result.append(encodingSupported);
 		result.append(", validProcSupported: "); //$NON-NLS-1$
 		result.append(validProcSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

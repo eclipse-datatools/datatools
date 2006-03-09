@@ -11,6 +11,8 @@
 package org.eclipse.datatools.modelbase.sql.constraints;
 
 import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
+import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -48,6 +50,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getUniqueConstraint <em>Unique Constraint</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedMembers <em>Referenced Members</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getUniqueIndex <em>Unique Index</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable <em>Referenced Table</em>}</li>
  * </ul>
  * </p>
  *
@@ -217,5 +220,33 @@ public interface ForeignKey extends ReferenceConstraint{
 	 * @generated
 	 */
 	void setUniqueIndex(Index value);
+
+	/**
+	 * Returns the value of the '<em><b>Referenced Table</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable#getReferencingForeignKeys <em>Referencing Foreign Keys</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referenced Table</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referenced Table</em>' reference.
+	 * @see #setReferencedTable(BaseTable)
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage#getForeignKey_ReferencedTable()
+	 * @see org.eclipse.datatools.modelbase.sql.tables.BaseTable#getReferencingForeignKeys
+	 * @model opposite="referencingForeignKeys"
+	 * @generated
+	 */
+	BaseTable getReferencedTable();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable <em>Referenced Table</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Referenced Table</em>' reference.
+	 * @see #getReferencedTable()
+	 * @generated
+	 */
+	void setReferencedTable(BaseTable value);
 
 } // ForeignKey

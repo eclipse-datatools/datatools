@@ -33,6 +33,10 @@
         eType="#//SQLSyntaxDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nicknameDefinition" lowerBound="1"
         eType="#//NicknameDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="schemaDefinition" lowerBound="1"
+        eType="#//SchemaDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="viewDefinition" lowerBound="1"
+        eType="#//ViewDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="debuggerDefinition" lowerBound="1"
         eType="#//DebuggerDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -66,12 +70,22 @@
         defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="quotedDDLSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xmlSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mQTIndexSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="eventSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sqlUDFSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="storedProcedureSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredefinedDataTypeDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leadingFieldQualifierDefinition"
+        upperBound="-1" eType="#//FieldQualifierDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="trailingFieldQualifierDefinition"
+        upperBound="-1" eType="#//FieldQualifierDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultTrailingFieldQualifierDefinition"
+        eType="#//FieldQualifierDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultLeadingFieldQualifierDefinition"
+        eType="#//FieldQualifierDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lengthSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="scaleSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precisionSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -94,7 +108,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultValueTypes" upperBound="-1"
-        eType="#//DefaultValueType"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveType" eType="ecore:EEnum ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/PrimitiveType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcEnumType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -112,33 +126,23 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cutoffPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lengthUnit" eType="#//LengthUnit"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trailingPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultTrailingPrecision"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trailingPrecisionSupported"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="orderingSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="groupingSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="displayNameSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leadingFieldQualifierSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leadingPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultLeadingPrecision"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leadingPrecisionSupported"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="trailingFieldQualifierSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fieldQualifierSeparator"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CheckOption">
     <eLiterals name="NONE"/>
     <eLiterals name="CASCADE" value="1"/>
     <eLiterals name="LOCAL" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DefaultValueType">
-    <eLiterals name="CURRENT_DATE"/>
-    <eLiterals name="CURRENT_ID" value="1"/>
-    <eLiterals name="CURRENT_PATH" value="2"/>
-    <eLiterals name="CURRENT_TIME_STAMP" value="3"/>
-    <eLiterals name="CURRENT_TIME" value="4"/>
-    <eLiterals name="CURRENT_USER" value="5"/>
-    <eLiterals name="EXPRESSION" value="6"/>
-    <eLiterals name="LITERAL" value="7"/>
-    <eLiterals name="NO_DEFAULT" value="8"/>
-    <eLiterals name="NULL" value="9"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LanguageType">
     <eLiterals name="SQL"/>
@@ -210,6 +214,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableSpaceType" upperBound="-1"
         eType="#//TableSpaceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StoredProcedureDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nullInputActionSupported"
@@ -239,6 +245,8 @@
         eType="#//LanguageType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="procedureType" upperBound="-1"
         eType="#//ProcedureType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TriggerDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumReferencePartLength"
@@ -259,10 +267,15 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableTriggerReferenceSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColumnDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="identityColumnDataTypeDefinitions"
+        lowerBound="1" upperBound="-1" eType="#//PredefinedDataTypeDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identitySupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="computedSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="computedSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityStartValueSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityIncrementSupported"
@@ -273,6 +286,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identityCycleSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deferrableConstraintSupported"
@@ -293,6 +308,12 @@
         upperBound="-1" eType="#//ParentDeleteDRIRuleType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkOption" upperBound="-1"
         eType="#//CheckOption"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumPrimaryKeyIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumForeignKeyIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumCheckConstraintIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PercentFreeTerminology">
     <eLiterals name="PERCENT_FREE"/>
@@ -309,6 +330,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillFactorSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="includedColumnsSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExtendedDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -320,6 +343,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="editProcSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="encodingSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="validProcSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predefinedDataTypeDefinitions"
@@ -342,6 +367,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="structuredTypeSupported"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifierQuoteString"
@@ -364,6 +391,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="terminationCharacter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=";"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="LengthUnit">
     <eLiterals name="DECIMAL"/>
@@ -374,6 +403,27 @@
   <eClassifiers xsi:type="ecore:EClass" name="NicknameDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SchemaDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ViewDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumIdentifierLength"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FieldQualifierDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="validTrailingFieldQualifierDefinitions"
+        upperBound="-1" eType="#//FieldQualifierDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EEnum ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/IntervalQualifierType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultPrecision" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precisionSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultScale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="scaleSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DebuggerDefinition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conditionSupported" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

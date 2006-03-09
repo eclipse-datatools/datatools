@@ -31,6 +31,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getCheckOption <em>Check Option</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumPrimaryKeyIdentifierLength <em>Maximum Primary Key Identifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumForeignKeyIdentifierLength <em>Maximum Foreign Key Identifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumCheckConstraintIdentifierLength <em>Maximum Check Constraint Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -274,5 +277,83 @@ public interface ConstraintDefinition extends EObject{
 	 * @generated
 	 */
 	EList getCheckOption();
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Primary Key Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Primary Key Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Primary Key Identifier Length</em>' attribute.
+	 * @see #setMaximumPrimaryKeyIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_MaximumPrimaryKeyIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumPrimaryKeyIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumPrimaryKeyIdentifierLength <em>Maximum Primary Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Primary Key Identifier Length</em>' attribute.
+	 * @see #getMaximumPrimaryKeyIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumPrimaryKeyIdentifierLength(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Foreign Key Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Foreign Key Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Foreign Key Identifier Length</em>' attribute.
+	 * @see #setMaximumForeignKeyIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_MaximumForeignKeyIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumForeignKeyIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumForeignKeyIdentifierLength <em>Maximum Foreign Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Foreign Key Identifier Length</em>' attribute.
+	 * @see #getMaximumForeignKeyIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumForeignKeyIdentifierLength(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Check Constraint Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Check Constraint Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Check Constraint Identifier Length</em>' attribute.
+	 * @see #setMaximumCheckConstraintIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getConstraintDefinition_MaximumCheckConstraintIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumCheckConstraintIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition#getMaximumCheckConstraintIdentifierLength <em>Maximum Check Constraint Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Check Constraint Identifier Length</em>' attribute.
+	 * @see #getMaximumCheckConstraintIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumCheckConstraintIdentifierLength(int value);
 
 } // ConstraintDefinition

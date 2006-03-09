@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TriggerDefinitionImpl.java,v 1.3 2005/06/20 22:06:17 ledunnel Exp $
+ * $Id: TriggerDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#isInsteadOfTriggerSupported <em>Instead Of Trigger Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#isRowTriggerReferenceSupported <em>Row Trigger Reference Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#isTableTriggerReferenceSupported <em>Table Trigger Reference Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -239,6 +240,26 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * @ordered
 	 */
 	protected boolean tableTriggerReferenceSupported = TABLE_TRIGGER_REFERENCE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumIdentifierLength() <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -473,6 +494,27 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumIdentifierLength() {
+		return maximumIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumIdentifierLength(int newMaximumIdentifierLength) {
+		int oldMaximumIdentifierLength = maximumIdentifierLength;
+		maximumIdentifierLength = newMaximumIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH, oldMaximumIdentifierLength, maximumIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
@@ -495,6 +537,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 				return isRowTriggerReferenceSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				return isTableTriggerReferenceSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -535,6 +579,9 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 				return;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				setTableTriggerReferenceSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
 		eDynamicSet(eFeature, newValue);
@@ -577,6 +624,9 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				setTableTriggerReferenceSupported(TABLE_TRIGGER_REFERENCE_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -608,6 +658,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 				return rowTriggerReferenceSupported != ROW_TRIGGER_REFERENCE_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED:
 				return tableTriggerReferenceSupported != TABLE_TRIGGER_REFERENCE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -641,6 +693,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 		result.append(rowTriggerReferenceSupported);
 		result.append(", tableTriggerReferenceSupported: "); //$NON-NLS-1$
 		result.append(tableTriggerReferenceSupported);
+		result.append(", maximumIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

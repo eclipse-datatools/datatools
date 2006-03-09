@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.dbdefinition;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -20,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getIdentityColumnDataTypeDefinitions <em>Identity Column Data Type Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentitySupported <em>Identity Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isComputedSupported <em>Computed Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentityStartValueSupported <em>Identity Start Value Supported</em>}</li>
@@ -27,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentityMinimumSupported <em>Identity Minimum Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentityMaximumSupported <em>Identity Maximum Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#isIdentityCycleSupported <em>Identity Cycle Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,6 +39,22 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ColumnDefinition extends EObject{
+	/**
+	 * Returns the value of the '<em><b>Identity Column Data Type Definitions</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Identity Column Data Type Definitions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Identity Column Data Type Definitions</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition_IdentityColumnDataTypeDefinitions()
+	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition" required="true"
+	 * @generated
+	 */
+	EList getIdentityColumnDataTypeDefinitions();
+
 	/**
 	 * Returns the value of the '<em><b>Identity Supported</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,6 +83,7 @@ public interface ColumnDefinition extends EObject{
 
 	/**
 	 * Returns the value of the '<em><b>Computed Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Computed Supported</em>' attribute isn't clear,
@@ -72,7 +93,7 @@ public interface ColumnDefinition extends EObject{
 	 * @return the value of the '<em>Computed Supported</em>' attribute.
 	 * @see #setComputedSupported(boolean)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition_ComputedSupported()
-	 * @model
+	 * @model default="true"
 	 * @generated
 	 */
 	boolean isComputedSupported();
@@ -221,5 +242,31 @@ public interface ColumnDefinition extends EObject{
 	 * @generated
 	 */
 	void setIdentityCycleSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getColumnDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // ColumnDefinition

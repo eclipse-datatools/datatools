@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#isDefaultValueSupported <em>Default Value Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#isDistinctTypeSupported <em>Distinct Type Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#isStructuredTypeSupported <em>Structured Type Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,5 +109,31 @@ public interface UserDefinedTypeDefinition extends EObject{
 	 * @generated
 	 */
 	void setStructuredTypeSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getUserDefinedTypeDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // UserDefinedTypeDefinition

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getLanguageType <em>Language Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getFunctionLanguageType <em>Function Language Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getProcedureType <em>Procedure Type</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -374,5 +375,31 @@ public interface StoredProcedureDefinition extends EObject{
 	 * @generated
 	 */
 	EList getProcedureType();
+
+	/**
+	 * Returns the value of the '<em><b>Maximum Identifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Maximum Identifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #setMaximumIdentifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getStoredProcedureDefinition_MaximumIdentifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getMaximumIdentifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.StoredProcedureDefinition#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Maximum Identifier Length</em>' attribute.
+	 * @see #getMaximumIdentifierLength()
+	 * @generated
+	 */
+	void setMaximumIdentifierLength(int value);
 
 } // StoredProcedureDefinition

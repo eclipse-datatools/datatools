@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLDataTypesItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: SQLDataTypesItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -33,7 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier {
+public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -577,6 +578,34 @@ public class SQLDataTypesItemProviderAdapterFactory extends SQLDataTypesAdapterF
 		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
+	}
+
+	/**
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void dispose() {
+		if (characterStringDataTypeItemProvider != null) characterStringDataTypeItemProvider.dispose();
+		if (rowDataTypeItemProvider != null) rowDataTypeItemProvider.dispose();
+		if (booleanDataTypeItemProvider != null) booleanDataTypeItemProvider.dispose();
+		if (intervalDataTypeItemProvider != null) intervalDataTypeItemProvider.dispose();
+		if (binaryStringDataTypeItemProvider != null) binaryStringDataTypeItemProvider.dispose();
+		if (characterSetItemProvider != null) characterSetItemProvider.dispose();
+		if (timeDataTypeItemProvider != null) timeDataTypeItemProvider.dispose();
+		if (distinctUserDefinedTypeItemProvider != null) distinctUserDefinedTypeItemProvider.dispose();
+		if (structuredUserDefinedTypeItemProvider != null) structuredUserDefinedTypeItemProvider.dispose();
+		if (attributeDefinitionItemProvider != null) attributeDefinitionItemProvider.dispose();
+		if (fixedPrecisionDataTypeItemProvider != null) fixedPrecisionDataTypeItemProvider.dispose();
+		if (domainItemProvider != null) domainItemProvider.dispose();
+		if (fieldItemProvider != null) fieldItemProvider.dispose();
+		if (dataLinkDataTypeItemProvider != null) dataLinkDataTypeItemProvider.dispose();
+		if (userDefinedTypeOrderingItemProvider != null) userDefinedTypeOrderingItemProvider.dispose();
+		if (dateDataTypeItemProvider != null) dateDataTypeItemProvider.dispose();
+		if (approximateNumericDataTypeItemProvider != null) approximateNumericDataTypeItemProvider.dispose();
+		if (integerDataTypeItemProvider != null) integerDataTypeItemProvider.dispose();
+		if (xmlDataTypeItemProvider != null) xmlDataTypeItemProvider.dispose();
 	}
 
 }

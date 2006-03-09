@@ -44,6 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable#getReferencingForeignKeys <em>Referencing Foreign Keys</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,6 +70,24 @@ public interface BaseTable extends Table{
 	 * @generated
 	 */
 	EList getConstraints();
+
+	/**
+	 * Returns the value of the '<em><b>Referencing Foreign Keys</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable <em>Referenced Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Referencing Foreign Keys</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Referencing Foreign Keys</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getBaseTable_ReferencingForeignKeys()
+	 * @see org.eclipse.datatools.modelbase.sql.constraints.ForeignKey#getReferencedTable
+	 * @model type="org.eclipse.datatools.modelbase.sql.constraints.ForeignKey" opposite="referencedTable"
+	 * @generated
+	 */
+	EList getReferencingForeignKeys();
 
 	/**
 	 * <!-- begin-user-doc -->

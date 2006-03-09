@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeignKeyItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: ForeignKeyItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -66,6 +66,7 @@ public class ForeignKeyItemProvider
 			addUniqueConstraintPropertyDescriptor(object);
 			addReferencedMembersPropertyDescriptor(object);
 			addUniqueIndexPropertyDescriptor(object);
+			addReferencedTablePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -184,6 +185,26 @@ public class ForeignKeyItemProvider
 				 getString("_UI_ForeignKey_uniqueIndex_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_uniqueIndex_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				 SQLConstraintsPackage.eINSTANCE.getForeignKey_UniqueIndex(),
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Referenced Table feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addReferencedTablePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ForeignKey_referencedTable_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_referencedTable_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLConstraintsPackage.eINSTANCE.getForeignKey_ReferencedTable(),
 				 true,
 				 null,
 				 null,

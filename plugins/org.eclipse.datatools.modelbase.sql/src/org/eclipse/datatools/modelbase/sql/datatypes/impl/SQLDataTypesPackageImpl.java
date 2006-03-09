@@ -1619,6 +1619,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		addEEnumLiteral(intervalQualifierTypeEEnum, IntervalQualifierType.HOUR_LITERAL);
 		addEEnumLiteral(intervalQualifierTypeEEnum, IntervalQualifierType.MINUTE_LITERAL);
 		addEEnumLiteral(intervalQualifierTypeEEnum, IntervalQualifierType.SECOND_LITERAL);
+		addEEnumLiteral(intervalQualifierTypeEEnum, IntervalQualifierType.FRACTION_LITERAL);
 
 		initEEnum(orderingTypeEEnum, OrderingType.class, "OrderingType"); //$NON-NLS-1$
 		addEEnumLiteral(orderingTypeEEnum, OrderingType.EQUALS_LITERAL);

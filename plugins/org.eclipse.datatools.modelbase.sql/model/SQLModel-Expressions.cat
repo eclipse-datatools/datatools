@@ -23,7 +23,7 @@
 	(object Attribute
 	    tool       	"Ecore"
 	    name       	"nsURI"
-	    value      	(value Text "http:///org/eclipse/datatools/modelbase/expressions.ecore"))
+	    value      	(value Text "http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"))
 	(object Attribute
 	    tool       	"Ecore"
 	    name       	"prefix"

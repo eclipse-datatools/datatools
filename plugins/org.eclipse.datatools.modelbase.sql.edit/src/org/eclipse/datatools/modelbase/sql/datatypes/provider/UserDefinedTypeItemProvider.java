@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UserDefinedTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: UserDefinedTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -100,16 +100,6 @@ public class UserDefinedTypeItemProvider
 			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getUserDefinedType_Ordering());
 		}
 		return childrenFeatures;
-	}
-
-	/**
-	 * This returns UserDefinedType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/UserDefinedType"); //$NON-NLS-1$
 	}
 
 	/**

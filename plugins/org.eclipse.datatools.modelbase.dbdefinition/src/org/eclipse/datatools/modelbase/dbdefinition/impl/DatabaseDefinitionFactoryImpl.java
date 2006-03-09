@@ -57,6 +57,9 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 			case DatabaseDefinitionPackage.QUERY_DEFINITION: return createQueryDefinition();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION: return createSQLSyntaxDefinition();
 			case DatabaseDefinitionPackage.NICKNAME_DEFINITION: return createNicknameDefinition();
+			case DatabaseDefinitionPackage.SCHEMA_DEFINITION: return createSchemaDefinition();
+			case DatabaseDefinitionPackage.VIEW_DEFINITION: return createViewDefinition();
+			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION: return createFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION: return createDebuggerDefinition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -72,11 +75,6 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 		switch (eDataType.getClassifierID()) {
 			case DatabaseDefinitionPackage.CHECK_OPTION: {
 				CheckOption result = CheckOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.DEFAULT_VALUE_TYPE: {
-				DefaultValueType result = DefaultValueType.get(initialValue);
 				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				return result;
 			}
@@ -133,8 +131,6 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case DatabaseDefinitionPackage.CHECK_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
-			case DatabaseDefinitionPackage.DEFAULT_VALUE_TYPE:
 				return instanceValue == null ? null : instanceValue.toString();
 			case DatabaseDefinitionPackage.LANGUAGE_TYPE:
 				return instanceValue == null ? null : instanceValue.toString();
@@ -305,6 +301,36 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public NicknameDefinition createNicknameDefinition() {
 		NicknameDefinitionImpl nicknameDefinition = new NicknameDefinitionImpl();
 		return nicknameDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SchemaDefinition createSchemaDefinition() {
+		SchemaDefinitionImpl schemaDefinition = new SchemaDefinitionImpl();
+		return schemaDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ViewDefinition createViewDefinition() {
+		ViewDefinitionImpl viewDefinition = new ViewDefinitionImpl();
+		return viewDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FieldQualifierDefinition createFieldQualifierDefinition() {
+		FieldQualifierDefinitionImpl fieldQualifierDefinition = new FieldQualifierDefinitionImpl();
+		return fieldQualifierDefinition;
 	}
 
 	/**

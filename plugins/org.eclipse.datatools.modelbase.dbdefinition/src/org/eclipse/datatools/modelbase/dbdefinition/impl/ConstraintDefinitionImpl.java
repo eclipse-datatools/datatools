@@ -42,6 +42,9 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getCheckOption <em>Check Option</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getMaximumPrimaryKeyIdentifierLength <em>Maximum Primary Key Identifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getMaximumForeignKeyIdentifierLength <em>Maximum Foreign Key Identifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl#getMaximumCheckConstraintIdentifierLength <em>Maximum Check Constraint Identifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -217,6 +220,66 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * @ordered
 	 */
 	protected EList checkOption = null;
+
+	/**
+	 * The default value of the '{@link #getMaximumPrimaryKeyIdentifierLength() <em>Maximum Primary Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumPrimaryKeyIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumPrimaryKeyIdentifierLength() <em>Maximum Primary Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumPrimaryKeyIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumPrimaryKeyIdentifierLength = MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumForeignKeyIdentifierLength() <em>Maximum Foreign Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumForeignKeyIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumForeignKeyIdentifierLength() <em>Maximum Foreign Key Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumForeignKeyIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumForeignKeyIdentifierLength = MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMaximumCheckConstraintIdentifierLength() <em>Maximum Check Constraint Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumCheckConstraintIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMaximumCheckConstraintIdentifierLength() <em>Maximum Check Constraint Identifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaximumCheckConstraintIdentifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int maximumCheckConstraintIdentifierLength = MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -424,6 +487,69 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getMaximumPrimaryKeyIdentifierLength() {
+		return maximumPrimaryKeyIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumPrimaryKeyIdentifierLength(int newMaximumPrimaryKeyIdentifierLength) {
+		int oldMaximumPrimaryKeyIdentifierLength = maximumPrimaryKeyIdentifierLength;
+		maximumPrimaryKeyIdentifierLength = newMaximumPrimaryKeyIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH, oldMaximumPrimaryKeyIdentifierLength, maximumPrimaryKeyIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getMaximumForeignKeyIdentifierLength() {
+		return maximumForeignKeyIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumForeignKeyIdentifierLength(int newMaximumForeignKeyIdentifierLength) {
+		int oldMaximumForeignKeyIdentifierLength = maximumForeignKeyIdentifierLength;
+		maximumForeignKeyIdentifierLength = newMaximumForeignKeyIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH, oldMaximumForeignKeyIdentifierLength, maximumForeignKeyIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getMaximumCheckConstraintIdentifierLength() {
+		return maximumCheckConstraintIdentifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaximumCheckConstraintIdentifierLength(int newMaximumCheckConstraintIdentifierLength) {
+		int oldMaximumCheckConstraintIdentifierLength = maximumCheckConstraintIdentifierLength;
+		maximumCheckConstraintIdentifierLength = newMaximumCheckConstraintIdentifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH, oldMaximumCheckConstraintIdentifierLength, maximumCheckConstraintIdentifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
 		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED:
@@ -446,6 +572,12 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 				return getParentDeleteDRIRuleType();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION:
 				return getCheckOption();
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumPrimaryKeyIdentifierLength());
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumForeignKeyIdentifierLength());
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumCheckConstraintIdentifierLength());
 		}
 		return eDynamicGet(eFeature, resolve);
 	}
@@ -490,6 +622,15 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 				getCheckOption().clear();
 				getCheckOption().addAll((Collection)newValue);
 				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
+				setMaximumPrimaryKeyIdentifierLength(((Integer)newValue).intValue());
+				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
+				setMaximumForeignKeyIdentifierLength(((Integer)newValue).intValue());
+				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
+				setMaximumCheckConstraintIdentifierLength(((Integer)newValue).intValue());
+				return;
 		}
 		eDynamicSet(eFeature, newValue);
 	}
@@ -531,6 +672,15 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION:
 				getCheckOption().clear();
 				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
+				setMaximumPrimaryKeyIdentifierLength(MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
+				setMaximumForeignKeyIdentifierLength(MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
+				setMaximumCheckConstraintIdentifierLength(MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		eDynamicUnset(eFeature);
 	}
@@ -562,6 +712,12 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 				return parentDeleteDRIRuleType != null && !parentDeleteDRIRuleType.isEmpty();
 			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__CHECK_OPTION:
 				return checkOption != null && !checkOption.isEmpty();
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH:
+				return maximumPrimaryKeyIdentifierLength != MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH:
+				return maximumForeignKeyIdentifierLength != MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH:
+				return maximumCheckConstraintIdentifierLength != MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH_EDEFAULT;
 		}
 		return eDynamicIsSet(eFeature);
 	}
@@ -595,6 +751,12 @@ public class ConstraintDefinitionImpl extends EObjectImpl implements ConstraintD
 		result.append(parentDeleteDRIRuleType);
 		result.append(", checkOption: "); //$NON-NLS-1$
 		result.append(checkOption);
+		result.append(", maximumPrimaryKeyIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumPrimaryKeyIdentifierLength);
+		result.append(", maximumForeignKeyIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumForeignKeyIdentifierLength);
+		result.append(", maximumCheckConstraintIdentifierLength: "); //$NON-NLS-1$
+		result.append(maximumCheckConstraintIdentifierLength);
 		result.append(')');
 		return result.toString();
 	}

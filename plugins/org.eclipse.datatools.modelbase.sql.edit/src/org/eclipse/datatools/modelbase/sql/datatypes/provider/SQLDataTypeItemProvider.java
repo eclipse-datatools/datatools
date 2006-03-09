@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: SQLDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -58,16 +58,6 @@ public class SQLDataTypeItemProvider
 
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This returns SQLDataType.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/SQLDataType"); //$NON-NLS-1$
 	}
 
 	/**

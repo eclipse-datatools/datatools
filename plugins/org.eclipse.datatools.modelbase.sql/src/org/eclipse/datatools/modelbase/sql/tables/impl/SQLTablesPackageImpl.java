@@ -425,6 +425,15 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBaseTable_ReferencingForeignKeys() {
+		return (EReference)baseTableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getColumn() {
 		return columnEClass;
 	}
@@ -735,6 +744,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 
 		baseTableEClass = createEClass(BASE_TABLE);
 		createEReference(baseTableEClass, BASE_TABLE__CONSTRAINTS);
+		createEReference(baseTableEClass, BASE_TABLE__REFERENCING_FOREIGN_KEYS);
 
 		columnEClass = createEClass(COLUMN);
 		createEReference(columnEClass, COLUMN__TABLE);
@@ -837,6 +847,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 
 		initEClass(baseTableEClass, BaseTable.class, "BaseTable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getBaseTable_Constraints(), theSQLConstraintsPackage.getTableConstraint(), theSQLConstraintsPackage.getTableConstraint_BaseTable(), "constraints", null, 0, -1, BaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getBaseTable_ReferencingForeignKeys(), theSQLConstraintsPackage.getForeignKey(), theSQLConstraintsPackage.getForeignKey_ReferencedTable(), "referencingForeignKeys", null, 0, -1, BaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(baseTableEClass, theSQLSchemaPackage.getList(), "getUniqueConstraints"); //$NON-NLS-1$
 
