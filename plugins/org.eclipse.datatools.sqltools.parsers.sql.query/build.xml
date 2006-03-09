@@ -133,7 +133,7 @@
 			<fileset dir="${build.result.folder}" includes="sqlqueryparser.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,about.html,sqlqueryparser.jar,plugin.properties/,schema/,META-INF/"/>
+			<fileset dir="${basedir}" includes="plugin.xml,about.html,sqlqueryparser.jar,plugin.properties,schema/,META-INF/"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqlqueryparsersrc.zip"/>
