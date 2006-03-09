@@ -170,12 +170,12 @@ public class UIExtensionManifest
      * @throws OdaException if there is no data set ui definition associated 
      *                   with the specified data set element id, or 
      *                   if there are more than one data set elements 
-     *                   that match the id.
+     *                   when no element id is specified.
      */
     public DataSetUIElement getDataSetUIElement( String dataSetElementID ) 
         throws OdaException
     {
-        if( dataSetElementID == null )
+        if( dataSetElementID == null || dataSetElementID.length() == 0 )
         {
             // find default data set element and return it if found
             if( m_dataSetUIElements == null ||

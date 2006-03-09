@@ -11,10 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.4 2006/02/24 01:29:03 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.5 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Data Set Design</b></em>'.
+ * @extends IAdaptable
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -57,7 +59,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign
+public class DataSetDesignImpl extends EObjectImpl 
+    implements DataSetDesign, IAdaptable
 {
     /**
      * <!-- begin-user-doc -->
@@ -224,6 +227,16 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDataSetDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+     * @generated NOT
+     */
+    public Object getAdapter( Class adapter )
+    {
+        // TODO - not supporting any adapter class yet
+        return null;
     }
 
     /* (non-Javadoc)

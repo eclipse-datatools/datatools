@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.4 2006/02/24 01:29:03 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.5 2006/02/26 08:04:34 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Data Source Design</b></em>'.
+ * @extends IAdaptable
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
@@ -51,8 +53,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DataSourceDesignImpl extends EObjectImpl implements
-        DataSourceDesign
+public class DataSourceDesignImpl extends EObjectImpl 
+    implements DataSourceDesign, IAdaptable
 {
     /**
      * <!-- begin-user-doc -->
@@ -219,6 +221,16 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     protected EClass eStaticClass()
     {
         return DesignPackage.eINSTANCE.getDataSourceDesign();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+     * @generated NOT
+     */
+    public Object getAdapter( Class adapter )
+    {
+        // TODO - not supporting any adapter class yet
+        return null;
     }
 
     /**

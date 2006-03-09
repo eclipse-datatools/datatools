@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.2 2006/02/21 11:20:09 lchan Exp $
+ * $Id: DesignFactory.java,v 1.3 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -380,6 +380,19 @@ public interface DesignFactory extends EFactory{
      */
     DesignSessionRequest createDesignSessionRequest( DataSourceDesign dataSourceDesign );
     
+    /**
+     * Creates and returns a new object of class '<em>Session Request</em>'
+     * that contains the given DataSetDesign.
+     * <br>This may be used by an ODA host designer to create 
+     * a design session request to edit a 
+     * data set design definition.
+     * @param   dataSetDesign    the data set design to edit
+     * @return a new object of class '<em>Session Request</em>'.
+     * @see #createDesignSessionRequest()
+     * @generated NOT
+     */
+    DesignSessionRequest createDesignSessionRequest( DataSetDesign dataSetDesign );
+
     /**
      * Creates and returns an OdaDesignSession instance with a 
      * DesignSessionRequest that contains the given DataSourceDesign.

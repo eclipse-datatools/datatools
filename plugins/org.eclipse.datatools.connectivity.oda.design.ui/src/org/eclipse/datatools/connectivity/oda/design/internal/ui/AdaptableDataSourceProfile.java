@@ -237,7 +237,10 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     {
         if( hasLinkedProfile() )
         {
-            getLinkedProfile().setConnected( connected );
+            if( connected ) 
+                getLinkedProfile().connect();
+            else
+                getLinkedProfile().disconnect();
             return;
         }
 

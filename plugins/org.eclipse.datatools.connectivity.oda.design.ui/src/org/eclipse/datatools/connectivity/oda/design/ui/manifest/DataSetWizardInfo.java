@@ -26,7 +26,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class DataSetWizardInfo
 {
-    private static final String WIZARD_CLASS_ATTRIBUTE = "dataSetUI.newDataSetWizard.class"; //$NON-NLS-1$
+    public static final String CLASS_ATTRIBUTE = "class"; //$NON-NLS-1$
     
     private String m_className;
     private String m_windowTitle;
@@ -34,9 +34,9 @@ public class DataSetWizardInfo
     DataSetWizardInfo( IConfigurationElement dataSetWizardElement ) 
         throws OdaException
     {
-        m_className = dataSetWizardElement.getAttribute( "class" ); //$NON-NLS-1$
+        m_className = dataSetWizardElement.getAttribute( CLASS_ATTRIBUTE );
         if( m_className == null || m_className.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + WIZARD_CLASS_ATTRIBUTE );
+            throw new OdaException( "Missing attribute value in " + CLASS_ATTRIBUTE );
 
         m_windowTitle = dataSetWizardElement.getAttribute( "windowTitle" );         //$NON-NLS-1$
     }
@@ -47,7 +47,7 @@ public class DataSetWizardInfo
      * framework's wizard base class.  See plugin schema for details.
      * @return the full class name of the data set wizard
      */
-    public String getWizardClassName()
+    public String getClassName()
     {
         return m_className;
     }
@@ -56,7 +56,7 @@ public class DataSetWizardInfo
      * Returns the customized title of the data set wizard window.
      * @return  customized window title; may be null, if none is specified
      */
-    public String getWizardWindowTitle()
+    public String getWindowTitle()
     {
         return m_windowTitle;
     }

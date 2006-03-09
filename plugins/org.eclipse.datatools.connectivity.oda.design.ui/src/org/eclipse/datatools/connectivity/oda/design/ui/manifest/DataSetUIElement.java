@@ -38,10 +38,12 @@ public class DataSetUIElement
     private boolean m_hasParameterDefinition;
     private DataSetWizardInfo m_wizardInfo;
     private Hashtable m_dataSetPages;
+    private IConfigurationElement m_dataSetElement;
 
     DataSetUIElement( IConfigurationElement dataSetElement ) 
         throws OdaException
     {
+        m_dataSetElement = dataSetElement;
         m_id = dataSetElement.getAttribute( "id" ); //$NON-NLS-1$
         if( m_id == null || m_id.length() == 0 )
             throw new OdaException( "Missing id attribute value" );
@@ -58,18 +60,15 @@ public class DataSetUIElement
         }
         
         // newDataSetWizard element; must have one and only one
-        IConfigurationElement[] wizardInfo = 
-            dataSetElement.getChildren( WIZARD_ELEMENT_NAME );
-        // TODO - restore error condition after all data sets are migrated
-//        if( wizardInfo.length < 1 )  // expects one element
-//            throw new OdaException( "Missing element: " + WIZARD_ELEMENT_NAME );
-        if( wizardInfo.length >= 1 ) 
-            m_wizardInfo = new DataSetWizardInfo( wizardInfo[0] );
+        IConfigurationElement wizardElement = 
+                                getWizardElement( dataSetElement );
+        if( wizardElement != null )
+            m_wizardInfo = new DataSetWizardInfo( wizardElement );
 
         // dataSetPage elements; must have one or more
         m_dataSetPages = getDataSetPages( dataSetElement );
     }
-    
+
     /**
      * Returns a collection of dataSetPage elements in the given element.
      * Expects to find one or more dataSetPage elements.
@@ -87,7 +86,7 @@ public class DataSetUIElement
         for( int i = 0; i < pages.length; i++ )
         {
             IConfigurationElement aPage = pages[i];
-            String pageId = aPage.getAttribute( "id" ); //$NON-NLS-1$
+            String pageId = aPage.getAttribute( DataSetPageInfo.ID_ATTRIBUTE );
             dataSetPages.put( pageId, 
                               new DataSetPageInfo( aPage ) );
         }
@@ -132,6 +131,15 @@ public class DataSetUIElement
     }
 
     /**
+     * Returns the configuration element of this instance.
+     * @return  a dataSetUI configuration element 
+     */
+    public IConfigurationElement getElement()
+    {
+        return m_dataSetElement;
+    }
+    
+    /**
      * Returns the definition of a data set wizard that allows an user 
      * to create a new ODA data set design instance.
      * @return the wizard definition that represents the
@@ -140,6 +148,34 @@ public class DataSetUIElement
     public DataSetWizardInfo getWizardInfo()
     {
         return m_wizardInfo;
+    }
+    
+    /**
+     * Returns the newDataSetWizard configuration element  
+     * that defines the wizard that allows an user 
+     * to create a new ODA data set design instance.
+     * @param dataSetUIElement  a dataSetUI configuration element 
+     * @return  the newDataSetWizard configuration element
+     * @throws OdaException if no newDataSetWizard element is defined
+     */
+    public static IConfigurationElement getWizardElement( 
+                    IConfigurationElement dataSetUIElement )
+        throws OdaException
+    {
+        if( dataSetUIElement == null )
+            return null;
+        // newDataSetWizard element; expects one and only one
+        IConfigurationElement[] wizardElements = 
+            dataSetUIElement.getChildren( WIZARD_ELEMENT_NAME );
+
+        // TODO - restore error condition after all data sets are migrated
+//        if( wizardElements.length < 1 )  // expects one element
+//            throw new OdaException( "Missing element: " + WIZARD_ELEMENT_NAME );
+
+        if( wizardElements.length >= 1 ) 
+            return wizardElements[0];   // takes the first one
+
+        return null;    // TODO - remove
     }
     
     /**
@@ -183,15 +219,14 @@ public class DataSetUIElement
      * data set page will be returned by default.
      * @param pageID  the id of a data set page element
      * @return  the data set page definition
-     * @throws OdaException if there is no data set page definition associated 
-     *                   with the specified data set page id, or 
-     *                   if there are more than one data set pages 
-     *                   that match the id.
+     * @throws OdaException if no data set page id is specified, and
+     *                   there are more than one data set pages;
+     *                   or when no match is found for given page id 
      */
     public DataSetPageInfo getPageDefinition( String pageId ) 
         throws OdaException
     {
-        if( pageId == null )
+        if( pageId == null || pageId.length() == 0 )
         {
             // find default data set page element and return it if found
             if( m_dataSetPages == null ||
@@ -212,4 +247,45 @@ public class DataSetUIElement
         return pageInfo;
     }
     
+    /**
+     * Returns the dataSetPage configuration element  
+     * with the given page id
+     * defined in this data set ui element.
+     * If the given page id is null and the data set UI
+     * extension has only one data set page element, that
+     * data set page element will be returned by default.
+     * @param dataSetUIElement  a dataSetUI configuration element 
+     * @param pageID  the id of a data set page element
+     * @return the dataSetPage configuration element with given id;
+     *          may be null if no matching id is found
+     * @throws OdaException if no data set page id is specified, and
+     *                   there are more than one data set pages 
+     */
+    public static IConfigurationElement getPageElement( 
+            IConfigurationElement dataSetUIElement, String pageId )
+        throws OdaException
+    {
+        if( dataSetUIElement == null )
+            return null;
+        
+        IConfigurationElement[] pages = 
+            dataSetUIElement.getChildren( PAGE_ELEMENT_NAME );
+        if( pageId == null || pageId.length() == 0 )
+        {
+            // find default data set page element and return it if found
+            if( pages.length != 1 )
+                throw new OdaException( "Missing data set page id" );
+            return pages[0];
+        }
+        
+        // find the one with the matching pageId
+        for( int i = 0; i < pages.length; i++ )
+        {
+            IConfigurationElement pageElement = pages[i];
+            if( pageId.equalsIgnoreCase( pageElement.getAttribute( DataSetPageInfo.ID_ATTRIBUTE ) ))
+                return pageElement;
+        }
+        return null;    // no matching id is found
+    }
+
 }

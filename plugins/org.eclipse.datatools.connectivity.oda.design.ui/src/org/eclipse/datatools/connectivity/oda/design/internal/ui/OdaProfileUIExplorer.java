@@ -14,12 +14,17 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import java.text.MessageFormat;
+
 import org.eclipse.birt.core.framework.FrameworkException;
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
+import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.jface.wizard.IWizard;
@@ -126,6 +131,58 @@ public class OdaProfileUIExplorer
         ((DataSourceEditorPage) propPage).setTitle( pageName );
 
         return (DataSourceEditorPage) propPage;
+    }
+    
+    /**
+     * Returns the ODA custom wizard provided by an
+     * ODA data set designer that implements the 
+     * oda data source ui extension point.
+     * @param odaDataSourceId
+     * @param dataSetElement
+     * @return
+     * @throws OdaException
+     */
+    public NewDataSetWizard getDataSetWizard( String odaDataSourceId,
+                            DataSetUIElement dataSetElement )
+        throws OdaException
+    {
+        DataSetWizardInfo wizardInfo = dataSetElement.getWizardInfo();
+        if( wizardInfo == null )
+        {
+            // use default wizard base class
+            return new NewDataSetWizard();
+        }
+
+        // instantiate specified wizard class
+        Object wizardInstance = null;
+        try
+        {
+            IConfigurationElement wizardElement =
+                DataSetUIElement.getWizardElement( dataSetElement.getElement() );
+            wizardInstance = wizardElement.createExecutableExtension( 
+                    DataSetWizardInfo.CLASS_ATTRIBUTE );
+        }
+        catch( FrameworkException ex )
+        {
+            throw new OdaException( ex );
+        }
+        
+        if( ! ( wizardInstance instanceof NewDataSetWizard ))
+        {
+            String messageText = "Invalid wizard ({0}) implementation. An ODA custom wizard page must extend from {1}.";
+            String wizardClassName = wizardInfo.getClassName();
+            
+            throw new OdaException( MessageFormat.format( messageText, 
+                    new Object[]{ wizardClassName,
+                        NewDataSetWizard.class.getName() } )); 
+        }
+        
+        // a valid wizard, subclass of NewDataSetWizard
+        String wizardTitle = wizardInfo.getWindowTitle();
+        if( wizardTitle != null && wizardTitle.length() > 0 )
+            (( NewDataSetWizard ) wizardInstance ).setWindowTitle( wizardTitle );
+
+        return ( NewDataSetWizard ) wizardInstance;   
     }
 
 }

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequestImpl.java,v 1.2 2006/02/03 04:16:16 lchan Exp $
+ * $Id: DesignSessionRequestImpl.java,v 1.3 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -151,6 +151,21 @@ public class DesignSessionRequestImpl extends EObjectImpl implements DesignSessi
         DataAccessDesign newAccessDesign =
             DesignFactory.eINSTANCE.createDataAccessDesign();
         newAccessDesign.setNewDataSetDesign( dataSourceDesign );
+        
+        setDataAccessDesign( newAccessDesign );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#setNewDataAccessDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+     * @generated NOT
+     */
+    public void setNewDataAccessDesign( DataSetDesign dataSetDesign )
+    {
+        setSessionLocale( createDefaultLocale() );
+
+        DataAccessDesign newAccessDesign =
+            DesignFactory.eINSTANCE.createDataAccessDesign();
+        newAccessDesign.setDataSetDesign( dataSetDesign );
         
         setDataAccessDesign( newAccessDesign );
     }

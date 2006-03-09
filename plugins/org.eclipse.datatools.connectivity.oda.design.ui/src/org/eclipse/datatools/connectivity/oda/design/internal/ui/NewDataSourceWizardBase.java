@@ -15,7 +15,6 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.text.MessageFormat;
 import java.util.Properties;
 
@@ -23,7 +22,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.internal.ProfileWizardProvider;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -36,7 +34,6 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplo
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.osgi.framework.Bundle;
 
 /**
  * The ODA data source wizard base class implementation that 
@@ -189,46 +186,29 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     protected DataSourceWizardPage createWizardPage( String wizardPageClassName,
                                                     String pageTitle )
     {
-        Object pageInstance = null;
-        try
-        {
-            Bundle bundle = Platform.getBundle( m_odaDesignerPluginId );
-            Class wizardPageClass = bundle.loadClass( wizardPageClassName );
-
-            // looks for custom wizard page constructor 
-            // with a single pageName argument,
-            // extending from DataSourceWizardPage base class
-            Class argTypes[] = new Class[1];
-            argTypes[0] = String.class;
-            Constructor ct = wizardPageClass.getConstructor( argTypes );
-
-            // instantiate custom wizard page with class name as page name
-            Object argList[] = new Object[1];
-            argList[0] = wizardPageClassName;   
-            pageInstance = ct.newInstance( argList );
-        }
-        catch( Exception ex )
-        {
-            // TODO - localization
-            String messageText = "Unable to find or create custom wizard page ({0}).";
-            throw new RuntimeException( MessageFormat.format( messageText, new Object[]{ wizardPageClassName } ), 
-                                        ex );
-        }
+        // instantiate using a custom constructor 
+        // with a single pageName argument,
+        // extending from DataSourceWizardPage base class;
+        // use class name as page name
+        Object pageInstance = 
+            DesignerUtil.createInstanceWithStringArg( 
+                    m_odaDesignerPluginId,
+                    wizardPageClassName, wizardPageClassName );
         
         if( ! ( pageInstance instanceof DataSourceWizardPage ))
         {
-            // TODO - localization
             String messageText = "Invalid wizard page ({0}) implementation. An ODA custom wizard page must extend from {1}.";
             throw new RuntimeException( MessageFormat.format( messageText, 
                     new Object[]{ wizardPageClassName,
                                   DataSourceWizardPage.class.getName() } )); 
         }
         
-        // a valid wizard page, subclass from DataSourceWizardPage
-        if( pageTitle != null )
+        // a valid wizard page, subclass from DataSourceWizardPage;
+        // overrides page title, if specified
+        if( pageTitle != null && pageTitle.length() > 0 )
             (( DataSourceWizardPage ) pageInstance ).setTitle( pageTitle );
-        return ( DataSourceWizardPage ) pageInstance;
 
+        return ( DataSourceWizardPage ) pageInstance;
     }
     
     /**

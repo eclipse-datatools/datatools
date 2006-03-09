@@ -23,8 +23,8 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class DataSetPageInfo
 {
-    private static final String PAGE_ID_ATTRIBUTE = "dataSetUI.dataSetPage.id"; //$NON-NLS-1$
-    private static final String PAGE_CLASS_ATTRIBUTE = "dataSetUI.dataSetPage.wizardPageClass"; //$NON-NLS-1$
+    static final String ID_ATTRIBUTE = "id"; //$NON-NLS-1$
+    static final String CLASS_ATTRIBUTE = "wizardPageClass"; //$NON-NLS-1$
 
     private String m_id;
     private String m_wizardPageClassName;
@@ -37,11 +37,11 @@ public class DataSetPageInfo
     {
         m_id = dataSetPageElement.getAttribute( "id" ); //$NON-NLS-1$
         if( m_id == null || m_id.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + PAGE_ID_ATTRIBUTE );
+            throw new OdaException( "Missing attribute value in " + ID_ATTRIBUTE );
 
         m_wizardPageClassName = dataSetPageElement.getAttribute( "wizardPageClass" ); //$NON-NLS-1$
         if( m_wizardPageClassName == null || m_wizardPageClassName.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + PAGE_CLASS_ATTRIBUTE );
+            throw new OdaException( "Missing attribute value in " + CLASS_ATTRIBUTE );
 
         m_displayName = dataSetPageElement.getAttribute( "displayName" ); //$NON-NLS-1$
         m_path = dataSetPageElement.getAttribute( "path" ); //$NON-NLS-1$

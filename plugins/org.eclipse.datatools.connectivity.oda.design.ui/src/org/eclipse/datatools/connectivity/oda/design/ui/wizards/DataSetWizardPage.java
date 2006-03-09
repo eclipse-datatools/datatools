@@ -32,21 +32,14 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
 {
     /**
      * Creates customized control for this wizard page under the
-     * given parent composite.
+     * given parent composite.  
+     * Initializes control as appropriate
+     * with the DataSetDesign initialization instance.
      * @param parent    the parent composite
+     * @see #getInitializationDesign
      */
     public abstract void createPageCustomControl( Composite parent );
 
-    /**
-     * Sets the initial data set design definition to initialize the
-     * customized control of this wizard page.
-     * <br>This method may be called before #createPageCustomControl, 
-     * which should then initialize with the given design instance.
-     * @param dataSetDesign   a previously defined ODA data set design instance
-     */
-    public abstract void setInitialDesign( DataSetDesign dataSetDesign );
-
-    
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
      */
@@ -86,6 +79,15 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
                 ImageDescriptor titleImage )
     {
         super( pageName, title, titleImage );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+     */
+    public void createControl( Composite parent )
+    {
+        super.createControl( parent );
+        createPageCustomControl( parent );
     }
 
 }

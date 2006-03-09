@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequest.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
+ * $Id: DesignSessionRequest.java,v 1.4 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -92,13 +92,23 @@ public interface DesignSessionRequest extends EObject
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#getDataAccessDesign <em>Data Access Design</em>}' containment reference
-     * with a new data access design with a
+     * with a new data access design that contains a
      * new data set associated with given data source design.
      * @param dataSourceDesign
      * @see #setDataAccessDesign(DataAccessDesign)
      * @generated NOT
      */
     void setNewDataAccessDesign( DataSourceDesign dataSourceDesign );
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest#getDataAccessDesign <em>Data Access Design</em>}' containment reference
+     * with a new data access design that contains the
+     * specified data set design.
+     * @param dataSetDesign
+     * @see #setDataAccessDesign(DataAccessDesign)
+     * @generated NOT
+     */
+    void setNewDataAccessDesign( DataSetDesign dataSetDesign );
 
     /**
      * Returns the value of the '<em><b>Editable</b></em>' attribute.

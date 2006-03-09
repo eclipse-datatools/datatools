@@ -28,7 +28,6 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
-import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizardPage;
 import org.eclipse.jface.wizard.IWizard;
@@ -219,7 +218,8 @@ public class DataSourceDesignSession
                                 DataSourceEditorPage editorPage )
         throws OdaException
     {
-        String odaDataSourceId = validateRequestSession( request );
+        String odaDataSourceId = 
+            DesignSessionUtil.validateRequestSession( request );
 
         DataSourceDesignSession newSession = 
             new DataSourceDesignSession( odaDataSourceId );
@@ -575,37 +575,6 @@ public class DataSourceDesignSession
         return profileProps;
     }
 
-    private static String validateRequestSession( 
-                    DesignSessionRequest requestSession )
-        throws OdaException
-    {
-        // validate if start was not already called 
-        if( requestSession == null )
-            throw new OdaException( "Invalid argument." );
-
-        try
-        {
-            DesignUtil.validateObject( requestSession );
-        }
-        catch( IllegalStateException ex )
-        {
-            throw new OdaException( ex );
-        }
-
-        // validate the given request' data source design
-        DataSourceDesign dataSourceDesign = 
-            requestSession.getDataAccessDesign().getDataSourceDesign();
-        if( dataSourceDesign == null )
-            throw new OdaException( "Missing data source design in OdaDesignSession instance." );
-
-        String odaDataSourceId = dataSourceDesign.getOdaExtensionDataSourceId();
-        if( odaDataSourceId == null || odaDataSourceId.length() == 0 )
-            throw new OdaException( "Missing ODA ID in data source design." );
-
-        // done validation
-        return odaDataSourceId;
-    }
-    
     /**
      * Performs finish on the current ODA design session to
      * create a new data source design.  This 

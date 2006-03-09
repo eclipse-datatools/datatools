@@ -58,19 +58,19 @@ public class OdaConnectionWrapper extends VersionProviderConnection
             // which returns a wrapped oda.IConnection object
             getOdaConnectionHelper( m_odaDataSourceId );
             assert( m_odaConnectionHelper != null );
-            m_connectException = null;
+            open();     // test the connection properties
+            m_connectException = null;  // test succeeded
         }
-        catch( OdaException e )
+        catch( OdaException ex )
         {
-            m_connectException = e;
+            m_connectException = ex;
             clearVersionCache();
             return;
         }
 
         try
         {
-            // should be able to get metadata, without first open a connection;
-            // tries with a non-specific data set type
+            // should now be able to get metadata
             m_odaMetadataHelper = 
                 m_odaConnectionHelper.getMetaData( Constants.EMPTY_STRING );
         }
@@ -82,7 +82,7 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         if( ! canProvideVersionMetaData() )
             m_odaMetadataHelper = null; // reset
         
-        // update profile with version info
+        // update profile with version info, if available
         updateVersionCache();
     }
 
@@ -257,9 +257,6 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         }
         catch( RuntimeException e )
         {
-            // TODO - a connection may need to first open 
-            // to obtain metadata
-            
             return false;
         }
         return true;

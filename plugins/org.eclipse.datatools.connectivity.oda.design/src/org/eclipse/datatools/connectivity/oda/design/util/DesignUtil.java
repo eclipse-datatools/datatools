@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.2 2006/02/22 04:34:12 lchan Exp $
+ * $Id: DesignUtil.java,v 1.3 2006/02/26 08:04:34 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -179,5 +180,50 @@ public class DesignUtil
 
         return designProps;   
     }
+
+    /**
+     * Validates the specified design session request.
+     * If valid, returns the request's ODA data source element id.
+     * @param requestSession
+     * @return
+     * @throws IllegalStateException if specified session request is invalid
+     */
+    public static String validateRequestSession( 
+                    DesignSessionRequest requestSession )
+        throws IllegalStateException
+    {
+        if( requestSession == null )
+            throw new IllegalStateException( "Invalid argument." );
     
+        validateObject( requestSession );
+    
+        // validate the given request' data source design
+        DataSourceDesign dataSourceDesign = 
+                    requestSession.getDataSourceDesign();
+        if( dataSourceDesign == null )
+            throw new IllegalStateException( "Missing data source design in OdaDesignSession instance." );
+    
+        String odaDataSourceId = dataSourceDesign.getOdaExtensionDataSourceId();
+        if( odaDataSourceId == null || odaDataSourceId.length() == 0 )
+            throw new IllegalStateException( "Missing ODA ID in data source design." );
+    
+        // done validation
+        return odaDataSourceId;
+    }
+
+    /**
+     * Validates the specified data source design instance.
+     * @param dataSourceDesign
+     * @throws IllegalStateException if specified design is invalid
+     */
+    public static void validateDataSourceDesign( 
+                        DataSourceDesign dataSourceDesign )
+        throws IllegalStateException
+    {
+        if( dataSourceDesign == null )
+            throw new IllegalStateException( "Invalid argument." );
+    
+        validateObject( dataSourceDesign );
+    }
+
 }

@@ -16,6 +16,8 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;
@@ -28,6 +30,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class DataSetWizardPageCore extends WizardPage
 {
+
     /**
      * Sub-class may override the method to further update
      * the given data set design, as needed.
@@ -49,7 +52,8 @@ public abstract class DataSetWizardPageCore extends WizardPage
      * releasing resources associated to its data set query execution.
      */
     protected abstract void cleanup();
-   
+
+    
     /*
      * Implements base class constructor.
      */
@@ -72,7 +76,76 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     public void createControl( Composite parent )
     {
-        // TODO Auto-generated method stub
+        // base class does nothing; subclass may override
+    }
+    
+    /**
+     * Returns the data set design instance for initialization
+     * of the customized control of this wizard page.
+     * @return
+     */
+    protected DataSetDesign getInitializationDesign()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        return wizard.copyRequestDataSetDesign();
+    }
+
+    /**
+     * Returns the designer state instance for initialization
+     * of the customized control of this wizard page.
+     * @return
+     */
+    protected DesignerState getInitializationDesignerState()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        return wizard.copyDesignerState();
+    }
+    
+    /**
+     * Returns the design session locale for initialization
+     * of the customized control of this wizard page.
+     * A custom page may choose to honor or ignore such request.
+     * @return
+     */
+    protected Locale getInitializationLocale()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        return wizard.copySessionLocale();
+    }
+    
+    /**
+     * Indicates whether the current design session should be
+     * an editable session or read-only.
+     * It may be used for initialization
+     * of the customized control of this wizard page.
+     * A custom page may choose to honor or ignore such request.
+     * @return
+     */
+    protected boolean isSessionEditable()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return true;    // default
+        return wizard.isSessionEditable();       
+    }
+    
+    /**
+     * Returns the page's wizard container provided
+     * in the ODA Design UI framework to handle creation
+     * of a new data set design.
+     * @return
+     */
+    protected NewDataSetWizardBase getOdaWizard()
+    {
+        if( getWizard() instanceof NewDataSetWizardBase )
+            return (NewDataSetWizardBase) getWizard();
+        return null;
     }
     
     /**

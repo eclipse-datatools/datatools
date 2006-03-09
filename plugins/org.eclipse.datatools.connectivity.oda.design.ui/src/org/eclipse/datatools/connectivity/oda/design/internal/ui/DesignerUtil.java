@@ -14,10 +14,15 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import java.lang.reflect.Constructor;
+import java.text.MessageFormat;
+
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.osgi.framework.Bundle;
 
 /**
  *  Internal utility class to provide services
@@ -25,6 +30,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class DesignerUtil
 {
+    private DesignerUtil()
+    {}
+    
     /**
      * Validates and adapts the given data source design
 	 * for editing.
@@ -51,6 +59,47 @@ public class DesignerUtil
             (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
         
         return new AdaptableDataSourceProfile( editDataSourceDesign );
+    }
+    
+    /**
+     * Instantiate an object of the specified plugin class through
+     * its constructor with a single String argument.
+     * @param pluginId
+     * @param className
+     * @param argument
+     * @return
+     * @throws RuntimeException
+     */
+    static Object createInstanceWithStringArg( String pluginId,
+                                               String className, 
+                                               String argument ) 
+        throws RuntimeException
+    {
+        Object newInstance = null;
+        try
+        {
+            Bundle bundle = Platform.getBundle( pluginId );
+            Class loadedClass = bundle.loadClass( className );
+
+            // looks for custom constructor
+            // with a single String argument
+            Class argTypes[] = new Class[1];
+            argTypes[0] = String.class;
+            Constructor ct = loadedClass.getConstructor( argTypes );
+
+            // instantiate with given argument
+            Object argList[] = new Object[1];
+            argList[0] = argument;
+            newInstance = ct.newInstance( argList );
+        }
+        catch( Exception ex )
+        {
+            String messageText = "Unable to find or create class ({0}).";
+            throw new RuntimeException( MessageFormat.format( messageText,
+                    new Object[]
+                    { className } ), ex );
+        }
+        return newInstance;
     }
 
 }

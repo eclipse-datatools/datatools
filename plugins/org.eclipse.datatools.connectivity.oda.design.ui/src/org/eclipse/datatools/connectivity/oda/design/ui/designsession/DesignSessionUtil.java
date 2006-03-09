@@ -19,11 +19,24 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
+import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
+import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
+import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
+import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
@@ -127,6 +140,46 @@ public class DesignSessionUtil
         }
         return designProps;
     }
+
+    /**
+     * Creates a new OdaDesignSession instance with a session
+     * request that contains a new data set design of
+     * the specified name and odaDataSetId,
+     * associated with the specified data source design instance.
+     * @param newDataSetName   a unique name that identifies a data set 
+     *          design instance
+     * @param odaDataSetId      an ODA data set element id;
+     *              may be null if the associated data source extension 
+     *              supports only one type of data set 
+     * @param dataSourceDesign  the associated data source design instance
+     * @return  a new OdaDesignSession instance with a session
+     *          request of the specified design attributes
+     * @throws OdaException if specified arguments are invalid
+     */
+    public static OdaDesignSession createNewRequestSession( 
+                            String newDataSetName,
+                            String odaDataSetId, 
+                            DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        // validate input arguments
+        if( newDataSetName == null || newDataSetName.length() == 0 ||
+                dataSourceDesign == null )
+            throw new OdaException( "Invalid argument." );
+        
+        OdaDesignSession newSession =
+            DesignFactory.eINSTANCE
+                .createRequestDesignSession( dataSourceDesign );
+
+        DataSetDesign newDataSetDesign = 
+            newSession.getRequestDataSetDesign();
+        newDataSetDesign.setName( newDataSetName );
+        newDataSetDesign.setOdaExtensionDataSetId( odaDataSetId );
+
+        validateRequestSession( newSession.getRequest() );
+
+        return newSession;
+    }
     
     /**
      * Returns the connection profile instance externally referenced, 
@@ -229,5 +282,159 @@ public class DesignSessionUtil
         return OdaProfileExplorer.getInstance().getProfiles( 
                 odaDataSourceId, storageFile );
     }
+    
+    /**
+     * Returns the data set ui element manifest that
+     * defines customized data set designer
+     * that an ODA data provider extends to allow an user
+     * to create or edit an ODA data set design instance.
+     * This encapsulates the child elements for the data set wizard page(s) 
+     * and editor page(s).  
+     * @param odaDataSourceId
+     * @param odaDataSetId
+     * @return
+     * @throws OdaException
+     */
+    static DataSetUIElement getDataSetUIElement( String odaDataSourceId,
+                                        String odaDataSetId )
+        throws OdaException
+    {
+        UIExtensionManifest manifest =
+            UIManifestExplorer.getInstance().getExtensionManifest( odaDataSourceId );
+        DataSetUIElement dataSetElement = null;
+        if( manifest != null )
+            dataSetElement = manifest.getDataSetUIElement( odaDataSetId );
+        if( dataSetElement == null )
+            throw new OdaException( "No dataSetUI element defined for odaDataSourceId ({0}) and odaDataSetId ({1})." );
+        return dataSetElement;
+    }
 
+    /**
+     * Validates the specified design session request.
+     * If valid, returns the request's ODA data source element id.
+     * @param requestSession
+     * @return
+     * @throws OdaException if specified session request is invalid
+     */
+    static String validateRequestSession( 
+                    DesignSessionRequest requestSession )
+        throws OdaException
+    {
+        String odaDataSourceId = null;
+        try
+        {
+            odaDataSourceId =
+                DesignUtil.validateRequestSession( requestSession );
+        }
+        catch( IllegalStateException ex )
+        {
+            throw new OdaException( ex );
+        }
+
+        // done validation
+        return odaDataSourceId;
+    }
+
+    /**
+     * Validates the specified data source design instance.
+     * @param dataSourceDesign
+     * @throws OdaException if specified design is invalid
+     */
+    static void validateDataSourceDesign( 
+                        DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        try
+        {
+            DesignUtil.validateDataSourceDesign( dataSourceDesign );
+        }
+        catch( IllegalStateException ex )
+        {
+            throw new OdaException( ex );
+        }
+    }
+
+    /**
+     * Converts the contents of an ODA runtime result set meta data
+     * to an ODA design-time ResultSetColumns instance.
+	 * This may be used by an ODA custom page to
+	 * populate a data set design instance with its
+	 * result set meta data.
+     * @param md    ODA runtime result set meta data instance
+     * @return  the converted ResultSetColumns instance
+     * @throws OdaException
+     */
+    public static ResultSetColumns toResultSetColumns( 
+                            IResultSetMetaData md )
+        throws OdaException
+    {
+        if( md == null || md.getColumnCount() == 0 )
+            return null; // nothing to convert
+        
+        ResultSetColumns rsColumns =
+            DesignFactory.eINSTANCE.createResultSetColumns();
+        int columnCount = md.getColumnCount();
+        for( int i = 1; i <= columnCount; i++ )
+        {
+            ColumnDefinition columnDef =
+                DesignFactory.eINSTANCE.createColumnDefinition();
+
+            DataElementAttributes columnAttrs =
+                DesignFactory.eINSTANCE.createDataElementAttributes();
+            columnAttrs.setPosition( i );
+            columnAttrs.setNativeDataTypeCode( md.getColumnType(i) );
+
+            ValueFormatHints formatHints = 
+                    DesignFactory.eINSTANCE.createValueFormatHints();
+            OutputElementAttributes outAttrs = 
+                    DesignFactory.eINSTANCE.createOutputElementAttributes();
+            try
+            {
+                columnAttrs.setName( md.getColumnName(i) );
+                columnAttrs.setPrecision( md.getPrecision(i) );
+                columnAttrs.setScale( md.getScale(i) );
+                columnAttrs.setNullability( 
+                        toElementNullability( md.isNullable(i) ));
+                columnDef.setAttributes( columnAttrs );
+                
+                outAttrs.setLabel( md.getColumnLabel(i) );
+
+                formatHints.setDisplaySize( md.getColumnDisplayLength(i) );                
+            }
+            catch( UnsupportedOperationException e )
+            {
+                // ignore; optional attributes
+                e.printStackTrace();
+            }
+
+            outAttrs.setFormattingHints( formatHints );
+            columnDef.setUsageHints( outAttrs );
+            
+            rsColumns.getResultColumnDefinitions().add( columnDef );
+        }
+        
+        return rsColumns;
+    }
+
+    /**
+     * Converts the value of the ODA runtime nullability
+     * to that of the ODA design-time definition.
+     * @param odaNullability an ODA runtime nullability value
+     * @return
+     */
+    public static ElementNullability toElementNullability( int odaNullability )
+    {
+        ElementNullability toValue;
+        switch( odaNullability )
+        {
+            case IResultSetMetaData.columnNoNulls:
+                toValue = ElementNullability.NOT_NULLABLE_LITERAL; break;
+            case IResultSetMetaData.columnNullableUnknown:
+                toValue = ElementNullability.UNKNOWN_LITERAL; break;
+            case IResultSetMetaData.columnNullable:
+            default:
+                toValue = ElementNullability.NULLABLE_LITERAL; break;
+        }
+        return toValue;
+    }
 }
