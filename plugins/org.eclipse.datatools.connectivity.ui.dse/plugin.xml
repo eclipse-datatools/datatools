@@ -288,6 +288,9 @@
                </or>
             </enablement>
          </actionProvider>
+         <commonSorter
+               class="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileSorter"
+               id="org.eclipse.datatools.connectivity.ui.dse.commonSorter"/>
          <enablement>
             <or>
                <adapt type="org.eclipse.datatools.connectivity.ICategory"/>

@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.jface.viewers.ViewerSorter;
 
 import com.ibm.icu.text.Collator;
 
@@ -28,7 +29,7 @@ import com.ibm.icu.text.Collator;
 /**
  * @author ljulien
  */
-public class ExplorerSorterProvider implements IExplorerSorterService
+public class ExplorerSorterProvider extends ViewerSorter implements IExplorerSorterService
 {
 	private Collator collator = Collator.getInstance(Locale.getDefault());
 	private ContainmentService containment = RDBCorePlugin.getDefault().getContainmentService();
