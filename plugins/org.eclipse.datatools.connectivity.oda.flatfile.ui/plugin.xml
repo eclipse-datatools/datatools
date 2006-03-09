@@ -3,7 +3,7 @@
 <plugin
    id="org.eclipse.datatools.connectivity.oda.flatfile.ui"
    name="%plugin.name"
-   version="3.0.0.200603061"
+   version="3.0.0.200603091"
    provider-name="Eclipse.org"
    class="org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin">
 
@@ -16,6 +16,7 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.datatools.connectivity.oda.design.ui"/>
+      <import plugin="org.eclipse.datatools.connectivity.oda.flatfile"/>
    </requires>
 
    <extension
@@ -71,6 +72,20 @@
                pageTitle="%wizard.data.source.page.title"
                windowTitle="%wizard.window.title"/>
       </dataSourceUI>
+      <dataSetUI
+            hasParameterDefinition="false"
+            id="org.eclipse.datatools.connectivity.oda.flatfile.dataSet"
+            initialPageId="oda.flatfile.ui.tablePage">
+         <newDataSetWizard
+               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard"
+               windowTitle="Select Table"/>
+         <dataSetPage
+               displayName="%wizard.data.set.page.title"
+               icon="icons/file.gif"
+               id="oda.flatfile.ui.tablePage"
+               path="/"
+               wizardPageClass="org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FileSelectionWizardPage"/>
+      </dataSetUI>
    </extension>
 
 </plugin>
