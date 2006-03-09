@@ -191,7 +191,7 @@
 			<fileset dir="${build.result.folder}" includes="routineeditor.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,icons/,routineeditor.jar,plugin.xml,routineeditor.jar,about.html,schema/"			/>
+			<fileset dir="${basedir}" includes="META-INF/,icons/,routineeditor.jar,plugin.xml,plugin.properties,routineeditor.jar,about.html,schema/"			/>
 		</copy>
 				<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="routineeditorsrc.zip"/>
