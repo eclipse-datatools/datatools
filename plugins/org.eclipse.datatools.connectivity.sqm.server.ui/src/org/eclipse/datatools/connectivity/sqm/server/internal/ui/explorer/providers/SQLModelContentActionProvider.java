@@ -68,6 +68,10 @@ public class SQLModelContentActionProvider extends CommonActionProvider {
 	public void init(ICommonActionExtensionSite aConfig) {
 		this.mViewSite = aConfig.getViewSite();
 		this.mStructViewer = aConfig.getStructuredViewer();
+
+		mPropertiesAction = new PropertyDialogAction(
+				mStructViewer.getControl().getShell(), 
+				mViewSite.getSelectionProvider());
 	}
 
 }
