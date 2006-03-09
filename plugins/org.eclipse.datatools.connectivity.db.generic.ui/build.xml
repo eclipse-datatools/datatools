@@ -134,7 +134,7 @@
 			<fileset dir="${build.result.folder}" includes="genericdbui.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,plugin.xml,about.html,genericdbui.jar,icons/"/>
+			<fileset dir="${basedir}" includes="META-INF/,plugin.xml,plugin.properties,about.html,genericdbui.jar,icons/"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="genericdbuisrc.zip"/>
