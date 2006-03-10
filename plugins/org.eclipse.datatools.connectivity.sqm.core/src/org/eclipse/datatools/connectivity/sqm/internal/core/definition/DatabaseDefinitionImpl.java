@@ -114,7 +114,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			this.factory = DefaultDataModelElementFactory.INSTANCE;				
 			
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "dataModelElementFactory"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "dataModelElementFactory"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -144,7 +144,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public ICatalogProvider getDatabaseCatalogProvider() {
 		if(this.catalogProvider == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "catalog"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "catalog"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -178,7 +178,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DDLParser getDdlParser() {
 		if(this.parser == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlParser"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlParser"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -207,7 +207,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DDLGenerator getDDLGenerator() {
 		if(this.ddlGenerator == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
@@ -242,7 +242,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public DeltaDDLGenerator getDeltaDDLGenerator() {
 		if(this.ddlGenerator == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
