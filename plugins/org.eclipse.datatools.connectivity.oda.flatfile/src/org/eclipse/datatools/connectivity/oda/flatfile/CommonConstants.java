@@ -17,8 +17,13 @@ package org.eclipse.datatools.connectivity.oda.flatfile;
  * The class that defines package-wide static constants.
  */
 
-final class CommonConstants
+public final class CommonConstants
 {
+    public static final String CONN_HOME_DIR_PROP = "HOME"; //$NON-NLS-1$
+    public static final String CONN_CHARSET_PROP = "CHARSET"; //$NON-NLS-1$
+    public static final String CONN_INCLTYPELINE_PROP = "INCLTYPELINE"; //$NON-NLS-1$
+    public static final String CONN_DEFAULT_CHARSET = "UTF-8"; //$NON-NLS-1$
+
 	public static final String DELIMITER_COMMA = ","; //$NON-NLS-1$
 	public static final String DELIMITER_SPACE = " "; //$NON-NLS-1$
 	public static final String DELIMITER_DOUBLEQUOTE = "\""; //$NON-NLS-1$
@@ -27,7 +32,10 @@ final class CommonConstants
 	public static final String KEYWORD_AS = "AS"; //$NON-NLS-1$
 	public static final String KEYWORD_ASTERISK = "*";//$NON-NLS-1$
 	public static final String DRIVER_NAME = "ODA FLAT FILE DRIVER";//$NON-NLS-1$
-	public static final String PRODUCT_VERSION = "3.0";
+	public static final String PRODUCT_VERSION = "3.0"; //$NON-NLS-1$
+    public static final String INC_TYPE_LINE_YES = "YES"; //$NON-NLS-1$
+    public static final String INC_TYPE_LINE_NO = "NO"; //$NON-NLS-1$
+    
 	public static final int MaxConnections = 0;
 	public static final int MaxStatements = 0;	
 

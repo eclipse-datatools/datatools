@@ -50,7 +50,7 @@ public final class DataTypes
         typeStringIntPair.put( "BLOB", new Integer( BLOB ) ); //$NON-NLS-1$
         typeStringIntPair.put( "CLOB", new Integer( CLOB ) ); //$NON-NLS-1$
         typeStringIntPair.put( "BIGDECIMAL", new Integer( BIGDECIMAL ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "NULL", new Integer( NULL ) );
+        typeStringIntPair.put( "NULL", new Integer( NULL ) ); //$NON-NLS-1$
     }
 
     /**
