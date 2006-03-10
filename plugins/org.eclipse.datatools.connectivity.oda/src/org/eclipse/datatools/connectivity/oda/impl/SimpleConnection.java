@@ -35,7 +35,7 @@ public class SimpleConnection implements IConnection
 	{
 	    m_isOpen = true;
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/*
@@ -53,7 +53,7 @@ public class SimpleConnection implements IConnection
 	{
 	    m_isOpen = false;
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/*

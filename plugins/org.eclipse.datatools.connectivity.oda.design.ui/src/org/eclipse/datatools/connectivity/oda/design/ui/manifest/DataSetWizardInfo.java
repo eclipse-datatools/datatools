@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 
 /**
  * Represents the customizable behavior defined by an ODA UI Extension
@@ -36,7 +37,9 @@ public class DataSetWizardInfo
     {
         m_className = dataSetWizardElement.getAttribute( CLASS_ATTRIBUTE );
         if( m_className == null || m_className.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + CLASS_ATTRIBUTE );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                    CLASS_ATTRIBUTE ));
 
         m_windowTitle = dataSetWizardElement.getAttribute( "windowTitle" );         //$NON-NLS-1$
     }

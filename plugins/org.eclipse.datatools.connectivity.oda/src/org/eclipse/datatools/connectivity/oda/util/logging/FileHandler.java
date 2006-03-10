@@ -102,12 +102,12 @@ public class FileHandler extends StreamHandler
             // numeric value to our filename, we'll repeat this 10 times only to
             // prevent infinite loops.
             int looping = 0;
-            int index = filename.lastIndexOf( "." );
+            int index = filename.lastIndexOf( "." ); //$NON-NLS-1$
             String prefix = filename.substring( 0, index );
             String suffix = filename.substring( index, filename.length() );
             while( ! file.createNewFile() && looping < 10 )    
             {
-                file = new File( prefix + "-" + looping + suffix );
+                file = new File( prefix + "-" + looping + suffix ); //$NON-NLS-1$
                 looping++;
             }
             return file;
@@ -150,11 +150,11 @@ public class FileHandler extends StreamHandler
             if( m_file != null )
                 setOutputStream( new FileOutputStream( m_file ) );
             else
-            	reportError( "", null, LoggingErrorHandler.OPEN_FAILURE );
+            	reportError( "", null, LoggingErrorHandler.OPEN_FAILURE ); //$NON-NLS-1$
         }
         catch( java.io.FileNotFoundException ex )
         {
-        	reportError( "", ex, LoggingErrorHandler.OPEN_FAILURE );
+        	reportError( "", ex, LoggingErrorHandler.OPEN_FAILURE ); //$NON-NLS-1$
         }
     }
 }

@@ -86,7 +86,7 @@ public class ResultSetMetaData implements IResultSetMetaData
     public String getColumnTypeName( int index ) throws OdaException
     {
         validateColumnIndex( index );
-        return ( this.columnTypeNames == null ) ? "NULL" : 
+        return ( this.columnTypeNames == null ) ? "NULL" :  //$NON-NLS-1$
             		columnTypeNames[index - 1].trim();
     }
 

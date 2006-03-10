@@ -14,11 +14,12 @@
 
 package org.eclipse.datatools.connectivity.oda.profile;
 
+import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
+
 public class Constants
 {
-    // TODO - externalize component info
-    public static String ODA_COMPONENT_NAME = "DTP Open Data Access";
-    public static String ODA_COMPONENT_VERSION = "3.0";
+    public static String ODA_COMPONENT_NAME = Messages.constants_componentName;
+    public static final String ODA_COMPONENT_VERSION = "3.0"; //$NON-NLS-1$
     
-    public static final String EMPTY_STRING = "";
+    public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 }

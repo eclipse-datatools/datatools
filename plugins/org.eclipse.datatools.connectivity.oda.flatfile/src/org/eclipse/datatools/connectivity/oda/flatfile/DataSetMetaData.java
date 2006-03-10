@@ -70,7 +70,7 @@ public class DataSetMetaData implements IDataSetMetaData
      */
     public String getDataSourceProductName() throws OdaException
     {
-        return Messages.getString( "DataSetMetaData.PRODUCT_NAME" );
+        return Messages.getString( "DataSetMetaData.PRODUCT_NAME" ); //$NON-NLS-1$
     }
 
     /*

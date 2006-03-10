@@ -51,11 +51,11 @@ public class SimpleFormatter extends LogFormatter
         Timestamp stamp = new Timestamp( record.getMillis() );
         StringBuffer buffer = new StringBuffer();
         buffer.append( record.getLevel().intValue() );
-        buffer.append( "\t" );
+        buffer.append( "\t" ); //$NON-NLS-1$
         buffer.append( stamp.toString() );
-        buffer.append( "\t\t" );
+        buffer.append( "\t\t" ); //$NON-NLS-1$
         buffer.append( record.getMessage() );
-        buffer.append( "\n" );
+        buffer.append( "\n" ); //$NON-NLS-1$
         
 		Throwable thrown = record.getThrown();
 		if( thrown != null )

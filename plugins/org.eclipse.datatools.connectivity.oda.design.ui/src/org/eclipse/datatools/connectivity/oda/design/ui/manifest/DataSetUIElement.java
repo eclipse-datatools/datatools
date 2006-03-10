@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 
 /**
  * Represents the definition of customized data set designer
@@ -32,6 +33,7 @@ public class DataSetUIElement
 {
     private static final String WIZARD_ELEMENT_NAME = "newDataSetWizard"; //$NON-NLS-1$
     private static final String PAGE_ELEMENT_NAME = "dataSetPage"; //$NON-NLS-1$
+    private static final String ID_ATRIBUTE_NAME = "id"; //$NON-NLS-1$
     
     private String m_id;
     private String m_initialPageId;
@@ -44,9 +46,11 @@ public class DataSetUIElement
         throws OdaException
     {
         m_dataSetElement = dataSetElement;
-        m_id = dataSetElement.getAttribute( "id" ); //$NON-NLS-1$
+        m_id = dataSetElement.getAttribute( ID_ATRIBUTE_NAME ); //$NON-NLS-1$
         if( m_id == null || m_id.length() == 0 )
-            throw new OdaException( "Missing id attribute value" );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                    ID_ATRIBUTE_NAME ));
         
         m_initialPageId = dataSetElement.getAttribute( "initialPageId" ); //$NON-NLS-1$
 
@@ -231,7 +235,7 @@ public class DataSetUIElement
             // find default data set page element and return it if found
             if( m_dataSetPages == null ||
                 m_dataSetPages.size() != 1 )
-                throw new OdaException( "Missing data set page id" );
+                throw new OdaException( Messages.manifest_dataSetUi_missingPageId );
 
             Collection pages = m_dataSetPages.values();
             assert( pages.size() == 1 );
@@ -242,7 +246,9 @@ public class DataSetUIElement
             (DataSetPageInfo) m_dataSetPages.get( pageId );
 
         if( pageInfo == null )
-            throw new OdaException( "Invalid data set page id: " + pageId );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_dataSetUi_invalidPageId,
+                                    pageId ));
         
         return pageInfo;
     }
@@ -274,7 +280,7 @@ public class DataSetUIElement
         {
             // find default data set page element and return it if found
             if( pages.length != 1 )
-                throw new OdaException( "Missing data set page id" );
+                throw new OdaException( Messages.manifest_dataSetUi_missingPageId );
             return pages[0];
         }
         

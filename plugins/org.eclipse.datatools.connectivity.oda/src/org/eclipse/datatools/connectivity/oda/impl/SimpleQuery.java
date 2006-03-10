@@ -39,7 +39,7 @@ public class SimpleQuery implements IQuery
 	public void prepare( String queryText ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 	
 	/*
@@ -56,7 +56,7 @@ public class SimpleQuery implements IQuery
 	public void close() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/*

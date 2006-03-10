@@ -37,13 +37,13 @@ public class DataSetType
 	
 	DataSetType( IConfigurationElement dataSetElement ) throws OdaException
 	{
-		m_id = dataSetElement.getAttribute( "id" );
+		m_id = dataSetElement.getAttribute( "id" ); //$NON-NLS-1$
 		assert( m_id != null );		// this check is already done by caller		
 		m_displayName = ManifestExplorer.getElementDisplayName( dataSetElement );
 
 		// dataTypeMapping elements
 		m_dataTypeMappings = new Hashtable();
-		IConfigurationElement[] typeMappings = dataSetElement.getChildren( "dataTypeMapping" );
+		IConfigurationElement[] typeMappings = dataSetElement.getChildren( "dataTypeMapping" ); //$NON-NLS-1$
 		int numOfTypeMappings = typeMappings.length;
 		if( numOfTypeMappings == 0 )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_TYPE_MAPPINGS_DEFINED,
@@ -52,13 +52,13 @@ public class DataSetType
 		for( int i = 0; i < numOfTypeMappings; i++ )
 		{
 			IConfigurationElement typeMapping = typeMappings[i];
-			String nativeDataTypeCode = typeMapping.getAttribute( "nativeDataTypeCode" );
+			String nativeDataTypeCode = typeMapping.getAttribute( "nativeDataTypeCode" ); //$NON-NLS-1$
 			m_dataTypeMappings.put( nativeDataTypeCode, 
 									new DataTypeMapping( typeMapping, m_id ) );
 		}
 		
 		// properties element
-		IConfigurationElement[] propertiesElements = dataSetElement.getChildren( "properties" );
+		IConfigurationElement[] propertiesElements = dataSetElement.getChildren( "properties" ); //$NON-NLS-1$
 		if ( propertiesElements.length > 0 )
 		{
 			// if multiple properties elements exist, use the last one

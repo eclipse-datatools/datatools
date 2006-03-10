@@ -21,6 +21,7 @@ import java.util.Set;
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.birt.core.framework.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
@@ -56,7 +57,9 @@ public class UIExtensionManifest
         IConfigurationElement[] newWizardElements = 
             dataSourceElement.getChildren( DATA_SOURCE_WIZARD_ELEMENT_NAME );
         if( newWizardElements.length < 1 )  // expects one element
-            throw new OdaException( "Invalid extension; missing required element: " + DATA_SOURCE_WIZARD_ELEMENT_NAME ); 
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                DATA_SOURCE_WIZARD_ELEMENT_NAME )); 
         m_dataSourceWizardInfo = new DataSourceWizardInfo( newWizardElements[0] );
 
         // data set UI definition elements in the same extension
@@ -180,7 +183,7 @@ public class UIExtensionManifest
             // find default data set element and return it if found
             if( m_dataSetUIElements == null ||
                 m_dataSetUIElements.size() != 1 )
-                throw new OdaException( "Missing data set element id" );
+                throw new OdaException( Messages.manifest_missingDataSetElementId );
 
             Collection dataSetTypes = m_dataSetUIElements.values();
             assert( dataSetTypes.size() == 1 );
@@ -191,7 +194,9 @@ public class UIExtensionManifest
             (DataSetUIElement) m_dataSetUIElements.get( dataSetElementID );
 
         if( dataSetUIDefn == null )
-            throw new OdaException( "Invalid data set element id: " + dataSetElementID );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_invalidDataSetElementId,
+                                    dataSetElementID ));
         
         return dataSetUIDefn;
     }

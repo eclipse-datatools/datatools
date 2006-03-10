@@ -79,9 +79,9 @@ public class LoggingErrorHandler
     				   int errorCode )
     {
     	// print out to System.err similar to JDK
-    	String err = "org.eclipse.datatools.connectivity.oda.util.logging (" + errorCode + ")";
+    	String err = "org.eclipse.datatools.connectivity.oda.util.logging (" + errorCode + ")"; //$NON-NLS-1$ //$NON-NLS-2$
     	if( message != null && message.length() > 0 )
-    		err += ": " + message;
+    		err += ": " + message; //$NON-NLS-1$
     	
     	System.err.println( err );
     	

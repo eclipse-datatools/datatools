@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 
 /**
  * Represents the definition of a customized page that 
@@ -35,13 +36,17 @@ public class DataSetPageInfo
     DataSetPageInfo( IConfigurationElement dataSetPageElement ) 
         throws OdaException
     {
-        m_id = dataSetPageElement.getAttribute( "id" ); //$NON-NLS-1$
+        m_id = dataSetPageElement.getAttribute( ID_ATTRIBUTE );
         if( m_id == null || m_id.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + ID_ATTRIBUTE );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                    ID_ATTRIBUTE ));
 
-        m_wizardPageClassName = dataSetPageElement.getAttribute( "wizardPageClass" ); //$NON-NLS-1$
+        m_wizardPageClassName = dataSetPageElement.getAttribute( CLASS_ATTRIBUTE );
         if( m_wizardPageClassName == null || m_wizardPageClassName.length() == 0 )
-            throw new OdaException( "Missing attribute value in " + CLASS_ATTRIBUTE );
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                    CLASS_ATTRIBUTE ));
 
         m_displayName = dataSetPageElement.getAttribute( "displayName" ); //$NON-NLS-1$
         m_path = dataSetPageElement.getAttribute( "path" ); //$NON-NLS-1$

@@ -29,7 +29,7 @@ public class SimpleResultSetMetaData implements IResultSetMetaData
 	public int getColumnCount() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class SimpleResultSetMetaData implements IResultSetMetaData
 	public String getColumnName( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class SimpleResultSetMetaData implements IResultSetMetaData
 	public int getColumnType( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class SimpleResultSetMetaData implements IResultSetMetaData
 	public String getColumnTypeName( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**

@@ -69,7 +69,7 @@ public class SimpleDataSetMetaData implements IDataSetMetaData
 	 */
 	public String getDataSourceProductName() throws OdaException
 	{
-		return "Simple Data Source";
+		return "Simple Data Source"; //$NON-NLS-1$
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class SimpleDataSetMetaData implements IDataSetMetaData
 	 */
 	public String getDataSourceProductVersion() throws OdaException
 	{
-		return Integer.toString( getDataSourceMajorVersion() ) + "." + 
+		return Integer.toString( getDataSourceMajorVersion() ) + "." +  //$NON-NLS-1$
 			   Integer.toString( getDataSourceMinorVersion() );
 	}
 

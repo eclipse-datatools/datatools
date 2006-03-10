@@ -33,12 +33,12 @@ public class TraceLogging
 	
 	TraceLogging( IConfigurationElement traceLogging, String dataSourceElementId ) throws OdaException
 	{
-		String logLevelString = traceLogging.getAttribute( "logLevel" );
+		String logLevelString = traceLogging.getAttribute( "logLevel" ); //$NON-NLS-1$
 		m_logLevel = toLogLevelNumber( logLevelString );
 		
-		m_logFileNamePrefix = traceLogging.getAttribute( "logFileNamePrefix" );		
-		m_logDirectory = traceLogging.getAttribute( "logDirectory" );
-		m_logFormatterClass = traceLogging.getAttribute( "logFormatterClass" );
+		m_logFileNamePrefix = traceLogging.getAttribute( "logFileNamePrefix" );		 //$NON-NLS-1$
+		m_logDirectory = traceLogging.getAttribute( "logDirectory" ); //$NON-NLS-1$
+		m_logFormatterClass = traceLogging.getAttribute( "logFormatterClass" ); //$NON-NLS-1$
 	}
 	
 	/**
@@ -119,23 +119,23 @@ public class TraceLogging
             return sm_logLevelLiterals;
         
         sm_logLevelLiterals = new HashMap( 18, 1 );
-        sm_logLevelLiterals.put( "SEVERE", new Integer( Level.SEVERE ) );
-        sm_logLevelLiterals.put( "1000", new Integer( Level.SEVERE ) );
-        sm_logLevelLiterals.put( "WARNING", new Integer( Level.WARNING ) );
-        sm_logLevelLiterals.put( "900", new Integer( Level.WARNING ) );
-        sm_logLevelLiterals.put( "INFO", new Integer( Level.INFO ) );
-        sm_logLevelLiterals.put( "800", new Integer( Level.INFO ) );
-        sm_logLevelLiterals.put( "CONFIG", new Integer( Level.CONFIG ) );
-        sm_logLevelLiterals.put( "700", new Integer( Level.CONFIG ) );
-        sm_logLevelLiterals.put( "FINE", new Integer( Level.FINE ) );
-        sm_logLevelLiterals.put( "500", new Integer( Level.FINE ) );
-        sm_logLevelLiterals.put( "FINER", new Integer( Level.FINER ) );
-        sm_logLevelLiterals.put( "400", new Integer( Level.FINER ) );
-        sm_logLevelLiterals.put( "FINEST", new Integer( Level.FINEST ) );
-        sm_logLevelLiterals.put( "300", new Integer( Level.FINEST ) );
-        sm_logLevelLiterals.put( "ALL", new Integer( Level.ALL ) );
-        sm_logLevelLiterals.put( "0", new Integer( Level.ALL ) );
-        sm_logLevelLiterals.put( "OFF", new Integer( Level.OFF ) );
+        sm_logLevelLiterals.put( "SEVERE", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "1000", new Integer( Level.SEVERE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "WARNING", new Integer( Level.WARNING ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "900", new Integer( Level.WARNING ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "INFO", new Integer( Level.INFO ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "800", new Integer( Level.INFO ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "CONFIG", new Integer( Level.CONFIG ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "700", new Integer( Level.CONFIG ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINE", new Integer( Level.FINE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "500", new Integer( Level.FINE ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINER", new Integer( Level.FINER ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "400", new Integer( Level.FINER ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "FINEST", new Integer( Level.FINEST ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "300", new Integer( Level.FINEST ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "ALL", new Integer( Level.ALL ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "0", new Integer( Level.ALL ) ); //$NON-NLS-1$
+        sm_logLevelLiterals.put( "OFF", new Integer( Level.OFF ) ); //$NON-NLS-1$
         return sm_logLevelLiterals;
     }
 }

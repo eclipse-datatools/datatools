@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 
 /**
  * Represents the customizable behavior defined by an ODA UI Extension
@@ -37,8 +38,9 @@ public class DataSourceWizardInfo
         final String classAttributeName = "pageClass";  //$NON-NLS-1$
         m_pageClassName = wizardElement.getAttribute( classAttributeName );
         if( m_pageClassName == null || m_pageClassName.length() == 0 )
-            // TODO - NLS
-            throw new OdaException( "Invalid extension; missing required attribute: " + classAttributeName ); 
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_missingAttributeValue,
+                                    classAttributeName )); 
         
         // optional attributes
         m_windowTitle = wizardElement.getAttribute( "windowTitle" );  //$NON-NLS-1$

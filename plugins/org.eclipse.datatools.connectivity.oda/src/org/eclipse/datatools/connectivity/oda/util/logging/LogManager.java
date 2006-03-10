@@ -21,6 +21,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Hashtable;
 
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
+
 import com.ibm.icu.text.SimpleDateFormat;
 
 /**
@@ -70,7 +72,7 @@ public class LogManager
 									   String formatterClassName )
     {
     	if( m_loggers.containsKey( loggerName ) )
-    		throw new IllegalArgumentException( "Logger with same name exists." );
+    		throw new IllegalArgumentException( Messages.logManager_duplicateName );
     	
     	validateInput( logLevel, logDirectory, logPrefix );
 

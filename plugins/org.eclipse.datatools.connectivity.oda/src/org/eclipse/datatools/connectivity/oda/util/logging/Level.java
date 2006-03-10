@@ -74,55 +74,55 @@ public final class Level
      * The constant indicating the log level OFF. OFF should be used to turn 
      * off logging.
      */
-    public static final Level		OFF_LEVEL		= new Level( "OFF", OFF );
+    public static final Level		OFF_LEVEL		= new Level( "OFF", OFF ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level SEVERE. SEVERE should be used to 
      * indicate a serious failure.
      */
-    public static final Level		SEVERE_LEVEL	= new Level( "SEVERE", SEVERE );
+    public static final Level		SEVERE_LEVEL	= new Level( "SEVERE", SEVERE ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level WARNING. WARNING should be used to 
      * indicate potential problems.
      */
-    public static final Level		WARNING_LEVEL	= new Level( "WARNING", WARNING );
+    public static final Level		WARNING_LEVEL	= new Level( "WARNING", WARNING ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level INFO. INFO should be used for 
      * informational messages.
      */
-    public static final Level		INFO_LEVEL		= new Level( "INFO", INFO );
+    public static final Level		INFO_LEVEL		= new Level( "INFO", INFO ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level CONFIG. CONFIG should be used for 
      * configuration messages.
      */
-    public static final Level		CONFIG_LEVEL	= new Level( "CONFIG", CONFIG );
+    public static final Level		CONFIG_LEVEL	= new Level( "CONFIG", CONFIG ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level FINE. FINE should be used for 
      * relatively detailed trace logging.
      */
-    public static final Level		FINE_LEVEL		= new Level( "FINE", FINE );
+    public static final Level		FINE_LEVEL		= new Level( "FINE", FINE ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level FINER. FINER should be used for 
      * detailed trace logging.
      */
-    public static final Level		FINER_LEVEL		= new Level( "FINER", FINER );
+    public static final Level		FINER_LEVEL		= new Level( "FINER", FINER ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level FINEST.  FINEST should be used for 
      * very detailed trace logging.
      */
-    public static final Level		FINEST_LEVEL	= new Level( "FINEST", FINEST );
+    public static final Level		FINEST_LEVEL	= new Level( "FINEST", FINEST ); //$NON-NLS-1$
     
     /**
      * The constant indicating the log level ALL.  ALL should be used to log 
      * everything.
      */
-    public static final Level		ALL_LEVEL		= new Level( "ALL", ALL );
+    public static final Level		ALL_LEVEL		= new Level( "ALL", ALL ); //$NON-NLS-1$
     
     // member variables
     private String                  m_name;

@@ -64,7 +64,7 @@ public class SimpleResultSet implements IResultSet
 	public boolean next() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class SimpleResultSet implements IResultSet
 	public void close() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class SimpleResultSet implements IResultSet
 	public int getRow() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class SimpleResultSet implements IResultSet
 	public String getString( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class SimpleResultSet implements IResultSet
 	public int getInt( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class SimpleResultSet implements IResultSet
 	public double getDouble( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -142,7 +142,7 @@ public class SimpleResultSet implements IResultSet
 	public BigDecimal getBigDecimal( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class SimpleResultSet implements IResultSet
 	public Date getDate( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class SimpleResultSet implements IResultSet
 	public Time getTime( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class SimpleResultSet implements IResultSet
 	public Timestamp getTimestamp( int index ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class SimpleResultSet implements IResultSet
 	public boolean wasNull() throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class SimpleResultSet implements IResultSet
 	public int findColumn( String columnName ) throws OdaException
 	{
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
 
     /* (non-Javadoc)
@@ -228,7 +228,7 @@ public class SimpleResultSet implements IResultSet
     public IBlob getBlob( int index ) throws OdaException
     {
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
     }
 
     /* (non-Javadoc)
@@ -237,7 +237,7 @@ public class SimpleResultSet implements IResultSet
     public IBlob getBlob( String columnName ) throws OdaException
     {
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
     }
 
     /* (non-Javadoc)
@@ -246,7 +246,7 @@ public class SimpleResultSet implements IResultSet
     public IClob getClob( int index ) throws OdaException
     {
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
     }
 
     /* (non-Javadoc)
@@ -255,6 +255,6 @@ public class SimpleResultSet implements IResultSet
     public IClob getClob( String columnName ) throws OdaException
     {
 		// TODO data source dependent
-		throw new UnsupportedOperationException( "Please override and implement me." );
+		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
     }
 }

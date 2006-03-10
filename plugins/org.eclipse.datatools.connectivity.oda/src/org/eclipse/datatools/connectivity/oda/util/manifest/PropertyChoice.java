@@ -28,9 +28,9 @@ public class PropertyChoice
     PropertyChoice( IConfigurationElement choiceElement )
     {
         // no validation is done; up to the consumer to process
-        m_name = choiceElement.getAttribute( "name" );
+        m_name = choiceElement.getAttribute( "name" ); //$NON-NLS-1$
         m_displayName = ManifestExplorer.getElementDisplayName( choiceElement );  
-        m_value = choiceElement.getAttribute( "value" );
+        m_value = choiceElement.getAttribute( "value" ); //$NON-NLS-1$
     }
     
     /**

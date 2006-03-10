@@ -36,7 +36,7 @@ public class Logger
     // use of the "global" logger
     private Logger()
     {
-    	m_loggerName = "global";
+    	m_loggerName = "global"; //$NON-NLS-1$
     	
     	// default to logging level OFF.
     	m_level = Level.OFF_LEVEL;
@@ -151,7 +151,7 @@ public class Logger
     {
     	if( isLoggable( level ) && m_handler != null )
     	{
-    		LogRecord record = new LogRecord( level, "" );
+    		LogRecord record = new LogRecord( level, "" ); //$NON-NLS-1$
 			record.setThrown( thrown );
 			m_handler.publish( record );
     	}

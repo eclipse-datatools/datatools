@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 
 /**
@@ -234,7 +235,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // verify that edit session is in correct state
         if( ! isInOdaDesignSession() )
         {
-            throw new OdaException( "Invalid state found in design session" );
+            throw new OdaException( Messages.common_notInDesignSession );
         }
         
         // if no response is not available, perhaps performOk is not called;
@@ -287,7 +288,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         throws OdaException
     {
         if( ! isInOdaDesignSession() )
-            throw new OdaException( "Not editing a data source." );
+            throw new OdaException( Messages.common_notInDesignSession );
         
         // gets a copy of the data source design, and updates
         // with the pubic properties collected by

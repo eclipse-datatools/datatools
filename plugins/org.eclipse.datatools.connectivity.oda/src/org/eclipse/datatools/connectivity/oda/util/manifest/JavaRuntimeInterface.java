@@ -70,7 +70,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	 */
 	public URL getLibraryLocation() throws IOException
 	{
-		return getLocation( "/" );
+		return getLocation( "/" ); //$NON-NLS-1$
 	}
 	
 	/**

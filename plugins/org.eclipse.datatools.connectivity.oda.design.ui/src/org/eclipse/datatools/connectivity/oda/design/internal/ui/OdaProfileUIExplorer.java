@@ -14,8 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
-import java.text.MessageFormat;
-
 import org.eclipse.birt.core.framework.FrameworkException;
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
@@ -23,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
@@ -89,7 +88,10 @@ public class OdaProfileUIExplorer
             return null;    // has not implemented a new data source wizard
         
         if( dataSourceWizard instanceof NewDataSourceWizard == false )
-            throw OdaProfileExplorer.newOdaException( "invalid.oda.wizard", odaDataSourceId );
+            throw new OdaException( 
+                    Messages.bind( Messages.extension_mustInheritFromODAWizard, 
+                            dataSourceWizard.getClass().getName(),
+                            NewDataSourceWizard.class.getName() ));
 
         return (NewDataSourceWizard) dataSourceWizard;       
     }
@@ -127,7 +129,7 @@ public class OdaProfileUIExplorer
 
         String pageName = pageElement.getAttribute( "name" ); //$NON-NLS-1$
         if( pageName == null || pageName.length() == 0 )
-            pageName = "Custom Data Source Properties";
+            pageName = Messages.page_defaultDataSourceTitle;
         ((DataSourceEditorPage) propPage).setTitle( pageName );
 
         return (DataSourceEditorPage) propPage;
@@ -169,12 +171,10 @@ public class OdaProfileUIExplorer
         
         if( ! ( wizardInstance instanceof NewDataSetWizard ))
         {
-            String messageText = "Invalid wizard ({0}) implementation. An ODA custom wizard page must extend from {1}.";
-            String wizardClassName = wizardInfo.getClassName();
-            
-            throw new OdaException( MessageFormat.format( messageText, 
-                    new Object[]{ wizardClassName,
-                        NewDataSetWizard.class.getName() } )); 
+            throw new OdaException( 
+                    Messages.bind( Messages.extension_mustInheritFromODAWizard, 
+                            wizardInfo.getClassName(),
+                            NewDataSetWizard.class.getName() )); 
         }
         
         // a valid wizard, subclass of NewDataSetWizard

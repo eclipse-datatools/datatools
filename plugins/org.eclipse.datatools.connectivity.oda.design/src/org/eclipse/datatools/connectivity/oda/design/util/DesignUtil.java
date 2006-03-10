@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.3 2006/02/26 08:04:34 lchan Exp $
+ * $Id: DesignUtil.java,v 1.4 2006/03/09 08:50:09 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -24,12 +24,14 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.nls.Messages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
 /**
  * An utility class to handle the ODA Design API objects.
+ * @generated NOT
  */
 public class DesignUtil
 {
@@ -193,7 +195,7 @@ public class DesignUtil
         throws IllegalStateException
     {
         if( requestSession == null )
-            throw new IllegalStateException( "Invalid argument." );
+            throw new IllegalStateException( Messages.design_nullArgument );
     
         validateObject( requestSession );
     
@@ -201,11 +203,11 @@ public class DesignUtil
         DataSourceDesign dataSourceDesign = 
                     requestSession.getDataSourceDesign();
         if( dataSourceDesign == null )
-            throw new IllegalStateException( "Missing data source design in OdaDesignSession instance." );
+            throw new IllegalStateException( Messages.design_missingDataSourceDesign );
     
         String odaDataSourceId = dataSourceDesign.getOdaExtensionDataSourceId();
         if( odaDataSourceId == null || odaDataSourceId.length() == 0 )
-            throw new IllegalStateException( "Missing ODA ID in data source design." );
+            throw new IllegalStateException( Messages.design_missingId );
     
         // done validation
         return odaDataSourceId;
@@ -221,7 +223,7 @@ public class DesignUtil
         throws IllegalStateException
     {
         if( dataSourceDesign == null )
-            throw new IllegalStateException( "Invalid argument." );
+            throw new IllegalStateException( Messages.design_nullArgument );
     
         validateObject( dataSourceDesign );
     }

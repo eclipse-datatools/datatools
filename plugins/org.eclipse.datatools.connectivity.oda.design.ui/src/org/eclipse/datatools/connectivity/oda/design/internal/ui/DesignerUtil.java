@@ -15,12 +15,12 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import java.lang.reflect.Constructor;
-import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.osgi.framework.Bundle;
 
@@ -48,12 +48,12 @@ public class DesignerUtil
     throws OdaException
     {
         if( designSession == null )
-            throw new OdaException( "Illegal argument; must not be null." );
+            throw new OdaException( Messages.common_nullArgument );
         
         DataSourceDesign dataSourceDesign =
             designSession.getRequestDataSourceDesign();
         if( dataSourceDesign == null )
-            throw new OdaException( "Missing data source design in OdaDesignSession argument." );
+            throw new OdaException( Messages.common_missingDataSourceDesign );
 
         DataSourceDesign editDataSourceDesign = 
             (DataSourceDesign) EcoreUtil.copy( dataSourceDesign );
@@ -94,10 +94,9 @@ public class DesignerUtil
         }
         catch( Exception ex )
         {
-            String messageText = "Unable to find or create class ({0}).";
-            throw new RuntimeException( MessageFormat.format( messageText,
-                    new Object[]
-                    { className } ), ex );
+            throw new RuntimeException( 
+                    Messages.bind( Messages.common_createClassFailed, 
+                                    className ), ex );
         }
         return newInstance;
     }

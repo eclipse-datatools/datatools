@@ -36,6 +36,7 @@ import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
@@ -165,7 +166,7 @@ public class DesignSessionUtil
         // validate input arguments
         if( newDataSetName == null || newDataSetName.length() == 0 ||
                 dataSourceDesign == null )
-            throw new OdaException( "Invalid argument." );
+            throw new OdaException( Messages.designSession_invalidArgument );
         
         OdaDesignSession newSession =
             DesignFactory.eINSTANCE
@@ -200,7 +201,9 @@ public class DesignSessionUtil
             .getProfileByName( linkedProfileName,
                     dataSourceDesign.getLinkedProfileStoreFile() );
         if( profile == null )   // not found
-            throw new OdaException( "Unable to locate the linked profile: " + linkedProfileName );
+            throw new OdaException( 
+                    Messages.bind( Messages.designSession_invalidProfileName,
+                                linkedProfileName ));
         return profile;
     }
         
@@ -305,7 +308,9 @@ public class DesignSessionUtil
         if( manifest != null )
             dataSetElement = manifest.getDataSetUIElement( odaDataSetId );
         if( dataSetElement == null )
-            throw new OdaException( "No dataSetUI element defined for odaDataSourceId ({0}) and odaDataSetId ({1})." );
+            throw new OdaException( 
+                    Messages.bind( Messages.designSession_missingDataSetUIElement,
+                            odaDataSourceId, odaDataSetId ));
         return dataSetElement;
     }
 

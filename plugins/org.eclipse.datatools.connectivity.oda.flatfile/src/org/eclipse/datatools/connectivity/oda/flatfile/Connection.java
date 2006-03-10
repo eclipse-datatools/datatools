@@ -28,13 +28,10 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
 public class Connection implements IConnection
 {
-	private String homeDir = null;
+    private String homeDir = null;
 	private String charSet = null;
 	private boolean includeTypeLine = true;
 	private boolean isOpen = false;
-	static final String CONN_HOME_DIR_PROP = "HOME"; //$NON-NLS-1$
-	static final String CONN_CHARSET = "CHARSET"; //$NON-NLS-1$
-	static final String CONN_INCLTYPELINE = "INCLTYPELINE"; //$NON-NLS-1$
 
 	/*
      * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties)
@@ -45,12 +42,12 @@ public class Connection implements IConnection
             throw new OdaException( Messages
                     .getString( "Connection.CONNECTION_PROPERTIES_MISSING" ) ); //$NON-NLS-1$
 
-        homeDir = connProperties.getProperty( CONN_HOME_DIR_PROP );
-        charSet = connProperties.getProperty( CONN_CHARSET );
-        String inclTypeLine = connProperties.getProperty( CONN_INCLTYPELINE );
+        homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
+        charSet = connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP );
+        String inclTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
         if( inclTypeLine != null && inclTypeLine.trim().length() > 0 )
-            includeTypeLine = inclTypeLine.equalsIgnoreCase( "NO" ) ? false
-                    : true;
+            includeTypeLine = inclTypeLine.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) ? 
+                    false : true;
         File file = new File( homeDir );
         if( file.exists() )
             this.isOpen = true;

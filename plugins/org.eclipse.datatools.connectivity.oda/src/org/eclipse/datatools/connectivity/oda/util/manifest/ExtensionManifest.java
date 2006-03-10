@@ -50,24 +50,24 @@ public class ExtensionManifest
 		m_namespace = dataSourceExtn.getNamespace();
 		
 		// first cache the data source element's attributes
-		m_dataSourceElementId = dataSourceElement.getAttribute( "id" );
+		m_dataSourceElementId = dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
 		if( m_dataSourceElementId == null || m_dataSourceElementId.length() == 0 )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
 		
-		m_odaVersion = dataSourceElement.getAttribute( "odaVersion" );
+		m_odaVersion = dataSourceElement.getAttribute( "odaVersion" ); //$NON-NLS-1$
 
 		m_displayName = ManifestExplorer.getElementDisplayName( dataSourceElement );
 
 		// runtime interface
-		String driverClass = dataSourceElement.getAttribute( "driverClass" );
+		String driverClass = dataSourceElement.getAttribute( "driverClass" ); //$NON-NLS-1$
 		if( driverClass == null )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DRIVER_CLASS_DEFINED,
 																	   new Object[] { m_dataSourceElementId } ) );
 		
 		String needSetThreadContextClassLoader = 
-		    dataSourceElement.getAttribute( "setThreadContextClassLoader" );
-		if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) && 
-			! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) )
+		    dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
+		if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
+			! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
 																	   new Object[] { needSetThreadContextClassLoader, m_dataSourceElementId } ) );
 		
@@ -80,14 +80,14 @@ public class ExtensionManifest
 		m_dataSetTypes = ManifestExplorer.getDataSetElements( dataSourceExtn, m_dataSourceElementId );
 		
 		// trace logging element
-		IConfigurationElement[] traceLogging = dataSourceElement.getChildren( "traceLogging" );
+		IConfigurationElement[] traceLogging = dataSourceElement.getChildren( "traceLogging" ); //$NON-NLS-1$
 		int numOfTraceLogging = traceLogging.length;
 		// if multiple trace logging configuration exist, use the last one
 		if( numOfTraceLogging > 0 )
 			m_traceLogging = new TraceLogging( traceLogging[ numOfTraceLogging - 1 ], m_dataSourceElementId );
 
 		// properties element
-		IConfigurationElement[] propertiesElements = dataSourceElement.getChildren( "properties" );
+		IConfigurationElement[] propertiesElements = dataSourceElement.getChildren( "properties" ); //$NON-NLS-1$
 		if ( propertiesElements.length > 0 )
 		{
 			// if multiple properties elements exist, use the last one
@@ -105,8 +105,8 @@ public class ExtensionManifest
 	static Property[] getPropertyDefinitions( IConfigurationElement propertiesElement )
 		throws OdaException
 	{
-		IConfigurationElement[] propElements = propertiesElement.getChildren( "property" );
-		IConfigurationElement[] propGroupElements = propertiesElement.getChildren( "propertyGroup" );
+		IConfigurationElement[] propElements = propertiesElement.getChildren( "property" ); //$NON-NLS-1$
+		IConfigurationElement[] propGroupElements = propertiesElement.getChildren( "propertyGroup" ); //$NON-NLS-1$
 	    int numProperties = propElements.length + propGroupElements.length;
 	    if ( numProperties <= 0 )
 	        return new Property[ 0 ];
@@ -125,10 +125,10 @@ public class ExtensionManifest
 		{
 			IConfigurationElement propGroupElement = propGroupElements[j];
 	        // no validation is done; up to the consumer to process
-			String groupName = propGroupElement.getAttribute( "name" );			    
+			String groupName = propGroupElement.getAttribute( "name" );			     //$NON-NLS-1$
 		    String groupDisplayName = ManifestExplorer.getElementDisplayName( propGroupElement );
 
-		    IConfigurationElement[] groupedPropElements = propGroupElement.getChildren( "property" );
+		    IConfigurationElement[] groupedPropElements = propGroupElement.getChildren( "property" ); //$NON-NLS-1$
 			for( int i = 0, size = groupedPropElements.length; i < size; i++ )
 			{
 				IConfigurationElement groupedPropElement = groupedPropElements[i];
@@ -147,7 +147,7 @@ public class ExtensionManifest
 	{
 		// convert propertyVisibility elements to a collection
 		IConfigurationElement[] propVisibilityElements = 
-		    propertiesElement.getChildren( "propertyVisibility" );
+		    propertiesElement.getChildren( "propertyVisibility" ); //$NON-NLS-1$
 		if ( propVisibilityElements.length == 0 )
 		    return null;		// done
 		
@@ -157,8 +157,8 @@ public class ExtensionManifest
 			IConfigurationElement propVisibltyElement = propVisibilityElements[i];
 			
 	        // no validation is done; up to the consumer to process
-			String propName = propVisibltyElement.getAttribute( "name" );
-			String propVisbility = propVisibltyElement.getAttribute( "visibility" );
+			String propName = propVisibltyElement.getAttribute( "name" ); //$NON-NLS-1$
+			String propVisbility = propVisibltyElement.getAttribute( "visibility" ); //$NON-NLS-1$
 			propsVisibility.setProperty( propName, propVisbility );
 		}
 		return propsVisibility;

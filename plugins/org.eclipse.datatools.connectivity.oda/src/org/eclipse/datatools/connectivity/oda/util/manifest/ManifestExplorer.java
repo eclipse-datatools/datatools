@@ -27,6 +27,7 @@ import org.eclipse.birt.core.framework.IExtensionPoint;
 import org.eclipse.birt.core.framework.IExtensionRegistry;
 import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
 import org.eclipse.datatools.connectivity.oda.util.ResourceCache;
 import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
@@ -176,7 +177,7 @@ public class ManifestExplorer
 		throws OdaException
 	{
 	    if ( platformExtension == null )
-			throw new IllegalArgumentException( "null argument" );	// TODO: localized message
+			throw new IllegalArgumentException( Messages.manifest_nullArgument );
 	    
         return new ExtensionManifest( platformExtension );
 	}

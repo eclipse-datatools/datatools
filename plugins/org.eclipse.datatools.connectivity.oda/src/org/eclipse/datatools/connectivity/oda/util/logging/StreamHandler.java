@@ -65,7 +65,7 @@ public class StreamHandler extends Handler
         }
         catch( IOException ex )
         {
-            reportError( "", ex, LoggingErrorHandler.CLOSE_FAILURE );
+            reportError( "", ex, LoggingErrorHandler.CLOSE_FAILURE ); //$NON-NLS-1$
         }
     }
 
@@ -90,7 +90,7 @@ public class StreamHandler extends Handler
         }
         catch( IOException ex )
         {
-        	reportError( "", ex, LoggingErrorHandler.FLUSH_FAILURE );
+        	reportError( "", ex, LoggingErrorHandler.FLUSH_FAILURE ); //$NON-NLS-1$
         }
     }
 
@@ -115,11 +115,11 @@ public class StreamHandler extends Handler
         }
         catch( IOException ex )
         {
-            reportError( "", ex, LoggingErrorHandler.WRITE_FAILURE );
+            reportError( "", ex, LoggingErrorHandler.WRITE_FAILURE ); //$NON-NLS-1$
         }
         catch( Exception ex )
 		{
-        	reportError( "", ex, LoggingErrorHandler.FORMAT_FAILURE );
+        	reportError( "", ex, LoggingErrorHandler.FORMAT_FAILURE ); //$NON-NLS-1$
 		}
     }
     

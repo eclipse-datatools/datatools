@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
@@ -519,7 +520,7 @@ public class DataSourceDesignSession
     {
         // validate if start was successfully called earlier
         if( m_designSession == null )
-            throw new OdaException( "Not in an edit session." );
+            throw new OdaException( Messages.common_notInDesignSession );
             
         return DesignerUtil.getAdaptableDataSourceDesign( m_designSession );
     }
@@ -548,7 +549,7 @@ public class DataSourceDesignSession
             if( m_editorPage == null )  // ODA extension did not implement editor page
             {
                 // TODO - replace with default OdaDesignSession resource set editor
-                throw new OdaException( "ODA Extension has no editor page." );
+                throw new OdaException( Messages.extension_missingPropertyPage );
             }
         }
         return m_editorPage;

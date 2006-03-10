@@ -15,7 +15,6 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import java.io.File;
-import java.text.MessageFormat;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
@@ -31,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -66,7 +66,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         throws OdaException
     {
         initialize( odaDataSourceId, null, 
-                    "New Data Source" );
+                    Messages.wizard_dataSource_defaultTitle );
     }
 
     protected NewDataSourceWizardBase()
@@ -89,7 +89,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
                     new Status( IStatus.ERROR, 
                             newWizardElement.getNamespace(), 
                             IStatus.OK,
-                            "Missing ODA Data Source ID in the Profile attribute.", 
+                            Messages.wizard_missingDataSourceId, 
                             null ) );
 
         // the oda ui plugin extension that implements the custom wizard
@@ -109,7 +109,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
                     new Status( IStatus.ERROR, 
                             odaDesignerPluginId, 
                             IStatus.OK,
-                            "Invalid plug-in manifest content in the oda.design.ui.dataSource extension.", 
+                            Messages.wizard_invalidManifest, 
                             ex ));
         }
     }
@@ -138,8 +138,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         if( m_manifest == null )
         {
             // TODO - uses default wizard page
-            String messageText = "The ODA data source extension has not implemented the ODA UI extension point ({0})";
-            String errorMessage = MessageFormat.format( messageText, new Object[]{ ODA_UI_EXT_PT } );
+            String errorMessage = Messages.bind( Messages.extension_missingManifestElement, ODA_UI_EXT_PT );
             OdaException odaEx = new OdaException( errorMessage );
             odaEx.initCause( new IllegalArgumentException( m_odaDataSourceId ) );
             throw odaEx;
@@ -197,10 +196,10 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         
         if( ! ( pageInstance instanceof DataSourceWizardPage ))
         {
-            String messageText = "Invalid wizard page ({0}) implementation. An ODA custom wizard page must extend from {1}.";
-            throw new RuntimeException( MessageFormat.format( messageText, 
-                    new Object[]{ wizardPageClassName,
-                                  DataSourceWizardPage.class.getName() } )); 
+            throw new RuntimeException( 
+                    Messages.bind( Messages.extension_mustInheritFromODAPage, 
+                                    wizardPageClassName,
+                                    DataSourceWizardPage.class.getName() )); 
         }
         
         // a valid wizard page, subclass from DataSourceWizardPage;
@@ -352,7 +351,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         throws OdaException
     {
         if( ! isInOdaDesignSession() )
-            throw new OdaException( "Not in design session" );
+            throw new OdaException( Messages.common_notInDesignSession );
 
         m_dataSourceDesign = createDataSourceDesign();
         

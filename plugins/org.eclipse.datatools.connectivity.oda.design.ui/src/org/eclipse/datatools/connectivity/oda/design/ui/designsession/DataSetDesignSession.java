@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DataSourceDesignSession.ProfileReference;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.IWizard;
@@ -293,7 +294,7 @@ public class DataSetDesignSession
     {
         // validate if start was successfully called earlier
         if( m_designSession == null )
-            throw new OdaException( "Not in an edit session." );
+            throw new OdaException( Messages.common_notInDesignSession );
             
         DataSetDesign dataSetDesign = 
             m_designSession.getRequestDataSetDesign();
