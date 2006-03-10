@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.core; singleton:=true
+Bundle-Version: 0.7.0.200603071
+Bundle-ClassPath: rdbcore.jar
+Bundle-Activator: org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.connectivity.sqm.internal.core,
+ org.eclipse.datatools.connectivity.sqm.internal.core.connection,
+ org.eclipse.datatools.connectivity.sqm.internal.core.containment,
+ org.eclipse.datatools.connectivity.sqm.internal.core.definition,
+ org.eclipse.datatools.connectivity.sqm.internal.core.rte,
+ org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe,
+ org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc,
+ org.eclipse.datatools.connectivity.sqm.internal.core.util
+Require-Bundle: org.eclipse.core.resources,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.connectivity,
+ com.ibm.icu,
+ org.eclipse.datatools.connectivity.db.generic
+Eclipse-LazyStart: true
