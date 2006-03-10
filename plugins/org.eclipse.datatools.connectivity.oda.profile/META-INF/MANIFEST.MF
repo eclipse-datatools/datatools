@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.profile
+Bundle-Version: 3.0.0.200603101
+Bundle-ClassPath: odaprofile.jar
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.connectivity.oda.profile
+Require-Bundle: org.eclipse.datatools.connectivity;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda;visibility:=reexport,
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.junit;resolution:=optional

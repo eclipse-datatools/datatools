@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP Open Data Access
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda; singleton:=true
-Bundle-Version: 3.0.0.200603081
+Bundle-Version: 3.0.0.200603101
 Bundle-ClassPath: oda.jar,
  odaconsumer-helper.jar,
  lib/birt-core.jar

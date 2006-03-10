@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design; singleton:=true
+Bundle-Version: 3.0.0.200603101
+Bundle-ClassPath: odadesign.jar
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.connectivity.oda.design,
+ org.eclipse.datatools.connectivity.oda.design.impl,
+ org.eclipse.datatools.connectivity.oda.design.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ com.ibm.icu;visibility:=reexport
+Eclipse-AutoStart: true

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-<plugin
-   id="org.eclipse.datatools.connectivity.oda.profile"
-   name="%plugin.name"
-   version="3.0.0.200602241"
-   provider-name="Eclipse.org">
+<!--
+/**
+ *************************************************************************
+ * Copyright (c) 2005, 2006 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *  
+ *************************************************************************
+ *
+ * $Id: $
+ */
+-->
 
-   <runtime>
-      <library name="odaprofile.jar">
-         <export name="*"/>
-      </library>
-   </runtime>
-   <requires>
-      <import plugin="org.eclipse.datatools.connectivity" export="true"/>
-      <import plugin="org.eclipse.datatools.connectivity.oda" export="true"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.junit" optional="true"/>
-   </requires>
-
+<plugin>
+   
 </plugin>
