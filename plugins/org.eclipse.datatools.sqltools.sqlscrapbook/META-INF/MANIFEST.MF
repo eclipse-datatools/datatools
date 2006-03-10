@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlscrapbook; singleton:=true
+Bundle-Version: 0.7.0.200603101
+Bundle-ClassPath: sqlscrapbook.jar
+Bundle-Activator: org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.sqltools.internal.sqlscrapbook,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.icons,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.util,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.views.execute,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards
+Require-Bundle: org.eclipse.datatools.sqltools.sqleditor,
+ org.eclipse.jface.text,
+ org.eclipse.ui,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.sqltools.editor.core,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.sqltools.common.ui,
+ org.eclipse.datatools.connectivity.db.generic,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.connectivity.db.generic.ui
+Eclipse-AutoStart: true
+Eclipse-AutoStop: true
+

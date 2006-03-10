@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP SQL Tools Routine Editor Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.routineeditor;singleton:=true
-Bundle-Version: 0.7.0.200602242
+Bundle-Version: 0.7.0.200603101
 Bundle-Activator: org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.modelbase.dbdefinition,
  org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.sql.query,
  org.eclipse.datatools.sqltools.sql,
  org.eclipse.core.resources,
  org.eclipse.debug.core,

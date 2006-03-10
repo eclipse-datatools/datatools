@@ -188,7 +188,7 @@
 			<fileset dir="${build.result.folder}" includes="sqleditor.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="sqleditor.jar,schema/,icons/,plugin.xml,plugin.properties,about.html"			/>
+			<fileset dir="${basedir}" includes="META-INF/,sqleditor.jar,schema/,icons/,plugin.xml,plugin.properties,about.html"			/>
 		</copy>
 			<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqleditorsrc.zip"/>

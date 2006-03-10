@@ -1,37 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-<plugin
-   id="org.eclipse.datatools.sqltools.sqlscrapbook"
-   name="%pluginName"
-   version="0.7.0.200602242"
-   provider-name="%providerName"
-   class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin">
+<plugin>
 
-   <runtime>
-      <library name="sqlscrapbook.jar">
-         <export name="*"/>
-      </library>
-   </runtime>
-   <requires>
-      <import plugin="org.eclipse.datatools.sqltools.sqleditor"/>
-      <import plugin="org.eclipse.jface.text"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.ui.editors"/>
-      <import plugin="org.eclipse.ui.workbench.texteditor"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.datatools.modelbase.sql"/>
-      <import plugin="org.eclipse.datatools.sqltools.sql"/>
-      <import plugin="org.eclipse.datatools.sqltools.editor.core"/>
-      <import plugin="org.eclipse.datatools.connectivity"/>
-      <import plugin="org.eclipse.datatools.modelbase.dbdefinition"/>
-      <import plugin="org.eclipse.datatools.sqltools.common.ui"/>
-      <import plugin="org.eclipse.datatools.connectivity.db.generic"/>
-      <import plugin="org.eclipse.datatools.connectivity.ui"/>
-      <import plugin="org.eclipse.datatools.connectivity.db.generic.ui"/>
-   </requires>
-   <extension
+     <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
