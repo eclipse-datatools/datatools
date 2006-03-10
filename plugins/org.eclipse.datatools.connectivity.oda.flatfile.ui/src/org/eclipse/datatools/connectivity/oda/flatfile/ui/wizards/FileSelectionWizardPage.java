@@ -29,8 +29,8 @@ import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
+import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver;
-import org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -67,6 +67,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 {
     private static String DEFAULT_MESSAGE = Messages
                 .getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
+    private static final String ALL_CSV_SUFFIX = "*.csv";  //$NON-NLS-1$
+    private static final String CSV_SUFFIX = ".csv";  //$NON-NLS-1$
+    private static final String ALL_TXT_SUFFIX = "*.txt";  //$NON-NLS-1$
+    private static final String TXT_SUFFIX = ".txt";  //$NON-NLS-1$
+    private static final String MATCH_ALL_FILES = "*.*"; //$NON-NLS-1$
+    
     private final int DEFAULT_WIDTH = 200;
     private final int DEFAULT_HEIGHT = 200;
 
@@ -211,7 +217,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
                 }
                 else
                 {
-                    if( currSelectFilter.equals( "*.*" ) ||  //$NON-NLS-1$
+                    if( currSelectFilter.equals( MATCH_ALL_FILES ) ||  
                         MessageDialog.openConfirm(
                             shell,
                             Messages.getString( "confirm.reselectFileFilterTitle" ), //$NON-NLS-1$
@@ -398,7 +404,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         if( m_fileViewer != null && !m_fileViewer.getControl().isDisposed() )
         {
             String odaHome = dataSourceProps
-                    .getProperty( FlatFileConstants.ODA_FOLDER_PROP );
+                    .getProperty( CommonConstants.CONN_HOME_DIR_PROP );
             if( odaHome == null )
             {
                 setMessage( "" ); //$NON-NLS-1$
@@ -407,9 +413,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
             }
 
             m_charSet = dataSourceProps
-                    .getProperty( FlatFileConstants.ODA_CHARSET_PROP );
+                    .getProperty( CommonConstants.CONN_CHARSET_PROP );
             m_inclTypeLine = dataSourceProps
-                    .getProperty( FlatFileConstants.ODA_INCLTYPELINE_PROP );
+                    .getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
             
             File folder = new File( odaHome );
             if( folder.isDirectory() && folder.exists() )
@@ -531,9 +537,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
                 File file, IConnection conn ) throws OdaException
     {
         java.util.Properties prop = new java.util.Properties();
-        prop.put( FlatFileConstants.ODA_FOLDER_PROP, file.getParent() );
-        prop.put( FlatFileConstants.ODA_CHARSET_PROP, m_charSet );
-        prop.put( FlatFileConstants.ODA_INCLTYPELINE_PROP, m_inclTypeLine );
+        prop.put( CommonConstants.CONN_HOME_DIR_PROP, file.getParent() );
+        prop.put( CommonConstants.CONN_CHARSET_PROP, m_charSet );
+        prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, m_inclTypeLine );
         conn.open( prop );
 
         IQuery query = conn.newQuery( null );
@@ -708,19 +714,19 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
     {
         // for page refresh
         resetInitialized();
-        m_fileFilter.setSelection( new StructuredSelection( "*.*" ) ); //$NON-NLS-1$
+        m_fileFilter.setSelection( new StructuredSelection( MATCH_ALL_FILES ) ); 
         File[] files = (File[]) m_fileViewer.getInput();
         for( int n = 0; n < files.length; n++)
         {
             if( files[n].getName().equalsIgnoreCase( tableName ) )
             {
                 resetInitialized();
-                if( tableName.toLowerCase().endsWith( ".csv" ) ) //$NON-NLS-1$
+                if( tableName.toLowerCase().endsWith( CSV_SUFFIX ) ) 
                     m_fileFilter
-                            .setSelection( new StructuredSelection( "*.csv" ) ); //$NON-NLS-1$
-                else if( tableName.toLowerCase().endsWith( ".txt" ) ) //$NON-NLS-1$
+                            .setSelection( new StructuredSelection( ALL_CSV_SUFFIX ) ); 
+                else if( tableName.toLowerCase().endsWith( TXT_SUFFIX ) ) 
                     m_fileFilter
-                            .setSelection( new StructuredSelection( "*.txt" ) ); //$NON-NLS-1$
+                            .setSelection( new StructuredSelection( ALL_TXT_SUFFIX ) ); 
 
                 m_fileViewer.setSelection( new StructuredSelection( files[n] ) );
 
@@ -748,7 +754,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         m_selectedList.removeAll();
         for( int n = 0; n < columns.length; n++)
         {
-            if( columns[n].trim().equals( "*" ) ) //$NON-NLS-1$
+            if( columns[n].trim().equals( CommonConstants.KEYWORD_ASTERISK ) )
             {
                 // WildCard just select everything
                 m_availableList.removeAll();
@@ -798,7 +804,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
      */
     private String[] getColumnsFromQuery( String columnList )
     {
-        String[] columns = columnList.split( "," ); //$NON-NLS-1$
+        String[] columns = columnList.split( CommonConstants.DELIMITER_COMMA ); //$NON-NLS-1$
         // Remove the as keyword if any
         for( int n = 0; n < columns.length; n++)
         {
@@ -818,12 +824,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         {
             if( m_fileFilter.getCombo().getSelectionIndex() == -1 )
             {
-                m_fileFilter.add( "*.csv" ); //$NON-NLS-1$
-                m_fileFilter.add( "*.txt" ); //$NON-NLS-1$
-                m_fileFilter.add( "*.*" ); //$NON-NLS-1$
+                m_fileFilter.add( ALL_CSV_SUFFIX ); 
+                m_fileFilter.add( ALL_TXT_SUFFIX ); 
+                m_fileFilter.add( MATCH_ALL_FILES ); 
                 m_fileFilter.getCombo().select( 0 );
 
-                this.m_selectedFileFilter = "*.csv"; //$NON-NLS-1$
+                this.m_selectedFileFilter = ALL_CSV_SUFFIX; 
             }
         }
     }
@@ -849,7 +855,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
     private boolean hasValidData()
     {
         String fileName = m_fileViewer.getCombo().getText().toLowerCase();
-        if( !(fileName.endsWith( ".csv" ) || fileName.endsWith( ".txt" )) ) //$NON-NLS-1$ //$NON-NLS-2$
+        if( !(fileName.endsWith( CSV_SUFFIX ) || fileName.endsWith( TXT_SUFFIX )) )  
         {
             if( !isContinue( Messages
                     .getString( "warning.columnExtensionInvalid" ) ) ) //$NON-NLS-1$
@@ -952,10 +958,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 
         CSVFileFilter( String ext )
         {
-            if( "*.csv".equalsIgnoreCase( ext ) ) //$NON-NLS-1$
-                extension = ".csv"; //$NON-NLS-1$
-            else if( "*.txt".equalsIgnoreCase( ext ) ) //$NON-NLS-1$
-                extension = ".txt"; //$NON-NLS-1$
+            if( ALL_CSV_SUFFIX.equalsIgnoreCase( ext ) ) 
+                extension = CSV_SUFFIX; 
+            else if( ALL_TXT_SUFFIX.equalsIgnoreCase( ext ) ) 
+                extension = TXT_SUFFIX; 
             else
                 extension = null;
 

@@ -19,7 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.SortedMap;
 
-import org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileConstants;
+import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
@@ -54,7 +54,7 @@ public class FolderSelectionPageHelper
     
     private static final int ERROR_FOLDER = 1;
     private static final int ERROR_EMPTY_PATH = 2;
-    private static final String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     
     FolderSelectionPageHelper( WizardPage page )
     {
@@ -91,7 +91,9 @@ public class FolderSelectionPageHelper
     {
         if( m_typeLineCheckBox == null )
             return EMPTY_STRING;
-        return m_typeLineCheckBox.getSelection() ? "YES" : "NO";
+        return m_typeLineCheckBox.getSelection() ? 
+                CommonConstants.INC_TYPE_LINE_YES : 
+                CommonConstants.INC_TYPE_LINE_NO;
     }
     
     String getCharSet()
@@ -108,11 +110,11 @@ public class FolderSelectionPageHelper
             props = new Properties();
         
         // set custom driver specific properties
-        props.setProperty( FlatFileConstants.ODA_FOLDER_PROP, 
+        props.setProperty( CommonConstants.CONN_HOME_DIR_PROP, 
                             getFolderLocation() );
-        props.setProperty( FlatFileConstants.ODA_INCLTYPELINE_PROP, 
+        props.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, 
                             getWhetherUseSecondLineAsTypeLine() );
-        props.setProperty( FlatFileConstants.ODA_CHARSET_PROP, 
+        props.setProperty( CommonConstants.CONN_CHARSET_PROP, 
                             getCharSet() );
         return props;
     }
@@ -123,17 +125,18 @@ public class FolderSelectionPageHelper
             m_folderLocation == null )
             return;     // nothing to initialize
         
-        String folderPath = profileProps.getProperty( FlatFileConstants.ODA_FOLDER_PROP );
+        String folderPath = profileProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
         if( folderPath == null )
             folderPath = EMPTY_STRING;
         m_folderLocation.setText( folderPath );
 
-        String useSecondLine = profileProps.getProperty( FlatFileConstants.ODA_INCLTYPELINE_PROP );
+        String useSecondLine = profileProps.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
         if( useSecondLine == null )
             useSecondLine = EMPTY_STRING;
-        m_typeLineCheckBox.setSelection( useSecondLine.equalsIgnoreCase( "YES" ) );
+        m_typeLineCheckBox.setSelection( useSecondLine.equalsIgnoreCase( 
+                CommonConstants.INC_TYPE_LINE_YES ) ); 
 
-        String charSet = profileProps.getProperty( FlatFileConstants.ODA_CHARSET_PROP );
+        String charSet = profileProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
         if( charSet == null || charSet.trim().length() == 0 )
             m_charSetSelectionCombo.select( 0 );
         else
@@ -238,7 +241,7 @@ public class FolderSelectionPageHelper
             String charSetName = ((Charset) m_charSetMap.get( charSetsArray[i] ))
                     .name();
             m_charSetSelectionCombo.add( charSetName );
-            if( FlatFileConstants.ODA_DEFAULT_CHARSET_PROP
+            if( CommonConstants.CONN_DEFAULT_CHARSET
                     .equalsIgnoreCase( charSetName ) )
                 m_charSetSelectionCombo.select( i );
         }
@@ -254,7 +257,7 @@ public class FolderSelectionPageHelper
         data.horizontalSpan = 3;
         m_typeLineCheckBox.setLayoutData( data );
         m_typeLineCheckBox.setText( Messages
-                .getString( "label.includeTypeLine" ) );
+                .getString( "label.includeTypeLine" ) ); //$NON-NLS-1$
     }
 
     private void setPageComplete( boolean complete )
