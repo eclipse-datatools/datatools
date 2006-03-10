@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile.ui; singleton:=true
+Bundle-Version: 3.0.0.200603101
+Bundle-ClassPath: oda-flatfileui.jar
+Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIPlugin
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.connectivity.oda.flatfile.ui,
+ org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n,
+ org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.datatools.connectivity.oda.design.ui,
+ org.eclipse.datatools.connectivity.oda.flatfile
+Eclipse-AutoStart: true
