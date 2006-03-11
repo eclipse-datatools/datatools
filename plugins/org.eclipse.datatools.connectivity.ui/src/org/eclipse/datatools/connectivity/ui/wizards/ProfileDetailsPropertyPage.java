@@ -36,6 +36,8 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 
+	protected Button btnPing;
+
 	protected ProfileDetailsPropertyPage() {
 		super(true);
 	}
@@ -48,15 +50,15 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 	protected Control createContents(Composite parent) {
 		Composite container = (Composite)super.createContents(parent);
 
-		final Button button = new Button(container, SWT.NONE);
-		button.addSelectionListener(new SelectionAdapter() {
+		btnPing = new Button(container, SWT.NONE);
+		btnPing.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
 				testConnection();
 			}
 		});
-		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
-		button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
+		btnPing.setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
 				IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE);
