@@ -30,6 +30,9 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class DataSetWizardPageCore extends WizardPage
 {
+    private String m_path;
+    private String m_icon;
+    private boolean m_hasInitialFocus = false;
 
     /**
      * Sub-class may override the method to further update
@@ -77,6 +80,66 @@ public abstract class DataSetWizardPageCore extends WizardPage
     public void createControl( Composite parent )
     {
         // base class does nothing; subclass may override
+    }
+
+    /**
+     * Returns the path of the page in a data set preference dialog.
+     * @return the page path;
+     *          may be null if none is specified
+     */
+    String getPagePath()
+    {
+        return m_path;
+    }
+
+    /**
+     *  Set the path of the page in a data set preference dialog.
+     * @param path
+     */
+    protected void setPagePath( String path )
+    {
+        m_path = path;
+    }
+
+    /**
+     * Returns the relative path to an icon that may 
+     * be used in the UI in addition to the page's title.
+     * @return the title icon file path;
+     *          may be null if none is specified
+     */
+    public String getIconPath()
+    {
+        return m_icon;
+    }
+
+    /**
+     * Set the relative path to an icon that may 
+     * be used in the UI in addition to the page's title.
+     * @param icon
+     */
+    protected void setIconPath( String icon )
+    {
+        m_icon = icon;
+    }
+    
+    /**
+     * Indicates whether this page should be selected
+     * and has initial focus when used in a preference dialog. 
+     * @return true if this page should have initial focus; 
+     *              false otherwise
+     */
+    boolean hasInitialFocus()
+    {
+        return m_hasInitialFocus;
+    }
+    
+    /**
+     * Specifies whether this page should be selected
+     * and has initial focus when used in a preference dialog. 
+     */
+    protected void setHasInitialFocus()
+    {
+        m_hasInitialFocus = true; 
     }
     
     /**

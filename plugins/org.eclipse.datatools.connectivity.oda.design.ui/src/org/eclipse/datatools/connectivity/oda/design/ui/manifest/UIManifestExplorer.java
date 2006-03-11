@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,16 +36,18 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 public class UIManifestExplorer
 {
     private static UIManifestExplorer sm_instance = null;
-    
-    // trace logging variables
-    private static String sm_loggerName;
-    private static Logger sm_logger;
 
     private static final String DTP_ODA_UI_EXT_POINT = 
             "org.eclipse.datatools.connectivity.oda.design.ui.dataSource";  //$NON-NLS-1$
     private static final String UI_PROPERTY_PAGE_EXT_PT = 
             "org.eclipse.ui.propertyPages";  //$NON-NLS-1$
     private static final String PAGE_ELEMENT_NAME = "page";  //$NON-NLS-1$
+    
+    private Hashtable m_manifests;  // cached copy of found manifests
+    
+    // trace logging variables
+    private static String sm_loggerName;
+    private static Logger sm_logger;
     
     /**
      * Returns the <code>UIManifestExplorer</code> instance to  
@@ -56,6 +59,9 @@ public class UIManifestExplorer
         if( sm_instance == null )
         {
             sm_instance = new UIManifestExplorer();
+            
+            sm_instance.m_manifests = new Hashtable();
+            
             // works around bug in some J2EE servers; see Bugzilla #126073
             sm_loggerName = sm_instance.getClass().getPackage().getName();
             sm_logger = Logger.getLogger( sm_loggerName );
@@ -112,15 +118,29 @@ public class UIManifestExplorer
             throw new OdaException(
                     new IllegalArgumentException( extensionPoint ) );
     
+        // first check if specified dataSourceId's manifest
+        // is already in cache, and use it
+        UIExtensionManifest aManifest =
+            (UIExtensionManifest) m_manifests.get( dataSourceId );
+        if( aManifest != null )
+            return aManifest;
+        
+        // not yet cached, find and create a new one
         IExtension[] extensions = 
             ManifestExplorer.getExtensions( extensionPoint );
         
         IExtension extension = findExtension( dataSourceId, extensions );
     
-        if ( extension != null )    // found
-            return new UIExtensionManifest( extension );
-        // not found
-        return null;
+        if ( extension == null )    // not found
+            return null;
+        
+        // found extension 
+        aManifest = new UIExtensionManifest( extension );
+        
+        // keep it in cached collection
+        m_manifests.put( dataSourceId, aManifest );
+        
+        return aManifest;
     }
     
     /*

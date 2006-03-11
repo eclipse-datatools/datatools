@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * The core implementation of the Data Source Editor Page base class 
@@ -39,6 +40,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
 {
     private OdaDesignSession m_designSession;
     private Properties m_dataSourceProps;
+    private Boolean m_setPingButtonVisible;
 
     /**
      * Sub-class may override this method to further update
@@ -313,6 +315,33 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // calls abstract method provided by custom extension
         cleanup();
         super.dispose();
+    }
+
+    /**
+     * Marks the inherited Test Connection (Ping) button as visible
+     * if the argument is true, and marks it invisible otherwise. 
+     * <br>The visibility state setting takes effect only 
+     * during <code>createControl</code>.
+     * @param enabled   the new visibility state
+     */
+    protected void setPingButtonVisible( boolean visible )
+    {
+        m_setPingButtonVisible = new Boolean( visible );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.preference.PreferencePage#createControl(org.eclipse.swt.widgets.Composite)
+     */
+    public void createControl( Composite parent )
+    {
+        super.createControl( parent );
+        
+        // now that all control contents are created, go ahead and 
+        // override visibility of the inherited Test Connection ping button
+        // TODO - wait for Bugzilla 131225
+        if( m_setPingButtonVisible != null /*&& this.btnPing != null */ )
+        {}
+//            this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
     }
 
 }

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.5 2006/03/09 05:09:18 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.6 2006/03/09 08:50:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -235,7 +236,8 @@ public class DataSetDesignImpl extends EObjectImpl
      */
     public Object getAdapter( Class adapter )
     {
-        // TODO - not supporting any adapter class yet
+        if( adapter.isAssignableFrom( this.getClass() ) )
+            return EcoreUtil.copy( this );
         return null;
     }
 

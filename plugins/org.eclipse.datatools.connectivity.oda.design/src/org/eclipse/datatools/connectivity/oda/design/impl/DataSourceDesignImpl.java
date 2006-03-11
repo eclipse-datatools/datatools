@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.5 2006/02/26 08:04:34 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.6 2006/03/09 08:50:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -229,7 +230,9 @@ public class DataSourceDesignImpl extends EObjectImpl
      */
     public Object getAdapter( Class adapter )
     {
-        // TODO - not supporting any adapter class yet
+        // TODO - supports adapter to ConnectionProfile class
+        if( adapter.isAssignableFrom( this.getClass() ) )
+            return EcoreUtil.copy( this );
         return null;
     }
 

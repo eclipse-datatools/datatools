@@ -14,9 +14,9 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
-import java.util.Set;
 
 import org.eclipse.birt.core.framework.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -40,6 +40,7 @@ public class DataSetUIElement
     private boolean m_hasParameterDefinition;
     private DataSetWizardInfo m_wizardInfo;
     private Hashtable m_dataSetPages;
+    private ArrayList m_dataSetPageIds;
     private IConfigurationElement m_dataSetElement;
 
     DataSetUIElement( IConfigurationElement dataSetElement ) 
@@ -70,12 +71,16 @@ public class DataSetUIElement
             m_wizardInfo = new DataSetWizardInfo( wizardElement );
 
         // dataSetPage elements; must have one or more
-        m_dataSetPages = getDataSetPages( dataSetElement );
+        getDataSetPages( dataSetElement );
     }
 
     /**
-     * Returns a collection of dataSetPage elements in the given element.
+     * Collects the dataSetPage elements in the 
+     * specified dataSetElement, and keep in 
+     * instance variables.
      * Expects to find one or more dataSetPage elements.
+     * @return a Hashtable of page id and corresponding 
+     *          page info instance
      */
     private Hashtable getDataSetPages( IConfigurationElement dataSetElement )
         throws OdaException
@@ -84,17 +89,23 @@ public class DataSetUIElement
             dataSetElement.getChildren( PAGE_ELEMENT_NAME );
         // TODO - restore error condition after all data sets are migrated
 /*        if( pages.length == 0 )
-            throw new OdaException( "Missing element: " + PAGE_ELEMENT_NAME );
+            throw new OdaException( 
+                Messages.bind( Messages.manifest_dataSetUi_missingElement,
+                                PAGE_ELEMENT_NAME ));
 */        
-        Hashtable dataSetPages = new Hashtable();
+        m_dataSetPages = new Hashtable( pages.length );
+        m_dataSetPageIds = new ArrayList( pages.length );
         for( int i = 0; i < pages.length; i++ )
         {
             IConfigurationElement aPage = pages[i];
             String pageId = aPage.getAttribute( DataSetPageInfo.ID_ATTRIBUTE );
-            dataSetPages.put( pageId, 
+            m_dataSetPages.put( pageId, 
                               new DataSetPageInfo( aPage ) );
+
+            // maintains the sequence of page elements
+            m_dataSetPageIds.add( pageId );
         }
-        return dataSetPages;
+        return m_dataSetPages;
     }
 
     /**
@@ -173,9 +184,12 @@ public class DataSetUIElement
             dataSetUIElement.getChildren( WIZARD_ELEMENT_NAME );
 
         // TODO - restore error condition after all data sets are migrated
-//        if( wizardElements.length < 1 )  // expects one element
-//            throw new OdaException( "Missing element: " + WIZARD_ELEMENT_NAME );
-
+/*
+        if( wizardElements.length < 1 )  // expects one element
+            throw new OdaException( 
+                Messages.bind( Messages.manifest_dataSetUi_missingElement,
+                                WIZARD_ELEMENT_NAME ));
+*/
         if( wizardElements.length >= 1 ) 
             return wizardElements[0];   // takes the first one
 
@@ -186,32 +200,53 @@ public class DataSetUIElement
      * Returns an array of definitions of
      * customized data set pages that an extension contributes 
      * to an ODA host designer's data set dialog.
+     * Its order is in the same sequence as the
+     * dataSetPage elements defined in the extension manifest.
      * @return  an array of data set page definitions that
      *          represent the
      *          <i>dataSetUI.dataSetPage</i> elements
      */
     public DataSetPageInfo[] getPageDefinitions()
     {
-        if( m_dataSetPages == null )
+        if( m_dataSetPageIds == null )
             return new DataSetPageInfo[0];
         
-        Collection pages = m_dataSetPages.values();
-        return (DataSetPageInfo[]) pages.toArray( 
-                    new DataSetPageInfo[ pages.size() ] );
+        // follow the sequence of the defined pages
+        int numPages = m_dataSetPageIds.size();
+        ArrayList dataSetPages = new ArrayList( numPages );
+        for( int i = 0; i < numPages; i++ )
+        {
+            String pageId = (String) m_dataSetPageIds.get( i );
+            try
+            {
+                dataSetPages.add( getPageDefinition( pageId ) );
+            }
+            catch( OdaException e )
+            {
+                // ignore, skip
+                e.printStackTrace();
+                continue;
+            }
+        }
+
+        return (DataSetPageInfo[]) dataSetPages.toArray( 
+                    new DataSetPageInfo[ dataSetPages.size() ] );
     }
     
     /**
      * Returns an array of ids of the dataSetPage elements 
      * defined in this data set ui element.
+     * Its order is in the same sequence as the
+     * dataSetPage elements defined in the extension manifest.
      * @return  an array of data set page ids.
      */
     public String[] getPageIds()
     {
-        if( m_dataSetPages == null )
+        if( m_dataSetPageIds == null )
             return new String[0];
         
-        Set pageIds = m_dataSetPages.keySet();
-        return (String[]) pageIds.toArray( new String[ pageIds.size() ] );
+        return (String[]) m_dataSetPageIds.toArray( 
+                new String[ m_dataSetPageIds.size() ] );
     }
     
     /**

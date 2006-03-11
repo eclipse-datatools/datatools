@@ -101,7 +101,8 @@ public class DataSetPageInfo
     }
 
     /**
-     * Returns the path of the page in a data set preference dialog.
+     * Returns the relative path to an icon that may 
+     * be used in the UI in addition to the page's display name.
      * @return the attribute value in <i>dataSetUI.dataSetPage.icon</i>;
      *          may be null if none is specified
      */

@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * The core implementation of the Data Source Wizard Page base class 
@@ -31,6 +32,8 @@ import org.eclipse.jface.wizard.IWizardPage;
 public abstract class DataSourceWizardPageCore extends
         ConnectionProfileDetailsPage
 {
+    private Boolean m_setPingButtonVisible;
+    
     /**
      * Sub-class may override the method to further update
      * the given data source design, as needed.
@@ -121,4 +124,29 @@ public abstract class DataSourceWizardPageCore extends
         super.dispose();
     }
 
+    /**
+     * Marks the inherited Test Connection (Ping) button as visible
+     * if the argument is true, and marks it invisible otherwise. 
+     * <br>The visibility state setting takes effect only 
+     * during <code>createControl</code>.
+     * @param enabled   the new visibility state
+     */
+    protected void setPingButtonVisible( boolean visible )
+    {
+        m_setPingButtonVisible = new Boolean( visible );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createControl(org.eclipse.swt.widgets.Composite)
+     */
+    public void createControl( Composite parent )
+    {
+        super.createControl( parent );
+        
+        // now that all control contents are created, go ahead and 
+        // override visibility of the inherited Test Connection ping button
+        if( m_setPingButtonVisible != null && this.btnPing != null )
+            this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
+    }
+    
 }

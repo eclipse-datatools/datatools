@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -25,6 +27,8 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExp
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DataSourceDesignSession.ProfileReference;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetEditorPage;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.IWizard;
@@ -41,6 +45,7 @@ public class DataSetDesignSession
     private String m_odaDataSourceId;
     private DataSetUIElement m_dataSetUIElement;
     private NewDataSetWizard m_wizard;
+    private ArrayList m_editorPages;
     
     /**
      * Starts a design session to create a new 
@@ -218,7 +223,7 @@ public class DataSetDesignSession
     public OdaDesignSession finish() throws OdaException
     {
         OdaDesignSession finishedSession = 
-            finishNewDataSet();
+            finishDataSetDesign();
         
         // successfully finished
         m_designSession = null;     // reset to complete session
@@ -269,37 +274,6 @@ public class DataSetDesignSession
     {
         return getNewWizard().getStartingPage();
     }
-
-    /**
-     * Returns a customized editor page
-     * for use within a design session to edit 
-     * an extended ODA data set design instance.
-     * @return  a customized wizard page
-     * @throws OdaException
-     */
-    public IWizardPage getEditorPage() throws OdaException
-    {
-        return getWizardStartingPage();
-    }
-    
-    /**
-     * Returns a customized editor page's adaptable element 
-     * that represents the
-     * the extended ODA data set design instance that is
-     * being edited.
-     * @return
-     */
-    public IAdaptable getEditorPageElement()
-        throws OdaException
-    {
-        // validate if start was successfully called earlier
-        if( m_designSession == null )
-            throw new OdaException( Messages.common_notInDesignSession );
-            
-        DataSetDesign dataSetDesign = 
-            m_designSession.getRequestDataSetDesign();
-        return (IAdaptable) EcoreUtil.copy( dataSetDesign );
-    }
     
     /**
      * Returns an ODA wizard extended from the base wizard 
@@ -320,6 +294,72 @@ public class DataSetDesignSession
     }    
 
     /**
+     * Returns an ordered collection of customized editor pages
+     * for use within a design session to edit 
+     * an extended ODA data set design instance.
+     * Each editor page is an extended PropertyPage
+     * that can be used in a preference dialog.
+     * Their order is in the same sequence as the
+     * dataSetPage elements defined in the plugin extension manifest.
+     * @return  an array of customized editor pages
+     * @throws OdaException
+     */
+    public DataSetEditorPage[] getEditorPages() throws OdaException
+    {
+        ArrayList editorPages = getExtendedEditorPages();
+        return (DataSetEditorPage[]) editorPages.toArray( 
+                new DataSetEditorPage[ editorPages.size() ] );
+    }
+    
+    /**
+     * Returns an ordered collection of
+     * customized ODA data set editor pages,
+     * adapted from the custom data set wizard pages
+     * contributed by an ODA design ui extension.
+     * @return
+     * @throws OdaException
+     */
+    protected ArrayList getExtendedEditorPages()
+        throws OdaException
+    {
+        if( m_editorPages != null )
+            return m_editorPages;
+        
+        IWizardPage[] pages = getExtendedWizard().getPages();
+        m_editorPages = new ArrayList( pages.length );
+
+        // for each wizard page, convert to an editor page
+        for( int i = 0; i < pages.length; i++ )
+        {
+            if( pages[i] instanceof DataSetWizardPage )
+            {
+                m_editorPages.add( 
+                        new DataSetEditorPage( (DataSetWizardPage) pages[i] ));
+            }
+        }
+        return m_editorPages;
+    }
+    
+    /**
+     * Returns a customized editor page's adaptable element 
+     * that represents the
+     * the extended ODA data set design instance that is
+     * being edited.
+     * @return
+     */
+    public IAdaptable getEditorPageElement()
+        throws OdaException
+    {
+        // validate if start was successfully called earlier
+        if( m_designSession == null )
+            throw new OdaException( Messages.common_notInDesignSession );
+            
+        DataSetDesign dataSetDesign = 
+            m_designSession.getRequestDataSetDesign();
+        return (IAdaptable) EcoreUtil.copy( dataSetDesign );
+    }
+
+    /**
      * Performs finish on the current ODA design session to
      * create a new data set design.  This 
      * gathers the data set design definition collected in UI designer
@@ -329,13 +369,13 @@ public class DataSetDesignSession
      * @return  the completed design session containing the
      *          new data set design within the session response
      */
-    protected OdaDesignSession finishNewDataSet() throws OdaException
+    protected OdaDesignSession finishDataSetDesign() throws OdaException
     {
         NewDataSetWizard wizard = getExtendedWizard();
 
         return wizard.getResponseSession();
     }
-    
+        
     /**
      * Dispose any current pages of the session.
      * Ensures they would not be re-used if the session restarts.
@@ -347,5 +387,18 @@ public class DataSetDesignSession
             m_wizard.dispose();
             m_wizard = null;
         }
-    }
+        
+        if( m_editorPages != null )
+        {
+            int numPages = m_editorPages.size();
+            for( int i = 0; i < numPages; i++ )
+            {
+                DataSetEditorPage page = 
+                    (DataSetEditorPage) m_editorPages.get( i );
+                page.dispose();
+            }
+            m_editorPages = null;
+        }
+   }
+
 }

@@ -50,5 +50,6 @@ public class Messages extends NLS
     public static String manifest_invalidDataSetElementId;
     public static String manifest_dataSetUi_missingPageId;
     public static String manifest_dataSetUi_invalidPageId;
+    public static String manifest_dataSetUi_missingElement;
 
 }
