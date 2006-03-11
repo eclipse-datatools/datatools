@@ -6,30 +6,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: plugin.xml,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: plugin.xml,v 1.2 2006/02/23 16:25:53 jgraham Exp $
  */
 -->
 
-<plugin
-    name = "%pluginName"
-    id = "org.eclipse.datatools.modelbase.edit"
-    version = "0.7.0.200602241"
-    provider-name = "%providerName"
-    class = "org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin$Implementation">
+<plugin>
 
-  <requires>
-    <import plugin="org.eclipse.core.runtime" />
-    <import plugin="org.eclipse.datatools.modelbase.sql" export="true"/>
-    <import plugin="org.eclipse.emf.edit" export="true"/>
-    <import plugin="org.eclipse.emf.ecore" export="true"/>
-    <import plugin="org.eclipse.emf.ecore.edit" export="true"/>
-  </requires>
-
-  <runtime>
-    <library name="sqlmodel.edit.jar">
-      <export name="*"/>
-    </library>
-  </runtime>
-
+   
 </plugin>
 
