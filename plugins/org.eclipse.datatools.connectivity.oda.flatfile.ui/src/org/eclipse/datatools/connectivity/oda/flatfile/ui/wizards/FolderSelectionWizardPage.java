@@ -40,6 +40,9 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
             m_pageHelper = new FolderSelectionPageHelper( this );
         m_pageHelper.createCustomControl( parent );
         m_pageHelper.initCustomControl( m_folderProperties );   // in case init was called before create 
+
+        // optionally hide the Test Connection button
+/*       setPingButtonVisible( false );      */
     }
 
     /* (non-Javadoc)

@@ -338,10 +338,8 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         
         // now that all control contents are created, go ahead and 
         // override visibility of the inherited Test Connection ping button
-        // TODO - wait for Bugzilla 131225
-        if( m_setPingButtonVisible != null /*&& this.btnPing != null */ )
-        {}
-//            this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
+        if( m_setPingButtonVisible != null && this.btnPing != null )
+            this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
     }
 
 }
