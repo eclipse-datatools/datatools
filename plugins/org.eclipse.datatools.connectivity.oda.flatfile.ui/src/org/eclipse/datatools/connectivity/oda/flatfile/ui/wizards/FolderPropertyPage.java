@@ -49,6 +49,9 @@ public class FolderPropertyPage extends DataSourceEditorPage
 
         m_pageHelper.createCustomControl( parent );
         m_pageHelper.initCustomControl( profileProps );
+
+        // optionally hide the Test Connection button
+/*        setPingButtonVisible( false );  */
     }
     
 }
