@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.modelbase.dbdefinition; singleton:=true
+Bundle-Version: 0.7.0.200602241
+Bundle-ClassPath: databasedefinition.jar
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.modelbase.dbdefinition.impl,
+ org.eclipse.datatools.modelbase.dbdefinition.util
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.datatools.modelbase.sql
+Eclipse-LazyStart: true
