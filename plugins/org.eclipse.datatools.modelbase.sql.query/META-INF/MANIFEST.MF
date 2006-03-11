@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.modelbase.sql.query; singleton:=true
 Bundle-Version: 0.7.0.200602241
 Bundle-ClassPath: sqlquerymodel.jar
-Bundle-Activator: org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPlugin
+Bundle-Activator: org.eclipse.datatools.modelbase.sql.query.util.SQLQueryModelPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
