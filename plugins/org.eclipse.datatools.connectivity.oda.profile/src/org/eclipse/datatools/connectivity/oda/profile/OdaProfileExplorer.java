@@ -145,7 +145,7 @@ public class OdaProfileExplorer
         }
         catch( Exception ex )
         {
-             throw newOdaException( ex );
+            throw new OdaException( ex );
         }
         return profilesInFile;
     }
@@ -163,7 +163,7 @@ public class OdaProfileExplorer
         }
         catch( ConnectionProfileException ex )
         {
-            throw newOdaException( ex );
+            throw new OdaException( ex );
         }        
     }
     
@@ -218,17 +218,5 @@ public class OdaProfileExplorer
         }
         return null;    // no match is found
     }
-    
-    public static OdaException newOdaException( String messageId, Object msgArgument )
-    {
-        // TODO - get localized message text
-        return new OdaException( messageId );
-    }
-    
-    public static OdaException newOdaException( Throwable cause )
-    {
-        OdaException ex = new OdaException();
-        ex.initCause( cause );
-        return ex;
-    }
+
 }

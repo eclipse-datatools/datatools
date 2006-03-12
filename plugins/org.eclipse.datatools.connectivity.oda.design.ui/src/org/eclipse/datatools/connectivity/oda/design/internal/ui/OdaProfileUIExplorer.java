@@ -14,8 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
-import org.eclipse.birt.core.framework.FrameworkException;
-import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
@@ -119,7 +119,7 @@ public class OdaProfileUIExplorer
         {
             propPage = pageElement.createExecutableExtension( "class" ); //$NON-NLS-1$
         }
-        catch( FrameworkException ex )
+        catch( CoreException ex )
         {
             throw new OdaException( ex );
         }
@@ -164,7 +164,7 @@ public class OdaProfileUIExplorer
             wizardInstance = wizardElement.createExecutableExtension( 
                     DataSetWizardInfo.CLASS_ATTRIBUTE );
         }
-        catch( FrameworkException ex )
+        catch( CoreException ex )
         {
             throw new OdaException( ex );
         }
