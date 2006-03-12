@@ -163,7 +163,7 @@
 			<fileset dir="${build.result.folder}" includes="rdb.server.ui.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,schema/,icons/,plugin.properties,rdb.server.ui.jar,about.html"			/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,schema/,icons/,plugin.properties,rdb.server.ui.jar,about.html"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="rdb.server.uisrc.zip"/>

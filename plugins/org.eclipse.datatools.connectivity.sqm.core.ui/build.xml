@@ -160,7 +160,7 @@
 			<fileset dir="${build.result.folder}" includes="rdb.core.ui.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,rdb.core.ui.jar,schema/,plugin.properties,icons/,.options,about.html"/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,rdb.core.ui.jar,schema/,plugin.properties,icons/,.options,about.html"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="rdb.core.uisrc.zip"/>

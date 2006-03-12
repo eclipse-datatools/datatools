@@ -135,7 +135,7 @@
 			<fileset dir="${build.result.folder}" includes="rdbcore.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,rdbcore.jar,plugin.properties,schema/,.options,about.html"/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,rdbcore.jar,plugin.properties,schema/,.options,about.html"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="rdbcoresrc.zip"/>

@@ -71,7 +71,7 @@
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,runtime/,plugin.properties,about.html"/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,runtime/,plugin.properties,about.html"/>
 		</copy>
 	</target>
 	<target name="build.zips" depends="init"/>
