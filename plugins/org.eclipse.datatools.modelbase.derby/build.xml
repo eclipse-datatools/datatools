@@ -111,7 +111,7 @@
 			<fileset dir="${build.result.folder}/@dot" includes="**"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/org.eclipse.datatools.connectivity.db.model.derby_1.0.0" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="null,model/,META-INF/,plugin.xml,plugin.properties"			/>
+			<fileset dir="${basedir}" includes="null,model/,META-INF/,about.html,plugin.xml,plugin.properties"			/>
 		</copy>
 	</target>
 
