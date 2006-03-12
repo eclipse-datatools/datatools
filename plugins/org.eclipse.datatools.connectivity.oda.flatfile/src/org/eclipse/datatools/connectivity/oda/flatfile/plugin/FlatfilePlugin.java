@@ -13,7 +13,6 @@
 
 package org.eclipse.datatools.connectivity.oda.flatfile.plugin;
 
-import org.eclipse.birt.core.framework.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
@@ -27,7 +26,7 @@ public class FlatfilePlugin extends Plugin
         super.start( context );
         if( isDebugging() )
         {
-            Platform.intializeTracing( getBundle().getSymbolicName() );
+            // TODO 
         }
     }
 }
