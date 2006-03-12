@@ -123,7 +123,7 @@
 			<fileset dir="${build.result.folder}" includes="databasedefinition.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,plugin.properties,databasedefinition.jar,about.html"/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,plugin.properties,databasedefinition.jar,about.html"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="databasedefinitionsrc.zip"/>

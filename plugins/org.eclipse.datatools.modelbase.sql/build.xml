@@ -117,7 +117,7 @@
 			<fileset dir="${build.result.folder}" includes="sqlmodel.jar"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,sqlmodel.jar,plugin.properties,about.html"/>
+			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,sqlmodel.jar,plugin.properties,about.html"/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqlmodelsrc.zip"/>
