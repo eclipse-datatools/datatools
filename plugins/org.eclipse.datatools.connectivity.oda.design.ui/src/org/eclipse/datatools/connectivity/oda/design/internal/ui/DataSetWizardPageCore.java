@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * The core implementation of the Data Set Wizard Page base class 
@@ -122,6 +123,37 @@ public abstract class DataSetWizardPageCore extends WizardPage
         m_icon = icon;
     }
     
+    /**
+     * Returns the image descriptor of an icon
+     * that may be used in the UI in addition to the page's title.
+     * @return  the image descriptor of the 
+     *          dataSetPage.icon extension attribute value;
+     *          may be null if none is specified, or unable to locate icon file
+     */
+    public ImageDescriptor getIconDescriptor()
+    {
+        String iconPath = getIconPath();
+        if( iconPath == null || iconPath.length() == 0 )
+            return null;
+        
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        
+        try
+        {
+            return AbstractUIPlugin.imageDescriptorFromPlugin(
+                    	wizard.getOdaDesignerPluginId(),
+                    	iconPath );
+        }
+        catch( RuntimeException e )
+        {
+            // ignore
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * Indicates whether this page should be selected
      * and has initial focus when used in a preference dialog. 

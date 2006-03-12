@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -92,6 +93,18 @@ public class DataSetEditorPageCore extends PropertyPage
     public String getIconPath()
     {
         return m_wizardPage.getIconPath();
+    }
+    
+    /**
+     * Returns the image descriptor of an icon
+     * that may be used in the UI in addition to the page's title.
+     * @return  the image descriptor of the 
+     *          dataSetPage.icon extension attribute value;
+     *          may be null if none is specified, or unable to locate icon file
+     */
+    public ImageDescriptor getIconDescriptor()
+    {
+        return m_wizardPage.getIconDescriptor();
     }
     
     /**
