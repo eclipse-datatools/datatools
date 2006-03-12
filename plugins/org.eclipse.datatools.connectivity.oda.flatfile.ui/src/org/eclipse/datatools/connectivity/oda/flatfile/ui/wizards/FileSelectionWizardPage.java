@@ -941,7 +941,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
     private void setResultSetMetaData( DataSetDesign dataSetDesign,
             IResultSetMetaData md ) throws OdaException
     {
-        ResultSetColumns columns = DesignSessionUtil.toResultSetColumns( md );
+        ResultSetColumns columns = DesignSessionUtil.toResultSetColumnsDesign( md );
 
         ResultSetDefinition resultSetDefn = DesignFactory.eINSTANCE
                 .createResultSetDefinition();
@@ -950,6 +950,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 
         // no exception; go ahead and assign to specified dataSetDesign
         dataSetDesign.setPrimaryResultSet( resultSetDefn );
+        dataSetDesign.getResultSets().setDerivedMetaData( true );
     }
 
     class CSVFileFilter implements FilenameFilter

@@ -19,17 +19,21 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
@@ -364,12 +368,12 @@ public class DesignSessionUtil
      * to an ODA design-time ResultSetColumns instance.
 	 * This may be used by an ODA custom page to
 	 * populate a data set design instance with its
-	 * result set meta data.
+	 * result set meta data definition.
      * @param md    ODA runtime result set meta data instance
      * @return  the converted ResultSetColumns instance
      * @throws OdaException
      */
-    public static ResultSetColumns toResultSetColumns( 
+    public static ResultSetColumns toResultSetColumnsDesign( 
                             IResultSetMetaData md )
         throws OdaException
     {
@@ -393,6 +397,7 @@ public class DesignSessionUtil
                     DesignFactory.eINSTANCE.createValueFormatHints();
             OutputElementAttributes outAttrs = 
                     DesignFactory.eINSTANCE.createOutputElementAttributes();
+
             try
             {
                 columnAttrs.setName( md.getColumnName(i) );
@@ -419,6 +424,107 @@ public class DesignSessionUtil
         }
         
         return rsColumns;
+    }
+
+    /**
+     * Converts the contents of an ODA runtime parameters meta data
+     * to an ODA design-time DataSetParameters instance.
+     * This may be used by an ODA custom page to
+     * populate a data set design instance with its
+     * parameter meta data definitions.
+     * @param pmd    ODA runtime parameters meta data instance
+     * @return  the converted DataSetParameters instance
+     * @throws OdaException
+     */
+    public static DataSetParameters toDataSetParametersDesign( 
+                        IParameterMetaData pmd )
+        throws OdaException
+    {
+        if( pmd == null || pmd.getParameterCount() == 0 )
+            return null; // nothing to convert
+        
+        DataSetParameters dataSetParams =
+            DesignFactory.eINSTANCE.createDataSetParameters();
+        
+        // iterate thru each runtime parameter's metadata,
+        // and convert to corresponding design object
+        int paramCount = pmd.getParameterCount();
+        for( int i = 1; i <= paramCount; i++ )
+        {
+            ParameterDefinition paramDefn =
+                DesignFactory.eINSTANCE.createParameterDefinition();
+
+            ParameterMode designMode = toParameterModeDesign( 
+                    pmd.getParameterMode(i) );
+            if( designMode != null )
+                paramDefn.setInOutMode( designMode );            
+
+            DataElementAttributes paramAttrs =
+                DesignFactory.eINSTANCE.createDataElementAttributes();
+            paramAttrs.setPosition( i );
+            paramAttrs.setNativeDataTypeCode( pmd.getParameterType(i) );
+
+            toElementOptionalAttributes( paramAttrs, pmd, i );
+            
+            paramDefn.setAttributes( paramAttrs );
+            
+            dataSetParams.getParameterDefinitions().add( paramDefn );
+        }
+
+        return dataSetParams;
+    }
+
+    /**
+     * Converts optional parameter data element attributes
+     * and assigns to the specified DataElementAttributes. 
+     * @param paramAttrs    a DataElementAttributes instance
+     * @param pmd    ODA runtime parameters meta data instance
+     * @param i     1-based parameter index
+     * @throws OdaException
+     */
+    private static void toElementOptionalAttributes( 
+            DataElementAttributes paramAttrs, 
+            IParameterMetaData pmd, 
+            int i ) 
+        throws OdaException
+    {
+        try
+        {
+            paramAttrs.setPrecision( pmd.getPrecision(i) );
+            paramAttrs.setScale( pmd.getScale(i) );
+            paramAttrs.setNullability( 
+                    toElementNullability( pmd.isNullable(i) ));
+        }
+        catch( UnsupportedOperationException e )
+        {
+            // ignore; optional attributes
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Converts the specified ODA runtime parameter mode value
+     * to corresponding ODA design-time parameter mode value.
+     * @param pmd    ODA runtime parameters meta data instance
+     * @param runtimeParamMode  an ODA runtime parameter mode value
+     * @return  the corresponding ODA design-time parameter mode value
+     * @throws OdaException
+     */
+    public static ParameterMode toParameterModeDesign( 
+                                    int runtimeParamMode ) 
+        throws OdaException
+    {
+        ParameterMode designMode = null;
+        switch( runtimeParamMode )
+        {
+            case IParameterMetaData.parameterModeIn:
+                designMode = ParameterMode.IN_LITERAL; break;
+            case IParameterMetaData.parameterModeInOut:
+                designMode = ParameterMode.IN_OUT_LITERAL; break;
+            case IParameterMetaData.parameterModeOut:
+                designMode = ParameterMode.OUT_LITERAL; break;
+        }
+        return designMode;
     }
 
     /**
