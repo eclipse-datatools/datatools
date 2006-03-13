@@ -14,7 +14,7 @@
 
 <p>
 <h6 class=CaptionFigColumn id=header>Description: </h6>This extension point provides extensibility to the Open Data Access (ODA) Designer UI framework, through which an user may define an ODA data source design and a data set design.  
-<br>An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to contribute customized ODA designer pages.</p>
+<br>An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to contribute customized ODA design wizard and property pages.</p>
 <p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
 <p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSourceUI">dataSourceUI</a> , <a href="#e.dataSetUI">dataSetUI</a>+)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST extension</p>
@@ -103,19 +103,32 @@ This value, if specified, overrides any title or descriptive name that may have 
   point=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;</p><p class=code id=tag>&gt;</p>
       <p class=code id=tag>&lt;dataSourceUI id=<p class=code id=cstring>&quot;%oda.data.source.id&quot;</p><p class=code id=tag>&gt;</p>
          <p class=code id=tag>&lt;newDataSourceWizard
-               pageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;</p><p class=code id=tag>
+               pageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderSelectionWizardPage&quot;</p><p class=code id=tag>
                pageTitle=<p class=code id=cstring>&quot;Select Folder&quot;</p><p class=code id=tag>
                windowTitle=<p class=code id=cstring>&quot;New Flat File Data Source Profile&quot;</p><p class=code id=tag>
                includesProgressMonitor=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>/&gt;</p>
       <p class=code id=tag>&lt;/dataSourceUI&gt;</p>
-   <p class=code id=tag>&lt;/extension&gt;</p> 
+      <p class=code id=tag>&lt;dataSetUI
+            id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</p><p class=code id=tag>
+            initialPageId=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
+            hasParameterDefinition=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
+         <p class=code id=tag>&lt;newDataSetWizard
+               class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard&quot;</p><p class=code id=tag>
+               windowTitle=<p class=code id=cstring>&quot;Select Table&quot;</p><p class=code id=tag>/&gt;</p>
+         <p class=code id=tag>&lt;dataSetPage
+               displayName=<p class=code id=cstring>&quot;Select Columns&quot;</p><p class=code id=tag>
+               icon=<p class=code id=cstring>&quot;icons/file.gif&quot;</p><p class=code id=tag>
+               id=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
+               path=<p class=code id=cstring>&quot;/&quot;</p><p class=code id=tag>
+               wizardPageClass=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FileSelectionWizardPage&quot;</p><p class=code id=tag>/&gt;</p>
+      <p class=code id=tag>&lt;/dataSetUI&gt;</p>
+   <p class=code id=tag>&lt;/extension&gt;</p>
    </pre>
 </p>
 <p></p>
 
-<h6 class=CaptionFigColumn id=header>API Information: </h6>[<b>Experimental</b>] This package API and extension point are going through iterative development cycles, and will likely change.
-<br>
-An extension must implement the related dialog pages defined in the extension's schema. See the abstract base classes' JavaDoc documentation in the <i>org.eclipse.datatools.connectivity.oda.design.ui</i> project for more information.
+<h6 class=CaptionFigColumn id=header>API Information: </h6>[<b>Provisional</b>] An extension must implement the related dialog pages defined in the extension point's schema. 
+See the abstract base classes' JavaDoc documentation in the <i>org.eclipse.datatools.connectivity.oda.design.ui</i> project for more information.
 <p></p>
 
 <h6 class=CaptionFigColumn id=header>Supplied Implementation: </h6>The plug-in <i>org.eclipse.datatools.connectivity.oda.flatfile.ui</i>, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA Design UI extension.

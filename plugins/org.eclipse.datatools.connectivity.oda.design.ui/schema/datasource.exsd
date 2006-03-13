@@ -7,7 +7,7 @@
       </appInfo>
       <documentation>
          This extension point provides extensibility to the Open Data Access (ODA) Designer UI framework, through which an user may define an ODA data source design and a data set design.  
-&lt;br&gt;An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to contribute customized ODA designer pages.
+&lt;br&gt;An ODA driver that implements the ODA run-time extension point may optionally extend this ODA UI extension point to contribute customized ODA design wizard and property pages.
       </documentation>
    </annotation>
 
@@ -250,12 +250,26 @@ This value, if specified, overrides any title or descriptive name that may have 
   point=&quot;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&quot;&gt;
       &lt;dataSourceUI id=&quot;%oda.data.source.id&quot;&gt;
          &lt;newDataSourceWizard
-               pageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.profile.FolderSelectionWizardPage&quot;
+               pageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderSelectionWizardPage&quot;
                pageTitle=&quot;Select Folder&quot;
                windowTitle=&quot;New Flat File Data Source Profile&quot;
                includesProgressMonitor=&quot;false&quot;/&gt;
       &lt;/dataSourceUI&gt;
-   &lt;/extension&gt; 
+      &lt;dataSetUI
+            id=&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;
+            initialPageId=&quot;oda.flatfile.ui.tablePage&quot;
+            hasParameterDefinition=&quot;false&quot;&gt;
+         &lt;newDataSetWizard
+               class=&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard&quot;
+               windowTitle=&quot;Select Table&quot;/&gt;
+         &lt;dataSetPage
+               displayName=&quot;Select Columns&quot;
+               icon=&quot;icons/file.gif&quot;
+               id=&quot;oda.flatfile.ui.tablePage&quot;
+               path=&quot;/&quot;
+               wizardPageClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FileSelectionWizardPage&quot;/&gt;
+      &lt;/dataSetUI&gt;
+   &lt;/extension&gt;
    &lt;/pre&gt;
 &lt;/p&gt;
       </documentation>
@@ -266,9 +280,8 @@ This value, if specified, overrides any title or descriptive name that may have 
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [&lt;b&gt;Experimental&lt;/b&gt;] This package API and extension point are going through iterative development cycles, and will likely change.
-&lt;br&gt;
-An extension must implement the related dialog pages defined in the extension&apos;s schema. See the abstract base classes&apos; JavaDoc documentation in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui&lt;/i&gt; project for more information.
+         [&lt;b&gt;Provisional&lt;/b&gt;] An extension must implement the related dialog pages defined in the extension point&apos;s schema. 
+See the abstract base classes&apos; JavaDoc documentation in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui&lt;/i&gt; project for more information.
       </documentation>
    </annotation>
 
