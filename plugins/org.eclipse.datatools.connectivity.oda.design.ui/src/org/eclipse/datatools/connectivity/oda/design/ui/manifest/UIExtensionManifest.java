@@ -18,11 +18,11 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Set;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
-import org.eclipse.birt.core.framework.IExtension;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+// import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
  * Encapsulates access to the content of an ODA design-time
@@ -43,7 +43,7 @@ public class UIExtensionManifest
     {
         // first process the dataSourceUI element
         IConfigurationElement dataSourceElement = 
-            ManifestExplorer.getNamedElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
+            UIManifestExplorer.getNamedElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
         assert( dataSourceElement != null );
 
         m_namespace = dataSourceExtn.getNamespace();
@@ -78,7 +78,7 @@ public class UIExtensionManifest
     {
         Hashtable dataSetElements = new Hashtable();
         IConfigurationElement[] configElements =
-            ManifestExplorer.getNamedElements( extension, DATA_SET_ELEMENT_NAME );
+            UIManifestExplorer.getNamedElements( extension, DATA_SET_ELEMENT_NAME );
         for( int i = 0, size = configElements.length; i < size; i++ )
         {
             IConfigurationElement configElement = configElements[i];

@@ -14,16 +14,17 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
-import org.eclipse.birt.core.framework.IExtension;
-import org.eclipse.birt.core.framework.IExtensionRegistry;
-import org.eclipse.birt.core.framework.Platform;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 
 /**
@@ -60,7 +61,7 @@ public class UIManifestExplorer
         {
             sm_instance = new UIManifestExplorer();
             
-            sm_instance.m_manifests = new Hashtable();
+            sm_instance.refresh();
             
             // works around bug in some J2EE servers; see Bugzilla #126073
             sm_loggerName = sm_instance.getClass().getPackage().getName();
@@ -71,6 +72,16 @@ public class UIManifestExplorer
 
     private UIManifestExplorer()
     {
+    }
+    
+    /**
+     * Refresh the manifest explorer, and allows it to get
+     * the latest ODA Design UI extension manifests.
+     */
+    public void refresh()
+    {
+        // reset the cached collection of extension manifest instances
+        m_manifests = new Hashtable();
     }
     
     /**
@@ -127,7 +138,7 @@ public class UIManifestExplorer
         
         // not yet cached, find and create a new one
         IExtension[] extensions = 
-            ManifestExplorer.getExtensions( extensionPoint );
+            getExtensions( extensionPoint );
         
         IExtension extension = findExtension( dataSourceId, extensions );
     
@@ -164,7 +175,7 @@ public class UIManifestExplorer
                  * one dataSource element.
                  */
                 IConfigurationElement dataSourceElement = 
-                    ManifestExplorer.getNamedElement( extension, 
+                    getNamedElement( extension, 
                             UIExtensionManifest.DATA_SOURCE_ELEMENT_NAME );
                 extnDataSourceId = dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
             }
@@ -214,7 +225,7 @@ public class UIManifestExplorer
             {
                 // check whether the extension is for the given ODA data source id
                 IConfigurationElement element =
-                    ManifestExplorer.getNamedElement( extensions[i],
+                    getNamedElement( extensions[i],
                         PAGE_ELEMENT_NAME );
                 if( odaDataSourceId.equals( element.getAttribute( "id" ) ))  //$NON-NLS-1$
                         return element;     // found matching element
@@ -249,6 +260,69 @@ public class UIManifestExplorer
          
         return ( manifest == null ) ?
                 null : manifest.getNamespace();
+    }
+    
+    /* Temporary duplicate of oda.util.manifest.ManifestExplorer.
+     * Returns all the plugin extensions that implements the given
+     * extension point.
+     */
+    private static IExtension[] getExtensions( String extPoint )
+    {
+        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+        IExtensionPoint extensionPoint = 
+            pluginRegistry.getExtensionPoint( extPoint );
+        if ( extensionPoint == null )
+            return null;
+        return extensionPoint.getExtensions();
+    }
+    
+    /** Temporary duplicate of oda.util.manifest.ManifestExplorer.
+     * Returns the configuration element of the given extension
+     * and element name.
+     * <br>For internal use only.
+     */
+    static IConfigurationElement getNamedElement( IExtension extension,
+            String elementName ) 
+        throws OdaException
+    {
+        IConfigurationElement[] configElements =
+                        getNamedElements( extension, elementName );
+        if( configElements.length == 0 )
+            throw new OdaException( "The ODA driver plugin.xml is missing a <dataSource> element." );
+
+        return configElements[0];   // returns the first matching element
+    }
+    
+    /** Temporary duplicate of oda.util.manifest.ManifestExplorer.
+     * Returns a collection of configuration elements with the given name
+     * in the given extension.  
+     * Validates that each element has an id attribute defined.
+     * @return a collection of matching configuration elements
+     * <br>For internal use only.
+     */
+    static IConfigurationElement[] getNamedElements( 
+                                            IExtension extension,
+                                            String elementName ) 
+        throws OdaException
+    {
+        IConfigurationElement[] configElements = extension.getConfigurationElements();
+        ArrayList matchedElements = new ArrayList();
+        for( int i = 0, n = configElements.length; i < n; i++ )
+        {
+            IConfigurationElement configElement = configElements[i];
+            if( ! configElement.getName().equalsIgnoreCase( elementName ) )
+                continue;
+
+            // validate that the element has an id attribute with non-empty value
+            String idValue = configElement.getAttribute( "id" );    //$NON-NLS-1$
+            if( idValue == null || idValue.length() == 0 )
+                throw new OdaException( "The ODA driver plugin.xml is missing an id attribute in a <dataSet> for the data source extension." );
+
+            matchedElements.add( configElement );
+        }
+        
+        return (IConfigurationElement[]) matchedElements.toArray( 
+                    new IConfigurationElement[ matchedElements.size() ] );
     }
 
 }

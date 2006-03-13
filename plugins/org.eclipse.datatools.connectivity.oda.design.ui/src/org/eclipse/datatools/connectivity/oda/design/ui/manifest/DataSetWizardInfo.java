@@ -14,7 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 
