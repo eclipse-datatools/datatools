@@ -904,7 +904,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
     /**
      * Updates the given dataSetDesign with the query and its metadata defined
      * in this page.
-     * 
      * @param dataSetDesign
      */
     private void savePage( DataSetDesign dataSetDesign )
@@ -932,10 +931,18 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         {
             closeConnection( conn );
         }
+        
+        /*
+         * See DesignSessionUtil for more convenience methods
+         * to define a data set design instance.  
+         */     
 
-        // no data set parameters, public/private properties
-        // to update, since flatfile does not support
-        // query parameters and properties
+        /*
+         * Since this flatfile driver does not support
+         * query parameters and properties, there are
+         * no data set parameters and public/private properties
+         * to specify in the data set design instance
+         */
     }
 
     private void setResultSetMetaData( DataSetDesign dataSetDesign,

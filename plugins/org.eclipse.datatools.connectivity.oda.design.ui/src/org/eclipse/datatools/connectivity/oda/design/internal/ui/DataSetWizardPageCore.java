@@ -34,6 +34,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
     private String m_path;
     private String m_icon;
     private boolean m_hasInitialFocus = false;
+    private ImageDescriptor m_iconDescriptor;
 
     /**
      * Sub-class may override the method to further update
@@ -103,24 +104,25 @@ public abstract class DataSetWizardPageCore extends WizardPage
     }
 
     /**
-     * Returns the relative path to an icon that may 
+     * Returns the relative path of an icon file that may 
      * be used in the UI in addition to the page's title.
      * @return the title icon file path;
      *          may be null if none is specified
      */
-    public String getIconPath()
+    public String getIconFilePath()
     {
         return m_icon;
     }
 
     /**
-     * Set the relative path to an icon that may 
+     * Set the relative path of an icon file that may 
      * be used in the UI in addition to the page's title.
-     * @param icon
+     * @param iconFilePath the relative path of the icon file, 
+     *                  relative to the root of the plug-in
      */
-    protected void setIconPath( String icon )
+    protected void setIconFilePath( String iconFilePath )
     {
-        m_icon = icon;
+        m_icon = iconFilePath;
     }
     
     /**
@@ -132,7 +134,11 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     public ImageDescriptor getIconDescriptor()
     {
-        String iconPath = getIconPath();
+        if( m_iconDescriptor != null )
+            return m_iconDescriptor;
+        
+        // get the descriptor from the icon file
+        String iconPath = getIconFilePath();
         if( iconPath == null || iconPath.length() == 0 )
             return null;
         
@@ -142,7 +148,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
         
         try
         {
-            return AbstractUIPlugin.imageDescriptorFromPlugin(
+            m_iconDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(
                     	wizard.getOdaDesignerPluginId(),
                     	iconPath );
         }
@@ -151,7 +157,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
             // ignore
             e.printStackTrace();
         }
-        return null;
+        return m_iconDescriptor;
     }
 
     /**

@@ -85,14 +85,14 @@ public class DataSetEditorPageCore extends PropertyPage
     }
 
     /**
-     * Returns the relative path to an icon that may 
+     * Returns the relative path of an icon file that may 
      * be used in the UI in addition to the page's title.
      * @return the title icon file path;
      *          may be null if none is specified
      */
-    public String getIconPath()
+    public String getIconFilePath()
     {
-        return m_wizardPage.getIconPath();
+        return m_wizardPage.getIconFilePath();
     }
     
     /**
