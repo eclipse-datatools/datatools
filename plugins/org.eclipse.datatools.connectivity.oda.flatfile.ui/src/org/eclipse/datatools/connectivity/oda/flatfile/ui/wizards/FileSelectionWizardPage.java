@@ -131,6 +131,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 
     private void initializeControl()
     {
+        /* 
+         * Optionally restores the state of a previous design session.
+         * Obtains designer state, using
+         *      getInitializationDesignerState(); 
+         */
+
         DataSetDesign dataSetDesign = getInitializationDesign();
         if( dataSetDesign == null )
             return; // nothing to initialize
@@ -141,8 +147,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 
         updateValuesFromQuery( queryText );
         
-        if( ! isSessionEditable() )
-            getControl().setEnabled( false );
+        /*
+         * Optionally honor the request for an editable or
+         * read-only design session
+         *      isSessionEditable();
+         */
     }
 
     /*
@@ -942,6 +951,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
          * query parameters and properties, there are
          * no data set parameters and public/private properties
          * to specify in the data set design instance
+         */
+        
+        /* 
+         * Optionally assigns a custom designer state, for inclusion
+         * in the ODA design session response, using
+         *      setResponseDesignerState( DesignerState customState ); 
          */
     }
 

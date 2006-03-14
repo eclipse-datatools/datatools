@@ -181,8 +181,9 @@ public abstract class DataSetWizardPageCore extends WizardPage
     }
     
     /**
-     * Returns the data set design instance for initialization
-     * of the customized control of this wizard page.
+     * Returns a copy of the data set design instance for initialization
+     * of the customized control of this extended wizard page.
+     * A copy is returned to prevent updates to the request design.
      * @return
      */
     protected DataSetDesign getInitializationDesign()
@@ -194,8 +195,11 @@ public abstract class DataSetWizardPageCore extends WizardPage
     }
 
     /**
-     * Returns the designer state instance for initialization
-     * of the customized control of this wizard page.
+     * Returns a copy of the designer state specified
+     * in the design session request.
+     * It provides initialization data for this extended wizard page
+     * to restore the state of a previous design session.
+     * A copy is returned to prevent updates to the request design.
      * @return
      */
     protected DesignerState getInitializationDesignerState()
@@ -203,13 +207,16 @@ public abstract class DataSetWizardPageCore extends WizardPage
         NewDataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
-        return wizard.copyDesignerState();
+        return wizard.copyRequestDesignerState();
     }
     
     /**
-     * Returns the design session locale for initialization
-     * of the customized control of this wizard page.
-     * A custom page may choose to honor or ignore such request.
+     * Returns a copy of the session locale specified
+     * in the design session request.
+     * It provides initialization data for this extended wizard page
+     * to adopt the requested locale.
+     * An extended page may choose to honor or ignore such request.
+     * A copy is returned to prevent updates to the request design.
      * @return
      */
     protected Locale getInitializationLocale()
@@ -224,8 +231,8 @@ public abstract class DataSetWizardPageCore extends WizardPage
      * Indicates whether the current design session should be
      * an editable session or read-only.
      * It may be used for initialization
-     * of the customized control of this wizard page.
-     * A custom page may choose to honor or ignore such request.
+     * of the customized control of this extended wizard page.
+     * An extended page may choose to honor or ignore such request.
      * @return
      */
     protected boolean isSessionEditable()
@@ -264,6 +271,21 @@ public abstract class DataSetWizardPageCore extends WizardPage
         // calls abstract method provided by custom extension
         // to further specify its data set design
         return collectDataSetDesign( design );
+    }
+    
+    /**
+     * Allows an extended wizard page
+     * to optionally assign a custom designer state, for inclusion
+     * in the ODA design session response.
+     * @param customDesignerState   a designer state instance
+     *              that preserves the current session's internal state
+     *              so that it can be restored in a subsequent design session
+     */
+    protected void setResponseDesignerState( DesignerState customDesignerState )
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard != null )
+            wizard.setResponseDesignerState( customDesignerState );
     }
 
 }

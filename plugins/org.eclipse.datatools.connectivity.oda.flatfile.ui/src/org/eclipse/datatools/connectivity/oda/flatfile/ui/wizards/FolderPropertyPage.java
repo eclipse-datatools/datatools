@@ -33,6 +33,12 @@ public class FolderPropertyPage extends DataSourceEditorPage
      */
     public Properties collectCustomProperties( Properties profileProps )
     {
+        /* 
+         * Optionally assigns a custom designer state, for inclusion
+         * in the ODA design session response, using
+         *      setResponseDesignerState( DesignerState customState ); 
+         */
+
         if( m_pageHelper == null )
             return profileProps;
 
@@ -48,10 +54,21 @@ public class FolderPropertyPage extends DataSourceEditorPage
             m_pageHelper = new FolderSelectionPageHelper( this );
 
         m_pageHelper.createCustomControl( parent );
-        m_pageHelper.initCustomControl( profileProps );
 
-        // optionally hide the Test Connection button
-/*        setPingButtonVisible( false );  */
+        /* 
+         * Optionally hides the Test Connection button, using
+         *      setPingButtonVisible( false );  
+         */
+
+        /* 
+         * Optionally restores the state of a previous design session.
+         * Obtains designer state, using
+         *      getInitializationDesignerState(); 
+         */
+        m_pageHelper.initCustomControl( profileProps );
+        
+        if( ! isSessionEditable() )
+            getControl().setEnabled( false );
     }
     
 }

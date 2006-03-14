@@ -41,8 +41,10 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
         m_pageHelper.createCustomControl( parent );
         m_pageHelper.initCustomControl( m_folderProperties );   // in case init was called before create 
 
-        // optionally hide the Test Connection button
-/*       setPingButtonVisible( false );      */
+        /* 
+         * Optionally hides the Test Connection button, using
+         *      setPingButtonVisible( false );  
+         */
     }
 
     /* (non-Javadoc)
@@ -61,6 +63,12 @@ public class FolderSelectionWizardPage extends DataSourceWizardPage
      */
     public Properties collectCustomProperties()
     {
+        /* 
+         * Optionally assign a custom designer state, for inclusion
+         * in the ODA design session response, using
+         * setResponseDesignerState( DesignerState customState ); 
+         */
+        
         if( m_pageHelper != null ) 
             return m_pageHelper.collectCustomProperties( m_folderProperties );
 

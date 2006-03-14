@@ -23,6 +23,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
@@ -152,11 +153,9 @@ public class DataSourceDesignSession
     {
         NewDataSourceWizard wizard = getExtendedWizard();
         
-        // pass requested session state to wizard
-        if( request != null )
-        {
-            // TODO
-        }
+        // a new data source session has no previous designer state;
+        // no need to be concerned with passing designer state to 
+        // a new data source wizard
         
         // verifies that the given profile does exist in cache;
         // if wizard was initialize w/ same profileRef,
@@ -234,7 +233,9 @@ public class DataSourceDesignSession
         odaDesign.setRequest( request );
         
         // Update the editor page's property values with those found
-        // in the given data source design
+        // in the given request's data source design; 
+        // also includes any additional state specified in
+        // the design session request
         editorPage.initEditSession( odaDesign );
 
         if( newSession.m_editorPage != editorPage )
@@ -300,9 +301,7 @@ public class DataSourceDesignSession
             newDataSourceDesign.setDisplayName( newDataSourceName );
         }
         
-        boolean isSessionOk = ( newDataSourceDesign != null );
-        return DesignFactory.eINSTANCE.createResponseDesignSession( 
-                        isSessionOk, newDataSourceDesign );
+        return createResponseDesignSession( newDataSourceDesign, wizard );
     }
     
     /** Not allowed to instantiate the class directly;
@@ -548,7 +547,6 @@ public class DataSourceDesignSession
                     .getDataSourceEditorPage( m_odaDataSourceId );
             if( m_editorPage == null )  // ODA extension did not implement editor page
             {
-                // TODO - replace with default OdaDesignSession resource set editor
                 throw new OdaException( Messages.extension_missingPropertyPage );
             }
         }
@@ -595,7 +593,7 @@ public class DataSourceDesignSession
         }
         catch( OdaException e )
         {
-            // TODO - error handling
+            // TODO - error logging
             // wizard session has error
             e.printStackTrace();
         }
@@ -604,9 +602,38 @@ public class DataSourceDesignSession
         DataSourceDesign newDataSourceDesign = 
             ( wizard != null ) ? 
                     wizard.getDataSourceDesign() : null;
+        return createResponseDesignSession( newDataSourceDesign, wizard );
+    }
+
+    /**
+     * Creates a completed design session containing the
+     * specified new data source design within the session response.
+     * Also includes any custom designer state
+     * that may be optionally set by an extended wizard and its
+     * custom pages.
+     * @param newDataSourceDesign
+     * @param wizard
+     * @return
+     */
+    private static OdaDesignSession createResponseDesignSession( 
+            DataSourceDesign newDataSourceDesign,
+            NewDataSourceWizard wizard )
+    {
         boolean isSessionOk = ( newDataSourceDesign != null );
-        return DesignFactory.eINSTANCE.createResponseDesignSession( 
+        OdaDesignSession responseSession =
+            DesignFactory.eINSTANCE.createResponseDesignSession( 
                 isSessionOk, newDataSourceDesign );
+        
+        // get designerState, if set by extended class, 
+        // and assign to session response
+        if( wizard != null )
+        {
+            DesignerState customState = wizard.getResponseDesignerState();
+            if( customState != null )
+                responseSession.getResponse().setDesignerState( customState );
+        }
+        
+        return responseSession;
     }
     
     /**

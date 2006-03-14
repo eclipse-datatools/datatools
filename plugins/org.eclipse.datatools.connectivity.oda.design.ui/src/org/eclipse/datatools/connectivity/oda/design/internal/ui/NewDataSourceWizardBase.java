@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.internal.ProfileWizardProvider;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
@@ -57,6 +58,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
 
     private boolean m_isInDesignSession = false;
     private DataSourceDesign m_dataSourceDesign;
+    private DesignerState m_responseDesignerState;
     private LinkedProfile m_linkedProfile;
 
     private static final String ODA_UI_EXT_PT = 
@@ -137,7 +139,6 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
                         m_odaDataSourceId );
         if( m_manifest == null )
         {
-            // TODO - uses default wizard page
             String errorMessage = Messages.bind( Messages.extension_missingManifestElement, ODA_UI_EXT_PT );
             OdaException odaEx = new OdaException( errorMessage );
             odaEx.initCause( new IllegalArgumentException( m_odaDataSourceId ) );
@@ -332,7 +333,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         }
         catch( OdaException e )
         {
-            // TODO error message
+            // TODO error logging
             return false;
         }
         
@@ -394,8 +395,8 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         }
         catch( RuntimeException e ) 
         {
-            // in case wizard profile page is not available
-            // TODO log error and ignore
+            // ignore in case wizard profile page is not available
+            // TODO log error
             newDesign.setName( getOdaDataSourceId() );
         }
         
@@ -416,6 +417,31 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         // let subclass implementation further specifies the data source design
         return getCustomWizardPage().finishDataSourceDesign( newDesign );
     }
+    
+    /**
+     * Returns the custom designer state specified by 
+     * an extended wizard via the corresponding setter method.
+     * May return null if none is specified.
+     * @return
+     */
+    public DesignerState getResponseDesignerState()
+    {
+        return m_responseDesignerState;
+    }
+    
+    /**
+     * Allows an extended wizard 
+     * to optionally assign a custom designer state, for inclusion
+     * in the ODA design session response.
+     * @param customDesignerState   a designer state instance
+     *              that preserves the current session's internal state
+     *              so that it can be restored in a subsequent design session
+     */
+    protected void setResponseDesignerState( DesignerState customDesignerState )
+    {
+        m_responseDesignerState = customDesignerState;
+    }
+
     
     /**
      * Nested internal class for managing the connection profile

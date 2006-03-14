@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -112,6 +113,21 @@ public abstract class DataSourceWizardPageCore extends
         // calls abstract method provided by custom extension
         // to further specify its data source design
         return collectDataSourceDesign( design );
+    }
+    
+    /**
+     * Allows an extended wizard page
+     * to optionally assign a custom designer state, for inclusion
+     * in the ODA design session response.
+     * @param customDesignerState   a designer state instance
+     *              that preserves the current session's internal state
+     *              so that it can be restored in a subsequent design session
+     */
+    protected void setResponseDesignerState( DesignerState customDesignerState )
+    {
+        NewDataSourceWizardBase wizard = getOdaWizard();
+        if( wizard != null )
+            wizard.setResponseDesignerState( customDesignerState );
     }
 
     /* (non-Javadoc)

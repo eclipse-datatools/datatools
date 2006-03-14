@@ -22,10 +22,13 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -40,6 +43,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
 {
     private OdaDesignSession m_designSession;
     private Properties m_dataSourceProps;
+    private DesignerState m_responseDesignerState;
     private Boolean m_setPingButtonVisible;
 
     /**
@@ -207,6 +211,73 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     {
         return ( m_designSession != null );
     }
+    
+    /**
+     * Returns a copy of the data source design instance used in
+     * initialization of the customized control of this extended editor page.
+     * A copy is returned to prevent updates to the request design.
+     * @return
+     */
+    protected DataSourceDesign getInitializationDesign()
+    {
+        if( ! isInOdaDesignSession() )
+            return null;
+
+        return (DataSourceDesign) EcoreUtil.copy( 
+                    m_designSession.getRequestDataSourceDesign() );
+    }
+
+    /**
+     * Returns a copy of the designer state specified
+     * in the design session request.
+     * It provides initialization data for this extended editor page
+     * to restore the state of a previous design session.
+     * A copy is returned to prevent updates to the request design.
+     * @return
+     */
+    protected DesignerState getInitializationDesignerState()
+    {
+        if( ! isInOdaDesignSession() ||
+            m_designSession.getRequest().getDesignerState() == null )
+            return null;
+                
+        return (DesignerState) EcoreUtil.copy( 
+                        m_designSession.getRequest().getDesignerState() );
+    }
+    
+    /**
+     * Returns a copy of the session locale specified
+     * in the design session request.
+     * It provides initialization data for this extended editor page
+     * to adopt the requested locale.
+     * An extended editor page may choose to honor or ignore such request.
+     * A copy is returned to prevent updates to the request design.
+     * @return
+     */
+    protected Locale getInitializationLocale()
+    {
+        if( ! isInOdaDesignSession() ||
+            m_designSession.getRequest().getSessionLocale() == null )
+            return null;
+                
+        return (Locale) EcoreUtil.copy( 
+                        m_designSession.getRequest().getSessionLocale() );
+    }
+    
+    /**
+     * Indicates whether the current design session should be
+     * an editable session or read-only.
+     * It may be used for initialization
+     * of the customized control of this extended editor page.
+     * An extended editor page may choose to honor or ignore such request.
+     * @return
+     */
+    protected boolean isSessionEditable()
+    {
+        if( ! isInOdaDesignSession() )
+            return true;    // default
+        return m_designSession.getRequest().isEditable();       
+    }
 
     /* (non-Javadoc)
      * @see org.eclipse.jface.preference.IPreferencePage#performOk()
@@ -266,7 +337,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         }
         catch( OdaException e )
         {
-            // TODO error handling
+            // TODO error logging
             editedDataSource = null;
         }
             
@@ -275,6 +346,13 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         boolean isSessionOk = ( editedDataSource != null );
         assert( m_designSession != null );
         m_designSession.setNewResponse( isSessionOk, editedDataSource );
+        
+        // get designerState, if set by an extended editor page, 
+        // and assign to session response
+        DesignerState customState = getResponseDesignerState();
+        if( customState != null )
+            m_designSession.getResponse().setDesignerState( customState );
+
         return isSessionOk;
     }
     
@@ -305,6 +383,30 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // calls abstract method provided by custom extension
         // to further specify its data source design
         return collectDataSourceDesign( editedDesign );
+    }
+    
+    /**
+     * Returns the custom designer state specified by 
+     * an extended editor page via the corresponding setter method.
+     * May return null if none is specified.
+     * @return
+     */
+    protected DesignerState getResponseDesignerState()
+    {
+        return m_responseDesignerState;
+    }
+    
+    /**
+     * Allows an extended editor page 
+     * to optionally assign a custom designer state, for inclusion
+     * in the ODA design session response.
+     * @param customDesignerState   a designer state instance
+     *              that preserves the current session's internal state
+     *              so that it can be restored in a subsequent design session
+     */
+    protected void setResponseDesignerState( DesignerState customDesignerState )
+    {
+        m_responseDesignerState = customDesignerState;
     }
 
     /* (non-Javadoc)
