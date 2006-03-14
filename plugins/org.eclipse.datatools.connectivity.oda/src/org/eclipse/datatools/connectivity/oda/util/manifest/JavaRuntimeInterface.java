@@ -16,8 +16,9 @@ package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import java.io.IOException;
 import java.net.URL;
-import org.eclipse.birt.core.framework.IBundle;
-import org.eclipse.birt.core.framework.Platform;
+
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
 
 /**
  * This class encapsulates the Java runtime interface specific configurations.
@@ -83,7 +84,7 @@ public class JavaRuntimeInterface extends RuntimeInterface
 	
 	private URL getLocation( String entry ) throws IOException
 	{
-		IBundle bundle = Platform.getBundle( m_namespace );
+		Bundle bundle = Platform.getBundle( m_namespace );
 		URL url = bundle.getEntry( entry );
 		return Platform.asLocalURL( url );
 	}

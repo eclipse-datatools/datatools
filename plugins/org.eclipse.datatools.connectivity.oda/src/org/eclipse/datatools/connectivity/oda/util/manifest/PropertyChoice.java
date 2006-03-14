@@ -14,7 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
  * A choice of property values for an extension-defined property.

@@ -22,7 +22,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-// import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
  * Encapsulates access to the content of an ODA design-time

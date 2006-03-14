@@ -17,7 +17,7 @@ package org.eclipse.datatools.connectivity.oda.util.manifest;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
  * The definition of a property defined by an ODA data source extension or 

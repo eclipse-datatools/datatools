@@ -21,11 +21,11 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
-import org.eclipse.birt.core.framework.IExtension;
-import org.eclipse.birt.core.framework.IExtensionPoint;
-import org.eclipse.birt.core.framework.IExtensionRegistry;
-import org.eclipse.birt.core.framework.Platform;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;

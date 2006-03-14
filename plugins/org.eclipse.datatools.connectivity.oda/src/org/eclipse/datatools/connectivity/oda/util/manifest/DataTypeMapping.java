@@ -14,7 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
-import org.eclipse.birt.core.framework.IConfigurationElement;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
 

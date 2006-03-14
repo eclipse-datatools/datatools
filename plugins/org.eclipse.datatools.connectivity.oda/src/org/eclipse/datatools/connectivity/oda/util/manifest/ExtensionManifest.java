@@ -21,8 +21,8 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.Set;
-import org.eclipse.birt.core.framework.IConfigurationElement;
-import org.eclipse.birt.core.framework.IExtension;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
 
@@ -32,7 +32,9 @@ import org.eclipse.datatools.connectivity.oda.util.OdaResources;
  */
 public class ExtensionManifest
 {
-	private String m_namespace;
+    public static final String CLASS_ATTRIBUTE_NAME = "driverClass";  //$NON-NLS-1$
+
+    private String m_namespace;
 	private String m_dataSourceElementId;
 	private String m_odaVersion;
 	private String m_displayName;
@@ -41,31 +43,32 @@ public class ExtensionManifest
 	private TraceLogging m_traceLogging;
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
-	
+    private IConfigurationElement m_dataSourceElement;
+
 	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
 	{
-	    IConfigurationElement dataSourceElement = 
+        m_dataSourceElement = 
 	        ManifestExplorer.getDataSourceElement( dataSourceExtn );
-		assert( dataSourceElement != null );
+		assert( m_dataSourceElement != null );
 		m_namespace = dataSourceExtn.getNamespace();
 		
 		// first cache the data source element's attributes
-		m_dataSourceElementId = dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
+		m_dataSourceElementId = m_dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
 		if( m_dataSourceElementId == null || m_dataSourceElementId.length() == 0 )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
 		
-		m_odaVersion = dataSourceElement.getAttribute( "odaVersion" ); //$NON-NLS-1$
+		m_odaVersion = m_dataSourceElement.getAttribute( "odaVersion" ); //$NON-NLS-1$
 
-		m_displayName = ManifestExplorer.getElementDisplayName( dataSourceElement );
+		m_displayName = ManifestExplorer.getElementDisplayName( m_dataSourceElement );
 
 		// runtime interface
-		String driverClass = dataSourceElement.getAttribute( "driverClass" ); //$NON-NLS-1$
+		String driverClass = m_dataSourceElement.getAttribute( CLASS_ATTRIBUTE_NAME );
 		if( driverClass == null )
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DRIVER_CLASS_DEFINED,
 																	   new Object[] { m_dataSourceElementId } ) );
 		
 		String needSetThreadContextClassLoader = 
-		    dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
+            m_dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
 		if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
 			! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
 			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
@@ -80,14 +83,14 @@ public class ExtensionManifest
 		m_dataSetTypes = ManifestExplorer.getDataSetElements( dataSourceExtn, m_dataSourceElementId );
 		
 		// trace logging element
-		IConfigurationElement[] traceLogging = dataSourceElement.getChildren( "traceLogging" ); //$NON-NLS-1$
+		IConfigurationElement[] traceLogging = m_dataSourceElement.getChildren( "traceLogging" ); //$NON-NLS-1$
 		int numOfTraceLogging = traceLogging.length;
 		// if multiple trace logging configuration exist, use the last one
 		if( numOfTraceLogging > 0 )
 			m_traceLogging = new TraceLogging( traceLogging[ numOfTraceLogging - 1 ], m_dataSourceElementId );
 
 		// properties element
-		IConfigurationElement[] propertiesElements = dataSourceElement.getChildren( "properties" ); //$NON-NLS-1$
+		IConfigurationElement[] propertiesElements = m_dataSourceElement.getChildren( "properties" ); //$NON-NLS-1$
 		if ( propertiesElements.length > 0 )
 		{
 			// if multiple properties elements exist, use the last one
@@ -198,6 +201,16 @@ public class ExtensionManifest
 	{
 		return m_dataSourceElementId;
 	}
+
+    /**
+     * Returns the configuration element of this extension's
+     * data source element.
+     * @return  a dataSource configuration element 
+     */
+    public IConfigurationElement getDataSourceElement()
+    {
+        return m_dataSourceElement;
+    }
 	
 	/**
 	 * Returns the driver installation location.
