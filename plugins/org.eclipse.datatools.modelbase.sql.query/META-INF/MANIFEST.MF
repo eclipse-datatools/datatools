@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.modelbase.sql;visibility:=reexport,
  com.ibm.icu
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true
 Export-Package: org.eclipse.datatools.modelbase.sql.query,
  org.eclipse.datatools.modelbase.sql.query.helper,
  org.eclipse.datatools.modelbase.sql.query.impl,
