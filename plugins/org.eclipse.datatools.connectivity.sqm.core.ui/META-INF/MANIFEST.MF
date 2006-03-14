@@ -35,4 +35,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity.sqm.core,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.connectivity
-Eclipse-LazyStart: true
+Eclipse-AutoStart: true
+
