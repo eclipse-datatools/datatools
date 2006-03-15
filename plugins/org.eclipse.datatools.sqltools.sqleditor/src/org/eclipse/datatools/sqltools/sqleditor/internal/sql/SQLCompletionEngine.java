@@ -130,7 +130,7 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
                	if (pList.size() <= proposalList.size()) {   
                		if (replacementStr != null &&  documentOffset >= 0) { 
                			result[resultIdx] = new SQLCompletionProposal( replacementStr, documentOffset,
-                           documentOffset, replacementStr.length(), image, displayStr, null, additionalInfo, relevance);
+                           0, replacementStr.length(), image, displayStr, null, additionalInfo, relevance);
                			resultIdx++;
                		}	
                	}

@@ -271,8 +271,10 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
             /* Connect or reconnect to DB Server if necessary. */
             ISQLEditorConnectionInfo connInfo = getConnectionInfo();
             boolean connected = false;
-            //TODO integrate attach dialog
-            //boolean connected = SQLDBUtils.reestablishConnection( connInfo );
+            if (connInfo != null && connInfo.getConnectionProfile() !=null)
+            {
+            	connected = connInfo.getConnectionProfile().isConnected();
+            }
             if (connected == true) {
                 loaded = true;
                 
