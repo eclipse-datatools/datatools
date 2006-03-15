@@ -6,7 +6,7 @@
      
    <extension
          point="org.eclipse.datatools.modelbase.sql.query.sourceWriterExtension">
-      <pluginJava class="org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPlugin"/>
+      <pluginJava class="org.eclipse.datatools.modelbase.sql.query.util.SQLQueryModelPlugin"/>
       <sourceWriter
             class="org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceWriter"
             packageName="org.eclipse.datatools.modelbase.sql.query"
