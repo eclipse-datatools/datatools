@@ -81,8 +81,15 @@ public class OdaProfileUIExplorer
         throws OdaException
     {
         assert( odaDataSourceId != null );
-        IWizard dataSourceWizard = 
-            ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
+        IWizard dataSourceWizard = null;
+        try
+        {
+            dataSourceWizard = ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
+        }
+        catch( RuntimeException ex )
+        {
+            throw new OdaException( ex );
+        }
         
         if( dataSourceWizard == null )
             return null;    // has not implemented a new data source wizard

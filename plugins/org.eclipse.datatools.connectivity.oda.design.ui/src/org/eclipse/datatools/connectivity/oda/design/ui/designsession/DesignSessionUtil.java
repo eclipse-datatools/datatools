@@ -43,6 +43,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplo
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.util.manifest.DataSetType;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
@@ -59,10 +60,10 @@ public class DesignSessionUtil
     }
     
     /**
-     * Creates an ODA design property collection for the public properties
+     * Creates an ODA design property collection for the data source public properties
      * defined in an ODA runtime extension manifest.  Their corresponding values 
-     * are collected from the given profile property collection.
-     * @param odaDataSourceId   the ODA extension data source element ID
+     * are specified in the given Properties collection.
+     * @param odaDataSourceId   an ODA extension data source element ID
      * @param utilProps      java.util.properties, such as those collected from a connection profile
      * @return  ODA design public property collection for inclusion
      *          in an OdaDesignSession's Data Source Design
@@ -75,15 +76,55 @@ public class DesignSessionUtil
     {
         // first get the public property definition in the ODA driver's runtime plugin manifest
         org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns = 
-            getPublicPropertiesDefn( odaDataSourceId );
+            getDataSourcePublicPropertiesDefn( odaDataSourceId );
 
+        return createPublicProperties( publicPropDefns, utilProps );
+    }
+    
+    /**
+     * Creates an ODA design property collection for the data set public properties
+     * defined in an ODA runtime extension manifest.  Their corresponding values 
+     * are specified in the given Properties collection.
+     * @param odaDataSourceId   an ODA extension data source element ID
+     * @param odaDataSetId      an ODA extension data set element id;
+     *              may be null if the associated data source extension 
+     *              supports only one type of data set 
+     * @param utilProps      java.util.properties
+     * @return  ODA design public property collection for inclusion
+     *          in an OdaDesignSession's Data Set Design
+     * @throws OdaException
+     */
+    public static Properties createDataSetPublicProperties( 
+            String odaDataSourceId, String odaDataSetId, 
+            java.util.Properties utilProps )
+        throws OdaException
+    {
+        // first get the public property definition in the ODA driver's runtime plugin manifest
+        org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns = 
+            getDataSetPublicPropertiesDefn( odaDataSourceId, odaDataSetId );
+    
+        return createPublicProperties( publicPropDefns, utilProps );
+    }
+
+    /**
+     * Convert specified public properties defined in an ODA runtime extension manifest,
+     * and corresponding values specified in the given Properties collection
+     * into an ODA design property collection.
+     * @param publicPropDefns
+     * @param utilProps
+     * @return
+     */
+    public static Properties createPublicProperties( 
+            org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
+            java.util.Properties utilProps )
+    {
         // create a new design Properties collection
         Properties designProps = 
             DesignFactory.eINSTANCE.createProperties();
         
         // for each defined public property name, get its corresponding
-        // value in the profile, and create design property with name and value
-        // in collection
+        // value in the specified utilProps, and create design property 
+        // with the name and value in an oda design property collection
         for( int i = 0; i < publicPropDefns.length; i++ )
         {
             String propName = publicPropDefns[i].getName();
@@ -94,12 +135,12 @@ public class DesignSessionUtil
     }
     
     /**
-     * Creates an ODA design property collection for those given properties
+     * Creates an ODA design property collection for those given data source properties
      * that are not defined in an ODA runtime extension manifest. 
      * These are properties that are not publicly defined. 
      * Their corresponding values 
-     * are collected from the given profile property collection.
-     * @param odaDataSourceId   the ODA extension data source element ID
+     * are collected from the given property collection.
+     * @param odaDataSourceId   an ODA extension data source element ID
      * @param utilProps a java.util.Properties collection,
      *                  such as those collected from a connection profile
      * @return  ODA design non-public property collection for inclusion
@@ -113,15 +154,58 @@ public class DesignSessionUtil
     {
         // first get the public property definition in the ODA driver's runtime plugin manifest
         org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns = 
-            getPublicPropertiesDefn( odaDataSourceId );
+            getDataSourcePublicPropertiesDefn( odaDataSourceId );
     
+        return createNonPublicProperties( publicPropDefns, utilProps );
+    }
+
+    /**
+     * Creates an ODA design property collection for those given data set properties
+     * that are not defined in an ODA runtime extension manifest. 
+     * These are properties that are not publicly defined. 
+     * Their corresponding values 
+     * are collected from the given property collection.
+     * @param odaDataSourceId   an ODA extension data source element ID
+     * @param odaDataSetId      an ODA extension data set element id;
+     *              may be null if the associated data source extension 
+     *              supports only one type of data set 
+     * @param utilProps a java.util.Properties collection,
+     *                  such as those collected from a connection profile
+     * @return  ODA design non-public property collection for inclusion
+     *          in an OdaDesignSession's Data Source Design
+     * @throws OdaException
+     */
+    public static Properties createDataSetNonPublicProperties( 
+            String odaDataSourceId, String odaDataSetId, 
+            java.util.Properties utilProps )
+    throws OdaException
+    {
+        // first get the public property definition in the ODA driver's runtime plugin manifest
+        org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns = 
+            getDataSetPublicPropertiesDefn( odaDataSourceId, odaDataSetId );
+    
+        return createNonPublicProperties( publicPropDefns, utilProps );
+    }
+
+    /**
+     * Convert given Properties collection that are not defined as
+     * public properties in an ODA runtime extension manifest,
+     * into an ODA design property collection.
+     * @param publicPropDefns
+     * @param utilProps
+     * @return
+     */
+    public static Properties createNonPublicProperties( 
+            org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
+            java.util.Properties utilProps )
+    {
         // create a new design Properties collection
         Properties designProps = 
             DesignFactory.eINSTANCE.createProperties();
         
-        // for each defined public property name, get its corresponding
-        // value in the profile, and create design property with name and value
-        // in collection
+        // for each given property name-value pair, whose name is not
+        // defined as a public property in the manifest, 
+        // create corresponding design property with the name and value
         Iterator iter = utilProps.keySet().iterator();
         while( iter.hasNext() )
         {
@@ -217,7 +301,7 @@ public class DesignSessionUtil
      * oda.datasource run-time extension point.
      */
     private static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
-        getPublicPropertiesDefn( String odaDataSourceId )
+        getDataSourcePublicPropertiesDefn( String odaDataSourceId )
         throws OdaException
     {
         try
@@ -226,6 +310,30 @@ public class DesignSessionUtil
                 ManifestExplorer.getInstance().getExtensionManifest( 
                         odaDataSourceId );
             return runtimeManifest.getProperties();
+        }
+        catch( IllegalArgumentException ex )
+        {
+            throw new OdaException( ex );
+        }        
+    }
+    
+    /**
+     * Finds and returns the property definition specified for the given 
+     * oda data source element id and oda data set element id in
+     * an ODA extension that implements the 
+     * oda.datasource run-time extension point.
+     */
+    private static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
+        getDataSetPublicPropertiesDefn( String odaDataSourceId, String odaDataSetId )
+        throws OdaException
+    {
+        try
+        {
+            ExtensionManifest runtimeManifest = 
+                ManifestExplorer.getInstance().getExtensionManifest( 
+                        odaDataSourceId );
+            DataSetType dataSetType = runtimeManifest.getDataSetType( odaDataSetId );
+            return dataSetType.getProperties();
         }
         catch( IllegalArgumentException ex )
         {
