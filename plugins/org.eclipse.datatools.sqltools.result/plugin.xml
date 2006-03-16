@@ -10,9 +10,6 @@
             icon="icons/sqlresult.gif"
             id="org.eclipse.datatools.sqltools.result.resultView"
             name="%SQLResultsView.name"/>
-      <category
-            id="org.eclipse.datatools"
-            name="%DataTools.name"/>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -20,17 +17,17 @@
             class="org.eclipse.datatools.sqltools.result.internal.preference.SQLResultsViewPage"
             id="org.eclipse.datatools.sqltools.result.displayOption"
             name="%SQLResultsView.display.options"
-            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"/>
       <page
             class="org.eclipse.datatools.sqltools.result.internal.preference.ExportFormatPreferencePage"
             id="org.eclipse.datatools.sqltools.result.exportFormat"
             name="%SQLResultsView.export.options"
-            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
+            category="org.eclipse.datatools.sqltools.result.displayOption"/>
       <page
             class="org.eclipse.datatools.sqltools.result.internal.preference.ResultHistoryPage"
             id="org.eclipse.datatools.sqltools.result.resultHistory"
             name="%SQLResultsView.history.page"
-            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
+            category="org.eclipse.datatools.sqltools.result.displayOption"/>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

@@ -34,7 +34,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  */
 public class NewSQLScrapbookFileWizardPage extends WizardNewFileCreationPage {
 	
-	private static final String fgDefaultExtension= ".sqlpage"; //$NON-NLS-1$
+	private static final String fgDefaultExtension= ".sql"; //$NON-NLS-1$
 	
 	public NewSQLScrapbookFileWizardPage(IStructuredSelection selection) {
 		super("createScrapBookPage", selection); //$NON-NLS-1$

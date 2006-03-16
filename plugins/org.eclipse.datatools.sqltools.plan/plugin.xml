@@ -10,9 +10,6 @@
             icon="icons/sqlplan.gif"
             id="org.eclipse.datatools.sqltools.plan.planView"
             name="%PlanView.name"/>
-      <category
-            id="org.eclipse.datatools"
-            name="%DataTools.name"/>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -20,7 +17,7 @@
             class="org.eclipse.datatools.sqltools.plan.internal.preference.ExecutionPlanPage"
             id="org.eclipse.datatools.sqltools.plan.executionPlanPage"
             name="%PlanView.preferencePage.title"
-            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"/>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">

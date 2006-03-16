@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards;
 
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -52,6 +53,10 @@ public class NewSQLScrapbookFileCreationWizard extends Wizard implements
      * @see Wizard#performFinish
      */
     public boolean performFinish() {
+    	if (connectionInfo == null)
+    	{
+    		connectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
+    	}
         return fPage.finish(connectionInfo); // tau 04.07.04
     }
 
