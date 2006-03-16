@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2006 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -26,7 +26,7 @@ import org.eclipse.datatools.connectivity.oda.util.OdaResources;
  */
 public class DataTypeMapping
 {
-	private short m_nativeTypeCode;
+	private int m_nativeTypeCode;
 	private String m_nativeType;
 	private String m_odaScalarType;
 	private String[] m_alternativeDataTypes;
@@ -47,7 +47,7 @@ public class DataTypeMapping
 		
 		try
 		{
-			m_nativeTypeCode = Short.parseShort( nativeDataTypeCode );
+			m_nativeTypeCode = Integer.parseInt( nativeDataTypeCode );
 		}
 		catch( NumberFormatException ex )
 		{
@@ -108,7 +108,7 @@ public class DataTypeMapping
 	 * driver's ODA interface implementation.
 	 * @return	the native type code.
 	 */
-	public short getNativeTypeCode()
+	public int getNativeTypeCode()
 	{
 		return m_nativeTypeCode;
 	}

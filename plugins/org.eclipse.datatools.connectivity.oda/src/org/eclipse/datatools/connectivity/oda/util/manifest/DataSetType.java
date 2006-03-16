@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2006 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -98,9 +98,9 @@ public class DataSetType
 	 * 			if there is no data type mapping for the native type code in 
 	 * 			the data set type.
 	 */
-	public DataTypeMapping getDataTypeMapping( short nativeDataTypeCode )
+	public DataTypeMapping getDataTypeMapping( int nativeDataTypeCode )
 	{
-		String typeCode = Short.toString( nativeDataTypeCode );
+		String typeCode = Integer.toString( nativeDataTypeCode );
 		return (DataTypeMapping) m_dataTypeMappings.get( typeCode );
 	}
 	
