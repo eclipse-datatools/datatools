@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-     <extension-point id="labelService" name="%LABEL_SERVICE_EXTENSION_POINT_NAME" schema="schema/labelService.exsd"/>
+   <extension-point id="labelService" name="%LABEL_SERVICE_EXTENSION_POINT_NAME" schema="schema/labelService.exsd"/>
    <extension-point id="elementID" name="%ELEMENT_ID_EXTENSION_POINT_NAME" schema="schema/elementID.exsd"/>
    <extension-point id="markerNavigationProvider" name="%MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME" schema="schema/markerNavigationProvider.exsd"/>
 
@@ -21,13 +21,14 @@
             class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.LabelDecoratorPreference"
             id="org.eclipse.datatools.connectivity.sqm.core.ui.preferences.labelDecorations">
       </page>
-	  <!-- Preference page for Output -->
+	  <!-- Preference page for Output
       <page
       		name="%datatools.core.ui.preferences.output"
       		category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
       		class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.OutputPreference"
       		id="org.eclipse.datatools.connectivity.sqm.core.ui.preferences.output">
      </page>
+      -->
 	</extension>
 
 <!-- Decoration of the Explorer - lightweight Decoration -->
