@@ -8,8 +8,8 @@
       <dbConfiguration
             description="Data tools generic database support"
             configurationClass="org.eclipse.datatools.sqltools.db.generic.GenericDBConfiguration"
-            product="Generic Database"
-            version="0.7.x"/>
+            product="Generic JDBC"
+            version="1.x"/>
    </extension>
 
 </plugin>
