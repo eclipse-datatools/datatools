@@ -72,14 +72,14 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 	public void refresh() {
 		if (_routine instanceof ICatalogObject) {
 			//Unmark this line when 129092 is fixed
-			//((ICatalogObject) _routine).refresh();
+			((ICatalogObject) _routine).refresh();
 		}
 	}
 
 	public void dispose() {
 		if (_routine instanceof ICatalogObject) {
 			//Unmark this line when 129092 is fixed
-			//((ICatalogObject) _routine).refresh();
+			((ICatalogObject) _routine).refresh();
 		}
 	}
 
