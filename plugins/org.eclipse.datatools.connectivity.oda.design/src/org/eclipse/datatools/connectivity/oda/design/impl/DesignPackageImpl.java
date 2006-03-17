@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -2001,10 +2001,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getValueFormatHints_DisplayFormat()
+    public EAttribute getValueFormatHints_DisplaySize()
     {
         return (EAttribute) valueFormatHintsEClass.getEStructuralFeatures()
-                .get( 1 );
+                .get( 0 );
     }
 
     /**
@@ -2012,10 +2012,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getValueFormatHints_DisplaySize()
+    public EAttribute getValueFormatHints_DisplayFormat()
     {
         return (EAttribute) valueFormatHintsEClass.getEStructuralFeatures()
-                .get( 0 );
+                .get( 1 );
     }
 
     /**
@@ -2670,15 +2670,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "position", null, 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementAttributes_NativeDataTypeCode(),
-                this.getNativeDataTypeCode(),
-                "nativeDataTypeCode", null, 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                theXMLTypePackage.getInt(),
+                "nativeDataTypeCode", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Precision(),
-                theXMLTypePackage.getShort(),
+                theXMLTypePackage.getInt(),
                 "precision", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Scale(),
-                theXMLTypePackage.getShort(),
+                theXMLTypePackage.getInt(),
                 "scale", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Nullability(),
@@ -3233,7 +3233,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "ValueFormatHints", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute(
                 getValueFormatHints_DisplaySize(),
-                theXMLTypePackage.getShort(),
+                theXMLTypePackage.getInt(),
                 "displaySize", "-1", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getValueFormatHints_DisplayFormat(),
@@ -3353,7 +3353,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "InputPromptControlStyleObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 nativeDataTypeCodeEDataType,
-                short.class,
+                int.class,
                 "NativeDataTypeCode", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 nativeDataTypeCodeObjectEDataType,
@@ -3911,7 +3911,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         } );
         addAnnotation( nativeDataTypeCodeEDataType, source, new String[]
         { "name", "NativeDataTypeCode", //$NON-NLS-1$ //$NON-NLS-2$
-                "baseType", "http://www.eclipse.org/emf/2003/XMLType#short" //$NON-NLS-1$ //$NON-NLS-2$
+                "baseType", "http://www.eclipse.org/emf/2003/XMLType#int" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( nativeDataTypeCodeObjectEDataType, source, new String[]
         { "name", "NativeDataTypeCode:Object", //$NON-NLS-1$ //$NON-NLS-2$

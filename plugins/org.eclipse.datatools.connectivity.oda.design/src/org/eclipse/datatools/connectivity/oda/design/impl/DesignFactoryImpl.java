@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.4 2006/02/28 21:02:29 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.5 2006/03/09 08:50:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -816,11 +816,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Short createNativeDataTypeCodeFromString( EDataType eDataType,
+    public Integer createNativeDataTypeCodeFromString( EDataType eDataType,
             String initialValue )
     {
-        return (Short) XMLTypeFactory.eINSTANCE.createFromString(
-                XMLTypePackage.eINSTANCE.getShort(), initialValue );
+        return (Integer) XMLTypeFactory.eINSTANCE.createFromString(
+                XMLTypePackage.eINSTANCE.getInt(), initialValue );
     }
 
     /**
@@ -832,7 +832,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             Object instanceValue )
     {
         return XMLTypeFactory.eINSTANCE.convertToString(
-                XMLTypePackage.eINSTANCE.getShort(), instanceValue );
+                XMLTypePackage.eINSTANCE.getInt(), instanceValue );
     }
 
     /**

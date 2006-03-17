@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributes.java,v 1.4 2006/02/12 06:45:56 lchan Exp $
+ * $Id: DataElementAttributes.java,v 1.5 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -174,17 +174,18 @@ public interface DataElementAttributes extends EObject
 
     /**
      * Returns the value of the '<em><b>Native Data Type Code</b></em>' attribute.
+     * The default value is <code>"-1"</code>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Native data type code of the data element.  If none is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA extension's plugin.xml .
+     * Native data type code of the data element.  If none or unknown value (-1) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA extension's plugin.xml .
      * <!-- end-model-doc -->
      * @return the value of the '<em>Native Data Type Code</em>' attribute.
      * @see #isSetNativeDataTypeCode()
      * @see #unsetNativeDataTypeCode()
      * @see #setNativeDataTypeCode(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_NativeDataTypeCode()
-     * @model unique="false" unsettable="true" dataType="org.eclipse.datatools.connectivity.oda.design.NativeDataTypeCode"
+     * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
      extendedMetaData="kind='element' name='nativeDataTypeCode' namespace='##targetNamespace'"
      * @generated
      */

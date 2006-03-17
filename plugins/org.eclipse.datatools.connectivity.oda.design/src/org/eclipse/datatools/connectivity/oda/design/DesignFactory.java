@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.3 2006/02/28 21:02:29 lchan Exp $
+ * $Id: DesignFactory.java,v 1.4 2006/03/09 08:50:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage
  * @generated
  */
-public interface DesignFactory extends EFactory{
+public interface DesignFactory extends EFactory
+{
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -123,19 +124,19 @@ public interface DesignFactory extends EFactory{
     DataSourceDesign createDataSourceDesign();
 
     /**
-     * Returns a new object of class '<em>er State</em>'.
+     * Returns a new object of class '<em>Designer State</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>er State</em>'.
+     * @return a new object of class '<em>Designer State</em>'.
      * @generated
      */
     DesignerState createDesignerState();
 
     /**
-     * Returns a new object of class '<em>er State Content</em>'.
+     * Returns a new object of class '<em>Designer State Content</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>er State Content</em>'.
+     * @return a new object of class '<em>Designer State Content</em>'.
      * @generated
      */
     DesignerStateContent createDesignerStateContent();

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: DesignPackage.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -3546,8 +3546,8 @@ public interface DesignPackage extends EPackage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Native Data Type Code</em>'.
-     * @model instanceClass="short"
-     *        extendedMetaData="name='NativeDataTypeCode' baseType='http://www.eclipse.org/emf/2003/XMLType#short'" 
+     * @model instanceClass="int"
+     *        extendedMetaData="name='NativeDataTypeCode' baseType='http://www.eclipse.org/emf/2003/XMLType#int'" 
      * @generated
      */
     EDataType getNativeDataTypeCode();

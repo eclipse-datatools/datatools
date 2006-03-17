@@ -7,11 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.4 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -57,6 +57,11 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      */
     public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * @generated NOT
+     */
+    protected static final String EMPTY_STR = ""; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -115,7 +120,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected static final int NATIVE_DATA_TYPE_CODE_EDEFAULT = 0;
+    protected static final int NATIVE_DATA_TYPE_CODE_EDEFAULT = -1;
 
     /**
      * The cached value of the '{@link #getNativeDataTypeCode() <em>Native Data Type Code</em>}' attribute.
@@ -387,12 +392,28 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         return m_position;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setPosition(int)
+     * @generated NOT
+     */
+    public void setPosition( int newPosition )
+    {
+        setPositionImpl( newPosition );
+        
+        /* If a data element can only be identified by position, 
+         * its name may be empty.
+         * Set required name field to empty by default.
+         */
+        if( getName() == null ) // not yet set
+            setName( EMPTY_STR );  
+    }
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPosition( int newPosition )
+    public void setPositionImpl( int newPosition )
     {
         int oldPosition = m_position;
         m_position = newPosition;
