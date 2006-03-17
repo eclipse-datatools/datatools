@@ -2,11 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui; singleton:=true
-Bundle-Version: 3.0.0.200603151
+Bundle-Version: 3.0.0.200603171
 Bundle-ClassPath: odadesignui.jar
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
-Export-Package: org.eclipse.datatools.connectivity.oda.design.ui.designsession,
+Export-Package: org.eclipse.datatools.connectivity.oda.design.internal.ui,
+ org.eclipse.datatools.connectivity.oda.design.ui.designsession,
  org.eclipse.datatools.connectivity.oda.design.ui.manifest,
  org.eclipse.datatools.connectivity.oda.design.ui.wizards
 Require-Bundle: org.eclipse.core.runtime,
