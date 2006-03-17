@@ -116,4 +116,20 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
     
+        <!-- Syntax validation problem marker -->
+    <extension id="syntaxproblem" point="org.eclipse.core.resources.markers" name="%sqlProblemName">
+            <super type="org.eclipse.core.resources.problemmarker"/>
+            <super type="org.eclipse.core.resources.textmarker"/>
+            <persistent value="false"/>
+            <attribute name="id"/>
+            <attribute name="flags"/>
+            <attribute name="arguments"/>
+    </extension>   
+
+    <!-- Portability check marker -->
+    <extension id="portabilitytask" name="%sqlPortabilityName" point="org.eclipse.core.resources.markers">
+        <super type="org.eclipse.core.resources.taskmarker"/> 
+        <persistent value="false"/>
+    </extension>
+    
 </plugin>
