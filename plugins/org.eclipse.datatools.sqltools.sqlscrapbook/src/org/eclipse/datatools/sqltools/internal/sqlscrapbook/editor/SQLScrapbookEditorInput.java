@@ -138,12 +138,12 @@ public class SQLScrapbookEditorInput extends SQLEditorFileEditorInput implements
     public void showMessageConnection() {
         IActionBars bars = editorSite.getActionBars();
         ISQLEditorConnectionInfo connectionInfo = getConnectionInfo();
-        if (bars != null && connectionInfo != null && connectionInfo.getConnectionProfile() != null && connectionInfo.getDatabase() != null) {
+        if (bars != null && connectionInfo != null && connectionInfo.getConnectionProfile() != null && connectionInfo.getDatabaseName() != null) {
             bars.getStatusLineManager().setErrorMessage(null);
             bars.getStatusLineManager().setMessage(
                     connectionInfo.getConnectionProfile().getName()
                             + " ("
-                            + connectionInfo.getDatabase().getName()
+                            + connectionInfo.getDatabaseName()
                             + ")");
             bars.updateActionBars();
         } else if (bars != null && connectionInfo == null) {
