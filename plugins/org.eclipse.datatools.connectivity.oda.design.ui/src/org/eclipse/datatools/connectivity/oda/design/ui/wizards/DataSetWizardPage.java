@@ -59,6 +59,18 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
         // sub-class may override
     }
 
+    /**
+     * The default implementation of the abstract
+     * method returns <code>true</code>.
+     * Sub-class may override.
+     */
+    protected boolean canLeave()
+    {
+        // default implementation returns true;
+        // sub-class may override
+        return true;
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#cleanup()
      */

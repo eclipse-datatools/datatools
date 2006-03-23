@@ -166,6 +166,18 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         return design;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+     */
+    protected boolean canLeave()
+    {
+        if( ! isPageComplete() )
+        {
+            setMessage( Messages.getString( "error.selectColumns" ), ERROR ); //$NON-NLS-1$
+        }
+        return isPageComplete();
+    }
+
     private Control createPageControl( Composite parent )
     {
         Composite composite = new Composite( parent, SWT.NULL );

@@ -100,7 +100,15 @@ public class DataSetEditorPageCore extends PropertyPage
 		return m_wizardPage.getMessageType();
 	}
 
-	/**
+	/* (non-Javadoc)
+     * @see org.eclipse.jface.preference.PreferencePage#okToLeave()
+     */
+    public boolean okToLeave()
+    {
+        return super.okToLeave() && m_wizardPage.canLeave();
+    }
+
+    /**
      * Returns the unique id of this page within a data set dialog.
      * @return the page unique id
      */

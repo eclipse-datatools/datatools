@@ -61,6 +61,15 @@ public abstract class DataSetWizardPageCore extends WizardPage
     protected abstract void refresh( DataSetDesign dataSetDesign );
 
     /**
+     * Checks whether it is alright to leave this page, 
+     * when used as an editor page in a preference dialog. 
+     * @return true to allow the page flip; or
+     *         false to abort page flipping and the current page 
+     *         remains visible
+     */
+    protected abstract boolean canLeave();
+    
+    /**
      * Cleans up before the page is disposed.
      * Default implementation does nothing.  Sub-class
      * may override to clean up custom operations such as
