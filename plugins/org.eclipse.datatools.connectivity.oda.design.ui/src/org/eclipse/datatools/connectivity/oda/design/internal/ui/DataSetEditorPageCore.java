@@ -16,6 +16,8 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -43,7 +45,7 @@ public class DataSetEditorPageCore extends PropertyPage
         if( page.getWizard() instanceof NewDataSetWizardBase )
         {
             DataSetDesign editDataSetDesign =
-                ( (NewDataSetWizardBase) page.getWizard()).getEditingDataSet();
+                page.getOdaWizard().getEditingDataSet();
             assert( editDataSetDesign instanceof IAdaptable );
             setElement( (IAdaptable) editDataSetDesign );
         }
@@ -65,7 +67,40 @@ public class DataSetEditorPageCore extends PropertyPage
         return m_wizardPage.getControl();
     }
 
-    /**
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.preference.PreferencePage#setContainer(org.eclipse.jface.preference.IPreferencePageContainer)
+     */
+    public void setContainer( IPreferencePageContainer container )
+    {
+        super.setContainer( container );
+        m_wizardPage.setEditorContainer( container );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.IDialogPage#getTitle()
+     */
+    public String getTitle() 
+    {
+		return m_wizardPage.getTitle();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.DialogPage#getMessage()
+	 */
+	public String getMessage() 
+	{
+		return m_wizardPage.getMessage();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.DialogPage#getMessageType()
+	 */
+	public int getMessageType() 
+	{
+		return m_wizardPage.getMessageType();
+	}
+
+	/**
      * Returns the unique id of this page within a data set dialog.
      * @return the page unique id
      */
@@ -118,4 +153,79 @@ public class DataSetEditorPageCore extends PropertyPage
         return m_wizardPage.hasInitialFocus();
     }
 
+    /**
+     * Returns the most current data set design being edited
+     * by this property page.
+     * @return
+     */
+    protected DataSetDesign getEditingDataSet()
+    {
+        DataSetDesign changedDataSetDesign = getChangedDataSet();
+        if( changedDataSetDesign == null )
+            return (DataSetDesign) getElement();     // mine is current
+        
+        // update this property page's adaptable element
+        assert( changedDataSetDesign instanceof IAdaptable );
+        setElement( (IAdaptable) changedDataSetDesign );
+        
+        return changedDataSetDesign;
+    }
+
+    /**
+     * Returns the more current editing data set if different
+     * from this property page's adaptable element.
+     * It may be different if another editor page
+     * has updated the editing data set design instance.
+     * Its use is private; the method is useful only when
+     * called before this page's adaptable element is updated.
+     * @return  the changed data set design, or 
+     *          null if no changes are found.
+     */
+    private DataSetDesign getChangedDataSet()
+    {
+        IAdaptable element = getElement();
+        assert( element instanceof DataSetDesign );
+        DataSetDesign myDesign = (DataSetDesign) element;
+
+        DataSetDesign editedDataSetDesign =
+            m_wizardPage.getOdaWizard().getEditingDataSet();
+
+        // compare their content if not the same instance
+        if( myDesign != editedDataSetDesign &&
+            ! EcoreUtil.equals( myDesign, editedDataSetDesign ) )
+            return editedDataSetDesign;   
+        return null;    // no changed data set design
+    }   
+    
+    /**
+     * Returns the most current data set design instance 
+     * being edited, by collecting relevant updates from 
+     * the corresponding wrapped data set page.
+     * @return the data set design instance updated 
+     *          by this wrapped data set page
+     */
+    public DataSetDesign collectDataSetDesign()
+    {
+        // first get the wrapped page to update the central
+        // copy of editing data set design
+        m_wizardPage.getOdaWizard()
+            .collectDataSetDesignFromPage( m_wizardPage );
+        
+        // update my adaptable element if changed,
+        // and return this page's adaptable element
+        return getEditingDataSet();
+    }
+
+    /**
+     * Refresh this editor page's adaptable element and
+     * control display as needed to reflect
+     * the latest state of the data set design being edited.
+     * Refreshing may be needed when another editor page
+     * has updated the editing data set design instance.
+     */
+    public void refresh()
+    {
+        m_wizardPage.refresh( getEditingDataSet() );
+    }
+    
 }

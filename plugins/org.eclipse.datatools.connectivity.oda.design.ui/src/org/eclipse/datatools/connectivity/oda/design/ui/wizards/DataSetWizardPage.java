@@ -46,10 +46,19 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
     protected DataSetDesign collectDataSetDesign( DataSetDesign design )
     {
         // default implementation does nothing;
-        // sub-class may override to update the given data set design
+        // sub-class to override and update based on the given data set design
         return design;
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+     */
+    protected void refresh( DataSetDesign dataSetDesign )
+    {
+        // default implementation does nothing;
+        // sub-class may override
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#cleanup()
      */

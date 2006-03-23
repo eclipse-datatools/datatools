@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
+import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.widgets.Composite;
@@ -35,10 +36,12 @@ public abstract class DataSetWizardPageCore extends WizardPage
     private String m_icon;
     private boolean m_hasInitialFocus = false;
     private ImageDescriptor m_iconDescriptor;
+    
+    private IPreferencePageContainer m_editorContainer;
 
     /**
-     * Sub-class may override the method to further update
-     * the given data set design, as needed.
+     * Performs updates based on the specified
+     * data set design, as needed.
      * <br>Examples of custom data set design updates include 
      * setting its data set query parameters, result set definition,
      * private properties, and
@@ -49,6 +52,13 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected abstract DataSetDesign collectDataSetDesign( 
             DataSetDesign design );
+
+    /**
+     * Refresh this page's control display as needed to reflect
+     * the state of the specified data set design.
+     * @param dataSetDesign
+     */
+    protected abstract void refresh( DataSetDesign dataSetDesign );
 
     /**
      * Cleans up before the page is disposed.
@@ -82,6 +92,44 @@ public abstract class DataSetWizardPageCore extends WizardPage
     public void createControl( Composite parent )
     {
         // base class does nothing; subclass may override
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.wizard.WizardPage#setMessage(java.lang.String, int)
+     */
+    public void setMessage( String newMessage, int newType )
+    {
+        super.setMessage( newMessage, newType );
+        
+        // update editor container message if this 
+        // is being used in a preference dialog
+        if( getEditorContainer() != null )
+            getEditorContainer().updateMessage();
+    }
+
+    /**
+     * Returns the editor container of this page
+     * when wrapped as an editor page in a preference dialog.
+     * @return  the preference page container of 
+     *          the editor page that wraps this wizard page;
+     *          may be <code>null</code> if this page is not used in a
+     *          preference dialog, or if this
+     *          page has yet to be added to a container
+     */
+    protected IPreferencePageContainer getEditorContainer()
+    {
+        return m_editorContainer;
+    }
+
+    /**
+     * Sets or clears the editor container of this page
+     * when used as an editor page in a preference dialog. 
+     * @param container the preference page container of 
+     *          the editor page that wraps this wizard page.
+     */
+    void setEditorContainer( IPreferencePageContainer container )
+    {
+        m_editorContainer = container;
     }
 
     /**
