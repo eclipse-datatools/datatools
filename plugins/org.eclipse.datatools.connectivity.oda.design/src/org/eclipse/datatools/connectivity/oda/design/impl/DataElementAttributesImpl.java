@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.4 2006/03/09 05:09:18 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.5 2006/03/17 14:52:32 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -120,7 +120,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected static final int NATIVE_DATA_TYPE_CODE_EDEFAULT = -1;
+    protected static final int NATIVE_DATA_TYPE_CODE_EDEFAULT = 0;
 
     /**
      * The cached value of the '{@link #getNativeDataTypeCode() <em>Native Data Type Code</em>}' attribute.
@@ -398,14 +398,14 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      */
     public void setPosition( int newPosition )
     {
-        setPositionImpl( newPosition );
-        
+        setPositionGen( newPosition );
+
         /* If a data element can only be identified by position, 
          * its name may be empty.
          * Set required name field to empty by default.
          */
         if( getName() == null ) // not yet set
-            setName( EMPTY_STR );  
+            setName( EMPTY_STR );
     }
 
     /**
@@ -413,7 +413,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPositionImpl( int newPosition )
+    public void setPositionGen( int newPosition )
     {
         int oldPosition = m_position;
         m_position = newPosition;

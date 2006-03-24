@@ -14,6 +14,10 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
+import java.sql.Types;
+import java.util.Hashtable;
+import java.util.Locale;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.OdaResources;
@@ -26,6 +30,8 @@ import org.eclipse.datatools.connectivity.oda.util.OdaResources;
  */
 public class DataTypeMapping
 {
+    private static Hashtable sm_odaTypeCodes;
+    
 	private int m_nativeTypeCode;
 	private String m_nativeType;
 	private String m_odaScalarType;
@@ -114,14 +120,24 @@ public class DataTypeMapping
 	}
 	
 	/**
-	 * Returns the primary ODA scalar data type which the native type maps to
+	 * Returns the primary ODA scalar data type that the native data type maps to
 	 * @return	the primary ODA scalar data type.
 	 */
 	public String getOdaScalarDataType()
 	{
 		return m_odaScalarType;
 	}
-	
+
+    /**
+     * Returns the primary ODA scalar data type code
+     * that the native data type maps to.
+     * @return  the primary ODA scalar data type code.
+     */
+    public int getOdaScalarDataTypeCode()
+    {
+        return toOdaDataTypeCode( m_odaScalarType );
+    }
+    
 	/**
 	 * Returns the alternative ODA data types of the data type mapping, or 
 	 * an empty array if no alternative ODA data types exist.
@@ -132,4 +148,52 @@ public class DataTypeMapping
 	{
 		return m_alternativeDataTypes;
 	}
+    
+    /**
+     * Converts an ODA data type literal value to its
+     * corresponding code value.
+     * @param odaDataTypeLiteral    a literal value of an ODA data type 
+     * @return  corresponding ODA data type code value,
+     *          or Types.NULL if specified literal value is
+     *          not recognized
+     */
+    public static int toOdaDataTypeCode( String odaDataTypeLiteral )
+    {
+        if( odaDataTypeLiteral == null ||
+            odaDataTypeLiteral.length() == 0 )
+            return Types.NULL;
+            
+        Locale caseLocl = Locale.US;
+        if( sm_odaTypeCodes == null )
+        {
+            sm_odaTypeCodes = new Hashtable( 10 );
+            
+            sm_odaTypeCodes.put( "String".toLowerCase( caseLocl ), //$NON-NLS-1$
+                                new Integer( Types.CHAR )); 
+            sm_odaTypeCodes.put( "Integer".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.INTEGER )); 
+            sm_odaTypeCodes.put( "Double".toLowerCase( caseLocl ), //$NON-NLS-1$  
+                                new Integer( Types.DOUBLE )); 
+            sm_odaTypeCodes.put( "Decimal".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.DECIMAL )); 
+            sm_odaTypeCodes.put( "Date".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.DATE )); 
+            sm_odaTypeCodes.put( "Time".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.TIME )); 
+            sm_odaTypeCodes.put( "Timestamp".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.TIMESTAMP ));
+            sm_odaTypeCodes.put( "Blob".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.BLOB )); 
+            sm_odaTypeCodes.put( "Clob".toLowerCase( caseLocl ), //$NON-NLS-1$ 
+                                new Integer( Types.CLOB )); 
+        }
+        
+        Object typeCode = 
+            sm_odaTypeCodes.get( odaDataTypeLiteral.toLowerCase( caseLocl ) );
+        if( typeCode != null )
+            return ((Integer) typeCode).intValue();
+        
+        return Types.NULL;
+    }
+
 }

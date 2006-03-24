@@ -177,9 +177,9 @@
         <xsd:documentation>The 1-based index position (left-to-right order) within a collection of data elements.  The position is defined per the underlying data source, and is not necessarily sequential.  For example, a query may access 3 columns in a result set, but the data access design may choose to expose only column 2.  In this case, only one column element with postion 2 is defined in the result set definition.</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="nativeDataTypeCode" default="-1" type="xsd:string">
+    <xsd:attribute name="nativeDataTypeCode" default="0" type="xsd:string">
       <xsd:annotation>
-        <xsd:documentation>Native data type code of the data element.  If none or unknown value (-1) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA extension's plugin.xml .</xsd:documentation>
+        <xsd:documentation>Native data type code of the data element.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA extension's plugin.xml .</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="precision" default="-1" type="xsd:string">

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.3 2006/03/17 14:52:32 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -2671,7 +2671,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataElementAttributes_NativeDataTypeCode(),
                 theXMLTypePackage.getInt(),
-                "nativeDataTypeCode", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "nativeDataTypeCode", "0", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Precision(),
                 theXMLTypePackage.getInt(),
