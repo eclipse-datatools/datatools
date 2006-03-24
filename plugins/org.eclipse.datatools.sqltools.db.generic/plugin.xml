@@ -6,8 +6,9 @@
          name="Generic Database Support"
          point="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
       <dbConfiguration
-            description="Data tools generic database support"
             configurationClass="org.eclipse.datatools.sqltools.db.generic.GenericDBConfiguration"
+            default="true"
+            description="Data tools generic database support"
             product="Generic JDBC"
             version="1.x"/>
    </extension>
