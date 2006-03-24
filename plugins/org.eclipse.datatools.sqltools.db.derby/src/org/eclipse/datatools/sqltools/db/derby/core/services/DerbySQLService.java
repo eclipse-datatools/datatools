@@ -11,14 +11,25 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.db.derby.core.services;
 
+import org.eclipse.datatools.sqltools.db.derby.parser.DerbySQLParser;
+import org.eclipse.datatools.sqltools.db.derby.sql.DerbySQLSyntax;
 import org.eclipse.datatools.sqltools.db.generic.service.GenericSQLService;
-
+import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 
 /**
  * @author Hui Cao
  * 
  */
 public class DerbySQLService extends GenericSQLService {
+
+	public SQLParser getSQLParser() {
+		return DerbySQLParser.getInstance();
+	}
+
+	public ISQLSyntax getSQLSyntax() {
+		return new DerbySQLSyntax();
+	}
 
 	
 }

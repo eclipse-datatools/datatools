@@ -11,6 +11,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.db.derby;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.db.derby.internal.Messages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -20,6 +23,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
+	private static final int INTERNAL_ERROR = 0;
 	//The shared instance.
 	private static Activator plugin;
 	
@@ -62,4 +66,56 @@ public class Activator extends AbstractUIPlugin {
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.db.derby", path);
 	}
+	
+	   /**
+     * Logs runtime status.
+     * 
+     * @param status Runtime status.
+     */
+    public void log(IStatus status) {
+        getLog().log(status);
+    }
+
+    /**
+     * Logs error message.
+     * 
+     * @param message Error message.
+     */
+    public void log(String message) {
+        log(createErrorStatus(message));
+    }
+
+    /**
+     * Logs an exception.
+     * 
+     * @param e Exception.
+     */
+    public void log(Throwable e) {
+        log(createErrorStatus(e));
+    }
+
+    /**
+     * Logs an error message with an exception.
+     * 
+     * @param e Exception.
+     */
+    public void log(String message, Throwable e) {
+        log(createErrorStatus(message, e));
+    }
+    
+    public IStatus createErrorStatus(String message) {
+        return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+                INTERNAL_ERROR, message, null);
+    }
+
+    public IStatus createErrorStatus(String message, Throwable e) {
+        return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+                INTERNAL_ERROR, message, e);
+    }
+    
+    public IStatus createErrorStatus(Throwable e) {
+        return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
+                INTERNAL_ERROR, Messages.getString("plugin.internal_error"), e); //$NON-NLS-1$
+    }
+    
 }

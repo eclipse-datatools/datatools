@@ -1,0 +1,102 @@
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.datatools.sqltools.db.derby.parser;
+
+
+import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLDataType;
+import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
+
+public class ASTSQLParam extends SimpleNode implements IASTSQLParam {
+
+	private String _name;
+
+	private String _type;
+
+	private IASTSQLDataType _typeObj;
+
+	private String _defaultValue;
+
+	private int _direction = INPUT;
+
+	public ASTSQLParam(int id) {
+		super(id);
+	}
+
+	public ASTSQLParam(DerbySQLParser p, int id) {
+		super(p, id);
+	}
+
+	/** Accept the visitor. * */
+	public Object jjtAccept(DerbySQLParserVisitor visitor, Object data) {
+		return visitor.visit(this, data);
+	}
+
+	public String getDefaultValue() {
+		return _defaultValue;
+	}
+
+	public void setDefaultValue(String defaultValue) {
+		this._defaultValue = defaultValue;
+	}
+
+	public int getDirection() {
+		return _direction;
+	}
+
+	public void setDirection(int direction) {
+		this._direction = direction;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public void setName(String name) {
+		this._name = name;
+	}
+
+	public String getType() {
+		return _type;
+	}
+
+	public void setType(String type) {
+		this._type = type;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTSQLParam#getTypeObject()
+	 */
+	public IASTSQLDataType getTypeObject() {
+		return _typeObj;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTSQLParam#setTypeObject(com.sybase.stf.dmp.ui.sqleditor.sql.parser.IASTSQLDataType)
+	 */
+	public void setTypeObject(IASTSQLDataType type) {
+		_typeObj = type;
+	}
+
+	public String toString() {
+		String retval = _name == null ? "" : _name;
+		retval += (_type == null ? "" : ":" + _type);
+		retval += (_defaultValue == null ? "" : ":" + _defaultValue);
+		retval += (_direction == 1 ? ":" + "OUT" : (_direction == 2 ? ":" + "INOUT" : "")); //$NON-NLS-2$ //$NON-NLS-4$
+
+		return retval;
+	}
+}
