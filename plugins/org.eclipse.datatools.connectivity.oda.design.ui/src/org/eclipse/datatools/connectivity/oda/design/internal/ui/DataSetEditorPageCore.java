@@ -42,6 +42,8 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     protected DataSetEditorPageCore( DataSetWizardPageCore page )
     {
+        super();
+
         if( page.getWizard() instanceof NewDataSetWizardBase )
         {
             DataSetDesign editDataSetDesign =
@@ -63,6 +65,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     protected Control createContents( Composite parent )
     {
+        noDefaultAndApplyButton();
         m_wizardPage.createControl( parent );
         return m_wizardPage.getControl();
     }
