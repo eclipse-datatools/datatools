@@ -17,6 +17,7 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
+import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
 
 /**
  * This should be the central place to query about contributed
@@ -32,7 +33,6 @@ public class SQLToolsFacade
 {
 
     private static SQLToolsFacade   _instance = new SQLToolsFacade();
-    private static SQLDevToolsConfiguration _default  = SQLDevToolsConfiguration.getDefaultInstance();
 
     private SQLToolsFacade()
     {
@@ -146,7 +146,7 @@ public class SQLToolsFacade
         }
         if (f == null)
         {
-            f = _default;
+            f = SQLDevToolsConfigRegistryImpl.getDefaultConfiguration();
         }
         return f;
     }

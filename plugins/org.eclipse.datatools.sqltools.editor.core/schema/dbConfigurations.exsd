@@ -75,7 +75,14 @@
          <attribute name="supportsDebugging" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  Whether the factory supports debugging. If true, the factoryClass should implement &lt;code&gt;org.eclipse.datatools.sqltools.debugger.core.IDBDebuggerFactory&lt;/code&gt;
+                  Whether the configuration class supports debugging. If true, the configurationClass should implement &lt;code&gt;org.eclipse.datatools.sqltools.debugger.core.SQLDebuggerConfiguration&lt;/code&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="default" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Whether the configuration is the default one when no other configurations are registered against a database vendor id.
                </documentation>
             </annotation>
          </attribute>

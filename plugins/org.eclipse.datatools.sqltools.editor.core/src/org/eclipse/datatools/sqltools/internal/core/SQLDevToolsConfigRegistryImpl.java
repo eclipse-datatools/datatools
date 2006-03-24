@@ -43,6 +43,7 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigRegistry
 {
     public static final SQLDevToolsConfigRegistry INSTANCE                     = new SQLDevToolsConfigRegistryImpl();
+    private static SQLDevToolsConfiguration DEFAULT_CONFIG                = SQLDevToolsConfiguration.getDefaultInstance();
     //Hui Cao: we lazy load the factory classes to avoid circular dependency. Consequently all getXXX methods should check this field.
     private boolean                             _factoriesLoaded             = false;
     private Map                                 _products                    = new TreeMap();
@@ -156,6 +157,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
                     String name = product + "_" + version;
                     String id = configElements[j].getAttribute("id"); //$NON-NLS-1$
                     String supportsDebugging = configElements[j].getAttribute("supportsDebugging"); //$NON-NLS-1$
+                    String isDefault = configElements[j].getAttribute("default"); //$NON-NLS-1$
                     if (id == null)
                     {
                     	id = name;
@@ -197,6 +199,10 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
                         {
                         	_debuggerFactories.add(factory);
                         }
+                        if ("true".equals(isDefault))
+                        {
+                        	DEFAULT_CONFIG = factory;
+                        }
                     }
                     catch (Exception e)
                     {
@@ -216,6 +222,11 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
         }
 
         _factoriesLoaded = true;
+    }
+    
+    public static SQLDevToolsConfiguration getDefaultConfiguration()
+    {
+    	return DEFAULT_CONFIG;
     }
 
 }

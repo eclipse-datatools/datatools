@@ -28,6 +28,8 @@ import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
@@ -70,16 +72,21 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 	}
 
 	public void refresh() {
-		if (_routine instanceof ICatalogObject) {
-			//Unmark this line when 129092 is fixed
-			((ICatalogObject) _routine).refresh();
-		}
+		dispose();
 	}
 
 	public void dispose() {
 		if (_routine instanceof ICatalogObject) {
 			//Unmark this line when 129092 is fixed
 			((ICatalogObject) _routine).refresh();
+			if (_routine instanceof Trigger)
+			{
+				Table table = ((Trigger)_routine).getSubjectTable();
+				if (table instanceof ICatalogObject)
+				{
+					((ICatalogObject) table).refresh();
+				}
+			}
 		}
 	}
 
