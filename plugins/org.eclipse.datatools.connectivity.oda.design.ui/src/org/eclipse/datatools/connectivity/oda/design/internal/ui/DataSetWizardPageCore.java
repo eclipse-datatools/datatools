@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
+import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
@@ -238,8 +239,9 @@ public abstract class DataSetWizardPageCore extends WizardPage
     }
     
     /**
-     * Returns a copy of the data set design instance for initialization
-     * of the customized control of this extended wizard page.
+     * Returns a copy of the original data set design instance specified
+     * in the design session request.  It may be used for initialization
+     * of the customized control of this extended page.
      * A copy is returned to prevent updates to the request design.
      * @return
      */
@@ -252,9 +254,25 @@ public abstract class DataSetWizardPageCore extends WizardPage
     }
 
     /**
-     * Returns a copy of the designer state specified
+     * Returns the most current data set design instance being edited.
+     * A data set design instance may be edited
+     * multiple times by an extended page when a user flips among 
+     * pages in a dialog
+     * within a data set design session.
+     * @return
+     */
+    protected DataSetDesign getEditingDesign()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        return wizard.getEditingDataSet();        
+    }
+    
+    /**
+     * Returns a copy of the original designer state specified
      * in the design session request.
-     * It provides initialization data for this extended wizard page
+     * It provides initialization data for the extended custom page(s)
      * to restore the state of a previous design session.
      * A copy is returned to prevent updates to the request design.
      * @return
@@ -265,6 +283,23 @@ public abstract class DataSetWizardPageCore extends WizardPage
         if( wizard == null )
             return null;
         return wizard.copyRequestDesignerState();
+    }
+
+    /**
+     * Returns the most current designer state within a design session.
+     * May be null if no previous session or none
+     * was specified by the custom page(s).
+     * @return   a designer state instance that preserves
+     *           the last internal state of the extended custom page(s)
+     *           so that it can be restored when any custom page is
+     *           re-activated in a dialog
+     */
+    protected DesignerState getEditingDesignerState()
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard == null )
+            return null;
+        return wizard.getResponseDesignerState();        
     }
     
     /**
@@ -315,8 +350,9 @@ public abstract class DataSetWizardPageCore extends WizardPage
     
     /**
      * Performs finish to
-     * create or edit a data set design instance.
-     * Calls a subclass extended method to provide further
+     * create or edit a data set design instance,
+     * and corresponding session response state.
+     * Calls subclass extended methods to provide further
      * updates to the given data set design instance.
      * @return  the updated data set design instance
      * @throws OdaException
@@ -325,15 +361,49 @@ public abstract class DataSetWizardPageCore extends WizardPage
                                 DataSetDesign design )
         throws OdaException
     {
+        // collects custom session response state
+        // from an extended page
+        collectResponseState();
+        
         // calls abstract method provided by custom extension
         // to further specify its data set design
         return collectDataSetDesign( design );
     }
-    
+
     /**
-     * Allows an extended wizard page
-     * to optionally assign a custom designer state, for inclusion
-     * in the ODA design session response.
+     * Collects optional session response state 
+     * from an extended page.
+     * Response state info includes custom session status 
+     * and designer state instance. 
+     * Default implementation in base class does not specify 
+     * any custom response state.
+     * Sub-class may override.
+     */
+    protected void collectResponseState()
+    {
+        setResponseSessionStatus( null );
+        setResponseDesignerState( null );
+    }
+
+    /**
+     * For use by an extended data set page
+     * to optionally specify or clear a custom session status, 
+     * for inclusion in the ODA design session response.
+     * @param status the status of the current session to
+     *              indicate how an ODA host designer should process
+     *              a design session response
+     */
+    protected void setResponseSessionStatus( SessionStatus status )
+    {
+        NewDataSetWizardBase wizard = getOdaWizard();
+        if( wizard != null )
+            wizard.setResponseSessionStatus( status );        
+    }
+
+    /**
+     * For use by an extended wizard page
+     * to optionally assign or clear a customized designer state, 
+     * for inclusion in the ODA design session response.
      * @param customDesignerState   a designer state instance
      *              that preserves the current session's internal state
      *              so that it can be restored in a subsequent design session

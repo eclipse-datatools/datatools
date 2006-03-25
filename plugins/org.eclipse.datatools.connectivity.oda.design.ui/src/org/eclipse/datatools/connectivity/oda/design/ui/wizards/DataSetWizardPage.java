@@ -51,6 +51,18 @@ public abstract class DataSetWizardPage extends DataSetWizardPageCore
     }
     
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#collectResponseState()
+     */
+    protected void collectResponseState()
+    {
+        // Default implementation in base class does not specify 
+        // any custom response state.
+        // Sub-class may override.
+
+        super.collectResponseState();
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPageCore#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
      */
     protected void refresh( DataSetDesign dataSetDesign )
