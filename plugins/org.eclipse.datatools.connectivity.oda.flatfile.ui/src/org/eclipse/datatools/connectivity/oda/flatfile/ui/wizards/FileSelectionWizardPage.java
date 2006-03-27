@@ -165,6 +165,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         savePage( design );
         return design;
     }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSetWizardPage#collectResponseState()
+     */
+    protected void collectResponseState()
+    {        
+        super.collectResponseState();
+        /* 
+         * Optionally assigns custom response state, for inclusion
+         * in the ODA design session response, using
+         *      setResponseSessionStatus( SessionStatus status )
+         *      setResponseDesignerState( DesignerState customState ); 
+         */
+    }
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
@@ -963,12 +977,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
          * query parameters and properties, there are
          * no data set parameters and public/private properties
          * to specify in the data set design instance
-         */
-        
-        /* 
-         * Optionally assigns a custom designer state, for inclusion
-         * in the ODA design session response, using
-         *      setResponseDesignerState( DesignerState customState ); 
          */
     }
 
