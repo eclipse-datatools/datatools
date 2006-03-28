@@ -16,6 +16,9 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -209,11 +212,35 @@ public class DataSetEditorPageCore extends PropertyPage
     }   
     
     /**
+     * Returns the most current design session response 
+     * being edited, by collecting relevant updates from 
+     * the corresponding wrapped data set page.
+     * @return the current design session response that contains
+     *         the data set design instance and designer state
+     *         updated by this wrapped data set page
+     */
+    public DesignSessionResponse collectPageResponse()
+    {
+        DataSetDesign updatedDesign = collectDataSetDesign(); 
+
+        // assign data set design in the design response
+        boolean isSessionOk = ( updatedDesign != null );
+        OdaDesignSession nestedSession = 
+            DesignFactory.eINSTANCE.createOdaDesignSession();
+        nestedSession.setNewResponse( isSessionOk, updatedDesign );
+
+        DesignSessionResponse pageResponse = nestedSession.getResponse();
+        m_wizardPage.getOdaWizard().updateResponseWithState( pageResponse );
+        return pageResponse;
+    }
+    
+    /**
      * Returns the most current data set design instance 
      * being edited, by collecting relevant updates from 
      * the corresponding wrapped data set page.
      * @return the data set design instance updated 
      *          by this wrapped data set page
+     * @deprecated  replaced by collectPageResponse()
      */
     public DataSetDesign collectDataSetDesign()
     {

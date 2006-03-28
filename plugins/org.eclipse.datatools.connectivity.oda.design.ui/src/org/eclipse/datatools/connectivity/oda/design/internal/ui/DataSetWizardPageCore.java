@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
-import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
@@ -355,11 +354,8 @@ public abstract class DataSetWizardPageCore extends WizardPage
      * Calls subclass extended methods to provide further
      * updates to the given data set design instance.
      * @return  the updated data set design instance
-     * @throws OdaException
      */
-    public DataSetDesign finishDataSetDesign(
-                                DataSetDesign design )
-        throws OdaException
+    protected DataSetDesign finishDataSetDesign( DataSetDesign design )
     {
         // collects custom session response state
         // from an extended page
