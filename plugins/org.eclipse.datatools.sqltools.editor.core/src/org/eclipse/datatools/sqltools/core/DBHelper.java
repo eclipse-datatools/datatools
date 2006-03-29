@@ -73,10 +73,20 @@ public class DBHelper {
 	{
         Map map = new HashMap();
 
-        map.put(ProcIdentifier.PROP_OWNER, ownerName);
-        map.put(ProcIdentifier.PROP_NAME, dbObjectName);
-        map.put(ProcIdentifier.PROP_TABLENAME, tableName);
-
+        //don't put it null values which will cause problem when encoding/decoding
+        if (ownerName != null)
+        {
+        	map.put(ProcIdentifier.PROP_OWNER, ownerName);
+        }
+        if (dbObjectName != null)
+        {
+        	map.put(ProcIdentifier.PROP_NAME, dbObjectName);
+        }
+        if (tableName != null)
+        {
+        	map.put(ProcIdentifier.PROP_TABLENAME, tableName);
+        }
+        
         return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
 	}
 
