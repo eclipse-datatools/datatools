@@ -93,4 +93,12 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
         return collectCustomProperties( props );
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#getOdaDataSourceId()
+     */
+    public String getOdaDataSourceId()
+    {
+        return super.getOdaDataSourceId();
+    }
+    
 }

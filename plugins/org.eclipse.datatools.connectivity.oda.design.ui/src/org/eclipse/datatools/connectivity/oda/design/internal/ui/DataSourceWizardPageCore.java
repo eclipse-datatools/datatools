@@ -99,6 +99,27 @@ public abstract class DataSourceWizardPageCore extends
     }
     
     /**
+     * Returns the ODA data source element id that 
+     * uniquely identifies the ODA run-time data source extension
+     * of the ODA driver's custom designer plug-in.
+     * @return
+     */
+    protected String getOdaDataSourceId()
+    {
+        return getOdaWizard().getOdaDataSourceId();
+    }
+    
+    /**
+     * Returns the ODA driver's custom designer plug-in id that 
+     * implements the DTP oda.design.ui.dataSource extension point.
+     * @return
+     */
+    protected String getOdaDesignerId()
+    {
+        return getOdaWizard().getOdaDesignerId();
+    }
+    
+    /**
      * Performs finish to
      * create a new data source design instance.
      * Calls a subclass extended method to provide further

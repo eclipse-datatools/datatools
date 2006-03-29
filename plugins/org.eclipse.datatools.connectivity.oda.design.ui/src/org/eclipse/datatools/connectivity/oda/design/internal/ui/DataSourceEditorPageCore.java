@@ -213,6 +213,19 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     }
     
     /**
+     * Returns the ODA data source element id that 
+     * uniquely identifies the ODA run-time data source extension
+     * of the ODA driver's custom designer plug-in.
+     * @return
+     */
+    protected String getOdaDataSourceId()
+    {
+        if( ! isInOdaDesignSession() )
+            return getConnectionProfile().getProviderId();
+        return getEditingDataSource().getOdaExtensionDataSourceId();   	
+    }
+    
+    /**
      * Returns a copy of the data source design instance used in
      * initialization of the customized control of this extended editor page.
      * A copy is returned to prevent updates to the request design.

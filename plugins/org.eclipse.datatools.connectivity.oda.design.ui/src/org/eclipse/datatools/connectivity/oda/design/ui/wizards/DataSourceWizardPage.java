@@ -105,4 +105,13 @@ public abstract class DataSourceWizardPage extends DataSourceWizardPageCore
         // calls abstract method provided by custom extension
         createPageCustomControl( parent );
     }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#getOdaDataSourceId()
+     */
+    public String getOdaDataSourceId()
+    {
+        return super.getOdaDataSourceId();
+    }
+
 }
