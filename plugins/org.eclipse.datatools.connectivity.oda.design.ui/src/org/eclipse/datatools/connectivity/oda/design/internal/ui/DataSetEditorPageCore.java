@@ -223,12 +223,13 @@ public class DataSetEditorPageCore extends PropertyPage
     {
         DataSetDesign updatedDesign = collectDataSetDesign(); 
 
-        // assign data set design in the design response
+        // assign data set design in a session response
         boolean isSessionOk = ( updatedDesign != null );
         OdaDesignSession nestedSession = 
             DesignFactory.eINSTANCE.createOdaDesignSession();
         nestedSession.setNewResponse( isSessionOk, updatedDesign );
 
+        // assign collected response state to the session response
         DesignSessionResponse pageResponse = nestedSession.getResponse();
         m_wizardPage.getOdaWizard().updateResponseWithState( pageResponse );
         return pageResponse;
@@ -240,9 +241,8 @@ public class DataSetEditorPageCore extends PropertyPage
      * the corresponding wrapped data set page.
      * @return the data set design instance updated 
      *          by this wrapped data set page
-     * @deprecated  replaced by collectPageResponse()
      */
-    public DataSetDesign collectDataSetDesign()
+    private DataSetDesign collectDataSetDesign()
     {
         // first get the wrapped page to update the central
         // copy of editing data set design
