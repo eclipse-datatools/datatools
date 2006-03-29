@@ -13,7 +13,9 @@ package org.eclipse.datatools.sqltools.routineeditor.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.core.Messages;
+import org.eclipse.datatools.sqltools.routineeditor.launching.SQLToolsLaunchProfileListener;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -40,6 +42,8 @@ public class RoutineEditorActivator extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+        ProfileManager pManager = ProfileManager.getInstance();
+        pManager.addProfileListener(new SQLToolsLaunchProfileListener());
 	}
 
 	/**
