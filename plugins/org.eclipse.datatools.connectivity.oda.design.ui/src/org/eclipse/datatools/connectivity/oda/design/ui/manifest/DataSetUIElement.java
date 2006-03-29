@@ -31,7 +31,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
  */
 public class DataSetUIElement
 {
-    private static final String WIZARD_ELEMENT_NAME = "newDataSetWizard"; //$NON-NLS-1$
+    private static final String WIZARD_ELEMENT_NAME = "dataSetWizard"; //$NON-NLS-1$
     private static final String PAGE_ELEMENT_NAME = "dataSetPage"; //$NON-NLS-1$
     private static final String ID_ATRIBUTE_NAME = "id"; //$NON-NLS-1$
     
@@ -64,7 +64,7 @@ public class DataSetUIElement
                 m_hasParameterDefinition = Boolean.valueOf( hasParamDefn ).booleanValue();
         }
         
-        // newDataSetWizard element; must have one and only one
+        // dataSetWizard element; must have one and only one
         IConfigurationElement wizardElement = 
                                 getWizardElement( dataSetElement );
         if( wizardElement != null )
@@ -87,12 +87,11 @@ public class DataSetUIElement
     {
         IConfigurationElement[] pages = 
             dataSetElement.getChildren( PAGE_ELEMENT_NAME );
-        // TODO - restore error condition after all data sets are migrated
-/*        if( pages.length == 0 )
+        if( pages.length == 0 )
             throw new OdaException( 
                 Messages.bind( Messages.manifest_dataSetUi_missingElement,
                                 PAGE_ELEMENT_NAME ));
-*/        
+        
         m_dataSetPages = new Hashtable( pages.length );
         m_dataSetPageIds = new ArrayList( pages.length );
         for( int i = 0; i < pages.length; i++ )
@@ -158,7 +157,7 @@ public class DataSetUIElement
      * Returns the definition of a data set wizard that allows an user 
      * to create a new ODA data set design instance.
      * @return the wizard definition that represents the
-     *          <i>dataSetUI.newDataSetWizard</i> element
+     *          <i>dataSetUI.dataSetWizard</i> element
      */
     public DataSetWizardInfo getWizardInfo()
     {
@@ -166,12 +165,12 @@ public class DataSetUIElement
     }
     
     /**
-     * Returns the newDataSetWizard configuration element  
+     * Returns the dataSetWizard configuration element  
      * that defines the wizard that allows an user 
      * to create a new ODA data set design instance.
      * @param dataSetUIElement  a dataSetUI configuration element 
-     * @return  the newDataSetWizard configuration element
-     * @throws OdaException if no newDataSetWizard element is defined
+     * @return  the dataSetWizard configuration element
+     * @throws OdaException if no dataSetWizard element is defined
      */
     public static IConfigurationElement getWizardElement( 
                     IConfigurationElement dataSetUIElement )
@@ -179,21 +178,18 @@ public class DataSetUIElement
     {
         if( dataSetUIElement == null )
             return null;
-        // newDataSetWizard element; expects one and only one
+        // dataSetWizard element; expects one and only one
         IConfigurationElement[] wizardElements = 
             dataSetUIElement.getChildren( WIZARD_ELEMENT_NAME );
 
-        // TODO - restore error condition after all data sets are migrated
-/*
-        if( wizardElements.length < 1 )  // expects one element
+    	// expects one element
+        if( wizardElements.length < 1 )  
             throw new OdaException( 
                 Messages.bind( Messages.manifest_dataSetUi_missingElement,
                                 WIZARD_ELEMENT_NAME ));
-*/
-        if( wizardElements.length >= 1 ) 
-            return wizardElements[0];   // takes the first one
-
-        return null;    // TODO - remove
+        
+        // >= 1 wizard element
+        return wizardElements[0];   // takes the first one
     }
     
     /**

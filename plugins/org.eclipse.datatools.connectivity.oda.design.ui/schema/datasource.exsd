@@ -102,6 +102,7 @@ This element includes the attributes to specify the customized wizard starting p
                <documentation>
                   A fully qualified class name that implements the wizard starting page for creating a new ODA data source design instance.
 &lt;br&gt;This class must extend from the ODA abstract base class, &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage&lt;/i&gt;.
+&lt;br&gt;A default concrete implementation class is provided in the ODA framework,  &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourceWizardPage&lt;/i&gt;.  An ODA extension may choose to use or extend from this default implementation class.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage"/>
@@ -114,14 +115,14 @@ This element includes the attributes to specify the customized wizard starting p
    <element name="dataSetUI">
       <annotation>
          <documentation>
-            Allows ODA data providers to define customized dialog page(s) for an user to create a new ODA data set design instance.
+            Allows ODA data providers to define customized dialog page(s) for an user to create or edit an ODA data set design instance.
 The element defines child elements for the data set wizard page(s) and editor page(s).  
 &lt;br&gt;An ODA host designer may use the custom wizard pages&apos; control for editing a data set design instance.
          </documentation>
       </annotation>
       <complexType>
          <sequence>
-            <element ref="newDataSetWizard"/>
+            <element ref="dataSetWizard"/>
             <element ref="dataSetPage" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="id" type="string" use="required">
@@ -148,21 +149,21 @@ The element defines child elements for the data set wizard page(s) and editor pa
       </complexType>
    </element>
 
-   <element name="newDataSetWizard">
+   <element name="dataSetWizard">
       <annotation>
          <documentation>
-            Defines a data set wizard that allows an user to create a new ODA data set design instance.
+            Defines a data set wizard that allows an user to create or edit an ODA data set design instance.
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard">
+         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard">
             <annotation>
                <documentation>
                   The implementation class of the data set wizard.  
-&lt;br&gt;The wizard class must either use or extend from the ODA framework&apos;s wizard base class, &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard&lt;/i&gt;.
+&lt;br&gt;The wizard class must either use or extend from the ODA framework&apos;s wizard base class, &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&lt;/i&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -259,8 +260,8 @@ This value, if specified, overrides any title or descriptive name that may have 
             id=&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;
             initialPageId=&quot;oda.flatfile.ui.tablePage&quot;
             hasParameterDefinition=&quot;false&quot;&gt;
-         &lt;newDataSetWizard
-               class=&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard&quot;
+         &lt;dataSetWizard
+               class=&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&quot;
                windowTitle=&quot;Select Table&quot;/&gt;
          &lt;dataSetPage
                displayName=&quot;Select Columns&quot;

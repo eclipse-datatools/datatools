@@ -199,7 +199,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
         if( iconPath == null || iconPath.length() == 0 )
             return null;
         
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         
@@ -246,7 +246,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected DataSetDesign getInitializationDesign()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         return wizard.copyRequestDataSetDesign();
@@ -262,7 +262,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected DataSetDesign getEditingDesign()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         return wizard.getEditingDataSet();        
@@ -278,7 +278,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected DesignerState getInitializationDesignerState()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         return wizard.copyRequestDesignerState();
@@ -295,7 +295,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected DesignerState getEditingDesignerState()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         return wizard.getResponseDesignerState();        
@@ -312,7 +312,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected Locale getInitializationLocale()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return null;
         return wizard.copySessionLocale();
@@ -328,7 +328,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected boolean isSessionEditable()
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard == null )
             return true;    // default
         return wizard.isSessionEditable();       
@@ -340,10 +340,10 @@ public abstract class DataSetWizardPageCore extends WizardPage
      * of a new data set design.
      * @return
      */
-    protected NewDataSetWizardBase getOdaWizard()
+    protected DataSetWizardBase getOdaWizard()
     {
-        if( getWizard() instanceof NewDataSetWizardBase )
-            return (NewDataSetWizardBase) getWizard();
+        if( getWizard() instanceof DataSetWizardBase )
+            return (DataSetWizardBase) getWizard();
         return null;
     }
     
@@ -391,7 +391,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected void setResponseSessionStatus( SessionStatus status )
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard != null )
             wizard.setResponseSessionStatus( status );        
     }
@@ -406,7 +406,7 @@ public abstract class DataSetWizardPageCore extends WizardPage
      */
     protected void setResponseDesignerState( DesignerState customDesignerState )
     {
-        NewDataSetWizardBase wizard = getOdaWizard();
+        DataSetWizardBase wizard = getOdaWizard();
         if( wizard != null )
             wizard.setResponseDesignerState( customDesignerState );
     }

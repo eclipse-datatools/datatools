@@ -23,7 +23,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetWizardIn
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
-import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.jface.wizard.IWizard;
@@ -151,7 +151,7 @@ public class OdaProfileUIExplorer
      * @return
      * @throws OdaException
      */
-    public NewDataSetWizard getDataSetWizard( String odaDataSourceId,
+    public DataSetWizard getDataSetWizard( String odaDataSourceId,
                             DataSetUIElement dataSetElement )
         throws OdaException
     {
@@ -159,7 +159,7 @@ public class OdaProfileUIExplorer
         if( wizardInfo == null )
         {
             // use default wizard base class
-            return new NewDataSetWizard();
+            return new DataSetWizard();
         }
 
         // instantiate specified wizard class
@@ -176,20 +176,20 @@ public class OdaProfileUIExplorer
             throw new OdaException( ex );
         }
         
-        if( ! ( wizardInstance instanceof NewDataSetWizard ))
+        if( ! ( wizardInstance instanceof DataSetWizard ))
         {
             throw new OdaException( 
                     Messages.bind( Messages.extension_mustInheritFromODAWizard, 
                             wizardInfo.getClassName(),
-                            NewDataSetWizard.class.getName() )); 
+                            DataSetWizard.class.getName() )); 
         }
         
-        // a valid wizard, subclass of NewDataSetWizard
+        // a valid wizard, subclass of DataSetWizard
         String wizardTitle = wizardInfo.getWindowTitle();
         if( wizardTitle != null && wizardTitle.length() > 0 )
-            (( NewDataSetWizard ) wizardInstance ).setWindowTitle( wizardTitle );
+            (( DataSetWizard ) wizardInstance ).setWindowTitle( wizardTitle );
 
-        return ( NewDataSetWizard ) wizardInstance;   
+        return ( DataSetWizard ) wizardInstance;   
     }
 
 }

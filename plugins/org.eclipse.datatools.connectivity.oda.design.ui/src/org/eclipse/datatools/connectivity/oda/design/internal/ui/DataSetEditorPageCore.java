@@ -47,7 +47,7 @@ public class DataSetEditorPageCore extends PropertyPage
     {
         super();
 
-        if( page.getWizard() instanceof NewDataSetWizardBase )
+        if( page.getWizard() instanceof DataSetWizardBase )
         {
             DataSetDesign editDataSetDesign =
                 page.getOdaWizard().getEditingDataSet();

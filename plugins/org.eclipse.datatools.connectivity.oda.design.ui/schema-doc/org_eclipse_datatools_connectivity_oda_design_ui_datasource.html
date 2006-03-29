@@ -2,8 +2,8 @@
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Open Data Access Designer</title>
-<style>@import url("file:/d:/Lang/eclipse_31/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
-<style>@import url("file:/d:/Lang/eclipse_31/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32M5a/plugins/org.eclipse.sdk_3.2.0.v20060214/book.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32M5a/configuration/org.eclipse.osgi/bundles/186/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1><CENTER>Open Data Access Designer</CENTER></H1>
@@ -49,14 +49,15 @@ This element includes the attributes to specify the customized wizard starting p
 <li><b>includesProgressMonitor</b> - Indicates whether the data source wizard should include a progress monitor.  Default value is "true".</li>
 <li><b>pageTitle</b> - The page title of the data source wizard's customized starting page.  This value, if specified, overrides any title that may have been set by the wizard page's constructor.</li>
 <li><b>pageClass</b> - A fully qualified class name that implements the wizard starting page for creating a new ODA data source design instance.
-<br>This class must extend from the ODA abstract base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage</i>.</li>
+<br>This class must extend from the ODA abstract base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage</i>.
+<br>A default concrete implementation class is provided in the ODA framework,  <i>org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourceWizardPage</i>.  An ODA extension may choose to use or extend from this default implementation class.</li>
 </ul>
-<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetUI">dataSetUI</a> (<a href="#e.newDataSetWizard">newDataSetWizard</a> , <a href="#e.dataSetPage">dataSetPage</a>+)&gt;</p>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetUI">dataSetUI</a> (<a href="#e.dataSetWizard">dataSetWizard</a> , <a href="#e.dataSetPage">dataSetPage</a>+)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataSetUI</p>
 <p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>initialPageId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>hasParameterDefinition&nbsp;(true | false) "true"&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
-Allows ODA data providers to define customized dialog page(s) for an user to create a new ODA data set design instance.
+Allows ODA data providers to define customized dialog page(s) for an user to create or edit an ODA data set design instance.
 The element defines child elements for the data set wizard page(s) and editor page(s).  
 <br>An ODA host designer may use the custom wizard pages' control for editing a data set design instance.</p>
 <br>
@@ -65,16 +66,16 @@ The element defines child elements for the data set wizard page(s) and editor pa
 <li><b>initialPageId</b> - Identifies a particular dataSetPage that should be selected in a data set dialog.</li>
 <li><b>hasParameterDefinition</b> - Indicates that this type of data set design tends to have data set parameters defined, and an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
 </ul>
-<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.newDataSetWizard">newDataSetWizard</a> EMPTY&gt;</p>
-<p class=code id=dtd>&lt;!ATTLIST newDataSetWizard</p>
-<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard"<p class=code id=dtdAttlist>windowTitle&nbsp;CDATA #IMPLIED&gt;</p>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetWizard">dataSetWizard</a> EMPTY&gt;</p>
+<p class=code id=dtd>&lt;!ATTLIST dataSetWizard</p>
+<p class=code id=dtdAttlist>class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"<p class=code id=dtdAttlist>windowTitle&nbsp;CDATA #IMPLIED&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
-Defines a data set wizard that allows an user to create a new ODA data set design instance.</p>
+Defines a data set wizard that allows an user to create or edit an ODA data set design instance.</p>
 <br>
 <ul class=ConfigMarkup id=attlistDesc>
 <li><b>class</b> - The implementation class of the data set wizard.  
-<br>The wizard class must either use or extend from the ODA framework's wizard base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard</i>.</li>
+<br>The wizard class must either use or extend from the ODA framework's wizard base class, <i>org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard</i>.</li>
 <li><b>windowTitle</b> - The customized title of the data set wizard window.</li>
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetPage">dataSetPage</a> EMPTY&gt;</p>
@@ -112,8 +113,8 @@ This value, if specified, overrides any title or descriptive name that may have 
             id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</p><p class=code id=tag>
             initialPageId=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
             hasParameterDefinition=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
-         <p class=code id=tag>&lt;newDataSetWizard
-               class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard&quot;</p><p class=code id=tag>
+         <p class=code id=tag>&lt;dataSetWizard
+               class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&quot;</p><p class=code id=tag>
                windowTitle=<p class=code id=cstring>&quot;Select Table&quot;</p><p class=code id=tag>/&gt;</p>
          <p class=code id=tag>&lt;dataSetPage
                displayName=<p class=code id=cstring>&quot;Select Columns&quot;</p><p class=code id=tag>

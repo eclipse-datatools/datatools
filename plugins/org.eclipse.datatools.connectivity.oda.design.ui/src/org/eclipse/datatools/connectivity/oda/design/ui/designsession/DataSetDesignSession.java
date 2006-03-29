@@ -29,7 +29,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElemen
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
-import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -44,7 +44,7 @@ public class DataSetDesignSession
     private OdaDesignSession m_designSession;
     private String m_odaDataSourceId;
     private DataSetUIElement m_dataSetUIElement;
-    private NewDataSetWizard m_wizard;
+    private DataSetWizard m_wizard;
     private ArrayList m_editorPages;
     
     /**
@@ -134,7 +134,7 @@ public class DataSetDesignSession
     private void initWizard()
         throws OdaException
     {
-        NewDataSetWizard wizard = getExtendedWizard();
+        DataSetWizard wizard = getExtendedWizard();
 
         // initialize wizard
         wizard.initialize( m_designSession, m_dataSetUIElement );
@@ -278,10 +278,10 @@ public class DataSetDesignSession
     /**
      * Returns an ODA wizard extended from the base wizard 
      * provided by the ODA Designer UI framework.
-     * @return  a NewDataSetWizard instance
+     * @return  a DataSetWizard instance
      * @throws OdaException
      */
-    protected NewDataSetWizard getExtendedWizard() 
+    protected DataSetWizard getExtendedWizard() 
         throws OdaException
     {
         if( m_wizard == null )
@@ -371,7 +371,7 @@ public class DataSetDesignSession
      */
     protected OdaDesignSession finishDataSetDesign() throws OdaException
     {
-        NewDataSetWizard wizard = getExtendedWizard();
+        DataSetWizard wizard = getExtendedWizard();
 
         return wizard.getResponseSession();
     }

@@ -22,7 +22,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
  * Represents the customizable behavior defined by an ODA UI Extension
  * for its data set wizard that allows an user to create 
  * a new ODA data set design instance. 
- * It encapsulates the content of the <i>newDataSetWizard</i> element
+ * It encapsulates the content of the <i>dataSetWizard</i> element
  * defined in the ODA Design UI extension point.
  */
 public class DataSetWizardInfo

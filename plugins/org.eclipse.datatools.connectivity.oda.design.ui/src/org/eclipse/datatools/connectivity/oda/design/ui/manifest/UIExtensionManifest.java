@@ -90,10 +90,10 @@ public class UIExtensionManifest
                             new DataSetUIElement( configElement ) );
         }
         
-        // TODO - restore error condition after all data sets are migrated
         if( dataSetElements.size() < 1 )    // expects one or more
-//            throw new OdaException( "Missing dataSetUI elements in " + extension.getUniqueIdentifier() );
-            return null;
+        	throw new OdaException( 
+                Messages.bind( Messages.manifest_dataSetUi_missingElement,
+                		DATA_SET_ELEMENT_NAME ));
         
         return dataSetElements;
     }
