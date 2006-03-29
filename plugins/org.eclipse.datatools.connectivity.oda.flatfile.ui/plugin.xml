@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: $
+ * $Id: plugin.xml,v 1.13 2006/03/10 00:43:14 lchan Exp $
  */
 -->
 
@@ -77,8 +77,8 @@
             hasParameterDefinition="false"
             id="org.eclipse.datatools.connectivity.oda.flatfile.dataSet"
             initialPageId="oda.flatfile.ui.tablePage">
-         <newDataSetWizard
-               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSetWizard"
+         <dataSetWizard
+               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"
                windowTitle="Select Table"/>
          <dataSetPage
                displayName="%wizard.data.set.page.title"
