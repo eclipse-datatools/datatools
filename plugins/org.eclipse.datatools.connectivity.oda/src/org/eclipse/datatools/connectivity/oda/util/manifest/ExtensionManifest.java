@@ -69,10 +69,19 @@ public class ExtensionManifest
 		
 		String needSetThreadContextClassLoader = 
             m_dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
-		if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
-			! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
+		if( needSetThreadContextClassLoader == null ||
+			needSetThreadContextClassLoader.length() == 0 )
+		{
+			// assign default
+			needSetThreadContextClassLoader = "false";	//$NON-NLS-1$
+		}
+		else	// validate specified value
+		{
+			if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
+				! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
+				throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
 																	   new Object[] { needSetThreadContextClassLoader, m_dataSourceElementId } ) );
+		}
 		
 		m_runtime = 
 			new JavaRuntimeInterface( driverClass, 

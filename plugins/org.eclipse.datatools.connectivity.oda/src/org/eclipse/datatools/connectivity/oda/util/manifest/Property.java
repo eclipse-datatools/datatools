@@ -64,6 +64,8 @@ public class Property
         m_groupName = groupName;
         m_groupDisplayName = groupDisplayName;
         m_type = propertyElement.getAttribute( "type" ); //$NON-NLS-1$
+        if( m_type == null || m_type.length() == 0 )	// assign default
+        	m_type = "string"; //$NON-NLS-1$
         m_defaultValue = propertyElement.getAttribute( "defaultValue" ); //$NON-NLS-1$
 
         m_isEncryptable = false;
