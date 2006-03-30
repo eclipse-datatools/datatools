@@ -22,7 +22,7 @@ package org.eclipse.datatools.sqltools.routineeditor.launching;
  * 
  * 4. Adhoc SQL ROUTINE_LAUNCH_PROFILENAME ROUTINE_LAUNCH_TYPE 3 ROUTINE_LAUNCH_ADHOCSQL
  * 
- * 5. Trigger ROUTINE_LAUNCH_PROFILENAME ROUTINE_LAUNCH_TYPE 0 ROUTINE_LAUNCH_TRIGGERSQL
+ * 5. Trigger ROUTINE_LAUNCH_PROFILENAME ROUTINE_LAUNCH_TYPE 0 ROUTINE_LAUNCH_SQL
  * 
  * @author Samir Nigam
  * @author Yang Liu
@@ -50,9 +50,7 @@ public interface RoutineLaunchConfigurationAttribute
 
     static final String ROUTINE_LAUNCH_PROCID                      = "org.eclipse.datatools.sqltools.debug.launching.procid";
 
-    static final String ROUTINE_LAUNCH_ADHOCSQL                    = "org.eclipse.datatools.sqltools.debug.launching.adhocsql";
-
-    static final String ROUTINE_LAUNCH_TRIGGERSQL                  = "org.eclipse.datatools.sqltools.debug.launching.triggersql";
+    static final String ROUTINE_LAUNCH_SQL                  = "org.eclipse.datatools.sqltools.debug.launching.triggersql";
 
     // parameter list for SP and UDF
     static final String ROUTINE_LAUNCH_PARAMETERS                  = "org.eclipse.datatools.sqltools.debug.launching.parameters";

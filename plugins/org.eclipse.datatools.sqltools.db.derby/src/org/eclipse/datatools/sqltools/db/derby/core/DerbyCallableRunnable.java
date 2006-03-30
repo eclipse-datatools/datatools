@@ -55,7 +55,7 @@ public class DerbyCallableRunnable extends CallableSQLResultRunnable {
 			ILaunchConfiguration configuration) throws CoreException,
 			SQLException, NoSuchProfileException {
 		if (LaunchHelper.isAdHocSQL(configuration))
-			return LaunchHelper.readAdHocSQL(configuration);
+			return LaunchHelper.readLaunchSQLStatement(configuration);
 		ProcIdentifier proc = LaunchHelper.readProcIdentifier(configuration);
 		if (proc == null)
 			return "";

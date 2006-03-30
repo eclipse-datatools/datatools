@@ -75,12 +75,13 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         return wc;
     }
 
-    public static void saveSPUDF(ILaunchConfigurationWorkingCopy configuration, ProcIdentifier proc, List parameters)
+    public static void saveSPUDF(ILaunchConfigurationWorkingCopy configuration, ProcIdentifier proc, List parameters, String sql)
     {
         configuration.setAttribute(ROUTINE_LAUNCH_PROFILENAME, proc == null ? "" : proc.getProfileName());
         configuration.setAttribute(ROUTINE_LAUNCH_DATABASENAME, proc == null ? "" : proc.getDatabaseIdentifier().getDBname());
         configuration.setAttribute(ROUTINE_LAUNCH_PROCID, proc == null ? "" : proc.encode());
         configuration.setAttribute(ROUTINE_LAUNCH_TYPE, 0);
+        configuration.setAttribute(ROUTINE_LAUNCH_SQL, sql);
         saveParameterList(configuration, parameters);
         setConnectionLevelOptions(configuration);
     }
@@ -109,12 +110,13 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         configuration.setAttribute(ROUTINE_LAUNCH_PARAMETERS, l);
     }
 
-    public static void saveEvent(ILaunchConfigurationWorkingCopy configuration, ProcIdentifier proc, Map eventparams)
+    public static void saveEvent(ILaunchConfigurationWorkingCopy configuration, ProcIdentifier proc, Map eventparams, String sql)
     {
         configuration.setAttribute(ROUTINE_LAUNCH_PROFILENAME, proc == null ? "" : proc.getProfileName());
         configuration.setAttribute(ROUTINE_LAUNCH_DATABASENAME, proc == null ? "" : proc.getDatabaseIdentifier().getDBname());
         configuration.setAttribute(ROUTINE_LAUNCH_PROCID, proc == null ? "" : proc.encode());
         configuration.setAttribute(ROUTINE_LAUNCH_TYPE, 0);
+        configuration.setAttribute(ROUTINE_LAUNCH_SQL, sql);
         saveEventParameter(configuration, eventparams);
     }
 
@@ -132,7 +134,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         configuration.setAttribute(ROUTINE_LAUNCH_PROFILENAME, profileName);
         configuration.setAttribute(ROUTINE_LAUNCH_DATABASENAME, dbName);
         configuration.setAttribute(ROUTINE_LAUNCH_TYPE,3);
-        configuration.setAttribute(ROUTINE_LAUNCH_ADHOCSQL, sql);
+        configuration.setAttribute(ROUTINE_LAUNCH_SQL, sql);
     }
 
     public static void saveTrigger(ILaunchConfigurationWorkingCopy configuration,  ProcIdentifier proc, String sql)
@@ -141,7 +143,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         configuration.setAttribute(ROUTINE_LAUNCH_DATABASENAME, proc == null ? "" : proc.getDatabaseIdentifier().getDBname());
         configuration.setAttribute(ROUTINE_LAUNCH_PROCID, proc == null ? "" : proc.encode());
         configuration.setAttribute(ROUTINE_LAUNCH_TYPE, 0);
-        configuration.setAttribute(ROUTINE_LAUNCH_TRIGGERSQL, sql);
+        configuration.setAttribute(ROUTINE_LAUNCH_SQL, sql);
     }
 
     public static void initializeConfiguration(ILaunchConfigurationWorkingCopy configuration, ProcIdentifier proc)
@@ -153,7 +155,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         }
         else if (proc.getType() == ProcIdentifier.TYPE_EVENT)
         {
-            saveEvent(configuration, proc, new HashMap());
+            saveEvent(configuration, proc, new HashMap(), "");
         }
         else
         {
@@ -192,7 +194,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
             {
             	RoutineEditorActivator.getDefault().log(e);
             }
-            saveSPUDF(configuration, proc, values);
+            saveSPUDF(configuration, proc, values, "");
         }
     }
 
@@ -305,18 +307,9 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
      * @param configuration
      * @return @throws CoreException
      */
-    public static String readAdHocSQL(ILaunchConfiguration configuration) throws CoreException
+    public static String readLaunchSQLStatement(ILaunchConfiguration configuration) throws CoreException
     {
-        return configuration.getAttribute(ROUTINE_LAUNCH_ADHOCSQL, "");
-    }
-
-    /**
-     * @param configuration
-     * @return @throws CoreException
-     */
-    public static String readTriggerSQL(ILaunchConfiguration configuration) throws CoreException
-    {
-        return configuration.getAttribute(ROUTINE_LAUNCH_TRIGGERSQL, "");
+        return configuration.getAttribute(ROUTINE_LAUNCH_SQL, "");
     }
 
     /**
@@ -327,7 +320,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
-        return readAdHocSQL(configuration);
+        return readLaunchSQLStatement(configuration);
         ProcIdentifier proc = readProcIdentifier(configuration);
         if (proc == null)
         return "";
@@ -340,7 +333,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
             case ProcIdentifier.TYPE_TRIGGER:
-                return readTriggerSQL(configuration);
+                return readLaunchSQLStatement(configuration);
             default:
                 return "";
         }
@@ -354,7 +347,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
-        return readAdHocSQL(configuration);
+        return readLaunchSQLStatement(configuration);
         ProcIdentifier proc = readProcIdentifier(configuration);
         if (proc == null)
         return "";
@@ -380,7 +373,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
-        return readAdHocSQL(configuration);
+        return readLaunchSQLStatement(configuration);
         ProcIdentifier proc = readProcIdentifier(configuration);
         if (proc == null)
         return "";
