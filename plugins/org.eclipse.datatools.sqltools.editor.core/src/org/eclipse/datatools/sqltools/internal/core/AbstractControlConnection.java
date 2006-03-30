@@ -257,7 +257,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 				EList routines = schema.getRoutines();
 				for (Iterator iter = routines.iterator(); iter.hasNext();) {
 					Routine routine = (Routine) iter.next();
-					SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, routine);
+					procs.add(SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, routine));
 				}
 			}
 		}
