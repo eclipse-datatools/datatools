@@ -66,7 +66,7 @@ public final class DataTypes
             return ( (Integer) typeStringIntPair.get( preparedTypeName ) )
                     .intValue();
         throw new OdaException( Messages
-                .getString( "DataTypes.TYPE_NAME_INVALID" ) + typeName ); //$NON-NLS-1$
+                .getString( "dataTypes_TYPE_NAME_INVALID" ) + typeName ); //$NON-NLS-1$
     }
 
     /**

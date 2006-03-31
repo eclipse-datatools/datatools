@@ -40,7 +40,7 @@ public class Connection implements IConnection
     {
         if( connProperties == null )
             throw new OdaException( Messages
-                    .getString( "Connection.CONNECTION_PROPERTIES_MISSING" ) ); //$NON-NLS-1$
+                    .getString( "connection_CONNECTION_PROPERTIES_MISSING" ) ); //$NON-NLS-1$
 
         homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
         charSet = connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP );
@@ -53,7 +53,7 @@ public class Connection implements IConnection
             this.isOpen = true;
         else
             throw new OdaException( Messages
-                    .getString( "Connection.CANNOT_OPEN_FLAT_FILE_DB_DIR" ) //$NON-NLS-1$
+                    .getString( "connection_CANNOT_OPEN_FLAT_FILE_DB_DIR" ) //$NON-NLS-1$
                     + homeDir );
     }
 
@@ -98,7 +98,7 @@ public class Connection implements IConnection
     {
         if( !isOpen() )
             throw new OdaException( Messages
-                    .getString( "Common.CONNECTION_HAS_NOT_OPEN" ) ); //$NON-NLS-1$
+                    .getString( "common_CONNECTION_HAS_NOT_OPEN" ) ); //$NON-NLS-1$
 
         return new Query( this.homeDir, this, charSet, this.includeTypeLine );
     }
