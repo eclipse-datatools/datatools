@@ -5,7 +5,6 @@ Bundle-SymbolicName: org.eclipse.datatools.sqltools.result; singleton:=true
 Bundle-Version: 0.7.0.200602241
 Bundle-Activator: org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin
 Bundle-Vendor: Eclipse.org
-Bundle-ClassPath: sqlresult.jar
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -19,5 +18,4 @@ Require-Bundle: org.eclipse.ui,
  org.apache.lucene,
  com.ibm.icu
 Export-Package: org.eclipse.datatools.sqltools.result
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true

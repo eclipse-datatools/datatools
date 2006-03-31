@@ -3,15 +3,13 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Core Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sql
 Bundle-Version: 0.7.0.200602241
-Bundle-ClassPath: sqltools.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.sql.internal.SQLActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.jface.text;visibility:=reexport,
  org.eclipse.ui.editors
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.sql,
  org.eclipse.datatools.sqltools.sql.parser;x-internal:=true,
  org.eclipse.datatools.sqltools.sql.parser.ast;x-internal:=true,

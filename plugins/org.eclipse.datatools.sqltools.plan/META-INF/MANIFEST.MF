@@ -10,8 +10,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.draw2d,
  org.eclipse.datatools.sqltools.common.ui
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.plan,
  org.eclipse.datatools.sqltools.plan.treeplan
-Bundle-ClassPath: sqlplan.jar

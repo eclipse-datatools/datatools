@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Debugger Framework
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.debugger.core;singleton:=true
 Bundle-Version: 0.7.0.200602242
-Bundle-ClassPath: sqldebugcore.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -19,8 +18,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.sqltools.routineeditor,
  org.eclipse.datatools.sqltools.common.ui,
  org.eclipse.ui.ide
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.debugger.breakpoint,
  org.eclipse.datatools.sqltools.debugger.core,
  org.eclipse.datatools.sqltools.debugger.model

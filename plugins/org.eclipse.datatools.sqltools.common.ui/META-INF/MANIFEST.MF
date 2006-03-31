@@ -4,7 +4,6 @@ Bundle-Name: Eclipse Data Tools Platform SQL Tools Common UI Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui;singleton:=true
 Bundle-Version: 0.7.0.200602241
 Bundle-Activator: org.eclipse.datatools.sqltools.common.ui.internal.Activator
-Bundle-ClassPath: sqltoolscommonui.jar
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -12,7 +11,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.text,
  org.eclipse.debug.core,
  com.ibm.icu
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.common.ui.preferences,
  org.eclipse.datatools.sqltools.common.ui.util;x-friends:="org.eclipse.datatools.sqltools.sqlscrapbook"

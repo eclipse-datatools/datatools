@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlscrapbook; singleton:=true
 Bundle-Version: 0.7.0.200603101
-Bundle-ClassPath: sqlscrapbook.jar
 Bundle-Activator: org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -32,6 +31,5 @@ Require-Bundle: org.eclipse.datatools.sqltools.sqleditor,
  org.eclipse.datatools.connectivity.db.generic,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.connectivity.db.generic.ui
-Eclipse-AutoStart: true
-Eclipse-AutoStop: true
+Eclipse-LazyStart: true
 
