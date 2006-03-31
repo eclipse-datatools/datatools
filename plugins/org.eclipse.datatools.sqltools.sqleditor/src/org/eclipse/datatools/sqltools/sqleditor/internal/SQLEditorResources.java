@@ -41,8 +41,8 @@ public class SQLEditorResources {
           if (image == null) {
               ImageDescriptor descriptor = null;
               try {
-                  URL baseURL = SQLEditorPlugin.getDefault().getBundle().getEntry("/"); //$NON-NLS-1$
-                  URL imageURL = new URL( baseURL, "icons" + java.io.File.separator + key + ".gif" ); //$NON-NLS-1$ //$NON-NLS-2$
+                  URL baseURL = SQLEditorPlugin.getDefault().getBundle().getEntry("icons/"); //$NON-NLS-1$
+                  URL imageURL = new URL( baseURL, key + ".gif" ); //$NON-NLS-1$ //$NON-NLS-2$
                   descriptor = ImageDescriptor.createFromURL( imageURL );
               }
               catch (Exception e) {

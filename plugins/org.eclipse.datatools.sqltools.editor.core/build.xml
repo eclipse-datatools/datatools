@@ -84,21 +84,23 @@
 		</fileset>
 		<!-- Dependencies on other DTP plug-ins, built before this one -->
 		<fileset dir="../">
-			<include name="org.eclipse.datatools.modelbase.sql/bin/*"/>
 			<include name="org.eclipse.datatools.modelbase.sql/sqlmodel.jar"/>
-			<include name="org.eclipse.datatools.modelbase.dbdefinition/bin/*"/>
 			<include name="org.eclipse.datatools.modelbase.dbdefinition/databasedefinition.jar"/>
-			<include name="org.eclipse.datatools.connectivity/bin/*"/>
-			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
-			<include name="org.eclipse.datatools.sqltools.sql/bin/*"/>
-			<include name="org.eclipse.datatools.sqltools.sql/sqltools.jar"/>
-			<include name="org.eclipse.datatools.connectivity.sqm.core/bin/*"/>
-			<include name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
-			<include name="org.eclipse.datatools.connectivity.db.generic/bin/*"/>
-			<include name="org.eclipse.datatools.connectivity.db.generic/genericdb.jar"/>
-			<include name="org.eclipse.datatools.modelbase.sql.query/bin/*"/>
 			<include name="org.eclipse.datatools.modelbase.sql.query/sqlquerymodel.jar"/>
+			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
+			<include name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/genericdb.jar"/>
+			<include name="org.eclipse.datatools.sqltools.sql/sqltools.jar"/>
 		</fileset>
+		<dirset dir="../">
+			<include name="org.eclipse.datatools.modelbase.dbdefinition/bin"/>
+			<include name="org.eclipse.datatools.modelbase.sql/bin"/>
+			<include name="org.eclipse.datatools.modelbase.sql.query/bin"/>
+			<include name="org.eclipse.datatools.connectivity/bin"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/bin"/>
+			<include name="org.eclipse.datatools.connectivity.sqm.core/bin"/>
+			<include name="org.eclipse.datatools.sqltools.sql/bin"/>
+		</dirset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 

@@ -63,9 +63,11 @@
 		</fileset>
 		<!-- Dependencies on other DTP plug-ins, built before this one -->
 		<fileset dir="../">
-			<include name="org.eclipse.datatools.sqltools.common.ui/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.common.ui/sqltoolscommonui.jar"/>	
 		</fileset>
+		<dirset dir="../">
+			<include name="org.eclipse.datatools.sqltools.common.ui/bin/"/>
+		</dirset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 

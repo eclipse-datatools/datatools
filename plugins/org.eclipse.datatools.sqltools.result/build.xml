@@ -80,9 +80,11 @@
 		</fileset>
 		<!-- Dependencies on other DTP plug-ins, built before this one -->
 		<fileset dir="../">
-			<include name="org.eclipse.datatools.connectivity/bin/*"/>
 			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
 		</fileset>
+		<dirset dir="../">
+			<include name="org.eclipse.datatools.connectivity/bin"/>
+		</dirset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 

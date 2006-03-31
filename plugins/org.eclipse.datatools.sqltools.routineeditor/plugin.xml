@@ -97,7 +97,7 @@
 	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
 	               menubarPath="slot2"
 	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction">
+	               id="org.eclipse.datatools.sqltools.sqleditor.runAction">
 	               <enablement>
 	               <or>
 				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
@@ -130,7 +130,7 @@
 	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
 	               menubarPath="slot2"
 	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction">
+	               id="org.eclipse.datatools.sqltools.sqleditor.runAction">
 	               <enablement>
 	               <or>
 				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
@@ -145,14 +145,34 @@
 		 </objectContribution>
    </extension>
    
-      <extension
+   <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
             contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
             default="true"
-            icon="images/qrydoc.gif"
+            icon="icons/routine_editor.gif"
             id="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
             name="%RoutineEditor.name"/>
-   </extension>
+    </extension>
+   
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%Routineeditor.run"
+            id="org.eclipse.datatools.sqltools.sqleditor.runAction"/>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.bindings">
+      <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
+            carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.runAction"
+            sequence="M1+M3+R"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+    </extension>
+   
 </plugin>

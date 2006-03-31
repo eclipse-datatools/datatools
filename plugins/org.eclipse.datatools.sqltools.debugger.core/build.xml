@@ -95,29 +95,31 @@
 		</fileset>
 		<!-- Dependencies on other DTP plug-ins, built before this one -->
 		<fileset dir="../">
-			<include name="org.eclipse.datatools.connectivity/bin/"/>
 			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
-			<include  name="org.eclipse.datatools.connectivity.db.generic/bin/"/>
 			<include  name="org.eclipse.datatools.connectivity.db.generic/genericdb.jar"/>
-			<include name="org.eclipse.datatools.connectivity.sqm.core/bin"/>
 			<include name="org.eclipse.datatools.connectivity.sqm.core/rdbcore.jar"/>
-			<include name="org.eclipse.datatools.modelbase.dbdefinition/bin"/>
 			<include name="org.eclipse.datatools.modelbase.dbdefinition/databasedefinition.jar"/>
-			<include name="org.eclipse.datatools.modelbase.sql/bin/"/>
 			<include name="org.eclipse.datatools.modelbase.sql/sqlmodel.jar"/>
-			<include name="org.eclipse.datatools.sqltools.common.ui/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.common.ui/sqltoolscommonui.jar"/>		
-			<include name="org.eclipse.datatools.sqltools.editor.core/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.editor.core/sqleditorframe.jar"/>
-			<include name="org.eclipse.datatools.sqltools.result/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.result/sqlresult.jar"/>
-			<include name="org.eclipse.datatools.sqltools.routineeditor/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.routineeditor/routineeditor.jar"/>
-			<include name="org.eclipse.datatools.sqltools.sql/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.sql/sqltools.jar"/>
-			<include name="org.eclipse.datatools.sqltools.sqleditor/bin/"/>
 			<include name="org.eclipse.datatools.sqltools.sqleditor/sqleditor.jar"/>
 		</fileset>
+		<dirset dir="../">
+			<include name="org.eclipse.datatools.connectivity/bin"/>
+			<include name="org.eclipse.datatools.connectivity.db.generic/bin"/>
+			<include name="org.eclipse.datatools.connectivity.sqm.core/bin"/>
+			<include name="org.eclipse.datatools.modelbase.dbdefinition/bin"/>
+			<include name="org.eclipse.datatools.modelbase.sql/bin"/>
+			<include name="org.eclipse.datatools.sqltools.sql/bin"/>
+			<include name="org.eclipse.datatools.sqltools.editor.core/bin"/>
+			<include name="org.eclipse.datatools.sqltools.common.ui/bin"/>
+			<include name="org.eclipse.datatools.sqltools.result/bin"/>
+			<include name="org.eclipse.datatools.sqltools.sqleditor/bin"/>
+			<include name="org.eclipse.datatools.sqltools.routineeditor/bin"/>
+		</dirset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 
@@ -191,7 +193,7 @@
 			<fileset dir="${build.result.folder}" includes="sqldebugcore.jar"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,icons/,sqldebugcore.jar,about.html"			/>
+			<fileset dir="${basedir}" includes="META-INF/,plugin.xml,icons/,sqldebugcore.jar,about.html"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
 			<fileset dir="${basedir}" includes="sqldebugcoresrc.zip"/>
