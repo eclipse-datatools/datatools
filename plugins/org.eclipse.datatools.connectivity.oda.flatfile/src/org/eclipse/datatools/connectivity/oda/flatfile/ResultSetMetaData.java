@@ -32,7 +32,7 @@ public class ResultSetMetaData implements IResultSetMetaData
     {
         if( colNames == null )
             throw new OdaException( Messages
-                    .getString( "Common.ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
+                    .getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
         this.columnNames = colNames;
         this.columnTypeNames = colTypes;
         this.columnLabels = colLabels;
@@ -131,6 +131,6 @@ public class ResultSetMetaData implements IResultSetMetaData
     {
         if( index > getColumnCount() || index < 1 )
             throw new OdaException(
-                    Messages.getString( "ResultSetMetaData.INVALID_COLUMN_INDEX" ) + index ); //$NON-NLS-1$
+                    Messages.getString( "resultSetMetaData_INVALID_COLUMN_INDEX" ) + index ); //$NON-NLS-1$
     }
 }

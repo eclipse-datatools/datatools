@@ -283,7 +283,7 @@ public class ResultSet implements IResultSet
             }
         }
         throw new OdaException( Messages
-                .getString( "ResultSet.COLUMN_NOT_FOUND" ) + columnName ); //$NON-NLS-1$
+                .getString( "resultSet_COLUMN_NOT_FOUND" ) + columnName ); //$NON-NLS-1$
     }
 
     /**
@@ -294,7 +294,7 @@ public class ResultSet implements IResultSet
     {
         if( this.cursor < 0 )
             throw new OdaException( Messages
-                    .getString( "ResultSet.CURSOR_HAS_NOT_BEEN_INITIALIZED" ) ); //$NON-NLS-1$
+                    .getString( "resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED" ) ); //$NON-NLS-1$
     }
 
     /**
