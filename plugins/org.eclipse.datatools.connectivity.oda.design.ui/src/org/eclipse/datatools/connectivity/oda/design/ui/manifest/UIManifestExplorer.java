@@ -104,6 +104,38 @@ public class UIManifestExplorer
     }
 
     /**
+     * Returns the DataSetUIElement instance that
+     * represents the dataSetUI element with the given id defined
+     * in the ODA extension manifest of the specified data source 
+     * element id. 
+     * An ODA extension is one that
+     * implements the DTP ODA design-time extension point -
+     * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>.
+     * If the given data set element id is null and the data source UI
+     * extension has only one data set element, that
+     * data set element will be returned by default.
+     * @param dataSourceId  the unique id of the data source element
+     *                      in the ODA designer data source extension.
+     * @param dataSetElementID  the id of the data set ui element.
+     * @return  the data set element definition.
+     * @throws OdaException if specified data source element id 
+     * 					 or data set element id is not found, or 
+     *                   if there are more than one data set elements 
+     *                   but no dataSetElementID is specified.
+     */
+    public DataSetUIElement getDataSetUIElement( String dataSourceId,
+    								String dataSetElementID ) 
+    	throws OdaException
+    {
+    	UIExtensionManifest manifest = getExtensionManifest( dataSourceId );
+    	if( manifest == null )	// no such data source element id found
+            throw new OdaException(
+                    new IllegalArgumentException( dataSourceId ) );
+    	
+    	return manifest.getDataSetUIElement( dataSetElementID );
+    }
+    
+    /**
      * Finds and returns the extension configuration information defined 
      * in the plugin manifest of the data source extension
      * that contains the specified data source element and 
