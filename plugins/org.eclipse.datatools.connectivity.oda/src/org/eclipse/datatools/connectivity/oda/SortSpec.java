@@ -17,9 +17,7 @@ package org.eclipse.datatools.connectivity.oda;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.connectivity.oda.util.OdaResources;
-import org.eclipse.datatools.connectivity.oda.util.ResourceCache;
-import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 import com.ibm.icu.util.ULocale;
 
@@ -43,7 +41,6 @@ public class SortSpec
 	
 	private int m_sortMode;
 	private List m_sortKeys;
-	private ULocale m_locale = ULocale.US;
 	
 	/**
 	 * Instantiates a <code>SortSpec</code> object for the defined
@@ -63,8 +60,8 @@ public class SortSpec
 			sortMode != IDataSetMetaData.sortModeColumnOrder &&
 			sortMode != IDataSetMetaData.sortModeSingleColumn )
 			throw new IllegalArgumentException( 
-					getLocalizedMessage( OdaResources.INVALID_SORT_MODE_SPECIFIED ) + 
-					sortMode );
+					Messages.bind( Messages.sortSpec_INVALID_SORT_MODE_SPECIFIED,
+									new Integer( sortMode ) ));
 		
 		m_sortMode = sortMode;
 		m_sortKeys = new ArrayList();
@@ -100,26 +97,26 @@ public class SortSpec
 	{
 		if( columnName == null )
 			throw new NullPointerException( 
-					getLocalizedMessage( OdaResources.NULL_COLUMN_NAME_SPECIFIED ) );
+					Messages.sortSpec_NULL_COLUMN_NAME_SPECIFIED );
 		
 		if( columnName.length() == 0 )
 			throw new IllegalArgumentException( 
-					getLocalizedMessage( OdaResources.INVALID_COLUMN_NAME_SPECIFIED ) + 
-										 columnName );
+					Messages.bind( Messages.sortSpec_INVALID_COLUMN_NAME_SPECIFIED,
+									columnName ) );
 		
 		if( sortOrder != sortAsc && sortOrder != sortDesc )
 			throw new IllegalArgumentException( 
-					getLocalizedMessage( OdaResources.INVALID_SORT_ORDER_SPECIFIED ) + 
-										 sortOrder );
+					Messages.bind( Messages.sortSpec_INVALID_SORT_ORDER_SPECIFIED,
+									new Integer( sortOrder ) ));
 		
 		if( m_sortMode == IDataSetMetaData.sortModeNone )
 			throw new IllegalStateException( 
-					getLocalizedMessage( OdaResources.NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE ) );
+					Messages.sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE );
 		
 		if( m_sortMode == IDataSetMetaData.sortModeSingleColumn &&
 			doGetSortKeyCount() > 0 )
 			throw new IllegalStateException( 
-					getLocalizedMessage( OdaResources.ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE ) );
+					Messages.sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE );
 		
 		if( m_sortMode == IDataSetMetaData.sortModeSingleOrder &&
 			doGetSortKeyCount() > 0 )
@@ -128,7 +125,7 @@ public class SortSpec
 			SortKey sortKey = (SortKey) m_sortKeys.get( 0 );
 			if( sortKey.getSortOrder() != sortOrder )
 				throw new IllegalStateException( 
-					getLocalizedMessage( OdaResources.ONE_SORTORDER_FOR_SINGLE_ORDER_MODE ) );
+					Messages.sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE );
 		}
 		
 		SortKey sortKey = new SortKey( columnName, sortOrder );
@@ -218,7 +215,7 @@ public class SortSpec
 	{
 		if( m_sortMode != IDataSetMetaData.sortModeSingleOrder )
 			throw new IllegalStateException( 
-					getLocalizedMessage( OdaResources.ONLY_IN_SINGLE_ORDER_MODE ) );
+					Messages.sortSpec_ONLY_IN_SINGLE_ORDER_MODE );
 		
 		int size = doGetSortKeyCount();
 		String[] sortColumns = new String[ size ];
@@ -246,7 +243,7 @@ public class SortSpec
 	{
 		if( m_sortMode != IDataSetMetaData.sortModeSingleOrder )
 			throw new IllegalStateException( 
-					getLocalizedMessage( OdaResources.ONLY_IN_SINGLE_ORDER_MODE ) );
+					Messages.sortSpec_ONLY_IN_SINGLE_ORDER_MODE );
 		
 		// if there are no sortKeys associated with this SortSpec, then it does not
 		// matter what we return here.  Since the caller will get an empty string array
@@ -264,18 +261,11 @@ public class SortSpec
 	 * Sets the locale of this <code>SortSpec</code>. Enables this <code>SortSpec</code> 
 	 * to return localized error messages. The default locale is <code>en_US</code>.
 	 * @param locale	the locale used for localizing error messages.
+	 * @deprecated	obsolete; migrated to use NLS Messages class
 	 */
 	public void setLocale( ULocale locale )
 	{
-		m_locale = locale;
-	}
-	
-	private String getLocalizedMessage( int errorNumber )
-	{
-		ResourceManager manager = 
-			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources", 
-													m_locale );
-		return ( manager != null ) ? manager.getString( errorNumber ) : "";
+//		m_locale = locale;
 	}
 	
 	/**

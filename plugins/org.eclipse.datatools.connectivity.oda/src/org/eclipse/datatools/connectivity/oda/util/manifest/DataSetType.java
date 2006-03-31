@@ -20,7 +20,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.util.OdaResources;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * Defines a type of data set supported by the ODA data source extension. 
@@ -46,8 +46,8 @@ public class DataSetType
 		IConfigurationElement[] typeMappings = dataSetElement.getChildren( "dataTypeMapping" ); //$NON-NLS-1$
 		int numOfTypeMappings = typeMappings.length;
 		if( numOfTypeMappings == 0 )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_TYPE_MAPPINGS_DEFINED,
-																	   new Object[] { m_id } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_NO_DATA_TYPE_MAPPINGS_DEFINED,
+													m_id ) );
 		
 		for( int i = 0; i < numOfTypeMappings; i++ )
 		{

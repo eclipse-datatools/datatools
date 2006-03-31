@@ -2,14 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP Open Data Access
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda; singleton:=true
-Bundle-Version: 3.0.1.200603291
+Bundle-Version: 3.0.1.200603311
 Bundle-ClassPath: oda.jar,
  odaconsumer-helper.jar
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.consumer.helper,
- org.eclipse.datatools.connectivity.oda.consumer.i18n,
  org.eclipse.datatools.connectivity.oda.impl,
  org.eclipse.datatools.connectivity.oda.util,
  org.eclipse.datatools.connectivity.oda.util.logging,

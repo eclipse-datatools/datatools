@@ -20,7 +20,7 @@ import java.util.Locale;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.util.OdaResources;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * A single mapping from a data provider's native data type to one or more ODA 
@@ -43,13 +43,13 @@ public class DataTypeMapping
 		
 		m_nativeType = dataTypeMapping.getAttribute( "nativeDataType" ); //$NON-NLS-1$
 		if( m_nativeType == null )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_NATIVE_TYPE_NAME_DEFINED,
-																	   new Object[] { dataSetTypeName } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_NO_NATIVE_TYPE_NAME_DEFINED,
+													dataSetTypeName ) );
 		
 		String nativeDataTypeCode = dataTypeMapping.getAttribute( "nativeDataTypeCode" ); //$NON-NLS-1$
 		if( nativeDataTypeCode == null )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_NATIVE_TYPE_CODE_DEFINED,
-																	   new Object[] { m_nativeType, dataSetTypeName } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_NO_NATIVE_TYPE_CODE_DEFINED,
+													m_nativeType, dataSetTypeName ) );
 		
 		try
 		{
@@ -57,8 +57,8 @@ public class DataTypeMapping
 		}
 		catch( NumberFormatException ex )
 		{
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_NATIVE_TYPE_CODE_VALUE,
-																	   new Object[] { m_nativeType, nativeDataTypeCode, dataSetTypeName } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_INVALID_NATIVE_TYPE_CODE_VALUE,
+													new Object[] { m_nativeType, nativeDataTypeCode, dataSetTypeName } ) );
 		}
 
 		m_odaScalarType = dataTypeMapping.getAttribute( "odaScalarDataType" ); //$NON-NLS-1$
@@ -81,10 +81,9 @@ public class DataTypeMapping
 		throws OdaException
 	{
 		if( odaScalarType == null )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( isForAlternatives ? 
-																	   OdaResources.NO_ODA_SCALAR_DATA_TYPE_DEFINED_2 :
-																	   OdaResources.NO_ODA_SCALAR_DATA_TYPE_DEFINED_1,
-																	   new Object[] { m_nativeType } ) );
+			throw new OdaException( isForAlternatives ? 
+					Messages.bind( Messages.manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2, m_nativeType ) :
+					Messages.bind( Messages.manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1, m_nativeType ) );
 			
 		if( ! odaScalarType.equalsIgnoreCase( "Date" ) && //$NON-NLS-1$
 			! odaScalarType.equalsIgnoreCase( "Double" ) && //$NON-NLS-1$
@@ -95,8 +94,8 @@ public class DataTypeMapping
 			! odaScalarType.equalsIgnoreCase( "Decimal" ) && //$NON-NLS-1$
 			! odaScalarType.equalsIgnoreCase( "Blob" ) && //$NON-NLS-1$
 			! odaScalarType.equalsIgnoreCase( "Clob" ) ) //$NON-NLS-1$
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_ODA_SCALAR_DATA_TYPE_VALUE,
-																	   new Object[] { odaScalarType, m_nativeType } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE,
+													odaScalarType, m_nativeType ) );
 	}
 	
 	/**

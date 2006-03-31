@@ -14,7 +14,6 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Properties;
@@ -28,11 +27,6 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.util.OdaResources;
-import org.eclipse.datatools.connectivity.oda.util.ResourceCache;
-import org.eclipse.datatools.connectivity.oda.util.ResourceManager;
-
-import com.ibm.icu.util.ULocale;
 
 /**
  * The Manifest Explorer is the entry point to explore and access
@@ -299,7 +293,7 @@ public class ManifestExplorer
         IConfigurationElement[] configElements =
                         getNamedElements( extension, elementName );
         if( configElements.length == 0 )
-            throw new OdaException( getLocalizedMessage( OdaResources.NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED ) );
+            throw new OdaException( Messages.manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED );
 
         return configElements[0];   // returns the first matching element
     }
@@ -327,7 +321,7 @@ public class ManifestExplorer
 			// validate that the element has an id attribute with non-empty value
 			String idValue = configElement.getAttribute( "id" );	//$NON-NLS-1$
 			if( idValue == null || idValue.length() == 0 )
-				throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SET_TYPE_ID_DEFINED ) );
+				throw new OdaException( Messages.manifest_NO_DATA_SET_TYPE_ID_DEFINED );
 
             matchedElements.add( configElement );
 		}
@@ -358,8 +352,8 @@ public class ManifestExplorer
 		}
 
 		if( dataSetElements.size() < 1 )
-			throw new OdaException( getLocalizedMessage( OdaResources.NO_DATA_SET_TYPES_DEFINED,
-														new Object[] { dataSourceElementId } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_NO_DATA_SET_TYPES_DEFINED,
+													dataSourceElementId ) );
 		return dataSetElements;
 	}
 
@@ -382,17 +376,4 @@ public class ManifestExplorer
 		return displayName;
 	}
 
-	
-	public static String getLocalizedMessage( int errorNumber )
-	{
-		ResourceManager manager = 
-			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$ 
-												   ULocale.getDefault() );
-		return ( manager != null ) ? manager.getString( errorNumber ) : "";  //$NON-NLS-1$
-	}
-	
-    public static String getLocalizedMessage( int errorNumber, Object[] arguments )
-	{
-		return MessageFormat.format( getLocalizedMessage( errorNumber ), arguments );
-	}
 }

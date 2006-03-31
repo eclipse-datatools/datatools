@@ -16,14 +16,13 @@
 
 package org.eclipse.datatools.connectivity.oda.util;
 
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.ibm.icu.util.ULocale;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * StringSubstitutionUtil is a general utility that any ODA provider can use, 
@@ -308,18 +307,16 @@ public final class StringSubstitutionUtil
 			
 			if( ! substitutionListIter.hasNext() )
 			{
-			    String message = getLocalizedMessage( OdaResources.NO_STRING_VALUE_TO_REPLACE,
-						   			new Object[] { stringBuffer.substring( index + startDelimiterLength, 
-						   			        								endIndex ) } );
-            
+			    String message = Messages.bind( Messages.stringSubUtil_NO_STRING_VALUE_TO_REPLACE,
+						   				stringBuffer.substring( index + startDelimiterLength, 
+						   			        								endIndex ) );            
 				throw newIllegalArgumentException( message );
 			}
 			
 			String replacementString = ( String ) substitutionListIter.next();
 			if( replacementString == null )
 			{
-			    String message = getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL );
-				throw newIllegalArgumentException( message );
+				throw newIllegalArgumentException( Messages.stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL );
 			}
 			
 			stringBuffer.replace( index, endIndex, replacementString );
@@ -397,15 +394,15 @@ public final class StringSubstitutionUtil
 			
 			if( ! substitutionListIter.hasNext() )
 			{
-			    String message = getLocalizedMessage( OdaResources.NO_STRING_VALUE_TO_REPLACE,
-											   new Object[] { stringBuffer.substring( startIndex + startDelimiterLength, 
-											           						endIndex ) });
+			    String message = Messages.bind( Messages.stringSubUtil_NO_STRING_VALUE_TO_REPLACE,
+											   stringBuffer.substring( startIndex + startDelimiterLength, 
+											           						endIndex ) );
 				throw newIllegalArgumentException( message );
 			}
 			
 			String replacementString = ( String ) substitutionListIter.next();	
 			if( replacementString == null )
-				throw newIllegalArgumentException( getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL ) );
+				throw newIllegalArgumentException( Messages.stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL );
 			
 			endIndex += endDelimiterLength;
 			stringBuffer.replace( startIndex, endIndex, replacementString );
@@ -473,7 +470,7 @@ public final class StringSubstitutionUtil
 			String replacementString = ( String ) nameValues.get( delimitedString );
 			if( replacementString == null )
 			{
-			    String message = getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL );
+			    String message = Messages.stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL;
 			    message += " [" + delimitedString + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 				throw newIllegalArgumentException( message );
 			}
@@ -556,7 +553,7 @@ public final class StringSubstitutionUtil
 			String replacementString = ( String ) nameValues.get( delimitedString );
 			if( replacementString == null )
 			{
-			    String message = getLocalizedMessage( OdaResources.SUBSTITUTION_VALUE_CANNOT_BE_NULL );
+			    String message = Messages.stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL;
 			    message += " [" + delimitedString + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 				throw newIllegalArgumentException( message );
 			}
@@ -601,26 +598,26 @@ public final class StringSubstitutionUtil
 		sanityCheck( text, startDelimiter );
 		
 		if( endDelimiter == null )
-			throw newNullPointerException( getLocalizedMessage( OdaResources.DELIMITER_CANNOT_BE_NULL ) );
+			throw newNullPointerException( Messages.stringSubUtil_DELIMITER_CANNOT_BE_NULL );
 	}
 	
 	private static void sanityCheck( String text,
 								     String startDelimiter )
 	{
 		if( text == null )
-			throw newNullPointerException( getLocalizedMessage( OdaResources.TEXT_STRING_CANNOT_BE_NULL ) );
+			throw newNullPointerException( Messages.stringSubUtil_TEXT_STRING_CANNOT_BE_NULL );
 		
 		if( startDelimiter == null )
-			throw newNullPointerException( getLocalizedMessage( OdaResources.DELIMITER_CANNOT_BE_NULL ) );
+			throw newNullPointerException( Messages.stringSubUtil_DELIMITER_CANNOT_BE_NULL );
 	}
 	
 	private static void sanityCheck( Object listOrMap )
 	{
 		if( listOrMap == null )
 		{
-			String message = getLocalizedMessage( listOrMap instanceof List  ? 
-			        						OdaResources.SUBSTITUTION_LIST_CANNOT_BE_NULL :
-			        						OdaResources.NAME_VALUE_MAP_CANNOT_BE_NULL );	
+			String message = listOrMap instanceof List  ? 
+        						Messages.stringSubUtil_SUBSTITUTION_LIST_CANNOT_BE_NULL :
+        						Messages.stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL;	
 			throw newNullPointerException( message );
 		}
 	}
@@ -630,7 +627,7 @@ public final class StringSubstitutionUtil
 		String trimmed = delimiter.trim();
 		int length = trimmed.length();
 		if( length == 0 )
-			throw newIllegalArgumentException( getLocalizedMessage( OdaResources.DELIMITER_CANNOT_BE_EMPTY ) );
+			throw newIllegalArgumentException( Messages.stringSubUtil_DELIMITER_CANNOT_BE_EMPTY );
 		
 		return trimmed;
 	}
@@ -806,19 +803,6 @@ public final class StringSubstitutionUtil
 		
 		log( ex );
 		return ex;
-	}
-
-	static String getLocalizedMessage( int errorNumber )
-	{
-		ResourceManager manager = 
-			ResourceCache.instance().getResources( "org.eclipse.datatools.connectivity.oda.util.OdaResources",  //$NON-NLS-1$
-												   ULocale.getDefault() );
-		return ( manager != null ) ? manager.getString( errorNumber ) : ""; //$NON-NLS-1$
-	}
-	
-	static String getLocalizedMessage( int errorNumber, Object[] arguments )
-	{
-		return MessageFormat.format( getLocalizedMessage( errorNumber ), arguments );
 	}
 
 }

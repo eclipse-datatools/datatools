@@ -21,10 +21,11 @@ import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.Set;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.util.OdaResources;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * Encapsulates access to the content of an ODA data source
@@ -55,7 +56,7 @@ public class ExtensionManifest
 		// first cache the data source element's attributes
 		m_dataSourceElementId = m_dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
 		if( m_dataSourceElementId == null || m_dataSourceElementId.length() == 0 )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DATA_SOURCE_EXTN_ID_DEFINED ) );
+			throw new OdaException( Messages.manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED );
 		
 		m_odaVersion = m_dataSourceElement.getAttribute( "odaVersion" ); //$NON-NLS-1$
 
@@ -64,8 +65,8 @@ public class ExtensionManifest
 		// runtime interface
 		String driverClass = m_dataSourceElement.getAttribute( CLASS_ATTRIBUTE_NAME );
 		if( driverClass == null )
-			throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.NO_DRIVER_CLASS_DEFINED,
-																	   new Object[] { m_dataSourceElementId } ) );
+			throw new OdaException( Messages.bind( Messages.manifest_NO_DRIVER_CLASS_DEFINED,
+												m_dataSourceElementId ) );
 		
 		String needSetThreadContextClassLoader = 
             m_dataSourceElement.getAttribute( "setThreadContextClassLoader" ); //$NON-NLS-1$
@@ -79,8 +80,8 @@ public class ExtensionManifest
 		{
 			if( ! needSetThreadContextClassLoader.equalsIgnoreCase( "true" ) &&  //$NON-NLS-1$
 				! needSetThreadContextClassLoader.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
-				throw new OdaException( ManifestExplorer.getLocalizedMessage( OdaResources.INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
-																	   new Object[] { needSetThreadContextClassLoader, m_dataSourceElementId } ) );
+				throw new OdaException( Messages.bind( Messages.manifest_INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE,
+														needSetThreadContextClassLoader, m_dataSourceElementId ) );
 		}
 		
 		m_runtime = 
