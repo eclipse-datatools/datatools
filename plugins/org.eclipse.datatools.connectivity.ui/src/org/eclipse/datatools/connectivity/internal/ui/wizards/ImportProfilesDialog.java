@@ -160,14 +160,16 @@ public class ImportProfilesDialog extends Dialog {
 			return;
 		}
 		try {
+			byte[] bytes = new byte[5];
+			char[] xml = {'<','?','x','m','l'};
 			FileInputStream fis = new FileInputStream(txtFile.getText());
-			InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
-			BufferedReader reader = new BufferedReader(isr);
-			String line = reader.readLine();
-			reader.close();
-			isr.close();
+			fis.read(bytes);
 			fis.close();
-			if (line.matches(".*xml.*")) { //$NON-NLS-1$
+			boolean isXML = true;
+			for (int i = 0; isXML && i < 5; ++i) {
+				isXML = bytes[i] == xml[i];
+			}
+			if (isXML) {
 				// not encrpyted
 				mProfiles = ConnectionProfileMgmt.loadCPs(new File(txtFile
 						.getText()), null);
