@@ -411,4 +411,14 @@ public abstract class DataSetWizardPageCore extends WizardPage
             wizard.setResponseDesignerState( customDesignerState );
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+     */
+    public void dispose()
+    {
+        // calls abstract method provided by custom extension
+        cleanup();
+        super.dispose();
+    }
+
 }

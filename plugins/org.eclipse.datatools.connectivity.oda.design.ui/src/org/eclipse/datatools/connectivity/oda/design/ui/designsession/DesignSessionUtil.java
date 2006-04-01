@@ -245,7 +245,7 @@ public class DesignSessionUtil
      *          request of the specified design attributes
      * @throws OdaException if specified arguments are invalid
      */
-    public static OdaDesignSession createNewRequestSession( 
+    public static OdaDesignSession createNewDataSetRequestSession( 
                             String newDataSetName,
                             String odaDataSetId, 
                             DataSourceDesign dataSourceDesign )
@@ -263,6 +263,7 @@ public class DesignSessionUtil
         DataSetDesign newDataSetDesign = 
             newSession.getRequestDataSetDesign();
         newDataSetDesign.setName( newDataSetName );
+        newDataSetDesign.setDisplayName( newDataSetName );
         newDataSetDesign.setOdaExtensionDataSetId( odaDataSetId );
 
         validateRequestSession( newSession.getRequest() );

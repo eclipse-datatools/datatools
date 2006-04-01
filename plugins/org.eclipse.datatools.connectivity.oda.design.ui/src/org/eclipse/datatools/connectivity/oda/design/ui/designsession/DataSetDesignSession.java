@@ -68,7 +68,7 @@ public class DataSetDesignSession
         throws OdaException
     {
         OdaDesignSession odaDesign = 
-            DesignSessionUtil.createNewRequestSession( newDataSetName, 
+            DesignSessionUtil.createNewDataSetRequestSession( newDataSetName, 
                             odaDataSetId, dataSourceDesign );
         DataSetDesignSession newSession = 
             new DataSetDesignSession( odaDesign );
@@ -117,7 +117,7 @@ public class DataSetDesignSession
         
         // re-initialize with a new session instance
         OdaDesignSession odaDesign = 
-            DesignSessionUtil.createNewRequestSession( newDataSetName, 
+            DesignSessionUtil.createNewDataSetRequestSession( newDataSetName, 
                             odaDataSetId, dataSourceDesign );
         initNewDesign( odaDesign );
         
