@@ -69,6 +69,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
@@ -78,7 +79,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.internal.PartSite;
-import org.eclipse.ui.internal.Workbench;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -960,6 +960,14 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
        }
        ); //$NON-NLS-1$
    }
+
+	/*
+	 * @see org.eclipse.ui.part.WorkbenchPart#getOrientation()
+	 * @since 3.1
+	 */
+	public int getOrientation() {
+		return SWT.LEFT_TO_RIGHT;	//SQL editors are always left to right by default
+	}
 
 
 } // end class
