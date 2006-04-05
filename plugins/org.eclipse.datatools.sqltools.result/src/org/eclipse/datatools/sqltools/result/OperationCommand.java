@@ -55,14 +55,29 @@ public class OperationCommand implements Serializable
     public static final int   STATUS_RUNNING        = 2;
     public static final int   STATUS_STARTED        = 1;
 
-    /* 1 action type(s) defined */
+    /* 15 action type(s) defined */
     public static final int   ACTION_EXECUTE        = 1;
+    
+    /* Define for the WTP OutputView's consumers */
+    public static final int   ACTION_CREATE         = 2;
+    public static final int   ACTION_DEBUG          = 3;
+    public static final int   ACTION_DEPLOY         = 4;
+    public static final int   ACTION_DROP           = 5;
+    public static final int   ACTION_EDIT           = 6;
+    public static final int   ACTION_EXPORT         = 7;
+    public static final int   ACTION_EXTRACT        = 8;
+    public static final int   ACTION_IMPORT         = 9;
+    public static final int   ACTION_LOAD           = 10;
+    public static final int   ACTION_BEFORE_RUN     = 11;
+    public static final int   ACTION_AFTER_RUN      = 12;
+    public static final int   ACTION_RUN            = 13;
+    public static final int   ACTION_VALIDATE       = 14;
+    public static final int   ACTION_VIEW           = 15;
 
     /**
      * Constructs an instance of OperationCommand.
      * 
-     * @param type the action type, should be one of the types defined in this class(for now, we have only 1 type)
-     * @see #ACTION_EXECUTE
+     * @param type the action type, should be one of the action types defined in this class
      * @param displayStr string used to display, for example SQL statement, should not be null
      * @param consumerName name of the caller
      * @param profileName connection profile name, should not be null
@@ -70,15 +85,7 @@ public class OperationCommand implements Serializable
      */
     public OperationCommand(int type, String displayStr, String consumerName, String profileName, String databaseName)
     {
-        // will append the condition when action types are increased
-        if(type != ACTION_EXECUTE)
-        {
-            _actionType = ACTION_EXECUTE;
-        }
-        else
-        {
-            _actionType = type;
-        }
+        _actionType = type;
         _displayStr = displayStr == null ? "" : displayStr; //$NON-NLS-1$
         _consumerName = consumerName == null ? "" : consumerName; //$NON-NLS-1$
         _profileName = profileName == null ? "" : profileName; //$NON-NLS-1$
@@ -107,7 +114,6 @@ public class OperationCommand implements Serializable
     /**
      * Returns the action type
      * 
-     * @see #ACTION_EXECUTE
      * @return the action type
      */
     public int getActionType()
@@ -157,6 +163,34 @@ public class OperationCommand implements Serializable
         {
             case ACTION_EXECUTE:
                 return Messages.getString("OperationCommand.action.execute"); //$NON-NLS-1$
+            case ACTION_CREATE:
+                return Messages.getString("OperationCommand.action.create"); //$NON-NLS-1$
+            case ACTION_DEBUG:
+                return Messages.getString("OperationCommand.action.debug"); //$NON-NLS-1$
+            case ACTION_DEPLOY:
+                return Messages.getString("OperationCommand.action.deploy"); //$NON-NLS-1$
+            case ACTION_DROP:
+                return Messages.getString("OperationCommand.action.drop"); //$NON-NLS-1$
+            case ACTION_EDIT:
+                return Messages.getString("OperationCommand.action.edit"); //$NON-NLS-1$
+            case ACTION_EXPORT:
+                return Messages.getString("OperationCommand.action.export"); //$NON-NLS-1$
+            case ACTION_EXTRACT:
+                return Messages.getString("OperationCommand.action.extract"); //$NON-NLS-1$
+            case ACTION_IMPORT:
+                return Messages.getString("OperationCommand.action.import"); //$NON-NLS-1$
+            case ACTION_LOAD:
+                return Messages.getString("OperationCommand.action.load"); //$NON-NLS-1$
+            case ACTION_BEFORE_RUN:
+                return Messages.getString("OperationCommand.action.before.run"); //$NON-NLS-1$
+            case ACTION_AFTER_RUN:
+                return Messages.getString("OperationCommand.action.after.run"); //$NON-NLS-1$
+            case ACTION_RUN:
+                return Messages.getString("OperationCommand.action.run"); //$NON-NLS-1$
+            case ACTION_VALIDATE:
+                return Messages.getString("OperationCommand.action.validate"); //$NON-NLS-1$
+            case ACTION_VIEW:
+                return Messages.getString("OperationCommand.action.browse"); //$NON-NLS-1$
             default:
                 return Messages.getString("OperationCommand.unknown.action"); //$NON-NLS-1$
         }
