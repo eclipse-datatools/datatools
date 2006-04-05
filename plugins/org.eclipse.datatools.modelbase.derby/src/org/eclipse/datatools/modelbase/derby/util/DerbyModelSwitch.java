@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: DerbyModelSwitch.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.derby.util;
 
@@ -11,6 +11,8 @@ import java.util.List;
 import org.eclipse.datatools.modelbase.derby.*;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
@@ -94,6 +96,7 @@ public class DerbyModelSwitch {
 			case DerbyModelPackage.SYNONYM: {
 				Synonym synonym = (Synonym)theEObject;
 				Object result = caseSynonym(synonym);
+				if (result == null) result = caseTable(synonym);
 				if (result == null) result = caseSQLObject(synonym);
 				if (result == null) result = caseENamedElement(synonym);
 				if (result == null) result = caseEModelElement(synonym);
@@ -161,6 +164,21 @@ public class DerbyModelSwitch {
 	 * @generated
 	 */
 	public Object caseSQLObject(SQLObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Table</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseTable(Table object) {
 		return null;
 	}
 

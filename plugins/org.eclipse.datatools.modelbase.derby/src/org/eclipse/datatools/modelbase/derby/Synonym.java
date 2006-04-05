@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: Synonym.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.derby;
 
@@ -26,7 +26,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
  * @model
  * @generated
  */
-public interface Synonym extends SQLObject {
+public interface Synonym extends Table {
 	/**
 	 * Returns the value of the '<em><b>Table</b></em>' reference.
 	 * <!-- begin-user-doc -->

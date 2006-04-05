@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: DerbyModelPackageImpl.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.derby.impl;
 
@@ -204,11 +204,10 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
 
 		// Add supertypes to classes
-		synonymEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
+		synonymEClass.getESuperTypes().add(theSQLTablesPackage.getTable());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(synonymEClass, Synonym.class, "Synonym", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

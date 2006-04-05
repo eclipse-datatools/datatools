@@ -2,13 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: DerbyModelAdapterFactory.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.derby.util;
 
 import org.eclipse.datatools.modelbase.derby.*;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -86,6 +88,9 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseSQLObject(SQLObject object) {
 				return createSQLObjectAdapter();
 			}
+			public Object caseTable(Table object) {
+				return createTableAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -157,6 +162,20 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSQLObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.tables.Table <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.sql.tables.Table
+	 * @generated
+	 */
+	public Adapter createTableAdapter() {
 		return null;
 	}
 

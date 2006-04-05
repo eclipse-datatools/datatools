@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: DerbyModelPackage.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.derby;
+
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 
@@ -27,7 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface DerbyModelPackage extends EPackage {
+public interface DerbyModelPackage extends EPackage{
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -77,7 +79,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__EANNOTATIONS = SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS;
+	int SYNONYM__EANNOTATIONS = SQLTablesPackage.TABLE__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -86,7 +88,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__NAME = SQLSchemaPackage.SQL_OBJECT__NAME;
+	int SYNONYM__NAME = SQLTablesPackage.TABLE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
@@ -95,7 +97,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__DEPENDENCIES = SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES;
+	int SYNONYM__DEPENDENCIES = SQLTablesPackage.TABLE__DEPENDENCIES;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -104,7 +106,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__DESCRIPTION = SQLSchemaPackage.SQL_OBJECT__DESCRIPTION;
+	int SYNONYM__DESCRIPTION = SQLTablesPackage.TABLE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -113,7 +115,97 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+	int SYNONYM__LABEL = SQLTablesPackage.TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__COLUMNS = SQLTablesPackage.TABLE__COLUMNS;
+
+	/**
+	 * The feature id for the '<em><b>Supertable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__SUPERTABLE = SQLTablesPackage.TABLE__SUPERTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Subtables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__SUBTABLES = SQLTablesPackage.TABLE__SUBTABLES;
+
+	/**
+	 * The feature id for the '<em><b>Schema</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__SCHEMA = SQLTablesPackage.TABLE__SCHEMA;
+
+	/**
+	 * The feature id for the '<em><b>Udt</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__UDT = SQLTablesPackage.TABLE__UDT;
+
+	/**
+	 * The feature id for the '<em><b>Triggers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__TRIGGERS = SQLTablesPackage.TABLE__TRIGGERS;
+
+	/**
+	 * The feature id for the '<em><b>Index</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__INDEX = SQLTablesPackage.TABLE__INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Self Ref Column Generation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__SELF_REF_COLUMN_GENERATION = SQLTablesPackage.TABLE__SELF_REF_COLUMN_GENERATION;
+
+	/**
+	 * The feature id for the '<em><b>Insertable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__INSERTABLE = SQLTablesPackage.TABLE__INSERTABLE;
+
+	/**
+	 * The feature id for the '<em><b>Updatable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__UPDATABLE = SQLTablesPackage.TABLE__UPDATABLE;
 
 	/**
 	 * The feature id for the '<em><b>Table</b></em>' reference.
@@ -122,7 +214,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM__TABLE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
+	int SYNONYM__TABLE = SQLTablesPackage.TABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the the '<em>Synonym</em>' class.
@@ -131,7 +223,7 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYNONYM_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
+	int SYNONYM_FEATURE_COUNT = SQLTablesPackage.TABLE_FEATURE_COUNT + 1;
 
 
 	/**
