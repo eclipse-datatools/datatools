@@ -2,8 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.core; singleton:=true
-Bundle-Version: 0.7.0.200603071
-Bundle-ClassPath: rdbcore.jar
+Bundle-Version: 0.9.0.200604051
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -24,5 +23,5 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.datatools.connectivity,
  com.ibm.icu,
  org.eclipse.datatools.connectivity.db.generic
-Eclipse-AutoStart: true
+Eclipse-LazyStart: true
 
