@@ -169,45 +169,10 @@ public class DriverPreferences extends PreferencePage implements
 						StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTreeViewer
 								.getSelection();
 
-						// if they selected a category...
-						if (selection.getFirstElement() instanceof CategoryDescriptor) {
-							DriverPreferences.this.mAddButton.setEnabled(true);
-							DriverPreferences.this.mAddAction.setEnabled(true);
-							DriverPreferences.this.mRemoveButton
-									.setEnabled(false);
-							DriverPreferences.this.mRemoveAction
-									.setEnabled(false);
-							DriverPreferences.this.mEditButton
-									.setEnabled(false);
-							DriverPreferences.this.mEditAction
-									.setEnabled(false);
-							DriverPreferences.this.mCopyButton
-									.setEnabled(false);
-							DriverPreferences.this.mCopyAction
-									.setEnabled(false);
-							DriverPreferences.this.mErrorLabel.setText(""); //$NON-NLS-1$
-							DriverPreferences.this.mErrorLabel.computeSize(
-									SWT.DEFAULT, SWT.DEFAULT);
-						}
-						// if they selected a driver instance
-						else if (selection.getFirstElement() instanceof IPropertySet) {
-							DriverPreferences.this.mAddButton.setEnabled(false);
-							DriverPreferences.this.mAddAction.setEnabled(false);
-							DriverPreferences.this.mRemoveButton
-									.setEnabled(true);
-							DriverPreferences.this.mRemoveAction
-									.setEnabled(true);
-							DriverPreferences.this.mEditButton.setEnabled(true);
-							DriverPreferences.this.mEditAction.setEnabled(true);
-							DriverPreferences.this.mCopyButton.setEnabled(true);
-							DriverPreferences.this.mCopyAction.setEnabled(true);
-
-							IPropertySet ps = (IPropertySet) selection
-									.getFirstElement();
-							if (ps != null) {
-								validate(ps);
-							}
-						}
+						if (selection != null && selection.size() > 0 && selection.getFirstElement() != null)
+							updateButtons (selection.getFirstElement());
+						else 
+							updateButtons ( null );
 					}
 
 				});
@@ -295,12 +260,66 @@ public class DriverPreferences extends PreferencePage implements
 
 		});
 
-		this.mTreeViewer.setSelection(new StructuredSelection(
-				CategoryDescriptor.getRootCategories()[0]));
+		if (CategoryDescriptor.getRootCategories() != null && CategoryDescriptor.getRootCategories().length > 0)
+			this.mTreeViewer.setSelection(new StructuredSelection(
+					CategoryDescriptor.getRootCategories()[0]));
+		
+		updateButtons(null);
 
 		return content;
 	}
 
+	private void updateButtons ( Object selection ) {
+		// if they selected a category...
+		if (selection instanceof CategoryDescriptor) {
+			DriverPreferences.this.mAddButton.setEnabled(true);
+			DriverPreferences.this.mAddAction.setEnabled(true);
+			DriverPreferences.this.mRemoveButton
+					.setEnabled(false);
+			DriverPreferences.this.mRemoveAction
+					.setEnabled(false);
+			DriverPreferences.this.mEditButton
+					.setEnabled(false);
+			DriverPreferences.this.mEditAction
+					.setEnabled(false);
+			DriverPreferences.this.mCopyButton
+					.setEnabled(false);
+			DriverPreferences.this.mCopyAction
+					.setEnabled(false);
+			DriverPreferences.this.mErrorLabel.setText(""); //$NON-NLS-1$
+			DriverPreferences.this.mErrorLabel.computeSize(
+					SWT.DEFAULT, SWT.DEFAULT);
+		}
+		// if they selected a driver instance
+		else if (selection instanceof IPropertySet) {
+			DriverPreferences.this.mAddButton.setEnabled(false);
+			DriverPreferences.this.mAddAction.setEnabled(false);
+			DriverPreferences.this.mRemoveButton
+					.setEnabled(true);
+			DriverPreferences.this.mRemoveAction
+					.setEnabled(true);
+			DriverPreferences.this.mEditButton.setEnabled(true);
+			DriverPreferences.this.mEditAction.setEnabled(true);
+			DriverPreferences.this.mCopyButton.setEnabled(true);
+			DriverPreferences.this.mCopyAction.setEnabled(true);
+
+			IPropertySet ps = (IPropertySet) selection;
+			if (ps != null) {
+				validate(ps);
+			}
+		}
+		else {
+			DriverPreferences.this.mAddButton.setEnabled(false);
+			DriverPreferences.this.mAddAction.setEnabled(false);
+			DriverPreferences.this.mRemoveButton.setEnabled(false);
+			DriverPreferences.this.mRemoveAction.setEnabled(false);
+			DriverPreferences.this.mEditButton.setEnabled(false);
+			DriverPreferences.this.mEditAction.setEnabled(false);
+			DriverPreferences.this.mCopyButton.setEnabled(false);
+			DriverPreferences.this.mCopyAction.setEnabled(false);
+		}
+	}
+	
 	private void addDriver(ISelection selection) {
 		StructuredSelection sselection = (StructuredSelection) selection;
 
