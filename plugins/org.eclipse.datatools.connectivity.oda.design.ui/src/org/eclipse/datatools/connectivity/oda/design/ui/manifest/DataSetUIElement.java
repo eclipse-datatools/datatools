@@ -37,7 +37,8 @@ public class DataSetUIElement
     
     private String m_id;
     private String m_initialPageId;
-    private boolean m_hasParameterDefinition;
+    private boolean m_supportsInParameters;
+    private boolean m_supportsOutParameters;
     private DataSetWizardInfo m_wizardInfo;
     private Hashtable m_dataSetPages;
     private ArrayList m_dataSetPageIds;
@@ -55,15 +56,24 @@ public class DataSetUIElement
         
         m_initialPageId = dataSetElement.getAttribute( "initialPageId" ); //$NON-NLS-1$
 
-        m_hasParameterDefinition = true; // default
-        String hasParamDefn = dataSetElement.getAttribute( "hasParameterDefinition" ); //$NON-NLS-1$
+        m_supportsInParameters = true; // default
+        String hasParamDefn = dataSetElement.getAttribute( "supportsInParameters" ); //$NON-NLS-1$
         if( hasParamDefn != null )
         {
             if( hasParamDefn.equalsIgnoreCase( "true" ) ||  //$NON-NLS-1$
                 hasParamDefn.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
-                m_hasParameterDefinition = Boolean.valueOf( hasParamDefn ).booleanValue();
+                m_supportsInParameters = Boolean.valueOf( hasParamDefn ).booleanValue();
         }
         
+        m_supportsOutParameters = false; // default
+        hasParamDefn = dataSetElement.getAttribute( "supportsOutParameters" ); //$NON-NLS-1$
+        if( hasParamDefn != null )
+        {
+            if( hasParamDefn.equalsIgnoreCase( "true" ) ||  //$NON-NLS-1$
+                hasParamDefn.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
+                m_supportsOutParameters = Boolean.valueOf( hasParamDefn ).booleanValue();
+        }
+
         // dataSetWizard element; must have one and only one
         IConfigurationElement wizardElement = 
                                 getWizardElement( dataSetElement );
@@ -133,15 +143,27 @@ public class DataSetUIElement
     }
 
     /**
-     * Indicates whether this type of data set design tends to have 
-     * data set parameters defined, and an ODA host designer might need 
+     * Indicates that this type of data set design supports 
+     * input parameter definitions, and that an ODA host designer might need 
      * to collect further metadata on the parameter definitions provided 
      * by the customized page(s).
-     * @return the attribute value in <i>dataSetUI.hasParameterDefinition</i>
+     * @return the attribute value in <i>dataSetUI.supportsInParameters</i>
      */
-    public boolean hasParameterDefinition()
+    public boolean supportsInParameters()
     {
-        return m_hasParameterDefinition;
+        return m_supportsInParameters;
+    }
+
+    /**
+     * Indicates that this type of data set design supports 
+     * output parameter definitions, and that an ODA host designer might need 
+     * to collect further metadata on the parameter definitions provided 
+     * by the customized page(s).
+     * @return the attribute value in <i>dataSetUI.supportsOutParameters</i>
+     */
+    public boolean supportsOutParameters()
+    {
+        return m_supportsOutParameters;
     }
 
     /**

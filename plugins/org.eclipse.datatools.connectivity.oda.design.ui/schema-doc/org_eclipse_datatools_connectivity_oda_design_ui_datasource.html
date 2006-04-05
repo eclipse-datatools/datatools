@@ -3,7 +3,7 @@
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Open Data Access Designer</title>
 <style>@import url("file:/D:/Lang/eclipse_32M5a/plugins/org.eclipse.sdk_3.2.0.v20060214/book.css");</style>
-<style>@import url("file:/D:/Lang/eclipse_32M5a/configuration/org.eclipse.osgi/bundles/186/1/.cp/schema.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32M5a/configuration/org.eclipse.osgi/bundles/192/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1><CENTER>Open Data Access Designer</CENTER></H1>
@@ -54,7 +54,7 @@ This element includes the attributes to specify the customized wizard starting p
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetUI">dataSetUI</a> (<a href="#e.dataSetWizard">dataSetWizard</a> , <a href="#e.dataSetPage">dataSetPage</a>+)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataSetUI</p>
-<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>initialPageId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>hasParameterDefinition&nbsp;(true | false) "true"&gt;</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>initialPageId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>supportsInParameters&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>supportsOutParameters&nbsp;(true | false) "false"&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
 Allows ODA data providers to define customized dialog page(s) for an user to create or edit an ODA data set design instance.
@@ -64,7 +64,8 @@ The element defines child elements for the data set wizard page(s) and editor pa
 <ul class=ConfigMarkup id=attlistDesc>
 <li><b>id</b> - A fully qualified ID that uniquely identifies the ODA data set type within an ODA data source extension.  Its value must match that of the <i>dataSet.id</i> attribute defined in the  <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension of the same ODA driver.</li>
 <li><b>initialPageId</b> - Identifies a particular dataSetPage that should be selected in a data set dialog.</li>
-<li><b>hasParameterDefinition</b> - Indicates that this type of data set design tends to have data set parameters defined, and an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
+<li><b>supportsInParameters</b> - Indicates that this type of data set design supports input parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
+<li><b>supportsOutParameters</b> - Indicates that this type of data set design supports output parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).</li>
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSetWizard">dataSetWizard</a> EMPTY&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataSetWizard</p>
@@ -112,7 +113,8 @@ This value, if specified, overrides any title or descriptive name that may have 
       <p class=code id=tag>&lt;dataSetUI
             id=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;</p><p class=code id=tag>
             initialPageId=<p class=code id=cstring>&quot;oda.flatfile.ui.tablePage&quot;</p><p class=code id=tag>
-            hasParameterDefinition=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
+            supportsInParameters=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>
+            supportsOutParameters=<p class=code id=cstring>&quot;false&quot;</p><p class=code id=tag>&gt;</p>
          <p class=code id=tag>&lt;dataSetWizard
                class=<p class=code id=cstring>&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&quot;</p><p class=code id=tag>
                windowTitle=<p class=code id=cstring>&quot;Select Table&quot;</p><p class=code id=tag>/&gt;</p>

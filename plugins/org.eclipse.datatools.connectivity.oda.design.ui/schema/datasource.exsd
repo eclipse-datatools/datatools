@@ -139,10 +139,17 @@ The element defines child elements for the data set wizard page(s) and editor pa
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="hasParameterDefinition" type="boolean" use="default" value="true">
+         <attribute name="supportsInParameters" type="boolean" use="default" value="true">
             <annotation>
                <documentation>
-                  Indicates that this type of data set design tends to have data set parameters defined, and an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).
+                  Indicates that this type of data set design supports input parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="supportsOutParameters" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates that this type of data set design supports output parameter definitions, and that an ODA host designer might need to collect further metadata on the parameter definitions provided by the customized page(s).
                </documentation>
             </annotation>
          </attribute>
@@ -259,7 +266,8 @@ This value, if specified, overrides any title or descriptive name that may have 
       &lt;dataSetUI
             id=&quot;org.eclipse.datatools.connectivity.oda.flatfile.dataSet&quot;
             initialPageId=&quot;oda.flatfile.ui.tablePage&quot;
-            hasParameterDefinition=&quot;false&quot;&gt;
+            supportsInParameters=&quot;false&quot;
+            supportsOutParameters=&quot;false&quot;&gt;
          &lt;dataSetWizard
                class=&quot;org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard&quot;
                windowTitle=&quot;Select Table&quot;/&gt;
