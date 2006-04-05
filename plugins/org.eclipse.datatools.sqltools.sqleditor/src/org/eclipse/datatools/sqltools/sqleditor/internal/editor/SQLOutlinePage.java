@@ -208,7 +208,8 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
 
     public void createControl(Composite parent)
     {
-        _viewer = new OutlineViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+    	//since tooltip will show sql statements, we must use left to right orientation
+        _viewer = new OutlineViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.LEFT_TO_RIGHT); 
         _viewer.addSelectionChangedListener(this);
         _viewer.getControl().addMouseTrackListener(new TooltipPresenter());
         _viewer.setContentProvider(new SQLContentProvider());
