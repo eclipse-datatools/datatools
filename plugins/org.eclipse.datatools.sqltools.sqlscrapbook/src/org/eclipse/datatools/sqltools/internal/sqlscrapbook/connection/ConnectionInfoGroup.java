@@ -497,7 +497,9 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	private void createComboDbName(Composite composite) {
 		org.eclipse.swt.layout.GridData gridData5 = new org.eclipse.swt.layout.GridData();
-		_combodbName = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
+		// see bug 132294, when database name can not be loaded, we should allow
+		// user to input manually.
+		_combodbName = new Combo(composite, SWT.NONE);
 		gridData5.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
 		gridData5.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
 		gridData5.grabExcessHorizontalSpace = true;
