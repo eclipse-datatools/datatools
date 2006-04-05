@@ -15,23 +15,15 @@
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
 import java.io.File;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
-import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
-import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
-import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
-import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
-import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
-import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizardPage;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -41,13 +33,8 @@ import org.eclipse.ui.dialogs.PropertyPage;
  * to interact and communicate with custom ODA UI extensions to
  * create or edit an extended ODA data source design instance.
  */
-public class DataSourceDesignSession
+public class DataSourceDesignSession extends DataSourceDesignSessionBase
 {
-    private String m_odaDataSourceId;
-    private OdaDesignSession m_designSession;
-    private NewDataSourceWizard m_wizard;
-    private ProfileReference m_wizardProfileRef;
-    private DataSourceEditorPage m_editorPage;
     
     /**
      * Starts a design session to create a new 
@@ -125,59 +112,7 @@ public class DataSourceDesignSession
                                 DesignSessionRequest request )
         throws OdaException
     {
-        // restarting with a different oda data source type,
-        // reset the session's context and wizard 
-        if( ! m_odaDataSourceId.equals( odaDataSourceId ) )
-        {
-            m_odaDataSourceId = odaDataSourceId;
-            if( m_wizard != null )
-                m_wizard.dispose();
-            m_wizard = null;
-        }
-
-        // initialize the session with given attributes
-        initNewDesign( newDataSourceName, profileRef, request );
-    }
-    
-    /**
-     * Initializes this design session with given attributes.
-     * @param newDataSourceName
-     * @param profileRef
-     * @param request
-     * @throws OdaException
-     */
-    private void initNewDesign( String newDataSourceName,
-                                ProfileReference profileRef,
-                                DesignSessionRequest request )
-        throws OdaException
-    {
-        NewDataSourceWizard wizard = getExtendedWizard();
-        
-        // a new data source session has no previous designer state;
-        // no need to be concerned with passing designer state to 
-        // a new data source wizard
-        
-        // verifies that the given profile does exist in cache;
-        // if wizard was initialize w/ same profileRef,
-        // do not change any user edits on wizard page
-        Properties profileProps = null;
-        String profileName = null;
-        if( profileRef != null && 
-            ! profileRef.equals( m_wizardProfileRef ) )
-        {
-            profileProps = getProfileProperties( profileRef.getInstanceId() );
-            profileName = OdaProfileExplorer.getInstance().
-                    getProfile( profileRef.getInstanceId() ).getName();
-            if( newDataSourceName == null || newDataSourceName.length() == 0 )
-                newDataSourceName = profileName;
-        }
-        
-        // initialize wizard with given name and properties, if any
-        initWizard( wizard, newDataSourceName, profileProps );
-        m_wizardProfileRef = profileRef;
-
-        if( profileRef != null && profileRef.maintainExternalLink() )
-            wizard.setLinkedProfile( profileName, profileRef.getStorageFile() );
+        super.restartNewDesign( odaDataSourceId, newDataSourceName, profileRef, request );
     }
 
     /**
@@ -224,27 +159,7 @@ public class DataSourceDesignSession
         DataSourceDesignSession newSession = 
             new DataSourceDesignSession( odaDataSourceId );
         
-        if( editorPage == null )
-            editorPage = newSession.getExtendedEditorPage();
-        
-        // create a top-level OdaDesignSession with given request
-        OdaDesignSession odaDesign = 
-            DesignFactory.eINSTANCE.createOdaDesignSession();
-        odaDesign.setRequest( request );
-        
-        // Update the editor page's property values with those found
-        // in the given request's data source design; 
-        // also includes any additional state specified in
-        // the design session request
-        editorPage.initEditSession( odaDesign );
-
-        if( newSession.m_editorPage != editorPage )
-        {
-            // TODO - log warning if m_editorPage != null
-            newSession.m_editorPage = editorPage;
-        }
-        newSession.m_designSession = odaDesign;   // hold on till finish editing
-
+        newSession.initEditDesign( request, editorPage );
         return newSession;
     }
     
@@ -301,7 +216,7 @@ public class DataSourceDesignSession
             newDataSourceDesign.setDisplayName( newDataSourceName );
         }
         
-        return createResponseDesignSession( newDataSourceDesign, wizard );
+        return DataSourceDesignSessionBase.createResponseDesignSession( newDataSourceDesign, wizard );
     }
     
     /** Not allowed to instantiate the class directly;
@@ -309,12 +224,12 @@ public class DataSourceDesignSession
      */  
     private DataSourceDesignSession( String odaDataSourceId )
     {
-        assert( odaDataSourceId != null && odaDataSourceId.length() > 0 );
-        m_odaDataSourceId = odaDataSourceId;
+        super( odaDataSourceId );
     }
     
     private DataSourceDesignSession()
     {
+        super();
     }
 
     /**
@@ -326,9 +241,7 @@ public class DataSourceDesignSession
      */
     public DesignSessionRequest getRequest()
     {
-        if( m_designSession == null )
-            return null;
-        return m_designSession.getRequest();
+        return super.getRequest();
     }
     
     /**
@@ -347,16 +260,7 @@ public class DataSourceDesignSession
      */
     public OdaDesignSession finish() throws OdaException
     {
-        OdaDesignSession finishedSession;
-        if( m_wizard != null )
-            finishedSession = finishNewDataSource();
-        else    // in an edit session
-            finishedSession = finishEditDataSource();
-        
-        // successfully finished
-        m_designSession = null;     // reset to complete session
-        disposePages();
-        return finishedSession;
+        return super.finish();
     }
     
     /**
@@ -368,45 +272,9 @@ public class DataSourceDesignSession
      */
     public OdaDesignSession cancel()
     {
-        if( m_designSession == null )
-        {
-            // currently in a session to create a new design instance;
-            // create a design session object with an 
-            // empty DataAccessDesign in the request
-            m_designSession = 
-                DesignFactory.eINSTANCE.createRequestDesignSession( null );
-        }
-
-        // sets a response with cancel status
-        m_designSession.setResponseInCancelledState();
-
-        OdaDesignSession cancelledSession = m_designSession;
-        m_designSession = null;     // reset to complete session
-        disposePages();
-        
-        return cancelledSession;
+        return super.cancel();
     }
 
-    /**
-     * Dispose any current pages of the session.
-     * Ensures they would not be re-used if the session restarts.
-     */
-    private void disposePages()
-    {
-        if( m_wizard != null )
-        {
-            m_wizard.dispose();
-            m_wizard = null;
-        }
-        
-        if( m_editorPage != null )
-        {
-            m_editorPage.dispose();
-            m_editorPage = null;
-        }
-
-        m_wizardProfileRef = null;
-    }
         
     /**
      * Returns an ODA wizard for use within this design session
@@ -417,7 +285,7 @@ public class DataSourceDesignSession
      */
     public IWizard getNewWizard() throws OdaException
     {
-        return getExtendedWizard();
+        return super.getNewWizard();
     }
 
     /** 
@@ -430,69 +298,7 @@ public class DataSourceDesignSession
      */
     public IWizardPage getWizardStartingPage() throws OdaException
     {
-        return getExtendedWizard().getCustomStartingPage();
-    }
-    
-    /**
-     * Returns an ODA wizard extended from the base wizard 
-     * provided by the ODA Designer UI framework.
-     * @return  a NewDataSourceWizard instance
-     * @throws OdaException
-     */
-    protected NewDataSourceWizard getExtendedWizard() 
-        throws OdaException
-    {
-        if( m_wizard == null )
-        {
-            m_wizard = OdaProfileUIExplorer.getInstance()
-                    .getNewDataSourceWizardByType( m_odaDataSourceId );
-
-            // if data source extension has not specified newWizard for 
-            // connectionProfile extension point, use default base class
-            if( m_wizard == null )    
-                m_wizard = new NewDataSourceWizard( m_odaDataSourceId );
-        }
-        return m_wizard;
-    }
-
-    /**
-     * Initialize the given wizard, and process its
-     * profile name page with automatically assigned attributes.
-     * Adds pages to the given wizard if it has not been 
-     * initialized with pages.
-     * @param wizard    associated data source wizard
-     * @param aDataSourceName   unique name to assign to new data source instance
-     * @param dataSourceProps   initialized properties for use by
-     *                          wizard; may be null
-     */
-    private void initWizard( NewDataSourceWizard wizard, 
-                             String aDataSourceName,
-                             Properties dataSourceProps )
-    {
-        wizard.setInOdaDesignSession( true );
-        
-        if( wizard.getPageCount() == 0 )
-            wizard.addPages();
-        
-        if( wizard.getStartingPage() instanceof NewConnectionProfileWizardPage )
-        {
-            // process the given wizard's profile name page,
-            // with automatically assigned attributes.
-            NewConnectionProfileWizardPage profileNamePage =
-                (NewConnectionProfileWizardPage) wizard.getStartingPage();
-            
-            profileNamePage.setProfileName( aDataSourceName );
-            profileNamePage.setProfileDescription( aDataSourceName );
-            profileNamePage.setPageComplete( true );
-        }
-        
-        // pass given properties to wizard for initialization;
-        // if none is specified, keep wizard's existing properties
-        if( dataSourceProps != null &&
-            ! dataSourceProps.isEmpty() )
-        {
-            wizard.setInitialProperties( dataSourceProps );
-        }
+        return super.getWizardStartingPage();
     }
 
     /**
@@ -504,7 +310,7 @@ public class DataSourceDesignSession
      */
     public PropertyPage getEditorPage() throws OdaException
     {
-        return getAdaptableEditorPage();
+        return super.getEditorPage();
     }
     
     /**
@@ -517,165 +323,15 @@ public class DataSourceDesignSession
     public IAdaptable getEditPropertyPageElement()
         throws OdaException
     {
-        // validate if start was successfully called earlier
-        if( m_designSession == null )
-            throw new OdaException( Messages.common_notInDesignSession );
-            
-        return DesignerUtil.getAdaptableDataSourceDesign( m_designSession );
+        return super.getEditPropertyPageElement();
     }
-    
-    protected DataSourceEditorPage getAdaptableEditorPage() throws OdaException
-    {
-        DataSourceEditorPage editorPage = getExtendedEditorPage();
-        if( editorPage.getElement() == null )
-            editorPage.setElement( getEditPropertyPageElement() );
-        return editorPage;
-    }
-    
-    /**
-     * Returns an ODA data source editor page  
-     * provided by the ODA Designer UI framework that
-     * extends from the base DataSourceEditorPage property page.
-     * @return
-     * @throws OdaException
-     */
-    protected DataSourceEditorPage getExtendedEditorPage() throws OdaException
-    {
-        if( m_editorPage == null )
-        {
-            m_editorPage = OdaProfileUIExplorer.getInstance()
-                    .getDataSourceEditorPage( m_odaDataSourceId );
-            if( m_editorPage == null )  // ODA extension did not implement editor page
-            {
-                throw new OdaException( Messages.extension_missingPropertyPage );
-            }
-        }
-        return m_editorPage;
-    }
-    
-    private Properties getProfileProperties( String profileInstanceId )
-        throws OdaException
-    {
-        Properties profileProps;
-        try
-        {
-            IConnectionProfile profile = OdaProfileExplorer.getInstance()
-                .getProfile( profileInstanceId );
-            if( ! m_odaDataSourceId.equalsIgnoreCase( 
-                    profile.getProviderId() ))
-                throw new IllegalArgumentException();
-            
-            profileProps = profile.getBaseProperties();
-        }
-        catch( Exception ex )
-        {
-            throw new OdaException( ex );
-        }
-        return profileProps;
-    }
-
-    /**
-     * Performs finish on the current ODA design session to
-     * create a new data source design.  This 
-     * gathers the data source definition collected in UI designer
-     * and maps into an OdaDesignSession with a response.
-     * <br>This method must be called only after the corresponding 
-     * wizard or editor has performed finish.
-     * @return  the completed design session containing the
-     *          new data source design within the session response
-     */
-    protected OdaDesignSession finishNewDataSource() throws OdaException
-    {
-        NewDataSourceWizard wizard = null;
-        try
-        {
-            wizard = getExtendedWizard();
-        }
-        catch( OdaException e )
-        {
-            // TODO - error logging
-            // wizard session has error
-            e.printStackTrace();
-        }
         
-        // up to wizard to validate whether it has a valid design to return
-        DataSourceDesign newDataSourceDesign = 
-            ( wizard != null ) ? 
-                    wizard.getDataSourceDesign() : null;
-        return createResponseDesignSession( newDataSourceDesign, wizard );
-    }
-
-    /**
-     * Creates a completed design session containing the
-     * specified new data source design within the session response.
-     * Also includes any custom designer state
-     * that may be optionally set by an extended wizard and its
-     * custom pages.
-     * @param newDataSourceDesign
-     * @param wizard
-     * @return
-     */
-    private static OdaDesignSession createResponseDesignSession( 
-            DataSourceDesign newDataSourceDesign,
-            NewDataSourceWizard wizard )
-    {
-        boolean isSessionOk = ( newDataSourceDesign != null );
-        OdaDesignSession responseSession =
-            DesignFactory.eINSTANCE.createResponseDesignSession( 
-                isSessionOk, newDataSourceDesign );
-        
-        // get designerState, if set by extended class, 
-        // and assign to session response
-        if( wizard != null )
-        {
-            DesignerState customState = wizard.getResponseDesignerState();
-            if( customState != null )
-                responseSession.getResponse().setDesignerState( customState );
-        }
-        
-        return responseSession;
-    }
-    
-    /**
-     * Performs finish on the current ODA design session to
-     * edit a data source design.  
-     * <br>This method must be called only after performOk on
-     * the editor page is done.
-     * @return  the completed design session containing the
-     *          edited data source design within the session response
-     * @throws OdaException
-     */
-    protected OdaDesignSession finishEditDataSource()
-        throws OdaException
-    {
-        assert( m_designSession != null );
-                   
-        DataSourceEditorPage editorPage = null;
-        try
-        {
-            editorPage = getExtendedEditorPage();
-        }
-        catch( OdaException ex )
-        {
-            // TODO - log error
-            throw ex;    // editor page session has error
-        }
-        
-        assert( editorPage != null );
-        
-        return editorPage.getEditSessionResponse();
-    }
-
     /**
      * Represents the reference information of an external
      * connection profile.
      */
-    public static class ProfileReference
+    public static class ProfileReference extends ProfileReferenceBase
     {
-        private String m_profileInstanceId;
-        private File m_storageFile; 
-        private boolean m_maintainLink;
-        
         /**
          * Constructor.
          * @param profileInstanceId profile instance id; such as the
@@ -696,35 +352,10 @@ public class DataSourceDesignSession
                                 File storageFile, 
                                 boolean maintainExternalLink )
         {
-            m_profileInstanceId = profileInstanceId;
-            m_storageFile = storageFile;
-            m_maintainLink = maintainExternalLink;
+            super( profileInstanceId, storageFile, maintainExternalLink );
         }
-        
-        public String getInstanceId()
-        {
-            return m_profileInstanceId;
-        }
-        
-        public File getStorageFile()
-        {
-            return m_storageFile;
-        }
-        
-        public boolean maintainExternalLink()
-        {
-            return m_maintainLink;
-        }
-        
-        public boolean equals( ProfileReference aProfileRef )
-        {
-            if( aProfileRef == null )
-                return false;
-            
-            return( this.m_profileInstanceId.equals( aProfileRef.m_profileInstanceId ) &&
-                this.m_storageFile.equals( aProfileRef.m_storageFile ) &&
-                this.m_maintainLink == aProfileRef.m_maintainLink );
-        }
+
     }
+
     
 }

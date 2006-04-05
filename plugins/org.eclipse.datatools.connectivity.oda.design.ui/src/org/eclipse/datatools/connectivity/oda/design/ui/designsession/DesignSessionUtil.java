@@ -24,7 +24,6 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
-import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
@@ -37,22 +36,17 @@ import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
-import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignSessionUtilBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
-import org.eclipse.datatools.connectivity.oda.util.manifest.DataSetType;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
  *  An utility class to help an ODA host designer or
  *  an ODA driver's customized designer to manipulate
  *  ODA Design API objects during an ODA design session.
  */
-public class DesignSessionUtil 
+public class DesignSessionUtil extends DesignSessionUtilBase
 {
     // class has static methods only; no need to instantiate
     private DesignSessionUtil()
@@ -251,24 +245,8 @@ public class DesignSessionUtil
                             DataSourceDesign dataSourceDesign )
         throws OdaException
     {
-        // validate input arguments
-        if( newDataSetName == null || newDataSetName.length() == 0 ||
-                dataSourceDesign == null )
-            throw new OdaException( Messages.designSession_invalidArgument );
-        
-        OdaDesignSession newSession =
-            DesignFactory.eINSTANCE
-                .createRequestDesignSession( dataSourceDesign );
-
-        DataSetDesign newDataSetDesign = 
-            newSession.getRequestDataSetDesign();
-        newDataSetDesign.setName( newDataSetName );
-        newDataSetDesign.setDisplayName( newDataSetName );
-        newDataSetDesign.setOdaExtensionDataSetId( odaDataSetId );
-
-        validateRequestSession( newSession.getRequest() );
-
-        return newSession;
+        return DesignSessionUtilBase.createNewDataSetRequestSession( 
+                    newDataSetName, odaDataSetId, dataSourceDesign );
     }
     
     /**
@@ -296,52 +274,6 @@ public class DesignSessionUtil
         return profile;
     }
         
-    /**
-     * Finds and returns the property definition specified in
-     * an ODA extension that implements the 
-     * oda.datasource run-time extension point.
-     */
-    private static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
-        getDataSourcePublicPropertiesDefn( String odaDataSourceId )
-        throws OdaException
-    {
-        try
-        {
-            ExtensionManifest runtimeManifest = 
-                ManifestExplorer.getInstance().getExtensionManifest( 
-                        odaDataSourceId );
-            return runtimeManifest.getProperties();
-        }
-        catch( IllegalArgumentException ex )
-        {
-            throw new OdaException( ex );
-        }        
-    }
-    
-    /**
-     * Finds and returns the property definition specified for the given 
-     * oda data source element id and oda data set element id in
-     * an ODA extension that implements the 
-     * oda.datasource run-time extension point.
-     */
-    private static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
-        getDataSetPublicPropertiesDefn( String odaDataSourceId, String odaDataSetId )
-        throws OdaException
-    {
-        try
-        {
-            ExtensionManifest runtimeManifest = 
-                ManifestExplorer.getInstance().getExtensionManifest( 
-                        odaDataSourceId );
-            DataSetType dataSetType = runtimeManifest.getDataSetType( odaDataSetId );
-            return dataSetType.getProperties();
-        }
-        catch( IllegalArgumentException ex )
-        {
-            throw new OdaException( ex );
-        }        
-    }
-    
     /**
      * Indicates whether the given ODA data source type has
      * implemented a valid 
@@ -400,34 +332,6 @@ public class DesignSessionUtil
     }
     
     /**
-     * Returns the data set ui element manifest that
-     * defines customized data set designer
-     * that an ODA data provider extends to allow an user
-     * to create or edit an ODA data set design instance.
-     * This encapsulates the child elements for the data set wizard page(s) 
-     * and editor page(s).  
-     * @param odaDataSourceId
-     * @param odaDataSetId
-     * @return
-     * @throws OdaException
-     */
-    static DataSetUIElement getDataSetUIElement( String odaDataSourceId,
-                                        String odaDataSetId )
-        throws OdaException
-    {
-        UIExtensionManifest manifest =
-            UIManifestExplorer.getInstance().getExtensionManifest( odaDataSourceId );
-        DataSetUIElement dataSetElement = null;
-        if( manifest != null )
-            dataSetElement = manifest.getDataSetUIElement( odaDataSetId );
-        if( dataSetElement == null )
-            throw new OdaException( 
-                    Messages.bind( Messages.designSession_missingDataSetUIElement,
-                            odaDataSourceId, odaDataSetId ));
-        return dataSetElement;
-    }
-
-    /**
      * Validates the specified design session request.
      * If valid, returns the request's ODA data source element id.
      * @param requestSession
@@ -438,21 +342,9 @@ public class DesignSessionUtil
                     DesignSessionRequest requestSession )
         throws OdaException
     {
-        String odaDataSourceId = null;
-        try
-        {
-            odaDataSourceId =
-                DesignUtil.validateRequestSession( requestSession );
-        }
-        catch( IllegalStateException ex )
-        {
-            throw new OdaException( ex );
-        }
-
-        // done validation
-        return odaDataSourceId;
+        return validateRequestSessionImpl( requestSession );    
     }
-
+    
     /**
      * Validates the specified data source design instance.
      * @param dataSourceDesign
@@ -462,14 +354,7 @@ public class DesignSessionUtil
                         DataSourceDesign dataSourceDesign )
         throws OdaException
     {
-        try
-        {
-            DesignUtil.validateDataSourceDesign( dataSourceDesign );
-        }
-        catch( IllegalStateException ex )
-        {
-            throw new OdaException( ex );
-        }
+        validateDataSourceDesignImpl( dataSourceDesign );
     }
 
     /**
@@ -584,34 +469,6 @@ public class DesignSessionUtil
     }
 
     /**
-     * Converts optional parameter data element attributes
-     * and assigns to the specified DataElementAttributes. 
-     * @param paramAttrs    a DataElementAttributes instance
-     * @param pmd    ODA runtime parameters meta data instance
-     * @param i     1-based parameter index
-     * @throws OdaException
-     */
-    private static void toElementOptionalAttributes( 
-            DataElementAttributes paramAttrs, 
-            IParameterMetaData pmd, 
-            int i ) 
-        throws OdaException
-    {
-        try
-        {
-            paramAttrs.setPrecision( pmd.getPrecision(i) );
-            paramAttrs.setScale( pmd.getScale(i) );
-            paramAttrs.setNullability( 
-                    toElementNullability( pmd.isNullable(i) ));
-        }
-        catch( UnsupportedOperationException e )
-        {
-            // ignore; optional attributes
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Converts the specified ODA runtime parameter mode value
      * to corresponding ODA design-time parameter mode value.
      * @param pmd    ODA runtime parameters meta data instance
@@ -644,17 +501,7 @@ public class DesignSessionUtil
      */
     public static ElementNullability toElementNullability( int odaNullability )
     {
-        ElementNullability toValue;
-        switch( odaNullability )
-        {
-            case IResultSetMetaData.columnNoNulls:
-                toValue = ElementNullability.NOT_NULLABLE_LITERAL; break;
-            case IResultSetMetaData.columnNullableUnknown:
-                toValue = ElementNullability.UNKNOWN_LITERAL; break;
-            case IResultSetMetaData.columnNullable:
-            default:
-                toValue = ElementNullability.NULLABLE_LITERAL; break;
-        }
-        return toValue;
+        return DesignSessionUtilBase.toElementNullability( odaNullability );
     }
+    
 }

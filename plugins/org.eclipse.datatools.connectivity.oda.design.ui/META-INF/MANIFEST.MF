@@ -14,6 +14,7 @@ Export-Package: org.eclipse.datatools.connectivity.oda.design.internal.ui,
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.datatools.connectivity.ui;visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda;visibility:=reexport,
  org.eclipse.datatools.connectivity.oda.profile;visibility:=reexport,
  org.eclipse.datatools.connectivity.oda.design;visibility:=reexport
 Eclipse-AutoStart: true
