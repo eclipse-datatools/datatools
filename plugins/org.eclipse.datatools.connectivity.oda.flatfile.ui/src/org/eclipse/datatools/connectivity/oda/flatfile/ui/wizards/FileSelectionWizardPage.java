@@ -889,6 +889,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
 
     private boolean hasValidData()
     {
+        if( m_fileViewer == null )
+            return false;
+
         String fileName = m_fileViewer.getCombo().getText().toLowerCase();
         if( !(fileName.endsWith( CSV_SUFFIX ) || fileName.endsWith( TXT_SUFFIX )) )  
         {
