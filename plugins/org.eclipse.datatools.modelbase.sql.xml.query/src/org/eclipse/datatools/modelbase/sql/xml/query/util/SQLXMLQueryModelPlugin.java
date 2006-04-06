@@ -1,11 +1,12 @@
 /*
- * Licensed Materials - Property of IBM
- * org.eclipse.datatools.modelbase.sql.xml.query
- * (C) Copyright IBM Corporation 2005. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- *   Use, duplication or disclosure restricted 
- *   by GSA ADP Schedule Contract with IBM Corp.
+ * Copyright (c) 2005 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.util;
 
