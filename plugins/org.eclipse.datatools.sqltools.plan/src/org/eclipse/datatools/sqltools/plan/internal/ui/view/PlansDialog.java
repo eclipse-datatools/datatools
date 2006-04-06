@@ -43,11 +43,8 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
- * @author Hui Cao
- * 
- */
-/**
  * Dialog that shows a list of items with icon and label.
+ * @author Hui Cao
  */
 public class PlansDialog extends SelectionDialog
 {
