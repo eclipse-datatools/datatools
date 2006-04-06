@@ -1,13 +1,3 @@
-/*
- *+------------------------------------------------------------------------------------------------+
- *|  IBM Confidential																			   |
- *|  OCO Source Materials																		   |
- *|  5724-L66																					   |
- *|  (c) Copyright IBM Corp.  2005 All Rights Reserved											   |
- *|  The source code for this program is not published or otherwise divested of its trade secrets, |
- *|  irrespective of what has been deposited with the U.S. Copyright Office.					   |
- *+------------------------------------------------------------------------------------------------+
- */
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.util;
 
 import java.util.Iterator;
