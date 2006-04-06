@@ -10,11 +10,6 @@
  *     Sybase, Inc. - initial API and implementation
  *******************************************************************************/
 
-/*
- * Created on 2005-3-11
- * 
- * Copyright (c) Sybase, Inc. 2004 All rights reserved.
- */
 package org.eclipse.datatools.sqltools.internal.core;
 
 import java.util.ArrayList;
