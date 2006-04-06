@@ -34,7 +34,7 @@ class OdaObject
 	private boolean			m_switchContextClassloader;
 	private ClassLoader		m_driverClassLoader;
 	
-	static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda";
+	static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.consumer"; //$NON-NLS-1$
 	
 	private static boolean sm_ThrowExceptionOnly = true;
 	
@@ -67,12 +67,12 @@ class OdaObject
 		m_driverClassLoader = driverClassLoader;
 	}
 	
-	protected void setThreadContextClassLoader( ClassLoader classloader )
+	protected void setDriverClassLoader( ClassLoader classloader )
 	{
 		m_driverClassLoader = classloader;
 	}
 	
-	protected void setSwitchContextClassLoader( boolean needSwitch )
+	protected void setUseContextClassLoaderSwitch( boolean needSwitch )
 	{
 		m_switchContextClassloader = needSwitch;
 	}
@@ -227,13 +227,13 @@ class OdaObject
 	protected String handleErrorAndReturnEmptyString( RuntimeException rtException )
 	{
 		handleError( rtException );
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	protected String handleErrorAndReturnEmptyString( OdaException exception ) throws OdaException
 	{
 		handleError( exception );
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	protected boolean handleErrorAndReturnFalse( RuntimeException rtException )
@@ -299,7 +299,7 @@ class OdaObject
 														   String context )
 	{
 		handleUnsupportedOp( exception, context );
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 	
 	protected int handleUnsupportedOpAndRetTypeNull( UnsupportedOperationException exception,
@@ -319,7 +319,7 @@ class OdaObject
 		    if ( logMsg == null || logMsg.length() == 0 )
 		        logMsg = context;
 		    else
-		        logMsg = context + ": " + logMsg;
+		        logMsg = context + ": " + logMsg; //$NON-NLS-1$
 			logger.warning( logMsg );
 		}
 	}
@@ -330,6 +330,13 @@ class OdaObject
 		if( logger != null )
 			logger.fine( context + msg );
 	}
+    
+    protected void logWarning( String context, String msg )
+    {
+        Logger logger = LogManager.getLogger( sm_loggerName );
+        if( logger != null )
+            logger.warning( context + msg );
+    }
 	
 	protected void logMethodExitWithReturn( String context, int i )
 	{
@@ -350,21 +357,21 @@ class OdaObject
 	{
 		Logger logger = LogManager.getLogger( sm_loggerName );
 		if( logger != null )
-			logger.fine( context + "Called." );
+			logger.fine( context + "Called." ); //$NON-NLS-1$
 	}
 	
 	protected void logMethodExit( String context )
 	{
 		Logger logger = LogManager.getLogger( sm_loggerName );
 		if( logger != null )
-			logger.fine( context + "Exiting." );
+			logger.fine( context + "Exiting." ); //$NON-NLS-1$
 	}
 		
 	protected void logMethodExitWithReturn( String context, Object obj )
 	{
 		Logger logger = LogManager.getLogger( sm_loggerName );
 		if( logger != null )
-			logger.fine( context + "Returns [ " + obj + " ]" );
+			logger.fine( context + "Returns [ " + obj + " ]" ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	protected OdaException newOdaException( String errorMsg )

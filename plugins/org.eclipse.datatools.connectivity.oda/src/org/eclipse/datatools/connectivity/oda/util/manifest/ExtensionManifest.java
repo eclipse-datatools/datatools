@@ -51,7 +51,7 @@ public class ExtensionManifest
         m_dataSourceElement = 
 	        ManifestExplorer.getDataSourceElement( dataSourceExtn );
 		assert( m_dataSourceElement != null );
-		m_namespace = dataSourceExtn.getNamespace();
+		m_namespace = dataSourceExtn.getNamespaceIdentifier();
 		
 		// first cache the data source element's attributes
 		m_dataSourceElementId = m_dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$

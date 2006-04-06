@@ -39,7 +39,7 @@ public class Messages extends NLS
 	public static String manifest_NO_DRIVER_CLASS_DEFINED;
 	public static String manifest_INVALID_SET_THREAD_CONTEXT_CLASSLOADER_VALUE;
 	public static String manifest_NO_DATA_SET_TYPES_DEFINED;
-	public static String manifest_NO_DATA_SET_TYPE_ID_DEFINED;
+	public static String manifest_NO_ATTRIBUTE_ID_DEFINED;
 	public static String manifest_NO_DATA_TYPE_MAPPINGS_DEFINED;
 	public static String manifest_NO_NATIVE_TYPE_CODE_DEFINED;
 	public static String manifest_INVALID_NATIVE_TYPE_CODE_VALUE;

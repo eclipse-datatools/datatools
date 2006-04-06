@@ -22,9 +22,12 @@ import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ConsumerExtensionManifest;
+import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.JavaRuntimeInterface;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface;
 import org.osgi.framework.Bundle;
 
@@ -40,37 +43,96 @@ public class OdaDriver extends OdaObject
 	public OdaDriver( ExtensionManifest driverConfig )
 		throws OdaException
 	{
-	    assert( driverConfig != null );
-        
-		final String context = "OdaDriver.OdaDriver( " +
-						 driverConfig + " )\t";
+	    assert( driverConfig != null );        
+		final String context = "OdaDriver.OdaDriver( " + //$NON-NLS-1$
+						 driverConfig + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
-		RuntimeInterface runtime = driverConfig.getRuntimeInterface();
+		IDriver wrappedDriver = loadWrappedDriver( driverConfig, true );
+
+        // store the underlying driver instance within this OdaDriver
+        setObject( wrappedDriver );
+
+        logMethodExitWithReturn( context, this );
+	}
+
+    public OdaDriver( String driverClassName, Locale locale,
+                                 ClassLoader classloader, 
+                                 boolean switchContextClassloader ) 
+        throws OdaException
+    {
+        super( switchContextClassloader, classloader );
+        
+        final String context = "OdaDriver.OdaDriver( " + //$NON-NLS-1$
+                         driverClassName + ", " + locale + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+                         classloader + " )\t"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {   
+            if( switchContextClassloader )
+                Thread.currentThread().setContextClassLoader( classloader );
+            
+            // If the classloader argument is null, then use the classloader that
+            // loaded this class to find the driver's connection factory class and 
+            // construct an instance of the connection factory class. (old scheme)
+            // If the classloader argument isn't null, then we'll use the classloader to 
+            // construct an instance of the underlying connection factory class. (new scheme)
+            Class driverClass = ( classloader == null ) ?
+                    Class.forName( driverClassName ) :
+                    classloader.loadClass( driverClassName );
+                    
+            IDriver newDriver = newDriverInstance( driverClass );
+
+            // store the driver instance within this wrapper
+            setObject( newDriver );
+            
+            logMethodExitWithReturn( context, this );
+        }
+        catch( Exception ex )
+        {
+            // append the caught classloader-related exception's string to the new OdaException
+            OdaException odaEx = 
+                new OdaHelperException( Messages.helper_cannotConstructConnectionFactory, 
+                                         driverClassName + ", " + classloader ); //$NON-NLS-1$
+            odaEx.initCause( ex );
+            handleError( odaEx );
+        }
+        finally
+        {
+            if( switchContextClassloader )
+                Thread.currentThread().setContextClassLoader( getClass().getClassLoader() );
+        }
+    }
+
+    private IDriver loadWrappedDriver( ExtensionManifest driverConfig,
+                                        boolean honorClassLoaderSwitch ) 
+        throws OdaException
+    {
+        RuntimeInterface runtime = driverConfig.getRuntimeInterface();
 		assert( runtime instanceof JavaRuntimeInterface );
 		JavaRuntimeInterface javaRuntime = (JavaRuntimeInterface) runtime;
 		
 		String initEntryPoint = javaRuntime.getDriverClass();
-		
-		boolean setJavaThreadContextClassLoader = javaRuntime.needSetThreadContextClassLoader();
-		setSwitchContextClassLoader( setJavaThreadContextClassLoader );
-		
+				
+        IDriver wrappedDriver = null;
 		try
 		{
 			Bundle bundle = Platform.getBundle( driverConfig.getNamespace() );
 			Class driverClass = bundle.loadClass( initEntryPoint );
-			ClassLoader classloader = driverClass.getClassLoader();
-			setThreadContextClassLoader( classloader );
-			
-			if( setJavaThreadContextClassLoader )
-				Thread.currentThread().setContextClassLoader( classloader );
-			
-			IDriver newDriver = newDriverInstance( driverClass );
 
-			// store the connection factory instance within this OdaDriver
-			setObject( newDriver );
-			
-			logMethodExitWithReturn( context, this );
+            if( honorClassLoaderSwitch )
+            {
+                boolean needSwitch = javaRuntime.needSetThreadContextClassLoader();
+                setUseContextClassLoaderSwitch( needSwitch );
+                if( needSwitch )
+                {
+        			setDriverClassLoader( driverClass.getClassLoader() );
+                    setContextClassloader();
+                }
+            }
+            
+            wrappedDriver = newDriverInstance( driverClass );			
 		}
 		catch( Exception ex )
 		{
@@ -83,59 +145,12 @@ public class OdaDriver extends OdaObject
 		}
 		finally
 		{
-			if( setJavaThreadContextClassLoader )
-				Thread.currentThread().setContextClassLoader( getClass().getClassLoader() );
+            if( honorClassLoaderSwitch )
+                resetContextClassloader();
 		}
-	}
-
-	public OdaDriver( String driverClassName, Locale locale,
-								 ClassLoader classloader, 
-								 boolean switchContextClassloader ) 
-		throws OdaException
-	{
-		super( switchContextClassloader, classloader );
-		
-		final String context = "OdaDriver.OdaDriver( " +
-						 driverClassName + ", " + locale + ", " + 
-						 classloader + " )\t";
-		logMethodCalled( context );
-		
-		try
-		{	
-			if( switchContextClassloader )
-				Thread.currentThread().setContextClassLoader( classloader );
-			
-			// If the classloader argument is null, then use the classloader that
-			// loaded this class to find the driver's connection factory class and 
-			// construct an instance of the connection factory class. (old scheme)
-			// If the classloader argument isn't null, then we'll use the classloader to 
-			// construct an instance of the underlying connection factory class. (new scheme)
-			Class driverClass = ( classloader == null ) ?
-					Class.forName( driverClassName ) :
-					classloader.loadClass( driverClassName );
-					
-			IDriver newDriver = newDriverInstance( driverClass );
-
-			// store the driver instance within this wrapper
-			setObject( newDriver );
-			
-			logMethodExitWithReturn( context, this );
-		}
-		catch( Exception ex )
-		{
-			// append the caught classloader-related exception's string to the new OdaException
-			OdaException odaEx = 
-				new OdaHelperException( Messages.helper_cannotConstructConnectionFactory, 
-										 driverClassName + ", " + classloader );
-			odaEx.initCause( ex );
-			handleError( odaEx );
-		}
-		finally
-		{
-			if( switchContextClassloader )
-				Thread.currentThread().setContextClassLoader( getClass().getClassLoader() );
-		}
-	}
+        
+        return wrappedDriver;
+    }
 	
 	private IDriver newDriverInstance( Class driverClass ) throws InstantiationException, IllegalAccessException
 	{
@@ -148,10 +163,11 @@ public class OdaDriver extends OdaObject
 	}
 
 	/**
-	 * Override this method to wrap the driver object and return an 
-	 * IDriver.  Subclasses may need to override this method to introduce 
+     * Default implementation first attemps to locate
+     * a driver bridge for the given driver.
+	 * Subclasses may need to override this method to introduce 
 	 * a wrapper layer to include additional functionality to an ODA driver or to 
-	 * serve as an adaptor to underlying objects that do not implement the 
+	 * serve as an adapter to underlying objects that do not implement the 
 	 * org.eclipse.datatools.connectivity.oda interfaces.
 	 * @param driver		a driver object, which may or may 
 	 * 						not implement the org.eclipse.datatools.connectivity.oda.IDriver 
@@ -160,10 +176,67 @@ public class OdaDriver extends OdaObject
 	 */
 	protected IDriver newDriverBridge( Object driver )
 	{
-		// sub-class must override for non DTP ODA driver class
+        // tries to locate and obtain a driver bridge for the given driver
+        IDriver bridgeDriver = newDriverBridgeExtension( driver );
+        if( bridgeDriver != null )
+            return bridgeDriver;
+                
+        // no driver bridge found for given driver's type,
+		// sub-class must override for non DTP ODA driver
 		throw new IllegalArgumentException( driver.toString() );
 	}
 
+    /**
+     * Supports the driverBridge extension point.
+     * Looks up a driver bridge extension for the given driver,
+     * then loads and returns the bridge's driverClass to serve as
+     * the intermediate layer that this wrapper interacts with. 
+     */
+    private IDriver newDriverBridgeExtension( Object driver )
+    {
+        final String context = "OdaDriver.newDriverBridgeExtension"; //$NON-NLS-1$
+        
+        assert( driver != null );
+        String driverType = null;
+        Class[] driverTypes = driver.getClass().getInterfaces();
+        if( driverTypes.length > 0 )
+            driverType = driverTypes[0].getName();
+        else
+            driverType = driver.getClass().getName();
+
+        ConsumerExtensionManifest manifest = null;
+        try
+        {
+            manifest = ExtensionExplorer.getInstance()
+                        .getExtensionManifest( driverType );
+        }
+        catch( OdaException e )
+        {
+            logWarning( context, e.toString() );
+        }
+        
+        // no valid driver bridge extension manifest is found
+        if( manifest == null )
+             return null;
+        
+        try
+        {
+            ExtensionManifest bridgeManifest = 
+                ManifestExplorer.getInstance().getExtensionManifest( 
+                        manifest.getBridgeDataSourceId() );
+
+            // found driver bridge
+            if( bridgeManifest != null )    
+                return loadWrappedDriver( bridgeManifest, false );
+        }
+        catch( OdaException e )
+        {
+            logWarning( context, e.toString() );
+        }
+        
+        return null;
+    }
+    
 	private IDriver getDriver()
 	{
 		return (IDriver) getObject();
@@ -184,8 +257,8 @@ public class OdaDriver extends OdaObject
 	 */
 	public void setLogConfiguration( LogConfiguration logConfig ) throws OdaException
 	{
-	    final String context = "OdaDriver.setLogConfiguration( " + 
-						 logConfig + " )\t";
+	    final String context = "OdaDriver.setLogConfiguration( " +  //$NON-NLS-1$
+						 logConfig + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -203,7 +276,7 @@ public class OdaDriver extends OdaObject
             // whose logging requires a log directory
             if( m_logDirectory != null && m_logDirectory.length() > 0 )			
                 LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
-								  m_logDirectory, "OdaHelperLog", null );
+								  m_logDirectory, "OdaHelperLog", null ); //$NON-NLS-1$
 			
             // set log configuration values in the underlying ODA driver
 			getDriver().setLogConfiguration( logConfig );
@@ -211,7 +284,7 @@ public class OdaDriver extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			logUnsupportedOp( uoException,
-							  "IDriver.setLogConfiguration" );
+							  "IDriver.setLogConfiguration" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -235,8 +308,8 @@ public class OdaDriver extends OdaObject
 	public IConnection getConnection( String dataSourceId )
 		throws OdaException
 	{
-	    final String context = "OdaDriver.getConnection( " +
-							dataSourceId + " )\t";
+	    final String context = "OdaDriver.getConnection( " + //$NON-NLS-1$
+							dataSourceId + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		try
 		{
@@ -252,7 +325,7 @@ public class OdaDriver extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IDriver.getConnection( String dataSourceId )" );
+								 "IDriver.getConnection( String dataSourceId )" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -302,7 +375,7 @@ public class OdaDriver extends OdaObject
 	 */
 	public int getMaxConnections() throws OdaException
 	{
-	    final String context = "OdaDriver.getMaxConnections()\t";
+	    final String context = "OdaDriver.getMaxConnections()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 
 		try
@@ -317,7 +390,7 @@ public class OdaDriver extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException, 
-												  "IDriver.getMaxConnections()" );
+												  "IDriver.getMaxConnections()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -338,13 +411,13 @@ public class OdaDriver extends OdaObject
 	 */
 	public void setAppContext( Object context ) throws OdaException
 	{
-		final String methodName = "OdaDriver.setAppContext()\t";
-		final String contextObjInfo = ( context == null ) ? "null" : context.toString();
+		final String methodName = "OdaDriver.setAppContext()\t"; //$NON-NLS-1$
+		final String contextObjInfo = ( context == null ) ? "null" : context.toString(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_appContext == context )	// already set
 		{
-		    log( methodName, "Same pass-thru application context object: " + contextObjInfo );
+		    log( methodName, "Same pass-thru application context object: " + contextObjInfo ); //$NON-NLS-1$
 			logMethodExit( methodName );
 		    return;		// nothing to do
 		}
@@ -353,13 +426,13 @@ public class OdaDriver extends OdaObject
 		{
 			setContextClassloader();
 			
-		    log( methodName, "Passing thru application context to underlying ODA driver: " + contextObjInfo );
+		    log( methodName, "Passing thru application context to underlying ODA driver: " + contextObjInfo ); //$NON-NLS-1$
 			getDriver().setAppContext( context );
 		}
 		catch( UnsupportedOperationException uoException )
 		{
 			// log, and ignore exception
-			logUnsupportedOp( uoException, "IDriver.setAppContext" );
+			logUnsupportedOp( uoException, "IDriver.setAppContext" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{

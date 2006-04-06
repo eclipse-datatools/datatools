@@ -32,7 +32,7 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
  * The Manifest Explorer is the entry point to explore and access
  * the manifest of all the ODA plug-ins extensions that implement the 
  * <code>org.eclipse.datatools.connectivity.oda.dataSource</code> extension point.
- * The <code>ManifestExplorer</code> singleton instance can be retrieved 
+ * The <code>ManifestExplorer</code> singleton instance is retrieved 
  * using the <code>getInstance()</code> method.
  */
 public class ManifestExplorer
@@ -309,6 +309,22 @@ public class ManifestExplorer
                                             IExtension extension,
                                             String elementName ) 
         throws OdaException
+    {
+        return getNamedElements( extension, elementName, "id" );    //$NON-NLS-1$
+    }
+    
+    /**
+     * Returns a collection of configuration elements with the given name
+     * in the given extension.  
+     * Validates that each element has the specified attribute defined.
+     * @return a collection of matching configuration elements
+     * <br>For internal use only.
+     */
+    public static IConfigurationElement[] getNamedElements( 
+                                            IExtension extension,
+                                            String elementName, 
+                                            String requiredAttributeName ) 
+        throws OdaException
 	{
 		IConfigurationElement[] configElements = extension.getConfigurationElements();
         ArrayList matchedElements = new ArrayList();
@@ -318,10 +334,12 @@ public class ManifestExplorer
 			if( ! configElement.getName().equalsIgnoreCase( elementName ) )
 			    continue;
 
-			// validate that the element has an id attribute with non-empty value
-			String idValue = configElement.getAttribute( "id" );	//$NON-NLS-1$
-			if( idValue == null || idValue.length() == 0 )
-				throw new OdaException( Messages.manifest_NO_DATA_SET_TYPE_ID_DEFINED );
+			// validate that the element has the required attribute with non-empty value
+			String attrValue = configElement.getAttribute( requiredAttributeName );
+			if( attrValue == null || attrValue.length() == 0 )
+				throw new OdaException( 
+                        Messages.bind( Messages.manifest_NO_ATTRIBUTE_ID_DEFINED, 
+                                        requiredAttributeName, elementName ));
 
             matchedElements.add( configElement );
 		}
