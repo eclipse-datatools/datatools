@@ -2,16 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile; singleton:=true
-Bundle-Version: 3.0.0.200604041
-Bundle-ClassPath: oda-flatfile.jar
+Bundle-Version: 3.0.0.200604071
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.plugin.FlatfilePlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.oda.flatfile,
- org.eclipse.datatools.connectivity.oda.flatfile.i18n,
  org.eclipse.datatools.connectivity.oda.flatfile.plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity.oda,
  org.junit;resolution:=optional,
  com.ibm.icu
-Eclipse-AutoStart: true
+Eclipse-LazyStart: true
