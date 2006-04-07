@@ -1,28 +1,44 @@
-/**
- * <copyright>
- * </copyright>
- *
- * $Id: DerbyModelPackageImpl.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
- */
+/*******************************************************************************
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.derby.impl;
 
 import org.eclipse.datatools.modelbase.derby.DerbyModelFactory;
 import org.eclipse.datatools.modelbase.derby.DerbyModelPackage;
 import org.eclipse.datatools.modelbase.derby.Synonym;
 
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl;
+
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 
 import org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl;
 
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+
 import org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl;
+
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 
 import org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl;
+
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
 
 import org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl;
 
@@ -108,21 +124,39 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		SQLSchemaPackageImpl.init();
-		SQLConstraintsPackageImpl.init();
-		SQLDataTypesPackageImpl.init();
-		SQLExpressionsPackageImpl.init();
-		SQLRoutinesPackageImpl.init();
-		SQLStatementsPackageImpl.init();
-		SQLTablesPackageImpl.init();
-		SQLAccessControlPackageImpl.init();
 		EcorePackageImpl.init();
+
+		// Obtain or create and register interdependencies
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
+		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
+		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) instanceof SQLDataTypesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI) : SQLDataTypesPackage.eINSTANCE);
+		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) instanceof SQLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI) : SQLExpressionsPackage.eINSTANCE);
+		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) instanceof SQLRoutinesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI) : SQLRoutinesPackage.eINSTANCE);
+		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) instanceof SQLStatementsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI) : SQLStatementsPackage.eINSTANCE);
+		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) instanceof SQLTablesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI) : SQLTablesPackage.eINSTANCE);
+		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) instanceof SQLAccessControlPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI) : SQLAccessControlPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDerbyModelPackage.createPackageContents();
+		theSQLSchemaPackage.createPackageContents();
+		theSQLConstraintsPackage.createPackageContents();
+		theSQLDataTypesPackage.createPackageContents();
+		theSQLExpressionsPackage.createPackageContents();
+		theSQLRoutinesPackage.createPackageContents();
+		theSQLStatementsPackage.createPackageContents();
+		theSQLTablesPackage.createPackageContents();
+		theSQLAccessControlPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDerbyModelPackage.initializePackageContents();
+		theSQLSchemaPackage.initializePackageContents();
+		theSQLConstraintsPackage.initializePackageContents();
+		theSQLDataTypesPackage.initializePackageContents();
+		theSQLExpressionsPackage.initializePackageContents();
+		theSQLRoutinesPackage.initializePackageContents();
+		theSQLStatementsPackage.initializePackageContents();
+		theSQLTablesPackage.initializePackageContents();
+		theSQLAccessControlPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDerbyModelPackage.freeze();
@@ -205,9 +239,11 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 
 		// Obtain other dependent packages
 		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 
 		// Add supertypes to classes
 		synonymEClass.getESuperTypes().add(theSQLTablesPackage.getTable());
+		synonymEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(synonymEClass, Synonym.class, "Synonym", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

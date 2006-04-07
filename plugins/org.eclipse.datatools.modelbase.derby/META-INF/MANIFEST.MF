@@ -1,11 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Derby Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.modelbase.derby; singleton:=true
-Bundle-Version: 0.7.0.200603061
-Bundle-Activator: org.eclipse.datatools.modelbase.derby.DerbyPlugin
+Bundle-Version: 1.0.0
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.modelbase.sql
-Eclipse-AutoStart: true
-Bundle-Vendor: %providerName
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.modelbase.derby,
+ org.eclipse.datatools.modelbase.derby.impl,
+ org.eclipse.datatools.modelbase.derby.util
+

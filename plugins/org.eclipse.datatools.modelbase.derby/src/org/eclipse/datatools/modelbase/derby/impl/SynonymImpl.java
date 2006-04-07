@@ -1,9 +1,13 @@
-/**
- * <copyright>
- * </copyright>
- *
- * $Id: SynonymImpl.java,v 1.1 2006/03/07 00:58:26 dpchou Exp $
- */
+/*******************************************************************************
+ * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.derby.impl;
 
 import java.util.Collection;
@@ -18,8 +22,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 import org.eclipse.datatools.modelbase.sql.tables.ReferenceType;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
-import org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl;
-
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 import org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl;
@@ -49,6 +51,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class SynonymImpl extends TableImpl implements Synonym {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The cached value of the '{@link #getTable() <em>Table</em>}' reference.
 	 * <!-- begin-user-doc -->
