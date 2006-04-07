@@ -32,7 +32,8 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.RuntimeInterface;
 import org.osgi.framework.Bundle;
 
 /**
- * OdaDriver is the Oda wrapper for driver connection factories.
+ * OdaDriver is an ODA consumer helper that wraps and
+ * manages an ODA driver instance.
  */
 public class OdaDriver extends OdaObject
 								  implements IDriver
@@ -40,22 +41,68 @@ public class OdaDriver extends OdaObject
 	private String m_logDirectory;
 	private Object m_appContext;
 
+    /** 
+     * Instantiates an ODA consumer's driver helper 
+     * to manage the specified ODA driver.
+     * This uses the OSGi bundle to locate
+     * and load the specified ODA driver.
+     * @param odaDataSourceId    the unique id of the data source element
+     *              in an ODA data source extension,
+     *              whose driver is to be loaded and managed
+     *              by this helper
+     * @throws OdaException
+     */
+    public OdaDriver( String odaDataSourceId )
+        throws OdaException
+    {
+        ExtensionManifest odaDataSourceManifest = null;
+        try
+        {
+            odaDataSourceManifest = 
+                ManifestExplorer.getInstance()
+                    .getExtensionManifest( odaDataSourceId );
+        }
+        catch( IllegalArgumentException ex )
+        {
+            OdaException odaEx = new OdaException( ex );
+            handleError( odaEx );
+        }
+
+        init( odaDataSourceManifest );
+    }
+    
+    /**
+     * Instantiates an ODA consumer's driver helper 
+     * to manage the specified ODA driver.
+     * This uses the OSGi bundle to locate
+     * and load the specified ODA driver.
+     * @param driverConfig  the driver configuration 
+     *              info of an ODA data source extension,
+     *              whose driver is to be loaded and managed
+     *              by this helper
+     * @throws OdaException
+     */
 	public OdaDriver( ExtensionManifest driverConfig )
 		throws OdaException
-	{
-	    assert( driverConfig != null );        
-		final String context = "OdaDriver.OdaDriver( " + //$NON-NLS-1$
-						 driverConfig + " )\t"; //$NON-NLS-1$
-		logMethodCalled( context );
-		
-		IDriver wrappedDriver = loadWrappedDriver( driverConfig, true );
+    {
+        init( driverConfig );
+    }
 
-        // store the underlying driver instance within this OdaDriver
-        setObject( wrappedDriver );
-
-        logMethodExitWithReturn( context, this );
-	}
-
+    /**
+     * Instantiates an ODA consumer's driver helper 
+     * to manage the specified ODA driver.
+     * This does *not* use the OSGi bundle to locate
+     * and load the specified driver class.
+     * @param driverClassName   full path name of the ODA driver class
+     *                  to load and manage by this helper
+     * @param locale    deprecated
+     * @param classloader   the classloader for use to
+            instantiate the underlying driver class;
+            may be null, in which case, this class' own loader
+            is used instead
+     * @param switchContextClassloader
+     * @throws OdaException
+     */
     public OdaDriver( String driverClassName, Locale locale,
                                  ClassLoader classloader, 
                                  boolean switchContextClassloader ) 
@@ -74,10 +121,10 @@ public class OdaDriver extends OdaObject
                 Thread.currentThread().setContextClassLoader( classloader );
             
             // If the classloader argument is null, then use the classloader that
-            // loaded this class to find the driver's connection factory class and 
-            // construct an instance of the connection factory class. (old scheme)
+            // loaded this class to find the driver's class and 
+            // construct an instance of the driver class. (old scheme)
             // If the classloader argument isn't null, then we'll use the classloader to 
-            // construct an instance of the underlying connection factory class. (new scheme)
+            // construct an instance of the underlying driver class. (new scheme)
             Class driverClass = ( classloader == null ) ?
                     Class.forName( driverClassName ) :
                     classloader.loadClass( driverClassName );
@@ -104,7 +151,35 @@ public class OdaDriver extends OdaObject
                 Thread.currentThread().setContextClassLoader( getClass().getClassLoader() );
         }
     }
+    
+    /**
+     * Initialize this ODA consumer's driver helper
+     * with an underlying ODA driver.
+     * @param driverConfig
+     * @throws OdaException
+     */
+    private void init( ExtensionManifest driverConfig )
+        throws OdaException
+    {
+        if( driverConfig == null )
+            throw new OdaException( Messages.helper_missingDriverInfo );
+        
+        final String context = "OdaDriver.init( " + //$NON-NLS-1$
+                         driverConfig + " )\t"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        IDriver wrappedDriver = loadWrappedDriver( driverConfig, true );
 
+        // store the underlying driver instance within this OdaDriver
+        setObject( wrappedDriver );
+
+        logMethodExitWithReturn( context, this );
+    }
+
+    /**
+     * This uses the OSGi bundle to locate
+     * and load the specified ODA driver.
+     */
     private IDriver loadWrappedDriver( ExtensionManifest driverConfig,
                                         boolean honorClassLoaderSwitch ) 
         throws OdaException

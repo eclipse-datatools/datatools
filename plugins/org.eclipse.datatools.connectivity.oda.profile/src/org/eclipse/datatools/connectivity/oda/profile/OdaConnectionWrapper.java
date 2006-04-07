@@ -23,8 +23,6 @@ import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
-import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 public class OdaConnectionWrapper extends VersionProviderConnection
 {
@@ -223,23 +221,9 @@ public class OdaConnectionWrapper extends VersionProviderConnection
     private IDriver getOdaDriverHelper( String odaDataSourceElementId ) 
         throws OdaException
     {
-        if( m_odaDriverHelper != null )
-            return m_odaDriverHelper;
+        if( m_odaDriverHelper == null )
+            m_odaDriverHelper = new OdaDriver( odaDataSourceElementId );
 
-        ExtensionManifest driverManifest = null;
-        try
-        {
-            driverManifest = ManifestExplorer.getInstance().getExtensionManifest( odaDataSourceElementId );
-        }
-        catch( IllegalArgumentException ex )
-        {
-            OdaException odaEx = new OdaException();
-            odaEx.initCause( ex );
-            throw odaEx;
-        }
-
-        assert( driverManifest != null );
-        m_odaDriverHelper = new OdaDriver( driverManifest );
         return m_odaDriverHelper;
     }
     
