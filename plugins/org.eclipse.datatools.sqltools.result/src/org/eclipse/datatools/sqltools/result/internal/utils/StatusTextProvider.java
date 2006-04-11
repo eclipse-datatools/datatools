@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.utils;
 
+import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
 
@@ -19,12 +20,12 @@ import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
  */
 public class StatusTextProvider
 {
-    static String _LINESEPARATOR = System.getProperty("line.separator");
+    static String _LINESEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$
     
     /**
-     * Get the update count message given the update count
+     * Gets the update count message given the update count
      * @param updateCount the update count
-     * @return
+     * @return the update count message
      */
     public static String getUpdateCountText(int updateCount)
     {
@@ -39,13 +40,13 @@ public class StatusTextProvider
     }
     
     /**
-     * 
-     * @param instance
-     * @return
+     * Returns the status text for showing it in "status" tab
+     * @param instance the given result instance
+     * @return the status text for showing it in "status" tab
      */
     public static String getStatusText(IResultInstance instance)
     {
-        StringBuffer buff = new StringBuffer("");
+        StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
         int count = instance.getItemCount();
         for(int i = 0; i<count; i++)
         {
@@ -57,6 +58,36 @@ public class StatusTextProvider
             if(item.getResultType() == ResultItem.UPDATE_COUNT)
             {
                 buff.append(getUpdateCountText(((Integer)item.getResultObject()).intValue()));
+            }
+        }
+        return buff.toString();
+    }
+    
+    /**
+     * Returns the history header for saving purpose
+     * @param instance the given result instance
+     * @return the history header for saving purpose
+     */
+    public static String getHistoryHeader(IResultInstance instance)
+    {
+        StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
+        buff.append(instance.getOperationCommand().getDisplayString()).append(_LINESEPARATOR);
+        buff
+                .append(Messages.getString("StatusTextProvider.action.type")).append(OperationCommand.getActionString(instance.getOperationCommand().getActionType())) //$NON-NLS-1$
+                .append(_LINESEPARATOR);
+        buff
+                .append(Messages.getString("StatusTextProvider.profile.name")).append(instance.getOperationCommand().getProfileName()).append(_LINESEPARATOR); //$NON-NLS-1$
+        buff
+                .append(Messages.getString("StatusTextProvider.database")).append(instance.getOperationCommand().getDatabaseName()).append(_LINESEPARATOR); //$NON-NLS-1$
+        buff
+                .append(Messages.getString("StatusTextProvider.time")).append(instance.getExecuteTime()).append(_LINESEPARATOR); //$NON-NLS-1$
+        int count = instance.getItemCount();
+        for (int i = 0; i < count; i++)
+        {
+            ResultItem item = instance.getItem(i);
+            if (item.getResultType() == ResultItem.STATUS_TEXT)
+            {
+                buff.append((String) item.getResultObject());
             }
         }
         return buff.toString();
