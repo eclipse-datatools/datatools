@@ -89,13 +89,13 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         if( odaDataSourceId == null || odaDataSourceId.length() == 0 )
             throw new CoreException( 
                     new Status( IStatus.ERROR, 
-                            newWizardElement.getNamespace(), 
+                            newWizardElement.getNamespaceIdentifier(), 
                             IStatus.OK,
                             Messages.wizard_missingDataSourceId, 
                             null ) );
 
         // the oda ui plugin extension that implements the custom wizard
-        String odaDesignerPluginId = newWizardElement.getNamespace();
+        String odaDesignerPluginId = newWizardElement.getNamespaceIdentifier();
 
         // use newWizard extension's name attribute as default title
         String wizardName = 
