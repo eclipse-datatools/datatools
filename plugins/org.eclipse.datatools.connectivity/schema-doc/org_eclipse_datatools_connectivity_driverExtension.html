@@ -2,8 +2,8 @@
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Driver Definition</title>
-<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
-<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+<style>@import url("file:/F:/Eclipse3.2M6/eclipse/plugins/org.eclipse.sdk_3.2.0.v20060329/book.css");</style>
+<style>@import url("file:/F:/Eclipse3.2M6/eclipse/configuration/org.eclipse.osgi/bundles/77/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1><CENTER>Driver Definition</CENTER></H1>
@@ -62,7 +62,7 @@ Parent container for specific driver definition properties.</p>
 <br><br>
 <p class=code id=dtd>&lt;!ELEMENT <a name="e.property">property</a> EMPTY&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST property</p>
-<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>description&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>required&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>generated&nbsp;&nbsp;&nbsp;(true | false) "false"&gt;</p>
+<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>visible&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>example&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>required&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>generated&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"<p class=code id=dtdAttlist>customPropertyDescriptor&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
 A property definition for a driver definition.</p>
@@ -76,6 +76,8 @@ A property definition for a driver definition.</p>
 <li><b>example</b> - Specifies an example value for this property.</li>
 <li><b>required</b> - Specifies whether or not this is a required property.  Default is true.</li>
 <li><b>generated</b> - currently unused and undefined.</li>
+<li><b>customPropertyDescriptor</b> - Provides a way to specify a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.</li>
+<li><b>category</b> - The category tag is used to provide an optional category for your template properties. The default is "General" if no category is specified for the property. You can use this to group properties in arbitrary categories.</li>
 </ul>
 <br><h6 class=CaptionFigColumn id=header>Examples: </h6><extension
          point="org.eclipse.datatools.connectivity.driverExtension">

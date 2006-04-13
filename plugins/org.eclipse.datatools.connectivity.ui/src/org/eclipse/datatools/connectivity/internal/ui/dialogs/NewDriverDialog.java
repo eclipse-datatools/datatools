@@ -28,6 +28,8 @@ import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -180,6 +182,17 @@ public class NewDriverDialog extends TitleAreaDialog {
 					}
 
 				});
+		
+		this.mTreeViewer.addDoubleClickListener( new IDoubleClickListener() {
+
+			public void doubleClick(DoubleClickEvent event) {
+				StructuredSelection selection = (StructuredSelection) NewDriverDialog.this.mTreeViewer
+					.getSelection();
+				if (selection.getFirstElement() instanceof TemplateDescriptor) {
+					okPressed();
+				}
+			}
+		});
 
 		label = new Label(contents, SWT.NONE);
 		label.setText(DriverMgmtMessages

@@ -221,6 +221,23 @@ The driver definitions are intended to be used in conjunction with connection pr
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="customPropertyDescriptor" type="string">
+            <annotation>
+               <documentation>
+                  Provides a way to specify a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  The category tag is used to provide an optional category for your template properties. The default is &quot;General&quot; if no category is specified for the property. You can use this to group properties in arbitrary categories.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

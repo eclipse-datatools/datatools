@@ -86,10 +86,10 @@
                   required="false"
                   visible="true"/>
             <property
+                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
-                  value=""
                   required="false"
                   visible="true"/>
          </properties>
@@ -149,10 +149,10 @@
                   required="false"
                   visible="true"/>
             <property
+                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
-                  value=""
                   required="false"
                   visible="true"/>
          </properties>
@@ -212,10 +212,10 @@
                   required="false"
                   visible="true"/>
             <property
+                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
-                  value=""
                   required="false"
                   visible="true"/>
          </properties>
@@ -273,12 +273,12 @@
                 value="" 
                 required="false" 
                 visible="true"/> 
-          <property 
-                generated="false" 
-                id="org.eclipse.datatools.connectivity.db.password" 
-                name="Password" 
-                value="" 
-                required="false" 
+          <property
+                customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+                generated="false"
+                id="org.eclipse.datatools.connectivity.db.password"
+                name="Password"
+                required="false"
                 visible="true"/> 
        </properties> 
     </driverTemplate> 

@@ -36,6 +36,8 @@ import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -177,6 +179,14 @@ public class DriverPreferences extends PreferencePage implements
 
 				});
 
+		this.mTreeViewer.addDoubleClickListener( new IDoubleClickListener() {
+
+			public void doubleClick(DoubleClickEvent event) {
+				StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTreeViewer
+						.getSelection();
+				editDriver(selection);
+			}
+		});
 		Composite groupComponent = new Composite(content, SWT.NULL);
 		GridLayout groupLayout = new GridLayout();
 		groupLayout.marginWidth = 0;

@@ -11,7 +11,6 @@
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -26,19 +25,12 @@ import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.datatools.connectivity.internal.ui.PropertiesContentProvider;
-import org.eclipse.datatools.connectivity.internal.ui.PropertiesLabelProvider;
+import org.eclipse.datatools.connectivity.internal.ui.DriverPropertySourceProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -52,13 +44,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.part.IPage;
+import org.eclipse.ui.part.PageBook;
+import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -76,13 +68,12 @@ public class EditDriverDialog extends TitleAreaDialog {
 
 	// previous directory browsed
 	private static String previouslyBrowsedDirectory = ""; //$NON-NLS-1$
-
-	// property for the column name
-	private static String COL_NAME_PROP = "name"; //$NON-NLS-1$
+	private PageBook book = null;
+	private IPropertySet mPropertySet = null;
+	private TemplateDescriptor descriptor = null;
 
 	// ui components
 	private List list;
-	private TableViewer propTable;
 	private Text mDriverNameText;
 	private Text mDriverTypeText;
 	private Button mAddJar;
@@ -91,23 +82,10 @@ public class EditDriverDialog extends TitleAreaDialog {
 	private Button mClearAll;
 	private Button mOKButton;
 
-	// table column info
-	private TableColumn mNameColumn;
-	private TableColumn mValueColumn;
-	private TableColumn[] mColumns;
-
 	// driver properties
 	private String mDriverName;
 	private String mJarList;
 	private String mDriverTypeID;
-
-	// Template
-	private TemplateDescriptor descriptor;
-
-	// Driver instance
-	private IPropertySet mPropertySet;
-
-	private PropertiesLabelProvider labelProvider = null;
 
 	/**
 	 * Constructor
@@ -119,12 +97,6 @@ public class EditDriverDialog extends TitleAreaDialog {
 		this.setShellStyle(getShellStyle() | SWT.RESIZE | SWT.DIALOG_TRIM);
 	}
 
-	/**
-	 * Constructor
-	 * 
-	 * @param parentShell
-	 * @param driverTypeID
-	 */
 	public EditDriverDialog(Shell parentShell, String driverTypeID) {
 		this(parentShell);
 		this.mDriverTypeID = driverTypeID;
@@ -132,12 +104,6 @@ public class EditDriverDialog extends TitleAreaDialog {
 				.getDriverTemplateDescriptor(this.mDriverTypeID);
 	}
 
-	/**
-	 * Constructor
-	 * 
-	 * @param parentShell
-	 * @param pset
-	 */
 	public EditDriverDialog(Shell parentShell, IPropertySet pset) {
 		this(parentShell);
 		this.mPropertySet = pset;
@@ -151,7 +117,13 @@ public class EditDriverDialog extends TitleAreaDialog {
 		}
 	}
 
-	/*
+	protected IPage createDefaultPage(PageBook book) {
+        PropertySheetPage page = new PropertySheetPage();
+        page.createControl(book);
+        return page;
+    }
+    
+    /*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
@@ -159,6 +131,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
 		area.setLayout(new GridLayout());
+
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -323,98 +296,20 @@ public class EditDriverDialog extends TitleAreaDialog {
 					gridLayout_2.numColumns = 1;
 					composite_2.setLayout(gridLayout_2);
 					{
-						this.propTable = new TableViewer(composite_2,
-								SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL
-										| SWT.FULL_SELECTION);
-						final GridData gridData_1 = new GridData(
-								GridData.FILL_BOTH | GridData.GRAB_VERTICAL);
-						gridData_1.horizontalSpan = 2;
-						this.propTable.getTable().setLayoutData(gridData_1);
-
-						this.propTable.getTable().setLinesVisible(true);
-						this.propTable.getTable().setHeaderVisible(true);
-
-						this.propTable
-								.setContentProvider(new PropertiesContentProvider());
-						this.labelProvider = new PropertiesLabelProvider(
-								this.mPropertySet);
-						this.propTable.setLabelProvider(this.labelProvider);
-						{
-							this.mNameColumn = createTableColumn(this.propTable
-									.getTable(), DriverMgmtMessages
-									.getString("EditDriverDialog.column.name"), //$NON-NLS-1$
-									SWT.NONE, false);
-							this.mNameColumn.setWidth(100);
-							this.mNameColumn
-									.setData(
-											COL_NAME_PROP,
-											DriverMgmtMessages
-													.getString("EditDriverDialog.column.name")); //$NON-NLS-1$
+						book = new PageBook(composite_2, SWT.NONE);
+						book.setLayoutData(new GridData(GridData.FILL_BOTH));
+				        PropertySheetPage page = new PropertySheetPage();
+				        page.createControl(book);
+						DriverPropertySourceProvider mpsp = null;
+						if (this.mPropertySet != null) {
+							mpsp = new DriverPropertySourceProvider(this.mPropertySet, this.descriptor);
 						}
-						{
-							this.mValueColumn = createTableColumn(
-									this.propTable.getTable(),
-									DriverMgmtMessages
-											.getString("EditDriverDialog.column.value"), //$NON-NLS-1$
-									SWT.NONE, false);
-							this.mValueColumn.setWidth(500);
-							this.mValueColumn
-									.setData(
-											COL_NAME_PROP,
-											DriverMgmtMessages
-													.getString("EditDriverDialog.column.value")); //$NON-NLS-1$
+						else {
+							mpsp = new DriverPropertySourceProvider();
 						}
-
-						ArrayList list = new ArrayList();
-						list.add(this.mNameColumn);
-						list.add(this.mValueColumn);
-
-						this.mColumns = (TableColumn[]) list
-								.toArray(new TableColumn[0]);
-
-						String[] props = new String[this.mColumns.length];
-						for (int i = 0; i < props.length; i++) {
-							props[i] = (String) this.mColumns[i]
-									.getData(COL_NAME_PROP);
-						}
-						this.propTable.setColumnProperties(props);
-						this.propTable
-								.setCellModifier(new PropertiesCellModifier());
-						this.propTable
-								.setCellEditors(createCellEditors(this.propTable
-										.getTable()));
-
-						this.propTable.setInput(this.descriptor);
-
-						this.propTable
-								.addSelectionChangedListener(new ISelectionChangedListener() {
-
-									public void selectionChanged(
-											SelectionChangedEvent event) {
-										StructuredSelection selection = (StructuredSelection) event
-												.getSelection();
-										IConfigurationElement prop = null;
-										if (selection.getFirstElement() instanceof IConfigurationElement) {
-											prop = (IConfigurationElement) selection
-													.getFirstElement();
-											if (prop
-													.getAttribute("description") != null) { //$NON-NLS-1$
-												EditDriverDialog.this.propTable
-														.getTable()
-														.setToolTipText(
-																prop
-																		.getAttribute("description")); //$NON-NLS-1$
-											}
-											else {
-												EditDriverDialog.this.propTable
-														.getTable()
-														.setToolTipText(
-																DriverMgmtMessages
-																		.getString("EditDriverDialog.properties.tooltip.default")); //$NON-NLS-1$
-											}
-										}
-									}
-								});
+						page.setPropertySourceProvider(mpsp);
+				        book.showPage(page.getControl());
+						page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
 					}
 				}
 			}
@@ -460,7 +355,6 @@ public class EditDriverDialog extends TitleAreaDialog {
 		this.mJarList = createList(this.list.getItems());
 		isValid();
 	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -605,7 +499,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 	 */
 	protected void okPressed() {
 		String propIdPrefix = DriverMgmtMessages
-				.getString("EditDriverDialog.text.id_prefix"); //$NON-NLS-1$
+			.getString("EditDriverDialog.text.id_prefix"); //$NON-NLS-1$
 		String propId = propIdPrefix + this.mDriverName;
 		if (this.mPropertySet == null) {
 			this.mPropertySet = new PropertySetImpl(propId, this.mDriverName);
@@ -615,7 +509,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 		props
 				.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST,
 						this.mJarList);
-
+		
 		IConfigurationElement[] templateprops = this.descriptor.getProperties();
 		if (templateprops != null && templateprops.length > 0) {
 			for (int i = 0; i < templateprops.length; i++) {
@@ -631,9 +525,9 @@ public class EditDriverDialog extends TitleAreaDialog {
 		props.setProperty(IDriverMgmtConstants.PROP_DEFN_TYPE, this.descriptor
 				.getId());
 		this.mPropertySet.setBaseProperties(props);
-
+		
 		saveState();
-
+		
 		super.okPressed();
 	}
 
@@ -772,40 +666,10 @@ public class EditDriverDialog extends TitleAreaDialog {
 	}
 
 	/*
-	 * Create a table column
-	 */
-	private static TableColumn createTableColumn(Table table, String label,
-			int style, boolean pack) {
-		TableColumn column = new TableColumn(table, style);
-		column.setWidth(100);
-		column.setText(label); //$NON-NLS-1$
-		if (pack)
-			column.pack();
-		return column;
-	}
-
-	/*
 	 * Determine if the template has visible properties
 	 */
 	private boolean hasVisibleProperties() {
 		return this.descriptor == null ? false: this.descriptor.hasVisibleProperties();
-	}
-
-	/*
-	 * Create cell editors
-	 */
-	private CellEditor[] createCellEditors(Composite parent) {
-		ArrayList editors = new ArrayList();
-		CellEditor editor = null;
-
-		// Name
-		editors.add(editor);
-
-		// Value
-		editor = new TextCellEditor(parent);
-		editors.add(editor);
-
-		return (CellEditor[]) editors.toArray(new CellEditor[editors.size()]);
 	}
 
 	/*
@@ -853,96 +717,6 @@ public class EditDriverDialog extends TitleAreaDialog {
 				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
 				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
 			}
-		}
-	}
-
-	/**
-	 * Properties Table Cell Modifier
-	 * 
-	 * @author brianf
-	 */
-	private class PropertiesCellModifier implements ICellModifier {
-
-		/**
-		 * Constructor
-		 * 
-		 */
-		public PropertiesCellModifier() {
-			super();
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ICellModifier#canModify(Object,
-		 *      String)
-		 */
-		public boolean canModify(Object element, String property) {
-			boolean retVal = false;
-			if (property.equals(DriverMgmtMessages
-					.getString("EditDriverDialog.column.value"))) { //$NON-NLS-1$
-				if (element instanceof IConfigurationElement) {
-					IConfigurationElement prop = (IConfigurationElement) element;
-					String visible = prop.getAttribute("visible"); //$NON-NLS-1$
-					boolean propvisible = true;
-					if (visible != null && visible.equals("false")) //$NON-NLS-1$
-						propvisible = false;
-					if (propvisible)
-						retVal = true;
-				}
-			}
-			return retVal;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ICellModifier#getValue(Object, String)
-		 */
-		public Object getValue(Object element, String property) {
-			Object retVal = null;
-			if (property.equals(DriverMgmtMessages
-					.getString("EditDriverDialog.column.value"))) { //$NON-NLS-1$
-				if (element instanceof IConfigurationElement) {
-					IConfigurationElement prop = (IConfigurationElement) element;
-					String id = prop.getAttribute("id"); //$NON-NLS-1$
-					String value = prop.getAttribute("value"); //$NON-NLS-1$
-					String visible = prop.getAttribute("visible"); //$NON-NLS-1$
-					boolean propvisible = true;
-					if (visible != null && visible.equals("false")) //$NON-NLS-1$
-						propvisible = false;
-					if (propvisible) {
-						String propval = EditDriverDialog.this.mPropertySet
-								.getBaseProperties().getProperty(id);
-						if (propval != null && propval.length() > 0) {
-							value = propval;
-						}
-						retVal = value;
-					}
-				}
-			}
-			return retVal;
-		}
-
-		/**
-		 * @see org.eclipse.jface.viewers.ICellModifier#modify(Object, String,
-		 *      Object)
-		 */
-		public void modify(Object element, String property, Object value) {
-			if (property.equals(DriverMgmtMessages
-					.getString("EditDriverDialog.column.value"))) { //$NON-NLS-1$
-				if (element instanceof Item) {
-					element = ((Item) element).getData();
-				}
-				if (element instanceof IConfigurationElement) {
-					IConfigurationElement prop = (IConfigurationElement) element;
-					String id = prop.getAttribute("id"); //$NON-NLS-1$
-					if (EditDriverDialog.this.mPropertySet != null) {
-						EditDriverDialog.this.mPropertySet.getBaseProperties()
-								.setProperty(id, (String) value);
-						// EditDriverDialog.this.labelProvider.setPropertySet(EditDriverDialog.this.mPropertySet);
-					}
-				}
-			}
-			EditDriverDialog.this.propTable.refresh(true);
-
-			isValid();
 		}
 	}
 }
