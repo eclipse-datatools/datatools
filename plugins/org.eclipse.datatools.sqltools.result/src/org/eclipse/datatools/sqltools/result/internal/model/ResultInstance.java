@@ -239,5 +239,5 @@ public class ResultInstance implements IResultInstance
         {
             _resultManager.fireStatusUpdated(this);
         }
-    } 
+    }
 }

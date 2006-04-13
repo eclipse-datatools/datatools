@@ -73,7 +73,7 @@ public class OperationCommand implements Serializable
     public static final int   ACTION_RUN            = 13;
     public static final int   ACTION_VALIDATE       = 14;
     public static final int   ACTION_VIEW           = 15;
-
+    
     /**
      * Constructs an instance of OperationCommand.
      * 
