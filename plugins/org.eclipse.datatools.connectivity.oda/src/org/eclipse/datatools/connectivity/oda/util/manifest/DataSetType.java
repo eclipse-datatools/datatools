@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
+import java.sql.Types;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Properties;
@@ -116,6 +117,34 @@ public class DataSetType
 		int count = typeMappings.size();
 		return ( DataTypeMapping[] ) typeMappings.toArray( new DataTypeMapping[count] );
 	}
+    
+    /**
+     * Returns the primary ODA scalar data type code
+     * that the specified native data type is mapped to.
+     * <br>If none or unknown native data type value (0) is specified, 
+     * maps to an ODA String data type by default.  
+     * If no default ODA data type mapping is defined by the driver
+     * for the specified native data type, returns Types.NULL
+     * for unknown ODA data type.
+     * @return  the primary ODA scalar data type code;
+     *          may be java.sql.Types.NULL if no mapping is found.
+     */
+    public int getDefaultOdaDataTypeCode( int nativeDataTypeCode )
+    {
+        DataTypeMapping mapping = getDataTypeMapping( nativeDataTypeCode );
+        if( mapping != null )
+            return mapping.getOdaScalarDataTypeCode();
+
+        // no mapping is defined by the ODA driver
+        // for the specified nativeDataTypeCode,
+        // maps a 0 native data type (defined as none or unknown value in
+        // the oda.design model) to an ODA String data type by default
+        if( nativeDataTypeCode == 0 )   
+            return Types.CHAR;          
+
+        // unknown ODA data type
+        return Types.NULL;           
+    }
 	
 	/**
 	 * Returns an array of Property instances that represent
