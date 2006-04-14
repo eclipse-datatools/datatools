@@ -75,6 +75,7 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         catch( OdaException e )
         {
             // ignore, ok to not have version info available
+            e.printStackTrace();
         }
         
         if( ! canProvideVersionMetaData() )
@@ -144,7 +145,8 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         }
         catch( OdaException e )
         {
-            // ignore
+        	// ignore
+            e.printStackTrace();
         }
         return ODA_UNKNOWN_VERSION;
     }
