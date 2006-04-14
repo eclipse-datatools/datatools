@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.result.IReExecutionRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
@@ -50,9 +51,12 @@ public class ReExecutionRegistryReader
             {
                 String database_id = elements[j].getAttribute(Constants.EXTENSION_POINT_DATABASE_ID);
                 String consumer_name = elements[j].getAttribute(Constants.EXTENSION_POINT_CONSUMER_NAME);
-                if (cmd.getConsumerName().equals(consumer_name)
-                        && (ProfileManager.getInstance().getProfileByName(cmd.getProfileName())).getProviderId()
-                                .equals(database_id))
+                IConnectionProfile profile = ProfileManager.getInstance().getProfileByName(cmd.getProfileName());
+                if (profile == null)
+                {
+                    continue;
+                }
+                if (cmd.getConsumerName().equals(consumer_name) && (profile.getProviderId().equals(database_id)))
                 {
                     try
                     {
