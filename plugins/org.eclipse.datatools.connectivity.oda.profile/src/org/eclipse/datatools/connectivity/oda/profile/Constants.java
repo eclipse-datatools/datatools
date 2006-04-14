@@ -19,7 +19,7 @@ import org.eclipse.datatools.connectivity.oda.profile.nls.Messages;
 public class Constants
 {
     public static String ODA_COMPONENT_NAME = Messages.constants_componentName;
-    public static final String ODA_COMPONENT_VERSION = "3.0"; //$NON-NLS-1$
+    public static final String ODA_COMPONENT_VERSION = "3.0.1"; //$NON-NLS-1$
     
     public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 }
