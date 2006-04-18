@@ -24,9 +24,9 @@ import org.osgi.framework.BundleContext;
  */
 public class DSEPlugin extends AbstractUIPlugin {
 
-	public static final String SERVERS_VIEW_VIEWER_ID = "org.eclipse.datatools.connectivity.ui.views.dataSourceExplorer"; //$NON-NLS-1$
+	public static final String SERVERS_VIEW_VIEWER_ID = "org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"; //$NON-NLS-1$
 
-	public static final String SERVERS_VIEW_CONTENT_EXTENSION_ID = "org.eclipse.datatools.connectivity.ui.views.content.DSEViewRootContentExtension"; //$NON-NLS-1$
+	public static final String SERVERS_VIEW_CONTENT_EXTENSION_ID = "org.eclipse.datatools.connectivity.dsexplorer.content"; //$NON-NLS-1$
 
 	// The shared instance.
 	private static DSEPlugin plugin;
