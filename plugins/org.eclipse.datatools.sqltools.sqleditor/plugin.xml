@@ -10,7 +10,7 @@
       <editor
             id="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
             name="%sqlEditorName"
-            icon=""
+            icon="icons/sql_editor.gif"
             class="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
 			contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor">
       </editor>

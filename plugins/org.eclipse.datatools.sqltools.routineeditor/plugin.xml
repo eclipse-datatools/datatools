@@ -153,7 +153,7 @@
             default="true"
             icon="icons/routine_editor.gif"
             id="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
-            name="%RoutineEditor.name"/>
+            name="%Routineeditor.name"/>
     </extension>
    
     <extension
