@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.helper;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 import org.eclipse.core.runtime.Platform;
@@ -38,7 +39,9 @@ import org.osgi.framework.Bundle;
 public class OdaDriver extends OdaObject
 								  implements IDriver
 {
-	private String m_logDirectory;
+    public static final String ODA_BRIDGED_DRIVER = "BridgedDriverInstance"; //$NON-NLS-1$
+
+    private String m_logDirectory;
 	private Object m_appContext;
 
     /** 
@@ -129,7 +132,8 @@ public class OdaDriver extends OdaObject
                     Class.forName( driverClassName ) :
                     classloader.loadClass( driverClassName );
                     
-            IDriver newDriver = newDriverInstance( driverClass );
+            // instantiate the driver; no driver bridge support
+            IDriver newDriver = newDriverInstance( driverClass, null, false );
 
             // store the driver instance within this wrapper
             setObject( newDriver );
@@ -168,7 +172,7 @@ public class OdaDriver extends OdaObject
                          driverConfig + " )\t"; //$NON-NLS-1$
         logMethodCalled( context );
         
-        IDriver wrappedDriver = loadWrappedDriver( driverConfig, true );
+        IDriver wrappedDriver = loadDriverInstance( driverConfig, true, true );
 
         // store the underlying driver instance within this OdaDriver
         setObject( wrappedDriver );
@@ -179,9 +183,11 @@ public class OdaDriver extends OdaObject
     /**
      * This uses the OSGi bundle to locate
      * and load the specified ODA driver.
+     * Also instantiates the driver with default constructor.
      */
-    private IDriver loadWrappedDriver( ExtensionManifest driverConfig,
-                                        boolean honorClassLoaderSwitch ) 
+    private IDriver loadDriverInstance( ExtensionManifest driverConfig,
+                                boolean honorClassLoaderSwitch,
+                                boolean appliesBridgeExtension ) 
         throws OdaException
     {
         RuntimeInterface runtime = driverConfig.getRuntimeInterface();
@@ -190,7 +196,7 @@ public class OdaDriver extends OdaObject
 		
 		String initEntryPoint = javaRuntime.getDriverClass();
 				
-        IDriver wrappedDriver = null;
+        IDriver loadedDriver = null;
 		try
 		{
 			Bundle bundle = Platform.getBundle( driverConfig.getNamespace() );
@@ -207,7 +213,11 @@ public class OdaDriver extends OdaObject
                 }
             }
             
-            wrappedDriver = newDriverInstance( driverClass );			
+            // instantiate the driver class, and applies its
+            // driver bridge if applicable
+            loadedDriver = newDriverInstance( driverClass, 
+                                driverConfig.getDataSourceElementID(), 
+                                appliesBridgeExtension );
 		}
 		catch( Exception ex )
 		{
@@ -224,22 +234,39 @@ public class OdaDriver extends OdaObject
                 resetContextClassloader();
 		}
         
-        return wrappedDriver;
+        return loadedDriver;
     }
 	
-	private IDriver newDriverInstance( Class driverClass ) throws InstantiationException, IllegalAccessException
+	private IDriver newDriverInstance( Class driverClass,
+                                String driverDataSourceId,
+                                boolean appliesBridgeExtension ) 
+        throws InstantiationException, IllegalAccessException
 	{
 		Object driverInstance = driverClass.newInstance();
-		
-		if( driverInstance instanceof IDriver )
-			return ( IDriver ) driverInstance;
-		
-		return newDriverBridge( driverInstance );
+        
+        // add bridge to this driver, if bridge extension is specified
+        if( appliesBridgeExtension )
+        {
+            IDriver driverBridge = newDriverBridge( driverInstance, 
+                                                driverDataSourceId );
+            if( driverBridge != null )
+                return driverBridge;
+        }
+        
+        // no driver bridge is applied, 
+        // use the instantiated driver directly
+        // if it implements the DTP ODA IDriver interface
+        if( driverInstance instanceof IDriver )
+            return ( IDriver ) driverInstance;        
+                
+        // no driver bridge found or applied for given driver's type,
+        // must implement driver bridge extension, 
+        // or sub-class must override newDriverBridge 
+        // for non DTP ODA driver
+        throw new IllegalArgumentException( driverInstance.toString() );
 	}
 
 	/**
-     * Default implementation first attemps to locate
-     * a driver bridge for the given driver.
 	 * Subclasses may need to override this method to introduce 
 	 * a wrapper layer to include additional functionality to an ODA driver or to 
 	 * serve as an adapter to underlying objects that do not implement the 
@@ -248,37 +275,81 @@ public class OdaDriver extends OdaObject
 	 * 						not implement the org.eclipse.datatools.connectivity.oda.IDriver 
 	 * 						interface.  It cannot be null.
 	 * @return	an org.eclipse.datatools.connectivity.oda.IDriver instance.
+     * @deprecated  replaced by {@link #newDriverBridge(Object, String)}
 	 */
-	protected IDriver newDriverBridge( Object driver )
+    protected IDriver newDriverBridge( Object driver )
+    {
+        return newDriverBridge( driver, null );
+    }
+
+    /**
+     * Default implementation attemps to locate and instantiate
+     * a driver bridge for the specified driver.
+     * Subclasses may need to override this method to introduce 
+     * a wrapper layer to include additional functionality to an ODA driver or to 
+     * serve as an adapter to underlying objects that do not implement the 
+     * org.eclipse.datatools.connectivity.oda interfaces.
+     * @param driverInstance    a driver object, which may or may 
+     *                  not implement the org.eclipse.datatools.connectivity.oda.IDriver 
+     *                  interface.  It must not be null.
+     * @param driverDataSourceId  the data source element id of
+     *                  the specified driverInstance; may be null
+     *                  for API backward compatibility, in which case
+     *                  no driver bridge will be applied
+     * @return  an org.eclipse.datatools.connectivity.oda.IDriver instance.
+     */
+	protected IDriver newDriverBridge( Object driverInstance,
+                                    String driverDataSourceId )
 	{
-        // tries to locate and obtain a driver bridge for the given driver
-        IDriver bridgeDriver = newDriverBridgeExtension( driver );
-        if( bridgeDriver != null )
-            return bridgeDriver;
-                
-        // no driver bridge found for given driver's type,
-		// sub-class must override for non DTP ODA driver
-		throw new IllegalArgumentException( driver.toString() );
+        assert( driverInstance != null );
+        if( driverDataSourceId == null )
+            return null;
+        
+        // tries to locate and obtain a driver bridge extension
+        // for the specified driver
+        String driverBridgeId = getDriverBridgeId( driverInstance );
+        if( driverBridgeId == null ||
+            driverBridgeId.equalsIgnoreCase( driverDataSourceId ) )
+            return null;    // no driver bridge to apply
+
+        // its driver bridge extension is found, 
+        // applies the bridge
+        return newDriverBridgeExtension( driverInstance, driverBridgeId );
 	}
 
     /**
-     * Supports the driverBridge extension point.
-     * Looks up a driver bridge extension for the given driver,
-     * then loads and returns the bridge's driverClass to serve as
-     * the intermediate layer that this wrapper interacts with. 
+     * Looks up and returns a driver bridge extension's
+     * data source element id for the given driver.
+     * A bridge extension defined for a driver class takes precedence
+     * over those defined for a driver's interface(s).
+     * Returns null if no driver bridge extension is found.
      */
-    private IDriver newDriverBridgeExtension( Object driver )
+    private String getDriverBridgeId( Object driver )
     {
-        final String context = "OdaDriver.newDriverBridgeExtension"; //$NON-NLS-1$
-        
         assert( driver != null );
-        String driverType = null;
+        
+        // first look up bridge extension for driver class
+        String bridgeId = getDriverBridgeId( driver.getClass().getName() );        
+        if( bridgeId != null )
+            return bridgeId;    // found
+        
+        // next look up bridge extension for driver's interface(s)
         Class[] driverTypes = driver.getClass().getInterfaces();
-        if( driverTypes.length > 0 )
-            driverType = driverTypes[0].getName();
-        else
-            driverType = driver.getClass().getName();
+        for( int i = 0; i < driverTypes.length; i++ )
+        {
+            bridgeId = getDriverBridgeId( driverTypes[i].getName() );
+            if( bridgeId != null )
+                return bridgeId;    // found
+        }
+        
+        return null;    // no bridge extension found
+    }
+    
+    private String getDriverBridgeId( String driverType )
+    {
+        final String context = "OdaDriver.getDriverBridgeId( String )"; //$NON-NLS-1$
 
+        // look for bridge extension for given driver type
         ConsumerExtensionManifest manifest = null;
         try
         {
@@ -294,22 +365,86 @@ public class OdaDriver extends OdaObject
         if( manifest == null )
              return null;
         
+        return manifest.getBridgeDataSourceId();
+    }
+    
+    /**
+     * Loads the driver bridge extension with the given oda data source id, 
+     * and its corresponding bridge(s) that implement the 
+     * driverBridge extension point.
+     * Returns the driver's top-level bridge to serve as
+     * the intermediate layer that this driver wrapper interacts with. 
+     */
+    private IDriver newDriverBridgeExtension( Object driver,
+                            String driverBridgeDataSourceId )
+    {
+        final String context = "OdaDriver.newDriverBridgeExtension"; //$NON-NLS-1$
+                
+        // no driver bridge extension is specified
+        if( driverBridgeDataSourceId == null )
+             return null;
+        
         try
         {
             ExtensionManifest bridgeManifest = 
                 ManifestExplorer.getInstance().getExtensionManifest( 
-                        manifest.getBridgeDataSourceId() );
+                        driverBridgeDataSourceId );
 
-            // found driver bridge
-            if( bridgeManifest != null )    
-                return loadWrappedDriver( bridgeManifest, false );
+            // found driver bridge extension's plugin manifest
+            if( bridgeManifest != null )
+            {
+                // loads and instantiate the bridge
+                IDriver driverBridge = 
+                    loadDriverInstance( bridgeManifest, false, false );
+                setDriverBridgeContext( driverBridge, driver );
+                
+                // load the bridge's corresponding bridge, if specified
+                IDriver parentBridge = newDriverBridge( driverBridge, 
+                            bridgeManifest.getDataSourceElementID() );
+                if( parentBridge != null )
+                    driverBridge = parentBridge;
+                
+                return driverBridge;
+            }
         }
         catch( OdaException e )
         {
             logWarning( context, e.toString() );
         }
         
+        // no valid driver bridge extension is found for specified bridge data source id
         return null;
+    }
+
+    /**
+     * Passes the underlying driver to the driver bridge through a
+     * Map context.
+     * This allows the driver bridge to wrap its underlying driver.
+     */
+    private void setDriverBridgeContext( IDriver driverBridge, Object driver )
+    {
+        final String context = "OdaDriver.setDriverBridgeContext"; //$NON-NLS-1$
+
+        if( driverBridge == null || driver == null )
+            return;     // nothing to pass thru
+        
+        // store underlying driver in a map entry
+        HashMap map = new HashMap( 1 );
+        map.put( ODA_BRIDGED_DRIVER, driver );
+
+        try
+        {
+            driverBridge.setAppContext( map );
+        }
+        catch( RuntimeException e )
+        {
+            // ok to ignore if the bridge does not support setAppContext
+            logWarning( context, e.toString() );
+        }
+        catch( OdaException ex )
+        {
+            logWarning( context, ex.toString() );
+        }
     }
     
 	private IDriver getDriver()

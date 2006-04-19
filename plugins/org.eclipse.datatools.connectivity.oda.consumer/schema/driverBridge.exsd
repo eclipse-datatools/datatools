@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda.consumer" id="driverBridge" name="DTP ODA Consumer Helper Driver Bridge"/>
       </appInfo>
       <documentation>
-         This ODA consumer helper component&apos;s extension point supports the use of a custom ODA driver bridge.  An extension would specify the driver bridge that serves as an adapter to underlying data provider objects that do not implement the  org.eclipse.datatools.connectivity.oda interfaces.
+         This ODA consumer helper component&apos;s extension point supports the use of a custom ODA driver bridge.  An extension would specify a run-time driver bridge that extends the consumer helper, and/or servers as an adapter to underlying data provider objects that do not implement the org.eclipse.datatools.connectivity.oda interfaces.
       </documentation>
    </annotation>
 
@@ -52,7 +52,7 @@
          <attribute name="driverType" type="string" use="required">
             <annotation>
                <documentation>
-                  The type of an underlying data driver for which an ODA driver bridge is applied.  It can be either the interface name or class name of the driver.
+                  The type of an underlying data driver for which an ODA driver bridge is applied.  It can be either the interface name or class name of the driver.  A bridge defined for a driver class takes precedence over those defined for a driver&apos;s interface(s).
                </documentation>
             </annotation>
          </attribute>
