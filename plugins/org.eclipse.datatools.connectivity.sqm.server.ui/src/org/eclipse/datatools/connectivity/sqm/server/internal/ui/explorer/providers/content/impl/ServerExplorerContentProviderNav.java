@@ -31,6 +31,9 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToo
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.ServerExplorerViewer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerInitializer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
@@ -44,9 +47,11 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServe
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNavigationService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -55,7 +60,7 @@ import org.eclipse.swt.widgets.TreeItem;
  * @author ljulien
  */
 public class ServerExplorerContentProviderNav implements IServerExplorerContentService,
-        IServerExplorerLayoutService, IServerExplorerNavigationService
+        IServerExplorerLayoutService, IServerExplorerNavigationService, ICatalogObjectListener
 {
     private static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
     private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
@@ -70,7 +75,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
  //   private ServerExplorerConfiguration serverExplorerConfiguration = new ServerExplorerConfiguration();
     private IKnownConnectionNode knownServer;
     private IServerExplorerLayoutProviderNav layoutProvider = new ServerExplorerVirtualNodeLayoutNav(this);
-    private ServerExplorerViewer viewer;
+    private TreeViewer viewer;
     private List layoutProvidersExtensionList = new LinkedList();
     
     /**
@@ -145,7 +150,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     /**
      * @return The viewer used by the Server Explorer
      */
-    private ServerExplorerViewer getViewer ()
+    private TreeViewer getViewer ()
     {
         return this.viewer;
     }
@@ -163,16 +168,24 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
      */
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
     {
-//    	if (viewer instanceof ServerExplorerViewer && this.viewer == null)
-//    	{
-//    		this.viewer = (ServerExplorerViewer) viewer;
-//	        this.enableVirtualNodeLayout();
+    	if (viewer instanceof TreeViewer && this.viewer == null)
+    	{
+    		this.viewer = (TreeViewer) viewer;
+	        this.enableVirtualNodeLayout();
 //	        initializeServerExplorer();
 //	        initializeLayoutExtensionProviders();
-//    	}
+	        RefreshManager.getInstance().AddListener(null, this);
+    	}
     }
     
-    public boolean isServerExplorerViewer ()
+    public void notifyChanged(ICatalogObject dmElement, int eventType) {
+        if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH && viewer != null)
+        {
+        	viewer.refresh(dmElement, true);
+        }
+	}
+
+	public boolean isServerExplorerViewer ()
     {
     	return this.viewer != null;
     }
@@ -233,7 +246,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
             }
             else
             {
-                Object result = getViewer().getParent(element);
+                Object result = null; //getViewer().getParent(element);
                 result = result != null ? result : element instanceof IVirtualNode ? ((IVirtualNode) element).getParent()
                         : null;
                 result = result != null ? result : containmentService.getContainer((EObject) element);
@@ -267,6 +280,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
      */
     public void dispose()
     {
+        RefreshManager.getInstance().removeListener(null, this);
     }
 
     /**
@@ -665,12 +679,15 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
     public Object[] getServerExplorerObjectsByType(ConnectionInfo info, Class type)
     {
-        return viewer.getServerExplorerObjectsByType(info, type);
+        Database database = info.getSharedDatabase();
+        return getServerExplorerObjectsByType (database, type);
     }
 
     public Object[] getServerExplorerObjectsByType(Object parent, Class type)
     {
-        return viewer.getServerExplorerObjectsByType(parent, type);
+    	// TODO: udpate implementation
+    	//viewer.getServerExplorerObjectsByType(parent,type);
+    	return new Object[0];
     }
 
     public void expandNode(Object node, int depth)
@@ -681,7 +698,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
     public void updateSelection(ISelection selection)
     {
-        viewer.updateExplorerSelection(selection);
+        viewer.setSelection(selection,true);
     }
 
 	public void init(Object oldInput, Object newInput) {
