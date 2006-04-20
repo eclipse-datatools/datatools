@@ -148,7 +148,7 @@ public class ManagedConnection implements IManagedConnection {
 
 	/* package */void setConnection(IConnection connection) {
 		mConnection = connection;
-		if (mConnection.getConnectException() == null) {
+		if (isConnected()) {
 			ConnectEvent event = new ConnectEvent(getConnectionProfile(), this);
 			for (Iterator it = new ArrayList(mListeners).iterator(); it
 					.hasNext();) {
