@@ -823,8 +823,12 @@ public class ConnectionProfile extends PlatformObject implements
 					.size());
 			for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); it
 					.hasNext();) {
+				ManagedConnection mc = (ManagedConnection) it.next();
+				if (!mc.isConnected()) {
+					continue;
+				}
 				CloseManagedConnectionJob connectionJob = new CloseManagedConnectionJob(
-						(ManagedConnection) it.next(), this);
+						mc, this);
 				connectionJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
 				connectionJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
 				connectionJob.schedule();
