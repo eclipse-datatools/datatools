@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.14 2006/03/29 13:45:27 lchan Exp $
+ * $Id: plugin.xml,v 1.15 2006/04/05 00:03:46 lchan Exp $
  */
 -->
 
@@ -26,7 +26,6 @@
             id="%oda.data.source.id"
             name="%oda.data.source.name"
             parentCategory="%oda.parent.category.id"/>
-      <configurationType id="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"/>
       <connectionProfile
             category="%oda.data.source.id"
             configurationType="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"
