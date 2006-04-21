@@ -134,7 +134,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="configurationType" type="string" use="required">
+         <attribute name="configurationType" type="string">
             <annotation>
                <documentation>
                   The configuration type for this connection profile.  This must map back to a &lt;samp&gt;configurationType/id&lt;/samp&gt;.

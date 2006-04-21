@@ -7,11 +7,8 @@
       <category
             id="org.eclipse.datatools.connectivity.db.category"
             name="Databases"/>
-      <configurationType
-            id="org.eclipse.datatools.connectivity.db.generic.configurationType"/>
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
-            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
             icon="icons/jdbc_16.gif"
             id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
             name="SQL Model-JDBC Connection"/>
