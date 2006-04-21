@@ -37,6 +37,7 @@
             </possibleChildren>
          </navigatorContent>
       </extension>
+      
       <extension
             point="org.eclipse.ui.navigator.viewer">
          <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
@@ -44,6 +45,25 @@
                <contentExtension pattern="org.eclipse.datatools.connectivity.db.sqlModelContent"/>
             </includes>
          </viewerContentBinding>
+         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshActionProvider"/>
+            </includes>
+         </viewerActionBinding>
       </extension>  
 
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshActionProvider"
+            id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshActionProvider"
+            overrides="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
 </plugin>

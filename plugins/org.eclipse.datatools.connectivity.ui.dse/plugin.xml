@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            category="org.eclipse.datatools"
+            category="org.eclipse.datatools.connectivity"
             class="org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView"
             icon="icons/full/cview16/enterprise_explorer.gif"
             id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
@@ -13,6 +13,9 @@
       <category
             id="org.eclipse.datatools"
             name="%category.name.dataTools"/>
+      <category
+      		id="org.eclipse.datatools.connectivity"
+      		name="%category.name.connectivity"/>
    </extension>
    <extension
          point="org.eclipse.ui.viewActions">
@@ -169,25 +172,6 @@
    </extension> -->
    <extension
          point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            id="org.eclipse.datatools.connectivity.ui.dse.objectContribution1"
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
-         <action
-               enablesFor="1"
-               label="%DSE.Refresh.label"
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshViewAction"
-               menubarPath="slot3"
-               id="org.eclipse.datatools.connectivity.ui.actions.refreshviewaction"/>
-         <visibility>
-		    	<or>
-		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
-			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
-		      	</or>
-         </visibility>
-      </objectContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.popupMenus">
          <objectContribution 
              id="org.eclipse.datatools.connectivity.ui.dse.objectContribution2"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
@@ -277,7 +261,15 @@
             id="org.eclipse.datatools.connectivity.dsexplorer.content"
             labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
             name="%DSE.content"
-            priority="normal">
+            priority="normal"
+            sibling_order="org.eclipse.pde.internal.core.text.plugin.PluginElementNode@1a60920">
+<!--         <actionProvider
+               class="org.eclipse.datatools.connectivity.ui.dse.actions.SlotsActionProvider"
+               id="org.eclipse.datatools.connectivity.ui.dse.actions.SlotsActionProvider">
+            <enablement>
+               <instanceof value="java.lang.Object"/>
+            </enablement>
+         </actionProvider> -->
          <actionProvider
                class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
                id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
@@ -303,8 +295,21 @@
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
-            popupMenuId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu"
-            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>
+            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <popupMenu
+               allowsPlatformContributions="true"
+               id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+            <insertionPoint
+                  name="slot1"
+                  separator="true"/>
+            <insertionPoint
+                  name="slot2"
+                  separator="true"/>
+            <insertionPoint
+                  name="slot3"
+                  separator="true"/>
+         </popupMenu>
+      </viewer>
       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
          <includes>
             <contentExtension
@@ -312,5 +317,20 @@
                   pattern="org.eclipse.datatools.connectivity.dsexplorer.content"/>
          </includes>
       </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <actionExtension pattern="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider"
+            id="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+         <enablement>
+            <instanceof value="java.lang.Object"/>
+         </enablement>
+      </actionProvider>
    </extension>
 </plugin>

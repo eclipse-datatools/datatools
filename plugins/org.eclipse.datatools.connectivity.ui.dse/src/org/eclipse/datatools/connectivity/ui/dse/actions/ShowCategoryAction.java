@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.internal.navigator.NavigatorContentService;
+import org.eclipse.ui.internal.navigator.extensions.SafeDelegateTreeContentProvider;
 import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
@@ -83,7 +84,14 @@ public class ShowCategoryAction implements IViewActionDelegate {
 					ncs.findRootContentProviders(currentInput);
 				if (providers != null && providers.length > 0) {
 					for (int i = 0; i < providers.length; i++) {
-						ITreeContentProvider ncp = (ITreeContentProvider) providers[i];
+						ITreeContentProvider ncp = null;
+						if (providers[i] instanceof SafeDelegateTreeContentProvider) {
+							SafeDelegateTreeContentProvider sdtcp = (SafeDelegateTreeContentProvider) providers[i];
+							ncp = sdtcp.getDelegateContentProvider();
+						}
+						else {
+							ncp = (ITreeContentProvider) providers[i];
+						}
 						if (ncp instanceof ConnectionProfileContentProvider ) {
 							ConnectionProfileContentProvider provider =
 								(ConnectionProfileContentProvider) ncp;
