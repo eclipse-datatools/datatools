@@ -10,17 +10,13 @@
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
             icon="icons/jdbc_16.gif"
+            pingFactory="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
             name="SQL Model-JDBC Connection"/>
       <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="java.sql.Connection"
             name="JDBC Connection"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
-      <connectionFactory
-            class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
-            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
-            name="Ping Connection Factory"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
    

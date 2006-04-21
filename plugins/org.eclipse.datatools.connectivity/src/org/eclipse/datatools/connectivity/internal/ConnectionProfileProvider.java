@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
@@ -45,6 +46,8 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	public static final String ATTR_CONFIGURATION_TYPE = "configurationType"; //$NON-NLS-1$
 
 	public static final String ATTR_MAINTAINCONNECTION = "maintainConnection"; //$NON-NLS-1$
+
+	public static final String ATTR_PING_FACTORY = "pingFactory"; //$NON-NLS-1$
 
 	private static final String IMG_OBJ_SERVER_DEFAULT = "org.eclipse.datatools.connectivity.ui.server_default_obj.gif"; //$NON-NLS-1$
 
@@ -203,6 +206,10 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 			mMaintainConnection = new Boolean(element
 					.getAttribute(ATTR_MAINTAINCONNECTION)).booleanValue();
 		}
+		if (element.getAttribute(ATTR_PING_FACTORY) != null) {
+			ConnectionFactoryProvider cfp = new ConnectionFactoryProvider(element,ConnectionProfileConstants.PING_FACTORY_ID,getId(),ATTR_PING_FACTORY);
+			mConnectionFactories.put(ConnectionProfileConstants.PING_FACTORY_ID, cfp);
+		}
 
 		// Don't do this until we need it.
 		// processIconAttr();
@@ -212,7 +219,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 		String iconAttr = mElement.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
 			URL url = Platform.getBundle(
-					mElement.getDeclaringExtension().getNamespace()).getEntry(
+					mElement.getContributor().getName()).getEntry(
 					iconAttr);
 			ImageDescriptor icon = ImageDescriptor.createFromURL(url);
 			getImageRegistry().put(mId, icon);

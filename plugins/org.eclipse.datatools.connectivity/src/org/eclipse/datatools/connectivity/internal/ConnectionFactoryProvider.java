@@ -12,7 +12,6 @@ package org.eclipse.datatools.connectivity.internal;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactory;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
@@ -41,6 +40,8 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 	private String mName;
 
 	private String mProfile;
+	
+	private String mClassAttr;
 
 	private IConnectionFactory mFactory;
 
@@ -49,6 +50,14 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 	public ConnectionFactoryProvider(IConfigurationElement element) {
 		super();
 		init(element);
+	}
+	
+	public ConnectionFactoryProvider(IConfigurationElement element, String factoryID, String profileID, String classAttr) {
+		super();
+		mElement = element;
+		mId = factoryID;
+		mProfile = profileID;
+		mClassAttr = classAttr;
 	}
 
 	/*
@@ -114,6 +123,7 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 		mId = element.getAttribute(ATTR_ID);
 		mName = element.getAttribute(ATTR_NAME);
 		mProfile = element.getAttribute(ATTR_PROFILE);
+		mClassAttr = ATTR_CLASS;
 	}
 
 	public Class getConnectionFactoryClass() {
@@ -128,19 +138,18 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 		ISafeRunnable code = new SafeRunnable(ConnectivityPlugin.getDefault()
 				.getResourceString(
 						"dialog.title.error.loadconnectionfactory", //$NON-NLS-1$
-						new Object[] { mElement.getDeclaringExtension()
-								.getNamespace()})) {
+						new Object[] { mElement.getContributor().getName()})) {
 
 			/*
 			 * @see org.eclipse.core.runtime.ISafeRunnable#run()
 			 */
 			public void run() throws Exception {
 				result[0] = (IConnectionFactory) mElement
-						.createExecutableExtension(ATTR_CLASS);
+						.createExecutableExtension(mClassAttr);
 			}
 
 		};
-		Platform.run(code);
+		SafeRunnable.run(code);
 		mFactory = result[0];
 	}
 

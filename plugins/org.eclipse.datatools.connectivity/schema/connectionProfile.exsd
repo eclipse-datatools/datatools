@@ -158,6 +158,16 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="pingFactory" type="string">
+            <annotation>
+               <documentation>
+                  Connection factory used to implement &quot;ping&quot; functionality.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.IConnectionFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
