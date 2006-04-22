@@ -16,7 +16,10 @@ package org.eclipse.datatools.connectivity.oda.design.ui.pages.impl;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -51,6 +54,11 @@ public class DefaultDataSourcePropertyPage extends DataSourceEditorPage
         return m_pageHelper.collectCustomProperties( profileProps );
     }
 
+    DataSourceDesign getCurrentDataSource()
+    {
+    	 return getEditingDataSource();
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ui.profile.wizards.DataSourceEditorPage#createAndInitCustomControl(org.eclipse.swt.widgets.Composite, java.util.Properties)
      */
@@ -65,9 +73,14 @@ public class DefaultDataSourcePropertyPage extends DataSourceEditorPage
         }
         catch( OdaException e )
         {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        	ExceptionHandler.showException( getControl().getShell(), 
+            	Messages.ui_errorLabel, 
+            	Messages.ui_errorCreatingCustomCtrls, 
+            	e );
+        	
+        	return;
         }
+        
         m_pageHelper.initCustomControl( profileProps );
     }
     

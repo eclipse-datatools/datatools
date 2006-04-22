@@ -14,20 +14,35 @@
 
 package org.eclipse.datatools.connectivity.oda.design.ui.pages.impl;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
+import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
 import org.eclipse.datatools.connectivity.oda.util.manifest.PropertyChoice;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -39,38 +54,71 @@ import org.eclipse.swt.widgets.Text;
 public class DefaultDataSourcePageHelper
 {
     public static final String DEFAULT_MESSAGE = Messages.ui_defaultDataSourceTitle;
-    public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    public static final String COLON_CHAR = ":"; //$NON-NLS-1$
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+    private static final String COLON_CHAR = ":"; //$NON-NLS-1$
+    private static final String REQUIRED_FIELD_SYMBOL = " *"; //$NON-NLS-1$
 
     private DefaultDataSourceWizardPage m_wizardPage = null;
     private DefaultDataSourcePropertyPage m_propertyPage = null;
     private transient Control m_propCtrls[] = null;
     private ExtensionManifest m_manifest = null;
-    private Property[] m_dataSourceProps = null;
-    private Properties m_dataSourcePropsVisibility = null;
+    private Property[] m_dataSourceManifestProps = null;
+    private Properties m_dataSourceManifestPropsVisibility = null;
+    private org.eclipse.datatools.connectivity.oda.design.Properties
+    	m_dataSourceDesignProps = null;
+    private ArrayList m_orderedPropNameList = null;
     
     protected DefaultDataSourcePageHelper( DefaultDataSourceWizardPage page )
     {
+    	assert( page != null );
         m_wizardPage = page;
         init();
     }
 
     protected DefaultDataSourcePageHelper( DefaultDataSourcePropertyPage page )
     {
+    	assert( page != null );
         m_propertyPage = page;
         init();
+        
+        // Get the current editing data source design.
+    	DataSourceDesign dataSourceDesign = m_propertyPage.getCurrentDataSource();
+    	
+    	// Get the data source design public properties.
+    	if ( dataSourceDesign != null )
+    		m_dataSourceDesignProps = dataSourceDesign.getPublicProperties();
     }
     
     private void init()
     {
-        m_dataSourceProps = getManifest().getProperties();
-        m_dataSourcePropsVisibility = getManifest().getPropertiesVisibility();        
+        m_dataSourceManifestProps = getManifest().getProperties();
+        m_dataSourceManifestPropsVisibility = getManifest().getPropertiesVisibility();    
     }
     
     protected void createCustomControl( Composite parent ) throws OdaException
     {
-        Composite content = new Composite( parent, SWT.NULL );
-        setupPropFields( content, m_dataSourceProps );
+    	// Create a ScrolledComposite as the child of the parent wizard page.
+    	final ScrolledComposite scrolledComposite = new ScrolledComposite( parent, SWT.V_SCROLL | SWT.BORDER );
+    	scrolledComposite.setExpandVertical( true );
+    	scrolledComposite.setExpandHorizontal( true );
+    	
+    	// Create a Composite with the ScrolledComposite as the parent.
+    	final Composite content = new Composite( scrolledComposite, SWT.NONE );
+    	scrolledComposite.setContent( content );
+    	
+    	// Set up control listener to monitor the resizing of the properties pane.
+    	scrolledComposite.addControlListener( 
+    			new ControlAdapter() 
+    			{
+    				public void controlResized( ControlEvent e ) 
+    				{
+    					Rectangle r = scrolledComposite.getClientArea();
+    					scrolledComposite.setMinSize( content.computeSize( r.width, SWT.DEFAULT ));
+    				}
+    			});
+
+    	// Set up the property field controls.
+        setupPropFields( content );
     }
     
     protected Properties collectCustomProperties( Properties props )
@@ -78,7 +126,7 @@ public class DefaultDataSourcePageHelper
         if( props == null )
             props = new Properties();
         
-        for( int i = 0 ; i < m_dataSourceProps.length; i++ )
+        for( int i = 0 ; i < getPropCount(); i++ )
         {
             String propVal = EMPTY_STRING;
             
@@ -86,8 +134,16 @@ public class DefaultDataSourcePageHelper
                 propVal = ( ( Text ) m_propCtrls[ i ] ).getText();
             else if ( m_propCtrls[ i ] instanceof Combo )
             {
-            	int index = ( ( Combo ) m_propCtrls[ i ] ).getSelectionIndex();
-            	propVal = m_dataSourceProps[ i ].getChoices()[ index ].getName();
+            	int selectionIndex = ( ( Combo ) m_propCtrls[ i ] ).getSelectionIndex();
+            	if ( selectionIndex != -1 )
+            	{
+            		propVal = getPropChoiceSelection( i , selectionIndex );
+            	}
+            	else
+            	{
+            		assert( false );
+            		propVal = EMPTY_STRING;            		
+            	}
             }
             else if ( m_propCtrls[ i ] == null )
             {
@@ -95,7 +151,7 @@ public class DefaultDataSourcePageHelper
                 // return the default value.  Notice that if the property
             	// is a choice, the propVal will be the choice's name, not 
             	// the choice value.
-                propVal = m_dataSourceProps[ i ].getDefaultValue();
+                propVal = getPropDefaultValue( i );
             }
             else
                 assert( false );
@@ -103,131 +159,780 @@ public class DefaultDataSourcePageHelper
             if ( propVal == null )
                 propVal = EMPTY_STRING;
             
-            props.setProperty( m_dataSourceProps[ i ].getName(), propVal );
+            props.setProperty( getPropName( i ), propVal );
         }
         
         return props;
     }
     
+    protected int getPropCount()
+    {
+    	return getOrderedPropNameList().size();    		
+    }
+    
+    protected String getPropGroupName( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	return getManifestPropGroupName( propName );
+    }
+    
+    protected String getPropChoiceSelection( int propIndex, int choiceIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// First, attempt to read the choices from the existing data source design.
+    	String choiceName = getDesignPropChoiceSelection( propName, choiceIndex );
+    	if ( choiceName != null )
+    		return choiceName;
+    	
+    	// Otherwise, try look up from the manifest.
+    	return getManifestPropChoiceSelection( propName, choiceIndex );
+    }
+    
+   
+    protected String getPropName( int propIndex )
+    {
+    	return ( String ) getOrderedPropNameList().get( propIndex );
+    }
+
+    protected String getPropDisplayName( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// Get display name from data source design
+    	String displayName = getDesignPropDisplayName( propName );
+    	
+    	// If the value exists, return it.
+    	if ( displayName != null )
+    		return displayName;
+    	
+    	// Otherwise, return the display name found from the manifest property.
+    	return getManifestPropDisplayName( propName );
+    }
+    
+    protected String getPropDefaultValue( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// Get default value from Data Source Design.
+    	String defaultVal = getDesignPropDefaultValue( propName );
+    	
+    	// If the value exists, return it.
+    	if ( defaultVal != null )
+    		return defaultVal;
+
+    	// Otherwise, return the default value found from the manifest property.
+        return getManifestPropDefaultValue( propName );
+    }
+    
+    protected Boolean isPropHidden( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// The attribute of whether the attribute is hidden is
+    	// only available in the manifest, but not in the data source design.
+    	return isManifestPropHidden( propName );
+    }
+    
+    protected boolean isPropRequired( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// Look up the required/optional property info from the 
+    	// existing data source design.
+    	Boolean boolObj = isDesignPropRequired( propName );
+    	if ( boolObj != null )
+    		return ( boolObj.booleanValue() == false );
+
+    	// Otherwise, by default we return false.
+		// Currently we don't have any information about required field
+		// in the manifest.
+    	return false;
+    }
+    
+    protected Boolean isPropReadOnly( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// Get Editable property from the existing Data Source Design.
+    	Boolean isEditable = isDesignPropReadOnly( propName );
+    	
+    	// If value exists, return the information.
+    	if ( isEditable != null )
+    		return isEditable;
+    	
+    	// Otherwise, return the value from the manifest property.
+    	return isManifestPropReadOnly( propName );
+    }
+    
+    protected Boolean isPropEncryptable( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	// Get Encryptable value from the existing data source design.
+    	Boolean isEncryptable = isDesignPropEncryptable( propName );
+    	
+    	// If value exists, return it.
+    	if ( isEncryptable != null )
+    		return isEncryptable;
+    	
+    	// Otherwise, return the value obtained from the manifest property.
+    	return isManifestPropEncryptable( propName );
+    }
+    
+    protected ArrayList getPropChoices( int propIndex )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    
+    	// Get choice label list from the existing data source design.
+    	ArrayList choiceLabelList = getDesignPropChoiceLabels( propName );
+    	
+    	// If exists, use it.
+    	if ( choiceLabelList != null && choiceLabelList.size() > 0 )
+    		return choiceLabelList;
+    	
+    	// Otherwise, get choice label list from the manifest property.
+    	return getManifestPropChoiceLabels( propName );
+    }
+    
+    protected Integer findPropChoiceIndex( int propIndex, String propVal )
+    {
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	Integer choiceIndex = findDesignPropChoiceIndex( propName, propVal );
+    	if ( choiceIndex != null )
+    		return choiceIndex;
+    	
+    	return findManifestPropChoiceIndex( propName, propVal );
+    }
+    
+    protected org.eclipse.datatools.connectivity.oda.design.Property
+	getDesignProperty( String propName )
+	{
+    	if ( m_dataSourceDesignProps == null )
+    		return null;
+    	
+		return m_dataSourceDesignProps.findProperty( propName );
+	}
+    
+    protected String getDesignPropDisplayName( String propName )
+    {
+    	PropertyAttributes propAttrs = getDesignPropDesignAttrs( propName );
+    	if ( propAttrs == null )
+    		return null;
+    	
+    	return propAttrs.getDisplayName();
+    }
+    
+    protected PropertyAttributes getDesignPropDesignAttrs( String propName )
+    {
+    	org.eclipse.datatools.connectivity.oda.design.Property prop = 
+    		getDesignProperty( propName );
+    	if ( prop == null )
+    		return null;    	
+    	
+    	return prop.getDesignAttributes();
+    }
+    
+    protected InputElementAttributes getDesignPropElementAttrs( String propName )
+    {
+    	PropertyAttributes propAttrs = getDesignPropDesignAttrs( propName );
+    	if ( propAttrs == null )
+    		return null;
+    	
+    	return propAttrs.getElementAttributes();
+    }
+
+    protected String getDesignPropDefaultValue( String propName )
+    {
+    	InputElementAttributes inputElemAttrs = getDesignPropElementAttrs( propName );
+    	if ( inputElemAttrs == null )
+    		return null;
+    	
+    	return inputElemAttrs.getDefaultScalarValue();
+    }
+    
+    protected Boolean isDesignPropReadOnly( String propName )
+    {
+    	InputElementAttributes inputElemAttrs = getDesignPropElementAttrs( propName );
+    	if ( inputElemAttrs == null )
+    		return null;
+    	
+    	if ( inputElemAttrs.isSetEditable() )
+    		return new Boolean( inputElemAttrs.isEditable() == false );
+    	
+    	return null;
+    }
+    
+    protected Boolean isDesignPropRequired( String propName )
+    {
+    	InputElementAttributes inputElemAttrs = getDesignPropElementAttrs( propName );
+    	if ( inputElemAttrs == null )
+    		return null;
+    	
+    	if ( inputElemAttrs.isSetOptional() )
+    		return new Boolean( inputElemAttrs.isOptional() );
+    	
+    	return null;
+    }
+    
+    protected Boolean isDesignPropEncryptable( String propName )
+    {
+    	InputElementAttributes inputElemAttrs = getDesignPropElementAttrs( propName );
+    	if ( inputElemAttrs == null )
+    		return null;
+    	
+    	if ( inputElemAttrs.isSetMasksValue() )
+    		return new Boolean( inputElemAttrs.isMasksValue() );
+    	
+    	return null;
+    }
+    
+    protected EList getDesignPropChoices( String propName )
+    {
+    	InputElementAttributes inputElemAttrs = getDesignPropElementAttrs( propName );
+    	if ( inputElemAttrs == null )
+    		return null;
+    	
+    	ScalarValueChoices scalarValueChoices = inputElemAttrs.getStaticValueChoices();
+    	if ( scalarValueChoices == null )
+    		return null;
+    	
+    	return scalarValueChoices.getScalarValues();    	
+    }
+    
+    protected ArrayList getDesignPropChoiceLabels( String propName ) 
+    {
+    	// Look up the choice list from the existing data source design.
+    	EList choiceList = getDesignPropChoices( propName );
+    	if ( choiceList == null || choiceList.size() == 0 )
+    		return null;
+    	
+    	ArrayList choiceLabelList = new ArrayList();
+    	for( int i = 0; i < choiceList.size(); i++ )
+    	{
+    		ScalarValueDefinition scalarValueDefn = 
+    			( ( ScalarValueDefinition ) choiceList.get( i ) );
+    		
+    		// Use the display name as label.
+    		String label = scalarValueDefn.getDisplayName();
+    		
+    		// If display name is empty, use the value.
+    		if ( isEmpty( label ) )
+    			label = scalarValueDefn.getValue();
+    		
+    		choiceLabelList.add( label );
+    	}
+    	
+    	return choiceLabelList;
+    }
+    
+    protected String getDesignPropChoiceSelection( String propName, int choiceIndex )
+    {
+    	EList choiceList = getDesignPropChoices( propName );
+    	if ( choiceList == null || choiceList.size() == 0 )
+    		return null;
+    	
+   		ScalarValueDefinition scalarValueDefn = 
+   			( ( ScalarValueDefinition ) choiceList.get( choiceIndex ) );
+    	
+   		assert( scalarValueDefn != null );
+   		return scalarValueDefn.getValue();
+    }
+    
+    protected Integer findDesignPropChoiceIndex( String propName, String propVal )
+    {
+    	// Try obtain the choice labe list from the existing data source design.
+    	EList choiceList = getDesignPropChoices( propName );
+    	if ( choiceList == null || choiceList.size() == 0 )
+    		return null;
+
+    	for( int i = 0; i < choiceList.size(); i++ )
+    	{
+    		ScalarValueDefinition scalarValueDefn = 
+    			( ( ScalarValueDefinition ) choiceList.get( i ) );
+    		
+    		if ( propVal.equals( scalarValueDefn.getValue() ) )
+    			return new Integer( i );
+    	}
+    	
+    	return new Integer( -1 );
+    }
+    
+    protected void validatePropertyFields()
+    {
+        for( int i = 0 ; i < getPropCount(); i++ )
+        {
+            String propVal = null;
+            
+            if ( m_propCtrls[ i ] instanceof Text )
+                propVal = ( ( Text ) m_propCtrls[ i ] ).getText();
+            else if ( m_propCtrls[ i ] instanceof Combo )
+            {
+            	int index = ( ( Combo ) m_propCtrls[ i ] ).getSelectionIndex();
+            	if ( index == -1 )
+            		propVal = EMPTY_STRING;
+            	else
+            		propVal = getPropChoiceSelection( i , index );
+            }
+            else if ( m_propCtrls[ i ] == null )
+            {
+                // The property is hidden from the user.  Therefore, just 
+                // return the default value.  Notice that if the property
+            	// is a choice, the propVal will be the choice's name, not 
+            	// the choice value.
+                propVal = getPropDefaultValue( i );
+            }
+            else
+                assert( false );
+            
+            if ( isPropRequired( i ) && isEmpty( propVal ) )
+            {
+                setMessage( Messages.ui_requiredFieldsMissingValue, 
+                		IMessageProvider.WARNING ); //$NON-NLS-1$
+                return;
+            }
+        }
+        
+        // If the code reaches here, all the required fields are non-empty.
+        setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
+    }
+    
     protected void initCustomControl( Properties profileProps )
     {
-        for( int i = 0; i < m_dataSourceProps.length ; i++ )
+        for( int i = 0; i < getPropCount(); i++ )
         {
             String propVal = EMPTY_STRING;
             
             if ( profileProps != null )
-            {
-                propVal = profileProps.getProperty( m_dataSourceProps[ i ].getName() );    
-                assert( propVal != null );
-            }
+                propVal = profileProps.getProperty( getPropName( i ) );    
             
-            setPropertyControlValue( m_propCtrls[ i ], m_dataSourceProps[ i ], propVal );
+            setPropertyControlValue( i, propVal );
         }
+        
+        validatePropertyFields();
     }
 
-    protected void setupPropFields( Composite composite, Property[] props )
+    protected ArrayList getOrderedPropNameList()
+    {
+    	// Check if we already have the ordered prop name list.
+    	if ( m_orderedPropNameList != null )
+    	{
+    		// If the ordered prop name list has already been prepared,
+    		// just return it.
+    		return m_orderedPropNameList;
+    	}
+
+    	// Form a list of ordered prop names.  This list keeps track
+    	// of the actually ordering of the props while being
+    	// displayed in the GUI.
+    	ArrayList orderedPropNameList = new ArrayList();
+
+    	// There are two cases:
+    	// (1) If data source design exists, its public props takes precedence
+    	//     over the manifest props.  The props will be displayed as follows:
+    	//     - If there are props that exist in the data source design 
+    	//       but not in the manifest, they will be displayed first.
+    	//     - Then the props which are common to the data source design
+    	//       and the manifest will be displayed.
+    	// (2) If the data source design does not exist, the manifest props 
+    	//     will be used.
+    	
+    	if ( m_dataSourceDesignProps != null )
+    	{
+        	// First, we loop through all the data source design public 
+        	// props.  Add the ones that aren't existing in the manifest to the
+        	// ordered prop name list.  We choose to display them first.
+    		EList propList = m_dataSourceDesignProps.getProperties();
+    		for( int i = 0; i < propList.size(); i++ )
+    		{
+    			org.eclipse.datatools.connectivity.oda.design.Property prop
+    				= ( org.eclipse.datatools.connectivity.oda.design.Property ) propList.get( i );
+    			if ( getManifestProp( prop.getName() ) == null )
+    			{
+    				// This prop only exists in the data source design.
+    				// add it to the ordered name list.
+    				orderedPropNameList.add( prop.getName() );
+    			}
+    		}
+    		
+        	// Then we loop through all the manifest props and find the 
+        	// common ones among the data source props.  Add them to the 
+    		// ordered prop name list.  Notice that the loop is approached
+    		// from the manifest properties' side because only
+    		// the manifest props has grouping information and that 
+    		// needs to be preserved.
+    		for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+    		{
+    			Property prop = m_dataSourceManifestProps[ i ];
+    			if ( getDesignProperty( prop.getName() ) != null )
+    			{
+    				orderedPropNameList.add( prop.getName() );    				
+    			}
+    		}
+    	}
+    	else
+    	{
+    		// Data Source Design does not exist.  We just use all
+    		// the props in the manifest.
+    		for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+    		{
+    			Property prop = m_dataSourceManifestProps[ i ];
+    			assert( prop != null );
+   				orderedPropNameList.add( prop.getName() );    				
+    		}    		
+    	}
+    	
+    	return orderedPropNameList;
+    }
+    
+    protected void setupPropFields( Composite composite )
     {
         GridLayout layout = new GridLayout( );
         
         layout.numColumns = 5;
         composite.setLayout( layout );
         
-        m_propCtrls = new Control[ props.length ];
+        m_propCtrls = new Control[ getPropCount() ];
         
-        for( int i = 0; i < props.length; i++)
+        String curGroupName = null;
+        Composite curCtrlParent = null;
+        
+        for( int i = 0; i < getPropCount(); i++ )
         {
+        	Boolean isHidden = isPropHidden( i );
+        	
             // If the property is hidden, move on to the next prop.
-            if ( isPropHidden( props[ i ] ) )
+        	if ( isHidden != null && isHidden.booleanValue() )
                 continue;
             
-            // Set up the label.
-            createPropertyLabel( composite, props[ i ] );
-
-            // Set up the control for specifying the value.
-            m_propCtrls[ i ] = createPropertyControl( composite, props[ i ] );
-
-            // Set the location of the control.
-            GridData data = new GridData( GridData.FILL_HORIZONTAL );
-            data.horizontalSpan = 4;
-            m_propCtrls[ i ].setLayoutData( data );
+            String propGroupName = getPropGroupName( i );
+            
+            if ( isEmpty( propGroupName ) )
+            {
+            	curCtrlParent = composite;
+            	curGroupName = null;
+            }
+            else
+            {
+            	// This property belongs to a group.  See if this is 
+            	// a new group or an existing group.
+            	if ( haveSameGroup( propGroupName, curGroupName ) == false )
+            	{
+            		String propName = getPropName( i );
+            		assert( propName != null );
+            		
+            		curCtrlParent = createGroupControl( composite, 
+            				getManifestPropGroupDisplayName( propName ) );
+            		
+                    // Set the location of the group control.
+                    GridData data = new GridData( GridData.FILL_HORIZONTAL );
+                    data.horizontalSpan = 5;
+                    curCtrlParent.setLayoutData( data );   
+                    
+            		curGroupName = propGroupName;
+            	}
+            }
+            
+            // Create property label and control.
+            setUpPropertyLabelAndControl( curCtrlParent, i );
         }
         
         setPageComplete( true );
     }
 
-    protected boolean isPropHidden( Property prop )
+    protected void setUpPropertyLabelAndControl( Composite parent, int propIndex )
     {
-        return ( prop.isVisible( m_dataSourcePropsVisibility ) == false ) ;
+    	assert( parent != null );
+    	
+        // Set up the label.
+        createPropertyLabel( parent, propIndex );
+
+        // Set up the control for specifying the value.
+        m_propCtrls[ propIndex ] = createPropertyControl( parent, propIndex );
+
+        // Set the location of the control.
+        GridData data = new GridData( GridData.FILL_HORIZONTAL );
+        data.horizontalSpan = 4;
+        m_propCtrls[ propIndex ].setLayoutData( data );    	
     }
     
-    protected boolean isPropReadOnly( Property prop )
+    protected Group createGroupControl( Composite parent, String groupName )
     {
-        return ( prop.isEditable( m_dataSourcePropsVisibility ) == false ) ;
-    }
-    
-    protected void createPropertyLabel( Composite composite, Property prop )
-    {
-        Label label = new Label( composite, SWT.NONE );
-        String displayName = prop.getDisplayName();
+		Group groupCtrl = new Group( parent, SWT.NULL);
+		groupCtrl.setLayout( new GridLayout() );
+		groupCtrl.setText( groupName );
+		
+        GridLayout layout = new GridLayout( );
         
-        if ( displayName == null || displayName.length() == 0 )
-            displayName = prop.getName();
-        
-        label.setText( displayName + COLON_CHAR );
+        layout.numColumns = 5;
+        groupCtrl.setLayout( layout );
+		
+		return groupCtrl;
     }
     
-    protected Control createPropertyControl( Composite composite, Property prop )
+    protected boolean isEmpty( String name )
+    {
+    	return ( name == null || name.length() == 0 );
+    }
+    
+    protected boolean haveSameGroup( String propGroupName, String curGroupName )
+    {
+    	if ( isEmpty( propGroupName ) != isEmpty( curGroupName ) )
+    		return false;
+    	
+    	if ( isEmpty( propGroupName ) && isEmpty( curGroupName ) )
+    		return true;
+    	
+    	return ( propGroupName.equals( curGroupName ) );
+    }
+
+    protected Property getManifestProp( String propName )
+    {
+    	for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+    	{
+    		if ( m_dataSourceManifestProps[ i ].getName().equals( propName ) )
+    			return m_dataSourceManifestProps[ i ];
+    	}
+    	
+    	return null;
+    }
+    
+    protected String getManifestPropDefaultValue( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	return prop.getDefaultValue();
+    }
+    
+    protected String getManifestPropDisplayName( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	return prop.getDisplayName();
+    }
+    
+    protected String getManifestPropGroupName( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	return prop.getGroupName();
+    }
+    
+    protected String getManifestPropGroupDisplayName( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	return prop.getGroupDisplayName();
+    }
+    
+    protected String getManifestPropChoiceSelection( String propName, int choiceIndex )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	PropertyChoice[] choices = prop.getChoices();
+    	PropertyChoice choice = choices[ choiceIndex ];
+    	assert( choice != null );
+    	return choice.getName();    	
+    }
+
+    protected Boolean isManifestPropHidden( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	boolean boolVal = 
+    		( prop.isVisible( m_dataSourceManifestPropsVisibility ) == false );
+    	
+        return new Boolean( boolVal );
+    }
+    
+    protected Boolean isManifestPropReadOnly( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	boolean boolVal = 
+    		( prop.isEditable( m_dataSourceManifestPropsVisibility ) == false ) ;
+    	
+    	return new Boolean( boolVal );
+    }
+    
+    protected Boolean isManifestPropEncryptable( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+
+    	return new Boolean( prop.isEncryptable() );
+    }
+
+    protected PropertyChoice[] getManifestPropChoices( String propName )
+    {
+    	Property prop = getManifestProp( propName );
+    	if ( prop == null )
+    		return null;
+    	
+    	return prop.getChoices();    	
+    }
+    
+    protected Integer findManifestPropChoiceIndex( String propName, String propVal )
+    {
+    	PropertyChoice[] choices = getManifestPropChoices( propName );
+    	if ( choices == null || choices.length == 0 )
+    		return null;
+    	
+    	for( int j = 0; j < choices.length; j++ )
+    	{
+   			// Compare the manifest choice name with the prop value.
+   			if ( choices[ j ].getName().equals( propVal ) )
+   				return new Integer( j );
+   		}
+
+    	return new Integer( -1 );    	
+    }
+    
+    protected ArrayList getManifestPropChoiceLabels( String propName )
+    {
+    	PropertyChoice[] choices = getManifestPropChoices( propName );
+    	if ( choices == null || choices.length == 0 )
+    		return null;
+    	
+    	ArrayList choiceLabelList = new ArrayList();
+    	for( int j = 0; j < choices.length; j++ )
+    	{
+    		// We first try use the display name as the label.
+    		String label = choices[ j ].getDisplayName();
+    		
+    		// Make sure label is not empty.
+    		if ( isEmpty( label ) )
+    		{
+    			// If empty, use the name instead.  Name must be non-empty.
+    			label = choices[ j ].getName();
+    		}
+    		
+    		choiceLabelList.add( label );
+    	}
+    	
+    	return choiceLabelList;
+    }
+    
+
+
+    protected void createPropertyLabel( Composite composite, int propIndex )
+    {
+        Label labelCtrl = new Label( composite, SWT.NONE );
+        String displayName = getPropDisplayName( propIndex );
+        
+        if ( isEmpty( displayName ) )
+            displayName = getPropName( propIndex );
+        
+        String displayText = displayName + COLON_CHAR;
+        if ( isPropRequired( propIndex ) )
+        	displayText += REQUIRED_FIELD_SYMBOL;
+        
+        labelCtrl.setText( displayText );
+    }
+    
+    protected Control createPropertyControl( Composite composite, int propIndex )
     {
         Control propCtrl = null;
         
         int style =  SWT.BORDER;
 
-        PropertyChoice[] choices = prop.getChoices();
-        if ( choices != null && choices.length > 0 )
+        ArrayList choiceLabelList = getPropChoices( propIndex );
+        if ( choiceLabelList != null && choiceLabelList.size() > 0 )
         {
-            if ( isPropReadOnly( prop ) )
-            {
-                // Since SWT.READ_ONLY combobox still allows the user to change
-                // the selection, we opt to use text box here instead.
-                propCtrl = new Text( composite, style | SWT.READ_ONLY );
-            }
-            else
-            {
-                // Use read-only style for combo means that the display text is 
-                // not editable.  The selection can still be changed.
-                Combo choiceCombo = new Combo( composite, 
-                        style | SWT.DROP_DOWN | SWT.READ_ONLY );
+            // Use read-only style for combo means that the display text is 
+            // not editable.  The selection can still be changed.
+            Combo choiceCombo = new Combo( composite, 
+                    style | SWT.DROP_DOWN | SWT.READ_ONLY );
             
-                for( int j = 0; j < choices.length; j++ )
-                {
-                    String choiceDisplayName = choices[ j ].getDisplayName();
-                    if ( choiceDisplayName != null && choiceDisplayName.length() != 0 )
-                        choiceCombo.add( choiceDisplayName );
-                    else
-                        choiceCombo.add( choices[ j ].getName() );
-                }
-            
-                propCtrl = choiceCombo;
+            for( int j = 0; j < choiceLabelList.size(); j++ )
+            {
+             	String label = ( String ) choiceLabelList.get( j );
+                	
+               	// Choice label must not be empty.
+               	assert( ! isEmpty( label ) );
+                choiceCombo.add( label );
             }
+
+            // Disable the control if it is read only.
+            Boolean isReadOnly = isPropReadOnly( propIndex );
+           	choiceCombo.setEnabled( isReadOnly != null && isReadOnly.booleanValue() == false );
+           	
+            propCtrl = choiceCombo;
         }
         else
         {
             // Since there are currently only two types:  string or choices,
             // if it is not choices then it must be string.
-            style |= ( isPropReadOnly( prop ) ? SWT.READ_ONLY : 0 );
-            style |= ( prop.isEncryptable() ? SWT.PASSWORD : 0 );
+        	Boolean isReadOnly = isPropReadOnly( propIndex );
+            if ( isReadOnly != null && isReadOnly.booleanValue() )
+            	style |= SWT.READ_ONLY;
+            
+            Boolean isEncryptable = isPropEncryptable( propIndex );
+            if ( isEncryptable != null && isEncryptable.booleanValue() )
+            	style |= SWT.PASSWORD;
                 
             Text textCtrl = new Text( composite, style | SWT.SINGLE );
                 
             propCtrl = textCtrl;
         }
         
+        if ( propCtrl instanceof Combo )
+        	( ( Combo ) propCtrl ).addModifyListener( createModifyListener() );
+        else if ( propCtrl instanceof Text )
+        	( ( Text ) propCtrl ).addModifyListener( createModifyListener() );
+        else
+        	assert( false );
+       
         return propCtrl;
     }
     
-    protected void setPropertyControlValue( Control propCtrl, Property prop, String propertyVal )
+    protected ModifyListener createModifyListener()
     {
-        if ( isPropHidden( prop ) )
+        return new ModifyListener()
+        {    
+            public void modifyText( ModifyEvent e )
+            {
+                validatePropertyFields();
+            }
+        };
+    }
+    
+    protected void setPropertyControlValue( int propIndex, String propertyVal )
+    {
+    	Control propCtrl = m_propCtrls[ propIndex ];
+    	
+    	String propName = getPropName( propIndex );
+    	assert( propName != null );
+    	
+    	Boolean isHidden = isManifestPropHidden( propName );
+        if ( isHidden != null && isHidden.booleanValue() )
         {
             // If the property is hidden, then no need to set the value.
             return;
@@ -240,28 +945,31 @@ public class DefaultDataSourcePageHelper
         {
             // See if there is a default value, since no value has 
             // been specified in the property so far.
-        	propVal = prop.getDefaultValue();
+        	propVal = getPropDefaultValue( propIndex );
             if ( propVal == null )
             	propVal = EMPTY_STRING;
         }
         
         if ( propCtrl instanceof Text )
+        {
             ( ( Text ) propCtrl ).setText( propVal );
+        }
         else if ( propCtrl instanceof Combo )
         {
             Combo choiceCombo = ( Combo ) propCtrl;
 
             // From the property value, look up the corresponding
             // property choice and select it in the combobox.
-            PropertyChoice[] choices = prop.getChoices();
-            for( int j = 0; j < choices.length; j++ )
+            Integer choiceIndex = findPropChoiceIndex( propIndex , propVal );
+            if ( choiceIndex != null )
             {
-                // propVal contains the name (not the value) of the choice.
-                if ( choices[ j ].getName().equals( propVal ) )
-                {
-                    choiceCombo.select( j );
-                    break;
-                }
+            	choiceCombo.select( choiceIndex.intValue() );
+            }
+            else
+            {
+            	// There is no matching selection.  Will just use
+            	// the first choice for now.
+            	choiceCombo.select( 0 );
             }
         }
         else
@@ -317,5 +1025,4 @@ public class DefaultDataSourcePageHelper
     	
     	return m_manifest;
     }
-
 }
