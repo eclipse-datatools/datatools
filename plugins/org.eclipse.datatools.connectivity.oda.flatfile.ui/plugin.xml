@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.15 2006/04/05 00:03:46 lchan Exp $
+ * $Id: plugin.xml,v 1.16 2006/04/21 21:59:04 lchan Exp $
  */
 -->
 
@@ -28,18 +28,13 @@
             parentCategory="%oda.parent.category.id"/>
       <connectionProfile
             category="%oda.data.source.id"
-            configurationType="org.eclipse.datatools.connectivity.oda.profile.dummyConfig"
             icon="icons/file.gif"
             id="%oda.data.source.id"
-            name="%connection.profile.name"/>
+            name="%connection.profile.name"
+            pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"/>
       <connectionFactory
             id="org.eclipse.datatools.connectivity.oda.IConnection"
             name="%oda.connection.factory.name"
-            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            profile="%oda.data.source.id"/>
-      <connectionFactory
-            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
-            name="%ping.factory.name"
             class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
             profile="%oda.data.source.id"/>
       <newWizard
