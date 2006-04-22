@@ -40,7 +40,7 @@ import org.eclipse.jface.wizard.IWizardPage;
  */
 public class DataSetDesignSessionBase
 {
-    private OdaDesignSession m_designSession;
+    private OdaDesignSession m_odaDesign;
     private String m_odaDataSourceId;
     private DataSetUIElement m_dataSetUIElement;
     private DataSetWizard m_wizard;
@@ -52,7 +52,7 @@ public class DataSetDesignSessionBase
     protected DataSetDesignSessionBase( OdaDesignSession odaDesign )
         throws OdaException
     {
-        initNewDesign( odaDesign );
+        initOdaDesign( odaDesign );
     }
         
     /**
@@ -75,16 +75,16 @@ public class DataSetDesignSessionBase
                                 DataSourceDesign dataSourceDesign )
         throws OdaException
     {
-        if( m_designSession != null )
+        if( m_odaDesign != null )
         {
             if( odaDataSetId.equalsIgnoreCase( 
-                    m_designSession.getRequestDataSetDesign()
+                    m_odaDesign.getRequestDataSetDesign()
                         .getOdaExtensionDataSetId() ) &&
                 EcoreUtil.equals( dataSourceDesign, 
-                    m_designSession.getRequestDataSourceDesign() ))
+                    m_odaDesign.getRequestDataSourceDesign() ))
             {
                 // just update the data set name
-                m_designSession.getRequestDataSetDesign()
+                m_odaDesign.getRequestDataSetDesign()
                     .setName( newDataSetName );
                 return;     // done
             }
@@ -94,14 +94,14 @@ public class DataSetDesignSessionBase
         OdaDesignSession odaDesign = 
             DesignSessionUtilBase.createNewDataSetRequestSession( newDataSetName, 
                             odaDataSetId, dataSourceDesign );
-        initNewDesign( odaDesign );
+        initOdaDesign( odaDesign );
         
         // get a new wizard and initialize with 
         // this session's odaDesign
         disposePages(); // cannot reuse wizard
         initWizard();              
     }
-    
+        
     /**
      * Initialize the data set wizard.
      * @throws OdaException
@@ -112,7 +112,7 @@ public class DataSetDesignSessionBase
         DataSetWizard wizard = getExtendedWizard();
 
         // initialize wizard
-        wizard.initialize( m_designSession, m_dataSetUIElement );
+        wizard.initialize( m_odaDesign, m_dataSetUIElement );
     }
        
     /** 
@@ -120,10 +120,10 @@ public class DataSetDesignSessionBase
      * @param odaDesign
      * @throws OdaException
      */
-    private void initNewDesign( OdaDesignSession odaDesign )
+    private void initOdaDesign( OdaDesignSession odaDesign )
         throws OdaException
     {
-        m_designSession = odaDesign;
+        m_odaDesign = odaDesign;
 
         DataSetDesign dataSetDesign = odaDesign.getRequestDataSetDesign();
         m_odaDataSourceId =
@@ -141,9 +141,9 @@ public class DataSetDesignSessionBase
      */
     protected DesignSessionRequest getRequest()
     {
-        if( m_designSession == null )
+        if( m_odaDesign == null )
             return null;
-        return m_designSession.getRequest();
+        return m_odaDesign.getRequest();
     }
     
     /**
@@ -163,7 +163,7 @@ public class DataSetDesignSessionBase
             finishDataSetDesign();
         
         // successfully finished
-        m_designSession = null;     // reset to complete session
+        m_odaDesign = null;     // reset to complete session
         disposePages();
         return finishedSession;
     }
@@ -178,10 +178,10 @@ public class DataSetDesignSessionBase
     protected OdaDesignSession cancel()
     {
         // sets a response with cancel status
-        m_designSession.setResponseInCancelledState();
+        m_odaDesign.setResponseInCancelledState();
 
-        OdaDesignSession cancelledSession = m_designSession;
-        m_designSession = null;     // reset to complete session
+        OdaDesignSession cancelledSession = m_odaDesign;
+        m_odaDesign = null;     // reset to complete session
         disposePages();
         
         return cancelledSession;
@@ -288,11 +288,11 @@ public class DataSetDesignSessionBase
         throws OdaException
     {
         // validate if start was successfully called earlier
-        if( m_designSession == null )
+        if( m_odaDesign == null )
             throw new OdaException( Messages.common_notInDesignSession );
             
         DataSetDesign dataSetDesign = 
-            m_designSession.getRequestDataSetDesign();
+            m_odaDesign.getRequestDataSetDesign();
         return (IAdaptable) EcoreUtil.copy( dataSetDesign );
     }
 
