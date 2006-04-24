@@ -15,6 +15,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.Driver;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 import org.eclipse.datatools.connectivity.DriverConnectionBase;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -49,6 +50,8 @@ public class JDBCConnection extends DriverConnectionBase {
 
 	protected Object createConnection(ClassLoader cl) throws Throwable {
 		Properties props = getConnectionProfile().getBaseProperties();
+		Properties connectionProps = new Properties();
+		
 		String driverClass = getDriverDefinition().getProperty(
 				IDBConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
 		String connectURL = props
@@ -57,14 +60,28 @@ public class JDBCConnection extends DriverConnectionBase {
 				.getProperty(IDBConnectionProfileConstants.USERNAME_PROP_ID);
 		String pwd = props
 				.getProperty(IDBConnectionProfileConstants.PASSWORD_PROP_ID);
-
-		Properties connectionProps = new Properties();
+		String nameValuePairs = props
+				.getProperty(IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID);
+		String propDelim = ",";//$NON-NLS-1$
 
 		if (uid != null) {
 			connectionProps.setProperty("user", uid); //$NON-NLS-1$
 		}
 		if (pwd != null) {
 			connectionProps.setProperty("password", pwd); //$NON-NLS-1$
+		}
+
+		if (nameValuePairs != null && nameValuePairs.length() > 0) {
+			String[] pairs = parseString(nameValuePairs, ","); //$NON-NLS-1$
+			String addPairs = ""; //$NON-NLS-1$
+			for (int i = 0; i < pairs.length; i++) {
+				String[] namevalue = parseString(pairs[i], "="); //$NON-NLS-1$
+				connectionProps.setProperty(namevalue[0], namevalue[1]);
+				if (i == 0 || i < pairs.length - 1) {
+					addPairs = addPairs + propDelim;
+				}
+				addPairs = addPairs + pairs[i];
+			}
 		}
 
 		Driver jdbcDriver = (Driver) cl.loadClass(driverClass).newInstance();
@@ -147,4 +164,17 @@ public class JDBCConnection extends DriverConnectionBase {
 		}
 	}
 
+	/**
+	 * @param str_list
+	 * @param token
+	 * @return
+	 */
+	protected String[] parseString(String str_list, String token) {
+		StringTokenizer tk = new StringTokenizer(str_list, token);
+		String[] pieces = new String[tk.countTokens()];
+		int index = 0;
+		while (tk.hasMoreTokens())
+			pieces[index++] = tk.nextToken();
+		return pieces;
+	}
 }
