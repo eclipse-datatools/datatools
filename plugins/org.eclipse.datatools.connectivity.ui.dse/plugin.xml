@@ -308,6 +308,9 @@
             <insertionPoint
                   name="slot3"
                   separator="true"/>
+            <insertionPoint
+                  name="additions"
+                  separator="true"/>
          </popupMenu>
       </viewer>
       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">

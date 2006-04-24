@@ -91,7 +91,8 @@ public class RefreshActionProvider extends CommonActionProvider {
 	 * @see org.eclipse.ui.actions.ActionGroup#setContext(org.eclipse.ui.actions.ActionContext)
 	 */
 	public void setContext(ActionContext context) {
-        if (context.getSelection() instanceof IStructuredSelection)
+		super.setContext(context);
+        if (context != null && context.getSelection() instanceof IStructuredSelection)
         {
         	setSelection((IStructuredSelection) context.getSelection());
         }
