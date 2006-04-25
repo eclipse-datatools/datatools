@@ -15,10 +15,12 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -69,8 +71,8 @@ public class DataSetEditorPageCore extends PropertyPage
     protected Control createContents( Composite parent )
     {
         noDefaultAndApplyButton();
-        m_wizardPage.createControl( parent );
-        return m_wizardPage.getControl();
+        getCustomPage().createControl( parent );
+        return getCustomPage().getControl();
     }
 
     /* (non-Javadoc)
@@ -79,7 +81,7 @@ public class DataSetEditorPageCore extends PropertyPage
     public void setContainer( IPreferencePageContainer container )
     {
         super.setContainer( container );
-        m_wizardPage.setEditorContainer( container );
+        getCustomPage().setEditorContainer( container );
     }
 
     /* (non-Javadoc)
@@ -87,7 +89,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public String getTitle() 
     {
-		return m_wizardPage.getTitle();
+		return getCustomPage().getTitle();
 	}
 
 	/* (non-Javadoc)
@@ -95,7 +97,7 @@ public class DataSetEditorPageCore extends PropertyPage
 	 */
 	public String getMessage() 
 	{
-		return m_wizardPage.getMessage();
+		return getCustomPage().getMessage();
 	}
 
 	/* (non-Javadoc)
@@ -103,7 +105,7 @@ public class DataSetEditorPageCore extends PropertyPage
 	 */
 	public int getMessageType() 
 	{
-		return m_wizardPage.getMessageType();
+		return getCustomPage().getMessageType();
 	}
 
 	/* (non-Javadoc)
@@ -111,7 +113,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public boolean okToLeave()
     {
-        return super.okToLeave() && m_wizardPage.canLeave();
+        return super.okToLeave() && getCustomPage().canLeave();
     }
 
     /**
@@ -120,7 +122,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public String getPageId()
     {
-        return m_wizardPage.getName();
+        return getCustomPage().getName();
     }
 
     /**
@@ -130,7 +132,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public String getPagePath()
     {
-        return m_wizardPage.getPagePath();
+        return getCustomPage().getPagePath();
     }
 
     /**
@@ -141,7 +143,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public String getIconFilePath()
     {
-        return m_wizardPage.getIconFilePath();
+        return getCustomPage().getIconFilePath();
     }
     
     /**
@@ -153,7 +155,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public ImageDescriptor getIconDescriptor()
     {
-        return m_wizardPage.getIconDescriptor();
+        return getCustomPage().getIconDescriptor();
     }
     
     /**
@@ -164,7 +166,7 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public boolean hasInitialFocus()
     {
-        return m_wizardPage.hasInitialFocus();
+        return getCustomPage().hasInitialFocus();
     }
 
     /**
@@ -202,7 +204,7 @@ public class DataSetEditorPageCore extends PropertyPage
         DataSetDesign myDesign = (DataSetDesign) element;
 
         DataSetDesign editedDataSetDesign =
-            m_wizardPage.getOdaWizard().getEditingDataSet();
+            getCustomPage().getOdaWizard().getEditingDataSet();
 
         // compare their content if not the same instance
         if( myDesign != editedDataSetDesign &&
@@ -231,7 +233,7 @@ public class DataSetEditorPageCore extends PropertyPage
 
         // assign collected response state to the session response
         DesignSessionResponse pageResponse = nestedSession.getResponse();
-        m_wizardPage.getOdaWizard().updateResponseWithState( pageResponse );
+        getCustomPage().getOdaWizard().updateResponseWithState( pageResponse );
         return pageResponse;
     }
     
@@ -246,8 +248,8 @@ public class DataSetEditorPageCore extends PropertyPage
     {
         // first get the wrapped page to update the central
         // copy of editing data set design
-        m_wizardPage.getOdaWizard()
-            .collectDataSetDesignFromPage( m_wizardPage );
+        getCustomPage().getOdaWizard()
+            .collectDataSetDesignFromPage( getCustomPage() );
         
         // update my adaptable element if changed,
         // and return this page's adaptable element
@@ -263,7 +265,29 @@ public class DataSetEditorPageCore extends PropertyPage
      */
     public void refresh()
     {
-        m_wizardPage.refresh( getEditingDataSet() );
+        if( m_wizardPage != null )
+            m_wizardPage.refresh( getEditingDataSet() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+     */
+    public void dispose()
+    {
+        super.dispose();
+        m_wizardPage = null;
+    }
+
+    /**
+     * Validates that the wrapped custom wizard page exists, and returns it.
+     * Throws IllegalStateException if no associated custom wizard page.
+     */
+    protected DataSetWizardPageCore getCustomPage()
+    {
+        if( m_wizardPage == null )
+            throw new IllegalStateException( Messages.common_notInDesignSession );
+    
+        return m_wizardPage;
     }
     
 }
