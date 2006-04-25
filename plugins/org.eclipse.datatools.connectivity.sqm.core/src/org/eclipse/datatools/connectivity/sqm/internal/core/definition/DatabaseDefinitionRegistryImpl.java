@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.util.Collection;
 import java.util.Iterator;
@@ -30,7 +31,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
 public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionRegistry {
-	public static final DatabaseDefinitionRegistry INSTANCE = new DatabaseDefinitionRegistryImpl(); 
+	public static final DatabaseDefinitionRegistry INSTANCE = new DatabaseDefinitionRegistryImpl();
+	
 	public Iterator getProducts() {
 		return this.products.keySet().iterator();
 	}
@@ -106,8 +108,13 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 					String allowsConnections = configElements[j].getAttribute("allowsConnections"); //$NON-NLS-1$
 					String productDisplayString = configElements[j].getAttribute("productDisplayString"); //$NON-NLS-1$
 					String versionDisplayString = configElements[j].getAttribute("versionDisplayString"); //$NON-NLS-1$
+					String modelLocation = configElements[j].getAttribute("file"); //$NON-NLS-1$
+					URL modelURL = modelLocation == null ? null : Platform
+							.getBundle(
+									configElements[j].getContributor()
+											.getName()).getEntry(modelLocation);
 					
-					DatabaseDefinitionImpl definition = new DatabaseDefinitionImpl(product, version, desc, productDisplayString, versionDisplayString);
+					DatabaseDefinitionImpl definition = new DatabaseDefinitionImpl(product, version, desc, productDisplayString, versionDisplayString, modelURL);
 					
 					if(this.products.containsKey(product)) {
 						((Map) this.products.get(product)).put(version, definition);

@@ -8,16 +8,9 @@
             version="1.0"
             product="Generic JDBC"
             productDisplayString="%1.0_ProductString"
-            versionDisplayString="%1.0_VersionString">
+            versionDisplayString="%1.0_VersionString"
+            file="runtime/vendors/Generic JDBC_1.0/Generic JDBC_1.0.xmi">
       </definition>
-   </extension>
-
-   <extension
-         point="org.eclipse.emf.ecore.uri_mapping">
-      <mapping
-            source="Generic JDBC_1.0.xmi"
-            target="runtime/vendors/Generic JDBC_1.0/Generic JDBC_1.0.xmi">
-      </mapping>
    </extension>
    
 </plugin>

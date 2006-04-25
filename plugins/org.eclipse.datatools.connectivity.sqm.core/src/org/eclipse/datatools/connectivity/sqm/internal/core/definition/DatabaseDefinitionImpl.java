@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -81,12 +82,13 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 
 public class DatabaseDefinitionImpl implements DatabaseDefinition {
-	DatabaseDefinitionImpl(String product, String version, String desc, String productDisplayString, String versionDisplayString) {
+	DatabaseDefinitionImpl(String product, String version, String desc, String productDisplayString, String versionDisplayString, URL modelURL) {
 		this.product = product;
 		this.version = version;
 		this.description = desc;
 		this.productDisplayString = productDisplayString;
 		this.versionDisplayString = versionDisplayString;
+		this.modelURL = modelURL;
 	}
 
 	public String getProduct() {
@@ -1613,11 +1615,9 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	
 	private DatabaseVendorDefinition loadDatabaseDefinition() {
 		if(this.databaseVendorDefinition == null) {	 
-			String databaseType = this.product + "_" + this.version + ".xmi"; //$NON-NLS-1$ //$NON-NLS-2$
-		
 			// Load specified databaseType on demand
 			try {
-				URI uri = URI.createURI(databaseType);
+				URI uri = URI.createURI(modelURL.toString());
 				Resource doc = new XMIResourceImpl(uri);
 				doc.load(null);
 				EList resourceContents = doc.getContents();
@@ -1668,6 +1668,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	private String description;
 	private String productDisplayString;
 	private String versionDisplayString;
+	private URL modelURL;
 	private DatabaseVendorDefinition databaseVendorDefinition = null;
 	private HashMap nameToPrimitiveDataTypeDefinitionMap = null;
 	private HashMap nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap = null;
