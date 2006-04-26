@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +17,8 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
@@ -27,7 +28,6 @@ import org.eclipse.datatools.connectivity.drivers.XMLFileManager;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDefinitionsDialog;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -41,7 +41,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.WorkbenchException;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -426,11 +425,9 @@ public class DriverListCombo {
 		try {
 			psets = XMLFileManager.loadPropertySets();
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityUIPlugin.getDefault().log(e);
+			return;
 		}
 
 		if (this.mCategoryId != null) {

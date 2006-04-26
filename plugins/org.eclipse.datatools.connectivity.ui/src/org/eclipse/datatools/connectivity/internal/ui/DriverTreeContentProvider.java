@@ -10,13 +10,13 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
@@ -25,7 +25,6 @@ import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.internal.dialogs.ViewContentProvider;
 
 /**
@@ -203,11 +202,9 @@ public class DriverTreeContentProvider extends ViewContentProvider {
 					this.psetsList.addAll(tempList);
 				}
 			}
-			catch (WorkbenchException e) {
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				e.printStackTrace();
+			catch (CoreException e) {
+				ConnectivityUIPlugin.getDefault().log(e);
+				return new Object[0];
 			}
 		}
 

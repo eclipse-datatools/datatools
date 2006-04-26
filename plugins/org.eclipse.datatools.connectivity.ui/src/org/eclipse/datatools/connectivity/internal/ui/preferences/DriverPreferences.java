@@ -10,9 +10,9 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.preferences;
 
-import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.drivers.XMLFileManager;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeSorter;
@@ -521,8 +522,8 @@ public class DriverPreferences extends PreferencePage implements
 		try {
 			XMLFileManager.saveNamedPropertySet(propsets);
 		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityUIPlugin.getDefault().log(e);
 		}
 		this.mDirty = false;
 	}

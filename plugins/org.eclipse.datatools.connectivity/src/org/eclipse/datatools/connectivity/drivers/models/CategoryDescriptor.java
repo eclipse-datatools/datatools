@@ -19,13 +19,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.jface.util.Assert;
-import org.eclipse.jface.util.SafeRunnable;
 
 import com.ibm.icu.text.Collator;
 
@@ -57,7 +57,7 @@ public class CategoryDescriptor implements Comparable {
 	/**
 	 * Creates a new driver type descriptor for the given configuration element.
 	 */
-	private CategoryDescriptor(IConfigurationElement element) {
+	protected CategoryDescriptor(IConfigurationElement element) {
 		this.fElement = element;
 
 		/*
@@ -254,18 +254,8 @@ public class CategoryDescriptor implements Comparable {
 			if (CATEGORY_ELEMENT_TAG.equals(element.getName())) {
 
 				final CategoryDescriptor[] desc = new CategoryDescriptor[1];
-				Platform
-						.run(new SafeRunnable(
-								DriverMgmtMessages
-										.getString("CategoryDescriptor.msg.categoryDescriptorCreationError")) { // "CategoryDescriptor.categoryDescriptorCreationError.message") //$NON-NLS-1$
-
-							// {
-							// //$NON-NLS-1$
-
-							public void run() throws Exception {
-								desc[0] = new CategoryDescriptor(element);
-							}
-						});
+				SafeRunner
+					.run(new MySafeRunnable ( desc, element));
 
 				if (desc[0] != null && !descIds.contains(desc[0].getId())) {
 					result.add(desc[0]);

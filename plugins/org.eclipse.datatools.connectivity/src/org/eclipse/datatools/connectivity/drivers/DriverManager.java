@@ -17,13 +17,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.ui.WorkbenchException;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -69,11 +70,8 @@ public class DriverManager {
 				}
 			}
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 		return null;
 	}
@@ -96,11 +94,8 @@ public class DriverManager {
 				}
 			}
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 		return null;
 	}
@@ -161,11 +156,8 @@ public class DriverManager {
 				return newList;
 			}
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 		return null;
 	}
@@ -212,11 +204,8 @@ public class DriverManager {
 				return array;
 			}
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 		return array;
 	}
@@ -272,11 +261,8 @@ public class DriverManager {
 					}
 				}
 			}
-			catch (WorkbenchException e) {
-				e.printStackTrace();
-			}
-			catch (IOException e) {
-				e.printStackTrace();
+			catch (CoreException e) {
+				ConnectivityPlugin.getDefault().log(e);
 			}
 		}
 		return rtnFlag;
@@ -298,11 +284,8 @@ public class DriverManager {
 
 			XMLFileManager.saveNamedPropertySet(newPsets);
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 	}
 
@@ -342,11 +325,8 @@ public class DriverManager {
 		try {
 			psets = XMLFileManager.loadPropertySets();
 		}
-		catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
 		}
 
 		// now process the templates and see if we need to
@@ -389,8 +369,8 @@ public class DriverManager {
 			try {
 				XMLFileManager.saveNamedPropertySet(propsets);
 			}
-			catch (IOException e) {
-				e.printStackTrace();
+			catch (CoreException e) {
+				ConnectivityPlugin.getDefault().log(e);
 			}
 		}
 	}
@@ -500,7 +480,7 @@ public class DriverManager {
 				String pluginId = null;
 				if (toReplace.toUpperCase().equals("[PLUGIN]")) { //$NON-NLS-1$
 					pluginId = template.getElement().getDeclaringExtension()
-							.getNamespace();
+							.getNamespaceIdentifier();
 				}
 				else {
 					pluginId = toReplace.substring(1, toReplace.length() - 1);
@@ -521,7 +501,7 @@ public class DriverManager {
 					URL url = Platform.getBundle(pluginId).getEntry(entry);
 					if (url != null) {
 						try {
-							url = Platform.asLocalURL(url);
+							url = FileLocator.toFileURL(url);
 							IPath path = new Path(url.getFile());
 							int totalLength = toReplace.length()
 									+ restOfPath.length();

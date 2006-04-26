@@ -10,14 +10,15 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactory;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
-import org.eclipse.jface.util.Assert;
 import org.eclipse.jface.util.SafeRunnable;
 
 /**
@@ -149,7 +150,7 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 			}
 
 		};
-		SafeRunnable.run(code);
+		SafeRunner.run(code);
 		mFactory = result[0];
 	}
 

@@ -10,10 +10,10 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IProfileExtensionProvider;
-import org.eclipse.jface.util.Assert;
 
 /**
  * @author rcernich

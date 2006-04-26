@@ -10,13 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -24,11 +23,26 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.ui.IMemento;
-import org.eclipse.ui.WorkbenchException;
-import org.eclipse.ui.XMLMemento;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -61,6 +75,11 @@ public class XMLFileManager {
 	// file name
 	private static String mFileName = null;
 
+	private static DocumentBuilderFactory documentBuilderFactory = null;
+	private static DocumentBuilder documentBuilder = null;
+	private static TransformerFactory transFactory = null;
+	private static Transformer transformer = null;
+
 	/**
 	 * Constructor
 	 */
@@ -85,20 +104,21 @@ public class XMLFileManager {
 	/**
 	 * Convert a String to a Properties object
 	 * 
-	 * @param xmlChild
+	 * @param elem
 	 * @return
 	 */
-	private static Properties keysToProperties(IMemento xmlChild) {
+	private static Properties keysToProperties(Element elem) {
 		Properties props = new Properties();
-		String keys = xmlChild.getString(PROPSETKEYS), key, value;
+		String keys = elem.getAttribute(PROPSETKEYS), key, value;
 		StringTokenizer st = new StringTokenizer(keys, PROPDELIM);
 		while (st.hasMoreTokens()) {
 			key = st.nextToken();
-			value = xmlChild.getString(PROPPREFIX + key);
+			value = elem.getAttribute(PROPPREFIX + key);
 			props.put(key, value);
 		}
 		return props;
 	}
+
 
 	/**
 	 * Save property sets
@@ -107,41 +127,62 @@ public class XMLFileManager {
 	 * @throws IOException
 	 */
 	public static void saveNamedPropertySet(IPropertySet[] pss)
-			throws IOException {
-		XMLMemento xmlMemento = XMLMemento.createWriteRoot(ROOTNAME);
-		IMemento xmlChild;
-		IPath path = getStorageLocation();
-		path = path.append(mFileName);
-		File file = path.toFile();
-		if (!file.exists())
-			file.createNewFile();
-		OutputStream outs = new FileOutputStream(file);
-		Writer writer = null;
-		IPropertySet ps;
+		throws CoreException 
+	{
 		try {
-			OutputStreamWriter outw = new OutputStreamWriter(outs, "UTF8"); //$NON-NLS-1$
-			writer = new BufferedWriter(outw);
-			for (int i = 0; i < pss.length; i++) {
-				ps = pss[i];
-				xmlChild = xmlMemento.createChild(CHILDNAME);
-				xmlChild.putString(PROPSETNAME, ps.getName());
-				xmlChild.putString(PROPSETID, ps.getID());
-				Properties props = ps.getBaseProperties();
-				String keys = keysToString(props.keys());
-				xmlChild.putString(PROPSETKEYS, keys);
-				String key, value;
-				for (Enumeration enu = props.propertyNames(); enu
-						.hasMoreElements();) {
-					key = (String) enu.nextElement();
-					value = props.getProperty(key);
-					xmlChild.putString(PROPPREFIX + key, value);
+		    DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		    documentBuilderFactory.setNamespaceAware(true);
+		    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+		    Document document = documentBuilder.newDocument();
+		    Element rootElement = document.createElement(ROOTNAME);
+		    document.appendChild(rootElement);
+		    Element child = null;
+			IPath path = getStorageLocation();
+			path = path.append(mFileName);
+			File file = path.toFile();
+			if (!file.exists())
+				file.createNewFile();
+			OutputStream outs = new FileOutputStream(file);
+			Writer writer = null;
+			IPropertySet ps;
+			try {
+				OutputStreamWriter outw = new OutputStreamWriter(outs, "UTF8"); //$NON-NLS-1$
+				writer = new BufferedWriter(outw);
+				for (int i = 0; i < pss.length; i++) {
+					ps = pss[i];
+					child = document.createElement(CHILDNAME);
+					child.setAttribute(PROPSETNAME, ps.getName());
+					child.setAttribute(PROPSETID, ps.getID());
+					Properties props = ps.getBaseProperties();
+					String keys = keysToString(props.keys());
+					child.setAttribute(PROPSETKEYS, keys);
+					String key, value;
+					for (Enumeration enu = props.propertyNames(); enu
+							.hasMoreElements();) {
+						key = (String) enu.nextElement();
+						value = props.getProperty(key);
+						child.setAttribute(PROPPREFIX + key, value);
+					}
+					rootElement.appendChild(child);
 				}
+				DOMSource source = new DOMSource(document);
+		        StreamResult result = new StreamResult(outw);
+		
+		        getTransformer().transform(source, result);	
 			}
-			xmlMemento.save(writer);
-		}
-		finally {
-			if (writer != null)
-				writer.close();
+			finally {
+				if (writer != null)
+					writer.close();
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.savedriversxml"), e));//$NON-NLS-1$
+		} catch (TransformerException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.savedriversxml"), e));//$NON-NLS-1$
+		} catch (ParserConfigurationException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.savedriversxml"), e));//$NON-NLS-1$
 		}
 	}
 
@@ -150,40 +191,45 @@ public class XMLFileManager {
 	 * 
 	 * @return property sets
 	 * @throws IOException
-	 * @throws WorkbenchException
 	 */
-	public static synchronized IPropertySet[] loadPropertySets() throws IOException,
-			WorkbenchException {
-		IPath path = getStorageLocation();
-		path = path.append(mFileName);
-		File file = path.toFile();
-		if (!file.exists())
-			return new IPropertySet[0];
-		FileInputStream fis = new FileInputStream(file);
-		InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
-		BufferedReader reader = new BufferedReader(isr);
-		IPropertySet ps;
-		ArrayList pss = new ArrayList();
+	public static synchronized IPropertySet[] loadPropertySets() throws CoreException 
+	{
 		try {
-			IMemento xmlMemento = XMLMemento.createReadRoot(reader);
-			IMemento[] xmlChildren = xmlMemento.getChildren(CHILDNAME);
-			for (int i = 0; i < xmlChildren.length; i++) {
-				IMemento xmlChild = xmlChildren[i];
-
-				String name = xmlChild.getString(PROPSETNAME);
-				String id = xmlChild.getString(PROPSETID);
-				Properties props = keysToProperties(xmlChild);
-				ps = new PropertySetImpl(name, id);
-				ps.setBaseProperties(props);
-				pss.add(ps);
+			IPath path = getStorageLocation();
+			path = path.append(mFileName);
+			File file = path.toFile();
+			if (!file.exists())
+				return new IPropertySet[0];
+			
+			InputStream fis = new FileInputStream(file);
+			InputSource source = new InputSource(fis);
+			source.setEncoding("UTF8"); //$NON-NLS-1$
+		    Document document = getDocumentBuilder().parse(source);
+			IPropertySet ps;
+			ArrayList pss = new ArrayList();
+		    NodeList nl = document.getElementsByTagName(CHILDNAME);
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node node = nl.item(i);
+				if (node instanceof Element) {
+					Element elem = (Element) node;
+					String name = elem.getAttribute(PROPSETNAME);
+					String id = elem.getAttribute(PROPSETID);
+					Properties props = keysToProperties(elem);
+					ps = new PropertySetImpl(name, id);
+					ps.setBaseProperties(props);
+					pss.add(ps);
+				}
 			}
+			return (IPropertySet[]) pss.toArray(new IPropertySet[0]);
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loaddriversxml"), e));//$NON-NLS-1$
+		} catch (SAXException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loaddriversxml"), e));//$NON-NLS-1$
 		}
-		finally {
-			if (reader != null)
-				reader.close();
-		}
-		return (IPropertySet[]) pss.toArray(new IPropertySet[0]);
 	}
+
 
 	/**
 	 * Get property set storage location
@@ -234,5 +280,38 @@ public class XMLFileManager {
 			return null;
 		Long modified = new Long(file.lastModified());
 		return modified.toString();
+	}
+	
+	/**
+	 * Internal method to get a handle to an XML document builder.
+	 * @return
+	 */
+	private static DocumentBuilder getDocumentBuilder() {
+		if (documentBuilder == null) {
+		    documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		    documentBuilderFactory.setNamespaceAware(true);
+		    try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
+		}
+		return documentBuilder;
+	}
+	
+	/**
+	 * Internal method to get a handle to an XML document transformer.
+	 * @return
+	 */
+	private static Transformer getTransformer() {
+		if (transformer == null) {
+            transFactory = TransformerFactory.newInstance();
+            try {
+            	transformer = transFactory.newTransformer();
+            } catch (TransformerConfigurationException e ) {
+            	ConnectivityPlugin.getDefault().log(e);
+            }
+		}
+		return transformer;
 	}
 }

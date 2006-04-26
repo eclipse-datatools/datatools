@@ -20,13 +20,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-import org.eclipse.jface.util.Assert;
-import org.eclipse.jface.util.SafeRunnable;
 
 import com.ibm.icu.text.Collator;
 
@@ -65,7 +66,7 @@ public class TemplateDescriptor implements Comparable {
 	 * Creates a new driver template descriptor for the given configuration
 	 * element.
 	 */
-	private TemplateDescriptor(IConfigurationElement element) {
+	protected TemplateDescriptor(IConfigurationElement element) {
 		this.fElement = element;
 
 		/*
@@ -156,8 +157,8 @@ public class TemplateDescriptor implements Comparable {
 			return jarList;
 		try {
 			String pluginID = this.fElement.getDeclaringExtension()
-					.getNamespace();
-			String pluginLoc = Platform.resolve(
+					.getNamespaceIdentifier();
+			String pluginLoc = FileLocator.resolve(
 					Platform.getBundle(pluginID).getEntry("")).getFile(); //$NON-NLS-1$
 			if (pluginLoc.charAt(0) == '/')
 				pluginLoc = pluginLoc.substring(1);
@@ -291,18 +292,8 @@ public class TemplateDescriptor implements Comparable {
 			if (DRIVERTEMPLATE_ELEMENT_TAG.equals(element.getName())) {
 
 				final TemplateDescriptor[] desc = new TemplateDescriptor[1];
-				Platform
-						.run(new SafeRunnable(
-								DriverMgmtMessages
-										.getString("TemplateDescriptor.msg.driverTypeDescriptorCreationError")) { // "TemplateDescriptor.driverTypeDescriptorCreationError.message") //$NON-NLS-1$
-
-							// {
-							// //$NON-NLS-1$
-
-							public void run() throws Exception {
-								desc[0] = new TemplateDescriptor(element);
-							}
-						});
+				SafeRunner
+						.run(new MySafeRunnable ( desc, element));
 
 				if (desc[0] != null && !descIds.contains(desc[0].getId())) {
 					result.add(desc[0]);

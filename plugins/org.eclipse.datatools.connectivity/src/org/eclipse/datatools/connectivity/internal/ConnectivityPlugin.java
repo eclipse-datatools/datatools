@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+//import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -25,6 +25,8 @@ import org.osgi.framework.BundleContext;
 public class ConnectivityPlugin extends AbstractUIPlugin {
 
 	public static final int INTERNAL_ERROR = 10001;
+	
+	public static final String PLUGIN_ID = "org.eclipse.datatools.connectivity";//$NON-NLS-1$
 
 	// The shared instance.
 	private static ConnectivityPlugin plugin;

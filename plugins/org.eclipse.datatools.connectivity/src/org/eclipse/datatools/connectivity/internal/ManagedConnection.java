@@ -25,7 +25,6 @@ import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IManagedConnectionListener;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
-import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 
 public class ManagedConnection implements IManagedConnection {
@@ -70,9 +69,9 @@ public class ManagedConnection implements IManagedConnection {
 		}
 		// TODO: RJC: add job for this
 		final IConnection connection[] = new IConnection[1];
-		BusyIndicator.showWhile(null, new Runnable() {
-
-			public void run() {
+//		BusyIndicator.showWhile(null, new Runnable() {
+//
+//			public void run() {
 				Display display = Display.getCurrent();
 				if (display == null) {
 					CreateConnectionJob connectJob = new CreateConnectionJob(
@@ -104,8 +103,8 @@ public class ManagedConnection implements IManagedConnection {
 					}
 					connection[0] = listener.getConnection();
 				}
-			}
-		});
+//			}
+//		});
 
 		return connection[0];
 	}

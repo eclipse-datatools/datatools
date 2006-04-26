@@ -14,13 +14,14 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -31,14 +32,29 @@ import java.util.Properties;
 
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
-import org.eclipse.ui.IMemento;
-import org.eclipse.ui.WorkbenchException;
-import org.eclipse.ui.XMLMemento;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -82,7 +98,12 @@ public class ConnectionProfileMgmt {
 	private final static String PROFILEID = "id"; //$NON-NLS-1$
 
 	private static IPath storageLocation = null;
-
+	
+	private static DocumentBuilderFactory documentBuilderFactory = null;
+	private static DocumentBuilder documentBuilder = null;
+	private static TransformerFactory transFactory = null;
+	private static Transformer transformer = null;
+	
 	/**
 	 * Convert an Enumeration to a space-separated String
 	 * 
@@ -103,13 +124,13 @@ public class ConnectionProfileMgmt {
 	 * @param xmlChild
 	 * @return
 	 */
-	private static Properties keysToProperties(IMemento xmlChild) {
+	private static Properties keysToProperties(Element elem) {
 		Properties props = new Properties();
-		String keys = xmlChild.getString(PROPKEYS), key, value;
+		String keys = elem.getAttribute(PROPKEYS), key, value;
 		StringTokenizer st = new StringTokenizer(keys, PROPDELIM);
 		while (st.hasMoreTokens()) {
 			key = st.nextToken();
-			value = xmlChild.getString(PROPPREFIX + key);
+			value = elem.getAttribute(PROPPREFIX + key);
 			props.put(key, value);
 		}
 		return props;
@@ -120,8 +141,13 @@ public class ConnectionProfileMgmt {
 	 * 
 	 * @param cps To be saved connection profiles
 	 * @throws IOException
+	 * @throws TransformerException 
+	 * @throws ParserConfigurationException 
+	 * @throws TransformerConfigurationException 
 	 */
-	public static void saveCPs(IConnectionProfile[] cps) throws IOException, GeneralSecurityException {
+	public static void saveCPs(IConnectionProfile[] cps) 
+		throws CoreException 
+	{
 		saveCPs(cps, getStorageLocation().append(FILENAME).toFile(), SecurityManager.getInstance().getDefaultCipherProvider());
 	}
 
@@ -132,90 +158,99 @@ public class ConnectionProfileMgmt {
 	 * @param file
 	 * @param isp
 	 * @throws IOException
+	 * @throws ParserConfigurationException 
+	 * @throws TransformerException 
+	 * @throws TransformerConfigurationException 
+	 * @throws GeneralSecurityException
+	 * @throws TransformerException 
 	 */
 	public static void saveCPs(IConnectionProfile[] cps, File file,
-			ICipherProvider isp) throws IOException, GeneralSecurityException {
-		
-		XMLMemento xmlMemento = XMLMemento.createWriteRoot(ROOTNAME);
-		IMemento xmlChild, xmlExtraChild;
-		if (!file.exists())
-			file.createNewFile();
-		OutputStream out = null, outs = new FileOutputStream(file);
-		Writer writer = null;
-		
+			ICipherProvider isp)
+		throws CoreException 
+	{
 		try {
-			if (isp != null) {
-				out = new CipherOutputStream(outs, isp.createEncryptionCipher());
-			}
-			else {
-				out = outs;
-			}
-			OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
-			writer = new BufferedWriter(outw);
-			IConnectionProfile cp;
-			for (int i = 0; i < cps.length; i++) {
-				cp = cps[i];
-				xmlChild = xmlMemento.createChild(CHILDNAME);
-				xmlChild.putString(PROFILENAME, cp.getName());
-				xmlChild.putString(PROFILEDESC, cp.getDescription());
-				xmlChild.putString(PROFILEAUTOCONNECT, ((ConnectionProfile) cp)
-						.isAutoConnect() ? LITERAL_YES : LITERAL_NO);
-				xmlChild
-						.putString(
-								PROFILEPARENT,
-								cp.getParentProfile() == null ? "" : cp.getParentProfile().getName()); //$NON-NLS-1$ 
-				xmlChild.putString(PROVIDERID, cp.getProviderId());
-				xmlChild.putString(PROFILEID, cp.getInstanceID());
-				Properties props = cp.getBaseProperties();
-				String keys = keysToString(props.keys());
-				xmlChild.putString(PROPKEYS, keys);
-				String key, value;
-				for (Enumeration enu = props.propertyNames(); enu
-						.hasMoreElements();) {
-					key = (String) enu.nextElement();
-					value = props.getProperty(key);
-					xmlChild.putString(PROPPREFIX + key, value);
+		    Document document = getDocumentBuilder().newDocument();
+		    Element rootElement = document.createElement(ROOTNAME);
+		    document.appendChild(rootElement);
+		    Element child, extraChild;
+			if (!file.exists())
+				file.createNewFile();
+			OutputStream out = null, outs = new FileOutputStream(file);
+			Writer writer = null;
+			
+			try {
+				if (isp != null) {
+					out = new CipherOutputStream(outs, isp.createEncryptionCipher());
 				}
-				if (cp.getProfileExtensions().size() != 0) {
-					for (Iterator it = cp.getProfileExtensions().entrySet()
-							.iterator(); it.hasNext();) {
-						Map.Entry me = (Map.Entry) it.next();
-						String type = (String) me.getKey();
-						xmlExtraChild = xmlChild.createChild(type);
-						props = cp.getProperties(type);
-						if (props == null)
-							props = new Properties();
-						keys = keysToString(props.keys());
-						xmlExtraChild.putString(PROPKEYS, keys);
-						for (Enumeration enu = props.propertyNames(); enu
-								.hasMoreElements();) {
-							key = (String) enu.nextElement();
-							value = props.getProperty(key);
-							xmlExtraChild.putString(PROPPREFIX + key, value);
+				else {
+					out = outs;
+				}
+				OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
+				writer = new BufferedWriter(outw);
+				IConnectionProfile cp;
+	
+				for (int i = 0; i < cps.length; i++) {
+					cp = cps[i];
+					child = document.createElement(CHILDNAME);
+					child.setAttribute(PROFILENAME, cp.getName());
+					child.setAttribute(PROFILEDESC, cp.getDescription());
+					child.setAttribute(PROFILEAUTOCONNECT, ((ConnectionProfile) cp)
+							.isAutoConnect() ? LITERAL_YES : LITERAL_NO);
+					child.setAttribute(PROVIDERID, cp.getProviderId());
+					child.setAttribute(PROFILEID, cp.getInstanceID());
+					Properties props = cp.getBaseProperties();
+					String keys = keysToString(props.keys());
+					child.setAttribute(PROPKEYS, keys);
+					String key, value;
+					for (Enumeration enu = props.propertyNames(); enu
+							.hasMoreElements();) {
+						key = (String) enu.nextElement();
+						value = props.getProperty(key);
+						child.setAttribute(PROPPREFIX + key, value);
+					}
+					if (cp.getProfileExtensions().size() != 0) {
+						for (Iterator it = cp.getProfileExtensions().entrySet()
+								.iterator(); it.hasNext();) {
+							Map.Entry me = (Map.Entry) it.next();
+							String type = (String) me.getKey();
+							extraChild = document.createElement(type);
+							props = cp.getProperties(type);
+							if (props == null)
+								props = new Properties();
+							keys = keysToString(props.keys());
+							extraChild.setAttribute(PROPKEYS, keys);
+							for (Enumeration enu = props.propertyNames(); enu
+									.hasMoreElements();) {
+								key = (String) enu.nextElement();
+								value = props.getProperty(key);
+								extraChild.setAttribute(PROPPREFIX + key, value);
+							}
 						}
 					}
+					rootElement.appendChild(child);
 				}
+				DOMSource source = new DOMSource(document);
+	            StreamResult result = new StreamResult(outw);
+	        	
+	            getTransformer().transform(source, result);	
+	
 			}
-			xmlMemento.save(writer);
-		}
-		finally {
-			if (writer != null) {
-				writer.close();
+			finally {
+				if (writer != null)
+					writer.close();
 			}
-			else if (out != null) {
-				try {
-					out.close();
-				}
-				catch (IOException e) {
-				}
-			}
-			else {
-				try {
-					outs.close();
-				}
-				catch (IOException e) {
-				}
-			}
+		} catch (DOMException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.saveprofilesxml"), e));//$NON-NLS-1$
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.saveprofilesxml"), e));//$NON-NLS-1$
+		} catch (GeneralSecurityException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.saveprofilesxml"), e));//$NON-NLS-1$
+		} catch (TransformerException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.saveprofilesxml"), e));//$NON-NLS-1$
 		}
 	}
 
@@ -224,84 +259,100 @@ public class ConnectionProfileMgmt {
 	 * 
 	 * @param cpName
 	 * @return the connection profile object
-	 * @throws WorkbenchException
 	 * @throws IOException
+	 * @throws ParserConfigurationException 
+	 * @throws SAXException 
+	 * @throws TransformerException 
+	 * @throws TransformerConfigurationException 
 	 * @deprecated currently, this isn't used, and shouldn't be. leaving this as
 	 *             deprecated, just in case.
 	 */
 	public static IConnectionProfile loadCP(String cpName)
-			throws WorkbenchException, IOException {
-		IPath path = getStorageLocation();
-		path = path.append(FILENAME);
-		File file = path.toFile();
-		if (!file.exists())
-			return null;
-		InputStream is = new FileInputStream(file);
-		// CipherInputStream cis = new CipherInputStream(is, CipherManager1
-		// .getInstance().getDecryptCipher());
-		InputStreamReader isr = new InputStreamReader(is, "UTF8"); //$NON-NLS-1$
-		Reader reader = new BufferedReader(isr);
-		ConnectionProfile cp = null;
+			throws CoreException {
 		try {
-			IMemento xmlMemento = XMLMemento.createReadRoot(reader), xmlExtraChild;
-			IMemento[] xmlChildren = xmlMemento.getChildren(CHILDNAME);
-			for (int i = 0; i < xmlChildren.length; i++) {
-				if (xmlChildren[i].getString(PROFILENAME).equals(cpName)) {
-					cp = new ConnectionProfile(xmlChildren[i]
-							.getString(PROFILENAME), xmlChildren[i]
-							.getString(PROFILEDESC), xmlChildren[i]
-							.getString(PROVIDERID), xmlChildren[i]
-							.getString(PROFILEPARENT));
-					if (xmlChildren[i].getString(PROFILEAUTOCONNECT) == null)
-						cp.setAutoConnect(false);
-					else
-						cp.setAutoConnect(xmlChildren[i].getString(
-								PROFILEAUTOCONNECT).equals(LITERAL_YES) ? true
-								: false);
-					// Note: If we can't find a provider associated with the
-					// cp, we should abandon it.
-					if (cp.getProvider() == null)
-						continue;
-					cp.setBaseProperties(keysToProperties(xmlChildren[i]));
-
-					if (cp.getProfileExtensions().size() != 0) {
-						for (Iterator it = cp.getProfileExtensions().entrySet()
-								.iterator(); it.hasNext();) {
-							Map.Entry me = (Map.Entry) it.next();
-							String type = (String) me.getKey();
-							xmlExtraChild = xmlChildren[i].getChild(type);
-							if (xmlExtraChild != null)
-								cp.setProperties(type,
-										keysToProperties(xmlExtraChild));
+			IPath path = getStorageLocation();
+			path = path.append(FILENAME);
+			File file = path.toFile();
+			if (!file.exists())
+				return null;
+			InputStream is = new FileInputStream(file);
+			// CipherInputStream cis = new CipherInputStream(is, CipherManager1
+			// .getInstance().getDecryptCipher());
+			InputSource source = new InputSource(is);
+			source.setEncoding("UTF8"); //$NON-NLS-1$
+			Document document = getDocumentBuilder().parse(source);
+			ConnectionProfile cp = null;
+			NodeList nl = document.getElementsByTagName(CHILDNAME);
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node node = nl.item(i);
+				if (node instanceof Element) {
+					Element elem = (Element) node;
+					if (elem.getAttribute(PROFILENAME).equals(cpName)) {
+						cp = new ConnectionProfile(elem
+								.getAttribute(PROFILENAME), elem
+								.getAttribute(PROFILEDESC), elem
+								.getAttribute(PROVIDERID),elem
+								.getAttribute(PROFILEPARENT), LITERAL_YES
+								.equals(elem.getAttribute(PROFILEAUTOCONNECT)),
+								elem.getAttribute(PROFILEID));
+				
+						if (cp.getProvider() == null)
+							continue;
+						cp.setBaseProperties(keysToProperties(elem));
+				
+						if (cp.getProfileExtensions().size() != 0) {
+							for (Iterator it = cp.getProfileExtensions().entrySet()
+									.iterator(); it.hasNext();) {
+								Map.Entry me = (Map.Entry) it.next();
+								String type = (String) me.getKey();
+								Node xmlExtraChild = elem.getFirstChild();
+								if (xmlExtraChild != null && elem.getTagName().equals(type))
+									cp.setProperties(type,
+											keysToProperties((Element)xmlExtraChild));
+							}
 						}
+				
+						break;
 					}
-					break;
 				}
 			}
+			cp.setCreated();
+			return cp;
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} catch (SAXException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
 		}
-		finally {
-			reader.close();
-		}
-		cp.setCreated();
-		return cp;
 	}
 
-	public static IConnectionProfile[] loadCPs(File file) throws IOException,
-			WorkbenchException, GeneralSecurityException {
-		FileInputStream fis = new FileInputStream(file);
-		InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
-		BufferedReader reader = new BufferedReader(isr);
-		String line = reader.readLine();
-		reader.close();
-		isr.close();
-		fis.close();
-		if (line.matches(".*xml.*")) { //$NON-NLS-1$
-			// not encrpyted
-			return loadCPs(file, null);
-		}
-		else {
-			// encrypted
-			return loadCPs(file, SecurityManager.getInstance().getDefaultCipherProvider());
+	public static IConnectionProfile[] loadCPs(File file) throws CoreException {
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
+			BufferedReader reader = new BufferedReader(isr);
+			String line = reader.readLine();
+			reader.close();
+			isr.close();
+			fis.close();
+			if (line.matches(".*xml.*")) { //$NON-NLS-1$
+				// not encrpyted
+				return loadCPs(file, null);
+			}
+			else {
+				// encrypted
+				return loadCPs(file, SecurityManager.getInstance().getDefaultCipherProvider());
+			}
+		} catch (FileNotFoundException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} catch (UnsupportedEncodingException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
 		}
 	}
 
@@ -312,69 +363,84 @@ public class ConnectionProfileMgmt {
 	 * @param isp
 	 * @return IConnectionProfile[]
 	 * @throws IOException
-	 * @throws WorkbenchException
+	 * @throws GeneralSecurityException
+	 * @throws SAXException
+	 * @throws TransformerException 
+	 * @throws ParserConfigurationException
+	 * @throws TransformerConfigurationException
+	 * @throws TransformerException
 	 */
 	public static IConnectionProfile[] loadCPs(File file, ICipherProvider isp)
-			throws IOException, WorkbenchException, GeneralSecurityException {
-		IConnectionProfile retVal[];
-		if (!file.exists())
-			return new IConnectionProfile[0];
-		InputStream is, fis = new FileInputStream(file);
-		if (isp != null) {
-			is = new CipherInputStream(fis, isp.createDecryptionCipher());
-		}
-		else {
-			is = fis;
-		}
-		InputStreamReader isr = new InputStreamReader(is, "UTF8"); //$NON-NLS-1$
-		Reader reader = new BufferedReader(isr);
-		ConnectionProfile cp;
-		ArrayList cps = new ArrayList();
-		boolean updatedIDs = false;
+		throws CoreException 
+	{
+		IConnectionProfile retVal[] = null;
 		try {
-			IMemento xmlMemento = XMLMemento.createReadRoot(reader), xmlExtraChild;
-			IMemento[] xmlChildren = xmlMemento.getChildren(CHILDNAME);
-			for (int i = 0; i < xmlChildren.length; i++) {
-				updatedIDs = xmlChildren[i].getString(PROFILEID) == null;
-				cp = new ConnectionProfile(xmlChildren[i]
-						.getString(PROFILENAME), xmlChildren[i]
-						.getString(PROFILEDESC), xmlChildren[i]
-						.getString(PROVIDERID), xmlChildren[i]
-						.getString(PROFILEPARENT), LITERAL_YES
-						.equals(xmlChildren[i].getString(PROFILEAUTOCONNECT)),
-						xmlChildren[i].getString(PROFILEID));
-
-				// Note: If we can't find a provider associated with the cp, we
-				// should abandon it.
-				if (cp.getProvider() == null)
-					continue;
-				cp.setBaseProperties(keysToProperties(xmlChildren[i]));
-
-				if (cp.getProfileExtensions().size() != 0) {
-					for (Iterator it = cp.getProfileExtensions().entrySet()
-							.iterator(); it.hasNext();) {
-						Map.Entry me = (Map.Entry) it.next();
-						String type = (String) me.getKey();
-						xmlExtraChild = xmlChildren[i].getChild(type);
-						if (xmlExtraChild != null)
-							cp.setProperties(type,
-									keysToProperties(xmlExtraChild));
-					}
-				}
-
-				cp.setCreated();
-				cps.add(cp);
+			if (!file.exists())
+				return new IConnectionProfile[0];
+			InputStream is, fis = new FileInputStream(file);
+			if (isp != null) {
+				is = new CipherInputStream(fis, isp.createDecryptionCipher());
 			}
-		}
-		finally {
-			reader.close();
-		}
-		retVal = (IConnectionProfile[]) cps.toArray(new IConnectionProfile[cps.size()]);
-		if (updatedIDs) {
-			saveCPs(retVal,file, isp);
+			else {
+				is = fis;
+			}
+			InputSource source = new InputSource(is);
+			source.setEncoding("UTF8"); //$NON-NLS-1$
+			Document document = getDocumentBuilder().parse(source);
+			ConnectionProfile cp;
+			ArrayList cps = new ArrayList();
+			boolean updatedIDs = false;
+			NodeList nl = document.getElementsByTagName(CHILDNAME);
+			for (int i = 0; i < nl.getLength(); i++) {
+				Node node = nl.item(i);
+				if (node instanceof Element) {
+					Element elem = (Element) node;
+					updatedIDs = elem.getAttribute(PROFILEID) == null;
+					cp = new ConnectionProfile(elem
+							.getAttribute(PROFILENAME), elem
+							.getAttribute(PROFILEDESC), elem
+							.getAttribute(PROVIDERID),elem
+							.getAttribute(PROFILEPARENT), LITERAL_YES
+							.equals(elem.getAttribute(PROFILEAUTOCONNECT)),
+							elem.getAttribute(PROFILEID));
+			
+					if (cp.getProvider() == null)
+						continue;
+					cp.setBaseProperties(keysToProperties(elem));
+			
+					if (cp.getProfileExtensions().size() != 0) {
+						for (Iterator it = cp.getProfileExtensions().entrySet()
+								.iterator(); it.hasNext();) {
+							Map.Entry me = (Map.Entry) it.next();
+							String type = (String) me.getKey();
+							Node xmlExtraChild = elem.getFirstChild();
+							if (xmlExtraChild != null && elem.getTagName().equals(type))
+								cp.setProperties(type,
+										keysToProperties((Element)xmlExtraChild));
+						}
+					}
+			
+					cp.setCreated();
+					cps.add(cp);
+				}
+			}
+			retVal = (IConnectionProfile[]) cps.toArray(new IConnectionProfile[cps.size()]);
+			if (updatedIDs) {
+				saveCPs(retVal,file, isp);
+			}
+		} catch (IOException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} catch (GeneralSecurityException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} catch (SAXException e) {
+			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
 		}
 		return retVal;
 	}
+
 
 	/**
 	 * Get connection profiles storage location
@@ -395,5 +461,38 @@ public class ConnectionProfileMgmt {
 	 */
 	public static void setStorageLocation(IPath location) {
 		storageLocation = location;
+	}
+
+	/**
+	 * Internal method to get a handle to an XML document builder.
+	 * @return
+	 */
+	private static DocumentBuilder getDocumentBuilder() {
+		if (documentBuilder == null) {
+		    documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		    documentBuilderFactory.setNamespaceAware(true);
+		    try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+			} catch (ParserConfigurationException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
+		}
+		return documentBuilder;
+	}
+	
+	/**
+	 * Internal method to get a handle to an XML document transformer.
+	 * @return
+	 */
+	private static Transformer getTransformer() {
+		if (transformer == null) {
+            transFactory = TransformerFactory.newInstance();
+            try {
+            	transformer = transFactory.newTransformer();
+            } catch (TransformerConfigurationException e ) {
+            	ConnectivityPlugin.getDefault().log(e);
+            }
+		}
+		return transformer;
 	}
 }

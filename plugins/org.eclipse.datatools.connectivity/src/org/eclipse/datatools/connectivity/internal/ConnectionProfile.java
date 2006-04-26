@@ -23,10 +23,12 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
+import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
@@ -44,11 +46,8 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileRule;
-import org.eclipse.jface.util.ListenerList;
-import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPropertyListener;
-import org.eclipse.ui.progress.IProgressConstants;
 
 /**
  * @author rcernich, shongxum
@@ -56,7 +55,11 @@ import org.eclipse.ui.progress.IProgressConstants;
 public class ConnectionProfile extends PlatformObject implements
 		IConnectionProfile {
 
-	// (String id,Properties props)
+    static final String PROPERTY_PREFIX = "org.eclipse.ui.workbench.progress"; //$NON-NLS-1$
+    public static final QualifiedName NO_IMMEDIATE_ERROR_PROMPT_PROPERTY = new QualifiedName(
+            PROPERTY_PREFIX, "delayErrorPrompt"); //$NON-NLS-1$
+
+    // (String id,Properties props)
 	private Map mPropertiesMap = new HashMap();
 	private String mName;
 	private String mDescription;
@@ -65,8 +68,8 @@ public class ConnectionProfile extends PlatformObject implements
 	private String mProfileId;
 	private IConnectionProfileProvider mProvider = null;
 	private boolean mConnected = false;
-	private ListenerList mPropertyListeners = new ListenerList(2);
-	private ListenerList mConnectListeners = new ListenerList(2);
+	private ListenerList mPropertyListeners = new ListenerList();
+	private ListenerList mConnectListeners = new ListenerList();
 	private boolean mIsCreating;
 	private String mInstanceID;
 	private Map mFactoryIDToManagedConnection;
@@ -356,9 +359,9 @@ public class ConnectionProfile extends PlatformObject implements
 
 	public IStatus connect() {
 		final IStatus result[] = new IStatus[1];
-		BusyIndicator.showWhile(null, new Runnable() {
-
-			public void run() {
+//		BusyIndicator.showWhile(null, new Runnable() {
+//
+//			public void run() {
 				Display display = Display.getCurrent();
 				if (display == null) {
 					Job connectJob = new ConnectJob();
@@ -387,8 +390,8 @@ public class ConnectionProfile extends PlatformObject implements
 					}
 					result[0] = listener.result;
 				}
-			}
-		});
+//			}
+//		});
 
 		return result[0];
 	}
@@ -405,9 +408,9 @@ public class ConnectionProfile extends PlatformObject implements
 
 	public IStatus disconnect() {
 		final IStatus result[] = new IStatus[1];
-		BusyIndicator.showWhile(null, new Runnable() {
-
-			public void run() {
+//		BusyIndicator.showWhile(null, new Runnable() {
+//
+//			public void run() {
 				Display display = Display.getCurrent();
 				if (display == null) {
 					Job disconnectJob = new DisconnectJob();
@@ -436,8 +439,8 @@ public class ConnectionProfile extends PlatformObject implements
 					}
 					result[0] = listener.result;
 				}
-			}
-		});
+//			}
+//		});
 
 		return result[0];
 	}
@@ -628,7 +631,7 @@ public class ConnectionProfile extends PlatformObject implements
 						(IConnectionFactoryProvider) it.next(),
 						ConnectionProfile.this, this);
 				connectionJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
-				connectionJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
 				connectionJob.schedule();
 				connectionJobs.add(connectionJob);
 			}
@@ -641,7 +644,7 @@ public class ConnectionProfile extends PlatformObject implements
 				OpenConnectionEventJob connectionEventJob = new OpenConnectionEventJob(
 						(IConnectListener) listeners[index], event, this);
 				connectionEventJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
-				connectionEventJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionEventJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
 				connectionEventJob.schedule();
 				connectionEventJobs.add(connectionEventJob);
 			}
@@ -830,7 +833,7 @@ public class ConnectionProfile extends PlatformObject implements
 				CloseManagedConnectionJob connectionJob = new CloseManagedConnectionJob(
 						mc, this);
 				connectionJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
-				connectionJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
 				connectionJob.schedule();
 				connectionJobs.add(connectionJob);
 			}
@@ -841,7 +844,7 @@ public class ConnectionProfile extends PlatformObject implements
 				CloseConnectionEventJob connectionEventJob = new CloseConnectionEventJob(
 						(IConnectListener) listeners[index], event, this);
 				connectionEventJob.setProgressGroup(group, IProgressMonitor.UNKNOWN);
-				connectionEventJob.setProperty(IProgressConstants.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+				connectionEventJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
 				connectionEventJob.schedule();
 				connectionEventJobs.add(connectionEventJob);
 			}
