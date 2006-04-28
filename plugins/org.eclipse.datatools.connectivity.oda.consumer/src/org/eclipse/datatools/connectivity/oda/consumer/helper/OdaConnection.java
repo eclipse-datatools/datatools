@@ -60,9 +60,10 @@ public class OdaConnection extends OdaObject
 	
 	protected OdaConnection( IConnection connection,
 	        				 boolean switchContextClassloader,
-				   			 ClassLoader driverClassLoader )
+				   			 ClassLoader driverClassLoader,
+                             ClassLoader originalClassLoader )
 	{
-		super( connection, switchContextClassloader, driverClassLoader );
+		super( connection, switchContextClassloader, driverClassLoader, originalClassLoader );
 		
 		final String context = "OdaConnection.OdaConnection( " + //$NON-NLS-1$
 						 connection + ")\t"; //$NON-NLS-1$
@@ -210,7 +211,7 @@ public class OdaConnection extends OdaObject
 		// pass-thru driver context to the underlying connection
 		// before attempt to call open()
 		setAppContext( getDriverAppContext() );
-		
+ 
 		try
 		{	
 			setContextClassloader();

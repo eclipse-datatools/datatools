@@ -99,7 +99,7 @@ public class OdaDriver extends OdaObject
      * @param driverClassName   full path name of the ODA driver class
      *                  to load and manage by this helper
      * @param locale    deprecated
-     * @param classloader   the classloader for use to
+     * @param driverClassloader   the classloader for use to
             instantiate the underlying driver class;
             may be null, in which case, this class' own loader
             is used instead
@@ -107,30 +107,30 @@ public class OdaDriver extends OdaObject
      * @throws OdaException
      */
     public OdaDriver( String driverClassName, Locale locale,
-                                 ClassLoader classloader, 
+                                 ClassLoader driverClassloader, 
                                  boolean switchContextClassloader ) 
         throws OdaException
     {
-        super( switchContextClassloader, classloader );
+        super( switchContextClassloader, driverClassloader );
         
         final String context = "OdaDriver.OdaDriver( " + //$NON-NLS-1$
                          driverClassName + ", " + locale + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
-                         classloader + " )\t"; //$NON-NLS-1$
+                         driverClassloader + " )\t"; //$NON-NLS-1$
         logMethodCalled( context );
         
         try
         {   
             if( switchContextClassloader )
-                Thread.currentThread().setContextClassLoader( classloader );
+                setContextClassloader();
             
             // If the classloader argument is null, then use the classloader that
             // loaded this class to find the driver's class and 
             // construct an instance of the driver class. (old scheme)
             // If the classloader argument isn't null, then we'll use the classloader to 
             // construct an instance of the underlying driver class. (new scheme)
-            Class driverClass = ( classloader == null ) ?
+            Class driverClass = ( driverClassloader == null ) ?
                     Class.forName( driverClassName ) :
-                    classloader.loadClass( driverClassName );
+                    driverClassloader.loadClass( driverClassName );
                     
             // instantiate the driver; no driver bridge support
             IDriver newDriver = newDriverInstance( driverClass, null, false );
@@ -145,14 +145,14 @@ public class OdaDriver extends OdaObject
             // append the caught classloader-related exception's string to the new OdaException
             OdaException odaEx = 
                 new OdaHelperException( Messages.helper_cannotConstructConnectionFactory, 
-                                         driverClassName + ", " + classloader ); //$NON-NLS-1$
+                                         driverClassName + ", " + driverClassloader ); //$NON-NLS-1$
             odaEx.initCause( ex );
             handleError( odaEx );
         }
         finally
         {
             if( switchContextClassloader )
-                Thread.currentThread().setContextClassLoader( getClass().getClassLoader() );
+                resetContextClassloader();
         }
     }
     
@@ -559,7 +559,8 @@ public class OdaDriver extends OdaObject
 	{	
 	    OdaConnection connHelper = new OdaConnection( connection, 
 				                  switchContextClassloader(),
-								  getDriverClassLoader() );
+								  getDriverClassLoader(),
+                                  getOriginalContextClassLoader() );
 	    
 		// pass-thru driver context to the newly obtained
 		// connection helper so it can pass thru before open()

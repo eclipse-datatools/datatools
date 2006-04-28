@@ -29,7 +29,8 @@ class OdaDriverObject extends OdaObject
 	                 boolean switchContextClassloader,
 					 ClassLoader driverClassLoader )
 	{
-		super( obj, switchContextClassloader, driverClassLoader );
+		super( obj, switchContextClassloader, driverClassLoader, 
+                connection.getOriginalContextClassLoader() );
 		m_connection = connection;
 	}
 	

@@ -25,15 +25,17 @@ import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
 
 /**
  * OdaObject is the base class for all Oda wrapper objects.  The 
- * wrapper objects inherits reflection and error handling behavior 
+ * wrapper objects inherits class loading switch,
+ * reflection and error handling behavior 
  * from this class.
  */
 class OdaObject
 {
 	private Object 			m_object;
-	private boolean			m_switchContextClassloader;
+	private boolean			m_switchContextClassloader = false;
 	private ClassLoader		m_driverClassLoader;
-	
+    private ClassLoader     m_originalClassLoader;
+    
 	static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.consumer"; //$NON-NLS-1$
 	
 	private static boolean sm_ThrowExceptionOnly = true;
@@ -54,28 +56,88 @@ class OdaObject
 	protected OdaObject( boolean switchContextClassloader, 
 						 ClassLoader driverClassLoader )
 	{
-		m_object = null;
-		m_switchContextClassloader = switchContextClassloader;
-		m_driverClassLoader = driverClassLoader;
+        init( null, switchContextClassloader, driverClassLoader, null );
 	}
 	
-	protected OdaObject( Object obj, boolean switchContextClassloader,
+	protected OdaObject( Object wrappedObj, boolean switchContextClassloader,
 						 ClassLoader driverClassLoader )
 	{
-		m_object = obj;
-		m_switchContextClassloader = switchContextClassloader;
-		m_driverClassLoader = driverClassLoader;
+        init( wrappedObj, switchContextClassloader, driverClassLoader, null );
 	}
+    
+    protected OdaObject( Object wrappedObj, boolean switchContextClassloader,
+                         ClassLoader driverClassLoader, ClassLoader originalContextClassLoader )
+    {
+        init( wrappedObj, switchContextClassloader, driverClassLoader, originalContextClassLoader );
+    }
+    
+    private void init( Object wrappedObj, boolean switchContextClassloader,
+             ClassLoader driverClassLoader, ClassLoader originalContextClassLoader )
+    {
+        m_object = wrappedObj;
+        m_originalClassLoader = originalContextClassLoader;
+        m_switchContextClassloader = switchContextClassloader;
+        if( driverClassLoader != null )
+            setDriverClassLoader( driverClassLoader );
+    }
 	
 	protected void setDriverClassLoader( ClassLoader classloader )
 	{
-		m_driverClassLoader = classloader;
-	}
-	
+        if( m_driverClassLoader == classloader )
+            return;     // already set
+
+        final String context = 
+            "setDriverClassLoader( " + classloader + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        
+        cacheOriginalClassLoader( context );
+        m_driverClassLoader = classloader;
+    }
+    
+    protected ClassLoader getDriverClassLoader()
+    {
+        return m_driverClassLoader;
+    }
+    
+    /**
+     * Hold on to current thread's original thread context class loader, 
+     * if not already cached.
+     * @param context   the context from which this method is called; 
+     *                  used for trace logging purpose only
+     */
+    private void cacheOriginalClassLoader( String context )
+    {
+        if( m_originalClassLoader != null ) 
+            return;     // already set, done
+        
+        try 
+        {
+            // hold on to current thread class loader for later reset
+            m_originalClassLoader = Thread.currentThread().getContextClassLoader();
+            log( context, 
+                 "Current thread's original context class loader: " + m_originalClassLoader ); //$NON-NLS-1$
+        } 
+        catch( RuntimeException e ) 
+        {
+            // ignore, default to this class' class loader
+            logWarning( context, 
+                 "Unable to get current thread's context class loader: " + e.toString() ); //$NON-NLS-1$
+        }
+    }
+    
+    protected ClassLoader getOriginalContextClassLoader()
+    {
+       return m_originalClassLoader; 
+    }
+    
 	protected void setUseContextClassLoaderSwitch( boolean needSwitch )
 	{
 		m_switchContextClassloader = needSwitch;
 	}
+    
+    protected boolean switchContextClassloader()
+    {
+        return m_switchContextClassloader;
+    }
 
 	protected void setObject( Object obj )
 	{
@@ -87,29 +149,48 @@ class OdaObject
 		return m_object;
 	}
 	
-	protected boolean switchContextClassloader()
-	{
-		return m_switchContextClassloader;
-	}
-	
-	protected ClassLoader getDriverClassLoader()
-	{
-		return m_driverClassLoader;
-	}
-	
 	protected void setContextClassloader()
 	{
-		if( m_switchContextClassloader && m_driverClassLoader != null )
-			Thread.currentThread().setContextClassLoader( m_driverClassLoader );
+		if( ! m_switchContextClassloader || m_driverClassLoader == null )
+            return;     // no switching is set, or nothing to switch to
+        
+        final String context = "setContextClassloader()"; //$NON-NLS-1$
+        
+        cacheOriginalClassLoader( context );
+        
+		try
+        {
+            Thread.currentThread().setContextClassLoader( m_driverClassLoader );
+        }
+        catch( SecurityException e )
+        {
+            // disable class loader switching
+            m_switchContextClassloader = false;
+            logWarning( context, 
+                "Unable to set current thread's context class loader; disabled switching. " + e.toString() ); //$NON-NLS-1$
+        }
 	}
 	
 	protected void resetContextClassloader()
 	{
-		if( m_switchContextClassloader )
-		{
-			ClassLoader originalLoader = this.getClass().getClassLoader();
-			Thread.currentThread().setContextClassLoader( originalLoader );
-		}
+		if( ! m_switchContextClassloader )
+            return;     // no switching is set
+        
+        final String context = "resetContextClassloader()"; //$NON-NLS-1$
+
+		try
+        {
+            ClassLoader originalLoader = ( m_originalClassLoader != null ) ?
+                    m_originalClassLoader : this.getClass().getClassLoader();
+            Thread.currentThread().setContextClassLoader( originalLoader );
+        }
+        catch( SecurityException e )
+        {
+            // disable class loader switching
+            m_switchContextClassloader = false;
+            logWarning( context, 
+                "Unable to set/reset current thread's context class loader; disabled switching. " + e.toString() ); //$NON-NLS-1$
+        }
 	}
 	
 	/*
@@ -140,10 +221,23 @@ class OdaObject
 		throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
 			   OdaException
 	{
-		try
+        ClassLoader prevClassLoader = null;
+
+        try
 		{
+            // already set to switch class loader, keep the current switch setting
+            if( doSetContextClassloader && switchContextClassloader() )
+                doSetContextClassloader = false;
+            
 			if( doSetContextClassloader )
-				setContextClassloader();
+            {
+                // enable switching for the duration of this method
+                prevClassLoader = getDriverClassLoader();
+                setUseContextClassLoaderSwitch( true );
+                setDriverClassLoader( m_object.getClass().getClassLoader() );
+
+                setContextClassloader();
+            }
 			
 			Class objClass = m_object.getClass();
 			Method method = objClass.getMethod( methodName, parameterTypes );
@@ -171,7 +265,13 @@ class OdaObject
 		finally
 		{
 			if( doSetContextClassloader )
-				resetContextClassloader();
+            {
+                resetContextClassloader();
+                
+                // reset to previous state before this method
+                setDriverClassLoader( prevClassLoader );
+                setUseContextClassLoaderSwitch( false );
+            }
 		}
 	}
 	
