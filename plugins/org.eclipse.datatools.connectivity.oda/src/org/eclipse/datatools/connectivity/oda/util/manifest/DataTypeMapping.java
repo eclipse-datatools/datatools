@@ -76,6 +76,16 @@ public class DataTypeMapping
 			sanityCheckOdaScalarType( m_alternativeDataTypes[i], true /* isForAlternatives */ );
 		}
 	}
+    
+    protected DataTypeMapping( int nativeTypeCode, String nativeType, 
+                                String odaScalarType, 
+                                String[] alternativeDataTypes )
+    {
+        m_nativeTypeCode = nativeTypeCode;
+        m_nativeType = nativeType;
+        m_odaScalarType = odaScalarType;
+        m_alternativeDataTypes = alternativeDataTypes;
+    }
 	
 	private void sanityCheckOdaScalarType( String odaScalarType, boolean isForAlternatives )
 		throws OdaException

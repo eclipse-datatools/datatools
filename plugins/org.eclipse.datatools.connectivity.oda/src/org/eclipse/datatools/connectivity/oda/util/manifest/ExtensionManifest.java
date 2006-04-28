@@ -125,10 +125,9 @@ public class ExtensionManifest
 	}
 	
     /**
-     * Returns the dataSourceExtn used to initialize this instance.
-     * @return 
+     * Returns the data source extension element used to initialize this instance.
      */
-    protected IExtension getDataSourceExtn()
+    protected IExtension getDataSourceExtension()
     {
         return m_dataSourceExtn;
     }

@@ -35,8 +35,18 @@ public class DataSetType
 	private Hashtable m_dataTypeMappings;
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
+    private IConfigurationElement m_configElement;
 	
 	DataSetType( IConfigurationElement dataSetElement ) throws OdaException
+    {
+        init( dataSetElement );
+    }
+    
+    protected DataSetType()
+    {
+    }
+
+    protected void init( IConfigurationElement dataSetElement ) throws OdaException
 	{
 		m_id = dataSetElement.getAttribute( "id" ); //$NON-NLS-1$
 		assert( m_id != null );		// this check is already done by caller		
@@ -68,9 +78,20 @@ public class DataSetType
 		    m_properties = ExtensionManifest.getPropertyDefinitions( propertiesElement );
 		    m_propsVisibility = ExtensionManifest.getPropertyVisibilities( propertiesElement );
 		}
+        
+        // successfully initialized
+        m_configElement = dataSetElement;
 	}
 	
 	/**
+     * Returns the configuration element used to initialize this instance.
+     */
+    protected IConfigurationElement getConfigurationElement()
+    {
+        return m_configElement;
+    }
+
+    /**
 	 * Returns the ID which uniquely identifes the type of data set among 
 	 * all ODA data sets supported by the driver.
 	 * @return	the data set type name.
