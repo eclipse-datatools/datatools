@@ -45,8 +45,18 @@ public class ExtensionManifest
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_dataSourceElement;
+    private IExtension m_dataSourceExtn;
 
 	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
+    {
+        init( dataSourceExtn );
+    }
+    
+    protected ExtensionManifest()
+    {
+    }
+    
+    protected void init( IExtension dataSourceExtn ) throws OdaException
 	{
         m_dataSourceElement = 
 	        ManifestExplorer.getDataSourceElement( dataSourceExtn );
@@ -101,7 +111,7 @@ public class ExtensionManifest
 
 		// properties element
 		IConfigurationElement[] propertiesElements = m_dataSourceElement.getChildren( "properties" ); //$NON-NLS-1$
-		if ( propertiesElements.length > 0 )
+		if( propertiesElements.length > 0 )
 		{
 			// if multiple properties elements exist, use the last one
 		    IConfigurationElement propertiesElement =
@@ -109,8 +119,20 @@ public class ExtensionManifest
 		    m_properties = getPropertyDefinitions( propertiesElement );
 		    m_propsVisibility = getPropertyVisibilities( propertiesElement );
 		}
+        
+        // successfully initialized
+        m_dataSourceExtn = dataSourceExtn;
 	}
 	
+    /**
+     * Returns the dataSourceExtn used to initialize this instance.
+     * @return 
+     */
+    protected IExtension getDataSourceExtn()
+    {
+        return m_dataSourceExtn;
+    }
+
     /* 
      * Parse and return all the property definitions, 
      * combining both top-level and grouped properties.
