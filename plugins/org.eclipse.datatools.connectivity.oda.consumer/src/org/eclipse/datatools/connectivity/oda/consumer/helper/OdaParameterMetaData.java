@@ -31,8 +31,8 @@ class OdaParameterMetaData extends OdaDriverObject
 		super( parameterMetaData, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		final String context = "OdaParameterMetaData.OdaParameterMetaData( " +
-						 parameterMetaData + ", " + connection + " )\t";
+		final String context = "OdaParameterMetaData.OdaParameterMetaData( " + //$NON-NLS-1$
+						 parameterMetaData + ", " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodExitWithReturn( context, this );
 	}
 	
@@ -47,7 +47,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterCount() throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getParameterCount()\t";
+		final String context = "OdaParameterMetaData.getParameterCount()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -62,7 +62,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IParameterMetaData.getParameterCount()" );
+												  "IParameterMetaData.getParameterCount()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -80,8 +80,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterMode( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getParameterMode( " + 
-						 param + " )\t";
+		final String context = "OdaParameterMetaData.getParameterMode( " +  //$NON-NLS-1$
+						 param + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -96,7 +96,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IParameterMetaData.getParameterMode( int param )" );
+								 "IParameterMetaData.getParameterMode( int param )" ); //$NON-NLS-1$
 			return IParameterMetaData.parameterModeUnknown;
 		}
 		catch( RuntimeException rtException )
@@ -117,8 +117,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterType( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getParameterType( " + 
-						 param + " )\t";
+		final String context = "OdaParameterMetaData.getParameterType( " +  //$NON-NLS-1$
+						 param + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -133,7 +133,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetTypeNull( uoException,
-													  "IParameterMetaData.getParameterType( int param )" );
+													  "IParameterMetaData.getParameterType( int param )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -151,8 +151,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public String getParameterTypeName( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getParameterTypeName( " + 
-						 param + " )\t";
+		final String context = "OdaParameterMetaData.getParameterTypeName( " +  //$NON-NLS-1$
+						 param + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -167,7 +167,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IParameterMetaData.getParameterTypeName( int param )" );
+														 "IParameterMetaData.getParameterTypeName( int param )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -185,8 +185,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getPrecision( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getPrecision( " + param + 
-						 " )\t";
+		final String context = "OdaParameterMetaData.getPrecision( " + param +  //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -201,7 +201,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IParameterMetaData.getPrecision( int param )" );
+												  "IParameterMetaData.getPrecision( int param )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -219,8 +219,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getScale( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.getScale( " +
-						 param + " )\t";
+		final String context = "OdaParameterMetaData.getScale( " + //$NON-NLS-1$
+						 param + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -235,7 +235,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IParameterMetaData.getScale( int param )" );
+												  "IParameterMetaData.getScale( int param )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -253,8 +253,8 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int isNullable( int param ) throws OdaException
 	{
-		final String context = "OdaParameterMetaData.isNullable( " +
-						 param + " )\t";
+		final String context = "OdaParameterMetaData.isNullable( " + //$NON-NLS-1$
+						 param + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -269,7 +269,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IParameterMetaData.isNullable( int param )" );
+								 "IParameterMetaData.isNullable( int param )" ); //$NON-NLS-1$
 			return IParameterMetaData.parameterNullableUnknown;
 		}
 		catch( RuntimeException rtException )

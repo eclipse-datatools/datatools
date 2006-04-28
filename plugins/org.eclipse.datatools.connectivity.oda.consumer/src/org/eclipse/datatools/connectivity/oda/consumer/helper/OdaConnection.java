@@ -64,8 +64,8 @@ public class OdaConnection extends OdaObject
 	{
 		super( connection, switchContextClassloader, driverClassLoader );
 		
-		final String context = "OdaConnection.OdaConnection( " +
-						 connection + ")\t";
+		final String context = "OdaConnection.OdaConnection( " + //$NON-NLS-1$
+						 connection + ")\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 
 		clearDriverError();
@@ -121,7 +121,7 @@ public class OdaConnection extends OdaObject
 	public void clearDriverError()
 	{
 		m_errorNumber = 0;
-		m_errorMessage = "";
+		m_errorMessage = ""; //$NON-NLS-1$
 	}
 
 	boolean canSupportMoreOpenedStatements() throws OdaException
@@ -133,7 +133,7 @@ public class OdaConnection extends OdaObject
 	
 	public int getMaxQueries() throws OdaException
 	{
-	    final String context = "OdaConnection.getMaxQueries()\t";
+	    final String context = "OdaConnection.getMaxQueries()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -148,7 +148,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IConnection.getMaxQueries()" );
+												  "IConnection.getMaxQueries()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -201,11 +201,11 @@ public class OdaConnection extends OdaObject
 	
 	public void open( Properties connProperties ) throws OdaException
 	{
-		final String context = "OdaConnection.open( " + connProperties +
-						 " )\t";
+		final String context = "OdaConnection.open( " + connProperties + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
-		final String unsupportedOpContext = "IConnection.open( Properties connProperties )";
+		final String unsupportedOpContext = "IConnection.open( Properties connProperties )"; //$NON-NLS-1$
 
 		// pass-thru driver context to the underlying connection
 		// before attempt to call open()
@@ -218,7 +218,7 @@ public class OdaConnection extends OdaObject
 			// check if this is already opened
 			if( checkIsOpen() )
 			{
-			    log( context, "The ODA connection is already open; skip call to the IConnection.open method." );
+			    log( context, "The ODA connection is already open; skip call to the IConnection.open method." ); //$NON-NLS-1$
 				logMethodExit( context );
 				return;
 			}
@@ -262,13 +262,13 @@ public class OdaConnection extends OdaObject
 	 */
 	public void setAppContext( Object context ) throws OdaException
 	{
-		final String methodName = "OdaConnection.setAppContext()\t";
-		final String contextObjInfo = ( context == null ) ? "null" : context.toString();
+		final String methodName = "OdaConnection.setAppContext()\t"; //$NON-NLS-1$
+		final String contextObjInfo = ( context == null ) ? "null" : context.toString(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_connAppContext == context )	// already set
 		{
-		    log( methodName, "Same pass-thru application context object: " + contextObjInfo );
+		    log( methodName, "Same pass-thru application context object: " + contextObjInfo ); //$NON-NLS-1$
 			logMethodExit( methodName );
 		    return;		// nothing to do
 		}
@@ -277,13 +277,13 @@ public class OdaConnection extends OdaObject
 		{
 			setContextClassloader();
 			
-		    log( methodName, "Passing thru application context to underlying ODA connection: " + contextObjInfo );
+		    log( methodName, "Passing thru application context to underlying ODA connection: " + contextObjInfo ); //$NON-NLS-1$
 			getConnection().setAppContext( context );
 		}
 		catch( UnsupportedOperationException uoException )
 		{
 			// log, and ignore exception
-			logUnsupportedOp( uoException, "IConnection.setAppContext" );
+			logUnsupportedOp( uoException, "IConnection.setAppContext" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -308,7 +308,7 @@ public class OdaConnection extends OdaObject
 
 	public void close() throws OdaException
 	{
-		final String context = "OdaConnection.close()\t";
+		final String context = "OdaConnection.close()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -334,7 +334,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IConnection.close()" );
+								 "IConnection.close()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -393,7 +393,7 @@ public class OdaConnection extends OdaObject
 
 	public boolean isOpen() throws OdaException
 	{
-		final String context = "OdaConnection.isOpen()\t";
+		final String context = "OdaConnection.isOpen()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -408,7 +408,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IConnection.isOpen()" );
+												   "IConnection.isOpen()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -432,8 +432,8 @@ public class OdaConnection extends OdaObject
 	public IDataSetMetaData getMetaData( String dataSetType )
 		throws OdaException
 	{
-		final String context = "OdaConnection.getMetaData( " + dataSetType +
-						 " )\t";
+		final String context = "OdaConnection.getMetaData( " + dataSetType + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -450,7 +450,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IConnection.getMetaData( String dataSetType )" );
+								 "IConnection.getMetaData( String dataSetType )" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -511,10 +511,10 @@ public class OdaConnection extends OdaObject
 	public IQuery newQuery( String dataSetType )
 		throws OdaException
 	{
-		final String context = "OdaConnection.newQuery( " +
-						 dataSetType + " )\t";
+		final String context = "OdaConnection.newQuery( " + //$NON-NLS-1$
+						 dataSetType + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
-		final String unsupportedOpContext = "IConnection.newQuery( String dataSetType )";
+		final String unsupportedOpContext = "IConnection.newQuery( String dataSetType )"; //$NON-NLS-1$
 		
 		try
 		{
@@ -580,7 +580,7 @@ public class OdaConnection extends OdaObject
 
 	public void commit() throws OdaException
 	{
-	    final String context = "OdaConnection.commit()\t";
+	    final String context = "OdaConnection.commit()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -593,7 +593,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IConnection.commit()" );
+								 "IConnection.commit()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -611,7 +611,7 @@ public class OdaConnection extends OdaObject
 
 	public void rollback() throws OdaException
 	{
-	    final String context = "OdaConnection.rollback()\t";
+	    final String context = "OdaConnection.rollback()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -624,7 +624,7 @@ public class OdaConnection extends OdaObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IConnection.rollback()" );
+								 "IConnection.rollback()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -642,8 +642,8 @@ public class OdaConnection extends OdaObject
 	
 	public void setLocale( String localeString ) throws Throwable
 	{	
-	    final String context = "OdaConnection.setLocale( " +
-						 localeString + " )\t";
+	    final String context = "OdaConnection.setLocale( " + //$NON-NLS-1$
+						 localeString + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		if( localeString == null || localeString.length( ) != 5 )
@@ -661,7 +661,7 @@ public class OdaConnection extends OdaObject
 			parameterTypes[0] = m_locale.getClass();
 			Object[] arguments = new Object[1];
 			arguments[0] = m_locale;
-			findAndInvokeMethod( "setLocale", parameterTypes, arguments );
+			findAndInvokeMethod( "setLocale", parameterTypes, arguments ); //$NON-NLS-1$
 		}
 		catch( InvocationTargetException ex )
 		{

@@ -36,7 +36,7 @@ public class OdaClob extends OdaDriverObject implements IClob
     {
         super( clob, connection, switchContextClassloader, driverClassLoader );
         
-        String context = "OdaClob( Clob , " + connection + " )\t";
+        final String context = "OdaClob( Clob , " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
         logMethodCalled( context );
     }
 
@@ -50,8 +50,8 @@ public class OdaClob extends OdaDriverObject implements IClob
      */
     public Reader getCharacterStream() throws OdaException
     {
-        final String context = "OdaClob.getCharacterStream()\t";
-		final String unsupportedOpContext = "IClob.getCharacterStream()";
+        final String context = "OdaClob.getCharacterStream()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IClob.getCharacterStream()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -90,8 +90,8 @@ public class OdaClob extends OdaDriverObject implements IClob
 	public String getSubString( long position, int length ) 
 		throws OdaException
 	{
-        final String context = "OdaClob.getSubString()\t";
-		final String unsupportedOpContext = "IClob.getSubString()";
+        final String context = "OdaClob.getSubString()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IClob.getSubString()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		String ret = null;
@@ -140,8 +140,8 @@ public class OdaClob extends OdaDriverObject implements IClob
      */
     public long length() throws OdaException
     {
-        final String context = "OdaClob.length()\t";
-		final String unsupportedOpContext = "IClob.length()";
+        final String context = "OdaClob.length()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IClob.length()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -184,7 +184,7 @@ public class OdaClob extends OdaDriverObject implements IClob
     private String getSubStringFromReader( long position, int length ) 
 		throws OdaException
 	{
-        final String context = "OdaClob.getSubStringFromReader()\t";
+        final String context = "OdaClob.getSubStringFromReader()\t"; //$NON-NLS-1$
 
         // first get the underlying driver's stream
         Reader driverReader = getCharacterStream();

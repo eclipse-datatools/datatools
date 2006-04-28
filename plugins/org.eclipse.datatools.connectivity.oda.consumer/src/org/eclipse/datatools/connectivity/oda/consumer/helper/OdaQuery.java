@@ -46,8 +46,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		super( statement, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		final String context = "OdaQuery.OdaQuery( " + statement +
-						 ", " + connection + ", " + dataSetType + " )\t";
+		final String context = "OdaQuery.OdaQuery( " + statement + //$NON-NLS-1$
+						 ", " + connection + ", " + dataSetType + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		logMethodCalled( context );
 		
 		m_isPreparedSuccessfully = false;
@@ -107,13 +107,13 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	 */
 	public void setAppContext( Object context ) throws OdaException
 	{
-		final String methodName = "OdaQuery.setAppContext()\t";
-		final String contextObjInfo = ( context == null ) ? "null" : context.toString();
+		final String methodName = "OdaQuery.setAppContext()\t"; //$NON-NLS-1$
+		final String contextObjInfo = ( context == null ) ? "null" : context.toString(); //$NON-NLS-1$
 		logMethodCalled( methodName );
 
 		if( m_appContext == context )	// already set
 		{
-		    log( methodName, "Same pass-thru application context object: " + contextObjInfo );
+		    log( methodName, "Same pass-thru application context object: " + contextObjInfo ); //$NON-NLS-1$
 			logMethodExit( methodName );
 		    return;		// nothing to do
 		}
@@ -122,13 +122,13 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		{
 			setContextClassloader();
 			
-		    log( methodName, "Passing thru application context to underlying ODA query: " + contextObjInfo );
+		    log( methodName, "Passing thru application context to underlying ODA query: " + contextObjInfo ); //$NON-NLS-1$
 			getQuery().setAppContext( context );
 		}
 		catch( UnsupportedOperationException uoException )
 		{
 			// log, and ignore exception
-			logUnsupportedOp( uoException, "IQuery.setAppContext" );
+			logUnsupportedOp( uoException, "IQuery.setAppContext" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -152,10 +152,10 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void prepare( String queryText ) throws OdaException
 	{
-	    final String context = "OdaQuery.prepare( " + queryText + " )\t";
+	    final String context = "OdaQuery.prepare( " + queryText + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
-		final String unsupportedOpContext = "IQuery.prepare( String queryText )";
+		final String unsupportedOpContext = "IQuery.prepare( String queryText )"; //$NON-NLS-1$
 		
 		// pass-thru connection context to the underlying query
 		// before calling prepare()
@@ -200,8 +200,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		// i.e. not null; if null, convert it to an empty string
  		if( queryText == null )
  		{
-		    log( logContext, "Converted the null queryText argument to an empty String value to comply with the ODA interfaces specification." );
- 			queryText = "";
+		    log( logContext, "Converted the null queryText argument to an empty String value to comply with the ODA interfaces specification." ); //$NON-NLS-1$
+ 			queryText = ""; //$NON-NLS-1$
  		}
 		
 		if( ! getOdaConnection().canSupportMoreOpenedStatements() )
@@ -213,8 +213,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setProperty( String propertyName, String propertyValue )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setProperty( " + propertyName +
-						 ", " + propertyValue + " )\t";
+	    final String context = "OdaQuery.setProperty( " + propertyName + //$NON-NLS-1$
+						 ", " + propertyValue + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
 		try
@@ -228,8 +228,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setProperty( String propertyName, " + 
-								 "String propertyValue )" );
+								 "IQuery.setProperty( String propertyName, " +  //$NON-NLS-1$
+								 "String propertyValue )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -247,7 +247,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void close() throws OdaException
 	{
-	    final String context = "OdaQuery.close()\t";
+	    final String context = "OdaQuery.close()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -264,7 +264,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.close()" );
+								 "IQuery.close()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -282,7 +282,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setMaxRows( int max ) throws OdaException
 	{
-	    final String context = "OdaQuery.setMaxRows( " + max + " )\t";
+	    final String context = "OdaQuery.setMaxRows( " + max + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
 		try
@@ -293,7 +293,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		}
 		catch( UnsupportedOperationException uoException )
 		{
-			handleUnsupportedOp( uoException, "IQuery.setMaxRows()" );
+			handleUnsupportedOp( uoException, "IQuery.setMaxRows()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -313,7 +313,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public int getMaxRows() throws OdaException
 	{
-	    final String context = "OdaQuery.getMaxRows()\t";
+	    final String context = "OdaQuery.getMaxRows()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		int ret = 0;
 		
@@ -325,7 +325,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		}
 		catch( UnsupportedOperationException uoException )
 		{
-			handleUnsupportedOp( uoException, "IQuery.getMaxRows()" );
+			handleUnsupportedOp( uoException, "IQuery.getMaxRows()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -346,7 +346,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public IResultSetMetaData getMetaData() throws OdaException
 	{
-	    final String context = "OdaQuery.getMetaData()\t";
+	    final String context = "OdaQuery.getMetaData()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -361,7 +361,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.getMetaData()" );
+								 "IQuery.getMetaData()" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -398,7 +398,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public IResultSet executeQuery() throws OdaException
 	{
-	    final String context = "OdaQuery.executeQuery()\t";
+	    final String context = "OdaQuery.executeQuery()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -412,7 +412,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.executeQuery()" );
+								 "IQuery.executeQuery()" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -460,8 +460,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setInt( String parameterName, int value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setInt( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setInt( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -476,7 +476,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setInt( String parameterName, int value )" );
+								 "IQuery.setInt( String parameterName, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -494,8 +494,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setInt( int parameterId, int value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setInt( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setInt( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -510,7 +510,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IQuery.setInt( int parameterId, int value )" );
+								 "IQuery.setInt( int parameterId, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -529,8 +529,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setDouble( String parameterName, double value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setDouble( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setDouble( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -545,7 +545,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setDouble( String parameterName, double value )" );
+								 "IQuery.setDouble( String parameterName, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -563,8 +563,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDouble( int parameterId, double value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDouble( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setDouble( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -579,7 +579,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setDouble( int parameterId, double value )" );
+								 "IQuery.setDouble( int parameterId, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -598,8 +598,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setBigDecimal( String parameterName, BigDecimal value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setBigDecimal( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setBigDecimal( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -613,7 +613,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setBigDecimal( String parameterName, BigDecimal value )" );
+								 "IQuery.setBigDecimal( String parameterName, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -631,8 +631,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	
 	public void setBigDecimal( int parameterId, BigDecimal value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setBigDecimal( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setBigDecimal( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -646,7 +646,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setBigDecimal( int parameterId, BigDecimal value )" );
+								 "IQuery.setBigDecimal( int parameterId, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -665,8 +665,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setString( String parameterName, String value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setString( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setString( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -681,7 +681,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setString( String parameterName, String value )" );
+								 "IQuery.setString( String parameterName, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -699,8 +699,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setString( int parameterId, String value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setString( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setString( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -715,7 +715,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setString( int parameterId, String value )" );
+								 "IQuery.setString( int parameterId, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -733,8 +733,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDate( String parameterName, Date value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDate( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setDate( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -749,7 +749,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setDate( String parameterName, Date value )" );
+								 "IQuery.setDate( String parameterName, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -767,8 +767,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDate( int parameterId, Date value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDate( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setDate( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -783,7 +783,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IQuery.setDate( int parameterId, Date value )" );
+								 "IQuery.setDate( int parameterId, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -801,8 +801,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setTime( String parameterName, Time value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setTime( " + parameterName + ", " +
-					 	 value + " )\t";
+	    final String context = "OdaQuery.setTime( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+					 	 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -817,7 +817,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IQuery.setTime( String parameterName, Time value )" );
+								 "IQuery.setTime( String parameterName, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -835,8 +835,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setTime( int parameterId, Time value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setTime( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setTime( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -851,7 +851,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setTime( int parameterId, Time value )" );
+								 "IQuery.setTime( int parameterId, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -870,8 +870,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setTimestamp( String parameterName, Timestamp value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setTimestamp( " + parameterName + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setTimestamp( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -886,7 +886,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IQuery.setTimestamp( String parameterName, Timestamp value )" );
+								 "IQuery.setTimestamp( String parameterName, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -905,8 +905,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setTimestamp( int parameterId, Timestamp value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setTimestamp( " + parameterId + ", " +
-						 value + " )\t";
+	    final String context = "OdaQuery.setTimestamp( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -921,7 +921,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IQuery.setTimestamp( int parameterId, Timestamp value )" );
+								 "IQuery.setTimestamp( int parameterId, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -939,7 +939,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void clearInParameters() throws OdaException
 	{
-	    final String context = "OdaQuery.clearInParameters()\t";
+	    final String context = "OdaQuery.clearInParameters()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -953,7 +953,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-			                     "IQuery.clearInParameters()" );
+			                     "IQuery.clearInParameters()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -971,8 +971,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	
 	public int findInParameter( String parameterName ) throws OdaException
 	{
-	    final String context = "OdaQuery.findInParameter( " + parameterName +
-						 " )\t";
+	    final String context = "OdaQuery.findInParameter( " + parameterName + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -990,7 +990,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IQuery.findInParameter( String parameterName )" );
+												  "IQuery.findInParameter( String parameterName )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -1008,7 +1008,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public IParameterMetaData getParameterMetaData() throws OdaException
 	{
-	    final String context = "OdaQuery.getParameterMetaData()\t";
+	    final String context = "OdaQuery.getParameterMetaData()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -1039,7 +1039,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		{
 			// TODO handle backward compatibility of optional interface
 			handleUnsupportedOp( uoException,
-								 "IQuery.getParameterMetaData()" );
+								 "IQuery.getParameterMetaData()" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( OdaException odaException )
@@ -1061,7 +1061,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setSortSpec( SortSpec sortBy ) throws OdaException
 	{
-	    final String context = "OdaQuery.setSortSpec( " + sortBy + " )\t";
+	    final String context = "OdaQuery.setSortSpec( " + sortBy + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
 		try
@@ -1079,7 +1079,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-					 			 "IQuery.setSortSpec( SortSpec sortBy )" );
+					 			 "IQuery.setSortSpec( SortSpec sortBy )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -1097,7 +1097,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public SortSpec getSortSpec() throws OdaException
 	{
-	    final String context = "OdaQuery.getSortSpec()\t";
+	    final String context = "OdaQuery.getSortSpec()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -1111,7 +1111,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		}
 		catch( UnsupportedOperationException uoException )
 		{
-			handleUnsupportedOp( uoException, "IQuery.getSortSpec()" );
+			handleUnsupportedOp( uoException, "IQuery.getSortSpec()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{

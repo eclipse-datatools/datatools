@@ -31,8 +31,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		super( resultSetMetaData, connection, switchContextClassloader,
 			   driverClassLoader );	
 		
-		final String context = "OdaResultSetMetaData.OdaResultSetMetaData( " +
-						 resultSetMetaData + ", " + connection + " )\t";
+		final String context = "OdaResultSetMetaData.OdaResultSetMetaData( " + //$NON-NLS-1$
+						 resultSetMetaData + ", " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 	}
 	
@@ -47,7 +47,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 	
 	public int getColumnCount() throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnCount()\t";
+		final String context = "OdaResultSetMetaData.getColumnCount()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -62,7 +62,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IResultSetMetaData.getColumnCount()" );
+												  "IResultSetMetaData.getColumnCount()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -80,8 +80,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnName( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnName( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getColumnName( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -96,7 +96,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IResultSetMetaData.getColumnName( int index )" );
+														 "IResultSetMetaData.getColumnName( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -114,8 +114,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnLabel( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnLabel( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getColumnLabel( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -130,7 +130,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IResultSetMetaData.getColumnLabel( int index )" );
+														 "IResultSetMetaData.getColumnLabel( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -148,8 +148,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getColumnType( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnType( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getColumnType( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -164,7 +164,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IResultSetMetaData.getColumnType( int index )" );
+												  "IResultSetMetaData.getColumnType( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -182,8 +182,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnTypeName( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnTypeName( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getColumnTypeName( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -198,7 +198,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IResultSetMetaData.getColumnTypeName( int index )" );
+														 "IResultSetMetaData.getColumnTypeName( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -216,8 +216,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getColumnDisplayLength( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getColumnDisplayLength( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getColumnDisplayLength( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -232,7 +232,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IResultSetMetaData.getColumnDisplayLength( int index )" );
+												  "IResultSetMetaData.getColumnDisplayLength( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -250,8 +250,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getPrecision( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getPrecision( " +
-						 index + " )\t";
+		final String context = "OdaResultSetMetaData.getPrecision( " + //$NON-NLS-1$
+						 index + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -266,7 +266,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IResultSetMetaData.getPrecision( int index )" );
+												  "IResultSetMetaData.getPrecision( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -284,8 +284,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getScale( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.getScale( " + index +
-						 " )\t";
+		final String context = "OdaResultSetMetaData.getScale( " + index + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -300,7 +300,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IResultSetMetaData.getScale( int index )" );
+												  "IResultSetMetaData.getScale( int index )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -318,8 +318,8 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int isNullable( int index ) throws OdaException
 	{
-		final String context = "OdaResultSetMetaData.isNullable( " + index +
-						 " )\t";
+		final String context = "OdaResultSetMetaData.isNullable( " + index + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -334,7 +334,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IResultSetMetaData.isNullable( int index )" );
+								 "IResultSetMetaData.isNullable( int index )" ); //$NON-NLS-1$
 			return IResultSetMetaData.columnNullableUnknown;
 		}
 		catch( RuntimeException rtException )

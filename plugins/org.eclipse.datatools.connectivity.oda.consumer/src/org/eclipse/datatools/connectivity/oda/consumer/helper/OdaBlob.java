@@ -31,7 +31,7 @@ public class OdaBlob extends OdaDriverObject implements IBlob
     {
         super( blob, connection, switchContextClassloader, driverClassLoader );
         
-        String context = "OdaBlob( Blob , " + connection + " )\t";
+        final String context = "OdaBlob( Blob , " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
         logMethodCalled( context );
     }
 
@@ -45,8 +45,8 @@ public class OdaBlob extends OdaDriverObject implements IBlob
      */
     public InputStream getBinaryStream() throws OdaException
     {
-        final String context = "OdaBlob.getBinaryStream()\t";
-		final String unsupportedOpContext = "IBlob.getBinaryStream()";
+        final String context = "OdaBlob.getBinaryStream()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IBlob.getBinaryStream()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -84,8 +84,8 @@ public class OdaBlob extends OdaDriverObject implements IBlob
      */
     public byte[] getBytes( long position, int length ) throws OdaException
     {
-        final String context = "OdaBlob.getBytes()\t";
-		final String unsupportedOpContext = "IBlob.getBytes()";
+        final String context = "OdaBlob.getBytes()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IBlob.getBytes()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		byte[] ret = null;
@@ -134,8 +134,8 @@ public class OdaBlob extends OdaDriverObject implements IBlob
      */
     public long length() throws OdaException
     {
-        final String context = "OdaBlob.length()\t";
-		final String unsupportedOpContext = "IBlob.length()";
+        final String context = "OdaBlob.length()\t"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IBlob.length()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -179,7 +179,7 @@ public class OdaBlob extends OdaDriverObject implements IBlob
     private byte[] getBytesFromStream( long position, int length )
     	throws OdaException
     {
-        final String context = "OdaBlob.getBytesFromStream()\t";
+        final String context = "OdaBlob.getBytesFromStream()\t"; //$NON-NLS-1$
 
         // first get the underlying driver's stream
         InputStream driverStream = getBinaryStream();

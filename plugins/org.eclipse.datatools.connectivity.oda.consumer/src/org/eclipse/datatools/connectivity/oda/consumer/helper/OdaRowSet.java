@@ -34,8 +34,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		super( rowSet, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		final String context = "OdaRowSet.OdaRowSet( " + rowSet + ", " +
-						 connection + " )\t";
+		final String context = "OdaRowSet.OdaRowSet( " + rowSet + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 connection + " )\t"; //$NON-NLS-1$
 		logMethodExitWithReturn( context, this );
 	}
 	
@@ -50,8 +50,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean absolute( int rowIndex ) throws OdaException
 	{
-		final String context = "OdaRowSet.absolute( " + rowIndex +
-						 " )\t";
+		final String context = "OdaRowSet.absolute( " + rowIndex + //$NON-NLS-1$
+						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -66,7 +66,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.absolute( int rowIndex )" );
+												   "IRowSet.absolute( int rowIndex )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -84,7 +84,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean previous() throws OdaException
 	{
-		final String context = "OdaRowSet.previous()\t";
+		final String context = "OdaRowSet.previous()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -99,7 +99,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.previous()" );
+												   "IRowSet.previous()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -117,7 +117,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public int add() throws OdaException
 	{
-		final String context = "OdaRowSet.add()\t";
+		final String context = "OdaRowSet.add()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -132,7 +132,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IRowSet.add()" );
+												  "IRowSet.add()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -150,7 +150,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void clear() throws OdaException
 	{
-		final String context = "OdaRowSet.clear()\t";
+		final String context = "OdaRowSet.clear()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -164,7 +164,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.clear()" );
+								 "IRowSet.clear()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -182,7 +182,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean isEmpty() throws OdaException
 	{
-		final String context = "OdaRowSet.isEmpty()\t";
+		final String context = "OdaRowSet.isEmpty()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -197,7 +197,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.isEmpty()" );
+												   "IRowSet.isEmpty()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -215,7 +215,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public int size() throws OdaException
 	{
-		final String context = "OdaRowSet.size()\t";
+		final String context = "OdaRowSet.size()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -230,7 +230,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IRowSet.size()" );
+												  "IRowSet.size()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -248,8 +248,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( int columnIndex, int value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setInt( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setInt( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -263,7 +263,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setint( int columnIndex, int value )" );
+								 "IRowSet.setint( int columnIndex, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -281,8 +281,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( String columnName, int value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setInt( " + columnName + ", " +
-						 value + ")\t";
+		final String context = "OdaRowSet.setInt( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + ")\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -296,7 +296,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setInt( String columnName, int value )" );
+								 "IRowSet.setInt( String columnName, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -314,8 +314,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( int columnIndex, double value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDouble( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setDouble( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -329,7 +329,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDouble( int columnIndex, double value )" );
+								 "IRowSet.setDouble( int columnIndex, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -347,8 +347,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( String columnName, double value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDouble( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setDouble( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -362,7 +362,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDouble( String columnName, double value )" );
+								 "IRowSet.setDouble( String columnName, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -380,8 +380,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setBigDecimal( int columnIndex, BigDecimal value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setBigDecimal( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setBigDecimal( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -394,7 +394,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setBigDecimal( int columnIndex, BigDecimal value )" );
+								 "IRowSet.setBigDecimal( int columnIndex, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -412,8 +412,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setBigDecimal( String columnName, BigDecimal value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setBigDecimal( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setBigDecimal( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -426,7 +426,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setBigDecimal( String columnName, BigDecimal value )" );
+								 "IRowSet.setBigDecimal( String columnName, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -444,8 +444,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setString( int columnIndex, String value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setString( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setString( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -459,7 +459,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowset.setString( int columnIndex, String value )" );
+								 "IRowset.setString( int columnIndex, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -477,8 +477,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setString( String columnName, String value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setString( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setString( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -492,7 +492,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IRowSet.setString( String columnName, String value )" );
+								 "IRowSet.setString( String columnName, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -510,8 +510,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( int columnIndex, Date value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDate( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setDate( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -525,7 +525,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDate( int columnIndex, Date value )" );
+								 "IRowSet.setDate( int columnIndex, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -543,8 +543,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( String columnName, Date value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDate( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setDate( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -558,7 +558,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDate( String columnName, Date value )" );
+								 "IRowSet.setDate( String columnName, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -576,8 +576,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( int columnIndex, Time value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTime( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setTime( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -591,7 +591,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTime( int columnIndex, Time value )" );
+								 "IRowSet.setTime( int columnIndex, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -609,8 +609,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( String columnName, Time value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTime( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setTime( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -624,7 +624,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTime( String columnName, Time value )" );
+								 "IRowSet.setTime( String columnName, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -642,8 +642,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( int columnIndex, Timestamp value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTimestamp( " + columnIndex + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setTimestamp( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -657,7 +657,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTimestamp( int columnIndex, Timestamp value )" );
+								 "IRowSet.setTimestamp( int columnIndex, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -675,8 +675,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( String columnName, Timestamp value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTimestamp( " + columnName + ", " +
-						 value + " )\t";
+		final String context = "OdaRowSet.setTimestamp( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+						 value + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -690,7 +690,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTimestamp( String columnName, Timestamp value )" );
+								 "IRowSet.setTimestamp( String columnName, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{

@@ -33,8 +33,8 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		super( metadata, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		final String context = "OdaDataSetMetaData.OdaDataSetMetaData( " +
-						 metadata + ", " + connection + " )\t";
+		final String context = "OdaDataSetMetaData.OdaDataSetMetaData( " + //$NON-NLS-1$
+						 metadata + ", " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodExitWithReturn( context, this );
 	}
 	
@@ -58,7 +58,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IDataSetMetaData.getConnection()" );
+								 "IDataSetMetaData.getConnection()" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -78,9 +78,9 @@ public class OdaDataSetMetaData extends OdaDriverObject
 											String version)
 											throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.getDataSourceObjects( " +
-						 catalog + ", " + schema + ", " + object +
-						 ", " + version + ")\t";
+		final String context = "OdaDataSetMetaData.getDataSourceObjects( " + //$NON-NLS-1$
+						 catalog + ", " + schema + ", " + object + //$NON-NLS-1$ //$NON-NLS-2$
+						 ", " + version + ")\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
 		try
@@ -104,8 +104,8 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IDataSetMetaData.getDataSourceObjects( String catalog, " + 
-								 "String schema, String object, String version )" );
+								 "IDataSetMetaData.getDataSourceObjects( String catalog, " +  //$NON-NLS-1$
+								 "String schema, String object, String version )" ); //$NON-NLS-1$
 			return null;
 		}
 		catch( RuntimeException rtException )
@@ -135,7 +135,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IDataSetMetaData.getDataSourceMajorVersion()" );
+												  "IDataSetMetaData.getDataSourceMajorVersion()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -162,7 +162,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IDataSetMetaData.getDataSourceMinorVersion()" );
+												  "IDataSetMetaData.getDataSourceMinorVersion()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -189,7 +189,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IDataSetMetaData.getDataSourceProductName()" );
+														 "IDataSetMetaData.getDataSourceProductName()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -216,7 +216,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetEmptyString( uoException,
-														 "IDataSetMetaData.getDataSourceProductVersion()" );
+														 "IDataSetMetaData.getDataSourceProductVersion()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -234,7 +234,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public int getSQLStateType() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.getSQLStateType()\t";
+		final String context = "OdaDataSetMetaData.getSQLStateType()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -249,7 +249,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IDataSetMetaData.getSQLStateType()" );
+												  "IDataSetMetaData.getSQLStateType()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -267,7 +267,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsMultipleOpenResults() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsMultipleOpenResults()\t";
+		final String context = "OdaDataSetMetaData.supportsMultipleOpenResults()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -282,7 +282,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsMultipleOpenResults()" );
+												   "IDataSetMetaData.supportsMultipleOpenResults()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -300,7 +300,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsMultipleResultSets() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsMultipleResultSets()\t";
+		final String context = "OdaDataSetMetaData.supportsMultipleResultSets()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -315,7 +315,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsMultipleResultSets()" );
+												   "IDataSetMetaData.supportsMultipleResultSets()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -338,7 +338,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 	
 	public boolean supportsNamedResultSets() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsNamedResultSets()\t";
+		final String context = "OdaDataSetMetaData.supportsNamedResultSets()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -353,7 +353,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsNamedResultSets()" );
+												   "IDataSetMetaData.supportsNamedResultSets()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -376,7 +376,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsNamedParameters() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsNamedParameters()\t";
+		final String context = "OdaDataSetMetaData.supportsNamedParameters()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -391,7 +391,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsNamedParameters()" );
+												   "IDataSetMetaData.supportsNamedParameters()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -414,7 +414,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 	
 	public boolean supportsInParameters() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsInParameter()\t";
+		final String context = "OdaDataSetMetaData.supportsInParameter()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -429,7 +429,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsInParameters()" );
+												   "IDataSetMetaData.supportsInParameters()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -447,7 +447,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsOutParameters() throws OdaException
 	{
-		final String context = "OdaDataSetMetaData.supportsOutParameters()\t";
+		final String context = "OdaDataSetMetaData.supportsOutParameters()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -462,7 +462,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IDataSetMetaData.supportsOutParameters()" );
+												   "IDataSetMetaData.supportsOutParameters()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -480,7 +480,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public int getSortMode()
 	{
-		final String context = "OdaDataSetMetaData.getSortMode()\t";
+		final String context = "OdaDataSetMetaData.getSortMode()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -495,7 +495,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IDataSetMetaData.getSortMode()" );
+								 "IDataSetMetaData.getSortMode()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
