@@ -237,6 +237,8 @@ public class SimpleQuery implements IQuery
 	 */
 	public IParameterMetaData getParameterMetaData() throws OdaException
 	{
+        // sub-class may override;
+        // @see default implementation in SimpleParameterMetaData class
 		return null;	// has no parameters
 	}
 
