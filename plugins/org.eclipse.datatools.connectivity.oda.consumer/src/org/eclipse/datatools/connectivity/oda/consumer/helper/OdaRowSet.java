@@ -34,7 +34,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		super( rowSet, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		String context = "OdaRowSet.OdaRowSet( " + rowSet + ", " +
+		final String context = "OdaRowSet.OdaRowSet( " + rowSet + ", " +
 						 connection + " )\t";
 		logMethodExitWithReturn( context, this );
 	}
@@ -50,7 +50,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean absolute( int rowIndex ) throws OdaException
 	{
-		String context = "OdaRowSet.absolute( " + rowIndex +
+		final String context = "OdaRowSet.absolute( " + rowIndex +
 						 " )\t";
 		logMethodCalled( context );
 		
@@ -84,7 +84,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean previous() throws OdaException
 	{
-		String context = "OdaRowSet.previous()\t";
+		final String context = "OdaRowSet.previous()\t";
 		logMethodCalled( context );
 		
 		try
@@ -117,7 +117,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public int add() throws OdaException
 	{
-		String context = "OdaRowSet.add()\t";
+		final String context = "OdaRowSet.add()\t";
 		logMethodCalled( context );
 		
 		try
@@ -150,7 +150,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void clear() throws OdaException
 	{
-		String context = "OdaRowSet.clear()\t";
+		final String context = "OdaRowSet.clear()\t";
 		logMethodCalled( context );
 		
 		try
@@ -182,7 +182,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean isEmpty() throws OdaException
 	{
-		String context = "OdaRowSet.isEmpty()\t";
+		final String context = "OdaRowSet.isEmpty()\t";
 		logMethodCalled( context );
 		
 		try
@@ -215,7 +215,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public int size() throws OdaException
 	{
-		String context = "OdaRowSet.size()\t";
+		final String context = "OdaRowSet.size()\t";
 		logMethodCalled( context );
 		
 		try
@@ -248,7 +248,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( int columnIndex, int value ) throws OdaException
 	{
-		String context = "OdaRowSet.setInt( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setInt( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -281,7 +281,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( String columnName, int value ) throws OdaException
 	{
-		String context = "OdaRowSet.setInt( " + columnName + ", " +
+		final String context = "OdaRowSet.setInt( " + columnName + ", " +
 						 value + ")\t";
 		logMethodCalled( context );
 		
@@ -314,7 +314,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( int columnIndex, double value ) throws OdaException
 	{
-		String context = "OdaRowSet.setDouble( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setDouble( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -347,7 +347,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( String columnName, double value ) throws OdaException
 	{
-		String context = "OdaRowSet.setDouble( " + columnName + ", " +
+		final String context = "OdaRowSet.setDouble( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -380,7 +380,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setBigDecimal( int columnIndex, BigDecimal value ) throws OdaException
 	{
-		String context = "OdaRowSet.setBigDecimal( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setBigDecimal( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -412,7 +412,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setBigDecimal( String columnName, BigDecimal value ) throws OdaException
 	{
-		String context = "OdaRowSet.setBigDecimal( " + columnName + ", " +
+		final String context = "OdaRowSet.setBigDecimal( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -444,7 +444,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setString( int columnIndex, String value ) throws OdaException
 	{
-		String context = "OdaRowSet.setString( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setString( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -477,7 +477,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setString( String columnName, String value ) throws OdaException
 	{
-		String context = "OdaRowSet.setString( " + columnName + ", " +
+		final String context = "OdaRowSet.setString( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -510,7 +510,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( int columnIndex, Date value ) throws OdaException
 	{
-		String context = "OdaRowSet.setDate( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setDate( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -543,7 +543,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( String columnName, Date value ) throws OdaException
 	{
-		String context = "OdaRowSet.setDate( " + columnName + ", " +
+		final String context = "OdaRowSet.setDate( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -576,7 +576,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( int columnIndex, Time value ) throws OdaException
 	{
-		String context = "OdaRowSet.setTime( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setTime( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -609,7 +609,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( String columnName, Time value ) throws OdaException
 	{
-		String context = "OdaRowSet.setTime( " + columnName + ", " +
+		final String context = "OdaRowSet.setTime( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -642,7 +642,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( int columnIndex, Timestamp value ) throws OdaException
 	{
-		String context = "OdaRowSet.setTimestamp( " + columnIndex + ", " +
+		final String context = "OdaRowSet.setTimestamp( " + columnIndex + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		
@@ -675,7 +675,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( String columnName, Timestamp value ) throws OdaException
 	{
-		String context = "OdaRowSet.setTimestamp( " + columnName + ", " +
+		final String context = "OdaRowSet.setTimestamp( " + columnName + ", " +
 						 value + " )\t";
 		logMethodCalled( context );
 		

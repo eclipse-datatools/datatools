@@ -33,7 +33,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 		super( metadata, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		String context = "OdaDataSetMetaData.OdaDataSetMetaData( " +
+		final String context = "OdaDataSetMetaData.OdaDataSetMetaData( " +
 						 metadata + ", " + connection + " )\t";
 		logMethodExitWithReturn( context, this );
 	}
@@ -78,7 +78,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 											String version)
 											throws OdaException
 	{
-		String context = "OdaDataSetMetaData.getDataSourceObjects( " +
+		final String context = "OdaDataSetMetaData.getDataSourceObjects( " +
 						 catalog + ", " + schema + ", " + object +
 						 ", " + version + ")\t";
 		logMethodCalled( context );
@@ -234,7 +234,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public int getSQLStateType() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.getSQLStateType()\t";
+		final String context = "OdaDataSetMetaData.getSQLStateType()\t";
 		logMethodCalled( context );
 		
 		try
@@ -267,7 +267,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsMultipleOpenResults() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsMultipleOpenResults()\t";
+		final String context = "OdaDataSetMetaData.supportsMultipleOpenResults()\t";
 		logMethodCalled( context );
 		
 		try
@@ -300,7 +300,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsMultipleResultSets() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsMultipleResultSets()\t";
+		final String context = "OdaDataSetMetaData.supportsMultipleResultSets()\t";
 		logMethodCalled( context );
 		
 		try
@@ -338,7 +338,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 	
 	public boolean supportsNamedResultSets() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsNamedResultSets()\t";
+		final String context = "OdaDataSetMetaData.supportsNamedResultSets()\t";
 		logMethodCalled( context );
 		
 		try
@@ -376,7 +376,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsNamedParameters() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsNamedParameters()\t";
+		final String context = "OdaDataSetMetaData.supportsNamedParameters()\t";
 		logMethodCalled( context );
 		
 		try
@@ -414,7 +414,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 	
 	public boolean supportsInParameters() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsInParameter()\t";
+		final String context = "OdaDataSetMetaData.supportsInParameter()\t";
 		logMethodCalled( context );
 		
 		try
@@ -447,7 +447,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public boolean supportsOutParameters() throws OdaException
 	{
-		String context = "OdaDataSetMetaData.supportsOutParameters()\t";
+		final String context = "OdaDataSetMetaData.supportsOutParameters()\t";
 		logMethodCalled( context );
 		
 		try
@@ -480,7 +480,7 @@ public class OdaDataSetMetaData extends OdaDriverObject
 
 	public int getSortMode()
 	{
-		String context = "OdaDataSetMetaData.getSortMode()\t";
+		final String context = "OdaDataSetMetaData.getSortMode()\t";
 		logMethodCalled( context );
 		
 		try

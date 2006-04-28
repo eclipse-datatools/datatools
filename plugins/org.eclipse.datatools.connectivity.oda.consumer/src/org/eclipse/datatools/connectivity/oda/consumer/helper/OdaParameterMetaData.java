@@ -31,7 +31,7 @@ class OdaParameterMetaData extends OdaDriverObject
 		super( parameterMetaData, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		String context = "OdaParameterMetaData.OdaParameterMetaData( " +
+		final String context = "OdaParameterMetaData.OdaParameterMetaData( " +
 						 parameterMetaData + ", " + connection + " )\t";
 		logMethodExitWithReturn( context, this );
 	}
@@ -47,7 +47,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterCount() throws OdaException
 	{
-		String context = "OdaParameterMetaData.getParameterCount()\t";
+		final String context = "OdaParameterMetaData.getParameterCount()\t";
 		logMethodCalled( context );
 		
 		try
@@ -80,7 +80,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterMode( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.getParameterMode( " + 
+		final String context = "OdaParameterMetaData.getParameterMode( " + 
 						 param + " )\t";
 		logMethodCalled( context );
 		
@@ -117,7 +117,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getParameterType( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.getParameterType( " + 
+		final String context = "OdaParameterMetaData.getParameterType( " + 
 						 param + " )\t";
 		logMethodCalled( context );
 		
@@ -151,7 +151,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public String getParameterTypeName( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.getParameterTypeName( " + 
+		final String context = "OdaParameterMetaData.getParameterTypeName( " + 
 						 param + " )\t";
 		logMethodCalled( context );
 		
@@ -185,7 +185,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getPrecision( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.getPrecision( " + param + 
+		final String context = "OdaParameterMetaData.getPrecision( " + param + 
 						 " )\t";
 		logMethodCalled( context );
 		
@@ -219,7 +219,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int getScale( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.getScale( " +
+		final String context = "OdaParameterMetaData.getScale( " +
 						 param + " )\t";
 		logMethodCalled( context );
 		
@@ -253,7 +253,7 @@ class OdaParameterMetaData extends OdaDriverObject
 
 	public int isNullable( int param ) throws OdaException
 	{
-		String context = "OdaParameterMetaData.isNullable( " +
+		final String context = "OdaParameterMetaData.isNullable( " +
 						 param + " )\t";
 		logMethodCalled( context );
 		

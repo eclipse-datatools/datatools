@@ -467,9 +467,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setInt( parameterName, value );
 			
@@ -503,9 +501,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{	
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setInt( parameterId, value );
 			
@@ -540,9 +536,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setDouble( parameterName, value );
 			
@@ -576,9 +570,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setDouble( parameterId, value );
 			
@@ -613,9 +605,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setBigDecimal( parameterName, value );
 			logMethodExit( context );
@@ -648,9 +638,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setBigDecimal( parameterId, value );
 			logMethodExit( context );
@@ -684,9 +672,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setString( parameterName, value );
 			
@@ -720,9 +706,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setString( parameterId, value );
 			
@@ -756,9 +740,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setDate( parameterName, value );
 			
@@ -792,9 +774,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setDate( parameterId, value );
 			
@@ -828,9 +808,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setTime( parameterName, value );
 			
@@ -864,9 +842,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setTime( parameterId, value );
 			
@@ -901,9 +877,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setTimestamp( parameterName, value );
 			
@@ -938,9 +912,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			getQuery().setTimestamp( parameterId, value );
 			
@@ -1162,4 +1134,11 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	{
 		return IQuery.class.getName();
 	}
+
+    private void throwIfSetParamBeforePrepare() throws OdaException
+    {
+        if( ! isPreparedSuccessfully() )
+            throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+    }
+
 }

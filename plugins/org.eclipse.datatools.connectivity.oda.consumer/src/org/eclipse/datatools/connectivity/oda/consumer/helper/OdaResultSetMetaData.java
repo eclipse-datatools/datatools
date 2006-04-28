@@ -31,7 +31,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 		super( resultSetMetaData, connection, switchContextClassloader,
 			   driverClassLoader );	
 		
-		String context = "OdaResultSetMetaData.OdaResultSetMetaData( " +
+		final String context = "OdaResultSetMetaData.OdaResultSetMetaData( " +
 						 resultSetMetaData + ", " + connection + " )\t";
 		logMethodCalled( context );
 	}
@@ -47,7 +47,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 	
 	public int getColumnCount() throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnCount()\t";
+		final String context = "OdaResultSetMetaData.getColumnCount()\t";
 		logMethodCalled( context );
 		
 		try
@@ -80,7 +80,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnName( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnName( " +
+		final String context = "OdaResultSetMetaData.getColumnName( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -114,7 +114,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnLabel( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnLabel( " +
+		final String context = "OdaResultSetMetaData.getColumnLabel( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -148,7 +148,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getColumnType( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnType( " +
+		final String context = "OdaResultSetMetaData.getColumnType( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -182,7 +182,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public String getColumnTypeName( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnTypeName( " +
+		final String context = "OdaResultSetMetaData.getColumnTypeName( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -216,7 +216,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getColumnDisplayLength( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getColumnDisplayLength( " +
+		final String context = "OdaResultSetMetaData.getColumnDisplayLength( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -250,7 +250,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getPrecision( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getPrecision( " +
+		final String context = "OdaResultSetMetaData.getPrecision( " +
 						 index + " )\t";
 		logMethodCalled( context );
 		
@@ -284,7 +284,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int getScale( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.getScale( " + index +
+		final String context = "OdaResultSetMetaData.getScale( " + index +
 						 " )\t";
 		logMethodCalled( context );
 		
@@ -318,7 +318,7 @@ public class OdaResultSetMetaData extends OdaDriverObject
 
 	public int isNullable( int index ) throws OdaException
 	{
-		String context = "OdaResultSetMetaData.isNullable( " + index +
+		final String context = "OdaResultSetMetaData.isNullable( " + index +
 						 " )\t";
 		logMethodCalled( context );
 		

@@ -31,14 +31,16 @@ import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
  */
 public class OdaResultSet extends OdaDriverObject implements IResultSet
 {
-	protected OdaResultSet( IResultSet resultSet, OdaConnection connection,
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+    protected OdaResultSet( IResultSet resultSet, OdaConnection connection,
 							boolean switchContextClassloader,
 							ClassLoader driverClassLoader )
 	{
 		super( resultSet, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		String context = "OdaResultSet.OdaResultSet( " + resultSet +
+		final String context = "OdaResultSet.OdaResultSet( " + resultSet +
 						 ", " + connection + " )\t";
 		logMethodExitWithReturn( context, this );
 	}
@@ -741,9 +743,10 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		{
 			setContextClassloader();
 			
-			IBlob blob = getResultSet().getBlob( index );
+			IBlob driverBlob = getResultSet().getBlob( index );
 			
-			OdaBlob ret = newBlobWrapper( blob );
+            // instantiate helper's wrapper object
+            IBlob ret = createBlobWrapper( driverBlob );
 			
 			logMethodExitWithReturn( context, ret );
 			return ret;
@@ -781,9 +784,10 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		{
 			setContextClassloader();
 			
-			IBlob blob = getResultSet().getBlob( columnName );
+			IBlob driverBlob = getResultSet().getBlob( columnName );
 			
-			OdaBlob ret = newBlobWrapper( blob );
+            // instantiate helper's wrapper object
+			IBlob ret = createBlobWrapper( driverBlob );
 			
 			logMethodExitWithReturn( context, ret );
 			return ret;
@@ -809,10 +813,12 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		}
     }
 
-    private OdaBlob newBlobWrapper( IBlob blob )
+    /** Instantiate helper's wrapper object
+     */
+    private IBlob createBlobWrapper( IBlob driverBlob )
     {
-        return ( blob == null ) ? null : 
-		    new OdaBlob( blob, getOdaConnection(), 
+        return ( driverBlob == null ) ? null : 
+		    new OdaBlob( driverBlob, getOdaConnection(), 
 		            switchContextClassloader(), getDriverClassLoader());
     }
     
@@ -828,9 +834,10 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		{
 			setContextClassloader();
 			
-			IClob clob = getResultSet().getClob( index );
+			IClob driverClob = getResultSet().getClob( index );
 			
-			OdaClob ret = newClobWrapper( clob );
+            // instantiate helper's wrapper object
+			IClob ret = createClobWrapper( driverClob );
 			
 			logMethodExitWithReturn( context, ret );
 			return ret;
@@ -868,9 +875,10 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		{
 			setContextClassloader();
 			
-			IClob clob = getResultSet().getClob( columnName );
+			IClob driverClob = getResultSet().getClob( columnName );
 			
-			OdaClob ret = newClobWrapper( clob );
+            // instantiate helper's wrapper object
+			IClob ret = createClobWrapper( driverClob );
 			
 			logMethodExitWithReturn( context, ret );
 			return ret;
@@ -896,10 +904,12 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		}
     }
     
-    private OdaClob newClobWrapper( IClob clob )
+    /** Instantiate helper's wrapper object
+     */
+    private IClob createClobWrapper( IClob driverClob )
     {
-        return ( clob == null ) ? null : 
-		    new OdaClob( clob, getOdaConnection(), 
+        return ( driverClob == null ) ? null : 
+		    new OdaClob( driverClob, getOdaConnection(), 
 		            switchContextClassloader(), getDriverClassLoader());
     }
 
@@ -980,7 +990,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( index );
-		String ret = ( decimal == null ) ? "" : decimal.toString();
+		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -993,7 +1003,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( columnName );
-		String ret = ( decimal == null ) ? "" : decimal.toString();
+		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1005,7 +1015,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Date date = getDate( index );
-		String ret = ( date == null ) ? "" : date.toString();
+		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1017,7 +1027,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Date date = getDate( columnName );
-		String ret = ( date == null ) ? "" : date.toString();
+		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1029,7 +1039,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Time time = getTime( index );
-		String ret = ( time == null ) ? "" : time.toString();
+		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1041,7 +1051,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Time time = getTime( columnName );
-		String ret = ( time == null ) ? "" : time.toString();
+		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1054,7 +1064,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( index );
-		String ret = ( timestamp == null ) ? "" : timestamp.toString();
+		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1067,7 +1077,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( columnName );
-		String ret = ( timestamp == null ) ? "" : timestamp.toString();
+		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;

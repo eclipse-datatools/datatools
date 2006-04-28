@@ -35,7 +35,9 @@ import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 public class OdaAdvancedQuery extends OdaQuery
 							  implements IAdvancedQuery
 {
-	// flag to indicate whether executeQuery() was
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+    // flag to indicate whether executeQuery() was
 	// called from within execute().
 	private boolean m_calledExecuteQueryForExecute = false;
 
@@ -52,7 +54,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		       switchContextClassloader,
 			   driverClassLoader );
 		
-		String context = "OdaAdvancedQuery.OdaAdvancedQuery( " + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.OdaAdvancedQuery( " + //$NON-NLS-1$
 						 statement + ", " + connection + ", " + //$NON-NLS-1$ //$NON-NLS-2$
 						 dataSetType + " )\t"; //$NON-NLS-1$
 		logMethodExitWithReturn( context, this );
@@ -69,7 +71,7 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public boolean execute() throws OdaException
 	{
-		String context = "OdaAdvancedQuery.execute()\t"; //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.execute()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -144,7 +146,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IResultSet getResultSet() throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getResultSet()\t"; //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getResultSet()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -193,7 +195,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public boolean getMoreResults() throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getMoreResults()\t"; //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getMoreResults()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -229,7 +231,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IResultSetMetaData getMetaDataOf( String resultSetName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getMetaDataOf( " +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getMetaDataOf( " +  //$NON-NLS-1$
 						 resultSetName + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -273,7 +275,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public String[] getResultSetNames() throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getResultSetNames()\t"; //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getResultSetNames()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -309,7 +311,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IResultSet getResultSet( String resultSetName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getResultSet( " + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getResultSet( " + //$NON-NLS-1$
 						 resultSetName + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -356,16 +358,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IParameterRowSet setNewRow( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.setNewRow( " + parameterName +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.setNewRow( " + parameterName +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			IParameterRowSet rowSet = getAdvancedQuery().setNewRow( parameterName );
 			OdaRowSet ret = createFactoryRow( rowSet );
@@ -397,16 +397,14 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public IParameterRowSet setNewRow( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.setNewRow( " + parameterId +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.setNewRow( " + parameterId +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			IParameterRowSet rowSet = getAdvancedQuery().setNewRow( parameterId );
 			OdaRowSet ret = createFactoryRow( rowSet );
@@ -438,16 +436,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IParameterRowSet setNewRowSet( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.setNewRowSet( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.setNewRowSet( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			IParameterRowSet rowSet = getAdvancedQuery().setNewRowSet( parameterName );
 			
@@ -484,16 +480,14 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public IParameterRowSet setNewRowSet( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.setNewRowSet( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.setNewRowSet( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isPreparedSuccessfully() )
-				throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+            throwIfSetParamBeforePrepare();
 			
 			IParameterRowSet rowSet = getAdvancedQuery().setNewRowSet( parameterId );
 			
@@ -530,16 +524,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public int getInt( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getInt( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getInt( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			int ret = 0;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -574,16 +566,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public int getInt( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getInt( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getInt( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )	
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			int ret = getAdvancedQuery().getInt( parameterId );
 			
@@ -611,16 +601,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public double getDouble( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDouble( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDouble( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			double ret = 0;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -655,16 +643,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public double getDouble( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDouble( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDouble( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			double ret = getAdvancedQuery().getDouble( parameterId );
 			
@@ -692,16 +678,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public BigDecimal getBigDecimal( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getBigDecimal( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getBigDecimal( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			BigDecimal ret = null;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -739,16 +723,14 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public BigDecimal getBigDecimal( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getBigDecimal( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getBigDecimal( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			BigDecimal ret = getAdvancedQuery().getBigDecimal( parameterId );
 			
@@ -779,18 +761,16 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public String getString( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getString( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getString( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
+            throwIfNotExecuted();
 			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
-			
-			String ret = ""; //$NON-NLS-1$
+			String ret = EMPTY_STRING;
 			if( getDSMetaData().checkSupportForNamedParameters() )
 				ret = getAdvancedQuery().getString( parameterName );
 			else
@@ -823,16 +803,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public String getString( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getString( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getString( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			String ret = getAdvancedQuery().getString( parameterId );
 			
@@ -860,16 +838,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Date getDate( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDate( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDate( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Date ret = null;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -907,16 +883,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Date getDate( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDate( " + parameterId +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDate( " + parameterId +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )	
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Date ret = getAdvancedQuery().getDate( parameterId );
 			
@@ -947,16 +921,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Time getTime( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTime( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTime( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Time ret = null;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -994,16 +966,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Time getTime( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTime( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTime( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Time ret = getAdvancedQuery().getTime( parameterId );
 			
@@ -1034,16 +1004,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Timestamp getTimestamp( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimestamp( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimestamp( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Timestamp ret = null;
 			if( getDSMetaData().checkSupportForNamedParameters() )
@@ -1081,16 +1049,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public Timestamp getTimestamp( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimestamp( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimestamp( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			Timestamp ret = getAdvancedQuery().getTimestamp( parameterId );
 			
@@ -1144,11 +1110,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		    }
 		    
 		    // instantiate helper's wrapper object
-		    IBlob ret = null;
-		    if( driverBlob != null )
-		    	ret = new OdaBlob( driverBlob, getOdaConnection(), 
-		    	        			switchContextClassloader(), 
-		    	        			getDriverClassLoader() );
+		    IBlob ret = createBlobWrapper( driverBlob );
  
 		    logMethodExitWithReturn( context, ret );
 		    return ret;
@@ -1192,11 +1154,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		    IBlob driverBlob = getAdvancedQuery().getBlob( parameterId );
 		    
 		    // instantiate helper's wrapper object
-		    IBlob ret = null;	
-		    if( driverBlob != null )
-		    	ret = new OdaBlob( driverBlob, getOdaConnection(), 
-		    	        			switchContextClassloader(), 
-		    	        			getDriverClassLoader() );
+		    IBlob ret = createBlobWrapper( driverBlob );	
  
 		    logMethodExitWithReturn( context, ret );
 		    return ret;
@@ -1222,6 +1180,16 @@ public class OdaAdvancedQuery extends OdaQuery
 		}	    
 	}
 
+    /** Instantiate helper's wrapper object
+     */
+    private IBlob createBlobWrapper( IBlob driverBlob )
+    {
+        return ( driverBlob == null ) ? null : 
+            new OdaBlob( driverBlob, getOdaConnection(), 
+                                switchContextClassloader(), 
+                                getDriverClassLoader() );
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getClob(java.lang.String)
@@ -1246,11 +1214,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		        driverClob = getAdvancedQuery().getClob( index );
 		    }
 		    
-		    IClob ret = null;
-		    if( driverClob != null )
-		    	ret = new OdaClob( driverClob, getOdaConnection(), 
-		    	        			switchContextClassloader(), 
-		    	        			getDriverClassLoader() );
+		    IClob ret = createClobWrapper( driverClob );
  
 		    logMethodExitWithReturn( context, ret );
 		    return ret;
@@ -1294,11 +1258,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		    IClob driverClob = getAdvancedQuery().getClob( parameterId );
 		    
 		    // instantiate helper's wrapper object
-		    IClob ret = null;	
-		    if( driverClob != null )
-		    	ret = new OdaClob( driverClob, getOdaConnection(), 
-		    	        			switchContextClassloader(), 
-		    	        			getDriverClassLoader() );
+		    IClob ret = createClobWrapper( driverClob );	
  
 		    logMethodExitWithReturn( context, ret );
 		    return ret;
@@ -1323,6 +1283,16 @@ public class OdaAdvancedQuery extends OdaQuery
 		    resetContextClassloader();
 		}	    
 	}
+    
+    /** Instantiate helper's wrapper object
+     */
+    private IClob createClobWrapper( IClob driverClob )
+    {
+        return ( driverClob == null ) ? null : 
+            new OdaClob( driverClob, getOdaConnection(), 
+                                switchContextClassloader(), 
+                                getDriverClassLoader() );
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -1330,16 +1300,14 @@ public class OdaAdvancedQuery extends OdaQuery
 	 */
 	public IParameterRowSet getRow( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getRow( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getRow( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			OdaRowSet ret = null;
 			
@@ -1381,16 +1349,14 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public IParameterRowSet getRow( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getRow( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getRow( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
 		{
 			setContextClassloader();
-			
-			if( ! isExecuted() )
-				throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
+            throwIfNotExecuted();
 			
 			OdaRowSet ret = doGetRow( parameterId );
 			
@@ -1445,7 +1411,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public int findOutParameter( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.findOutParameter( " + parameterName + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.findOutParameter( " + parameterName + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -1482,7 +1448,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public boolean wasNull() throws OdaException
 	{
-		String context = "OdaAdvancedQuery.wasNull()\t"; //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.wasNull()\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -1521,7 +1487,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public void setSortSpec( String resultSetName, SortSpec sortBy ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.setSortSpec( " + resultSetName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+		final String context = "OdaAdvancedQuery.setSortSpec( " + resultSetName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
 						 sortBy + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -1557,7 +1523,7 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public SortSpec getSortSpec( String resultSetName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getSortSpec( " + resultSetName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		final String context = "OdaAdvancedQuery.getSortSpec( " + resultSetName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
 		logMethodCalled( context );
 		
 		try
@@ -1592,16 +1558,16 @@ public class OdaAdvancedQuery extends OdaQuery
 	}
 
 	//---------------------------------------------------------------
-	// Utility methods to encapsulate logging usage.
+	// Utility methods to encapsulate data type conversion.
 	
 	public String getBigDecimalAsString( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getBigDecimalAsString( " + parameterName +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getBigDecimalAsString( " + parameterName +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( parameterName );
-		String ret = ( decimal == null ) ? "" : decimal.toString(); //$NON-NLS-1$
+		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1609,12 +1575,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getBigDecimalAsString( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getBigDecimalAsString( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getBigDecimalAsString( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( parameterId );
-		String ret = ( decimal == null ) ? "" : decimal.toString(); //$NON-NLS-1$
+		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1622,12 +1588,12 @@ public class OdaAdvancedQuery extends OdaQuery
 
 	public String getDateAsString( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDateAsString( " + parameterName +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDateAsString( " + parameterName +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Date date = getDate( parameterName );
-		String ret = ( date == null ) ? "" : date.toString(); //$NON-NLS-1$
+		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1635,12 +1601,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getDateAsString( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getDateAsString( " + parameterId + //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getDateAsString( " + parameterId + //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Date date = getDate( parameterId );
-		String ret = ( date == null ) ? "" : date.toString(); //$NON-NLS-1$
+		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1648,12 +1614,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getTimeAsString( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimeAsString( " + parameterName +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimeAsString( " + parameterName +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Time time = getTime( parameterName );
-		String ret = ( time == null ) ? "" : time.toString(); //$NON-NLS-1$
+		String ret = ( time == null ) ? EMPTY_STRING : time.toString(); 
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1661,12 +1627,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getTimeAsString( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimeAsString( " + parameterId +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimeAsString( " + parameterId +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Time time = getTime( parameterId );
-		String ret = ( time == null ) ? "" : time.toString(); //$NON-NLS-1$
+		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1674,12 +1640,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getTimestampAsString( String parameterName ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimestampAsString( " + parameterName +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimestampAsString( " + parameterName +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( parameterName );
-		String ret = ( timestamp == null ) ? "" : timestamp.toString(); //$NON-NLS-1$
+		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1687,12 +1653,12 @@ public class OdaAdvancedQuery extends OdaQuery
 	
 	public String getTimestampAsString( int parameterId ) throws OdaException
 	{
-		String context = "OdaAdvancedQuery.getTimestampAsString( " + parameterId +  //$NON-NLS-1$
+		final String context = "OdaAdvancedQuery.getTimestampAsString( " + parameterId +  //$NON-NLS-1$
 						 " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( parameterId );
-		String ret = ( timestamp == null ) ? "" : timestamp.toString(); //$NON-NLS-1$
+		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1708,4 +1674,11 @@ public class OdaAdvancedQuery extends OdaQuery
 	    if( ! isExecuted() )
 	        throw newOdaException( Messages.helper_cannotGetParamBeforeExecute );
 	}
+
+    private void throwIfSetParamBeforePrepare() throws OdaException
+    {
+        if( ! isPreparedSuccessfully() )
+            throw newOdaException( Messages.helper_cannotSetParamBeforePrepare );
+    }
+
 }
