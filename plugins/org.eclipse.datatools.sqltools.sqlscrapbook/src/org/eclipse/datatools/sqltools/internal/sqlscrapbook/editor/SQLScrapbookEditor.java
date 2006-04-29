@@ -53,7 +53,7 @@ public class SQLScrapbookEditor extends SQLEditor {
 
 	protected void createActions() {
 		super.createActions();
-        ResourceBundle bundle = Messages.RESOURCE_BUNDLE;
+        ResourceBundle bundle = Messages.getBundleForConstructedKeys();
 
         IAction a = new SetConnectionInfoAction(bundle,
 				"SetConnectionInfo.", this); //$NON-NLS-1$

@@ -81,7 +81,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
         }
         catch (Exception e)
         {
-            processError(Messages.getString("ExecuteSQLActionDelegate.error.execute"), e, null); //$NON-NLS-1$
+            processError(Messages.ExecuteSQLActionDelegate_error_execute, e, null); 
         }
         finally {
         	ProfileUtil.closeConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname(), conn);
@@ -120,7 +120,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
                     stat = new Status(IStatus.ERROR, SQLEditorPlugin.PLUGIN_ID, 0, error.getMessage() == null ? "" : error
                         .getMessage(), error);
                 }
-                String title = Messages.getString("common.error");
+                String title = Messages.common_error;
                 ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, msg, stat);
             }
         }

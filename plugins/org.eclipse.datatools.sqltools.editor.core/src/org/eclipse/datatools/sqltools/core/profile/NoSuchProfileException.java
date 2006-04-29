@@ -12,6 +12,8 @@
 
 package org.eclipse.datatools.sqltools.core.profile;
 
+import org.eclipse.osgi.util.NLS;
+
 
 /**
  * An exception indicates a connection profile does not exist for the given name.
@@ -30,7 +32,7 @@ public class NoSuchProfileException extends Exception
      */
     public NoSuchProfileException(String name)
     {
-        super(Messages.getString("NoSuchProfileException.cant.find.profile", name)); //$NON-NLS-1$
+        super(NLS.bind(Messages.NoSuchProfileException_cant_find_profile, (new Object[]{name}))); 
     }
 
 }

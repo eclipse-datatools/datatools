@@ -69,6 +69,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
@@ -514,16 +515,15 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             catch (InvocationTargetException e)
             {
                 Throwable targetExc = e.getTargetException();
-                String title = SQLEditorResources.getString("EditorManager.operationFailed", new Object[]
-                {
-                    SQLEditorResources.getString("Save")
-                }
-                ); //$NON-NLS-1$
+                String title = NLS.bind(SQLEditorResources.EditorManager_operationFailed, (new Object[]
+				{
+				    SQLEditorResources.Save
+				})); //$NON-NLS-1$
                 String message = targetExc.getMessage();
                 message = message == null? "":message;
 				IStatus status = new Status(IStatus.WARNING, SQLEditorPlugin.PLUGIN_ID, IStatus.OK,message, targetExc );
                 SQLEditorPlugin.getDefault().log(status);
-                MessageDialog.openError(getEditorSite().getShell(), SQLEditorResources.getString("common.error"), //$NON-NLS-1$
+                MessageDialog.openError(getEditorSite().getShell(), SQLEditorResources.common_error, 
                 title + ':' + message);
             }
             catch (InterruptedException e)
@@ -788,7 +788,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         catch (Throwable e)
         {
             // Might caught LookaheadSuccess
-            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLEditor.error.while.trying.to.install.sql.updater"), e); //$NON-NLS-1$
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLEditor_error_while_trying_to_install_sql_updater, e); 
         }
     }
 
@@ -914,7 +914,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                     statusLineMgr.setMessage( connStatus );
                 }
                 else {
-                    String connStatus = SQLEditorResources.getString( "SQLEditor.connection.status.noConnection" ); //$NON-NLS-1$
+                    String connStatus = SQLEditorResources.SQLEditor_connection_status_noConnection; 
                     statusLineMgr.setErrorMessage( connStatus );
                 }
                 actionBars.updateActionBars();

@@ -11,70 +11,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.db.derby.internal;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-/**
- * @author Hui Cao
- * 
- */
-public class Messages {
-	private static final String BUNDLE_NAME = Messages.class.getPackage().getName() + ".messages"; //$NON-NLS-1$
+public final class Messages extends NLS {
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
+	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.db.derby.internal.messages";//$NON-NLS-1$
 
 	private Messages() {
+		// Do not instantiate
 	}
 
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String SQLParser_datatype_judgeLength;
+	public static String SQLParser_datatype_judgeLengthAndScale;
+	public static String SQLParser_datatype_exceed_maxlength;
+	public static String plugin_internal_error;
+
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
-	
-    public static String getString(String key, String arg0)
-    {
-        return getString(key, new Object[]{arg0});
-    }
-
-    public static String getString(String key, String arg0, String arg1)
-    {
-        return getString(key, new Object[]{arg0,arg1});
-    }
-
-    public static String getString(String key, String arg0, String arg1, String arg2)
-    {
-        return getString(key, new Object[]{arg0,arg1,arg2});
-    }
-    
-    public static String getString(String key, Object[] args)
-    {
-        try
-        {
-            return MessageFormat.format(RESOURCE_BUNDLE.getString(key),args);
-        }
-        catch (MissingResourceException e)
-        {
-            StringBuffer argString = new StringBuffer(key);
-            argString.append(":");
-            for (int i=0; i< args.length; i++){
-                argString.append(args[i]);
-            }
-            return argString.toString();
-        }
-    }
-
-    /**
-     * Return the Locale that is loaded during startup
-     */
-    public static Locale getLocale()
-    {
-        return RESOURCE_BUNDLE.getLocale();
-    }
-
 }

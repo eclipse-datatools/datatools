@@ -47,7 +47,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
         this._database = db;
         if (map == null)
         {
-            throw new IllegalArgumentException(Messages.getString("ProcIdentifierImpl.map.cant.be.null")); //$NON-NLS-1$
+            throw new IllegalArgumentException(Messages.ProcIdentifierImpl_map_cant_be_null); 
         }
         propertyMap = map;
     }
@@ -204,7 +204,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
 
         if (profile == null || dbname == null || typestr == null)
         {
-            throw new ParseException(Messages.getString("ProcIdentifierImpl.invalid.identifier.string"), -1); //$NON-NLS-1$
+            throw new ParseException(Messages.ProcIdentifierImpl_invalid_identifier_string, -1); 
         }
 
         try
@@ -220,7 +220,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
         }
         catch(NumberFormatException ex)
         {
-            throw new ParseException(Messages.getString("ProcIdentifierImpl.invalid.identifier.string"), -1); //$NON-NLS-1$
+            throw new ParseException(Messages.ProcIdentifierImpl_invalid_identifier_string, -1); 
         }
     }
 
@@ -233,7 +233,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
 
         if (profile == null || dbname == null || typestr == null)
         {
-            throw new ParseException(Messages.getString("ProcIdentifierImpl.invalid.identifier.string"), -1); //$NON-NLS-1$
+            throw new ParseException(Messages.ProcIdentifierImpl_invalid_identifier_string, -1); 
         }
 
         try
@@ -249,7 +249,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
         }
         catch(NumberFormatException ex)
         {
-            throw new ParseException(Messages.getString("ProcIdentifierImpl.invalid.identifier.string"), -1); //$NON-NLS-1$
+            throw new ParseException(Messages.ProcIdentifierImpl_invalid_identifier_string, -1); 
         }
     }
 

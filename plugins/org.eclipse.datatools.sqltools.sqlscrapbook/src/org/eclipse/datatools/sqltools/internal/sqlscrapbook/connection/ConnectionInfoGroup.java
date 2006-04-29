@@ -177,13 +177,11 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		this.setLayout(gridLayout1);
 
 		_labelType = new Label(this, SWT.NONE);
-		_labelType.setText(Messages
-				.getString("SelectProfileDialog.profile.type")); //$NON-NLS-1$
+		_labelType.setText(Messages.SelectProfileDialog_profile_type); //$NON-NLS-1$
 		createComboType(this);
 
 		_labelName = new Label(this, SWT.NONE);
-		_labelName.setText(Messages
-				.getString("SelectProfileDialog.profile.name")); //$NON-NLS-1$
+		_labelName.setText(Messages.SelectProfileDialog_profile_name); //$NON-NLS-1$
 		//hide the "create" button for now since we can't invoke the right wizard
 //		Composite compositeName = new Composite(this, SWT.NONE);
 //		gridData3.grabExcessHorizontalSpace = true;
@@ -206,8 +204,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			_checkBoxConnect = new Button(this, SWT.CHECK);
 			gridData2.horizontalSpan = 2;
 			_checkBoxConnect.setLayoutData(gridData2);
-			_checkBoxConnect.setText(Messages
-					.getString("SelectProfileDialog.donot.connect")); //$NON-NLS-1$
+			_checkBoxConnect.setText(Messages.SelectProfileDialog_donot_connect); //$NON-NLS-1$
 			_checkBoxConnect.addListener(SWT.Selection, this);
 			if (_listener != null) {
 				_checkBoxConnect.addListener(SWT.Selection, _listener);
@@ -222,8 +219,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			gridData6.verticalSpan = 2;
 			_textWarning.setLayoutData(gridData6);
 			_textWarning.setEditable(false);
-			_textWarning.setText(Messages
-					.getString("SelectProfileDialog.warning")); //$NON-NLS-1$
+			_textWarning.setText(Messages.SelectProfileDialog_warning); //$NON-NLS-1$
 			_textWarning.setVisible(false);
 			// setSize to hold the warning
 			this.setSize(new org.eclipse.swt.graphics.Point(460, 469));
@@ -270,10 +266,8 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				IStatus status = new Status(IStatus.ERROR,
 						EditorCorePlugin.PLUGIN_ID, 0, statusmsg, e);
 				Shell shell = getShell();
-				String title = Messages
-						.getString("SelectProfileDialog.error.jdbc.title"); //$NON-NLS-1$
-				String msg = Messages
-						.getString("SelectProfileDialog.error.jdbc.message"); //$NON-NLS-1$
+				String title = Messages.SelectProfileDialog_error_jdbc_title; //$NON-NLS-1$
+				String msg = Messages.SelectProfileDialog_error_jdbc_message; //$NON-NLS-1$
 				ErrorDialog.openError(shell, title, msg, status);
 
 				return;
@@ -373,7 +367,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	public String getWarning() {
 		if (!_mustConnect && _checkBoxConnect.getSelection()) {
-			return Messages.getString("SelectProfileDialog.warning");
+			return Messages.SelectProfileDialog_warning;
 		}
 		return null;
 	}

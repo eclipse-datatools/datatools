@@ -13,6 +13,7 @@
 package org.eclipse.datatools.sqltools.core;
 
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Holds database configuration properties. Database level configurations will be retrieved from server by using
@@ -39,7 +40,7 @@ public interface IDatabaseSetting
          */
         public NotSupportedSettingException(String propName)
         {
-            super(Messages.getString("NotSupportedSettingException.cause", propName));
+            super(NLS.bind(Messages.NotSupportedConfigurationException_cause, propName));
         }
     }
 

@@ -169,7 +169,7 @@ public class HTMLTextPresenter implements DefaultInformationControl.IInformation
             if (line != null)
             {
                 append(buffer, _LINE_DELIM, lineFormatted ? presentation : null);
-                append(buffer, Messages.getString("HTMLTextPresenter.ellipse"), presentation); //$NON-NLS-1$
+                append(buffer, Messages.HTMLTextPresenter_ellipse, presentation); 
             }
 
             return trim(buffer, presentation);

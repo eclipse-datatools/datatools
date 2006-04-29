@@ -26,6 +26,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.osgi.util.NLS;
 
 
 /**
@@ -125,7 +126,7 @@ public class SQLService
 	    }
 	    catch (Exception e1)
 	    {
-	        EditorCorePlugin.getDefault().log(Messages.getString("DefaultSQLSyntax.exception.splitSQL", sql), e1);
+	        EditorCorePlugin.getDefault().log(NLS.bind(Messages.DefaultSQLSyntax_exception_splitSQL, sql), e1);
 	    }
 	    return (String[]) groups.toArray(new String[groups.size()]);
 	}

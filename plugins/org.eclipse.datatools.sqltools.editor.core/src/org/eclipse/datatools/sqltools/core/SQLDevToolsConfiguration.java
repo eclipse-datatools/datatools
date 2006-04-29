@@ -44,9 +44,7 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	private static SQLDevToolsConfiguration _instance = new SQLDevToolsConfiguration();
 
 	protected SQLDevToolsConfiguration() {
-		_dbdefinitionId = new DatabaseVendorDefinitionId(Messages
-				.getString("DefaultDBFactory.vendor"), Messages
-				.getString("DefaultDBFactory.version"));
+		_dbdefinitionId = new DatabaseVendorDefinitionId(Messages.DefaultDBFactory_vendor, Messages.DefaultDBFactory_version);
 	}
 
 	public static SQLDevToolsConfiguration getDefaultInstance() {

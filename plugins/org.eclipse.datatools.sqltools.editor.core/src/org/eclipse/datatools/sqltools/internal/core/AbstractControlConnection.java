@@ -44,7 +44,6 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
 import org.eclipse.datatools.sqltools.core.dbitem.IItemWithCode;
 import org.eclipse.datatools.sqltools.core.internal.dbitem.SQLObjectItem;
-import org.eclipse.datatools.sqltools.core.profile.Messages;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
@@ -277,8 +276,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 		} else {
 			// should not happen
 			throw new SQLException(
-					Messages
-							.getString("AbstractControlConnection.invalid.store.procedure.description")); //$NON-NLS-1$
+					Messages.AbstractControlConnection_invalid_store_procedure_description); //$NON-NLS-1$
 		}
 	}
 
@@ -297,8 +295,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 		} else {
 			// should not happen
 			throw new SQLException(
-					Messages
-							.getString("AbstractControlConnection.invalid.store.procedure.description")); //$NON-NLS-1$
+					Messages.AbstractControlConnection_invalid_store_procedure_description); //$NON-NLS-1$
 		}
 	}
 

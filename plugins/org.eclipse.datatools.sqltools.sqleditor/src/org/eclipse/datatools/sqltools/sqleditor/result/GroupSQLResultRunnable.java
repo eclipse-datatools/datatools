@@ -28,6 +28,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -45,8 +46,8 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 
             IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
             MessageDialogWithToggle dlg = MessageDialogWithToggle.openYesNoQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()
-                , Messages.getString("GroupSQLResultRunnable.title"), //$NON-NLS-1$
-                Messages.getString("GroupSQLResultRunnable.message"), //$NON-NLS-1$
+                , Messages.GroupSQLResultRunnable_title, 
+                Messages.GroupSQLResultRunnable_message, 
                 null/* use default toggle message */, false, store, PreferenceConstants.EXECUTE_SQL_ERROR_MODE);
             int result = dlg.getReturnCode();
 
@@ -115,10 +116,10 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             monitor = manager.createProgressGroup();
         }
 
-        String task = Messages.getString("GroupSQLResultRunnable.name");
+        String task = Messages.GroupSQLResultRunnable_name;
         if (_groups.length > 1)
         {
-            task += Messages.getString("GroupSQLResultRunnable.groups", "" + _groups.length);
+            task += NLS.bind("GroupSQLResultRunnable.groups", (new Object[]{"" + _groups.length}));
         }
         monitor.beginTask(task, _groups.length);
 
@@ -128,7 +129,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             {
                 if (_groups.length > 1)
                 {
-                    monitor.subTask(Messages.getString("GroupSQLResultRunnable.group", "" + i));
+                    monitor.subTask(NLS.bind("GroupSQLResultRunnable.group", (new Object[]{"" + i})));
                 }
                 _currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
                     getDatabaseIdentifier(), null);

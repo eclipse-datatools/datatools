@@ -46,6 +46,6 @@ public abstract class SPLocalVariable extends SPVariable
     {
         if (!thread.isSuspended())
         throw new DebugException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID,
-            0, DebuggerMessages.getString("SPLocalVariable.threadNotSuspended"), null)); //$NON-NLS-1$
+            0, DebuggerMessages.SPLocalVariable_threadNotSuspended, null)); 
     }
 }

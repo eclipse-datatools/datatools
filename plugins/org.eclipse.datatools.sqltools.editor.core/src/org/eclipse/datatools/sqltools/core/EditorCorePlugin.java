@@ -116,7 +116,7 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 
  	public IStatus createErrorStatus(Throwable e) {
  		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
- 				INTERNAL_ERROR, Messages.getString("plugin.internal_error"), e); //$NON-NLS-1$
+ 				INTERNAL_ERROR, Messages.plugin_internal_error, e); 
  	}
 
     public IStatus createErrorStatus(String message, Throwable e) {

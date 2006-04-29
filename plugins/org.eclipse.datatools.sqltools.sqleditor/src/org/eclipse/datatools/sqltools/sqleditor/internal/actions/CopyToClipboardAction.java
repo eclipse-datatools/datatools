@@ -40,8 +40,8 @@ class CopyToClipboardAction extends SelectionDispatchAction
     {
         super(site);
 
-        setText(Messages.getString("CopyAction.label")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("CopyAction.tooltip")); //$NON-NLS-1$
+        setText(Messages.CopyAction_label); 
+        setToolTipText(Messages.CopyAction_tooltip); 
 
         _fClipboard = clipboard;
         _fPasteAction = pasteAction;
@@ -116,7 +116,7 @@ class CopyToClipboardAction extends SelectionDispatchAction
             if (MessageDialog
             .openQuestion(
                 getShell(),
-                Messages.getString("CopyToClipboard.error.title"), Messages.getString("CopyToClipboard.error.message"))) //$NON-NLS-1$ //$NON-NLS-2$
+                Messages.CopyToClipboard_error_title, Messages.CopyToClipboard_error_message)) 
                 copyToClipboard(text, repeatCount + 1);
         }
     }

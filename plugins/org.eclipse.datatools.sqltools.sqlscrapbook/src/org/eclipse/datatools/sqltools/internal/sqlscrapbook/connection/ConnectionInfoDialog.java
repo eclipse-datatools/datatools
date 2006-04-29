@@ -16,6 +16,7 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.JFaceColors;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -84,8 +85,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		if (_connInfo == null || _connInfo.getConnectionProfile() == null ) {
 			Label label = new Label(composite, SWT.NONE);
-			label.setText(Messages
-					.getString("SelectProfileDialog.noprofile"));
+			label.setText(Messages.SelectProfileDialog_noprofile);
 			label.setForeground(JFaceColors.getErrorText(label.getDisplay()));
 		}else 
 		{
@@ -93,8 +93,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 			if (_connInfo.getConnectionProfile() == null) {
 				Label label = new Label(composite, SWT.NONE);
 				
-				label.setText(Messages.getString(
-						"SelectProfileDialog.wrongprofile", profileName));
+				label.setText(NLS.bind(Messages.SelectProfileDialog_wrongprofile, profileName));
 				label.setForeground(JFaceColors.getErrorText(label.getDisplay()));
 			}
 		}
@@ -109,7 +108,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	 */
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText(Messages.getString("SelectProfileDialog.title")); //$NON-NLS-1$
+		shell.setText(Messages.SelectProfileDialog_title); 
 	}
 
 	protected void okPressed() {

@@ -46,6 +46,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -135,7 +136,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         }
         catch (CoreException e)
         {
-            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLUpdater.error.annotation"), e);
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_annotation, e);
         }
 
         // XXX: There seemed to have a bug in eclipse's jface text. When in the AnnotationModel
@@ -236,7 +237,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         }
         catch (CoreException e)
         {
-            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLUpdater.error.annotation"), e); //$NON-NLS-1$
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_annotation, e); 
         }
     }
 
@@ -261,13 +262,13 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
 					storageName = _input.getName() + ": ";//$NON-NLS-1$
 				}
                 attrs.put(IMarker.MESSAGE, storageName
-                    + SQLEditorResources.getString("SQLUpdater.nonportable", new String[]{_portableTarget}) + ex.getMessage()); //$NON-NLS-1$
+                    + NLS.bind(SQLEditorResources.SQLUpdater_nonportable, (new String[]{_portableTarget})) + ex.getMessage()); 
                 updateAnnotation(ex, EditorConstants.PORTABILITY_MARKER_TYPE, attrs);
             }
         }
         catch (CoreException e)
         {
-            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLUpdater.error.annotation"), e); //$NON-NLS-1$
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_annotation, e); 
         }
     }
 
@@ -315,7 +316,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         }
         catch (BadLocationException e1)
         {
-            SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLUpdater.error.location"), e1); //$NON-NLS-1$
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_location, e1); 
         }
         marker.setAttributes(new String[] 
         {
@@ -446,7 +447,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 }
                 catch (CoreException e2)
                 {
-                    SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLUpdater.error.removemarker"), e2); //$NON-NLS-1$
+                    SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_removemarker, e2); 
                 }
             }
             //after annotation is removed, it disappeared from the side bar

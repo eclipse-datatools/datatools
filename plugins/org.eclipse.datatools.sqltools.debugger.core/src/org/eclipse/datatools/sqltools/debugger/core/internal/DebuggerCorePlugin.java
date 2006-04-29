@@ -117,7 +117,7 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
     
     public IStatus createErrorStatus(Throwable e) {
         return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
-                INTERNAL_ERROR, DebuggerMessages.getString("plugin.internal_error"), e); //$NON-NLS-1$
+                INTERNAL_ERROR, DebuggerMessages.plugin_internal_error, e); 
     }
 
     /**

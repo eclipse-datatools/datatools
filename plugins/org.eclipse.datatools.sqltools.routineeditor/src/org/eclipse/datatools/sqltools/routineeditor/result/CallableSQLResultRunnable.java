@@ -36,7 +36,6 @@ import org.eclipse.datatools.sqltools.routineeditor.launching.LaunchHelper;
 import org.eclipse.datatools.sqltools.routineeditor.parameter.ParameterInOutWrapper;
 import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchUI;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
-import org.eclipse.datatools.sqltools.sqleditor.result.Messages;
 import org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable;
 import org.eclipse.debug.core.ILaunchConfiguration;
 
@@ -157,11 +156,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 
                 catch (SQLException e1)
                 {
-                    RoutineEditorActivator.getDefault().log(Messages.getString("CallableSQLResultRunnable.getStatementOutParam"), e1); //$NON-NLS-1$
+                    RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_getStatementOutParam_debug, e1); 
                 }
                 catch (NumberFormatException e1)
                 {
-                	RoutineEditorActivator.getDefault().log(Messages.getString("CallableSQLResultRunnable.getStatementOutParam"), e1); //$NON-NLS-1$
+                	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_getStatementOutParam_debug, e1); 
                 }
             }
         }
@@ -311,11 +310,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             }
             catch (NoSuchProfileException e1)
             {
-            	RoutineEditorActivator.getDefault().log(Messages.getString("CallableSQLResultRunnable.prepareStatement"), e1); //$NON-NLS-1$
+            	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_prepareStatement, e1); 
             }
             catch (CoreException e)
             {
-            	RoutineEditorActivator.getDefault().log(Messages.getString("CallableSQLResultRunnable.prepareStatement"), e); //$NON-NLS-1$
+            	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_prepareStatement, e); 
             }
         }
         return cstmt;

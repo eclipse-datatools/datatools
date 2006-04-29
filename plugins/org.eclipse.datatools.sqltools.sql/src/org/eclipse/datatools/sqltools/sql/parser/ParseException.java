@@ -123,7 +123,7 @@ public class ParseException extends Exception
              */
             expected.append(eol).append("    "); //$NON-NLS-1$
         }
-        StringBuffer retval = new StringBuffer(Messages.getString("ParseException.encountered")); //$NON-NLS-1$
+        StringBuffer retval = new StringBuffer(Messages.ParseException_encountered); 
         Token tok = currentToken.next;
         for (int i = 0; i < maxSize; i++) 
         {
@@ -140,14 +140,14 @@ public class ParseException extends Exception
         //since the task/problem view already shows the line number, don't duplicate them in the description
         //retval
         //    .append(DmpMessages.getString("ParseException.atline")).append(currentToken.next.beginLine).append(DmpMessages.getString("ParseException.atcolumn")).append(currentToken.next.beginColumn); //$NON-NLS-1$ //$NON-NLS-2$
-        retval.append(Messages.getString("ParseException.period") + eol); //$NON-NLS-1$
+        retval.append(Messages.ParseException_period + eol); 
         if (expectedTokenSequences.length == 1)
         {
-            retval.append(Messages.getString("ParseException.expecting")).append(eol).append("    "); //$NON-NLS-1$ //$NON-NLS-2$
+            retval.append(Messages.ParseException_expecting).append(eol).append("    "); 
         }
         else 
         {
-            retval.append(Messages.getString("ParseException.expection.oneof")).append(eol).append("    "); //$NON-NLS-1$ //$NON-NLS-2$
+            retval.append(Messages.ParseException_expection_oneof).append(eol).append("    "); 
         }
         retval.append(expected);
         return retval.toString();

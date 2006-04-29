@@ -36,8 +36,8 @@ public class CutAction extends SelectionDispatchAction
     {
         super(site);
 
-        setText(Messages.getString("CutAction.label")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("CutAction.tooltip")); //$NON-NLS-1$
+        setText(Messages.CutAction_label); 
+        setToolTipText(Messages.CutAction_tooltip); 
 
         _fCopyToClipboardAction = new CopyToClipboardAction(site, clipboard, pasteAction);
 

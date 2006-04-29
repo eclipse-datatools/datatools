@@ -154,7 +154,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
         String name = (String) m.getAttribute(ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
         if (name == null || name.length() == 0) 
         {
-            throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.getString("SPLineBreakpoint.invalidProcIdentifier"), null));  //$NON-NLS-1$
+            throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.SPLineBreakpoint_invalidProcIdentifier, null));  
         }
 
         try
@@ -164,7 +164,7 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
         catch (ParseException ex)
         {
             throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0,
-                DebuggerMessages.getString("SPLineBreakpoint.invalidProcIdentifier") + name, null)); //$NON-NLS-1$
+                DebuggerMessages.SPLineBreakpoint_invalidProcIdentifier + name, null)); 
         }
     }
 

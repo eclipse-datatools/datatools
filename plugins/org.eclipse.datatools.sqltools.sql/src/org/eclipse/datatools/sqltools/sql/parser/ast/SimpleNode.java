@@ -204,7 +204,7 @@ public class SimpleNode implements Node
             }
             catch (BadLocationException e1)
             {
-                SQLActivator.getDefault().log( Messages.getString("SimpleNode.1"), e1); //$NON-NLS-1$
+                SQLActivator.getDefault().log( Messages.SimpleNode_1, e1); 
             }
         }
         return offset;
@@ -410,7 +410,7 @@ public class SimpleNode implements Node
         }
         catch (BadLocationException e)
         {
-            SQLActivator.getDefault().log( Messages.getString("SimpleNode.2"), e); //$NON-NLS-1$
+            SQLActivator.getDefault().log( Messages.SimpleNode_2, e); 
         }
         return ""; //$NON-NLS-1$
     }
@@ -439,7 +439,7 @@ public class SimpleNode implements Node
             }
             catch (BadLocationException e1)
             {
-                SQLActivator.getDefault().log( Messages.getString("SimpleNode.1"), e1); //$NON-NLS-1$
+                SQLActivator.getDefault().log( Messages.SimpleNode_1, e1); 
             }
         }
         return offset;

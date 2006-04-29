@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -138,7 +139,10 @@ public abstract class AbstractDBPreferenceFieldPage extends FieldEditorPreferenc
             String name = id;
             if (name == null)
             {
-                Activator.getDefault().log(Messages.getString("AbstractDBPreferenceFieldPage.nodb", id)); //$NON-NLS-1$
+                Activator.getDefault().log(NLS.bind(Messages.AbstractDBPreferenceFieldPage_nodb, (new Object[]
+				{
+				    id
+				}))); //$NON-NLS-1$
                 continue;
             }
             IDataServerPreferenceSection section = (IDataServerPreferenceSection)sections.get(id);

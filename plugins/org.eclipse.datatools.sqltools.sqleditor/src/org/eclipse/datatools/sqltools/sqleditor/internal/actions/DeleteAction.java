@@ -43,8 +43,8 @@ public class DeleteAction extends SelectionDispatchAction
     {
         super(site);
 
-        setText(Messages.getString("DeleteAction.label")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("DeleteAction.tooltip")); //$NON-NLS-1$
+        setText(Messages.DeleteAction_label); 
+        setToolTipText(Messages.DeleteAction_tooltip); 
 
         ISharedImages workbenchImages = PlatformUI.getWorkbench().getSharedImages();
         setDisabledImageDescriptor(workbenchImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
@@ -122,7 +122,7 @@ public class DeleteAction extends SelectionDispatchAction
         }
         catch (BadLocationException e)
         {
-        	SQLEditorPlugin.getDefault().log( Messages.getString("DeleteAction.0"), e); //$NON-NLS-1$
+        	SQLEditorPlugin.getDefault().log( Messages.DeleteAction_0, e); 
         }
     }
 
@@ -152,7 +152,7 @@ public class DeleteAction extends SelectionDispatchAction
         }
         catch (BadLocationException e)
         {
-        	SQLEditorPlugin.getDefault().log( Messages.getString("DeleteAction.0"), e); //$NON-NLS-1$
+        	SQLEditorPlugin.getDefault().log( Messages.DeleteAction_0, e); 
         }
 
     }
@@ -189,8 +189,8 @@ public class DeleteAction extends SelectionDispatchAction
     private int confirm()
     {
         MessageBox messageBox = new MessageBox(getShell(), SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-        messageBox.setText(Messages.getString("DeleteAction.confirm.title"));  //$NON-NLS-1$
-        messageBox.setMessage(Messages.getString("DeleteAction.confirm.message") );  //$NON-NLS-1$
+        messageBox.setText(Messages.DeleteAction_confirm_title);  
+        messageBox.setMessage(Messages.DeleteAction_confirm_message );  
         return messageBox.open();
     }
 }

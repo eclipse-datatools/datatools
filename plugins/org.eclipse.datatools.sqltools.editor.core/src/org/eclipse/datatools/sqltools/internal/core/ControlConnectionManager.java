@@ -27,6 +27,7 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.jface.util.ListenerList;
+import org.eclipse.osgi.util.NLS;
 
 
 /**
@@ -64,8 +65,7 @@ public class ControlConnectionManager implements IControlConnectionManager
             //TODO differentiate unknow server type and other exception
             if (con == null)
             {
-                throw new SQLException(Messages.getString(
-                    "ControlConnectionManager.unknownServerType", databaseIdentifier.getProfileName())); //$NON-NLS-1$
+                throw new SQLException(NLS.bind(Messages.ControlConnectionManager_unknownServerType, (new Object[]{databaseIdentifier.getProfileName()}))); 
             }
             _controlConnectionMap.put(databaseIdentifier, con);
             this.fireAdded(con);

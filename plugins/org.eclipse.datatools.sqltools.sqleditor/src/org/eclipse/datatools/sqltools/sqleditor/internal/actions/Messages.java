@@ -11,70 +11,52 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
-import java.text.MessageFormat;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-/**
- * @author Hui Cao
- * 
- */
-public class Messages {
-	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.sqleditor.internal.actions.messages"; //$NON-NLS-1$
+public final class Messages extends NLS {
 
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
-			.getBundle(BUNDLE_NAME);
+	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.sqleditor.internal.actions.messages";//$NON-NLS-1$
 
 	private Messages() {
+		// Do not instantiate
 	}
 
-	public static String getString(String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String common_error;
+	public static String CutAction_label;
+	public static String CutAction_tooltip;
+	public static String CopyAction_label;
+	public static String CopyAction_tooltip;
+	public static String CopyToClipboard_error_title;
+	public static String CollectionUtil_invalid_size;
+	public static String CopyToClipboard_error_message;
+	public static String DeleteAction_label;
+	public static String DeleteAction_0;
+	public static String DeleteAction_tooltip;
+	public static String DeleteAction_confirm_title;
+	public static String DeleteAction_confirm_message;
+	public static String PasteAction_label;
+	public static String PasteAction_1;
+	public static String PasteAction_tooltip;
+	public static String ExecuteSQLAction_label;
+	public static String ExecuteSQLAction_tooltip;
+	public static String ExecuteSelectionSQLAction_label;
+	public static String ExecuteSelectionSQLAction_tooltip;
+	public static String RunAction_label;
+	public static String RunAction_tooltip;
+	public static String RunAction_runError;
+	public static String DebugAction_label;
+	public static String DebugAction_tooltip;
+	public static String DebugAction_runError;
+	public static String ExplainSQLAction_label;
+	public static String ExplainSQLAction_tooltip;
+	public static String ExplainSQLActionDelegate_error_initview;
+	public static String ExplainSQLActionDelegate_error_proc_qp;
+	public static String ExecuteSQLActionDelegate_error_execute;
+	public static String ExecuteSQLActionDelegate_error_profile;
+	public static String ExecuteSQLActionDelegate_error_initview;
+	public static String ExecuteSQLActionDelegate_error_interrupted;
+
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
-	
-    public static String getString(String key, String arg0)
-    {
-        return getString(key, new Object[]{arg0});
-    }
-
-    public static String getString(String key, String arg0, String arg1)
-    {
-        return getString(key, new Object[]{arg0,arg1});
-    }
-
-    public static String getString(String key, String arg0, String arg1, String arg2)
-    {
-        return getString(key, new Object[]{arg0,arg1,arg2});
-    }
-    
-    public static String getString(String key, Object[] args)
-    {
-        try
-        {
-            return MessageFormat.format(RESOURCE_BUNDLE.getString(key),args);
-        }
-        catch (MissingResourceException e)
-        {
-            StringBuffer argString = new StringBuffer(key);
-            argString.append(":");
-            for (int i=0; i< args.length; i++){
-                argString.append(args[i]);
-            }
-            return argString.toString();
-        }
-    }
-
-    /**
-     * Return the Locale that is loaded during startup
-     */
-    public static Locale getLocale()
-    {
-        return RESOURCE_BUNDLE.getLocale();
-    }
-
 }

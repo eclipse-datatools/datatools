@@ -44,8 +44,8 @@ public class PasteAction extends SelectionDispatchAction
     {
         super(site);
 
-        setText(Messages.getString("PasteAction.label")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("PasteAction.tooltip")); //$NON-NLS-1$
+        setText(Messages.PasteAction_label); 
+        setToolTipText(Messages.PasteAction_tooltip); 
 
         _fClipboard = clipboard;
 
@@ -124,7 +124,7 @@ public class PasteAction extends SelectionDispatchAction
             }
             catch (BadLocationException e)
             {
-                SQLEditorPlugin.getDefault().log(Messages.getString("PasteAction.1"), e); //$NON-NLS-1$
+                SQLEditorPlugin.getDefault().log(Messages.PasteAction_1, e); 
             }
         }
 

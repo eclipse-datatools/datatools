@@ -36,6 +36,7 @@ import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Utility class for <code>IConnectionProfile</code> in connectivity layer. Encapsulating all the code to processing
@@ -112,7 +113,7 @@ public class ProfileUtil
     		String driverID = profile.getBaseProperties().getProperty(
     				ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
     		if (driverID == null) {
-    			EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.getdriver", profileName));
+    			EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_getdriver, (new Object[]{profileName})));
     		}
     		else
     		{
@@ -205,7 +206,7 @@ public class ProfileUtil
 				if ( expectedDB != null && !expectedDB.equals(realDB))
 				{
 					//this should not happen if connection profile can handle multiple db well
-					EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.wrong.database.name", realDB, databaseIdentifier.getProfileName(), expectedDB));
+					EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_wrong_database_name, (new Object[]{realDB,databaseIdentifier.getProfileName(),expectedDB})));
 				}
 				return ci.getSharedDatabase();
 			}
@@ -230,7 +231,7 @@ public class ProfileUtil
     	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
     	if (managedConn == null || !managedConn.isConnected())
     	{
-    		throw new SQLException(Messages.getString("ProfileUtil.error.getReusableConnection", databaseIdentifier.toString()));
+    		throw new SQLException(NLS.bind(Messages.ProfileUtil_error_getReusableConnection, (new Object[]{databaseIdentifier.toString()})));
     	}
     	
     	IConnection iconn = managedConn.getConnection();
@@ -283,8 +284,8 @@ public class ProfileUtil
                 }
                 else
                 {
-                    throw new SQLException(Messages.getString("ProfileUtil.unkown.connection.type", c
-                        .getClass().getName(), profile.getName()));
+                    throw new SQLException(NLS.bind(Messages.ProfileUtil_unkown_connection_type, (new Object[]{c
+					.getClass().getName(),profile.getName()})));
                 }
 
             }
@@ -292,7 +293,7 @@ public class ProfileUtil
         }
         catch (Exception e)
         {
-            EditorCorePlugin.getDefault().log(Messages.getString("ProfileUtil.error.create.connection", profile.getName()),e);
+            EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_create_connection, (new Object[]{profile.getName()})),e);
             return null;
         }
     }

@@ -123,7 +123,7 @@ public class Token
         }
         catch (BadLocationException e1)
         {
-            SQLActivator.getDefault().log(Messages.getString("SimpleNode.1"), e1); //$NON-NLS-1$
+            SQLActivator.getDefault().log(Messages.SimpleNode_1, e1); 
         }
 
         return offset;
@@ -140,7 +140,7 @@ public class Token
         }
         catch (BadLocationException e1)
         {
-            SQLActivator.getDefault().log(Messages.getString("SimpleNode.1"), e1); //$NON-NLS-1$
+            SQLActivator.getDefault().log(Messages.SimpleNode_1, e1); 
         }
 
         return offset;

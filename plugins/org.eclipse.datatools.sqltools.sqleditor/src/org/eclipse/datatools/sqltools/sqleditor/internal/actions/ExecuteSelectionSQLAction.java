@@ -39,8 +39,8 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
      */
     public ExecuteSelectionSQLAction(SQLEditor targetEditor)
     {
-        setText(Messages.getString("ExecuteSelectionSQLAction.label"));//$NON-NLS-1$
-        setToolTipText(Messages.getString("ExecuteSelectionSQLAction.tooltip"));//$NON-NLS-1$
+        setText(Messages.ExecuteSelectionSQLAction_label);
+        setToolTipText(Messages.ExecuteSelectionSQLAction_tooltip);
         setImageDescriptor(SQLEditorResources.getImageDescriptor("sql_execute_selection"));
         setActionDefinitionId(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
         setActiveEditor(targetEditor);

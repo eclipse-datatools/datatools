@@ -214,7 +214,7 @@ public class HTML2TextReader extends SubstitutionTextReader
 
         if ("li".equals(html)) //$NON-NLS-1$
         {
-            return LINE_DELIM + Messages.getString("HTML2TextReader.listItemPrefix");
+            return LINE_DELIM + Messages.HTML2TextReader_listItemPrefix;
         }
         //$NON-NLS-1$ //$NON-NLS-2$
 

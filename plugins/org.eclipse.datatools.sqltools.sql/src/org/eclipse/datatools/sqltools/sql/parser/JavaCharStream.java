@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser;
 
+import org.eclipse.osgi.util.NLS;
+
 
 /**
  * An implementation of interface CharStream, where the stream is assumed to
@@ -331,7 +333,7 @@ public class JavaCharStream
             }
             catch(java.io.IOException e)
             {
-                throw new Error(Messages.getString("JavaCharStream.invalid.escape", "" + line, "" + column));
+                throw new Error(NLS.bind("JavaCharStream.invalid.escape", (new Object[]{"" + line,"" + column})));
             }
 
             if (backSlashCnt == 1)

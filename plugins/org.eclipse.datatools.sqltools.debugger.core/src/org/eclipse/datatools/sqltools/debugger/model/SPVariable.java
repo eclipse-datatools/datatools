@@ -68,7 +68,7 @@ public abstract class SPVariable extends SPDebugElement implements IVariable
         if (v != null)
         return v.getReferenceTypeName();
         else
-        return DebuggerMessages.getString("SPVariable.unknown"); //$NON-NLS-1$
+        return DebuggerMessages.SPVariable_unknown; 
     }
 
     /*

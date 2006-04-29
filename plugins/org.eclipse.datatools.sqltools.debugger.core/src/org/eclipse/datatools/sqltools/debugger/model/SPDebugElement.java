@@ -177,7 +177,7 @@ public class SPDebugElement extends PlatformObject implements IDebugElement
      */
     public void notSupported() throws DebugException
     {
-        throwDebugException(DebuggerMessages.getString("SPDebugElement.notSupported"), DebugException.NOT_SUPPORTED, null); //$NON-NLS-1$
+        throwDebugException(DebuggerMessages.SPDebugElement_notSupported, DebugException.NOT_SUPPORTED, null); 
     }
 
     /**

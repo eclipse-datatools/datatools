@@ -32,8 +32,8 @@ public class ExecuteSQLAction extends BaseExecuteAction
      */
     public ExecuteSQLAction(SQLEditor targetEditor)
     {
-        setText(Messages.getString("ExecuteSQLAction.label"));//$NON-NLS-1$
-        setToolTipText(Messages.getString("ExecuteSQLAction.tooltip"));//$NON-NLS-1$
+        setText(Messages.ExecuteSQLAction_label);
+        setToolTipText(Messages.ExecuteSQLAction_tooltip);
         setImageDescriptor(SQLEditorResources.getImageDescriptor("execute"));
         setActionDefinitionId(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
         //no need to set image

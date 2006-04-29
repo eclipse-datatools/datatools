@@ -11,79 +11,19 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.common.ui.preferences;
 
-import java.text.MessageFormat;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-/**
- * @author Hui Cao
- *
- */
-public class Messages
-{
-    private static final String         BUNDLE_NAME     = "org.eclipse.datatools.common.ui.preferences.messages"; //$NON-NLS-1$
+public final class Messages extends NLS {
 
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.common.ui.preferences.messages";//$NON-NLS-1$
 
-    private Messages()
-    {
-    }
+	private Messages() {
+		// Do not instantiate
+	}
 
-    public static String getString(String key)
-    {
-        // TODO Auto-generated method stub
-        try
-        {
-            return RESOURCE_BUNDLE.getString(key);
-        }
-        catch (MissingResourceException e)
-        {
-            return '!' + key + '!';
-        }
-    }
+	public static String AbstractDBPreferenceFieldPage_nodb;
 
-    public static String getString(String key, String arg0)
-    {
-        return getString(key, new Object[]
-        {
-            arg0
-        }
-        );
-    }
-
-    public static String getString(String key, String arg0, String arg1)
-    {
-        return getString(key, new Object[]
-        {
-            arg0,arg1
-        }
-        );
-    }
-
-    public static String getString(String key, String arg0, String arg1, String arg2)
-    {
-        return getString(key, new Object[]
-        {
-            arg0,arg1,arg2
-        }
-        );
-    }
-
-    public static String getString(String key, Object[] args)
-    {
-        try
-        {
-            return MessageFormat.format(RESOURCE_BUNDLE.getString(key),args);
-        }
-        catch (MissingResourceException e)
-        {
-            StringBuffer argString = new StringBuffer(key);
-            argString.append(":");
-            for (int i=0; i< args.length; i++)
-            {
-                argString.append(args[i]);
-            }
-            return argString.toString();
-        }
-    }
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
 }

@@ -1791,7 +1791,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
             jj_consume_token(CLOSEPAREN);
                                                     if ((length < scale))
                                                     {
-                                                            ParseException e = new ParseException(Messages.getString("SQLParser.datatype.judgeLengthAndScale"));
+                                                            ParseException e = new ParseException(Messages.SQLParser_datatype_judgeLengthAndScale);
                                                             e.currentToken = t.next;
                                                             exceptions.add(e);
                                                     }

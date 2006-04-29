@@ -148,7 +148,7 @@ public class SQLEditorPlugin extends AbstractUIPlugin {
 
  	public IStatus createErrorStatus(Throwable e) {
  		return new Status(IStatus.ERROR, getBundle().getSymbolicName(),
- 				INTERNAL_ERROR, SQLEditorResources.getString("plugin.internal_error"), e); //$NON-NLS-1$
+ 				INTERNAL_ERROR, SQLEditorResources.plugin_internal_error, e); 
  	}
 
     public IStatus createErrorStatus(String message, Throwable e) {

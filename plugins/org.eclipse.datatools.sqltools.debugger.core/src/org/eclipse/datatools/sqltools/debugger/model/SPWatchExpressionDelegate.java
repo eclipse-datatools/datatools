@@ -25,6 +25,7 @@ import org.eclipse.debug.core.model.IValue;
 import org.eclipse.debug.core.model.IWatchExpressionDelegate;
 import org.eclipse.debug.core.model.IWatchExpressionListener;
 import org.eclipse.debug.core.model.IWatchExpressionResult;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * A delegate which computes the value of a SQL watch expression
@@ -74,9 +75,15 @@ public class SPWatchExpressionDelegate implements IWatchExpressionDelegate
                     //For now, ASE debugger API doesn't support the watch function, we throw an exception
                     //the error message will be displayed in the expressions view
                     DebugException de = new DebugException(new Status(IStatus.WARNING, DebuggerCorePlugin.PLUGIN_ID, 0,
-                        DebuggerMessages.getString("SPWatchExpressionDelegate.unsupported", spThread.getDatabaseIdentifier().toString()),
-                        new Exception(DebuggerMessages.getString("SPWatchExpressionDelegate.unsupported", spThread
-                        .getDatabaseIdentifier().toString()))));
+                        NLS.bind(DebuggerMessages.SPWatchExpressionDelegate_unsupported, (new Object[]
+						{
+						    spThread.getDatabaseIdentifier().toString()
+						})),
+                        new Exception(NLS.bind(DebuggerMessages.SPWatchExpressionDelegate_unsupported, (new Object[]
+						{
+						    spThread
+							                        .getDatabaseIdentifier().toString()
+						})))));
                     throw de;
                 }
                 else
@@ -121,8 +128,7 @@ public class SPWatchExpressionDelegate implements IWatchExpressionDelegate
             else if (ex instanceof CoreException)
             debugex = new DebugException(((CoreException) ex).getStatus());
             else
-            debugex = new DebugException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages
-                .getString("SPWatchExpressionDelegate.error"), ex)); //$NON-NLS-1$
+            debugex = new DebugException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.SPWatchExpressionDelegate_error, ex)); //$NON-NLS-1$
 
             expressionResult = new IWatchExpressionResult()
             {

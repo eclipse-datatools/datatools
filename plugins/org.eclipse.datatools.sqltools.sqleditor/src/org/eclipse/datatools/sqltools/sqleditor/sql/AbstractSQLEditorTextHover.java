@@ -21,6 +21,7 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.ITextHoverExtension;
 import org.eclipse.jface.text.ITextViewer;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
@@ -109,7 +110,7 @@ public abstract class AbstractSQLEditorTextHover implements ITextHover, ITextHov
         }
 
         String keySequence = sequences[0].format();
-    return SQLEditorResources.getString("SQLErrorHover.makeStickyHint", new String[]{keySequence}); //$NON-NLS-1$
+    return NLS.bind(SQLEditorResources.SQLErrorHover_makeStickyHint, (new String[]{keySequence})); 
     }
 
     /**

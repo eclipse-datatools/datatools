@@ -224,7 +224,7 @@ public class SQLEditorOutlineContentProvider implements ITreeContentProvider {
                 length = end - offset;
                 Position p = new Position( offset, length );
                 document.addPosition( SQL_SEGMENTS, p );
-                String segmentLabel = MessageFormat.format( SQLEditorResources.getString( "SQLEditor.outlinePage.sqlSegment.titlePattern" ), //$NON-NLS-1$ 
+                String segmentLabel = MessageFormat.format( SQLEditorResources.SQLEditor_outlinePage_sqlSegment_titlePattern, 
                         new Object[] { new Integer( offset )}); 
                 fContent.add( new SQLSegment( segmentLabel, p)); //$NON-NLS-1$
 

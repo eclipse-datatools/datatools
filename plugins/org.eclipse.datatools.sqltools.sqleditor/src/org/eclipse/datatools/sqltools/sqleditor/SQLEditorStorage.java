@@ -41,7 +41,7 @@ public class SQLEditorStorage implements IStorage
      */
     public SQLEditorStorage( String source ) 
     {
-        this( SQLEditorResources.getString("SQLEditorStorage.default.name"), source );
+        this( SQLEditorResources.SQLEditorStorage_default_name, source );
     }
 
     /**

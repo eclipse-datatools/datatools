@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * This class provides the default implementation for <code>ISQLEditorConnectionInfo</code>.
@@ -159,7 +160,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	{
 		if (code == null || !code.matches(".*:.*:.*:.*"))
 		{
-			SQLEditorPlugin.getDefault().log(SQLEditorResources.getString("SQLEditorConnectionInfo.decode.error", new String[]{code}));
+			SQLEditorPlugin.getDefault().log(NLS.bind(SQLEditorResources.SQLEditorConnectionInfo_decode_error, (new String[]{code})));
 			return DEFAULT_SQLEDITOR_CONNECTION_INFO;
 		}
 		int i = 0;

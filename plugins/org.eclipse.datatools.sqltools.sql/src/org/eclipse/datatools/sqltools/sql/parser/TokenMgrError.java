@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser;
 
+import org.eclipse.osgi.util.NLS;
+
 
 public class TokenMgrError extends Error
 {
@@ -117,11 +119,11 @@ public class TokenMgrError extends Error
         {
             String.valueOf(errorLine),
                 String.valueOf(errorColumn),
-                (EOFSeen ? Messages.getString("TokenMgrError.eof") : Messages.getString("TokenMgrError.currentchar", addEscapes(String.valueOf(curChar)), String.valueOf((int) curChar))),
+                (EOFSeen ? Messages.TokenMgrError_eof : NLS.bind("TokenMgrError.currentchar", (new Object[]{addEscapes(String.valueOf(curChar)),String.valueOf((int) curChar)}))),
                 addEscapes(errorAfter)
         }
         ;
-        return (Messages.getString("TokenMgrError.lexical.error", args));
+        return (NLS.bind("TokenMgrError.lexical.error", args));
     }
 
     /**
