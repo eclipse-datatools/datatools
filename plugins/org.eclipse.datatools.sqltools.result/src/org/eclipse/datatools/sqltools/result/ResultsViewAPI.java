@@ -174,14 +174,21 @@ public class ResultsViewAPI
         {
             return false;
         }
-
-        if (cmd == null || message == null || message.equals("")) //$NON-NLS-1$
+        
+        if (cmd == null || message == null)
         {
             return false;
         }
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
+            /**
+             * Can not append more result item when this instance is finished
+             */
+            if(instance.isFinished())
+            {
+                return false;
+            }
             instance.morePlainMessage(message);
             return true;
         }
@@ -202,7 +209,7 @@ public class ResultsViewAPI
             return false;
         }
 
-        if (cmd == null)
+        if (cmd == null || rs == null)
         {
             return false;
         }
@@ -211,6 +218,13 @@ public class ResultsViewAPI
         {
             if (instance != null)
             {
+                /**
+                 * Can not append more result item when this instance is finished
+                 */
+                if(instance.isFinished())
+                {
+                    return false;
+                }
                 instance.moreResultSet(rs);
                 return true;
             }
@@ -237,7 +251,7 @@ public class ResultsViewAPI
             return false;
         }
 
-        if (cmd == null)
+        if (cmd == null || rs == null)
         {
             return false;
         }
@@ -246,6 +260,13 @@ public class ResultsViewAPI
         {
             if (instance != null)
             {
+                /**
+                 * Can not append more result item when this instance is finished
+                 */
+                if(instance.isFinished())
+                {
+                    return false;
+                }
                 instance.moreResultSet(rs);
                 return true;
             }
@@ -280,6 +301,13 @@ public class ResultsViewAPI
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
+            /**
+             * Can not append more result item when this instance is finished
+             */
+            if(instance.isFinished())
+            {
+                return false;
+            }
             instance.moreStatusMessage(message);
             return true;
         }
@@ -307,6 +335,13 @@ public class ResultsViewAPI
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
+            /**
+             * Can not append more result item when this instance is finished
+             */
+            if(instance.isFinished())
+            {
+                return false;
+            }
             instance.moreUpdateCount(count);
             return true;
         }
@@ -326,7 +361,7 @@ public class ResultsViewAPI
         {
             return false;
         }
-        if (cmd == null)
+        if (cmd == null || xmlString == null)
         {
             return false;
         }
@@ -349,6 +384,13 @@ public class ResultsViewAPI
             IResultSetObject rs = new XMLResultSetObject(xmlString);
             if (instance != null)
             {
+                /**
+                 * Can not append more result item when this instance is finished
+                 */
+                if(instance.isFinished())
+                {
+                    return false;
+                }
                 instance.moreResultSet(rs);
                 return true;
             }
@@ -524,10 +566,16 @@ public class ResultsViewAPI
             IResultInstance instance = _manager.getInstance(cmd);
             if (instance != null)
             {
+                /**
+                 * Can not change the status when the instance is finished
+                 */
                 if (instance.isFinished())
                 {
                     return false;
                 }
+                /**
+                 * Can not set to "STARTED" when current status is "RUNNING"
+                 */
                 if (instance.getStatus() == OperationCommand.STATUS_RUNNING
                         && status == OperationCommand.STATUS_STARTED)
                 {

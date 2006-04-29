@@ -180,6 +180,10 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
 
     public IResultInstance[] search(String expression)
     {
+        if (expression == null)
+        {
+            return new IResultInstance[0];
+        }
         synchronized (this)
         {
             QueryParser parser = new QueryParser(FIELD_OPERATION, _analyzer);
