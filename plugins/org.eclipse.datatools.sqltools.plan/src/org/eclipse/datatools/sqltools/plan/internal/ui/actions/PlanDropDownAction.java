@@ -41,8 +41,8 @@ public class PlanDropDownAction extends Action implements IMenuCreator
     public PlanDropDownAction(PlanView planView)
     {
         super();
-        setText(Messages.getString("PlanDropDownAction.previous.plans")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("PlanDropDownAction.show.history")); //$NON-NLS-1$
+        setText(Messages.PlanDropDownAction_previous_plans); 
+        setToolTipText(Messages.PlanDropDownAction_show_history); 
         this.setImageDescriptor(Images.DESC_SHOWPLAN);
         this.setDisabledImageDescriptor(Images.DESC_SHOWPLAN);
 

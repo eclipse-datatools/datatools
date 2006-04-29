@@ -10,47 +10,41 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
-import java.text.MessageFormat;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.datatools.sqltools.plan.internal.Constants;
+import org.eclipse.osgi.util.NLS;
 
-public class Messages
-{
-    private static final String         BUNDLE_NAME     = "org.eclipse.datatools.sqltools.plan.internal.ui.actions.messages"; //$NON-NLS-1$
+public final class Messages extends NLS {
 
-    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
+	private static final String BUNDLE_NAME = Constants.PLUGIN_RESOURCE_BUNDLE;
 
-    private Messages()
-    {
-    }
+	private Messages() {
+		// Do not instantiate
+	}
 
-    public static String getString(String key)
-    {
-        try
-        {
-            return RESOURCE_BUNDLE.getString(key);
-        }
-        catch (MissingResourceException e)
-        {
-            return '!' + key + '!';
-        }
-    }
-    
-    public static String getString(String key, Object[] args)
-    {
-        try
-        {
-            return MessageFormat.format(RESOURCE_BUNDLE.getString(key), args);
-        }
-        catch (MissingResourceException e)
-        {
-            StringBuffer argString = new StringBuffer(key);
-            argString.append(":");
-            for (int i = 0; i < args.length; i++)
-            {
-                argString.append(args[i]);
-            }
-            return argString.toString();
-        }
-    }
+	public static String PlanDropDownAction_previous_plans;
+	public static String PlanDropDownAction_show_history;
+	public static String ShowPlansAction_previous_plan;
+	public static String ShowPlansAction_show_history;
+	public static String RemovePlanAction_remove_plan_name;
+	public static String RemovePlanAction_remove_plan_tooltip;
+	public static String RemoveAllPlansAction_remove_all_plans_name;
+	public static String RemoveAllPlansAction_remove_all_plans_name_tooltip;
+	public static String SavePlanAction_saveplan_title;
+	public static String SavePlanAction_saveplan_tooltip;
+	public static String SavePlanAction_error;
+	public static String SavePlanAction_error_info;
+	public static String LoadPlanAction_title;
+	public static String LoadPlanAction_tooltip;
+	public static String LoadPlanAction_info;
+	public static String LoadPlanAction_filenotfound;
+	public static String LoadPlanAction_unknown_db;
+	public static String LoadPlanAction_error;
+	public static String LoadPlanAction_errorinfo;
+	public static String SavePlanAction_overwrite_q;
+	public static String SavePlanAction_question;
+	public static String SavePlanAction_builder_error;
+
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
 }

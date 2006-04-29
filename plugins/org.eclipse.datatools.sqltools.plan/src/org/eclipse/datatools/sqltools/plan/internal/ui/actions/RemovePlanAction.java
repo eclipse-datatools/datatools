@@ -31,8 +31,8 @@ public class RemovePlanAction extends Action
      */
     public RemovePlanAction(PlanView planView)
     {
-        setText(Messages.getString("RemovePlanAction.remove.plan.name")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("RemovePlanAction.remove.plan.tooltip")); //$NON-NLS-1$
+        setText(Messages.RemovePlanAction_remove_plan_name); 
+        setToolTipText(Messages.RemovePlanAction_remove_plan_tooltip); 
         this.setImageDescriptor(Images.DESC_REMOVE);
         this.setDisabledImageDescriptor(Images.DESC_REMOVE_DISABLE);
         this._planView = planView;

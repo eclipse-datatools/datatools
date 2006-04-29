@@ -62,8 +62,8 @@ public class LoadPlanAction extends Action
      */
     public LoadPlanAction()
     {
-        setText(Messages.getString("LoadPlanAction.title")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("LoadPlanAction.tooltip")); //$NON-NLS-1$
+        setText(Messages.LoadPlanAction_title); 
+        setToolTipText(Messages.LoadPlanAction_tooltip); 
         this.setImageDescriptor(Images.DESC_IMPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_IMPORT_PLAN_DISABLE);
     }
@@ -78,7 +78,7 @@ public class LoadPlanAction extends Action
             if (!f.exists())
             {
                 MessageDialog
-                        .openInformation(PlanViewPlugin.getActiveWorkbenchShell(), Messages.getString("LoadPlanAction.info"), Messages.getString("LoadPlanAction.filenotfound")); //$NON-NLS-1$ //$NON-NLS-2$
+                        .openInformation(PlanViewPlugin.getActiveWorkbenchShell(), Messages.LoadPlanAction_info, Messages.LoadPlanAction_filenotfound); 
                 return;
             }
             try
@@ -114,7 +114,7 @@ public class LoadPlanAction extends Action
                             String sql = "";
                             if (dbId == null)
                             {
-                                dbDefinitionId = Messages.getString("LoadPlanAction.unknown.db"); //$NON-NLS-1$
+                                dbDefinitionId = Messages.LoadPlanAction_unknown_db; 
                             }
                             else
                             {
@@ -155,8 +155,8 @@ public class LoadPlanAction extends Action
             catch (Exception e)
             {
                 final IStatus fstatus = new Status(IStatus.ERROR, Constants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
-                final String title = Messages.getString("LoadPlanAction.error"); //$NON-NLS-1$
-                final String msg = Messages.getString("LoadPlanAction.errorinfo"); //$NON-NLS-1$
+                final String title = Messages.LoadPlanAction_error; 
+                final String msg = Messages.LoadPlanAction_errorinfo; 
                 Display display = PlanViewPlugin.getActiveWorkbenchShell().getDisplay();
                 display.asyncExec(new Runnable()
                 {

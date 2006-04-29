@@ -27,8 +27,8 @@ public class RemoveAllPlansAction extends Action
      */
     public RemoveAllPlansAction()
     {
-        super(Messages.getString("RemoveAllPlansAction.remove.all.plans.name")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("RemoveAllPlansAction.remove.all.plans.name.tooltip")); //$NON-NLS-1$
+        super(Messages.RemoveAllPlansAction_remove_all_plans_name); 
+        setToolTipText(Messages.RemoveAllPlansAction_remove_all_plans_name_tooltip); 
         setImageDescriptor(Images.DESC_REMOVEALL);
         setDisabledImageDescriptor(Images.DESC_REMOVEALL_DISABLE);
     }

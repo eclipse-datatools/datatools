@@ -36,8 +36,8 @@ public class ShowPlansAction extends Action
      */
     public ShowPlansAction(PlanView planView)
     {
-        super(Messages.getString("ShowPlansAction.previous.plan")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("ShowPlansAction.show.history")); //$NON-NLS-1$
+        super(Messages.ShowPlansAction_previous_plan); 
+        setToolTipText(Messages.ShowPlansAction_show_history); 
         this._planView = planView;
     }
 

@@ -31,6 +31,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
@@ -68,8 +69,8 @@ public class SavePlanAction extends Action
      */
     public SavePlanAction()
     {
-        setText(Messages.getString("SavePlanAction.saveplan.title")); //$NON-NLS-1$
-        setToolTipText(Messages.getString("SavePlanAction.saveplan.tooltip")); //$NON-NLS-1$
+        setText(Messages.SavePlanAction_saveplan_title); 
+        setToolTipText(Messages.SavePlanAction_saveplan_tooltip); 
         this.setImageDescriptor(Images.DESC_EXPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_EXPORT_PLAN_DISABLE);
     }
@@ -107,15 +108,12 @@ public class SavePlanAction extends Action
                 IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL
             }
             ;
-            String question = Messages.getString("SavePlanAction.overwrite.q",
-            new Object[]
-            {
-                file
-            }
-            );
+            String question = NLS.bind(Messages.SavePlanAction_overwrite_q, (new Object[]
+			{
+			    file
+			}));
             // pop up a new dialog to promote overwrite or not
-            MessageDialog d = new MessageDialog(PlanViewPlugin.getActiveWorkbenchWindow().getShell(), Messages
-                    .getString("SavePlanAction.question"), null, question, MessageDialog.QUESTION, buttons, 0);
+            MessageDialog d = new MessageDialog(PlanViewPlugin.getActiveWorkbenchWindow().getShell(), Messages.SavePlanAction_question, null, question, MessageDialog.QUESTION, buttons, 0);
             switch (d.open())
             {
                 case 0: // Yes
@@ -218,8 +216,8 @@ public class SavePlanAction extends Action
             catch (Exception e)
             {
                 final IStatus fstatus = new Status(IStatus.ERROR, Constants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
-                final String title = Messages.getString("SavePlanAction.error"); //$NON-NLS-1$
-                final String msg = Messages.getString("SavePlanAction.error.info"); //$NON-NLS-1$
+                final String title = Messages.SavePlanAction_error; 
+                final String msg = Messages.SavePlanAction_error_info; 
                 Display display = PlanViewPlugin.getActiveWorkbenchShell().getDisplay();
                 display.asyncExec(new Runnable()
                 {
