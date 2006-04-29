@@ -86,7 +86,7 @@ public class EPVFacade
             return;
         }
         IPlanInstance instance = _manager.getPlanInstance(request);
-        if(instance == null)
+        if(instance == null || instance.isFinished())
         {
             return;
         }
@@ -111,7 +111,7 @@ public class EPVFacade
             return;
         }
         IPlanInstance instance = _manager.getPlanInstance(request);
-        if(instance == null)
+        if(instance == null || instance.isFinished())
         {
             return;
         }
