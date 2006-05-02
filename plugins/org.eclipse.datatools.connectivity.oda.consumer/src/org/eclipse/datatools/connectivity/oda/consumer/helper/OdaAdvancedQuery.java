@@ -35,8 +35,6 @@ import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 public class OdaAdvancedQuery extends OdaQuery
 							  implements IAdvancedQuery
 {
-    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-
     // flag to indicate whether executeQuery() was
 	// called from within execute().
 	private boolean m_calledExecuteQueryForExecute = false;
@@ -770,7 +768,7 @@ public class OdaAdvancedQuery extends OdaQuery
 			setContextClassloader();
             throwIfNotExecuted();
 			
-			String ret = EMPTY_STRING;
+			String ret = null;
 			if( getDSMetaData().checkSupportForNamedParameters() )
 				ret = getAdvancedQuery().getString( parameterName );
 			else
@@ -1567,7 +1565,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( parameterName );
-		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
+		String ret = ( decimal == null ) ? null : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1580,7 +1578,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( parameterId );
-		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
+		String ret = ( decimal == null ) ? null : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1593,7 +1591,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Date date = getDate( parameterName );
-		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
+		String ret = ( date == null ) ? null : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1606,7 +1604,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Date date = getDate( parameterId );
-		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
+		String ret = ( date == null ) ? null : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1619,7 +1617,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Time time = getTime( parameterName );
-		String ret = ( time == null ) ? EMPTY_STRING : time.toString(); 
+		String ret = ( time == null ) ? null : time.toString(); 
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1632,7 +1630,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Time time = getTime( parameterId );
-		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
+		String ret = ( time == null ) ? null : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1645,7 +1643,7 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( parameterName );
-		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
+		String ret = ( timestamp == null ) ? null : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1658,11 +1656,33 @@ public class OdaAdvancedQuery extends OdaQuery
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( parameterId );
-		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
+		String ret = ( timestamp == null ) ? null : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
 	}
+    
+    public String getClobAsString( String columnName ) throws OdaException
+    {
+        final String context = "OdaAdvancedQuery.getClobAsString( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        logMethodCalled( context );
+        
+        String ret = getClobAsStringImpl( getClob( columnName ), context );
+
+        logMethodExitWithReturn( context, ret );
+        return ret;
+    }
+    
+    public String getClobAsString( int index ) throws OdaException
+    {
+        final String context = "OdaAdvancedQuery.getClobAsString( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        logMethodCalled( context );
+        
+        String ret = getClobAsStringImpl( getClob( index ), context );
+        
+        logMethodExitWithReturn( context, ret );
+        return ret;
+    }
 	
 	public String getInterfaceName()
 	{

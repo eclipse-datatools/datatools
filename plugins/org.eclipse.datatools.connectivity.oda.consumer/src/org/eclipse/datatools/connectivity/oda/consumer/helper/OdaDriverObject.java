@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.helper;
 
+import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 
 /**
@@ -43,5 +44,32 @@ class OdaDriverObject extends OdaObject
 	{
 		m_connection.handleError( exception );
 	}
+
+    protected String getClobAsStringImpl( IClob clobObj, String context )
+        throws OdaException
+    {
+        String ret = null;
+        if( clobObj == null ) 
+            return ret;
+
+        try
+        {
+            int len = (int) clobObj.length();
+            ret = clobObj.getSubString( 1, len );
+        }
+        catch( UnsupportedOperationException ex )
+        {
+            handleUnsupportedOp( ex, context );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        return ret;
+    }
 
 }

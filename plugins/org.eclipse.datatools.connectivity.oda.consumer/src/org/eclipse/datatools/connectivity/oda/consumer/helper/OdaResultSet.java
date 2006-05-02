@@ -31,8 +31,6 @@ import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
  */
 public class OdaResultSet extends OdaDriverObject implements IResultSet
 {
-    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-
     protected OdaResultSet( IResultSet resultSet, OdaConnection connection,
 							boolean switchContextClassloader,
 							ClassLoader driverClassLoader )
@@ -981,7 +979,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	}
 	
 	//---------------------------------------------------------------
-	// Utility methods to encapsulate logging usage.
+	// Utility methods to encapsulate data type conversion.
 	
 	public String getBigDecimalAsString( int index ) throws OdaException
 	{
@@ -990,7 +988,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( index );
-		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
+		String ret = ( decimal == null ) ? null : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1003,7 +1001,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( columnName );
-		String ret = ( decimal == null ) ? EMPTY_STRING : decimal.toString();
+		String ret = ( decimal == null ) ? null : decimal.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1015,7 +1013,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Date date = getDate( index );
-		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
+		String ret = ( date == null ) ? null : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1027,7 +1025,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Date date = getDate( columnName );
-		String ret = ( date == null ) ? EMPTY_STRING : date.toString();
+		String ret = ( date == null ) ? null : date.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1039,7 +1037,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Time time = getTime( index );
-		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
+		String ret = ( time == null ) ? null : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1051,7 +1049,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Time time = getTime( columnName );
-		String ret = ( time == null ) ? EMPTY_STRING : time.toString();
+		String ret = ( time == null ) ? null : time.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1064,7 +1062,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( index );
-		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
+		String ret = ( timestamp == null ) ? null : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
@@ -1077,11 +1075,33 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( columnName );
-		String ret = ( timestamp == null ) ? EMPTY_STRING : timestamp.toString();
+		String ret = ( timestamp == null ) ? null : timestamp.toString();
 		
 		logMethodExitWithReturn( context, ret );
 		return ret;
 	}
+    
+    public String getClobAsString( int index ) throws OdaException
+    {
+        final String context = "OdaResultSet.getClobAsString( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        logMethodCalled( context );
+        
+        String ret = getClobAsStringImpl( getClob( index ), context );
+        
+        logMethodExitWithReturn( context, ret );
+        return ret;
+    }
+    
+    public String getClobAsString( String columnName ) throws OdaException
+    {
+        final String context = "OdaResultSet.getClobAsString( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        logMethodCalled( context );
+        
+        String ret = getClobAsStringImpl( getClob( columnName ), context );
+
+        logMethodExitWithReturn( context, ret );
+        return ret;
+    }
 	
 	/*
 	 * Convenience method for the C++ hosts to determine the interface of 
