@@ -350,6 +350,7 @@ public class ManifestExplorer
 	
 	/*
 	 * Returns a collection of dataSet elements of the given data source extension.
+     * May return an empty collection if no dataSet elements are defined.
 	 */
 	static Hashtable getDataSetElements( IExtension extension, 
             String dataSourceElementId )
@@ -358,7 +359,9 @@ public class ManifestExplorer
         IConfigurationElement[] configElements =
             getNamedElements( extension, "dataSet" ); //$NON-NLS-1$
 		Hashtable dataSetElements = new Hashtable();
-		for( int i = 0, size = configElements.length; i < size; i++ )
+        
+        int numConfigElements = configElements.length;
+		for( int i = 0; i < numConfigElements; i++ )
 		{
 			IConfigurationElement configElement = configElements[i];
 
@@ -370,8 +373,16 @@ public class ManifestExplorer
 		}
 
 		if( dataSetElements.size() < 1 )
-			throw new OdaException( Messages.bind( Messages.manifest_NO_DATA_SET_TYPES_DEFINED,
-													dataSourceElementId ) );
+        {
+			String msg = Messages.bind( Messages.manifest_NO_DATA_SET_TYPES_DEFINED,
+										dataSourceElementId );
+            if( numConfigElements >= 1 )    // defined elements are all invalid
+                throw new OdaException( msg );
+            
+            // no dataSet elements are defined; ok to proceed
+			sm_logger.log( Level.WARNING, msg );
+        }
+        
 		return dataSetElements;
 	}
 

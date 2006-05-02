@@ -282,7 +282,8 @@ public class ExtensionManifest
 	 * Returns an array of DataSetType instances that
 	 * represent the dataSet elements defined in
 	 * this data source extension.
-	 * @return	an array of data set types.
+	 * @return	an array of data set types; may return an empty array
+     *          if no dataSet elements are defined.
 	 */
 	public DataSetType[] getDataSetTypes()
 	{
@@ -294,7 +295,8 @@ public class ExtensionManifest
 	/**
 	 * Returns an array of ids of the dataSet elements 
 	 * defined in this data source extension.
-	 * @return	an array of data set type IDs.
+	 * @return	an array of data set type IDs; may return an empty array
+     *          if no dataSet elements are defined.
 	 */
 	public String[] getDataSetTypeIDs()
 	{
