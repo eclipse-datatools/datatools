@@ -475,4 +475,20 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return null;
     }
 
+	public boolean arePropertiesComplete() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().arePropertiesComplete();
+
+        // TODO Auto-generated method stub
+        return true;
+	}
+
+	public boolean arePropertiesComplete(String type) {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().arePropertiesComplete(type);
+
+        // TODO Auto-generated method stub
+        return true;
+	}
+
 }

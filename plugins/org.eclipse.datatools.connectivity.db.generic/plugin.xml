@@ -10,9 +10,10 @@
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
             icon="icons/jdbc_16.gif"
-            pingFactory="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="org.eclipse.datatools.connectivity.db.generic.connectionProfile"
-            name="SQL Model-JDBC Connection"/>
+            name="SQL Model-JDBC Connection"
+            pingFactory="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook"/>
       <connectionFactory
             class="org.eclipse.datatools.connectivity.db.generic.JDBCConnectionFactory"
             id="java.sql.Connection"

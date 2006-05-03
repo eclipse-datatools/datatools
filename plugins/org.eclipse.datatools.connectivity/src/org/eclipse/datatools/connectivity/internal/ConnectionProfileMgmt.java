@@ -199,6 +199,24 @@ public class ConnectionProfileMgmt {
 					child.setAttribute(PROVIDERID, cp.getProviderId());
 					child.setAttribute(PROFILEID, cp.getInstanceID());
 					Properties props = cp.getBaseProperties();
+					try {
+						props = ((ConnectionProfileProvider) cp
+								.getProvider()).getPropertiesPersistenceHook()
+								.getPersitentProperties(props);
+					}
+					catch (Exception e) {
+						if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+							System.err
+									.println(ConnectivityPlugin
+											.getDefault()
+											.getResourceString(
+													"trace.error.propertiesPersistenceHookSaveError", //$NON-NLS-1$
+													new Object[] {
+															cp.getName(),
+															cp.getProviderId()}));
+							e.printStackTrace();
+						}
+					}
 					String keys = keysToString(props.keys());
 					child.setAttribute(PROPKEYS, keys);
 					String key, value;
@@ -208,24 +226,42 @@ public class ConnectionProfileMgmt {
 						value = props.getProperty(key);
 						child.setAttribute(PROPPREFIX + key, value);
 					}
-					if (cp.getProfileExtensions().size() != 0) {
-						for (Iterator it = cp.getProfileExtensions().entrySet()
-								.iterator(); it.hasNext();) {
-							Map.Entry me = (Map.Entry) it.next();
-							String type = (String) me.getKey();
-							extraChild = document.createElement(type);
-							props = cp.getProperties(type);
-							if (props == null)
-								props = new Properties();
-							keys = keysToString(props.keys());
-							extraChild.setAttribute(PROPKEYS, keys);
-							for (Enumeration enu = props.propertyNames(); enu
-									.hasMoreElements();) {
-								key = (String) enu.nextElement();
-								value = props.getProperty(key);
-								extraChild.setAttribute(PROPPREFIX + key, value);
+					for (Iterator it = cp.getProfileExtensions().entrySet()
+							.iterator(); it.hasNext();) {
+						Map.Entry me = (Map.Entry) it.next();
+						String type = (String) me.getKey();
+						ProfileExtensionProvider pep = (ProfileExtensionProvider) me
+								.getValue();
+						extraChild = document.createElement(type);
+						props = cp.getProperties(type);
+						if (props == null)
+							props = new Properties();
+						try {
+							props = pep.getPropertiesPersistenceHook()
+									.getPersitentProperties(props);
+						}
+						catch (Exception e) {
+							if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+								System.err
+										.println(ConnectivityPlugin
+												.getDefault()
+												.getResourceString(
+														"trace.error.propertiesPersistenceHookSaveError", //$NON-NLS-1$
+														new Object[] {
+																cp.getName(),
+																pep.getId()}));
+								e.printStackTrace();
 							}
 						}
+						keys = keysToString(props.keys());
+						extraChild.setAttribute(PROPKEYS, keys);
+						for (Enumeration enu = props.propertyNames(); enu
+								.hasMoreElements();) {
+							key = (String) enu.nextElement();
+							value = props.getProperty(key);
+							extraChild.setAttribute(PROPPREFIX + key, value);
+						}
+						child.appendChild(extraChild);
 					}
 					rootElement.appendChild(child);
 				}
@@ -387,42 +423,88 @@ public class ConnectionProfileMgmt {
 			InputSource source = new InputSource(is);
 			source.setEncoding("UTF8"); //$NON-NLS-1$
 			Document document = getDocumentBuilder().parse(source);
-			ConnectionProfile cp;
 			ArrayList cps = new ArrayList();
 			boolean updatedIDs = false;
 			NodeList nl = document.getElementsByTagName(CHILDNAME);
 			for (int i = 0; i < nl.getLength(); i++) {
 				Node node = nl.item(i);
-				if (node instanceof Element) {
-					Element elem = (Element) node;
-					updatedIDs = elem.getAttribute(PROFILEID) == null;
-					cp = new ConnectionProfile(elem
-							.getAttribute(PROFILENAME), elem
-							.getAttribute(PROFILEDESC), elem
-							.getAttribute(PROVIDERID),elem
-							.getAttribute(PROFILEPARENT), LITERAL_YES
-							.equals(elem.getAttribute(PROFILEAUTOCONNECT)),
-							elem.getAttribute(PROFILEID));
-			
-					if (cp.getProvider() == null)
-						continue;
-					cp.setBaseProperties(keysToProperties(elem));
-			
-					if (cp.getProfileExtensions().size() != 0) {
-						for (Iterator it = cp.getProfileExtensions().entrySet()
-								.iterator(); it.hasNext();) {
-							Map.Entry me = (Map.Entry) it.next();
-							String type = (String) me.getKey();
-							Node xmlExtraChild = elem.getFirstChild();
-							if (xmlExtraChild != null && elem.getTagName().equals(type))
-								cp.setProperties(type,
-										keysToProperties((Element)xmlExtraChild));
+				if (!(node instanceof Element))
+					continue;
+
+				Element elem = (Element) node;
+				ConnectionProfile cp = new ConnectionProfile(elem
+						.getAttribute(PROFILENAME), elem
+						.getAttribute(PROFILEDESC), elem
+						.getAttribute(PROVIDERID), elem
+						.getAttribute(PROFILEPARENT), LITERAL_YES.equals(elem
+						.getAttribute(PROFILEAUTOCONNECT)), elem
+						.getAttribute(PROFILEID));
+
+				if (cp.getProvider() == null)
+					continue;
+				
+				Properties props = keysToProperties(elem);
+				try {
+					props = ((ConnectionProfileProvider) cp.getProvider())
+							.getPropertiesPersistenceHook()
+							.populateTransientProperties(props);
+				}
+				catch (Exception e) {
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err
+								.println(ConnectivityPlugin
+										.getDefault()
+										.getResourceString(
+												"trace.error.propertiesPersistenceHookLoadError", //$NON-NLS-1$
+												new Object[] { cp.getName(),
+														cp.getProviderId()}));
+						e.printStackTrace();
+					}
+				}
+
+				cp.setBaseProperties(props);
+
+				if (cp.getProfileExtensions().size() != 0) {
+					for (Iterator it = cp.getProfileExtensions().entrySet()
+							.iterator(); it.hasNext();) {
+						Map.Entry me = (Map.Entry) it.next();
+						String type = (String) me.getKey();
+						ProfileExtensionProvider pep = (ProfileExtensionProvider) me
+								.getValue();
+						NodeList xmlExtraChildren = elem
+								.getElementsByTagName(type);
+						if (xmlExtraChildren != null
+								&& xmlExtraChildren.getLength() > 0) {
+							Element xmlExtraChild = (Element) xmlExtraChildren
+									.item(0);
+							props = keysToProperties(xmlExtraChild);
+							try {
+								props = pep.getPropertiesPersistenceHook()
+										.populateTransientProperties(props);
+							}
+							catch (Exception e) {
+								if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+									System.err
+											.println(ConnectivityPlugin
+													.getDefault()
+													.getResourceString(
+															"trace.error.propertiesPersistenceHookLoadError", //$NON-NLS-1$
+															new Object[] {
+																	cp
+																			.getName(),
+																	pep.getId()}));
+									e.printStackTrace();
+								}
+							}
+							cp.setProperties(type,props);
 						}
 					}
-			
-					cp.setCreated();
-					cps.add(cp);
 				}
+
+				cp.setCreated();
+				cps.add(cp);
+
+				updatedIDs = elem.getAttribute(PROFILEID) == null || updatedIDs;
 			}
 			retVal = (IConnectionProfile[]) cps.toArray(new IConnectionProfile[cps.size()]);
 			if (updatedIDs) {

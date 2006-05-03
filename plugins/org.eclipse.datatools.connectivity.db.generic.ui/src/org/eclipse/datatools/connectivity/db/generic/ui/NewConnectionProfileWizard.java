@@ -62,6 +62,9 @@ public class NewConnectionProfileWizard
 				.getDatabaseName());
 		props.setProperty(IDBDriverDefinitionConstants.PASSWORD_PROP_ID, this.mPropPage
 				.getDBPWD());
+		props.setProperty(
+				IDBConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
+						.valueOf(this.mPropPage.getSaveDBPWD()));
 		props.setProperty(IDBDriverDefinitionConstants.USERNAME_PROP_ID, this.mPropPage
 				.getDBUID());
 		props.setProperty(IDBDriverDefinitionConstants.URL_PROP_ID,

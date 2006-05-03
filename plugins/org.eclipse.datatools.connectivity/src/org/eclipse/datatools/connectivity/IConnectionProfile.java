@@ -112,6 +112,32 @@ public interface IConnectionProfile {
 	 * @param props the properties to set.
 	 */
 	void setProperties(String type, Properties props);
+	
+	/**
+	 * Returns true if all property sets associated with this profile are
+	 * complete; false if more information is required (e.g. authentication
+	 * information is missing). This call is not intended to verify that the
+	 * information will allow for a successful connection, just that the
+	 * information is complete enough to make an attempt.
+	 * 
+	 * @return true if the property set is complete; false if additional
+	 *         information must be specified.
+	 */
+	boolean arePropertiesComplete();
+
+	/**
+	 * Returns true if the specified property set type associated with this
+	 * profile is complete; false if more information is required (e.g.
+	 * authentication information is missing). This call is not intended to
+	 * verify that the information will allow for a successful connection, just
+	 * that the information is complete enough to make an attempt.
+	 * 
+	 * @param type the type of properties
+	 * 
+	 * @return true if the property set is complete; false if additional
+	 *         information must be specified.
+	 */
+	boolean arePropertiesComplete(String type);
 
 	/**
 	 * Sets the connected state for this profile. The connected state is used by

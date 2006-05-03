@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -45,7 +46,9 @@ import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
+import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
 import org.eclipse.datatools.connectivity.ProfileRule;
+import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPropertyListener;
 
@@ -56,9 +59,10 @@ public class ConnectionProfile extends PlatformObject implements
 		IConnectionProfile {
 
     static final String PROPERTY_PREFIX = "org.eclipse.ui.workbench.progress"; //$NON-NLS-1$
+
     public static final QualifiedName NO_IMMEDIATE_ERROR_PROMPT_PROPERTY = new QualifiedName(
             PROPERTY_PREFIX, "delayErrorPrompt"); //$NON-NLS-1$
-
+    
     // (String id,Properties props)
 	private Map mPropertiesMap = new HashMap();
 	private String mName;
@@ -66,7 +70,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private String mParentProfile = ""; //$NON-NLS-1$
 	private boolean mAutoConnect = false;
 	private String mProfileId;
-	private IConnectionProfileProvider mProvider = null;
+	private ConnectionProfileProvider mProvider = null;
 	private boolean mConnected = false;
 	private ListenerList mPropertyListeners = new ListenerList();
 	private ListenerList mConnectListeners = new ListenerList();
@@ -94,8 +98,8 @@ public class ConnectionProfile extends PlatformObject implements
 		mName = name;
 		mDescription = desc;
 		mProfileId = providerID;
-		mProvider = ConnectionProfileManager.getInstance().getProvider(
-				mProfileId);
+		mProvider = (ConnectionProfileProvider) ConnectionProfileManager
+				.getInstance().getProvider(mProfileId);
 		mParentProfile = parentProfile;
 		mAutoConnect = autoConnect;
 		mIsCreating = true;
@@ -218,6 +222,35 @@ public class ConnectionProfile extends PlatformObject implements
 		newProps.putAll(props);
 		mPropertiesMap.put(type, newProps);
 		InternalProfileManager.getInstance().setDirty(true);
+	}
+
+	public boolean arePropertiesComplete() {
+		boolean retVal = mProvider.getPropertiesPersistenceHook()
+				.arePropertiesComplete(
+						(Properties) mPropertiesMap.get(mProfileId));
+		for (Iterator it = getProfileExtensions().entrySet().iterator(); retVal
+				&& it.hasNext();) {
+			Map.Entry entry = (Map.Entry) it.next();
+			ProfileExtensionProvider pep = (ProfileExtensionProvider) entry
+					.getValue();
+			retVal = pep.getPropertiesPersistenceHook().arePropertiesComplete(
+					(Properties) mPropertiesMap.get(entry.getKey()));
+		}
+		return retVal;
+	}
+
+	public boolean arePropertiesComplete(String type) {
+		if (mProvider.getId().equals(type)) {
+			return mProvider.getPropertiesPersistenceHook()
+					.arePropertiesComplete(getBaseProperties());
+		}
+		ProfileExtensionProvider pep = (ProfileExtensionProvider) mProvider
+				.getProfileExtensions().get(type);
+		if (pep != null) {
+			return pep.getPropertiesPersistenceHook().arePropertiesComplete(
+					(Properties) mPropertiesMap.get(type));
+		}
+		return true;
 	}
 
 	/*

@@ -57,6 +57,10 @@ public class ConnectionProfileManager {
 
 	public static final String EXT_ELEM_WIZARD_CATEGORY = "wizardCategory"; //$NON-NLS-1$
 
+	public static boolean DEBUG_CONNECTION_PROFILE_EXTENSION = false;
+
+	private static final String OPTION_DEBUG_CONNECTION_PROFILE_EXTENSION = "org.eclipse.datatools.connectivity/connectionprofileextension"; //$NON-NLS-1$
+
 	private Map mProviders = null; // mProviders shouldn't be null after
 	// parsing
 
@@ -74,6 +78,10 @@ public class ConnectionProfileManager {
 
 	private ConnectionProfileManager() {
 		super();
+		String debug = Platform
+				.getDebugOption(OPTION_DEBUG_CONNECTION_PROFILE_EXTENSION);
+		DEBUG_CONNECTION_PROFILE_EXTENSION = debug == null ? false : (debug
+				.equalsIgnoreCase("true") ? true : false); //$NON-NLS-1$
 	}
 
 	public Map getProviders() {

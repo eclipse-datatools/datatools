@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
@@ -22,6 +23,8 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -49,11 +52,15 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 
 	public static final String ATTR_PING_FACTORY = "pingFactory"; //$NON-NLS-1$
 
+	public static final String ATTR_PROPERTIES_PERSISTENCE_HOOK = "propertiesPersistenceHook"; //$NON-NLS-1$
+
 	private static final String IMG_OBJ_SERVER_DEFAULT = "org.eclipse.datatools.connectivity.ui.server_default_obj.gif"; //$NON-NLS-1$
 
 	private static final String IMG_DESC_SERVER_DEFAULT = "icons/full/obj16/server_default_obj.gif"; //$NON-NLS-1$
 
-	private static ImageRegistry sImages;
+    static final IPropertiesPersistenceHook DEFAULT_PROPERTIES_PERSISTENCE_HOOK = new PropertiesPersistenceHook();
+
+    private static ImageRegistry sImages;
 
 	private String mName;
 
@@ -74,6 +81,8 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	private IConfigurationElement mElement;
 
 	private boolean mMaintainConnection = true;
+
+	private IPropertiesPersistenceHook mPropertiesPersistenceHook;
 
 	/**
 	 * 
@@ -188,6 +197,34 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
 								.toString()}));
 		mConnectionFactories.put(cfp.getId(), cfp);
+	}
+
+	public IPropertiesPersistenceHook getPropertiesPersistenceHook() {
+		loadPropertiesPersistenceHook();
+		return mPropertiesPersistenceHook;
+	}
+
+	private void loadPropertiesPersistenceHook() {
+		if (mPropertiesPersistenceHook == null) {
+			mPropertiesPersistenceHook = DEFAULT_PROPERTIES_PERSISTENCE_HOOK;
+			if (mElement.getAttribute(ATTR_PROPERTIES_PERSISTENCE_HOOK) != null) {
+				try {
+					mPropertiesPersistenceHook = (IPropertiesPersistenceHook) mElement
+							.createExecutableExtension(ATTR_PROPERTIES_PERSISTENCE_HOOK);
+				}
+				catch (CoreException e) {
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err
+								.println(ConnectivityPlugin
+										.getDefault()
+										.getResourceString(
+												"trace.error.propertiesPersistenceHook", //$NON-NLS-1$
+												new Object[] { mId, mId}));
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 
 	private void init(IConfigurationElement element) {

@@ -2,4 +2,4 @@
 org.eclipse.datatools.connectivity/debug=true
 
 # Reports extensions
-org.eclipse.datatools.connectivity/debug/extension=false
+org.eclipse.datatools.connectivity/connectionprofileextension=false

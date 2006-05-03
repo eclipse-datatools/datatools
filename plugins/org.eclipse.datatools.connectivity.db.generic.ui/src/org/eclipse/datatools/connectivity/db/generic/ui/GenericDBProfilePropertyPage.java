@@ -28,6 +28,7 @@ import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -47,6 +48,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 	private Text mDBUIDText;
 	private Text mDBPWDText;
 	private Text mURLText;
+	private Button mSaveDBPWDCheckbox;
 
 	final DriverListCombo combo = new DriverListCombo();
 	private DelimitedStringList mDBConnProps;
@@ -94,6 +96,13 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 				.getDefault().getResourceString(
 						"GenericDBProfileDetailsWizardPage.password.label"), //$NON-NLS-1$, 
 				this.mDBPWDText, SWT.BORDER | SWT.PASSWORD, GridData.FILL_HORIZONTAL); //$NON-NLS-1$
+
+		this.mSaveDBPWDCheckbox = new Button(content, SWT.CHECK);
+		this.mSaveDBPWDCheckbox.setText(GenericDBPlugin.getDefault()
+				.getResourceString(
+						"GenericDBProfileDetailsWizardPage.persistpassword.label")); //$NON-NLS-1$
+		this.mSaveDBPWDCheckbox.setLayoutData(new GridData(GridData.BEGINNING,
+				GridData.CENTER, true, false, 2, 1));
 
 		Composite spacer = new Composite(content, SWT.NULL);
 		GridData gdata = new GridData(GridData.FILL_HORIZONTAL);
@@ -201,6 +210,9 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 				.getText());
 		props.setProperty(IDBDriverDefinitionConstants.URL_PROP_ID,
 				this.mURLText.getText());
+		props.setProperty(
+				IDBConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
+						.valueOf(this.mSaveDBPWDCheckbox.getSelection()));
 
 		return props;
 	}
@@ -245,6 +257,11 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		if (urlText != null) {
 			this.mURLText.setText(urlText);
 		}
+
+		this.mSaveDBPWDCheckbox.setSelection(Boolean.valueOf(
+				profile.getBaseProperties().getProperty(
+						IDBConnectionProfileConstants.SAVE_PASSWORD_PROP_ID,
+						Boolean.FALSE.toString())).booleanValue());
 
 		setErrorMessage(null);
 	}

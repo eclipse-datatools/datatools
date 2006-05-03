@@ -149,6 +149,9 @@
                <documentation>
                   The plug-in relative path to an image file.  This image will be used to identify resources of this type in the servers view.
                </documentation>
+               <appInfo>
+                  <meta.attribute kind="resource"/>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="maintainConnection" type="string">
@@ -165,6 +168,16 @@
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.IConnectionFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="propertiesPersistenceHook" type="string">
+            <annotation>
+               <documentation>
+                  Allows a plugin to specify which properties should be persisted by the framework, as well as given the framework a place to query for the &quot;completeness&quot; of a property set.  Please see the javadoc for &lt;code&gt;org.eclipse.datatools.connectivity.IPropertiesPersistenceHook&lt;/code&gt;.  By default, all properties specified will be persisted and the property set will always be treated as &quot;complete.&quot;
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.PropertiesPersistenceHook:org.eclipse.datatools.connectivity.IPropertiesPersistenceHook"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -265,6 +278,16 @@
                <documentation>
                   A unique identifier for this extension.
                </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="propertiesPersistenceHook" type="string">
+            <annotation>
+               <documentation>
+                  Allows a plugin to specify which properties should be persisted by the framework, as well as given the framework a place to query for the &quot;completeness&quot; of a property set.  Please see the javadoc for &lt;code&gt;org.eclipse.datatools.connectivity.IPropertiesPersistenceHook&lt;/code&gt;.  By default, all properties specified will be persisted and the property set will always be treated as &quot;complete.&quot;
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.PropertiesPersistenceHook:org.eclipse.datatools.connectivity.IPropertiesPersistenceHook"/>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>

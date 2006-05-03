@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPag
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -45,6 +46,8 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	private Text mDBUIDText;
 
 	private Text mDBPWDText;
+
+	private Button mSaveDBPWDCheckbox;
 
 	private DelimitedStringList mDBConnProps;
 
@@ -108,6 +111,13 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 				.getDefault().getResourceString(
 						"GenericDBProfileDetailsWizardPage.password.label"), //$NON-NLS-1$
 				this.mDBPWDText, SWT.BORDER | SWT.PASSWORD, GridData.FILL_HORIZONTAL);
+
+		this.mSaveDBPWDCheckbox = new Button(content, SWT.CHECK);
+		this.mSaveDBPWDCheckbox.setText(GenericDBPlugin.getDefault()
+				.getResourceString(
+						"GenericDBProfileDetailsWizardPage.persistpassword.label")); //$NON-NLS-1$
+		this.mSaveDBPWDCheckbox.setLayoutData(new GridData(GridData.BEGINNING,
+				GridData.CENTER, true, false, 2, 1));
 
 		// spacer
 		Composite spacer = new Composite(content, SWT.NULL);
@@ -280,6 +290,15 @@ public class GenericDBProfileDetailsWizardPage extends ConnectionProfileDetailsP
 	 */
 	public String getDBPWD() {
 		return this.mDBPWDText.getText();
+	}
+
+	/**
+	 * Get the password
+	 * 
+	 * @return
+	 */
+	public boolean getSaveDBPWD() {
+		return this.mSaveDBPWDCheckbox.getSelection();
 	}
 
 	/**
