@@ -25,7 +25,7 @@
          point="org.eclipse.datatools.connectivity.driverExtension">    
       <category
             id="org.eclipse.datatools.connectivity.db.driverCategory"
-            name="Database"/>
+            name="%org.eclipse.datatools.connectivity.db.driverCategory"/>
     </extension>
     <extension
          point="org.eclipse.datatools.connectivity.driverExtension">     
@@ -34,48 +34,48 @@
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.db2udb.genericDriverTemplate"
             jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cisuz.jar"
-            name="IBM DB2 Universal for DB2 UDB V8.2"
+            name="%org.eclipse.datatools.connectivity.db.db2udb.genericDriverTemplate"
             parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.driverClass"
-                  name="Driver Class"
+                  name="%driverClass"
                   value="com.ibm.db2.jcc.DB2Driver"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.vendor"
-                  name="Vendor"
+                  name="%driverVendor"
                   value="DB2 UDB"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.version"
-                  name="Version"
+                  name="%driverVersion"
                   value="V8.2"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.databaseName"
-                  name="Database Name"
+                  name="%driverDBName"
                   value="SAMPLE"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.URL"
-                  name="Connection URL"
+                  name="%driverConnectionURL"
                   value="jdbc:db2://localhost:50000/SAMPLE"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.username"
-                  name="User ID"
+                  name="%driverUID"
                   value=""
                   required="false"
                   visible="true"/>
@@ -83,7 +83,7 @@
                   customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
-                  name="Password"
+                  name="%driverPWD"
                   required="false"
                   visible="true"/>
          </properties>
@@ -97,48 +97,48 @@
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.sybase.genericDriverTemplate"
             jarList="jconn2.jar"
-            name="Sybase JDBC Driver for Sybase 12.x"
+            name="%org.eclipse.datatools.connectivity.db.sybase.genericDriverTemplate"
             parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.driverClass"
-                  name="Driver Class"
+                  name="%driverClass"
                   value="com.sybase.jdbc2.jdbc.SybDriver"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.vendor"
-                  name="Vendor"
+                  name="%driverVendor"
                   value="Sybase"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.version"
-                  name="Version"
+                  name="%driverVersion"
                   value="12.x"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.databaseName"
-                  name="Database Name"
+                  name="%driverDBName"
                   value="database"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.URL"
-                  name="Connection URL"
+                  name="%driverConnectionURL"
                   value="jdbc:sybase:Tds:host:port/database"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.username"
-                  name="User ID"
+                  name="%driverUID"
                   value=""
                   required="false"
                   visible="true"/>
@@ -146,7 +146,7 @@
                   customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
-                  name="Password"
+                  name="%driverPWD"
                   required="false"
                   visible="true"/>
          </properties>
@@ -160,48 +160,48 @@
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
             jarList=""
-            name="Generic JDBC Driver"
+            name="%org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
             parentCategory="org.eclipse.datatools.connectivity.db.driverCategory">
          <properties>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.driverClass"
-                  name="Driver Class"
+                  name="%driverClass"
                   value=""
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.vendor"
-                  name="Vendor"
+                  name="%driverVendor"
                   value="Generic JDBC"
                   required="true"
                   visible="false"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.version"
-                  name="Version"
+                  name="%driverVersion"
                   value="1.0"
                   required="true"
                   visible="false"/>   
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.databaseName"
-                  name="Database Name"
+                  name="%driverDBName"
                   value="SAMPLE"
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.URL"
-                  name="Connection URL"
+                  name="%driverConnectionURL"
                   value="jdbc:"
                   required="true"
                   visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.username"
-                  name="User ID"
+                  name="%driverUID"
                   value=""
                   required="false"
                   visible="true"/>
@@ -209,7 +209,7 @@
                   customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
-                  name="Password"
+                  name="%driverPWD"
                   required="false"
                   visible="true"/>
          </properties>
@@ -222,48 +222,48 @@
           emptyJarListIsOK="false" 
           id="org.eclipse.datatools.connectivity.db.oracle.genericDriverTemplate" 
           jarList="classes12.jar" 
-          name="Oracle JDBC Driver for Oracle 10" 
+          name="%org.eclipse.datatools.connectivity.db.oracle.genericDriverTemplate" 
           parentCategory="org.eclipse.datatools.connectivity.db.driverCategory" > 
        <properties> 
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.driverClass" 
-                name="Driver Class" 
+                name="%driverClass" 
                 value="oracle.jdbc.OracleDriver" 
                 required="true" 
                 visible="true"/> 
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.vendor" 
-                name="Vendor" 
+                name="%driverVendor" 
                 value="Oracle" 
                 required="true" 
                 visible="false"/> 
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.version" 
-                name="Version" 
+                name="%driverVersion" 
                 value="10" 
                 required="true" 
                 visible="false"/>   
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.databaseName" 
-                name="Database Name" 
+                name="%driverDBName" 
                 value="db" 
                 required="true" 
                 visible="true"/>                             
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.URL" 
-                name="Connection URL" 
+                name="%driverConnectionURL" 
                 value="jdbc:oracle:thin:@server:1521:db" 
                 required="true" 
                 visible="true"/> 
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.username" 
-                name="User ID" 
+                name="%driverUID" 
                 value="" 
                 required="false" 
                 visible="true"/> 
@@ -271,7 +271,7 @@
                 customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                 generated="false"
                 id="org.eclipse.datatools.connectivity.db.password"
-                name="Password"
+                name="%driverPWD"
                 required="false"
                 visible="true"/> 
        </properties> 
