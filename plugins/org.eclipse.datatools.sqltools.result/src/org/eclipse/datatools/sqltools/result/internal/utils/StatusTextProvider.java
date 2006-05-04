@@ -32,17 +32,17 @@ public class StatusTextProvider
     {
         if(updateCount == 1)
         {
-            return NLS.bind(Messages.StatusTextProvider_update_count_single, new Object[] {(new Object[]
+            return NLS.bind(Messages.StatusTextProvider_update_count_single, new Object[] 
 			{
 			    String.valueOf(updateCount)
-			})}) + _LINESEPARATOR; //$NON-NLS-1$
+			}) + _LINESEPARATOR; //$NON-NLS-1$
         }
         else
         {
-            return NLS.bind(Messages.StatusTextProvider_update_count_complex, new Object[] {(new Object[]
+            return NLS.bind(Messages.StatusTextProvider_update_count_complex, new Object[]
 			{
 			    String.valueOf(updateCount)
-			})}) + _LINESEPARATOR; //$NON-NLS-1$
+			}) + _LINESEPARATOR; //$NON-NLS-1$
         }
     }
     
