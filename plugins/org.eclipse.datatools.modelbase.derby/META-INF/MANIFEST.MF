@@ -10,4 +10,5 @@ Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.modelbase.derby,
  org.eclipse.datatools.modelbase.derby.impl,
  org.eclipse.datatools.modelbase.derby.util
+Bundle-Vendor: Eclipse.org
 
