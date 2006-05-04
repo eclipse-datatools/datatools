@@ -8,7 +8,7 @@
    <extension
          point="org.eclipse.debug.core.launchConfigurationTypes">
       <launchConfigurationType
-            name="Eclipse Data Tools"
+            name="%routine.launch.type"
             delegate="org.eclipse.datatools.sqltools.routineeditor.launching.SPLaunchConfigurationDelegate"
             modes="run,debug"
             id="org.eclipse.datatools.sqltools.routineeditor.launching.launchConfigurationType">

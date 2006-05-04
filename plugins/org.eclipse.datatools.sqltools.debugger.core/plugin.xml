@@ -20,7 +20,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="Database Debug"
+            name="%database.debug.perspective"
             icon="icons/debug_exc.gif"
             class="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective"
             id="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
@@ -159,7 +159,7 @@
    <extension
          point="org.eclipse.datatools.sqltools.routineeditor.launchConfigurationTypes">
       <launchConfigurationType
-            name="Eclipse Data Tools"
+            name="%routine.launch.type"
             delegate="org.eclipse.datatools.sqltools.debugger.launching.SPDebuggerLaunchConfigurationDelegate"
             modes="debug"
             id="org.eclipse.datatools.sqltools.debugger.core.launchConfigurationType">

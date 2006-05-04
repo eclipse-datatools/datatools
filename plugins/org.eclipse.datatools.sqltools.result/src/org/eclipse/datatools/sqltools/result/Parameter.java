@@ -59,10 +59,10 @@ public class Parameter implements Serializable
      */
     public Parameter(String paramName, String paramType, String paramValue, String paramDataType)
     {
-    	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.getString("Parameter.constructor.error")); //$NON-NLS-1$ //$NON-NLS-2$
+    	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.Parameter_constructor_error); 
     	Assert.isLegal(!(paramType == null
                 || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType.trim().equals(
-                        IN_OUT))), Messages.getString("Parameter.constructor.error")); //$NON-NLS-1$
+                        IN_OUT))), Messages.Parameter_constructor_error); 
         _paramName = paramName;
         _paramType = paramType;
         _paramDataType = (paramDataType == null)?"":paramDataType; //$NON-NLS-1$

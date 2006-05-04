@@ -620,9 +620,9 @@ public class StatusLogger implements ILogger
     {
         if (_rb == null)
         {
-            IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.getString("StatusLogger.no.bundle"), null); //$NON-NLS-1$
+            IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.StatusLogger_no_bundle, null); 
             _log.log(status);
-            return key + Messages.getString("StatusLogger.possible.args"); //$NON-NLS-1$
+            return key + Messages.StatusLogger_possible_args; 
         }
         else
         {
@@ -632,9 +632,9 @@ public class StatusLogger implements ILogger
             }
             catch (MissingResourceException ee)
             {
-                IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.getString("StatusLogger.no.bundle.1") + key + "\".", null); //$NON-NLS-1$
+                IStatus status = new Status(IStatus.ERROR, _pluginId, IStatus.OK, Messages.StatusLogger_no_bundle_1 + key + "\".", null); 
                 _log.log(status);
-                return key + Messages.getString("StatusLogger.possible.args.1"); //$NON-NLS-1$
+                return key + Messages.StatusLogger_possible_args_1; 
             }
         }
     }

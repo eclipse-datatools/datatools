@@ -197,7 +197,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 //		_create.addListener(SWT.Selection, this);
 
 		_labelDbName = new Label(this, SWT.NONE);
-		_labelDbName.setText("Database Name:");
+		_labelDbName.setText(Messages.ConnectionInfoGroup_database_name);
 		createComboDbName(this);
 
 		if (!_mustConnect) {
@@ -415,19 +415,19 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * 
 	 */
 	private void updateFields() {
-		if (_comboType.getText() != null && !"".equals(_comboType.getText()))
+		if (_comboType.getText() != null && !"".equals(_comboType.getText())) //$NON-NLS-1$
 		{
 			_dbVendorId = new DatabaseVendorDefinitionId(_comboType.getText());
 		}
 		// set _profileName to "" has no meaning
 		if (_comboProfileName.getText() != null
-				&& !"".equals(_comboProfileName.getText())) {
+				&& !"".equals(_comboProfileName.getText())) { //$NON-NLS-1$
 			_profileName = _comboProfileName.getText();
 		} else {
 			_profileName = null;
 		}
 		if (_combodbName != null && _combodbName.getText() != null
-				&& !"".equals(_combodbName.getText())) {
+				&& !"".equals(_combodbName.getText())) { //$NON-NLS-1$
 			_dbName = _combodbName.getText();
 		}
 
@@ -596,7 +596,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @param dbVendorName
 	 */
 	private void refreshProfileNames(String dbVendorName, String initialProfName) {
-		if (dbVendorName == null || dbVendorName.equals("")) {
+		if (dbVendorName == null || dbVendorName.equals("")) { //$NON-NLS-1$
 			//$NON-NLS-1$
 			return;
 		}
@@ -617,7 +617,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 		Collections.sort(rightProfiles);
 
-		rightProfiles.add(0, new String(""));
+		rightProfiles.add(0, new String("")); //$NON-NLS-1$
 		_comboProfileName.setItems((String[]) rightProfiles
 				.toArray(new String[] {}));
 		if (initialProfName != null) {

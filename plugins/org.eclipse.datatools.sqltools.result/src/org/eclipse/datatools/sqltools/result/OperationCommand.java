@@ -162,37 +162,37 @@ public class OperationCommand implements Serializable
         switch (actionId)
         {
             case ACTION_EXECUTE:
-                return Messages.getString("OperationCommand.action.execute"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_execute; 
             case ACTION_CREATE:
-                return Messages.getString("OperationCommand.action.create"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_create; 
             case ACTION_DEBUG:
-                return Messages.getString("OperationCommand.action.debug"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_debug; 
             case ACTION_DEPLOY:
-                return Messages.getString("OperationCommand.action.deploy"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_deploy; 
             case ACTION_DROP:
-                return Messages.getString("OperationCommand.action.drop"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_drop; 
             case ACTION_EDIT:
-                return Messages.getString("OperationCommand.action.edit"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_edit; 
             case ACTION_EXPORT:
-                return Messages.getString("OperationCommand.action.export"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_export; 
             case ACTION_EXTRACT:
-                return Messages.getString("OperationCommand.action.extract"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_extract; 
             case ACTION_IMPORT:
-                return Messages.getString("OperationCommand.action.import"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_import; 
             case ACTION_LOAD:
-                return Messages.getString("OperationCommand.action.load"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_load; 
             case ACTION_BEFORE_RUN:
-                return Messages.getString("OperationCommand.action.before.run"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_before_run; 
             case ACTION_AFTER_RUN:
-                return Messages.getString("OperationCommand.action.after.run"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_after_run; 
             case ACTION_RUN:
-                return Messages.getString("OperationCommand.action.run"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_run; 
             case ACTION_VALIDATE:
-                return Messages.getString("OperationCommand.action.validate"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_validate; 
             case ACTION_VIEW:
-                return Messages.getString("OperationCommand.action.browse"); //$NON-NLS-1$
+                return Messages.OperationCommand_action_browse; 
             default:
-                return Messages.getString("OperationCommand.unknown.action"); //$NON-NLS-1$
+                return Messages.OperationCommand_unknown_action; 
         }
     }
     
@@ -235,21 +235,21 @@ public class OperationCommand implements Serializable
         switch (statusId)
         {
             case STATUS_STARTED:
-                return Messages.getString("OperationCommand.status.started"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_started; 
             case STATUS_RUNNING:
-                return Messages.getString("OperationCommand.status.running"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_running; 
             case STATUS_SUCCEEDED:
-                return Messages.getString("OperationCommand.status.succeeded"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_succeeded; 
             case STATUS_FAILED:
-                return Messages.getString("OperationCommand.status.failed"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_failed; 
             case STATUS_TERMINATED:
-                return Messages.getString("OperationCommand.status.terminated"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_terminated; 
             case STATUS_WARNING:
-                return Messages.getString("OperationCommand.status.warning"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_warning; 
             case STATUS_CRITICAL_ERROR:
-                return Messages.getString("OperationCommand.status.critical"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_critical; 
             default:
-                return Messages.getString("OperationCommand.status.unknown"); //$NON-NLS-1$
+                return Messages.OperationCommand_status_unknown; 
         }
     }
 

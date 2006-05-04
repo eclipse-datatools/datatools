@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.result.internal.utils;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Utilility class to get some status related message
@@ -31,11 +32,17 @@ public class StatusTextProvider
     {
         if(updateCount == 1)
         {
-            return Messages.getString("StatusTextProvider.update.count.single", String.valueOf(updateCount)) + _LINESEPARATOR; //$NON-NLS-1$
+            return NLS.bind(Messages.StatusTextProvider_update_count_single, new Object[] {(new Object[]
+			{
+			    String.valueOf(updateCount)
+			})}) + _LINESEPARATOR; //$NON-NLS-1$
         }
         else
         {
-            return Messages.getString("StatusTextProvider.update.count.complex", String.valueOf(updateCount)) + _LINESEPARATOR; //$NON-NLS-1$
+            return NLS.bind(Messages.StatusTextProvider_update_count_complex, new Object[] {(new Object[]
+			{
+			    String.valueOf(updateCount)
+			})}) + _LINESEPARATOR; //$NON-NLS-1$
         }
     }
     
@@ -73,14 +80,14 @@ public class StatusTextProvider
         StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
         buff.append(instance.getOperationCommand().getDisplayString()).append(_LINESEPARATOR);
         buff
-                .append(Messages.getString("StatusTextProvider.action.type")).append(OperationCommand.getActionString(instance.getOperationCommand().getActionType())) //$NON-NLS-1$
+                .append(Messages.StatusTextProvider_action_type).append(OperationCommand.getActionString(instance.getOperationCommand().getActionType())) 
                 .append(_LINESEPARATOR);
         buff
-                .append(Messages.getString("StatusTextProvider.profile.name")).append(instance.getOperationCommand().getProfileName()).append(_LINESEPARATOR); //$NON-NLS-1$
+                .append(Messages.StatusTextProvider_profile_name).append(instance.getOperationCommand().getProfileName()).append(_LINESEPARATOR); 
         buff
-                .append(Messages.getString("StatusTextProvider.database")).append(instance.getOperationCommand().getDatabaseName()).append(_LINESEPARATOR); //$NON-NLS-1$
+                .append(Messages.StatusTextProvider_database).append(instance.getOperationCommand().getDatabaseName()).append(_LINESEPARATOR); 
         buff
-                .append(Messages.getString("StatusTextProvider.time")).append(instance.getExecuteTime()).append(_LINESEPARATOR); //$NON-NLS-1$
+                .append(Messages.StatusTextProvider_time).append(instance.getExecuteTime()).append(_LINESEPARATOR); 
         int count = instance.getItemCount();
         for (int i = 0; i < count; i++)
         {
