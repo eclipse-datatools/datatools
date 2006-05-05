@@ -23,7 +23,7 @@ import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ConsumerExtensionManifest;
+import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.DriverExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
@@ -350,11 +350,11 @@ public class OdaDriver extends OdaObject
         final String context = "OdaDriver.getDriverBridgeId( String )"; //$NON-NLS-1$
 
         // look for bridge extension for given driver type
-        ConsumerExtensionManifest manifest = null;
+        DriverExtensionManifest manifest = null;
         try
         {
             manifest = ExtensionExplorer.getInstance()
-                        .getExtensionManifest( driverType );
+                        .getDriverExtensionManifest( driverType );
         }
         catch( OdaException e )
         {

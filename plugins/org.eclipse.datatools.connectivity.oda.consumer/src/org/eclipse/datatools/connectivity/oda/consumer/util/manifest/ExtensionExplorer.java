@@ -32,10 +32,10 @@ public class ExtensionExplorer
 {
     private static ExtensionExplorer sm_instance = null;
 
-    private static final String DTP_ODA_CONSUMER_EXT_POINT = 
+    private static final String DTP_ODA_BRIDGE_EXT_POINT = 
             "org.eclipse.datatools.connectivity.oda.consumer.driverBridge";  //$NON-NLS-1$
     
-    private Hashtable m_manifests;  // cached copy of found manifests
+    private Hashtable m_bridgeManifests;  // cached copy of found driverBridge manifests
     
     /**
      * Returns the <code>ExtensionExplorer</code> instance to  
@@ -64,84 +64,83 @@ public class ExtensionExplorer
     public void refresh()
     {
         // reset the cached collection of extension manifest instances
-        m_manifests = new Hashtable();
+        m_bridgeManifests = new Hashtable();
     }
     
     /**
-     * Finds and returns the extension configuration information defined 
-     * in the plugin manifest of the ODA consumer driver bridge extension that
+     * Finds and returns the extension information defined 
+     * in the plugin manifest of the extension that
      * implements the DTP ODA Consumer extension point -
      * <code>org.eclipse.datatools.connectivity.oda.consumer.driverBridge</code>.
      * @param driverType      the interface type id of an underlying ODA data provider.
      * @return              the driver bridge extension manifest information;
-     *                      or null, if no extension is found
+     *                      or null, if no matching extension is found
      * @throws OdaException if the extension manifest is invalid
      */
-    public ConsumerExtensionManifest getExtensionManifest( String driverType ) 
+    public DriverExtensionManifest getDriverExtensionManifest( String driverType ) 
         throws OdaException
     {
-        ConsumerExtensionManifest manifest = 
-            getExtensionManifest( driverType, DTP_ODA_CONSUMER_EXT_POINT );
+        DriverExtensionManifest manifest = 
+            getDriverExtensionManifest( driverType, DTP_ODA_BRIDGE_EXT_POINT );
         
         return manifest;
     }
     
     /**
-     * Finds and returns the extension configuration information defined 
+     * Finds and returns the extension information defined 
      * in the plugin manifest of the driver bridge extension
      * that contains the specified bridgeFactory element for
      * the specified driver type.
-     * @param driverType      the interface type id of an underlying ODA data provider.
-     * @param extensionPoint    the id of the extension point to search
-     * @return                  the extension manifest information,
-     *                          or null if no extension configuration is found.
      * @throws OdaException     if the extension manifest is invalid.
      */
-    private ConsumerExtensionManifest getExtensionManifest( 
+    private DriverExtensionManifest getDriverExtensionManifest( 
                                         String driverType, 
                                         String extensionPoint ) 
         throws OdaException
     {
-        if ( driverType == null || driverType.length() == 0 )
+        if( driverType == null || driverType.length() == 0 )
             throw new OdaException(
                     new IllegalArgumentException( driverType ) );
         
-        if ( extensionPoint == null || extensionPoint.length() == 0 )
+        if( extensionPoint == null || extensionPoint.length() == 0 )
             throw new OdaException(
                     new IllegalArgumentException( extensionPoint ) );
     
         // first check if specified dataSourceId's manifest
         // is already in cache, and use it
-        ConsumerExtensionManifest aManifest =
-            (ConsumerExtensionManifest) m_manifests.get( driverType );
+        DriverExtensionManifest aManifest =
+            (DriverExtensionManifest) m_bridgeManifests.get( driverType );
         if( aManifest != null )
             return aManifest;
         
         // not yet cached, find and create a new one
-        IExtension[] extensions = 
-            ManifestExplorer.getExtensions( extensionPoint );
-        
-        IExtension extension = findExtension( driverType, extensions );
-    
-        if ( extension == null )    // not found
+        IExtension extension = findExtensionWithAttribute( driverType, 
+                                DriverExtensionManifest.DRIVER_TYPE_ATTRIBUTE, 
+                                DriverExtensionManifest.BRIDGE_ELEMENT,
+                                extensionPoint );    
+        if( extension == null )    // not found
             return null;
         
         // found extension 
-        aManifest = new ConsumerExtensionManifest( extension );
+        aManifest = new DriverExtensionManifest( extension );
         
         // keep it in cached collection
-        m_manifests.put( driverType, aManifest );
+        m_bridgeManifests.put( driverType, aManifest );
         
         return aManifest;
     }
     
     /**
-     * Finds the extension that matches the given driver type name
+     * Finds the extension that matches the given attribute value and name in specified element
      * among the given collection of extensions.
      */
-    private IExtension findExtension( String driverType, IExtension[] extensions )
+    private IExtension findExtensionWithAttribute( String attributeValue, String attributeName,
+                                                    String elementName, String extensionPoint )
         throws OdaException
     {
+        IExtension[] extensions = 
+            ManifestExplorer.getExtensions( extensionPoint );
+        
         int length = ( extensions == null ) ? 
                 0 : extensions.length;
 
@@ -150,49 +149,49 @@ public class ExtensionExplorer
             IExtension extension = extensions[i];
             
              // Find an driverBridge extension 
-            IConfigurationElement bridgeFactoryElement =
-                getBridgeElement( extension );
-            if( bridgeFactoryElement == null )
+            IConfigurationElement foundElement =
+                getNamedElement( extension, elementName, attributeName );
+            if( foundElement == null )
                 continue;   // ignores invalid extension
             
-            String extnDriverType = bridgeFactoryElement.getAttribute( 
-                    ConsumerExtensionManifest.DRIVER_TYPE_ATTRIBUTE );
+            String value = foundElement.getAttribute( attributeName );
             
             /* The first extension found with matching driverType 
              * in its bridgeFactory element is considered a match.
              */
-            if( extnDriverType != null &&
-                extnDriverType.equalsIgnoreCase( driverType ) )
+            if( value != null &&
+                value.equalsIgnoreCase( attributeValue ) )
                 return extension;
         }
         
         return null;
     }
-    
+        
     /**
-     * Returns the bridge factory element of the given extension.
+     * Returns the element with given name and required attribute
+     * defined in the given extension.  The required attribute must have a non-empty value.
      * <br>For internal use only.
      */
-    static IConfigurationElement getBridgeElement( IExtension extension ) 
+    static IConfigurationElement getNamedElement( IExtension extension,
+                                    String elementName, String requiredAttributeName ) 
     {
-        IConfigurationElement[] bridgeFactoryElements = null;
+        IConfigurationElement[] namedElements = null;
         try
         {
-            bridgeFactoryElements = ManifestExplorer.getNamedElements( extension, 
-                    ConsumerExtensionManifest.BRIDGE_ELEMENT,
-                    ConsumerExtensionManifest.DRIVER_TYPE_ATTRIBUTE );
+            namedElements = ManifestExplorer.getNamedElements( extension, 
+                                elementName, requiredAttributeName );
         }
         catch( OdaException e )
         {
             // ignore
         }
         
-        if( bridgeFactoryElements == null ||
-            bridgeFactoryElements.length == 0 )
+        if( namedElements == null ||
+            namedElements.length == 0 )
             return null;
 
         // expects only one, as defined in extension point schema
-        return bridgeFactoryElements[0];
+        return namedElements[0];
     }
 
 }
