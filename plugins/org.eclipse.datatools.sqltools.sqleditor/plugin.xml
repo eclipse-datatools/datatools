@@ -44,7 +44,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="database.development.perspective"
+            name="%database.development.perspective"
             icon="icons/DB_dev_perspective.gif"
             class="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective"
             id="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
