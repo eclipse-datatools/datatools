@@ -481,7 +481,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         {
             return ((ISQLEditorInput)getEditorInput()).getConnectionInfo();
         }
-        return null;
+        return SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
     }
 
     /**
