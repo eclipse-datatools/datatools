@@ -146,7 +146,7 @@ public class XMLFileManager {
 			Writer writer = null;
 			IPropertySet ps;
 			try {
-				OutputStreamWriter outw = new OutputStreamWriter(outs, "UTF8"); //$NON-NLS-1$
+				OutputStreamWriter outw = new OutputStreamWriter(outs, "UTF-8"); //$NON-NLS-1$
 				writer = new BufferedWriter(outw);
 				for (int i = 0; i < pss.length; i++) {
 					ps = pss[i];
@@ -203,7 +203,7 @@ public class XMLFileManager {
 			
 			InputStream fis = new FileInputStream(file);
 			InputSource source = new InputSource(fis);
-			source.setEncoding("UTF8"); //$NON-NLS-1$
+			source.setEncoding("UTF-8"); //$NON-NLS-1$
 		    Document document = getDocumentBuilder().parse(source);
 			IPropertySet ps;
 			ArrayList pss = new ArrayList();
