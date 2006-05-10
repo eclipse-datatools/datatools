@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.test
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.sqltools.test.Activator
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.ui
+Eclipse-LazyStart: true
