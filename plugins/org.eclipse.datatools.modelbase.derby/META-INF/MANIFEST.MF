@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Derby Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.modelbase.derby; singleton:=true
-Bundle-Version: 0.9.0.200604071
+Bundle-Version: 0.9.0.200605101
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.modelbase.sql
