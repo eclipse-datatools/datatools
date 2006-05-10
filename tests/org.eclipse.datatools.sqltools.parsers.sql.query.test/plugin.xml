@@ -4,7 +4,7 @@
    id="org.eclipse.datatools.sqltools.parsers.sql.query.test"
    name="Test1 Plug-in"
    version="0.9.0.200605101"
-   provider-name="IBM"
+   provider-name="Eclipse.org"
    class="org.eclipse.datatools.sqltools.parsers.sql.query.test.TestPlugin">
 
    <runtime>
