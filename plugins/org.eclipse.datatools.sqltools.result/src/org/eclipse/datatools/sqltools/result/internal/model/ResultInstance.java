@@ -107,7 +107,7 @@ public class ResultInstance implements IResultInstance
         }
         catch (Exception e)
         {
-            _log.error("ResultInstance.error.moreResultSet", e); //$NON-NLS-1$
+            _log.error("ResultInstance_error_moreResultSet", e); //$NON-NLS-1$
             return;
         }
         moreResultItem(new ResultItem(r));

@@ -232,7 +232,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
+            _log.error("ResultsViewAPI_append_resultset_error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -274,7 +274,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
+            _log.error("ResultsViewAPI_append_resultset_error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -375,7 +375,7 @@ public class ResultsViewAPI
         }
         catch(Exception dex)
         {
-            _log.error("ResultsViewAPI.notwellformed.xml", dex); //$NON-NLS-1$
+            _log.error("ResultsViewAPI_notwellformed_xml", dex); //$NON-NLS-1$
             return false;
         }
         
@@ -398,7 +398,7 @@ public class ResultsViewAPI
         }
         catch (Exception e)
         {
-            _log.error("ResultsViewAPI.append.resultset.error", e); //$NON-NLS-1$
+            _log.error("ResultsViewAPI_append_resultset_error", e); //$NON-NLS-1$
             return false;
         }
     }
@@ -462,7 +462,7 @@ public class ResultsViewAPI
                 }
                 catch (PartInitException ex)
                 {
-                    _log.error("ResultsViewAPI.checkview.error", ex); //$NON-NLS-1$
+                    _log.error("ResultsViewAPI_checkview_error", ex); //$NON-NLS-1$
                 }
             }
         });

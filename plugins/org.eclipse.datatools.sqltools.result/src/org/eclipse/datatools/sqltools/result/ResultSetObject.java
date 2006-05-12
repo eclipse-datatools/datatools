@@ -353,7 +353,7 @@ public class ResultSetObject implements IResultSetObject
                 }
                 catch (Exception e)
                 {
-                    _log.error("ResultSetObjectImpl.error.iterator", e); //$NON-NLS-1$
+                    _log.error("ResultSetObjectImpl_error_iterator", e); //$NON-NLS-1$
                 }
             }
         }
@@ -388,7 +388,7 @@ public class ResultSetObject implements IResultSetObject
                     }
                     catch (IOException e)
                     {
-                        _log.error("ResultSetObjectImpl.error.next", e); //$NON-NLS-1$
+                        _log.error("ResultSetObjectImpl_error_next", e); //$NON-NLS-1$
                     }
                 }
             }

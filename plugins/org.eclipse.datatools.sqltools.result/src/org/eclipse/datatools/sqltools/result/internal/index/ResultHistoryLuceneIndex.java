@@ -114,7 +114,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                             }
                             catch (IOException ioe)
                             {
-                                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                                _log.error("ResultHistoryLuceneIndex_io_error", ioe); //$NON-NLS-1$
                             }
                         }
                     }
@@ -122,7 +122,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                 }
                 catch (IOException ioe)
                 {
-                    _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                    _log.error("ResultHistoryLuceneIndex_io_error", ioe); //$NON-NLS-1$
                 }
             }
         }
@@ -163,7 +163,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                                 }
                                 catch(IOException ioe)
                                 {
-                                    _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                                    _log.error("ResultHistoryLuceneIndex_io_error", ioe); //$NON-NLS-1$
                                 }
                             }
                         }
@@ -173,7 +173,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
             }
             catch(IOException ioe)
             {
-                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                _log.error("ResultHistoryLuceneIndex_io_error", ioe); //$NON-NLS-1$
             }
         }
     }
@@ -208,7 +208,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
             }
             catch(IOException ioe)
             {
-                _log.error("ResultHistoryLuceneIndex.io.error", ioe); //$NON-NLS-1$
+                _log.error("ResultHistoryLuceneIndex_io_error", ioe); //$NON-NLS-1$
             }
             return new IResultInstance[0];
         }
