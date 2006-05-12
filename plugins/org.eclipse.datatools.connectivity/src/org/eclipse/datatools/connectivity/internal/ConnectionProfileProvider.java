@@ -191,12 +191,15 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	}
 
 	public void addConnectionFactory(IConfigurationElement element) {
-		ConnectionFactoryProvider cfp = new ConnectionFactoryProvider(element);
-		Assert.isTrue(!mConnectionFactories.containsKey(cfp.getId()),
+		addConnectionFactory(new ConnectionFactoryProvider(element));
+	}
+
+	public void addConnectionFactory(IConnectionFactoryProvider icfap) {
+		Assert.isTrue(!mConnectionFactories.containsKey(icfap.getId()),
 				ConnectivityPlugin.getDefault().getResourceString(
-						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
-								.toString()}));
-		mConnectionFactories.put(cfp.getId(), cfp);
+						"assert.invalid.profile.duplicateFactory", //$NON-NLS-1$
+						new Object[] { icfap.getId().toString()}));
+		mConnectionFactories.put(icfap.getId(), icfap);
 	}
 
 	public IPropertiesPersistenceHook getPropertiesPersistenceHook() {

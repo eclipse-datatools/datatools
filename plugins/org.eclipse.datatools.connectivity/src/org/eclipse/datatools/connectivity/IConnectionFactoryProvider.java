@@ -35,10 +35,4 @@ public interface IConnectionFactoryProvider extends IConnectionFactory {
 	 */
 	Class getConnectionFactoryClass();
 
-	/**
-	 * @return the connection profile supported by the provided connection
-	 *         factory
-	 */
-	IConnectionProfileProvider getConnectionProfileProvider();
-
 }

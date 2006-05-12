@@ -76,10 +76,10 @@
    </extension>
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
-      <connectionFactory
+      <connectionFactoryAdapter
             class="org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory"
             id="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"
             name="SQL Model Connection"
-            profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
+            factory="java.sql.Connection"/>
    </extension>
 </plugin>

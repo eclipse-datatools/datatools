@@ -50,6 +50,7 @@
             <element ref="profileExtension" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="newWizard" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="wizardCategory" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="connectionFactoryAdapter" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -218,10 +219,10 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="profile" type="string" use="required">
+         <attribute name="profile" type="string">
             <annotation>
                <documentation>
-                  The connection profile supported by this factory.  This should reference a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.
+                  The connection profile supported by this factory.  This should reference a &lt;samp&gt;connectionProfile/id&lt;/samp&gt;.  If this field is specified, this factory will only be available for the specified profile, otherwise this factory will be available for all profiles with the specified &lt;code&gt;factory&lt;/code&gt;.
                </documentation>
             </annotation>
          </attribute>
@@ -403,6 +404,54 @@
             <annotation>
                <documentation>
                   wizard description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connectionFactoryAdapter">
+      <annotation>
+         <documentation>
+            This element defines a factory that can be used to create connections representing a specific type of view onto a server using an existing connection factory to generate the underlying connection object used by the view.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The name of this connection factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that implements this connection factory.  The specified class must be an instance of IConnectionFactory.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.IConnectionFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique identifier for this connection factory.  This id may be used by plug-ins to retrieve an instance of this connection factory.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="factory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A connection factory ID to which this adapter applies.  This matches a connectionFactory/@id value.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="profile" type="string">
+            <annotation>
+               <documentation>
+                  The connection profile supported by this factory.  This should reference a &lt;samp&gt;connectionProfile/@id&lt;/samp&gt;.  If this field is specified, this factory will only be available for the specified profile, otherwise this factory will be available for all profiles with the specified &lt;code&gt;factory&lt;/code&gt;.
                </documentation>
             </annotation>
          </attribute>
