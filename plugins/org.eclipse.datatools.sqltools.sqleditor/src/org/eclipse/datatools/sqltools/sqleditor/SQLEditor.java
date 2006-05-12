@@ -33,13 +33,13 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ToggleCommentAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContentOutlinePage;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLOutlinePage;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLUpdater;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLPartitions;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
@@ -212,13 +212,21 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         a = new TextOperationAction( bundle, "ContentFormat.", this, ISourceViewer.FORMAT ); //$NON-NLS-1$
         setAction( "ContentFormat", a ); //$NON-NLS-1$
 
+        //ToggleCommentAction
+        a = new ToggleCommentAction(bundle, "SQLEditor.action.toggle.commect.", this); //$NON-NLS-1$
+        setAction(ISQLEditorActionConstants.TOGGLE_COMMENT, a); //$NON-NLS-1$
+        configureToggleCommentAction(a);
+
         setAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, new ExecuteSQLAction(this));
 
         setAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, new ExecuteSelectionSQLAction(this));
 
+        markAsStateDependentAction(ISQLEditorActionConstants.TOGGLE_COMMENT, true);
+        
         IActionBars bars = ((PartSite) getSite()).getActionBars();
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.TOGGLE_COMMENT, getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
 
     }
 
@@ -417,6 +425,8 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         menu.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION));
         menu.add(new Separator(ITextEditorActionConstants.MB_ADDITIONS));
 
+        menu.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE, getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
+        
         menu.add( new Separator() );
         addAction( menu, "ContentAssistProposal" ); //$NON-NLS-1$
         addAction( menu, "ContentAssistTip" ); //$NON-NLS-1$
@@ -870,7 +880,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 							SQLPartitionScanner.SQL_QUOTED_LITERAL,
 							SQLPartitionScanner.SQL_DELIMITED_IDENTIFIER });
             partitioner.connect(document);
-            extension3.setDocumentPartitioner(ISQLPartitions.SQL_PARTITIONING, partitioner);
+            extension3.setDocumentPartitioner(SQLPartitionScanner.SQL_PARTITIONING, partitioner);
 
         }
     }
@@ -969,5 +979,18 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 		return SWT.LEFT_TO_RIGHT;	//SQL editors are always left to right by default
 	}
 
+    /**
+     * Configures the toggle comment action
+     * 
+     */
+    private void configureToggleCommentAction(IAction action)
+    {
+        if (action instanceof ToggleCommentAction)
+        {
+            ISourceViewer sourceViewer = getSourceViewer();
+            SourceViewerConfiguration configuration = getSourceViewerConfiguration();
+            ((ToggleCommentAction) action).configure(sourceViewer, configuration);
+        }
+    }
 
 } // end class

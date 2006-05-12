@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
@@ -75,7 +74,10 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner {
     public final static String SQL_UNKNOWNSQL = "__sql__unknownsql_statement__"; //$NON-NLS-1$
 
     public final static String[] SQL_PARTITION_TYPES= new String[] {
+    	IDocument.DEFAULT_CONTENT_TYPE,
+    	SQL_DEFAULT,
         SQL_COMMENT,
+        SQL_MULTILINE_COMMENT,
         SQL_QUOTED_LITERAL,
         SQL_DELIMITED_IDENTIFIER,
     };
@@ -92,7 +94,7 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner {
     public static ITypedRegion[] getDocumentRegions( IDocument doc ) {
         ITypedRegion[] regions = null;
         try {
-            regions = TextUtilities.computePartitioning( doc, SQLEditorPlugin.SQL_PARTITIONING, 0, doc.getLength(), false );
+            regions = TextUtilities.computePartitioning( doc, SQLPartitionScanner.SQL_PARTITIONING, 0, doc.getLength(), false );
         }
         catch ( BadLocationException e ) {
             // ignore
@@ -100,6 +102,8 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner {
         
         return regions;
     }
+
+	public final static String SQL_PARTITIONING             = "___sql_partitioning";
 
     /**
      * Constructs an instance of this class.  Creates rules to parse comment 

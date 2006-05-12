@@ -16,6 +16,7 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.BestMatchHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
+import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLPartitions;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAnnotationHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
@@ -106,7 +107,7 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
      * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getConfiguredDocumentPartitioning(org.eclipse.jface.text.source.ISourceViewer)
      */
     public String getConfiguredDocumentPartitioning( ISourceViewer sourceViewer ) {
-        return SQLEditorPlugin.SQL_PARTITIONING;
+        return SQLPartitionScanner.SQL_PARTITIONING;
     }
 
     /**
@@ -146,7 +147,7 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
      */
     public IContentFormatter getContentFormatter(ISourceViewer sourceViewer) {
         ContentFormatter formatter = new ContentFormatter();
-        formatter.setDocumentPartitioning( SQLEditorPlugin.SQL_PARTITIONING );
+        formatter.setDocumentPartitioning( SQLPartitionScanner.SQL_PARTITIONING );
         
         IFormattingStrategy formattingStrategy = new SQLUpperCaseFormattingStrategy();
         formatter.setFormattingStrategy( formattingStrategy, IDocument.DEFAULT_CONTENT_TYPE );
@@ -252,6 +253,24 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         if (fCompletionProcessor != null) {
             fCompletionProcessor.setDBProposalsService( dbProposalsService );
         }
+    }
+    
+    public String[] getConfiguredContentTypes(ISourceViewer sourceViewer)
+    {
+        return SQLPartitionScanner.SQL_PARTITION_TYPES;
+    }
+
+    /*
+	 * @see SourceViewerConfiguration#getDefaultPrefixes(ISourceViewer, String)
+	 *  @since 2.0
+	 */
+    public String[] getDefaultPrefixes(ISourceViewer sourceViewer, String contentType) 
+    {
+        return new String[] 
+        {
+            "--", "" 
+        }
+        ; //$NON-NLS-1$ //$NON-NLS-2$
     }
     
 } // end class

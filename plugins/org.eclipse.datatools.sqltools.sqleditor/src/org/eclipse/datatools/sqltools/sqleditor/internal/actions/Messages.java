@@ -55,6 +55,8 @@ public final class Messages extends NLS {
 	public static String ExecuteSQLActionDelegate_error_profile;
 	public static String ExecuteSQLActionDelegate_error_initview;
 	public static String ExecuteSQLActionDelegate_error_interrupted;
+	public static String ToggleComment_error_title;
+	public static String ToggleComment_error_message;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

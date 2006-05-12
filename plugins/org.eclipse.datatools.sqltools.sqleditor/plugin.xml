@@ -98,6 +98,10 @@
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
             name="%DatabaseManagement.command.execute.select"
             id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"/>
+      <command
+            categoryId="org.eclipse.ui.category.edit"
+            name="%DatabaseManagement.ToggleComment"
+            id="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"/>
     </extension>
     
     <extension
@@ -113,6 +117,11 @@
             sequence="M3+X"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             commandId="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"
+            sequence="M1+/"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
     

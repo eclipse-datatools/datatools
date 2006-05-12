@@ -23,9 +23,7 @@ import org.osgi.framework.BundleContext;
  * The main plugin class.
  */
 public class SQLEditorPlugin extends AbstractUIPlugin {
-    public final static String SQL_PARTITIONING= "__sql_partitioning";   //$NON-NLS-1$
-
-	private static final int INTERNAL_ERROR = 0;
+    private static final int INTERNAL_ERROR = 0;
 
 	public static final String PLUGIN_ID = "org.eclipse.datatools.sqltools.sqleditor";
     

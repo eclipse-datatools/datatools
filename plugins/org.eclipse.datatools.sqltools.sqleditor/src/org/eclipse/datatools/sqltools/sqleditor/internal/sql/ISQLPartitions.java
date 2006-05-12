@@ -18,7 +18,6 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 public interface ISQLPartitions
 {
 
-    public final static String SQL_PARTITIONING             = "___sql_partitioning";
     public final static String SQL_COMMENT                  = "sql_comment";
     public final static String SQL_MULTILINE_COMMENT        = "sql_multiline_comment";
     public final static String SQL_CODE                     = "sql_code";

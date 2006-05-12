@@ -346,9 +346,9 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
         //		IStructuredSelection selection= (IStructuredSelection)getSelection();
         //		_actionGroups.setContext(new ActionContext(selection));
         _actionGroups.fillContextMenu(manager);
-//        manager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE));
-//        manager.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE, _editor
-//            .getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
+        manager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE));
+        manager.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE, _editor
+            .getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
         manager.add(new Separator());
 
         manager.add(new ExecuteSQLAction(_editor));

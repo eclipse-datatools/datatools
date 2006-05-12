@@ -33,7 +33,7 @@ public class SQLEditorDocumentSetupParticipant implements IDocumentSetupParticip
 			IDocumentExtension3 extension3 = (IDocumentExtension3) document;
 			IDocumentPartitioner partitioner = new DefaultPartitioner( SQLEditorPlugin.getDefault().getSQLPartitionScanner(), SQLPartitionScanner.SQL_PARTITION_TYPES );
             partitioner.connect( document );
-			extension3.setDocumentPartitioner( SQLEditorPlugin.SQL_PARTITIONING, partitioner );
+			extension3.setDocumentPartitioner( SQLPartitionScanner.SQL_PARTITIONING, partitioner );
 		}
 	}
 }
