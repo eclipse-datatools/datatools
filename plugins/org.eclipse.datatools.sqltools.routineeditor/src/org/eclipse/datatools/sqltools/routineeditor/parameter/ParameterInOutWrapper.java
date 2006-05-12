@@ -14,6 +14,9 @@ package org.eclipse.datatools.sqltools.routineeditor.parameter;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 
 /**
+ * Wraps the <code>ParameterDescriptor</code> by adding parameter in/out value
+ * support.
+ * 
  * @author Zhi-hong(Bryan) Yang
  */
 public class ParameterInOutWrapper
@@ -67,7 +70,7 @@ public class ParameterInOutWrapper
     }
 
     /**
-     * @return Returns the _pd.
+     * @return Returns the <code>ParameterDescriptor</code>.
      */
     public ParameterDescriptor getParameterDescriptor()
     {

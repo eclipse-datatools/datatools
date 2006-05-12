@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Tools Routine Editor Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.routineeditor;singleton:=true
-Bundle-Version: 0.9.0.200605101
+Bundle-Version: 0.9.0.200605121
 Bundle-Activator: org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -24,6 +24,7 @@ Require-Bundle: org.eclipse.ui,
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.routineeditor,
  org.eclipse.datatools.sqltools.routineeditor.launching;x-friends:="org.eclipse.datatools.sqltools.debugger.core",
+ org.eclipse.datatools.sqltools.routineeditor.parameter,
  org.eclipse.datatools.sqltools.routineeditor.result,
  org.eclipse.datatools.sqltools.routineeditor.ui.launching;x-internal:=true,
  org.eclipse.datatools.sqltools.routineeditor.util;x-internal:=true

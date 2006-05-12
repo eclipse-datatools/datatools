@@ -32,6 +32,7 @@ public class EventParameter
 
 
     /**
+     * Constructs an instance with the name value pair
      * @param _name
      * @param _value
      */
