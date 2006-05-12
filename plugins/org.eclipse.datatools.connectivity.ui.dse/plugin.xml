@@ -31,7 +31,7 @@
                icon="icons/full/elcl16/expandall.gif"
                label="%DSE.ExpandAll.label"
                menubarPath="slot2"
-               tooltip="%DSE.ExpandAll.label">
+               tooltip="%DSE.ExpandAll.tooltip">
          </action>
          <action
                class="org.eclipse.datatools.connectivity.ui.dse.actions.ShowCategoryAction"
@@ -43,7 +43,7 @@
                state="true"
                style="toggle"
                toolbarPath="slot3"
-               tooltip="%DSE.ShowCategory.label">
+               tooltip="%DSE.ShowCategory.tooltip">
          </action>
          <action
                state="false"
@@ -55,7 +55,7 @@
                icon="icons/full/clcl16/add_server.gif"
                label="%DSE.AddCP.label"
                menubarPath="slotn"
-               tooltip="%DSE.AddCP.label">
+               tooltip="%DSE.AddCP.tooltip">
          </action>
          <action
                state="false"
@@ -67,7 +67,7 @@
                icon="icons/full/clcl16/export.gif"
                label="%DSE.Export.label"
                menubarPath="slot1"
-               tooltip="%DSE.Export.label">
+               tooltip="%DSE.Export.tooltip">
          </action>
          <action
                state="false"
@@ -79,7 +79,7 @@
                icon="icons/full/clcl16/import.gif"
                label="%DSE.Import.label"
                menubarPath="slot1"
-               tooltip="%DSE.Import.label">
+               tooltip="%DSE.Import.tooltip">
          </action>
       </viewContribution>
    </extension>
