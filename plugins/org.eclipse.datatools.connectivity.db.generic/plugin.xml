@@ -6,7 +6,7 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <category
             id="org.eclipse.datatools.connectivity.db.category"
-            name="Databases"/>
+            name="%databases.category"/>
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
             icon="icons/jdbc_16.gif"
