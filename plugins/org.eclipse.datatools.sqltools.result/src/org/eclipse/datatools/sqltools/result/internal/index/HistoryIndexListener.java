@@ -42,7 +42,7 @@ public class HistoryIndexListener implements IResultManagerListener
 
     public void allResultInstancesRemoved()
     {
-        //TODO: Implement method to remove all documents in index
+        // Do nothing for now (Remove all -> Remove visible items)
     }
 
     public void resultInstanceStatusUpdated(IResultInstance instance)
