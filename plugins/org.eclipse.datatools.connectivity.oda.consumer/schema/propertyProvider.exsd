@@ -93,7 +93,7 @@ This consumer application id must match the value of the IPropertyProvider.ODA_C
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Provisional]
+         [Provisional] An extension must implement the IPropertyProvider interface defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda.consumer.services&lt;/i&gt; package. See the package&apos;s JavaDoc documentation for more information.
       </documentation>
    </annotation>
 
