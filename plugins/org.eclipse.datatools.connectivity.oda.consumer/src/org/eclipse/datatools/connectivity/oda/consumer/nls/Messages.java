@@ -44,5 +44,6 @@ public class Messages extends NLS
 	public static String helper_cannotGetResultSetMdBeforePrepare;
 	public static String helper_cannotExecuteBeforePrepare;
     public static String helper_missingDriverInfo;
+    public static String helper_extension_mustImplementInterface;
 
 }

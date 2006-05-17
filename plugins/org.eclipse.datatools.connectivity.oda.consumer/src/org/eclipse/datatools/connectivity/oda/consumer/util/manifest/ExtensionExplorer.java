@@ -36,6 +36,7 @@ public class ExtensionExplorer
             "org.eclipse.datatools.connectivity.oda.consumer.driverBridge";  //$NON-NLS-1$
     
     private Hashtable m_bridgeManifests;  // cached copy of found driverBridge manifests
+    private Hashtable m_propProviderManifests; // cached copy of found externalizedProperties manifests
     
     /**
      * Returns the <code>ExtensionExplorer</code> instance to  
@@ -65,6 +66,7 @@ public class ExtensionExplorer
     {
         // reset the cached collection of extension manifest instances
         m_bridgeManifests = new Hashtable();
+        m_propProviderManifests = new Hashtable();
     }
     
     /**
@@ -166,6 +168,63 @@ public class ExtensionExplorer
         
         return null;
     }
+    
+    /**
+     * Finds and returns the extension information defined 
+     * in the plugin manifest of the extension that
+     * implements the DTP ODA Consumer extension point -
+     * <code>org.eclipse.datatools.connectivity.oda.consumer.propertyProvider</code>.
+     * @param applicationId      the unique identifier of an ODA consumer application, 
+     *                      which embeds an engine that uses the ODA consumer helper framework.
+     * @return              the property provider extension manifest information;
+     *                      or null, if no matching extension is found
+     * @throws OdaException if the extension manifest is invalid
+     */
+    public PropertyProviderManifest getPropertyProviderManifest( String applicationId ) 
+        throws OdaException
+    {
+        PropertyProviderManifest manifest = 
+            getPropertyProviderManifest( applicationId, 
+            		PropertyProviderManifest.DTP_ODA_PROPERTY_PROVIDER_EXT_POINT );
+        
+        return manifest;
+    }
+    
+    private PropertyProviderManifest getPropertyProviderManifest( String applicationId, 
+                                                    String extensionPoint ) 
+        throws OdaException
+    {
+        if ( applicationId == null || applicationId.length() == 0 )
+            throw new OdaException(
+                    new IllegalArgumentException( applicationId ) );
+        
+        if ( extensionPoint == null || extensionPoint.length() == 0 )
+            throw new OdaException(
+                    new IllegalArgumentException( extensionPoint ) );
+    
+        // first check if specified dataSourceId's manifest
+        // is already in cache, and use it
+        PropertyProviderManifest aManifest =
+            (PropertyProviderManifest) m_propProviderManifests.get( applicationId );
+        if( aManifest != null )
+            return aManifest;
+        
+        // not yet cached, find and create a new one
+        IExtension extension = findExtensionWithAttribute( applicationId, 
+                                    PropertyProviderManifest.APPLICATION_ID_ATTRIBUTE, 
+                                    PropertyProviderManifest.PROP_SERVICE_ELEMENT,
+                                    extensionPoint );
+        if ( extension == null )    // not found
+            return null;
+        
+        // found extension 
+        aManifest = new PropertyProviderManifest( extension );
+        
+        // keep it in cached collection
+        m_propProviderManifests.put( applicationId, aManifest );
+        
+        return aManifest;       
+    }
         
     /**
      * Returns the element with given name and required attribute
@@ -186,8 +245,7 @@ public class ExtensionExplorer
             // ignore
         }
         
-        if( namedElements == null ||
-            namedElements.length == 0 )
+        if( namedElements == null || namedElements.length == 0 )
             return null;
 
         // expects only one, as defined in extension point schema

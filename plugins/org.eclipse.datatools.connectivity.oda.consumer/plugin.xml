@@ -14,11 +14,12 @@
  *  
  *************************************************************************
  *
- * $Id: $
+ * $Id: plugin.xml,v 1.1 2006/04/06 11:12:54 lchan Exp $
  */
 -->
 
 <plugin>
    <extension-point id="driverBridge" name="DTP ODA Consumer Helper Driver Bridge" schema="schema/driverBridge.exsd"/>
+   <extension-point id="propertyProvider" name="DTP ODA Consumer Data Source Property Service Provider" schema="schema/propertyProvider.exsd"/>
 
 </plugin>
