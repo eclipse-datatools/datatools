@@ -57,8 +57,7 @@ public class PropertyProviderImpl implements IPropertyProvider
         m_propConfigId = candidateProperties.getProperty( configIdPropName );        
 
         // further adjust properties as appropriate
-        Properties connProps = new Properties( candidateProperties );
-        return adjustDataSourceProperties( connProps );
+        return adjustDataSourceProperties(  candidateProperties, appContext  );
     }
     
     /**
@@ -74,6 +73,7 @@ public class PropertyProviderImpl implements IPropertyProvider
     /**
      * Specifies the property name of the configuration id 
      * included in the data source properties collection.
+     * Sub-class may override to specify own application-specific property name.
      * @return  the property name of the configuration id
      */
     protected String getConfigurationIdPropertyName()
@@ -85,12 +85,39 @@ public class PropertyProviderImpl implements IPropertyProvider
     /**
      * Adjusts the specified properties and returns the collection
      * that an ODA run-time driver would use to open a connection.
+     * Sub-class may override to provide own logic to adjust specified properties.
+     * The default implementation merges the specified properties with any
+     * externalized properties configured by the configuration id.
      * @return  the effective data source property name-value pairs
      */
-    protected Properties adjustDataSourceProperties( Properties props )
+    protected Properties adjustDataSourceProperties( final Properties candidateProperties, 
+                                                    Object appContext )
     {
-        // sub-class may override to adjust specified properties
-        return props;
+        if( getConfigurationId() == null )
+            return candidateProperties;   // done, nothing to adjust
+        
+        Properties configProps = getExternalizedProperties( getConfigurationId(), appContext );
+        if( configProps == null || configProps.isEmpty() )
+            return candidateProperties;   // done, nothing to adjust
+        
+        // merges the 2 sets of properties, replacing with those in externalized properties
+        Properties mergedProps = new Properties();
+        mergedProps.putAll( candidateProperties );
+        mergedProps.putAll( configProps );
+        return mergedProps;
+    }
+    
+    /**
+     * Looks up and returns the properties configured with the specified
+     * configuration id and application context.
+     * Sub-class to override to use own externalized property configuration.
+     * @return  the matching data source property name-value pairs;
+     *          may be null if no match is found for specified configuration id
+     */
+    protected Properties getExternalizedProperties( String configId, Object appContext )
+    {
+        // sub-class to override to look up externalized properties
+        return null;
     }
     
 }
