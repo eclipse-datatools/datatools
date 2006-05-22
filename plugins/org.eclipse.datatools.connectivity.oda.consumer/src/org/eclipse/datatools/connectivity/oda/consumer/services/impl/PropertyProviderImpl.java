@@ -48,7 +48,8 @@ public class PropertyProviderImpl implements IPropertyProvider
                                                 Object appContext )
     {
         String configIdPropName = getConfigurationIdPropertyName();
-        if( ! candidateProperties.containsKey( configIdPropName ) )
+        if( candidateProperties == null ||
+            ! candidateProperties.containsKey( configIdPropName ) )
         {
             m_propConfigId = null;
             return candidateProperties;
