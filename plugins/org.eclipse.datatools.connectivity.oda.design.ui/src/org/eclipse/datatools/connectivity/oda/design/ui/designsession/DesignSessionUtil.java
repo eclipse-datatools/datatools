@@ -434,6 +434,26 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                         IParameterMetaData pmd )
         throws OdaException
     {
+        return toDataSetParametersDesign( pmd, null );
+    }
+
+    /**
+     * Converts the contents of an ODA runtime parameters meta data
+     * to an ODA design-time DataSetParameters instance.
+     * This may be used by an ODA custom page to
+     * populate a data set design instance with its
+     * parameter meta data definitions.
+     * @param pmd    ODA runtime parameters meta data instance
+     * @param defaultMode   default design-time parameter mode to apply
+     *                      if a parameter's mode is not recognized;
+     *                      may be null for no default value 
+     * @return  the converted DataSetParameters instance
+     * @throws OdaException
+     */
+    public static DataSetParameters toDataSetParametersDesign( 
+                        IParameterMetaData pmd, ParameterMode defaultMode )
+        throws OdaException
+    {
         if( pmd == null || pmd.getParameterCount() == 0 )
             return null; // nothing to convert
         
@@ -449,7 +469,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                 DesignFactory.eINSTANCE.createParameterDefinition();
 
             ParameterMode designMode = toParameterModeDesign( 
-                    pmd.getParameterMode(i) );
+                    pmd.getParameterMode(i), defaultMode );
             if( designMode != null )
                 paramDefn.setInOutMode( designMode );            
 
@@ -471,14 +491,26 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     /**
      * Converts the specified ODA runtime parameter mode value
      * to corresponding ODA design-time parameter mode value.
-     * @param pmd    ODA runtime parameters meta data instance
      * @param runtimeParamMode  an ODA runtime parameter mode value
      * @return  the corresponding ODA design-time parameter mode value
-     * @throws OdaException
      */
     public static ParameterMode toParameterModeDesign( 
                                     int runtimeParamMode ) 
-        throws OdaException
+    {
+        return toParameterModeDesign( runtimeParamMode, null );
+    }
+   
+    /**
+     * Converts the specified ODA runtime parameter mode value
+     * to corresponding ODA design-time parameter mode value.
+     * @param runtimeParamMode  an ODA runtime parameter mode value
+     * @param defaultMode       default design-time parameter mode to apply
+     *                          if specified runtimeParamMode is not recognized;
+     *                          may be null for no default value 
+     * @return  the corresponding ODA design-time parameter mode value
+     */
+    public static ParameterMode toParameterModeDesign( 
+                                    int runtimeParamMode, ParameterMode defaultMode ) 
     {
         ParameterMode designMode = null;
         switch( runtimeParamMode )
@@ -489,6 +521,8 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                 designMode = ParameterMode.IN_OUT_LITERAL; break;
             case IParameterMetaData.parameterModeOut:
                 designMode = ParameterMode.OUT_LITERAL; break;
+            default:
+                designMode = defaultMode; break;
         }
         return designMode;
     }

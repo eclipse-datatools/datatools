@@ -317,6 +317,7 @@ public class DataSourceDesignSessionBase
     private void initWizard( NewDataSourceWizard wizard, 
                              String aDataSourceName,
                              Properties dataSourceProps )
+        throws OdaException
     {
         wizard.setInOdaDesignSession( true );
         
@@ -325,6 +326,9 @@ public class DataSourceDesignSessionBase
         
         if( wizard.getStartingPage() instanceof NewConnectionProfileWizardPage )
         {
+            if( aDataSourceName == null || aDataSourceName.length() == 0 )
+                throw new OdaException( Messages.designSession_invalidArgument );
+                
             // process the given wizard's profile name page,
             // with automatically assigned attributes.
             NewConnectionProfileWizardPage profileNamePage =
