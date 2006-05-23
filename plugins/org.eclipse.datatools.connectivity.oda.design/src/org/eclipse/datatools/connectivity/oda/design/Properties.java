@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Properties.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
+ * $Id: Properties.java,v 1.5 2006/03/07 05:06:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -87,6 +87,13 @@ public interface Properties extends EObject
      */
     void unsetProperty( String propName );
 
+    /**
+     * Indicates whether this collection of properties is empty.
+     * @return  true if this collection has no entries; false otherwise.
+     * @generated NOT
+     */
+    boolean isEmpty();
+    
     /**
      * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.datatools.connectivity.oda.design.Property}.

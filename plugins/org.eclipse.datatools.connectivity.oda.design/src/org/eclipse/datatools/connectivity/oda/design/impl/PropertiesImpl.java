@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertiesImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
+ * $Id: PropertiesImpl.java,v 1.4 2006/03/07 05:06:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -94,6 +94,9 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     public Property findProperty( String propName )
     {
+        if( isEmpty() )
+            return null;
+        
         Iterator iter = getProperties().iterator();
         while( iter.hasNext() )
         {
@@ -145,6 +148,15 @@ public class PropertiesImpl extends EObjectImpl implements Properties
         if( prop == null )
             return; // done, nothing to remove
         getProperties().remove( prop );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Properties#isEmpty()
+     * @generated NOT
+     */
+    public boolean isEmpty()
+    {
+        return m_properties == null || m_properties.isEmpty();
     }
 
     /**

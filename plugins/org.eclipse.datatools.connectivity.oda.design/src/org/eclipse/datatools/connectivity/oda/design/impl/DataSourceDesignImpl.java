@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.6 2006/03/09 08:50:09 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.7 2006/03/11 02:59:42 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -383,33 +383,13 @@ public class DataSourceDesignImpl extends EObjectImpl
         }
         return msgs;
     }
-    
-    /**
-     * The Design schema definition does not allow
-     * an empty Properties content list.
-     * This is a convenience method to first check 
-     * for an empty collection and handles it as null
-     * in the properties assignment.
-     * @param newPublicProperties   the public properties of the data source design
-     * @generated NOT
-     */
-    public void setPublicProperties( Properties newPublicProperties )
-    {
-        if( newPublicProperties != null &&
-            newPublicProperties.getProperties().isEmpty() )
-        {
-            newPublicProperties = null;
-        }
-        
-        setPublicPropertiesGen( newPublicProperties );
-    }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPublicPropertiesGen( Properties newPublicProperties )
+    public void setPublicProperties( Properties newPublicProperties )
     {
         if( newPublicProperties != m_publicProperties )
         {
@@ -473,31 +453,11 @@ public class DataSourceDesignImpl extends EObjectImpl
     }
     
     /**
-     * The Design schema definition does not allow
-     * an empty Properties content list.
-     * This is a convenience method to first check 
-     * for an empty collection and handles it as null
-     * in the properties assignment.
-     * @param newPrivateProperties   the private properties of the data source design
-     * @generated NOT
-     */
-    public void setPrivateProperties( Properties newPrivateProperties )
-    {
-        if( newPrivateProperties != null &&
-            newPrivateProperties.getProperties().isEmpty() )
-        {
-            newPrivateProperties = null;
-        }
-        
-        setPrivatePropertiesGen( newPrivateProperties );
-    }
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setPrivatePropertiesGen( Properties newPrivateProperties )
+    public void setPrivateProperties( Properties newPrivateProperties )
     {
         if( newPrivateProperties != m_privateProperties )
         {

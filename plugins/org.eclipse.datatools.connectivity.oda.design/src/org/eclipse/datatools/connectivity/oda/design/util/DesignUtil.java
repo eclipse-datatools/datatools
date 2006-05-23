@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.5 2006/03/10 08:19:04 lchan Exp $
+ * $Id: DesignUtil.java,v 1.6 2006/04/25 11:45:40 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -188,7 +188,7 @@ public class DesignUtil
     public static java.util.Properties convertDesignProperties( Properties designProps )
     {
         java.util.Properties utilProps = new java.util.Properties();
-        if( designProps == null || designProps.getProperties() == null )
+        if( designProps == null || designProps.isEmpty() )
             return utilProps;  // return an empty collection
         
         Iterator itr = designProps.getProperties().iterator();

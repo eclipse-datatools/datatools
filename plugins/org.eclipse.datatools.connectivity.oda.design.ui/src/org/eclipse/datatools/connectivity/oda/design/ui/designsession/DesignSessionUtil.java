@@ -112,6 +112,9 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
             java.util.Properties utilProps )
     {
+        if( publicPropDefns == null || publicPropDefns.length == 0 )
+            return null;    // nothing to convert
+        
         // create a new design Properties collection
         Properties designProps = 
             DesignFactory.eINSTANCE.createProperties();
@@ -193,9 +196,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
             java.util.Properties utilProps )
     {
-        // create a new design Properties collection
-        Properties designProps = 
-            DesignFactory.eINSTANCE.createProperties();
+        Properties designProps = null;
         
         // for each given property name-value pair, whose name is not
         // defined as a public property in the manifest, 
@@ -218,9 +219,13 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             if( isPublicProp )
                 continue;   // skip public property
 
+            // create a new design Properties collection for the non-public property
+            if( designProps == null )
+                designProps = DesignFactory.eINSTANCE.createProperties();
             String propValue = utilProps.getProperty( utilPropName );
             designProps.setProperty( utilPropName, propValue );
         }
+
         return designProps;
     }
 
