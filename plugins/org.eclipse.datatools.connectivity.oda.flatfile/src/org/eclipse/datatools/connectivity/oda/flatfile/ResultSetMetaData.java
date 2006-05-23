@@ -76,7 +76,7 @@ public class ResultSetMetaData implements IResultSetMetaData
     {
         validateColumnIndex( index );
         return ( this.columnTypeNames == null ) ? 
-	                DataTypes.NULL : 
+	                DataTypes.STRING : 
 	                DataTypes.getTypeCode( columnTypeNames[index - 1] );
     }
 
