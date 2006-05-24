@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            product="DB2 UDB"
+            version="V8.1"
+            description="%V81Description"
+            productDisplayString="%V81ProductString"
+            versionDisplayString="%V81VersionString"
+            file="runtime/vendors/DB2 UDB_8.1/DB2 UDB_8.1.xmi">
+      </definition>
+      <definition
+            product="DB2 UDB"
+            version="V8.2"
+            description="%V82Description"
+            productDisplayString="%V82ProductString"
+            versionDisplayString="%V82VersionString"
+            file="runtime/vendors/DB2 UDB_8.2/DB2 UDB_8.2.xmi">
+      </definition>
+      <definition
+            product="DB2 UDB"
+            version="V9.1"
+            description="%V82Description"
+            productDisplayString="%V91ProductString"
+            versionDisplayString="%V91VersionString"
+            file="runtime/vendors/DB2 UDB_9.1/DB2 UDB_9.1.xmi">
+      </definition>
+   </extension>
+   
+</plugin>
