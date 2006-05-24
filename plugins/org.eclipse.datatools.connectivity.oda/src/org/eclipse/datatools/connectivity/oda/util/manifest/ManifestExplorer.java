@@ -189,9 +189,9 @@ public class ManifestExplorer
 	 */
 	public ExtensionManifest[] getExtensionManifests()
 	{
-        // for backward compatibility, includes all extensions including 
-        // those without data set elements
-        return getExtensionManifests( true );
+        // for 0.7 backward compatibility, do not include those extensions 
+        // that have no data set elements defined
+        return getExtensionManifests( false );
     }
     
     /**
@@ -223,9 +223,9 @@ public class ManifestExplorer
      */
 	public ExtensionManifest[] getExtensionManifests( String extensionPoint )
 	{
-        // for backward compatibility, includes all extensions including 
-        // those without data set elements
-        return getExtensionManifests( extensionPoint, true );
+        // for 0.7 backward compatibility, do not include those extensions 
+        // that have no data set elements defined
+        return getExtensionManifests( extensionPoint, false );
     }
     
     /**
