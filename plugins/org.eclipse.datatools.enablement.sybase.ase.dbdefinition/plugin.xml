@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="12.x"
+            product="Sybase"
+            productDisplayString="%12.xProductString"
+            versionDisplayString="%12.xVersionString"
+            file="runtime/vendors/Sybase_12.x/Sybase_12.x.xmi">
+      </definition>
+      <definition
+            version="15.0"
+            product="Sybase"
+            productDisplayString="%15.0ProductString"
+            versionDisplayString="%15.0VersionString"
+            file="runtime/vendors/Sybase_15.0/Sybase_15.0.xmi">
+      </definition>
+   </extension>
+
+</plugin>
