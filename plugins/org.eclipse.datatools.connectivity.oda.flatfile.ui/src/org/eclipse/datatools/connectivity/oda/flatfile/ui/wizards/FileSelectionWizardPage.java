@@ -408,16 +408,12 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
             return;
         m_selectedFile = file;
         setPageComplete( false );
-
-        String[] columnNames = getFileColumnNames( file );
         m_selectedList.removeAll();
         m_availableList.removeAll();
-        if( columnNames == null || columnNames.length == 0 )
-        {
-            setMessage( Messages.getString( "error.noColumns" ), ERROR ); //$NON-NLS-1$
-            disableAll();
-        }
-        else
+        
+        String[] columnNames = getFileColumnNames( file );
+       
+        if( columnNames != null && columnNames.length != 0 )
         {
             enableAll();
             m_availableList.setItems( columnNames );
@@ -535,6 +531,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage implements
         }
         catch( OdaException e )
         {
+        	setMessage( e.getLocalizedMessage( ), ERROR ); //$NON-NLS-1$
+            disableAll();
             return null;
         }
         finally
