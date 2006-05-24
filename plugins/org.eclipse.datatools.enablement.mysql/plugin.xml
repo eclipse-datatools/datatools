@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+      <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+        <catalog
+            version="4.0"
+            product="MySql"
+            provider="org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogProvider">
+        </catalog>
+    </extension>
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+        <generator
+            version="4.0"
+            product="MySql"
+            class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
+        </generator>
+    </extension>
+    
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+        <catalog
+            version="4.1"
+            product="MySql"
+            provider="org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogProvider">
+        </catalog>
+    </extension>
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+        <generator
+            version="4.1"
+            product="MySql"
+            class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
+        </generator>
+    </extension>
+</plugin>
