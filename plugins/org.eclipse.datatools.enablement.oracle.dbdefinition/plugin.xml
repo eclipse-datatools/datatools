@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            version="10"
+            product="Oracle"
+            productDisplayString="%10ProductString"
+            versionDisplayString="%10VersionString"
+            file="runtime/vendors/Oracle_10/Oracle_10.xmi">
+      </definition>
+      <definition
+            version="9"
+            product="Oracle"
+            productDisplayString="%9ProductString"
+            versionDisplayString="%9VersionString"
+            file="runtime/vendors/Oracle_9/Oracle_9.xmi">
+      </definition>
+      <definition
+            version="8"
+            product="Oracle"
+            productDisplayString="%8ProductString"
+            versionDisplayString="%8VersionString"
+            file="runtime/vendors/Oracle_8/Oracle_8.xmi">
+      </definition>
+   </extension>
+   
+</plugin>
