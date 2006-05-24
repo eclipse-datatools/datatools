@@ -438,7 +438,7 @@ public class ManifestExplorer
                 throw new OdaException( msg );
             
             // no dataSet elements are defined; ok to proceed
-			sm_logger.log( Level.WARNING, msg );
+			sm_logger.log( Level.INFO, msg );
         }
         
 		return dataSetElements;
