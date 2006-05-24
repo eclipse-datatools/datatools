@@ -305,6 +305,15 @@ public class ExtensionManifest
 		return (String[]) dataSetTypeIDs.toArray( new String[size] );
 	}
 	
+    /**
+     * Returns the number of data set types defined in this ODA data source extension.
+     * @return  number of data set types defined; may be zero if none is defined
+     */
+    public int getDataSetTypeCount()
+    {
+       return m_dataSetTypes.size(); 
+    }
+    
 	/**
 	 * Returns the DataSetType instance that
 	 * represents the dataSet element with the given ID

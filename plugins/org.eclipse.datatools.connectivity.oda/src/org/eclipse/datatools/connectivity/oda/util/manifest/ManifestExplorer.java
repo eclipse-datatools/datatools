@@ -73,6 +73,8 @@ public class ManifestExplorer
 	 * all ODA data source extensions.
 	 * The extension's data source element ID and display name
 	 * are stored as the key and value in the returned Properties instance.
+     * The returned collection includes all matching extensions, including those
+     * with no dataSet elements defined.
 	 * Returns an empty <code>Properties</code> if there are 
 	 * no data source extensions found.
 	 * @return	a <code>Properties</code> containing the id
@@ -177,20 +179,70 @@ public class ManifestExplorer
 	}
 
 	/**
-	 * Returns an array of ODA extension configuration information  
-	 * found in the plugin manifest file.  Returns 
-	 * an empty array if there are no data source extensions found.
+	 * Returns an array of DTP ODA dataSource extension configuration information  
+	 * found in the plugin manifest file.  Includes all matching extensions,
+     * regardless of whether an extension has no dataSet elements defined.
+     * Returns an empty array if there are no data source extensions found.
 	 * Invalid data source extension definitions are ignored.
 	 * @return	an <code>ExtensionManifest</code> array containing 
-	 * 			the definition of all valid ODA data source extensions.
+	 * 			the definition of all matching ODA data source extensions.
 	 */
 	public ExtensionManifest[] getExtensionManifests()
 	{
-		return getExtensionManifests( DTP_ODA_EXT_POINT );
+        // for backward compatibility, includes all extensions including 
+        // those without data set elements
+        return getExtensionManifests( true );
+    }
+    
+    /**
+     * Returns an array of DTP ODA dataSource extension configuration information  
+     * found in the plugin manifest file.
+     * The argument specifies whether to include all matching extensions, regardless of
+     * whether it has defined no dataSet element, such as a driver adapter plugin.
+     * @param includesAllExtensions     true to include all matching extensions;
+     *              false to include only those matching extensions
+     *              with at least one valid dataSet element defined 
+     * @return an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     */
+    public ExtensionManifest[] getExtensionManifests( boolean includesAllExtensions )
+    {
+        return getExtensionManifests( DTP_ODA_EXT_POINT, includesAllExtensions );
 	}
 
+    /**
+     * Returns an array of ODA dataSource extension configuration information
+     * of those extensions that implement the specified extension point.  
+     * Includes all matching extensions, regardless of whether an extension 
+     * has no dataSet elements defined.
+     * Returns an empty array if there are no data source extensions found.
+     * Invalid data source extension definitions are ignored.
+     * @param extensionPoint    name of an ODA data source extension point  
+     * @return  an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     */
 	public ExtensionManifest[] getExtensionManifests( String extensionPoint )
 	{
+        // for backward compatibility, includes all extensions including 
+        // those without data set elements
+        return getExtensionManifests( extensionPoint, true );
+    }
+    
+    /**
+     * Returns an array of ODA dataSource extension configuration information
+     * of those extensions that implement the specified extension point.  
+     * The argument specifies whether to include all matching extensions, regardless of
+     * whether it has defined no dataSet element, such as a driver adapter plugin.
+     * @param extensionPoint    name of an ODA data source extension point  
+     * @param includesAllExtensions     true to include all matching extensions;
+     *              false to include only those matching extensions
+     *              with at least one valid dataSet element defined 
+     * @return  an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     */
+    public ExtensionManifest[] getExtensionManifests( String extensionPoint, 
+                                                boolean includesAllExtensions )
+    {
 		IExtension[] extensions = getExtensions( extensionPoint );
 		int length = ( extensions == null ) ? 
 						0 : extensions.length;
@@ -201,7 +253,13 @@ public class ManifestExplorer
 			try
 			{
 				// validate and create extension manifest
-				manifestList.add( newExtensionManifest( extension ) );
+                ExtensionManifest manifest = newExtensionManifest( extension );
+                
+                /* includes this extension manifest if the specified argument indicates 
+                 * to include those without data set element
+                 */
+                if( includesAllExtensions || manifest.getDataSetTypeCount() > 0 )
+                    manifestList.add( manifest );
 			}
 			catch( OdaException ex )
 			{
