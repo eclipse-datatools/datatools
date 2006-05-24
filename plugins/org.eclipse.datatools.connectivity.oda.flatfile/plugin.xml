@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: $
+ * $Id: plugin.xml,v 1.6 2006/03/10 00:43:11 lchan Exp $
  */
 -->
 
@@ -53,56 +53,16 @@
             defaultDisplayName="%dataset.name"
             id="org.eclipse.datatools.connectivity.oda.flatfile.dataSet">
             <dataTypeMapping
-                  nativeDataType="BIT"
-                  nativeDataTypeCode="-7"
-                  odaScalarDataType="Integer"/>
-            <dataTypeMapping
-                  nativeDataType="TINYINT"
-                  nativeDataTypeCode="-6"
-                  odaScalarDataType="Integer"/>
-            <dataTypeMapping
-                  nativeDataType="SMALLINT"
-                  nativeDataTypeCode="5"
-                  odaScalarDataType="Integer"/>
-            <dataTypeMapping
-                  nativeDataType="INTEGER"
+                  nativeDataType="INT"
                   nativeDataTypeCode="4"
                   odaScalarDataType="Integer"/>
-            <dataTypeMapping
-                  nativeDataType="BIGINT"
-                  nativeDataTypeCode="-5"
-                  odaScalarDataType="Decimal"/>
-            <dataTypeMapping
-                  nativeDataType="FLOAT"
-                  nativeDataTypeCode="6"
-                  odaScalarDataType="Double"/>
-            <dataTypeMapping
-                  nativeDataType="REAL"
-                  nativeDataTypeCode="7"
-                  odaScalarDataType="Double"/>
             <dataTypeMapping
                   nativeDataType="DOUBLE"
                   nativeDataTypeCode="8"
                   odaScalarDataType="Double"/>
             <dataTypeMapping
-                  nativeDataType="NUMERIC"
-                  nativeDataTypeCode="2"
-                  odaScalarDataType="Decimal"/>
-            <dataTypeMapping
-                  nativeDataType="DECIMAL"
-                  nativeDataTypeCode="3"
-                  odaScalarDataType="Decimal"/>
-            <dataTypeMapping
-                  nativeDataType="CHAR"
-                  nativeDataTypeCode="1"
-                  odaScalarDataType="String"/>
-            <dataTypeMapping
-                  nativeDataType="VARCHAR"
+                  nativeDataType="STRING"
                   nativeDataTypeCode="12"
-                  odaScalarDataType="String"/>
-            <dataTypeMapping
-                  nativeDataType="LONGVARCHAR"
-                  nativeDataTypeCode="-1"
                   odaScalarDataType="String"/>
             <dataTypeMapping
                   nativeDataType="DATE"
@@ -117,22 +77,6 @@
                   nativeDataTypeCode="93"
                   odaScalarDataType="Timestamp"/>
             <dataTypeMapping
-                  nativeDataType="BINARY"
-                  nativeDataTypeCode="-2"
-                  odaScalarDataType="String"/>
-            <dataTypeMapping
-                  nativeDataType="VARBINARY"
-                  nativeDataTypeCode="-3"
-                  odaScalarDataType="String"/>
-            <dataTypeMapping
-                  nativeDataType="LONGVARBINARY"
-                  nativeDataTypeCode="-4"
-                  odaScalarDataType="String"/>
-            <dataTypeMapping
-                  nativeDataType="BOOLEAN"
-                  nativeDataTypeCode="16"
-                  odaScalarDataType="Integer"/>
-            <dataTypeMapping
                   nativeDataType="BLOB"
                   nativeDataTypeCode="2004"
                   odaScalarDataType="String"/>
@@ -140,6 +84,10 @@
                   nativeDataType="CLOB"
                   nativeDataTypeCode="2005"
                   odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="BIGDECIMAL"
+                  nativeDataTypeCode="2"
+                  odaScalarDataType="Decimal"/>
       </dataSet>
    </extension>
 </plugin>
