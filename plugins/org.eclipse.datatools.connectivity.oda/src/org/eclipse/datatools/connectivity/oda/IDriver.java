@@ -24,7 +24,7 @@ public interface IDriver
 	 * Returns an IConnection object that can then be 
 	 * used to establish a runtime connection to the underlying 
 	 * data source with the given unique id. 
-	 * @param 	dataSourceId  The id fo a type of data source supported by this IDriver.
+	 * @param 	dataSourceId  The id of a type of data source supported by this IDriver.
 	 * 							This matches the data source element id defined in
 	 * 							the data source driver's configuration file.  
 	 * 							A null or empty String will use the default 
