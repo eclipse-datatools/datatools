@@ -77,7 +77,7 @@ public class Parameter implements Serializable
     public Parameter(String paramName, String paramType, String paramValue, String paramDataType, String paramOutValue)
     {
         this(paramName, paramType, paramValue, paramDataType);
-        _paramOutValue = paramOutValue == null ? "" : paramOutValue;
+        _paramOutValue = (paramOutValue == null ? "" : paramOutValue);
     }
 
     /**
