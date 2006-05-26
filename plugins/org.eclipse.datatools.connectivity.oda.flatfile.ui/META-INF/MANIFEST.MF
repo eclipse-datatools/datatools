@@ -7,7 +7,6 @@ Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.ui.FlatFileUIP
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.oda.flatfile.ui,
- org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n,
  org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
