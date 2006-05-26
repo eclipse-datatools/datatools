@@ -20,7 +20,10 @@
 </head>
 <body bgcolor="white">
 
-[<b>Internal</b>] Flat file data source provider - an ODA run-time extension.
+[<b>Non-API</b>] Flat file data source provider - an ODA run-time extension.
+<p>
+Note: <i>The implementation classes are <b>not</b> public APIs.  
+<br>Backward compatibility support in future releases is not guaranteed.</i>
 
 <h2>Package Specification</h2>
 The ODA flat file driver serves as an exemplary implementation
@@ -86,7 +89,7 @@ A CSV file that contains only one column, and all the data is of null value will
 <h2>Data Types</h2>
 
 Flat file driver currently supports the following data types: 
-<br>INT, DOUBLE,STRING,DATE,TIME,TIMESTAMP and BIGDECIMAL. 
+<br>INT, DOUBLE, STRING, DATE, TIME, TIMESTAMP and BIGDECIMAL. 
 <br>Support for BLOB and CLOB data types will be added in future.
 The driver's data type codes are defined as follows:
 <p>
@@ -133,8 +136,8 @@ However, the following queries are invalid:
 <ul>Select id       			  <br>// missing keyword "FROM"</ul>
 <ul>SELECT I FROM employee.csv	<br>// invalid column name</ul>
 
-
 <!-- Put @see and @since tags down here. -->
+@since 3.0
 
 </body>
 </html>
