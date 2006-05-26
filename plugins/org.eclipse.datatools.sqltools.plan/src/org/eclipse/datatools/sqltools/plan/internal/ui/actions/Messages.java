@@ -10,41 +10,43 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
-import org.eclipse.datatools.sqltools.plan.internal.Constants;
 import org.eclipse.osgi.util.NLS;
 
-public final class Messages extends NLS {
+public final class Messages extends NLS
+{
 
-	private static final String BUNDLE_NAME = Constants.PLUGIN_RESOURCE_BUNDLE;
+    private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.plan.internal.ui.actions.messages"; //$NON-NLS-1$
 
-	private Messages() {
-		// Do not instantiate
-	}
+    private Messages()
+    {
+        // Do not instantiate
+    }
 
-	public static String PlanDropDownAction_previous_plans;
-	public static String PlanDropDownAction_show_history;
-	public static String ShowPlansAction_previous_plan;
-	public static String ShowPlansAction_show_history;
-	public static String RemovePlanAction_remove_plan_name;
-	public static String RemovePlanAction_remove_plan_tooltip;
-	public static String RemoveAllPlansAction_remove_all_plans_name;
-	public static String RemoveAllPlansAction_remove_all_plans_name_tooltip;
-	public static String SavePlanAction_saveplan_title;
-	public static String SavePlanAction_saveplan_tooltip;
-	public static String SavePlanAction_error;
-	public static String SavePlanAction_error_info;
-	public static String LoadPlanAction_title;
-	public static String LoadPlanAction_tooltip;
-	public static String LoadPlanAction_info;
-	public static String LoadPlanAction_filenotfound;
-	public static String LoadPlanAction_unknown_db;
-	public static String LoadPlanAction_error;
-	public static String LoadPlanAction_errorinfo;
-	public static String SavePlanAction_overwrite_q;
-	public static String SavePlanAction_question;
-	public static String SavePlanAction_builder_error;
+    public static String PlanDropDownAction_previous_plans;
+    public static String PlanDropDownAction_show_history;
+    public static String ShowPlansAction_previous_plan;
+    public static String ShowPlansAction_show_history;
+    public static String RemovePlanAction_remove_plan_name;
+    public static String RemovePlanAction_remove_plan_tooltip;
+    public static String RemoveAllPlansAction_remove_all_plans_name;
+    public static String RemoveAllPlansAction_remove_all_plans_name_tooltip;
+    public static String SavePlanAction_saveplan_title;
+    public static String SavePlanAction_saveplan_tooltip;
+    public static String SavePlanAction_error;
+    public static String SavePlanAction_error_info;
+    public static String LoadPlanAction_title;
+    public static String LoadPlanAction_tooltip;
+    public static String LoadPlanAction_info;
+    public static String LoadPlanAction_filenotfound;
+    public static String LoadPlanAction_unknown_db;
+    public static String LoadPlanAction_error;
+    public static String LoadPlanAction_errorinfo;
+    public static String SavePlanAction_overwrite_q;
+    public static String SavePlanAction_question;
+    public static String SavePlanAction_builder_error;
 
-	static {
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
+    static
+    {
+        NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+    }
 }
