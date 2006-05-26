@@ -118,28 +118,28 @@ public class SQLCodeScanner extends RuleBasedScanner {
         WordRule wordRule = new WordRule( new SQLWordDetector(), otherToken );
         String[] reservedWords = sqlSyntax.getReservedwords();
         for (int i = 0; i < reservedWords.length; i++) {
-            wordRule.addWord( reservedWords[i], keywordToken );
             wordRule.addWord( reservedWords[i].toLowerCase(), keywordToken );
+            wordRule.addWord( reservedWords[i].toUpperCase(), keywordToken );
         }
         //TODO render unreserved keywords in the same way with reserved keywords, should let user decide via preference
         String[] unreservedWords = sqlSyntax.getUnreservedwords();
         for (int i = 0; i < unreservedWords.length; i++)
         {
-            wordRule.addWord(unreservedWords[i], keywordToken);
+            wordRule.addWord(unreservedWords[i].toLowerCase(), keywordToken);
             wordRule.addWord(unreservedWords[i].toUpperCase(), keywordToken);
         }
         
         // Add the SQL datatype names to the word rule.
         String[] datatypes = sqlSyntax.getTypes();
         for (int i = 0; i < datatypes.length; i++) {
-            wordRule.addWord( datatypes[i], datatypeToken );
+            wordRule.addWord( datatypes[i].toLowerCase(), datatypeToken );
             wordRule.addWord( datatypes[i].toUpperCase(), datatypeToken );
         }
 
         // Add the SQL function names to the word rule.
         String[] functions = sqlSyntax.getFunctions();
         for (int i = 0; i< functions.length; i++) {
-            wordRule.addWord( functions[i], functionToken );
+            wordRule.addWord( functions[i].toLowerCase(), functionToken );
             wordRule.addWord( functions[i].toUpperCase(), functionToken );
         }
         
@@ -147,7 +147,7 @@ public class SQLCodeScanner extends RuleBasedScanner {
         String[] constants = sqlSyntax.getFunctions();
         for (int i = 0; i < constants.length; i++)
         {
-            wordRule.addWord(constants[i], datatypeToken);
+            wordRule.addWord(constants[i].toLowerCase(), datatypeToken);
             wordRule.addWord( constants[i].toUpperCase(), datatypeToken );
         }
 
