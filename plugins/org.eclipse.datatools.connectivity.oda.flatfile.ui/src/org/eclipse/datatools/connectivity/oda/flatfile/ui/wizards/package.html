@@ -20,17 +20,22 @@
 </head>
 <body bgcolor="white">
 
-[<b>Non-API</b>] An ODA consumer helper package that assists an ODA consumer application 
-to manage the diverse capabilities and behavior of individual ODA data drivers.
+[<b>Non-API</b>] Flat File Data Source Designer - an ODA designer UI extension.
 <p>
-It implements the ODA run-time interfaces, and encapsulates the application logic to 
-manage the interaction between an ODA consumer and the 
-ODA providers.
-<p>
-Note: <i>The implementation class methods are <b>not</b> public APIs.  
+Note: <i>The implementation classes are <b>not</b> public APIs.  
 <br>Backward compatibility support in future releases is not guaranteed.</i>
 
+<h2>Package Specification</h2>
+The ODA flat file designer serves as an exemplary implementation
+of the ODA designer UI framework and extension points, which  
+integrates with the Data Tools Connection Profile framework.
+<p>It allows an user to create and edit an ODA data set design, 
+which defines a CSV data file location and the slice of data to access
+through its run-time driver. 
+
 <!-- Put @see and @since tags down here. -->
+@see org.eclipse.datatools.connectivity.oda.flatfile
+
 @since 3.0
 
 </body>
