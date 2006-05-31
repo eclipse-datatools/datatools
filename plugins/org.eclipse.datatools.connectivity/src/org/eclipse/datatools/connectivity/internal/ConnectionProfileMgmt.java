@@ -185,7 +185,7 @@ public class ConnectionProfileMgmt {
 				else {
 					out = outs;
 				}
-				OutputStreamWriter outw = new OutputStreamWriter(out, "UTF8"); //$NON-NLS-1$
+				OutputStreamWriter outw = new OutputStreamWriter(out, "UTF-8"); //$NON-NLS-1$
 				writer = new BufferedWriter(outw);
 				IConnectionProfile cp;
 	
@@ -315,7 +315,7 @@ public class ConnectionProfileMgmt {
 			// CipherInputStream cis = new CipherInputStream(is, CipherManager1
 			// .getInstance().getDecryptCipher());
 			InputSource source = new InputSource(is);
-			source.setEncoding("UTF8"); //$NON-NLS-1$
+			source.setEncoding("UTF-8"); //$NON-NLS-1$
 			Document document = getDocumentBuilder().parse(source);
 			ConnectionProfile cp = null;
 			NodeList nl = document.getElementsByTagName(CHILDNAME);
@@ -366,7 +366,7 @@ public class ConnectionProfileMgmt {
 	public static IConnectionProfile[] loadCPs(File file) throws CoreException {
 		try {
 			FileInputStream fis = new FileInputStream(file);
-			InputStreamReader isr = new InputStreamReader(fis, "UTF8"); //$NON-NLS-1$
+			InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); //$NON-NLS-1$
 			BufferedReader reader = new BufferedReader(isr);
 			String line = reader.readLine();
 			reader.close();
@@ -421,7 +421,7 @@ public class ConnectionProfileMgmt {
 				is = fis;
 			}
 			InputSource source = new InputSource(is);
-			source.setEncoding("UTF8"); //$NON-NLS-1$
+			source.setEncoding("UTF-8"); //$NON-NLS-1$
 			Document document = getDocumentBuilder().parse(source);
 			ArrayList cps = new ArrayList();
 			boolean updatedIDs = false;
