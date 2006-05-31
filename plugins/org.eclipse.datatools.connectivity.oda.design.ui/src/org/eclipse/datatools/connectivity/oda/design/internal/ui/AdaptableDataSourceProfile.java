@@ -475,7 +475,11 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return null;
     }
 
-	public boolean arePropertiesComplete() {
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#arePropertiesComplete()
+	 */
+	public boolean arePropertiesComplete() 
+    {
         if( hasLinkedProfile() )
             return getLinkedProfile().arePropertiesComplete();
 
@@ -483,9 +487,13 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return true;
 	}
 
-	public boolean arePropertiesComplete(String type) {
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#arePropertiesComplete(java.lang.String)
+	 */
+	public boolean arePropertiesComplete( String type ) 
+    {
         if( hasLinkedProfile() )
-            return getLinkedProfile().arePropertiesComplete(type);
+            return getLinkedProfile().arePropertiesComplete( type );
 
         // TODO Auto-generated method stub
         return true;
