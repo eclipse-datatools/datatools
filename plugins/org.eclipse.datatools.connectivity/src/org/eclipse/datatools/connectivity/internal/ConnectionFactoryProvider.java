@@ -19,7 +19,6 @@ import org.eclipse.datatools.connectivity.IConnectionFactory;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
-import org.eclipse.jface.util.SafeRunnable;
 
 /**
  * @author rcernich
@@ -136,10 +135,7 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 		if (mFactory != null)
 			return;
 		final IConnectionFactory[] result = new IConnectionFactory[1];
-		ISafeRunnable code = new SafeRunnable(ConnectivityPlugin.getDefault()
-				.getResourceString(
-						"dialog.title.error.loadconnectionfactory", //$NON-NLS-1$
-						new Object[] { mElement.getContributor().getName()})) {
+		ISafeRunnable code = new ISafeRunnable() {
 
 			/*
 			 * @see org.eclipse.core.runtime.ISafeRunnable#run()
@@ -147,6 +143,10 @@ public class ConnectionFactoryProvider implements IConnectionFactoryProvider {
 			public void run() throws Exception {
 				result[0] = (IConnectionFactory) mElement
 						.createExecutableExtension(mClassAttr);
+			}
+
+			public void handleException(Throwable exception) {
+				ConnectivityPlugin.getDefault().log(exception);
 			}
 
 		};

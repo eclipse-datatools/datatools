@@ -10,7 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
-import org.eclipse.datatools.connectivity.IProfileWizardProvider;
+import org.eclipse.datatools.connectivity.ui.wizards.IProfileWizardProvider;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.swt.graphics.Point;

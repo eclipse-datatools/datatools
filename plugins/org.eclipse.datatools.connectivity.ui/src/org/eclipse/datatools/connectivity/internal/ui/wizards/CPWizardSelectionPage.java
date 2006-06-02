@@ -15,13 +15,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.datatools.connectivity.IProfileWizardProvider;
-import org.eclipse.datatools.connectivity.IWizardCategoryProvider;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
-import org.eclipse.datatools.connectivity.internal.ProfileWizardProvider;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileManagerUI;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.ui.wizards.ICPWizard;
+import org.eclipse.datatools.connectivity.ui.wizards.IProfileWizardProvider;
+import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -114,7 +113,7 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 	 * @return
 	 */
 	public List getCatagoryItems(String wizardCategory) {
-		ConnectionProfileManager manager = ConnectionProfileManager
+		ConnectionProfileManagerUI manager = ConnectionProfileManagerUI
 				.getInstance();
 		Collection wizards = manager.getNewWizards().values();
 		Collection wizardCats = manager.getWizardCategories().values();

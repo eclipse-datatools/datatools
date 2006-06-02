@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
+import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.internal.UUID;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -350,33 +351,21 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#addPropertyListener(org.eclipse.ui.IPropertyListener)
-     */
-    public void addPropertyListener( IPropertyListener listener )
-    {
+    public void addPropertySetListener(IPropertySetListener listener) {
         if( hasLinkedProfile() )
         {
-            getLinkedProfile().addPropertyListener( listener );
+            getLinkedProfile().addPropertySetListener( listener );
             return;
         }
+	}
 
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#removePropertyListener(org.eclipse.ui.IPropertyListener)
-     */
-    public void removePropertyListener( IPropertyListener listener )
-    {
+	public void removePropertySetListener(IPropertySetListener listener) {
         if( hasLinkedProfile() )
         {
-            getLinkedProfile().removePropertyListener( listener );
+            getLinkedProfile().removePropertySetListener( listener );
             return;
         }
-
-        // TODO Auto-generated method stub
-    }
+	}
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#getProviderName()
@@ -475,11 +464,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return null;
     }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#arePropertiesComplete()
-	 */
-	public boolean arePropertiesComplete() 
-    {
+	public boolean arePropertiesComplete() {
         if( hasLinkedProfile() )
             return getLinkedProfile().arePropertiesComplete();
 
@@ -487,13 +472,9 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#arePropertiesComplete(java.lang.String)
-	 */
-	public boolean arePropertiesComplete( String type ) 
-    {
+	public boolean arePropertiesComplete(String type) {
         if( hasLinkedProfile() )
-            return getLinkedProfile().arePropertiesComplete( type );
+            return getLinkedProfile().arePropertiesComplete(type);
 
         // TODO Auto-generated method stub
         return true;

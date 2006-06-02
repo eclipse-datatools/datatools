@@ -16,7 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -46,11 +45,9 @@ import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
-import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
+import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileRule;
-import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IPropertyListener;
 
 /**
  * @author rcernich, shongxum
@@ -72,8 +69,8 @@ public class ConnectionProfile extends PlatformObject implements
 	private String mProfileId;
 	private ConnectionProfileProvider mProvider = null;
 	private boolean mConnected = false;
-	private ListenerList mPropertyListeners = new ListenerList();
 	private ListenerList mConnectListeners = new ListenerList();
+	private ListenerList mPropertySetListeners = new ListenerList();
 	private boolean mIsCreating;
 	private String mInstanceID;
 	private Map mFactoryIDToManagedConnection;
@@ -212,9 +209,10 @@ public class ConnectionProfile extends PlatformObject implements
 	 *      java.util.Properties)
 	 */
 	public void setProperties(String type, Properties props) {
+		Properties oldProps = (Properties)mPropertiesMap.get(type);
 		internalSetProperties(type, props);
 		notifyManager();
-		firePropertyChangedEvent(PROP_PROPERTIES);
+		firePropertySetChangeEvent(type,oldProps,props);
 	}
 
 	public void internalSetProperties(String type, Properties props) {
@@ -251,45 +249,6 @@ public class ConnectionProfile extends PlatformObject implements
 					(Properties) mPropertiesMap.get(type));
 		}
 		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#addPropertyListener(org.eclipse.ui.IPropertyListener)
-	 */
-	public void addPropertyListener(IPropertyListener listener) {
-		mPropertyListeners.add(listener);
-	}
-
-	/**
-	 * For internal use only, clients should use IConnectionProfile interface.
-	 * This is a workaround for a deadlock case which rarely happens.
-	 * 
-	 * @param listener
-	 */
-	public void addPropertyListener(IPropertyListener listener,
-			boolean insertBefore) {
-		if (!insertBefore) {
-			mPropertyListeners.add(listener);
-		}
-		else {
-			Object[] listeners = mPropertyListeners.getListeners();
-			mPropertyListeners.clear();
-			mPropertyListeners.add(listener);
-			for (int i = 0; i < listeners.length; i++) {
-				mPropertyListeners.add(listeners[i]);
-			}
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#removePropertyListener(org.eclipse.ui.IPropertyListener)
-	 */
-	public void removePropertyListener(IPropertyListener listener) {
-		mPropertyListeners.remove(listener);
 	}
 
 	/*
@@ -391,42 +350,22 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	public IStatus connect() {
-		final IStatus result[] = new IStatus[1];
-//		BusyIndicator.showWhile(null, new Runnable() {
-//
-//			public void run() {
-				Display display = Display.getCurrent();
-				if (display == null) {
-					Job connectJob = new ConnectJob();
-					connectJob.schedule();
-					try {
-						connectJob.join();
-					}
-					catch (InterruptedException e) {
-					}
-					result[0] = connectJob.getResult();
-				}
-				else {
-					// Rapid calls to connect()/disconnect() can cause deadlock.
-					// This is because there may be RefreshProfileJobs for this
-					// profile in the job queue. Those refresh jobs are
-					// synchronized with the UI thread. If we start this job
-					// from a UI thread and then join it, we prevent the refresh
-					// jobs from finishing (we're effectively blocking the UI
-					// thread). We won't block and will make sure the current UI
-					// thread continues to process any waiting work/events.
-					JobChangeListener listener = new JobChangeListener();
-					connect(listener);
-					while (!listener.finished) {
-						display.readAndDispatch();
-						Thread.yield();
-					}
-					result[0] = listener.result;
-				}
-//			}
-//		});
+		/*
+		 * Cancel any jobs currently associated with this profile. Specifically,
+		 * we want to make sure any RefreshProfileJobs are cancelled to prevent
+		 * deadlock in the UI thread.
+		 */
+		Platform.getJobManager().cancel(this);
 
-		return result[0];
+		Job connectJob = new ConnectJob();
+		connectJob.schedule();
+		try {
+			connectJob.join();
+		}
+		catch (InterruptedException e) {
+		}
+
+		return connectJob.getResult();
 	}
 
 	public void connect(IJobChangeListener listener) {
@@ -440,42 +379,22 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	public IStatus disconnect() {
-		final IStatus result[] = new IStatus[1];
-//		BusyIndicator.showWhile(null, new Runnable() {
-//
-//			public void run() {
-				Display display = Display.getCurrent();
-				if (display == null) {
-					Job disconnectJob = new DisconnectJob();
-					disconnectJob.schedule();
-					try {
-						disconnectJob.join();
-					}
-					catch (InterruptedException e) {
-					}
-					result[0] = disconnectJob.getResult();
-				}
-				else {
-					// Rapid calls to connect()/disconnect() can cause deadlock.
-					// This is because there may be RefreshProfileJobs for this
-					// profile in the job queue. Those refresh jobs are
-					// synchronized with the UI thread. If we start this job
-					// from a UI thread and then join it, we prevent the refresh
-					// jobs from finishing (we're effectively blocking the UI
-					// thread). We won't block and will make sure the current UI
-					// thread continues to process any waiting work/events.
-					JobChangeListener listener = new JobChangeListener();
-					disconnect(listener);
-					while (!listener.finished) {
-						display.readAndDispatch();
-						Thread.yield();
-					}
-					result[0] = listener.result;
-				}
-//			}
-//		});
+		/*
+		 * Cancel any jobs currently associated with this profile. Specifically,
+		 * we want to make sure any RefreshProfileJobs are cancelled to prevent
+		 * deadlock in the UI thread.
+		 */
+		Platform.getJobManager().cancel(this);
 
-		return result[0];
+		Job disconnectJob = new DisconnectJob();
+		disconnectJob.schedule();
+		try {
+			disconnectJob.join();
+		}
+		catch (InterruptedException e) {
+		}
+
+		return disconnectJob.getResult();
 	}
 
 	public void disconnect(IJobChangeListener listener) {
@@ -496,15 +415,31 @@ public class ConnectionProfile extends PlatformObject implements
 		mConnectListeners.remove(listener);
 	}
 
-	protected void firePropertyChangedEvent(int id) {
-		Object[] listeners = mPropertyListeners.getListeners();
+	public void addPropertySetListener(IPropertySetListener listener) {
+		mPropertySetListeners.add(listener);
+	}
+
+	public void removePropertySetListener(IPropertySetListener listener) {
+		mPropertySetListeners.remove(listener);
+	}
+
+	protected void firePropertySetChangeEvent(String type,Properties oldProps, Properties newProps) {
+		if (oldProps == null) {
+			oldProps = new Properties();
+		}
+		IPropertySetChangeEvent event = new PropertySetChangeEvent(this, type, oldProps, newProps);
+		firePropertySetChangeEvent(event);
+	}
+
+	protected void firePropertySetChangeEvent(IPropertySetChangeEvent event) {
+		Object[] listeners = mPropertySetListeners.getListeners();
 		for (int index = 0, count = listeners.length; index < count; ++index) {
 			try {
-				((IPropertyListener) listeners[index])
-						.propertyChanged(this, id);
+				((IPropertySetListener) listeners[index])
+						.propertySetChanged(event);
 			}
 			catch (Throwable e) {
-				e.printStackTrace();
+				ConnectivityPlugin.getDefault().log(e);
 			}
 		}
 	}
@@ -531,7 +466,7 @@ public class ConnectionProfile extends PlatformObject implements
 	public boolean equals(Object obj) {
 		if (obj instanceof ConnectionProfile) {
 			return obj == this
-					|| ((ConnectionProfile) obj).getName().equals(getName());
+					|| ((ConnectionProfile) obj).getInstanceID().equals(getInstanceID());
 		}
 		return false;
 	}
@@ -542,7 +477,7 @@ public class ConnectionProfile extends PlatformObject implements
 	 * @see java.lang.Object#hashCode()
 	 */
 	public int hashCode() {
-		return getName().hashCode();
+		return getInstanceID().hashCode();
 	}
 	
 	/*package*/ void dispose() {
@@ -553,7 +488,7 @@ public class ConnectionProfile extends PlatformObject implements
 		}
 		catch (InterruptedException e) {
 		}
-		mPropertyListeners.clear();
+		mPropertySetListeners.clear();
 		mConnectListeners.clear();
 		for (Iterator it = mFactoryIDToManagedConnection.values()
 				.iterator(); it.hasNext();) {
@@ -606,17 +541,6 @@ public class ConnectionProfile extends PlatformObject implements
 			}
 		}
 		catch (CoreException e) {
-		}
-	}
-
-	private static class JobChangeListener extends JobChangeAdapter {
-
-		public IStatus result;
-		public boolean finished = false;
-
-		public void done(IJobChangeEvent event) {
-			finished = true;
-			result = event.getResult();
 		}
 	}
 
@@ -684,7 +608,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 			// Wait for everyone to connect
 			try {
-				Platform.getJobManager().join(this, monitor);
+				Platform.getJobManager().join(this, null);
 			}
 			catch (OperationCanceledException e) {
 				// TODO: RJC: Cleanup any connections that got created
@@ -725,7 +649,10 @@ public class ConnectionProfile extends PlatformObject implements
 				// Changes the connected flag since somebody actually connected
 				mConnected = true;
 				// Notify any property listeners of a state change
-				firePropertyChangedEvent(PROP_CONNECTED);
+				firePropertySetChangeEvent(new PropertySetChangeEvent(
+						ConnectionProfile.this,
+						CONNECTION_PROFILE_PROPERTY_SET, CONNECTED_PROPERTY_ID,
+						Boolean.toString(false), Boolean.toString(true)));
 			}
 			monitor.worked(1);
 
@@ -884,7 +811,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 			// Wait for everyone to connect
 			try {
-				Platform.getJobManager().join(this, monitor);
+				Platform.getJobManager().join(this, null);
 			}
 			catch (OperationCanceledException e) {
 				// TODO: RJC: This puts us in a weird state, should we recreate
@@ -908,7 +835,10 @@ public class ConnectionProfile extends PlatformObject implements
 			// Changes the connected flag
 			mConnected = false;
 			// Notify any property listeners of a state change
-			firePropertyChangedEvent(PROP_CONNECTED);
+			firePropertySetChangeEvent(new PropertySetChangeEvent(
+					ConnectionProfile.this,
+					CONNECTION_PROFILE_PROPERTY_SET, CONNECTED_PROPERTY_ID,
+					Boolean.toString(true), Boolean.toString(false)));
 
 			monitor.worked(1);
 

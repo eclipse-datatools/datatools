@@ -10,9 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
+import java.net.URL;
 import java.util.Map;
-
-import org.eclipse.swt.graphics.Image;
 
 /**
  * This interface is used for accessing functionality provided by a connection
@@ -35,9 +34,9 @@ public interface IConnectionProfileProvider {
 	String getId();
 
 	/**
-	 * @return the icon of this connection profile provider
+	 * @return the URL for the icon of this connection profile provider
 	 */
-	Image getIcon();
+	URL getIconURL();
 
 	/**
 	 * This method returns a connection factory object that corresponds to the

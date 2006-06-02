@@ -16,6 +16,7 @@ import java.util.Vector;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.ui.ProfileImageRegistry;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -68,7 +69,8 @@ public class ExportProfilesDialog extends Dialog {
 
 		public Image getColumnImage(Object element, int columnIndex) {
 			IConnectionProfile profile = (IConnectionProfile) element;
-			return profile.getProvider().getIcon();
+			return ProfileImageRegistry.getInstance().getProfileImage(
+					profile.getProvider());
 		}
 	}
 

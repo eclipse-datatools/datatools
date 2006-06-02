@@ -16,14 +16,14 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileManagerUI;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.jface.wizard.IWizard;
@@ -84,7 +84,7 @@ public class OdaProfileUIExplorer
         IWizard dataSourceWizard = null;
         try
         {
-            dataSourceWizard = ConnectionProfileManager.getInstance().getNewWizard( odaDataSourceId );
+            dataSourceWizard = ConnectionProfileManagerUI.getInstance().getNewWizard( odaDataSourceId );
         }
         catch( RuntimeException ex )
         {

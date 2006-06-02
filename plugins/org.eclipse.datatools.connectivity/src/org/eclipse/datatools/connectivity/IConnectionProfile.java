@@ -15,7 +15,6 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
-import org.eclipse.ui.IPropertyListener;
 
 /**
  * The interface used when working with an instance of a connection profile.
@@ -25,24 +24,36 @@ import org.eclipse.ui.IPropertyListener;
  * Created on Jan 14, 2004
  */
 public interface IConnectionProfile {
+	
+	/**
+	 * Property set ID for common connection profile properties
+	 */
+	static final String CONNECTION_PROFILE_PROPERTY_SET = IConnectionProfile.class.getName();
 
 	/**
-	 * Property ID for <code>isConnected()</code>
+	 * Property ID for "connected" state.
 	 */
-	static final int PROP_CONNECTED = 0x01;
+	static final String CONNECTED_PROPERTY_ID = "connected"; //$NON-NLS-1$
+
 	/**
-	 * Property ID for <code>getBaseProperties()</code> and
-	 * <code>getProperties()</code>
+	 * Property ID for profile name.
 	 */
-	static final int PROP_PROPERTIES = 0x02;
+	static final String NAME_PROPERTY_ID = "name"; //$NON-NLS-1$
+
 	/**
-	 * Property ID for <code>getName()</code>
+	 * Property ID for profile description.
 	 */
-	static final int PROP_NAME = 0x03;
+	static final String DESCRIPTION_PROPERTY_ID = "description"; //$NON-NLS-1$
+
 	/**
-	 * Property ID for <code>getDescription()</code>
+	 * Property ID for profile auto-connect.
 	 */
-	static final int PROP_DESCRIPTION = 0x04;
+	static final String AUTO_CONNECT_PROPERTY_ID = "autoConnect"; //$NON-NLS-1$
+
+	/**
+	 * Property ID for profile instance ID.
+	 */
+	static final String INSTANCE_ID_PROPERTY_ID = "instanceID"; //$NON-NLS-1$
 
 	// General profile methods
 
@@ -230,12 +241,12 @@ public interface IConnectionProfile {
 	 * 
 	 * @param listener
 	 */
-	void addPropertyListener(IPropertyListener listener);
+	void addPropertySetListener(IPropertySetListener listener);
 
 	/**
 	 * @param listener
 	 */
-	void removePropertyListener(IPropertyListener listener);
+	void removePropertySetListener(IPropertySetListener listener);
 
 	// ConnectionProfileProvider derived methods
 
@@ -270,6 +281,8 @@ public interface IConnectionProfile {
 	 * @return the configuration type of this connection profile.
 	 * 
 	 * @see IConnectionProfileProvider#getConfigurationType()
+	 * 
+	 * @deprecated
 	 */
 	IConfigurationType getConfigurationType();
 

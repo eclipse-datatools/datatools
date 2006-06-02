@@ -28,8 +28,6 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
-import org.eclipse.datatools.connectivity.IWizardCategoryProvider;
-import org.eclipse.jface.wizard.IWizard;
 
 /**
  * @author rcernich, shongxum
@@ -69,10 +67,6 @@ public class ConnectionProfileManager {
 
 	private Map mConfigurationTypes = null;
 
-	private Map mNewWizards = null;
-
-	private Map mWizardCategories = null;
-	
 	private Map mConnectionFactoryAdapters = null;
 
 	public static ConnectionProfileManager getInstance() {
@@ -107,30 +101,6 @@ public class ConnectionProfileManager {
 		return (ICategory) getCategories().get(id);
 	}
 
-	public Map getWizardCategories() {
-		if (mProviders == null)
-			processExtensions();
-		return mWizardCategories;
-	}
-
-	public IWizardCategoryProvider getWizardCategory(String id) {
-		return (IWizardCategoryProvider) getWizardCategories().get(id);
-	}
-
-	public Map getNewWizards() {
-		if (mProviders == null)
-			processExtensions();
-		return mNewWizards;
-	}
-
-	public IWizard getNewWizard(String id) {
-		Object profileWizard = 
-			(ProfileWizardProvider) getNewWizards().get(id);
-		if (profileWizard == null)
-			return null;
-		return ((ProfileWizardProvider) getNewWizards().get(id)).getWizard();
-	}
-
 	public IConfigurationType getConfigurationType(String id) {
 		if (mProviders == null)
 			processExtensions();
@@ -146,8 +116,6 @@ public class ConnectionProfileManager {
 		mProviders = new HashMap();
 		mCategories = new HashMap();
 		mConfigurationTypes = new HashMap();
-		mNewWizards = new HashMap();
-		mWizardCategories = new HashMap();
 		mConnectionFactoryAdapters = new HashMap();
 
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
@@ -168,12 +136,6 @@ public class ConnectionProfileManager {
 				}
 				else if (EXT_ELEM_CONFIGURATION_TYPE.equals(elemName)) {
 					processConfigurationType(elem);
-				}
-				else if (EXT_ELEM_NEW_WIZARD.equals(elemName)) {
-					processNewWizard(elem);
-				}
-				else if (EXT_ELEM_WIZARD_CATEGORY.equals(elemName)) {
-					processWizardCategory(elem);
 				}
 				else {
 					profileExts.add(elem);
@@ -231,24 +193,6 @@ public class ConnectionProfileManager {
 						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
 								.toString()}));
 		mConfigurationTypes.put(c.getId(), c);
-	}
-
-	private void processNewWizard(IConfigurationElement element) {
-		ProfileWizardProvider c = new ProfileWizardProvider(element);
-		Assert.isTrue(!mNewWizards.containsKey(c.getId()), ConnectivityPlugin
-				.getDefault().getResourceString(
-						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
-								.toString()}));
-		mNewWizards.put(c.getId(), c);
-	}
-
-	private void processWizardCategory(IConfigurationElement element) {
-		WizardCategoryProvider c = new WizardCategoryProvider(element);
-		Assert.isTrue(!mWizardCategories.containsKey(c.getId()),
-				ConnectivityPlugin.getDefault().getResourceString(
-						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
-								.toString()}));
-		mWizardCategories.put(c.getId(), c);
 	}
 
 	private void processConnectionFactoryAdapter(IConfigurationElement element) {

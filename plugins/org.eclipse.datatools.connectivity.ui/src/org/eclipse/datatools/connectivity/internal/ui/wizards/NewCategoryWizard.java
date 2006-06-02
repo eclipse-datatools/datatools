@@ -10,8 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
-import org.eclipse.datatools.connectivity.IWizardCategoryProvider;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
+import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
 
 /**
  * @author shongxum

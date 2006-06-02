@@ -15,9 +15,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
-import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.ConnectEvent;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -25,7 +23,6 @@ import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IManagedConnectionListener;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
-import org.eclipse.swt.widgets.Display;
 
 public class ManagedConnection implements IManagedConnection {
 
@@ -67,46 +64,16 @@ public class ManagedConnection implements IManagedConnection {
 		if (!isConnected()) {
 			throw new IllegalStateException();
 		}
-		// TODO: RJC: add job for this
-		final IConnection connection[] = new IConnection[1];
-//		BusyIndicator.showWhile(null, new Runnable() {
-//
-//			public void run() {
-				Display display = Display.getCurrent();
-				if (display == null) {
-					CreateConnectionJob connectJob = new CreateConnectionJob(
-							getConnectionProfile().getProvider()
-									.getConnectionFactory(getFactoryID()),
-							getConnectionProfile(), null);
-					connectJob.schedule();
-					try {
-						connectJob.join();
-					}
-					catch (InterruptedException e) {
-					}
-					connection[0] = connectJob.getConnection();
-				}
-				else {
-					// Rapid calls to connect()/disconnect() can cause deadlock.
-					// This is because there may be RefreshProfileJobs for this
-					// profile in the job queue. Those refresh jobs are
-					// synchronized with the UI thread. If we start this job
-					// from a UI thread and then join it, we prevent the refresh
-					// jobs from finishing (we're effectively blocking the UI
-					// thread). We won't block and will make sure the current UI
-					// thread continues to process any waiting work/events.
-					JobChangeListener listener = new JobChangeListener();
-					cloneConnection(listener);
-					while (!listener.finished) {
-						display.readAndDispatch();
-						Thread.yield();
-					}
-					connection[0] = listener.getConnection();
-				}
-//			}
-//		});
-
-		return connection[0];
+		CreateConnectionJob connectJob = new CreateConnectionJob(
+				getConnectionProfile().getProvider().getConnectionFactory(
+						getFactoryID()), getConnectionProfile(), null);
+		connectJob.schedule();
+		try {
+			connectJob.join();
+		}
+		catch (InterruptedException e) {
+		}
+		return connectJob.getConnection();
 	}
 
 	public void cloneConnection(IJobChangeListener listener) {
@@ -262,22 +229,6 @@ public class ManagedConnection implements IManagedConnection {
 					.getTechnologyVersion();
 		}
 
-	}
-
-	private static class JobChangeListener extends JobChangeAdapter {
-
-		public IConnection mConnection;
-		public boolean finished = false;
-
-		public void done(IJobChangeEvent event) {
-			finished = true;
-			mConnection = ((CreateConnectionJob) event.getJob())
-					.getConnection();
-		}
-
-		public IConnection getConnection() {
-			return mConnection;
-		}
 	}
 
 }

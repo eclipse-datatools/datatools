@@ -25,9 +25,6 @@ import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
 import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * @author rcernich
@@ -54,19 +51,13 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 
 	public static final String ATTR_PROPERTIES_PERSISTENCE_HOOK = "propertiesPersistenceHook"; //$NON-NLS-1$
 
-	private static final String IMG_OBJ_SERVER_DEFAULT = "org.eclipse.datatools.connectivity.ui.server_default_obj.gif"; //$NON-NLS-1$
-
-	private static final String IMG_DESC_SERVER_DEFAULT = "icons/full/obj16/server_default_obj.gif"; //$NON-NLS-1$
-
     static final IPropertiesPersistenceHook DEFAULT_PROPERTIES_PERSISTENCE_HOOK = new PropertiesPersistenceHook();
-
-    private static ImageRegistry sImages;
 
 	private String mName;
 
 	private String mId;
-
-	private Image mIcon;
+	
+	private URL mIconURL;
 
 	private String mCategory;
 
@@ -109,21 +100,9 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	public String getId() {
 		return mId;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.IConnectionProfileProvider#getIcon()
-	 */
-	public Image getIcon() {
-		if (mIcon == null) {
-			processIconAttr();
-			mIcon = getImageRegistry().get(mId);
-			if (mIcon == null) {
-				mIcon = getImageRegistry().get(IMG_OBJ_SERVER_DEFAULT);
-			}
-		}
-		return mIcon;
+	
+	public URL getIconURL() {
+		return mIconURL;
 	}
 
 	/*
@@ -251,33 +230,15 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 			mConnectionFactories.put(ConnectionProfileConstants.PING_FACTORY_ID, cfp);
 		}
 
-		// Don't do this until we need it.
-		// processIconAttr();
+		processIconAttr();
 	}
 
 	private void processIconAttr() {
 		String iconAttr = mElement.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
-			URL url = Platform.getBundle(
-					mElement.getContributor().getName()).getEntry(
-					iconAttr);
-			ImageDescriptor icon = ImageDescriptor.createFromURL(url);
-			getImageRegistry().put(mId, icon);
+			mIconURL = Platform.getBundle(mElement.getContributor().getName())
+					.getEntry(iconAttr);
 		}
-	}
-
-	private static ImageRegistry getImageRegistry() {
-		if (sImages == null) {
-			// Depending on when this class is initialized, there may or may
-			// not be a display available for creation of the ImageRegistry.
-			// Delay creation until we really need it. Hopefully, a display is
-			// available.
-			sImages = new ImageRegistry();
-			sImages.put(IMG_OBJ_SERVER_DEFAULT, ImageDescriptor
-					.createFromURL(ConnectivityPlugin.getDefault().getBundle()
-							.getEntry(IMG_DESC_SERVER_DEFAULT)));
-		}
-		return sImages;
 	}
 
 	/*
