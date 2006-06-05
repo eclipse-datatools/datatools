@@ -7,7 +7,7 @@
             class="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
-            name="SQL Model-JDBC Connection"
+            name="%wizard.name"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
    <extension
