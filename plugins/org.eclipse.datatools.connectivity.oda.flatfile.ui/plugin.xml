@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.16 2006/04/21 21:59:04 lchan Exp $
+ * $Id: plugin.xml,v 1.17 2006/04/22 03:02:29 lchan Exp $
  */
 -->
 
@@ -74,7 +74,7 @@
             supportsOutParameters="false">
          <dataSetWizard
                class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"
-               windowTitle="Select Table"/>
+               windowTitle="%wizard.data.set.title"/>
          <dataSetPage
                displayName="%wizard.data.set.page.title"
                icon="icons/file.gif"
