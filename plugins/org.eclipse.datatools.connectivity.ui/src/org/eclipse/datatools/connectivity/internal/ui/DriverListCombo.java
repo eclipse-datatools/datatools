@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -433,7 +434,17 @@ public class DriverListCombo {
 		if (this.mCategoryId != null) {
 			CategoryDescriptor category = CategoryDescriptor
 					.getCategoryDescriptor(this.mCategoryId);
-			List templates = category.getAssociatedDriverTypes();
+			List templates = new ArrayList();
+			if (category == null) {
+				// TODO: log error message
+				CategoryDescriptor[] categories = CategoryDescriptor.getRootCategories();
+				for (int index = 0, count = categories.length; index < count; ++index) {
+					populateAssociatedDriverTypes(categories[index],templates);
+				}
+			}
+			else {
+				populateAssociatedDriverTypes(category,templates);
+			}
 			Iterator iter = templates.iterator();
 			while (iter.hasNext()) {
 				TemplateDescriptor template = (TemplateDescriptor) iter.next();
@@ -464,6 +475,13 @@ public class DriverListCombo {
 				getCombo().select(i);
 				break;
 			}
+		}
+	}
+	
+	private void populateAssociatedDriverTypes(CategoryDescriptor category,List templates) {
+		templates.addAll(category.getAssociatedDriverTypes());
+		for (Iterator it = category.getChildCategories().iterator(); it.hasNext();) {
+			populateAssociatedDriverTypes((CategoryDescriptor)it.next(),templates);
 		}
 	}
 

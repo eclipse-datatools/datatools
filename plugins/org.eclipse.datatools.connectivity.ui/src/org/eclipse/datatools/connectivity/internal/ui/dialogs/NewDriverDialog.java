@@ -140,7 +140,6 @@ public class NewDriverDialog extends TitleAreaDialog {
 
 		this.mTreeViewer = new TreeViewer(contents, SWT.BORDER);
 		data = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		data.verticalSpan = 10;
 		this.mTreeViewer.getTree().setLayoutData(data);
 		this.mTreeViewer.getTree().setFont(font);
 

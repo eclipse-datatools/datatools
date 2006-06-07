@@ -124,12 +124,8 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		Composite content = new Composite(area, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 2;
-		layout.marginWidth = 0;
-		layout.marginHeight = 0;
 		content.setLayout(layout);
-		GridData data = new GridData();
-		data.verticalAlignment = GridData.FILL;
-		data.horizontalAlignment = GridData.FILL;
+		GridData data = new GridData(GridData.FILL_BOTH);
 		content.setLayoutData(data);
 		content.setFont(font);
 
@@ -145,7 +141,6 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 		this.mTreeViewer = new TreeViewer(content, SWT.BORDER);
 		data = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		data.verticalSpan = 10;
 		this.mTreeViewer.getTree().setLayoutData(data);
 		this.mTreeViewer.getTree().setFont(font);
 
@@ -201,7 +196,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		groupLayout.marginHeight = 0;
 		groupComponent.setLayout(groupLayout);
 		data = new GridData();
-		data.verticalAlignment = GridData.FILL;
+		data.verticalAlignment = GridData.BEGINNING;
 		data.horizontalAlignment = GridData.FILL;
 		groupComponent.setLayoutData(data);
 		groupComponent.setFont(font);
@@ -209,7 +204,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		this.mAddButton = new Button(groupComponent, SWT.PUSH);
 		this.mAddButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.addDriver")); //$NON-NLS-1$
-		this.mAddButton.setLayoutData(data);
+		this.mAddButton.setLayoutData(new GridData());
 		this.mAddButton.setFont(font);
 		setButtonLayoutData(this.mAddButton);
 		this.mAddButton.addSelectionListener(new SelectionListener() {
@@ -255,10 +250,10 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 		});
 
-		this.mEditButton = new Button(content, SWT.PUSH);
+		this.mEditButton = new Button(groupComponent, SWT.PUSH);
 		this.mEditButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.editDriver")); //$NON-NLS-1$
-		this.mEditButton.setLayoutData(data);
+		this.mEditButton.setLayoutData(new GridData());
 		this.mEditButton.setFont(font);
 		setButtonLayoutData(this.mEditButton);
 		this.mEditButton.addSelectionListener(new SelectionListener() {
@@ -285,10 +280,10 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 		});
 
-		this.mRemoveButton = new Button(content, SWT.PUSH);
+		this.mRemoveButton = new Button(groupComponent, SWT.PUSH);
 		this.mRemoveButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.removeDriver")); //$NON-NLS-1$
-		this.mRemoveButton.setLayoutData(data);
+		this.mRemoveButton.setLayoutData(new GridData());
 		this.mRemoveButton.setFont(font);
 		setButtonLayoutData(this.mRemoveButton);
 		this.mRemoveButton.addSelectionListener(new SelectionListener() {
@@ -326,10 +321,10 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 		});
 
-		this.mCopyButton = new Button(content, SWT.PUSH);
+		this.mCopyButton = new Button(groupComponent, SWT.PUSH);
 		this.mCopyButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.copyDriver")); //$NON-NLS-1$
-		this.mCopyButton.setLayoutData(data);
+		this.mCopyButton.setLayoutData(new GridData());
 		this.mCopyButton.setFont(font);
 		setButtonLayoutData(this.mCopyButton);
 		this.mCopyButton.addSelectionListener(new SelectionListener() {
