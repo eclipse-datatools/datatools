@@ -192,6 +192,13 @@ class OdaObject
                 "Unable to set/reset current thread's context class loader; disabled switching. " + e.toString() ); //$NON-NLS-1$
         }
 	}
+    
+    protected String getClassName()
+    {
+        String fullClassName = getClass().getName();
+        // strip out the path name of the class
+        return fullClassName.substring( fullClassName.lastIndexOf( '.' ) + 1 );
+    }
 	
 	/*
 	 * Reflection capability to call methods that aren't part of the Oda interface. 
@@ -473,6 +480,18 @@ class OdaObject
 		if( logger != null )
 			logger.fine( context + "Returns [ " + obj + " ]" ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
+    
+    protected void logMethodExitWithReturnLen( String context, String obj )
+    {
+        Logger logger = LogManager.getLogger( sm_loggerName );
+        if( logger != null )
+        {
+            if( obj != null )
+                logger.fine( context + "Returns a string with length [" + obj.length() + "]" );
+            else
+                logger.fine( context + "Returns string [ null ]" );
+        }
+    }
 	
 	protected OdaException newOdaException( String errorMsg )
 	{

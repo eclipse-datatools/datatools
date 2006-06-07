@@ -23,14 +23,10 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 /**
  * OdaClob is the Oda wrapper for Clobs.
  */
-/**
- *
- */
-/**
- *
- */
 public class OdaClob extends OdaDriverObject implements IClob
 {
+    private static final int DEFAULT_BUFFER_SIZE = 2048;
+    private static final String COMMA_SEPARATOR = ", "; //$NON-NLS-1$
 
     protected OdaClob( IClob clob, OdaConnection connection, boolean switchContextClassloader, ClassLoader driverClassLoader )
     {
@@ -90,7 +86,8 @@ public class OdaClob extends OdaDriverObject implements IClob
 	public String getSubString( long position, int length ) 
 		throws OdaException
 	{
-        final String context = "OdaClob.getSubString()\t"; //$NON-NLS-1$
+        final String context = "OdaClob.getSubString( " + //$NON-NLS-1$
+                                position + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
 		final String unsupportedOpContext = "IClob.getSubString()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -101,7 +98,7 @@ public class OdaClob extends OdaDriverObject implements IClob
 			
 			ret = getDriverClob().getSubString( position, length );
 			
-			logMethodExitWithReturn( context, ret );
+            logMethodExitWithReturnLen( context, ret );
 			return ret;
 		}
 		catch( UnsupportedOperationException uoException )
@@ -116,7 +113,7 @@ public class OdaClob extends OdaDriverObject implements IClob
                 return null;
             }
 
-			logMethodExitWithReturn( context, ret );
+            logMethodExitWithReturnLen( context, ret );
 			return ret;
 		}
 		catch( RuntimeException rtException )
@@ -176,24 +173,35 @@ public class OdaClob extends OdaDriverObject implements IClob
      * the CLOB data from the driver's reader.
      * Set/reset context class loader around accessing driver's object,
      * and log caught exception.
-	 * @return	the specified substring that begins at position
+     * @param startPos  the 1-based ordinal position of the first character 
+     *                  in the specified reader to be extracted
+     * @param length    the number of consecutive characters to be copied
+	 * @return	the specified substring that begins at startPos
 	 * 			and has up to length consecutive characters;
 	 * 			or null if not able to retrieve from reader
-     * @throws OdaException
      */
-    private String getSubStringFromReader( long position, int length ) 
-		throws OdaException
+    private String getSubStringFromReader( long startPos, int length ) 
 	{
-        final String context = "OdaClob.getSubStringFromReader()\t"; //$NON-NLS-1$
+        final String context = "OdaClob.getSubStringFromReader( " +  //$NON-NLS-1$
+                                startPos + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
 
         // first get the underlying driver's stream
-        Reader driverReader = getCharacterStream();
+        Reader driverReader = null;
+        try
+        {
+            driverReader = getCharacterStream();
+        }
+        catch( OdaException e1 )
+        {
+            log( context, e1.toString() );
+            return null;
+        }
 
 		String ret = null;
 	    try
         {
 	        setContextClassloader();
-            ret = doGetSubStringFromReader( position, length, driverReader );
+            ret = getSubStringFromReaderImpl( startPos, length, driverReader );
         }
         catch( RuntimeException rte )
         {
@@ -210,14 +218,26 @@ public class OdaClob extends OdaDriverObject implements IClob
 
 		return ret;		// could be null if IOException was caught        
 	}
+    
+    /**
+     * Returns the default buffer size to use for incremental read 
+     * when unable to determine the total number of characters to read 
+     * till end of stream is reached.
+     * @return  default size of each reader buffer
+     */
+    protected int getReaderBufferSize()
+    {
+        // sub-class may override
+        return DEFAULT_BUFFER_SIZE;
+    }
 
-    /*
+    /**
      * Provides default implementation to retrieve all or part of
      * the CLOB data from the driver's reader.
 	 * Returns null if not able to retrieve from reader.
      * @throws IOException
      */
-	private String doGetSubStringFromReader( long position, int length,
+	private String getSubStringFromReaderImpl( long position, int length,
 	        							 	Reader driverReader )
     	throws IOException
 	{
@@ -242,4 +262,5 @@ public class OdaClob extends OdaDriverObject implements IClob
 
         return null;			// problem reading from stream
 	}
+
 }

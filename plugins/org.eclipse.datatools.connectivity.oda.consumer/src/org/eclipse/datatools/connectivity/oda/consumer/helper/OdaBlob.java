@@ -25,7 +25,9 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class OdaBlob extends OdaDriverObject implements IBlob
 {
-    
+    private static final int DEFAULT_BUFFER_SIZE = 2048;
+    private static final String COMMA_SEPARATOR = ", "; //$NON-NLS-1$
+
     protected OdaBlob( IBlob blob, OdaConnection connection, 
             boolean switchContextClassloader, ClassLoader driverClassLoader )
     {
@@ -84,7 +86,8 @@ public class OdaBlob extends OdaDriverObject implements IBlob
      */
     public byte[] getBytes( long position, int length ) throws OdaException
     {
-        final String context = "OdaBlob.getBytes()\t"; //$NON-NLS-1$
+        final String context = "OdaBlob.getBytes( " + //$NON-NLS-1$
+                                position + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
 		final String unsupportedOpContext = "IBlob.getBytes()"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -170,25 +173,36 @@ public class OdaBlob extends OdaDriverObject implements IBlob
      * the BLOB data from the driver's input stream.
      * Set/reset context class loader around accessing driver's object,
      * and log caught exception.
+     * @param startPos  the 1-based ordinal position of the first byte 
+     *                  in the specified input stream to be extracted
+     * @param length    the number of consecutive bytes to be copied
 	 * @return			a byte array containing up to length
 	 * 					consecutive bytes from the BLOB value, 
 	 * 					starting with the byte at position;
-	 * 					or null if not able to retrieve from stream
-     * @throws OdaException
+	 * 					or null if not able to retrieve from stream for any reason
      */
-    private byte[] getBytesFromStream( long position, int length )
-    	throws OdaException
+    private byte[] getBytesFromStream( long startPos, int length )
     {
-        final String context = "OdaBlob.getBytesFromStream()\t"; //$NON-NLS-1$
+        final String context = "OdaBlob.getBytesFromStream( " +  //$NON-NLS-1$
+                                startPos + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
 
         // first get the underlying driver's stream
-        InputStream driverStream = getBinaryStream();
+        InputStream driverStream = null;
+        try
+        {
+            driverStream = getBinaryStream();
+        }
+        catch( OdaException e1 )
+        {
+            log( context, e1.toString() );
+            return null;
+        }
         
 		byte[] ret = null;
 	    try
         {
 	        setContextClassloader();
-            ret = doGetBytesFromStream( position, length, driverStream );
+            ret = getBytesFromStreamImpl( startPos, length, driverStream );
         }
         catch( RuntimeException rte )
         {
@@ -206,12 +220,24 @@ public class OdaBlob extends OdaDriverObject implements IBlob
 		return ret;		// could be null if exception was caught
     }
     
+    /**
+     * Returns the default buffer size to use for incremental read 
+     * when unable to determine the total number of bytes to read 
+     * till end of stream is reached.
+     * @return  default size of each byte array buffer
+     */
+    protected int getReaderBufferSize()
+    {
+        // sub-class may override
+        return DEFAULT_BUFFER_SIZE;
+    }
+    
     /*
      * Provides default implementation to retrieve all or part of
      * the BLOB data from the driver's stream.
 	 * Returns null if not able to retrieve from stream.
      */
-    private byte[] doGetBytesFromStream( long position, int length,
+    private byte[] getBytesFromStreamImpl( long position, int length,
             							InputStream driverStream )
     	throws IOException
     {		
@@ -236,4 +262,5 @@ public class OdaBlob extends OdaDriverObject implements IBlob
         
         return null;			// problem reading from stream
     }
+
 }
