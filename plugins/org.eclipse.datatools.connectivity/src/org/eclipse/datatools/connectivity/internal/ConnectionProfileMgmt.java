@@ -42,6 +42,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.xpath.XPathAPI;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Status;
@@ -226,19 +227,22 @@ public class ConnectionProfileMgmt {
 						value = props.getProperty(key);
 						child.setAttribute(PROPPREFIX + key, value);
 					}
-					for (Iterator it = cp.getProfileExtensions().entrySet()
+					for (Iterator it = ((ConnectionProfile)cp).getPropertiesMap().entrySet()
 							.iterator(); it.hasNext();) {
 						Map.Entry me = (Map.Entry) it.next();
 						String type = (String) me.getKey();
-						ProfileExtensionProvider pep = (ProfileExtensionProvider) me
-								.getValue();
+						props = (Properties) me.getValue();
 						extraChild = document.createElement(type);
-						props = cp.getProperties(type);
-						if (props == null)
+						if (props == null) {
 							props = new Properties();
+						}
 						try {
-							props = pep.getPropertiesPersistenceHook()
-									.getPersitentProperties(props);
+							ProfileExtensionProvider pep = (ProfileExtensionProvider) cp
+									.getProfileExtensions().get(type);
+							if (pep != null) {
+								props = pep.getPropertiesPersistenceHook()
+										.getPersitentProperties(new Properties(props));
+							}
 						}
 						catch (Exception e) {
 							if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
@@ -249,7 +253,7 @@ public class ConnectionProfileMgmt {
 														"trace.error.propertiesPersistenceHookSaveError", //$NON-NLS-1$
 														new Object[] {
 																cp.getName(),
-																pep.getId()}));
+																type}));
 								e.printStackTrace();
 							}
 						}
@@ -464,41 +468,35 @@ public class ConnectionProfileMgmt {
 
 				cp.setBaseProperties(props);
 
-				if (cp.getProfileExtensions().size() != 0) {
-					for (Iterator it = cp.getProfileExtensions().entrySet()
-							.iterator(); it.hasNext();) {
-						Map.Entry me = (Map.Entry) it.next();
-						String type = (String) me.getKey();
-						ProfileExtensionProvider pep = (ProfileExtensionProvider) me
-								.getValue();
-						NodeList xmlExtraChildren = elem
-								.getElementsByTagName(type);
-						if (xmlExtraChildren != null
-								&& xmlExtraChildren.getLength() > 0) {
-							Element xmlExtraChild = (Element) xmlExtraChildren
-									.item(0);
-							props = keysToProperties(xmlExtraChild);
-							try {
-								props = pep.getPropertiesPersistenceHook()
-										.populateTransientProperties(props);
-							}
-							catch (Exception e) {
-								if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
-									System.err
-											.println(ConnectivityPlugin
-													.getDefault()
-													.getResourceString(
-															"trace.error.propertiesPersistenceHookLoadError", //$NON-NLS-1$
-															new Object[] {
-																	cp
-																			.getName(),
-																	pep.getId()}));
-									e.printStackTrace();
-								}
-							}
-							cp.setProperties(type,props);
+				NodeList extElements = elem.getChildNodes();
+				for (int extIndex = 0, extCount = extElements.getLength(); extIndex < extCount; ++extIndex) {
+					Node extNode = extElements.item(extIndex);
+					if (extNode.getNodeType() != Node.ELEMENT_NODE) {
+						continue;
+					}
+					String type = extNode.getNodeName();
+					props = keysToProperties((Element) extNode);
+					try {
+						ProfileExtensionProvider pep = (ProfileExtensionProvider) cp
+								.getProfileExtensions().get(type);
+						if (pep != null) {
+							props = pep.getPropertiesPersistenceHook()
+									.populateTransientProperties(props);
 						}
 					}
+					catch (Exception e) {
+						if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+							System.err
+									.println(ConnectivityPlugin
+											.getDefault()
+											.getResourceString(
+													"trace.error.propertiesPersistenceHookLoadError", //$NON-NLS-1$
+													new Object[] {
+															cp.getName(), type}));
+							e.printStackTrace();
+						}
+					}
+					cp.setProperties(type, props);
 				}
 
 				cp.setCreated();

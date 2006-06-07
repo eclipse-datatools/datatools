@@ -27,10 +27,9 @@ public abstract class DefaultFilterPropertyPage extends ConnectionFilterProperty
 			return null;
 		}
 
-		String predicate = profile.getBaseProperties()
-				.getProperty(
-						ConnectionFilter.FILTER_PROP_PREFIX
-								+ getConnectionFilterType());
+		String predicate = profile.getProperties(
+				ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID)
+				.getProperty(getConnectionFilterType());
 		if (predicate == null || predicate.length() == 0) {
 			return null;
 		}

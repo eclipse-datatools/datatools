@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.internal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -30,10 +31,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.ConnectEvent;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
@@ -432,6 +431,10 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	protected void firePropertySetChangeEvent(IPropertySetChangeEvent event) {
+		if (event.getChangedProperties().size() == 0) {
+			return;
+		}
+
 		Object[] listeners = mPropertySetListeners.getListeners();
 		for (int index = 0, count = listeners.length; index < count; ++index) {
 			try {
@@ -442,6 +445,10 @@ public class ConnectionProfile extends PlatformObject implements
 				ConnectivityPlugin.getDefault().log(e);
 			}
 		}
+	}
+	
+	/*package*/Map getPropertiesMap() {
+		return Collections.unmodifiableMap(mPropertiesMap);
 	}
 
 	private void notifyManager() {

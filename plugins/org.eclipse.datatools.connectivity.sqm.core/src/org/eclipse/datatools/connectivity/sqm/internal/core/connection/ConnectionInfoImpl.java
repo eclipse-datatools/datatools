@@ -36,11 +36,15 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
+import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.VersionProviderConnection;
+import org.eclipse.datatools.connectivity.IPropertySetChangeEvent.IChangedProperty;
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.ResourceUtil;
@@ -78,6 +82,15 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	private Collection projects = null;
 	private boolean detectDefinition = false;
 	private IConnection jdbcConnection;
+	private IPropertySetListener profilePropertyListener = new IPropertySetListener() {
+
+		public void propertySetChanged(IPropertySetChangeEvent event) {
+			if (ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID.equals(event
+					.getPropertySetType())) {
+				processFilterChanges(event);
+			}
+		}
+	};
 	
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
 	
@@ -388,16 +401,11 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		try {
 			this.saveFilterInfo();
 			
-			Iterator it = this.filterListeners.iterator();
-			while(it.hasNext()) {
-				ConnectionFilterListener l = (ConnectionFilterListener) it.next();
-				l.connectionFilterAdded(key);
-			}
-			
-			
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+		
+		fireFilterAdded(key);
 	}
 	
 	public void removeFilter(String key){
@@ -410,12 +418,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			}catch(Exception e) {
 			}
 			
-			Iterator it = this.filterListeners.iterator();
-			while(it.hasNext()) {
-				ConnectionFilterListener l = (ConnectionFilterListener) it.next();
-				l.connectionFilterRemoved(key);
-			}
-			
+			fireFilterRemoved(key);
 		}
 	}
 
@@ -542,18 +545,14 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 	
 	private void loadFilterInfo() {
-		Properties props = getConnectionProfile().getBaseProperties();
+		Properties props = getConnectionProfile().getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID);
 		this.filters = new Hashtable();
 		for (Iterator it = props.entrySet().iterator(); it.hasNext();) {
 			Map.Entry entry = (Map.Entry) it.next();
-			String key = (String) entry.getKey();
-			if (key != null
-					&& key.startsWith(ConnectionFilter.FILTER_PROP_PREFIX)) {
+			String filterID = (String) entry.getKey();
+			if (filterID != null) {
 				String predicate = (String) entry.getValue();
 				if (predicate != null && predicate.length() > 0) {
-					String filterID = key
-							.substring(ConnectionFilter.FILTER_PROP_PREFIX
-									.length());
 					ConnectionFilter filter = new ConnectionFilterImpl(
 							predicate);
 					filters.put(filterID, filter);
@@ -626,6 +625,80 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			this.setSharedConnection(connection);
 	        new DatabaseProviderHelper().setDatabase(connection,
 	                this, this.getDatabaseName());
+	        profile.addPropertySetListener(profilePropertyListener);
+		}
+	}
+	
+	private void processFilterChanges(IPropertySetChangeEvent event) {
+		if (this.filters == null) this.loadFilterInfo();
+		for (Iterator it = event.getChangedProperties().values().iterator(); it.hasNext();) {
+			IChangedProperty changedProperty = (IChangedProperty)it.next();
+			if (changedProperty.getNewValue() == null) {
+				// filter removed
+				filters.remove(changedProperty.getID());
+				fireFilterRemoved(changedProperty.getID());
+			}
+			else if (changedProperty.getOldValue() == null) {
+				// filter added
+				filters.put(changedProperty.getID(), new ConnectionFilterImpl(changedProperty.getNewValue()));
+				fireFilterAdded(changedProperty.getID());
+			}
+			else {
+				// filter changed
+				filters.put(changedProperty.getID(), new ConnectionFilterImpl(changedProperty.getNewValue()));
+				fireFilterChanged(changedProperty.getID());
+			}
+		}
+	}
+	
+	private void fireFilterRemoved(String filterID) {
+		Iterator it = this.filterListeners.iterator();
+		while (it.hasNext()) {
+			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
+			try {
+				l.connectionFilterRemoved(filterID);
+			}
+			catch (Throwable e) {
+				RDBCorePlugin.getDefault().getLog().log(
+						new Status(Status.ERROR, RDBCorePlugin.getDefault()
+								.getBundle().getSymbolicName(), -1, e
+								.getLocalizedMessage() == null ? new String()
+								: e.getLocalizedMessage(), e));
+			}
+		}
+	}
+
+	private void fireFilterAdded(String filterID) {
+		Iterator it = this.filterListeners.iterator();
+		while (it.hasNext()) {
+			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
+			try {
+				l.connectionFilterAdded(filterID);
+			}
+			catch (Throwable e) {
+				RDBCorePlugin.getDefault().getLog().log(
+						new Status(Status.ERROR, RDBCorePlugin.getDefault()
+								.getBundle().getSymbolicName(), -1, e
+								.getLocalizedMessage() == null ? new String()
+								: e.getLocalizedMessage(), e));
+			}
+		}
+	}
+
+	private void fireFilterChanged(String filterID) {
+		Iterator it = this.filterListeners.iterator();
+		while (it.hasNext()) {
+			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
+			try {
+				l.connectionFilterAdded(filterID);
+			}
+			catch (Throwable e) {
+				RDBCorePlugin.getDefault().getLog().log(
+						new Status(Status.ERROR, RDBCorePlugin.getDefault()
+								.getBundle().getSymbolicName(), -1, e
+								.getLocalizedMessage() == null ? new String()
+								: e.getLocalizedMessage(), e));
+			}
 		}
 	}
 
@@ -646,6 +719,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 	
 	public void close() {
+		getConnectionProfile().removePropertySetListener(
+				profilePropertyListener);
 		if (getSharedDatabase() != null) {
 			setSharedDatabase(null);
 		}

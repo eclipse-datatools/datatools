@@ -691,10 +691,17 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		String filterType = getConnectionFilterType();
 		if (filterType != null) {
 			IConnectionProfile profile = getConnectionProfile();
-			String filterPropKey = ConnectionFilter.FILTER_PROP_PREFIX+filterType;
-			Properties props = profile.getBaseProperties();
-			props.setProperty(filterPropKey,getPredicate());
-			profile.setBaseProperties(props);
+			String predicate = getPredicate();
+			Properties props = profile
+					.getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID);
+			if (predicate == null || predicate.length() == 0) {
+				props.remove(filterType);
+			}
+			else {
+				props.setProperty(filterType, predicate);
+			}
+			profile.setProperties(
+					ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID, props);
 		}
 		return true;
 	}
