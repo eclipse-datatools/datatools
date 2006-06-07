@@ -27,6 +27,7 @@ public class DriverTreeFilter extends ViewerFilter {
 
 	// applicable category and driver template IDs
 	private String mCategoryId;
+	private CategoryDescriptor mCategoryDescriptor;
 	private String mDriverTemplateId;
 
 	// Lists of OK categories and templates
@@ -47,6 +48,8 @@ public class DriverTreeFilter extends ViewerFilter {
 	 */
 	public void setCategoryId(String categoryId) {
 		this.mCategoryId = categoryId;
+		mCategoryDescriptor = CategoryDescriptor
+				.getCategoryDescriptor(categoryId);
 		refreshOkList();
 	}
 
@@ -132,12 +135,25 @@ public class DriverTreeFilter extends ViewerFilter {
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 
 		if (element instanceof TemplateDescriptor) {
-			return true;
+			for (CategoryDescriptor cd = ((TemplateDescriptor)element).getParent(); cd != null; cd = cd.getParent()) {
+				if (cd.getId().equals(mCategoryId)) {
+					return true;
+				}
+			}
 		}
 		else if (element instanceof CategoryDescriptor) {
-			CategoryDescriptor category = (CategoryDescriptor) element;
-			if (this.okCategoryIds.contains(category.getId()))
-				return true;
+			for (CategoryDescriptor cd = mCategoryDescriptor; cd != null; cd = cd
+					.getParent()) {
+				if (cd.getId().equals(((CategoryDescriptor)element).getId())) {
+					return true;
+				}
+			}
+			for (CategoryDescriptor cd = (CategoryDescriptor) element; cd != null; cd = cd
+					.getParent()) {
+				if (cd.getId().equals(mCategoryId)) {
+					return true;
+				}
+			}
 		}
 		else if (element instanceof IPropertySet) {
 			if (this.mDriverTemplateId != null) {
