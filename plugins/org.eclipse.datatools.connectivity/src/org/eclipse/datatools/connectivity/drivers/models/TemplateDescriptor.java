@@ -125,7 +125,7 @@ public class TemplateDescriptor implements Comparable {
 		CategoryDescriptor cat;
 		for (Iterator itr = col.iterator(); itr.hasNext();) {
 			cat = (CategoryDescriptor) itr.next();
-			if (cat.getName().equals(getParentCategory()))
+			if (cat.getId().equals(getParentCategory()))
 				return cat;
 		}
 		return null;
