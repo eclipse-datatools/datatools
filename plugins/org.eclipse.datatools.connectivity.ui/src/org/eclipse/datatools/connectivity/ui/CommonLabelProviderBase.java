@@ -23,6 +23,8 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.ui.navigator.IExtensionStateModel;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base label provider class that can be extended for adding content to a
  * connection profile using a navigatorContent extension.
@@ -81,10 +83,16 @@ public class CommonLabelProviderBase implements ICommonLabelProvider {
 				Version techVersion = isvp.getTechnologyVersion();
 				String techName = isvp.getTechnologyName();
 				if (techName != null && techName.length() > 0) {
-					sb.append(" ("); //$NON-NLS-1$
-					sb.append(techName).append(' ');
-					sb.append(ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"));//$NON-NLS-1$
-					sb.append(' ' + techVersion.toString()).append(')');
+					String versionStr = MessageFormat.format(
+							ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"), 
+							new String[] {sb.toString(),
+								techName,
+								techVersion.toString()});
+					sb = new StringBuffer(versionStr);
+//					sb.append(" ("); //$NON-NLS-1$
+//					sb.append(techName).append(' ');
+//					sb.append(ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"));//$NON-NLS-1$
+//					sb.append(' ' + techVersion.toString()).append(')');
 				}
 			}
 			return sb.toString();

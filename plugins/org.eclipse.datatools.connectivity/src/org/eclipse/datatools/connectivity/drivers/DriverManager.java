@@ -220,6 +220,10 @@ public class DriverManager {
 	 */
 	public DriverInstance createNewDriverInstance(String templateID,
 			String name, String jarList) {
+		if (templateID == null) return null;
+		if (name == null) return null;
+		if (jarList == null) return null;
+		
 		IPropertySet pset = createDefaultInstance(templateID);
 		pset.setName(name);
 		String prefix = DriverMgmtMessages

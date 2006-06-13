@@ -150,6 +150,7 @@ public class XMLFileManager {
 				writer = new BufferedWriter(outw);
 				for (int i = 0; i < pss.length; i++) {
 					ps = pss[i];
+					if (ps == null) continue;
 					child = document.createElement(CHILDNAME);
 					child.setAttribute(PROPSETNAME, ps.getName());
 					child.setAttribute(PROPSETID, ps.getID());
