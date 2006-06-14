@@ -37,6 +37,8 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -526,6 +528,16 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			}
 		});
 
+		_combodbName.addKeyListener(new KeyListener() {
+
+			public void keyPressed(KeyEvent e) {
+			}
+
+			public void keyReleased(KeyEvent e) {
+				updateFields();
+				notifyListener();
+			}
+		});
 		// for non-database profile, this combo box is always disabled.
 		String profileName = _comboProfileName.getText();
 		if (profileName != null) {
@@ -601,6 +613,11 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			return;
 		}
 		DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
+		SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
+		SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
+		// there will be only one instance for each type of configuration, so we
+		// can use == here
+		boolean isDefault = selectedConfig == defaultConfig;
 		
 		IConnectionProfile profiles[] = ProfileManager.getInstance()
 				.getProfiles();
@@ -612,6 +629,13 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 					.getDatabaseVendorDefinitionId(profiles[i].getName());
 			if (selectedDbVendorId.equals(dbVendorId)) {
 				rightProfiles.add(profiles[i].getName());
+			}else if (isDefault)
+			{
+				SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
+				if (selectedConfig == config)
+				{
+					rightProfiles.add(profiles[i].getName());
+				}
 			}
 		}
 
