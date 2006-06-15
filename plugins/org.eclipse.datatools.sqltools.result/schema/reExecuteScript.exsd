@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.sqltools.result" id="reExecuteScript" name="Re-execute History Statement"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         To support re-execution function of the history statement, the consumer need to extend this point to tell how SQL Results view re-execute the statement, if no extension for a specific database is found, the &quot;Re-execute&quot; menu item will be not visible.
       </documentation>
    </annotation>
 
@@ -63,10 +63,10 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  A class which implements &lt;code&gt;IReExecutionRunnable&lt;/code&gt;.
+                  A class which implements &lt;code&gt;org.eclipse.datatools.sqltools.result.IReExecutionRunnable&lt;/code&gt;.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.sqltools.result.IReExecutionRunnable"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -78,7 +78,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         
       </documentation>
    </annotation>
 
@@ -87,7 +87,7 @@
          <meta.section type="examples"/>
       </appInfo>
       <documentation>
-         [Enter extension point usage example here.]
+         
       </documentation>
    </annotation>
 
@@ -96,7 +96,7 @@
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         [Enter API information here.]
+         The consumer need to implement &lt;code&gt;org.eclipse.datatools.sqltools.result.IReExecutionRunnable&lt;/code&gt;
       </documentation>
    </annotation>
 
@@ -105,7 +105,7 @@
          <meta.section type="implementation"/>
       </appInfo>
       <documentation>
-         [Enter information about supplied implementation of this extension point.]
+         
       </documentation>
    </annotation>
 
