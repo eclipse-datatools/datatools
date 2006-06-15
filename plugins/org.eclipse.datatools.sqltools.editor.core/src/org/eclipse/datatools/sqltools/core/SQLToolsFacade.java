@@ -146,9 +146,23 @@ public class SQLToolsFacade
         }
         if (f == null)
         {
-            f = SQLDevToolsConfigRegistryImpl.getDefaultConfiguration();
+            f = getDefaultConfiguration();
         }
         return f;
     }
 
+    /**
+	 * Gets the default <code>SQLDevToolsConfiguration</code> object, which is
+	 * contributed via the "isDefault" attribute of the "dbConfiguration"
+	 * extension point, or if there's no such contribution, will use
+	 * SQLDevToolsConfiguration.getDefaultInstance().
+	 * 
+	 * @return default <code>SQLDevToolsConfiguration</code> object. Will
+	 *         never be null.
+	 */
+    public static SQLDevToolsConfiguration getDefaultConfiguration()
+    {
+    	return SQLDevToolsConfigRegistryImpl.getDefaultConfiguration();
+    }
+    
 }
