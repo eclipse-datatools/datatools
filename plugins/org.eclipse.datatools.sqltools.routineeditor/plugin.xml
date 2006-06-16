@@ -160,7 +160,7 @@
          point="org.eclipse.ui.commands">
       <command
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
-            name="%Routineeditor.run"
+            name="%Routineeditor.command.run"
             id="org.eclipse.datatools.sqltools.sqleditor.runAction"/>
     </extension>
     
@@ -174,5 +174,5 @@
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
-   
+      
 </plugin>
