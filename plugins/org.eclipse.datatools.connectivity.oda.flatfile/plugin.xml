@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.6 2006/03/10 00:43:11 lchan Exp $
+ * $Id: plugin.xml,v 1.7 2006/05/24 00:11:51 lchan Exp $
  */
 -->
 
@@ -28,9 +28,6 @@
             id="org.eclipse.datatools.connectivity.oda.flatfile"
             setThreadContextClassLoader="false">
          <properties>
-         <propertyGroup
-               defaultDisplayName="Connection Properties"
-               name="connectionProperties">
             <property
                   type="string"
                   defaultDisplayName="%datasource.property.home"
@@ -42,11 +39,20 @@
                   canInherit="true"
                   name="CHARSET"/>
             <property
-                  type="string"
-                  canInherit="true"
                   defaultDisplayName="%datasource.property.incltypeline"
-                  name="INCLTYPELINE"/>                 
-         </propertyGroup>
+                  defaultValue="NO"
+                  name="INCLTYPELINE"
+                  canInherit="true"
+                  type="choice">
+               <choice
+                     defaultDisplayName="%property.value.yes"
+                     name="YES"
+                     value="YES"/>
+               <choice
+                     defaultDisplayName="%property.value.no"
+                     name="NO"
+                     value="NO"/>
+            </property>                 
          </properties>
       </dataSource>
       <dataSet
