@@ -194,4 +194,24 @@ public class OdaException extends Exception
 		// provides backward compatibility to JRE earlier than 1.4
 		return m_cause;
 	}
+
+    /* (non-Javadoc)
+     * @see java.lang.Throwable#toString()
+     */
+    public String toString()
+    {
+        String message = super.toString();
+        
+        Throwable cause = getCause();
+        if( cause != null )
+        {        
+            // append cause message
+            String causeString = cause.toString();
+            if( causeString != null && causeString.length() > 0 )
+                message += " ;\n    " + causeString;     //$NON-NLS-1$
+        }
+        
+        return message;
+    }
+        
 }
