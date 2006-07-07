@@ -176,6 +176,8 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	public void setProfileName(String name) {
 		this.mCPNameStr = name;
 		if (mCPName != null) {
+            if ( name == null )
+                name = ""; //$NON-NLS-1$
 			mCPName.setText(name);
 		}
 	}
@@ -186,7 +188,9 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 
 	public void setProfileDescription(String desc) {
 		this.mCPDescStr = desc;
-		if (mCPDesc != null) {
+		if (mCPDesc != null ) {
+            if ( desc == null )
+                desc = "";   //$NON-NLS-1$
 			mCPDesc.setText(desc);
 		}
 	}
