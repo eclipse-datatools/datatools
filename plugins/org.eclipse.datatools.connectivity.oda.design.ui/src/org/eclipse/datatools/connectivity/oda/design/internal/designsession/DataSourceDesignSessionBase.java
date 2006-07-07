@@ -122,18 +122,23 @@ public class DataSourceDesignSessionBase
         // do not change any user edits on wizard page
         Properties profileProps = null;
         String profileName = null;
+        String profileDesc = null;
         if( profileRef != null && 
             ! profileRef.equals( m_wizardProfileRef ) )
         {
             profileProps = getProfileProperties( profileRef.getInstanceId() );
-            profileName = OdaProfileExplorer.getInstance().
-                    getProfile( profileRef.getInstanceId() ).getName();
+            IConnectionProfile profileInstance = OdaProfileExplorer.getInstance().
+                                    getProfile( profileRef.getInstanceId() );
+            assert( profileInstance != null );
+            profileName = profileInstance.getName();
+            profileDesc = profileInstance.getDescription();
+            
             if( newDataSourceName == null || newDataSourceName.length() == 0 )
                 newDataSourceName = profileName;
         }
         
         // initialize wizard with given name and properties, if any
-        initWizard( wizard, newDataSourceName, profileProps );
+        initWizard( wizard, newDataSourceName, profileDesc, profileProps );
         m_wizardProfileRef = profileRef;
 
         if( profileRef != null && profileRef.maintainExternalLink() )
@@ -311,11 +316,13 @@ public class DataSourceDesignSessionBase
      * initialized with pages.
      * @param wizard    associated data source wizard
      * @param aDataSourceName   unique name to assign to new data source instance
+     * @param aDataSourceDesc   optional profile description; may be null
      * @param dataSourceProps   initialized properties for use by
      *                          wizard; may be null
      */
     private void initWizard( NewDataSourceWizard wizard, 
                              String aDataSourceName,
+                             String aDataSourceDesc,
                              Properties dataSourceProps )
         throws OdaException
     {
@@ -335,7 +342,7 @@ public class DataSourceDesignSessionBase
                 (NewConnectionProfileWizardPage) wizard.getStartingPage();
             
             profileNamePage.setProfileName( aDataSourceName );
-            profileNamePage.setProfileDescription( aDataSourceName );
+            profileNamePage.setProfileDescription( aDataSourceDesc );
             profileNamePage.setPageComplete( true );
         }
         
@@ -458,6 +465,45 @@ public class DataSourceDesignSessionBase
         return createResponseDesignSession( newDataSourceDesign, wizard );
     }
 
+    /**
+     * Performs finish on the current ODA design session to
+     * create a new data source design from a specified connection profile.
+     * @param newDataSourceName unique name to assign to the new data source instance;
+     *                          may be null or empty, in which case the profile name
+     *                          is applied
+     * @param profileRef        reference to an existing profile instance
+     *                          kept in an external profile storage file
+     * @return  the completed design session containing the
+     *          new data source design within the session response
+     * @throws OdaException
+     */
+    protected OdaDesignSession finishNewDesignFromProfile(
+                                    String newDataSourceName,
+                                    ProfileReferenceBase profileRef )
+        throws OdaException
+    {
+        // since wizard page is not added, initiates
+        // finish on wizard's design session in lieu of page's performFinish
+        NewDataSourceWizard wizard = getExtendedWizard();
+        DataSourceDesign newDataSourceDesign =
+                        wizard.finishDataSourceDesign();
+        
+        // applies the profile identifers to the new data source design
+        if( newDataSourceDesign != null )
+        {
+            IConnectionProfile profileInstance = OdaProfileExplorer.getInstance().
+                                    getProfile( profileRef.getInstanceId() );
+            assert( profileInstance != null );
+            
+            if( newDataSourceName == null || newDataSourceName.length() == 0 )
+                newDataSourceName = profileInstance.getName();
+            newDataSourceDesign.setName( newDataSourceName );
+            newDataSourceDesign.setDisplayName( profileInstance.getDescription() );
+        }
+        
+        return createResponseDesignSession( newDataSourceDesign, wizard );        
+    }
+    
     /**
      * Creates a completed design session containing the
      * specified new data source design within the session response.

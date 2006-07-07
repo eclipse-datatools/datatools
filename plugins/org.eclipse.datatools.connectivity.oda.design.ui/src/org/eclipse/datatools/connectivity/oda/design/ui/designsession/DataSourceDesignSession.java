@@ -18,12 +18,10 @@ import java.io.File;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
-import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -42,9 +40,10 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * for the given ODA data source type. 
      * <br>This method supports a simplified request for an 
      * editable session in the default system locale.
-     * @param odaDataSourceId   
-     * @param aDataSourceName
-     * @return
+     * @param odaDataSourceId   an ODA data source extension element id 
+     * @param newDataSourceName a unique name that identifies a 
+     *                          data source design instance
+     * @return  a started design session, ready to create a new data source design
      * @throws OdaException
      * @see #startNewDesign(String, String, ProfileReference, DesignSessionRequest)
      */
@@ -63,7 +62,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * for the given ODA data source type, and initializes 
      * with the properties specified in the given profile instance.
      * @param odaDataSourceId   an ODA data source extension element id 
-     * @param aDataSourceName   a unique name that identifies a 
+     * @param newDataSourceName a unique name that identifies a 
      *                          data source design instance
      * @param profileRef    optional reference to an existing profile instance
      *                  kept in an external profile storage file;
@@ -72,7 +71,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      *                  such as session's edit state and locale; 
      *                  may be null for an editable session 
      *                  in the default system locale
-     * @return  a design session started to create a new data source design
+     * @return  a started design session, ready to create a new data source design
      * @throws OdaException
      */
     public static DataSourceDesignSession startNewDesign( 
@@ -122,8 +121,10 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * <br>This is responsible for creating a 
      * custom editor page instance for use 
      * to edit a data source design.
-     * @param request   
-     * @return  
+     * @param request   a design session request, must contain
+     *                  a data source design to edit
+     * @return  a started design session, ready to 
+     *          edit the requested data source design
      * @throws OdaException
      * @see #startEditDesign(DesignSessionRequest, DataSourceEditorPage)
      */
@@ -166,7 +167,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     /**
      * Creates a design session with a new data source design,
      * whose properties and their values are copied from,
-     * or referenced to, the given profile instance.
+     * or referenced to, the given profile reference.
      * <br>This method should be used when an ODA host designer
      * wants to finish a design session right away after
      * a profile is selected, and skips using its
@@ -174,20 +175,11 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * <br>A completed response contains the new or updated 
      * data source design instance, and the designer state. 
      * @param odaDataSourceId   an ODA data source extension element id 
-     * @param aDataSourceName   unique name to assign to new data source instance
-     * @param profileInstanceId profile instance id; such as the
-     *              instance id returned by the 
-     *              <code>getProfileIdentifiers</code> method
-     * @param storageFile   a file that stores profile instances;
-     *              may be null, which means to use the
-     *              default DTP profiles storage file
-     * @param linkToProfile  "true" indicates to maintain a link to the 
-     *              given profile instance and storageFile, and applies its 
-     *              latest properties values at run-time.
-     *              "false" indicates to work with a copy of the current properties
-     *              specified in the profile instance; any future
-     *              changes to the profile instance is not applied to
-     *              the data source design.
+     * @param newDataSourceName unique name to assign to new data source instance;
+     *                          may be null or empty, in which case the profile name
+     *                          is applied
+     * @param profileRef        reference to an existing profile instance
+     *                  kept in an external profile storage file
      * @return  a completed design session with the session response,
      *          containing the new data source design,
      *          and the original request.
@@ -204,19 +196,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
                                 newDataSourceName,
                                 profileRef, null );
 
-        // since wizard page is not added, initiates
-        // finish on design session in lieu of page's performFinish
-        NewDataSourceWizard wizard = newSession.getExtendedWizard();
-        DataSourceDesign newDataSourceDesign =
-                        wizard.finishDataSourceDesign();
-        
-        if( newDataSourceDesign != null )
-        {
-            newDataSourceDesign.setName( newDataSourceName );
-            newDataSourceDesign.setDisplayName( newDataSourceName );
-        }
-        
-        return DataSourceDesignSessionBase.createResponseDesignSession( newDataSourceDesign, wizard );
+        return newSession.finishNewDesignFromProfile( newDataSourceName, profileRef );
     }
     
     /** Not allowed to instantiate the class directly;

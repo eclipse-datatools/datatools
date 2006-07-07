@@ -197,7 +197,6 @@ public class DesignSessionUtilBase
         DataSetDesign newDataSetDesign = 
             newSession.getRequestDataSetDesign();
         newDataSetDesign.setName( newDataSetName );
-        newDataSetDesign.setDisplayName( newDataSetName );
         newDataSetDesign.setOdaExtensionDataSetId( odaDataSetId );
     
         validateRequestSessionImpl( newSession.getRequest() );
