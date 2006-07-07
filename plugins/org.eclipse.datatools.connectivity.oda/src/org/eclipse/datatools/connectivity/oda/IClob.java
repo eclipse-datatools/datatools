@@ -49,7 +49,9 @@ public interface IClob
 	 * provide a more efficient implementation of this method.
 	 * @param position	 the first character of the substring to be extracted. 
 	 * 					 The first character is at position 1.
-	 * @param length	 the number of consecutive characters to be copied
+	 * @param length	 the number of consecutive characters to be copied;
+     *                   a negative value means to copy all remaining characters 
+     *                   available in the stream. 
 	 * @return	the specified substring that begins at <code>position</code>
 	 * 			and has up to <code>length</code> consecutive characters.
 	 * @throws OdaException	if data source error occurs

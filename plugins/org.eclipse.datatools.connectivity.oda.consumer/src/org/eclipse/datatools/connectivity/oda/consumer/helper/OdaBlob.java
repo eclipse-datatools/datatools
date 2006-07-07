@@ -185,24 +185,14 @@ public class OdaBlob extends OdaDriverObject implements IBlob
     {
         final String context = "OdaBlob.getBytesFromStream( " +  //$NON-NLS-1$
                                 startPos + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
-
-        // first get the underlying driver's stream
-        InputStream driverStream = null;
-        try
-        {
-            driverStream = getBinaryStream();
-        }
-        catch( OdaException e1 )
-        {
-            log( context, e1.toString() );
-            return null;
-        }
         
 		byte[] ret = null;
 	    try
         {
 	        setContextClassloader();
-            ret = getBytesFromStreamImpl( startPos, length, driverStream );
+            
+            BlobReader reader = new BlobReader( this, getReaderBufferSize() );
+            ret = reader.getBytes( startPos, length );
         }
         catch( RuntimeException rte )
         {
@@ -211,6 +201,10 @@ public class OdaBlob extends OdaDriverObject implements IBlob
         catch( IOException e )
         {
             log( context, e.toString() );
+        }
+        catch( OdaException ex )
+        {
+            log( context, ex.toString() );
         }
 		finally
 		{
@@ -230,37 +224,6 @@ public class OdaBlob extends OdaDriverObject implements IBlob
     {
         // sub-class may override
         return DEFAULT_BUFFER_SIZE;
-    }
-    
-    /*
-     * Provides default implementation to retrieve all or part of
-     * the BLOB data from the driver's stream.
-	 * Returns null if not able to retrieve from stream.
-     */
-    private byte[] getBytesFromStreamImpl( long position, int length,
-            							InputStream driverStream )
-    	throws IOException
-    {		
-        if( driverStream == null || length < 0 )
-            return null;
-        
-        // if the first byte to retrieve is after the first position in BLOB,
-        // first skip all the bytes before position
-        if( position > 1 )	
-        {
-            long numToSkip = position - 1;
-            long numSkipped = driverStream.skip( numToSkip );
-            if( numSkipped != numToSkip )
-                return null;	// not able to skip to given position
-        }
-        
-        // next, retrieve the length of bytes from stream
-        byte[] outBuffer = new byte[ length ];
-        int bytesRead = driverStream.read( outBuffer, 0, length );
-        if( bytesRead >= 0 )
-	        return outBuffer;
-        
-        return null;			// problem reading from stream
     }
 
 }

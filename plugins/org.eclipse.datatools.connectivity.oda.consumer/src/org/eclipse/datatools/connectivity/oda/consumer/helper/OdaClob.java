@@ -185,23 +185,13 @@ public class OdaClob extends OdaDriverObject implements IClob
         final String context = "OdaClob.getSubStringFromReader( " +  //$NON-NLS-1$
                                 startPos + COMMA_SEPARATOR + length + " )\t"; //$NON-NLS-1$
 
-        // first get the underlying driver's stream
-        Reader driverReader = null;
-        try
-        {
-            driverReader = getCharacterStream();
-        }
-        catch( OdaException e1 )
-        {
-            log( context, e1.toString() );
-            return null;
-        }
-
 		String ret = null;
 	    try
         {
 	        setContextClassloader();
-            ret = getSubStringFromReaderImpl( startPos, length, driverReader );
+            
+            ClobReader reader = new ClobReader( this, getReaderBufferSize() );
+            ret = reader.getSubString( startPos, length );
         }
         catch( RuntimeException rte )
         {
@@ -210,6 +200,10 @@ public class OdaClob extends OdaDriverObject implements IClob
         catch( IOException e )
         {
             log( context, e.toString() );
+        }
+        catch( OdaException ex )
+        {
+            log( context, ex.toString() );
         }
 		finally
 		{
@@ -230,37 +224,5 @@ public class OdaClob extends OdaDriverObject implements IClob
         // sub-class may override
         return DEFAULT_BUFFER_SIZE;
     }
-
-    /**
-     * Provides default implementation to retrieve all or part of
-     * the CLOB data from the driver's reader.
-	 * Returns null if not able to retrieve from reader.
-     * @throws IOException
-     */
-	private String getSubStringFromReaderImpl( long position, int length,
-	        							 	Reader driverReader )
-    	throws IOException
-	{
-        if( driverReader == null || length < 0 )
-            return null;
-        
-        // if the first char to retrieve is beyond the first byte in BLOB,
-        // first skip all the characters before position
-        if( position > 1 )	
-        {
-            long numToSkip = position - 1;
-            long numSkipped = driverReader.skip( numToSkip );
-            if( numSkipped != numToSkip )
-                return null;	// not able to skip to given position
-        }
-        
-        // next, retrieve the length of characters from stream
-        char[] outBuffer = new char[ length ];
-        int numRead = driverReader.read( outBuffer, 0, length );
-        if( numRead >= 0 )
-	        return new String( outBuffer );
-
-        return null;			// problem reading from stream
-	}
 
 }

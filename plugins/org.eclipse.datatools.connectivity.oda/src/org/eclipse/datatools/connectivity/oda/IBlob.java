@@ -50,7 +50,9 @@ public interface IBlob
 	 * provide a more efficient implementation of this method.
 	 * @param position	the 1-based ordinal position of the first byte 
 	 * 					in the BLOB value to be extracted
-	 * @param length	the number of consecutive bytes to be copied
+	 * @param length	the number of consecutive bytes to be copied; 
+     *                  a negative value means to copy all remaining bytes
+     *                  available in the binary stream
 	 * @return			a byte array containing up to <code>length</code> 
 	 * 					consecutive bytes from the BLOB value, 
 	 * 					starting with the byte at <code>position</code>
