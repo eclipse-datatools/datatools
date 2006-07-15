@@ -45,6 +45,9 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	private String mCPDescStr;
 	private boolean _showAutoConnect = true;
 
+    private static final boolean AUTO_CONNECT_DEFAULT = true;
+    private static final String EMPTY_STRING = "";      //$NON-NLS-1$
+    
 	/**
 	 * Constructor
 	 */
@@ -113,7 +116,7 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 						"NewConnectionProfileWizardPage.Button.AutoConnect")); //$NON-NLS-1$
 
 		if (!_showAutoConnect) {
-			mAutoConnect.setSelection(true);
+			mAutoConnect.setSelection( AUTO_CONNECT_DEFAULT );
 			mAutoConnect.setVisible(false);
 			mAutoConnect.setEnabled(false);
 		}
@@ -170,37 +173,38 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	}
 
 	public String getProfileName() {
-		return mCPName.getText();
+		return ( mCPName != null ) ? mCPName.getText() : EMPTY_STRING;
 	}
 
 	public void setProfileName(String name) {
 		this.mCPNameStr = name;
 		if (mCPName != null) {
             if ( name == null )
-                name = ""; //$NON-NLS-1$
+                name = EMPTY_STRING;
 			mCPName.setText(name);
 		}
 	}
 
 	public String getProfileDescription() {
-		return mCPDesc.getText();
+        return ( mCPDesc != null ) ? mCPDesc.getText() : EMPTY_STRING;
 	}
 
 	public void setProfileDescription(String desc) {
 		this.mCPDescStr = desc;
 		if (mCPDesc != null ) {
             if ( desc == null )
-                desc = "";   //$NON-NLS-1$
+                desc = EMPTY_STRING;
 			mCPDesc.setText(desc);
 		}
 	}
 
 	public boolean getAutoConnect() {
-		return mAutoConnect.getSelection();
+        return ( mAutoConnect != null ) ? mAutoConnect.getSelection() : AUTO_CONNECT_DEFAULT;
 	}
 
 	public void setAutoConnect(boolean selection) {
-		mAutoConnect.setSelection(selection);
+        if ( mAutoConnect != null )
+            mAutoConnect.setSelection(selection);
 	}
 
 	/*
