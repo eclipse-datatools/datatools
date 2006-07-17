@@ -43,9 +43,9 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 
 	private String mCPNameStr;
 	private String mCPDescStr;
+    private boolean mCPAutoConnectValue = false;
 	private boolean _showAutoConnect = true;
 
-    private static final boolean AUTO_CONNECT_DEFAULT = true;
     private static final String EMPTY_STRING = "";      //$NON-NLS-1$
     
 	/**
@@ -116,7 +116,7 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 						"NewConnectionProfileWizardPage.Button.AutoConnect")); //$NON-NLS-1$
 
 		if (!_showAutoConnect) {
-			mAutoConnect.setSelection( AUTO_CONNECT_DEFAULT );
+			mAutoConnect.setSelection(true);
 			mAutoConnect.setVisible(false);
 			mAutoConnect.setEnabled(false);
 		}
@@ -173,12 +173,13 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	}
 
 	public String getProfileName() {
-		return ( mCPName != null ) ? mCPName.getText() : EMPTY_STRING;
+        return ( mCPName == null || mCPName.isDisposed() ) ? 
+                mCPNameStr : mCPName.getText();
 	}
 
 	public void setProfileName(String name) {
 		this.mCPNameStr = name;
-		if (mCPName != null) {
+		if ( mCPName != null && ! mCPName.isDisposed() ) {
             if ( name == null )
                 name = EMPTY_STRING;
 			mCPName.setText(name);
@@ -186,12 +187,13 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	}
 
 	public String getProfileDescription() {
-        return ( mCPDesc != null ) ? mCPDesc.getText() : EMPTY_STRING;
+        return ( mCPDesc == null || mCPDesc.isDisposed() ) ? 
+                mCPDescStr : mCPDesc.getText();
 	}
 
 	public void setProfileDescription(String desc) {
 		this.mCPDescStr = desc;
-		if (mCPDesc != null ) {
+		if ( mCPDesc != null && ! mCPDesc.isDisposed() ) {
             if ( desc == null )
                 desc = EMPTY_STRING;
 			mCPDesc.setText(desc);
@@ -199,11 +201,13 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 	}
 
 	public boolean getAutoConnect() {
-        return ( mAutoConnect != null ) ? mAutoConnect.getSelection() : AUTO_CONNECT_DEFAULT;
+        return ( mAutoConnect == null || mAutoConnect.isDisposed() ) ? 
+                mCPAutoConnectValue : mAutoConnect.getSelection();
 	}
 
 	public void setAutoConnect(boolean selection) {
-        if ( mAutoConnect != null )
+        mCPAutoConnectValue = selection;
+        if ( mAutoConnect != null && ! mAutoConnect.isDisposed() )
             mAutoConnect.setSelection(selection);
 	}
 
