@@ -1,0 +1,35 @@
+#Thu Jun 22 00:30:48 EDT 2006
+plugin.internal_error=Error interno\: org.eclipse.datatools.connectivity
+ConnectionProfileConstants.unknownVersion=desconocida
+dialog.title.error.loadconnectionfactory=Error al cargar la fábrica de conexiones en "{0}"\!
+ConnectJob.name=Creando conexiones a {0}.
+ConnectJob.status.info=No se han podido crear conexiones a {0} para una o varias extensiones.
+ConnectJob.status.error=No se ha podido conectar a {0}.
+DisconnectJob.name=Cerrando conexiones a {0}.
+DisconnectJob.status.info=No se han podido cerrar conexiones a {0} para una o varias extensiones.
+DisconnectJob.status.error=No se ha podido desconectar de {0}.
+CreateConnectionJob.name=Crear conexión {0} a {1}.
+CreateConnectionJob.error=Error al crear la conexión {0} a {1}. (Error\: {2})
+OpenConnectionEventJob.name=Procesando evento de apertura de conexión para {0}.
+CloseManagedConnectionJob.name=Cerrar conexión {0} a {1}. (Error\: {2})
+CloseManagedConnectionJob.error=Error al cerrar la conexión {0} a {1}.
+CloseConnectionEventJob.name=Procesando evento de cierre de conexión para {0}.
+assert.invalid.profile=Error de análisis\: atributo no válido ({0})
+assert.invalid.profile.duplicateFactory=Error de análisis\: ID de fábrica duplicado ({0})
+dialog.title.error.loadwizard=Error al cargar el asistente nuevo en "{0}"\!
+operation.new.connectionprofile=Creando perfil\: "{0}"
+error.connect=Se ha producido un problema al conectar al perfil "{0}." Consulte el archivo de anotaciones para conocer más detalles.
+marker.error=Se ha producido un problema al conectar al perfil {0}.  (Error\: {1})
+profile.duplicate=Nombre de perfil de conexión duplicado "{0}"\!
+profile.notexist=¡El perfil de conexión "{0}" no existe\!
+duplicate.profile.name=Copia de {0}({1})
+DriverConnectionBase.error.unknown=La conexión ha fallado con un error no especificado.
+DriverConnectionBase.error.driverDefinitionNotSpecified=No se ha especificado la definición de controlador.
+DriverConnectionBase.error.driverDefinitionNotFound=No se ha encontrado la definición de controlador.
+error.loadprofilesxml=Error al cargar los datos del perfil de conexión.
+error.saveprofilesxml=Error al guardar los datos del perfil de conexión.
+error.loaddriversxml=Error al cargar los datos de instancia del controlador.
+error.savedriversxml=Error al guardar los datos de instancia del controlador.
+trace.error.propertiesPersistenceHook=No se ha podido cargar propertiesPersistenceHook, se utiliza el valor predeterminado (tipo de perfil\={0}, extensión\={1})
+trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persistente de propiedades; se persisten todas las propiedades (perfil\={0}, extensión\={1})
+trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})

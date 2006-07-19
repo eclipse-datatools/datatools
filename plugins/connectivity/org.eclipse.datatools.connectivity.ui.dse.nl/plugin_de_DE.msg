@@ -1,0 +1,27 @@
+#Thu Jun 22 00:30:53 EDT 2006
+Plugin.Name=Eclipse Data Tools Platform - Plugin für Datenquellen-Explorer
+Plugin.ProviderName=Eclipse.org
+DSE.Connect.label=Ver&binden
+DSE.Disconnect.label=&Verbindung trennen
+DSE.Duplicate.label=Du&plikat
+DSE.Delete.label=L&öschen
+DSE.Rename.label=&Umbenennen
+DSE.Refresh.label=A&ktualisieren
+DSE.Ping.label=&Pingsignal...
+DSE.AddCP.label=&Neues Verbindungsprofil
+DSE.AddCP.tooltip=Neues Verbindungsprofil
+DSE.Import.label=&Importieren
+DSE.Import.tooltip=Importieren
+DSE.Export.label=E&xportieren
+DSE.Export.tooltip=Exportieren
+DSE.CollapseAll.label=Alles a&usblenden
+DSE.ExpandAll.label=Alles &einblenden
+DSE.ExpandAll.tooltip=Alles einblenden
+DSE.ShowCategory.label=Kate&gorie anzeigen
+DSE.ShowCategory.tooltip=Kategorie anzeigen
+DSE.Name=Datenquellen-Explorer
+DSE.ContentExtension.Decorator=Dekorator für Verbindungsprofil
+DSE.ContentExtension.Decorator.Description=Versieht den Inhaltserweiterungsknoten mit Dekoratoren, wenn die Verbindung zum Server fehlschlägt.
+DSE.content=Erweiterung für Datenquellen-Explorer
+category.name.dataTools=SQL-Entwicklung
+category.name.connectivity=Konnektivität

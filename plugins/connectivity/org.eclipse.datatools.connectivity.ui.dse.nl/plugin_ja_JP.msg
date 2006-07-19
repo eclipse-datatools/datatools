@@ -1,0 +1,27 @@
+#Thu Jun 22 00:30:53 EDT 2006
+Plugin.Name=Eclipse Data Tools Platform Data Source Explorer Plug-in
+Plugin.ProviderName=Eclipse.org
+DSE.Connect.label=接続(&C)
+DSE.Disconnect.label=切断(&D)
+DSE.Duplicate.label=複製(&P)
+DSE.Delete.label=削除(&E)
+DSE.Rename.label=名前変更(&N)
+DSE.Refresh.label=更新(&R)
+DSE.Ping.label=ping(&P)...
+DSE.AddCP.label=新規接続プロファイル(&N)
+DSE.AddCP.tooltip=新規接続プロファイル
+DSE.Import.label=インポート(&I)
+DSE.Import.tooltip=インポート
+DSE.Export.label=エクスポート(&E)
+DSE.Export.tooltip=エクスポート
+DSE.CollapseAll.label=すべて縮小表示(&C)
+DSE.ExpandAll.label=すべて展開(&E)
+DSE.ExpandAll.tooltip=すべて展開
+DSE.ShowCategory.label=カテゴリーの表示(&S)
+DSE.ShowCategory.tooltip=カテゴリーの表示
+DSE.Name=データ・ソース・エクスプローラー
+DSE.ContentExtension.Decorator=接続プロファイル・デコレーター
+DSE.ContentExtension.Decorator.Description=サーバーへの接続に失敗した場合に、コンテンツ拡張ノードを装飾します。
+DSE.content=データ・ソース・エクスプローラー拡張子
+category.name.dataTools=SQL 開発
+category.name.connectivity=接続

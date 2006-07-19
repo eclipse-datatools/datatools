@@ -1,0 +1,27 @@
+#Thu Jun 22 00:30:53 EDT 2006
+Plugin.Name=Plug-in Explorador de origen de datos de la Plataforma de herramientas de datos Eclipse
+Plugin.ProviderName=Eclipse.org
+DSE.Connect.label=&Conectar
+DSE.Disconnect.label=&Desconectar
+DSE.Duplicate.label=Du&plicar
+DSE.Delete.label=&Suprimir
+DSE.Rename.label=Rede&nominar
+DSE.Refresh.label=Reno&var
+DSE.Ping.label=&Ping...
+DSE.AddCP.label=Perfil de c&onexión nuevo
+DSE.AddCP.tooltip=Perfil de conexión nuevo
+DSE.Import.label=&Importar
+DSE.Import.tooltip=Importar
+DSE.Export.label=E&xportar
+DSE.Export.tooltip=Exportar
+DSE.CollapseAll.label=&Contraer todo
+DSE.ExpandAll.label=&Expandir todo
+DSE.ExpandAll.tooltip=Expandir todo
+DSE.ShowCategory.label=&Mostrar categoría
+DSE.ShowCategory.tooltip=Mostrar categoría
+DSE.Name=Explorador de orígenes de datos
+DSE.ContentExtension.Decorator=Decorador de perfil de conexión
+DSE.ContentExtension.Decorator.Description=La decoración del nodo de extensión de contenido falla al conectar con el servidor.
+DSE.content=Extensión del Explorador de orígenes de datos
+category.name.dataTools=Desarrollo SQL
+category.name.connectivity=Conectividad

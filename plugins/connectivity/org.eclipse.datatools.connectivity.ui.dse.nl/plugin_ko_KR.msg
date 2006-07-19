@@ -1,0 +1,27 @@
+#Thu Jun 22 00:30:53 EDT 2006
+Plugin.Name=Eclipse 데이터 도구 플랫폼 데이터 소스 탐색기 플러그인
+Plugin.ProviderName=Eclipse.org
+DSE.Connect.label=연결(&C)
+DSE.Disconnect.label=연결 끊기(&D)
+DSE.Duplicate.label=중복(&P)
+DSE.Delete.label=삭제(&E)
+DSE.Rename.label=이름 바꾸기(&N)
+DSE.Refresh.label=새로 고치기(&R)
+DSE.Ping.label=Ping(&P)...
+DSE.AddCP.label=새 연결 프로파일(&N)
+DSE.AddCP.tooltip=새 연결 프로파일
+DSE.Import.label=가져오기(&I)
+DSE.Import.tooltip=가져오기
+DSE.Export.label=내보내기(&E)
+DSE.Export.tooltip=내보내기
+DSE.CollapseAll.label=모두 접기(&C)
+DSE.ExpandAll.label=모두 펼치기(&E)
+DSE.ExpandAll.tooltip=모두 펼치기
+DSE.ShowCategory.label=카테고리 표시(&S)
+DSE.ShowCategory.tooltip=카테고리 표시
+DSE.Name=데이터 소스 탐색기
+DSE.ContentExtension.Decorator=연결 프로파일 데코레이터
+DSE.ContentExtension.Decorator.Description=서버에 연결할 때 데코레이트 컨텐츠 확장 노드가 실패합니다.
+DSE.content=데이터 소스 탐색기 확장
+category.name.dataTools=SQL 개발
+category.name.connectivity=연결

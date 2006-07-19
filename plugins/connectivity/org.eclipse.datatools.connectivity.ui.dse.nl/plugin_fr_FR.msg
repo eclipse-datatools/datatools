@@ -1,0 +1,27 @@
+#Thu Jun 22 00:30:53 EDT 2006
+Plugin.Name=Plug-in explorateur de source de données de la plateforme d'Outils de données Eclipse
+Plugin.ProviderName=Eclipse.org
+DSE.Connect.label=&Connecter
+DSE.Disconnect.label=&Déconnecter
+DSE.Duplicate.label=Co&pier
+DSE.Delete.label=&Supprimer
+DSE.Rename.label=Re&nommer
+DSE.Refresh.label=Rég&énérer
+DSE.Ping.label=&Ping...
+DSE.AddCP.label=&Nouveau profil de connexion
+DSE.AddCP.tooltip=Nouveau profil de connexion
+DSE.Import.label=&Importer
+DSE.Import.tooltip=Importer
+DSE.Export.label=&Exporter
+DSE.Export.tooltip=Exporter
+DSE.CollapseAll.label=&Réduire tout
+DSE.ExpandAll.label=&Développer tout
+DSE.ExpandAll.tooltip=Développer tout
+DSE.ShowCategory.label=&Afficher la catégorie
+DSE.ShowCategory.tooltip=Afficher la catégorie
+DSE.Name=Explorateur de source de données
+DSE.ContentExtension.Decorator=Décorateur de profils de connexion
+DSE.ContentExtension.Decorator.Description=Décorer le noeud d'extension de contenu en cas d'échec de la connexion au serveur.
+DSE.content=Extension d'explorateur de source de données
+category.name.dataTools=Développement SQL
+category.name.connectivity=Connectivité
