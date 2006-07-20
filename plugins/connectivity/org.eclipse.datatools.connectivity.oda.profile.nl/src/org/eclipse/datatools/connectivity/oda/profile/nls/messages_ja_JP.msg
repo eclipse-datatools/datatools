@@ -1,0 +1,1 @@
+constants_componentName=DTP オープンデータアクセス

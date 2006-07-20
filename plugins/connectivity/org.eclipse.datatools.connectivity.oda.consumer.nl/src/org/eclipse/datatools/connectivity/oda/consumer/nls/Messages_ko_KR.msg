@@ -1,0 +1,16 @@
+helper_cannotGetNamedResultsAfterExecuteQuery=executeQuery()가 호출된 후 결과 세트를 이름별로 가져올 수 없습니다.
+helper_cannotSetParamBeforePrepare=명령문이 준비되기 전에 입력 매개변수를 설정할 수 없습니다.
+helper_cannotGetParamBeforeExecute=명령문이 실행하기 전에 출력 매개변수를 가져올 수 없습니다.
+helper_cannotGetParamMdBeforePrepare=명령문이 준비되기 전에 매개변수 메타데이터를 가져올 수 없습니다.
+helper_cannotSetSortSpecBeforePrepare=명령문이 준비되기 전에 정렬 스펙을 설정할 수 없습니다.
+helper_maxConcurrentConnectionsReached=최대 활성 동시 연결에 도달했습니다.
+helper_connectionFailed=연결을 열 수 없습니다.
+helper_cannotConstructConnectionFactory=ODA 드라이버의 연결 팩토리를 작성할 수 없습니다.
+helper_inadequatePermissionsForCompatibility=부적합한 권한으로 인해 역호환성을 제공할 수 없습니다.
+helper_connectionIsInactive=데이터 소스에 대한 확립된 연결이 활성화되지 않았습니다.
+helper_maxConcurrentStatementsReached=이 연결에 대한 최대 활성 동시 명령문에 도달했습니다.
+helper_prepareFailed=준비에 실패했습니다.
+helper_cannotGetResultSetMdBeforePrepare=명령문이 준비되기 전에 결과 세트 메타데이터를 가져올 수 없습니다.
+helper_cannotExecuteBeforePrepare=명령문이 준비되기 전에 명령문을 실행할 수 없습니다.
+helper_missingDriverInfo=ODA 데이터 소스 ID 또는 확장 Manifest가 누락되었습니다.
+helper_extension_mustImplementInterface=올바르지 않은 클래스({0}) 구현입니다. Java 인터페이스({1})를 구현해야 합니다.

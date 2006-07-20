@@ -1,0 +1,28 @@
+# Exception messages for the Oda Flat File Driver
+
+connection_CONNECTION_PROPERTIES_MISSING=接続プロパティーが欠落しています。
+connection_CANNOT_OPEN_FLAT_FILE_DB_DIR=ディレクトリー下のフラット・ファイル・データベースを開くことができません。 
+
+query_COMMAND_IS_EMPTY=QUERY コマンドが空です。
+query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY=クロス・テーブル・クエリーはサポートされていません。
+query_COMMAND_NOT_VALID=QUERY コマンドが無効です。
+query_ARGUMENT_ERROR=引数は「NAME」または「TYPE」にする必要があります。
+query_IO_EXCEPTION=ファイルの読み取り中に入出力例外が発生しました。
+query_SOURCE_DATA_ERROR=ソース・データに重複する列名が見つかりました。
+query_COLUMN_NAME_ERROR=列名のエラー
+
+resultSet_COLUMN_NOT_FOUND=列が見つかりません\:
+resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=カーソルがまだ初期化されていません。
+
+resultSetMetaData_INVALID_COLUMN_INDEX=無効な列インデックス\:
+
+dataTypes_TYPE_NAME_INVALID=無効な型名\:
+
+dataSetMetaData_PRODUCT_NAME=DTP ODA Flat File Data Source Provider
+
+common_ARGUMENT_CANNOT_BE_NULL=引数は NULL にできません。
+common_CONNECTION_HAS_NOT_OPEN=接続が開かれていません。
+common_CANNOT_FIND_COLUMN=列が見つかりません。
+query_streamClosed=ストリームがクローズされました。
+query_invalidTableName=無効なテーブル名\:
+

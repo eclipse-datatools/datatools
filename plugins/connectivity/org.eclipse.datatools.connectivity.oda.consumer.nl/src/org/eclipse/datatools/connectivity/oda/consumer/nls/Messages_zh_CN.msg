@@ -1,0 +1,16 @@
+helper_cannotGetNamedResultsAfterExecuteQuery=在调用 executeQuery() 之后，无法通过名称获取结果集。
+helper_cannotSetParamBeforePrepare=在编译语句之前，无法设置输入参数。
+helper_cannotGetParamBeforeExecute=在执行语句之前，无法获取输出参数。
+helper_cannotGetParamMdBeforePrepare=在编译语句之前，无法获取参数元数据。
+helper_cannotSetSortSpecBeforePrepare=在编译语句之前，无法设置排序规范。
+helper_maxConcurrentConnectionsReached=已达到最大活动并行连接数。
+helper_connectionFailed=无法打开连接。
+helper_cannotConstructConnectionFactory=无法创建 ODA 驱动程序的连接工厂。
+helper_inadequatePermissionsForCompatibility=因为许可权不足，无法提供向后兼容性。
+helper_connectionIsInactive=与数据源建立的连接未处于活动状态。
+helper_maxConcurrentStatementsReached=此连接已达到最大活动并行语句数。
+helper_prepareFailed=编译失败。
+helper_cannotGetResultSetMdBeforePrepare=在编译语句之前不能获取结果集元数据。
+helper_cannotExecuteBeforePrepare=在编译语句之前不能执行该语句。
+helper_missingDriverInfo=缺少 ODA 数据源标识或扩展清单。
+helper_extension_mustImplementInterface=无效类（{0}）实现。必须实现 Java 接口（{1}）。

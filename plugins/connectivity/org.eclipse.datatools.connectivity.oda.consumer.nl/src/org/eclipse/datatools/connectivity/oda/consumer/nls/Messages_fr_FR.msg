@@ -1,0 +1,16 @@
+helper_cannotGetNamedResultsAfterExecuteQuery=Impossible d'extraire les ensembles de résultats par nom après l'appel de la fonction executeQuery().
+helper_cannotSetParamBeforePrepare=Impossible de définir les paramètres d'entrée avant la préparation de l'instruction.
+helper_cannotGetParamBeforeExecute=Impossible d'obtenir les paramètres de sortie avant l'exécution de l'instruction.
+helper_cannotGetParamMdBeforePrepare=Impossible d'obtenir les métadonnées des paramètres avant la préparation de l'instruction.
+helper_cannotSetSortSpecBeforePrepare=Impossible de définir la spécification de tri avant la préparation de l'instruction.
+helper_maxConcurrentConnectionsReached=Nombre maximal de connexions simultanées actives atteint.
+helper_connectionFailed=Impossible d'ouvrir la connexion.
+helper_cannotConstructConnectionFactory=Impossible de créer la fabrique de connexions du pilote ODA.
+helper_inadequatePermissionsForCompatibility=Impossible d'assurer une compatibilité amont en raison d'autorisations inadéquates.
+helper_connectionIsInactive=La connexion établie à la source de données n'est pas active.
+helper_maxConcurrentStatementsReached=Nombre maximal d'instructions actives simultanées atteint pour cette connexion.
+helper_prepareFailed=Echec de la préparation.
+helper_cannotGetResultSetMdBeforePrepare=Impossible d'extraire les métadonnées de l'ensemble de résultats avant la préparation de l'instruction.
+helper_cannotExecuteBeforePrepare=Impossible d'exécuter l'instruction avant la préparation de l'instruction.
+helper_missingDriverInfo=ID ou manifeste d'extension de source de données ODA manquant.
+helper_extension_mustImplementInterface=Implémentation ({0}) de classe incorrecte.  L''interface Java ({1}) doit être implémentée.
