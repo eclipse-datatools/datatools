@@ -100,7 +100,7 @@ public class Connection implements IConnection
             throw new OdaException( Messages
                     .getString( "common_CONNECTION_HAS_NOT_OPEN" ) ); //$NON-NLS-1$
 
-        return new Query( this.homeDir, this, charSet, this.includeTypeLine );
+        return new FlatFileQuery( this.homeDir, this, charSet, this.includeTypeLine );
     }
 
     /*
