@@ -86,7 +86,7 @@ public interface IResultSetMetaData
 	/**
 	 * Returns the display length of the specific column.
 	 * @param index	column number (1-based).
-	 * @return		the column display length.
+	 * @return		the column display length, or -1 if unknown.
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public int getColumnDisplayLength( int index ) throws OdaException;
