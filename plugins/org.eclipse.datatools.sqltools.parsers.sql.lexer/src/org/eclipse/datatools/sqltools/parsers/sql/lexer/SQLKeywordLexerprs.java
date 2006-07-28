@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.parsers.sql.lexer;
 
-import com.ibm.lpg.ParseTable;
+import lpg.lpgjavaruntime.ParseTable;
 
 class SQLKeywordLexerprs implements ParseTable, SQLKeywordLexersym {
 

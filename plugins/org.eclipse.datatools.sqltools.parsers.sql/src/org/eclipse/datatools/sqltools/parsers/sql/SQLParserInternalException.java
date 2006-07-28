@@ -10,15 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.parsers.sql;
 
-import com.ibm.lpg.BadParseSymFileException;
-import com.ibm.lpg.NotBacktrackParseTableException;
+import lpg.lpgjavaruntime.BadParseSymFileException;
+import lpg.lpgjavaruntime.NotBacktrackParseTableException;
 
 
 /**
  * Exception thrown by <code>SQLQueryParser</code> when an internal error
  * occured while attempting to run the parser. Possible init cause is
- * {@link com.ibm.lpg.BadParseSymFileException} or 
- * {@link com.ibm.lpg.NotBacktrackParseTableException}.
+ * {@link lpg.lpgjavaruntime.BadParseSymFileException} or 
+ * {@link lpg.lpgjavaruntime.NotBacktrackParseTableException}.
  * 
  * @author ckadner
  */

@@ -16,7 +16,7 @@
 --
 %Options escape=$,table=java,margin=4,nobacktrack
 %options action=("*.java", "/.", "./") -- SQLQueryLexer.java
-%options ParseTable=com.ibm.lpg.*
+%options ParseTable=lpg.lpgjavaruntime.*
 
 $Notice /.$copyright./
 
@@ -113,7 +113,7 @@ $Headers
     $package_declaration
 
     $import_classes
-    import com.ibm.lpg.*;
+    import lpg.lpgjavaruntime.*;
 
     public class $action_class extends AbstractSQLLexer implements RuleAction, $exp_type, $sym_type
     {

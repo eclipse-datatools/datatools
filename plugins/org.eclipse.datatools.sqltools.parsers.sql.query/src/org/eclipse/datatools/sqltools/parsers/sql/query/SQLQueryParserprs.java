@@ -11,7 +11,7 @@
 
 package org.eclipse.datatools.sqltools.parsers.sql.query;
 
-import com.ibm.lpg.ParseTable;
+import lpg.lpgjavaruntime.ParseTable;
 
 class SQLQueryParserprs implements ParseTable, SQLQueryParsersym {
 

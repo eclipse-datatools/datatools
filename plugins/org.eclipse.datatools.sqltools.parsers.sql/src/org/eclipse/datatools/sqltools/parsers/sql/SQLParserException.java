@@ -13,11 +13,11 @@ package org.eclipse.datatools.sqltools.parsers.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ibm.lpg.BadParseException;
-import com.ibm.lpg.DiagnoseParser;
-import com.ibm.lpg.ParseTable;
-import com.ibm.lpg.PrsStream;
-import com.ibm.lpg.Token;
+import lpg.lpgjavaruntime.BadParseException;
+import lpg.lpgjavaruntime.DiagnoseParser;
+import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.PrsStream;
+import lpg.lpgjavaruntime.Token;
 /**
  * Exception thrown by <code>SQLQueryParser</code> when an error
  * occured while running the parser. This exception should be helpful to
@@ -26,7 +26,7 @@ import com.ibm.lpg.Token;
  * {@link org.eclipse.datatools.sqltools.parsers.sql.SQLParseErrorInfo} objects to determin
  * the reason and a possible solution for the parser errors.
  * 
- * Possible init cause is {@link com.ibm.lpg.BadParseException}.
+ * Possible init cause is {@link lpg.lpgjavaruntime.BadParseException}.
  * 
  * @author ckadner
  */

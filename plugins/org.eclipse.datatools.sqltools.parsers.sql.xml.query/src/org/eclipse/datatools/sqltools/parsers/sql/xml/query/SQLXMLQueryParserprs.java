@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.parsers.sql.xml.query;
 
-import com.ibm.lpg.*;
+import lpg.lpgjavaruntime.*;
 
 class SQLXMLQueryParserprs implements ParseTable, SQLXMLQueryParsersym {
 

@@ -30,9 +30,9 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParser;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserLogger;
 
-import com.ibm.lpg.IToken;
-import com.ibm.lpg.LexStream;
-import com.ibm.lpg.ParseTable;
+import lpg.lpgjavaruntime.IToken;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.ParseTable;
 
 /**
  * @author ckadner

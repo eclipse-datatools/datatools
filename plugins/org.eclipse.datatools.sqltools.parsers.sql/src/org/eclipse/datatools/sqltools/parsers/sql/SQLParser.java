@@ -14,8 +14,8 @@ package org.eclipse.datatools.sqltools.parsers.sql;
 
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 
-import com.ibm.lpg.LexStream;
-import com.ibm.lpg.ParseTable;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.ParseTable;
 
 /**
  * @author ckadner

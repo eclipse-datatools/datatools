@@ -139,7 +139,7 @@ $Headers
 		
 	$import_classes
 	
-	import com.ibm.lpg.*;
+	import lpg.lpgjavaruntime.*;
 	import java.util.List;
 
 	class $parser_name extends $parser_base_class //SQLParser

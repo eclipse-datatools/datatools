@@ -13,11 +13,11 @@ package org.eclipse.datatools.sqltools.parsers.sql.lexer;
 import java.io.IOException;
 import java.util.List;
 
-import com.ibm.lpg.IntSegmentedTuple;
-import com.ibm.lpg.LexParser;
-import com.ibm.lpg.LpgLexStream;
-import com.ibm.lpg.ParseTable;
-import com.ibm.lpg.Token;
+import lpg.lpgjavaruntime.IntSegmentedTuple;
+import lpg.lpgjavaruntime.LexParser;
+import lpg.lpgjavaruntime.LpgLexStream;
+import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.Token;
 
 public abstract class AbstractSQLLexer extends LpgLexStream {
     
@@ -43,7 +43,7 @@ protected final static int ECLIPSE_TAB_VALUE = 4;
     /** 
      * char constant used by LPG to determin end of the char array to be lexed, 
      * value: '\uffff'
-     * @see com.ibm.lpg.IToken#EOF
+     * @see lpg.lpgjavaruntime.IToken#EOF
      */
     protected static final char TOKEN_EOF = Token.EOF; //'\uffff';
     

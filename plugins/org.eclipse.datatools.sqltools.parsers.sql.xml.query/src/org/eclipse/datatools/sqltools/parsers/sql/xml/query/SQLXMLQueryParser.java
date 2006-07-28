@@ -61,7 +61,7 @@ import org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateEle
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.query.AbstractSQLQueryParser;
 
-import com.ibm.lpg.LexStream;
+import lpg.lpgjavaruntime.LexStream;
 
 class SQLXMLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 {

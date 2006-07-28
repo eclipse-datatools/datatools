@@ -44,7 +44,7 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 
-import com.ibm.lpg.LexStream;
+import lpg.lpgjavaruntime.LexStream;
 
 class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 {

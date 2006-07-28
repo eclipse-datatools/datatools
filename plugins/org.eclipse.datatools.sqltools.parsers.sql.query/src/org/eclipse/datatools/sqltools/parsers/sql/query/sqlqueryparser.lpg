@@ -162,7 +162,7 @@
 --%options serialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
 --%options dat_directory="../../../../../.." --TODO change path
 --%options stream-type=TokenStream
-%options ParseTable=com.ibm.lpg.*
+%options ParseTable=lpg.lpgjavaruntime.*
 %options package=org.eclipse.datatools.sqltools.parsers.sql.query
 %options template=sqlparserTemplate.lpg  --This option can be given at lpg compile time
 --%options import_terminals=sqlquerylexer.lpg

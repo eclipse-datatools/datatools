@@ -8,7 +8,7 @@ Bundle-ClassPath: lexer.jar,
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.lexer.LexerPlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
-Export-Package: com.ibm.lpg,
- org.eclipse.datatools.sqltools.parsers.sql.lexer
-Require-Bundle: org.eclipse.core.runtime
+Export-Package: org.eclipse.datatools.sqltools.parsers.sql.lexer
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.lpg;visibility:=reexport
 Eclipse-AutoStart: true

@@ -21,21 +21,21 @@ import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
 
-import com.ibm.lpg.BacktrackingParser;
-import com.ibm.lpg.BadParseException;
-import com.ibm.lpg.BadParseSymFileException;
-import com.ibm.lpg.DiagnoseParser;
-import com.ibm.lpg.IToken;
-import com.ibm.lpg.LexStream;
-import com.ibm.lpg.NotBacktrackParseTableException;
-import com.ibm.lpg.NullExportedSymbolsException;
-import com.ibm.lpg.NullTerminalSymbolsException;
-import com.ibm.lpg.ParseTable;
-import com.ibm.lpg.PrsStream;
-import com.ibm.lpg.RuleAction;
-import com.ibm.lpg.Token;
-import com.ibm.lpg.UndefinedEofSymbolException;
-import com.ibm.lpg.UnimplementedTerminalsException;
+import lpg.lpgjavaruntime.BacktrackingParser;
+import lpg.lpgjavaruntime.BadParseException;
+import lpg.lpgjavaruntime.BadParseSymFileException;
+import lpg.lpgjavaruntime.DiagnoseParser;
+import lpg.lpgjavaruntime.IToken;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.NotBacktrackParseTableException;
+import lpg.lpgjavaruntime.NullExportedSymbolsException;
+import lpg.lpgjavaruntime.NullTerminalSymbolsException;
+import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.PrsStream;
+import lpg.lpgjavaruntime.RuleAction;
+import lpg.lpgjavaruntime.Token;
+import lpg.lpgjavaruntime.UndefinedEofSymbolException;
+import lpg.lpgjavaruntime.UnimplementedTerminalsException;
 
 //DOCME
 public abstract class AbstractSQLParser extends PrsStream implements RuleAction
@@ -63,7 +63,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
     protected static final int ERROR_DIAGNOSING_MIN_NUMBER = 1;
     
     /**
-     * @see com.ibm.lpg.RuleAction#ruleAction(int)
+     * @see lpg.lpgjavaruntime.RuleAction#ruleAction(int)
      */
     public abstract void ruleAction(int rule);
     public abstract String[] orderedTerminalSymbols();
@@ -629,7 +629,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
     
     private int[] kindMap = null;
 
-    /** @see com.ibm.lpg.PrsStream#remapTerminalSymbols(java.lang.String[], int)*/
+    /** @see lpg.lpgjavaruntime.PrsStream#remapTerminalSymbols(java.lang.String[], int)*/
     public void remapTerminalSymbols(String[] ordered_parser_symbols, int eof_symbol)
                     throws UndefinedEofSymbolException,
                     NullExportedSymbolsException, NullTerminalSymbolsException,
