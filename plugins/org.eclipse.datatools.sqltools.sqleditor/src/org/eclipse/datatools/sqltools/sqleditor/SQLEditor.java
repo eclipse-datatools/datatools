@@ -258,6 +258,9 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
         viewer.doOperation( ProjectionViewer.TOGGLE );
         
+        //only when there's control, need we update update outline and annotation
+        installSQLUpdater();
+        
         /* Set a help context ID to enable F1 help. */
         PlatformUI.getWorkbench().getHelpSystem().setHelp( parent, HELP_CONTEXT_ID );
     }
@@ -656,6 +659,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      */
     protected void initializeEditor() {
         super.initializeEditor();
+        setDocumentProvider(new SQLStorageDocumentProvider());
         setSourceViewerConfiguration( createSourceViewerConfiguration() );
         setRangeIndicator( new DefaultRangeIndicator() );
     }

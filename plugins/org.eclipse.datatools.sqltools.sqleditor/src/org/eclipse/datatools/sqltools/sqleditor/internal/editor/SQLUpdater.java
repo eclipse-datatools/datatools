@@ -280,6 +280,8 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
      */
     private void updateAnnotation(ParseException ex, String markerType, Map attributes) throws CoreException
     {
+    	if (_annotationModel == null)
+    		return;
         IMarker marker = _resource.createMarker(markerType);
         marker.setAttributes(attributes);
         //since we will always refresh the task markers each time we parse the sql text, there's no
@@ -355,38 +357,39 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     {
         //we must record the stale annotations before the document is changed so that there will be no dangling markers
         _staleAnnotations = new ArrayList();
-        for (Iterator iter = _annotationModel.getAnnotationIterator(); iter.hasNext();)
-        {
-            Annotation anno = (Annotation) iter.next();
-            if (anno instanceof MarkerAnnotation)
-            {
-                IMarker marker = ((MarkerAnnotation) anno).getMarker();
-                String type = "";
-                try
-                {
-                    type = marker.getType();
-                }
-                catch (CoreException e2)
-                {
-                    //marker does not exist
-                    _staleAnnotations.add(anno);
-                    continue;
-                }
-                //preserve user editable tasks
-                if (type.equals(EditorConstants.SYNTAX_MARKER_TYPE) || type.equals(EditorConstants.PORTABILITY_MARKER_TYPE))
-                {
-                    _staleAnnotations.add(anno);
-                }
-            }
-        }
+        if (_annotationModel != null) {
+			for (Iterator iter = _annotationModel.getAnnotationIterator(); iter
+					.hasNext();) {
+				Annotation anno = (Annotation) iter.next();
+				if (anno instanceof MarkerAnnotation) {
+					IMarker marker = ((MarkerAnnotation) anno).getMarker();
+					String type = "";
+					try {
+						type = marker.getType();
+					} catch (CoreException e2) {
+						// marker does not exist
+						_staleAnnotations.add(anno);
+						continue;
+					}
+					// preserve user editable tasks
+					if (type.equals(EditorConstants.SYNTAX_MARKER_TYPE)
+							|| type
+									.equals(EditorConstants.PORTABILITY_MARKER_TYPE)) {
+						_staleAnnotations.add(anno);
+					}
+				}
+			}
+		}
         _remembered = true;
     }
 
     /**
-     * remove all the problem markers. Remember to call it when the file is closing
-     * 
-     * @see removeMarkers(boolean group), this is a shortcut to removeMarkers(true)
-     */
+	 * remove all the problem markers. Remember to call it when the file is
+	 * closing
+	 * 
+	 * @see removeMarkers(boolean group), this is a shortcut to
+	 *      removeMarkers(true)
+	 */
     public void removeMarkers()
     {
         removeMarkers(true);
