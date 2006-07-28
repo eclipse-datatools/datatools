@@ -348,6 +348,13 @@ The configured values are passed through to the driver&apos;s implementation of 
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="allowsEmptyValueAsNull" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  A flag that indicates whether an empty value of this property can be treated as a null value.  Default value is true.  This attribute setting applies when an ODA consumer passes the property&apos;s value to this ODA runtime driver.  This optional attribute may be used to accommodate the case where a property value&apos;s input control does not provide the means to specify a null value.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

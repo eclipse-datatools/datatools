@@ -168,7 +168,7 @@ public class DataSetType
     }
 	
 	/**
-	 * Returns an array of Property instances that represent
+	 * Returns an array of Property definition instances that represent
 	 * the properties defined by this data set element.
 	 * The collection includes both top-level properties and
 	 * those in a group.
@@ -184,6 +184,27 @@ public class DataSetType
 	    }
 	    return m_properties;
 	}
+    
+    /**
+     * Returns the Property definition instance that matches the specified name
+     * in the list of properties defined by this data set element.
+     * @param propertyName  the name of a property
+     * @return  the matching Property definition, or null if no match is found.
+     */
+    public Property getProperty( String propertyName )
+    {
+        if ( propertyName == null || propertyName.length() == 0 )
+            return null;
+        
+        Property[] props = getProperties();
+        for( int i = 0; i < props.length; i++ )
+        {
+            if ( propertyName.equals( props[ i ].getName() ))
+                return props[ i ];
+        }
+        
+        return null;    // no matching property
+    }
 
 	/**
 	 * Returns a Properties collecton of property visibilty settings.

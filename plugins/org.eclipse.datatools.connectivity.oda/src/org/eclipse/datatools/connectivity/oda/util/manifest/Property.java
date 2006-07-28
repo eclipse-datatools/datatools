@@ -34,15 +34,24 @@ public class Property
     private static final String LITERAL_TRUE = "true"; //$NON-NLS-1$
     private static final String LITERAL_FALSE = "false"; //$NON-NLS-1$
     
+    private static final String NAME_ATTR = "name";  //$NON-NLS-1$
+    private static final String TYPE_ATTR = "type";  //$NON-NLS-1$
+    private static final String DEFAULT_VALUE_ATTR = "defaultValue";  //$NON-NLS-1$
+    private static final String ENCRYPTABLE_ATTR = "isEncryptable";  //$NON-NLS-1$
+    private static final String CAN_INHERIT_ATTR = "canInherit";  //$NON-NLS-1$
+    private static final String EMPTY_VALUE_TYPE_ATTR = "allowsEmptyValueAsNull";  //$NON-NLS-1$
+    private static final String CHOICE_ELEMENT = "choice";   //$NON-NLS-1$
+    
     private String m_name;
     private String m_displayName;
     private String m_groupName;
     private String m_groupDisplayName;
     private String m_type;
-    private boolean m_canInherit = true;	// default value
+    private boolean m_canInherit;
     private String m_defaultValue;
-    private boolean m_isEncryptable = false;	// default value
+    private boolean m_isEncryptable;
     private PropertyChoice[] m_choices = null;
+    private boolean m_allowsEmptyValueAsNull;
 
     Property( IConfigurationElement propertyElement )
     {
@@ -59,36 +68,30 @@ public class Property
             String groupName, String groupDisplayName )
     {
         // no validation is done; up to the consumer to process
-        m_name = propertyElement.getAttribute( "name" ); //$NON-NLS-1$
+        m_name = propertyElement.getAttribute( NAME_ATTR );
         m_displayName = ManifestExplorer.getElementDisplayName( propertyElement );  
         m_groupName = groupName;
         m_groupDisplayName = groupDisplayName;
-        m_type = propertyElement.getAttribute( "type" ); //$NON-NLS-1$
+        m_type = propertyElement.getAttribute( TYPE_ATTR );
         if( m_type == null || m_type.length() == 0 )	// assign default
         	m_type = "string"; //$NON-NLS-1$
-        m_defaultValue = propertyElement.getAttribute( "defaultValue" ); //$NON-NLS-1$
+        m_defaultValue = propertyElement.getAttribute( DEFAULT_VALUE_ATTR );
 
-        m_isEncryptable = false;
-        String encryptableValue = propertyElement.getAttribute( "isEncryptable" ); //$NON-NLS-1$
- 		if( encryptableValue != null )
-		{
-		    if ( encryptableValue.equalsIgnoreCase( LITERAL_TRUE ) || 
-		         encryptableValue.equalsIgnoreCase( LITERAL_FALSE ) )
-		        m_isEncryptable = Boolean.valueOf( encryptableValue ).booleanValue();
-		}
+        Boolean boolValue = convertBooleanValue( 
+                propertyElement.getAttribute( ENCRYPTABLE_ATTR ) );
+        m_isEncryptable = ( boolValue != null ) ? boolValue.booleanValue() : false;
 
- 		m_canInherit = true;
-        String canInherit = propertyElement.getAttribute( "canInherit" ); //$NON-NLS-1$
-		if( canInherit != null )
-		{
-		    if ( canInherit.equalsIgnoreCase( LITERAL_TRUE ) || 
-			     canInherit.equalsIgnoreCase( LITERAL_FALSE ) )
-		        m_canInherit = Boolean.valueOf( canInherit ).booleanValue();
-		}
+        boolValue = convertBooleanValue( 
+                propertyElement.getAttribute( CAN_INHERIT_ATTR ) );
+        m_canInherit = ( boolValue != null ) ? boolValue.booleanValue() : true;
 		
+        boolValue = convertBooleanValue( 
+                propertyElement.getAttribute( EMPTY_VALUE_TYPE_ATTR ) );
+        m_allowsEmptyValueAsNull = ( boolValue != null ) ? boolValue.booleanValue() : true;
+        
 		// choice elements
 		IConfigurationElement[] choiceElements = 
-		    propertyElement.getChildren( "choice" ); //$NON-NLS-1$
+		    propertyElement.getChildren( CHOICE_ELEMENT );
 		int numChoices = choiceElements.length;
 		if ( numChoices <= 0 )
 		    return;		// done
@@ -101,8 +104,19 @@ public class Property
 		}
 		m_choices = (PropertyChoice[]) choices.toArray( new PropertyChoice[ numChoices ] );
 
-   }
+    }
 
+    private Boolean convertBooleanValue( String value )
+    {
+        if ( value == null || value.length() == 0 )
+            return null;
+        
+        if ( value.equalsIgnoreCase( LITERAL_TRUE ) || 
+             value.equalsIgnoreCase( LITERAL_FALSE ) )
+            return Boolean.valueOf( value );
+        return null;
+    }
+    
     /**
      * Returns the property name.
      * @return	property name
@@ -177,12 +191,23 @@ public class Property
     /**
      * Returns a flag indicating whether this property value should be encrypted
      * in the persistent report design file.
-     * @return	'true' or 'false' value indicating wehther
+     * @return	'true' or 'false' value that indicates whether
      * 			the property value should be encrypted.
      */
     public boolean isEncryptable()
     {
         return m_isEncryptable;
+    }
+
+    /**
+     * Returns a flag that indicates whether an empty value of this property 
+     * can be treated as a null value.
+     * @return  'true' or 'false' value that indicates whether
+     *          this property value can be treated as a null value.
+     */
+    public boolean allowsEmptyValueAsNull()
+    {
+        return m_allowsEmptyValueAsNull;
     }
 
     /**

@@ -2,8 +2,8 @@
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Open Data Access</title>
-<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.sdk_3.1.0/book.css");</style>
-<style>@import url("file:/c:/V3/3.1/eclipse/plugins/org.eclipse.platform.doc.isv_3.1.0/schema.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32/plugins/org.eclipse.sdk_3.2.0.v20060605/book.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_32/configuration/org.eclipse.osgi/bundles/69/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1><CENTER>Open Data Access</CENTER></H1>
@@ -115,7 +115,7 @@ The configured values are passed through to the driver's implementation of the <
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.property">property</a> (<a href="#e.choice">choice</a>*)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST property</p>
-<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>defaultDisplayName&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string|choice) "string"<p class=code id=dtdAttlist>canInherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>defaultValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>isEncryptable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"&gt;</p>
+<p class=code id=dtdAttlist>name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(string|choice) "string"<p class=code id=dtdAttlist>canInherit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "true"<p class=code id=dtdAttlist>defaultValue&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>isEncryptable&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(true | false) "false"<p class=code id=dtdAttlist>allowsEmptyValueAsNull&nbsp;(true | false) "true"&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
 A property whose value can be edited at design-time using an ODA consumer application's designer tool.  Its value is then passed to the ODA runtime driver during run-time.</p>
@@ -127,6 +127,7 @@ A property whose value can be edited at design-time using an ODA consumer applic
 <li><b>canInherit</b> - Reserved.</li>
 <li><b>defaultValue</b> - Default value of the property, if no property value is set.</li>
 <li><b>isEncryptable</b> - A flag indicating whether this property value is encryptable.  Setting it to "true" indicates to an ODA consumer application that this property's value should be encrypted.</li>
+<li><b>allowsEmptyValueAsNull</b> - A flag that indicates whether an empty value of this property can be treated as a null value.  This attribute setting applies when passing a property value to this ODA runtime driver.  This attribute may be used to accommodate the case where a property value's input control does not provide the means to specify a null value.</li>
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.propertyGroup">propertyGroup</a> (<a href="#e.property">property</a>+)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST propertyGroup</p>
