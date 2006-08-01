@@ -53,6 +53,14 @@ public class ExtensionExplorer
         }
         return sm_instance;
     }
+    
+    /**
+     * Singleton instance release method.
+     */
+    public static void releaseInstance()
+    {
+        sm_instance = null;
+    }
 
     private ExtensionExplorer()
     {

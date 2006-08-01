@@ -40,11 +40,14 @@ public class ManifestExplorer
 	private static ManifestExplorer sm_instance = null;
 	
     // trace logging variables
-	private static String sm_loggerName;
-	private static Logger sm_logger;
+	private static Logger sm_logger = null;
 
 	private static final String DTP_ODA_EXT_POINT = 
 	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
+
+    // works around bug in some J2EE servers - Bugzilla #126073
+    private static final String PACKAGE_NAME  = 
+            "org.eclipse.datatools.connectivity.oda.util.manifest";  //$NON-NLS-1$
 	
 	/**
 	 * Gets the <code>ManifestExplorer</code> instance to  
@@ -54,19 +57,31 @@ public class ManifestExplorer
 	public static ManifestExplorer getInstance()
 	{
 	    if( sm_instance == null )
-        {
-	        sm_instance = new ManifestExplorer();
-            
-            // works around bug in some J2EE server; see Bugzilla #126073
-            sm_loggerName = sm_instance.getClass().getPackage().getName();
-            sm_logger = Logger.getLogger( sm_loggerName );
-        }
-		return sm_instance;
+	        sm_instance = new ManifestExplorer();            
+
+        return sm_instance;
 	}
+    
+    /**
+     * Singleton instance release method.
+     */
+    public static void releaseInstance()
+    {
+        sm_instance = null;
+        sm_logger = null;
+    }
 	
 	private ManifestExplorer()
 	{
 	}
+
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+            sm_logger = Logger.getLogger( PACKAGE_NAME );
+        
+        return sm_logger;
+    }
 	
 	/**
 	 * Returns a collection of identifiers of 
@@ -98,7 +113,7 @@ public class ManifestExplorer
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
+                getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 			}
 		}
 		
@@ -263,7 +278,7 @@ public class ManifestExplorer
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
+                getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 			}
 		}
 		
@@ -294,7 +309,7 @@ public class ManifestExplorer
 			}
 			catch( OdaException ex )
 			{
-				sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
+                getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
 				continue;
 			}
 			
@@ -438,7 +453,7 @@ public class ManifestExplorer
                 throw new OdaException( msg );
             
             // no dataSet elements are defined; ok to proceed
-			sm_logger.log( Level.INFO, msg );
+            getLogger().log( Level.INFO, msg );
         }
         
 		return dataSetElements;
