@@ -10,6 +10,7 @@ query_ARGUMENT_ERROR=L'argument doit être 'NAME' ou 'TYPE'.
 query_IO_EXCEPTION=Une exception E-S s'est produite lors de la lecture du fichier.
 query_SOURCE_DATA_ERROR=Des noms de colonnes en double ont été trouvées dans les données source.
 query_COLUMN_NAME_ERROR=Erreur de nom de colonne
+query_INVALID_FLAT_FILE=La source de données Flatfile est incorrecte.
 
 resultSet_COLUMN_NOT_FOUND=Colonne introuvable \:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=Le curseur n'a pas encore été initialisé.

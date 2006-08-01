@@ -10,6 +10,7 @@ query_ARGUMENT_ERROR=参数应为“NAME”或“TYPE”。
 query_IO_EXCEPTION=读取文件时发生了 I/O 异常。
 query_SOURCE_DATA_ERROR=在源数据中找到重复的列名。
 query_COLUMN_NAME_ERROR=列名错误
+query_INVALID_FLAT_FILE=平面文件数据源无效。
 
 resultSet_COLUMN_NOT_FOUND=找不到列：
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=尚未初始化游标。

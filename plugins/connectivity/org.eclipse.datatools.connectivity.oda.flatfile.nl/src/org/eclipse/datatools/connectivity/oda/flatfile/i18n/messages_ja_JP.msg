@@ -10,6 +10,7 @@ query_ARGUMENT_ERROR=引数は「NAME」または「TYPE」にする必要があります。
 query_IO_EXCEPTION=ファイルの読み取り中に入出力例外が発生しました。
 query_SOURCE_DATA_ERROR=ソース・データに重複する列名が見つかりました。
 query_COLUMN_NAME_ERROR=列名のエラー
+query_INVALID_FLAT_FILE=フラットファイルのデータソースは無効です。
 
 resultSet_COLUMN_NOT_FOUND=列が見つかりません\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=カーソルがまだ初期化されていません。
