@@ -23,7 +23,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
- * A single mapping from a data provider's native data type to one or more ODA 
+ * The data type mapping of a data provider's native data type to one or more ODA 
  * data types. A single native data type must be mapped to a primary ODA scalar 
  * data type. The driver can optionally provide a list of alternate ODA data types 
  * to which it is capable of converting the native data type.
@@ -36,6 +36,7 @@ public class DataTypeMapping
 	private String m_nativeType;
 	private String m_odaScalarType;
 	private String[] m_alternativeDataTypes;
+    private int[] m_alternativeDataTypeCodes;
 	
 	DataTypeMapping( IConfigurationElement dataTypeMapping,
 					 String dataSetTypeName ) throws OdaException
@@ -94,16 +95,8 @@ public class DataTypeMapping
 			throw new OdaException( isForAlternatives ? 
 					Messages.bind( Messages.manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2, m_nativeType ) :
 					Messages.bind( Messages.manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1, m_nativeType ) );
-			
-		if( ! odaScalarType.equalsIgnoreCase( "Date" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Double" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Integer" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "String" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Time" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Timestamp" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Decimal" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Blob" ) && //$NON-NLS-1$
-			! odaScalarType.equalsIgnoreCase( "Clob" ) ) //$NON-NLS-1$
+        
+        if( ! getOdaTypeCodes().containsKey( toOdaTypeKey( odaScalarType ) ))
 			throw new OdaException( Messages.bind( Messages.manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE,
 													odaScalarType, m_nativeType ) );
 	}
@@ -159,6 +152,55 @@ public class DataTypeMapping
 	}
     
     /**
+     * Returns the alternative ODA data type codes of the data type mapping, or 
+     * an empty array if no alternative ODA data types exist.
+     * @return  the alternative ODA data type codes, or an empty array if no alternative 
+     *          ODA data types exist.
+     */
+    public int[] getAlternativeOdaDataTypeCodes()
+    {
+        if( m_alternativeDataTypeCodes == null )
+        {
+            int numCodes = m_alternativeDataTypes.length;
+            m_alternativeDataTypeCodes = new int[numCodes];
+            
+            for( int i = 0; i < numCodes; i++ )
+            {
+                m_alternativeDataTypeCodes[i] = 
+                    toOdaDataTypeCode( m_alternativeDataTypes[i] );
+            }
+        }
+        return m_alternativeDataTypeCodes;
+    }
+    
+    /**
+     * A convenient method to indicate whether the ODA data provider 
+     * is capable of converting this mapping's native data type 
+     * to the specified ODA data type code.
+     * @param odaDataTypeCode   an ODA data type code
+     * @return  true if the specified ODA data type can be converted from this
+     *          mapping's native data type; false otherwise.
+     */
+    public boolean canConvertToOdaType( int odaDataTypeCode )
+    {
+        // check if the specified code is the primary ODA data type 
+        // defined in this native type's mapping
+        if( odaDataTypeCode == getOdaScalarDataTypeCode() )
+            return true;
+        
+        // check if the specified code is one of the alternative ODA data types
+        // defined in this native type's mapping
+        int[] alternateOdaTypes = getAlternativeOdaDataTypeCodes();
+        for( int i = 0; i < alternateOdaTypes.length; i++ )
+        {
+            if( odaDataTypeCode == alternateOdaTypes[i] )
+                return true;
+        }
+        
+        return false;
+    }
+    
+    /**
      * Converts an ODA data type literal value to its
      * corresponding code value.
      * @param odaDataTypeLiteral    a literal value of an ODA data type 
@@ -171,38 +213,53 @@ public class DataTypeMapping
         if( odaDataTypeLiteral == null ||
             odaDataTypeLiteral.length() == 0 )
             return Types.NULL;
-            
-        Locale caseLocl = Locale.US;
-        if( sm_odaTypeCodes == null )
-        {
-            sm_odaTypeCodes = new Hashtable( 10 );
-            
-            sm_odaTypeCodes.put( "String".toLowerCase( caseLocl ), //$NON-NLS-1$
-                                new Integer( Types.CHAR )); 
-            sm_odaTypeCodes.put( "Integer".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.INTEGER )); 
-            sm_odaTypeCodes.put( "Double".toLowerCase( caseLocl ), //$NON-NLS-1$  
-                                new Integer( Types.DOUBLE )); 
-            sm_odaTypeCodes.put( "Decimal".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.DECIMAL )); 
-            sm_odaTypeCodes.put( "Date".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.DATE )); 
-            sm_odaTypeCodes.put( "Time".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.TIME )); 
-            sm_odaTypeCodes.put( "Timestamp".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.TIMESTAMP ));
-            sm_odaTypeCodes.put( "Blob".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.BLOB )); 
-            sm_odaTypeCodes.put( "Clob".toLowerCase( caseLocl ), //$NON-NLS-1$ 
-                                new Integer( Types.CLOB )); 
-        }
         
         Object typeCode = 
-            sm_odaTypeCodes.get( odaDataTypeLiteral.toLowerCase( caseLocl ) );
+            getOdaTypeCodes().get( toOdaTypeKey( odaDataTypeLiteral ) );
         if( typeCode != null )
             return ((Integer) typeCode).intValue();
         
         return Types.NULL;
     }
-
+    
+    /**
+     * Returns the cached table that maps each ODA data type name 
+     * to its corresponding data type code.
+     * The data type name serves as the key in the cached table.
+     */
+    private static Hashtable getOdaTypeCodes()
+    {
+        if( sm_odaTypeCodes == null )
+        {
+            sm_odaTypeCodes = new Hashtable( 10 );
+            
+            sm_odaTypeCodes.put( toOdaTypeKey( "String" ), //$NON-NLS-1$
+                                new Integer( Types.CHAR )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Integer" ), //$NON-NLS-1$ 
+                                new Integer( Types.INTEGER )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Double" ), //$NON-NLS-1$  
+                                new Integer( Types.DOUBLE )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Decimal" ), //$NON-NLS-1$ 
+                                new Integer( Types.DECIMAL )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Date" ), //$NON-NLS-1$ 
+                                new Integer( Types.DATE )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Time" ), //$NON-NLS-1$ 
+                                new Integer( Types.TIME )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Timestamp" ), //$NON-NLS-1$ 
+                                new Integer( Types.TIMESTAMP ));
+            sm_odaTypeCodes.put( toOdaTypeKey( "Blob" ), //$NON-NLS-1$ 
+                                new Integer( Types.BLOB )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Clob" ), //$NON-NLS-1$ 
+                                new Integer( Types.CLOB )); 
+        }
+        
+        return sm_odaTypeCodes;        
+    }
+    
+    private static String toOdaTypeKey( String odaDataTypeLiteral )
+    {
+        assert odaDataTypeLiteral != null;
+        return odaDataTypeLiteral.toLowerCase( Locale.US );
+    }
+    
 }
