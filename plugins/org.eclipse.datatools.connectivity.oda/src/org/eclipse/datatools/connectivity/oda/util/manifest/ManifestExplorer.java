@@ -338,6 +338,8 @@ public class ManifestExplorer
     public static IExtension[] getExtensions( String extPoint )
     {
         IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+        if( pluginRegistry == null )    // possible in web deployment
+            return null;
         IExtensionPoint extensionPoint = 
             pluginRegistry.getExtensionPoint( extPoint );
         if ( extensionPoint == null )
