@@ -165,6 +165,17 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard#addPages()
+     */
+    public void addPages()
+    {
+        if( getPageCount() > 0 )
+            return;     // has already added pages; done
+        
+        super.addPages();
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard#addCustomPages()
      */
     public void addCustomPages()

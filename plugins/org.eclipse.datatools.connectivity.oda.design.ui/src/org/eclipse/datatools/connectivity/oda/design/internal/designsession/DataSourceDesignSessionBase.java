@@ -328,8 +328,7 @@ public class DataSourceDesignSessionBase
     {
         wizard.setInOdaDesignSession( true );
         
-        if( wizard.getPageCount() == 0 )
-            wizard.addPages();
+        wizard.addPages();
         
         if( wizard.getStartingPage() instanceof NewConnectionProfileWizardPage )
         {
