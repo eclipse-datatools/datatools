@@ -902,12 +902,14 @@ public class FlatFileQuery implements IQuery
 							{
 								currentString += '"';
 								i += 2;
-								startDoubleQuote = true;
+								startDoubleQuote = !startDoubleQuote;
 								continue;
 							}
 							else
 							{
+								i +=1;
 								finishAnElement = true;
+								continue;
 							}
 						}
 					}
@@ -916,7 +918,10 @@ public class FlatFileQuery implements IQuery
 					{
 						startDoubleQuote = !startDoubleQuote;
 						if ( !startDoubleQuote )
+						{
 							finishAnElement = true;
+							continue;
+						}
 					}
 				}
 				else if ( chars[i] == ',' && !startDoubleQuote )
@@ -939,12 +944,18 @@ public class FlatFileQuery implements IQuery
 					if ( !startDoubleQuote )
 						throw new OdaException( "Invalid" );
 				}
+				else if ( chars[i] == ',' )
+				{
+					result.add( currentString );
+					result.add( "" );
+				}
 				else
 				{
 					currentString += chars[i];
 				}
 
 				result.add( currentString );
+				finishAnElement = false;
 
 			}
 		}
