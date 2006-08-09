@@ -26,9 +26,9 @@ import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
+import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
-import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
@@ -39,10 +39,11 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
  */
 public class FlatFileQuery implements IQuery
 {
+
 	public static final int DEFAULT_MAX_ROWS = 1000;
 	private static final String NAME_LITERAL = "NAME"; //$NON-NLS-1$
-    private static final String TYPE_LITERAL = "TYPE"; //$NON-NLS-1$
-    
+	private static final String TYPE_LITERAL = "TYPE"; //$NON-NLS-1$
+
 	// The home directory specified in associated connection
 	private String homeDirectory = null;
 
@@ -410,7 +411,7 @@ public class FlatFileQuery implements IQuery
 		{
 			validateColumnName( preparedColumnNames.split( CommonConstants.DELIMITER_COMMA ),
 					discoverActualColumnMetaData( getPreparedTableNames( parsedQuerySegments ),
-							NAME_LITERAL ) ); 
+							NAME_LITERAL ) );
 		}
 	}
 
@@ -594,7 +595,7 @@ public class FlatFileQuery implements IQuery
 		File file = new File( this.homeDirectory
 				+ File.separator + tableName.trim( ) );
 		if ( !file.exists( ) )
-			throw new OdaException( Messages.getString("query_invalidTableName") + tableName ); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "query_invalidTableName" ) + tableName ); //$NON-NLS-1$
 		return file.getAbsolutePath( );
 	}
 
@@ -618,21 +619,22 @@ public class FlatFileQuery implements IQuery
 			InputStreamReader isr = new InputStreamReader( fis, this.charSet );
 			CSVBufferedReader br = new CSVBufferedReader( isr );
 
-			if ( !( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) || metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) ) )  
+			if ( !( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) || metaDataType.trim( )
+					.equalsIgnoreCase( TYPE_LITERAL ) ) )
 				throw new OdaException( Messages.getString( "query_ARGUMENT_ERROR" ) ); //$NON-NLS-1$
 
 			// if want to discover type information then just skip first line
-			if ( metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) ) 
+			if ( metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) )
 				br.readLine( );
 
 			String[] result = getColumnNameArray( br.readLine( ),
-					metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) ); 
+					metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) );
 
 			br.close( );
 
-			if ( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) ) 
+			if ( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) )
 				this.validateUniqueName( result );
-			if ( metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) ) 
+			if ( metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) )
 				validateColumnTypeConsistency( result );
 
 			return trimStringArray( result );
@@ -853,58 +855,100 @@ public class FlatFileQuery implements IQuery
 					columnNames );
 			if ( location != -1 )
 			{
-				if( location >= vTemp.size( ) )
-					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ));
+				if ( location >= vTemp.size( ) )
+					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
 				sArray[i] = vTemp.elementAt( location ).toString( );
 			}
 		}
 		return sArray;
 	}
 
+	/**
+	 * 
+	 * @param aRow
+	 * @return
+	 * @throws OdaException
+	 */
 	private Vector splitStringWithDoubleQuotes( String aRow )
+			throws OdaException
 	{
-		String[] aRowArray = aRow.split( CommonConstants.DELIMITER_COMMA, -1 );
-		Vector v = new Vector( );
-		String temp = null;
-		boolean isPartOfString = false;
+		Vector result = new Vector( );
+		char[] chars = aRow.toCharArray( );
 
-		for ( int i = 0; i < aRowArray.length; i++ )
+		boolean startDoubleQuote = false;
+		boolean finishAnElement = false;
+		String currentString = "";
+
+		for ( int i = 0; i < chars.length; i++ )
 		{
-			if ( aRowArray[i].trim( )
-					.startsWith( CommonConstants.DELIMITER_DOUBLEQUOTE )
-					&& ( !isPartOfString ) )
+			if ( i < chars.length - 1 )
 			{
-				if ( !aRowArray[i].trim( )
-						.endsWith( CommonConstants.DELIMITER_DOUBLEQUOTE ) )
+				//"
+				if ( chars[i] == '"' )
 				{
-					temp = aRowArray[i];
-					isPartOfString = true;
-					continue;
+					//""
+					if ( chars[i + 1] == '"' )
+					{
+						if ( startDoubleQuote )
+						{
+							currentString += '"';
+							i += 1;
+							continue;
+						}
+						else
+						{
+							//"""
+							if ( i < chars.length - 1 && chars[i + 2] == '"' )
+							{
+								currentString += '"';
+								i += 2;
+								startDoubleQuote = true;
+								continue;
+							}
+							else
+							{
+								finishAnElement = true;
+							}
+						}
+					}
+					//"*
+					else
+					{
+						startDoubleQuote = !startDoubleQuote;
+						if ( !startDoubleQuote )
+							finishAnElement = true;
+					}
 				}
-				aRowArray[i] = aRowArray[i].trim( ).substring( 1,
-						aRowArray[i].trim( ).length( ) - 1 );
-			}
-			if ( isPartOfString )
-			{
-				temp = temp + CommonConstants.DELIMITER_COMMA + aRowArray[i];
-				if ( aRowArray[i].trim( )
-						.endsWith( CommonConstants.DELIMITER_DOUBLEQUOTE ) )
+				else if ( chars[i] == ',' && !startDoubleQuote )
 				{
-					v.addElement( temp.trim( ).substring( 1,
-							temp.trim( ).length( ) - 1 ) );
-					temp = null;
-					isPartOfString = false;
+					result.add( currentString );
+					currentString = "";
+					finishAnElement = false;
+				}
+				else
+				{
+					if ( finishAnElement == true && chars[i] != ' ' )
+						throw new OdaException( "Invalid" );
+					currentString += chars[i];
 				}
 			}
 			else
 			{
-				// Fields that contain consecutive quote characters is escaped.
-				// Replace a pair of consecutive to one single double quote
-				aRowArray[i] = aRowArray[i].replaceAll( "\\Q\"\"\\E", "\"" ); //$NON-NLS-1$ //$NON-NLS-2$
-				v.addElement( aRowArray[i] );
+				if ( chars[i] == '"' )
+				{
+					if ( !startDoubleQuote )
+						throw new OdaException( "Invalid" );
+				}
+				else
+				{
+					currentString += chars[i];
+				}
+
+				result.add( currentString );
+
 			}
 		}
-		return v;
+		return result;
 	}
 
 	/**
@@ -947,12 +991,13 @@ public class FlatFileQuery implements IQuery
 
 		// the array that contains the actual column names read from data file
 		String[] allColumnNames = discoverActualColumnMetaData( tableName,
-				NAME_LITERAL ); 
+				NAME_LITERAL );
 
 		// the array that contains the actual data type names read from data
 		// file
 		String[] allColumnTypes = hasTypeLine
-				? discoverActualColumnMetaData( tableName, TYPE_LITERAL ) : null; 
+				? discoverActualColumnMetaData( tableName, TYPE_LITERAL )
+				: null;
 
 		// the array that contains the column names read from command
 		String[] queryColumnNames = null;
@@ -1074,7 +1119,7 @@ public class FlatFileQuery implements IQuery
 		else if ( byteMarker[0] == -2 && byteMarker[1] == -1 )
 			this.charSet = "UTF-16BE"; //$NON-NLS-1$
 		else
-			this.charSet = CommonConstants.CONN_DEFAULT_CHARSET; 
+			this.charSet = CommonConstants.CONN_DEFAULT_CHARSET;
 		fis.close( );
 	}
 
@@ -1086,21 +1131,21 @@ public class FlatFileQuery implements IQuery
 		String[] result = null;
 		if ( isFirstLine )
 		{
-			try 
-            {
-				if( CommonConstants.CONN_DEFAULT_CHARSET.equals( charSet ) )
+			try
+			{
+				if ( CommonConstants.CONN_DEFAULT_CHARSET.equals( charSet ) )
 				{
 					byte[] firstLineByteCodes;
-					firstLineByteCodes = line.getBytes(charSet);	
-					if (isUTF8BOMFormat(firstLineByteCodes))
-						line = line.substring(1);
+					firstLineByteCodes = line.getBytes( charSet );
+					if ( isUTF8BOMFormat( firstLineByteCodes ) )
+						line = line.substring( 1 );
 				}
-				result = line.split(CommonConstants.DELIMITER_COMMA);
-			} 
-            catch (UnsupportedEncodingException e) 
-            {
+				result = line.split( CommonConstants.DELIMITER_COMMA );
+			}
+			catch ( UnsupportedEncodingException e )
+			{
 				throw new OdaException( e );
-			} 
+			}
 		}
 		else
 			result = line.split( CommonConstants.DELIMITER_COMMA );
@@ -1123,7 +1168,7 @@ public class FlatFileQuery implements IQuery
 		}
 		return true;
 	}
-	
+
 	/**
 	 * CVSBufferReader will buffer the input from the specified file. Read a
 	 * line of text. A line is considered to be terminated by any one of a line
@@ -1131,6 +1176,7 @@ public class FlatFileQuery implements IQuery
 	 */
 	private static class CSVBufferedReader
 	{
+
 		//
 		private Reader reader;
 		private char[] charBuffer;
@@ -1164,19 +1210,19 @@ public class FlatFileQuery implements IQuery
 			{
 				charBuffer = newACharBuff( );
 				int close = reader.read( charBuffer );
-				
+
 				if ( close == -1 )
 					return null;
-				
+
 				if ( close != CHARBUFFSIZE )
 					this.eofInPosition = close;
-				
+
 				this.startingPosition = 0;
 			}
 
 			String candidate = "";
 			int stopIn = CHARBUFFSIZE;
-			
+
 			if ( isLastCharBuff( ) )
 			{
 				stopIn = this.eofInPosition;
@@ -1206,7 +1252,8 @@ public class FlatFileQuery implements IQuery
 		 * @return
 		 * @throws IOException
 		 */
-		private String readExtraContentOfALine( String candidate ) throws IOException
+		private String readExtraContentOfALine( String candidate )
+				throws IOException
 		{
 			candidate = candidate
 					+ String.copyValueOf( charBuffer,
@@ -1215,9 +1262,9 @@ public class FlatFileQuery implements IQuery
 
 			resetCharBufferStartPosition( );
 
-			String nextLine = readLine();
-			
-			return candidate + (nextLine == null? "":nextLine);
+			String nextLine = readLine( );
+
+			return candidate + ( nextLine == null ? "" : nextLine );
 		}
 
 		/**
@@ -1230,9 +1277,8 @@ public class FlatFileQuery implements IQuery
 		private String readALine( String candidate, int stopIn, int i )
 		{
 			candidate = candidate
-					+ String.copyValueOf( charBuffer,
-							this.startingPosition,
-							i - this.startingPosition );
+					+ String.copyValueOf( charBuffer, this.startingPosition, i
+							- this.startingPosition );
 			this.startingPosition = ( i == stopIn - 1 ? -1 : i + 1 );
 			return candidate;
 		}
