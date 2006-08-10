@@ -11,7 +11,7 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.services;
 
 import java.io.File;
-import java.io.IOException;
+import java.net.URL;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
-import org.osgi.framework.Bundle;
 
 /**
  * @author ljulien
@@ -81,27 +80,11 @@ public class LabelService implements ILabelService
 			{
 				if(configElements[j].getName().equals("contributor"))//$NON-NLS-1$
 				{
-					String displayType = configElements[j].getAttribute("displayType");//$NON-NLS-1$
-					String iconLocation = configElements[j].getAttribute("iconLocation");//$NON-NLS-1$
-					String type = configElements[j].getAttribute("type"); //$NON-NLS-1$
+					LabelInfo li = new LabelInfo(configElements[j]);
+					String type = li.getType();
 					
-				    try
-                    {
-                        Bundle bundle = Platform.getBundle(configElements[j].getDeclaringExtension().getNamespace());
-                        String location = Platform.resolve(bundle.getEntry("/")).getPath() + iconLocation; //$NON-NLS-1$
-                        LabelSelector selector = ( configElements[j].getAttribute("selector") != null ) ?  //$NON-NLS-1$
-                            ( LabelSelector )configElements[j].createExecutableExtension( "selector" ) : null; //$NON-NLS-1$
-                        if( !typeProvider.containsKey( type ) ) typeProvider.put( type, new ArrayList() ); 
-                        ( ( List )typeProvider.get( type ) ).add( new LabelInfo (location, displayType, selector ) );
-                    }
-                    catch (CoreException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    if( !typeProvider.containsKey( type ) ) typeProvider.put( type, new ArrayList() ); 
+                       ( ( List )typeProvider.get( type ) ).add( li );
 				}
 			}
 		}
@@ -429,25 +412,54 @@ public class LabelService implements ILabelService
         return getName (element);
     }
     
-    private class LabelInfo
+    /**
+     * Wrapper class for labelService extension
+     */
+    private static class LabelInfo
     {
-        private String iconLocation;
-        private String displayType;
-        private LabelSelector selector;
-        public LabelInfo (String iconLocation, String displayType, LabelSelector selector )
+    	public static final String ATTR_TYPE = "type";
+    	public static final String ATTR_ICON_LOCATION = "iconLocation";
+    	public static final String ATTR_DISPLAY_TYPE = "displayType";
+    	public static final String ATTR_SELECTOR = "selector";
+
+    	private IConfigurationElement configElement;
+    	private URL iconLocation;
+    	private LabelSelector selector;
+
+    	public LabelInfo (IConfigurationElement configElement)
         {
-            this.iconLocation = iconLocation;
-            this.displayType = displayType;
-            this.selector = selector;
+            this.configElement = configElement;
         }
+    	public String getType()
+    	{
+    		return configElement.getAttribute(ATTR_TYPE);
+    	}
         public Image getIcon()
         {
-            return resourceLoader.queryAbsolutePathImageFromRegistry(this.iconLocation);
+        	if (iconLocation == null) {
+	        	String location = configElement.getAttribute(ATTR_ICON_LOCATION);
+	        	if (location == null) {
+	        		return null;
+	        	}
+	        	iconLocation = Platform.getBundle(configElement.getContributor().getName()).getEntry(location);
+        	}
+            return resourceLoader.queryImageFromRegistry(iconLocation);
         }
         public String getDisplayType ()
         {
-            return this.displayType;
+            return configElement.getAttribute(ATTR_DISPLAY_TYPE);
         }
-        public LabelSelector getSelector() { return selector; }
+        public LabelSelector getSelector()
+        {
+        	if (selector == null) {
+        		try {
+					selector = (LabelSelector) configElement.createExecutableExtension(ATTR_SELECTOR);
+				}
+				catch (CoreException e) {
+					e.printStackTrace();
+				}
+        	}
+        	return selector; 
+        }
     }
 }

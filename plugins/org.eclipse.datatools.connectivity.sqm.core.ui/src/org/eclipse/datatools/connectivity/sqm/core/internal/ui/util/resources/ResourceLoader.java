@@ -10,15 +10,21 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.util.ResourceBundle;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.Bundle;
@@ -37,7 +43,7 @@ public class ResourceLoader
 
 	private ResourceBundle bundle = null;
 
-	private static String iconLocation;
+	private static URL iconLocation;
    
     /**
     * @return Will return the resource loader
@@ -50,15 +56,8 @@ public class ResourceLoader
    
     private ResourceLoader()
     {
-        try
-        {
-            Bundle bundle = RDBCoreUIPlugin.getDefault().getBundle();
-            iconLocation = Platform.resolve(bundle.getEntry("/")).getPath() + ICONS_DIRECTORY; //$NON-NLS-1$
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        Bundle bundle = RDBCoreUIPlugin.getDefault().getBundle();
+        iconLocation = bundle.getEntry("/" + ICONS_DIRECTORY); //$NON-NLS-1$
         
         this.bundle = ResourceBundle.getBundle(RESOURCE_PATH + UI_RESOURCES);
     }
@@ -74,6 +73,17 @@ public class ResourceLoader
 		return image;
     }
     
+    private Image queryImage (URL imageLocation)
+    {
+		Image image = null;
+		if ((image = plugin.getImageRegistry().get(imageLocation.toString())) == null)
+		{
+			image = ImageDescriptor.createFromURL(imageLocation).createImage();
+			plugin.getImageRegistry().put(imageLocation.toString(), image);
+		}
+		return image;
+    }
+    
     /**
      * Client should use this query Image, as the registry will dispose the image
      * @param imagePath - The path should be related to the Class Loader
@@ -81,7 +91,17 @@ public class ResourceLoader
      */
     public Image queryImageFromRegistry (String imagePath)
     {
-        return queryAbsolutePathImageFromRegistry (iconLocation + imagePath);
+        try {
+			return queryImage (new URL(iconLocation,imagePath));
+		}
+		catch (MalformedURLException e) {
+			return null;
+		}
+    }
+    
+    public Image queryImageFromRegistry (URL imageLocation)
+    {
+    	return queryImage(imageLocation);
     }
  
     /**
@@ -109,20 +129,43 @@ public class ResourceLoader
     
     public static byte[] getImageData(String name)
     {
-        String image = iconLocation + name;
+        ReadableByteChannel rbc = null;
+        WritableByteChannel wbc = null;
         try
         {
-            FileInputStream fis = new FileInputStream(image);
-            int size;
-            size = fis.available();
-            byte[] imageBytes = new byte[size];
-            fis.read(imageBytes);
-            fis.close();
-            return imageBytes;
+            URL imageURL = new URL(iconLocation,name);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            rbc = Channels.newChannel(imageURL.openStream());
+            wbc = Channels.newChannel(baos);
+
+            ByteBuffer buf = ByteBuffer.allocate(128); // These icons shouldn't be very big
+
+            while (rbc.read(buf)>0) {
+            	wbc.write(buf);
+            }
+
+            return baos.toByteArray();
         }
         catch (Exception e)
         {
             e.printStackTrace();
+        }
+        finally {
+        	if (rbc != null) {
+        		try {
+        			rbc.close();
+				}
+				catch (IOException e) {
+				}
+        	}
+        	if (wbc != null) {
+        		try {
+        			wbc.close();
+				}
+				catch (IOException e) {
+				}
+        	}
         }
         return null;
     }
