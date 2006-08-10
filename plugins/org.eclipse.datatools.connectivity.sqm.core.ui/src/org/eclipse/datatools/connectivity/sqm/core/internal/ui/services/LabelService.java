@@ -425,6 +425,7 @@ public class LabelService implements ILabelService
     	private IConfigurationElement configElement;
     	private URL iconLocation;
     	private LabelSelector selector;
+    	private boolean selectorInitialized;
 
     	public LabelInfo (IConfigurationElement configElement)
         {
@@ -451,14 +452,21 @@ public class LabelService implements ILabelService
         }
         public LabelSelector getSelector()
         {
-        	if (selector == null) {
-        		try {
-					selector = (LabelSelector) configElement.createExecutableExtension(ATTR_SELECTOR);
+        	if (!selectorInitialized) {
+				selectorInitialized = true;
+
+				String selectorClassName = configElement
+						.getAttribute(ATTR_SELECTOR);
+				if (selectorClassName != null && selectorClassName.length() > 0) {
+					try {
+						selector = (LabelSelector) configElement
+								.createExecutableExtension(ATTR_SELECTOR);
+					}
+					catch (CoreException e) {
+						e.printStackTrace();
+					}
 				}
-				catch (CoreException e) {
-					e.printStackTrace();
-				}
-        	}
+			}
         	return selector; 
         }
     }
