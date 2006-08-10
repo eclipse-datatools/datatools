@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.design.ui.manifest;
 
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvider;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
@@ -43,11 +46,12 @@ public class UIManifestExplorer
             "org.eclipse.ui.propertyPages";  //$NON-NLS-1$
     private static final String PAGE_ELEMENT_NAME = "page";  //$NON-NLS-1$
     
-    private Hashtable m_manifests;  // cached copy of found manifests
+    private Hashtable m_manifestsById;  // cached copy of manifests by odaDataSourceId
+    private Hashtable m_manifestsWithWizName; // cached copy of manifests with wizard name
     
     // trace logging variables
     private static String sm_loggerName;
-    private static Logger sm_logger;
+    private static Logger sm_logger = null;
     
     /**
      * Returns the <code>UIManifestExplorer</code> instance to  
@@ -62,9 +66,8 @@ public class UIManifestExplorer
             
             sm_instance.refresh();
             
-            // works around bug in some J2EE servers; see Bugzilla #126073
+            // works around bug in some J2EE servers - Bugzilla #126073
             sm_loggerName = sm_instance.getClass().getPackage().getName();
-            sm_logger = Logger.getLogger( sm_loggerName );
         }
         return sm_instance;
     }
@@ -79,8 +82,57 @@ public class UIManifestExplorer
      */
     public void refresh()
     {
-        // reset the cached collection of extension manifest instances
-        m_manifests = new Hashtable();
+        // reset the cached collection of ODA Design UI extension manifest instances
+        m_manifestsById = new Hashtable();
+        m_manifestsWithWizName = null;
+    }
+
+    /**
+     * Returns a collection of all DTP ODA design-time extension configuration information 
+     * found in plugins registry.  
+     * Each extension's UIExtensionManifest and its corresponding new wizard name
+     * are stored as the key and value in the returned collection.
+     * Returns an empty collection if there are no design-time extensions found.
+     * Invalid extension definitions are ignored.
+     * @return  a collection of all DTP ODA design-time extension manifests, with
+     *          each extension's UIExtensionManifest and its corresponding new wizard name
+     *          as the key and value.
+     */
+    public Map getExtensionManifestsWithWizardName()
+    {
+        if( m_manifestsWithWizName == null )
+        {
+            IExtension[] extensions = getExtensions( DTP_ODA_UI_EXT_POINT );
+            
+            int length = ( extensions == null ) ? 0 : extensions.length;
+            m_manifestsWithWizName = new Hashtable( length );
+            for( int i = 0; i < length; i++ )
+            {
+                IExtension extension = extensions[i];
+            
+                UIExtensionManifest uiManifest = null;
+                try
+                {
+                    if( extension != null )
+                        uiManifest = new UIExtensionManifest( extension );
+                }
+                catch( OdaException ex )
+                {
+                    getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex ); //$NON-NLS-1$
+                }
+                if( uiManifest == null )
+                    continue;   // skip
+                
+                // for each oda designer extension, find its corresponding new wizard name
+                // and add to a collection
+                
+                String wizardName = getDataSourceWizardName( 
+                                        uiManifest.getDataSourceElementId() );
+                m_manifestsWithWizName.put( uiManifest, wizardName );
+            }
+        }
+        
+        return m_manifestsWithWizName;
     }
     
     /**
@@ -97,10 +149,7 @@ public class UIManifestExplorer
     public UIExtensionManifest getExtensionManifest( String dataSourceId ) 
         throws OdaException
     {
-        UIExtensionManifest manifest = 
-            getExtensionManifest( dataSourceId, DTP_ODA_UI_EXT_POINT );
-        
-        return manifest;
+        return getExtensionManifest( dataSourceId, DTP_ODA_UI_EXT_POINT );
     }
 
     /**
@@ -163,7 +212,7 @@ public class UIManifestExplorer
         // first check if specified dataSourceId's manifest
         // is already in cache, and use it
         UIExtensionManifest aManifest =
-            (UIExtensionManifest) m_manifests.get( dataSourceId );
+            (UIExtensionManifest) m_manifestsById.get( dataSourceId );
         if( aManifest != null )
             return aManifest;
         
@@ -180,11 +229,11 @@ public class UIManifestExplorer
         aManifest = new UIExtensionManifest( extension );
         
         // keep it in cached collection
-        m_manifests.put( dataSourceId, aManifest );
+        m_manifestsById.put( dataSourceId, aManifest );
         
         return aManifest;
     }
-    
+       
     /*
      * Finds the extension that matches the given data source element ID
      * among the given collection of extensions.
@@ -199,32 +248,86 @@ public class UIManifestExplorer
         {
             IExtension extension = extensions[i];
             
-            String extnDataSourceId = null;
-            try
-            {
-                /* Each odaDataSource extension should have only 
-                 * one dataSource element.
-                 */
-                IConfigurationElement dataSourceElement = 
-                    getNamedElement( extension, 
-                            UIExtensionManifest.DATA_SOURCE_ELEMENT_NAME );
-                extnDataSourceId = dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
-            }
-            catch( OdaException ex )
-            {
-                sm_logger.log( Level.WARNING, "Ignoring invalid extension.", ex ); //$NON-NLS-1$
+            String extnDataSourceId = getDataSourceId( extension );
+            if( extnDataSourceId == null )  // not a valid extension, skip
                 continue;
-            }
             
             /* The first extension found with matching dataSourceId 
              * in its dataSourceUI element is considered a match.
              */
-            if( extnDataSourceId != null &&
-                extnDataSourceId.equalsIgnoreCase( dataSourceId ) )
+            if( extnDataSourceId.equalsIgnoreCase( dataSourceId ) )
                 return extension;
         }
         
         return null;
+    }
+    
+    private String getDataSourceId( IExtension extension )
+    {
+        try
+        {
+            /* Each odaDataSource extension should have only 
+             * one dataSource element.
+             */
+            IConfigurationElement dataSourceElement = 
+                getNamedElement( extension, 
+                        UIExtensionManifest.DATA_SOURCE_ELEMENT_NAME );
+            return dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
+        }
+        catch( OdaException ex )
+        {
+            // log and ignore
+            getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex ); //$NON-NLS-1$
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Returns the name defined in the connectionProfile.newWizard element of
+     * the specified odaDataSourceId.
+     * @param odaDataSourceId
+     * @return
+     */
+    private String getDataSourceWizardName( String odaDataSourceId )
+    {
+        IExtension[] extensions = 
+            getExtensions( ConnectionProfileManager.EXTENSION_ID );
+        
+        int length = ( extensions == null ) ? 0 : extensions.length;
+        for( int i = 0; i < length; i++ )
+        {
+            IConfigurationElement wizardElement = null;
+            try
+            {
+                wizardElement = getNamedElement( extensions[i], 
+                                            ConnectionProfileManager.EXT_ELEM_NEW_WIZARD );
+            }
+            catch( OdaException ex )
+            {
+                // log and ignore
+                getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex ); //$NON-NLS-1$
+            }            
+            if( wizardElement == null )
+                continue;
+            
+            ProfileWizardProvider wizardProvider = new ProfileWizardProvider( wizardElement );
+            
+            /* The first extension found with matching odaDataSourceId 
+             * in its newWizard.id attribute is considered a match.
+             */
+            if( odaDataSourceId.equalsIgnoreCase( wizardProvider.getId() ) )
+            {
+                String wizardName = wizardProvider.getName();
+                if( wizardName != null && wizardName.length() > 0 )
+                    return wizardName;
+                return odaDataSourceId;     // no name defined, use id instead
+            }
+            // element does not match given odaDataSourceId, continue with next extension
+        }
+        
+        // could not find the connectionProfile.newWizard element for given odaDataSourceId
+        return odaDataSourceId;
     }
     
     /**
@@ -291,6 +394,13 @@ public class UIManifestExplorer
          
         return ( manifest == null ) ?
                 null : manifest.getNamespace();
+    }
+    
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+            sm_logger = Logger.getLogger( sm_loggerName );
+        return sm_logger;
     }
     
     /* 
