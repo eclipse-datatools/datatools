@@ -12,6 +12,7 @@ public class DataToolsMainPage extends PreferencePage implements
 
 	public DataToolsMainPage() {
 		super();
+		noDefaultAndApplyButton();
 	}
 
 	public DataToolsMainPage(String title) {
