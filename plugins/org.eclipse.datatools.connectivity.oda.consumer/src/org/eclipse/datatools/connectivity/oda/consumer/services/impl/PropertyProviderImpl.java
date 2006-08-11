@@ -16,6 +16,7 @@ package org.eclipse.datatools.connectivity.oda.consumer.services.impl;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 
 /**
@@ -46,6 +47,7 @@ public class PropertyProviderImpl implements IPropertyProvider
      */
     public Properties getDataSourceProperties( Properties candidateProperties,
                                                 Object appContext )
+        throws OdaException
     {
         String configIdPropName = getConfigurationIdPropertyName();
         if( candidateProperties == null ||
@@ -90,9 +92,11 @@ public class PropertyProviderImpl implements IPropertyProvider
      * The default implementation merges the specified properties with any
      * externalized properties configured by the configuration id.
      * @return  the effective data source property name-value pairs
+     * @throws OdaException     if provider error occurs
      */
     protected Properties adjustDataSourceProperties( final Properties candidateProperties, 
                                                     Object appContext )
+        throws OdaException
     {
         if( getConfigurationId() == null )
             return candidateProperties;   // done, nothing to adjust
@@ -114,8 +118,10 @@ public class PropertyProviderImpl implements IPropertyProvider
      * Sub-class to override to use own externalized property configuration.
      * @return  the matching data source property name-value pairs;
      *          may be null if no match is found for specified configuration id
+     * @throws OdaException     if provider error occurs
      */
     protected Properties getExternalizedProperties( String configId, Object appContext )
+        throws OdaException
     {
         // sub-class to override to look up externalized properties
         return null;

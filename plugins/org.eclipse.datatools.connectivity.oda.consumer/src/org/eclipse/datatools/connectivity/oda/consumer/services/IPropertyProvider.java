@@ -16,6 +16,8 @@ package org.eclipse.datatools.connectivity.oda.consumer.services;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
+
 /**
  * The interface of the provider of run-time data source properties.
  * An ODA consumer application that implements the 
@@ -48,8 +50,10 @@ public interface IPropertyProvider
      *          assist in its lookup and processing of its externalized 
      *          configuration framework.  May be null.
      * @return  the set of effective property name-value pairs to use
+     * @throws OdaException     if provider error occurs
      */
     Properties getDataSourceProperties( Properties candidateProperties, 
-    									Object appContext );
+    									Object appContext )
+        throws OdaException;
     
 }
