@@ -203,7 +203,7 @@
     <xsd:annotation>
       <xsd:documentation>UI hints for a data element.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute use="required" name="displayName" type="xsd:string">
+    <xsd:attribute name="displayName" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>Business name of the data element.  Could be localized.</xsd:documentation>
       </xsd:annotation>

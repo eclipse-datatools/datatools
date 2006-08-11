@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.3 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.4 2006/03/24 03:13:31 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -2697,7 +2697,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataElementUIHints_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 1, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementUIHints_Description(),
                 theXMLTypePackage.getString(),

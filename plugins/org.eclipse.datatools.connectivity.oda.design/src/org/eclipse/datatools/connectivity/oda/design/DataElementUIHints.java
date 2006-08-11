@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataElementUIHints.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementUIHints()
- * @model 
+ * @model extendedMetaData="name='DataElementUIHints' kind='elementOnly'"
  * @generated
  */
 public interface DataElementUIHints extends EObject
@@ -56,7 +56,8 @@ public interface DataElementUIHints extends EObject
      * @return the value of the '<em>Display Name</em>' attribute.
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementUIHints_DisplayName()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayName();
@@ -82,6 +83,7 @@ public interface DataElementUIHints extends EObject
      * @see #setDescription(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementUIHints_Description()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='description' namespace='##targetNamespace'"
      * @generated
      */
     String getDescription();
