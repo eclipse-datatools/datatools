@@ -112,7 +112,7 @@
     <xsd:annotation>
       <xsd:documentation>Multi-dimensional attributes of a data element, such as a result set column.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute use="required" name="axisType" default="Measure" type="design:AxisType">
+    <xsd:attribute name="axisType" default="Measure" type="design:AxisType">
       <xsd:annotation>
         <xsd:documentation>The axis type of the data element.  This provides hints to a consumer application on how the column should be used.</xsd:documentation>
       </xsd:annotation>
@@ -432,7 +432,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute use="required" name="sessionStatus" default="Ok" type="design:SessionStatus">
+    <xsd:attribute name="sessionStatus" default="Ok" type="design:SessionStatus">
       <xsd:annotation>
         <xsd:documentation>ODA design session exit status.  This tells the ODA host designer whether the design session was successful, and how it may consume and save the session response information.</xsd:documentation>
       </xsd:annotation>
@@ -520,7 +520,7 @@
     <xsd:annotation>
       <xsd:documentation>UI hints for a data element defined with the input mode.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute name="promptStyle" default="" type="design:InputPromptControlStyle">
+    <xsd:attribute name="promptStyle" type="design:InputPromptControlStyle">
       <xsd:annotation>
         <xsd:documentation>Defaults to TextField if no static and dynamic value choices are defined; otherwise, defaults to SelectableList.</xsd:documentation>
       </xsd:annotation>
@@ -564,7 +564,7 @@
     <xsd:annotation>
       <xsd:documentation>Represents a specific geographical, political, or cultural region.</xsd:documentation>
     </xsd:annotation>
-    <xsd:attribute use="required" name="language" default="en" type="xsd:string">
+    <xsd:attribute name="language" default="en" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation>An ISO Language Code; lower-case, two-letter codes as defined by ISO-639.</xsd:documentation>
       </xsd:annotation>
@@ -660,7 +660,7 @@
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
-    <xsd:attribute use="required" name="inOutMode" default="In" type="design:ParameterMode"/>
+    <xsd:attribute name="inOutMode" default="In" type="design:ParameterMode"/>
   </xsd:complexType>
   <xsd:element name="ParameterDefinition" type="design:ParameterDefinition">
     <xsd:annotation>
