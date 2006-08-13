@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Properties;
@@ -479,5 +480,39 @@ public class ManifestExplorer
 		
 		return displayName;
 	}
+
+    /**
+     * Converts the specified native data type code to 
+     * its default ODA data type code,
+     * based on the data type mapping defined
+     * by the specified ODA data source and data set types.
+     * @param nativeTypeCode    native type code specific to the ODA data source
+     * @param odaDataSourceId   the ODA data source element id
+     * @param dataSetType       the type of data set
+     * @return  the converted ODA data type code, 
+     *          or java.sql.Types.NULL if no valid mapping is found
+     */
+    public int getDefaultOdaDataTypeCode( int nativeTypeCode, 
+                                String odaDataSourceId, String dataSetType )
+    {
+        DataSetType setType = null;
+        try
+        {
+            ExtensionManifest manifest = getExtensionManifest( odaDataSourceId );
+            if( manifest == null )
+                return Types.NULL;
+            
+            setType = manifest.getDataSetType( dataSetType );
+        }
+        catch( OdaException e )
+        {
+            // ignore
+        }
+        
+        if( setType == null )
+            return Types.NULL;
+        
+        return setType.getDefaultOdaDataTypeCode( nativeTypeCode );        
+    }
 
 }
