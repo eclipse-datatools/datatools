@@ -337,4 +337,35 @@
          </enablement>
       </actionProvider>
    </extension>
+    <extension
+          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+       <propertyContributor
+             contributorId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
+             labelProvider="org.eclipse.ui.internal.navigator.resources.workbench.TabbedPropertySheetTitleProvider">
+          <propertyCategory category="general"/>
+          <propertyCategory category="core"/>
+          <propertyCategory category="appearance"/>
+          <propertyCategory category="advanced"/>
+       </propertyContributor>
+    </extension>
+    <extension
+          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+       <propertyTabs contributorId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <propertyTab
+                label="%General"
+                category="general"
+                id="CommonNavigator.tab.General"/>
+       </propertyTabs>
+    </extension>
+    <extension
+          point="org.eclipse.ui.views.properties.tabbed.propertySections">
+       <propertySections contributorId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <propertySection
+                class="org.eclipse.ui.views.properties.tabbed.AdvancedPropertySection"
+                id="CommonNavigator.section.General"
+                tab="CommonNavigator.tab.General">
+             <input type="java.lang.Object"/>
+          </propertySection>
+       </propertySections>
+    </extension>
 </plugin>
