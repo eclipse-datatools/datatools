@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.server.ui; singleton:=true
-Bundle-Version: 0.9.0.200605101
+Bundle-Version: 0.9.1.200608161
 Bundle-ClassPath: rdb.server.ui.jar
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin
 Bundle-Vendor: %providerName
@@ -31,13 +31,15 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.ui.ide,
  org.eclipse.ui,
- org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.edit,
  org.eclipse.datatools.connectivity.sqm.core,
  org.eclipse.datatools.connectivity.sqm.core.ui,
  org.eclipse.datatools.modelbase.dbdefinition,
  org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.ui.navigator,
- com.ibm.icu
+ com.ibm.icu,
+ org.eclipse.ui.views,
+ org.eclipse.emf.edit.ui
 Eclipse-AutoStart: true
 
