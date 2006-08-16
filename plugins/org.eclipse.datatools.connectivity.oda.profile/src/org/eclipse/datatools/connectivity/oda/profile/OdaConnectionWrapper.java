@@ -204,7 +204,16 @@ public class OdaConnectionWrapper extends VersionProviderConnection
         IConnection odaConn = m_odaConnectionHelper;
         assert( odaConn != null );
         
-        odaConn.open( getConnectionProfile().getBaseProperties() );
+        try
+        {
+            odaConn.open( getConnectionProfile().getBaseProperties() );
+        }
+        catch( Throwable ex )   // catch all possible problem triggered by test connection
+        {
+            if( ex instanceof OdaException )
+                throw (OdaException) ex;
+            throw new OdaException( ex );
+        }
     }
     
     private IConnection getOdaConnectionHelper( String odaDataSourceElementId )
