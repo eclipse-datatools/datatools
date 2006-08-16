@@ -54,7 +54,7 @@ public class CommonLabelProviderBase implements ICommonLabelProvider {
 	}
 
 	public String getDescription(Object anElement) {
-		return null;
+		return getText(anElement);
 	}
 
 	public void restoreState(IMemento aMemento) {

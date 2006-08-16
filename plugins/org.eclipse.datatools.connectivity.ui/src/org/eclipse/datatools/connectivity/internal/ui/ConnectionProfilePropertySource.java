@@ -26,6 +26,8 @@ public class ConnectionProfilePropertySource implements IPropertySource {
 
 	private static final String P_ID_ENTITY_AUTOCONNECT = "org.eclipse.datatools.connectivity.properties.general.cpautoconnect"; //$NON-NLS-1$
 
+	private static final String P_ID_ENTITY_TYPE = "org.eclipse.datatools.connectivity.properties.general.cptype"; //$NON-NLS-1$
+
 	private IConnectionProfile mCP;
 	private boolean _showAutoConnect = true;
 
@@ -54,9 +56,15 @@ public class ConnectionProfilePropertySource implements IPropertySource {
 						"properties.connectionprofile.name")); //$NON-NLS-1$
 		desName.setCategory(ConnectivityUIPlugin.getDefault()
 				.getResourceString("properties.category.general")); //$NON-NLS-1$
-		PropertyDescriptor desType = new PropertyDescriptor(P_ID_ENTITY_DESC,
+		PropertyDescriptor desDesc = new PropertyDescriptor(P_ID_ENTITY_DESC,
 				ConnectivityUIPlugin.getDefault().getResourceString(
 						"properties.connectionprofile.desc")); //$NON-NLS-1$
+		desDesc.setCategory(ConnectivityUIPlugin.getDefault()
+				.getResourceString("properties.category.general")); //$NON-NLS-1$
+
+		PropertyDescriptor desType = new PropertyDescriptor(P_ID_ENTITY_TYPE,
+				ConnectivityUIPlugin.getDefault().getResourceString(
+						"properties.connectionprofile.type")); //$NON-NLS-1$
 		desType.setCategory(ConnectivityUIPlugin.getDefault()
 				.getResourceString("properties.category.general")); //$NON-NLS-1$
 
@@ -70,7 +78,7 @@ public class ConnectionProfilePropertySource implements IPropertySource {
 		autoConnectType.setCategory(ConnectivityUIPlugin.getDefault()
 				.getResourceString("properties.category.general")); //$NON-NLS-1$
 
-		return new IPropertyDescriptor[] { desName, desType, autoConnectType};
+		return new IPropertyDescriptor[] { desName, desDesc, desType, autoConnectType};
 	}
 
 	/*
@@ -84,6 +92,9 @@ public class ConnectionProfilePropertySource implements IPropertySource {
 		}
 		else if (id.equals(P_ID_ENTITY_DESC)) {
 			return mCP.getDescription();
+		}
+		else if (id.equals(P_ID_ENTITY_TYPE)) {
+			return mCP.getProviderName();
 		}
 		else if (id.equals(P_ID_ENTITY_AUTOCONNECT)) {
 			if (!_showAutoConnect) {
