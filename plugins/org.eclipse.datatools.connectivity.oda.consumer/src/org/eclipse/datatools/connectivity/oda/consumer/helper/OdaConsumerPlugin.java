@@ -23,16 +23,33 @@ import org.osgi.framework.BundleContext;
  */
 public class OdaConsumerPlugin extends Plugin
 {
+    private static OdaConsumerPlugin sm_plugin;
+
+    public OdaConsumerPlugin()
+    {
+        super();
+        sm_plugin = this;
+    }
+
+    /**
+     * Returns the shared instance of this plugin activator.
+     * @return
+     */
+    public static OdaConsumerPlugin getDefault()
+    {
+        return sm_plugin;
+    }
 
     /* (non-Javadoc)
      * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
      */
     public void stop( BundleContext context ) throws Exception
     {
-        // release plugin's singleton instances
+        // release plugin's singleton instance(s)
         ExtensionExplorer.releaseInstance();
         
         super.stop( context );
+        sm_plugin = null;
     }
 
 }

@@ -16,24 +16,14 @@ package org.eclipse.datatools.connectivity.oda.consumer.tests;
 
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IClob;
-import org.eclipse.datatools.connectivity.oda.IConnection;
-import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaClob;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaConnection;
-import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
 import org.eclipse.datatools.connectivity.oda.impl.Clob;
 
-public class OdaClobTest extends TestCase
+public class OdaClobTest extends FlatFileTestCase
 {
-    private static final String TEST_FLATFILE_ID = 
-        "org.eclipse.datatools.connectivity.oda.flatfile"; //$NON-NLS-1$
-
-    private static IDriver sm_odaDriver;
-    private static IConnection sm_odaConn;
     private static IClob sm_driverClob;
     
     private static final String sm_testData = "abcdefghijklmnopqrstuvwxyz";
@@ -41,15 +31,6 @@ public class OdaClobTest extends TestCase
     protected void setUp() throws Exception
     {
         super.setUp();
-        if( sm_odaDriver == null )
-        {
-            sm_odaDriver = new OdaDriver( TEST_FLATFILE_ID );
-        }
-        if( sm_odaConn == null )
-        {
-            sm_odaConn = sm_odaDriver.getConnection( TEST_FLATFILE_ID );
-            assertTrue( sm_odaConn instanceof OdaConnection );
-        }
         if( sm_driverClob == null )
         {
             sm_driverClob = new DriverTestClob( sm_testData );
@@ -63,8 +44,8 @@ public class OdaClobTest extends TestCase
     {
         super.tearDown();
         
-/*        if( sm_odaConn != null )
-            sm_odaConn.close();
+/*        if( getOdaConn() != null )
+            getOdaConn().close();
 */    
         sm_driverClob = null;
     }
@@ -74,7 +55,8 @@ public class OdaClobTest extends TestCase
      */
     public void testGetLeadingChars() throws OdaException, IOException
     {       
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        						(OdaConnection) getOdaConn(), 5 );
         int startPos = 1;
         int fetchLen = 7;
         
@@ -87,7 +69,8 @@ public class OdaClobTest extends TestCase
      */
     public void testGetSkippedChars() throws OdaException, IOException
     {       
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         int startPos = 6;
         int fetchLen = 7;
         
@@ -101,7 +84,8 @@ public class OdaClobTest extends TestCase
      */
     public void testGetMoreThanAvailableChars() throws OdaException, IOException
     {       
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         int startPos = 23;
         int fetchLen = 7;
 
@@ -114,7 +98,8 @@ public class OdaClobTest extends TestCase
      */
     public void testGetRemainingChars() throws OdaException, IOException
     {       
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         int startPos = 16;
         int fetchLen = -1;
 
@@ -153,7 +138,8 @@ public class OdaClobTest extends TestCase
      */
     public void testGetCharsNoData() throws OdaException, IOException
     {
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         int startPos = 27;
         int fetchLen = 3;
        
@@ -179,7 +165,8 @@ public class OdaClobTest extends TestCase
      */
     public void testSkipCharsBeyondStream() throws OdaException, IOException
     {
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         
         boolean caughtException = false;
         try
@@ -226,7 +213,8 @@ public class OdaClobTest extends TestCase
     public void testGetEmptyStream() throws OdaException, IOException
     {       
         IClob driverClob = new DriverTestClob( new String() );
-        IClob testClob = new OdaTestClob( driverClob, (OdaConnection) sm_odaConn, 5 );
+        IClob testClob = new OdaTestClob( driverClob, 
+        								(OdaConnection) getOdaConn(), 5 );
         int startPos = 0;
         int fetchLen = -1;
         
@@ -242,7 +230,8 @@ public class OdaClobTest extends TestCase
     private String getBufferedSubString( int startPos, int fetchLen, int defaultBufferSize ) 
         throws OdaException, IOException
     {
-        IClob testClob = new OdaTestClob( sm_driverClob, (OdaConnection) sm_odaConn, defaultBufferSize );
+        IClob testClob = new OdaTestClob( sm_driverClob, 
+        								(OdaConnection) getOdaConn(), defaultBufferSize );
         
         // triggers test driver to throw exception on the optional method - length()
         DriverTestClob driverBlob = (DriverTestClob) sm_driverClob;

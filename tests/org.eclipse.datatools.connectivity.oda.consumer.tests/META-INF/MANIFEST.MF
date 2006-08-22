@@ -2,9 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Consumer Helper Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer.tests;singleton:=true
-Bundle-Version: 3.0.2.200607071
+Bundle-Version: 3.0.2.200608221
 Bundle-Localization: plugin
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.junit,
  org.eclipse.datatools.connectivity.oda.consumer,
- org.eclipse.datatools.connectivity.oda.flatfile;resolution:=optional
+ org.eclipse.datatools.connectivity.oda.flatfile;resolution:=optional,
+ org.eclipse.core.runtime

@@ -21,7 +21,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Hashtable;
 
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.oda.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.util.OdaPlugin;
 
 import com.ibm.icu.text.SimpleDateFormat;
 
@@ -33,6 +35,8 @@ import com.ibm.icu.text.SimpleDateFormat;
  */
 public class LogManager
 {
+    private static final String LOG_SUBFOLDER_NAME = "logs"; //$NON-NLS-1$
+    
 	private static Hashtable m_loggers = new Hashtable();
     private static SimpleDateFormat sm_dateFormat;
 
@@ -279,7 +283,7 @@ public class LogManager
     										   String logPrefix, String formatterClassName )
     {   	
     	// set the file handler with the file name and formatter
-    	String logfileName = generateFileName( logDirectory, logPrefix );
+    	String logfileName = generateAbsoluteFileName( logDirectory, logPrefix );
     	
     	// cache exceptions that could occur when users use a customized 
     	// formatter, so that they can take a look at the log to see if something
@@ -330,21 +334,55 @@ public class LogManager
         return sm_dateFormat;
     }
     
-    // logic to generate the proper file name:
-    // <logDirectory>/<logPrefix>-YYYYMMDD-HHmmss.log
-    private static String generateFileName( String logDirectory,
-    										String logPrefix )
+    /**
+     * Logic to generate the absolute file name:
+     * <logDirectory>/<logPrefix>-YYYYMMDD-HHmmss.log
+     * If the specified <logDirectory> is not an absolute path,
+     * set it relative to the oda plugin's default log folder.
+     */ 
+    private static String generateAbsoluteFileName( String logDirectory,
+    										        String logFilePrefix )
     {
-    	String logfileName = ( logDirectory.endsWith( "/" ) || //$NON-NLS-1$
-    						   logDirectory.endsWith( "\\" ) ) ? //$NON-NLS-1$
-    						 logDirectory : logDirectory + "/"; //$NON-NLS-1$
-
-    	logfileName += logPrefix + "-"; //$NON-NLS-1$
+        File logDir = getAbsoluteParent( logDirectory );
+        
+        // format the filename with given prefix, followed by timestamp and .log suffix
+        String logfileName = logFilePrefix + "-"; //$NON-NLS-1$
     	
     	Timestamp timestamp = new Timestamp( System.currentTimeMillis() );
-    	logfileName += getDateFormat().format( timestamp ) + ".log"; //$NON-NLS-1$
-    	
-    	return logfileName;
+    	logfileName += getDateFormat().format( timestamp ) + ".log"; //$NON-NLS-1$    	
+       
+    	return new File( logDir, logfileName ).getPath();
+    }
+    
+    private static File getAbsoluteParent( String logDirectory )
+    {
+        assert( logDirectory != null && logDirectory.length() > 0 );
+        File logParent = new File( logDirectory );
+        if( logParent.isAbsolute() )
+            return logParent;   // use as is
+        
+        // the specified logDirectory is relative, 
+        // set its parent to be the oda plugin's default log folder 
+        logParent = getPluginLogPath().append( logDirectory ).toFile(); 
+        return logParent;
+    }
+    
+    /**
+     * Returns the plugin's default log parent file
+     * in the workspace state location.
+     * @return
+     * @throws  IllegalStateException when the plugin activator 
+     * 					is not instantiated yet
+     */
+    private static IPath getPluginLogPath() throws IllegalStateException
+    {
+        // try to use oda plugin's default state location's log folder as its parent
+        OdaPlugin odaPlugin = OdaPlugin.getDefault();
+        if( odaPlugin == null )
+            throw new IllegalStateException( "OdaPlugin.getDefault()" ); //$NON-NLS-1$
+
+        return odaPlugin.getStateLocation()
+                        .append( LOG_SUBFOLDER_NAME ); 	
     }
     
     // use reflection to generate the specified log formatter class instance

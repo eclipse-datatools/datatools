@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogPathHelper;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.DriverExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
@@ -471,23 +472,39 @@ public class OdaDriver extends OdaObject
 						 logConfig + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
+        // set log configuration for the oda consumer helper
 		try
 		{
-			setContextClassloader();
-			
-			// set the ODA consumer manager's log directory to the ODA driver's 
+			// set the ODA consumer helper's log directory to the ODA driver's 
 			// log directory only the first time setLogConfiguration() is called and 
 			// if the caller didn't already specify a directory using setLogDirectory().
 			if( LogManager.getLogger( getLoggerName() ) == null && 
 				m_logDirectory == null )
-				m_logDirectory = logConfig.getLogDirectory();
+            {
+                m_logDirectory = 
+                	LogPathHelper.getConsumerLogParent( 
+                			logConfig.getDataSourceId() ).getPath();
+            }
 
             // set log configuration values in the ODA consumer helper of the driver,
             // whose logging requires a log directory
-            if( m_logDirectory != null && m_logDirectory.length() > 0 )			
+            if( m_logDirectory != null && m_logDirectory.length() > 0 )	
+            {
                 LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
 								  m_logDirectory, "OdaHelperLog", null ); //$NON-NLS-1$
-			
+            }
+        }
+        catch( RuntimeException ex )
+        {
+            // unable to set consumer logger, ignore
+        	ex.printStackTrace();
+        }
+
+        // next, set log configuration in the underlying ODA driver
+        try
+        {
+            setContextClassloader();
+            
             // set log configuration values in the underlying ODA driver
 			getDriver().setLogConfiguration( logConfig );
 		}
