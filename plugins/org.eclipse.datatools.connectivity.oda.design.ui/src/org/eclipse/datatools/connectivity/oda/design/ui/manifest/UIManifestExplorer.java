@@ -64,8 +64,6 @@ public class UIManifestExplorer
         {
             sm_instance = new UIManifestExplorer();
             
-            sm_instance.refresh();
-            
             // works around bug in some J2EE servers - Bugzilla #126073
             sm_loggerName = sm_instance.getClass().getPackage().getName();
         }
@@ -83,8 +81,15 @@ public class UIManifestExplorer
     public void refresh()
     {
         // reset the cached collection of ODA Design UI extension manifest instances
-        m_manifestsById = new Hashtable();
+        m_manifestsById = null;
         m_manifestsWithWizName = null;
+    }
+
+    private Hashtable getCachedManifests()
+    {
+    	if( m_manifestsById == null )
+            m_manifestsById = new Hashtable();
+    	return m_manifestsById;
     }
 
     /**
@@ -212,7 +217,7 @@ public class UIManifestExplorer
         // first check if specified dataSourceId's manifest
         // is already in cache, and use it
         UIExtensionManifest aManifest =
-            (UIExtensionManifest) m_manifestsById.get( dataSourceId );
+            (UIExtensionManifest) getCachedManifests().get( dataSourceId );
         if( aManifest != null )
             return aManifest;
         
@@ -229,7 +234,7 @@ public class UIManifestExplorer
         aManifest = new UIExtensionManifest( extension );
         
         // keep it in cached collection
-        m_manifestsById.put( dataSourceId, aManifest );
+        getCachedManifests().put( dataSourceId, aManifest );
         
         return aManifest;
     }
