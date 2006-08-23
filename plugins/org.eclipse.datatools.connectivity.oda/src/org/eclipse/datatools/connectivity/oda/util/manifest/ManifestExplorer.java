@@ -43,6 +43,8 @@ public class ManifestExplorer
     // trace logging variables
 	private static Logger sm_logger = null;
 
+	private Hashtable m_manifestsById;  // cached copy of manifests by odaDataSourceId
+
 	private static final String DTP_ODA_EXT_POINT = 
 	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
 
@@ -71,17 +73,33 @@ public class ManifestExplorer
         sm_instance = null;
         sm_logger = null;
     }
+    
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+            sm_logger = Logger.getLogger( PACKAGE_NAME );        
+        return sm_logger;
+    }
 	
 	private ManifestExplorer()
 	{
 	}
-
-    private static Logger getLogger()
+    
+    /**
+     * Refresh the manifest explorer, and allows it to get
+     * the latest ODA Design UI extension manifests.
+     */
+    public void refresh()
     {
-        if( sm_logger == null )
-            sm_logger = Logger.getLogger( PACKAGE_NAME );
-        
-        return sm_logger;
+        // reset the cached collection of ODA extension manifest instances
+        m_manifestsById = null;
+    }
+
+    private Hashtable getCachedManifests()
+    {
+    	if( m_manifestsById == null )
+            m_manifestsById = new Hashtable();
+    	return m_manifestsById;
     }
 	
 	/**
@@ -166,15 +184,28 @@ public class ManifestExplorer
 	    
 	    if ( extensionPoint == null || extensionPoint.length() == 0 )
 			throw new IllegalArgumentException( extensionPoint );
+	    
+        // first check if specified dataSourceId's manifest
+        // is already in cache, and use it
+        ExtensionManifest aManifest =
+            (ExtensionManifest) getCachedManifests().get( dataSourceId );
+        if( aManifest != null )
+            return aManifest;
 	
 	    IExtension[] extensions = getExtensions( extensionPoint );
 	    
 	    IExtension extension = findExtension( dataSourceId, extensions );
 	
-	    if ( extension != null )
-	        return newExtensionManifest( extension );
-
-	    return null;
+        if ( extension == null )    // not found
+            return null;
+        
+        // found extension 
+        aManifest = newExtensionManifest( extension );
+        
+        // keep it in cached collection
+        getCachedManifests().put( dataSourceId, aManifest );
+        
+        return aManifest;
 	}
 
 	/**
