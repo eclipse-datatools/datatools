@@ -156,10 +156,15 @@ public class DataSetDesignSessionBase
      * wizard or editor page has performed finish.
      * @return  a completed ODA design with the session response
      *          and the original request, if any.
+     * @throws OdaException
      */
     protected OdaDesignSession finish() throws OdaException
     {
-        OdaDesignSession finishedSession = 
+        // validate if this design session is in a valid state
+        if( m_odaDesign == null )
+            throw new OdaException( Messages.common_notInDesignSession );
+
+    	OdaDesignSession finishedSession = 
             finishDataSetDesign();
         
         // successfully finished
@@ -174,9 +179,15 @@ public class DataSetDesignSessionBase
      * session response with a user_cancelled state.
      * @return  the completed design session containing a
      *          session response with a user_cancelled state
+     * @throws IllegalStateException	if this design session is not
+     * 				in a valid state, e.g. it is already finished or cancelled
      */
-    protected OdaDesignSession cancel()
+    protected OdaDesignSession cancel() throws IllegalStateException
     {
+        // validate if this design session is in a valid state
+    	if( m_odaDesign == null )
+    		throw new IllegalStateException( Messages.common_notInDesignSession );
+    	
         // sets a response with cancel status
         m_odaDesign.setResponseInCancelledState();
 
@@ -221,6 +232,10 @@ public class DataSetDesignSessionBase
     protected DataSetWizard getExtendedWizard() 
         throws OdaException
     {
+        // validate if this design session is in a valid state
+        if( m_odaDesign == null )
+            throw new OdaException( Messages.common_notInDesignSession );
+
         if( m_wizard == null )
         {
             m_wizard = OdaProfileUIExplorer.getInstance()
@@ -259,7 +274,11 @@ public class DataSetDesignSessionBase
     protected ArrayList getExtendedEditorPages()
         throws OdaException
     {
-        if( m_editorPages != null )
+        // validate if this design session is in a valid state
+        if( m_odaDesign == null )
+            throw new OdaException( Messages.common_notInDesignSession );
+
+    	if( m_editorPages != null )
             return m_editorPages;
         
         IWizardPage[] pages = getExtendedWizard().getPages();
@@ -287,7 +306,7 @@ public class DataSetDesignSessionBase
     protected IAdaptable getEditorPageElement()
         throws OdaException
     {
-        // validate if start was successfully called earlier
+        // validate if this design session is in a valid state
         if( m_odaDesign == null )
             throw new OdaException( Messages.common_notInDesignSession );
             
