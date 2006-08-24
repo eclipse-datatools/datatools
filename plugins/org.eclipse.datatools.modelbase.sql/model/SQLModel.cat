@@ -29,7 +29,7 @@
 	    name       	"prefix"
 	    value      	(value Text "SQLModel")))
     quid       	"3E9B1F8201C1"
-    documentation 	
+    documentation
 |The class descriptions are copied from SQL99 standard:
 |Title: (ISO-ANSI Working Draft) Foundation (SQL/Foundation)
 |Author: Jim Melton (Editor)
@@ -44,7 +44,7 @@
 |8) WG3:ZSH-019 = H2-2002-573 = 5WD-13-JRT-2002-12, WD 9075-13 (SQL/JRT), December, 2002
 |9) WG3:ZSH-020 = H2-2002-574 = 5WD-14-XML-2002-12, WD 9075-14 (SQL/XML), December, 2002
 |
-    
+
     exportControl 	"Public"
     logical_models 	(list unit_reference_list
 	(object Association "$UNNAMED$0"

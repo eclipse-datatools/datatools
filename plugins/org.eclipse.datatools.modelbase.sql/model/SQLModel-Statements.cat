@@ -33,19 +33,7 @@
     logical_models 	(list unit_reference_list
 	(object Class "SQLStatement"
 	    quid       	"404908A2008B"
-	    documentation 	
-|A single statement of the following types (from section 13.5):
-|<SQL executable statement> ::=
-|    <SQL control statement>
-|  | <SQL data statement>
-|  | <SQL schema statement>
-|  | <SQL transaction statement>
-|  | <SQL connection statement>
-|  | <SQL session statement>
-|  | <SQL diagnostics statement>
-|  | <SQL dynamic statement>
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.33 SQL-statements"
 	    stereotype 	"Interface"
 	    operations 	(list Operations
 		(object Operation "getSQL"
@@ -66,6 +54,7 @@
 		    uid        	0)))
 	(object Class "SQLDataStatement"
 	    quid       	"4049092B0395"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 14 Data Manipulation"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -74,6 +63,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLSchemaStatement"
 	    quid       	"404909440233"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 11 Schema definition and manipulation"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -82,6 +72,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLControlStatement"
 	    quid       	"4049095A0220"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 15 Control statements"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -90,6 +81,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLDataChangeStatement"
 	    quid       	"40490973001D"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 14 Data Manipulation"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -114,6 +106,7 @@
 		    exportControl 	"Public")))
 	(object Class "SQLConnectionStatement"
 	    quid       	"404F6FD10311"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 17 Connection management"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -122,6 +115,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLDiagnosticsStatement"
 	    quid       	"404F704300C6"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 22 Diagnostics management "
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -130,6 +124,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLDynamicStatement"
 	    quid       	"404F70B2026A"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 19 Dynamic SQL"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -138,6 +133,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLSessionStatement"
 	    quid       	"404F711D03A5"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 18 Session management"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -146,6 +142,7 @@
 		    quidu      	"404908A2008B")))
 	(object Class "SQLTransactionStatement"
 	    quid       	"404F718E02CB"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 16 Transaction management"
 	    stereotype 	"Interface"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -179,19 +176,19 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@1
-			location   	(1150, 508)
+			location   	(1147, 508)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	694
+			max_width  	700
 			justify    	0
 			label      	"SQLStatement")
 		    stereotype 	(object ItemLabel
 			Parent_View 	@1
-			location   	(1150, 458)
+			location   	(1147, 458)
 			fill_color 	13434879
 			anchor     	10
 			nlines     	1
-			max_width  	694
+			max_width  	700
 			justify    	0
 			label      	"<<Interface>>")
 		    icon       	"Interface"
@@ -199,7 +196,24 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"404908A2008B"
-		    width      	712
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(1147, 569)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	594)
+		    width      	718
 		    height     	292
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -424,6 +438,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"40490988012C"
+		    compartment 	(object Compartment
+			Parent_View 	@10
+			location   	(2110, 635)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	275)
 		    width      	522
 		    height     	186
 		    annotation 	8
@@ -436,7 +467,7 @@
 		    supplier   	@1
 		    line_style 	3
 		    origin_attachment 	(2101, 650)
-		    terminal_attachment 	(1853, 650))
+		    terminal_attachment 	(1856, 650))
 		(object ClassView "Class" "Logical View::SQLModel::Schema::SQLObject" @12
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
@@ -462,6 +493,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@12
+			location   	(2129, 242)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
 		    width      	482
 		    height     	282
 		    annotation 	8
@@ -580,8 +628,8 @@
 		    client     	@17
 		    supplier   	@1
 		    line_style 	3
-		    origin_attachment 	(1326, 1012)
-		    terminal_attachment 	(1326, 888)
+		    origin_attachment 	(1325, 1012)
+		    terminal_attachment 	(1325, 888)
 		    drawSupplier 	@6)
 		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLDynamicStatement" @19
 		    ShowCompartmentStereotypes 	TRUE
@@ -630,8 +678,8 @@
 		    client     	@19
 		    supplier   	@1
 		    line_style 	3
-		    origin_attachment 	(1671, 1274)
-		    terminal_attachment 	(1671, 888)
+		    origin_attachment 	(1672, 1274)
+		    terminal_attachment 	(1672, 888)
 		    drawSupplier 	@6)
 		(object ClassView "Class" "Logical View::SQLModel::Statements::SQLSessionStatement" @21
 		    ShowCompartmentStereotypes 	TRUE

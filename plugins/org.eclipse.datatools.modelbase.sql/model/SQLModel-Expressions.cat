@@ -34,7 +34,7 @@
 	(object Class "QueryExpression"
 	    quid       	"3F392200019B"
 	    documentation 	
-|A boolean value expression specifying a condition that is True, False, or Unknown.
+|Reference: 5WD-02-Foundation-2002-12 7 Query Expression
 |
 	    
 	    stereotype 	"Interface"
@@ -58,13 +58,7 @@
 	(object Class "ValueExpression"
 	    quid       	"3F4D273D00A9"
 	    documentation 	
-|4.14.5 Base columns and generated columns
-|
-|A column of a base table is either a base column or a generated column. A base column is one that is not a generated column.
-|
-|A generated column is one whose values are determined by evaluation of a generation expression, a <value expression> whose declared type is by implication that of the column.
-|
-|A generation expression can reference base columns of the base table to which it belongs but cannot otherwise access SQLdata. Thus, the value of the field corresponding to a generated column in row R is determined by the values of zero or more other fields of R.
+|Reference: 5WD-02-Foundation-2002-12 4.14.5 Base columns and generated columns
 |
 	    
 	    stereotype 	"Interface"
@@ -87,6 +81,7 @@
 		    uid        	0)))
 	(object Class "SearchCondition"
 	    quid       	"3FABEC590086"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12"
 	    stereotype 	"Interface"
 	    operations 	(list Operations
 		(object Operation "getSQL"
@@ -161,7 +156,7 @@
 	    max_height 	28350
 	    max_width  	21600
 	    origin_x   	0
-	    origin_y   	68
+	    origin_y   	69
 	    items      	(list diagram_item_list
 		(object ClassView "Class" "Logical View::SQLModel::Expressions::QueryExpression" @1
 		    ShowCompartmentStereotypes 	TRUE
@@ -180,19 +175,19 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@1
-			location   	(158, 149)
+			location   	(162, 149)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	708
+			max_width  	700
 			justify    	0
 			label      	"QueryExpression")
 		    stereotype 	(object ItemLabel
 			Parent_View 	@1
-			location   	(158, 99)
+			location   	(162, 99)
 			fill_color 	13434879
 			anchor     	10
 			nlines     	1
-			max_width  	708
+			max_width  	700
 			justify    	0
 			label      	"<<Interface>>")
 		    icon       	"Interface"
@@ -200,7 +195,24 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F392200019B"
-		    width      	726
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(162, 210)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	603)
+		    width      	718
 		    height     	292
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -221,19 +233,19 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@2
-			location   	(169, 640)
+			location   	(172, 640)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	708
+			max_width  	702
 			justify    	0
 			label      	"SearchCondition")
 		    stereotype 	(object ItemLabel
 			Parent_View 	@2
-			location   	(169, 590)
+			location   	(172, 590)
 			fill_color 	13434879
 			anchor     	10
 			nlines     	1
-			max_width  	708
+			max_width  	702
 			justify    	0
 			label      	"<<Interface>>")
 		    icon       	"Interface"
@@ -241,7 +253,24 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3FABEC590086"
-		    width      	726
+		    compartment 	(object Compartment
+			Parent_View 	@2
+			location   	(172, 701)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	594)
+		    width      	720
 		    height     	292
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -250,7 +279,7 @@
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
 		    ShowOperationSignature 	TRUE
-		    location   	(518, 1190)
+		    location   	(518, 1191)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -262,19 +291,19 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@3
-			location   	(164, 1106)
+			location   	(167, 1107)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	708
+			max_width  	702
 			justify    	0
 			label      	"ValueExpression")
 		    stereotype 	(object ItemLabel
 			Parent_View 	@3
-			location   	(164, 1056)
+			location   	(167, 1057)
 			fill_color 	13434879
 			anchor     	10
 			nlines     	1
-			max_width  	708
+			max_width  	702
 			justify    	0
 			label      	"<<Interface>>")
 		    icon       	"Interface"
@@ -282,7 +311,24 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F4D273D00A9"
-		    width      	726
+		    compartment 	(object Compartment
+			Parent_View 	@3
+			location   	(167, 1168)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	594)
+		    width      	720
 		    height     	292
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -312,6 +358,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"404912EB0127"
+		    compartment 	(object Compartment
+			Parent_View 	@4
+			location   	(1141, 212)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	275)
 		    width      	570
 		    height     	186
 		    annotation 	8
@@ -320,7 +383,7 @@
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
-		    location   	(1408, 722)
+		    location   	(1407, 722)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -332,7 +395,7 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@5
-			location   	(1141, 641)
+			location   	(1140, 641)
 			fill_color 	13434879
 			nlines     	1
 			max_width  	534
@@ -342,6 +405,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"404912F601A5"
+		    compartment 	(object Compartment
+			Parent_View 	@5
+			location   	(1140, 702)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	275)
 		    width      	552
 		    height     	186
 		    annotation 	8
@@ -372,6 +452,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"4049130202ED"
+		    compartment 	(object Compartment
+			Parent_View 	@6
+			location   	(1147, 1171)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	275)
 		    width      	562
 		    height     	186
 		    annotation 	8
@@ -398,17 +495,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@8
-			location   	(1888, 590)
+			location   	(1889, 590)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	466
+			max_width  	464
 			justify    	0
 			label      	"SQLObject")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
-		    width      	484
+		    compartment 	(object Compartment
+			Parent_View 	@8
+			location   	(1889, 695)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
+		    width      	482
 		    height     	282
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -420,6 +534,15 @@
 		    supplier   	@3
 		    line_style 	0)
 		(object InheritView "" @10
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    quidu      	"4049139E0233"

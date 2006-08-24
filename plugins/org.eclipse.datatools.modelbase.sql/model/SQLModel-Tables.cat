@@ -34,20 +34,7 @@
 	(object Class "ViewTable"
 	    quid       	"3E9B4230022F"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-|
-|A derived table is a table derived directly or indirectly from one or more other tables by the evaluation of a <query expression> whose result has an element type that is a row type. The values of a derived table are derived from the values of the underlying tables when the <query expression> is evaluated.
-|
-|A viewed table is a named derived table defined by a <view definition> . A viewed table is sometimes called a view.
-|
-|A view descriptor describes a view. In addition to the components of a derived table descriptor, a view descriptor includes:
-| - The name of the view.
-| - An indication of whether the view has the CHECK OPTION ; if so, whether it is to be applied as CASCADED or LOCAL.
-| - The original <query expression> of the view.
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -64,11 +51,7 @@
 	(object Class "TemporaryTable"
 	    quid       	"3F579E8200B1"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -87,65 +70,7 @@
 		    exportControl 	"Public")))
 	(object Class "Table"
 	    quid       	"3E9B1FB60047"
-	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. A row is a value of a row type. Every row of the same table has the same row type. The value of the i-th field of every row in a table is the value of the i-th column of that row in the table. The row is the smallest unit of data that can be inserted into a table and deleted from a table.
-|
-|The degree of a table, and the degree of each of its rows, is the number of columns of that table. The number of rows in a table is its cardinality. A table whose cardinality is 0 (zero) is said to be empty.
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-|
-|A table is described by a table descriptor. A table descriptor is either a base table descriptor, a view descriptor, or a derived table descriptor (for a derived table that is not a view).
-|Every table descriptor includes:
-| - The column descriptor of each column in the table.
-| - The name, if any, of the structured type, if any, associated with the table.
-| - An indication of whether the table is insertable-into or not.
-| - An indication of whether the table is a referenceable table or not, and an indication of whether the selfreferencing column is a system-generated, a user-generated, or a derived self-referencing column.
-| - A list, possibly empty, of the names of its direct supertables.
-| - A list, possibly empty, of the names of its direct subtables.
-|
-|A base table descriptor describes a base table. In addition to the components of every table descriptor, a base table descriptor includes:
-| - The name of the base table.
-| - An indication of whether the table is a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-| - If the base table is a global temporary table, a created local temporary table, or a declared local temporary table, then an indication of whether ON COMMIT PRESERVE ROWS was specified or ON COMMIT DELETE ROWS was specified or implied.
-| - The descriptor of each table constraint specified for the table.
-| - A non-empty set of functional dependencies, according to the rules given in Subclause 4.18, "Functional dependencies".
-| - A non-empty set of candidate keys, according to the rules of Subclause 4.19, "Candidate keys".
-| - A preferred candidate key, which may or may not be additionally designated the primary key, according to the Rules in Subclause 4.18, "Functional dependencies".
-|
-|4.14.2 Referenceable tables, subtables, and supertables
-|
-|A table RT whose row type is derived from a structured type ST is called a typed table. Only a base table or a view can be a typed table. A typed table has columns corresponding, in name and declared type, to every attribute of ST and one other column REFC that is the self-referencing column of RT; let REFCN be the <column name> of REFC. The declared type of REFC is necessarily REF (ST) and the nullability characteristic of REFC is known not nullable. If RT is a base table, then the table constraint "UNIQUE (REFCN)" is implicit in the definition of RT. A typed table is called a referenceable table. A self-referencing column cannot be updated.
-|
-|Its value is determined during the insertion of a row into the referenceable table. The value of a system-generated self-referencing column and a derived self-referencing column is automatically generated when the row is inserted into the referenceable table. The value of a user-generated self-referencing column is supplied as part of the candidate row to be inserted into the referenceable table.
-|
-|A table Ta is a direct subtable of another table Tb if and only if the <table name> of Tb is contained in the <subtable clause> contained in the <table definition> or <view definition> of Ta. Both Ta and Tb shall be created on a structured type and the structured type of Ta shall be a direct subtype of the structured type of Tb.
-|
-|A table Ta is a subtable of a table Tb if and only if any of the following are true:
-|1) Ta and Tb are the same named table.
-|2) Ta is a direct subtable of Tb.
-|3) There is a table Tc such that Ta is a direct subtable of Tc and Tc is a subtable of Tb.
-|A table T is considered to be one of its own subtables. Subtables of T other than T itself are called its proper subtables. A table shall not have itself as a proper subtable.
-|
-|A table Tb is called a supertable of a table Ta if Ta is a subtable of Tb. If Ta is a direct subtable of Tb, then Tb is called a direct supertable of Ta. A table that is not a subtable of any other table is called a maximal supertable. Let Ta be a maximal supertable and T be a subtable of Ta. The set of all subtables of Ta (which includes Ta itself) is called the subtable family of T or (equivalently) of Ta. Every subtable family has exactly one maximal supertable. A leaf table is a table that does not have any proper subtables.
-|
-|Those columns of a subtable Ta of a structured type STa that correspond to the inherited attributes of STa are
-|called inherited columns. Those columns of Ta that correspond to the originally-defined attributes of STa are
-|called originally-defined columns.
-|
-|Let TB be a subtable of TA. Let SLA be the <value expression> sequence implied by the <select list> "*" in the
-|<query specification> "SELECT * FROM TA". For every row RB in the value of TB there exists exactly one
-|row RA in the value of TA such that RA is the result of the <row subquery> "SELECT SLA FROM VALUES
-|RRB", where RRB is some <row value constructor> whose value is RB. RA is said to be the superrow in TA of
-|RB and RB is said to be the subrow in TB of RA. If TA is a base table, then the one-to-one correspondence
-|between superrows and subrows is guaranteed by the requirement for a unique constraint to be specified for
-|some supertable of TA. If TA is a view, then such one-to-one correspondence is guaranteed by the requirement
-|for a unique constraint to be specified on the leaf generally underlying table of TA.
-|Users shall have the UNDER privilege on a table before they can use the table in a subtable definition. A table
-|can have more than one proper subtable. Similarly, a table can have more than one proper supertable.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.14 Tables"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3FA6A8EE02C0"
@@ -197,13 +122,7 @@
 	(object Class "PersistentTable"
 	    quid       	"3F579E8E01D1"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A table is either a base table, a derived table, or a transient table.
-|
-|A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -214,17 +133,7 @@
 	(object Class "DerivedTable"
 	    quid       	"3E9B419D0352"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-|
-|A derived table is a table derived directly or indirectly from one or more other tables by the evaluation of a <query expression> whose result has an element type that is a row type. The values of a derived table are derived from the values of the underlying tables when the <query expression> is evaluated.
-|
-|A derived table descriptor describes a derived table. In addition to the components of every table descriptor, a derived table descriptor includes:
-| - The <query expression> that defines how the table is to be derived.
-| - An indication of whether the derived table is updatable or not.
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -243,22 +152,7 @@
 	(object Class "BaseTable"
 	    quid       	"3E9B41900372"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-|
-|All base tables are updatable. Every column of a base table is an updatable column. Derived tables and transient tables are either updatable or not updatable. The operations of update and delete are permitted for updatable tables, subject to constraining Access Rules. Some updatable tables, including all base tables whose row type is not derived from a user-defined type that is not instantiable, are also insertable-into, in which case the operation of insert is also permitted, again subject to Access Rules.
-|
-|A base table descriptor describes a base table. In addition to the components of every table descriptor, a base table descriptor includes:
-| - The name of the base table.
-| - An indication of whether the table is a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-| - If the base table is a global temporary table, a created local temporary table, or a declared local temporary table, then an indication of whether ON COMMIT PRESERVE ROWS was specified or ON COMMIT DELETE ROWS was specified or implied.
-| - The descriptor of each table constraint specified for the table.
-| - A non-empty set of functional dependencies, according to the rules given in Subclause 4.18, "Functional dependencies".
-| - A non-empty set of candidate keys, according to the rules of Subclause 4.19, "Candidate keys".
-| - A preferred candidate key, which may or may not be additionally designated the primary key, according to the Rules in Subclause 4.18, "Functional dependencies".
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -292,14 +186,7 @@
 	(object Class "CheckType"
 	    quid       	"3ED210830036"
 	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. [...]
-|
-|A view descriptor describes a view. In addition to the components of a derived table descriptor, a view descriptor includes:
-| - The name of the view.
-| - An indication of whether the view has the CHECK OPTION ; if so, whether it is to be applied as CASCADED or LOCAL.
-| - The original <query expression> of the view.
+|Reference: 5WD-02-Foundation-2002-12 4.14 Tables
 |
 	    
 	    stereotype 	"enumeration"
@@ -329,46 +216,7 @@
 	(object Class "Column"
 	    quid       	"3E9B2AFF0392"
 	    documentation 	
-|4.13 Columns, fields, and attributes
-|
-|The terms column, field, and attribute refer to structural components of tables, row types, and structured types, respectively, in analogous fashion. As the structure of a table consists of one or more columns, so does the structure of a row type consist of one or more fields and that of a structured type one or more attributes. Every structural element, whether a column, a field, or an attribute, is primarily a name paired with a declared type.
-|
-|The elements of a structure are ordered. Elements in different positions in the same structure can have the same declared type but not the same name. Although the elements of a structure are distinguished from each other by name, in some circumstances the compatibility of two structures (for the purpose at hand) is determined solely by considering the declared types of each pair of elements at the same ordinal position.
-|
-|A table (see Subclause 4.14, "Tables") is defined on one or more columns and consists of zero or more rows. A column has a name and a declared type. Each row in a table has exactly one value for each column. Each value in a row is a value in the declared type of the column.
-|NOTE 21: The declared type includes the null value and values in proper subtypes of the declared type. Every column has a nullability characteristic that indicates whether the value from that column can be the null value. The possible values of nullability characteristic are known not nullable and possibly nullable.
-|
-|A column C is described by a column descriptor. A column descriptor includes:
-| - The name of the column.
-| - Whether the name of the column is an implementation-dependent name.
-| - If the column is based on a domain, then the name of that domain; otherwise, the data type descriptor of the declared type of C.
-| - The value of <default option> , if any, of C.
-| - The nullability characteristic of C.
-| - The ordinal position of C within the table that contains it.
-| - An indication of whether C is a self-referencing column of a base table or not.
-| - If the declared type of C is a reference type, then an indication of whether references are to be checked, and the <reference scope check action> , if specified or implied.
-| - An indication of whether C is an identity column or not.
-| - If C is an identity column, then an indication of whether values are always generated or generated by default.
-| - If C is an identity column, then the start value of C.
-| - If C is an identity column, then the descriptor of the internal sequence generator for C.
-|NOTE 22 - Identity columns and the meaning of "start value" are described in Subclause 4.14.4, "Identity columns".
-|
-| - If C is a generated column, then the generation expression of C.
-|NOTE 23 - Generated columns and the meaning of "generation expression" are described in Subclause 4.14.5, "Base columns and generated columns".
-|
-|An attribute A is described by an attribute descriptor. An attribute descriptor includes:
-| - The name of the attribute.
-| - The data type descriptor of the declared type of A.
-| - The ordinal position of A within the structured type that contains it.
-| - The value of the implicit or explicit <attribute default> of A.
-| - If the data type of the attribute is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
-| - The name of the structured type defined by the <user-defined type definition> that defines A.
-|
-|A field F is described by a field descriptor. A field descriptor includes:
-| - The name of the field.
-| - The data type descriptor of the declared type of F.
-| - The ordinal position of F within the row type that simply contains it.
-| - If the data type of the field is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
+|Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -422,42 +270,7 @@
 		    exportControl 	"Public")))
 	(object Class "Trigger"
 	    quid       	"3ED7B9780253"
-	    documentation 	
-|Section 4.38:
-|
-|A trigger is defined by a <trigger definition> . A <trigger definition> specifies a trigger that is described by a
-|trigger descriptor . A trigger descriptor includes:
-|  - The name of the trigger.
-|  - The name of the base table that is the subject table.
-|  - The trigger action time (BEFORE or AFTER ).
-|  - The trigger event (INSERT , DELETE , or UPDATE ).
-|  - Whether the trigger is a statement-level trigger or a row-level trigger.
-|  - Any old transition variable name, new transition variable name, old transition table name, new transition table name.
-|  - The triggered action.
-|  - The trigger column list (possibly empty) for the trigger event.
-|  - The triggered action column set of the triggered action.
-|  - The timestamp of creation of the trigger.
-|
-|The order of execution of a set of triggers is ascending by value of their timestamp of creation in their descriptors, such that the oldest trigger executes first. If one or more triggers have the same timestamp value, then their relative order of execution is implementation-defined.
-|
-|A schema might include one or more trigger descriptors, each of which includes the definition of a triggered action specifying a <triggered SQL statement> that is to be executed (either once for each affected row, in the case of a row-level trigger, or once for the whole triggering INSERT , DELETE , MERGE , or UPDATE statement, in the case of a statement-level trigger) before or after rows are inserted into a table, rows are deleted from a table, or one or more columns are updated in rows of a table. The execution of such a triggered action resulting from the insertion, deletion, or updating of a table may cause the triggering of further triggered actions.
-|
-|The <triggered SQL statement> of a triggered action is effectively executed either immediately before or
-|immediately after the trigger event, as determined by the specified trigger action time.
-|
-|Format of trigger definition and syntax rules are defined in section 11.39.
-|
-|OCL rules are derived from these syntax rules:
-|4) The schema identified by the explicit or implicit <schema name> of a <trigger name> TRN shall not include a trigger descriptor whose trigger name is TRN.
-|5) T shall be a base table that is not a declared local temporary table.
-|6) If a <trigger column list> is specified, then:
-|  a) No <column name> shall appear more than once in the <trigger column list> .
-|  b) The <column name> s of the <trigger column list> shall identify columns of T.
-|9) If OR or NR is specified, then FOR EACH ROW shall be specified.
-|12) If BEFORE is specified, then:
-|  b) Neither OLD TABLE nor NEW TABLE shall be specified.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.38 Triggers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3ED7B99B023E"
@@ -521,7 +334,7 @@
 		    exportControl 	"Public")))
 	(object Class "ActionTimeType"
 	    quid       	"3ED7BF8D0340"
-	    documentation 	"The literals of this enumeration are used to indicate whether the actionStatement of Trigger are executed before or after rows are inserted into a table, rows are deleted from a table, or one or more columns are updated in rows of a table."
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.38 Triggers"
 	    stereotype 	"enumeration"
 	    class_attributes 	(list class_attribute_list
 		(object ClassAttribute "AFTER"
@@ -535,11 +348,7 @@
 		    exportControl 	"Public")))
 	(object Class "ActionGranularityType"
 	    quid       	"3ED7E7AA03D3"
-	    documentation 	
-|The literals of this enumeration are used to indicate whether the actionStatement of a Trigger is to be executed once for each affected row, in the case of a row-level trigger, or once for the whole triggering INSERT , DELETE , MERGE , or UPDATE
-|statement, in the case of a statement-level trigger.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.38 Triggers"
 	    stereotype 	"enumeration"
 	    class_attributes 	(list class_attribute_list
 		(object ClassAttribute "STATEMENT"
@@ -552,54 +361,7 @@
 	(object ClassDiagram "Table"
 	    quid       	"3E9C8E340157"
 	    title      	"Table"
-	    documentation 	
-|4.14 Tables
-|
-|A table is a collection of rows having one or more columns. A row is a value of a row type. Every row of the same table has the same row type. The value of the i-th field of every row in a table is the value of the i-th column of that row in the table. The row is the smallest unit of data that can be inserted into a table and deleted from a table.
-|
-|The degree of a table, and the degree of each of its rows, is the number of columns of that table. The number of rows in a table is its cardinality. A table whose cardinality is 0 (zero) is said to be empty.
-|
-|A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-|
-|A persistent base table is a named table defined by a <table definition> that does not specify TEMPORARY . A derived table is a table derived directly or indirectly from one or more other tables by the evaluation of a <query expression> whose result has an element type that is a row type. The values of a derived table are derived from the values of the underlying tables when the <query expression> is evaluated. A viewed table is a named derived table defined by a <view definition> . A viewed table is sometimes called a view.
-|
-|A transient table is a named table that may come into existence implicitly during the evaluation of a <query expression> or the execution of a trigger. A transient table is identified by a <query name> if it arises during the evaluation of a <query expression> , or by a <transition table name> if it arises during the execution of a trigger. Such tables exist only for the duration of the executing SQL-statement containing the <query expression> or for the duration of the executing trigger.
-|
-|All base tables are updatable. Every column of a base table is an updatable column. Derived tables and transient tables are either updatable or not updatable. The operations of update and delete are permitted for updatable tables, subject to constraining Access Rules. Some updatable tables, including all base tables whose row type is not derived from a user-defined type that is not instantiable, are also insertable-into, in which case the operation of insert is also permitted, again subject to Access Rules.
-|
-|A table T2 is part of a column C of a table T1 if setting the value of T1.C to a null value (ignoring any constraints or triggers defined on T1 or T1.C) would cause T2 to disappear. The most specific type of a row is a row type. All rows of a table are of the same row type and this is called the row type of that table.
-|
-|A table is described by a table descriptor. A table descriptor is either a base table descriptor, a view descriptor, or a derived table descriptor (for a derived table that is not a view).
-|Every table descriptor includes:
-| - The column descriptor of each column in the table.
-| - The name, if any, of the structured type, if any, associated with the table.
-| - An indication of whether the table is insertable-into or not.
-| - An indication of whether the table is a referenceable table or not, and an indication of whether the selfreferencing column is a system-generated, a user-generated, or a derived self-referencing column.
-| - A list, possibly empty, of the names of its direct supertables.
-| - A list, possibly empty, of the names of its direct subtables.
-|
-|A transient table descriptor describes a transient table. In addition to the components of every table descriptor, a transient table descriptor includes:
-| - If the transient table is defined by a <with list element> contained in a <query expression> , then the <query name> . If the transient table is defined by a <trigger definition> then the <transition table name> .
-|
-|A base table descriptor describes a base table. In addition to the components of every table descriptor, a base table descriptor includes:
-| - The name of the base table.
-| - An indication of whether the table is a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
-| - If the base table is a global temporary table, a created local temporary table, or a declared local temporary table, then an indication of whether ON COMMIT PRESERVE ROWS was specified or ON COMMIT DELETE ROWS was specified or implied.
-| - The descriptor of each table constraint specified for the table.
-| - A non-empty set of functional dependencies, according to the rules given in Subclause 4.18, "Functional dependencies".
-| - A non-empty set of candidate keys, according to the rules of Subclause 4.19, "Candidate keys".
-| - A preferred candidate key, which may or may not be additionally designated the primary key, according to the Rules in Subclause 4.18, "Functional dependencies".
-|
-|A derived table descriptor describes a derived table. In addition to the components of every table descriptor, a derived table descriptor includes:
-| - The <query expression> that defines how the table is to be derived.
-| - An indication of whether the derived table is updatable or not.
-|
-|A view descriptor describes a view. In addition to the components of a derived table descriptor, a view descriptor includes:
-| - The name of the view.
-| - An indication of whether the view has the CHECK OPTION ; if so, whether it is to be applied as CASCADED or LOCAL.
-| - The original <query expression> of the view.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.14 Tables"
 	    zoom       	95
 	    max_height 	28350
 	    max_width  	21600
@@ -622,7 +384,7 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@1
-			location   	(478, 1405)
+			location   	(478, 1404)
 			fill_color 	13434879
 			nlines     	1
 			max_width  	818
@@ -632,8 +394,25 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B419D0352"
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(478, 1464)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	695)
 		    width      	836
-		    height     	182
+		    height     	184
 		    annotation 	8
 		    autoResize 	TRUE)
 		(object ClassView "Class" "Logical View::SQLModel::Tables::ViewTable" @2
@@ -662,6 +441,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3E9B4230022F"
+		    compartment 	(object Compartment
+			Parent_View 	@2
+			location   	(550, 2089)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	474)
 		    width      	578
 		    height     	184
 		    annotation 	8
@@ -674,7 +470,7 @@
 		    supplier   	@1
 		    line_style 	3
 		    origin_attachment 	(832, 2017)
-		    terminal_attachment 	(832, 1574))
+		    terminal_attachment 	(832, 1576))
 		(object ClassView "Class" "Logical View::SQLModel::Tables::CheckType" @4
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
@@ -710,6 +506,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED210830036"
+		    compartment 	(object Compartment
+			Parent_View 	@4
+			location   	(563, 2510)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	284)
 		    width      	402
 		    height     	336
 		    annotation 	8
@@ -957,6 +770,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F579E8200B1"
+		    compartment 	(object Compartment
+			Parent_View 	@16
+			location   	(1192, 1834)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	540)
 		    width      	656
 		    height     	232
 		    annotation 	8
@@ -1032,6 +862,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3EA5788B026F"
+		    compartment 	(object Compartment
+			Parent_View 	@19
+			location   	(1946, 191)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	500)
 		    width      	578
 		    height     	336
 		    annotation 	8
@@ -1089,6 +936,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@23
+			location   	(1234, 241)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	385)
 		    width      	476
 		    height     	280
 		    annotation 	8
@@ -1147,6 +1011,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F4E44E8001C"
+		    compartment 	(object Compartment
+			Parent_View 	@25
+			location   	(2233, 917)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	566)
 		    width      	686
 		    height     	280
 		    annotation 	8
@@ -1178,6 +1059,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B1FB60047"
+		    compartment 	(object Compartment
+			Parent_View 	@26
+			location   	(970, 661)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	830)
 		    width      	994
 		    height     	282
 		    annotation 	8
@@ -1344,7 +1242,7 @@
 		    client     	@1
 		    supplier   	@26
 		    line_style 	3
-		    origin_attachment 	(974, 1393)
+		    origin_attachment 	(974, 1392)
 		    terminal_attachment 	(974, 1188)
 		    drawSupplier 	@34)
 		(object InheritView "" @36
@@ -1700,81 +1598,24 @@
 			(625, 704)
 			(731, 704))
 		    line_style 	3
-		    origin_attachment 	(846, 519)
-		    terminal_attachment 	(846, 667))
+		    origin_attachment 	(625, 519)
+		    terminal_attachment 	(731, 704))
 		(object AttachView "" @55
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    client     	@53
 		    supplier   	@27
 		    vertices   	(list Points
-			(614, 894)
-			(614, 747)
+			(616, 894)
+			(616, 747)
 			(731, 747))
 		    line_style 	3
-		    origin_attachment 	(846, 894)
-		    terminal_attachment 	(846, 784))))
+		    origin_attachment 	(616, 894)
+		    terminal_attachment 	(731, 747))))
 	(object ClassDiagram "Column"
 	    quid       	"3EA40ECD0393"
 	    title      	"Column"
-	    documentation 	
-|4.13 Columns, fields, and attributes
-|
-|The terms column, field, and attribute refer to structural components of tables, row types, and structured types, respectively, in analogous fashion. As the structure of a table consists of one or more columns, so does the structure of a row type consist of one or more fields and that of a structured type one or more attributes. Every structural element, whether a column, a field, or an attribute, is primarily a name paired with a declared type.
-|
-|The elements of a structure are ordered. Elements in different positions in the same structure can have the same declared type but not the same name. Although the elements of a structure are distinguished from each other by name, in some circumstances the compatibility of two structures (for the purpose at hand) is determined solely by considering the declared types of each pair of elements at the same ordinal position.
-|
-|A table (see Subclause 4.14, "Tables") is defined on one or more columns and consists of zero or more rows.
-|
-|A column has a name and a declared type. Each row in a table has exactly one value for each column. Each value in a row is a value in the declared type of the column.
-|NOTE 21 - The declared type includes the null value and values in proper subtypes of the declared type.
-|
-|Every column has a nullability characteristic that indicates whether the value from that column can be the null value. The possible values of nullability characteristic are known not nullable and possibly nullable.
-|
-|A column C of a base table T has a nullability characteristic that is known not nullable if and only if at least one of the following is true:
-| - There exists at least one constraint NNC that is not deferrable and that simply contains a <search condition> that is a <boolean value expression> that is a known-not-null condition for C.
-| - C is based on a domain that has a domain constraint that is not deferrable and that simply contains a <search condition> that is a <boolean value expression> that is a known-not-null condition for VALUE .
-| - C is a unique column of a nondeferrable unique constraint that is a PRIMARY KEY. Concepts 45
-| - The SQL-implementation is able to deduce that the value of C can never be null through some additional implementation-defined rule or rules.
-|
-|A column C of a derived table is known not nullable, according to the Syntax Rules of Subclause 7.7, "<joined table>", Subclause 7.12, "<query specification>", and Subclause 7.13, <query expression>". Otherwise, a column C is possibly nullable.
-|
-|A column, field, or attribute may be defined with a data type that is a reference type. For such a column, field, or attribute, if the reference type specifies a <scope clause> , then the user may specify whether reference values shall be checked. If the user has specified that reference values shall be checked, then:
-| - Whenever the value of the column, field, or attribute is changed, the new value of the column, field, or attribute shall reference a row of the table referenced by the <table name> in the <scope clause> of the reference type.
-| - The column, field, or attribute definition may specify that, whenever a row is deleted from one of the tables in the <scope clause> , either the value of the (referencing) column, field, or attribute is set to the null value, or that such deletions are prohibited; in the latter case, attempts to perform such deletions result in the raising of an exception condition: constraint violation.
-|
-|A column C is described by a column descriptor. A column descriptor includes:
-| - The name of the column.
-| - Whether the name of the column is an implementation-dependent name.
-| - If the column is based on a domain, then the name of that domain; otherwise, the data type descriptor of the declared type of C.
-| - The value of <default option> , if any, of C.
-| - The nullability characteristic of C.
-| - The ordinal position of C within the table that contains it.
-| - An indication of whether C is a self-referencing column of a base table or not.
-| - If the declared type of C is a reference type, then an indication of whether references are to be checked, and the <reference scope check action> , if specified or implied.
-| - An indication of whether C is an identity column or not.
-| - If C is an identity column, then an indication of whether values are always generated or generated by default.
-| - If C is an identity column, then the start value of C.
-| - If C is an identity column, then the descriptor of the internal sequence generator for C.
-|NOTE 22 - Identity columns and the meaning of "start value" are described in Subclause 4.14.4, "Identity columns".
-| - If C is a generated column, then the generation expression of C.
-|NOTE 23 - Generated columns and the meaning of "generation expression" are described in Subclause 4.14.5, "Base columns and generated columns".
-|
-|An attribute A is described by an attribute descriptor. An attribute descriptor includes:
-| - The name of the attribute.
-| - The data type descriptor of the declared type of A.
-| - The ordinal position of A within the structured type that contains it.
-| - The value of the implicit or explicit <attribute default> of A.
-| - If the data type of the attribute is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
-| - The name of the structured type defined by the <user-defined type definition> that defines A.
-|
-|A field F is described by a field descriptor. A field descriptor includes:
-| - The name of the field.
-| - The data type descriptor of the declared type of F.
-| - The ordinal position of F within the row type that simply contains it.
-| - If the data type of the field is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes"
 	    zoom       	100
 	    max_height 	28350
 	    max_width  	21600
@@ -1816,6 +1657,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3EA40DBD02B7"
+		    compartment 	(object Compartment
+			Parent_View 	@56
+			location   	(600, 2307)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	512)
 		    width      	612
 		    height     	292
 		    annotation 	8
@@ -1855,6 +1713,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED6717C0130"
+		    compartment 	(object Compartment
+			Parent_View 	@57
+			location   	(1424, 2138)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	6
+			max_width  	340)
 		    width      	520
 		    height     	488
 		    annotation 	8
@@ -1885,6 +1760,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3EA3F30101D3"
+		    compartment 	(object Compartment
+			Parent_View 	@58
+			location   	(471, 1699)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	7
+			max_width  	616)
 		    width      	744
 		    height     	482
 		    annotation 	8
@@ -1953,6 +1845,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3E9B2AFF0392"
+		    compartment 	(object Compartment
+			Parent_View 	@60
+			location   	(666, 752)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	6
+			max_width  	984)
 		    width      	1174
 		    height     	386
 		    annotation 	8
@@ -2252,18 +2161,35 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@75
-			location   	(1056, 131)
+			location   	(1051, 136)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	351
+			max_width  	360
 			justify    	0
 			label      	"TypedElement")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3FA6A8930071"
-		    width      	369
-		    height     	293
+		    compartment 	(object Compartment
+			Parent_View 	@75
+			location   	(1051, 241)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	303)
+		    width      	378
+		    height     	282
 		    annotation 	8
 		    autoResize 	TRUE)
 		(object InheritView "" @76
@@ -2274,7 +2200,7 @@
 		    supplier   	@75
 		    line_style 	3
 		    origin_attachment 	(1237, 679)
-		    terminal_attachment 	(1237, 411))
+		    terminal_attachment 	(1237, 406))
 		(object NoteView @77
 		    location   	(1315, 1328)
 		    font       	(object Font
@@ -2378,6 +2304,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED7E7AA03D3"
+		    compartment 	(object Compartment
+			Parent_View 	@81
+			location   	(81, 1303)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	300)
 		    width      	532
 		    height     	292
 		    annotation 	8
@@ -2514,6 +2457,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED7BF8D0340"
+		    compartment 	(object Compartment
+			Parent_View 	@86
+			location   	(117, 1695)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	287)
 		    width      	416
 		    height     	342
 		    annotation 	8
@@ -2664,6 +2624,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@92
+			location   	(1209, 176)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
 		    width      	482
 		    height     	282
 		    annotation 	8
@@ -2831,6 +2808,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3ED7B9780253"
+		    compartment 	(object Compartment
+			Parent_View 	@99
+			location   	(766, 633)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	12
+			max_width  	1085)
 		    width      	1294
 		    height     	686
 		    annotation 	8
@@ -3327,8 +3321,8 @@
 			(1460, 1898)
 			(1460, 1246))
 		    line_style 	3
-		    origin_attachment 	(2175, 1860)
-		    terminal_attachment 	(2051, 1246))
+		    origin_attachment 	(2175, 1898)
+		    terminal_attachment 	(1460, 1246))
 		(object AttachView "" @128
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -3339,8 +3333,8 @@
 			(1419, 2101)
 			(2178, 2101))
 		    line_style 	3
-		    origin_attachment 	(2051, 1246)
-		    terminal_attachment 	(2267, 2062))
+		    origin_attachment 	(1419, 1246)
+		    terminal_attachment 	(2178, 2101))
 		(object AttachView "" @129
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -3363,8 +3357,8 @@
 			(1607, 1338)
 			(2171, 1338))
 		    line_style 	3
-		    origin_attachment 	(2051, 1225)
-		    terminal_attachment 	(2171, 1225))
+		    origin_attachment 	(1607, 1246)
+		    terminal_attachment 	(2171, 1338))
 		(object AttachView "" @131
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -3372,11 +3366,11 @@
 		    supplier   	@85
 		    vertices   	(list Points
 			(2051, 962)
-			(2196, 962)
-			(2196, 1046))
+			(2210, 962)
+			(2210, 1046))
 		    line_style 	3
-		    origin_attachment 	(2051, 1112)
-		    terminal_attachment 	(2164, 1112))
+		    origin_attachment 	(2051, 962)
+		    terminal_attachment 	(2210, 1046))
 		(object AttachView "" @132
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -3399,5 +3393,5 @@
 			(1145, 181)
 			(857, 181))
 		    line_style 	3
-		    origin_attachment 	(807, 559)
-		    terminal_attachment 	(807, 306))))))
+		    origin_attachment 	(1145, 560)
+		    terminal_attachment 	(857, 181))))))

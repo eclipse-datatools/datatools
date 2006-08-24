@@ -33,6 +33,7 @@
     logical_models 	(list unit_reference_list
 	(object Class "AuthorizationIdentifier"
 	    quid       	"407D7FA3017A"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D8033002D"
@@ -41,6 +42,7 @@
 	    abstract   	TRUE)
 	(object Class "Privilege"
 	    quid       	"407D806B013C"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"421D5E4E009D"
@@ -57,6 +59,7 @@
 		    exportControl 	"Public")))
 	(object Class "Group"
 	    quid       	"407D80CF03C1"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D81390215"
@@ -64,6 +67,7 @@
 		    quidu      	"407D7FA3017A")))
 	(object Class "User"
 	    quid       	"407D80DD00FA"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D81430219"
@@ -71,6 +75,7 @@
 		    quidu      	"407D7FA3017A")))
 	(object Class "Role"
 	    quid       	"407D810501F2"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.3 Roles"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D814B0012"
@@ -78,6 +83,7 @@
 		    quidu      	"407D7FA3017A")))
 	(object Class "RoleAuthorization"
 	    quid       	"407D811200EC"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.3 Roles"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"421D5EF10296"
@@ -90,6 +96,7 @@
 		    exportControl 	"Public")))
 	(object Class "TablePrivilege"
 	    quid       	"407D8FAB0045"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D8FD303C8"
@@ -102,6 +109,7 @@
 		    exportControl 	"Public")))
 	(object Class "DoubleObjectPrivilege"
 	    quid       	"407D9A8B01DD"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"407D9BF400EB"
@@ -280,7 +288,7 @@
 	    zoom       	100
 	    max_height 	28350
 	    max_width  	21600
-	    origin_x   	418
+	    origin_x   	419
 	    origin_y   	0
 	    items      	(list diagram_item_list
 		(object ClassView "Class" "Logical View::SQLModel::Schema::SQLObject" @1
@@ -483,6 +491,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"407D811200EC"
+		    compartment 	(object Compartment
+			Parent_View 	@7
+			location   	(1852, 1032)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	394)
 		    width      	484
 		    height     	186
 		    annotation 	8
@@ -656,6 +681,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"407D806B013C"
+		    compartment 	(object Compartment
+			Parent_View 	@15
+			location   	(1434, 483)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	394)
 		    width      	484
 		    height     	236
 		    annotation 	8
@@ -1628,8 +1670,8 @@
 			(1178, 1619)
 			(1397, 1619))
 		    line_style 	3
-		    origin_attachment 	(1275, 1375)
-		    terminal_attachment 	(1401, 1477))
+		    origin_attachment 	(1178, 1375)
+		    terminal_attachment 	(1397, 1619))
 		(object ClassView "Class" "Logical View::SQLModel::AccessControl::User" @65
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
@@ -1897,13 +1939,13 @@
 		    terminal_attachment 	(831, 1147)
 		    drawSupplier 	@77)
 		(object InheritTreeView "" @81
-		    location   	(928, 300)
+		    location   	(906, 300)
 		    line_color 	3342489
 		    fill_color 	13434879
 		    supplier   	@1
 		    vertices   	(list Points
-			(928, 300)
-			(928, 168)))
+			(906, 300)
+			(906, 168)))
 		(object InheritView "" @82
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -1995,6 +2037,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"407D8FAB0045"
+		    compartment 	(object Compartment
+			Parent_View 	@86
+			location   	(355, 1149)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	472)
 		    width      	576
 		    height     	186
 		    annotation 	8
@@ -2081,6 +2140,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"407D806B013C"
+		    compartment 	(object Compartment
+			Parent_View 	@89
+			location   	(793, 630)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	394)
 		    width      	484
 		    height     	236
 		    annotation 	8
@@ -2577,7 +2653,7 @@
 			    supplier   	@105
 			    line_style 	3
 			    origin_attachment 	(1828, 1108)
-			    terminal_attachment 	(1828, 936)
+			    terminal_attachment 	(1828, 937)
 			    label      	(object SegLabel @116
 				Parent_View 	@114
 				location   	(1860, 961)

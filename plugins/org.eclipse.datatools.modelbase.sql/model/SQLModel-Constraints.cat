@@ -34,19 +34,9 @@
 	(object Class "Assertion"
 	    quid       	"3ED524BC0165"
 	    documentation 	
-|4.17.4 Assertions
+|Reference: 5WD-02-Foundation-2002-12 4.17.4 Assertions,
+|5WD-02-Foundation-2002-12 11.37 <assertion definition>
 |
-|An assertion is a named constraint that may relate to the content of individual rows of a table, to the entire contents of a table, or to a state required to exist among a number of tables. An assertion is described by an assertion descriptor. In addition to the components of every constraint descriptor an assertion descriptor includes:
-| - The <search condition> .
-|An assertion is satisfied if and only if the specified <search condition> is not False.
-|
-|Syntax defined in section 11.37 <assertion definition>
-|Function: Specify an integrity constraint.
-|Format: <assertion definition> ::= CREATE ASSERTION <constraint name> CHECK <left paren> <search condition> <right paren> [ <constraint characteristics> ]
-|
-|10.8
-|2) The <qualified identifier> of <constraint name> shall not be equivalent to the <qualified identifier> of the
-|<constraint name> of any other constraint defined in the same schema.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -62,30 +52,7 @@
 	(object Class "Constraint"
 	    quid       	"3ED5239F029C"
 	    documentation 	
-|4.17 Integrity constraints
-|
-|Integrity constraints, generally referred to simply as constraints, define the valid states of SQL-data by constrain-ing the values in the base tables. A constraint is either a table constraint, a domain constraint or an assertion.  A constraint is described by a constraint descriptor. A constraint descriptor is either a table constraint descriptor, a domain constraint descriptor or an assertion descriptor. Every constraint descriptor includes:
-|  - The name of the constraint.
-|  - An indication of whether or not the constraint is deferrable.
-|  - An indication of whether the initial constraint mode is deferred or immediate.
-|
-|No integrity constraint shall be defined using a <search condition> that is not retrospectively deterministic.
-|
-|The checking of a constraint depends on its constraint mode within the current SQL-transaction. If the constraint mode is immediate, then the constraint is effectively checked at the end of each SQL-statement.  If the constraint mode is deferred, then the constraint is effectively checked when the constraint mode is changed to immediate either explicitly by execution of a <set constraints mode statement> , or implicitly at the end of the current SQL-transaction.
-|
-|A table constraint is either a unique constraint, a referential constraint or a table check constraint.
-|
-|A domain constraint is a constraint that is specified for a domain. It is applied to all columns that are based on that domain, and to all values cast to that domain.
-|
-|An assertion is a named constraint that may relate to the content of individual rows of a table, to the entire contents of a table, or to a state required to exist among a number of tables.
-|
-|10.8
-|2) The <qualified identifier> of <constraint name> shall not be equivalent to the <qualified identifier> of the <constraint name> of any other constraint defined in the same schema.
-|3) If <constraint check time> is not specified, then INITIALLY IMMEDIATE is implicit.
-|4) Case:
-|a) If INITIALLY DEFERRED is specified, then:
-|  i) NOT DEFERRABLE shall not be specified.
-|  ii) If DEFERRABLE is not specified, then DEFERRABLE is implicit.
+|Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -123,11 +90,8 @@
 	(object Class "TableConstraint"
 	    quid       	"3ED52ACF000F"
 	    documentation 	
-|4.17.2 Table constraints
+|Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints
 |
-|A table constraint is either a unique constraint, a referential constraint or a table check constraint. A table constraint is described by a table constraint descriptor which is either a unique constraint descriptor, a referential constraint descriptor or a table check constraint descriptor.
-|
-|Every table constraint specified for base table T is implicitly a constraint on every subtable of T, by virtue of the fact that every row in a subtable is considered to have a corresponding superrow in every one of its supertables.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -137,21 +101,7 @@
 	    abstract   	TRUE)
 	(object Class "ReferenceConstraint"
 	    quid       	"3EDE52410316"
-	    documentation 	
-|4.17.2 Table constraints
-|
-|A table constraint is either a unique constraint, a referential constraint or a table check constraint. A table constraint is described by a table constraint descriptor which is either a unique constraint descriptor, a referential constraint descriptor or a table check constraint descriptor.
-|
-|A referential constraint is described by a referential constraint descriptor. In addition to the components of every table constraint descriptor, a referential constraint descriptor includes:
-| - A list of the names of the referencing columns specified in the <referencing columns> .
-| - The referenced table specified in the <referenced table and columns> .
-| - A list of the names of the referenced columns specified in the <referenced table and columns> .
-| - The value of the <match type> , if specified, and the <referential triggered actions> , if specified.
-|
-|NOTE 30: If MATCH FULL or MATCH PARTIAL is specified for a referential constraint and if the referencing table has only one column specified in <referential constraint definition> for that referential constraint, or if the referencing table has more than one specified column for that <referential constraint definition> , but none of those columns is nullable, then the effect is the same as if no <match type> were specified.
-|
-|The ordering of the lists of referencing column names and referenced column names is implementation-defined, but shall be such that corresponding column names occupy corresponding positions in each list.
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3EDE538E0161"
@@ -161,13 +111,8 @@
 	(object Class "CheckConstraint"
 	    quid       	"3ED5247D007B"
 	    documentation 	
-|4.17.2 Table constraints
+|Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints
 |
-|A table constraint is either a unique constraint, a referential constraint or a table check constraint. A table constraint is described by a table constraint descriptor which is either a unique constraint descriptor, a referential constraint descriptor or a table check constraint descriptor.
-|
-|A check constraint is satisfied if and only if the specified <search condition> is not False for any or a given row of a table depending on how it was declared.
-|
-|A table check constraint is described by a table check constraint descriptor. In addition to the components of every table constraint descriptor, a table check constraint descriptor includes: The <search condition> .
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -188,23 +133,7 @@
 	(object Class "ForeignKey"
 	    quid       	"3EDF626C0085"
 	    documentation 	
-|Section 4.17
-|In the case that a table constraint is a referential constraint, the table is referred to as the referencing table. The referenced columns of a referential constraint shall be the unique columns of some unique constraint of the
-|referenced table.
-|
-|Section 11.8
-|5) The referenced table shall be a base table.
-| Case:
-|  a) If the referencing table is a persistent base table, then the referenced table shall be a persistent base table.
-|  b) If the referencing table is a global temporary table, then the referenced table shall be a global temporary table. 
-|  c) If the referencing table is a created local temporary table, then the referenced table shall be either a global temporary table or a created local temporary table.
-|  d) If the referencing table is a declared local temporary table, then the referenced table shall be either a global temporary table, a created local temporary table or a declared local temporary table.
-|
-|6) If the referenced table is a temporary table with ON COMMIT DELETE ROWS specified, then the ref-erencing table shall specify ON COMMIT DELETE ROWS .
-|7) Each referencing column shall identify a column of the referencing table, and the same column shall not be identified more than once.
-|9) The <referencing columns> shall contain the same number of <column name> s as the <referenced table and columns> . The i-th column identified in the <referencing columns> corresponds to the i-th column identified in the <referenced table and columns> . The declared type of each referencing column shall be comparable to the declared type of the corresponding referenced column. There shall not be corresponding constituents of the declared type of a referencing column and the declared type of the corresponding referenced column such that one constituent is datetime with time zone and the other is datetime without time zone.
-|10) If a <referential constraint definition> does not specify any <update rule> , then an <update rule> with a <referential action> of NO ACTION is implicit.
-|11) If a <referential constraint definition> does not specify any <delete rule> , then a <delete rule> with a <referential action> of NO ACTION is implicit.
+|Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints, Reference, 5WD-02-Foundation-2002-12 11.8 <referencial constraint definition>
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -234,14 +163,8 @@
 	(object Class "UniqueConstraint"
 	    quid       	"3ED52439006B"
 	    documentation 	
-|Section 4.17.2
-|A unique constraint is satisfied if and only if no two rows in a table have the same non-null values in the unique columns.
+|Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints, 5WD-02-Foundation-2002-12 11.7 <unique contraint definition>
 |
-|Section 11.7
-|3) If <unique column list> UCL is specified, then
-|a) Each <column name> in the <unique column list> shall identify a column of T, and the same column
-|shall not be identified more than once.
-|b) The set of columns in the <unique column list> shall be distinct from the unique columns of any other unique constraint descriptor that is included in the base table descriptor of T.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -250,17 +173,7 @@
 		    quidu      	"3EDE52410316")))
 	(object Class "PrimaryKey"
 	    quid       	"3ED5246901C3"
-	    documentation 	
-|Section 4.17
-|A PrimaryKey is a specialization of a UniqueConstraint.  A PrimaryKey additionally requires that none of the values in the specified column or columns be a null value.
-|
-|Section 11.7
-|5) If the <unique specification> specifies PRIMARY KEY , then for each <column name> in the explicit or
-|implicit <unique column list> for which NOT NULL is not specified, NOT NULL is implicit in the
-|<column definition> .
-|6) A <table definition> shall specify at most one implicit or explicit <unique constraint definition> that
-|specifies PRIMARY KEY .
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints, Reference, 5WD-02-Foundation-2002-12 11.7 <unique contraint definition>"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3ED55A4A0061"
@@ -282,6 +195,7 @@
 		    exportControl 	"Public")))
 	(object Class "Index"
 	    quid       	"3FA7FB2B02AA"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 "
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3FA807570399"
@@ -632,7 +546,7 @@
 	    max_height 	28350
 	    max_width  	21600
 	    origin_x   	0
-	    origin_y   	2782
+	    origin_y   	0
 	    items      	(list diagram_item_list
 		(object ClassView "Class" "Logical View::SQLModel::Constraints::Constraint" @1
 		    ShowCompartmentStereotypes 	TRUE
@@ -659,6 +573,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3ED5239F029C"
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(1752, 580)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	644)
 		    width      	778
 		    height     	286
 		    annotation 	8
@@ -999,6 +930,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED662B80341"
+		    compartment 	(object Compartment
+			Parent_View 	@14
+			location   	(295, 3996)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	387)
 		    width      	466
 		    height     	342
 		    annotation 	8
@@ -1038,6 +986,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED6717C0130"
+		    compartment 	(object Compartment
+			Parent_View 	@15
+			location   	(817, 4015)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	6
+			max_width  	340)
 		    width      	520
 		    height     	488
 		    annotation 	8
@@ -1119,6 +1084,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3ED5247D007B"
+		    compartment 	(object Compartment
+			Parent_View 	@18
+			location   	(2268, 1596)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	675)
 		    width      	814
 		    height     	186
 		    annotation 	8
@@ -1149,6 +1131,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3EDF635C005F"
+		    compartment 	(object Compartment
+			Parent_View 	@19
+			location   	(2701, 513)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	416)
 		    width      	510
 		    height     	232
 		    annotation 	8
@@ -1308,6 +1307,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@27
+			location   	(1444, 117)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
 		    width      	482
 		    height     	282
 		    annotation 	8
@@ -1322,8 +1338,8 @@
 			(2272, 156)
 			(2272, 507))
 		    line_style 	3
-		    origin_attachment 	(2486, 263)
-		    terminal_attachment 	(2486, 507))
+		    origin_attachment 	(2451, 156)
+		    terminal_attachment 	(2272, 507))
 		(object AttachView "" @29
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -1380,59 +1396,7 @@
 		    fill_color 	8453888
 		    width      	406
 		    height     	131)
-		(object ClassView "Class" "Logical View::SQLModel::Schema::Schema" @34
-		    ShowCompartmentStereotypes 	TRUE
-		    IncludeAttribute 	TRUE
-		    IncludeOperation 	TRUE
-		    location   	(1342, 584)
-		    font       	(object Font
-			size       	10
-			face       	"Arial"
-			bold       	FALSE
-			italics    	FALSE
-			underline  	FALSE
-			strike     	FALSE
-			color      	0
-			default_color 	TRUE)
-		    label      	(object ItemLabel
-			Parent_View 	@34
-			location   	(1205, 506)
-			fill_color 	13434879
-			nlines     	1
-			max_width  	274
-			justify    	0
-			label      	"Schema")
-		    icon_style 	"Icon"
-		    line_color 	3342489
-		    fill_color 	13434879
-		    quidu      	"3ED523C20089"
-		    width      	292
-		    height     	180
-		    annotation 	8
-		    autoResize 	TRUE)
-		(object AttachView "" @35
-		    stereotype 	TRUE
-		    line_color 	3342489
-		    client     	@2
-		    supplier   	@34
-		    vertices   	(list Points
-			(1024, 222)
-			(1215, 222)
-			(1215, 494))
-		    line_style 	3
-		    origin_attachment 	(1024, 222)
-		    terminal_attachment 	(1215, 494))
-		(object InheritView "" @36
-		    stereotype 	TRUE
-		    line_color 	16711680
-		    quidu      	"3ED52ED402B8"
-		    client     	@34
-		    supplier   	@27
-		    line_style 	3
-		    origin_attachment 	(1340, 494)
-		    terminal_attachment 	(1340, 400)
-		    drawSupplier 	@30)
-		(object NoteView @37
+		(object NoteView @34
 		    location   	(415, 2722)
 		    font       	(object Font
 			size       	10
@@ -1444,7 +1408,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@37
+			Parent_View 	@34
 			location   	(21, 2531)
 			fill_color 	13434879
 			nlines     	7
@@ -1454,7 +1418,21 @@
 		    fill_color 	16777088
 		    width      	812
 		    height     	394)
-		(object ClassView "Class" "Logical View::SQLModel::Constraints::ReferenceConstraint" @38
+		(object Label @35
+		    location   	(1630, 2476)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    nlines     	1
+		    max_width  	87
+		    label      	"{xor}")
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::ReferenceConstraint" @36
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
@@ -1469,7 +1447,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@38
+			Parent_View 	@36
 			location   	(1645, 1538)
 			fill_color 	13434879
 			nlines     	1
@@ -1484,26 +1462,26 @@
 		    height     	126
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritTreeView "" @39
+		(object InheritTreeView "" @37
 		    location   	(1881, 1944)
 		    line_color 	16711680
 		    fill_color 	16711680
-		    supplier   	@38
+		    supplier   	@36
 		    vertices   	(list Points
 			(1881, 1944)
 			(1881, 1652)))
-		(object AttachView "" @40
+		(object AttachView "" @38
 		    stereotype 	TRUE
 		    line_color 	3342489
-		    client     	@38
+		    client     	@36
 		    supplier   	@7
 		    line_style 	3
 		    origin_attachment 	(1636, 1584)
 		    terminal_attachment 	(1001, 1584))
-		(object AttachView "" @41
+		(object AttachView "" @39
 		    stereotype 	TRUE
 		    line_color 	3342489
-		    client     	@38
+		    client     	@36
 		    supplier   	@8
 		    vertices   	(list Points
 			(2046, 1652)
@@ -1512,25 +1490,11 @@
 		    line_style 	3
 		    origin_attachment 	(2046, 1652)
 		    terminal_attachment 	(2389, 1794))
-		(object Label @42
-		    location   	(1630, 2476)
-		    font       	(object Font
-			size       	10
-			face       	"Arial"
-			bold       	FALSE
-			italics    	FALSE
-			underline  	FALSE
-			strike     	FALSE
-			color      	0
-			default_color 	TRUE)
-		    nlines     	1
-		    max_width  	87
-		    label      	"{xor}")
-		(object ClassView "Class" "Logical View::SQLModel::Constraints::UniqueConstraint" @43
+		(object ClassView "Class" "Logical View::SQLModel::Schema::Schema" @40
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
-		    location   	(2039, 2220)
+		    location   	(1342, 584)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -1541,223 +1505,44 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@43
-			location   	(1833, 2169)
+			Parent_View 	@40
+			location   	(1205, 506)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	412
+			max_width  	274
 			justify    	0
-			label      	"UniqueConstraint")
+			label      	"Schema")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
-		    quidu      	"3ED52439006B"
-		    width      	430
-		    height     	126
+		    quidu      	"3ED523C20089"
+		    width      	292
+		    height     	180
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritView "" @44
+		(object AttachView "" @41
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@2
+		    supplier   	@40
+		    vertices   	(list Points
+			(1024, 222)
+			(1215, 222)
+			(1215, 494))
+		    line_style 	3
+		    origin_attachment 	(1024, 222)
+		    terminal_attachment 	(1215, 494))
+		(object InheritView "" @42
 		    stereotype 	TRUE
 		    line_color 	16711680
-		    quidu      	"3ED55A4A0061"
-		    client     	@11
-		    supplier   	@43
+		    quidu      	"3ED52ED402B8"
+		    client     	@40
+		    supplier   	@27
 		    line_style 	3
-		    origin_attachment 	(2052, 2457)
-		    terminal_attachment 	(2052, 2282))
-		(object InheritView "" @45
-		    stereotype 	TRUE
-		    line_color 	16711680
-		    quidu      	"3ED548B9004E"
-		    client     	@43
-		    supplier   	@38
-		    line_style 	3
-		    origin_attachment 	(2052, 2157)
-		    terminal_attachment 	(2052, 1944)
-		    drawSupplier 	@39)
-		(object ClassView "Class" "Logical View::SQLModel::Tables::Column" @46
-		    ShowCompartmentStereotypes 	TRUE
-		    location   	(1128, 1793)
-		    font       	(object Font
-			size       	10
-			face       	"Arial"
-			bold       	FALSE
-			italics    	FALSE
-			underline  	FALSE
-			strike     	FALSE
-			color      	0
-			default_color 	TRUE)
-		    label      	(object ItemLabel
-			Parent_View 	@46
-			location   	(1012, 1718)
-			fill_color 	13434879
-			nlines     	1
-			max_width  	232
-			justify    	0
-			label      	"Column")
-		    icon_style 	"Icon"
-		    line_color 	3342489
-		    fill_color 	13434879
-		    quidu      	"3E9B2AFF0392"
-		    width      	250
-		    height     	174
-		    annotation 	8
-		    autoResize 	TRUE)
-		(object AttachView "" @47
-		    stereotype 	TRUE
-		    line_color 	3342489
-		    client     	@6
-		    supplier   	@46
-		    line_style 	0)
-		(object AssociationViewNew "$UNNAMED$14" @48
-		    location   	(1539, 1805)
-		    font       	(object Font
-			size       	10
-			face       	"Arial"
-			bold       	FALSE
-			italics    	FALSE
-			underline  	FALSE
-			strike     	FALSE
-			color      	0
-			default_color 	TRUE)
-		    stereotype 	TRUE
-		    line_color 	255
-		    quidu      	"3FA71C3F013A"
-		    roleview_list 	(list RoleViews
-			(object RoleView "members" @49
-			    Parent_View 	@48
-			    location   	(-128, 219)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    label      	(object SegLabel @50
-				Parent_View 	@49
-				location   	(1381, 1847)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				anchor     	1
-				anchor_loc 	1
-				nlines     	1
-				max_width  	210
-				justify    	0
-				label      	"+members"
-				pctDist    	0.552448
-				height     	42
-				orientation 	0)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3FA71C410039"
-			    client     	@48
-			    supplier   	@46
-			    line_style 	3
-			    origin_attachment 	(1539, 1805)
-			    terminal_attachment 	(1253, 1805)
-			    label      	(object SegLabel @51
-				Parent_View 	@49
-				location   	(1343, 1760)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				anchor     	2
-				anchor_loc 	1
-				nlines     	1
-				max_width  	15
-				justify    	0
-				label      	"1..n"
-				pctDist    	0.689362
-				height     	46
-				orientation 	1)
-			    label      	(object SegLabel @52
-				Parent_View 	@49
-				location   	(1375, 1894)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				anchor     	3
-				anchor_loc 	1
-				nlines     	1
-				max_width  	159
-				justify    	0
-				label      	"{ordered}"
-				pctDist    	0.573427
-				height     	89
-				orientation 	0))
-			(object RoleView "$UNNAMED$15" @53
-			    Parent_View 	@48
-			    location   	(-128, 219)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"3FA71C41004D"
-			    client     	@48
-			    supplier   	@38
-			    vertices   	(list Points
-				(1539, 1805)
-				(1672, 1805)
-				(1672, 1652))
-			    line_style 	3
-			    origin_attachment 	(1539, 1805)
-			    terminal_attachment 	(1672, 1652))))
-		(object ClassView "Class" "Logical View::SQLModel::Constraints::Index" @54
-		    ShowCompartmentStereotypes 	TRUE
-		    IncludeOperation 	TRUE
-		    location   	(2131, 2858)
-		    font       	(object Font
-			size       	10
-			face       	"Arial"
-			bold       	FALSE
-			italics    	FALSE
-			underline  	FALSE
-			strike     	FALSE
-			color      	0
-			default_color 	TRUE)
-		    label      	(object ItemLabel
-			Parent_View 	@54
-			location   	(2035, 2807)
-			fill_color 	13434879
-			nlines     	1
-			max_width  	192
-			justify    	0
-			label      	"Index")
-		    icon_style 	"Icon"
-		    line_color 	3342489
-		    fill_color 	13434879
-		    quidu      	"3FA7FB2B02AA"
-		    width      	210
-		    height     	126
-		    annotation 	8
-		    autoResize 	TRUE)
-		(object AttachView "" @55
-		    stereotype 	TRUE
-		    line_color 	3342489
-		    client     	@33
-		    supplier   	@54
-		    line_style 	0)
-		(object ClassView "Class" "Logical View::SQLModel::Constraints::TableConstraint" @56
+		    origin_attachment 	(1340, 494)
+		    terminal_attachment 	(1340, 400)
+		    drawSupplier 	@30)
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::TableConstraint" @43
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
@@ -1772,7 +1557,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@56
+			Parent_View 	@43
 			location   	(2129, 1001)
 			fill_color 	13434879
 			nlines     	1
@@ -1787,28 +1572,28 @@
 		    height     	126
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object AttachView "" @57
+		(object AttachView "" @44
 		    stereotype 	TRUE
 		    line_color 	3342489
-		    client     	@56
+		    client     	@43
 		    supplier   	@3
 		    line_style 	0)
-		(object InheritView "" @58
+		(object InheritView "" @45
 		    stereotype 	TRUE
 		    line_color 	16711680
 		    quidu      	"3ED52B490312"
-		    client     	@56
+		    client     	@43
 		    supplier   	@1
 		    line_style 	3
 		    origin_attachment 	(2314, 989)
 		    terminal_attachment 	(2314, 908)
 		    drawSupplier 	@32)
-		(object InheritView "" @59
+		(object InheritView "" @46
 		    stereotype 	TRUE
 		    line_color 	16711680
 		    quidu      	"3EDE538E0161"
-		    client     	@38
-		    supplier   	@56
+		    client     	@36
+		    supplier   	@43
 		    vertices   	(list Points
 			(1914, 1526)
 			(1914, 1434)
@@ -1817,12 +1602,12 @@
 		    line_style 	3
 		    origin_attachment 	(1914, 1526)
 		    terminal_attachment 	(2314, 1115))
-		(object InheritView "" @60
+		(object InheritView "" @47
 		    stereotype 	TRUE
 		    line_color 	16711680
 		    quidu      	"3EDE53940170"
 		    client     	@18
-		    supplier   	@56
+		    supplier   	@43
 		    vertices   	(list Points
 			(2645, 1523)
 			(2645, 1434)
@@ -1831,7 +1616,7 @@
 		    line_style 	3
 		    origin_attachment 	(2645, 1523)
 		    terminal_attachment 	(2314, 1115))
-		(object ClassView "Class" "Logical View::SQLModel::Constraints::Assertion" @61
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::Assertion" @48
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
@@ -1846,7 +1631,7 @@
 			color      	0
 			default_color 	TRUE)
 		    label      	(object ItemLabel
-			Parent_View 	@61
+			Parent_View 	@48
 			location   	(1063, 980)
 			fill_color 	13434879
 			nlines     	1
@@ -1857,27 +1642,44 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3ED524BC0165"
+		    compartment 	(object Compartment
+			Parent_View 	@48
+			location   	(1063, 1041)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	675)
 		    width      	814
 		    height     	186
 		    annotation 	8
 		    autoResize 	TRUE)
-		(object InheritView "" @62
+		(object InheritView "" @49
 		    stereotype 	TRUE
 		    line_color 	16711680
 		    quidu      	"3ED52B5201F9"
-		    client     	@61
+		    client     	@48
 		    supplier   	@1
 		    line_style 	3
 		    origin_attachment 	(1496, 967)
 		    terminal_attachment 	(1496, 908)
 		    drawSupplier 	@32)
-		(object AssociationViewNew "$UNNAMED$0" @63
+		(object AssociationViewNew "$UNNAMED$0" @50
 		    location   	(1346, 820)
 		    stereotype 	TRUE
 		    quidu      	"3F26B1ED0231"
 		    roleview_list 	(list RoleViews
-			(object RoleView "schema" @64
-			    Parent_View 	@63
+			(object RoleView "schema" @51
+			    Parent_View 	@50
 			    location   	(62, -200)
 			    font       	(object Font
 				size       	12
@@ -1891,13 +1693,13 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"3F26B1EF0330"
-			    client     	@63
-			    supplier   	@34
+			    client     	@50
+			    supplier   	@40
 			    line_style 	3
 			    origin_attachment 	(1346, 820)
 			    terminal_attachment 	(1346, 674)
-			    label      	(object SegLabel @65
-				Parent_View 	@64
+			    label      	(object SegLabel @52
+				Parent_View 	@51
 				location   	(1394, 709)
 				font       	(object Font
 				    size       	10
@@ -1917,8 +1719,8 @@
 				pctDist    	0.760234
 				height     	48
 				orientation 	1))
-			(object RoleView "assertions" @66
-			    Parent_View 	@63
+			(object RoleView "assertions" @53
+			    Parent_View 	@50
 			    location   	(62, -200)
 			    font       	(object Font
 				size       	12
@@ -1929,8 +1731,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @67
-				Parent_View 	@66
+			    label      	(object SegLabel @54
+				Parent_View 	@53
 				location   	(1236, 872)
 				font       	(object Font
 				    size       	10
@@ -1953,13 +1755,13 @@
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"3F26B1EF032E"
-			    client     	@63
-			    supplier   	@61
+			    client     	@50
+			    supplier   	@48
 			    line_style 	3
 			    origin_attachment 	(1346, 820)
 			    terminal_attachment 	(1346, 967)
-			    label      	(object SegLabel @68
-				Parent_View 	@66
+			    label      	(object SegLabel @55
+				Parent_View 	@53
 				location   	(1288, 932)
 				font       	(object Font
 				    size       	10
@@ -1979,6 +1781,237 @@
 				pctDist    	0.767442
 				height     	59
 				orientation 	1))))
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::UniqueConstraint" @56
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2039, 2220)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@56
+			location   	(1838, 2169)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	402
+			justify    	0
+			label      	"UniqueConstraint")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3ED52439006B"
+		    width      	420
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @57
+		    stereotype 	TRUE
+		    line_color 	16711680
+		    quidu      	"3ED55A4A0061"
+		    client     	@11
+		    supplier   	@56
+		    line_style 	3
+		    origin_attachment 	(2052, 2457)
+		    terminal_attachment 	(2052, 2282))
+		(object InheritView "" @58
+		    stereotype 	TRUE
+		    line_color 	16711680
+		    quidu      	"3ED548B9004E"
+		    client     	@56
+		    supplier   	@36
+		    line_style 	3
+		    origin_attachment 	(2052, 2157)
+		    terminal_attachment 	(2052, 1944)
+		    drawSupplier 	@37)
+		(object ClassView "Class" "Logical View::SQLModel::Tables::Column" @59
+		    ShowCompartmentStereotypes 	TRUE
+		    location   	(1128, 1793)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@59
+			location   	(1012, 1718)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	232
+			justify    	0
+			label      	"Column")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3E9B2AFF0392"
+		    width      	250
+		    height     	174
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AttachView "" @60
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@6
+		    supplier   	@59
+		    line_style 	0)
+		(object AssociationViewNew "$UNNAMED$14" @61
+		    location   	(1539, 1805)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    stereotype 	TRUE
+		    line_color 	255
+		    quidu      	"3FA71C3F013A"
+		    roleview_list 	(list RoleViews
+			(object RoleView "members" @62
+			    Parent_View 	@61
+			    location   	(-128, 219)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @63
+				Parent_View 	@62
+				location   	(1381, 1847)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"+members"
+				pctDist    	0.552448
+				height     	42
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3FA71C410039"
+			    client     	@61
+			    supplier   	@59
+			    line_style 	3
+			    origin_attachment 	(1539, 1805)
+			    terminal_attachment 	(1253, 1805)
+			    label      	(object SegLabel @64
+				Parent_View 	@62
+				location   	(1343, 1760)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"1..n"
+				pctDist    	0.689362
+				height     	46
+				orientation 	1)
+			    label      	(object SegLabel @65
+				Parent_View 	@62
+				location   	(1375, 1894)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	3
+				anchor_loc 	1
+				nlines     	1
+				max_width  	159
+				justify    	0
+				label      	"{ordered}"
+				pctDist    	0.573427
+				height     	89
+				orientation 	0))
+			(object RoleView "$UNNAMED$15" @66
+			    Parent_View 	@61
+			    location   	(-128, 219)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3FA71C41004D"
+			    client     	@61
+			    supplier   	@36
+			    vertices   	(list Points
+				(1539, 1805)
+				(1672, 1805)
+				(1672, 1652))
+			    line_style 	3
+			    origin_attachment 	(1539, 1805)
+			    terminal_attachment 	(1672, 1652))))
+		(object ClassView "Class" "Logical View::SQLModel::Constraints::Index" @67
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2131, 2858)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@67
+			location   	(2035, 2807)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	192
+			justify    	0
+			label      	"Index")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3FA7FB2B02AA"
+		    width      	210
+		    height     	126
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AttachView "" @68
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@33
+		    supplier   	@67
+		    line_style 	0)
 		(object ClassView "Class" "Logical View::SQLModel::Tables::BaseTable" @69
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
@@ -2030,8 +2063,8 @@
 			(1005, 1339)
 			(1236, 1339))
 		    line_style 	3
-		    origin_attachment 	(1029, 468)
-		    terminal_attachment 	(1236, 1316))
+		    origin_attachment 	(1005, 816)
+		    terminal_attachment 	(1236, 1339))
 		(object AssociationViewNew "$UNNAMED$3" @72
 		    location   	(1990, 1371)
 		    stereotype 	TRUE
@@ -2138,7 +2171,7 @@
 			    line_color 	3342489
 			    quidu      	"3F26B3390062"
 			    client     	@72
-			    supplier   	@56
+			    supplier   	@43
 			    vertices   	(list Points
 				(1990, 1371)
 				(2188, 1371)
@@ -2211,7 +2244,7 @@
 			    line_color 	3342489
 			    quidu      	"3ED52E4101AC"
 			    client     	@79
-			    supplier   	@61
+			    supplier   	@48
 			    line_style 	3
 			    origin_attachment 	(1387, 1234)
 			    terminal_attachment 	(1387, 1153))
@@ -2302,19 +2335,36 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3EDF626C0085"
+		    compartment 	(object Compartment
+			Parent_View 	@85
+			location   	(453, 2146)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	931)
 		    width      	1112
 		    height     	286
 		    annotation 	8
 		    autoResize 	TRUE)
 		(object AssociationViewNew "$UNNAMED$5" @86
-		    location   	(1690, 2254)
+		    location   	(1692, 2254)
 		    stereotype 	TRUE
 		    line_color 	255
 		    quidu      	"3EDE53DD038E"
 		    roleview_list 	(list RoleViews
 			(object RoleView "$UNNAMED$6" @87
 			    Parent_View 	@86
-			    location   	(-397, -867)
+			    location   	(-395, -867)
 			    font       	(object Font
 				size       	12
 				face       	"Arial"
@@ -2352,11 +2402,11 @@
 			    client     	@86
 			    supplier   	@85
 			    line_style 	3
-			    origin_attachment 	(1690, 2254)
+			    origin_attachment 	(1692, 2254)
 			    terminal_attachment 	(1556, 2254))
 			(object RoleView "uniqueConstraint" @89
 			    Parent_View 	@86
-			    location   	(-397, -867)
+			    location   	(-395, -867)
 			    font       	(object Font
 				size       	12
 				face       	"Arial"
@@ -2368,7 +2418,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @90
 				Parent_View 	@89
-				location   	(1804, 2133)
+				location   	(1808, 2133)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -2391,13 +2441,13 @@
 			    line_color 	3342489
 			    quidu      	"3EDE53DE02A6"
 			    client     	@86
-			    supplier   	@43
+			    supplier   	@56
 			    line_style 	3
-			    origin_attachment 	(1690, 2254)
-			    terminal_attachment 	(1824, 2254)
+			    origin_attachment 	(1692, 2254)
+			    terminal_attachment 	(1829, 2254)
 			    label      	(object SegLabel @91
 				Parent_View 	@89
-				location   	(1774, 2296)
+				location   	(1777, 2296)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -2421,11 +2471,11 @@
 		    line_color 	16711680
 		    quidu      	"3ED548BC006E"
 		    client     	@85
-		    supplier   	@38
+		    supplier   	@36
 		    line_style 	3
 		    origin_attachment 	(1369, 2073)
 		    terminal_attachment 	(1369, 1944)
-		    drawSupplier 	@39)
+		    drawSupplier 	@37)
 		(object AssociationViewNew "$UNNAMED$16" @93
 		    location   	(1169, 1975)
 		    font       	(object Font
@@ -2478,7 +2528,7 @@
 			    line_color 	3342489
 			    quidu      	"3FA71D0D02EF"
 			    client     	@93
-			    supplier   	@46
+			    supplier   	@59
 			    line_style 	3
 			    origin_attachment 	(1169, 1975)
 			    terminal_attachment 	(1169, 1879)
@@ -2595,7 +2645,7 @@
 			    line_color 	3342489
 			    quidu      	"4022F5030107"
 			    client     	@100
-			    supplier   	@54
+			    supplier   	@67
 			    line_style 	3
 			    origin_attachment 	(1393, 2837)
 			    terminal_attachment 	(2026, 2837)
@@ -2651,8 +2701,8 @@
 			(1088, 3185)
 			(1279, 3185))
 		    line_style 	3
-		    origin_attachment 	(1418, 2359)
-		    terminal_attachment 	(1418, 3180))
+		    origin_attachment 	(1088, 2359)
+		    terminal_attachment 	(1279, 3185))
 		(object AttachView "" @107
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -2663,8 +2713,8 @@
 			(1153, 2979)
 			(1356, 2979))
 		    line_style 	3
-		    origin_attachment 	(1456, 2359)
-		    terminal_attachment 	(1456, 2977))
+		    origin_attachment 	(1153, 2359)
+		    terminal_attachment 	(1356, 2979))
 		(object AttachView "" @108
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -2677,7 +2727,7 @@
 		    stereotype 	TRUE
 		    line_color 	3342489
 		    client     	@85
-		    supplier   	@37
+		    supplier   	@34
 		    line_style 	3
 		    origin_attachment 	(756, 2359)
 		    terminal_attachment 	(756, 2524))

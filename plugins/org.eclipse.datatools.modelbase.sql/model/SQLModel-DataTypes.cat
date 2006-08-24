@@ -34,41 +34,7 @@
 	(object Class "UserDefinedType"
 	    quid       	"3EDF9E8100EB"
 	    documentation 	
-|4.7 User-defined types
-|
-|A user-defined type is a schema object, identified by a <user-defined type name> . The definition of a userdefined type specifies a number of components, including in particular a list of attribute definitions. Although the attribute definitions are said to define the representation of the user-defined type, in fact they implicitly define certain functions (observers and mutators) that are part of the interface of the user-defined type; physical representations of user-defined type values are implementation-dependent.
-|
-|The representation of a user-defined type is expressed either as a single data type (some predefined data type, called the source type), in which case the user-defined type is said to be a distinct type, or as a list of attribute definitions, in which case it is said to be a structured type.
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
-| - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
-| - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
-| - A <specific routine designator> identifying the ordering function, depending on the ordering category.
-| - If the user-defined type is a direct subtype of another user-defined type, then the name of that user-defined type.
-| - If the representation is a predefined data type, then the descriptor of that type; otherwise the attribute descriptor of every originally-defined attribute and every inherited attribute of the user-defined type.
-| - An indication of whether the user-defined type is instantiable or not instantiable.
-| - An indication of whether the user-defined type is final or not final.
-| - The transform descriptor of the user-defined type.
-| - If the user-defined type is a structured type, then:
-| - Whether the referencing type of the structured type has a user-defined representation, a derived representation, or a system-defined representation.
-| - If user-defined representation is specified, then the type descriptor of the representation type of the referencing type of the structured type; otherwise, if derived representation is specified, then the list of attributes.
-|NOTE 15 - "user-defined representation", "derived representation", and "system-defined representation" of a reference type are defined in Subclause 4.9, "Reference types".
-| - If the <method specification list> is specified, then for each <method specification> contained in <method specification list> , a method specification descriptor that includes:
-| - The <method name>.
-| - The <specific method name>.
-| - The <SQL parameter declaration list> augmented to include the implicit first parameter with parameter name SELF.
-| - The <language name>.
-| - If the <language name> is not SQL, then the <parameter style>.
-| - The <returns data type>.
-| - The <result cast from type> , if any.
-| - An indication as to whether the <method specification> is an <original method specification> or an <overriding method specification> .
-| - If the <method specification> is an <original method specification> , then an indication of whether STATIC or CONSTRUCTOR is specified.
-| - An indication whether the method is deterministic.
-| - An indication whether the method possibly writes SQL data, possibly reads SQL data, possibly contains SQL, or does not possibly contain SQL.
-| - An indication whether the method should not be invoked if any argument is the null value, in which case the value of the method is the null value.
-|NOTE 16 - The characteristics of an <overriding method specification> other than the <method name> , <SQL parameter declaration list> , and <returns data type> are the same as the characteristics for the corresponding <original method specification> .
+|Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -80,84 +46,7 @@
 	(object Class "DataType"
 	    quid       	"3E9B3F3400BF"
 	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. Exactly one of the data types of a value V, namely the most specific type of V, is a subtype of every data type of V. A <value expression> E has exactly one declared type, common to every possible result of evaluating E. Items that can be referenced by name, such as SQL parameters, columns, fields, attributes, and variables, also have declared types.
-|
-|SQL supports three sorts of data types: predefined data types, constructed types, and user-defined types. Predefined data types are sometimes called 'built-in data types', though not in this International Standard. Userdefined types can be defined by a standard, by an implementation, or by an application. A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-|Every predefined data type is a subtype of itself and of no other data types. It follows that every predefined data type is a supertype of itself and of no other data types. The predefined data types are individually described in each of Subclause 4.2, "Character strings", through Subclause 4.6, "Datetimes and intervals". Row types, reference types and collection types are described in Subclause 4.8, "Row types", Subclause 4.9, "Reference types", Subclause 4.10, "Collection types", respectively.
-|
-|SQL defines predefined data types named by the following <key word> s: CHARACTER , CHARACTER VARYING , CHARACTER LARGE OBJECT , BINARY LARGE OBJECT , NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , DOUBLE PRECISION , BOOLEAN , DATE , TIME , TIMESTAMP , and INTERVAL . These names are used in the type designators that constitute the type precedence lists specified in Subclause 9.5, "Type precedence list determination".
-|
-|For reference purposes:
-| - The data types CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT are collectively referred to as character string types.
-| - The data type BINARY LARGE OBJECT is referred to as the binary string type and the values of binary string types are referred to as binary strings.
-| - The data types CHARACTER LARGE OBJECT and BINARY LARGE OBJECT are collectively referred to as large object string types and the values of large object string types are referred to as large object strings.
-| - Character string types and binary string types are collectively referred to as string types and values of string types are referred to as strings.
-| - The data types NUMERIC , DECIMAL , SMALLINT , INTEGER , and BIGINT are collectively referred to as exact numeric types.
-| - The data types FLOAT , REAL , and DOUBLE PRECISION are collectively referred to as approximate numeric types.
-| - Exact numeric types and approximate numeric types are collectively referred to as numeric types. Values of numeric types are referred to as numbers.
-| - The data types TIME WITHOUT TIME ZONE and TIME WITH TIME ZONE are collectively referred to as time types (or, for emphasis, as time with or without time zone).
-| - The data types TIMESTAMP WITHOUT TIME ZONE and TIMESTAMP WITH TIME ZONE are collectively referred to as timestamp types (or, for emphasis, as timestamp with or without time zone).
-| - The data types DATE , TIME , and TIMESTAMP are collectively referred to as datetime types.
-| - Values of datetime types are referred to as datetimes.
-| - The data type INTERVAL is referred to as an interval type. Values of interval types are called intervals.
-|
-|Each data type has an associated data type descriptor; the contents of a data type descriptor are determined by the specific data type that it describes. A data type descriptor includes an identification of the data type and all information needed to characterize a value of that data type. Subclause 6.1, "<data type> ", describes the semantic properties of each data type.
-|
-|A structured type ST is directly based on a data type DT if any of the following are true:
-| - DT is the declared type of some attribute of ST.
-| - DT is a direct supertype of ST.
-| - DT is a direct subtype of ST.
-| - DT is compatible with ST.
-|
-|A collection type CT is directly based on a data type DT if DT is the element type of CT.
-|A row type RT is directly based on a data type DT if DT is the declared type of some field (or the data type of the domain of some field) whose descriptor is included in the descriptor of RT.
-|A data type DT1 is based on a data type DT2 if DT1 is directly based on DT2 or DT1 is directly based on some data type that is based on DT2.
-|
-|A type TY is usage-dependent on a user-defined type UDT if one of the following conditions is true:
-| - TY is UDT.
-| - TY is a reference type whose referenced type is UDT.
-| - TY is a row type, and the declared type of a field of TY is usage-dependent on UDT.
-| - TY is a collection type, and the declared element type of TY is usage-dependent on UDT.
-|
-|Each host language has its own data types, which are separate and distinct from SQL data types, even though similar names may be used to describe the data types. Mappings of SQL data types to data types in host languages are described in Subclause 11.50, "<SQL-invoked routine> ", and Subclause 20.1, "<embedded SQL host program> ". Not every SQL data type has a corresponding data type in every host language. Ordering and comparison of values of the predefined data types requires knowledge only about those predefined data types. However, to be able to compare and order values of constructed types or of user-defined types, additional information is required. We say that some type T is S-ordered, for some set of types S, if, in order to compare and order values of type T, information about ordering at least one of the types in S is first required.
-|
-|A definition of S-ordered is required for several S (that is, for several sets of types), but not for all possible such sets.
-|The general definition of S-ordered is this:
-|Let T be a type and let S be a set of types. T is S-ordered if one of the following is true:
-|- T is a member of S.
-|- T is a row type and the declared type of some field of T is S-ordered.
-|- T is a collection type and the element type of T is S-ordered.
-|- T is a structured type whose comparison form is STATE and the declared type of some attribute of T is S-ordered.
-|- T is a user-defined type whose comparison form is MAP and the return type of the SQL-invoked function that is identified by the <map function specification> is S-ordered.
-|- T is a reference type with a derived representation and the declared type of some attribute enumerated by the <derived representation> is S-ordered.
-|
-|The notion of S-ordered is applied in the following definitions:
-|- A type T is LOB-ordered if T is L-ordered, where L is the set of large object types.
-|- A type T is array-ordered if T is ARR-ordered, where ARR is the set of array types.
-|- A type T is multiset-ordered if T is MUL-ordered, where MUL is the set of multiset types.
-|- A type T is reference-ordered if T is REF-ordered, where REF is the set of reference types.
-|- A type T is DT-EC-ordered if T is DTE-ordered, where DTE is the set of distinct types with EQUALS ONLY comparison form (DT-EC stands for "distinct type-equality comparison").
-|- A type T is DT-FC-ordered if T is DTF-ordered, where DTF is the set of distinct types with FULL comparison form.
-|- A type T is DT-NC-ordered if T is DTN-ordered, where DTN is the set of distinct types with no comparison form.
-|- A type T is ST-EC-ordered if T is STE-ordered, where STE is the set of structured types with EQUALS ONLY comparison form.
-|- A type T is ST-FC-ordered if T is STF-ordered, where STF is the set of structured types with FULL comparison form.
-|- A type T is ST-NC-ordered if T is STN-ordered, where STN is the set of structured types with no comparison form.
-|- A type T is ST-ordered if T is ST-EC-ordered, ST-FC-ordered or ST-NC-ordered.
-|- A type T is UDT-EC-ordered if T is either DT-EC-ordered or ST-EC-ordered (UDT stands for "user-defined type").
-|- A type T is UDT-FC-ordered if T is either DT-FC-ordered or ST-FC-ordered
-|- A type T is UDT-NC-ordered if T is either DT-NC-ordered or ST-NC-ordered.
-|
-|The notion of constituent of a declared type DT is defined recursively as follows:
-|- DT is a constituent of DT.
-|- If DT is a row type, then the declared type of each field of DT is a constituent of DT.
-|- If DT is a collection type, then the element type of DT is a constituent of DT.
-|- Every constituent of a constituent of DT is a constituent of DT.
-|
-|Two data types, T1 and T2, are said to be compatible if T1 is assignable to T2, T2 is assignable to T1, and their descriptors include the same data type name. If they are row types, it shall further be the case that the declared types of their corresponding fields are pairwise compatible. If they are collection types, it shall further be the case that their element types are compatible. If they are reference types, it shall further be the case that their referenced types are compatible.
-|NOTE 8 - The data types "CHARACTER (n) CHARACTER SET CS1" and "CHARACTER (m) CHARACTER SET CS2", where CS1 1 CS2, have descriptors that include the same data type name (CHARACTER ), but are not mutually assignable; therefore, they are not compatible.
+|Reference: 5WD-02-Foundation-2002-12 4.1 Data types
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -182,13 +71,8 @@
 	(object Class "PredefinedDataType"
 	    quid       	"3EDF9E550371"
 	    documentation 	
-|4.1 Data types
+|Reference: 5WD-02-Foundation-2002-12 4.1 Data types
 |
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|Every predefined data type is a subtype of itself and of no other data types. It follows that every predefined data type is a supertype of itself and of no other data types. The predefined data types are individually described in each of Subclause 4.2, "Character strings", through Subclause 4.6, "Datetimes and intervals". Row types, reference types and collection types are described in Subclause 4.8, "Row types", Subclause 4.9, "Reference types", Subclause 4.10, "Collection types", respectively.
-|
-|SQL defines predefined data types named by the following <key word> s: CHARACTER , CHARACTER VARYING , CHARACTER LARGE OBJECT , BINARY LARGE OBJECT , NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , DOUBLE PRECISION , BOOLEAN , DATE , TIME , TIMESTAMP , and INTERVAL . These names are used in the type designators that constitute the type precedence lists specified in Subclause 9.5, "Type precedence list determination".
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -209,14 +93,7 @@
 	    abstract   	TRUE)
 	(object Class "CollectionDataType"
 	    quid       	"3F12D9CF01F9"
-	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.10 Collection Types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F33B2630206"
@@ -225,44 +102,7 @@
 	    abstract   	TRUE)
 	(object Class "NumericalDataType"
 	    quid       	"3F2693990310"
-	    documentation 	
-|4.4 Numbers
-|
-|A number is either an exact numeric value or an approximate numeric value. Any two numbers are comparable.
-|A numeric type is described by a numeric type descriptor. A numeric type descriptor contains:
-| - The name of the specific numeric type (NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , or DOUBLE PRECISION).
-| - The precision of the numeric type.
-| - The scale of the numeric type, if it is an exact numeric type.
-| - An indication of whether the precision (and scale) are expressed in decimal or binary terms.
-|
-|An SQL-implementation is permitted to regard certain <exact numeric type> s as equivalent, if they have the same precision, scale, and radix, as permitted by the Syntax Rules of Subclause 6.1, "<data type> ". When two or more <exact numeric type> s are equivalent, the SQL-implementation chooses one of these equivalent <exact numeric type> s as the normal form representing that equivalence class of <exact numeric type> s. The normal form determines the name of the exact numeric type in the numeric type descriptor.
-|
-|Similarly, an SQL-implementation is permitted to regard certain <approximate numeric type> s as equivalent, as permitted the Syntax Rules of Subclause 6.1, "<data type> ", in which case the SQL-implementation chooses a normal form to represent each equivalence class of <approximate numeric type> and the normal form determines the name of the approximate numeric type.
-|
-|For every numeric type, the least value is less than zero and the greatest value is greater than zero.
-|
-|4.4.1 Characteristics of numbers
-|
-|An exact numeric type has a precision P and a scale S. P is a positive integer that determines the number of significant digits in a particular radix R, where R is either 2 or 10. S is a non-negative integer. Every value of an exact numeric type of scale S is of the form n x 10-S, where n is an integer such that -RP <= n < RP.
-|NOTE 13 - Not every value in that range is necessarily a value of the type in question.
-|
-|An approximate numeric value consists of a mantissa and an exponent. The mantissa is a signed numeric value, and the exponent is a signed integer that specifies the magnitude of the mantissa. An approximate numeric value has a precision. The precision is a positive integer that specifies the number of significant binary digits in the mantissa. The value of an approximate numeric value is the mantissa multiplied by a factor determined by the exponent.
-|
-|An <approximate numeric literal> ANL consists of an <exact numeric literal> (called the <mantissa> ), the letter 'E' or 'e', and a <signed integer> (called the <exponent> ). If M is the value of the <mantissa> and E is the value of the <exponent> , then M * 10E is the apparent value of ANL. The actual value of ANL is approximately the apparent value of ANL, according to implementation-defined rules.
-|
-|A number is assignable only to sites of numeric type. If an assignment of some number would result in a loss of its most significant digit, an exception condition is raised. If least significant digits are lost, implementationdefined rounding or truncating occurs, with no exception condition being raised. The rules for arithmetic are specified in Subclause 6.26, "<numeric value expression> ".
-|
-|Whenever an exact or approximate numeric value is assigned to an exact numeric value site, an approximation of its value that preserves leading significant digits after rounding or truncating is represented in the declared type of the target. The value is converted to have the precision and scale of the target. The choice of whether to truncate or round is implementation-defined.
-|
-|An approximation obtained by truncation of a numeric value N for an <exact numeric type> T is a value V in T such that N is not closer to zero than is V and there is no value in T between V and N. An approximation obtained by rounding of a numeric value N for an <exact numeric type> T is a value V in T such that the absolute value of the difference between N and the numeric value of V is not greater than half the absolute value of the difference between two successive numeric values in T. If there is more than one such value V, then it is implementation-defined which one is taken.
-|
-|All numeric values between the smallest and the largest value, inclusive, in a given exact numeric type have an approximation obtained by rounding or truncation for that type; it is implementation-defined which other numeric values have such approximations. An approximation obtained by truncation or rounding of a numeric value N for an <approximate numeric type> T is a value V in T such that there is no numeric value in T and distinct from that of V that lies between the numeric value of V and N, inclusive.
-|
-|If there is more than one such value V then it is implementation-defined which one is taken. It is implementationdefined which numeric values have approximations obtained by rounding or truncation for a given approximate numeric type. Whenever an exact or approximate numeric value is assigned to an approximate numeric value site, an approximation of its value is represented in the declared type of the target. The value is converted to have the precision of the target.
-|
-|Operations on numbers are performed according to the normal rules of arithmetic, within implementationdefined limits, except as provided for in Subclause 6.26, "<numeric value expression> ".
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.4 Numbers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F2693F9022B"
@@ -276,34 +116,7 @@
 	    abstract   	TRUE)
 	(object Class "CharacterStringDataType"
 	    quid       	"3F2186CB02E1"
-	    documentation 	
-|4.1 Data types
-|
-|For reference purposes:
-| - The data types CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT are collectively referred to as character string types.
-| - The data type BINARY LARGE OBJECT is referred to as the binary string type and the values of binary string types are referred to as binary strings.
-| - The data types CHARACTER LARGE OBJECT and BINARY LARGE OBJECT are collectively referred to as large object string types and the values of large object string types are referred to as large object strings.
-| - Character string types and binary string types are collectively referred to as string types and values of string types are referred to as strings.
-|
-|4.2 Character strings
-|
-|A character string is a sequence of characters. All the characters in a character string are taken from a single character set. A character string has a length, which is the number of characters in the sequence. The length is 0 (zero) or a positive integer. A character string type is described by a character string type descriptor.
-|
-|A character string type descriptor contains:
-| - The name of the specific character string type (CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT ; NATIONAL CHARACTER , NATIONAL CHARACTER VARYING , and NATIONAL CHARACTER LARGE OBJECT are represented as CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT , respectively).
-| - The length or maximum length in characters of the character string type.
-| - The catalog name, schema name, and character set name of the character set of the character string type.
-| - The catalog name, schema name, and collation name of the collation of the character string type.
-|
-|The character set of a character string type may be specified explicitly or implicitly.
-|
-|The <key word>s NATIONAL CHARACTER are used to specify an implementation-defined character set. Special syntax (N'string') is provided for representing literals in that character set. With two exceptions, a character string expression is assignable only to sites of a character string type whose character set is the same. The exceptions are as specified in Subclause 4.2.7, "Universal character sets", and such other cases as may be implementation-defined. If a store assignment would result in the loss of non-<space> characters due to truncation, then an exception condition is raised. If a retrieval assignment or evaluation of a <cast specification> would result in the loss of characters due to truncation, then a warning condition is raised.
-|
-|Character sets fall into three categories: those defined by national or international standards, those defined by SQL-implementations, and those defined by applications. The character sets defined by ISO/IEC 10646 and The Unicode Standard are known as Universal Character Sets (UCS) and their treatment is described in Subclause 4.2.7, "Universal character sets". Every character set contains the <space> character (equivalent to U+0020). An application defines a character set by assigning a new name to a character set from one of the first two categories. They can be defined to "reside" in any schema chosen by the application. Character sets defined by standards or by SQL-implementations reside in the Information Schema (named INFORMATION_SCHEMA) in each catalog, as do collations defined by standards and collations, transliterations, and transcodings defined by SQL-implementations.
-|
-|NOTE 9 : The Information Schema is defined in ISO/IEC 9075-11.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.2 Character strings"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F218707016A"
@@ -337,11 +150,7 @@
 	(object Class "RowDataType"
 	    quid       	"3F12DAEF016C"
 	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
+|Reference: 5WD-02-Foundation-2002-12 4.8 Row Types
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -351,14 +160,7 @@
 		    quidu      	"3FB90F4001F0")))
 	(object Class "ArrayDataType"
 	    quid       	"3F12D9F402F3"
-	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.10.1 Arrays"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F12DA580014"
@@ -372,14 +174,7 @@
 	    abstract   	TRUE)
 	(object Class "MultisetDataType"
 	    quid       	"3F12DA6600D0"
-	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.10.2 Multisets"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F12DA7002F3"
@@ -389,12 +184,8 @@
 	(object Class "BooleanDataType"
 	    quid       	"3F216E800160"
 	    documentation 	
-|4.5 Boolean types
+|Reference: 5WD-02-Foundation-2002-12 4.5 Boolean types
 |
-|The data type boolean comprises the distinct truth values True and False. Unless prohibited by a NOT NULL constraint, the boolean data type also supports the Unknown truth value as the null value. This specification does not make a distinction between the null value of the boolean data type and the Unknown truth value that is the result of an SQL <predicate> , <search condition> , or <boolean value expression> ; they may be used interchangeably to mean exactly the same thing.
-|
-|The boolean data type is described by the boolean data type descriptor. The boolean data type descriptor contains:
-| - The name of the boolean data type (BOOLEAN ).
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -404,31 +195,7 @@
 	(object Class "IntervalDataType"
 	    quid       	"3F216E7102DA"
 	    documentation 	
-|4.6 Datetimes and intervals
-|
-|An interval data type is described by an interval data type descriptor.
-|
-|An interval data type descriptor contains:
-| - The name of the interval data type (INTERVAL ).
-| - An indication of whether the interval data type is a year-month interval or a day-time interval.
-| - The <interval qualifier> that describes the precision of the interval data type.
-|
-|A value described by an interval data type descriptor is always signed. Every datetime or interval data type has an implied length in positions. Let D denote a value in some datetime or interval data type DT. The length in positions of DT is constant for all D. The length in positions is the number of characters from the character set SQL_TEXT that it would take to represent any value in a given datetime or interval data type.
-|
-|An approximation obtained by rounding of a datetime or interval value D for a <datetime type> or <interval type> T is a value V in T such that the absolute value of the difference between D and the numeric value of V is not greater than half the absolute value of the difference between two successive datetime or interval values in T. If there is more than one such value V, then it is implementation-defined which one is taken.
-|
-|4.6.2 Intervals
-|
-|There are two classes of intervals. One class, called year-month intervals, has an express or implied datetime precision that includes no fields other than YEAR and MONTH , though not both are required. The other class, called day-time intervals, has an express or implied interval precision that can include any fields other than YEAR or MONTH .
-|
-|The actual subset of fields that comprise a value of either type of interval is defined by an <interval qualifier> and this subset is known as the precision of the value. Within a value of type interval, the first field is constrained only by the <interval leading field precision> of the associated <interval qualifier> . Table 6, "Valid values for fields in INTERVAL values", specifies the constraints on subsequent field values.
-|
-|Values in interval fields other than SECOND are integers and have precision 2 when not the first field. SECOND, however, can be defined to have an <interval fractional seconds precision> that indicates the number of decimal digits maintained following the decimal point in the seconds value. When not the first field, SECOND has a precision of 2 places before the decimal point.
-|
-|Fields comprising an item of type interval are also constrained by the definition of the Gregorian calendar. Year-month intervals are comparable only with other year-month intervals. If two year-month intervals have different interval precisions, they are, for the purpose of any operations between them, effectively converted to the same precision by appending new <primary datetime field> s to either the most significant end of one interval, the least significant end of one interval, or both. New least significant <primary datetime field> s are assigned a value of 0 (zero). When it is necessary to add new most significant datetime fields, the associated value is effectively converted to the new precision in a manner obeying the natural rules for dates and times associated with the Gregorian calendar.
-|
-|Day-time intervals are comparable only with other day-time intervals. If two day-time intervals have different interval precisions, they are, for the purpose of any operations between them, effectively converted to the same precision by appending new <primary datetime field> s to either the most significant end of one interval or the least significant end of one interval, or both. New least significant <primary datetime field> s are assigned a value of 0 (zero). When it is necessary to add new most significant datetime fields, the associated value is effectively converted to the new precision in a manner obeying the natural rules for dates and times associated with the Gregorian calendar.
-|
+|Reference: 5WD-02-Foundation-2002-12 4.6.2 Intervals
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -462,13 +229,8 @@
 	(object Class "BinaryStringDataType"
 	    quid       	"3F216A9801A3"
 	    documentation 	
-|4.3 Binary strings
+|Reference: 5WD-02-Foundation-2002-12 4.3 Binary strings
 |
-|A binary string is a sequence of octets that does not have either a character set or collation associated with it. A binary string data type is described by a binary string data type descriptor. A binary string data type descriptor contains:
-| - The name of the data type (BINARY LARGE OBJECT ).
-| - The maximum length of the binary string data type (in octets).
-|
-|A binary string is assignable only to sites of data type BINARY LARGE OBJECT . If a store assignment would result in the loss of non-zero octets due to truncation, then an exception condition is raised. If a retrieval assignment would result in the loss of octets due to truncation, then a warning condition is raised.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -490,35 +252,8 @@
 	(object Class "CharacterSet"
 	    quid       	"3F25755001A0"
 	    documentation 	
-|4.2.6 Character sets
+|Reference: 5WD-02-Foundation-2002-12 4.2.6 Character sets, 5WD-02-Foundation-2002-12 4.2.7 Universal character sets
 |
-|An SQL <character set specification> allows a reference to a character set name defined by a standard, an SQLimplementation,
-|or a user. A character set is described by a character set descriptor. A character set descriptor includes:
-| - The name of the character set.
-| - The name of the character repertoire for the character set.
-| - The name of the character encoding form for the character set.
-| - The name of the default collation for the character set.
-|
-|The following SQL supported character set names are specified as part of ISO/IEC 9075:
-| - SQL_CHARACTER is a character set whose repertoire is SQL_CHARACTER and whose character encoding form is SQL_CHARACTER. The name of its default collation is SQL_CHARACTER.
-| - GRAPHIC_IRV is a character set whose repertoire is GRAPHIC_IRV and whose character encoding form is GRAPHIC_IRV. The name of its default collation is GRAPHIC_IRV.
-| - ASCII_GRAPHIC is a synonym for GRAPHIC_IRV.
-| - LATIN1 is a character set whose repertoire is LATIN1 and whose character encoding form is LATIN1. The name of its default collation is LATIN1.
-| - ISO8BIT is a character set whose repertoire is ISO8BIT and whose character encoding form is ISO8BIT. The name of its default collation is ISO8BIT.
-| - ASCII_FULL is a synonym for ISO8BIT.
-| - UTF32 is a character set whose repertoire is UCS and whose character encoding form is UTF32. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
-| - UTF16 is a character set whose repertoire is UCS and whose character encoding form is UTF16. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
-| - UTF8 is the name of a character set whose repertoire is UCS and whose character encoding form is UTF8. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
-| - SQL_TEXT is a character set whose repertoire is SQL_TEXT and whose character encoding form is SQL_TEXT. The name of its default collation is SQL_TEXT.
-| - SQL_IDENTIFIER is a character set whose repertoire is SQL_IDENTIFIER and whose character encoding form is SQL_IDENTIFIER. The name of its default collation is SQL_IDENTIFIER.
-|
-|
-|4.2.7 Universal character sets
-|
-|A UCS string is a character string whose character repertoire is UCS and whose character encoding form is one of UTF8, UTF16, or UTF32. Any two UCS strings are comparable.
-|An SQL-implementation may assume that all UCS strings are normalized in Normalization Form C (NFC), as specified by [Unicode15]. With the exception of <normalize function> and <normalized predicate> , the result of any operation on an unnormalized UCS string is implementation-defined.
-|
-|Conversion of UCS strings from one character set to another is automatic. Detection of a noncharacter in a UCS-string causes an exception condition to be raised. The detection of an unassigned code point does not.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -541,17 +276,7 @@
 	(object Class "CoercibilityType"
 	    quid       	"3F25799E0108"
 	    documentation 	
-|4.2.1 Comparison of character strings
-|
-|Two character strings are comparable if and only if either they have the same character set or there exists at least one collation that is applicable to both their respective character sets.
-|
-|A collation is defined by ISO/IEC 14651 as "a process by which two strings are determined to be in exactly one of the relationships of less than, greater than, or equal to one another". Each collation known in an SQLenvironment is applicable to one or more character sets, and for each character set, one or more collations are applicable to it, one of which is associated with it as its character set collation.
-|
-|Anything that has a declared type can, if that type is a character string type, be associated with a collation applicable to its character set; this is known as a declared type collation. Every declared type that is a character string type has a collation derivation, this being either none, implicit, or explicit. The collation derivation of a declared type with a declared type collation that is explicitly or implicitly specified by a <data type> is implicit. If the collation derivation of a declared type that has a declared type collation is not implicit, then it is explicit. The collation derivation of an expression of character string type that has no declared type collation is none.
-|
-|An operation that explicitly or implicitly involves character string comparison is a character comparison operation. At least one of the operands of a character comparison operation shall have a declared type collation. There may be an SQL-session collation for some or all of the character sets known to the SQL-implementation (see Subclause 4.37, "SQL-sessions").
-|
-|The collation used for a particular character comparison is specified by Subclause 9.13, "Collation determination". The comparison of two character string expressions depends on the collation used for the comparison (see Subclause 9.13, "Collation determination"). When values of unequal length are compared, if the collation for the comparison has the NO PAD characteristic and the shorter value is equal to some prefix of the longer value, then the shorter value is considered less than the longer value. If the collation for the comparison has the PAD SPACE characteristic, for the purposes of the comparison, the shorter value is effectively extended to the length of the longer by concatenation of <space> s on the right. For every character set, there is at least one collation.
+|Reference: 5WD-02-Foundation-2002-12 4.2.1 Comparison of character strings
 |
 	    
 	    stereotype 	"enumeration"
@@ -571,27 +296,7 @@
 	(object Class "TimeDataType"
 	    quid       	"3F216DF3039E"
 	    documentation 	
-|4.6.1 Datetimes
-|
-|Table 2, "Fields in datetime values" , specifies the fields that can make up a datetime value; a datetime value is made up of a subset of those fields. Not all of the fields shown are required to be in the subset, but every field that appears in the table between the first included primary field and the last included primary field shall also be included. If either time zone field is in the subset, then both of them shall be included.
-|
-|There is an ordering of the significance of <primary datetime field> s. This is, from most significant to least significant: YEAR , MONTH , DAY , HOUR , MINUTE , and SECOND .
-|
-|The <primary datetime field> s other than SECOND contain non-negative integer values, constrained by the natural rules for dates using the Gregorian calendar. SECOND , however, can be defined to have a <time fractional seconds precision> that indicates the number of decimal digits maintained following the decimal point in the seconds value, a non-negative exact numeric value.
-|
-|There are three classes of datetime data types defined within this part of ISO/IEC 9075:
-| - DATE: contains the <primary datetime field> s YEAR , MONTH , and DAY .
-| - TIME: contains the <primary datetime field> s HOUR , MINUTE , and SECOND .
-| - TIMESTAMP: contains the <primary datetime field> s YEAR , MONTH , DAY , HOUR , MINUTE , and SECOND .
-|
-|Items of type datetime are comparable only if they have the same <primary datetime field> s. A datetime data type that specifies WITH TIME ZONE is a data type that is datetime with time zone, while a datetime data type that specifies WITHOUT TIME ZONE is a data type that is datetime without time zone. The surface of the earth is divided into zones, called time zones, in which every correct clock tells the same time, known as local time. Local time is equal to UTC (Coordinated Universal Time) plus the time zone displacement, which is an interval value that ranges between INTERVAL '-12:59' HOUR TO MINUTE and INTERVAL '+14:00' HOUR TO MINUTE . The time zone displacement is constant throughout a time zone, changing at the beginning and end of Daylight Time, where applicable.
-|
-|A datetime value, of data type TIME WITHOUT TIME ZONE or TIMESTAMP WITHOUT TIME ZONE , may represent a local time, whereas a datetime value of data type TIME WITH TIME ZONE or TIMESTAMP WITH TIME ZONE represents UTC.
-|
-|On occasion, UTC is adjusted by the omission of a second or the insertion of a "leap second" in order to maintain synchronization with sidereal time. This implies that sometimes, but very rarely, a particular minute will contain exactly 59, 61, or 62 seconds. Whether an SQL-implementation supports leap seconds, and the consequences of such support for date and interval arithmetic, is implementation-defined.
-|For the convenience of users, whenever a datetime value with time zone is to be implicitly derived from one without (for example, in a simple assignment operation), SQL assumes the value without time zone to be local, subtracts the current default time zone displacement of the SQL-session from it to give UTC, and associates that time zone displacement with the result. Conversely, whenever a datetime value without time zone is to be implicitly derived from one with, SQL assumes the value with time zone to be UTC, adds the time zone displacement to it to give local time, and the result, without any time zone displacement, is local. The preceding principles, as implemented by <cast specification> , result in data type conversions between the various datetime data types, as summarized in Table 3, "Datetime data type conversions".
-|
-|A datetime is assignable to a site only if the source and target of the assignment are both of type DATE , or both of type TIME (regardless whether WITH TIME ZONE or WITHOUT TIME ZONE is specified or implicit), or both of type TIMESTAMP (regardless whether WITH TIME ZONE or WITHOUT TIME ZONE is specified or implicit).
+|Reference: 5WD-02-Foundation-2002-12 4.6.1 Datetimes
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -612,11 +317,7 @@
 	(object Class "IntervalQualifierType"
 	    quid       	"3F37E78C029F"
 	    documentation 	
-|4.6.2 Intervals
-|
-|There are two classes of intervals. One class, called year-month intervals, has an express or implied datetime precision that includes no fields other than YEAR and MONTH , though not both are required. The other class, called day-time intervals, has an express or implied interval precision that can include any fields other than YEAR or MONTH .
-|
-|The actual subset of fields that comprise a value of either type of interval is defined by an <interval qualifier> and this subset is known as the precision of the value. Within a value of type interval, the first field is constrained only by the <interval leading field precision> of the associated <interval qualifier> . Table 6, "Valid values for fields in INTERVAL values", specifies the constraints on subsequent field values.
+|Reference: 5WD-02-Foundation-2002-12 4.6.2 Intervals
 |
 	    
 	    stereotype 	"enumeration"
@@ -644,17 +345,7 @@
 		    exportControl 	"Public")))
 	(object Class "DistinctUserDefinedType"
 	    quid       	"3F4E44DD0126"
-	    documentation 	
-|4.7 User-defined types
-|
-|A user-defined type is a schema object, identified by a <user-defined type name> . The definition of a userdefined type specifies a number of components, including in particular a list of attribute definitions. Although the attribute definitions are said to define the representation of the user-defined type, in fact they implicitly define certain functions (observers and mutators) that are part of the interface of the user-defined type; physical representations of user-defined type values are implementation-dependent.
-|
-|The representation of a user-defined type is expressed either as a single data type (some predefined data type, called the source type), in which case the user-defined type is said to be a distinct type, or as a list of attribute definitions, in which case it is said to be a structured type.
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F4E451F02FC"
@@ -663,15 +354,8 @@
 	(object Class "StructuredUserDefinedType"
 	    quid       	"3F4E44E8001C"
 	    documentation 	
-|4.7 User-defined types
+|Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
 |
-|A user-defined type is a schema object, identified by a <user-defined type name> . The definition of a userdefined type specifies a number of components, including in particular a list of attribute definitions. Although the attribute definitions are said to define the representation of the user-defined type, in fact they implicitly define certain functions (observers and mutators) that are part of the interface of the user-defined type; physical representations of user-defined type values are implementation-dependent.
-|
-|The representation of a user-defined type is expressed either as a single data type (some predefined data type, called the source type), in which case the user-defined type is said to be a distinct type, or as a list of attribute definitions, in which case it is said to be a structured type.
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -691,15 +375,8 @@
 	(object Class "OrderingType"
 	    quid       	"3F4E4BBD02A6"
 	    documentation 	
-|4.7 User-defined types
+|Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
 |
-|A user-defined type is a schema object, identified by a <user-defined type name>.
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
-| - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
-| - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
 	    
 	    stereotype 	"enumeration"
 	    class_attributes 	(list class_attribute_list
@@ -712,15 +389,8 @@
 	(object Class "OrderingCategoryType"
 	    quid       	"3F4E61750367"
 	    documentation 	
-|4.7 User-defined types
+|Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
 |
-|A user-defined type is a schema object, identified by a <user-defined type name>.
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
-| - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
-| - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
 	    
 	    stereotype 	"enumeration"
 	    class_attributes 	(list class_attribute_list
@@ -736,19 +406,7 @@
 	(object Class "AttributeDefinition"
 	    quid       	"3F54EF2F0194"
 	    documentation 	
-|4.13 Columns, fields, and attributes
-|
-|The terms column, field, and attribute refer to structural components of tables, row types, and structured types, respectively, in analogous fashion. As the structure of a table consists of one or more columns, so does the structure of a row type consist of one or more fields and that of a structured type one or more attributes. Every structural element, whether a column, a field, or an attribute, is primarily a name paired with a declared type.
-|
-|The elements of a structure are ordered. Elements in different positions in the same structure can have the same declared type but not the same name. Although the elements of a structure are distinguished from each other by name, in some circumstances the compatibility of two structures (for the purpose at hand) is determined solely by considering the declared types of each pair of elements at the same ordinal position.
-|
-|An attribute A is described by an attribute descriptor. An attribute descriptor includes:
-| - The name of the attribute.
-| - The data type descriptor of the declared type of A.
-| - The ordinal position of A within the structured type that contains it.
-| - The value of the implicit or explicit <attribute default> of A.
-| - If the data type of the attribute is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
-| - The name of the structured type defined by the <user-defined type definition> that defines A.
+|Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -772,25 +430,7 @@
 		    exportControl 	"Public")))
 	(object Class "FixedPrecisionDataType"
 	    quid       	"3F54F5E9003C"
-	    documentation 	
-|4.1 Data types
-|
-|For reference purposes:
-|[...]
-| - The data types NUMERIC , DECIMAL , SMALLINT , INTEGER , and BIGINT are collectively referred to as exact numeric types.
-| - The data types FLOAT , REAL , and DOUBLE PRECISION are collectively referred to as approximate numeric types.
-| - Exact numeric types and approximate numeric types are collectively referred to as numeric types. Values of numeric types are referred to as numbers.
-|
-|4.4.1 Characteristics of numbers
-|
-|An exact numeric type has a precision P and a scale S. P is a positive integer that determines the number of significant digits in a particular radix R, where R is either 2 or 10. S is a non-negative integer. Every value of an exact numeric type of scale S is of the form n x 10-S, where n is an integer such that -RP <= n < RP.
-|NOTE 13 - Not every value in that range is necessarily a value of the type in question.
-|
-|An approximate numeric value consists of a mantissa and an exponent. The mantissa is a signed numeric value, and the exponent is a signed integer that specifies the magnitude of the mantissa. An approximate numeric value has a precision. The precision is a positive integer that specifies the number of significant binary digits in the mantissa. The value of an approximate numeric value is the mantissa multiplied by a factor determined by the exponent.
-|
-|An <approximate numeric literal> ANL consists of an <exact numeric literal> (called the <mantissa> ), the letter 'E' or 'e', and a <signed integer> (called the <exponent> ). If M is the value of the <mantissa> and E is the value of the <exponent> , then M * 10E is the apparent value of ANL. The actual value of ANL is approximately the apparent value of ANL, according to implementation-defined rules.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.4 Numbers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"411AAED70389"
@@ -799,13 +439,8 @@
 	(object Class "PrimitiveType"
 	    quid       	"3F54FBC4015A"
 	    documentation 	
-|4.1 Data types
+|Reference: 5WD-02-Foundation-2002-12 4.1 Data types
 |
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|Every predefined data type is a subtype of itself and of no other data types. It follows that every predefined data type is a supertype of itself and of no other data types. The predefined data types are individually described in each of Subclause 4.2, "Character strings", through Subclause 4.6, "Datetimes and intervals". Row types, reference types and collection types are described in Subclause 4.8, "Row types", Subclause 4.9, "Reference types", Subclause 4.10, "Collection types", respectively.
-|
-|SQL defines predefined data types named by the following <key word> s: CHARACTER , CHARACTER VARYING , CHARACTER LARGE OBJECT , BINARY LARGE OBJECT , NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , DOUBLE PRECISION , BOOLEAN , DATE , TIME , TIMESTAMP , and INTERVAL . These names are used in the type designators that constitute the type precedence lists specified in Subclause 9.5, "Type precedence list determination".
 	    
 	    stereotype 	"enumeration"
 	    class_attributes 	(list class_attribute_list
@@ -884,24 +519,8 @@
 	(object Class "Domain"
 	    quid       	"3EDF635C005F"
 	    documentation 	
-|4.12 Domains
+|Reference: 5WD-02-Foundation-2002-12 4.12 Domains
 |
-|A domain is a set of permissible values. A domain is defined in a schema and is identified by a <domain name> . The purpose of a domain is to constrain the set of valid values that can be stored in a column of a base table by various operations.
-|
-|A domain definition specifies a data type. It may also specify a <domain constraint> that further restricts the valid values of the domain and a <default clause> that specifies the value to be used in the absence of an explicitly specified value or column default.
-|
-|A domain is described by a domain descriptor. A domain descriptor includes:
-| - The name of the domain.
-| - The data type descriptor of the data type of the domain.
-| - The value of <default option> , if any, of the domain.
-| - The domain constraint descriptors of the domain constraints, if any, of the domain.
-|
-|4.17.3 Domain constraints
-|
-|A domain constraint is a constraint that is specified for a domain. It is applied to all columns that are based on that domain, and to all values cast to that domain. A domain constraint is described by a domain constraint descriptor. In addition to the components of every constraint descriptor a domain constraint descriptor includes:
-| - The <search condition> .
-|
-|A domain constraint is satisfied by SQL-data if and only if, for any table T that has a column named C based on that domain, the specified <search condition> , with each occurrence of VALUE replaced by C, is not False for any row of T. A domain constraint is satisfied by the result of a <cast specification> if and only if the specified <search condition>, with each occurrence of VALUE replaced by that result, is not False.
 	    
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
@@ -916,17 +535,7 @@
 	(object Class "Field"
 	    quid       	"3ED24C4E001D"
 	    documentation 	
-|4.13 Columns, fields, and attributes
-|
-|The terms column, field, and attribute refer to structural components of tables, row types, and structured types, respectively, in analogous fashion. As the structure of a table consists of one or more columns, so does the structure of a row type consist of one or more fields and that of a structured type one or more attributes. Every structural element, whether a column, a field, or an attribute, is primarily a name paired with a declared type.
-|
-|The elements of a structure are ordered. Elements in different positions in the same structure can have the same declared type but not the same name. Although the elements of a structure are distinguished from each other by name, in some circumstances the compatibility of two structures (for the purpose at hand) is determined solely by considering the declared types of each pair of elements at the same ordinal position.
-|
-|A field F is described by a field descriptor. A field descriptor includes:
-| - The name of the field.
-| - The data type descriptor of the declared type of F.
-| - The ordinal position of F within the row type that simply contains it.
-| - If the data type of the field is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
+|Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes
 |
 	    
 	    superclasses 	(list inheritance_relationship_list
@@ -946,14 +555,7 @@
 		    exportControl 	"Public")))
 	(object Class "ReferenceDataType"
 	    quid       	"3F12DAE001E9"
-	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
-|
-|A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-	    
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.9 Reference Types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3F12DAFD0257"
@@ -962,6 +564,7 @@
 	    abstract   	TRUE)
 	(object Class "ConstructedDataType"
 	    quid       	"3FB90F4001F0"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3FB90F5601FA"
@@ -970,7 +573,7 @@
 	    abstract   	TRUE)
 	(object Class "SQLDataType"
 	    quid       	"3FB90EE3009E"
-	    documentation 	"SQLDataType represents any non user defined data type.  I was introduced because a TypedElement needs to distinguish between UDTs and non UDTs."
+	    documentation 	"SQLDataType represents any non user defined data type.  It was introduced because a TypedElement needs to distinguish between UDTs and non UDTs."
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"3FB90F3400D1"
@@ -979,6 +582,7 @@
 	    abstract   	TRUE)
 	(object Class "DataLinkDataType"
 	    quid       	"400DFA2202A3"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"400DFA6603D7"
@@ -1079,6 +683,7 @@
 		    exportControl 	"Public")))
 	(object Class "UserDefinedTypeOrdering"
 	    quid       	"4022861B0225"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"40228CC1001A"
@@ -1097,6 +702,7 @@
 		    exportControl 	"Public")))
 	(object Class "DateDataType"
 	    quid       	"402BB4A400B0"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.6.1 Datetimes"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"402BB4B30333"
@@ -1104,6 +710,7 @@
 		    quidu      	"3EDF9E550371")))
 	(object Class "ExactNumericDataType"
 	    quid       	"411AAB3A02CB"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.4 Numbers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"411AADFE0323"
@@ -1117,6 +724,7 @@
 	    abstract   	TRUE)
 	(object Class "ApproximateNumericDataType"
 	    quid       	"411AAB530227"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.4 Numbers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"411AAEC70368"
@@ -1124,6 +732,7 @@
 		    quidu      	"3F2693990310")))
 	(object Class "IntegerDataType"
 	    quid       	"411AAB6E00C7"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.4 Numbers"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"411AAEDF018C"
@@ -1131,6 +740,7 @@
 		    quidu      	"411AAB3A02CB")))
 	(object Class "XMLDataType"
 	    quid       	"417C85910345"
+	    documentation 	"Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"417C85E60365"
@@ -1373,85 +983,7 @@
 	    quid       	"3F12D70F00A1"
 	    title      	"DataTypes"
 	    documentation 	
-|4.1 Data types
-|
-|A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. Exactly one of the data types of a value V, namely the most specific type of V, is a subtype of every data type of V. A <value expression> E has exactly one declared type, common to every possible result of evaluating E. Items that can be referenced by name, such as SQL parameters, columns, fields, attributes, and variables, also have declared types.
-|
-|SQL supports three sorts of data types: predefined data types, constructed types, and user-defined types. Predefined data types are sometimes called "built-in data types", though not in this International Standard. Userdefined types can be defined by a standard, by an implementation, or by an application. A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to
-|whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
-|
-|Every predefined data type is a subtype of itself and of no other data types. It follows that every predefined data type is a supertype of itself and of no other data types. The predefined data types are individually described in each of Subclause 4.2, "Character strings", through Subclause 4.6, "Datetimes and intervals". Row types, reference types and collection types are described in Subclause 4.8, "Row types", Subclause 4.9, "Reference types", Subclause 4.10, "Collection types", respectively.
-|
-|SQL defines predefined data types named by the following <key word> s: CHARACTER , CHARACTER VARYING , CHARACTER LARGE OBJECT , BINARY LARGE OBJECT , NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , DOUBLE PRECISION , BOOLEAN , DATE , TIME , TIMESTAMP , and INTERVAL . These names are used in the type designators that constitute the type precedence lists specified in Subclause 9.5, "Type precedence list determination".
-|
-|For reference purposes:
-|- The data types CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT are collectively referred to as character string types.
-|- The data type BINARY LARGE OBJECT is referred to as the binary string type and the values of binary string types are referred to as binary strings.
-|- The data types CHARACTER LARGE OBJECT and BINARY LARGE OBJECT are collectively referred to as large object string types and the values of large object string types are referred to as large object strings.
-|- Character string types and binary string types are collectively referred to as string types and values of string types are referred to as strings.
-|- The data types NUMERIC , DECIMAL , SMALLINT , INTEGER , and BIGINT are collectively referred to as exact numeric types.
-|- The data types FLOAT , REAL , and DOUBLE PRECISION are collectively referred to as approximate numeric types.
-|- Exact numeric types and approximate numeric types are collectively referred to as numeric types. Values of numeric types are referred to as numbers.
-|- The data types TIME WITHOUT TIME ZONE and TIME WITH TIME ZONE are collectively referred to as time types (or, for emphasis, as time with or without time zone).
-|- The data types TIMESTAMP WITHOUT TIME ZONE and TIMESTAMP WITH TIME ZONE are collectively referred to as timestamp types (or, for emphasis, as timestamp with or without time zone).
-|- The data types DATE , TIME , and TIMESTAMP are collectively referred to as datetime types.
-|- Values of datetime types are referred to as datetimes.
-|- The data type INTERVAL is referred to as an interval type. Values of interval types are called intervals.
-|
-|Each data type has an associated data type descriptor; the contents of a data type descriptor are determined by the specific data type that it describes. A data type descriptor includes an identification of the data type and all information needed to characterize a value of that data type. Subclause 6.1, "<data type> ", describes the semantic properties of each data type.
-|
-|A structured type ST is directly based on a data type DT if any of the following are true:
-|- DT is the declared type of some attribute of ST.
-|- DT is a direct supertype of ST.
-|- DT is a direct subtype of ST.
-|- DT is compatible with ST.
-|
-|A collection type CT is directly based on a data type DT if DT is the element type of CT.
-|A row type RT is directly based on a data type DT if DT is the declared type of some field (or the data type of the domain of some field) whose descriptor is included in the descriptor of RT.
-|A data type DT1 is based on a data type DT2 if DT1 is directly based on DT2 or DT1 is directly based on some data type that is based on DT2.
-|
-|A type TY is usage-dependent on a user-defined type UDT if one of the following conditions is true:
-|- TY is UDT.
-|- TY is a reference type whose referenced type is UDT.
-|- TY is a row type, and the declared type of a field of TY is usage-dependent on UDT.
-|- TY is a collection type, and the declared element type of TY is usage-dependent on UDT.
-|
-|Each host language has its own data types, which are separate and distinct from SQL data types, even though similar names may be used to describe the data types. Mappings of SQL data types to data types in host languages are described in Subclause 11.50, "<SQL-invoked routine> ", and Subclause 20.1, "<embedded SQL host program> ". Not every SQL data type has a corresponding data type in every host language. Ordering and comparison of values of the predefined data types requires knowledge only about those predefined data types. However, to be able to compare and order values of constructed types or of user-defined types, additional information is required. We say that some type T is S-ordered, for some set of types S, if, in order to compare and order values of type T, information about ordering at least one of the types in S is first required.
-|
-|A definition of S-ordered is required for several S (that is, for several sets of types), but not for all possible such sets.
-|The general definition of S-ordered is this:
-|Let T be a type and let S be a set of types. T is S-ordered if one of the following is true:
-|- T is a member of S.
-|- T is a row type and the declared type of some field of T is S-ordered.
-|- T is a collection type and the element type of T is S-ordered.
-|- T is a structured type whose comparison form is STATE and the declared type of some attribute of T is S-ordered.
-|- T is a user-defined type whose comparison form is MAP and the return type of the SQL-invoked function that is identified by the <map function specification> is S-ordered.
-|- T is a reference type with a derived representation and the declared type of some attribute enumerated by the <derived representation> is S-ordered.
-|
-|The notion of S-ordered is applied in the following definitions:
-|- A type T is LOB-ordered if T is L-ordered, where L is the set of large object types.
-|- A type T is array-ordered if T is ARR-ordered, where ARR is the set of array types.
-|- A type T is multiset-ordered if T is MUL-ordered, where MUL is the set of multiset types.
-|- A type T is reference-ordered if T is REF-ordered, where REF is the set of reference types.
-|- A type T is DT-EC-ordered if T is DTE-ordered, where DTE is the set of distinct types with EQUALS ONLY comparison form (DT-EC stands for "distinct type-equality comparison").
-|- A type T is DT-FC-ordered if T is DTF-ordered, where DTF is the set of distinct types with FULL comparison form.
-|- A type T is DT-NC-ordered if T is DTN-ordered, where DTN is the set of distinct types with no comparison form.
-|- A type T is ST-EC-ordered if T is STE-ordered, where STE is the set of structured types with EQUALS ONLY comparison form.
-|- A type T is ST-FC-ordered if T is STF-ordered, where STF is the set of structured types with FULL comparison form.
-|- A type T is ST-NC-ordered if T is STN-ordered, where STN is the set of structured types with no comparison form.
-|- A type T is ST-ordered if T is ST-EC-ordered, ST-FC-ordered or ST-NC-ordered.
-|- A type T is UDT-EC-ordered if T is either DT-EC-ordered or ST-EC-ordered (UDT stands for "user-defined type").
-|- A type T is UDT-FC-ordered if T is either DT-FC-ordered or ST-FC-ordered
-|- A type T is UDT-NC-ordered if T is either DT-NC-ordered or ST-NC-ordered.
-|
-|The notion of constituent of a declared type DT is defined recursively as follows:
-|- DT is a constituent of DT.
-|- If DT is a row type, then the declared type of each field of DT is a constituent of DT.
-|- If DT is a collection type, then the element type of DT is a constituent of DT.
-|- Every constituent of a constituent of DT is a constituent of DT.
-|
-|Two data types, T1 and T2, are said to be compatible if T1 is assignable to T2, T2 is assignable to T1, and their descriptors include the same data type name. If they are row types, it shall further be the case that the declared types of their corresponding fields are pairwise compatible. If they are collection types, it shall further be the case that their element types are compatible. If they are reference types, it shall further be the case that their referenced types are compatible.
-|NOTE 8 - The data types "CHARACTER (n) CHARACTER SET CS1" and "CHARACTER (m) CHARACTER SET CS2", where CS1 1 CS2, have descriptors that include the same data type name (CHARACTER ), but are not mutually assignable; therefore, they are not compatible.
+|Reference: 5WD-02-Foundation-2002-12 4.1 Data types
 |
 	    
 	    zoom       	100
@@ -1487,6 +1019,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F12D9F402F3"
+		    compartment 	(object Compartment
+			Parent_View 	@1
+			location   	(1033, 2039)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	400)
 		    width      	492
 		    height     	186
 		    annotation 	8
@@ -1569,6 +1118,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@4
+			location   	(1341, 201)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
 		    width      	482
 		    height     	282
 		    annotation 	8
@@ -1608,6 +1174,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3EA5788B026F"
+		    compartment 	(object Compartment
+			Parent_View 	@5
+			location   	(180, 2045)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	500)
 		    width      	598
 		    height     	388
 		    annotation 	8
@@ -1659,17 +1242,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@7
-			location   	(45, 800)
+			location   	(46, 800)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	834
+			max_width  	832
 			justify    	0
 			label      	"Field")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3ED24C4E001D"
-		    width      	852
+		    compartment 	(object Compartment
+			Parent_View 	@7
+			location   	(46, 861)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	706)
+		    width      	850
 		    height     	236
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -1853,17 +1453,17 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@16
-			location   	(1347, 1620)
+			location   	(1346, 1620)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	458
+			max_width  	460
 			justify    	0
 			label      	"CollectionDataType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3F12D9CF01F9"
-		    width      	476
+		    width      	478
 		    height     	128
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -1914,7 +1514,7 @@
 		    origin_attachment 	(1272, 1966)
 		    terminal_attachment 	(1568, 1736))
 		(object AssociationViewNew "$UNNAMED$10" @19
-		    location   	(1763, 1250)
+		    location   	(1761, 1250)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -1930,7 +1530,7 @@
 		    roleview_list 	(list RoleViews
 			(object RoleView "element" @20
 			    Parent_View 	@19
-			    location   	(435, -174)
+			    location   	(433, -174)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1967,11 +1567,11 @@
 			    client     	@19
 			    supplier   	@15
 			    vertices   	(list Points
-				(1763, 1250)
+				(1761, 1250)
 				(1550, 1250)
 				(1550, 681))
 			    line_style 	3
-			    origin_attachment 	(1763, 1250)
+			    origin_attachment 	(1761, 1250)
 			    terminal_attachment 	(1550, 681)
 			    label      	(object SegLabel @22
 				Parent_View 	@20
@@ -1996,20 +1596,20 @@
 				orientation 	0))
 			(object RoleView "$UNNAMED$11" @23
 			    Parent_View 	@19
-			    location   	(435, -174)
+			    location   	(433, -174)
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"3F37E9620201"
 			    client     	@19
 			    supplier   	@16
 			    vertices   	(list Points
-				(1763, 1250)
+				(1761, 1250)
 				(1978, 1250)
-				(1978, 1653)
-				(1814, 1653))
+				(1978, 1651)
+				(1815, 1651))
 			    line_style 	3
-			    origin_attachment 	(1763, 1250)
-			    terminal_attachment 	(1814, 1653))))
+			    origin_attachment 	(1761, 1250)
+			    terminal_attachment 	(1815, 1651))))
 		(object InheritView "" @24
 		    font       	(object Font
 			size       	10
@@ -2112,6 +1712,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E550371"
+		    compartment 	(object Compartment
+			Parent_View 	@29
+			location   	(662, 1219)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	569)
 		    width      	690
 		    height     	186
 		    annotation 	8
@@ -2381,17 +1998,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@42
-			location   	(2095, 1154)
+			location   	(2096, 1154)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	666
+			max_width  	664
 			justify    	0
 			label      	"StructuredUserDefinedType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F4E44E8001C"
-		    width      	684
+		    compartment 	(object Compartment
+			Parent_View 	@42
+			location   	(2096, 1215)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	563)
+		    width      	682
 		    height     	236
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -2702,23 +2336,7 @@
 	    quid       	"3F257126001F"
 	    title      	"CharacterStringTypes"
 	    documentation 	
-|4.2 Character strings
-|
-|A character string is a sequence of characters. All the characters in a character string are taken from a single character set. A character string has a length, which is the number of characters in the sequence. The length is 0 (zero) or a positive integer. A character string type is described by a character string type descriptor.
-|
-|A character string type descriptor contains:
-| - The name of the specific character string type (CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT ; NATIONAL CHARACTER , NATIONAL CHARACTER VARYING , and NATIONAL CHARACTER LARGE OBJECT are represented as CHARACTER , CHARACTER VARYING , and CHARACTER LARGE OBJECT , respectively).
-| - The length or maximum length in characters of the character string type.
-| - The catalog name, schema name, and character set name of the character set of the character string type.
-| - The catalog name, schema name, and collation name of the collation of the character string type.
-|
-|The character set of a character string type may be specified explicitly or implicitly.
-|
-|The <key word>s NATIONAL CHARACTER are used to specify an implementation-defined character set. Special syntax (N'string') is provided for representing literals in that character set. With two exceptions, a character string expression is assignable only to sites of a character string type whose character set is the same. The exceptions are as specified in Subclause 4.2.7, "Universal character sets", and such other cases as may be implementation-defined. If a store assignment would result in the loss of non-<space> characters due to truncation, then an exception condition is raised. If a retrieval assignment or evaluation of a <cast specification> would result in the loss of characters due to truncation, then a warning condition is raised.
-|
-|Character sets fall into three categories: those defined by national or international standards, those defined by SQL-implementations, and those defined by applications. The character sets defined by ISO/IEC 10646 and The Unicode Standard are known as Universal Character Sets (UCS) and their treatment is described in Subclause 4.2.7, "Universal character sets". Every character set contains the <space> character (equivalent to U+0020). An application defines a character set by assigning a new name to a character set from one of the first two categories. They can be defined to "reside" in any schema chosen by the application. Character sets defined by standards or by SQL-implementations reside in the Information Schema (named INFORMATION_SCHEMA) in each catalog, as do collations defined by standards and collations, transliterations, and transcodings defined by SQL-implementations.
-|
-|NOTE 9 : The Information Schema is defined in ISO/IEC 9075-11.
+|Reference: 5WD-02-Foundation-2002-12 4.2 Character strings
 |
 	    
 	    zoom       	100
@@ -2837,6 +2455,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3F25799E0108"
+		    compartment 	(object Compartment
+			Parent_View 	@63
+			location   	(919, 1728)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	5
+			max_width  	362)
 		    width      	438
 		    height     	392
 		    annotation 	8
@@ -2896,17 +2531,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@66
-			location   	(73, 889)
+			location   	(70, 889)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	666
+			max_width  	672
 			justify    	0
 			label      	"CharacterStringDataType")
 		    icon_style 	"Label"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F2186CB02E1"
-		    width      	684
+		    compartment 	(object Compartment
+			Parent_View 	@66
+			location   	(70, 950)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	5
+			max_width  	569)
+		    width      	690
 		    height     	336
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -2937,12 +2589,29 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F25755001A0"
+		    compartment 	(object Compartment
+			Parent_View 	@67
+			location   	(1536, 978)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	469)
 		    width      	574
 		    height     	286
 		    annotation 	8
 		    autoResize 	TRUE)
 		(object AssociationViewNew "$UNNAMED$0" @68
-		    location   	(1137, 1056)
+		    location   	(1139, 1056)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -2958,7 +2627,7 @@
 		    roleview_list 	(list RoleViews
 			(object RoleView "characterSet" @69
 			    Parent_View 	@68
-			    location   	(225, 720)
+			    location   	(227, 720)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2970,7 +2639,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @70
 				Parent_View 	@69
-				location   	(1389, 1018)
+				location   	(1390, 1018)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -2995,11 +2664,11 @@
 			    client     	@68
 			    supplier   	@67
 			    line_style 	3
-			    origin_attachment 	(1137, 1056)
+			    origin_attachment 	(1139, 1056)
 			    terminal_attachment 	(1527, 1056)
 			    label      	(object SegLabel @71
 				Parent_View 	@69
-				location   	(1473, 1094)
+				location   	(1474, 1094)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -3020,7 +2689,7 @@
 				orientation 	1))
 			(object RoleView "$UNNAMED$1" @72
 			    Parent_View 	@68
-			    location   	(225, 720)
+			    location   	(227, 720)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -3032,7 +2701,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @73
 				Parent_View 	@72
-				location   	(989, 1112)
+				location   	(992, 1112)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -3058,8 +2727,8 @@
 			    client     	@68
 			    supplier   	@66
 			    line_style 	3
-			    origin_attachment 	(1137, 1056)
-			    terminal_attachment 	(748, 1056))))
+			    origin_attachment 	(1139, 1056)
+			    terminal_attachment 	(751, 1056))))
 		(object ClassView "Class" "Logical View::SQLModel::Schema::Schema" @74
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
@@ -3243,17 +2912,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@82
-			location   	(1652, 42)
+			location   	(1650, 42)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	460
+			max_width  	464
 			justify    	0
 			label      	"SQLObject")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
-		    width      	478
+		    compartment 	(object Compartment
+			Parent_View 	@82
+			location   	(1650, 147)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
+		    width      	482
 		    height     	282
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -3314,17 +3000,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@85
-			location   	(74, 468)
+			location   	(71, 468)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	666
+			max_width  	672
 			justify    	0
 			label      	"PredefinedDataType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E550371"
-		    width      	684
+		    compartment 	(object Compartment
+			Parent_View 	@85
+			location   	(71, 529)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	569)
+		    width      	690
 		    height     	186
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -3370,48 +3073,13 @@
 			(659, 1789)
 			(659, 1213))
 		    line_style 	3
-		    origin_attachment 	(350, 1536)
-		    terminal_attachment 	(350, 1213))))
+		    origin_attachment 	(622, 1789)
+		    terminal_attachment 	(659, 1213))))
 	(object ClassDiagram "NumberTypes"
 	    quid       	"3F26940B0307"
 	    title      	"NumberTypes"
 	    documentation 	
-|4.4 Numbers
-|
-|A number is either an exact numeric value or an approximate numeric value. Any two numbers are comparable.
-|A numeric type is described by a numeric type descriptor. A numeric type descriptor contains:
-| - The name of the specific numeric type (NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , or DOUBLE PRECISION).
-| - The precision of the numeric type.
-| - The scale of the numeric type, if it is an exact numeric type.
-| - An indication of whether the precision (and scale) are expressed in decimal or binary terms.
-|
-|
-|An SQL-implementation is permitted to regard certain <exact numeric type> s as equivalent, if they have the same precision, scale, and radix, as permitted by the Syntax Rules of Subclause 6.1, "<data type> ". When two or more <exact numeric type> s are equivalent, the SQL-implementation chooses one of these equivalent <exact numeric type> s as the normal form representing that equivalence class of <exact numeric type> s. The normal form determines the name of the exact numeric type in the numeric type descriptor.
-|
-|Similarly, an SQL-implementation is permitted to regard certain <approximate numeric type> s as equivalent, as permitted the Syntax Rules of Subclause 6.1, "<data type> ", in which case the SQL-implementation chooses a normal form to represent each equivalence class of <approximate numeric type> and the normal form determines the name of the approximate numeric type.
-|
-|For every numeric type, the least value is less than zero and the greatest value is greater than zero.
-|
-|4.4.1 Characteristics of numbers
-|
-|An exact numeric type has a precision P and a scale S. P is a positive integer that determines the number of significant digits in a particular radix R, where R is either 2 or 10. S is a non-negative integer. Every value of an exact numeric type of scale S is of the form n x 10-S, where n is an integer such that -RP <= n < RP.
-|NOTE 13 - Not every value in that range is necessarily a value of the type in question.
-|
-|An approximate numeric value consists of a mantissa and an exponent. The mantissa is a signed numeric value, and the exponent is a signed integer that specifies the magnitude of the mantissa. An approximate numeric value has a precision. The precision is a positive integer that specifies the number of significant binary digits in the mantissa. The value of an approximate numeric value is the mantissa multiplied by a factor determined by the exponent.
-|
-|An <approximate numeric literal> ANL consists of an <exact numeric literal> (called the <mantissa> ), the letter 'E' or 'e', and a <signed integer> (called the <exponent> ). If M is the value of the <mantissa> and E is the value of the <exponent> , then M * 10E is the apparent value of ANL. The actual value of ANL is approximately the apparent value of ANL, according to implementation-defined rules.
-|
-|A number is assignable only to sites of numeric type. If an assignment of some number would result in a loss of its most significant digit, an exception condition is raised. If least significant digits are lost, implementationdefined rounding or truncating occurs, with no exception condition being raised. The rules for arithmetic are specified in Subclause 6.26, "<numeric value expression> ".
-|
-|Whenever an exact or approximate numeric value is assigned to an exact numeric value site, an approximation of its value that preserves leading significant digits after rounding or truncating is represented in the declared type of the target. The value is converted to have the precision and scale of the target. The choice of whether to truncate or round is implementation-defined.
-|
-|An approximation obtained by truncation of a numeric value N for an <exact numeric type> T is a value V in T such that N is not closer to zero than is V and there is no value in T between V and N. An approximation obtained by rounding of a numeric value N for an <exact numeric type> T is a value V in T such that the absolute value of the difference between N and the numeric value of V is not greater than half the absolute value of the difference between two successive numeric values in T. If there is more than one such value V, then it is implementation-defined which one is taken.
-|
-|All numeric values between the smallest and the largest value, inclusive, in a given exact numeric type have an approximation obtained by rounding or truncation for that type; it is implementation-defined which other numeric values have such approximations. An approximation obtained by truncation or rounding of a numeric value N for an <approximate numeric type> T is a value V in T such that there is no numeric value in T and distinct from that of V that lies between the numeric value of V and N, inclusive.
-|
-|If there is more than one such value V then it is implementation-defined which one is taken. It is implementationdefined which numeric values have approximations obtained by rounding or truncation for a given approximate numeric type. Whenever an exact or approximate numeric value is assigned to an approximate numeric value site, an approximation of its value is represented in the declared type of the target. The value is converted to have the precision of the target.
-|
-|Operations on numbers are performed according to the normal rules of arithmetic, within implementationdefined limits, except as provided for in Subclause 6.26, "<numeric value expression> ".
+|Reference: 5WD-02-Foundation-2002-12 4.4 Numbers
 |
 	    
 	    zoom       	100
@@ -3446,6 +3114,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3F2693990310"
+		    compartment 	(object Compartment
+			Parent_View 	@90
+			location   	(1277, 567)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	294)
 		    width      	484
 		    height     	186
 		    annotation 	8
@@ -3595,17 +3280,34 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@96
-			location   	(1176, 113)
+			location   	(1173, 113)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	666
+			max_width  	672
 			justify    	0
 			label      	"PredefinedDataType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E550371"
-		    width      	684
+		    compartment 	(object Compartment
+			Parent_View 	@96
+			location   	(1173, 174)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	569)
+		    width      	690
 		    height     	186
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -3650,6 +3352,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"411AAB3A02CB"
+		    compartment 	(object Compartment
+			Parent_View 	@99
+			location   	(784, 1219)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	228)
 		    width      	552
 		    height     	186
 		    annotation 	8
@@ -3855,7 +3574,7 @@
 	    max_height 	28350
 	    max_width  	21600
 	    origin_x   	0
-	    origin_y   	4582
+	    origin_y   	0
 	    items      	(list diagram_item_list
 		(object ClassView "Class" "Logical View::SQLModel::DataTypes::DataType" @115
 		    ShowCompartmentStereotypes 	TRUE
@@ -3883,6 +3602,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3F3400BF"
+		    compartment 	(object Compartment
+			Parent_View 	@115
+			location   	(1607, 274)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	303)
 		    width      	378
 		    height     	186
 		    annotation 	8
@@ -3912,6 +3648,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E550371"
+		    compartment 	(object Compartment
+			Parent_View 	@116
+			location   	(1471, 940)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	569)
 		    width      	690
 		    height     	186
 		    annotation 	8
@@ -3931,17 +3684,17 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@117
-			location   	(892, 1570)
+			location   	(885, 1570)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	572
+			max_width  	586
 			justify    	0
 			label      	"CharacterStringDataType")
 		    icon_style 	"Label"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F2186CB02E1"
-		    width      	590
+		    width      	604
 		    height     	128
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -4000,6 +3753,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F216A9801A3"
+		    compartment 	(object Compartment
+			Parent_View 	@119
+			location   	(1136, 2107)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	241)
 		    width      	520
 		    height     	236
 		    annotation 	8
@@ -4069,6 +3839,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3F54FBC4015A"
+		    compartment 	(object Compartment
+			Parent_View 	@121
+			location   	(288, 123)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	25
+			max_width  	862)
 		    width      	1022
 		    height     	1392
 		    annotation 	8
@@ -4271,6 +4058,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"400DFA2202A3"
+		    compartment 	(object Compartment
+			Parent_View 	@132
+			location   	(780, 2509)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	8
+			max_width  	794)
 		    width      	952
 		    height     	486
 		    annotation 	8
@@ -4353,6 +4157,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"4011A0CF00C9"
+		    compartment 	(object Compartment
+			Parent_View 	@137
+			location   	(225, 3186)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	546)
 		    width      	654
 		    height     	292
 		    annotation 	8
@@ -4392,6 +4213,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"4011A0EC0157"
+		    compartment 	(object Compartment
+			Parent_View 	@138
+			location   	(997, 3182)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	281)
 		    width      	518
 		    height     	342
 		    annotation 	8
@@ -4431,6 +4269,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"4011A10C015D"
+		    compartment 	(object Compartment
+			Parent_View 	@139
+			location   	(1626, 3191)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	115)
 		    width      	540
 		    height     	292
 		    annotation 	8
@@ -4470,6 +4325,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"4011A11C01C4"
+		    compartment 	(object Compartment
+			Parent_View 	@140
+			location   	(1167, 3581)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	253)
 		    width      	564
 		    height     	342
 		    annotation 	8
@@ -4509,6 +4381,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"4011A133025E"
+		    compartment 	(object Compartment
+			Parent_View 	@141
+			location   	(641, 3567)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	253)
 		    width      	402
 		    height     	342
 		    annotation 	8
@@ -4589,6 +4478,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F216E7102DA"
+		    compartment 	(object Compartment
+			Parent_View 	@145
+			location   	(1878, 2291)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	6
+			max_width  	722)
 		    width      	868
 		    height     	386
 		    annotation 	8
@@ -4620,6 +4526,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F216DF3039E"
+		    compartment 	(object Compartment
+			Parent_View 	@146
+			location   	(1941, 1872)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	622)
 		    width      	752
 		    height     	236
 		    annotation 	8
@@ -4929,6 +4852,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3F37E78C029F"
+		    compartment 	(object Compartment
+			Parent_View 	@166
+			location   	(1809, 3550)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	8
+			max_width  	259)
 		    width      	496
 		    height     	542
 		    annotation 	8
@@ -4937,61 +4877,14 @@
 	    quid       	"3F4E3E650035"
 	    title      	"UserDefinedTypes"
 	    documentation 	
-|4.7 User-defined types
-|
-|A user-defined type is a schema object, identified by a <user-defined type name> . The definition of a userdefined type specifies a number of components, including in particular a list of attribute definitions. Although the attribute definitions are said to define the representation of the user-defined type, in fact they implicitly define certain functions (observers and mutators) that are part of the interface of the user-defined type; physical representations of user-defined type values are implementation-dependent.
-|
-|The representation of a user-defined type is expressed either as a single data type (some predefined data type, called the source type), in which case the user-defined type is said to be a distinct type, or as a list of attribute definitions, in which case it is said to be a structured type.
-|
-|The definition of a user-defined type may include a <method specification list> consisting of one or more <method specification> s. A <method specification> is either an <original method specification> or an <overriding method specification> . Each <original method specification> specifies the <method name> , the <specific method name> , the <SQL parameter declaration list> , the <returns data type> , the <result cast from type> (if any), whether the method is type-preserving, the <language clause> , the <parameter style> if the language is not SQL, whether STATIC or CONSTRUCTOR is specified, whether the method is deterministic, whether the method possibly modifies SQL data, possibly reads SQL data, possibly contains SQL, or does not possibly contain SQL, and whether the method should be evaluated as NULL whenever any argument is NULL, without actually invoking the method.
-|
-|Each <overriding method specification> specifies the <method name> , the <specific method name> , the <SQL parameter declaration list> and the <returns data type> . For each <overriding method specification> , there shall be an <original method specification> with the same <method name> and <SQL parameter declaration list> in some proper supertype of the user-defined type. Every SQL-invoked method in a schema shall correspond to exactly one <original method specification> or <overriding method specification> associated with some user-defined type existing in that schema.
-|
-|A method M that corresponds to an <original method specification> in the definition of a structured type T1 is an original method of T1. A method M that corresponds to an <overriding method specification> in the definition of T1 is an overriding method of T1.
-|A method M is a method of type T1 if one of the following holds:
-| - M is an original method of T1.
-| - M is an overriding method of T1.
-| - There is a proper supertype T2 of T1 such that M is an original or overriding method of T2 and such that there is no method M3 such that M3 has the same <method name> and <SQL parameter declaration list> as M and M3 is an original method or overriding method of a type T3 such that T2 is a proper supertype of T3 and T3 is a supertype of T1.
-|
-|If T1 is a subtype of T2 and M1 is a method of T1 such that there exists a method M2 of T2 such that M1 and M2 have the same <method name> and the same unaugmented <SQL parameter declaration list> , then M1 is an inherited method of T1 from T2.
-|
-|
-|A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
-| - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
-| - An indication of whether the user-defined type is a structured type or a distinct type.
-| - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
-| - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
-| - A <specific routine designator> identifying the ordering function, depending on the ordering category.
-| - If the user-defined type is a direct subtype of another user-defined type, then the name of that user-defined type.
-| - If the representation is a predefined data type, then the descriptor of that type; otherwise the attribute descriptor of every originally-defined attribute and every inherited attribute of the user-defined type.
-| - An indication of whether the user-defined type is instantiable or not instantiable.
-| - An indication of whether the user-defined type is final or not final.
-| - The transform descriptor of the user-defined type.
-| - If the user-defined type is a structured type, then:
-| - Whether the referencing type of the structured type has a user-defined representation, a derived representation, or a system-defined representation.
-| - If user-defined representation is specified, then the type descriptor of the representation type of the referencing type of the structured type; otherwise, if derived representation is specified, then the list of attributes.
-|NOTE 15 - "user-defined representation", "derived representation", and "system-defined representation" of a reference type are defined in Subclause 4.9, "Reference types".
-| - If the <method specification list> is specified, then for each <method specification> contained in <method specification list> , a method specification descriptor that includes:
-| - The <method name>.
-| - The <specific method name>.
-| - The <SQL parameter declaration list> augmented to include the implicit first parameter with parameter name SELF.
-| - The <language name>.
-| - If the <language name> is not SQL, then the <parameter style>.
-| - The <returns data type>.
-| - The <result cast from type> , if any.
-| - An indication as to whether the <method specification> is an <original method specification> or an <overriding method specification> .
-| - If the <method specification> is an <original method specification> , then an indication of whether STATIC or CONSTRUCTOR is specified.
-| - An indication whether the method is deterministic.
-| - An indication whether the method possibly writes SQL data, possibly reads SQL data, possibly contains SQL, or does not possibly contain SQL.
-| - An indication whether the method should not be invoked if any argument is the null value, in which case the value of the method is the null value.
-|NOTE 16 - The characteristics of an <overriding method specification> other than the <method name> , <SQL parameter declaration list> , and <returns data type> are the same as the characteristics for the corresponding <original method specification> .
+|Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
 |
 	    
 	    zoom       	100
 	    max_height 	28350
 	    max_width  	21600
 	    origin_x   	0
-	    origin_y   	1788
+	    origin_y   	0
 	    items      	(list diagram_item_list
 		(object ClassView "Class" "Logical View::SQLModel::DataTypes::OrderingType" @167
 		    ShowCompartmentStereotypes 	TRUE
@@ -5028,6 +4921,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3F4E4BBD02A6"
+		    compartment 	(object Compartment
+			Parent_View 	@167
+			location   	(2827, 210)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	225)
 		    width      	402
 		    height     	292
 		    annotation 	8
@@ -5067,6 +4977,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3F4E61750367"
+		    compartment 	(object Compartment
+			Parent_View 	@168
+			location   	(2811, 551)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	253)
 		    width      	534
 		    height     	342
 		    annotation 	8
@@ -5136,6 +5063,23 @@
 		    line_color 	3342489
 		    fill_color 	15329769
 		    quidu      	"3ED6717C0130"
+		    compartment 	(object Compartment
+			Parent_View 	@170
+			location   	(2835, 2350)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	6
+			max_width  	340)
 		    width      	520
 		    height     	488
 		    annotation 	8
@@ -5244,6 +5188,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3E9B3EB5002B"
+		    compartment 	(object Compartment
+			Parent_View 	@175
+			location   	(1902, 124)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	391)
 		    width      	482
 		    height     	282
 		    annotation 	8
@@ -5292,6 +5253,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F54EF2F0194"
+		    compartment 	(object Compartment
+			Parent_View 	@178
+			location   	(1810, 2542)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	4
+			max_width  	707)
 		    width      	850
 		    height     	286
 		    annotation 	8
@@ -5360,6 +5338,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F4E44E8001C"
+		    compartment 	(object Compartment
+			Parent_View 	@181
+			location   	(1866, 1682)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	563)
 		    width      	682
 		    height     	236
 		    annotation 	8
@@ -5753,17 +5748,17 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@201
-			location   	(1643, 1196)
+			location   	(1638, 1196)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	400
+			max_width  	410
 			justify    	0
 			label      	"UserDefinedType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E8100EB"
-		    width      	418
+		    width      	428
 		    height     	128
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -5857,6 +5852,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"4022861B0225"
+		    compartment 	(object Compartment
+			Parent_View 	@205
+			location   	(2193, 911)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	3
+			max_width  	797)
 		    width      	956
 		    height     	236
 		    annotation 	8
@@ -6110,6 +6122,23 @@
 		    line_color 	3342489
 		    fill_color 	13828055
 		    quidu      	"3EDF9E550371"
+		    compartment 	(object Compartment
+			Parent_View 	@219
+			location   	(803, 1196)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	569)
 		    width      	690
 		    height     	186
 		    annotation 	8
@@ -6130,17 +6159,17 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@220
-			location   	(1205, 1668)
+			location   	(1207, 1668)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	558
+			max_width  	554
 			justify    	0
 			label      	"DistinctUserDefinedType")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3F4E44DD0126"
-		    width      	576
+		    width      	572
 		    height     	128
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -6159,7 +6188,7 @@
 		    origin_attachment 	(1456, 1656)
 		    terminal_attachment 	(1753, 1312))
 		(object AssociationViewNew "$UNNAMED$12" @222
-		    location   	(991, 1606)
+		    location   	(991, 1607)
 		    font       	(object Font
 			size       	12
 			face       	"Arial"
@@ -6175,7 +6204,7 @@
 		    roleview_list 	(list RoleViews
 			(object RoleView "predefinedRepresentation" @223
 			    Parent_View 	@222
-			    location   	(-334, 676)
+			    location   	(-334, 677)
 			    font       	(object Font
 				size       	12
 				face       	"Arial"
@@ -6187,7 +6216,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @224
 				Parent_View 	@223
-				location   	(1238, 1361)
+				location   	(1238, 1362)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6212,11 +6241,11 @@
 			    client     	@222
 			    supplier   	@219
 			    line_style 	3
-			    origin_attachment 	(991, 1606)
-			    terminal_attachment 	(991, 1308)
+			    origin_attachment 	(991, 1607)
+			    terminal_attachment 	(991, 1309)
 			    label      	(object SegLabel @225
 				Parent_View 	@223
-				location   	(942, 1361)
+				location   	(942, 1362)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6237,7 +6266,7 @@
 				orientation 	0))
 			(object RoleView "$UNNAMED$13" @226
 			    Parent_View 	@222
-			    location   	(-334, 676)
+			    location   	(-334, 677)
 			    font       	(object Font
 				size       	12
 				face       	"Arial"
@@ -6253,12 +6282,12 @@
 			    client     	@222
 			    supplier   	@220
 			    vertices   	(list Points
-				(991, 1606)
+				(991, 1607)
 				(991, 1698)
-				(1196, 1698))
+				(1198, 1698))
 			    line_style 	3
-			    origin_attachment 	(991, 1606)
-			    terminal_attachment 	(1196, 1698))))
+			    origin_attachment 	(991, 1607)
+			    terminal_attachment 	(1198, 1698))))
 		(object InheritView "" @227
 		    stereotype 	TRUE
 		    line_color 	3342489
@@ -6292,6 +6321,23 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3EDF635C005F"
+		    compartment 	(object Compartment
+			Parent_View 	@228
+			location   	(1237, 2107)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			icon_style 	"Icon"
+			fill_color 	16777215
+			anchor     	2
+			nlines     	2
+			max_width  	416)
 		    width      	510
 		    height     	186
 		    annotation 	8
