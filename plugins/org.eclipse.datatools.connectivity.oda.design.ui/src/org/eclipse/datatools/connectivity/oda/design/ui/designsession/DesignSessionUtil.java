@@ -413,7 +413,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             catch( UnsupportedOperationException e )
             {
                 // ignore; optional attributes
-                e.printStackTrace();
+                // TODO - log info
             }
 
             outAttrs.setFormattingHints( formatHints );
