@@ -15,6 +15,7 @@ $import_classes
         import org.eclipse.datatools.modelbase.sql.query.*;
         import org.eclipse.datatools.modelbase.sql.query.util.*;
         import org.eclipse.datatools.modelbase.sql.datatypes.*;
+        import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
     ./
 $End
 

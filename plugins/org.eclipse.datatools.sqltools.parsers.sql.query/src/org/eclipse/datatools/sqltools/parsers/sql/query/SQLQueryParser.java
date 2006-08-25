@@ -1,50 +1,23 @@
-/*******************************************************************************
- * Copyright (c) 2004, 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials 
- * are made available under the terms of the Eclipse Public License v1.0
- * which is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+/*
+* This program and the accompanying materials 
+* are made available under the terms of the Eclipse Public License v1.0
+* which is available at
+* http://www.eclipse.org/legal/epl-v10.html
+*/
+
 package org.eclipse.datatools.sqltools.parsers.sql.query;
+
+
 	
 
-import java.util.List;
-
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.query.ColumnName;
-import org.eclipse.datatools.modelbase.sql.query.Grouping;
-import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
-import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement;
-import org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression;
-import org.eclipse.datatools.modelbase.sql.query.GroupingSpecification;
-import org.eclipse.datatools.modelbase.sql.query.OrderBySpecification;
-import org.eclipse.datatools.modelbase.sql.query.Predicate;
-import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
-import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
-import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
-import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
-import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
-import org.eclipse.datatools.modelbase.sql.query.SuperGroupElement;
-import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression;
-import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
-import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
-import org.eclipse.datatools.modelbase.sql.query.TableReference;
-import org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
-import org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple;
-import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
-import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
-import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.query.*;
+import org.eclipse.datatools.modelbase.sql.query.util.*;
+import org.eclipse.datatools.modelbase.sql.datatypes.*;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 
-import lpg.lpgjavaruntime.LexStream;
+
+import lpg.lpgjavaruntime.*;
+import java.util.List;
 
 class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 {
@@ -60,14 +33,13 @@ class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 	SQLQueryParser( LexStream lexStream,
 	               SQLQueryParserFactory factory,
 	               SQLQuerySourceFormat sourceFormat,
-	               boolean checkStmtOnly) throws SQLParserInternalException
+	               boolean checkStmtOnly)throws SQLParserInternalException
 	{
         super(lexStream, new SQLQueryParserprs(), SQLQueryParserprs.EOFT_SYMBOL, sourceFormat, checkStmtOnly);
 		this.m_factory = factory;
 	}
 
-	SQLQueryParser(LexStream lexStream, SQLQueryParserFactory factory, SQLQuerySourceFormat sourceFormat)
-		throws SQLParserInternalException
+	SQLQueryParser(LexStream lexStream, SQLQueryParserFactory factory, SQLQuerySourceFormat sourceFormat)throws SQLParserInternalException
 	{
 		this(lexStream, factory, sourceFormat, false);
 	}
@@ -77,17 +49,16 @@ class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 		this(lexStream, factory, SQLQuerySourceFormat.copyDefaultFormat());
 	}
 
-	SQLQueryParser(LexStream lexStream, SQLQueryParserFactory factory, boolean checkStmtOnly)
-		throws SQLParserInternalException
+	SQLQueryParser(LexStream lexStream, SQLQueryParserFactory factory, boolean checkStmtOnly) throws SQLParserInternalException
 	{
 		this(lexStream, factory, SQLQuerySourceFormat.copyDefaultFormat(), checkStmtOnly);
 	}
 
-	SQLQueryParser(LexStream lexStream) throws SQLParserInternalException{
+	SQLQueryParser(LexStream lexStream) throws SQLParserInternalException {
 		this(lexStream, new SQLQueryParserFactory());
 	}
 
-	SQLQueryParser(LexStream lexStream, boolean checkStmtOnly) throws SQLParserInternalException {
+	SQLQueryParser(LexStream lexStream, boolean checkStmtOnly)throws SQLParserInternalException {
 		this(lexStream, new SQLQueryParserFactory(), checkStmtOnly);
 	}
 
@@ -3795,6 +3766,7 @@ class SQLQueryParser extends  AbstractSQLQueryParser  //SQLParser
 			    setSym1(getTokenName(1)); 
 			}
 			break;  
+
 
 			default:
 				break;

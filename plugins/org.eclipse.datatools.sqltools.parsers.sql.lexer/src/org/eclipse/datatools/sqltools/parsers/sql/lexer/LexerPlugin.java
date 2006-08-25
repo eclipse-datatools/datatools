@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.parsers.sql.lexer;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
+
 /**
  * The main plugin class to be used in the desktop.
  */

@@ -262,7 +262,7 @@ $RULES
                             ($RT_xml_value_expression)getSym(4),($RT_datatype)getSym(6),getString(7),getString(8),getInt(9)));
                     $EndAction ./
                             
-<xml_encoding_specification> -> 
+<xml_encoding_specification> ::=
             CHAR_STRING_LITERAL
                 /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
 

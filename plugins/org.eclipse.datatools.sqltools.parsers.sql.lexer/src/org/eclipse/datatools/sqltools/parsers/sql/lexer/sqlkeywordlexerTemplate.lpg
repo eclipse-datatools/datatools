@@ -17,7 +17,7 @@
 %Options escape=$,table=java,margin=4
 %options slr
 %options action=("*.java", "/.", "./")
-%options ParseTable=lpg.lpgjavaruntime.*
+%options ParseTable=lpg.lpgjavaruntime.ParseTable
 
 $Notice /.$copyright./
 
@@ -47,7 +47,6 @@ $End
 $Headers
     /.
     $copyright
-    $package_declaration
 
     $import_classes
     //import lpg.lpgjavaruntime.*;

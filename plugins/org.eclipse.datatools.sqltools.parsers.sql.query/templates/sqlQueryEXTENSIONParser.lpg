@@ -18,7 +18,7 @@
 --%options serialize  --serialize for large grammar (65k+), makes it faster after load overhead, creates a .dcl file in dat directory
 --%options dat_directory="../../../../../.." --TODO change path
 --%options stream-type=TokenStream
-%options ParseTable=lpg.lpgjavaruntime.*
+%options ParseTable=lpg.lpgjavaruntime.ParseTable
 %options package=com.ibm.db.parsers.sql.query.EXTENSION
 %options template=sqlparserTemplate.lpg
 --%options import_terminals=sqlquerylexer.lpg

@@ -1,14 +1,12 @@
-/*******************************************************************************
- * Copyright (c) 2005 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials 
- * are made available under the terms of the Eclipse Public License v1.0
- * which is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+
+
 package org.eclipse.datatools.sqltools.parsers.sql.lexer;
+
+
+
+
+
+//import lpg.lpgjavaruntime.*;
 
 public class SQLKeywordLexer extends SQLKeywordLexerprs implements SQLParsersym
 {
@@ -38,6 +36,7 @@ public class SQLKeywordLexer extends SQLKeywordLexerprs implements SQLParsersym
 
         return keywordKind[act == ERROR_ACTION  || curtok <= lasttok ? 0 : act];
     }
+
 
 final static int tokenKind[] = new int[128];
 
@@ -116,6 +115,8 @@ final int getKind(char c)
 {
     return (c < 128 ? tokenKind[c] : 0);
 }
+
+
     public SQLKeywordLexer(char[] inputChars, int identifierKind)
     {
         this.inputChars = inputChars;
@@ -4249,6 +4250,7 @@ final int getKind(char c)
                     keywordKind[688] = (TK_XMLVALIDATE);
                   
                 
+
         for (int i = 0; i < keywordKind.length; i++)
         {
             if (keywordKind[i] == 0)
