@@ -113,7 +113,7 @@
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
 	         <action
 	               label="%DSE.Ping.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.PingAction"
+	               class="org.eclipse.datatools.connectivity.ui.actions.PingAction"
 	               menubarPath="slot1"
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.pingaction">
@@ -126,7 +126,7 @@
 	         </action>
 	         <action
 	               label="%DSE.Disconnect.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DisconnectAction"
+	               class="org.eclipse.datatools.connectivity.ui.actions.DisconnectAction"
 	               menubarPath="slot1"
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.disconnectaction">
@@ -144,7 +144,7 @@
 	         </action>
 	         <action
 	               label="%DSE.Connect.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectAction"
+	               class="org.eclipse.datatools.connectivity.ui.actions.ConnectAction"
 	               menubarPath="slot1"
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
@@ -163,13 +163,13 @@
 	         </action>
 	         <action
 	               label="%DSE.Duplicate.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DuplicateProfileAction"
+	               class="org.eclipse.datatools.connectivity.ui.actions.DuplicateProfileAction"
 	               menubarPath="slot2"
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.duplicateaction">
 	         </action>
 	         <action
-                class="org.eclipse.datatools.connectivity.ui.dse.actions.DeleteAction"
+                class="org.eclipse.datatools.connectivity.ui.actions.DeleteAction"
                 definitionId="org.eclipse.ui.edit.delete"
                 enablesFor="*"
                 id="org.eclipse.datatools.connectivity.internal.ui.actions.deleteaction"
@@ -178,7 +178,7 @@
                 overrideActionId="org.eclipse.ui.edit.delete">
 	         </action>
 	         <action
-                class="org.eclipse.datatools.connectivity.ui.dse.actions.RenameAction"
+                class="org.eclipse.datatools.connectivity.ui.actions.RenameAction"
                 definitionId="org.eclipse.ui.edit.rename"
                 enablesFor="1"
                 id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction"
