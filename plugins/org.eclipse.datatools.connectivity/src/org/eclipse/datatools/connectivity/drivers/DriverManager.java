@@ -473,7 +473,7 @@ public class DriverManager {
 	 * @param template TemplateDescriptor
 	 * @return String Updated jar list
 	 */
-	private String updatePluginJarList(TemplateDescriptor template) {
+	public String updatePluginJarList(TemplateDescriptor template) {
 		String jarList = template.getJarList();
 
 		if (jarList.indexOf("[") > -1) { //$NON-NLS-1$

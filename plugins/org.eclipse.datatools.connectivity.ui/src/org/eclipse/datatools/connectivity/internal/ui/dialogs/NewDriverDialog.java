@@ -358,8 +358,9 @@ public class NewDriverDialog extends TitleAreaDialog {
 			this.mPropertySet.setName(this.mDriverName.trim());
 			this.mPropertySet.setID(propId);
 			Properties props = new Properties();
+			String jarList = DriverManager.getInstance().updatePluginJarList(this.mDriverTemplateDescriptor);
 			props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST,
-					this.mDriverTemplateDescriptor.getJarList());
+					jarList);
 
 			IConfigurationElement[] templateprops = this.mDriverTemplateDescriptor
 					.getProperties();
