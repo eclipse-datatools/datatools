@@ -83,42 +83,6 @@
          </action>
       </viewContribution>
    </extension>
-<!--   <extension
-         point="org.eclipse.ui.navigator.navigatorViewer">
-      <navigatorViewer
-            popupMenuId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu"
-            rootContentExtensionId="org.eclipse.datatools.connectivity.dsexplorer.content"
-            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
-      </navigatorViewer>
-   </extension>
-	<extension 
-		point="org.eclipse.ui.navigator.navigatorContent">
-		<navigatorContent
-        contentProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider"
-        enabledByDefault="true"
-        icon="platform:/plugin/org.eclipse.datatools.connectivity.dsexplorer/icons/enterprise_explorer.gif"
-        id="org.eclipse.datatools.connectivity.dsexplorer.content"
-        labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
-        name="%DSE.content"
-        priority="normal">
-			<enablement>
-				<or>
-					<objectClass
-			           adaptable="true"
-				       name="org.eclipse.core.resources.IWorkspaceRoot"/> 
-	               <objectClass
-                      adaptable="true"
-                      name="org.eclipse.datatools.connectivity.ICategory"/>
-	               <objectClass
-                      adaptable="true"
-                      name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-                <objectClass
-                      adaptable="true"
-                      name="org.eclipse.datatools.connectivity.ProfileManager"/>
-				</or>
-			</enablement>
-		</navigatorContent>
-	</extension> -->
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
@@ -142,34 +106,6 @@
          </description>
       </decorator>
    </extension>
-<!--   <extension
-         point="org.eclipse.ui.navigator.actionProvider">
-      <actionProvider
-            class="org.eclipse.datatools.connectivity.ui.dse.actions.ConnectActionProvider">
-		    <enablement>
-		    	<or>
-		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
-			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
-		      	</or>
-		    </enablement>
-      </actionProvider>
-   </extension> -->
-<!--
-	The following is a work in progress. The code currently in ConnectActionProvider
-	will be migrated to use object contributions to provide menus via the plugin.xml.
--->	
-<!--   <extension
-         point="org.eclipse.ui.navigator.actionProvider">
-      <actionProvider
-            class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
-		    <enablement>
-		    	<or>
-		    		<objectClass name = "org.eclipse.datatools.connectivity.ICategory"/>
-			      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
-		      	</or>
-		    </enablement>
-      </actionProvider>
-   </extension> -->
    <extension
          point="org.eclipse.ui.popupMenus">
          <objectContribution 
@@ -233,18 +169,22 @@
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.duplicateaction">
 	         </action>
 	         <action
-	               label="%DSE.Delete.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.DeleteAction"
-	               menubarPath="slot2"
-	               enablesFor="*"
-	               id="org.eclipse.datatools.connectivity.internal.ui.actions.deleteaction">
+                class="org.eclipse.datatools.connectivity.ui.dse.actions.DeleteAction"
+                definitionId="org.eclipse.ui.edit.delete"
+                enablesFor="*"
+                id="org.eclipse.datatools.connectivity.internal.ui.actions.deleteaction"
+                label="%DSE.Delete.label"
+                menubarPath="slot2"
+                overrideActionId="org.eclipse.ui.edit.delete">
 	         </action>
 	         <action
-	               label="%DSE.Rename.label"
-	               class="org.eclipse.datatools.connectivity.ui.dse.actions.RenameAction"
-	               menubarPath="slot2"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction">
+                class="org.eclipse.datatools.connectivity.ui.dse.actions.RenameAction"
+                definitionId="org.eclipse.ui.edit.rename"
+                enablesFor="1"
+                id="org.eclipse.datatools.connectivity.internal.ui.actions.renameaction"
+                label="%DSE.Rename.label"
+                menubarPath="slot2"
+                overrideActionId="org.eclipse.ui.edit.rename">
 	         </action>
 	         <visibility>
 			    	<or>
@@ -261,15 +201,7 @@
             id="org.eclipse.datatools.connectivity.dsexplorer.content"
             labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
             name="%DSE.content"
-            priority="normal"
-            sibling_order="org.eclipse.pde.internal.core.text.plugin.PluginElementNode@1a60920">
-<!--         <actionProvider
-               class="org.eclipse.datatools.connectivity.ui.dse.actions.SlotsActionProvider"
-               id="org.eclipse.datatools.connectivity.ui.dse.actions.SlotsActionProvider">
-            <enablement>
-               <instanceof value="java.lang.Object"/>
-            </enablement>
-         </actionProvider> -->
+            priority="normal">
          <actionProvider
                class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
                id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
@@ -323,7 +255,7 @@
       </viewerContentBinding>
       <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
          <includes>
-            <actionExtension pattern="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider"/>
+            <actionExtension pattern="org.eclipse.datatools.connectivity.ui.dse.actions.*"/>
          </includes>
       </viewerActionBinding>
    </extension>
