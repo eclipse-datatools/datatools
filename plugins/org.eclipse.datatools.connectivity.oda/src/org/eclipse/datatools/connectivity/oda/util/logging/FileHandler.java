@@ -86,14 +86,18 @@ public class FileHandler extends StreamHandler
     	m_filename = null;
     }
 
-    // getUniqueFile() generates an unique filename based on the name passed from 
-    // erdPro.  This is for the case when two factories/erdPro runs concurrently and 
-    // tries to create a file with the same name.
-    private File getUniqueFile( String filename )
+    /** 
+     * Generates a file with an unique filename based on the specified preferred name. 
+     * This is for the case when two consumer instances run concurrently and 
+     * each tries to create a file with the same name.
+     * @param preferredFileName
+     * @return
+     */
+    private File getUniqueFile( String preferredFileName )
     {
         try
         {
-            File file = new File( filename );
+            File file = new File( preferredFileName );
         
             createParentDirectory( file );
             
@@ -102,9 +106,9 @@ public class FileHandler extends StreamHandler
             // numeric value to our filename, we'll repeat this 10 times only to
             // prevent infinite loops.
             int looping = 0;
-            int index = filename.lastIndexOf( "." ); //$NON-NLS-1$
-            String prefix = filename.substring( 0, index );
-            String suffix = filename.substring( index, filename.length() );
+            int index = preferredFileName.lastIndexOf( "." ); //$NON-NLS-1$
+            String prefix = preferredFileName.substring( 0, index );
+            String suffix = preferredFileName.substring( index, preferredFileName.length() );
             while( ! file.createNewFile() && looping < 10 )    
             {
                 file = new File( prefix + "-" + looping + suffix ); //$NON-NLS-1$
