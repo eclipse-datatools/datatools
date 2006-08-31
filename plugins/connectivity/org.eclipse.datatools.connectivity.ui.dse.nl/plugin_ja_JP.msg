@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=ƒT[ƒo[‚Ö‚ÌÚ‘±‚É¸”s‚µ‚½ê‡‚ÉAƒRƒ
 DSE.content=ƒf[ƒ^Eƒ\[ƒXEƒGƒNƒXƒvƒ[ƒ‰[Šg’£q
 category.name.dataTools=SQL ŠJ”­
 category.name.connectivity=Ú‘±
+
+General = ‘S”Ê

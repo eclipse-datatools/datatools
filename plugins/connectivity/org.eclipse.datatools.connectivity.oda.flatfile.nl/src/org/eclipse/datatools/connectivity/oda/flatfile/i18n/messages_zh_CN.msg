@@ -26,3 +26,5 @@ common_CONNECTION_HAS_NOT_OPEN=连接未打开。
 common_CANNOT_FIND_COLUMN=找不到任何列。
 query_streamClosed=流已关闭
 query_invalidTableName=表名无效：
+
+dateUtil.ConvertFails=转换为日期失败。 源:

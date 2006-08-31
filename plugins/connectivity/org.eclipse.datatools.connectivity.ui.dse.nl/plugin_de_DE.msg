@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=Versieht den Inhaltserweiterungsknote
 DSE.content=Erweiterung für Datenquellen-Explorer
 category.name.dataTools=SQL-Entwicklung
 category.name.connectivity=Konnektivität
+
+General = Allgemein

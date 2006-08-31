@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=서버에 연결할 때 데코레이트 컨텐츠 확
 DSE.content=데이터 소스 탐색기 확장
 category.name.dataTools=SQL 개발
 category.name.connectivity=연결
+
+General = 일반

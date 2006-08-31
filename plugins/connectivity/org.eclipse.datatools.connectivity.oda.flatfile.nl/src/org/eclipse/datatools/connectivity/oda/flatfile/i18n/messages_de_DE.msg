@@ -26,3 +26,5 @@ common_CONNECTION_HAS_NOT_OPEN=Die Verbindung ist nicht geöffnet.
 common_CANNOT_FIND_COLUMN=Keine Spalten gefunden.
 query_streamClosed=Datenstrom geschlossen
 query_invalidTableName=Ungültiger Tabellenname\:
+
+dateUtil.ConvertFails=Konvertierung in Datum ist fehlgeschlagen. Quelle:

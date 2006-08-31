@@ -27,3 +27,5 @@ common_CANNOT_FIND_COLUMN=列が見つかりません。
 query_streamClosed=ストリームがクローズされました。
 query_invalidTableName=無効なテーブル名\:
 
+dateUtil.ConvertFails=日付に変換できません。 ソース :
+

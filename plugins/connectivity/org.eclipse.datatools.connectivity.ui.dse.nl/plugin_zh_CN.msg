@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=连接至服务器失败时修饰内容扩展节点。
 DSE.content=数据源资源管理器扩展
 category.name.dataTools=SQL 开发
 category.name.connectivity=连接
+
+General = 常规

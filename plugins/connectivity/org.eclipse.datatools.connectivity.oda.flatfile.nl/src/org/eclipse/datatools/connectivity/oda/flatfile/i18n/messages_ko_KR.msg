@@ -26,3 +26,5 @@ common_CONNECTION_HAS_NOT_OPEN=연결이 열려 있지 않습니다.
 common_CANNOT_FIND_COLUMN=열을 찾을 수 없습니다.
 query_streamClosed=스트림의 처리가 완료되었습니다.
 query_invalidTableName=올바르지 않은 테이블 이름\:
+
+dateUtil.ConvertFails=날짜로 변환 실패 원본:

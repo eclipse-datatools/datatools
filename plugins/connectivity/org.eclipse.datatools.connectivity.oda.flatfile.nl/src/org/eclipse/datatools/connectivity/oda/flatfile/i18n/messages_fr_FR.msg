@@ -26,3 +26,5 @@ common_CONNECTION_HAS_NOT_OPEN=La connexion n'est pas établie.
 common_CANNOT_FIND_COLUMN=Colonnes introuvables.
 query_streamClosed=Flux fermé
 query_invalidTableName=Nom de table incorrect \:
+
+dateUtil.ConvertFails=Echec de la conversion en date. Source :

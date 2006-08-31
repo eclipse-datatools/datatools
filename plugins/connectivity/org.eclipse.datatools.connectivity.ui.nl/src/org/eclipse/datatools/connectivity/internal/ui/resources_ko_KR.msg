@@ -78,3 +78,5 @@ CPVersionPropertyPage.label.versionUnavailable=이 프로파일에 버전 정보를 사용할 
 CPVersionPropertyPage.label.techVersions=이 서버에 사용할 수 있는 기술은 다음과 같습니다.
 ConnectionProfileSummaryPage.button.testConnection=연결 테스트(&T)
 CommonLabelProviderBase.label.version=v.
+
+properties.connectionprofile.type = 프로필 형식

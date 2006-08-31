@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=Décorer le noeud d'extension de conte
 DSE.content=Extension d'explorateur de source de données
 category.name.dataTools=Développement SQL
 category.name.connectivity=Connectivité
+
+General = Général

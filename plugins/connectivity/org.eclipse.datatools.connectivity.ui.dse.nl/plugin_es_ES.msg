@@ -25,3 +25,5 @@ DSE.ContentExtension.Decorator.Description=La decoración del nodo de extensión d
 DSE.content=Extensión del Explorador de orígenes de datos
 category.name.dataTools=Desarrollo SQL
 category.name.connectivity=Conectividad
+
+General = General
