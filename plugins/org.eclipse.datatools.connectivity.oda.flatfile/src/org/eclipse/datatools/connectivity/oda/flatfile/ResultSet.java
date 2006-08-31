@@ -19,13 +19,13 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 
-import org.eclipse.birt.report.data.oda.flatfile.util.DateUtil;
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
 
 /**
  * Flat file data provider's implementation of the ODA IResultSet interface.
