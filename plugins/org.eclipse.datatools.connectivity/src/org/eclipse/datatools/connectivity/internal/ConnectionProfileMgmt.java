@@ -230,6 +230,11 @@ public class ConnectionProfileMgmt {
 							.iterator(); it.hasNext();) {
 						Map.Entry me = (Map.Entry) it.next();
 						String type = (String) me.getKey();
+
+						if (type.equals(cp.getProviderId())) {
+							continue;
+						}
+
 						props = (Properties) me.getValue();
 						extraChild = document.createElement(type);
 						if (props == null) {
