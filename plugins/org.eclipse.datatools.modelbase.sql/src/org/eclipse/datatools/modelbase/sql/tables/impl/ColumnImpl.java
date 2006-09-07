@@ -57,6 +57,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ColumnImpl extends TypedElementImpl implements Column {
+/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The cached value of the '{@link #getIdentitySpecifier() <em>Identity Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -67,7 +74,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected IdentitySpecifier identitySpecifier = null;
 
-	/**
+/**
 	 * The cached value of the '{@link #getGenerateExpression() <em>Generate Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +84,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected ValueExpression generateExpression = null;
 
-	/**
+/**
 	 * The default value of the '{@link #isImplementationDependent() <em>Implementation Dependent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,7 +94,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected static final boolean IMPLEMENTATION_DEPENDENT_EDEFAULT = false;
 
-	/**
+/**
 	 * The cached value of the '{@link #isImplementationDependent() <em>Implementation Dependent</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,7 +104,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected boolean implementationDependent = IMPLEMENTATION_DEPENDENT_EDEFAULT;
 
-	/**
+/**
 	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +114,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected static final boolean NULLABLE_EDEFAULT = true;
 
-	/**
+/**
 	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,7 +124,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected boolean nullable = NULLABLE_EDEFAULT;
 
-	/**
+/**
 	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -127,7 +134,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 
-	/**
+/**
 	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -137,7 +144,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
-	/**
+/**
 	 * The default value of the '{@link #getScopeCheck() <em>Scope Check</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,7 +154,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected static final ReferentialActionType SCOPE_CHECK_EDEFAULT = ReferentialActionType.NO_ACTION_LITERAL;
 
-	/**
+/**
 	 * The cached value of the '{@link #getScopeCheck() <em>Scope Check</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,7 +164,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected ReferentialActionType scopeCheck = SCOPE_CHECK_EDEFAULT;
 
-	/**
+/**
 	 * The default value of the '{@link #isScopeChecked() <em>Scope Checked</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,7 +174,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected static final boolean SCOPE_CHECKED_EDEFAULT = false;
 
-	/**
+/**
 	 * The cached value of the '{@link #isScopeChecked() <em>Scope Checked</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -177,7 +184,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	protected boolean scopeChecked = SCOPE_CHECKED_EDEFAULT;
 
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -192,7 +199,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLTablesPackage.eINSTANCE.getColumn();
+		return SQLTablesPackage.Literals.COLUMN;
 	}
 
 	/**
@@ -202,7 +209,17 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	public Table getTable() {
 		if (eContainerFeatureID != SQLTablesPackage.COLUMN__TABLE) return null;
-		return (Table)eContainer;
+		return (Table)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTable(Table newTable, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTable, SQLTablesPackage.COLUMN__TABLE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -211,15 +228,15 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 */
 	public void setTable(Table newTable) {
-		if (newTable != eContainer || (eContainerFeatureID != SQLTablesPackage.COLUMN__TABLE && newTable != null)) {
+		if (newTable != eInternalContainer() || (eContainerFeatureID != SQLTablesPackage.COLUMN__TABLE && newTable != null)) {
 			if (EcoreUtil.isAncestor(this, newTable))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTable != null)
 				msgs = ((InternalEObject)newTable).eInverseAdd(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTable, SQLTablesPackage.COLUMN__TABLE, msgs);
+			msgs = basicSetTable(newTable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -417,7 +434,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
 	}
 
-	/**
+		/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
@@ -477,27 +494,19 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 		return false;
 	}
 
-	/**
+/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLTablesPackage.COLUMN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLTablesPackage.COLUMN__TABLE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLTablesPackage.COLUMN__TABLE, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLTablesPackage.COLUMN__TABLE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTable((Table)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -505,26 +514,16 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLTablesPackage.COLUMN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLTablesPackage.COLUMN__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLTablesPackage.COLUMN__CONTAINED_TYPE:
-					return basicSetContainedType(null, msgs);
-				case SQLTablesPackage.COLUMN__TABLE:
-					return eBasicSetContainer(null, SQLTablesPackage.COLUMN__TABLE, msgs);
-				case SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER:
-					return basicSetIdentitySpecifier(null, msgs);
-				case SQLTablesPackage.COLUMN__GENERATE_EXPRESSION:
-					return basicSetGenerateExpression(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLTablesPackage.COLUMN__TABLE:
+				return basicSetTable(null, msgs);
+			case SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER:
+				return basicSetIdentitySpecifier(null, msgs);
+			case SQLTablesPackage.COLUMN__GENERATE_EXPRESSION:
+				return basicSetGenerateExpression(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -532,16 +531,12 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLTablesPackage.COLUMN__TABLE:
-					return eContainer.eInverseRemove(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLTablesPackage.COLUMN__TABLE:
+				return eInternalContainer().eInverseRemove(this, SQLTablesPackage.TABLE__COLUMNS, Table.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -549,23 +544,8 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.COLUMN__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLTablesPackage.COLUMN__NAME:
-				return getName();
-			case SQLTablesPackage.COLUMN__DEPENDENCIES:
-				return getDependencies();
-			case SQLTablesPackage.COLUMN__DESCRIPTION:
-				return getDescription();
-			case SQLTablesPackage.COLUMN__LABEL:
-				return getLabel();
-			case SQLTablesPackage.COLUMN__CONTAINED_TYPE:
-				return getContainedType();
-			case SQLTablesPackage.COLUMN__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
-				return basicGetReferencedType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
 				return getTable();
 			case SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER:
@@ -583,7 +563,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 			case SQLTablesPackage.COLUMN__SCOPE_CHECKED:
 				return isScopeChecked() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -591,31 +571,8 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.COLUMN__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__NAME:
-				setName((String)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__CONTAINED_TYPE:
-				setContainedType((SQLDataType)newValue);
-				return;
-			case SQLTablesPackage.COLUMN__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
 				setTable((Table)newValue);
 				return;
@@ -641,7 +598,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 				setScopeChecked(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -649,29 +606,8 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.COLUMN__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLTablesPackage.COLUMN__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLTablesPackage.COLUMN__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLTablesPackage.COLUMN__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLTablesPackage.COLUMN__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLTablesPackage.COLUMN__CONTAINED_TYPE:
-				setContainedType((SQLDataType)null);
-				return;
-			case SQLTablesPackage.COLUMN__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
 				setTable((Table)null);
 				return;
@@ -697,7 +633,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 				setScopeChecked(SCOPE_CHECKED_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -705,22 +641,8 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.COLUMN__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLTablesPackage.COLUMN__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLTablesPackage.COLUMN__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLTablesPackage.COLUMN__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLTablesPackage.COLUMN__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLTablesPackage.COLUMN__CONTAINED_TYPE:
-				return containedType != null;
-			case SQLTablesPackage.COLUMN__REFERENCED_TYPE:
-				return referencedType != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLTablesPackage.COLUMN__TABLE:
 				return getTable() != null;
 			case SQLTablesPackage.COLUMN__IDENTITY_SPECIFIER:
@@ -738,7 +660,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 			case SQLTablesPackage.COLUMN__SCOPE_CHECKED:
 				return scopeChecked != SCOPE_CHECKED_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

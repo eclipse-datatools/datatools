@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.schema.Comment;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
 import org.eclipse.emf.ecore.sdo.InternalEDataObject;
 import org.eclipse.emf.ecore.sdo.util.SDOUtil;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import commonj.sdo.DataGraph;
@@ -55,12 +57,20 @@ import commonj.sdo.Type;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObject, InternalEDataObject {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -112,6 +122,16 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	protected String label = LABEL_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getComments() <em>Comments</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList comments = null;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -126,7 +146,7 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getSQLObject();
+		return SQLSchemaPackage.Literals.SQL_OBJECT;
 	}
 
 	/**
@@ -181,6 +201,18 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 		label = newLabel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLSchemaPackage.SQL_OBJECT__LABEL, oldLabel, label));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getComments() {
+		if (comments == null) {
+			comments = new EObjectWithInverseResolvingEList(Comment.class, this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLSchemaPackage.COMMENT__SQL_OBJECT);
+		}
+		return comments;
 	}
 
 	/**
@@ -1350,18 +1382,12 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				return ((InternalEList)getComments()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -1369,18 +1395,14 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
+				return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				return ((InternalEList)getComments()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -1388,20 +1410,18 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.SQL_OBJECT__NAME:
-				return getName();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
 				return getDependencies();
 			case SQLSchemaPackage.SQL_OBJECT__DESCRIPTION:
 				return getDescription();
 			case SQLSchemaPackage.SQL_OBJECT__LABEL:
 				return getLabel();
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				return getComments();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -1409,15 +1429,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.SQL_OBJECT__NAME:
-				setName((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
 				getDependencies().clear();
 				getDependencies().addAll((Collection)newValue);
@@ -1428,8 +1441,12 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			case SQLSchemaPackage.SQL_OBJECT__LABEL:
 				setLabel((String)newValue);
 				return;
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				getComments().clear();
+				getComments().addAll((Collection)newValue);
+				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -1437,14 +1454,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.SQL_OBJECT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
 				getDependencies().clear();
 				return;
@@ -1454,8 +1465,11 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			case SQLSchemaPackage.SQL_OBJECT__LABEL:
 				setLabel(LABEL_EDEFAULT);
 				return;
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				getComments().clear();
+				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -1463,20 +1477,18 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SQL_OBJECT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.SQL_OBJECT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__DEPENDENCIES:
 				return dependencies != null && !dependencies.isEmpty();
 			case SQLSchemaPackage.SQL_OBJECT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case SQLSchemaPackage.SQL_OBJECT__LABEL:
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
+				return comments != null && !comments.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

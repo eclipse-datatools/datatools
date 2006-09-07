@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: Event.java,v 1.1 2006/03/03 21:46:27 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema;
 
@@ -11,6 +11,10 @@ package org.eclipse.datatools.modelbase.sql.schema;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Event</b></em>'.
  * <!-- end-user-doc -->
+ *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 
+ * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:

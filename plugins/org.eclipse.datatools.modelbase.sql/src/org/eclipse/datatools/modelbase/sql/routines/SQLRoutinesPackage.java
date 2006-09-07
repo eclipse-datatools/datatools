@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLRoutinesPackage extends EPackage{
+public interface SQLRoutinesPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -120,6 +120,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int ROUTINE__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTINE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -239,7 +248,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int ROUTINE__SCHEMA = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 12;
 
 	/**
-	 * The number of structural features of the the '<em>Routine</em>' class.
+	 * The number of structural features of the '<em>Routine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -303,6 +312,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	int SOURCE__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -312,7 +330,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int SOURCE__BODY = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Source</em>' class.
+	 * The number of structural features of the '<em>Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -376,6 +394,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	int PARAMETER__LABEL = SQLSchemaPackage.TYPED_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -430,7 +457,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int PARAMETER__STRING_TYPE_OPTION = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Parameter</em>' class.
+	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -492,6 +519,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int PROCEDURE__LABEL = ROUTINE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDURE__COMMENTS = ROUTINE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -638,7 +674,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int PROCEDURE__RESULT_SET = ROUTINE_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Procedure</em>' class.
+	 * The number of structural features of the '<em>Procedure</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -700,6 +736,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int FUNCTION__LABEL = ROUTINE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__COMMENTS = ROUTINE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -891,7 +936,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int FUNCTION__RETURN_CAST = ROUTINE_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of structural features of the the '<em>Function</em>' class.
+	 * The number of structural features of the '<em>Function</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -953,6 +998,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int ROUTINE_RESULT_TABLE__LABEL = SQLTablesPackage.TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTINE_RESULT_TABLE__COMMENTS = SQLTablesPackage.TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -1045,7 +1099,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int ROUTINE_RESULT_TABLE__UPDATABLE = SQLTablesPackage.TABLE__UPDATABLE;
 
 	/**
-	 * The number of structural features of the the '<em>Routine Result Table</em>' class.
+	 * The number of structural features of the '<em>Routine Result Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1107,6 +1161,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int METHOD__LABEL = FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__COMMENTS = FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -1316,7 +1379,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int METHOD__CONSTRUCTOR = FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Method</em>' class.
+	 * The number of structural features of the '<em>Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1378,6 +1441,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int USER_DEFINED_FUNCTION__LABEL = FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_FUNCTION__COMMENTS = FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -1569,7 +1641,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int USER_DEFINED_FUNCTION__RETURN_CAST = FUNCTION__RETURN_CAST;
 
 	/**
-	 * The number of structural features of the the '<em>User Defined Function</em>' class.
+	 * The number of structural features of the '<em>User Defined Function</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1631,6 +1703,15 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @ordered
 	 */
 	int BUILT_IN_FUNCTION__LABEL = FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILT_IN_FUNCTION__COMMENTS = FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -1822,7 +1903,7 @@ public interface SQLRoutinesPackage extends EPackage{
 	int BUILT_IN_FUNCTION__RETURN_CAST = FUNCTION__RETURN_CAST;
 
 	/**
-	 * The number of structural features of the the '<em>Built In Function</em>' class.
+	 * The number of structural features of the '<em>Built In Function</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2310,5 +2391,378 @@ public interface SQLRoutinesPackage extends EPackage{
 	 * @generated
 	 */
 	SQLRoutinesFactory getSQLRoutinesFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl <em>Routine</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.RoutineImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getRoutine()
+		 * @generated
+		 */
+		EClass ROUTINE = eINSTANCE.getRoutine();
+
+		/**
+		 * The meta object literal for the '<em><b>Specific Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__SPECIFIC_NAME = eINSTANCE.getRoutine_SpecificName();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__LANGUAGE = eINSTANCE.getRoutine_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Style</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__PARAMETER_STYLE = eINSTANCE.getRoutine_ParameterStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Deterministic</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__DETERMINISTIC = eINSTANCE.getRoutine_Deterministic();
+
+		/**
+		 * The meta object literal for the '<em><b>Sql Data Access</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__SQL_DATA_ACCESS = eINSTANCE.getRoutine_SqlDataAccess();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation TS</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__CREATION_TS = eINSTANCE.getRoutine_CreationTS();
+
+		/**
+		 * The meta object literal for the '<em><b>Last Altered TS</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__LAST_ALTERED_TS = eINSTANCE.getRoutine_LastAlteredTS();
+
+		/**
+		 * The meta object literal for the '<em><b>Authorization ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__AUTHORIZATION_ID = eINSTANCE.getRoutine_AuthorizationID();
+
+		/**
+		 * The meta object literal for the '<em><b>Security</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__SECURITY = eINSTANCE.getRoutine_Security();
+
+		/**
+		 * The meta object literal for the '<em><b>External Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROUTINE__EXTERNAL_NAME = eINSTANCE.getRoutine_ExternalName();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROUTINE__PARAMETERS = eINSTANCE.getRoutine_Parameters();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROUTINE__SOURCE = eINSTANCE.getRoutine_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROUTINE__SCHEMA = eINSTANCE.getRoutine_Schema();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.SourceImpl <em>Source</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SourceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getSource()
+		 * @generated
+		 */
+		EClass SOURCE = eINSTANCE.getSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOURCE__BODY = eINSTANCE.getSource_Body();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl <em>Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.ParameterImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getParameter()
+		 * @generated
+		 */
+		EClass PARAMETER = eINSTANCE.getParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__MODE = eINSTANCE.getParameter_Mode();
+
+		/**
+		 * The meta object literal for the '<em><b>Locator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__LOCATOR = eINSTANCE.getParameter_Locator();
+
+		/**
+		 * The meta object literal for the '<em><b>Routine</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__ROUTINE = eINSTANCE.getParameter_Routine();
+
+		/**
+		 * The meta object literal for the '<em><b>String Type Option</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__STRING_TYPE_OPTION = eINSTANCE.getParameter_StringTypeOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl <em>Procedure</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getProcedure()
+		 * @generated
+		 */
+		EClass PROCEDURE = eINSTANCE.getProcedure();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Result Sets</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROCEDURE__MAX_RESULT_SETS = eINSTANCE.getProcedure_MaxResultSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Save Point</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROCEDURE__OLD_SAVE_POINT = eINSTANCE.getProcedure_OldSavePoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Set</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCEDURE__RESULT_SET = eINSTANCE.getProcedure_ResultSet();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl <em>Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getFunction()
+		 * @generated
+		 */
+		EClass FUNCTION = eINSTANCE.getFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Call</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__NULL_CALL = eINSTANCE.getFunction_NullCall();
+
+		/**
+		 * The meta object literal for the '<em><b>Static</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__STATIC = eINSTANCE.getFunction_Static();
+
+		/**
+		 * The meta object literal for the '<em><b>Transform Group</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__TRANSFORM_GROUP = eINSTANCE.getFunction_TransformGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Preserving</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__TYPE_PRESERVING = eINSTANCE.getFunction_TypePreserving();
+
+		/**
+		 * The meta object literal for the '<em><b>Mutator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FUNCTION__MUTATOR = eINSTANCE.getFunction_Mutator();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Table</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION__RETURN_TABLE = eINSTANCE.getFunction_ReturnTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Scaler</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION__RETURN_SCALER = eINSTANCE.getFunction_ReturnScaler();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Cast</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION__RETURN_CAST = eINSTANCE.getFunction_ReturnCast();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.RoutineResultTableImpl <em>Routine Result Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.RoutineResultTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getRoutineResultTable()
+		 * @generated
+		 */
+		EClass ROUTINE_RESULT_TABLE = eINSTANCE.getRoutineResultTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.MethodImpl <em>Method</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.MethodImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getMethod()
+		 * @generated
+		 */
+		EClass METHOD = eINSTANCE.getMethod();
+
+		/**
+		 * The meta object literal for the '<em><b>Overriding</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__OVERRIDING = eINSTANCE.getMethod_Overriding();
+
+		/**
+		 * The meta object literal for the '<em><b>Constructor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute METHOD__CONSTRUCTOR = eINSTANCE.getMethod_Constructor();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl <em>User Defined Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getUserDefinedFunction()
+		 * @generated
+		 */
+		EClass USER_DEFINED_FUNCTION = eINSTANCE.getUserDefinedFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.impl.BuiltInFunctionImpl <em>Built In Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.BuiltInFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getBuiltInFunction()
+		 * @generated
+		 */
+		EClass BUILT_IN_FUNCTION = eINSTANCE.getBuiltInFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.DataAccess <em>Data Access</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.DataAccess
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getDataAccess()
+		 * @generated
+		 */
+		EEnum DATA_ACCESS = eINSTANCE.getDataAccess();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.routines.ParameterMode <em>Parameter Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.routines.ParameterMode
+		 * @see org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl#getParameterMode()
+		 * @generated
+		 */
+		EEnum PARAMETER_MODE = eINSTANCE.getParameterMode();
+
+	}
 
 } //SQLRoutinesPackage

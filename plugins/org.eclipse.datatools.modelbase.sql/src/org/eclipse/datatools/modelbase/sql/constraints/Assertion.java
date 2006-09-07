@@ -20,19 +20,9 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.17.4 Assertions
+ * Reference: 5WD-02-Foundation-2002-12 4.17.4 Assertions,
+ * 5WD-02-Foundation-2002-12 11.37 <assertion definition>
  * 
- * An assertion is a named constraint that may relate to the content of individual rows of a table, to the entire contents of a table, or to a state required to exist among a number of tables. An assertion is described by an assertion descriptor. In addition to the components of every constraint descriptor an assertion descriptor includes:
- *  - The <search condition> .
- * An assertion is satisfied if and only if the specified <search condition> is not False.
- * 
- * Syntax defined in section 11.37 <assertion definition>
- * Function: Specify an integrity constraint.
- * Format: <assertion definition> ::= CREATE ASSERTION <constraint name> CHECK <left paren> <search condition> <right paren> [ <constraint characteristics> ]
- * 
- * 10.8
- * 2) The <qualified identifier> of <constraint name> shall not be equivalent to the <qualified identifier> of the
- * <constraint name> of any other constraint defined in the same schema.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -48,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Assertion extends Constraint{
+public interface Assertion extends Constraint {
 	/**
 	 * Returns the value of the '<em><b>Search Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -19,10 +19,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.23 SQL-invoked routines
- * 
- * An SQL-invoked routine is described by a routine descriptor. A routine descriptor contains (among other things):
- * - If the SQL-invoked routine is an SQL routine, then the SQL routine body of the SQL-invoked routine.
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
  * <!-- end-model-doc -->
  *
  * <p>
@@ -36,7 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model
  * @generated
  */
-public interface Source extends SQLObject{
+public interface Source extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->

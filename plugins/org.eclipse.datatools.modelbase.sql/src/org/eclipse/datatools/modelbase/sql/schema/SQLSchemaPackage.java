@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @model kind="package"
  * @generated
  */
-public interface SQLSchemaPackage extends EPackage{
+public interface SQLSchemaPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -132,13 +132,22 @@ public interface SQLSchemaPackage extends EPackage{
 	int SQL_OBJECT__LABEL = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Object</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SQL_OBJECT__COMMENTS = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>SQL Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -184,6 +193,15 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @ordered
 	 */
 	int IDENTITY_SPECIFIER__LABEL = SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_SPECIFIER__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Generation Type</b></em>' attribute.
@@ -240,7 +258,7 @@ public interface SQLSchemaPackage extends EPackage{
 	int IDENTITY_SPECIFIER__CYCLE_OPTION = SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the the '<em>Identity Specifier</em>' class.
+	 * The number of structural features of the '<em>Identity Specifier</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -304,6 +322,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int TYPED_ELEMENT__LABEL = SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,7 +349,7 @@ public interface SQLSchemaPackage extends EPackage{
 	int TYPED_ELEMENT__REFERENCED_TYPE = SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Typed Element</em>' class.
+	 * The number of structural features of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -386,6 +413,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int DEPENDENCY__LABEL = SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Target End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -404,7 +440,7 @@ public interface SQLSchemaPackage extends EPackage{
 	int DEPENDENCY__DEPENDENCY_TYPE = SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Dependency</em>' class.
+	 * The number of structural features of the '<em>Dependency</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -468,6 +504,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int SCHEMA__LABEL = SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Triggers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -513,13 +558,22 @@ public interface SQLSchemaPackage extends EPackage{
 	int SCHEMA__DATABASE = SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Catalog</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__CATALOG = SQL_OBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Assertions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA__ASSERTIONS = SQL_OBJECT_FEATURE_COUNT + 5;
+	int SCHEMA__ASSERTIONS = SQL_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>User Defined Types</b></em>' reference list.
@@ -528,7 +582,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA__USER_DEFINED_TYPES = SQL_OBJECT_FEATURE_COUNT + 6;
+	int SCHEMA__USER_DEFINED_TYPES = SQL_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Char Sets</b></em>' reference list.
@@ -537,7 +591,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA__CHAR_SETS = SQL_OBJECT_FEATURE_COUNT + 7;
+	int SCHEMA__CHAR_SETS = SQL_OBJECT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Routines</b></em>' reference list.
@@ -546,7 +600,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA__ROUTINES = SQL_OBJECT_FEATURE_COUNT + 8;
+	int SCHEMA__ROUTINES = SQL_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -555,16 +609,16 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA__OWNER = SQL_OBJECT_FEATURE_COUNT + 9;
+	int SCHEMA__OWNER = SQL_OBJECT_FEATURE_COUNT + 10;
 
 	/**
-	 * The number of structural features of the the '<em>Schema</em>' class.
+	 * The number of structural features of the '<em>Schema</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCHEMA_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 10;
+	int SCHEMA_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl <em>Sequence</em>}' class.
@@ -622,6 +676,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int SEQUENCE__LABEL = TYPED_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__COMMENTS = TYPED_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -658,7 +721,7 @@ public interface SQLSchemaPackage extends EPackage{
 	int SEQUENCE__SCHEMA = TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Sequence</em>' class.
+	 * The number of structural features of the '<em>Sequence</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -722,6 +785,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int DATABASE__LABEL = SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Vendor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -758,22 +830,31 @@ public interface SQLSchemaPackage extends EPackage{
 	int DATABASE__EVENTS = SQL_OBJECT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Catalogs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE__CATALOGS = SQL_OBJECT_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Authorization Ids</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE__AUTHORIZATION_IDS = SQL_OBJECT_FEATURE_COUNT + 4;
+	int DATABASE__AUTHORIZATION_IDS = SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the the '<em>Database</em>' class.
+	 * The number of structural features of the '<em>Database</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 5;
+	int DATABASE_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl <em>Event</em>}' class.
@@ -831,6 +912,15 @@ public interface SQLSchemaPackage extends EPackage{
 	int EVENT__LABEL = SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>For</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -876,13 +966,141 @@ public interface SQLSchemaPackage extends EPackage{
 	int EVENT__DATABASE = SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Event</em>' class.
+	 * The number of structural features of the '<em>Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int EVENT_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl <em>Comment</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getComment()
+	 * @generated
+	 */
+	int COMMENT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__DESCRIPTION = 0;
+
+	/**
+	 * The feature id for the '<em><b>SQL Object</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__SQL_OBJECT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Comment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl <em>Catalog</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl
+	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getCatalog()
+	 * @generated
+	 */
+	int CATALOG = 9;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__EANNOTATIONS = SQL_OBJECT__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__NAME = SQL_OBJECT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__DEPENDENCIES = SQL_OBJECT__DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__DESCRIPTION = SQL_OBJECT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__LABEL = SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__DATABASE = SQL_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__SCHEMAS = SQL_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Catalog</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG_FEATURE_COUNT = SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}' enum.
@@ -892,7 +1110,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getGenerateType()
 	 * @generated
 	 */
-	int GENERATE_TYPE = 8;
+	int GENERATE_TYPE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType <em>Referential Action Type</em>}' enum.
@@ -902,7 +1120,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getReferentialActionType()
 	 * @generated
 	 */
-	int REFERENTIAL_ACTION_TYPE = 9;
+	int REFERENTIAL_ACTION_TYPE = 11;
 
 	/**
 	 * The meta object id for the '<em>Date</em>' data type.
@@ -912,7 +1130,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDate()
 	 * @generated
 	 */
-	int DATE = 10;
+	int DATE = 12;
 
 	/**
 	 * The meta object id for the '<em>List</em>' data type.
@@ -922,7 +1140,7 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getList()
 	 * @generated
 	 */
-	int LIST = 11;
+	int LIST = 13;
 
 
 	/**
@@ -1131,6 +1349,17 @@ public interface SQLSchemaPackage extends EPackage{
 	EReference getSchema_Database();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getCatalog <em>Catalog</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Catalog</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Schema#getCatalog()
+	 * @see #getSchema()
+	 * @generated
+	 */
+	EReference getSchema_Catalog();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getAssertions <em>Assertions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1229,6 +1458,17 @@ public interface SQLSchemaPackage extends EPackage{
 	EAttribute getSQLObject_Label();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getComments <em>Comments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Comments</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLObject#getComments()
+	 * @see #getSQLObject()
+	 * @generated
+	 */
+	EReference getSQLObject_Comments();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.Sequence <em>Sequence</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1315,6 +1555,17 @@ public interface SQLSchemaPackage extends EPackage{
 	EReference getDatabase_Events();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Database#getCatalogs <em>Catalogs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Catalogs</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Database#getCatalogs()
+	 * @see #getDatabase()
+	 * @generated
+	 */
+	EReference getDatabase_Catalogs();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Database#getAuthorizationIds <em>Authorization Ids</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1391,6 +1642,70 @@ public interface SQLSchemaPackage extends EPackage{
 	EReference getEvent_Database();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.Comment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Comment</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Comment
+	 * @generated
+	 */
+	EClass getComment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.schema.Comment#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Comment#getDescription()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EAttribute getComment_Description();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.schema.Comment#getSQLObject <em>SQL Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>SQL Object</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Comment#getSQLObject()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EReference getComment_SQLObject();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.Catalog <em>Catalog</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Catalog</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Catalog
+	 * @generated
+	 */
+	EClass getCatalog();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.schema.Catalog#getDatabase <em>Database</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Database</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Catalog#getDatabase()
+	 * @see #getCatalog()
+	 * @generated
+	 */
+	EReference getCatalog_Database();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.Catalog#getSchemas <em>Schemas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Schemas</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Catalog#getSchemas()
+	 * @see #getCatalog()
+	 * @generated
+	 */
+	EReference getCatalog_Schemas();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1440,5 +1755,496 @@ public interface SQLSchemaPackage extends EPackage{
 	 * @generated
 	 */
 	SQLSchemaFactory getSQLSchemaFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl <em>Identity Specifier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.IdentitySpecifierImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getIdentitySpecifier()
+		 * @generated
+		 */
+		EClass IDENTITY_SPECIFIER = eINSTANCE.getIdentitySpecifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Generation Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__GENERATION_TYPE = eINSTANCE.getIdentitySpecifier_GenerationType();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__START_VALUE = eINSTANCE.getIdentitySpecifier_StartValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Increment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__INCREMENT = eINSTANCE.getIdentitySpecifier_Increment();
+
+		/**
+		 * The meta object literal for the '<em><b>Minimum</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__MINIMUM = eINSTANCE.getIdentitySpecifier_Minimum();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__MAXIMUM = eINSTANCE.getIdentitySpecifier_Maximum();
+
+		/**
+		 * The meta object literal for the '<em><b>Cycle Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IDENTITY_SPECIFIER__CYCLE_OPTION = eINSTANCE.getIdentitySpecifier_CycleOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl <em>Typed Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.TypedElementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getTypedElement()
+		 * @generated
+		 */
+		EClass TYPED_ELEMENT = eINSTANCE.getTypedElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Contained Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT__CONTAINED_TYPE = eINSTANCE.getTypedElement_ContainedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TYPED_ELEMENT__REFERENCED_TYPE = eINSTANCE.getTypedElement_ReferencedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.DependencyImpl <em>Dependency</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.DependencyImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDependency()
+		 * @generated
+		 */
+		EClass DEPENDENCY = eINSTANCE.getDependency();
+
+		/**
+		 * The meta object literal for the '<em><b>Target End</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEPENDENCY__TARGET_END = eINSTANCE.getDependency_TargetEnd();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependency Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPENDENCY__DEPENDENCY_TYPE = eINSTANCE.getDependency_DependencyType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl <em>Schema</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getSchema()
+		 * @generated
+		 */
+		EClass SCHEMA = eINSTANCE.getSchema();
+
+		/**
+		 * The meta object literal for the '<em><b>Triggers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__TRIGGERS = eINSTANCE.getSchema_Triggers();
+
+		/**
+		 * The meta object literal for the '<em><b>Indices</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__INDICES = eINSTANCE.getSchema_Indices();
+
+		/**
+		 * The meta object literal for the '<em><b>Tables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__TABLES = eINSTANCE.getSchema_Tables();
+
+		/**
+		 * The meta object literal for the '<em><b>Sequences</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__SEQUENCES = eINSTANCE.getSchema_Sequences();
+
+		/**
+		 * The meta object literal for the '<em><b>Database</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__DATABASE = eINSTANCE.getSchema_Database();
+
+		/**
+		 * The meta object literal for the '<em><b>Catalog</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__CATALOG = eINSTANCE.getSchema_Catalog();
+
+		/**
+		 * The meta object literal for the '<em><b>Assertions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__ASSERTIONS = eINSTANCE.getSchema_Assertions();
+
+		/**
+		 * The meta object literal for the '<em><b>User Defined Types</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__USER_DEFINED_TYPES = eINSTANCE.getSchema_UserDefinedTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Char Sets</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__CHAR_SETS = eINSTANCE.getSchema_CharSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Routines</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__ROUTINES = eINSTANCE.getSchema_Routines();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SCHEMA__OWNER = eINSTANCE.getSchema_Owner();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl <em>SQL Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getSQLObject()
+		 * @generated
+		 */
+		EClass SQL_OBJECT = eINSTANCE.getSQLObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependencies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SQL_OBJECT__DEPENDENCIES = eINSTANCE.getSQLObject_Dependencies();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_OBJECT__DESCRIPTION = eINSTANCE.getSQLObject_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_OBJECT__LABEL = eINSTANCE.getSQLObject_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Comments</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SQL_OBJECT__COMMENTS = eINSTANCE.getSQLObject_Comments();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl <em>Sequence</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getSequence()
+		 * @generated
+		 */
+		EClass SEQUENCE = eINSTANCE.getSequence();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE__IDENTITY = eINSTANCE.getSequence_Identity();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE__SCHEMA = eINSTANCE.getSequence_Schema();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl <em>Database</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDatabase()
+		 * @generated
+		 */
+		EClass DATABASE = eINSTANCE.getDatabase();
+
+		/**
+		 * The meta object literal for the '<em><b>Vendor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE__VENDOR = eINSTANCE.getDatabase_Vendor();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE__VERSION = eINSTANCE.getDatabase_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE__SCHEMAS = eINSTANCE.getDatabase_Schemas();
+
+		/**
+		 * The meta object literal for the '<em><b>Events</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE__EVENTS = eINSTANCE.getDatabase_Events();
+
+		/**
+		 * The meta object literal for the '<em><b>Catalogs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE__CATALOGS = eINSTANCE.getDatabase_Catalogs();
+
+		/**
+		 * The meta object literal for the '<em><b>Authorization Ids</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE__AUTHORIZATION_IDS = eINSTANCE.getDatabase_AuthorizationIds();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl <em>Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.EventImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getEvent()
+		 * @generated
+		 */
+		EClass EVENT = eINSTANCE.getEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>For</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__FOR = eINSTANCE.getEvent_For();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__CONDITION = eINSTANCE.getEvent_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__ACTION = eINSTANCE.getEvent_Action();
+
+		/**
+		 * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__ENABLED = eINSTANCE.getEvent_Enabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Database</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT__DATABASE = eINSTANCE.getEvent_Database();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl <em>Comment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.CommentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getComment()
+		 * @generated
+		 */
+		EClass COMMENT = eINSTANCE.getComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMMENT__DESCRIPTION = eINSTANCE.getComment_Description();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL Object</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMENT__SQL_OBJECT = eINSTANCE.getComment_SQLObject();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl <em>Catalog</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getCatalog()
+		 * @generated
+		 */
+		EClass CATALOG = eINSTANCE.getCatalog();
+
+		/**
+		 * The meta object literal for the '<em><b>Database</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CATALOG__DATABASE = eINSTANCE.getCatalog_Database();
+
+		/**
+		 * The meta object literal for the '<em><b>Schemas</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CATALOG__SCHEMAS = eINSTANCE.getCatalog_Schemas();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.GenerateType <em>Generate Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.GenerateType
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getGenerateType()
+		 * @generated
+		 */
+		EEnum GENERATE_TYPE = eINSTANCE.getGenerateType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType <em>Referential Action Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getReferentialActionType()
+		 * @generated
+		 */
+		EEnum REFERENTIAL_ACTION_TYPE = eINSTANCE.getReferentialActionType();
+
+		/**
+		 * The meta object literal for the '<em>Date</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.Date
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getDate()
+		 * @generated
+		 */
+		EDataType DATE = eINSTANCE.getDate();
+
+		/**
+		 * The meta object literal for the '<em>List</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.util.List
+		 * @see org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl#getList()
+		 * @generated
+		 */
+		EDataType LIST = eINSTANCE.getList();
+
+	}
 
 } //SQLSchemaPackage

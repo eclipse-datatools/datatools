@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReadPermissionOption.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: ReadPermissionOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -56,7 +56,7 @@ public final class ReadPermissionOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReadPermissionOption FS_LITERAL = new ReadPermissionOption(FS, "FS"); //$NON-NLS-1$
+	public static final ReadPermissionOption FS_LITERAL = new ReadPermissionOption(FS, "FS", "FS"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DB</b></em>' literal object.
@@ -70,7 +70,7 @@ public final class ReadPermissionOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReadPermissionOption DB_LITERAL = new ReadPermissionOption(DB, "DB"); //$NON-NLS-1$
+	public static final ReadPermissionOption DB_LITERAL = new ReadPermissionOption(DB, "DB", "DB"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Read Permission Option</b></em>' enumerators.
@@ -93,15 +93,15 @@ public final class ReadPermissionOption extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Read Permission Option</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Read Permission Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReadPermissionOption get(String name) {
+	public static ReadPermissionOption get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ReadPermissionOption result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -109,7 +109,23 @@ public final class ReadPermissionOption extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Read Permission Option</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Read Permission Option</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ReadPermissionOption getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ReadPermissionOption result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Read Permission Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,8 +144,8 @@ public final class ReadPermissionOption extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReadPermissionOption(int value, String name) {
-		super(value, name);
+	private ReadPermissionOption(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ReadPermissionOption

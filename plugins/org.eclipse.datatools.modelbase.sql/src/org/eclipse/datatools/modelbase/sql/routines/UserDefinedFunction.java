@@ -17,7 +17,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The User-Defined Fuction (UDF) is a specialization of Function to indicate the function was created by the user or the database, but one that was not created in support of the user-defined type (UDT). The function created by a UDT is a is another class, Method, in this class diagram
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
  * <!-- end-model-doc -->
  *
  *
@@ -25,5 +25,5 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * @model
  * @generated
  */
-public interface UserDefinedFunction extends Function{
+public interface UserDefinedFunction extends Function {
 } // UserDefinedFunction

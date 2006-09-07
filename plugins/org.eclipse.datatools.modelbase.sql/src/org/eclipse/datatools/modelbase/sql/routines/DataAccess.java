@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataAccess.java,v 1.1 2005/08/02 22:56:30 ledunnel Exp $
+ * $Id: DataAccess.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines;
 
@@ -18,17 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 5WD-02-Foundation-2002-12
- * 4.27 SQL-invoked routines
- * 
- * An external routine either does not possibly contain SQL or possibly contains SQL. Only an external routine that possibly contains SQL may execute SQL-statements during its invocation.
- * 
- * An SQL-invoked routine may or may not possibly read SQL-data. Only an SQL-invoked routine that possibly reads SQL-data may read SQL-data during its invocation.
- * 
- * An SQL-invoked routine may or may not possibly modify SQL-data. Only an SQL-invoked routine that possibly modifies SQL-data may modify SQL-data during its invocation.
- * 
- * 11.50 <SQL-invoked routine>
- * <SQL-data access indication> ::= NO SQL | CONTAINS SQL | READS SQL DATA | MODIFIES SQL DATA
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getDataAccess()
  * @model
@@ -91,7 +81,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final DataAccess NO_SQL_LITERAL = new DataAccess(NO_SQL, "NO_SQL"); //$NON-NLS-1$
+	public static final DataAccess NO_SQL_LITERAL = new DataAccess(NO_SQL, "NO_SQL", "NO_SQL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CONTAINS SQL</b></em>' literal object.
@@ -105,7 +95,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final DataAccess CONTAINS_SQL_LITERAL = new DataAccess(CONTAINS_SQL, "CONTAINS_SQL"); //$NON-NLS-1$
+	public static final DataAccess CONTAINS_SQL_LITERAL = new DataAccess(CONTAINS_SQL, "CONTAINS_SQL", "CONTAINS_SQL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>READS SQL DATA</b></em>' literal object.
@@ -119,7 +109,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final DataAccess READS_SQL_DATA_LITERAL = new DataAccess(READS_SQL_DATA, "READS_SQL_DATA"); //$NON-NLS-1$
+	public static final DataAccess READS_SQL_DATA_LITERAL = new DataAccess(READS_SQL_DATA, "READS_SQL_DATA", "READS_SQL_DATA"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MODIFIES SQL DATA</b></em>' literal object.
@@ -133,7 +123,7 @@ public final class DataAccess extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final DataAccess MODIFIES_SQL_DATA_LITERAL = new DataAccess(MODIFIES_SQL_DATA, "MODIFIES_SQL_DATA"); //$NON-NLS-1$
+	public static final DataAccess MODIFIES_SQL_DATA_LITERAL = new DataAccess(MODIFIES_SQL_DATA, "MODIFIES_SQL_DATA", "MODIFIES_SQL_DATA"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Data Access</b></em>' enumerators.
@@ -158,15 +148,15 @@ public final class DataAccess extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Data Access</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Data Access</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static DataAccess get(String name) {
+	public static DataAccess get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			DataAccess result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -174,7 +164,23 @@ public final class DataAccess extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Data Access</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Data Access</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static DataAccess getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			DataAccess result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Data Access</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -195,8 +201,8 @@ public final class DataAccess extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DataAccess(int value, String name) {
-		super(value, name);
+	private DataAccess(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //DataAccess

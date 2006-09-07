@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getSchemas <em>Schemas</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getEvents <em>Events</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getCatalogs <em>Catalogs</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.DatabaseImpl#getAuthorizationIds <em>Authorization Ids</em>}</li>
  * </ul>
  * </p>
@@ -50,6 +52,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class DatabaseImpl extends SQLObjectImpl implements Database {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -111,6 +120,16 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	protected EList events = null;
 
 	/**
+	 * The cached value of the '{@link #getCatalogs() <em>Catalogs</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCatalogs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList catalogs = null;
+
+	/**
 	 * The cached value of the '{@link #getAuthorizationIds() <em>Authorization Ids</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -135,7 +154,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getDatabase();
+		return SQLSchemaPackage.Literals.DATABASE;
 	}
 
 	/**
@@ -209,6 +228,18 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getCatalogs() {
+		if (catalogs == null) {
+			catalogs = new EObjectWithInverseResolvingEList(Catalog.class, this, SQLSchemaPackage.DATABASE__CATALOGS, SQLSchemaPackage.CATALOG__DATABASE);
+		}
+		return catalogs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList getAuthorizationIds() {
 		if (authorizationIds == null) {
 			authorizationIds = new EObjectResolvingEList(AuthorizationIdentifier.class, this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS);
@@ -245,22 +276,16 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLSchemaPackage.DATABASE__SCHEMAS:
-					return ((InternalEList)getSchemas()).basicAdd(otherEnd, msgs);
-				case SQLSchemaPackage.DATABASE__EVENTS:
-					return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.DATABASE__SCHEMAS:
+				return ((InternalEList)getSchemas()).basicAdd(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				return ((InternalEList)getCatalogs()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -268,22 +293,16 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.DATABASE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.DATABASE__SCHEMAS:
-					return ((InternalEList)getSchemas()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.DATABASE__EVENTS:
-					return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.DATABASE__SCHEMAS:
+				return ((InternalEList)getSchemas()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__EVENTS:
+				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				return ((InternalEList)getCatalogs()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -291,18 +310,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.DATABASE__NAME:
-				return getName();
-			case SQLSchemaPackage.DATABASE__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.DATABASE__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.DATABASE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
 				return getVendor();
 			case SQLSchemaPackage.DATABASE__VERSION:
@@ -311,10 +320,12 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return getSchemas();
 			case SQLSchemaPackage.DATABASE__EVENTS:
 				return getEvents();
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				return getCatalogs();
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				return getAuthorizationIds();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -322,25 +333,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.DATABASE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.DATABASE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.DATABASE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.DATABASE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
 				setVendor((String)newValue);
 				return;
@@ -355,12 +349,16 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				getEvents().clear();
 				getEvents().addAll((Collection)newValue);
 				return;
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				getCatalogs().clear();
+				getCatalogs().addAll((Collection)newValue);
+				return;
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				getAuthorizationIds().clear();
 				getAuthorizationIds().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -368,23 +366,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.DATABASE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.DATABASE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.DATABASE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.DATABASE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
 				setVendor(VENDOR_EDEFAULT);
 				return;
@@ -397,11 +380,14 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 			case SQLSchemaPackage.DATABASE__EVENTS:
 				getEvents().clear();
 				return;
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				getCatalogs().clear();
+				return;
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				getAuthorizationIds().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -409,18 +395,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DATABASE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.DATABASE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.DATABASE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.DATABASE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.DATABASE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.DATABASE__VENDOR:
 				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
 			case SQLSchemaPackage.DATABASE__VERSION:
@@ -429,10 +405,12 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return schemas != null && !schemas.isEmpty();
 			case SQLSchemaPackage.DATABASE__EVENTS:
 				return events != null && !events.isEmpty();
+			case SQLSchemaPackage.DATABASE__CATALOGS:
+				return catalogs != null && !catalogs.isEmpty();
 			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
 				return authorizationIds != null && !authorizationIds.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -13,7 +13,11 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol.impl;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +26,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAccessControlFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLAccessControlFactory init() {
+		try {
+			SQLAccessControlFactory theSQLAccessControlFactory = (SQLAccessControlFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"); //$NON-NLS-1$ 
+			if (theSQLAccessControlFactory != null) {
+				return theSQLAccessControlFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLAccessControlFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->

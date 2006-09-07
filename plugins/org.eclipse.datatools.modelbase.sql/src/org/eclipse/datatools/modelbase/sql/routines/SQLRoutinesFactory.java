@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage
  * @generated
  */
-public interface SQLRoutinesFactory extends EFactory{
+public interface SQLRoutinesFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLRoutinesFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesFactoryImpl();
+	SQLRoutinesFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Source</em>'.

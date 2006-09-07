@@ -16,6 +16,10 @@ package org.eclipse.datatools.modelbase.sql.schema;
  * A representation of the model object '<em><b>Sequence</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.21 Sequence Generators
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -28,7 +32,7 @@ package org.eclipse.datatools.modelbase.sql.schema;
  * @model
  * @generated
  */
-public interface Sequence extends TypedElement{
+public interface Sequence extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Identity</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

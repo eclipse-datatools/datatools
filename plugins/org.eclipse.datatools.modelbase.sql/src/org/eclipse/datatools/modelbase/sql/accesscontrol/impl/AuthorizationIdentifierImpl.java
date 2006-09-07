@@ -47,6 +47,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implements AuthorizationIdentifier {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getOwnedSchema() <em>Owned Schema</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +118,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier();
+		return SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER;
 	}
 
 	/**
@@ -179,26 +186,18 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
-					return ((InternalEList)getOwnedSchema()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
-					return ((InternalEList)getReceivedRoleAuthorization()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION:
-					return ((InternalEList)getGrantedRoleAuthorization()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE:
-					return ((InternalEList)getGrantedPrivilege()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
+				return ((InternalEList)getOwnedSchema()).basicAdd(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
+				return ((InternalEList)getReceivedRoleAuthorization()).basicAdd(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION:
+				return ((InternalEList)getGrantedRoleAuthorization()).basicAdd(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE:
+				return ((InternalEList)getGrantedPrivilege()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -206,28 +205,20 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
-					return ((InternalEList)getOwnedSchema()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
-					return ((InternalEList)getReceivedRoleAuthorization()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION:
-					return ((InternalEList)getGrantedRoleAuthorization()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE:
-					return ((InternalEList)getGrantedPrivilege()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE:
-					return ((InternalEList)getReceivedPrivilege()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
+				return ((InternalEList)getOwnedSchema()).basicRemove(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
+				return ((InternalEList)getReceivedRoleAuthorization()).basicRemove(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION:
+				return ((InternalEList)getGrantedRoleAuthorization()).basicRemove(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE:
+				return ((InternalEList)getGrantedPrivilege()).basicRemove(otherEnd, msgs);
+			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE:
+				return ((InternalEList)getReceivedPrivilege()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -235,18 +226,8 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__NAME:
-				return getName();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DEPENDENCIES:
-				return getDependencies();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DESCRIPTION:
-				return getDescription();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				return getOwnedSchema();
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
@@ -258,7 +239,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE:
 				return getReceivedPrivilege();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -266,25 +247,8 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__NAME:
-				setName((String)newValue);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				getOwnedSchema().clear();
 				getOwnedSchema().addAll((Collection)newValue);
@@ -306,7 +270,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 				getReceivedPrivilege().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -314,23 +278,8 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				getOwnedSchema().clear();
 				return;
@@ -347,7 +296,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 				getReceivedPrivilege().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -355,18 +304,8 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA:
 				return ownedSchema != null && !ownedSchema.isEmpty();
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION:
@@ -378,7 +317,7 @@ public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implemen
 			case SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE:
 				return receivedPrivilege != null && !receivedPrivilege.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //AuthorizationIdentifierImpl

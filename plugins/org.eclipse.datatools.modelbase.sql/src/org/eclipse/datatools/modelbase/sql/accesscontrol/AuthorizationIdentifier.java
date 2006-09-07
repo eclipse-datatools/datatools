@@ -18,6 +18,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Authorization Identifier</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -33,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface AuthorizationIdentifier extends SQLObject{
+public interface AuthorizationIdentifier extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Owned Schema</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.Schema}.

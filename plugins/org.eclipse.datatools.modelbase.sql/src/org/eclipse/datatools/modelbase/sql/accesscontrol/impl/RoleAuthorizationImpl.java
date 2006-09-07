@@ -45,6 +45,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthorization {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #isGrantable() <em>Grantable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,7 +116,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLAccessControlPackage.eINSTANCE.getRoleAuthorization();
+		return SQLAccessControlPackage.Literals.ROLE_AUTHORIZATION;
 	}
 
 	/**
@@ -140,8 +147,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 */
 	public Role getRole() {
 		if (role != null && role.eIsProxy()) {
-			Role oldRole = role;
-			role = (Role)eResolveProxy((InternalEObject)role);
+			InternalEObject oldRole = (InternalEObject)role;
+			role = (Role)eResolveProxy(oldRole);
 			if (role != oldRole) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE, oldRole, role));
@@ -200,8 +207,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 */
 	public AuthorizationIdentifier getGrantee() {
 		if (grantee != null && grantee.eIsProxy()) {
-			AuthorizationIdentifier oldGrantee = grantee;
-			grantee = (AuthorizationIdentifier)eResolveProxy((InternalEObject)grantee);
+			InternalEObject oldGrantee = (InternalEObject)grantee;
+			grantee = (AuthorizationIdentifier)eResolveProxy(oldGrantee);
 			if (grantee != oldGrantee) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE, oldGrantee, grantee));
@@ -260,8 +267,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 */
 	public AuthorizationIdentifier getGrantor() {
 		if (grantor != null && grantor.eIsProxy()) {
-			AuthorizationIdentifier oldGrantor = grantor;
-			grantor = (AuthorizationIdentifier)eResolveProxy((InternalEObject)grantor);
+			InternalEObject oldGrantor = (InternalEObject)grantor;
+			grantor = (AuthorizationIdentifier)eResolveProxy(oldGrantor);
 			if (grantor != oldGrantor) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR, oldGrantor, grantor));
@@ -318,30 +325,22 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
-					if (role != null)
-						msgs = ((InternalEObject)role).eInverseRemove(this, SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION, Role.class, msgs);
-					return basicSetRole((Role)otherEnd, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE:
-					if (grantee != null)
-						msgs = ((InternalEObject)grantee).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION, AuthorizationIdentifier.class, msgs);
-					return basicSetGrantee((AuthorizationIdentifier)otherEnd, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR:
-					if (grantor != null)
-						msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION, AuthorizationIdentifier.class, msgs);
-					return basicSetGrantor((AuthorizationIdentifier)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
+				if (role != null)
+					msgs = ((InternalEObject)role).eInverseRemove(this, SQLAccessControlPackage.ROLE__ROLE_AUTHORIZATION, Role.class, msgs);
+				return basicSetRole((Role)otherEnd, msgs);
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE:
+				if (grantee != null)
+					msgs = ((InternalEObject)grantee).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION, AuthorizationIdentifier.class, msgs);
+				return basicSetGrantee((AuthorizationIdentifier)otherEnd, msgs);
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR:
+				if (grantor != null)
+					msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION, AuthorizationIdentifier.class, msgs);
+				return basicSetGrantor((AuthorizationIdentifier)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -349,24 +348,16 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
-					return basicSetRole(null, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE:
-					return basicSetGrantee(null, msgs);
-				case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR:
-					return basicSetGrantor(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
+				return basicSetRole(null, msgs);
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTEE:
+				return basicSetGrantee(null, msgs);
+			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR:
+				return basicSetGrantor(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -374,18 +365,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__NAME:
-				return getName();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DEPENDENCIES:
-				return getDependencies();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DESCRIPTION:
-				return getDescription();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTABLE:
 				return isGrantable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
@@ -398,7 +379,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 				if (resolve) return getGrantor();
 				return basicGetGrantor();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -406,25 +387,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTABLE:
 				setGrantable(((Boolean)newValue).booleanValue());
 				return;
@@ -438,7 +402,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 				setGrantor((AuthorizationIdentifier)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -446,23 +410,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTABLE:
 				setGrantable(GRANTABLE_EDEFAULT);
 				return;
@@ -476,7 +425,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 				setGrantor((AuthorizationIdentifier)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -484,18 +433,8 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLAccessControlPackage.ROLE_AUTHORIZATION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTABLE:
 				return grantable != GRANTABLE_EDEFAULT;
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__ROLE:
@@ -505,7 +444,7 @@ public class RoleAuthorizationImpl extends SQLObjectImpl implements RoleAuthoriz
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION__GRANTOR:
 				return grantor != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

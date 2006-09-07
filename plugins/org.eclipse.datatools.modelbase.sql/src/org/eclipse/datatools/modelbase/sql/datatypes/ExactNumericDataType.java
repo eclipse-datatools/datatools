@@ -16,6 +16,10 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * A representation of the model object '<em><b>Exact Numeric Data Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.4 Numbers
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -27,7 +31,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model abstract="true"
  * @generated
  */
-public interface ExactNumericDataType extends NumericalDataType{
+public interface ExactNumericDataType extends NumericalDataType {
 	/**
 	 * Returns the value of the '<em><b>Scale</b></em>' attribute.
 	 * <!-- begin-user-doc -->

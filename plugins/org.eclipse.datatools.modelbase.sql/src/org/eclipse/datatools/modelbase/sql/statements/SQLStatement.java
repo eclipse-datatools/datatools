@@ -18,17 +18,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A single statement of the following types (from section 13.5):
- * <SQL executable statement> ::=
- *     <SQL control statement>
- *   | <SQL data statement>
- *   | <SQL schema statement>
- *   | <SQL transaction statement>
- *   | <SQL connection statement>
- *   | <SQL session statement>
- *   | <SQL diagnostics statement>
- *   | <SQL dynamic statement>
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.33 SQL-statements
  * <!-- end-model-doc -->
  *
  *
@@ -37,7 +27,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * @extends EDataObject
  * @generated
  */
-public interface SQLStatement extends EDataObject{
+public interface SQLStatement extends EDataObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

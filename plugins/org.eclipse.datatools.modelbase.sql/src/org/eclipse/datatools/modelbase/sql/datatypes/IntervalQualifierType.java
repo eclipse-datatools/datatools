@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalQualifierType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: IntervalQualifierType.java,v 1.3 2006/03/09 23:45:43 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -18,11 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 4.6.2 Intervals
- * 
- * There are two classes of intervals. One class, called year-month intervals, has an express or implied datetime precision that includes no fields other than YEAR and MONTH , though not both are required. The other class, called day-time intervals, has an express or implied interval precision that can include any fields other than YEAR or MONTH .
- * 
- * The actual subset of fields that comprise a value of either type of interval is defined by an <interval qualifier> and this subset is known as the precision of the value. Within a value of type interval, the first field is constrained only by the <interval leading field precision> of the associated <interval qualifier> . Table 6, "Valid values for fields in INTERVAL values", specifies the constraints on subsequent field values.
+ * Reference: 5WD-02-Foundation-2002-12 4.6.2 Intervals
  * 
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getIntervalQualifierType()
@@ -123,7 +119,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType YEAR_LITERAL = new IntervalQualifierType(YEAR, "YEAR"); //$NON-NLS-1$
+	public static final IntervalQualifierType YEAR_LITERAL = new IntervalQualifierType(YEAR, "YEAR", "YEAR"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MONTH</b></em>' literal object.
@@ -137,7 +133,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType MONTH_LITERAL = new IntervalQualifierType(MONTH, "MONTH"); //$NON-NLS-1$
+	public static final IntervalQualifierType MONTH_LITERAL = new IntervalQualifierType(MONTH, "MONTH", "MONTH"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DAY</b></em>' literal object.
@@ -151,7 +147,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType DAY_LITERAL = new IntervalQualifierType(DAY, "DAY"); //$NON-NLS-1$
+	public static final IntervalQualifierType DAY_LITERAL = new IntervalQualifierType(DAY, "DAY", "DAY"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>HOUR</b></em>' literal object.
@@ -165,7 +161,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType HOUR_LITERAL = new IntervalQualifierType(HOUR, "HOUR"); //$NON-NLS-1$
+	public static final IntervalQualifierType HOUR_LITERAL = new IntervalQualifierType(HOUR, "HOUR", "HOUR"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MINUTE</b></em>' literal object.
@@ -179,7 +175,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType MINUTE_LITERAL = new IntervalQualifierType(MINUTE, "MINUTE"); //$NON-NLS-1$
+	public static final IntervalQualifierType MINUTE_LITERAL = new IntervalQualifierType(MINUTE, "MINUTE", "MINUTE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SECOND</b></em>' literal object.
@@ -193,7 +189,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType SECOND_LITERAL = new IntervalQualifierType(SECOND, "SECOND"); //$NON-NLS-1$
+	public static final IntervalQualifierType SECOND_LITERAL = new IntervalQualifierType(SECOND, "SECOND", "SECOND"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>FRACTION</b></em>' literal object.
@@ -203,7 +199,7 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final IntervalQualifierType FRACTION_LITERAL = new IntervalQualifierType(FRACTION, "FRACTION"); //$NON-NLS-1$
+	public static final IntervalQualifierType FRACTION_LITERAL = new IntervalQualifierType(FRACTION, "FRACTION", "FRACTION"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Interval Qualifier Type</b></em>' enumerators.
@@ -231,15 +227,15 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static IntervalQualifierType get(String name) {
+	public static IntervalQualifierType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			IntervalQualifierType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -247,7 +243,23 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static IntervalQualifierType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			IntervalQualifierType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Interval Qualifier Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -271,8 +283,8 @@ public final class IntervalQualifierType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private IntervalQualifierType(int value, String name) {
-		super(value, name);
+	private IntervalQualifierType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //IntervalQualifierType

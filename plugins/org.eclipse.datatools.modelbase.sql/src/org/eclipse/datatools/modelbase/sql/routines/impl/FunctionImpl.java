@@ -51,6 +51,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FunctionImpl extends RoutineImpl implements Function {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #isNullCall() <em>Null Call</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,7 +202,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLRoutinesPackage.eINSTANCE.getFunction();
+		return SQLRoutinesPackage.Literals.FUNCTION;
 	}
 
 	/**
@@ -437,24 +444,16 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-					return ((InternalEList)getParameters()).basicAdd(otherEnd, msgs);
-				case SQLRoutinesPackage.FUNCTION__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ROUTINES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
+				return basicSetReturnTable(null, msgs);
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
+				return basicSetReturnScaler(null, msgs);
+			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
+				return basicSetReturnCast(null, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -462,76 +461,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.FUNCTION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-					return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.FUNCTION__SOURCE:
-					return basicSetSource(null, msgs);
-				case SQLRoutinesPackage.FUNCTION__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
-					return basicSetReturnTable(null, msgs);
-				case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-					return basicSetReturnScaler(null, msgs);
-				case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
-					return basicSetReturnCast(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLRoutinesPackage.FUNCTION__NAME:
-				return getName();
-			case SQLRoutinesPackage.FUNCTION__DEPENDENCIES:
-				return getDependencies();
-			case SQLRoutinesPackage.FUNCTION__DESCRIPTION:
-				return getDescription();
-			case SQLRoutinesPackage.FUNCTION__LABEL:
-				return getLabel();
-			case SQLRoutinesPackage.FUNCTION__SPECIFIC_NAME:
-				return getSpecificName();
-			case SQLRoutinesPackage.FUNCTION__LANGUAGE:
-				return getLanguage();
-			case SQLRoutinesPackage.FUNCTION__PARAMETER_STYLE:
-				return getParameterStyle();
-			case SQLRoutinesPackage.FUNCTION__DETERMINISTIC:
-				return isDeterministic() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLRoutinesPackage.FUNCTION__SQL_DATA_ACCESS:
-				return getSqlDataAccess();
-			case SQLRoutinesPackage.FUNCTION__CREATION_TS:
-				return getCreationTS();
-			case SQLRoutinesPackage.FUNCTION__LAST_ALTERED_TS:
-				return getLastAlteredTS();
-			case SQLRoutinesPackage.FUNCTION__AUTHORIZATION_ID:
-				return getAuthorizationID();
-			case SQLRoutinesPackage.FUNCTION__SECURITY:
-				return getSecurity();
-			case SQLRoutinesPackage.FUNCTION__EXTERNAL_NAME:
-				return getExternalName();
-			case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-				return getParameters();
-			case SQLRoutinesPackage.FUNCTION__SOURCE:
-				return getSource();
-			case SQLRoutinesPackage.FUNCTION__SCHEMA:
-				if (resolve) return getSchema();
-				return basicGetSchema();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
 				return isNullCall() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLRoutinesPackage.FUNCTION__STATIC:
@@ -549,7 +480,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				return getReturnCast();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -557,65 +488,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SPECIFIC_NAME:
-				setSpecificName((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LANGUAGE:
-				setLanguage((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__PARAMETER_STYLE:
-				setParameterStyle((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__DETERMINISTIC:
-				setDeterministic(((Boolean)newValue).booleanValue());
-				return;
-			case SQLRoutinesPackage.FUNCTION__SQL_DATA_ACCESS:
-				setSqlDataAccess((DataAccess)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__CREATION_TS:
-				setCreationTS((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LAST_ALTERED_TS:
-				setLastAlteredTS((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__AUTHORIZATION_ID:
-				setAuthorizationID((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SECURITY:
-				setSecurity((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__EXTERNAL_NAME:
-				setExternalName((String)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SOURCE:
-				setSource((Source)newValue);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SCHEMA:
-				setSchema((Schema)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
 				setNullCall(((Boolean)newValue).booleanValue());
 				return;
@@ -641,7 +515,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 				setReturnCast((Parameter)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -649,62 +523,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLRoutinesPackage.FUNCTION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLRoutinesPackage.FUNCTION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SPECIFIC_NAME:
-				setSpecificName(SPECIFIC_NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__PARAMETER_STYLE:
-				setParameterStyle(PARAMETER_STYLE_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__DETERMINISTIC:
-				setDeterministic(DETERMINISTIC_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SQL_DATA_ACCESS:
-				setSqlDataAccess(SQL_DATA_ACCESS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__CREATION_TS:
-				setCreationTS(CREATION_TS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__LAST_ALTERED_TS:
-				setLastAlteredTS(LAST_ALTERED_TS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__AUTHORIZATION_ID:
-				setAuthorizationID(AUTHORIZATION_ID_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SECURITY:
-				setSecurity(SECURITY_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__EXTERNAL_NAME:
-				setExternalName(EXTERNAL_NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-				getParameters().clear();
-				return;
-			case SQLRoutinesPackage.FUNCTION__SOURCE:
-				setSource((Source)null);
-				return;
-			case SQLRoutinesPackage.FUNCTION__SCHEMA:
-				setSchema((Schema)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
 				setNullCall(NULL_CALL_EDEFAULT);
 				return;
@@ -730,7 +550,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 				setReturnCast((Parameter)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -738,44 +558,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.FUNCTION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLRoutinesPackage.FUNCTION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLRoutinesPackage.FUNCTION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLRoutinesPackage.FUNCTION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLRoutinesPackage.FUNCTION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLRoutinesPackage.FUNCTION__SPECIFIC_NAME:
-				return SPECIFIC_NAME_EDEFAULT == null ? specificName != null : !SPECIFIC_NAME_EDEFAULT.equals(specificName);
-			case SQLRoutinesPackage.FUNCTION__LANGUAGE:
-				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
-			case SQLRoutinesPackage.FUNCTION__PARAMETER_STYLE:
-				return PARAMETER_STYLE_EDEFAULT == null ? parameterStyle != null : !PARAMETER_STYLE_EDEFAULT.equals(parameterStyle);
-			case SQLRoutinesPackage.FUNCTION__DETERMINISTIC:
-				return deterministic != DETERMINISTIC_EDEFAULT;
-			case SQLRoutinesPackage.FUNCTION__SQL_DATA_ACCESS:
-				return sqlDataAccess != SQL_DATA_ACCESS_EDEFAULT;
-			case SQLRoutinesPackage.FUNCTION__CREATION_TS:
-				return CREATION_TS_EDEFAULT == null ? creationTS != null : !CREATION_TS_EDEFAULT.equals(creationTS);
-			case SQLRoutinesPackage.FUNCTION__LAST_ALTERED_TS:
-				return LAST_ALTERED_TS_EDEFAULT == null ? lastAlteredTS != null : !LAST_ALTERED_TS_EDEFAULT.equals(lastAlteredTS);
-			case SQLRoutinesPackage.FUNCTION__AUTHORIZATION_ID:
-				return AUTHORIZATION_ID_EDEFAULT == null ? authorizationID != null : !AUTHORIZATION_ID_EDEFAULT.equals(authorizationID);
-			case SQLRoutinesPackage.FUNCTION__SECURITY:
-				return SECURITY_EDEFAULT == null ? security != null : !SECURITY_EDEFAULT.equals(security);
-			case SQLRoutinesPackage.FUNCTION__EXTERNAL_NAME:
-				return EXTERNAL_NAME_EDEFAULT == null ? externalName != null : !EXTERNAL_NAME_EDEFAULT.equals(externalName);
-			case SQLRoutinesPackage.FUNCTION__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
-			case SQLRoutinesPackage.FUNCTION__SOURCE:
-				return source != null;
-			case SQLRoutinesPackage.FUNCTION__SCHEMA:
-				return schema != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__NULL_CALL:
 				return nullCall != NULL_CALL_EDEFAULT;
 			case SQLRoutinesPackage.FUNCTION__STATIC:
@@ -793,7 +577,7 @@ public class FunctionImpl extends RoutineImpl implements Function {
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				return returnCast != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -44,6 +44,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #isGrantable() <em>Grantable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,7 +125,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLAccessControlPackage.eINSTANCE.getPrivilege();
+		return SQLAccessControlPackage.Literals.PRIVILEGE;
 	}
 
 	/**
@@ -170,8 +177,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 */
 	public AuthorizationIdentifier getGrantor() {
 		if (grantor != null && grantor.eIsProxy()) {
-			AuthorizationIdentifier oldGrantor = grantor;
-			grantor = (AuthorizationIdentifier)eResolveProxy((InternalEObject)grantor);
+			InternalEObject oldGrantor = (InternalEObject)grantor;
+			grantor = (AuthorizationIdentifier)eResolveProxy(oldGrantor);
 			if (grantor != oldGrantor) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.PRIVILEGE__GRANTOR, oldGrantor, grantor));
@@ -230,8 +237,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 */
 	public SQLObject getObject() {
 		if (object != null && object.eIsProxy()) {
-			SQLObject oldObject = object;
-			object = (SQLObject)eResolveProxy((InternalEObject)object);
+			InternalEObject oldObject = (InternalEObject)object;
+			object = (SQLObject)eResolveProxy(oldObject);
 			if (object != oldObject) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLAccessControlPackage.PRIVILEGE__OBJECT, oldObject, object));
@@ -266,22 +273,14 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
-					if (grantor != null)
-						msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
-					return basicSetGrantor((AuthorizationIdentifier)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
+				if (grantor != null)
+					msgs = ((InternalEObject)grantor).eInverseRemove(this, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE, AuthorizationIdentifier.class, msgs);
+				return basicSetGrantor((AuthorizationIdentifier)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -289,20 +288,12 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.PRIVILEGE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
-					return basicSetGrantor(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.PRIVILEGE__GRANTOR:
+				return basicSetGrantor(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -310,18 +301,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLAccessControlPackage.PRIVILEGE__NAME:
-				return getName();
-			case SQLAccessControlPackage.PRIVILEGE__DEPENDENCIES:
-				return getDependencies();
-			case SQLAccessControlPackage.PRIVILEGE__DESCRIPTION:
-				return getDescription();
-			case SQLAccessControlPackage.PRIVILEGE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
 				return isGrantable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLAccessControlPackage.PRIVILEGE__ACTION:
@@ -333,7 +314,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 				if (resolve) return getObject();
 				return basicGetObject();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -341,25 +322,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
 				setGrantable(((Boolean)newValue).booleanValue());
 				return;
@@ -373,7 +337,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 				setObject((SQLObject)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -381,23 +345,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLAccessControlPackage.PRIVILEGE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
 				setGrantable(GRANTABLE_EDEFAULT);
 				return;
@@ -411,7 +360,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 				setObject((SQLObject)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -419,18 +368,8 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLAccessControlPackage.PRIVILEGE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLAccessControlPackage.PRIVILEGE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLAccessControlPackage.PRIVILEGE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLAccessControlPackage.PRIVILEGE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLAccessControlPackage.PRIVILEGE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
 				return grantable != GRANTABLE_EDEFAULT;
 			case SQLAccessControlPackage.PRIVILEGE__ACTION:
@@ -440,7 +379,7 @@ public class PrivilegeImpl extends SQLObjectImpl implements Privilege {
 			case SQLAccessControlPackage.PRIVILEGE__OBJECT:
 				return object != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

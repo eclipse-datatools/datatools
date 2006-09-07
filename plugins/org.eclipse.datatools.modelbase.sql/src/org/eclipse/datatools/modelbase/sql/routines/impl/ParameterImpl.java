@@ -47,6 +47,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ParameterImpl extends TypedElementImpl implements Parameter {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +118,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLRoutinesPackage.eINSTANCE.getParameter();
+		return SQLRoutinesPackage.Literals.PARAMETER;
 	}
 
 	/**
@@ -163,7 +170,17 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 */
 	public Routine getRoutine() {
 		if (eContainerFeatureID != SQLRoutinesPackage.PARAMETER__ROUTINE) return null;
-		return (Routine)eContainer;
+		return (Routine)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRoutine(Routine newRoutine, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newRoutine, SQLRoutinesPackage.PARAMETER__ROUTINE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -172,15 +189,15 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * @generated
 	 */
 	public void setRoutine(Routine newRoutine) {
-		if (newRoutine != eContainer || (eContainerFeatureID != SQLRoutinesPackage.PARAMETER__ROUTINE && newRoutine != null)) {
+		if (newRoutine != eInternalContainer() || (eContainerFeatureID != SQLRoutinesPackage.PARAMETER__ROUTINE && newRoutine != null)) {
 			if (EcoreUtil.isAncestor(this, newRoutine))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newRoutine != null)
 				msgs = ((InternalEObject)newRoutine).eInverseAdd(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newRoutine, SQLRoutinesPackage.PARAMETER__ROUTINE, msgs);
+			msgs = basicSetRoutine(newRoutine, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -235,22 +252,14 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLRoutinesPackage.PARAMETER__ROUTINE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLRoutinesPackage.PARAMETER__ROUTINE, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLRoutinesPackage.PARAMETER__ROUTINE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetRoutine((Routine)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -258,24 +267,14 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.PARAMETER__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.PARAMETER__CONTAINED_TYPE:
-					return basicSetContainedType(null, msgs);
-				case SQLRoutinesPackage.PARAMETER__ROUTINE:
-					return eBasicSetContainer(null, SQLRoutinesPackage.PARAMETER__ROUTINE, msgs);
-				case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
-					return basicSetStringTypeOption(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLRoutinesPackage.PARAMETER__ROUTINE:
+				return basicSetRoutine(null, msgs);
+			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
+				return basicSetStringTypeOption(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -283,16 +282,12 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLRoutinesPackage.PARAMETER__ROUTINE:
-					return eContainer.eInverseRemove(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLRoutinesPackage.PARAMETER__ROUTINE:
+				return eInternalContainer().eInverseRemove(this, SQLRoutinesPackage.ROUTINE__PARAMETERS, Routine.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -300,23 +295,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLRoutinesPackage.PARAMETER__NAME:
-				return getName();
-			case SQLRoutinesPackage.PARAMETER__DEPENDENCIES:
-				return getDependencies();
-			case SQLRoutinesPackage.PARAMETER__DESCRIPTION:
-				return getDescription();
-			case SQLRoutinesPackage.PARAMETER__LABEL:
-				return getLabel();
-			case SQLRoutinesPackage.PARAMETER__CONTAINED_TYPE:
-				return getContainedType();
-			case SQLRoutinesPackage.PARAMETER__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
-				return basicGetReferencedType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
 				return getMode();
 			case SQLRoutinesPackage.PARAMETER__LOCATOR:
@@ -326,7 +306,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
 				return getStringTypeOption();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -334,31 +314,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__NAME:
-				setName((String)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__CONTAINED_TYPE:
-				setContainedType((SQLDataType)newValue);
-				return;
-			case SQLRoutinesPackage.PARAMETER__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
 				setMode((ParameterMode)newValue);
 				return;
@@ -372,7 +329,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 				setStringTypeOption((CharacterStringDataType)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -380,29 +337,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLRoutinesPackage.PARAMETER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PARAMETER__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLRoutinesPackage.PARAMETER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PARAMETER__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PARAMETER__CONTAINED_TYPE:
-				setContainedType((SQLDataType)null);
-				return;
-			case SQLRoutinesPackage.PARAMETER__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
@@ -416,7 +352,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 				setStringTypeOption((CharacterStringDataType)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -424,22 +360,8 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PARAMETER__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLRoutinesPackage.PARAMETER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLRoutinesPackage.PARAMETER__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLRoutinesPackage.PARAMETER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLRoutinesPackage.PARAMETER__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLRoutinesPackage.PARAMETER__CONTAINED_TYPE:
-				return containedType != null;
-			case SQLRoutinesPackage.PARAMETER__REFERENCED_TYPE:
-				return referencedType != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PARAMETER__MODE:
 				return mode != MODE_EDEFAULT;
 			case SQLRoutinesPackage.PARAMETER__LOCATOR:
@@ -449,7 +371,7 @@ public class ParameterImpl extends TypedElementImpl implements Parameter {
 			case SQLRoutinesPackage.PARAMETER__STRING_TYPE_OPTION:
 				return stringTypeOption != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

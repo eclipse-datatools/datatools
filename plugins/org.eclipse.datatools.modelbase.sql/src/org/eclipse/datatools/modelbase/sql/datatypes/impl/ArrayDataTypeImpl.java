@@ -37,6 +37,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implements ArrayDataType {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getMaxCardinality() <em>Max Cardinality</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,7 +78,7 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getArrayDataType();
+		return SQLDataTypesPackage.Literals.ARRAY_DATA_TYPE;
 	}
 
 	/**
@@ -100,62 +107,12 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.ARRAY_DATA_TYPE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__NAME:
-				return getName();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__LABEL:
-				return getLabel();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__ELEMENT:
-				return getElement();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
 				return new Integer(getMaxCardinality());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -163,34 +120,13 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__ELEMENT:
-				getElement().clear();
-				getElement().addAll((Collection)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
 				setMaxCardinality(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -198,31 +134,13 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__ELEMENT:
-				getElement().clear();
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
 				setMaxCardinality(MAX_CARDINALITY_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -230,24 +148,12 @@ public abstract class ArrayDataTypeImpl extends CollectionDataTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLDataTypesPackage.ARRAY_DATA_TYPE__ELEMENT:
-				return element != null && !element.isEmpty();
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.ARRAY_DATA_TYPE__MAX_CARDINALITY:
 				return maxCardinality != MAX_CARDINALITY_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

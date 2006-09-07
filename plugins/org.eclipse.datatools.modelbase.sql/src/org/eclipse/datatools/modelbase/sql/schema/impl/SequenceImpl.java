@@ -42,6 +42,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SequenceImpl extends TypedElementImpl implements Sequence {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getIdentity() <em>Identity</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +83,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getSequence();
+		return SQLSchemaPackage.Literals.SEQUENCE;
 	}
 
 	/**
@@ -129,8 +136,8 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 */
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
-			Schema oldSchema = schema;
-			schema = (Schema)eResolveProxy((InternalEObject)schema);
+			InternalEObject oldSchema = (InternalEObject)schema;
+			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.SEQUENCE__SCHEMA, oldSchema, schema));
@@ -187,22 +194,14 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLSchemaPackage.SEQUENCE__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__SEQUENCES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.SEQUENCE__SCHEMA:
+				if (schema != null)
+					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__SEQUENCES, Schema.class, msgs);
+				return basicSetSchema((Schema)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -210,24 +209,14 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.SEQUENCE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.SEQUENCE__CONTAINED_TYPE:
-					return basicSetContainedType(null, msgs);
-				case SQLSchemaPackage.SEQUENCE__IDENTITY:
-					return basicSetIdentity(null, msgs);
-				case SQLSchemaPackage.SEQUENCE__SCHEMA:
-					return basicSetSchema(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.SEQUENCE__IDENTITY:
+				return basicSetIdentity(null, msgs);
+			case SQLSchemaPackage.SEQUENCE__SCHEMA:
+				return basicSetSchema(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -235,30 +224,15 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.SEQUENCE__NAME:
-				return getName();
-			case SQLSchemaPackage.SEQUENCE__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.SEQUENCE__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.SEQUENCE__LABEL:
-				return getLabel();
-			case SQLSchemaPackage.SEQUENCE__CONTAINED_TYPE:
-				return getContainedType();
-			case SQLSchemaPackage.SEQUENCE__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
-				return basicGetReferencedType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
 				return getIdentity();
 			case SQLSchemaPackage.SEQUENCE__SCHEMA:
 				if (resolve) return getSchema();
 				return basicGetSchema();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -266,31 +240,8 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__CONTAINED_TYPE:
-				setContainedType((SQLDataType)newValue);
-				return;
-			case SQLSchemaPackage.SEQUENCE__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
 				setIdentity((IdentitySpecifier)newValue);
 				return;
@@ -298,7 +249,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 				setSchema((Schema)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -306,29 +257,8 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.SEQUENCE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.SEQUENCE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.SEQUENCE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.SEQUENCE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLSchemaPackage.SEQUENCE__CONTAINED_TYPE:
-				setContainedType((SQLDataType)null);
-				return;
-			case SQLSchemaPackage.SEQUENCE__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
 				setIdentity((IdentitySpecifier)null);
 				return;
@@ -336,7 +266,7 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 				setSchema((Schema)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -344,28 +274,14 @@ public class SequenceImpl extends TypedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.SEQUENCE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.SEQUENCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.SEQUENCE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.SEQUENCE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.SEQUENCE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLSchemaPackage.SEQUENCE__CONTAINED_TYPE:
-				return containedType != null;
-			case SQLSchemaPackage.SEQUENCE__REFERENCED_TYPE:
-				return referencedType != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.SEQUENCE__IDENTITY:
 				return identity != null;
 			case SQLSchemaPackage.SEQUENCE__SCHEMA:
 				return schema != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SequenceImpl

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLTablesPackage extends EPackage{
+public interface SQLTablesPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -119,6 +119,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int TABLE__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -211,7 +220,7 @@ public interface SQLTablesPackage extends EPackage{
 	int TABLE__UPDATABLE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of structural features of the the '<em>Table</em>' class.
+	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -273,6 +282,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int DERIVED_TABLE__LABEL = TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERIVED_TABLE__COMMENTS = TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -374,7 +392,7 @@ public interface SQLTablesPackage extends EPackage{
 	int DERIVED_TABLE__QUERY_EXPRESSION = TABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Derived Table</em>' class.
+	 * The number of structural features of the '<em>Derived Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -436,6 +454,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int VIEW_TABLE__LABEL = DERIVED_TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_TABLE__COMMENTS = DERIVED_TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -546,7 +573,7 @@ public interface SQLTablesPackage extends EPackage{
 	int VIEW_TABLE__CHECK_TYPE = DERIVED_TABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>View Table</em>' class.
+	 * The number of structural features of the '<em>View Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -608,6 +635,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int BASE_TABLE__LABEL = TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASE_TABLE__COMMENTS = TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -718,7 +754,7 @@ public interface SQLTablesPackage extends EPackage{
 	int BASE_TABLE__REFERENCING_FOREIGN_KEYS = TABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Base Table</em>' class.
+	 * The number of structural features of the '<em>Base Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -780,6 +816,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int TEMPORARY_TABLE__LABEL = BASE_TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY_TABLE__COMMENTS = BASE_TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -908,7 +953,7 @@ public interface SQLTablesPackage extends EPackage{
 	int TEMPORARY_TABLE__DELETE_ON_COMMIT = BASE_TABLE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Temporary Table</em>' class.
+	 * The number of structural features of the '<em>Temporary Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -970,6 +1015,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int PERSISTENT_TABLE__LABEL = BASE_TABLE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSISTENT_TABLE__COMMENTS = BASE_TABLE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -1080,7 +1134,7 @@ public interface SQLTablesPackage extends EPackage{
 	int PERSISTENT_TABLE__REFERENCING_FOREIGN_KEYS = BASE_TABLE__REFERENCING_FOREIGN_KEYS;
 
 	/**
-	 * The number of structural features of the the '<em>Persistent Table</em>' class.
+	 * The number of structural features of the '<em>Persistent Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1142,6 +1196,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int COLUMN__LABEL = SQLSchemaPackage.TYPED_ELEMENT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1234,7 +1297,7 @@ public interface SQLTablesPackage extends EPackage{
 	int COLUMN__SCOPE_CHECKED = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The number of structural features of the the '<em>Column</em>' class.
+	 * The number of structural features of the '<em>Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1296,6 +1359,15 @@ public interface SQLTablesPackage extends EPackage{
 	 * @ordered
 	 */
 	int TRIGGER__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRIGGER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
@@ -1433,7 +1505,7 @@ public interface SQLTablesPackage extends EPackage{
 	int TRIGGER__NEW_TABLE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 14;
 
 	/**
-	 * The number of structural features of the the '<em>Trigger</em>' class.
+	 * The number of structural features of the '<em>Trigger</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2039,5 +2111,452 @@ public interface SQLTablesPackage extends EPackage{
 	 * @generated
 	 */
 	SQLTablesFactory getSQLTablesFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.ViewTableImpl <em>View Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.ViewTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getViewTable()
+		 * @generated
+		 */
+		EClass VIEW_TABLE = eINSTANCE.getViewTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEW_TABLE__CHECK_TYPE = eINSTANCE.getViewTable_CheckType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl <em>Temporary Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.TemporaryTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getTemporaryTable()
+		 * @generated
+		 */
+		EClass TEMPORARY_TABLE = eINSTANCE.getTemporaryTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Local</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEMPORARY_TABLE__LOCAL = eINSTANCE.getTemporaryTable_Local();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete On Commit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEMPORARY_TABLE__DELETE_ON_COMMIT = eINSTANCE.getTemporaryTable_DeleteOnCommit();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl <em>Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.TableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getTable()
+		 * @generated
+		 */
+		EClass TABLE = eINSTANCE.getTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__COLUMNS = eINSTANCE.getTable_Columns();
+
+		/**
+		 * The meta object literal for the '<em><b>Supertable</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__SUPERTABLE = eINSTANCE.getTable_Supertable();
+
+		/**
+		 * The meta object literal for the '<em><b>Subtables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__SUBTABLES = eINSTANCE.getTable_Subtables();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__SCHEMA = eINSTANCE.getTable_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Udt</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__UDT = eINSTANCE.getTable_Udt();
+
+		/**
+		 * The meta object literal for the '<em><b>Triggers</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__TRIGGERS = eINSTANCE.getTable_Triggers();
+
+		/**
+		 * The meta object literal for the '<em><b>Index</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE__INDEX = eINSTANCE.getTable_Index();
+
+		/**
+		 * The meta object literal for the '<em><b>Self Ref Column Generation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__SELF_REF_COLUMN_GENERATION = eINSTANCE.getTable_SelfRefColumnGeneration();
+
+		/**
+		 * The meta object literal for the '<em><b>Insertable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__INSERTABLE = eINSTANCE.getTable_Insertable();
+
+		/**
+		 * The meta object literal for the '<em><b>Updatable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__UPDATABLE = eINSTANCE.getTable_Updatable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.PersistentTableImpl <em>Persistent Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.PersistentTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getPersistentTable()
+		 * @generated
+		 */
+		EClass PERSISTENT_TABLE = eINSTANCE.getPersistentTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.DerivedTableImpl <em>Derived Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.DerivedTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getDerivedTable()
+		 * @generated
+		 */
+		EClass DERIVED_TABLE = eINSTANCE.getDerivedTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DERIVED_TABLE__QUERY_EXPRESSION = eINSTANCE.getDerivedTable_QueryExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl <em>Base Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.BaseTableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getBaseTable()
+		 * @generated
+		 */
+		EClass BASE_TABLE = eINSTANCE.getBaseTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BASE_TABLE__CONSTRAINTS = eINSTANCE.getBaseTable_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Referencing Foreign Keys</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BASE_TABLE__REFERENCING_FOREIGN_KEYS = eINSTANCE.getBaseTable_ReferencingForeignKeys();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl <em>Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getColumn()
+		 * @generated
+		 */
+		EClass COLUMN = eINSTANCE.getColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN__TABLE = eINSTANCE.getColumn_Table();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Specifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN__IDENTITY_SPECIFIER = eINSTANCE.getColumn_IdentitySpecifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Generate Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN__GENERATE_EXPRESSION = eINSTANCE.getColumn_GenerateExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Implementation Dependent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__IMPLEMENTATION_DEPENDENT = eINSTANCE.getColumn_ImplementationDependent();
+
+		/**
+		 * The meta object literal for the '<em><b>Nullable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__NULLABLE = eINSTANCE.getColumn_Nullable();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__DEFAULT_VALUE = eINSTANCE.getColumn_DefaultValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Check</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__SCOPE_CHECK = eINSTANCE.getColumn_ScopeCheck();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Checked</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__SCOPE_CHECKED = eINSTANCE.getColumn_ScopeChecked();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl <em>Trigger</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getTrigger()
+		 * @generated
+		 */
+		EClass TRIGGER = eINSTANCE.getTrigger();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRIGGER__SCHEMA = eINSTANCE.getTrigger_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Subject Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRIGGER__SUBJECT_TABLE = eINSTANCE.getTrigger_SubjectTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Statement</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRIGGER__ACTION_STATEMENT = eINSTANCE.getTrigger_ActionStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Trigger Column</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRIGGER__TRIGGER_COLUMN = eINSTANCE.getTrigger_TriggerColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Granularity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__ACTION_GRANULARITY = eINSTANCE.getTrigger_ActionGranularity();
+
+		/**
+		 * The meta object literal for the '<em><b>When</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TRIGGER__WHEN = eINSTANCE.getTrigger_When();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Stamp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__TIME_STAMP = eINSTANCE.getTrigger_TimeStamp();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__ACTION_TIME = eINSTANCE.getTrigger_ActionTime();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__UPDATE_TYPE = eINSTANCE.getTrigger_UpdateType();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__INSERT_TYPE = eINSTANCE.getTrigger_InsertType();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__DELETE_TYPE = eINSTANCE.getTrigger_DeleteType();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Row</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__OLD_ROW = eINSTANCE.getTrigger_OldRow();
+
+		/**
+		 * The meta object literal for the '<em><b>New Row</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__NEW_ROW = eINSTANCE.getTrigger_NewRow();
+
+		/**
+		 * The meta object literal for the '<em><b>Old Table</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__OLD_TABLE = eINSTANCE.getTrigger_OldTable();
+
+		/**
+		 * The meta object literal for the '<em><b>New Table</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER__NEW_TABLE = eINSTANCE.getTrigger_NewTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.CheckType <em>Check Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.CheckType
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getCheckType()
+		 * @generated
+		 */
+		EEnum CHECK_TYPE = eINSTANCE.getCheckType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.ReferenceType <em>Reference Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.ReferenceType
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getReferenceType()
+		 * @generated
+		 */
+		EEnum REFERENCE_TYPE = eINSTANCE.getReferenceType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.ActionTimeType <em>Action Time Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.ActionTimeType
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getActionTimeType()
+		 * @generated
+		 */
+		EEnum ACTION_TIME_TYPE = eINSTANCE.getActionTimeType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.tables.ActionGranularityType <em>Action Granularity Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.tables.ActionGranularityType
+		 * @see org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesPackageImpl#getActionGranularityType()
+		 * @generated
+		 */
+		EEnum ACTION_GRANULARITY_TYPE = eINSTANCE.getActionGranularityType();
+
+	}
 
 } //SQLTablesPackage

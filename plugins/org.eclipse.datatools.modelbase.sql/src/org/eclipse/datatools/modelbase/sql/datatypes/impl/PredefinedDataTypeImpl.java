@@ -38,6 +38,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements PredefinedDataType {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getPrimitiveType() <em>Primitive Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,7 +79,7 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getPredefinedDataType();
+		return SQLDataTypesPackage.Literals.PREDEFINED_DATA_TYPE;
 	}
 
 	/**
@@ -101,60 +108,12 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__NAME:
-				return getName();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
 				return getPrimitiveType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -162,30 +121,13 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
 				setPrimitiveType((PrimitiveType)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -193,28 +135,13 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
 				setPrimitiveType(PRIMITIVE_TYPE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -222,22 +149,12 @@ public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE:
 				return primitiveType != PRIMITIVE_TYPE_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

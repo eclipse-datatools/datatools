@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage
  * @generated
  */
-public interface SQLTablesFactory extends EFactory{
+public interface SQLTablesFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLTablesFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesFactoryImpl();
+	SQLTablesFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.tables.impl.SQLTablesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>View Table</em>'.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkControlOption.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: LinkControlOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -56,7 +56,7 @@ public final class LinkControlOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LinkControlOption FILE_LINK_CONTROL_LITERAL = new LinkControlOption(FILE_LINK_CONTROL, "FILE_LINK_CONTROL"); //$NON-NLS-1$
+	public static final LinkControlOption FILE_LINK_CONTROL_LITERAL = new LinkControlOption(FILE_LINK_CONTROL, "FILE_LINK_CONTROL", "FILE_LINK_CONTROL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>NO FILE LINK CONTROL</b></em>' literal object.
@@ -70,7 +70,7 @@ public final class LinkControlOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LinkControlOption NO_FILE_LINK_CONTROL_LITERAL = new LinkControlOption(NO_FILE_LINK_CONTROL, "NO_FILE_LINK_CONTROL"); //$NON-NLS-1$
+	public static final LinkControlOption NO_FILE_LINK_CONTROL_LITERAL = new LinkControlOption(NO_FILE_LINK_CONTROL, "NO_FILE_LINK_CONTROL", "NO_FILE_LINK_CONTROL"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Link Control Option</b></em>' enumerators.
@@ -93,15 +93,15 @@ public final class LinkControlOption extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Link Control Option</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Link Control Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static LinkControlOption get(String name) {
+	public static LinkControlOption get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			LinkControlOption result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -109,7 +109,23 @@ public final class LinkControlOption extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Link Control Option</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Link Control Option</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static LinkControlOption getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			LinkControlOption result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Link Control Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,8 +144,8 @@ public final class LinkControlOption extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LinkControlOption(int value, String name) {
-		super(value, name);
+	private LinkControlOption(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //LinkControlOption

@@ -43,6 +43,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -194,7 +196,7 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
@@ -804,11 +806,11 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLConstraintsPackage theSQLConstraintsPackage = (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLExpressionsPackage theSQLExpressionsPackage = (SQLExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLStatementsPackage theSQLStatementsPackage = (SQLStatementsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
 
 		// Add supertypes to classes
 		viewTableEClass.getESuperTypes().add(this.getDerivedTable());
@@ -849,11 +851,11 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		initEReference(getBaseTable_Constraints(), theSQLConstraintsPackage.getTableConstraint(), theSQLConstraintsPackage.getTableConstraint_BaseTable(), "constraints", null, 0, -1, BaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getBaseTable_ReferencingForeignKeys(), theSQLConstraintsPackage.getForeignKey(), theSQLConstraintsPackage.getForeignKey_ReferencedTable(), "referencingForeignKeys", null, 0, -1, BaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(baseTableEClass, theSQLSchemaPackage.getList(), "getUniqueConstraints"); //$NON-NLS-1$
+		addEOperation(baseTableEClass, theSQLSchemaPackage.getList(), "getUniqueConstraints", 0, 1); //$NON-NLS-1$
 
-		addEOperation(baseTableEClass, theSQLSchemaPackage.getList(), "getForeignKeys"); //$NON-NLS-1$
+		addEOperation(baseTableEClass, theSQLSchemaPackage.getList(), "getForeignKeys", 0, 1); //$NON-NLS-1$
 
-		addEOperation(baseTableEClass, theSQLConstraintsPackage.getPrimaryKey(), "getPrimaryKey"); //$NON-NLS-1$
+		addEOperation(baseTableEClass, theSQLConstraintsPackage.getPrimaryKey(), "getPrimaryKey", 0, 1); //$NON-NLS-1$
 
 		initEClass(columnEClass, Column.class, "Column", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getColumn_Table(), this.getTable(), this.getTable_Columns(), "table", null, 1, 1, Column.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -865,11 +867,11 @@ public class SQLTablesPackageImpl extends EPackageImpl implements SQLTablesPacka
 		initEAttribute(getColumn_ScopeCheck(), theSQLSchemaPackage.getReferentialActionType(), "scopeCheck", "NO_ACTION", 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getColumn_ScopeChecked(), ecorePackage.getEBoolean(), "scopeChecked", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfForeignKey"); //$NON-NLS-1$
+		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfForeignKey", 0, 1); //$NON-NLS-1$
 
-		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfUniqueConstraint"); //$NON-NLS-1$
+		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfUniqueConstraint", 0, 1); //$NON-NLS-1$
 
-		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfPrimaryKey"); //$NON-NLS-1$
+		addEOperation(columnEClass, ecorePackage.getEBoolean(), "isPartOfPrimaryKey", 0, 1); //$NON-NLS-1$
 
 		initEClass(triggerEClass, Trigger.class, "Trigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTrigger_Schema(), theSQLSchemaPackage.getSchema(), theSQLSchemaPackage.getSchema_Triggers(), "schema", null, 1, 1, Trigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

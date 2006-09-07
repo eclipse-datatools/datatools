@@ -17,15 +17,7 @@ package org.eclipse.datatools.modelbase.sql.constraints;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Section 4.17
- * A PrimaryKey is a specialization of a UniqueConstraint.  A PrimaryKey additionally requires that none of the values in the specified column or columns be a null value.
- * 
- * Section 11.7
- * 5) If the <unique specification> specifies PRIMARY KEY , then for each <column name> in the explicit or
- * implicit <unique column list> for which NOT NULL is not specified, NOT NULL is implicit in the
- * <column definition> .
- * 6) A <table definition> shall specify at most one implicit or explicit <unique constraint definition> that
- * specifies PRIMARY KEY .
+ * Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints, Reference, 5WD-02-Foundation-2002-12 11.7 <unique contraint definition>
  * <!-- end-model-doc -->
  *
  *
@@ -33,5 +25,5 @@ package org.eclipse.datatools.modelbase.sql.constraints;
  * @model
  * @generated
  */
-public interface PrimaryKey extends UniqueConstraint{
+public interface PrimaryKey extends UniqueConstraint {
 } // PrimaryKey

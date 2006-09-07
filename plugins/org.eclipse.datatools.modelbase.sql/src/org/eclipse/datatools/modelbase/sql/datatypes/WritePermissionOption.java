@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WritePermissionOption.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: WritePermissionOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -67,7 +67,7 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final WritePermissionOption FS_LITERAL = new WritePermissionOption(FS, "FS"); //$NON-NLS-1$
+	public static final WritePermissionOption FS_LITERAL = new WritePermissionOption(FS, "FS", "FS"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>ADMIN</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final WritePermissionOption ADMIN_LITERAL = new WritePermissionOption(ADMIN, "ADMIN"); //$NON-NLS-1$
+	public static final WritePermissionOption ADMIN_LITERAL = new WritePermissionOption(ADMIN, "ADMIN", "ADMIN"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>BLOCKED</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final WritePermissionOption BLOCKED_LITERAL = new WritePermissionOption(BLOCKED, "BLOCKED"); //$NON-NLS-1$
+	public static final WritePermissionOption BLOCKED_LITERAL = new WritePermissionOption(BLOCKED, "BLOCKED", "BLOCKED"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Write Permission Option</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Write Permission Option</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Write Permission Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static WritePermissionOption get(String name) {
+	public static WritePermissionOption get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			WritePermissionOption result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Write Permission Option</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Write Permission Option</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static WritePermissionOption getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			WritePermissionOption result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Write Permission Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class WritePermissionOption extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private WritePermissionOption(int value, String name) {
-		super(value, name);
+	private WritePermissionOption(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //WritePermissionOption

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CoercibilityType.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: CoercibilityType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -18,17 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 4.2.1 Comparison of character strings
- * 
- * Two character strings are comparable if and only if either they have the same character set or there exists at least one collation that is applicable to both their respective character sets.
- * 
- * A collation is defined by ISO/IEC 14651 as "a process by which two strings are determined to be in exactly one of the relationships of less than, greater than, or equal to one another". Each collation known in an SQLenvironment is applicable to one or more character sets, and for each character set, one or more collations are applicable to it, one of which is associated with it as its character set collation.
- * 
- * Anything that has a declared type can, if that type is a character string type, be associated with a collation applicable to its character set; this is known as a declared type collation. Every declared type that is a character string type has a collation derivation, this being either none, implicit, or explicit. The collation derivation of a declared type with a declared type collation that is explicitly or implicitly specified by a <data type> is implicit. If the collation derivation of a declared type that has a declared type collation is not implicit, then it is explicit. The collation derivation of an expression of character string type that has no declared type collation is none.
- * 
- * An operation that explicitly or implicitly involves character string comparison is a character comparison operation. At least one of the operands of a character comparison operation shall have a declared type collation. There may be an SQL-session collation for some or all of the character sets known to the SQL-implementation (see Subclause 4.37, "SQL-sessions").
- * 
- * The collation used for a particular character comparison is specified by Subclause 9.13, "Collation determination". The comparison of two character string expressions depends on the collation used for the comparison (see Subclause 9.13, "Collation determination"). When values of unequal length are compared, if the collation for the comparison has the NO PAD characteristic and the shorter value is equal to some prefix of the longer value, then the shorter value is considered less than the longer value. If the collation for the comparison has the PAD SPACE characteristic, for the purposes of the comparison, the shorter value is effectively extended to the length of the longer by concatenation of <space> s on the right. For every character set, there is at least one collation.
+ * Reference: 5WD-02-Foundation-2002-12 4.2.1 Comparison of character strings
  * 
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCoercibilityType()
@@ -92,7 +82,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CoercibilityType IMPLICIT_LITERAL = new CoercibilityType(IMPLICIT, "IMPLICIT"); //$NON-NLS-1$
+	public static final CoercibilityType IMPLICIT_LITERAL = new CoercibilityType(IMPLICIT, "IMPLICIT", "IMPLICIT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>EXPLICIT</b></em>' literal object.
@@ -106,7 +96,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CoercibilityType EXPLICIT_LITERAL = new CoercibilityType(EXPLICIT, "EXPLICIT"); //$NON-NLS-1$
+	public static final CoercibilityType EXPLICIT_LITERAL = new CoercibilityType(EXPLICIT, "EXPLICIT", "EXPLICIT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>COERCIBILE</b></em>' literal object.
@@ -120,7 +110,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CoercibilityType COERCIBILE_LITERAL = new CoercibilityType(COERCIBILE, "COERCIBILE"); //$NON-NLS-1$
+	public static final CoercibilityType COERCIBILE_LITERAL = new CoercibilityType(COERCIBILE, "COERCIBILE", "COERCIBILE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>NO COLLATION</b></em>' literal object.
@@ -134,7 +124,7 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CoercibilityType NO_COLLATION_LITERAL = new CoercibilityType(NO_COLLATION, "NO_COLLATION"); //$NON-NLS-1$
+	public static final CoercibilityType NO_COLLATION_LITERAL = new CoercibilityType(NO_COLLATION, "NO_COLLATION", "NO_COLLATION"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Coercibility Type</b></em>' enumerators.
@@ -159,15 +149,15 @@ public final class CoercibilityType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CoercibilityType get(String name) {
+	public static CoercibilityType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CoercibilityType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -175,7 +165,23 @@ public final class CoercibilityType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static CoercibilityType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			CoercibilityType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Coercibility Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -196,8 +202,8 @@ public final class CoercibilityType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CoercibilityType(int value, String name) {
-		super(value, name);
+	private CoercibilityType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //CoercibilityType

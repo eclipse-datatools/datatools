@@ -18,14 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * From 5WD-02-Foundation-2002-12
- * 11.50 <SQL-invoked routine>
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines, 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>
  * 
- * <dynamic result sets characteristic> ::= DYNAMIC RESULT SETS <maximum dynamic result sets>
- * 
- * <maximum dynamic result sets> ::= <unsigned integer>
- * 
- * <savepoint level indication> ::= NEW SAVEPOINT LEVEL | OLD SAVEPOINT LEVEL
  * <!-- end-model-doc -->
  *
  * <p>
@@ -41,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Procedure extends Routine{
+public interface Procedure extends Routine {
 	/**
 	 * Returns the value of the '<em><b>Max Result Sets</b></em>' attribute.
 	 * <!-- begin-user-doc -->

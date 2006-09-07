@@ -18,6 +18,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * A representation of the model object '<em><b>Double Object Privilege</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -29,7 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model
  * @generated
  */
-public interface DoubleObjectPrivilege extends Privilege{
+public interface DoubleObjectPrivilege extends Privilege {
 	/**
 	 * Returns the value of the '<em><b>Object2</b></em>' reference.
 	 * <!-- begin-user-doc -->

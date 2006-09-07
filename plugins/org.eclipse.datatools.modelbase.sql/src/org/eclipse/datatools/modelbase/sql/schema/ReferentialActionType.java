@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferentialActionType.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: ReferentialActionType.java,v 1.2 2005/12/22 23:31:32 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema;
 
@@ -17,6 +17,9 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * A representation of the literals of the enumeration '<em><b>Referential Action Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 
+ * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getReferentialActionType()
  * @model
  * @generated
@@ -89,7 +92,7 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReferentialActionType NO_ACTION_LITERAL = new ReferentialActionType(NO_ACTION, "NO_ACTION"); //$NON-NLS-1$
+	public static final ReferentialActionType NO_ACTION_LITERAL = new ReferentialActionType(NO_ACTION, "NO_ACTION", "NO_ACTION"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>RESTRICT</b></em>' literal object.
@@ -103,7 +106,7 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReferentialActionType RESTRICT_LITERAL = new ReferentialActionType(RESTRICT, "RESTRICT"); //$NON-NLS-1$
+	public static final ReferentialActionType RESTRICT_LITERAL = new ReferentialActionType(RESTRICT, "RESTRICT", "RESTRICT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CASCADE</b></em>' literal object.
@@ -117,7 +120,7 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReferentialActionType CASCADE_LITERAL = new ReferentialActionType(CASCADE, "CASCADE"); //$NON-NLS-1$
+	public static final ReferentialActionType CASCADE_LITERAL = new ReferentialActionType(CASCADE, "CASCADE", "CASCADE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SET NULL</b></em>' literal object.
@@ -131,7 +134,7 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReferentialActionType SET_NULL_LITERAL = new ReferentialActionType(SET_NULL, "SET_NULL"); //$NON-NLS-1$
+	public static final ReferentialActionType SET_NULL_LITERAL = new ReferentialActionType(SET_NULL, "SET_NULL", "SET_NULL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SET DEFAULT</b></em>' literal object.
@@ -145,7 +148,7 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ReferentialActionType SET_DEFAULT_LITERAL = new ReferentialActionType(SET_DEFAULT, "SET_DEFAULT"); //$NON-NLS-1$
+	public static final ReferentialActionType SET_DEFAULT_LITERAL = new ReferentialActionType(SET_DEFAULT, "SET_DEFAULT", "SET_DEFAULT"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Referential Action Type</b></em>' enumerators.
@@ -171,15 +174,15 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReferentialActionType get(String name) {
+	public static ReferentialActionType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ReferentialActionType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -187,7 +190,23 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ReferentialActionType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ReferentialActionType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Referential Action Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -209,8 +228,8 @@ public final class ReferentialActionType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReferentialActionType(int value, String name) {
-		super(value, name);
+	private ReferentialActionType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ReferentialActionType

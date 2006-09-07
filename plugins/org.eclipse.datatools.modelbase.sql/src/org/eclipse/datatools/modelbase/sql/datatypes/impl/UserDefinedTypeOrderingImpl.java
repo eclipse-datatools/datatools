@@ -43,6 +43,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDefinedTypeOrdering {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getOrderingForm() <em>Ordering Form</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,7 +114,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering();
+		return SQLDataTypesPackage.Literals.USER_DEFINED_TYPE_ORDERING;
 	}
 
 	/**
@@ -159,8 +166,8 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 */
 	public Routine getOrderingRoutine() {
 		if (orderingRoutine != null && orderingRoutine.eIsProxy()) {
-			Routine oldOrderingRoutine = orderingRoutine;
-			orderingRoutine = (Routine)eResolveProxy((InternalEObject)orderingRoutine);
+			InternalEObject oldOrderingRoutine = (InternalEObject)orderingRoutine;
+			orderingRoutine = (Routine)eResolveProxy(oldOrderingRoutine);
 			if (orderingRoutine != oldOrderingRoutine) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE, oldOrderingRoutine, orderingRoutine));
@@ -195,56 +202,8 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__NAME:
-				return getName();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
 				return getOrderingForm();
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY:
@@ -253,7 +212,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 				if (resolve) return getOrderingRoutine();
 				return basicGetOrderingRoutine();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -261,25 +220,8 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
 				setOrderingForm((OrderingType)newValue);
 				return;
@@ -290,7 +232,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 				setOrderingRoutine((Routine)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -298,23 +240,8 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
 				setOrderingForm(ORDERING_FORM_EDEFAULT);
 				return;
@@ -325,7 +252,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 				setOrderingRoutine((Routine)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -333,18 +260,8 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM:
 				return orderingForm != ORDERING_FORM_EDEFAULT;
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY:
@@ -352,7 +269,7 @@ public class UserDefinedTypeOrderingImpl extends SQLObjectImpl implements UserDe
 			case SQLDataTypesPackage.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE:
 				return orderingRoutine != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

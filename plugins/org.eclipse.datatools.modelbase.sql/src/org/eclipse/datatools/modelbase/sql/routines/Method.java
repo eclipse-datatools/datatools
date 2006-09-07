@@ -17,12 +17,8 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Method is a specialization of Function to indicate the function was created in support of the user-defined type (UDT). 
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines 
  * 
- * From 5WD-02-Foundation-2002-12 
- * 4.23 SQL-invoked routines 
- * 
- * - If the SQL-invoked routine is an SQL-invoked method, then an indication of the user-defined type whose descriptor contains the corresponding method specification descriptor
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +33,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * @model
  * @generated
  */
-public interface Method extends Function{
+public interface Method extends Function {
 	/**
 	 * Returns the value of the '<em><b>Overriding</b></em>' attribute.
 	 * <!-- begin-user-doc -->

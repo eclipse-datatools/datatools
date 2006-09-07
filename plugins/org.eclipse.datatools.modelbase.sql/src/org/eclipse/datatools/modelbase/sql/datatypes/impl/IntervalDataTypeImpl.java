@@ -43,6 +43,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements IntervalDataType {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getLeadingQualifier() <em>Leading Qualifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -157,7 +164,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getIntervalDataType();
+		return SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE;
 	}
 
 	/**
@@ -270,58 +277,8 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__NAME:
-				return getName();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LABEL:
-				return getLabel();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__PRIMITIVE_TYPE:
-				return getPrimitiveType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
 				return getLeadingQualifier();
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER:
@@ -333,7 +290,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
 				return new Integer(getFractionalSecondsPrecision());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -341,28 +298,8 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__PRIMITIVE_TYPE:
-				setPrimitiveType((PrimitiveType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
 				setLeadingQualifier((IntervalQualifierType)newValue);
 				return;
@@ -379,7 +316,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 				setFractionalSecondsPrecision(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -387,26 +324,8 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__PRIMITIVE_TYPE:
-				setPrimitiveType(PRIMITIVE_TYPE_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
 				setLeadingQualifier(LEADING_QUALIFIER_EDEFAULT);
 				return;
@@ -423,7 +342,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 				setFractionalSecondsPrecision(FRACTIONAL_SECONDS_PRECISION_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -431,20 +350,8 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__PRIMITIVE_TYPE:
-				return primitiveType != PRIMITIVE_TYPE_EDEFAULT;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__LEADING_QUALIFIER:
 				return leadingQualifier != LEADING_QUALIFIER_EDEFAULT;
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER:
@@ -456,7 +363,7 @@ public class IntervalDataTypeImpl extends PredefinedDataTypeImpl implements Inte
 			case SQLDataTypesPackage.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION:
 				return fractionalSecondsPrecision != FRACTIONAL_SECONDS_PRECISION_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

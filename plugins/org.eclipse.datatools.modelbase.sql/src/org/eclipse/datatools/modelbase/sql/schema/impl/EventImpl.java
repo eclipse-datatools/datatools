@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: EventImpl.java,v 1.1 2006/03/03 21:46:27 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -41,6 +41,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class EventImpl extends SQLObjectImpl implements Event {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * The default value of the '{@link #getFor() <em>For</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -146,7 +153,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getEvent();
+		return SQLSchemaPackage.Literals.EVENT;
 	}
 
 	/**
@@ -240,8 +247,8 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 */
 	public Database getDatabase() {
 		if (database != null && database.eIsProxy()) {
-			Database oldDatabase = database;
-			database = (Database)eResolveProxy((InternalEObject)database);
+			InternalEObject oldDatabase = (InternalEObject)database;
+			database = (Database)eResolveProxy(oldDatabase);
 			if (database != oldDatabase) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.EVENT__DATABASE, oldDatabase, database));
@@ -298,22 +305,14 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.EVENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLSchemaPackage.EVENT__DATABASE:
-					if (database != null)
-						msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__EVENTS, Database.class, msgs);
-					return basicSetDatabase((Database)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.EVENT__DATABASE:
+				if (database != null)
+					msgs = ((InternalEObject)database).eInverseRemove(this, SQLSchemaPackage.DATABASE__EVENTS, Database.class, msgs);
+				return basicSetDatabase((Database)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -321,20 +320,12 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.EVENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.EVENT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.EVENT__DATABASE:
-					return basicSetDatabase(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.EVENT__DATABASE:
+				return basicSetDatabase(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -342,18 +333,8 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.EVENT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.EVENT__NAME:
-				return getName();
-			case SQLSchemaPackage.EVENT__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.EVENT__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.EVENT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
 				return getFor();
 			case SQLSchemaPackage.EVENT__CONDITION:
@@ -366,7 +347,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 				if (resolve) return getDatabase();
 				return basicGetDatabase();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -374,25 +355,8 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.EVENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.EVENT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.EVENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.EVENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.EVENT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
 				setFor((String)newValue);
 				return;
@@ -409,7 +373,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 				setDatabase((Database)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -417,23 +381,8 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.EVENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.EVENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.EVENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.EVENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.EVENT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
 				setFor(FOR_EDEFAULT);
 				return;
@@ -450,7 +399,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 				setDatabase((Database)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -458,18 +407,8 @@ public class EventImpl extends SQLObjectImpl implements Event {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.EVENT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.EVENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.EVENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.EVENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.EVENT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.EVENT__FOR:
 				return FOR_EDEFAULT == null ? for_ != null : !FOR_EDEFAULT.equals(for_);
 			case SQLSchemaPackage.EVENT__CONDITION:
@@ -481,7 +420,7 @@ public class EventImpl extends SQLObjectImpl implements Event {
 			case SQLSchemaPackage.EVENT__DATABASE:
 				return database != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

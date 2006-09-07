@@ -21,23 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Section 4.17
- * In the case that a table constraint is a referential constraint, the table is referred to as the referencing table. The referenced columns of a referential constraint shall be the unique columns of some unique constraint of the
- * referenced table.
- * 
- * Section 11.8
- * 5) The referenced table shall be a base table.
- *  Case:
- *   a) If the referencing table is a persistent base table, then the referenced table shall be a persistent base table.
- *   b) If the referencing table is a global temporary table, then the referenced table shall be a global temporary table. 
- *   c) If the referencing table is a created local temporary table, then the referenced table shall be either a global temporary table or a created local temporary table.
- *   d) If the referencing table is a declared local temporary table, then the referenced table shall be either a global temporary table, a created local temporary table or a declared local temporary table.
- * 
- * 6) If the referenced table is a temporary table with ON COMMIT DELETE ROWS specified, then the ref-erencing table shall specify ON COMMIT DELETE ROWS .
- * 7) Each referencing column shall identify a column of the referencing table, and the same column shall not be identified more than once.
- * 9) The <referencing columns> shall contain the same number of <column name> s as the <referenced table and columns> . The i-th column identified in the <referencing columns> corresponds to the i-th column identified in the <referenced table and columns> . The declared type of each referencing column shall be comparable to the declared type of the corresponding referenced column. There shall not be corresponding constituents of the declared type of a referencing column and the declared type of the corresponding referenced column such that one constituent is datetime with time zone and the other is datetime without time zone.
- * 10) If a <referential constraint definition> does not specify any <update rule> , then an <update rule> with a <referential action> of NO ACTION is implicit.
- * 11) If a <referential constraint definition> does not specify any <delete rule> , then a <delete rule> with a <referential action> of NO ACTION is implicit.
+ * Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints, Reference, 5WD-02-Foundation-2002-12 11.8 <referencial constraint definition>
  * 
  * <!-- end-model-doc -->
  *
@@ -58,7 +42,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ForeignKey extends ReferenceConstraint{
+public interface ForeignKey extends ReferenceConstraint {
 	/**
 	 * Returns the value of the '<em><b>Match</b></em>' attribute.
 	 * The default value is <code>"MATCH_SIMPLE"</code>.

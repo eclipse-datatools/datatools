@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionGranularityType.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: ActionGranularityType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -18,9 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The literals of this enumeration are used to indicate whether the actionStatement of a Trigger is to be executed once for each affected row, in the case of a row-level trigger, or once for the whole triggering INSERT , DELETE , MERGE , or UPDATE
- * statement, in the case of a statement-level trigger.
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.38 Triggers
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getActionGranularityType()
  * @model
@@ -61,7 +59,7 @@ public final class ActionGranularityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ActionGranularityType STATEMENT_LITERAL = new ActionGranularityType(STATEMENT, "STATEMENT"); //$NON-NLS-1$
+	public static final ActionGranularityType STATEMENT_LITERAL = new ActionGranularityType(STATEMENT, "STATEMENT", "STATEMENT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>ROW</b></em>' literal object.
@@ -75,7 +73,7 @@ public final class ActionGranularityType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ActionGranularityType ROW_LITERAL = new ActionGranularityType(ROW, "ROW"); //$NON-NLS-1$
+	public static final ActionGranularityType ROW_LITERAL = new ActionGranularityType(ROW, "ROW", "ROW"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Action Granularity Type</b></em>' enumerators.
@@ -98,15 +96,15 @@ public final class ActionGranularityType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Action Granularity Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Action Granularity Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ActionGranularityType get(String name) {
+	public static ActionGranularityType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ActionGranularityType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -114,7 +112,23 @@ public final class ActionGranularityType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Action Granularity Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Action Granularity Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ActionGranularityType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ActionGranularityType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Action Granularity Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -133,8 +147,8 @@ public final class ActionGranularityType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActionGranularityType(int value, String name) {
-		super(value, name);
+	private ActionGranularityType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ActionGranularityType

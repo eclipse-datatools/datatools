@@ -41,6 +41,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDefinedType {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +82,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getUserDefinedType();
+		return SQLDataTypesPackage.Literals.USER_DEFINED_TYPE;
 	}
 
 	/**
@@ -85,8 +92,8 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 */
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
-			Schema oldSchema = schema;
-			schema = (Schema)eResolveProxy((InternalEObject)schema);
+			InternalEObject oldSchema = (InternalEObject)schema;
+			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA, oldSchema, schema));
@@ -186,22 +193,14 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
+				if (schema != null)
+					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
+				return basicSetSchema((Schema)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -209,22 +208,14 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING:
-					return basicSetOrdering(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
+				return basicSetSchema(null, msgs);
+			case SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING:
+				return basicSetOrdering(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -232,25 +223,15 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__NAME:
-				return getName();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
 				if (resolve) return getSchema();
 				return basicGetSchema();
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING:
 				return getOrdering();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -258,25 +239,8 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
 				setSchema((Schema)newValue);
 				return;
@@ -284,7 +248,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 				setOrdering((UserDefinedTypeOrdering)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -292,23 +256,8 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
 				setSchema((Schema)null);
 				return;
@@ -316,7 +265,7 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 				setOrdering((UserDefinedTypeOrdering)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -324,24 +273,14 @@ public abstract class UserDefinedTypeImpl extends DataTypeImpl implements UserDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.USER_DEFINED_TYPE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__SCHEMA:
 				return schema != null;
 			case SQLDataTypesPackage.USER_DEFINED_TYPE__ORDERING:
 				return ordering != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //UserDefinedTypeImpl

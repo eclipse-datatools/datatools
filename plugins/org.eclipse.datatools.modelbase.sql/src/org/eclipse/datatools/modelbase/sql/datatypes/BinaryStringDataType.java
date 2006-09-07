@@ -17,13 +17,8 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.3 Binary strings
+ * Reference: 5WD-02-Foundation-2002-12 4.3 Binary strings
  * 
- * A binary string is a sequence of octets that does not have either a character set or collation associated with it. A binary string data type is described by a binary string data type descriptor. A binary string data type descriptor contains:
- *  - The name of the data type (BINARY LARGE OBJECT ).
- *  - The maximum length of the binary string data type (in octets).
- * 
- * A binary string is assignable only to sites of data type BINARY LARGE OBJECT . If a store assignment would result in the loss of non-zero octets due to truncation, then an exception condition is raised. If a retrieval assignment would result in the loss of octets due to truncation, then a warning condition is raised.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +32,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model
  * @generated
  */
-public interface BinaryStringDataType extends PredefinedDataType{
+public interface BinaryStringDataType extends PredefinedDataType {
 	/**
 	 * Returns the value of the '<em><b>Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->

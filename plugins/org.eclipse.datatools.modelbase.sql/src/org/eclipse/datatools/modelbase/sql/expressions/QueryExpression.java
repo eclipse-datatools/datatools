@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A boolean value expression specifying a condition that is True, False, or Unknown.
+ * Reference: 5WD-02-Foundation-2002-12 7 Query Expression
  * 
  * <!-- end-model-doc -->
  *
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * @extends EDataObject
  * @generated
  */
-public interface QueryExpression extends EDataObject{
+public interface QueryExpression extends EDataObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

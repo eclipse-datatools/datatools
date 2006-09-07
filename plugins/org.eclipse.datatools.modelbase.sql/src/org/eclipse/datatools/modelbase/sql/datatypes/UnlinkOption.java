@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UnlinkOption.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: UnlinkOption.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -67,7 +67,7 @@ public final class UnlinkOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final UnlinkOption RESTORE_LITERAL = new UnlinkOption(RESTORE, "RESTORE"); //$NON-NLS-1$
+	public static final UnlinkOption RESTORE_LITERAL = new UnlinkOption(RESTORE, "RESTORE", "RESTORE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DELETE</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class UnlinkOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final UnlinkOption DELETE_LITERAL = new UnlinkOption(DELETE, "DELETE"); //$NON-NLS-1$
+	public static final UnlinkOption DELETE_LITERAL = new UnlinkOption(DELETE, "DELETE", "DELETE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class UnlinkOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final UnlinkOption NONE_LITERAL = new UnlinkOption(NONE, "NONE"); //$NON-NLS-1$
+	public static final UnlinkOption NONE_LITERAL = new UnlinkOption(NONE, "NONE", "NONE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Unlink Option</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class UnlinkOption extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Unlink Option</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Unlink Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static UnlinkOption get(String name) {
+	public static UnlinkOption get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			UnlinkOption result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class UnlinkOption extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Unlink Option</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Unlink Option</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static UnlinkOption getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			UnlinkOption result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Unlink Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class UnlinkOption extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private UnlinkOption(int value, String name) {
-		super(value, name);
+	private UnlinkOption(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //UnlinkOption

@@ -17,21 +17,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * From 5WD-02-Foundation-2002-12
- * 4.23 SQL-invoked routines
- * 
- * ...
- * 
- * If the SQL-invoked routine is an SQL-invoked function, then:
- * - If the SQL-invoked routine is an SQL-invoked function, then an indication of whether the SQL-invoked function is an SQL-invoked method.
- * - The <returns data type> of the SQL-invoked function.
- * - If the <returns data type> simply contains <locator indication>, then an indication that the return value is a locator.
- * - An indication of whether the SQL-invoked function is a type-preserving function or not.
- * - An indication of whether the SQL-invoked function is a mutator function or not.
- * - If the SQL-invoked function is a type-preserving function, then an indication of which parameter is the result parameter.
- * - An indication of whether the SQL-invoked function is a null-call function.
- * 
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
  * <!-- end-model-doc -->
  *
  * <p>
@@ -52,7 +38,7 @@ package org.eclipse.datatools.modelbase.sql.routines;
  * @model
  * @generated
  */
-public interface Function extends Routine{
+public interface Function extends Routine {
 	/**
 	 * Returns the value of the '<em><b>Null Call</b></em>' attribute.
 	 * <!-- begin-user-doc -->

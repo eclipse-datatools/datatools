@@ -19,31 +19,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.20 SQL-schemas
- * 
- * An SQL-schema is a persistent descriptor that includes:
- *  - The name of the SQL-schema.
- *  - The <authorization identifier> of the owner of the SQL-schema.
- *  - The name of the default character set for the SQL-schema.
- *  - The <schema path specification> defining the SQL-path for SQL-invoked routines for the SQL-schema.
- *  - The descriptor of every component of the SQL-schema.
- * 
- * In this part of ISO/IEC 9075, the term "schema" is used only in the sense of SQL-schema. The persistent objects described by the descriptors are said to be owned by or to have been created by the <authorization identifier> of the schema. Each component descriptor is one of:
- *  - A domain descriptor.
- *  - A base table descriptor.
- *  - A view descriptor.
- *  - A constraint descriptor.
- *  - A privilege descriptor.
- *  - A character set descriptor.
- *  - A collation descriptor.
- *  - A transliteration descriptor.
- *  - A user-defined type descriptor.
- *  - A routine descriptor.
- *  - A sequence generator descriptor.
- * 
- * A schema is created initially using a <schema definition> and may be subsequently modified incrementally over time by the execution of <SQL schema statement> s. <schema name> s are unique within a catalog. A <schema name> is explicitly or implicitly qualified by a <catalog name> that identifies a catalog. Base tables and views are identified by <table name> s. A <table name> consists of a <schema name> and an <identifier> . The <schema name> identifies the schema in which a persistent base table or view identified by the <table name> is defined. Base tables and views defined in different schemas can have <identifier> s that are equal according to the General Rules of Subclause 8.2, "<comparison predicate> ".
- * 
- * If a reference to a <table name> does not explicitly contain a <schema name> , then a specific <schema name> is implied. The particular <schema name> associated with such a <table name> depends on the context in which the <table name> appears and is governed by the rules for <schema qualified name>. If a reference to an SQL-invoked routine that is contained in a <routine invocation> does not explicitly contain a <schema name> , then the SQL-invoked routine is selected from the SQL-path of the schema. The containing schema of an <SQL schema statement> is defined as the schema identified by the <schema name> implicitly or explicitly contained in the name of the object that is created or manipulated by that SQLstatement. 
+ * Reference: 5WD-02-Foundation-2002-12 4.20 SQL-schemas
  * 
  * <!-- end-model-doc -->
  *
@@ -55,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getTables <em>Tables</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getSequences <em>Sequences</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getDatabase <em>Database</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getCatalog <em>Catalog</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getAssertions <em>Assertions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getUserDefinedTypes <em>User Defined Types</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getCharSets <em>Char Sets</em>}</li>
@@ -67,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Schema extends SQLObject{
+public interface Schema extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Triggers</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.tables.Trigger}.
@@ -167,6 +144,34 @@ public interface Schema extends SQLObject{
 	 * @generated
 	 */
 	void setDatabase(Database value);
+
+	/**
+	 * Returns the value of the '<em><b>Catalog</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.Catalog#getSchemas <em>Schemas</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Catalog</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Catalog</em>' reference.
+	 * @see #setCatalog(Catalog)
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSchema_Catalog()
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Catalog#getSchemas
+	 * @model opposite="schemas" required="true"
+	 * @generated
+	 */
+	Catalog getCatalog();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getCatalog <em>Catalog</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Catalog</em>' reference.
+	 * @see #getCatalog()
+	 * @generated
+	 */
+	void setCatalog(Catalog value);
 
 	/**
 	 * Returns the value of the '<em><b>Assertions</b></em>' reference list.

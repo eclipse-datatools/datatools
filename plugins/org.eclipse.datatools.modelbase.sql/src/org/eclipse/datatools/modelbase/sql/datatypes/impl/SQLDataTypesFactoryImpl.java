@@ -14,7 +14,11 @@ import org.eclipse.datatools.modelbase.sql.datatypes.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +27,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataTypesFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLDataTypesFactory init() {
+		try {
+			SQLDataTypesFactory theSQLDataTypesFactory = (SQLDataTypesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/datatypes.ecore"); //$NON-NLS-1$ 
+			if (theSQLDataTypesFactory != null) {
+				return theSQLDataTypesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLDataTypesFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -71,56 +94,26 @@ public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataType
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SQLDataTypesPackage.COERCIBILITY_TYPE: {
-				CoercibilityType result = CoercibilityType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.INTERVAL_QUALIFIER_TYPE: {
-				IntervalQualifierType result = IntervalQualifierType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.ORDERING_TYPE: {
-				OrderingType result = OrderingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.ORDERING_CATEGORY_TYPE: {
-				OrderingCategoryType result = OrderingCategoryType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.PRIMITIVE_TYPE: {
-				PrimitiveType result = PrimitiveType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.LINK_CONTROL_OPTION: {
-				LinkControlOption result = LinkControlOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.INTEGRITY_CONTROL_OPTION: {
-				IntegrityControlOption result = IntegrityControlOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.READ_PERMISSION_OPTION: {
-				ReadPermissionOption result = ReadPermissionOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.WRITE_PERMISSION_OPTION: {
-				WritePermissionOption result = WritePermissionOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLDataTypesPackage.UNLINK_OPTION: {
-				UnlinkOption result = UnlinkOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
+			case SQLDataTypesPackage.COERCIBILITY_TYPE:
+				return createCoercibilityTypeFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.INTERVAL_QUALIFIER_TYPE:
+				return createIntervalQualifierTypeFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.ORDERING_TYPE:
+				return createOrderingTypeFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.ORDERING_CATEGORY_TYPE:
+				return createOrderingCategoryTypeFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.PRIMITIVE_TYPE:
+				return createPrimitiveTypeFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.LINK_CONTROL_OPTION:
+				return createLinkControlOptionFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.INTEGRITY_CONTROL_OPTION:
+				return createIntegrityControlOptionFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.READ_PERMISSION_OPTION:
+				return createReadPermissionOptionFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.WRITE_PERMISSION_OPTION:
+				return createWritePermissionOptionFromString(eDataType, initialValue);
+			case SQLDataTypesPackage.UNLINK_OPTION:
+				return createUnlinkOptionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -134,25 +127,25 @@ public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataType
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLDataTypesPackage.COERCIBILITY_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertCoercibilityTypeToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.INTERVAL_QUALIFIER_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertIntervalQualifierTypeToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.ORDERING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertOrderingTypeToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.ORDERING_CATEGORY_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertOrderingCategoryTypeToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.PRIMITIVE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertPrimitiveTypeToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.LINK_CONTROL_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertLinkControlOptionToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.INTEGRITY_CONTROL_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertIntegrityControlOptionToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.READ_PERMISSION_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertReadPermissionOptionToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.WRITE_PERMISSION_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertWritePermissionOptionToString(eDataType, instanceValue);
 			case SQLDataTypesPackage.UNLINK_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertUnlinkOptionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -346,6 +339,206 @@ public class SQLDataTypesFactoryImpl extends EFactoryImpl implements SQLDataType
 	public XMLDataType createXMLDataType() {
 		XMLDataTypeImpl xmlDataType = new XMLDataTypeImpl();
 		return xmlDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CoercibilityType createCoercibilityTypeFromString(EDataType eDataType, String initialValue) {
+		CoercibilityType result = CoercibilityType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCoercibilityTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntervalQualifierType createIntervalQualifierTypeFromString(EDataType eDataType, String initialValue) {
+		IntervalQualifierType result = IntervalQualifierType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIntervalQualifierTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrderingType createOrderingTypeFromString(EDataType eDataType, String initialValue) {
+		OrderingType result = OrderingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertOrderingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrderingCategoryType createOrderingCategoryTypeFromString(EDataType eDataType, String initialValue) {
+		OrderingCategoryType result = OrderingCategoryType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertOrderingCategoryTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveType createPrimitiveTypeFromString(EDataType eDataType, String initialValue) {
+		PrimitiveType result = PrimitiveType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPrimitiveTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LinkControlOption createLinkControlOptionFromString(EDataType eDataType, String initialValue) {
+		LinkControlOption result = LinkControlOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLinkControlOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IntegrityControlOption createIntegrityControlOptionFromString(EDataType eDataType, String initialValue) {
+		IntegrityControlOption result = IntegrityControlOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIntegrityControlOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ReadPermissionOption createReadPermissionOptionFromString(EDataType eDataType, String initialValue) {
+		ReadPermissionOption result = ReadPermissionOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertReadPermissionOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WritePermissionOption createWritePermissionOptionFromString(EDataType eDataType, String initialValue) {
+		WritePermissionOption result = WritePermissionOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertWritePermissionOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnlinkOption createUnlinkOptionFromString(EDataType eDataType, String initialValue) {
+		UnlinkOption result = UnlinkOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertUnlinkOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

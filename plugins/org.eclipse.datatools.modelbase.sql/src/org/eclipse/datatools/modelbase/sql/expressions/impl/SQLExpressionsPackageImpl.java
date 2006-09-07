@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -145,7 +147,7 @@ public class SQLExpressionsPackageImpl extends EPackageImpl implements SQLExpres
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
@@ -331,7 +333,7 @@ public class SQLExpressionsPackageImpl extends EPackageImpl implements SQLExpres
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 
 		// Add supertypes to classes
 		queryExpressionDefaultEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
@@ -344,24 +346,24 @@ public class SQLExpressionsPackageImpl extends EPackageImpl implements SQLExpres
 		// Initialize classes and features; add operations and parameters
 		initEClass(queryExpressionEClass, QueryExpression.class, "QueryExpression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(queryExpressionEClass, ecorePackage.getEString(), "getSQL"); //$NON-NLS-1$
+		addEOperation(queryExpressionEClass, ecorePackage.getEString(), "getSQL", 0, 1); //$NON-NLS-1$
 
 		EOperation op = addEOperation(queryExpressionEClass, null, "setSQL"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "sqlText"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "sqlText", 0, 1); //$NON-NLS-1$
 
 		initEClass(valueExpressionEClass, ValueExpression.class, "ValueExpression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(valueExpressionEClass, ecorePackage.getEString(), "getSQL"); //$NON-NLS-1$
+		addEOperation(valueExpressionEClass, ecorePackage.getEString(), "getSQL", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(valueExpressionEClass, null, "setSQL"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "sqlText"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "sqlText", 0, 1); //$NON-NLS-1$
 
 		initEClass(searchConditionEClass, SearchCondition.class, "SearchCondition", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(searchConditionEClass, ecorePackage.getEString(), "getSQL"); //$NON-NLS-1$
+		addEOperation(searchConditionEClass, ecorePackage.getEString(), "getSQL", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(searchConditionEClass, null, "setSQL"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "sqlText"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "sqlText", 0, 1); //$NON-NLS-1$
 
 		initEClass(queryExpressionDefaultEClass, QueryExpressionDefault.class, "QueryExpressionDefault", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getQueryExpressionDefault_SQL(), ecorePackage.getEString(), "SQL", null, 0, 1, QueryExpressionDefault.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

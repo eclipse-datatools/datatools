@@ -42,6 +42,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FieldImpl extends TypedElementImpl implements Field {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getScopeCheck() <em>Scope Check</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96,7 +103,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getField();
+		return SQLDataTypesPackage.Literals.FIELD;
 	}
 
 	/**
@@ -146,69 +153,14 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.FIELD__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.FIELD__CONTAINED_TYPE:
-					return basicSetContainedType(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.FIELD__NAME:
-				return getName();
-			case SQLDataTypesPackage.FIELD__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.FIELD__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.FIELD__LABEL:
-				return getLabel();
-			case SQLDataTypesPackage.FIELD__CONTAINED_TYPE:
-				return getContainedType();
-			case SQLDataTypesPackage.FIELD__REFERENCED_TYPE:
-				if (resolve) return getReferencedType();
-				return basicGetReferencedType();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
 				return getScopeCheck();
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECKED:
 				return isScopeChecked() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -216,31 +168,8 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__CONTAINED_TYPE:
-				setContainedType((SQLDataType)newValue);
-				return;
-			case SQLDataTypesPackage.FIELD__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
 				setScopeCheck((ReferentialActionType)newValue);
 				return;
@@ -248,7 +177,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 				setScopeChecked(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -256,29 +185,8 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.FIELD__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.FIELD__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.FIELD__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.FIELD__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.FIELD__CONTAINED_TYPE:
-				setContainedType((SQLDataType)null);
-				return;
-			case SQLDataTypesPackage.FIELD__REFERENCED_TYPE:
-				setReferencedType((UserDefinedType)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
 				setScopeCheck(SCOPE_CHECK_EDEFAULT);
 				return;
@@ -286,7 +194,7 @@ public class FieldImpl extends TypedElementImpl implements Field {
 				setScopeChecked(SCOPE_CHECKED_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -294,28 +202,14 @@ public class FieldImpl extends TypedElementImpl implements Field {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.FIELD__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.FIELD__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.FIELD__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.FIELD__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.FIELD__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLDataTypesPackage.FIELD__CONTAINED_TYPE:
-				return containedType != null;
-			case SQLDataTypesPackage.FIELD__REFERENCED_TYPE:
-				return referencedType != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECK:
 				return scopeCheck != SCOPE_CHECK_EDEFAULT;
 			case SQLDataTypesPackage.FIELD__SCOPE_CHECKED:
 				return scopeChecked != SCOPE_CHECKED_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

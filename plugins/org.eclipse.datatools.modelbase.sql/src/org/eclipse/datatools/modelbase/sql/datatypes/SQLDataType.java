@@ -17,7 +17,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * SQLDataType represents any non user defined data type.  I was introduced because a TypedElement needs to distinguish between UDTs and non UDTs.
+ * SQLDataType represents any non user defined data type.  It was introduced because a TypedElement needs to distinguish between UDTs and non UDTs.
  * <!-- end-model-doc -->
  *
  *
@@ -25,5 +25,5 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model abstract="true"
  * @generated
  */
-public interface SQLDataType extends DataType{
+public interface SQLDataType extends DataType {
 } // SQLDataType

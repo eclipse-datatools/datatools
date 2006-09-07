@@ -72,6 +72,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -419,7 +421,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
@@ -1451,10 +1453,10 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLRoutinesPackage theSQLRoutinesPackage = (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLConstraintsPackage theSQLConstraintsPackage = (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLTablesPackage theSQLTablesPackage = (SQLTablesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
 
 		// Add supertypes to classes
 		userDefinedTypeEClass.getESuperTypes().add(this.getDataType());
@@ -1496,7 +1498,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		EOperation op = addEOperation(dataTypeEClass, null, "setContainer"); //$NON-NLS-1$
-		addEParameter(op, theSQLSchemaPackage.getTypedElement(), "newContainer"); //$NON-NLS-1$
+		addEParameter(op, theSQLSchemaPackage.getTypedElement(), "newContainer", 0, 1); //$NON-NLS-1$
 
 		initEClass(predefinedDataTypeEClass, PredefinedDataType.class, "PredefinedDataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataType_PrimitiveType(), this.getPrimitiveType(), "primitiveType", null, 0, 1, PredefinedDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1534,7 +1536,7 @@ public class SQLDataTypesPackageImpl extends EPackageImpl implements SQLDataType
 		initEClass(binaryStringDataTypeEClass, BinaryStringDataType.class, "BinaryStringDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getBinaryStringDataType_Length(), ecorePackage.getEInt(), "length", null, 0, 1, BinaryStringDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(binaryStringDataTypeEClass, ecorePackage.getEBoolean(), "equals"); //$NON-NLS-1$
+		addEOperation(binaryStringDataTypeEClass, ecorePackage.getEBoolean(), "equals", 0, 1); //$NON-NLS-1$
 
 		initEClass(characterSetEClass, CharacterSet.class, "CharacterSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCharacterSet_Repertoire(), ecorePackage.getEString(), "repertoire", null, 0, 1, CharacterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

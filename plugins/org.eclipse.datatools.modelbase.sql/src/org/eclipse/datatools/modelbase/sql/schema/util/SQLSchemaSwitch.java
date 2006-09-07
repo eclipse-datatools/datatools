@@ -164,6 +164,21 @@ public class SQLSchemaSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SQLSchemaPackage.COMMENT: {
+				Comment comment = (Comment)theEObject;
+				Object result = caseComment(comment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SQLSchemaPackage.CATALOG: {
+				Catalog catalog = (Catalog)theEObject;
+				Object result = caseCatalog(catalog);
+				if (result == null) result = caseSQLObject(catalog);
+				if (result == null) result = caseENamedElement(catalog);
+				if (result == null) result = caseEModelElement(catalog);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -285,6 +300,36 @@ public class SQLSchemaSwitch {
 	 * @generated
 	 */
 	public Object caseEvent(Event object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Catalog</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Catalog</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseCatalog(Catalog object) {
 		return null;
 	}
 

@@ -23,40 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Section 4.38:
- * 
- * A trigger is defined by a <trigger definition> . A <trigger definition> specifies a trigger that is described by a
- * trigger descriptor . A trigger descriptor includes:
- *   - The name of the trigger.
- *   - The name of the base table that is the subject table.
- *   - The trigger action time (BEFORE or AFTER ).
- *   - The trigger event (INSERT , DELETE , or UPDATE ).
- *   - Whether the trigger is a statement-level trigger or a row-level trigger.
- *   - Any old transition variable name, new transition variable name, old transition table name, new transition table name.
- *   - The triggered action.
- *   - The trigger column list (possibly empty) for the trigger event.
- *   - The triggered action column set of the triggered action.
- *   - The timestamp of creation of the trigger.
- * 
- * The order of execution of a set of triggers is ascending by value of their timestamp of creation in their descriptors, such that the oldest trigger executes first. If one or more triggers have the same timestamp value, then their relative order of execution is implementation-defined.
- * 
- * A schema might include one or more trigger descriptors, each of which includes the definition of a triggered action specifying a <triggered SQL statement> that is to be executed (either once for each affected row, in the case of a row-level trigger, or once for the whole triggering INSERT , DELETE , MERGE , or UPDATE statement, in the case of a statement-level trigger) before or after rows are inserted into a table, rows are deleted from a table, or one or more columns are updated in rows of a table. The execution of such a triggered action resulting from the insertion, deletion, or updating of a table may cause the triggering of further triggered actions.
- * 
- * The <triggered SQL statement> of a triggered action is effectively executed either immediately before or
- * immediately after the trigger event, as determined by the specified trigger action time.
- * 
- * Format of trigger definition and syntax rules are defined in section 11.39.
- * 
- * OCL rules are derived from these syntax rules:
- * 4) The schema identified by the explicit or implicit <schema name> of a <trigger name> TRN shall not include a trigger descriptor whose trigger name is TRN.
- * 5) T shall be a base table that is not a declared local temporary table.
- * 6) If a <trigger column list> is specified, then:
- *   a) No <column name> shall appear more than once in the <trigger column list> .
- *   b) The <column name> s of the <trigger column list> shall identify columns of T.
- * 9) If OR or NR is specified, then FOR EACH ROW shall be specified.
- * 12) If BEFORE is specified, then:
- *   b) Neither OLD TABLE nor NEW TABLE shall be specified.
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.38 Triggers
  * <!-- end-model-doc -->
  *
  * <p>
@@ -84,7 +51,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Trigger extends SQLObject{
+public interface Trigger extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Schema</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getTriggers <em>Triggers</em>}'.

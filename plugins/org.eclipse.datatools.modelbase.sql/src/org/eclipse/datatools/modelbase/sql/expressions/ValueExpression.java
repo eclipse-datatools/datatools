@@ -18,13 +18,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.14.5 Base columns and generated columns
- * 
- * A column of a base table is either a base column or a generated column. A base column is one that is not a generated column.
- * 
- * A generated column is one whose values are determined by evaluation of a generation expression, a <value expression> whose declared type is by implication that of the column.
- * 
- * A generation expression can reference base columns of the base table to which it belongs but cannot otherwise access SQLdata. Thus, the value of the field corresponding to a generated column in row R is determined by the values of zero or more other fields of R.
+ * Reference: 5WD-02-Foundation-2002-12 4.14.5 Base columns and generated columns
  * 
  * <!-- end-model-doc -->
  *
@@ -34,7 +28,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * @extends EDataObject
  * @generated
  */
-public interface ValueExpression extends EDataObject{
+public interface ValueExpression extends EDataObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

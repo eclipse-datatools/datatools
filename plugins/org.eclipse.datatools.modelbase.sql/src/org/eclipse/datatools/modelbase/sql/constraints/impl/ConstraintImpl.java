@@ -40,6 +40,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #isDeferrable() <em>Deferrable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,7 +121,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLConstraintsPackage.eINSTANCE.getConstraint();
+		return SQLConstraintsPackage.Literals.CONSTRAINT;
 	}
 
 	/**
@@ -185,56 +192,8 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.CONSTRAINT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLConstraintsPackage.CONSTRAINT__NAME:
-				return getName();
-			case SQLConstraintsPackage.CONSTRAINT__DEPENDENCIES:
-				return getDependencies();
-			case SQLConstraintsPackage.CONSTRAINT__DESCRIPTION:
-				return getDescription();
-			case SQLConstraintsPackage.CONSTRAINT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
 				return isDeferrable() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLConstraintsPackage.CONSTRAINT__INITIALLY_DEFERRED:
@@ -242,7 +201,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 			case SQLConstraintsPackage.CONSTRAINT__ENFORCED:
 				return isEnforced() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -250,25 +209,8 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
 				setDeferrable(((Boolean)newValue).booleanValue());
 				return;
@@ -279,7 +221,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 				setEnforced(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -287,23 +229,8 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.CONSTRAINT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
 				setDeferrable(DEFERRABLE_EDEFAULT);
 				return;
@@ -314,7 +241,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 				setEnforced(ENFORCED_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -322,18 +249,8 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.CONSTRAINT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLConstraintsPackage.CONSTRAINT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLConstraintsPackage.CONSTRAINT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLConstraintsPackage.CONSTRAINT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLConstraintsPackage.CONSTRAINT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.CONSTRAINT__DEFERRABLE:
 				return deferrable != DEFERRABLE_EDEFAULT;
 			case SQLConstraintsPackage.CONSTRAINT__INITIALLY_DEFERRED:
@@ -341,7 +258,7 @@ public abstract class ConstraintImpl extends SQLObjectImpl implements Constraint
 			case SQLConstraintsPackage.CONSTRAINT__ENFORCED:
 				return enforced != ENFORCED_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

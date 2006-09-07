@@ -17,13 +17,17 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * A representation of the model object '<em><b>Search Condition</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getSearchCondition()
  * @model interface="true" abstract="true"
  * @extends EDataObject
  * @generated
  */
-public interface SearchCondition extends EDataObject{
+public interface SearchCondition extends EDataObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

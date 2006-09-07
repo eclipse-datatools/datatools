@@ -17,13 +17,8 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.1 Data types
+ * Reference: 5WD-02-Foundation-2002-12 4.1 Data types
  * 
- * A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
- * 
- * Every predefined data type is a subtype of itself and of no other data types. It follows that every predefined data type is a supertype of itself and of no other data types. The predefined data types are individually described in each of Subclause 4.2, "Character strings", through Subclause 4.6, "Datetimes and intervals". Row types, reference types and collection types are described in Subclause 4.8, "Row types", Subclause 4.9, "Reference types", Subclause 4.10, "Collection types", respectively.
- * 
- * SQL defines predefined data types named by the following <key word> s: CHARACTER , CHARACTER VARYING , CHARACTER LARGE OBJECT , BINARY LARGE OBJECT , NUMERIC , DECIMAL , SMALLINT , INTEGER , BIGINT , FLOAT , REAL , DOUBLE PRECISION , BOOLEAN , DATE , TIME , TIMESTAMP , and INTERVAL . These names are used in the type designators that constitute the type precedence lists specified in Subclause 9.5, "Type precedence list determination".
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +32,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model abstract="true"
  * @generated
  */
-public interface PredefinedDataType extends SQLDataType{
+public interface PredefinedDataType extends SQLDataType {
 	/**
 	 * Returns the value of the '<em><b>Primitive Type</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType}.

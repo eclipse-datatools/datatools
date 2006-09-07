@@ -64,6 +64,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,7 +335,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLTablesPackage.eINSTANCE.getTrigger();
+		return SQLTablesPackage.Literals.TRIGGER;
 	}
 
 	/**
@@ -338,8 +345,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 */
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
-			Schema oldSchema = schema;
-			schema = (Schema)eResolveProxy((InternalEObject)schema);
+			InternalEObject oldSchema = (InternalEObject)schema;
+			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TRIGGER__SCHEMA, oldSchema, schema));
@@ -398,8 +405,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 */
 	public Table getSubjectTable() {
 		if (subjectTable != null && subjectTable.eIsProxy()) {
-			Table oldSubjectTable = subjectTable;
-			subjectTable = (Table)eResolveProxy((InternalEObject)subjectTable);
+			InternalEObject oldSubjectTable = (InternalEObject)subjectTable;
+			subjectTable = (Table)eResolveProxy(oldSubjectTable);
 			if (subjectTable != oldSubjectTable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLTablesPackage.TRIGGER__SUBJECT_TABLE, oldSubjectTable, subjectTable));
@@ -721,26 +728,18 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLTablesPackage.TRIGGER__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TRIGGERS, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
-					if (subjectTable != null)
-						msgs = ((InternalEObject)subjectTable).eInverseRemove(this, SQLTablesPackage.TABLE__TRIGGERS, Table.class, msgs);
-					return basicSetSubjectTable((Table)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLTablesPackage.TRIGGER__SCHEMA:
+				if (schema != null)
+					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__TRIGGERS, Schema.class, msgs);
+				return basicSetSchema((Schema)otherEnd, msgs);
+			case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
+				if (subjectTable != null)
+					msgs = ((InternalEObject)subjectTable).eInverseRemove(this, SQLTablesPackage.TABLE__TRIGGERS, Table.class, msgs);
+				return basicSetSubjectTable((Table)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -748,26 +747,18 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLTablesPackage.TRIGGER__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLTablesPackage.TRIGGER__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
-					return basicSetSubjectTable(null, msgs);
-				case SQLTablesPackage.TRIGGER__ACTION_STATEMENT:
-					return ((InternalEList)getActionStatement()).basicRemove(otherEnd, msgs);
-				case SQLTablesPackage.TRIGGER__WHEN:
-					return basicSetWhen(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLTablesPackage.TRIGGER__SCHEMA:
+				return basicSetSchema(null, msgs);
+			case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
+				return basicSetSubjectTable(null, msgs);
+			case SQLTablesPackage.TRIGGER__ACTION_STATEMENT:
+				return ((InternalEList)getActionStatement()).basicRemove(otherEnd, msgs);
+			case SQLTablesPackage.TRIGGER__WHEN:
+				return basicSetWhen(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -775,18 +766,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLTablesPackage.TRIGGER__NAME:
-				return getName();
-			case SQLTablesPackage.TRIGGER__DEPENDENCIES:
-				return getDependencies();
-			case SQLTablesPackage.TRIGGER__DESCRIPTION:
-				return getDescription();
-			case SQLTablesPackage.TRIGGER__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
 				if (resolve) return getSchema();
 				return basicGetSchema();
@@ -820,7 +801,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 			case SQLTablesPackage.TRIGGER__NEW_TABLE:
 				return getNewTable();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -828,25 +809,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLTablesPackage.TRIGGER__NAME:
-				setName((String)newValue);
-				return;
-			case SQLTablesPackage.TRIGGER__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLTablesPackage.TRIGGER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLTablesPackage.TRIGGER__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
 				setSchema((Schema)newValue);
 				return;
@@ -892,7 +856,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 				setNewTable((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -900,23 +864,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLTablesPackage.TRIGGER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLTablesPackage.TRIGGER__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLTablesPackage.TRIGGER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLTablesPackage.TRIGGER__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
 				setSchema((Schema)null);
 				return;
@@ -960,7 +909,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 				setNewTable(NEW_TABLE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -968,18 +917,8 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLTablesPackage.TRIGGER__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLTablesPackage.TRIGGER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLTablesPackage.TRIGGER__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLTablesPackage.TRIGGER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLTablesPackage.TRIGGER__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLTablesPackage.TRIGGER__SCHEMA:
 				return schema != null;
 			case SQLTablesPackage.TRIGGER__SUBJECT_TABLE:
@@ -1011,7 +950,7 @@ public class TriggerImpl extends SQLObjectImpl implements Trigger {
 			case SQLTablesPackage.TRIGGER__NEW_TABLE:
 				return NEW_TABLE_EDEFAULT == null ? newTable != null : !NEW_TABLE_EDEFAULT.equals(newTable);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

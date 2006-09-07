@@ -19,35 +19,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.2.6 Character sets
+ * Reference: 5WD-02-Foundation-2002-12 4.2.6 Character sets, 5WD-02-Foundation-2002-12 4.2.7 Universal character sets
  * 
- * An SQL <character set specification> allows a reference to a character set name defined by a standard, an SQLimplementation,
- * or a user. A character set is described by a character set descriptor. A character set descriptor includes:
- *  - The name of the character set.
- *  - The name of the character repertoire for the character set.
- *  - The name of the character encoding form for the character set.
- *  - The name of the default collation for the character set.
- * 
- * The following SQL supported character set names are specified as part of ISO/IEC 9075:
- *  - SQL_CHARACTER is a character set whose repertoire is SQL_CHARACTER and whose character encoding form is SQL_CHARACTER. The name of its default collation is SQL_CHARACTER.
- *  - GRAPHIC_IRV is a character set whose repertoire is GRAPHIC_IRV and whose character encoding form is GRAPHIC_IRV. The name of its default collation is GRAPHIC_IRV.
- *  - ASCII_GRAPHIC is a synonym for GRAPHIC_IRV.
- *  - LATIN1 is a character set whose repertoire is LATIN1 and whose character encoding form is LATIN1. The name of its default collation is LATIN1.
- *  - ISO8BIT is a character set whose repertoire is ISO8BIT and whose character encoding form is ISO8BIT. The name of its default collation is ISO8BIT.
- *  - ASCII_FULL is a synonym for ISO8BIT.
- *  - UTF32 is a character set whose repertoire is UCS and whose character encoding form is UTF32. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
- *  - UTF16 is a character set whose repertoire is UCS and whose character encoding form is UTF16. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
- *  - UTF8 is the name of a character set whose repertoire is UCS and whose character encoding form is UTF8. It is implementation-defined whether the name of its default collation is UCS_BASIC or UNICODE.
- *  - SQL_TEXT is a character set whose repertoire is SQL_TEXT and whose character encoding form is SQL_TEXT. The name of its default collation is SQL_TEXT.
- *  - SQL_IDENTIFIER is a character set whose repertoire is SQL_IDENTIFIER and whose character encoding form is SQL_IDENTIFIER. The name of its default collation is SQL_IDENTIFIER.
- * 
- * 
- * 4.2.7 Universal character sets
- * 
- * A UCS string is a character string whose character repertoire is UCS and whose character encoding form is one of UTF8, UTF16, or UTF32. Any two UCS strings are comparable.
- * An SQL-implementation may assume that all UCS strings are normalized in Normalization Form C (NFC), as specified by [Unicode15]. With the exception of <normalize function> and <normalized predicate> , the result of any operation on an unnormalized UCS string is implementation-defined.
- * 
- * Conversion of UCS strings from one character set to another is automatic. Detection of a noncharacter in a UCS-string causes an exception condition to be raised. The detection of an unassigned code point does not.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -64,7 +37,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
  * @model
  * @generated
  */
-public interface CharacterSet extends SQLObject{
+public interface CharacterSet extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Repertoire</b></em>' attribute.
 	 * <!-- begin-user-doc -->

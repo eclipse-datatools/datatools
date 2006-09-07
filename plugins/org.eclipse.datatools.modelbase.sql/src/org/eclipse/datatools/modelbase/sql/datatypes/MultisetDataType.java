@@ -17,12 +17,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.1 Data types
- * 
- * A data type is a set of representable values. Every representable value belongs to at least one data type and some belong to several data types. [...]
- * 
- * A constructed type is specified using one of SQL's data type constructors, ARRAY , MULTISET , REF , and ROW . A constructed type is either an array type, a multiset type, a reference type, or a row type, according to whether it is specified with ARRAY , MULTISET , REF , or ROW , respectively. Array types and multiset types are known generically as collection types.
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.10.2 Multisets
  * <!-- end-model-doc -->
  *
  *
@@ -30,5 +25,5 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model abstract="true"
  * @generated
  */
-public interface MultisetDataType extends CollectionDataType{
+public interface MultisetDataType extends CollectionDataType {
 } // MultisetDataType

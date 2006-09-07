@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage
  * @generated
  */
-public interface SQLExpressionsFactory extends EFactory{
+public interface SQLExpressionsFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLExpressionsFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsFactoryImpl();
+	SQLExpressionsFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Query Expression Default</em>'.

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLConstraintsPackage extends EPackage{
+public interface SQLConstraintsPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -121,6 +121,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int CONSTRAINT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,7 +157,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int CONSTRAINT__ENFORCED = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Constraint</em>' class.
+	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -212,6 +221,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int ASSERTION__LABEL = CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSERTION__COMMENTS = CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,7 +284,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int ASSERTION__CONSTRAINED_TABLES = CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Assertion</em>' class.
+	 * The number of structural features of the '<em>Assertion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -330,6 +348,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int TABLE_CONSTRAINT__LABEL = CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONSTRAINT__COMMENTS = CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,7 +393,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int TABLE_CONSTRAINT__BASE_TABLE = CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Table Constraint</em>' class.
+	 * The number of structural features of the '<em>Table Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -430,6 +457,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int REFERENCE_CONSTRAINT__LABEL = TABLE_CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -475,7 +511,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int REFERENCE_CONSTRAINT__MEMBERS = TABLE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Reference Constraint</em>' class.
+	 * The number of structural features of the '<em>Reference Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -539,6 +575,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int CHECK_CONSTRAINT__LABEL = TABLE_CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -584,7 +629,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int CHECK_CONSTRAINT__SEARCH_CONDITION = TABLE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Check Constraint</em>' class.
+	 * The number of structural features of the '<em>Check Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -646,6 +691,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @ordered
 	 */
 	int FOREIGN_KEY__LABEL = REFERENCE_CONSTRAINT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
@@ -756,7 +810,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int FOREIGN_KEY__REFERENCED_TABLE = REFERENCE_CONSTRAINT_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the the '<em>Foreign Key</em>' class.
+	 * The number of structural features of the '<em>Foreign Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -820,6 +874,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int UNIQUE_CONSTRAINT__LABEL = REFERENCE_CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIQUE_CONSTRAINT__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -874,7 +937,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int UNIQUE_CONSTRAINT__FOREIGN_KEY = REFERENCE_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Unique Constraint</em>' class.
+	 * The number of structural features of the '<em>Unique Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -938,6 +1001,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int PRIMARY_KEY__LABEL = UNIQUE_CONSTRAINT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY__COMMENTS = UNIQUE_CONSTRAINT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -992,7 +1064,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int PRIMARY_KEY__FOREIGN_KEY = UNIQUE_CONSTRAINT__FOREIGN_KEY;
 
 	/**
-	 * The number of structural features of the the '<em>Primary Key</em>' class.
+	 * The number of structural features of the '<em>Primary Key</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1054,6 +1126,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @ordered
 	 */
 	int INDEX__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
@@ -1137,7 +1218,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int INDEX__INCLUDED_MEMBERS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the the '<em>Index</em>' class.
+	 * The number of structural features of the '<em>Index</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1201,6 +1282,15 @@ public interface SQLConstraintsPackage extends EPackage{
 	int INDEX_MEMBER__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_MEMBER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Increment Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1219,7 +1309,7 @@ public interface SQLConstraintsPackage extends EPackage{
 	int INDEX_MEMBER__COLUMN = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Index Member</em>' class.
+	 * The number of structural features of the '<em>Index Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1684,5 +1774,364 @@ public interface SQLConstraintsPackage extends EPackage{
 	 * @generated
 	 */
 	SQLConstraintsFactory getSQLConstraintsFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.AssertionImpl <em>Assertion</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.AssertionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getAssertion()
+		 * @generated
+		 */
+		EClass ASSERTION = eINSTANCE.getAssertion();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSERTION__SEARCH_CONDITION = eINSTANCE.getAssertion_SearchCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSERTION__SCHEMA = eINSTANCE.getAssertion_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Constrained Tables</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ASSERTION__CONSTRAINED_TABLES = eINSTANCE.getAssertion_ConstrainedTables();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ConstraintImpl <em>Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.ConstraintImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getConstraint()
+		 * @generated
+		 */
+		EClass CONSTRAINT = eINSTANCE.getConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Deferrable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__DEFERRABLE = eINSTANCE.getConstraint_Deferrable();
+
+		/**
+		 * The meta object literal for the '<em><b>Initially Deferred</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__INITIALLY_DEFERRED = eINSTANCE.getConstraint_InitiallyDeferred();
+
+		/**
+		 * The meta object literal for the '<em><b>Enforced</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__ENFORCED = eINSTANCE.getConstraint_Enforced();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.TableConstraintImpl <em>Table Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.TableConstraintImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getTableConstraint()
+		 * @generated
+		 */
+		EClass TABLE_CONSTRAINT = eINSTANCE.getTableConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Table</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_CONSTRAINT__BASE_TABLE = eINSTANCE.getTableConstraint_BaseTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ReferenceConstraintImpl <em>Reference Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.ReferenceConstraintImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getReferenceConstraint()
+		 * @generated
+		 */
+		EClass REFERENCE_CONSTRAINT = eINSTANCE.getReferenceConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCE_CONSTRAINT__MEMBERS = eINSTANCE.getReferenceConstraint_Members();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.CheckConstraintImpl <em>Check Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.CheckConstraintImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getCheckConstraint()
+		 * @generated
+		 */
+		EClass CHECK_CONSTRAINT = eINSTANCE.getCheckConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECK_CONSTRAINT__SEARCH_CONDITION = eINSTANCE.getCheckConstraint_SearchCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl <em>Foreign Key</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getForeignKey()
+		 * @generated
+		 */
+		EClass FOREIGN_KEY = eINSTANCE.getForeignKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Match</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOREIGN_KEY__MATCH = eINSTANCE.getForeignKey_Match();
+
+		/**
+		 * The meta object literal for the '<em><b>On Update</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOREIGN_KEY__ON_UPDATE = eINSTANCE.getForeignKey_OnUpdate();
+
+		/**
+		 * The meta object literal for the '<em><b>On Delete</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FOREIGN_KEY__ON_DELETE = eINSTANCE.getForeignKey_OnDelete();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Constraint</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY__UNIQUE_CONSTRAINT = eINSTANCE.getForeignKey_UniqueConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Members</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY__REFERENCED_MEMBERS = eINSTANCE.getForeignKey_ReferencedMembers();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Index</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY__UNIQUE_INDEX = eINSTANCE.getForeignKey_UniqueIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREIGN_KEY__REFERENCED_TABLE = eINSTANCE.getForeignKey_ReferencedTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl <em>Unique Constraint</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getUniqueConstraint()
+		 * @generated
+		 */
+		EClass UNIQUE_CONSTRAINT = eINSTANCE.getUniqueConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UNIQUE_CONSTRAINT__FOREIGN_KEY = eINSTANCE.getUniqueConstraint_ForeignKey();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.PrimaryKeyImpl <em>Primary Key</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.PrimaryKeyImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getPrimaryKey()
+		 * @generated
+		 */
+		EClass PRIMARY_KEY = eINSTANCE.getPrimaryKey();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl <em>Index</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.IndexImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIndex()
+		 * @generated
+		 */
+		EClass INDEX = eINSTANCE.getIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX__SCHEMA = eINSTANCE.getIndex_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Clustered</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX__CLUSTERED = eINSTANCE.getIndex_Clustered();
+
+		/**
+		 * The meta object literal for the '<em><b>Fill Factor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX__FILL_FACTOR = eINSTANCE.getIndex_FillFactor();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX__UNIQUE = eINSTANCE.getIndex_Unique();
+
+		/**
+		 * The meta object literal for the '<em><b>System Generated</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX__SYSTEM_GENERATED = eINSTANCE.getIndex_SystemGenerated();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX__MEMBERS = eINSTANCE.getIndex_Members();
+
+		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX__TABLE = eINSTANCE.getIndex_Table();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreign Key</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX__FOREIGN_KEY = eINSTANCE.getIndex_ForeignKey();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Members</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX__INCLUDED_MEMBERS = eINSTANCE.getIndex_IncludedMembers();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl <em>Index Member</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.IndexMemberImpl
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIndexMember()
+		 * @generated
+		 */
+		EClass INDEX_MEMBER = eINSTANCE.getIndexMember();
+
+		/**
+		 * The meta object literal for the '<em><b>Increment Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_MEMBER__INCREMENT_TYPE = eINSTANCE.getIndexMember_IncrementType();
+
+		/**
+		 * The meta object literal for the '<em><b>Column</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INDEX_MEMBER__COLUMN = eINSTANCE.getIndexMember_Column();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.MatchType <em>Match Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.MatchType
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getMatchType()
+		 * @generated
+		 */
+		EEnum MATCH_TYPE = eINSTANCE.getMatchType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.constraints.IncrementType <em>Increment Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.IncrementType
+		 * @see org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl#getIncrementType()
+		 * @generated
+		 */
+		EEnum INCREMENT_TYPE = eINSTANCE.getIncrementType();
+
+	}
 
 } //SQLConstraintsPackage

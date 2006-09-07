@@ -18,17 +18,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.14 Tables
- * 
- * A table is a collection of rows having one or more columns. [...]
- * 
- * A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
- * 
- * A derived table is a table derived directly or indirectly from one or more other tables by the evaluation of a <query expression> whose result has an element type that is a row type. The values of a derived table are derived from the values of the underlying tables when the <query expression> is evaluated.
- * 
- * A derived table descriptor describes a derived table. In addition to the components of every table descriptor, a derived table descriptor includes:
- *  - The <query expression> that defines how the table is to be derived.
- *  - An indication of whether the derived table is updatable or not.
+ * Reference: 5WD-02-Foundation-2002-12 4.14 Tables
  * 
  * <!-- end-model-doc -->
  *
@@ -43,7 +33,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
  * @model abstract="true"
  * @generated
  */
-public interface DerivedTable extends Table{
+public interface DerivedTable extends Table {
 	/**
 	 * Returns the value of the '<em><b>Query Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -17,11 +17,7 @@ package org.eclipse.datatools.modelbase.sql.tables;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.14 Tables
- * 
- * A table is a collection of rows having one or more columns. [...]
- * 
- * A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
+ * Reference: 5WD-02-Foundation-2002-12 4.14 Tables
  * 
  * <!-- end-model-doc -->
  *
@@ -37,7 +33,7 @@ package org.eclipse.datatools.modelbase.sql.tables;
  * @model
  * @generated
  */
-public interface TemporaryTable extends BaseTable{
+public interface TemporaryTable extends BaseTable {
 	/**
 	 * Returns the value of the '<em><b>Local</b></em>' attribute.
 	 * <!-- begin-user-doc -->

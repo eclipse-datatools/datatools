@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MatchType.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: MatchType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints;
 
@@ -70,7 +70,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final MatchType MATCH_SIMPLE_LITERAL = new MatchType(MATCH_SIMPLE, "MATCH_SIMPLE"); //$NON-NLS-1$
+	public static final MatchType MATCH_SIMPLE_LITERAL = new MatchType(MATCH_SIMPLE, "MATCH_SIMPLE", "MATCH_SIMPLE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MATCH FULL</b></em>' literal object.
@@ -84,7 +84,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final MatchType MATCH_FULL_LITERAL = new MatchType(MATCH_FULL, "MATCH_FULL"); //$NON-NLS-1$
+	public static final MatchType MATCH_FULL_LITERAL = new MatchType(MATCH_FULL, "MATCH_FULL", "MATCH_FULL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MATCH PARTIAL</b></em>' literal object.
@@ -98,7 +98,7 @@ public final class MatchType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final MatchType MATCH_PARTIAL_LITERAL = new MatchType(MATCH_PARTIAL, "MATCH_PARTIAL"); //$NON-NLS-1$
+	public static final MatchType MATCH_PARTIAL_LITERAL = new MatchType(MATCH_PARTIAL, "MATCH_PARTIAL", "MATCH_PARTIAL"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Match Type</b></em>' enumerators.
@@ -122,15 +122,15 @@ public final class MatchType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Match Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Match Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static MatchType get(String name) {
+	public static MatchType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			MatchType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -138,7 +138,23 @@ public final class MatchType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Match Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Match Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static MatchType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			MatchType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Match Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,8 +174,8 @@ public final class MatchType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MatchType(int value, String name) {
-		super(value, name);
+	private MatchType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //MatchType

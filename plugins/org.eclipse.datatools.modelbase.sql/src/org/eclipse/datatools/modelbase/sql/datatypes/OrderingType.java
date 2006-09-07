@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderingType.java,v 1.1 2005/08/02 22:56:26 ledunnel Exp $
+ * $Id: OrderingType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -18,15 +18,8 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 4.7 User-defined types
+ * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
  * 
- * A user-defined type is a schema object, identified by a <user-defined type name>.
- * 
- * A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
- *  - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
- *  - An indication of whether the user-defined type is a structured type or a distinct type.
- *  - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
- *  - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getOrderingType()
  * @model
@@ -67,7 +60,7 @@ public final class OrderingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingType EQUALS_LITERAL = new OrderingType(EQUALS, "EQUALS"); //$NON-NLS-1$
+	public static final OrderingType EQUALS_LITERAL = new OrderingType(EQUALS, "EQUALS", "EQUALS"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>FULL</b></em>' literal object.
@@ -81,7 +74,7 @@ public final class OrderingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingType FULL_LITERAL = new OrderingType(FULL, "FULL"); //$NON-NLS-1$
+	public static final OrderingType FULL_LITERAL = new OrderingType(FULL, "FULL", "FULL"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Ordering Type</b></em>' enumerators.
@@ -104,15 +97,15 @@ public final class OrderingType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Ordering Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Ordering Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderingType get(String name) {
+	public static OrderingType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			OrderingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -120,7 +113,23 @@ public final class OrderingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Ordering Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Ordering Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static OrderingType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			OrderingType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Ordering Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -139,8 +148,8 @@ public final class OrderingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OrderingType(int value, String name) {
-		super(value, name);
+	private OrderingType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //OrderingType

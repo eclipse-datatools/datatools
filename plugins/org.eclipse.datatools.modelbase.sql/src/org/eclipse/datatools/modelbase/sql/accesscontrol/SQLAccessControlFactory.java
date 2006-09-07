@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage
  * @generated
  */
-public interface SQLAccessControlFactory extends EFactory{
+public interface SQLAccessControlFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLAccessControlFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlFactoryImpl();
+	SQLAccessControlFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Privilege</em>'.

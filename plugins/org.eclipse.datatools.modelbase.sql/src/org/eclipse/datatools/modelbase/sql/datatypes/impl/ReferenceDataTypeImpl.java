@@ -40,6 +40,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl implements ReferenceDataType {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getScopeTable() <em>Scope Table</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,7 +81,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getReferenceDataType();
+		return SQLDataTypesPackage.Literals.REFERENCE_DATA_TYPE;
 	}
 
 	/**
@@ -84,8 +91,8 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 */
 	public Table getScopeTable() {
 		if (scopeTable != null && scopeTable.eIsProxy()) {
-			Table oldScopeTable = scopeTable;
-			scopeTable = (Table)eResolveProxy((InternalEObject)scopeTable);
+			InternalEObject oldScopeTable = (InternalEObject)scopeTable;
+			scopeTable = (Table)eResolveProxy(oldScopeTable);
 			if (scopeTable != oldScopeTable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE, oldScopeTable, scopeTable));
@@ -122,8 +129,8 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 */
 	public StructuredUserDefinedType getReferencedType() {
 		if (referencedType != null && referencedType.eIsProxy()) {
-			StructuredUserDefinedType oldReferencedType = referencedType;
-			referencedType = (StructuredUserDefinedType)eResolveProxy((InternalEObject)referencedType);
+			InternalEObject oldReferencedType = (InternalEObject)referencedType;
+			referencedType = (StructuredUserDefinedType)eResolveProxy(oldReferencedType);
 			if (referencedType != oldReferencedType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLDataTypesPackage.REFERENCE_DATA_TYPE__REFERENCED_TYPE, oldReferencedType, referencedType));
@@ -158,56 +165,8 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__NAME:
-				return getName();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
 				if (resolve) return getScopeTable();
 				return basicGetScopeTable();
@@ -215,7 +174,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 				if (resolve) return getReferencedType();
 				return basicGetReferencedType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -223,25 +182,8 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
 				setScopeTable((Table)newValue);
 				return;
@@ -249,7 +191,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 				setReferencedType((StructuredUserDefinedType)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -257,23 +199,8 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
 				setScopeTable((Table)null);
 				return;
@@ -281,7 +208,7 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 				setReferencedType((StructuredUserDefinedType)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -289,24 +216,14 @@ public abstract class ReferenceDataTypeImpl extends ConstructedDataTypeImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__SCOPE_TABLE:
 				return scopeTable != null;
 			case SQLDataTypesPackage.REFERENCE_DATA_TYPE__REFERENCED_TYPE:
 				return referencedType != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //ReferenceDataTypeImpl

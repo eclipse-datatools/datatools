@@ -19,6 +19,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * A representation of the model object '<em><b>User Defined Type Ordering</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -32,7 +36,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model
  * @generated
  */
-public interface UserDefinedTypeOrdering extends SQLObject{
+public interface UserDefinedTypeOrdering extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Ordering Form</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.datatypes.OrderingType}.

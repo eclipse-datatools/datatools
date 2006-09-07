@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model kind="package"
  * @generated
  */
-public interface SQLExpressionsPackage extends EPackage{
+public interface SQLExpressionsPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int QUERY_EXPRESSION = 0;
 
 	/**
-	 * The number of structural features of the the '<em>Query Expression</em>' class.
+	 * The number of structural features of the '<em>Query Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,7 +93,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int VALUE_EXPRESSION = 1;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression</em>' class.
+	 * The number of structural features of the '<em>Value Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +112,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int SEARCH_CONDITION = 2;
 
 	/**
-	 * The number of structural features of the the '<em>Search Condition</em>' class.
+	 * The number of structural features of the '<em>Search Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -176,6 +176,15 @@ public interface SQLExpressionsPackage extends EPackage{
 	int QUERY_EXPRESSION_DEFAULT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_EXPRESSION_DEFAULT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>SQL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,7 +194,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int QUERY_EXPRESSION_DEFAULT__SQL = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Query Expression Default</em>' class.
+	 * The number of structural features of the '<em>Query Expression Default</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -249,6 +258,15 @@ public interface SQLExpressionsPackage extends EPackage{
 	int SEARCH_CONDITION_DEFAULT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_CONDITION_DEFAULT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>SQL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -258,7 +276,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int SEARCH_CONDITION_DEFAULT__SQL = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Search Condition Default</em>' class.
+	 * The number of structural features of the '<em>Search Condition Default</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -322,6 +340,15 @@ public interface SQLExpressionsPackage extends EPackage{
 	int VALUE_EXPRESSION_DEFAULT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_DEFAULT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>SQL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,7 +358,7 @@ public interface SQLExpressionsPackage extends EPackage{
 	int VALUE_EXPRESSION_DEFAULT__SQL = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Default</em>' class.
+	 * The number of structural features of the '<em>Value Expression Default</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -441,5 +468,104 @@ public interface SQLExpressionsPackage extends EPackage{
 	 * @generated
 	 */
 	SQLExpressionsFactory getSQLExpressionsFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.QueryExpression <em>Query Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.QueryExpression
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getQueryExpression()
+		 * @generated
+		 */
+		EClass QUERY_EXPRESSION = eINSTANCE.getQueryExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.ValueExpression <em>Value Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.ValueExpression
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getValueExpression()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION = eINSTANCE.getValueExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.SearchCondition <em>Search Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.SearchCondition
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getSearchCondition()
+		 * @generated
+		 */
+		EClass SEARCH_CONDITION = eINSTANCE.getSearchCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.impl.QueryExpressionDefaultImpl <em>Query Expression Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.QueryExpressionDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getQueryExpressionDefault()
+		 * @generated
+		 */
+		EClass QUERY_EXPRESSION_DEFAULT = eINSTANCE.getQueryExpressionDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_EXPRESSION_DEFAULT__SQL = eINSTANCE.getQueryExpressionDefault_SQL();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.impl.SearchConditionDefaultImpl <em>Search Condition Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SearchConditionDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getSearchConditionDefault()
+		 * @generated
+		 */
+		EClass SEARCH_CONDITION_DEFAULT = eINSTANCE.getSearchConditionDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEARCH_CONDITION_DEFAULT__SQL = eINSTANCE.getSearchConditionDefault_SQL();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.expressions.impl.ValueExpressionDefaultImpl <em>Value Expression Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.ValueExpressionDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl#getValueExpressionDefault()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_DEFAULT = eINSTANCE.getValueExpressionDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_DEFAULT__SQL = eINSTANCE.getValueExpressionDefault_SQL();
+
+	}
 
 } //SQLExpressionsPackage

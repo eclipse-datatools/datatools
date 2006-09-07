@@ -16,6 +16,10 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * A representation of the model object '<em><b>Data Link Data Type</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.1 Data Types
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -33,7 +37,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model
  * @generated
  */
-public interface DataLinkDataType extends PredefinedDataType{
+public interface DataLinkDataType extends PredefinedDataType {
 	/**
 	 * Returns the value of the '<em><b>Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->

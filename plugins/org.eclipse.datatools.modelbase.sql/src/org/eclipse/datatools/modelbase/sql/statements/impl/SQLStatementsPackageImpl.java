@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -185,7 +187,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) instanceof SQLSchemaPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI) : SQLSchemaPackage.eINSTANCE);
@@ -406,7 +408,7 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 
 		// Add supertypes to classes
 		sqlDataStatementEClass.getESuperTypes().add(this.getSQLStatement());
@@ -424,10 +426,10 @@ public class SQLStatementsPackageImpl extends EPackageImpl implements SQLStateme
 		// Initialize classes and features; add operations and parameters
 		initEClass(sqlStatementEClass, SQLStatement.class, "SQLStatement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(sqlStatementEClass, ecorePackage.getEString(), "getSQL"); //$NON-NLS-1$
+		addEOperation(sqlStatementEClass, ecorePackage.getEString(), "getSQL", 0, 1); //$NON-NLS-1$
 
 		EOperation op = addEOperation(sqlStatementEClass, null, "setSQL"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "sqlText"); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "sqlText", 0, 1); //$NON-NLS-1$
 
 		initEClass(sqlDataStatementEClass, SQLDataStatement.class, "SQLDataStatement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

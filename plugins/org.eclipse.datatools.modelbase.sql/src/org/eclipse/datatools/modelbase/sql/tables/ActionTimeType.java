@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionTimeType.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: ActionTimeType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * The literals of this enumeration are used to indicate whether the actionStatement of Trigger are executed before or after rows are inserted into a table, rows are deleted from a table, or one or more columns are updated in rows of a table.
+ * Reference: 5WD-02-Foundation-2002-12 4.38 Triggers
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getActionTimeType()
  * @model
@@ -70,7 +70,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ActionTimeType AFTER_LITERAL = new ActionTimeType(AFTER, "AFTER"); //$NON-NLS-1$
+	public static final ActionTimeType AFTER_LITERAL = new ActionTimeType(AFTER, "AFTER", "AFTER"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>BEFORE</b></em>' literal object.
@@ -84,7 +84,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ActionTimeType BEFORE_LITERAL = new ActionTimeType(BEFORE, "BEFORE"); //$NON-NLS-1$
+	public static final ActionTimeType BEFORE_LITERAL = new ActionTimeType(BEFORE, "BEFORE", "BEFORE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>INSTEADOF</b></em>' literal object.
@@ -98,7 +98,7 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ActionTimeType INSTEADOF_LITERAL = new ActionTimeType(INSTEADOF, "INSTEADOF"); //$NON-NLS-1$
+	public static final ActionTimeType INSTEADOF_LITERAL = new ActionTimeType(INSTEADOF, "INSTEADOF", "INSTEADOF"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Action Time Type</b></em>' enumerators.
@@ -122,15 +122,15 @@ public final class ActionTimeType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Action Time Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Action Time Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ActionTimeType get(String name) {
+	public static ActionTimeType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ActionTimeType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -138,7 +138,23 @@ public final class ActionTimeType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Action Time Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Action Time Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ActionTimeType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ActionTimeType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Action Time Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -158,8 +174,8 @@ public final class ActionTimeType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActionTimeType(int value, String name) {
-		super(value, name);
+	private ActionTimeType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ActionTimeType

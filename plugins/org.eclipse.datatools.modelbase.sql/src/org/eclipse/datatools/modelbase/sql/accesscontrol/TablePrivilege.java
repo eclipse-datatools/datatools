@@ -16,6 +16,10 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
  * A representation of the model object '<em><b>Table Privilege</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -27,7 +31,7 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
  * @model
  * @generated
  */
-public interface TablePrivilege extends Privilege{
+public interface TablePrivilege extends Privilege {
 	/**
 	 * Returns the value of the '<em><b>With Hierarchy</b></em>' attribute.
 	 * <!-- begin-user-doc -->

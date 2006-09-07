@@ -17,6 +17,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Role</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.34.3 Roles
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -28,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Role extends AuthorizationIdentifier{
+public interface Role extends AuthorizationIdentifier {
 	/**
 	 * Returns the value of the '<em><b>Role Authorization</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization}.

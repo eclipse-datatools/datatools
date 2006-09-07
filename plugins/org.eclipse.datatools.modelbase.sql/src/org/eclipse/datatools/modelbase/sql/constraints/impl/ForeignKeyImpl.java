@@ -52,6 +52,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKey {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getMatch() <em>Match</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,7 +173,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLConstraintsPackage.eINSTANCE.getForeignKey();
+		return SQLConstraintsPackage.Literals.FOREIGN_KEY;
 	}
 
 	/**
@@ -239,8 +246,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 */
 	public UniqueConstraint getUniqueConstraint() {
 		if (uniqueConstraint != null && uniqueConstraint.eIsProxy()) {
-			UniqueConstraint oldUniqueConstraint = uniqueConstraint;
-			uniqueConstraint = (UniqueConstraint)eResolveProxy((InternalEObject)uniqueConstraint);
+			InternalEObject oldUniqueConstraint = (InternalEObject)uniqueConstraint;
+			uniqueConstraint = (UniqueConstraint)eResolveProxy(oldUniqueConstraint);
 			if (uniqueConstraint != oldUniqueConstraint) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT, oldUniqueConstraint, uniqueConstraint));
@@ -311,8 +318,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 */
 	public Index getUniqueIndex() {
 		if (uniqueIndex != null && uniqueIndex.eIsProxy()) {
-			Index oldUniqueIndex = uniqueIndex;
-			uniqueIndex = (Index)eResolveProxy((InternalEObject)uniqueIndex);
+			InternalEObject oldUniqueIndex = (InternalEObject)uniqueIndex;
+			uniqueIndex = (Index)eResolveProxy(oldUniqueIndex);
 			if (uniqueIndex != oldUniqueIndex) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX, oldUniqueIndex, uniqueIndex));
@@ -371,8 +378,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 */
 	public BaseTable getReferencedTable() {
 		if (referencedTable != null && referencedTable.eIsProxy()) {
-			BaseTable oldReferencedTable = referencedTable;
-			referencedTable = (BaseTable)eResolveProxy((InternalEObject)referencedTable);
+			InternalEObject oldReferencedTable = (InternalEObject)referencedTable;
+			referencedTable = (BaseTable)eResolveProxy(oldReferencedTable);
 			if (referencedTable != oldReferencedTable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE, oldReferencedTable, referencedTable));
@@ -429,34 +436,22 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
-					if (uniqueConstraint != null)
-						msgs = ((InternalEObject)uniqueConstraint).eInverseRemove(this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, UniqueConstraint.class, msgs);
-					return basicSetUniqueConstraint((UniqueConstraint)otherEnd, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
-					if (uniqueIndex != null)
-						msgs = ((InternalEObject)uniqueIndex).eInverseRemove(this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, Index.class, msgs);
-					return basicSetUniqueIndex((Index)otherEnd, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
-					if (referencedTable != null)
-						msgs = ((InternalEObject)referencedTable).eInverseRemove(this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, BaseTable.class, msgs);
-					return basicSetReferencedTable((BaseTable)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
+				if (uniqueConstraint != null)
+					msgs = ((InternalEObject)uniqueConstraint).eInverseRemove(this, SQLConstraintsPackage.UNIQUE_CONSTRAINT__FOREIGN_KEY, UniqueConstraint.class, msgs);
+				return basicSetUniqueConstraint((UniqueConstraint)otherEnd, msgs);
+			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
+				if (uniqueIndex != null)
+					msgs = ((InternalEObject)uniqueIndex).eInverseRemove(this, SQLConstraintsPackage.INDEX__FOREIGN_KEY, Index.class, msgs);
+				return basicSetUniqueIndex((Index)otherEnd, msgs);
+			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
+				if (referencedTable != null)
+					msgs = ((InternalEObject)referencedTable).eInverseRemove(this, SQLTablesPackage.BASE_TABLE__REFERENCING_FOREIGN_KEYS, BaseTable.class, msgs);
+				return basicSetReferencedTable((BaseTable)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -464,26 +459,16 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-					return eBasicSetContainer(null, SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
-					return basicSetUniqueConstraint(null, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
-					return basicSetUniqueIndex(null, msgs);
-				case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
-					return basicSetReferencedTable(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_CONSTRAINT:
+				return basicSetUniqueConstraint(null, msgs);
+			case SQLConstraintsPackage.FOREIGN_KEY__UNIQUE_INDEX:
+				return basicSetUniqueIndex(null, msgs);
+			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
+				return basicSetReferencedTable(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -491,45 +476,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-					return eContainer.eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLConstraintsPackage.FOREIGN_KEY__NAME:
-				return getName();
-			case SQLConstraintsPackage.FOREIGN_KEY__DEPENDENCIES:
-				return getDependencies();
-			case SQLConstraintsPackage.FOREIGN_KEY__DESCRIPTION:
-				return getDescription();
-			case SQLConstraintsPackage.FOREIGN_KEY__LABEL:
-				return getLabel();
-			case SQLConstraintsPackage.FOREIGN_KEY__DEFERRABLE:
-				return isDeferrable() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLConstraintsPackage.FOREIGN_KEY__INITIALLY_DEFERRED:
-				return isInitiallyDeferred() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLConstraintsPackage.FOREIGN_KEY__ENFORCED:
-				return isEnforced() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-				return getBaseTable();
-			case SQLConstraintsPackage.FOREIGN_KEY__MEMBERS:
-				return getMembers();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
 				return getMatch();
 			case SQLConstraintsPackage.FOREIGN_KEY__ON_UPDATE:
@@ -548,7 +496,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 				if (resolve) return getReferencedTable();
 				return basicGetReferencedTable();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -556,41 +504,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__NAME:
-				setName((String)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DEFERRABLE:
-				setDeferrable(((Boolean)newValue).booleanValue());
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__INITIALLY_DEFERRED:
-				setInitiallyDeferred(((Boolean)newValue).booleanValue());
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__ENFORCED:
-				setEnforced(((Boolean)newValue).booleanValue());
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-				setBaseTable((BaseTable)newValue);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__MEMBERS:
-				getMembers().clear();
-				getMembers().addAll((Collection)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
 				setMatch((MatchType)newValue);
 				return;
@@ -614,7 +529,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 				setReferencedTable((BaseTable)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -622,38 +537,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__DEFERRABLE:
-				setDeferrable(DEFERRABLE_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__INITIALLY_DEFERRED:
-				setInitiallyDeferred(INITIALLY_DEFERRED_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__ENFORCED:
-				setEnforced(ENFORCED_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-				setBaseTable((BaseTable)null);
-				return;
-			case SQLConstraintsPackage.FOREIGN_KEY__MEMBERS:
-				getMembers().clear();
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
 				setMatch(MATCH_EDEFAULT);
 				return;
@@ -676,7 +561,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 				setReferencedTable((BaseTable)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -684,28 +569,8 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.FOREIGN_KEY__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLConstraintsPackage.FOREIGN_KEY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLConstraintsPackage.FOREIGN_KEY__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLConstraintsPackage.FOREIGN_KEY__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLConstraintsPackage.FOREIGN_KEY__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLConstraintsPackage.FOREIGN_KEY__DEFERRABLE:
-				return deferrable != DEFERRABLE_EDEFAULT;
-			case SQLConstraintsPackage.FOREIGN_KEY__INITIALLY_DEFERRED:
-				return initiallyDeferred != INITIALLY_DEFERRED_EDEFAULT;
-			case SQLConstraintsPackage.FOREIGN_KEY__ENFORCED:
-				return enforced != ENFORCED_EDEFAULT;
-			case SQLConstraintsPackage.FOREIGN_KEY__BASE_TABLE:
-				return getBaseTable() != null;
-			case SQLConstraintsPackage.FOREIGN_KEY__MEMBERS:
-				return members != null && !members.isEmpty();
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.FOREIGN_KEY__MATCH:
 				return match != MATCH_EDEFAULT;
 			case SQLConstraintsPackage.FOREIGN_KEY__ON_UPDATE:
@@ -721,7 +586,7 @@ public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKe
 			case SQLConstraintsPackage.FOREIGN_KEY__REFERENCED_TABLE:
 				return referencedTable != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

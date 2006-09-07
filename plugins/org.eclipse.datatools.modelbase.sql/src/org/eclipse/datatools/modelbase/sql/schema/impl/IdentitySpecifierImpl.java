@@ -48,6 +48,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpecifier {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getGenerationType() <em>Generation Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,7 +189,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getIdentitySpecifier();
+		return SQLSchemaPackage.Literals.IDENTITY_SPECIFIER;
 	}
 
 	/**
@@ -316,56 +323,8 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.IDENTITY_SPECIFIER__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__NAME:
-				return getName();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
 				return getGenerationType();
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__START_VALUE:
@@ -379,7 +338,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__CYCLE_OPTION:
 				return isCycleOption() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -387,25 +346,8 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
 				setGenerationType((GenerateType)newValue);
 				return;
@@ -425,7 +367,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 				setCycleOption(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -433,23 +375,8 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
 				setGenerationType(GENERATION_TYPE_EDEFAULT);
 				return;
@@ -469,7 +396,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 				setCycleOption(CYCLE_OPTION_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -477,18 +404,8 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.IDENTITY_SPECIFIER__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__GENERATION_TYPE:
 				return generationType != GENERATION_TYPE_EDEFAULT;
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__START_VALUE:
@@ -502,7 +419,7 @@ public class IdentitySpecifierImpl extends SQLObjectImpl implements IdentitySpec
 			case SQLSchemaPackage.IDENTITY_SPECIFIER__CYCLE_OPTION:
 				return cycleOption != CYCLE_OPTION_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

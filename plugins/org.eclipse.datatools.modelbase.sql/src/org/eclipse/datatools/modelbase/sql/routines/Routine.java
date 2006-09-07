@@ -20,62 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * From 5WD-02-Foundation-2002-12
- * 4.27 SQL-invoked routines
- * 
- * An SQL-invoked routine is described by a routine descriptor. A routine descriptor includes:
- * - The routine name of the SQL-invoked routine.
- * - The specific name of the SQL-invoked routine.
- * - The routine authorization identifier of the SQL-invoked routine.
- * - The name of the language in which the body of the SQL-invoked routine is written.
- * - For each of the SQL-invoked routine's SQL parameters, the <SQL parameter name> , if it is specified, the <data type> , the ordinal position, and an indication of   whether the SQL parameter is an input SQL parameter, an output SQL parameter, or both an input SQL parameter and an output SQL parameter.
- * - An indication of whether the SQL-invoked routine is an SQL-invoked function or an SQL-invoked procedure.
- * - If the SQL-invoked routine is an SQL-invoked procedure, then the maximum number of dynamic result sets.
- * - An indication of whether the SQL-invoked routine is deterministic or possibly non-deterministic.
- * - Indications of whether the SQL-invoked routine possibly modifies SQL-data, possibly reads SQL-data, possibly contains SQL, or does not possibly contain SQL.
- * - If the SQL-invoked routine is an SQL-invoked function, then:
- *   * The <returns data type> of the SQL-invoked function.
- *   * If the <returns data type> simply contains <locator indication> , then an indication that the return value is a locator.
- *   * An indication of whether the SQL-invoked function is a null-call function.
- *   * An indication of whether the SQL-invoked function is an SQL-invoked method.
- * - The creation timestamp.
- * - The last-altered timestamp.
- * - If the SQL-invoked routine is an SQL routine, then:
- *   * The SQL routine body of the SQL-invoked routine.
- *   * The SQL security characteristic of the SQL routine.
- * - If the SQL-invoked routine is an external routine, then:
- *   * The external routine name of the external routine.
- *   * The <parameter style> of the external routine.
- *   * If the external routine specifies a <result cast>, then an indication that it specifies a <result cast> and the <data type> specified in the <result cast> . If <result cast> contains <locator indication> , then an indication that the <data type> specified in the <result cast> has a locator indication.
- *   * The external security characteristic of the external routine.
- *   * The external routine authorization identifier of the external routine.
- *   * The effective SQL parameter list of the external routine.
- *   * For every SQL parameter whose <SQL parameter declaration> contains <locator indication> , an indication that the SQL parameter is a locator parameter.
- * - The schema name of the schema that includes the SQL-invoked routine.
- * - If the SQL-invoked routine is an SQL-invoked method, then:
- *   * An indication of the user-defined type whose descriptor contains the corresponding method specification descriptor.
- *   * An indication of whether STATIC was specified.
- * - An indication of whether the SQL-invoked routine is dependent on a user-defined type.
- * - An indication as to whether or not the SQL-invoked routine requires a new savepoint level to be established when it is invoked.
- * 
- * 
- * Not included:
- * 4.27 SQL-invoked routines
- * - The routine SQL-path of the SQL-invoked routine is not included because the SQL-path, which I read as CURRENT SCHEMA in DB2 land, of the current SQL-session.
- * - If the SQL-invoked routine is an SQL-invoked function, then:
- *   * An indication of whether the SQL-invoked function is a type-preserving function or not.
- *   * An indication of whether the SQL-invoked function is a mutator function or not.
- *   * If the SQL-invoked function is a type-preserving function, then an indication of which parameter is the result parameter.
- * - If the SQL-invoked routine is an external routine, then:
- *   * The external routine SQL-path of the external routine.
- *   * For every SQL parameter that has an associated from-sql function FSF, the specific name of FSF.
- *   * For every SQL parameter that has an associated to-sql function TSF, the specific name of TSF.
- *   * If the SQL-invoked routine is an external function and if it has a to-sql function TRF associated with the result, then the specific name of TRF.
- * 
- * 
- * 
- * 
- * 
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines
  * 
  * <!-- end-model-doc -->
  *
@@ -102,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Routine extends SQLObject{
+public interface Routine extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Specific Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

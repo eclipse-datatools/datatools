@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage
  * @generated
  */
-public interface SQLStatementsFactory extends EFactory{
+public interface SQLStatementsFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLStatementsFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsFactoryImpl();
+	SQLStatementsFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>SQL Statement Default</em>'.

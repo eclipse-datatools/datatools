@@ -99,6 +99,12 @@ public class SQLSchemaAdapterFactory extends AdapterFactoryImpl {
 			public Object caseEvent(Event object) {
 				return createEventAdapter();
 			}
+			public Object caseComment(Comment object) {
+				return createCommentAdapter();
+			}
+			public Object caseCatalog(Catalog object) {
+				return createCatalogAdapter();
+			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -232,6 +238,34 @@ public class SQLSchemaAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.schema.Comment <em>Comment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Comment
+	 * @generated
+	 */
+	public Adapter createCommentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.schema.Catalog <em>Catalog</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Catalog
+	 * @generated
+	 */
+	public Adapter createCatalogAdapter() {
 		return null;
 	}
 

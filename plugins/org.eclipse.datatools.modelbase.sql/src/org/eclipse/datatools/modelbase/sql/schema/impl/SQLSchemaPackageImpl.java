@@ -23,6 +23,8 @@ import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
 import org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Comment;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
@@ -118,6 +120,20 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass commentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass catalogEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum generateTypeEEnum = null;
 
 	/**
@@ -198,7 +214,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) instanceof SQLConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI) : SQLConstraintsPackage.eINSTANCE);
@@ -411,7 +427,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSchema_Assertions() {
+	public EReference getSchema_Catalog() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -420,7 +436,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSchema_UserDefinedTypes() {
+	public EReference getSchema_Assertions() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -429,7 +445,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSchema_CharSets() {
+	public EReference getSchema_UserDefinedTypes() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -438,7 +454,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSchema_Routines() {
+	public EReference getSchema_CharSets() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -447,8 +463,17 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSchema_Owner() {
+	public EReference getSchema_Routines() {
 		return (EReference)schemaEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSchema_Owner() {
+		return (EReference)schemaEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -485,6 +510,15 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 */
 	public EAttribute getSQLObject_Label() {
 		return (EAttribute)sqlObjectEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSQLObject_Comments() {
+		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -564,8 +598,17 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDatabase_AuthorizationIds() {
+	public EReference getDatabase_Catalogs() {
 		return (EReference)databaseEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabase_AuthorizationIds() {
+		return (EReference)databaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -620,6 +663,60 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 */
 	public EReference getEvent_Database() {
 		return (EReference)eventEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getComment() {
+		return commentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getComment_Description() {
+		return (EAttribute)commentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComment_SQLObject() {
+		return (EReference)commentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCatalog() {
+		return catalogEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCatalog_Database() {
+		return (EReference)catalogEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCatalog_Schemas() {
+		return (EReference)catalogEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -708,6 +805,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEReference(schemaEClass, SCHEMA__TABLES);
 		createEReference(schemaEClass, SCHEMA__SEQUENCES);
 		createEReference(schemaEClass, SCHEMA__DATABASE);
+		createEReference(schemaEClass, SCHEMA__CATALOG);
 		createEReference(schemaEClass, SCHEMA__ASSERTIONS);
 		createEReference(schemaEClass, SCHEMA__USER_DEFINED_TYPES);
 		createEReference(schemaEClass, SCHEMA__CHAR_SETS);
@@ -718,6 +816,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEReference(sqlObjectEClass, SQL_OBJECT__DEPENDENCIES);
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__DESCRIPTION);
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__LABEL);
+		createEReference(sqlObjectEClass, SQL_OBJECT__COMMENTS);
 
 		sequenceEClass = createEClass(SEQUENCE);
 		createEReference(sequenceEClass, SEQUENCE__IDENTITY);
@@ -728,6 +827,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEAttribute(databaseEClass, DATABASE__VERSION);
 		createEReference(databaseEClass, DATABASE__SCHEMAS);
 		createEReference(databaseEClass, DATABASE__EVENTS);
+		createEReference(databaseEClass, DATABASE__CATALOGS);
 		createEReference(databaseEClass, DATABASE__AUTHORIZATION_IDS);
 
 		eventEClass = createEClass(EVENT);
@@ -736,6 +836,14 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEAttribute(eventEClass, EVENT__ACTION);
 		createEAttribute(eventEClass, EVENT__ENABLED);
 		createEReference(eventEClass, EVENT__DATABASE);
+
+		commentEClass = createEClass(COMMENT);
+		createEAttribute(commentEClass, COMMENT__DESCRIPTION);
+		createEReference(commentEClass, COMMENT__SQL_OBJECT);
+
+		catalogEClass = createEClass(CATALOG);
+		createEReference(catalogEClass, CATALOG__DATABASE);
+		createEReference(catalogEClass, CATALOG__SCHEMAS);
 
 		// Create enums
 		generateTypeEEnum = createEEnum(GENERATE_TYPE);
@@ -770,12 +878,12 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackageImpl theEcorePackage = (EcorePackageImpl)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
-		SQLConstraintsPackageImpl theSQLConstraintsPackage = (SQLConstraintsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
-		SQLAccessControlPackageImpl theSQLAccessControlPackage = (SQLAccessControlPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLTablesPackage theSQLTablesPackage = (SQLTablesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLConstraintsPackage theSQLConstraintsPackage = (SQLConstraintsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLConstraintsPackage.eNS_URI);
+		SQLRoutinesPackage theSQLRoutinesPackage = (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLAccessControlPackage theSQLAccessControlPackage = (SQLAccessControlPackage)EPackage.Registry.INSTANCE.getEPackage(SQLAccessControlPackage.eNS_URI);
 
 		// Add supertypes to classes
 		identitySpecifierEClass.getESuperTypes().add(this.getSQLObject());
@@ -786,6 +894,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		sequenceEClass.getESuperTypes().add(this.getTypedElement());
 		databaseEClass.getESuperTypes().add(this.getSQLObject());
 		eventEClass.getESuperTypes().add(this.getSQLObject());
+		catalogEClass.getESuperTypes().add(this.getSQLObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(identitySpecifierEClass, IdentitySpecifier.class, "IdentitySpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -801,9 +910,9 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEReference(getTypedElement_ReferencedType(), theSQLDataTypesPackage.getUserDefinedType(), null, "referencedType", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = addEOperation(typedElementEClass, null, "setDataType"); //$NON-NLS-1$
-		addEParameter(op, theSQLDataTypesPackage.getDataType(), "newType"); //$NON-NLS-1$
+		addEParameter(op, theSQLDataTypesPackage.getDataType(), "newType", 0, 1); //$NON-NLS-1$
 
-		addEOperation(typedElementEClass, theSQLDataTypesPackage.getDataType(), "getDataType"); //$NON-NLS-1$
+		addEOperation(typedElementEClass, theSQLDataTypesPackage.getDataType(), "getDataType", 0, 1); //$NON-NLS-1$
 
 		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDependency_TargetEnd(), theEcorePackage.getEObject(), null, "targetEnd", null, 1, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -815,6 +924,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEReference(getSchema_Tables(), theSQLTablesPackage.getTable(), theSQLTablesPackage.getTable_Schema(), "tables", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSchema_Sequences(), this.getSequence(), this.getSequence_Schema(), "sequences", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSchema_Database(), this.getDatabase(), this.getDatabase_Schemas(), "database", null, 1, 1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSchema_Catalog(), this.getCatalog(), this.getCatalog_Schemas(), "Catalog", null, 1, 1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSchema_Assertions(), theSQLConstraintsPackage.getAssertion(), theSQLConstraintsPackage.getAssertion_Schema(), "assertions", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSchema_UserDefinedTypes(), theSQLDataTypesPackage.getUserDefinedType(), theSQLDataTypesPackage.getUserDefinedType_Schema(), "userDefinedTypes", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSchema_CharSets(), theSQLDataTypesPackage.getCharacterSet(), theSQLDataTypesPackage.getCharacterSet_Schema(), "charSets", null, 0, -1, Schema.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -825,30 +935,31 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEReference(getSQLObject_Dependencies(), this.getDependency(), null, "dependencies", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getSQLObject_Description(), ecorePackage.getEString(), "description", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getSQLObject_Label(), ecorePackage.getEString(), "label", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSQLObject_Comments(), this.getComment(), this.getComment_SQLObject(), "comments", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "addEAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "source"); //$NON-NLS-1$
+		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "addEAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "source", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(sqlObjectEClass, null, "addEAnnotationDetail"); //$NON-NLS-1$
-		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "key"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "value"); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "key", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "value", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(sqlObjectEClass, ecorePackage.getEString(), "getEAnnotationDetail"); //$NON-NLS-1$
-		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "key"); //$NON-NLS-1$
+		op = addEOperation(sqlObjectEClass, ecorePackage.getEString(), "getEAnnotationDetail", 0, 1); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "key", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(sqlObjectEClass, null, "setAnnotationDetail"); //$NON-NLS-1$
-		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "key"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "value"); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "key", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "value", 0, 1); //$NON-NLS-1$
 
 		op = addEOperation(sqlObjectEClass, null, "removeEAnnotationDetail"); //$NON-NLS-1$
-		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "key"); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEAnnotation(), "eAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "key", 0, 1); //$NON-NLS-1$
 
-		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "getEAnnotation"); //$NON-NLS-1$
-		addEParameter(op, ecorePackage.getEString(), "source"); //$NON-NLS-1$
+		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "getEAnnotation", 0, 1); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "source", 0, 1); //$NON-NLS-1$
 
 		initEClass(sequenceEClass, Sequence.class, "Sequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getSequence_Identity(), this.getIdentitySpecifier(), null, "identity", null, 1, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -859,9 +970,10 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEAttribute(getDatabase_Version(), ecorePackage.getEString(), "version", null, 0, 1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_Schemas(), this.getSchema(), this.getSchema_Database(), "schemas", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_Events(), this.getEvent(), this.getEvent_Database(), "events", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabase_Catalogs(), this.getCatalog(), this.getCatalog_Database(), "catalogs", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_AuthorizationIds(), theSQLAccessControlPackage.getAuthorizationIdentifier(), null, "authorizationIds", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(databaseEClass, this.getList(), "getUserDefinedTypes"); //$NON-NLS-1$
+		addEOperation(databaseEClass, this.getList(), "getUserDefinedTypes", 0, 1); //$NON-NLS-1$
 
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getEvent_For(), ecorePackage.getEString(), "for", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -869,6 +981,14 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEAttribute(getEvent_Action(), ecorePackage.getEString(), "action", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getEvent_Enabled(), ecorePackage.getEBoolean(), "enabled", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getEvent_Database(), this.getDatabase(), this.getDatabase_Events(), "Database", null, 1, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getComment_Description(), ecorePackage.getEString(), "description", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getComment_SQLObject(), this.getSQLObject(), this.getSQLObject_Comments(), "SQLObject", null, 1, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(catalogEClass, Catalog.class, "Catalog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getCatalog_Database(), this.getDatabase(), this.getDatabase_Catalogs(), "Database", null, 1, 1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getCatalog_Schemas(), this.getSchema(), this.getSchema_Catalog(), "schemas", null, 0, -1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(generateTypeEEnum, GenerateType.class, "GenerateType"); //$NON-NLS-1$

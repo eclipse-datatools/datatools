@@ -18,14 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Section 4.17.2
- * A unique constraint is satisfied if and only if no two rows in a table have the same non-null values in the unique columns.
+ * Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints, 5WD-02-Foundation-2002-12 11.7 <unique contraint definition>
  * 
- * Section 11.7
- * 3) If <unique column list> UCL is specified, then
- * a) Each <column name> in the <unique column list> shall identify a column of T, and the same column
- * shall not be identified more than once.
- * b) The set of columns in the <unique column list> shall be distinct from the unique columns of any other unique constraint descriptor that is included in the base table descriptor of T.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,7 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface UniqueConstraint extends ReferenceConstraint{
+public interface UniqueConstraint extends ReferenceConstraint {
 	/**
 	 * Returns the value of the '<em><b>Foreign Key</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey}.

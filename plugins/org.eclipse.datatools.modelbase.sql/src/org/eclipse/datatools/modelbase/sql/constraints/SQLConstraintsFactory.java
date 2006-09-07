@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage
  * @generated
  */
-public interface SQLConstraintsFactory extends EFactory{
+public interface SQLConstraintsFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLConstraintsFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsFactoryImpl();
+	SQLConstraintsFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Assertion</em>'.

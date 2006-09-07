@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model kind="package"
  * @generated
  */
-public interface SQLStatementsPackage extends EPackage{
+public interface SQLStatementsPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_STATEMENT = 0;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -93,7 +93,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_DATA_STATEMENT = 1;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Data Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Data Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -112,7 +112,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_SCHEMA_STATEMENT = 2;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Schema Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Schema Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -131,7 +131,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_CONTROL_STATEMENT = 3;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Control Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Control Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -150,7 +150,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_DATA_CHANGE_STATEMENT = 4;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Data Change Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Data Change Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -214,6 +214,15 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_STATEMENT_DEFAULT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_STATEMENT_DEFAULT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>SQL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -223,7 +232,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_STATEMENT_DEFAULT__SQL = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Statement Default</em>' class.
+	 * The number of structural features of the '<em>SQL Statement Default</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -242,7 +251,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_CONNECTION_STATEMENT = 6;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Connection Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Connection Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -261,7 +270,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_DIAGNOSTICS_STATEMENT = 7;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Diagnostics Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Diagnostics Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -280,7 +289,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_DYNAMIC_STATEMENT = 8;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Dynamic Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Dynamic Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -299,7 +308,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_SESSION_STATEMENT = 9;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Session Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Session Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -318,7 +327,7 @@ public interface SQLStatementsPackage extends EPackage{
 	int SQL_TRANSACTION_STATEMENT = 10;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Transaction Statement</em>' class.
+	 * The number of structural features of the '<em>SQL Transaction Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -456,5 +465,138 @@ public interface SQLStatementsPackage extends EPackage{
 	 * @generated
 	 */
 	SQLStatementsFactory getSQLStatementsFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLStatement <em>SQL Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLStatement()
+		 * @generated
+		 */
+		EClass SQL_STATEMENT = eINSTANCE.getSQLStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement <em>SQL Data Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLDataStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLDataStatement()
+		 * @generated
+		 */
+		EClass SQL_DATA_STATEMENT = eINSTANCE.getSQLDataStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLSchemaStatement <em>SQL Schema Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLSchemaStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLSchemaStatement()
+		 * @generated
+		 */
+		EClass SQL_SCHEMA_STATEMENT = eINSTANCE.getSQLSchemaStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement <em>SQL Control Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLControlStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLControlStatement()
+		 * @generated
+		 */
+		EClass SQL_CONTROL_STATEMENT = eINSTANCE.getSQLControlStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement <em>SQL Data Change Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLDataChangeStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLDataChangeStatement()
+		 * @generated
+		 */
+		EClass SQL_DATA_CHANGE_STATEMENT = eINSTANCE.getSQLDataChangeStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementDefaultImpl <em>SQL Statement Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLStatementDefault()
+		 * @generated
+		 */
+		EClass SQL_STATEMENT_DEFAULT = eINSTANCE.getSQLStatementDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_STATEMENT_DEFAULT__SQL = eINSTANCE.getSQLStatementDefault_SQL();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLConnectionStatement <em>SQL Connection Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLConnectionStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLConnectionStatement()
+		 * @generated
+		 */
+		EClass SQL_CONNECTION_STATEMENT = eINSTANCE.getSQLConnectionStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLDiagnosticsStatement <em>SQL Diagnostics Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLDiagnosticsStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLDiagnosticsStatement()
+		 * @generated
+		 */
+		EClass SQL_DIAGNOSTICS_STATEMENT = eINSTANCE.getSQLDiagnosticsStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLDynamicStatement <em>SQL Dynamic Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLDynamicStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLDynamicStatement()
+		 * @generated
+		 */
+		EClass SQL_DYNAMIC_STATEMENT = eINSTANCE.getSQLDynamicStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLSessionStatement <em>SQL Session Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLSessionStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLSessionStatement()
+		 * @generated
+		 */
+		EClass SQL_SESSION_STATEMENT = eINSTANCE.getSQLSessionStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.statements.SQLTransactionStatement <em>SQL Transaction Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.statements.SQLTransactionStatement
+		 * @see org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsPackageImpl#getSQLTransactionStatement()
+		 * @generated
+		 */
+		EClass SQL_TRANSACTION_STATEMENT = eINSTANCE.getSQLTransactionStatement();
+
+	}
 
 } //SQLStatementsPackage

@@ -20,6 +20,10 @@ import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
  * A representation of the model object '<em><b>Typed Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -32,7 +36,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
  * @model abstract="true"
  * @generated
  */
-public interface TypedElement extends SQLObject{
+public interface TypedElement extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

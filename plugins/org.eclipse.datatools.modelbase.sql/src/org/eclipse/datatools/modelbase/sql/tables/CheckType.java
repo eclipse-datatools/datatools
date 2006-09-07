@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckType.java,v 1.1 2005/08/02 22:56:30 ledunnel Exp $
+ * $Id: CheckType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables;
 
@@ -18,14 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 4.14 Tables
- * 
- * A table is a collection of rows having one or more columns. [...]
- * 
- * A view descriptor describes a view. In addition to the components of a derived table descriptor, a view descriptor includes:
- *  - The name of the view.
- *  - An indication of whether the view has the CHECK OPTION ; if so, whether it is to be applied as CASCADED or LOCAL.
- *  - The original <query expression> of the view.
+ * Reference: 5WD-02-Foundation-2002-12 4.14 Tables
  * 
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage#getCheckType()
@@ -78,7 +71,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckType CASCADED_LITERAL = new CheckType(CASCADED, "CASCADED"); //$NON-NLS-1$
+	public static final CheckType CASCADED_LITERAL = new CheckType(CASCADED, "CASCADED", "CASCADED"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>LOCAL</b></em>' literal object.
@@ -92,7 +85,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckType LOCAL_LITERAL = new CheckType(LOCAL, "LOCAL"); //$NON-NLS-1$
+	public static final CheckType LOCAL_LITERAL = new CheckType(LOCAL, "LOCAL", "LOCAL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -106,7 +99,7 @@ public final class CheckType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckType NONE_LITERAL = new CheckType(NONE, "NONE"); //$NON-NLS-1$
+	public static final CheckType NONE_LITERAL = new CheckType(NONE, "NONE", "NONE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Check Type</b></em>' enumerators.
@@ -130,15 +123,15 @@ public final class CheckType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Check Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Check Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CheckType get(String name) {
+	public static CheckType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CheckType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -146,7 +139,23 @@ public final class CheckType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Check Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Check Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static CheckType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			CheckType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Check Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -166,8 +175,8 @@ public final class CheckType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CheckType(int value, String name) {
-		super(value, name);
+	private CheckType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //CheckType

@@ -18,15 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.7 User-defined types
+ * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
  * 
- * A user-defined type is a schema object, identified by a <user-defined type name> . The definition of a userdefined type specifies a number of components, including in particular a list of attribute definitions. Although the attribute definitions are said to define the representation of the user-defined type, in fact they implicitly define certain functions (observers and mutators) that are part of the interface of the user-defined type; physical representations of user-defined type values are implementation-dependent.
- * 
- * The representation of a user-defined type is expressed either as a single data type (some predefined data type, called the source type), in which case the user-defined type is said to be a distinct type, or as a list of attribute definitions, in which case it is said to be a structured type.
- * 
- * A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
- *  - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
- *  - An indication of whether the user-defined type is a structured type or a distinct type.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -45,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StructuredUserDefinedType extends UserDefinedType{
+public interface StructuredUserDefinedType extends UserDefinedType {
 	/**
 	 * Returns the value of the '<em><b>Instantiable</b></em>' attribute.
 	 * The default value is <code>"True"</code>.

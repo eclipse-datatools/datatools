@@ -19,30 +19,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.17 Integrity constraints
- * 
- * Integrity constraints, generally referred to simply as constraints, define the valid states of SQL-data by constrain-ing the values in the base tables. A constraint is either a table constraint, a domain constraint or an assertion.  A constraint is described by a constraint descriptor. A constraint descriptor is either a table constraint descriptor, a domain constraint descriptor or an assertion descriptor. Every constraint descriptor includes:
- *   - The name of the constraint.
- *   - An indication of whether or not the constraint is deferrable.
- *   - An indication of whether the initial constraint mode is deferred or immediate.
- * 
- * No integrity constraint shall be defined using a <search condition> that is not retrospectively deterministic.
- * 
- * The checking of a constraint depends on its constraint mode within the current SQL-transaction. If the constraint mode is immediate, then the constraint is effectively checked at the end of each SQL-statement.  If the constraint mode is deferred, then the constraint is effectively checked when the constraint mode is changed to immediate either explicitly by execution of a <set constraints mode statement> , or implicitly at the end of the current SQL-transaction.
- * 
- * A table constraint is either a unique constraint, a referential constraint or a table check constraint.
- * 
- * A domain constraint is a constraint that is specified for a domain. It is applied to all columns that are based on that domain, and to all values cast to that domain.
- * 
- * An assertion is a named constraint that may relate to the content of individual rows of a table, to the entire contents of a table, or to a state required to exist among a number of tables.
- * 
- * 10.8
- * 2) The <qualified identifier> of <constraint name> shall not be equivalent to the <qualified identifier> of the <constraint name> of any other constraint defined in the same schema.
- * 3) If <constraint check time> is not specified, then INITIALLY IMMEDIATE is implicit.
- * 4) Case:
- * a) If INITIALLY DEFERRED is specified, then:
- *   i) NOT DEFERRABLE shall not be specified.
- *   ii) If DEFERRABLE is not specified, then DEFERRABLE is implicit.
+ * Reference: 5WD-02-Foundation-2002-12 4.17 Integrity constraints
  * 
  * <!-- end-model-doc -->
  *
@@ -59,7 +36,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model abstract="true"
  * @generated
  */
-public interface Constraint extends SQLObject{
+public interface Constraint extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->

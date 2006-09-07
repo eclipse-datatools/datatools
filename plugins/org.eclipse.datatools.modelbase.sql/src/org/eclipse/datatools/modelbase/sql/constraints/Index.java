@@ -21,6 +21,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Index</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -40,7 +44,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Index extends SQLObject{
+public interface Index extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Schema</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.Schema#getIndices <em>Indices</em>}'.

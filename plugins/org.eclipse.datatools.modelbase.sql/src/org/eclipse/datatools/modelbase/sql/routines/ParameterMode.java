@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterMode.java,v 1.1 2005/08/02 22:56:30 ledunnel Exp $
+ * $Id: ParameterMode.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines;
 
@@ -18,10 +18,7 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 5WD-02-Foundation-2002-12
- * 11.50 <SQL-invoked routine>
- * 
- * <parameter mode> ::= IN | OUT | INOUT
+ * Reference: 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage#getParameterMode()
  * @model
@@ -73,7 +70,7 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterMode IN_LITERAL = new ParameterMode(IN, "IN"); //$NON-NLS-1$
+	public static final ParameterMode IN_LITERAL = new ParameterMode(IN, "IN", "IN"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>OUT</b></em>' literal object.
@@ -87,7 +84,7 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterMode OUT_LITERAL = new ParameterMode(OUT, "OUT"); //$NON-NLS-1$
+	public static final ParameterMode OUT_LITERAL = new ParameterMode(OUT, "OUT", "OUT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>INOUT</b></em>' literal object.
@@ -101,7 +98,7 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterMode INOUT_LITERAL = new ParameterMode(INOUT, "INOUT"); //$NON-NLS-1$
+	public static final ParameterMode INOUT_LITERAL = new ParameterMode(INOUT, "INOUT", "INOUT"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Parameter Mode</b></em>' enumerators.
@@ -125,15 +122,15 @@ public final class ParameterMode extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterMode get(String name) {
+	public static ParameterMode get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ParameterMode result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -141,7 +138,23 @@ public final class ParameterMode extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ParameterMode getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ParameterMode result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Parameter Mode</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,8 +174,8 @@ public final class ParameterMode extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterMode(int value, String name) {
-		super(value, name);
+	private ParameterMode(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ParameterMode

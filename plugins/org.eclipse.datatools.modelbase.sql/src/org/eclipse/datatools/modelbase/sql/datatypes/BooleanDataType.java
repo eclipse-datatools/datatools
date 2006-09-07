@@ -17,12 +17,8 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.5 Boolean types
+ * Reference: 5WD-02-Foundation-2002-12 4.5 Boolean types
  * 
- * The data type boolean comprises the distinct truth values True and False. Unless prohibited by a NOT NULL constraint, the boolean data type also supports the Unknown truth value as the null value. This specification does not make a distinction between the null value of the boolean data type and the Unknown truth value that is the result of an SQL <predicate> , <search condition> , or <boolean value expression> ; they may be used interchangeably to mean exactly the same thing.
- * 
- * The boolean data type is described by the boolean data type descriptor. The boolean data type descriptor contains:
- *  - The name of the boolean data type (BOOLEAN ).
  * <!-- end-model-doc -->
  *
  *
@@ -30,5 +26,5 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * @model
  * @generated
  */
-public interface BooleanDataType extends PredefinedDataType{
+public interface BooleanDataType extends PredefinedDataType {
 } // BooleanDataType

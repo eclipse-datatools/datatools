@@ -19,11 +19,8 @@ import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.17.2 Table constraints
+ * Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints
  * 
- * A table constraint is either a unique constraint, a referential constraint or a table check constraint. A table constraint is described by a table constraint descriptor which is either a unique constraint descriptor, a referential constraint descriptor or a table check constraint descriptor.
- * 
- * Every table constraint specified for base table T is implicitly a constraint on every subtable of T, by virtue of the fact that every row in a subtable is considered to have a corresponding superrow in every one of its supertables.
  * <!-- end-model-doc -->
  *
  * <p>
@@ -37,7 +34,7 @@ import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
  * @model abstract="true"
  * @generated
  */
-public interface TableConstraint extends Constraint{
+public interface TableConstraint extends Constraint {
 	/**
 	 * Returns the value of the '<em><b>Base Table</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable#getConstraints <em>Constraints</em>}'.

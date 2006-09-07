@@ -47,6 +47,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ProcedureImpl extends RoutineImpl implements Procedure {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The default value of the '{@link #getMaxResultSets() <em>Max Result Sets</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -111,7 +118,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLRoutinesPackage.eINSTANCE.getProcedure();
+		return SQLRoutinesPackage.Literals.PROCEDURE;
 	}
 
 	/**
@@ -173,24 +180,12 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-					return ((InternalEList)getParameters()).basicAdd(otherEnd, msgs);
-				case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__ROUTINES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLRoutinesPackage.PROCEDURE__RESULT_SET:
+				return ((InternalEList)getResultSet()).basicRemove(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -198,72 +193,8 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.PROCEDURE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-					return ((InternalEList)getParameters()).basicRemove(otherEnd, msgs);
-				case SQLRoutinesPackage.PROCEDURE__SOURCE:
-					return basicSetSource(null, msgs);
-				case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLRoutinesPackage.PROCEDURE__RESULT_SET:
-					return ((InternalEList)getResultSet()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLRoutinesPackage.PROCEDURE__NAME:
-				return getName();
-			case SQLRoutinesPackage.PROCEDURE__DEPENDENCIES:
-				return getDependencies();
-			case SQLRoutinesPackage.PROCEDURE__DESCRIPTION:
-				return getDescription();
-			case SQLRoutinesPackage.PROCEDURE__LABEL:
-				return getLabel();
-			case SQLRoutinesPackage.PROCEDURE__SPECIFIC_NAME:
-				return getSpecificName();
-			case SQLRoutinesPackage.PROCEDURE__LANGUAGE:
-				return getLanguage();
-			case SQLRoutinesPackage.PROCEDURE__PARAMETER_STYLE:
-				return getParameterStyle();
-			case SQLRoutinesPackage.PROCEDURE__DETERMINISTIC:
-				return isDeterministic() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLRoutinesPackage.PROCEDURE__SQL_DATA_ACCESS:
-				return getSqlDataAccess();
-			case SQLRoutinesPackage.PROCEDURE__CREATION_TS:
-				return getCreationTS();
-			case SQLRoutinesPackage.PROCEDURE__LAST_ALTERED_TS:
-				return getLastAlteredTS();
-			case SQLRoutinesPackage.PROCEDURE__AUTHORIZATION_ID:
-				return getAuthorizationID();
-			case SQLRoutinesPackage.PROCEDURE__SECURITY:
-				return getSecurity();
-			case SQLRoutinesPackage.PROCEDURE__EXTERNAL_NAME:
-				return getExternalName();
-			case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-				return getParameters();
-			case SQLRoutinesPackage.PROCEDURE__SOURCE:
-				return getSource();
-			case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-				if (resolve) return getSchema();
-				return basicGetSchema();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
 				return new Integer(getMaxResultSets());
 			case SQLRoutinesPackage.PROCEDURE__OLD_SAVE_POINT:
@@ -271,7 +202,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 			case SQLRoutinesPackage.PROCEDURE__RESULT_SET:
 				return getResultSet();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -279,65 +210,8 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SPECIFIC_NAME:
-				setSpecificName((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LANGUAGE:
-				setLanguage((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__PARAMETER_STYLE:
-				setParameterStyle((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DETERMINISTIC:
-				setDeterministic(((Boolean)newValue).booleanValue());
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SQL_DATA_ACCESS:
-				setSqlDataAccess((DataAccess)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__CREATION_TS:
-				setCreationTS((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LAST_ALTERED_TS:
-				setLastAlteredTS((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__AUTHORIZATION_ID:
-				setAuthorizationID((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SECURITY:
-				setSecurity((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__EXTERNAL_NAME:
-				setExternalName((String)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SOURCE:
-				setSource((Source)newValue);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-				setSchema((Schema)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
 				setMaxResultSets(((Integer)newValue).intValue());
 				return;
@@ -349,7 +223,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 				getResultSet().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -357,62 +231,8 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLRoutinesPackage.PROCEDURE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SPECIFIC_NAME:
-				setSpecificName(SPECIFIC_NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__PARAMETER_STYLE:
-				setParameterStyle(PARAMETER_STYLE_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__DETERMINISTIC:
-				setDeterministic(DETERMINISTIC_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SQL_DATA_ACCESS:
-				setSqlDataAccess(SQL_DATA_ACCESS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__CREATION_TS:
-				setCreationTS(CREATION_TS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__LAST_ALTERED_TS:
-				setLastAlteredTS(LAST_ALTERED_TS_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__AUTHORIZATION_ID:
-				setAuthorizationID(AUTHORIZATION_ID_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SECURITY:
-				setSecurity(SECURITY_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__EXTERNAL_NAME:
-				setExternalName(EXTERNAL_NAME_EDEFAULT);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-				getParameters().clear();
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SOURCE:
-				setSource((Source)null);
-				return;
-			case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-				setSchema((Schema)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
 				setMaxResultSets(MAX_RESULT_SETS_EDEFAULT);
 				return;
@@ -423,7 +243,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 				getResultSet().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -431,44 +251,8 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLRoutinesPackage.PROCEDURE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLRoutinesPackage.PROCEDURE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLRoutinesPackage.PROCEDURE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLRoutinesPackage.PROCEDURE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLRoutinesPackage.PROCEDURE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLRoutinesPackage.PROCEDURE__SPECIFIC_NAME:
-				return SPECIFIC_NAME_EDEFAULT == null ? specificName != null : !SPECIFIC_NAME_EDEFAULT.equals(specificName);
-			case SQLRoutinesPackage.PROCEDURE__LANGUAGE:
-				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
-			case SQLRoutinesPackage.PROCEDURE__PARAMETER_STYLE:
-				return PARAMETER_STYLE_EDEFAULT == null ? parameterStyle != null : !PARAMETER_STYLE_EDEFAULT.equals(parameterStyle);
-			case SQLRoutinesPackage.PROCEDURE__DETERMINISTIC:
-				return deterministic != DETERMINISTIC_EDEFAULT;
-			case SQLRoutinesPackage.PROCEDURE__SQL_DATA_ACCESS:
-				return sqlDataAccess != SQL_DATA_ACCESS_EDEFAULT;
-			case SQLRoutinesPackage.PROCEDURE__CREATION_TS:
-				return CREATION_TS_EDEFAULT == null ? creationTS != null : !CREATION_TS_EDEFAULT.equals(creationTS);
-			case SQLRoutinesPackage.PROCEDURE__LAST_ALTERED_TS:
-				return LAST_ALTERED_TS_EDEFAULT == null ? lastAlteredTS != null : !LAST_ALTERED_TS_EDEFAULT.equals(lastAlteredTS);
-			case SQLRoutinesPackage.PROCEDURE__AUTHORIZATION_ID:
-				return AUTHORIZATION_ID_EDEFAULT == null ? authorizationID != null : !AUTHORIZATION_ID_EDEFAULT.equals(authorizationID);
-			case SQLRoutinesPackage.PROCEDURE__SECURITY:
-				return SECURITY_EDEFAULT == null ? security != null : !SECURITY_EDEFAULT.equals(security);
-			case SQLRoutinesPackage.PROCEDURE__EXTERNAL_NAME:
-				return EXTERNAL_NAME_EDEFAULT == null ? externalName != null : !EXTERNAL_NAME_EDEFAULT.equals(externalName);
-			case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
-			case SQLRoutinesPackage.PROCEDURE__SOURCE:
-				return source != null;
-			case SQLRoutinesPackage.PROCEDURE__SCHEMA:
-				return schema != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
 				return maxResultSets != MAX_RESULT_SETS_EDEFAULT;
 			case SQLRoutinesPackage.PROCEDURE__OLD_SAVE_POINT:
@@ -476,7 +260,7 @@ public class ProcedureImpl extends RoutineImpl implements Procedure {
 			case SQLRoutinesPackage.PROCEDURE__RESULT_SET:
 				return resultSet != null && !resultSet.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLDataTypesPackage extends EPackage{
+public interface SQLDataTypesPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -121,7 +121,16 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DATA_TYPE__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>Data Type</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -185,6 +194,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int USER_DEFINED_TYPE__LABEL = DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -203,7 +221,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int USER_DEFINED_TYPE__ORDERING = DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>User Defined Type</em>' class.
+	 * The number of structural features of the '<em>User Defined Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -267,7 +285,16 @@ public interface SQLDataTypesPackage extends EPackage{
 	int SQL_DATA_TYPE__LABEL = DATA_TYPE__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Data Type</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_DATA_TYPE__COMMENTS = DATA_TYPE__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>SQL Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -331,6 +358,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int PREDEFINED_DATA_TYPE__LABEL = SQL_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE__COMMENTS = SQL_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -340,7 +376,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE = SQL_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Predefined Data Type</em>' class.
+	 * The number of structural features of the '<em>Predefined Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -404,7 +440,16 @@ public interface SQLDataTypesPackage extends EPackage{
 	int CONSTRUCTED_DATA_TYPE__LABEL = SQL_DATA_TYPE__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>Constructed Data Type</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRUCTED_DATA_TYPE__COMMENTS = SQL_DATA_TYPE__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Constructed Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -468,6 +513,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int COLLECTION_DATA_TYPE__LABEL = CONSTRUCTED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -477,7 +531,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int COLLECTION_DATA_TYPE__ELEMENT = CONSTRUCTED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Collection Data Type</em>' class.
+	 * The number of structural features of the '<em>Collection Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -541,6 +595,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int NUMERICAL_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -559,7 +622,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int NUMERICAL_DATA_TYPE__PRECISION = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Numerical Data Type</em>' class.
+	 * The number of structural features of the '<em>Numerical Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -623,6 +686,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int CHARACTER_STRING_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHARACTER_STRING_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -677,7 +749,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int CHARACTER_STRING_DATA_TYPE__CHARACTER_SET = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Character String Data Type</em>' class.
+	 * The number of structural features of the '<em>Character String Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -741,6 +813,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ROW_DATA_TYPE__LABEL = CONSTRUCTED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROW_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Fields</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -750,7 +831,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ROW_DATA_TYPE__FIELDS = CONSTRUCTED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Row Data Type</em>' class.
+	 * The number of structural features of the '<em>Row Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -814,6 +895,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ARRAY_DATA_TYPE__LABEL = COLLECTION_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARRAY_DATA_TYPE__COMMENTS = COLLECTION_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,7 +922,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ARRAY_DATA_TYPE__MAX_CARDINALITY = COLLECTION_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Array Data Type</em>' class.
+	 * The number of structural features of the '<em>Array Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -896,6 +986,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int MULTISET_DATA_TYPE__LABEL = COLLECTION_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MULTISET_DATA_TYPE__COMMENTS = COLLECTION_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Element</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -905,7 +1004,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int MULTISET_DATA_TYPE__ELEMENT = COLLECTION_DATA_TYPE__ELEMENT;
 
 	/**
-	 * The number of structural features of the the '<em>Multiset Data Type</em>' class.
+	 * The number of structural features of the '<em>Multiset Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -969,6 +1068,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int BOOLEAN_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -978,7 +1086,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int BOOLEAN_DATA_TYPE__PRIMITIVE_TYPE = PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Boolean Data Type</em>' class.
+	 * The number of structural features of the '<em>Boolean Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1042,6 +1150,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int INTERVAL_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERVAL_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1096,7 +1213,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Interval Data Type</em>' class.
+	 * The number of structural features of the '<em>Interval Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1160,6 +1277,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int BINARY_STRING_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_STRING_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1178,7 +1304,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int BINARY_STRING_DATA_TYPE__LENGTH = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Binary String Data Type</em>' class.
+	 * The number of structural features of the '<em>Binary String Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1242,6 +1368,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int CHARACTER_SET__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHARACTER_SET__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Repertoire</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1278,7 +1413,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int CHARACTER_SET__SCHEMA = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Character Set</em>' class.
+	 * The number of structural features of the '<em>Character Set</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1342,6 +1477,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int TIME_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1369,7 +1513,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int TIME_DATA_TYPE__TIME_ZONE = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Time Data Type</em>' class.
+	 * The number of structural features of the '<em>Time Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1433,6 +1577,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DISTINCT_USER_DEFINED_TYPE__LABEL = USER_DEFINED_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISTINCT_USER_DEFINED_TYPE__COMMENTS = USER_DEFINED_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1460,7 +1613,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION = USER_DEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Distinct User Defined Type</em>' class.
+	 * The number of structural features of the '<em>Distinct User Defined Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1522,6 +1675,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	 * @ordered
 	 */
 	int STRUCTURED_USER_DEFINED_TYPE__LABEL = USER_DEFINED_TYPE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRUCTURED_USER_DEFINED_TYPE__COMMENTS = USER_DEFINED_TYPE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
@@ -1596,7 +1758,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int STRUCTURED_USER_DEFINED_TYPE__METHODS = USER_DEFINED_TYPE_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the the '<em>Structured User Defined Type</em>' class.
+	 * The number of structural features of the '<em>Structured User Defined Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1660,6 +1822,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ATTRIBUTE_DEFINITION__LABEL = SQLSchemaPackage.TYPED_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_DEFINITION__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1705,7 +1876,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int ATTRIBUTE_DEFINITION__DEFAULT_VALUE = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Attribute Definition</em>' class.
+	 * The number of structural features of the '<em>Attribute Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1769,6 +1940,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int EXACT_NUMERIC_DATA_TYPE__LABEL = NUMERICAL_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXACT_NUMERIC_DATA_TYPE__COMMENTS = NUMERICAL_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1796,7 +1976,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int EXACT_NUMERIC_DATA_TYPE__SCALE = NUMERICAL_DATA_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Exact Numeric Data Type</em>' class.
+	 * The number of structural features of the '<em>Exact Numeric Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1860,6 +2040,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int FIXED_PRECISION_DATA_TYPE__LABEL = EXACT_NUMERIC_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_PRECISION_DATA_TYPE__COMMENTS = EXACT_NUMERIC_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1887,7 +2076,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int FIXED_PRECISION_DATA_TYPE__SCALE = EXACT_NUMERIC_DATA_TYPE__SCALE;
 
 	/**
-	 * The number of structural features of the the '<em>Fixed Precision Data Type</em>' class.
+	 * The number of structural features of the '<em>Fixed Precision Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1951,6 +2140,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DOMAIN__LABEL = DISTINCT_USER_DEFINED_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOMAIN__COMMENTS = DISTINCT_USER_DEFINED_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1996,7 +2194,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DOMAIN__DEFAULT_VALUE = DISTINCT_USER_DEFINED_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Domain</em>' class.
+	 * The number of structural features of the '<em>Domain</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2060,6 +2258,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int FIELD__LABEL = SQLSchemaPackage.TYPED_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIELD__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2096,7 +2303,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int FIELD__SCOPE_CHECKED = SQLSchemaPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Field</em>' class.
+	 * The number of structural features of the '<em>Field</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2160,6 +2367,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int REFERENCE_DATA_TYPE__LABEL = CONSTRUCTED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_DATA_TYPE__COMMENTS = CONSTRUCTED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Scope Table</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2178,7 +2394,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int REFERENCE_DATA_TYPE__REFERENCED_TYPE = CONSTRUCTED_DATA_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Reference Data Type</em>' class.
+	 * The number of structural features of the '<em>Reference Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2240,6 +2456,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	 * @ordered
 	 */
 	int DATA_LINK_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_LINK_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
@@ -2314,7 +2539,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DATA_LINK_DATA_TYPE__UNLINK = PREDEFINED_DATA_TYPE_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the the '<em>Data Link Data Type</em>' class.
+	 * The number of structural features of the '<em>Data Link Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2378,6 +2603,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int USER_DEFINED_TYPE_ORDERING__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_TYPE_ORDERING__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Ordering Form</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2405,7 +2639,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>User Defined Type Ordering</em>' class.
+	 * The number of structural features of the '<em>User Defined Type Ordering</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2469,6 +2703,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DATE_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATE_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2478,7 +2721,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int DATE_DATA_TYPE__PRIMITIVE_TYPE = PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>Date Data Type</em>' class.
+	 * The number of structural features of the '<em>Date Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2542,6 +2785,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int APPROXIMATE_NUMERIC_DATA_TYPE__LABEL = NUMERICAL_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPROXIMATE_NUMERIC_DATA_TYPE__COMMENTS = NUMERICAL_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2560,7 +2812,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int APPROXIMATE_NUMERIC_DATA_TYPE__PRECISION = NUMERICAL_DATA_TYPE__PRECISION;
 
 	/**
-	 * The number of structural features of the the '<em>Approximate Numeric Data Type</em>' class.
+	 * The number of structural features of the '<em>Approximate Numeric Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2624,6 +2876,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int INTEGER_DATA_TYPE__LABEL = EXACT_NUMERIC_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_DATA_TYPE__COMMENTS = EXACT_NUMERIC_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2651,7 +2912,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int INTEGER_DATA_TYPE__SCALE = EXACT_NUMERIC_DATA_TYPE__SCALE;
 
 	/**
-	 * The number of structural features of the the '<em>Integer Data Type</em>' class.
+	 * The number of structural features of the '<em>Integer Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2715,6 +2976,15 @@ public interface SQLDataTypesPackage extends EPackage{
 	int XML_DATA_TYPE__LABEL = PREDEFINED_DATA_TYPE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_DATA_TYPE__COMMENTS = PREDEFINED_DATA_TYPE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Primitive Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2724,7 +2994,7 @@ public interface SQLDataTypesPackage extends EPackage{
 	int XML_DATA_TYPE__PRIMITIVE_TYPE = PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE;
 
 	/**
-	 * The number of structural features of the the '<em>XML Data Type</em>' class.
+	 * The number of structural features of the '<em>XML Data Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3802,5 +4072,828 @@ public interface SQLDataTypesPackage extends EPackage{
 	 * @generated
 	 */
 	SQLDataTypesFactory getSQLDataTypesFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl <em>User Defined Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getUserDefinedType()
+		 * @generated
+		 */
+		EClass USER_DEFINED_TYPE = eINSTANCE.getUserDefinedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_DEFINED_TYPE__SCHEMA = eINSTANCE.getUserDefinedType_Schema();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_DEFINED_TYPE__ORDERING = eINSTANCE.getUserDefinedType_Ordering();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataTypeImpl <em>Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.DataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getDataType()
+		 * @generated
+		 */
+		EClass DATA_TYPE = eINSTANCE.getDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.PredefinedDataTypeImpl <em>Predefined Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.PredefinedDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getPredefinedDataType()
+		 * @generated
+		 */
+		EClass PREDEFINED_DATA_TYPE = eINSTANCE.getPredefinedDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE__PRIMITIVE_TYPE = eINSTANCE.getPredefinedDataType_PrimitiveType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl <em>Collection Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.CollectionDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getCollectionDataType()
+		 * @generated
+		 */
+		EClass COLLECTION_DATA_TYPE = eINSTANCE.getCollectionDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Element</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLLECTION_DATA_TYPE__ELEMENT = eINSTANCE.getCollectionDataType_Element();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.NumericalDataTypeImpl <em>Numerical Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.NumericalDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getNumericalDataType()
+		 * @generated
+		 */
+		EClass NUMERICAL_DATA_TYPE = eINSTANCE.getNumericalDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUMERICAL_DATA_TYPE__PRECISION = eINSTANCE.getNumericalDataType_Precision();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl <em>Character String Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterStringDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getCharacterStringDataType()
+		 * @generated
+		 */
+		EClass CHARACTER_STRING_DATA_TYPE = eINSTANCE.getCharacterStringDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_STRING_DATA_TYPE__LENGTH = eINSTANCE.getCharacterStringDataType_Length();
+
+		/**
+		 * The meta object literal for the '<em><b>Coercibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_STRING_DATA_TYPE__COERCIBILITY = eINSTANCE.getCharacterStringDataType_Coercibility();
+
+		/**
+		 * The meta object literal for the '<em><b>Fixed Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_STRING_DATA_TYPE__FIXED_LENGTH = eINSTANCE.getCharacterStringDataType_FixedLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Collation Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_STRING_DATA_TYPE__COLLATION_NAME = eINSTANCE.getCharacterStringDataType_CollationName();
+
+		/**
+		 * The meta object literal for the '<em><b>Character Set</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHARACTER_STRING_DATA_TYPE__CHARACTER_SET = eINSTANCE.getCharacterStringDataType_CharacterSet();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.RowDataTypeImpl <em>Row Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.RowDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getRowDataType()
+		 * @generated
+		 */
+		EClass ROW_DATA_TYPE = eINSTANCE.getRowDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Fields</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROW_DATA_TYPE__FIELDS = eINSTANCE.getRowDataType_Fields();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ArrayDataTypeImpl <em>Array Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ArrayDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getArrayDataType()
+		 * @generated
+		 */
+		EClass ARRAY_DATA_TYPE = eINSTANCE.getArrayDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Max Cardinality</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARRAY_DATA_TYPE__MAX_CARDINALITY = eINSTANCE.getArrayDataType_MaxCardinality();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.MultisetDataTypeImpl <em>Multiset Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.MultisetDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getMultisetDataType()
+		 * @generated
+		 */
+		EClass MULTISET_DATA_TYPE = eINSTANCE.getMultisetDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.BooleanDataTypeImpl <em>Boolean Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.BooleanDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getBooleanDataType()
+		 * @generated
+		 */
+		EClass BOOLEAN_DATA_TYPE = eINSTANCE.getBooleanDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl <em>Interval Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.IntervalDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntervalDataType()
+		 * @generated
+		 */
+		EClass INTERVAL_DATA_TYPE = eINSTANCE.getIntervalDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Leading Qualifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL_DATA_TYPE__LEADING_QUALIFIER = eINSTANCE.getIntervalDataType_LeadingQualifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Trailing Qualifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL_DATA_TYPE__TRAILING_QUALIFIER = eINSTANCE.getIntervalDataType_TrailingQualifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Leading Field Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL_DATA_TYPE__LEADING_FIELD_PRECISION = eINSTANCE.getIntervalDataType_LeadingFieldPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Trailing Field Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL_DATA_TYPE__TRAILING_FIELD_PRECISION = eINSTANCE.getIntervalDataType_TrailingFieldPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Fractional Seconds Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION = eINSTANCE.getIntervalDataType_FractionalSecondsPrecision();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.BinaryStringDataTypeImpl <em>Binary String Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.BinaryStringDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getBinaryStringDataType()
+		 * @generated
+		 */
+		EClass BINARY_STRING_DATA_TYPE = eINSTANCE.getBinaryStringDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BINARY_STRING_DATA_TYPE__LENGTH = eINSTANCE.getBinaryStringDataType_Length();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl <em>Character Set</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.CharacterSetImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getCharacterSet()
+		 * @generated
+		 */
+		EClass CHARACTER_SET = eINSTANCE.getCharacterSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Repertoire</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_SET__REPERTOIRE = eINSTANCE.getCharacterSet_Repertoire();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Collation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_SET__DEFAULT_COLLATION = eINSTANCE.getCharacterSet_DefaultCollation();
+
+		/**
+		 * The meta object literal for the '<em><b>Encoding</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHARACTER_SET__ENCODING = eINSTANCE.getCharacterSet_Encoding();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHARACTER_SET__SCHEMA = eINSTANCE.getCharacterSet_Schema();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.TimeDataTypeImpl <em>Time Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.TimeDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getTimeDataType()
+		 * @generated
+		 */
+		EClass TIME_DATA_TYPE = eINSTANCE.getTimeDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Fractional Seconds Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION = eINSTANCE.getTimeDataType_FractionalSecondsPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Time Zone</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TIME_DATA_TYPE__TIME_ZONE = eINSTANCE.getTimeDataType_TimeZone();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DistinctUserDefinedTypeImpl <em>Distinct User Defined Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.DistinctUserDefinedTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getDistinctUserDefinedType()
+		 * @generated
+		 */
+		EClass DISTINCT_USER_DEFINED_TYPE = eINSTANCE.getDistinctUserDefinedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Representation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION = eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl <em>Structured User Defined Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.StructuredUserDefinedTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getStructuredUserDefinedType()
+		 * @generated
+		 */
+		EClass STRUCTURED_USER_DEFINED_TYPE = eINSTANCE.getStructuredUserDefinedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Instantiable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE = eINSTANCE.getStructuredUserDefinedType_Instantiable();
+
+		/**
+		 * The meta object literal for the '<em><b>Final</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STRUCTURED_USER_DEFINED_TYPE__FINAL = eINSTANCE.getStructuredUserDefinedType_Final();
+
+		/**
+		 * The meta object literal for the '<em><b>Super</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_USER_DEFINED_TYPE__SUPER = eINSTANCE.getStructuredUserDefinedType_Super();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_USER_DEFINED_TYPE__SUB = eINSTANCE.getStructuredUserDefinedType_Sub();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_USER_DEFINED_TYPE__ATTRIBUTES = eINSTANCE.getStructuredUserDefinedType_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STRUCTURED_USER_DEFINED_TYPE__METHODS = eINSTANCE.getStructuredUserDefinedType_Methods();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl <em>Attribute Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.AttributeDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getAttributeDefinition()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_DEFINITION = eINSTANCE.getAttributeDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Check</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DEFINITION__SCOPE_CHECK = eINSTANCE.getAttributeDefinition_ScopeCheck();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Checked</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DEFINITION__SCOPE_CHECKED = eINSTANCE.getAttributeDefinition_ScopeChecked();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE_DEFINITION__DEFAULT_VALUE = eINSTANCE.getAttributeDefinition_DefaultValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.FixedPrecisionDataTypeImpl <em>Fixed Precision Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.FixedPrecisionDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getFixedPrecisionDataType()
+		 * @generated
+		 */
+		EClass FIXED_PRECISION_DATA_TYPE = eINSTANCE.getFixedPrecisionDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DomainImpl <em>Domain</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.DomainImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getDomain()
+		 * @generated
+		 */
+		EClass DOMAIN = eINSTANCE.getDomain();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOMAIN__CONSTRAINT = eINSTANCE.getDomain_Constraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOMAIN__DEFAULT_VALUE = eINSTANCE.getDomain_DefaultValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.FieldImpl <em>Field</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.FieldImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getField()
+		 * @generated
+		 */
+		EClass FIELD = eINSTANCE.getField();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Check</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD__SCOPE_CHECK = eINSTANCE.getField_ScopeCheck();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Checked</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD__SCOPE_CHECKED = eINSTANCE.getField_ScopeChecked();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ReferenceDataTypeImpl <em>Reference Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ReferenceDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getReferenceDataType()
+		 * @generated
+		 */
+		EClass REFERENCE_DATA_TYPE = eINSTANCE.getReferenceDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCE_DATA_TYPE__SCOPE_TABLE = eINSTANCE.getReferenceDataType_ScopeTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Referenced Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REFERENCE_DATA_TYPE__REFERENCED_TYPE = eINSTANCE.getReferenceDataType_ReferencedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ConstructedDataTypeImpl <em>Constructed Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ConstructedDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getConstructedDataType()
+		 * @generated
+		 */
+		EClass CONSTRUCTED_DATA_TYPE = eINSTANCE.getConstructedDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypeImpl <em>SQL Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getSQLDataType()
+		 * @generated
+		 */
+		EClass SQL_DATA_TYPE = eINSTANCE.getSQLDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl <em>Data Link Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.DataLinkDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getDataLinkDataType()
+		 * @generated
+		 */
+		EClass DATA_LINK_DATA_TYPE = eINSTANCE.getDataLinkDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__LENGTH = eINSTANCE.getDataLinkDataType_Length();
+
+		/**
+		 * The meta object literal for the '<em><b>Link Control</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__LINK_CONTROL = eINSTANCE.getDataLinkDataType_LinkControl();
+
+		/**
+		 * The meta object literal for the '<em><b>Integrity Control</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__INTEGRITY_CONTROL = eINSTANCE.getDataLinkDataType_IntegrityControl();
+
+		/**
+		 * The meta object literal for the '<em><b>Read Permission</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__READ_PERMISSION = eINSTANCE.getDataLinkDataType_ReadPermission();
+
+		/**
+		 * The meta object literal for the '<em><b>Write Permission</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__WRITE_PERMISSION = eINSTANCE.getDataLinkDataType_WritePermission();
+
+		/**
+		 * The meta object literal for the '<em><b>Recovery</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__RECOVERY = eINSTANCE.getDataLinkDataType_Recovery();
+
+		/**
+		 * The meta object literal for the '<em><b>Unlink</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_LINK_DATA_TYPE__UNLINK = eINSTANCE.getDataLinkDataType_Unlink();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeOrderingImpl <em>User Defined Type Ordering</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.UserDefinedTypeOrderingImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getUserDefinedTypeOrdering()
+		 * @generated
+		 */
+		EClass USER_DEFINED_TYPE_ORDERING = eINSTANCE.getUserDefinedTypeOrdering();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering Form</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_ORDERING__ORDERING_FORM = eINSTANCE.getUserDefinedTypeOrdering_OrderingForm();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering Category</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY = eINSTANCE.getUserDefinedTypeOrdering_OrderingCategory();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering Routine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE = eINSTANCE.getUserDefinedTypeOrdering_OrderingRoutine();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.DateDataTypeImpl <em>Date Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.DateDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getDateDataType()
+		 * @generated
+		 */
+		EClass DATE_DATA_TYPE = eINSTANCE.getDateDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ExactNumericDataTypeImpl <em>Exact Numeric Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ExactNumericDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getExactNumericDataType()
+		 * @generated
+		 */
+		EClass EXACT_NUMERIC_DATA_TYPE = eINSTANCE.getExactNumericDataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXACT_NUMERIC_DATA_TYPE__SCALE = eINSTANCE.getExactNumericDataType_Scale();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.ApproximateNumericDataTypeImpl <em>Approximate Numeric Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.ApproximateNumericDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getApproximateNumericDataType()
+		 * @generated
+		 */
+		EClass APPROXIMATE_NUMERIC_DATA_TYPE = eINSTANCE.getApproximateNumericDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.IntegerDataTypeImpl <em>Integer Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.IntegerDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntegerDataType()
+		 * @generated
+		 */
+		EClass INTEGER_DATA_TYPE = eINSTANCE.getIntegerDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.impl.XMLDataTypeImpl <em>XML Data Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.XMLDataTypeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getXMLDataType()
+		 * @generated
+		 */
+		EClass XML_DATA_TYPE = eINSTANCE.getXMLDataType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType <em>Coercibility Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.CoercibilityType
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getCoercibilityType()
+		 * @generated
+		 */
+		EEnum COERCIBILITY_TYPE = eINSTANCE.getCoercibilityType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType <em>Interval Qualifier Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.IntervalQualifierType
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntervalQualifierType()
+		 * @generated
+		 */
+		EEnum INTERVAL_QUALIFIER_TYPE = eINSTANCE.getIntervalQualifierType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.OrderingType <em>Ordering Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.OrderingType
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getOrderingType()
+		 * @generated
+		 */
+		EEnum ORDERING_TYPE = eINSTANCE.getOrderingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.OrderingCategoryType <em>Ordering Category Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.OrderingCategoryType
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getOrderingCategoryType()
+		 * @generated
+		 */
+		EEnum ORDERING_CATEGORY_TYPE = eINSTANCE.getOrderingCategoryType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType <em>Primitive Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getPrimitiveType()
+		 * @generated
+		 */
+		EEnum PRIMITIVE_TYPE = eINSTANCE.getPrimitiveType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.LinkControlOption <em>Link Control Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.LinkControlOption
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getLinkControlOption()
+		 * @generated
+		 */
+		EEnum LINK_CONTROL_OPTION = eINSTANCE.getLinkControlOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.IntegrityControlOption <em>Integrity Control Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.IntegrityControlOption
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getIntegrityControlOption()
+		 * @generated
+		 */
+		EEnum INTEGRITY_CONTROL_OPTION = eINSTANCE.getIntegrityControlOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.ReadPermissionOption <em>Read Permission Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.ReadPermissionOption
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getReadPermissionOption()
+		 * @generated
+		 */
+		EEnum READ_PERMISSION_OPTION = eINSTANCE.getReadPermissionOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.WritePermissionOption <em>Write Permission Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.WritePermissionOption
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getWritePermissionOption()
+		 * @generated
+		 */
+		EEnum WRITE_PERMISSION_OPTION = eINSTANCE.getWritePermissionOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.datatypes.UnlinkOption <em>Unlink Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.UnlinkOption
+		 * @see org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl#getUnlinkOption()
+		 * @generated
+		 */
+		EEnum UNLINK_OPTION = eINSTANCE.getUnlinkOption();
+
+	}
 
 } //SQLDataTypesPackage

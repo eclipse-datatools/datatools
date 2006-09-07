@@ -20,17 +20,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.13 Columns, fields, and attributes
- * 
- * The terms column, field, and attribute refer to structural components of tables, row types, and structured types, respectively, in analogous fashion. As the structure of a table consists of one or more columns, so does the structure of a row type consist of one or more fields and that of a structured type one or more attributes. Every structural element, whether a column, a field, or an attribute, is primarily a name paired with a declared type.
- * 
- * The elements of a structure are ordered. Elements in different positions in the same structure can have the same declared type but not the same name. Although the elements of a structure are distinguished from each other by name, in some circumstances the compatibility of two structures (for the purpose at hand) is determined solely by considering the declared types of each pair of elements at the same ordinal position.
- * 
- * A field F is described by a field descriptor. A field descriptor includes:
- *  - The name of the field.
- *  - The data type descriptor of the declared type of F.
- *  - The ordinal position of F within the row type that simply contains it.
- *  - If the data type of the field is a reference type, then an indication of whether reference values shall be checked, and the <reference scope check action> , if specified or implied.
+ * Reference: 5WD-02-Foundation-2002-12 4.13 Columns, fields, and attributes
  * 
  * <!-- end-model-doc -->
  *
@@ -46,7 +36,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * @model
  * @generated
  */
-public interface Field extends TypedElement{
+public interface Field extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Scope Check</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType}.

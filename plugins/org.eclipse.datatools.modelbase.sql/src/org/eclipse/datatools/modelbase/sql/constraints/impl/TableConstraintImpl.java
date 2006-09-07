@@ -44,6 +44,13 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	protected TableConstraintImpl() {
 		super();
 	}
@@ -54,7 +61,7 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLConstraintsPackage.eINSTANCE.getTableConstraint();
+		return SQLConstraintsPackage.Literals.TABLE_CONSTRAINT;
 	}
 
 	/**
@@ -64,7 +71,17 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 */
 	public BaseTable getBaseTable() {
 		if (eContainerFeatureID != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE) return null;
-		return (BaseTable)eContainer;
+		return (BaseTable)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBaseTable(BaseTable newBaseTable, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newBaseTable, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -73,15 +90,15 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * @generated
 	 */
 	public void setBaseTable(BaseTable newBaseTable) {
-		if (newBaseTable != eContainer || (eContainerFeatureID != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE && newBaseTable != null)) {
+		if (newBaseTable != eInternalContainer() || (eContainerFeatureID != SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE && newBaseTable != null)) {
 			if (EcoreUtil.isAncestor(this, newBaseTable))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newBaseTable != null)
 				msgs = ((InternalEObject)newBaseTable).eInverseAdd(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newBaseTable, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE, msgs);
+			msgs = basicSetBaseTable(newBaseTable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -93,22 +110,14 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetBaseTable((BaseTable)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -116,20 +125,12 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
-					return eBasicSetContainer(null, SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
+				return basicSetBaseTable(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -137,16 +138,12 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
-					return eContainer.eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
+				return eInternalContainer().eInverseRemove(this, SQLTablesPackage.BASE_TABLE__CONSTRAINTS, BaseTable.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -154,28 +151,12 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__NAME:
-				return getName();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEPENDENCIES:
-				return getDependencies();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DESCRIPTION:
-				return getDescription();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__LABEL:
-				return getLabel();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEFERRABLE:
-				return isDeferrable() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__INITIALLY_DEFERRED:
-				return isInitiallyDeferred() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__ENFORCED:
-				return isEnforced() ? Boolean.TRUE : Boolean.FALSE;
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
 				return getBaseTable();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -183,39 +164,13 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEFERRABLE:
-				setDeferrable(((Boolean)newValue).booleanValue());
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__INITIALLY_DEFERRED:
-				setInitiallyDeferred(((Boolean)newValue).booleanValue());
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__ENFORCED:
-				setEnforced(((Boolean)newValue).booleanValue());
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
 				setBaseTable((BaseTable)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -223,37 +178,13 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEFERRABLE:
-				setDeferrable(DEFERRABLE_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__INITIALLY_DEFERRED:
-				setInitiallyDeferred(INITIALLY_DEFERRED_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__ENFORCED:
-				setEnforced(ENFORCED_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
 				setBaseTable((BaseTable)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -261,28 +192,12 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__DEFERRABLE:
-				return deferrable != DEFERRABLE_EDEFAULT;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__INITIALLY_DEFERRED:
-				return initiallyDeferred != INITIALLY_DEFERRED_EDEFAULT;
-			case SQLConstraintsPackage.TABLE_CONSTRAINT__ENFORCED:
-				return enforced != ENFORCED_EDEFAULT;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.TABLE_CONSTRAINT__BASE_TABLE:
 				return getBaseTable() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //TableConstraintImpl

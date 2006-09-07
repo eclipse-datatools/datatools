@@ -13,7 +13,11 @@ package org.eclipse.datatools.modelbase.sql.statements.impl;
 import org.eclipse.datatools.modelbase.sql.statements.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +26,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLStatementsFactoryImpl extends EFactoryImpl implements SQLStatementsFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLStatementsFactory init() {
+		try {
+			SQLStatementsFactory theSQLStatementsFactory = (SQLStatementsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/statements.ecore"); //$NON-NLS-1$ 
+			if (theSQLStatementsFactory != null) {
+				return theSQLStatementsFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLStatementsFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->

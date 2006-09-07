@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage
  * @generated
  */
-public interface SQLDataTypesFactory extends EFactory{
+public interface SQLDataTypesFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLDataTypesFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesFactoryImpl();
+	SQLDataTypesFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Character String Data Type</em>'.

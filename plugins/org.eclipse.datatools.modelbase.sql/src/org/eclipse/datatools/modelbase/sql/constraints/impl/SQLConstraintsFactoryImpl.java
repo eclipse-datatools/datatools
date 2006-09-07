@@ -14,7 +14,11 @@ import org.eclipse.datatools.modelbase.sql.constraints.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +27,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstraintsFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLConstraintsFactory init() {
+		try {
+			SQLConstraintsFactory theSQLConstraintsFactory = (SQLConstraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"); //$NON-NLS-1$ 
+			if (theSQLConstraintsFactory != null) {
+				return theSQLConstraintsFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLConstraintsFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -59,16 +82,10 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SQLConstraintsPackage.MATCH_TYPE: {
-				MatchType result = MatchType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case SQLConstraintsPackage.INCREMENT_TYPE: {
-				IncrementType result = IncrementType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
+			case SQLConstraintsPackage.MATCH_TYPE:
+				return createMatchTypeFromString(eDataType, initialValue);
+			case SQLConstraintsPackage.INCREMENT_TYPE:
+				return createIncrementTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -82,9 +99,9 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLConstraintsPackage.MATCH_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertMatchTypeToString(eDataType, instanceValue);
 			case SQLConstraintsPackage.INCREMENT_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertIncrementTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -158,6 +175,46 @@ public class SQLConstraintsFactoryImpl extends EFactoryImpl implements SQLConstr
 	public IndexMember createIndexMember() {
 		IndexMemberImpl indexMember = new IndexMemberImpl();
 		return indexMember;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MatchType createMatchTypeFromString(EDataType eDataType, String initialValue) {
+		MatchType result = MatchType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMatchTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IncrementType createIncrementTypeFromString(EDataType eDataType, String initialValue) {
+		IncrementType result = IncrementType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIncrementTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

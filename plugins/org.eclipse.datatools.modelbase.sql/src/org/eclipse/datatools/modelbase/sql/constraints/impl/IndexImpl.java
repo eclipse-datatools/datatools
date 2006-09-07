@@ -55,6 +55,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IndexImpl extends SQLObjectImpl implements Index {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -199,7 +206,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLConstraintsPackage.eINSTANCE.getIndex();
+		return SQLConstraintsPackage.Literals.INDEX;
 	}
 
 	/**
@@ -209,8 +216,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 */
 	public Schema getSchema() {
 		if (schema != null && schema.eIsProxy()) {
-			Schema oldSchema = schema;
-			schema = (Schema)eResolveProxy((InternalEObject)schema);
+			InternalEObject oldSchema = (InternalEObject)schema;
+			schema = (Schema)eResolveProxy(oldSchema);
 			if (schema != oldSchema) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.INDEX__SCHEMA, oldSchema, schema));
@@ -365,8 +372,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 */
 	public Table getTable() {
 		if (table != null && table.eIsProxy()) {
-			Table oldTable = table;
-			table = (Table)eResolveProxy((InternalEObject)table);
+			InternalEObject oldTable = (InternalEObject)table;
+			table = (Table)eResolveProxy(oldTable);
 			if (table != oldTable) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLConstraintsPackage.INDEX__TABLE, oldTable, table));
@@ -447,28 +454,20 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__INDICES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__TABLE:
-					if (table != null)
-						msgs = ((InternalEObject)table).eInverseRemove(this, SQLTablesPackage.TABLE__INDEX, Table.class, msgs);
-					return basicSetTable((Table)otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
-					return ((InternalEList)getForeignKey()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.INDEX__SCHEMA:
+				if (schema != null)
+					msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__INDICES, Schema.class, msgs);
+				return basicSetSchema((Schema)otherEnd, msgs);
+			case SQLConstraintsPackage.INDEX__TABLE:
+				if (table != null)
+					msgs = ((InternalEObject)table).eInverseRemove(this, SQLTablesPackage.TABLE__INDEX, Table.class, msgs);
+				return basicSetTable((Table)otherEnd, msgs);
+			case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
+				return ((InternalEList)getForeignKey()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -476,28 +475,20 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLConstraintsPackage.INDEX__MEMBERS:
-					return ((InternalEList)getMembers()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__TABLE:
-					return basicSetTable(null, msgs);
-				case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
-					return ((InternalEList)getForeignKey()).basicRemove(otherEnd, msgs);
-				case SQLConstraintsPackage.INDEX__INCLUDED_MEMBERS:
-					return ((InternalEList)getIncludedMembers()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLConstraintsPackage.INDEX__SCHEMA:
+				return basicSetSchema(null, msgs);
+			case SQLConstraintsPackage.INDEX__MEMBERS:
+				return ((InternalEList)getMembers()).basicRemove(otherEnd, msgs);
+			case SQLConstraintsPackage.INDEX__TABLE:
+				return basicSetTable(null, msgs);
+			case SQLConstraintsPackage.INDEX__FOREIGN_KEY:
+				return ((InternalEList)getForeignKey()).basicRemove(otherEnd, msgs);
+			case SQLConstraintsPackage.INDEX__INCLUDED_MEMBERS:
+				return ((InternalEList)getIncludedMembers()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -505,18 +496,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLConstraintsPackage.INDEX__NAME:
-				return getName();
-			case SQLConstraintsPackage.INDEX__DEPENDENCIES:
-				return getDependencies();
-			case SQLConstraintsPackage.INDEX__DESCRIPTION:
-				return getDescription();
-			case SQLConstraintsPackage.INDEX__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
 				if (resolve) return getSchema();
 				return basicGetSchema();
@@ -538,7 +519,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 			case SQLConstraintsPackage.INDEX__INCLUDED_MEMBERS:
 				return getIncludedMembers();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -546,25 +527,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.INDEX__NAME:
-				setName((String)newValue);
-				return;
-			case SQLConstraintsPackage.INDEX__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLConstraintsPackage.INDEX__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLConstraintsPackage.INDEX__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
 				setSchema((Schema)newValue);
 				return;
@@ -596,7 +560,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 				getIncludedMembers().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -604,23 +568,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLConstraintsPackage.INDEX__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.INDEX__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLConstraintsPackage.INDEX__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLConstraintsPackage.INDEX__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
 				setSchema((Schema)null);
 				return;
@@ -649,7 +598,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 				getIncludedMembers().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -657,18 +606,8 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLConstraintsPackage.INDEX__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLConstraintsPackage.INDEX__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLConstraintsPackage.INDEX__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLConstraintsPackage.INDEX__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLConstraintsPackage.INDEX__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLConstraintsPackage.INDEX__SCHEMA:
 				return schema != null;
 			case SQLConstraintsPackage.INDEX__CLUSTERED:
@@ -688,7 +627,7 @@ public class IndexImpl extends SQLObjectImpl implements Index {
 			case SQLConstraintsPackage.INDEX__INCLUDED_MEMBERS:
 				return includedMembers != null && !includedMembers.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

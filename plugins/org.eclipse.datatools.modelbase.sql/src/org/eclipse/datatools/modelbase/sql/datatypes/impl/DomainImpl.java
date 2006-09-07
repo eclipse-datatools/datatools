@@ -45,6 +45,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -89,7 +96,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLDataTypesPackage.eINSTANCE.getDomain();
+		return SQLDataTypesPackage.Literals.DOMAIN;
 	}
 
 	/**
@@ -130,22 +137,12 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLDataTypesPackage.DOMAIN__SCHEMA:
-					if (schema != null)
-						msgs = ((InternalEObject)schema).eInverseRemove(this, SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES, Schema.class, msgs);
-					return basicSetSchema((Schema)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
+				return ((InternalEList)getConstraint()).basicRemove(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -153,58 +150,14 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.DOMAIN__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLDataTypesPackage.DOMAIN__SCHEMA:
-					return basicSetSchema(null, msgs);
-				case SQLDataTypesPackage.DOMAIN__ORDERING:
-					return basicSetOrdering(null, msgs);
-				case SQLDataTypesPackage.DOMAIN__PREDEFINED_REPRESENTATION:
-					return basicSetPredefinedRepresentation(null, msgs);
-				case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
-					return ((InternalEList)getConstraint()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLDataTypesPackage.DOMAIN__NAME:
-				return getName();
-			case SQLDataTypesPackage.DOMAIN__DEPENDENCIES:
-				return getDependencies();
-			case SQLDataTypesPackage.DOMAIN__DESCRIPTION:
-				return getDescription();
-			case SQLDataTypesPackage.DOMAIN__LABEL:
-				return getLabel();
-			case SQLDataTypesPackage.DOMAIN__SCHEMA:
-				if (resolve) return getSchema();
-				return basicGetSchema();
-			case SQLDataTypesPackage.DOMAIN__ORDERING:
-				return getOrdering();
-			case SQLDataTypesPackage.DOMAIN__PREDEFINED_REPRESENTATION:
-				return getPredefinedRepresentation();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
 				return getConstraint();
 			case SQLDataTypesPackage.DOMAIN__DEFAULT_VALUE:
 				return getDefaultValue();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -212,34 +165,8 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__NAME:
-				setName((String)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__SCHEMA:
-				setSchema((Schema)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__ORDERING:
-				setOrdering((UserDefinedTypeOrdering)newValue);
-				return;
-			case SQLDataTypesPackage.DOMAIN__PREDEFINED_REPRESENTATION:
-				setPredefinedRepresentation((PredefinedDataType)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
 				getConstraint().clear();
 				getConstraint().addAll((Collection)newValue);
@@ -248,7 +175,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 				setDefaultValue((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -256,32 +183,8 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLDataTypesPackage.DOMAIN__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.DOMAIN__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLDataTypesPackage.DOMAIN__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.DOMAIN__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLDataTypesPackage.DOMAIN__SCHEMA:
-				setSchema((Schema)null);
-				return;
-			case SQLDataTypesPackage.DOMAIN__ORDERING:
-				setOrdering((UserDefinedTypeOrdering)null);
-				return;
-			case SQLDataTypesPackage.DOMAIN__PREDEFINED_REPRESENTATION:
-				setPredefinedRepresentation((PredefinedDataType)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
 				getConstraint().clear();
 				return;
@@ -289,7 +192,7 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 				setDefaultValue(DEFAULT_VALUE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -297,30 +200,14 @@ public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLDataTypesPackage.DOMAIN__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLDataTypesPackage.DOMAIN__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLDataTypesPackage.DOMAIN__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLDataTypesPackage.DOMAIN__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLDataTypesPackage.DOMAIN__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLDataTypesPackage.DOMAIN__SCHEMA:
-				return schema != null;
-			case SQLDataTypesPackage.DOMAIN__ORDERING:
-				return ordering != null;
-			case SQLDataTypesPackage.DOMAIN__PREDEFINED_REPRESENTATION:
-				return predefinedRepresentation != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLDataTypesPackage.DOMAIN__CONSTRAINT:
 				return constraint != null && !constraint.isEmpty();
 			case SQLDataTypesPackage.DOMAIN__DEFAULT_VALUE:
 				return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

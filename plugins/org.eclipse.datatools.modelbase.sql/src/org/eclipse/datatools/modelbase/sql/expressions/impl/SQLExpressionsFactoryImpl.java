@@ -13,7 +13,11 @@ package org.eclipse.datatools.modelbase.sql.expressions.impl;
 import org.eclipse.datatools.modelbase.sql.expressions.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +26,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLExpressionsFactoryImpl extends EFactoryImpl implements SQLExpressionsFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLExpressionsFactory init() {
+		try {
+			SQLExpressionsFactory theSQLExpressionsFactory = (SQLExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/expressions.ecore"); //$NON-NLS-1$ 
+			if (theSQLExpressionsFactory != null) {
+				return theSQLExpressionsFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLExpressionsFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->

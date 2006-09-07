@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,7 +43,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  * @extends EDataObject
  * @generated
  */
-public interface SQLObject extends EDataObject, ENamedElement{
+public interface SQLObject extends EDataObject, ENamedElement {
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.Dependency}.
@@ -110,6 +111,24 @@ public interface SQLObject extends EDataObject, ENamedElement{
 	 * @generated
 	 */
 	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Comments</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.Comment}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.Comment#getSQLObject <em>SQL Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Comments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Comments</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject_Comments()
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Comment#getSQLObject
+	 * @model type="org.eclipse.datatools.modelbase.sql.schema.Comment" opposite="SQLObject"
+	 * @generated
+	 */
+	EList getComments();
 
 	/**
 	 * <!-- begin-user-doc -->

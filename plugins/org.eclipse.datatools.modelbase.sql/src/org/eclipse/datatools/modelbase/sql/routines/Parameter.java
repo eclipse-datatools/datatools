@@ -20,34 +20,8 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * From 5WD-02-Foundation-2002-12
- * 11.49 <SQL-invoked routine>
- * <SQL parameter declaration> ::= [ <parameter mode> ] [ <SQL parameter name> ] <parameter type> [ RESULT ]
- * 
- * 4.23 SQL-invoked routines
- * For every SQL parameter whose <SQL parameter declaration> contains <locator indication>, an indication that the SQL parameter is a locator parameter.
- * 
- * 4.26.4 Locators
- * A host parameter, an SQL parameter of an external routine, or the value returned by an external function may be specified to be a locator by specifying AS LOCATOR. A locator is an SQL-session object, rather than SQL-data, that can be used to reference an SQL-data instance. A locator is either a large object locator, an user-defined type locator, or an array locator. A large object locator
- * is one of the following:
- * - Binary large object locator, a value of which identifies a binary large object.
- * - Character large object locator, a value of which identifies a character large object.
- * - National character large object locator, a value of which identifies a national character large object.
- * 
- * 11.49 <SQL-invoked routine>
- * <parameter type> ::= <data type> [ <locator indication> ] 
- * 
- * <locator indication> ::= AS LOCATOR
- * 
- * ---------------------
- * from Information technology - Database languages - SQL - Part 14: XML-Related Specifications (SQL/XML)
- * 
- * 12.7 <SQL-invoked routine>
- * <parameter type> ::= <data type> [ <locator indication> ] [ <document or content> ] [ <string type option> ]
- * <returns data type> ::= <data type> [ <locator indication> ] [ <document or content> ] [ <string type option> ]
- * <string type option> ::= AS <character string type>
- * 
- * Both [ <document or content> ] [ <string type option> ] are in support of the XML enhancements to SQL:2003.
+ * Reference: 5WD-02-Foundation-2002-12 4.27 SQL-invoked routines, 5WD-02-Foundation-2002-12 11.50 <SQL-invoked routine>,  Reference: 5WD-02-Foundation-2002-12 4.29.4 Locators  
+ * Reference: Information technology - Database languages - SQL - Part 14: XML-Related Specifications (SQL/XML) 12.7 <SQL-invoked routine>
  * <!-- end-model-doc -->
  *
  * <p>
@@ -64,7 +38,7 @@ import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
  * @model
  * @generated
  */
-public interface Parameter extends TypedElement{
+public interface Parameter extends TypedElement {
 	/**
 	 * Returns the value of the '<em><b>Mode</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.routines.ParameterMode}.

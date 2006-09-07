@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage
  * @generated
  */
-public interface SQLSchemaFactory extends EFactory{
+public interface SQLSchemaFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLSchemaFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaFactoryImpl();
+	SQLSchemaFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Identity Specifier</em>'.
@@ -82,6 +82,24 @@ public interface SQLSchemaFactory extends EFactory{
 	 * @generated
 	 */
 	Event createEvent();
+
+	/**
+	 * Returns a new object of class '<em>Comment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Comment</em>'.
+	 * @generated
+	 */
+	Comment createComment();
+
+	/**
+	 * Returns a new object of class '<em>Catalog</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Catalog</em>'.
+	 * @generated
+	 */
+	Catalog createCatalog();
 
 	/**
 	 * Returns the package supported by this factory.

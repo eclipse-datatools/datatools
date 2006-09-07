@@ -59,6 +59,8 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/tables"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/sequences"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/database"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/Catalog"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/assertions"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/userDefinedTypes"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Schema/charSets"/>
@@ -69,6 +71,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/dependencies"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/description"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/label"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/comments"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/addEAnnotation">
           <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotation/source"/>
         </genOperations>
@@ -103,6 +107,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Database/version"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/schemas"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/events"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/catalogs"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Database/authorizationIds"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//schema/Database/getUserDefinedTypes"/>
       </genClasses>
@@ -112,6 +118,17 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/action"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Event/enabled"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Event/Database"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Comment">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/Comment/description"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Comment/SQLObject"/>
+      </genClasses>
+      <genClasses ecoreClass="sqlmodel.ecore#//schema/Catalog">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/Database"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/Catalog/schemas"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="SQLConstraints" basePackage="org.eclipse.datatools.modelbase.sql"

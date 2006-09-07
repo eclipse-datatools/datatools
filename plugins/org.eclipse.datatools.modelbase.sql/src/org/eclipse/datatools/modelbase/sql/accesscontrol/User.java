@@ -16,10 +16,14 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
  * A representation of the model object '<em><b>User</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getUser()
  * @model
  * @generated
  */
-public interface User extends AuthorizationIdentifier{
+public interface User extends AuthorizationIdentifier {
 } // User

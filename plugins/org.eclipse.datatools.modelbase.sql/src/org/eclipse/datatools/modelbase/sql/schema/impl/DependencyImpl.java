@@ -39,6 +39,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getTargetEnd() <em>Target End</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +90,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getDependency();
+		return SQLSchemaPackage.Literals.DEPENDENCY;
 	}
 
 	/**
@@ -93,8 +100,8 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 */
 	public EObject getTargetEnd() {
 		if (targetEnd != null && targetEnd.eIsProxy()) {
-			EObject oldTargetEnd = targetEnd;
-			targetEnd = (EObject)eResolveProxy((InternalEObject)targetEnd);
+			InternalEObject oldTargetEnd = (InternalEObject)targetEnd;
+			targetEnd = eResolveProxy(oldTargetEnd);
 			if (targetEnd != oldTargetEnd) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.DEPENDENCY__TARGET_END, oldTargetEnd, targetEnd));
@@ -150,63 +157,15 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.DEPENDENCY__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.DEPENDENCY__NAME:
-				return getName();
-			case SQLSchemaPackage.DEPENDENCY__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.DEPENDENCY__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.DEPENDENCY__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
 				if (resolve) return getTargetEnd();
 				return basicGetTargetEnd();
 			case SQLSchemaPackage.DEPENDENCY__DEPENDENCY_TYPE:
 				return getDependencyType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -214,25 +173,8 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
 				setTargetEnd((EObject)newValue);
 				return;
@@ -240,7 +182,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 				setDependencyType((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -248,23 +190,8 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.DEPENDENCY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.DEPENDENCY__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.DEPENDENCY__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
 				setTargetEnd((EObject)null);
 				return;
@@ -272,7 +199,7 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 				setDependencyType(DEPENDENCY_TYPE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -280,24 +207,14 @@ public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.DEPENDENCY__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.DEPENDENCY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.DEPENDENCY__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.DEPENDENCY__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.DEPENDENCY__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.DEPENDENCY__TARGET_END:
 				return targetEnd != null;
 			case SQLSchemaPackage.DEPENDENCY__DEPENDENCY_TYPE:
 				return DEPENDENCY_TYPE_EDEFAULT == null ? dependencyType != null : !DEPENDENCY_TYPE_EDEFAULT.equals(dependencyType);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -41,6 +41,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class TypedElementImpl extends SQLObjectImpl implements TypedElement {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The cached value of the '{@link #getContainedType() <em>Contained Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -75,7 +82,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return SQLSchemaPackage.eINSTANCE.getTypedElement();
+		return SQLSchemaPackage.Literals.TYPED_ELEMENT;
 	}
 
 	/**
@@ -128,8 +135,8 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 */
 	public UserDefinedType getReferencedType() {
 		if (referencedType != null && referencedType.eIsProxy()) {
-			UserDefinedType oldReferencedType = referencedType;
-			referencedType = (UserDefinedType)eResolveProxy((InternalEObject)referencedType);
+			InternalEObject oldReferencedType = (InternalEObject)referencedType;
+			referencedType = (UserDefinedType)eResolveProxy(oldReferencedType);
 			if (referencedType != oldReferencedType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE, oldReferencedType, referencedType));
@@ -200,18 +207,12 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
+				return basicSetContainedType(null, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -219,46 +220,15 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
-					return basicSetContainedType(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLSchemaPackage.TYPED_ELEMENT__NAME:
-				return getName();
-			case SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES:
-				return getDependencies();
-			case SQLSchemaPackage.TYPED_ELEMENT__DESCRIPTION:
-				return getDescription();
-			case SQLSchemaPackage.TYPED_ELEMENT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
 				return getContainedType();
 			case SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE:
 				if (resolve) return getReferencedType();
 				return basicGetReferencedType();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -266,25 +236,8 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
 				setContainedType((SQLDataType)newValue);
 				return;
@@ -292,7 +245,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 				setReferencedType((UserDefinedType)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -300,23 +253,8 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLSchemaPackage.TYPED_ELEMENT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
 				setContainedType((SQLDataType)null);
 				return;
@@ -324,7 +262,7 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 				setReferencedType((UserDefinedType)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -332,24 +270,14 @@ public abstract class TypedElementImpl extends SQLObjectImpl implements TypedEle
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLSchemaPackage.TYPED_ELEMENT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLSchemaPackage.TYPED_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLSchemaPackage.TYPED_ELEMENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLSchemaPackage.TYPED_ELEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLSchemaPackage.TYPED_ELEMENT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLSchemaPackage.TYPED_ELEMENT__CONTAINED_TYPE:
 				return containedType != null;
 			case SQLSchemaPackage.TYPED_ELEMENT__REFERENCED_TYPE:
 				return referencedType != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //TypedElementImpl

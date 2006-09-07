@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderingCategoryType.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: OrderingCategoryType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -18,15 +18,8 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * and utility methods for working with them.
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
- * 4.7 User-defined types
+ * Reference: 5WD-02-Foundation-2002-12 4.7 User-defined types
  * 
- * A user-defined type is a schema object, identified by a <user-defined type name>.
- * 
- * A user-defined type is described by a user-defined type descriptor. A user-defined type descriptor contains:
- *  - The name of the user-defined type (<user-defined type name> ). This is the type designator of that type, used in type precedence lists (see Subclause 9.5, "Type precedence list determination").
- *  - An indication of whether the user-defined type is a structured type or a distinct type.
- *  - The ordering form for the user-defined type (EQUALS , FULL , or NONE ).
- *  - The ordering category for the user-defined type (RELATIVE , MAP , or STATE ).
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getOrderingCategoryType()
  * @model
@@ -78,7 +71,7 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingCategoryType RELATIVE_LITERAL = new OrderingCategoryType(RELATIVE, "RELATIVE"); //$NON-NLS-1$
+	public static final OrderingCategoryType RELATIVE_LITERAL = new OrderingCategoryType(RELATIVE, "RELATIVE", "RELATIVE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>MAP</b></em>' literal object.
@@ -92,7 +85,7 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingCategoryType MAP_LITERAL = new OrderingCategoryType(MAP, "MAP"); //$NON-NLS-1$
+	public static final OrderingCategoryType MAP_LITERAL = new OrderingCategoryType(MAP, "MAP", "MAP"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>STATE</b></em>' literal object.
@@ -106,7 +99,7 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingCategoryType STATE_LITERAL = new OrderingCategoryType(STATE, "STATE"); //$NON-NLS-1$
+	public static final OrderingCategoryType STATE_LITERAL = new OrderingCategoryType(STATE, "STATE", "STATE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Ordering Category Type</b></em>' enumerators.
@@ -130,15 +123,15 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderingCategoryType get(String name) {
+	public static OrderingCategoryType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			OrderingCategoryType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -146,7 +139,23 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static OrderingCategoryType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			OrderingCategoryType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Ordering Category Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -166,8 +175,8 @@ public final class OrderingCategoryType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OrderingCategoryType(int value, String name) {
-		super(value, name);
+	private OrderingCategoryType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //OrderingCategoryType

@@ -19,13 +19,8 @@ import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.17.2 Table constraints
+ * Reference: 5WD-02-Foundation-2002-12 4.17.2 Table constraints
  * 
- * A table constraint is either a unique constraint, a referential constraint or a table check constraint. A table constraint is described by a table constraint descriptor which is either a unique constraint descriptor, a referential constraint descriptor or a table check constraint descriptor.
- * 
- * A check constraint is satisfied if and only if the specified <search condition> is not False for any or a given row of a table depending on how it was declared.
- * 
- * A table check constraint is described by a table check constraint descriptor. In addition to the components of every table constraint descriptor, a table check constraint descriptor includes: The <search condition> .
  * <!-- end-model-doc -->
  *
  * <p>
@@ -39,7 +34,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
  * @model
  * @generated
  */
-public interface CheckConstraint extends TableConstraint{
+public interface CheckConstraint extends TableConstraint {
 	/**
 	 * Returns the value of the '<em><b>Search Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

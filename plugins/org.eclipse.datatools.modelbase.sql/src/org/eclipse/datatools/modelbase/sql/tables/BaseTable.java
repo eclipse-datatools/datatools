@@ -21,22 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * 4.14 Tables
- * 
- * A table is a collection of rows having one or more columns. [...]
- * 
- * A table is either a base table, a derived table, or a transient table. A base table is either a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
- * 
- * All base tables are updatable. Every column of a base table is an updatable column. Derived tables and transient tables are either updatable or not updatable. The operations of update and delete are permitted for updatable tables, subject to constraining Access Rules. Some updatable tables, including all base tables whose row type is not derived from a user-defined type that is not instantiable, are also insertable-into, in which case the operation of insert is also permitted, again subject to Access Rules.
- * 
- * A base table descriptor describes a base table. In addition to the components of every table descriptor, a base table descriptor includes:
- *  - The name of the base table.
- *  - An indication of whether the table is a persistent base table, a global temporary table, a created local temporary table, or a declared local temporary table.
- *  - If the base table is a global temporary table, a created local temporary table, or a declared local temporary table, then an indication of whether ON COMMIT PRESERVE ROWS was specified or ON COMMIT DELETE ROWS was specified or implied.
- *  - The descriptor of each table constraint specified for the table.
- *  - A non-empty set of functional dependencies, according to the rules given in Subclause 4.18, "Functional dependencies".
- *  - A non-empty set of candidate keys, according to the rules of Subclause 4.19, "Candidate keys".
- *  - A preferred candidate key, which may or may not be additionally designated the primary key, according to the Rules in Subclause 4.18, "Functional dependencies".
+ * Reference: 5WD-02-Foundation-2002-12 4.14 Tables
  * 
  * <!-- end-model-doc -->
  *
@@ -52,7 +37,7 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface BaseTable extends Table{
+public interface BaseTable extends Table {
 	/**
 	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.constraints.TableConstraint}.
