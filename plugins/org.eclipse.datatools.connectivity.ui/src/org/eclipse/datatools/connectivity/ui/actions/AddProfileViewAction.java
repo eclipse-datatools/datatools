@@ -141,9 +141,18 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	}
 	
 	/**
+	 * @param categoryID
+	 */
+	public void setCategory ( String categoryID ) {
+		this.category = 
+			ConnectionProfileManager.getInstance().getCategory(categoryID);
+	}
+
+	/**
 	 * @return
 	 */
 	public ICategory getCategory () {
 		return this.category;
 	}
+	
 }
