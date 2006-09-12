@@ -11,6 +11,9 @@
 package org.eclipse.datatools.connectivity.ui.actions;
 
 import org.eclipse.datatools.connectivity.ICategory;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IProfileListener;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardNode;
@@ -35,6 +38,8 @@ import org.eclipse.ui.IViewPart;
 public class AddProfileViewAction extends Action implements IViewActionDelegate {
 
 	private ICategory category;
+	private int returnCode;
+	private IConnectionProfile addedProfile;
 
 	/**
 	 * 
@@ -112,7 +117,16 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		wizardDialog = new WizardDialog(ConnectivityUIPlugin.getDefault()
 				.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 		wizardDialog.setBlockOnOpen(true);
-		wizardDialog.open();
+		
+		InternalProfileListener listener = new InternalProfileListener();
+		ProfileManager.getInstance().addProfileListener(listener);
+		
+		returnCode = wizardDialog.open();
+		
+		addedProfile = listener.cachedProfile;
+		
+		ProfileManager.getInstance().removeProfileListener(listener);
+		
 	}
 
 	/*
@@ -155,4 +169,39 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		return this.category;
 	}
 	
+	/**
+	 * @return
+	 */
+	public int getWizardReturnCode() {
+		return this.returnCode;
+	}
+	
+	/**
+	 * @return
+	 */
+	public IConnectionProfile getAddedProfile() {
+		return this.addedProfile;
+	}
+	
+	/**
+	 * Internal listener to listen for the new profile
+	 * @author brianf
+	 *
+	 */
+	private class InternalProfileListener implements IProfileListener {
+
+		protected IConnectionProfile cachedProfile;
+		
+		public void profileAdded(IConnectionProfile profile) {
+			cachedProfile = profile;
+		}
+
+		public void profileChanged(IConnectionProfile profile) {
+			// ignore
+		}
+
+		public void profileDeleted(IConnectionProfile profile) {
+			// ignore
+		}
+	}
 }
