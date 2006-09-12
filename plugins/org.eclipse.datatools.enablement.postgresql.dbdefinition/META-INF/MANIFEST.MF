@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: PostgreSQL DB Definition
+Bundle-SymbolicName: org.eclipse.datatools.enablement.postgresql.dbdefinition; singleton:=true
+Bundle-Version: 1.0.0.200609131
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
