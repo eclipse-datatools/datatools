@@ -14,7 +14,7 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 import java.io.Serializable;
 
 public interface ConnectionFilter extends Serializable{
-
+	
 	/**
 	 * Change the filter expression.
 	 * @param predicate - It cannot be null.
@@ -55,7 +55,22 @@ public interface ConnectionFilter extends Serializable{
 	 * Return only the operator part of the filter expression
 	 */
 	public String getOperator();
+	
+	/**
+	 * @param name the name of the object to check
+	 * 
+	 * @return true if the object should be filtered
+	 */
+	public boolean isFiltered(String name);
 
+	public static final String OPERATOR_LIKE = "LIKE"; //$NON-NLS-1$
+	public static final String OPERATOR_NOT_LIKE = "NOT LIKE"; //$NON-NLS-1$
+	public static final String OPERATOR_IN = "IN"; //$NON-NLS-1$
+	public static final String OPERATOR_NOT_IN = "NOT IN"; //$NON-NLS-1$
+
+	public static final String FILTER_SEPARATOR = "::"; //$NON-NLS-1$
+
+	public static final String CATALOG_FILTER = "DatatoolsCatalogFilterPredicate"; //$NON-NLS-1$
 	public static final String SCHEMA_FILTER = "DatatoolsSchemaFilterPredicate"; //$NON-NLS-1$
 	public static final String TABLE_FILTER = "DatatoolsTableFilterPredicate"; //$NON-NLS-1$
 	public static final String VIEW_FILTER = "DatatoolsViewFilterPredicate"; //$NON-NLS-1$

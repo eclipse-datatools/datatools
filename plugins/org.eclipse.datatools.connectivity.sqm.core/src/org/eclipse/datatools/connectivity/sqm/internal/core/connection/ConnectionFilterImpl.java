@@ -8,7 +8,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
+import java.util.Collections;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 public class ConnectionFilterImpl implements ConnectionFilter {
 
@@ -18,16 +23,18 @@ public class ConnectionFilterImpl implements ConnectionFilter {
     private static final long serialVersionUID = 3689626986939299641L;
 
     private String predicate;
+    private IFilter filter;
 
     public ConnectionFilterImpl() {
 
     }
 
     public ConnectionFilterImpl(String predicate) {
-        this.predicate = predicate;
+        setPredicate(predicate);
     }
 
     public void setPredicate(String predicate) {
+    	filter = null;
         this.predicate = predicate;
     }
 
@@ -106,4 +113,99 @@ public class ConnectionFilterImpl implements ConnectionFilter {
         }
         return isExclusive;
     }
+    
+    public boolean isFiltered(String name) {
+    	if (filter == null) {
+    		createFilter();
+    	}
+    	return filter.isFiltered(name);
+    }
+    
+    private void createFilter() {
+    	String operator = getOperator();
+    	if (OPERATOR_LIKE.equals(operator)) {
+    		filter = new LikeFilter(getPattern());
+    	}
+    	else if (OPERATOR_NOT_LIKE.equals(operator)) {
+    		filter = new NotLikeFilter(getPattern()); 
+    	}
+    	else if (OPERATOR_IN.equals(operator)) {
+    		filter = new InFilter(getPattern()); 
+    	}
+    	else if (OPERATOR_NOT_IN.equals(operator)) {
+    		filter = new NotInFilter(getPattern()); 
+    	}
+    }
+    
+    private static interface IFilter {
+
+		boolean isFiltered(String name);
+	}
+
+	private static class LikeFilter implements IFilter {
+
+		Pattern pattern;
+
+		LikeFilter(String pattern) {
+			String regex;
+			if (pattern == null || pattern.length() < 2) {
+				regex = new String();
+			}
+			else {
+				regex = pattern.substring(1, pattern.length() - 1).replace('%',
+						'*').replace('_', '?');
+			}
+			this.pattern = Pattern.compile(regex);
+		}
+
+		public boolean isFiltered(String name) {
+			return pattern.matcher(name).matches();
+		}
+	}
+
+	private static class NotLikeFilter extends LikeFilter {
+
+		NotLikeFilter(String pattern) {
+			super(pattern);
+		}
+
+		public boolean isFiltered(String name) {
+			return !super.isFiltered(name);
+		}
+	}
+
+	private static class InFilter implements IFilter {
+
+		Set values;
+
+		InFilter(String pattern) {
+			if (pattern == null || pattern.length() < 2) {
+				values = Collections.EMPTY_SET;
+			}
+			else {
+				values = new TreeSet();
+				for (StringTokenizer tokenizer = new StringTokenizer(
+						pattern.substring(1, pattern.length() - 1).replaceAll(
+								"'", ""), ","); tokenizer.hasMoreTokens(); values
+						.add(tokenizer.nextToken())) {
+				}
+			}
+		}
+
+		public boolean isFiltered(String name) {
+			return values.contains(name);
+		}
+	}
+
+	private static class NotInFilter extends InFilter {
+
+		NotInFilter(String pattern) {
+			super(pattern);
+		}
+
+		public boolean isFiltered(String name) {
+			return !super.isFiltered(name);
+		}
+	}
+    
 }
