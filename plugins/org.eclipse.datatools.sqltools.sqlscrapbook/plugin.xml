@@ -54,7 +54,7 @@
       </wizard>
    </extension>
    
-   <!-- preference pages -->
+   <!-- preference pages 
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -63,6 +63,7 @@
             name="%datatools.preferences.sqlfile.name"
             id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.sqlfile"/>
    </extension>
+   -->
    
    <extension
          point="org.eclipse.ui.commands">

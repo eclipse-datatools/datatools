@@ -29,6 +29,7 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -255,29 +256,38 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			IConnectionProfile profile = ProfileManager.getInstance()
 					.getProfileByName(_profileName);
 			if (profile == null) {
-				return;
+				_isConnected = false;
 			}
-
-			try {
-				ProfileUtil.getReusableConnection(new DatabaseIdentifier(
-						_profileName, _dbName));
-				_isConnected = true;
-				String user = ProfileUtil.getProfileUserName(new DatabaseIdentifier(_profileName, _dbName), true);
-				_connInfo.setDefaultSchemaName(user);
-			} catch (Exception e) {
-				String statusmsg = e.getMessage();
-				if (statusmsg == null) {
-					statusmsg = ""; //$NON-NLS-1$
+			else
+			{
+				try {
+					ProfileUtil.getReusableConnection(new DatabaseIdentifier(
+							_profileName, _dbName));
+					_isConnected = true;
+					String user = ProfileUtil.getProfileUserName(new DatabaseIdentifier(_profileName, _dbName), true);
+					_connInfo.setDefaultSchemaName(user);
+				} catch (Exception e) {
+					String statusmsg = e.getMessage();
+					if (statusmsg == null) {
+						statusmsg = ""; //$NON-NLS-1$
+					}
+					IStatus status = new Status(IStatus.ERROR,
+							EditorCorePlugin.PLUGIN_ID, 0, statusmsg, e);
+					Shell shell = getShell();
+					String title = Messages.SelectProfileDialog_error_jdbc_title; //$NON-NLS-1$
+					String msg = Messages.SelectProfileDialog_error_jdbc_message; //$NON-NLS-1$
+					ErrorDialog.openError(shell, title, msg, status);
+					
 				}
-				IStatus status = new Status(IStatus.ERROR,
-						EditorCorePlugin.PLUGIN_ID, 0, statusmsg, e);
-				Shell shell = getShell();
-				String title = Messages.SelectProfileDialog_error_jdbc_title; //$NON-NLS-1$
-				String msg = Messages.SelectProfileDialog_error_jdbc_message; //$NON-NLS-1$
-				ErrorDialog.openError(shell, title, msg, status);
-
-				return;
 			}
+		}
+		if (_isConnected)
+		{
+			_connInfo.setProfileStatus(EditorConstants.CP_STATUS_CONNECTED);
+		}
+		else
+		{
+			_connInfo.setProfileStatus(EditorConstants.CP_STATUS_DISCONNECTED);
 		}
 	}
 

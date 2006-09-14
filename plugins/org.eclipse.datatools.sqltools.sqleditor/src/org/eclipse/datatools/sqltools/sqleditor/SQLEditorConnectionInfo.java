@@ -199,7 +199,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
         StringBuffer code = new StringBuffer("");
         code.append(NLS.bind(SQLEditorResources.SQLEditor_status_dbType,_dbVendorId.toString()));
         code.append(_profileName == null? "":NLS.bind(SQLEditorResources.SQLEditor_status_profile,_profileName));
-        code.append(_databaseName == null? "":NLS.bind(SQLEditorResources.SQLEditor_status_database,_databaseName));
+        code.append(_profileName == null || _databaseName == null? "":NLS.bind(SQLEditorResources.SQLEditor_status_database,_databaseName));
         if (isConnected())
         {
         	code.append(SQLEditorResources.SQLEditor_status_profile_connected);
@@ -237,7 +237,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
 	public boolean isConnected() {
 		//FIXME: here we doesn't call Connection.isClosed for performance issue
-		return getSharedConnection() != null && _profileStatus == EditorConstants.CP_STATUS_CONNECTED;
+		return getSharedConnection() != null && !(_profileStatus == EditorConstants.CP_STATUS_DISCONNECTED || _profileStatus == EditorConstants.CP_STATUS_DELETED);
 	}
 
 }

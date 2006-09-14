@@ -1260,7 +1260,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             if (actionBars != null) {
                 IStatusLineManager statusLineMgr = actionBars.getStatusLineManager();
                 ISQLEditorConnectionInfo connInfo = getConnectionInfo();
-                if (connInfo != null && connInfo.getConnectionProfile() != null) {
+                if (connInfo != null ) {
                     statusLineMgr.setErrorMessage( null );
                     String connStatus = connInfo.getName();
                     statusLineMgr.setMessage( connStatus );
