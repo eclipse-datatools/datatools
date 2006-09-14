@@ -80,3 +80,4 @@ ConnectionProfileSummaryPage.button.testConnection=&Tester la connexion
 CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = Type de profil
+DSE.Refresh.label = &Actualiser

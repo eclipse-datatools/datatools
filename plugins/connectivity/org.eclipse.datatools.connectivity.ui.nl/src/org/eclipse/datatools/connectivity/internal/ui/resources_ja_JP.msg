@@ -80,4 +80,5 @@ ConnectionProfileSummaryPage.button.testConnection=接続のテスト(&T)
 CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = プロファイルの種類
+DSE.Refresh.label = 更新(&R)
 

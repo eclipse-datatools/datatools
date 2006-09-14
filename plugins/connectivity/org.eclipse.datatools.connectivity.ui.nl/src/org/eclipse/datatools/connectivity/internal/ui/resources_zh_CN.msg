@@ -80,3 +80,4 @@ ConnectionProfileSummaryPage.button.testConnection=测试连接(&T)
 CommonLabelProviderBase.label.version=V.
 
 properties.connectionprofile.type = 配置文件类型
+DSE.Refresh.label = 刷新(&R)

@@ -80,3 +80,4 @@ ConnectionProfileSummaryPage.button.testConnection=연결 테스트(&T)
 CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = 프로필 형식
+DSE.Refresh.label = 새로 고침(&R)
