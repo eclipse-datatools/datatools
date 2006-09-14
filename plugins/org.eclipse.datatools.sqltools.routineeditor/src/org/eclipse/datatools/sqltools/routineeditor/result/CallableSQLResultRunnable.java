@@ -13,13 +13,13 @@ package org.eclipse.datatools.sqltools.routineeditor.result;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ISqlDataValidator;
@@ -121,11 +121,20 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             int sqlType = pws[i].getParameterDescriptor().getSqlDataType();
             int paramType = pws[i].getParameterDescriptor().getParmType();
             String name = pws[i].getParameterDescriptor().getName();
-            if (paramType == ParameterMode.IN)
+            //TODO MO
+//            if (paramType == ParameterMode.IN)
+//            {
+//                j++;
+//            }
+//            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
+            if (paramType == DatabaseMetaData.procedureColumnIn)
             {
                 j++;
             }
-            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
+            else if (//paramType == DatabaseMetaData.procedureColumnUnknown //FIXME treat UNKNOWN type as OUT type
+             paramType == DatabaseMetaData.procedureColumnReturn
+                || paramType == DatabaseMetaData.procedureColumnOut
+                || paramType == DatabaseMetaData.procedureColumnInOut)
             {
 
                 if (name.equals(_procName))
@@ -188,11 +197,20 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             int paramType = pws[i].getParameterDescriptor().getParmType();
             String paramTypeName = pws[i].getParameterDescriptor().getParamTypeAsString();
             String name = pws[i].getParameterDescriptor().getName();
-            if (paramType == ParameterMode.IN)
+            //TODO MO
+//            if (paramType == ParameterMode.IN)
+//            {
+//                j++;
+//            }
+//            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
+            if (paramType == DatabaseMetaData.procedureColumnIn)
             {
                 j++;
             }
-            else if (paramType == ParameterMode.OUT || paramType == ParameterMode.INOUT)
+            else if (paramType == DatabaseMetaData.procedureColumnUnknown //FIXME treat UNKNOWN type as OUT type
+            || paramType == DatabaseMetaData.procedureColumnReturn
+                || paramType == DatabaseMetaData.procedureColumnOut
+                || paramType == DatabaseMetaData.procedureColumnInOut)
             {
                 if (name.equals(_procName))
                 {
@@ -229,7 +247,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         {
         	RoutineEditorActivator.getDefault().log(e);
         }
-        DBHelper helper = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), null).getDBHelper();
+        DBHelper helper = SQLToolsFacade.getConfiguration(null, getDatabaseIdentifier()).getDBHelper();
         for (int i = 0; i < pws.length; i++)
         {
             int sqlType = pws[i].getParameterDescriptor().getSqlDataType();
@@ -241,12 +259,19 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             String paramTypeName = pws[i].getParameterDescriptor().getParamTypeAsString();
             String name = pws[i].getParameterDescriptor().getName();
 
-            if (paramType == ParameterMode.OUT)
+            //TODO MO
+//            if (paramType == ParameterMode.OUT)
+//            {
+//                j++;
+//            }
+//            else if (paramType == ParameterMode.IN
+//            || paramType == ParameterMode.INOUT)
+            if (paramType == DatabaseMetaData.procedureColumnOut || paramType == DatabaseMetaData.procedureColumnReturn)
             {
                 j++;
             }
-            else if (paramType == ParameterMode.IN
-            || paramType == ParameterMode.INOUT)
+            else if (paramType == DatabaseMetaData.procedureColumnIn
+            || paramType == DatabaseMetaData.procedureColumnInOut)
             {
                 j++;
                 String value = null;
@@ -265,8 +290,8 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
                     Object v = null;
                     try 
                     {
-                        ISqlDataValidator validator = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), null).getSQLDataService().getSQLDataValidator(getDatabaseIdentifier());
-                        v = validator.convert(pws[i].getParameterDescriptor().getTypeName(), value, getDatabaseIdentifier());
+                        ISqlDataValidator validator = SQLToolsFacade.getConfiguration(null, getDatabaseIdentifier()).getSQLDataService().getSQLDataValidator(getDatabaseIdentifier());
+                        v = validator.convert(pws[i].getParameterDescriptor().getTypeName(), value, getDatabaseIdentifier().getProfileName(), getDatabaseIdentifier().getDBname());
                     }
                     catch (Exception e1) 
                     {
@@ -337,17 +362,16 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 
     protected boolean handleSuccess(boolean moreResult)
     {
-        if (isTerminated() || isCanceled())
+        boolean success = super.handleSuccess(moreResult);
+        if (_pws != null)
         {
-            return false;
+        	getStatementOutParam(_stmt, _pws);
+        	synchronized (getOperationCommand())
+        	{
+        		resultsViewAPI.showParameters(getOperationCommand(), convert(_pws));
+        	}
         }
-
-        getStatementOutParam(_stmt, _pws);
-        synchronized (getOperationCommand())
-        {
-        	resultsViewAPI.showParameters(getOperationCommand(), convert(_pws));
-        }
-        return super.handleSuccess(moreResult);
+		return success;
     }
     
     /**
@@ -360,8 +384,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
     	ArrayList params = new ArrayList();
     	for (int i = 0; i < pws.length; i++) {
     		ParameterDescriptor pd = pws[i].getParameterDescriptor();
-    		//TODO add output value
-			Parameter param = new Parameter(pd.getName(), pd.getParamTypeAsString(), pws[i].getInValue(), pd.getTypeName());
+			Parameter param = new Parameter(pd.getName(), pd.getParamTypeAsString(), pws[i].getInValue(), pws[i].getOutValue(), pd.getTypeName());
 			params.add(param);
 		}
     	return params;

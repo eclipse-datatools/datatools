@@ -15,10 +15,11 @@ import java.text.ParseException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.IProfileListener1;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
+import org.eclipse.datatools.sqltools.core.profile.ConnectProfile;
+import org.eclipse.datatools.sqltools.core.profile.ISQLToolsProfileListener;
 import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
@@ -30,10 +31,10 @@ import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
  * @author Hui Cao
  * 
  */
-public class SQLToolsLaunchProfileListener implements IProfileListener1 {
+public class SQLToolsLaunchProfileListener implements ISQLToolsProfileListener {
 
 	public void profileChanged(IConnectionProfile profile, String oldName,
-			String oldDesc, Boolean oldAutoConnect) {
+			String oldDesc, Boolean oldAutoConnect, boolean onlyNameChanged, ConnectProfile oldProfile) {
 
 		ILaunchConfigurationType type = LaunchHelper.getLaunchConfigType();
 		try {
@@ -122,12 +123,6 @@ public class SQLToolsLaunchProfileListener implements IProfileListener1 {
 		} catch (CoreException ce) {
 			RoutineEditorActivator.getDefault().log(ce);
 		}
-
-	}
-
-	public void profileChanged(IConnectionProfile profile) {
-		// see profileChanged (IConnectionProfile profile, String oldName,
-		// String oldDesc, Boolean oldAutoConnect)
 
 	}
 

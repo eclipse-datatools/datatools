@@ -75,80 +75,35 @@
           
    </extension>
 
+  
    <extension
-         point="org.eclipse.ui.popupMenus">
-         <objectContribution 
-             id="org.eclipse.datatools.sqltools.routineeditor.objectContribution1"
-            objectClass="org.eclipse.datatools.modelbase.sql.tables.Trigger">
-	         <action
-	               label="%Routineeditor.edit"
-	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction"
-	               menubarPath="slot1"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction">
-	               <enablement>
-	               <or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
-			       </or>
-	            </enablement>
-	         </action>
-	         <action
-	               label="%Routineeditor.run"
-	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
-	               menubarPath="slot2"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.sqleditor.runAction">
-	               <enablement>
-	               <or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
-			       </or>
-	            </enablement>
-	         </action>
-	         <visibility>
-			    	<or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
-			      	</or>
-	         </visibility>
-		 </objectContribution>
-         <objectContribution 
-             id="org.eclipse.datatools.sqltools.routineeditor.objectContribution2"
-            objectClass="org.eclipse.datatools.modelbase.sql.routines.Routine">
-	         <action
-	               label="%Routineeditor.edit"
-	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction"
-	               menubarPath="slot1"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.EditRoutineAction">
-	               <enablement>
-	               <or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
-			       </or>
-	            </enablement>
-	         </action>
-	         <action
-	               label="%Routineeditor.run"
-	               class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RunAction"
-	               menubarPath="slot2"
-	               enablesFor="1"
-	               id="org.eclipse.datatools.sqltools.sqleditor.runAction">
-	               <enablement>
-	               <or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
-			       </or>
-	            </enablement>
-	         </action>
-	         <visibility>
-			    	<or>
-				      	<objectClass name = "org.eclipse.datatools.modelbase.sql.routines.Routine"/>
-			      	</or>
-	         </visibility>
-		 </objectContribution>
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.sqltools.routineeditor.actions.RoutineActionProvider"/>
+            </includes>
+         </viewerActionBinding>
+      </extension>  
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.RoutineActionProvider"
+            id="org.eclipse.datatools.sqltools.routineeditor.actions.RoutineActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+            </or>
+         </enablement>
+      </actionProvider>
    </extension>
    
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            class="org.eclipse.datatools.sqltools.routineeditor.RoutineEditor"
             contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor"
             default="true"
             icon="icons/routine_editor.gif"
@@ -162,6 +117,18 @@
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
             name="%Routineeditor.command.run"
             id="org.eclipse.datatools.sqltools.sqleditor.runAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.debug"
+            id="org.eclipse.datatools.sqltools.sqleditor.debugAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.savetodb"
+            id="org.eclipse.datatools.sqltools.sqleditor.saveToDatabaseAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.refresh"
+            id="org.eclipse.datatools.sqltools.sqleditor.refreshFromDatabaseAction"/>
     </extension>
     
     <extension
@@ -171,6 +138,11 @@
       <key
             commandId="org.eclipse.datatools.sqltools.sqleditor.runAction"
             sequence="M1+M3+R"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.debugAction"
+            sequence="M1+M3+D"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>

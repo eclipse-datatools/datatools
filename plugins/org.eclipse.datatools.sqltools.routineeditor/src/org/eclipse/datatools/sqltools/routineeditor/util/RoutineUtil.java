@@ -11,16 +11,23 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.routineeditor.util;
 
+import java.sql.DatabaseMetaData;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
+import org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.texteditor.ITextEditor;
 
 /**
  * @author Hui Cao
@@ -83,19 +90,20 @@ public class RoutineUtil {
             {
                 String name = pds[i].getName();
 
-                if (name.equals(procName))
-                {
-                    continue;
-                }
-                if (j != 0)
-                {
-                    buffer.append(",?"); //$NON-NLS-1$
-                }
-                else
-                {
-                    buffer.append("?");
-                }
-                j++;
+                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnIn
+						|| pds[i].getParmType() == DatabaseMetaData.procedureColumnInOut
+						|| pds[i].getParmType() == DatabaseMetaData.procedureColumnOut
+						|| pds[i].getParmType() == DatabaseMetaData.procedureColumnUnknown) {
+					if (name.equals(procName)) {
+						continue;
+					}
+					if (j != 0) {
+						buffer.append(",?"); //$NON-NLS-1$
+					} else {
+						buffer.append("?");
+					}
+					j++;
+				}
             }
             if (type == ProcIdentifier.TYPE_UDF || type == ProcIdentifier.TYPE_SP)
             {
@@ -146,8 +154,11 @@ public class RoutineUtil {
                 String name = pds[i].getName();
                 String prefix = "";
 
-                if (pds[i].getParmType() == ParameterMode.IN
-                || pds[i].getParmType() == ParameterMode.INOUT)
+                //TODO MO
+//                if (pds[i].getParmType() == ParameterMode.IN
+//                		|| pds[i].getParmType() == ParameterMode.INOUT)
+                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnIn
+                        || pds[i].getParmType() == DatabaseMetaData.procedureColumnInOut)
                 {
                     String value =null;
                     if (values!=null && values.size()>=(k+1))
@@ -175,7 +186,10 @@ public class RoutineUtil {
 
                     j++;
                 }
-                if (pds[i].getParmType() == ParameterMode.OUT)
+                //TODO MO
+//                if (pds[i].getParmType() == ParameterMode.OUT)
+                if (pds[i].getParmType() == DatabaseMetaData.procedureColumnOut
+                        || pds[i].getParmType() == DatabaseMetaData.procedureColumnUnknown)
                 {
                     if (name.equals(procName))
                     {
@@ -294,5 +308,106 @@ public class RoutineUtil {
         return sb.toString();
     }
 
+    /**
+	 * Closes all the editors which are editing the procedural object identified
+	 * by the given ProcIdentifier. We will need to close all those editors for
+	 * the same procedural objects that are opened by different profiles. For example
+	 * a stored proc "myProc" can be opened by profile1 & profile2, we should
+	 * close both the editor window when user drops "myProc".
+	 * During the close process, the editor won't be saved.
+	 * 
+	 * @param databaseIdentifier
+	 * @param dbObjectName
+	 * @param dbObjectType
+	 */
+    public static void closeEditor(ProcIdentifier proc)
+    {
+        IEditorReference[] ht = SQLEditorPlugin.getActiveWorkbenchPage().getEditorReferences();
+        
+        if (ht == null || ht.length == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < ht.length; i++) {
+        	IEditorReference ref = ht[i];
+        	IEditorInput input = null;
+			try {
+				input = ref.getEditorInput();
+			} catch (PartInitException e) {
+				SQLEditorPlugin.getDefault().log(e);
+			}
+            if (input instanceof ProcEditorInput)
+            {
+            	ProcEditorInput sqlEditorInput = (ProcEditorInput) input;
+                if (sqlEditorInput.getProcIdentifier().equalsByServer(proc))
+                {
+                	ITextEditor editor = (ITextEditor)ref.getEditor(false);
+                	if (editor != null)
+                	{
+                		editor.close(false);
+                	}
+                }
+            }
+        }
+    }
+    
+    /**
+     * Return whether objstr and proc represent the same database object.
+     * If db name or owner name is omitted int objstr, defDB or defOwner will be used.
+     * @param objstr
+     * @param proc
+     * @return
+     */
+    public static boolean equals(int parserType, int procType, String objstr, String defDB, String defOwner, ProcIdentifier proc, boolean caseSensitive)
+    {
+        if (!isSameType(parserType, procType))
+        {
+            return false;
+        }
+        String[] tokens = SQLUtil.parseDatabaseObject(objstr);
+        int count = tokens.length;
 
+        if (count == 0 || count > 3)
+        {
+            return false;
+        }
+
+        //user can't use owner name for event definition, so don't check it
+        if (parserType == SQLParserConstants.TYPE_SQL_ALTER_EVENT || parserType == SQLParserConstants.TYPE_SQL_CREATE_EVENT)
+        {
+            defOwner = proc.getOwnerName();
+        }
+
+        String db = count == 3? tokens[2]:defDB;
+        String owner = count >= 2? tokens[1]:proc.getOwnerName();
+        String objname = count >= 1? tokens[0]:objstr;
+
+        return SQLUtil.equalsIgnoreQuote(proc.getDatabaseIdentifier().getDBname(), db, caseSensitive)
+            && SQLUtil.equalsIgnoreQuote(proc.getOwnerName(), owner, caseSensitive) && SQLUtil.equalsIgnoreQuote(proc.getProcName(), objname, caseSensitive);
+    }
+
+
+    /**
+     * Return whether the object type represented by parserType and that by procType are of the same type 
+     * @param parserType type defined in SQLParserContants
+     * @param procType type defined in ProcIdentifier
+     * @return
+     */
+    public static boolean isSameType(int parserType, int procType)
+    {
+        boolean same = (parserType == SQLParserConstants.TYPE_SQL_ALTER_PROCEDURE || parserType == SQLParserConstants.TYPE_SQL_CREATE_PROCEDURE)
+            && (procType == ProcIdentifier.TYPE_SP);
+        same = same
+            || (parserType == SQLParserConstants.TYPE_SQL_ALTER_FUNCTION || parserType == SQLParserConstants.TYPE_SQL_CREATE_FUNCTION)
+            && (procType == ProcIdentifier.TYPE_UDF);
+        same = same
+            || (parserType == SQLParserConstants.TYPE_SQL_ALTER_EVENT || parserType == SQLParserConstants.TYPE_SQL_CREATE_EVENT)
+            && (procType == ProcIdentifier.TYPE_EVENT);
+        same = same
+            || (parserType == SQLParserConstants.TYPE_SQL_ALTER_TRIGGER || parserType == SQLParserConstants.TYPE_SQL_CREATE_TRIGGER)
+            && (procType == ProcIdentifier.TYPE_TRIGGER);
+        return same;
+    }
+
+    
 }

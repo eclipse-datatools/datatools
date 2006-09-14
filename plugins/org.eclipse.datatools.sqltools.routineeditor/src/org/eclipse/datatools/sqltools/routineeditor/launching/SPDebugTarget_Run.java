@@ -185,7 +185,7 @@ public class SPDebugTarget_Run implements IDebugTarget, IConnectionTracker
     {
         if (exception != null) 
         {
-        	RoutineEditorActivator.getDefault().log(Messages.getString("SPDebugTarget_Run.debug.exception"), exception);
+        	RoutineEditorActivator.getDefault().log(Messages.SPDebugTarget_Run_debug_exception, exception);
         }
         throw new DebugException(new Status(IStatus.ERROR, RoutineEditorActivator.PLUGIN_ID, code,
             message == null ? "" : message, exception)); //$NON-NLS-1$
@@ -340,7 +340,7 @@ public class SPDebugTarget_Run implements IDebugTarget, IConnectionTracker
      */
     public IMemoryBlock getMemoryBlock(long startAddress, long length) throws DebugException
     {
-        notSupported(Messages.getString("SPDebugTarget_Run.notSupported")); //$NON-NLS-1$
+        notSupported(Messages.SPDebugTarget_Run_notSupported); 
         return null;	// will not reach here.
     }
 
@@ -359,4 +359,12 @@ public class SPDebugTarget_Run implements IDebugTarget, IConnectionTracker
         }
         return null;
     }
+    
+    /**
+     * Default implementation does nothing
+     */
+    public void connectionAboutToBeClosed()
+    {
+    }
+
 }

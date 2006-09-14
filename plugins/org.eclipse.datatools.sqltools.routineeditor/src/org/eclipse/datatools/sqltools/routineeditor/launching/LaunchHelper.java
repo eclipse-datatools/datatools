@@ -22,10 +22,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
@@ -37,6 +37,7 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Helper methods for dealing with DTP routine launch configuration. We expect to let this class to manipulate all the
@@ -217,7 +218,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         if ("".equals(profileName))
         {
             throw new CoreException(new Status(IStatus.ERROR, RoutineEditorActivator.PLUGIN_ID, 0,
-                Messages.getString("LaunchHelper.invalid.launch.configuration"), null)); //$NON-NLS-1$
+                Messages.LaunchHelper_invalid_launch_configuration, null)); 
         }
         else
         {
@@ -398,7 +399,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
     public static boolean readQuotedIDConfig(ILaunchConfiguration configuration, ProcIdentifier proc)
     {
         boolean quoted_id = false;
-        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfiguration(proc.getDatabaseIdentifier(), null);
+        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfiguration(null, proc.getDatabaseIdentifier());
         IDatabaseSetting config = factory.getDatabaseSetting(proc.getDatabaseIdentifier());
         if (config != null)
         {
@@ -409,7 +410,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
             }
             catch (NotSupportedSettingException e)
             {
-                RoutineEditorActivator.getDefault().log(Messages.getString("NotSupportedSettingException.cause", IDatabaseSetting.C_QUOTED_IDENTIFIER));
+                RoutineEditorActivator.getDefault().log(NLS.bind(Messages.NotSupportedSettingException_cause, (new Object[]{IDatabaseSetting.C_QUOTED_IDENTIFIER})));
             }
         }
         return quoted_id;
@@ -431,7 +432,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         }
         catch(CoreException ce)
         {
-        	RoutineEditorActivator.getDefault().log(Messages.getString("LaunchHelper.error.readconfiguration"),ce);
+        	RoutineEditorActivator.getDefault().log(Messages.LaunchHelper_error_readconfiguration,ce);
         }
 
     }
