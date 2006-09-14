@@ -15,6 +15,7 @@ package org.eclipse.datatools.sqltools.internal.core;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -39,6 +40,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 {
     public static final SQLDevToolsConfigRegistry INSTANCE                     = new SQLDevToolsConfigRegistryImpl();
     private static SQLDevToolsConfiguration DEFAULT_CONFIG                = SQLDevToolsConfiguration.getDefaultInstance();
+	private static ArrayList _listeners = new ArrayList();
     //Hui Cao: we lazy load the factory classes to avoid circular dependency. Consequently all getXXX methods should check this field.
     private boolean                             _factoriesLoaded             = false;
     private Map                                 _products                    = new TreeMap();
@@ -129,7 +131,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     {
     }
 
-    private void init()
+    private synchronized void init()
     {
         if (_factoriesLoaded)
         {
@@ -201,6 +203,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
                     }
                     catch (Exception e)
                     {
+                    	e.printStackTrace();
                     	try
                     	{
                     		IStatus status = new Status(IStatus.ERROR, EditorCorePlugin.PLUGIN_ID, IStatus.ERROR,
@@ -217,6 +220,16 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
         }
 
         _factoriesLoaded = true;
+        for (Iterator iter = _listeners.iterator(); iter.hasNext();) {
+			final IConfigurationRegistryListener l = (IConfigurationRegistryListener) iter.next();
+			new Thread()
+			{
+				public void run()
+				{
+					l.configurationLoaded();
+				}
+			}.start();
+		}
     }
     
     public static SQLDevToolsConfiguration getDefaultConfiguration()
@@ -224,4 +237,8 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     	return DEFAULT_CONFIG;
     }
 
+    public void addConfigurationRegistryListener(IConfigurationRegistryListener listener)
+    {
+    	_listeners .add(listener);
+    }
 }

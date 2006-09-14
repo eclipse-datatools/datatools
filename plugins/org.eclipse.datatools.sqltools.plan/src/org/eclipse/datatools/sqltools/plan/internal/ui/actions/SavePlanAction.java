@@ -20,9 +20,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
-import org.eclipse.datatools.sqltools.plan.internal.Constants;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
+import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
@@ -161,6 +163,7 @@ public class SavePlanAction extends Action
             {
                 IPlanInstance instance = instances[i];
                 PlanRequest planRequest = instance.getPlanRequest();
+            	IPlanService service = PlanServiceRegistry.getInstance().getPlanService(instance.getPlanRequest().getDatabaseDefinitionId());
                 
                 if(instance.isFinished())
                 {
@@ -170,7 +173,7 @@ public class SavePlanAction extends Action
                     planNode.setAttributeNode(status);
                     
                     Attr type = document.createAttribute("type");
-                    type.setNodeValue(getTypeString(instance.getPlanRequest().getPlanType()));
+                    type.setNodeValue(service.getPlanOption().getOptionName(instance.getPlanRequest().getPlanType()));
                     planNode.setAttributeNode(type);
                     root.appendChild(planNode);
 
@@ -215,7 +218,7 @@ public class SavePlanAction extends Action
             }
             catch (Exception e)
             {
-                final IStatus fstatus = new Status(IStatus.ERROR, Constants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
+                final IStatus fstatus = new Status(IStatus.ERROR, PlanConstants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
                 final String title = Messages.SavePlanAction_error; 
                 final String msg = Messages.SavePlanAction_error_info; 
                 Display display = PlanViewPlugin.getActiveWorkbenchShell().getDisplay();
@@ -246,19 +249,6 @@ public class SavePlanAction extends Action
         }
     }
 
-    private String getTypeString(int type)
-    {
-        switch (type)
-        {
-            case PlanRequest.GRAPHIC_PLAN:
-                return "GRAPHIC_PLAN";
-            case PlanRequest.TEXT_PLAN:
-                return "TEXT_PLAN";
-            default:
-                return "TEXT_PLAN";
-        }
-    }
-    
     public void update()
     {
         boolean shouldEnable = false;

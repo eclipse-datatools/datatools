@@ -461,4 +461,11 @@ public abstract class SPThread extends SPDebugElement implements IThread,
 	}
 
 	public abstract Connection getDebuggerConnection();
+	
+    /**
+     * Default implementation does nothing
+     */
+    public void connectionAboutToBeClosed()
+    {
+    }
 }

@@ -53,12 +53,12 @@ public final class SQLCompletionProposalFactory {
      * entered schema1.table1 then the ArrayList consists of 2 tokens schema1, and table1.
      * @return the list of <code>DBProposal</code> objects
      */
-    public List getDBObjectProposals( List tokenList ) {
+    public List getDBObjectProposals( SQLDBProposalsRequest request ) {
         
         fDBProposalList.clear();
         if (fDBProposalsService != null) {            
             // Load DB proposals            
-            if (fDBProposalsService.populate( tokenList )) {
+            if (fDBProposalsService.populate( request )) {
                 fDBProposalList.addAll(fDBProposalsService.getDBProposals());                
             }           
         }

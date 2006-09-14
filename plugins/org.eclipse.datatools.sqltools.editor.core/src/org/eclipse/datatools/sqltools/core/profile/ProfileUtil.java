@@ -15,13 +15,18 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.db.generic.IDBConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
@@ -29,13 +34,16 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
+import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
-import org.eclipse.datatools.sqltools.core.SQLToolsConstants;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.ServerIdentifier;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -48,17 +56,22 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ProfileUtil
 {
-	//FIXME shall we use ConnectionProfileConstants.PROP_UID or IDBDriverDefinitionConstants.USERNAME_PROP_ID?
-    public static final String UID                = ConnectionProfileConstants.PROP_UID;
-    public static final String PWD                = ConnectionProfileConstants.PROP_PWD;
+    public static final String UID                = IDBDriverDefinitionConstants.USERNAME_PROP_ID;
+    public static final String PWD                = IDBDriverDefinitionConstants.PASSWORD_PROP_ID;
     public static final String DRIVERDEFINITIONID = ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID;
     public static final String DATABASENAME       = IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID;
     public static final String URL                = IDBDriverDefinitionConstants.URL_PROP_ID;
     public static final String DRIVERCLASS        = IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID;
+    //driver category
+	public static final String DRIVER_DATABASE_CATEGORY_ID=IDBDriverDefinitionConstants.DATABASE_CATEGORY_ID;
+	public static final String DATABASE_CATEGORY_ID= "org.eclipse.datatools.connectivity.db.category";
+	//TODO CONN this might change because we are using the generic db connection profile constant
+	public static final String PROP_DB_CONN_PROPS  = IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID;
 
     /**
      * Returns the associated DatabaseVendorDefinition object from the given connection profile.
-     * The DatabaseVendorDefinition object is contributed by vendor tool plugins.
+     * The DatabaseVendorDefinition object is contributed by vendor tool plugins. Clients of 
+     * this API must be aware that the return value might be null.
      * @param profile
      * @return
      */
@@ -66,7 +79,37 @@ public class ProfileUtil
     {
         DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
         //get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
-        return RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(id.getProductName(), id.getVersion());
+        DatabaseDefinitionRegistry databaseDefinitionRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
+		DatabaseDefinition definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
+		if (definition == null)
+		{
+			id = SQLToolsFacade.recognize(id.getProductName(), id.getVersion());
+			definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
+		}
+		if (definition == null)
+		{
+			//resolve aliases
+			id = SQLToolsFacade.recognize(id.getProductName(), id.getVersion());
+			definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
+		}
+		if (definition == null)
+		{
+			//use the latest version if not exactly match
+			Iterator i = databaseDefinitionRegistry.getVersions(id.getProductName());
+			if (i != null)
+			{
+				String version = "0";
+				for (; i.hasNext();) {
+					String v = (String) i.next();
+					if (v.compareTo(version) >=0 )
+        			{
+        				version = v;
+        			}
+				}
+				definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), version);
+			}
+		}
+        return definition;
     }
 
     /**
@@ -103,6 +146,7 @@ public class ProfileUtil
     public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(String profileName)
     {
     	IConnectionProfile profile = null;
+    	DatabaseVendorDefinitionId vendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
 		try {
 			profile = getProfile(profileName);
 		} catch (NoSuchProfileException e) {
@@ -110,6 +154,18 @@ public class ProfileUtil
 		}
     	if (profile != null)
     	{
+    		//try to get vendor name and version from connection profile first, because this should
+    		//be the REAL info.
+    		String vendor = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_NAME);
+            String version = getProductVersion(profileName);
+            if (vendor != null && version != null)
+            {
+            	vendorId = new DatabaseVendorDefinitionId(vendor, version);
+            }else
+            {
+            
+            // then try to get the info from driver template, this is the
+			// DECLARED info.
     		String driverID = profile.getBaseProperties().getProperty(
     				ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
     		if (driverID == null) {
@@ -120,15 +176,88 @@ public class ProfileUtil
 	    		DriverInstance driver = DriverManager.getInstance().getDriverInstanceByID(driverID);
 	    		if (driver != null)
 	    		{
-	    			String vendor = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-	    			String version = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
-					return new DatabaseVendorDefinitionId(vendor, version);
+	    			vendor = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+	    			version = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+	    			vendorId = new DatabaseVendorDefinitionId(vendor, version);
 	    		}
     		}
+            }
     	}
-    	return SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
+    	Collection vendors = SQLToolsFacade.getSupportedDBDefinitionNames();
+    	if(vendors.contains(vendorId.toString()))
+    	{
+    		return vendorId;
+    	}
+    	else
+    	{
+    		vendorId = SQLToolsFacade.getCanonicalDatabaseVendorDefinitionId(vendorId);
+    	}
+    	//TODO shall we keep a hashmap?
+    	return vendorId;
     }
 
+    private static ArrayList _unknowVersionProfiles = new ArrayList();
+
+    /**
+     * Construct a ServerIdentifier from a connection profile.
+     * @param profileName
+     * @return
+     */
+    public static ServerIdentifier getServerIdentifier(DatabaseIdentifier databaseIdentifier)
+    {
+        ProfileManager pManager = ProfileManager.getInstance();
+        IConnectionProfile connProfile1 = pManager.getProfileByName(databaseIdentifier.getProfileName());
+        if(connProfile1 == null)
+        {
+            return null;
+        }
+        Properties profile1Props = connProfile1.getBaseProperties();
+
+        //TODO CONN won't support host and port anymore?
+//        String host = profile1Props.getProperty(HOST);
+//        String port = profile1Props.getProperty(PORT);
+        String host = null;
+        String port = null;
+        String url = profile1Props.getProperty(URL);
+
+        return new ServerIdentifier(host, port, url, getDatabaseVendorDefinitionId(databaseIdentifier.getProfileName()));
+    }
+
+
+    /**
+     * @param profileName
+     * @return
+     */
+    public static String getProductVersion(String profileName)
+    {
+        try
+        {
+            IConnectionProfile profile = getProfile(profileName);
+            String version = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
+            if (version == null)
+            {
+                // if we have failed to get version for this profile before, do not do it again. Otherwise, it will be a
+                // great performance hit.
+                if (_unknowVersionProfiles.contains(profile))
+                {
+                    return null;
+                }
+                profile.createConnection(ConnectionProfileConstants.PING_FACTORY_ID);
+                version = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
+                if (version == null)
+                {
+                    _unknowVersionProfiles.add(profile);
+                }
+            }
+            return version;
+        }
+        catch (NoSuchProfileException e)
+        {
+            return null;
+        }
+    }
+
+    
     /**
      * Gets the user name defined in the <code>IConnectionProfile </code> object.
      * @param profile the <code>IConnectionProfile </code>
@@ -140,7 +269,7 @@ public class ProfileUtil
     	{
     		return null;
     	}
-        return profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_UID);
+        return profile.getBaseProperties().getProperty(UID);
     }
 
     /**
@@ -154,7 +283,7 @@ public class ProfileUtil
     	{
     		return null;
     	}
-    	return profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_PWD);
+    	return profile.getBaseProperties().getProperty(PWD);
     }
 
     /**
@@ -182,7 +311,7 @@ public class ProfileUtil
 	 * <p>
 	 * Note: this method can only return one Database object for one connection
 	 * profile. This problem should be addressed in multiple database
-	 * environment, such as ASE.
+	 * environment, such as ASE. TODO MO Catalog
 	 * </p>
 	 * 
 	 * @return the SQL model <code>Database</code> object
@@ -203,11 +332,12 @@ public class ProfileUtil
 				ConnectionInfo ci = (ConnectionInfo)rawConn;
 				String expectedDB = databaseIdentifier.getDBname(); 
 				String realDB = ci.getDatabaseName(); 
-				if ( expectedDB != null && !expectedDB.equals(realDB))
-				{
-					//this should not happen if connection profile can handle multiple db well
-					EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_wrong_database_name, (new Object[]{realDB,databaseIdentifier.getProfileName(),expectedDB})));
-				}
+				//TODO MO catalog
+//				if ( expectedDB != null && !expectedDB.equals(realDB))
+//				{
+//					//this should not happen if connection profile can handle multiple db well
+//					EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_wrong_database_name, (new Object[]{realDB,databaseIdentifier.getProfileName(),expectedDB})));
+//				}
 				return ci.getSharedDatabase();
 			}
 		} catch (NoSuchProfileException e) {
@@ -235,7 +365,10 @@ public class ProfileUtil
     	}
     	
     	IConnection iconn = managedConn.getConnection();
-    	return (Connection)iconn.getRawConnection();
+    	DBHelper helper = SQLToolsFacade.getDBHelper(databaseIdentifier);
+    	Connection conn = (Connection)iconn.getRawConnection();
+        helper.switchDatabase(databaseIdentifier, conn);
+		return conn;
     }
 
     
@@ -289,6 +422,13 @@ public class ProfileUtil
                 }
 
             }
+            if (conn != null && dbName != null)
+            {
+            	DatabaseIdentifier databaseIdentifier = new DatabaseIdentifier(profile.getName(), dbName);
+            	DBHelper helper = SQLToolsFacade.getDBHelper(databaseIdentifier);
+            	helper.switchDatabase(databaseIdentifier, conn);
+            }
+
             return conn;
         }
         catch (Exception e)
@@ -333,46 +473,6 @@ public class ProfileUtil
 		}
     }
     
-    
-    /**
-     * 
-     * This method is used to verify if this profile is database profile.
-     * 
-     * @author Li Huang
-     * @param connectProfile
-     * @return true means this profile is database profile
-     */
-    public static boolean isDatabaseProfile(IConnectionProfile connectionProfile)
-    {
-        if (connectionProfile != null)
-        {
-            connectionProfile.getCategory();
-            if (connectionProfile.getCategory().getId().equalsIgnoreCase(SQLToolsConstants.DB_CP_CATEGORY))
-            {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    /**
-     * 
-     * This method is used to verify if this profile is database profile.
-     * 
-     * @param profileName
-     * @return true means this profile is database profile
-     */
-    public static boolean isDatabaseProfile(String profileName)
-    {
-    	try {
-    		return isDatabaseProfile(getProfile(profileName));
-		} catch (NoSuchProfileException e) {
-			return false;
-		}
-    }
-    
-
     /**
 	 * Retrieves the database name list located at the server identified by
 	 * profileName. This method will first try to get the database list from
@@ -388,16 +488,33 @@ public class ProfileUtil
         List list = new ArrayList();
         Connection conn = null;
         ResultSet rs = null;
+        IConnectionProfile profile;
+		try {
+			profile = getProfile(profileName);
+		} catch (NoSuchProfileException e1) {
+			EditorCorePlugin.getDefault().log(e1);
+			return list;
+		}
+        String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
         try {
-        	IConnectionProfile profile = getProfile(profileName);
-        	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
-        	if (!managedConn.isConnected())
+			conn = getReusableConnection(new DatabaseIdentifier(profileName));
+        }
+        catch (Exception e)
+        {
+        	IStatus status = profile.connect();
+        	if (!status.isOK())
         	{
-        		profile.connect();
+        		EditorCorePlugin.getDefault().log(status);
+        		return list;
         	}
-        	
-        	IConnection iconn = managedConn.getConnection();
-			conn = (Connection)iconn.getRawConnection();
+        	try {
+				conn = getReusableConnection(new DatabaseIdentifier(profileName));
+			} catch (Exception e1) {
+				EditorCorePlugin.getDefault().log(e1);
+				return list;
+			}
+        }
+        try {
 
 			rs = conn.getMetaData().getCatalogs();
             while (rs.next())
@@ -406,7 +523,6 @@ public class ProfileUtil
             }
             if (list.isEmpty())
             {
-            	String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
             	if (dbname != null)
             	{
             		list.add(dbname);
@@ -458,4 +574,225 @@ public class ProfileUtil
 
     }
 
+    
+    /**
+     * Returns the database user name that matches the user name defined in DatabaseIdentifier.
+     * If a connection can't be established, will simply return the user name defined in DatabaseIdentifier.
+     * @param databaseIdentifier 
+     * @param createConnection whether need to create connection if none exists
+     */
+    public static String getProfileUserName(DatabaseIdentifier databaseIdentifier, boolean createConnection) 
+    {
+        if (databaseIdentifier.getProfileName() == null)
+        {
+            return "";
+        }
+        
+
+        IControlConnection con = null;
+        try
+        {
+            if (createConnection)
+            {
+                con = EditorCorePlugin.getControlConnectionManager().getOrCreateControlConnection(databaseIdentifier);
+            }
+            else
+            {
+                con = EditorCorePlugin.getControlConnectionManager().getControlConnection(databaseIdentifier);
+            }
+        }
+        catch (Exception ex)
+        {
+            //_log.error(EditorMessages.common_error, ex);
+        	ex.printStackTrace();
+        }
+        if (con != null)
+        {
+            try
+            {
+                String dbUsername = con.getDbUsername();
+                if (dbUsername != null)
+                {
+                	return dbUsername;
+                }
+            }
+            catch (SQLException ex)
+            {
+                //_log.error(EditorMessages.common_error, ex);
+            	ex.printStackTrace();
+            }
+        }
+        try {
+			IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+			return profile.getBaseProperties().getProperty(UID);
+		} catch (NoSuchProfileException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+    }
+
+	/**
+	 * 
+	 * This method is used to verify if this profile is supported by DMP. The supported profiles include ASE, ASA, ASIQ,
+	 * Replication Server.
+	 * 
+	 * @author Li Huang
+	 * @param profile
+	 * @return true means this profile is supported by DMP.
+	 */
+	public static boolean isSupportedProfile(IConnectionProfile profile)
+	{
+	    Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
+		DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(profile.getName());
+		if (names == null || vendorId == null) {
+			return false;
+		}
+		for (Iterator iter = names.iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			if (vendorId.toString().equals(name)) {
+				return true;
+			}
+		}
+	     return false;
+	}
+
+	/**
+	 * 
+	 * This method is used to verify if this profile is database profile.
+	 * 
+	 * @author Li Huang
+	 * @param connectProfile
+	 * @return true means this profile is database profile
+	 */
+	public static boolean isDatabaseProfile(IConnectionProfile connectionProfile)
+	{
+	
+	    /**
+	     * If connectionProfileName changed, connectionProfile will be null
+	     */
+	    if (connectionProfile != null)
+	    {
+	        if (connectionProfile.getCategory().getId().equalsIgnoreCase(DATABASE_CATEGORY_ID))
+	        {
+	            return true;
+	        }
+	    }
+	    return false;
+	
+	}
+
+	/**
+	 * 
+	 * This method is used to verify if this profile is database profile.
+	 * 
+	 * @author Li Huang
+	 * @param connectProfile
+	 * @return true means this profile is database profile
+	 */
+	public static boolean isDatabaseProfile(ConnectProfile connectProfile)
+	{
+	
+	    IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(connectProfile.getName());
+	    return isDatabaseProfile(connectionProfile);
+	
+	}
+
+
+    /**
+     * 
+     * This method is used to verify if this profile is database profile.
+     * 
+     * @param profileName
+     * @return true means this profile is database profile
+     */
+    public static boolean isDatabaseProfile(String profileName)
+    {
+    	try {
+    		return isDatabaseProfile(getProfile(profileName));
+		} catch (NoSuchProfileException e) {
+			return false;
+		}
+    }
+
+	/**
+	 * Get profile's database name, if no database name in profile then return ""
+	 * 
+	 * @param profileName
+	 * @return
+	 */
+	public static String getProfileDatabaseName(String profileName)
+	{
+	    IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(profileName);
+	    if (isDatabaseProfile(connectionProfile) && connectionProfile != null
+	    && connectionProfile.getBaseProperties() != null )
+	    {
+	        //ASA stores database name in ProfileUtil.DATABASENAME
+	        String dbName = (String)connectionProfile.getBaseProperties().get(ProfileUtil.DATABASENAME);
+	        if (dbName == null || dbName.equals(""))
+	        {
+	        	//TODO CONN Connectivity should put CATALOGNAME in a central place
+	            //ASE stores database name in ProfileUtil.CATALOGNAME
+	            //dbName = (String)connectionProfile.getBaseProperties().get(CATALOGNAME);
+	        	//comments by Rob:
+				// Catalog is specific to our implementation. I believe it is
+				// used to filter the available catalogs. This feature has been
+				// replaced with the filter functionality within connectivity.
+				// The filters can be accessed via
+				// IConnectionProfile.getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID).
+				// However, because of the ongoing model base catalog debate,
+				// there is no catalog filter. When there is, it would be
+				// accessed via props.get(ConnectionFilter.CATALOG_FILTER).
+				// Note, the value returned may be either a "like" expression or
+				// an "in" expression.
+	
+	        }
+	        // only the connection profile definition has database name option
+	        return (dbName == null || dbName.equals("%")) ? "" : dbName;
+	    }
+	    return "";
+	}
+
+	/**
+	 * Get the profiles which are supported by DMP. For example: ASA, ASE, ASIQ, Replication Server. The profiles are
+	 * filtered by profileId.
+	 * 
+	 * @author Li Huang
+	 * @return IConnectionProfile[]
+	 */
+	public static IConnectionProfile[] getProfiles()
+	{
+	    ProfileManager pManager = ProfileManager.getInstance();
+	    // get all profiles
+	    IConnectionProfile[] allProfiles = pManager.getProfiles();
+	    // profileList only includes the profiles which are supported by SQL Results view.
+	    // For example: ASA, ASE, ASIQ, Replication Server
+	    List profileList = new ArrayList();
+	
+	    Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
+	    // get profileList based on profileId
+	    for (int i = 0; i < allProfiles.length; i++)
+	    {
+	    	DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(allProfiles[i].getName());
+	    	if (vendorId == null)
+	    	{
+	    		continue;
+	    	}
+	        // For the profile id of ASE, ASE15 is same, add 'break' to avoid duplicate profiles.
+	    	for (Iterator iter = names.iterator(); iter.hasNext();) {
+				String name = (String) iter.next();
+				if (vendorId.toString().equals(name))
+				{
+					profileList.add(allProfiles[i]);
+					break;
+				}
+			}
+	    }
+	
+	    IConnectionProfile[] profiles = (IConnectionProfile[]) profileList.toArray(new IConnectionProfile[profileList
+	        .size()]);
+	    return profiles;
+	}
+
+    
 }

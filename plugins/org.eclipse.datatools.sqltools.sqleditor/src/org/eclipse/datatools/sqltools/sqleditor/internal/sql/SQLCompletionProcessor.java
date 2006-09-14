@@ -13,6 +13,9 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
@@ -35,8 +38,6 @@ import org.eclipse.swt.graphics.Point;
  *  
  */
 public class SQLCompletionProcessor implements IContentAssistProcessor {
-
-    private char[] fProposalAutoActivationSet;
 
     /**
      * Simple content assist tip closer. The tip is valid in a range of 5
@@ -65,31 +66,18 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
         }
     };
 
-    private static class CompletionProposalComparator implements Comparator {
-        public int compare( Object o1, Object o2 ) {
-            ICompletionProposal c1 = (ICompletionProposal) o1;
-            ICompletionProposal c2 = (ICompletionProposal) o2;
-            return c1.getDisplayString().compareTo( c2.getDisplayString() );
-        }
-    };
-
     protected IContextInformationValidator fValidator = new Validator();
 
-    private ISQLCompletionEngine fCompletionEngine;
     private ISQLCompletionEngine fParserCompletionEngine;
-    private Comparator fComparator;
+	private Comparator fComparator               = new SQLCompletionProposalComparator();
     private ISQLDBProposalsService fDBProposalsService;
 
     public SQLCompletionProcessor() {
         super();
 
-        // activation/trigger to invoke content assist
-        char[] completionChars = { '.' };
-        setCompletionProposalAutoActivationCharacters( completionChars );
 
-        fCompletionEngine = new SQLCompletionEngine();
         fParserCompletionEngine = new SQLParserCompletionEngine();
-        fComparator = new CompletionProposalComparator();
+        fComparator = new SQLCompletionProposalComparator();
         fDBProposalsService = null;
     }
 
@@ -99,7 +87,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
      * @param order <code>true</code> if proposals should be ordered.
      */
     public void orderProposalsAlphabetically( boolean order ) {
-        fComparator = order ? new CompletionProposalComparator() : null;
+        fComparator = order ? new SQLCompletionProposalComparator() : null;
     }
 
     /**
@@ -129,24 +117,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
                 partition = viewer.getDocument().getPartition( documentOffset );
 
             Point selection = viewer.getSelectedRange();
-            ICompletionProposal[] result1 = null;
-            result1 = fCompletionEngine.computeProposals( doc, partition, documentOffset, selection );
-            ICompletionProposal[] result2 = null;
-            result2 = fParserCompletionEngine.computeProposals( doc, partition, documentOffset, selection );
-            if (result1 == null)
-            {
-            	result = result2;
-            }
-            else if (result2 == null)
-            {
-            	result = result1;
-            }
-            else
-            {
-            	result = new ICompletionProposal[result1.length + result2.length];
-            	System.arraycopy(result1, 0, result, 0, result1.length);
-            	System.arraycopy(result2, 0, result, result1.length, result2.length);
-            }
+            result = fParserCompletionEngine.computeProposals( doc, partition, documentOffset, selection );
             
         }
         catch (BadLocationException x) {
@@ -183,7 +154,11 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
      * @return string of characters
      */
     public char[] getCompletionProposalAutoActivationCharacters() {
-        return fProposalAutoActivationSet;
+        // activation/trigger to invoke content assist
+        IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
+        String autoChars = store.getString(PreferenceConstants.AUTO_ACTIVATION_TRIGGER);
+        return autoChars.toCharArray() ;
+        
     }
 
     /**
@@ -233,7 +208,7 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
      */
     public void setDBProposalsService( ISQLDBProposalsService dbProposalsService ) {
         fDBProposalsService = dbProposalsService;
-        ((SQLCompletionEngine) fCompletionEngine).setDBProposalsService( fDBProposalsService );
+        ((SQLParserCompletionEngine) fParserCompletionEngine).setDBProposalsService( fDBProposalsService );
     }
 
     /**
@@ -245,16 +220,6 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
         if (fComparator != null)
             Arrays.sort( proposals, fComparator );
         return proposals;
-    }
-
-    /**
-     * Sets this processor's set of characters triggering the activation of the
-     * completion proposal computation.
-     * 
-     * @param activationSet the activation set
-     */
-    public void setCompletionProposalAutoActivationCharacters( char[] activationSet ) {
-        fProposalAutoActivationSet = activationSet;
     }
 
 }

@@ -24,6 +24,23 @@ package org.eclipse.datatools.sqltools.plan;
 public interface IPlanService
 {
     /**
+     * Return a PlanSupportRunnable which knows how to retrieve query plan for the database.
+     * 
+     * @param request
+     * @param databaseIdentifier
+     * @return
+     */
+    public PlanSupportRunnable createPlanSupportRunnable(PlanRequest request, String profileName, String dbName);
+
+    /**
+     * Return a IPlanOption object which defines the query plan options supported by the database.
+     * 
+     * @return
+     */
+    public IPlanOption getPlanOption();
+
+
+    /**
      * Returns the plan parser. For one type of database, only one parser is supported.
      * 
      * @return the parser

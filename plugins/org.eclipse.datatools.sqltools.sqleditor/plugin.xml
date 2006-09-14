@@ -3,7 +3,16 @@
 <plugin>
 
    <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>
+   <extension-point id="actionExtensions" name="SQL Editor Action Extensions" schema="schema/actionExtensions.exsd"/>
 
+    
+    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.sqleditor.internal.EditorPreferenceInitializer">
+      </initializer>
+    </extension>
+  	
      <!-- Register the SQL Editor and the Action Contributor class for the SQL Editor. -->
    <extension
          point="org.eclipse.ui.editors">
@@ -102,6 +111,10 @@
             categoryId="org.eclipse.ui.category.edit"
             name="%DatabaseManagement.ToggleComment"
             id="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"/>
+      <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.saveAsTemplate"
+            id="org.eclipse.datatools.sqltools.sqleditor.saveAsTemplateAction"/>
     </extension>
     
     <extension
@@ -140,5 +153,55 @@
         <super type="org.eclipse.core.resources.taskmarker"/> 
         <persistent value="false"/>
     </extension>
+    
+    <extension
+         point="org.eclipse.ui.editors.templates">
+      <contextType
+            name="%templates.sql.generic.contextType.name"
+            class="org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType"
+            id="org.eclipse.datatools.sqltools.editor.template.sql.generic">
+      </contextType>
+      <include
+      		file="templates/default-templates.xml"
+      		translations="templates/default-templates.properties">
+      </include>
+   </extension>
+    
+   <!-- preference pages -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%DatabaseManagement.General"
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.GeneralPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data" 
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.GeneralPreferencePage">
+      </page>
+      <!-- template for SQL editor -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditorPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            name="%DatabaseManagement.SQLEditor"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor"/>
+      <page
+            name="%DatabaseManagement.EditorTemplates"
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.TemplatesPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.TemplatesPreferencePage">
+      </page>
+      <!-- hide this page temporarily
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.ConnectionLevelOptionsPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            name="%DatabaseManagement.ConnectionOptions"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.connectionleveloptions"/>  
+      -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.CodeAssistPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%DatabaseManagement.CodeAssist"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.codeassist"/>
+   </extension>
+
+  
     
 </plugin>

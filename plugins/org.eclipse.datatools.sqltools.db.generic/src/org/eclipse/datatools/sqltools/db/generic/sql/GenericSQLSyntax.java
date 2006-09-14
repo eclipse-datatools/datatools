@@ -19,6 +19,8 @@ import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
  */
 public class GenericSQLSyntax implements ISQLSyntax{
 	
+	protected static final String[] EMPTY = new String[0];
+	
     private static final String[] _unreservedwords =
     {
     }
@@ -209,12 +211,6 @@ public class GenericSQLSyntax implements ISQLSyntax{
     }
     ;
 
-    private Object[] allWords =
-    {
-        reservedwords, _unreservedwords, predicates, types, constants, functions 
-    }
-    ;
-
     /**
      * @return Returns the functions.
      */
@@ -254,7 +250,10 @@ public class GenericSQLSyntax implements ISQLSyntax{
      */
     public Object[] getAllWords()
     {
-        return allWords;
+        return new Object[]{
+        		getReservedwords(), getUnreservedwords(), getPredicates(), getTypes(), getConstants(), getFunctions(), getGlobalVariables()          		
+        		
+        };
     }
     /**
      * @return Returns the constants.
@@ -268,5 +267,9 @@ public class GenericSQLSyntax implements ISQLSyntax{
     {
         return _comments;
     }
+    
+	public String[] getGlobalVariables() {
+		return EMPTY;
+	}
 
 }

@@ -35,7 +35,7 @@ public class EPVFacadeTest extends TestCase
         System.out.println(instances.length + " plan(s) before creating a new plan instance");
         String sql = "select id, name from person";
         String dbid = "Adaptive Server Enterprise_15.0";
-        PlanRequest request = new PlanRequest(sql, dbid, PlanRequest.TEXT_PLAN, PlanRequest.VIEW_ACTIVATE);
+        PlanRequest request = new PlanRequest(sql, dbid, 0, PlanRequest.VIEW_ACTIVATE);
         _facade.createNewPlanInstance(request);
         IPlanInstance instance = PlanViewPlugin.getPlanManager().getPlanInstance(request);
         System.out.println("Create a new plan instance");
@@ -62,7 +62,7 @@ public class EPVFacadeTest extends TestCase
         System.out.println(instances.length + " plan(s) before creating a new plan instance");
         String sql = "select id, name from person";
         String dbid = "Adaptive Server Enterprise_15.0";
-        PlanRequest request = new PlanRequest(sql, dbid, PlanRequest.TEXT_PLAN, PlanRequest.VIEW_ACTIVATE);
+        PlanRequest request = new PlanRequest(sql, dbid, 0, PlanRequest.VIEW_ACTIVATE);
         _facade.createNewPlanInstance(request);
         IPlanInstance instance = PlanViewPlugin.getPlanManager().getPlanInstance(request);
         System.out.println("Create a new plan instance");
@@ -88,7 +88,7 @@ public class EPVFacadeTest extends TestCase
         System.out.println(instances.length + " plan(s) before creating a new plan instance");
         String sql = "select id, name from person";
         String dbid = "Adaptive Server Enterprise_15.0";
-        PlanRequest request = new PlanRequest(sql, dbid, PlanRequest.GRAPHIC_PLAN, PlanRequest.VIEW_VISIBLE);
+        PlanRequest request = new PlanRequest(sql, dbid, 1, PlanRequest.VIEW_VISIBLE);
         _facade.createNewPlanInstance(request);
         IPlanInstance instance = PlanViewPlugin.getPlanManager().getPlanInstance(request);
         System.out.println("Create a new plan instance");

@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.debugger.core.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.debugger.core.DebugHandlerManager;
+import org.eclipse.datatools.sqltools.debugger.core.IDebugHandlerManager;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -31,12 +33,15 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
     public static String PLUGIN_ID="org.eclipse.datatools.sqltools.debugger.core";
 	//The shared instance.
 	private static DebuggerCorePlugin plugin;
-	
+    private IDebugHandlerManager      _debugHandlerManager;
+
+
 	/**
 	 * The constructor.
 	 */
 	public DebuggerCorePlugin() {
 		plugin = this;
+        
 	}
 
 	/**
@@ -44,11 +49,14 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+        _debugHandlerManager = new DebugHandlerManager();
+
 	}
 
 	public void stop(BundleContext context) throws Exception {
 		super.stop(context);
 		plugin = null;
+		_debugHandlerManager.dispose();
 	}
 	/**
 	 * Returns the shared instance.
@@ -56,6 +64,8 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
 	public static DebuggerCorePlugin getDefault() {
 		return plugin;
 	}
+
+
 
 	/**
 	 * Returns an image descriptor for the image file at the given plug-in
@@ -201,6 +211,15 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
         return shell.getDisplay();
         else
         return Display.getDefault();
+    }
+
+    public IDebugHandlerManager getDebugHandlerManager()
+    {
+        if(_debugHandlerManager == null)
+        {
+            _debugHandlerManager = new DebugHandlerManager();
+        }
+        return _debugHandlerManager;
     }
 
 }

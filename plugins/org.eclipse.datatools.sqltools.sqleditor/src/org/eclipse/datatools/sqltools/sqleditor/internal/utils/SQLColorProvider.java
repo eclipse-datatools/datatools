@@ -23,10 +23,11 @@ import org.eclipse.swt.widgets.Display;
  */
 public class SQLColorProvider {
 
-    public static final RGB SQL_COMMENT_COLOR              = new RGB( 0, 0, 128 );  // dark blue
-    public static final RGB SQL_MULTILINE_COMMENT_COLOR    = new RGB( 128, 0, 0 );  // dark red
-    public static final RGB SQL_QUOTED_LITERAL_COLOR       = new RGB( 0, 0, 255 );  // bright blue
-    public static final RGB SQL_KEYWORD_COLOR              = new RGB( 128, 0, 0 );  // dark red
+    public static final RGB SQL_COMMENT_COLOR              = new RGB(64, 128, 128);
+    public static final RGB SQL_MULTILINE_COMMENT_COLOR    = new RGB(64, 128, 128);
+    public static final RGB SQL_QUOTED_LITERAL_COLOR       = new RGB(0, 0, 255);
+    public static final RGB SQL_KEYWORD_COLOR              = new RGB(127, 0, 85);
+    public static final RGB SQL_TYPE_COLOR				   = new RGB(64, 0, 200);
     public static final RGB SQL_IDENTIFIER_COLOR           = new RGB( 0, 0, 128 );  // dark blue 
     public static final RGB SQL_DELIMITED_IDENTIFIER_COLOR = new RGB( 0, 128, 0 );  // dark green
     public static final RGB SQL_DEFAULT_COLOR              = new RGB( 0, 0, 0 );    // black
@@ -37,6 +38,7 @@ public class SQLColorProvider {
     public static final RGB SQL_HC_MULTILINE_COMMENT_COLOR    = new RGB( 0, 0, 255 );     // bright blue
     public static final RGB SQL_HC_QUOTED_LITERAL_COLOR       = new RGB( 0, 255, 0 );     // bright green
     public static final RGB SQL_HC_KEYWORD_COLOR              = new RGB( 255, 255, 0 );   // yellow
+    public static final RGB SQL_HC_TYPE_COLOR				  = new RGB(64, 0, 200);
     public static final RGB SQL_HC_IDENTIFIER_COLOR           = new RGB( 0, 0, 255 );     // bright blue
     public static final RGB SQL_HC_DELIMITED_IDENTIFIER_COLOR = new RGB( 255, 0, 0 ) ;    // bright red
     public static final RGB SQL_HC_DEFAULT_COLOR              = new RGB( 255, 255, 255 ); // bright white

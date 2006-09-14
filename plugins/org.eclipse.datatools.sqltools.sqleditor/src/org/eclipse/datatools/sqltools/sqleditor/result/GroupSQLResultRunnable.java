@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
@@ -82,7 +84,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private Connection              _conn;
     private Runnable                _postRun;
     private String[]                _groups;
-    private SimpleSQLResultRunnable _currentJob = null;
+    private Runnable _currentJob = null;
     private boolean                 _promptVar  = false;
     private HashMap                 _varDefs    = null;
 
@@ -131,65 +133,80 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                 {
                     monitor.subTask(NLS.bind("GroupSQLResultRunnable.group", (new Object[]{"" + i})));
                 }
-                _currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
-                    getDatabaseIdentifier(), null);
-                _currentJob.setProgressGroup(monitor, 1);
-                _currentJob.schedule();
-                try
-                {
-                    //wait until it finishes
-                    _currentJob.join();
-                }
-                catch (InterruptedException e)
-                {
-                	synchronized (_currentJob.getOperationCommand()) {
-	                	resultsViewAPI.appendStatusMessage(_currentJob.getOperationCommand(), e.getLocalizedMessage());
-	                	resultsViewAPI.updateStatus(_currentJob.getOperationCommand(), OperationCommand.STATUS_FAILED);
-                	}
-                }
-                monitor.worked(1);
-                if (monitor.isCanceled())
-                {
-                    _currentJob.terminateExecution();
-                    return Status.CANCEL_STATUS;
-                }
-                else if (resultsViewAPI.getCurrentStatus(_currentJob.getOperationCommand()) != OperationCommand.STATUS_SUCCEEDED && i < _groups.length - 1)
-                {
-                    //since we'll kill the connection during terminating, there's no way to continue
-                    if (resultsViewAPI.getCurrentStatus(_currentJob.getOperationCommand()) == OperationCommand.STATUS_TERMINATED)
-                    {
-                        return Status.CANCEL_STATUS;
-                    }
-
-                    IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
-                    String errorpm = store.getString(PreferenceConstants.EXECUTE_SQL_ERROR_MODE);
-                    if (errorpm == null || errorpm.equals("") || PreferenceConstants.PROMPT_MODE_PROMPT.equals(errorpm)) //$NON-NLS-1$
-                    {
-                        //prompt user whether to continue
-                        final ConfirmAction run = new ConfirmAction();
-                        PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable()
-                        {
-                            public void run()
-                            {
-                                run.run();
-                            }
-                        }
-                        );
-                        if (!run._goon)
-                        {
-                            return Status.CANCEL_STATUS;
-                        }
-                    }
-                    else if (PreferenceConstants.PROMPT_MODE_ALWAYS.equals(errorpm))
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        //never
-                        return Status.CANCEL_STATUS;
-                    }
-                }
+                SQLDevToolsConfiguration f = SQLToolsFacade
+				.getConfigurationByProfileName(_databaseIdentifier
+						.getProfileName());
+                _currentJob = f.getExecutionService()
+				.createSimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
+	                    getDatabaseIdentifier(), null, null);
+				if (_currentJob == null) {
+					_currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
+							getDatabaseIdentifier(), null);
+				}
+				//TODO other types of Runnable
+				if (_currentJob instanceof ResultSupportRunnable)
+				{
+					ResultSupportRunnable resultSupportRunnable = ((ResultSupportRunnable)_currentJob);
+					resultSupportRunnable.setProgressGroup(monitor, 1);
+					resultSupportRunnable.schedule();
+					try
+					{
+						//wait until it finishes
+						resultSupportRunnable.join();
+					}
+					catch (InterruptedException e)
+					{
+						synchronized (resultSupportRunnable.getOperationCommand()) {
+							resultsViewAPI.appendStatusMessage(resultSupportRunnable.getOperationCommand(), e.getLocalizedMessage());
+							resultsViewAPI.updateStatus(resultSupportRunnable.getOperationCommand(), OperationCommand.STATUS_FAILED);
+						}
+					}
+					
+					monitor.worked(1);
+					if (monitor.isCanceled())
+					{
+						resultSupportRunnable.terminateExecution();
+						return Status.CANCEL_STATUS;
+					}
+					else if (resultsViewAPI.getCurrentStatus(resultSupportRunnable.getOperationCommand()) != OperationCommand.STATUS_SUCCEEDED && i < _groups.length - 1)
+					{
+						//since we'll kill the connection during terminating, there's no way to continue
+						if (resultsViewAPI.getCurrentStatus(resultSupportRunnable.getOperationCommand()) == OperationCommand.STATUS_TERMINATED)
+						{
+							return Status.CANCEL_STATUS;
+						}
+						
+						IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
+						String errorpm = store.getString(PreferenceConstants.EXECUTE_SQL_ERROR_MODE);
+						if (errorpm == null || errorpm.equals("") || PreferenceConstants.PROMPT_MODE_PROMPT.equals(errorpm)) //$NON-NLS-1$
+						{
+							//prompt user whether to continue
+							final ConfirmAction run = new ConfirmAction();
+							PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable()
+							{
+								public void run()
+								{
+									run.run();
+								}
+							}
+							);
+							if (!run._goon)
+							{
+								return Status.CANCEL_STATUS;
+							}
+						}
+						else if (PreferenceConstants.PROMPT_MODE_ALWAYS.equals(errorpm))
+						{
+							continue;
+						}
+						else
+						{
+							//never
+							return Status.CANCEL_STATUS;
+						}
+					}
+				}
+				
             }
         }
         finally

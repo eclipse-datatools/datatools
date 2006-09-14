@@ -12,6 +12,7 @@
 
 package org.eclipse.datatools.sqltools.core;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.util.HashMap;
@@ -128,6 +129,39 @@ public class DBHelper {
 	public int getCorrectParamType(int jdbcType)
 	{
 		return jdbcType;
+	}
+
+	public boolean supportsPlan(int procType) {
+	    return false;
+	}
+
+	/**
+	 * Default behavior is do nothing, and return the original sql script
+	 */
+	public String preprocessSQLScript(String sqlScript) {
+	    return sqlScript;
+	}
+
+	public String[] getSysDatabaseNames(DatabaseIdentifier identifier) {
+	    if (identifier != null)
+	    {
+	        return new String[]
+	        {
+	            identifier.getDBname()
+	        }
+	        ;
+	    }
+	    return null;
+	}
+
+	/**
+	 * Switches databases for the shared connection.
+	 * @param databaseIdentifier
+	 * @param conn
+	 * @return
+	 */
+	public String switchDatabase(DatabaseIdentifier databaseIdentifier, Connection conn) {
+	    return null;
 	}
 
 }

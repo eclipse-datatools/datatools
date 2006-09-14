@@ -6,7 +6,8 @@ Bundle-Version: 0.9.0.200605101
 Bundle-Activator: org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.datatools.sqltools.internal.sqlscrapbook,
+Export-Package: org.eclipse.datatools.sqltools.internal.externalfile,
+ org.eclipse.datatools.sqltools.internal.sqlscrapbook,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor,
@@ -30,6 +31,7 @@ Require-Bundle: org.eclipse.datatools.sqltools.sqleditor;bundle-version="[0.9.0,
  org.eclipse.datatools.sqltools.common.ui;bundle-version="[0.9.0,1.0.0)",
  org.eclipse.datatools.connectivity.db.generic;bundle-version="[0.9.0,1.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[0.9.0,1.0.0)"
+ org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.core.filesystem;bundle-version="[1.0.0,2.0.0)"
 Eclipse-LazyStart: true
 

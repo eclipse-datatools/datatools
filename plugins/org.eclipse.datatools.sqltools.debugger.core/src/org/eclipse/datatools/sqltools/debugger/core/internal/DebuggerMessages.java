@@ -80,6 +80,7 @@ public final class DebuggerMessages extends NLS {
 	public static String AutoAttachUtil_auto_attach_for_profile;
 	public static String AutoAttachUtil_enabled_by_system;
 	public static String ManageBreakpointRulerAction_exception_getControlConnection;
+	public static String SPDebuggerLaunchConfigurationDelegate_debug_process_number_limitation;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, DebuggerMessages.class);

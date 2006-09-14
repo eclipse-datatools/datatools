@@ -15,10 +15,12 @@ package org.eclipse.datatools.sqltools.core;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
-import org.eclipse.datatools.sqltools.core.services.PlanService;
 import org.eclipse.datatools.sqltools.core.services.SQLDataService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
+import org.eclipse.datatools.sqltools.core.services.UIComponentService;
+import org.eclipse.datatools.sqltools.plan.IPlanService;
+import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 
 /**
  * This class bundles the configuration space for a particular database. Instances of
@@ -98,8 +100,8 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	 * definition
 	 * 
 	 */
-	public PlanService getPlanService() {
-		return new PlanService();
+	public IPlanService getPlanService() {
+		return PlanServiceRegistry.getInstance().getPlanService(this.getDatabaseVendorDefinitionId().toString());
 	}
 
 	/**
@@ -127,6 +129,14 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	}
 	
 	/**
+	 * Returns the SQL execution service associated with this database definition
+	 * 
+	 */
+	public UIComponentService getUIComponentService() {
+		return new UIComponentService();
+	}
+	
+	/**
 	 * Return an IDatabaseSetting object which can be used to query database
 	 * properties such as "case sensitive".
 	 * 
@@ -146,7 +156,31 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 		return new DBHelper();
 	}
 
+	/**
+	 * Returns an object which is an instance of the given class
+	 * associated with this object. Returns <code>null</code> if
+	 * no such object can be found. 
+	 * <p>
+	 * This can be used by subclasses to create extensions not covered by above services.
+	 * </p>
+	 * @param adapter the adapter class to look up
+	 * @return a object castable to the given class, 
+	 *    or <code>null</code> if this object does not
+	 *    have an adapter for the given class
+	 */
 	public Object getAdapter(Class adapter) {
 		return null;
+	}
+	
+	/**
+	 * Returns true if the given product name and version is recognized by this SQLDevToolsConfiguration.
+	 * By default always returns false.
+	 * @param product
+	 * @param version
+	 * @return
+	 */
+	public boolean recognize(String product, String version)
+	{
+		return false;
 	}
 }

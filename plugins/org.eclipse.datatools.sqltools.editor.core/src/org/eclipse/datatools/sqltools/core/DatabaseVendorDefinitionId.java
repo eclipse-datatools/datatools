@@ -95,11 +95,11 @@ public class DatabaseVendorDefinitionId implements Comparable
     public DatabaseVendorDefinitionId(String dbDefName)
     {
     	Assert.isTrue(dbDefName != null );
-    	int underscore = dbDefName.indexOf('_');
+    	int underscore = dbDefName.lastIndexOf('_');
     	if (underscore > 0)
     	{
-        	this._vendorName = dbDefName.substring(0, dbDefName.indexOf('_'));
-        	this._version = dbDefName.substring(dbDefName.indexOf('_')+1);
+        	this._vendorName = dbDefName.substring(0, dbDefName.lastIndexOf('_'));
+        	this._version = dbDefName.substring(dbDefName.lastIndexOf('_')+1);
     	}
     	else
     	{

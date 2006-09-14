@@ -14,7 +14,7 @@ import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
-import org.eclipse.datatools.sqltools.plan.internal.Constants;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManagerListener;
 import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.part.ViewPart;
@@ -53,7 +54,6 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class PlanView extends ViewPart
 {
-    public static final String     DMP_PLANVIEW      = "com.sybase.stf.dmp.debugger.planView"; //$NON-NLS-1$
     // Group definitions
     public static final String     GROUP_NAVIGATE    = "group.navigate";                      //$NON-NLS-1$
     public static final String     GROUP_REMOVE      = "group.remove";                        //$NON-NLS-1$
@@ -92,6 +92,7 @@ public class PlanView extends ViewPart
      */
     public void createPartControl(Composite parent)
     {
+    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent.getShell(), PlanConstants.HELP_PLAN_VIEW);
         _fPagebook = new PageBook(parent, SWT.NONE);
 
         // Page 1 of page book (no plan label)
@@ -253,32 +254,27 @@ public class PlanView extends ViewPart
                         {
                             rawPlan = instance.getRawPlan();
                             int planType = instance.getPlanRequest().getPlanType();
-                            switch (planType)
-                            {
-                                case PlanRequest.GRAPHIC_PLAN:
-                                    if (rawPlan == null)
-                                    {
-                                        control = _fNoPlanShownLabel;
-                                    }
-                                    else
-                                    {
-                                        if(!isGraphicPlanSupported(instance))
-                                        {
-                                            return;
-                                        }
-                                        _graphicsControl.setPlan(instance);
-                                        _graphicsControl.update();
-                                        control = _graphicsControl;
-                                    }
-                                    break;
-                                case PlanRequest.TEXT_PLAN:
-                                    control = _textPlan;
-                                    _textPlan.setText(Messages.getString("PlanView.sql") + "\n" + instance.getPlanRequest().getSql() + "\n" //$NON-NLS-1$
-                                            + rawPlan);
-                                    break;
-                                default:
-                                    break;
-                            }
+                        	IPlanService service = PlanServiceRegistry.getInstance().getPlanService(instance.getPlanRequest().getDatabaseDefinitionId());
+                        	boolean isGraphicPlan = service.getPlanOption().isGraphicPlan(planType);
+
+                            if (isGraphicPlan) {
+								if (rawPlan == null) {
+									control = _fNoPlanShownLabel;
+								} else {
+									if (!isGraphicPlanSupported(instance)) {
+										return;
+									}
+									_graphicsControl.setPlan(instance);
+									_graphicsControl.update();
+									control = _graphicsControl;
+								}
+							} else {
+								control = _textPlan;
+								_textPlan
+										.setText(Messages
+												.getString("PlanView.sql") + "\n" + instance.getPlanRequest().getSql() + "\n" //$NON-NLS-1$
+												+ rawPlan);
+							}
                         }
                         else if (instance.getStatus() == IPlanInstance.FAILED)
                         {
@@ -316,7 +312,7 @@ public class PlanView extends ViewPart
         {
             Exception noExtensionFound = new Exception(Messages.getString("ExecutionPlansDrawer.no.extension", instance
                     .getPlanRequest().getDatabaseDefinitionId(), instance.getPlanRequest().getDatabaseDefinitionId(),
-                    Constants.PLUGIN_ID, Constants.PLAN_SERVICE_EXTENSION_POINT));
+                    PlanConstants.PLUGIN_ID, PlanConstants.PLAN_SERVICE_EXTENSION_POINT));
             instance.finishFail(noExtensionFound);
             return false;
         }

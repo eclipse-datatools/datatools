@@ -19,18 +19,26 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.sqm.core;bundle-version="[0.9.0,1.0.0)";visibility:=reexport,
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.modelbase.sql.query;bundle-version="[0.9.0,1.0.0)"
+ org.eclipse.datatools.modelbase.sql.query;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.sqltools.plan;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.sqltools.common.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.connectivity.sqm.server.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[0.9.0,1.0.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.core.dbitem,
+ org.eclipse.datatools.sqltools.core.internal.dbitem,
  org.eclipse.datatools.sqltools.core.profile,
  org.eclipse.datatools.sqltools.core.services,
  org.eclipse.datatools.sqltools.editor,
  org.eclipse.datatools.sqltools.editor.contentassist,
- org.eclipse.datatools.sqltools.editor.contentassist.model,
  org.eclipse.datatools.sqltools.editor.core.connection,
  org.eclipse.datatools.sqltools.editor.template,
  org.eclipse.datatools.sqltools.internal;x-internal:=true,
  org.eclipse.datatools.sqltools.internal.core;x-internal:=true,
- org.eclipse.datatools.sqltools.launching
+ org.eclipse.datatools.sqltools.launching,
+ org.eclipse.datatools.sqltools.sql.identifier,
+ org.eclipse.datatools.sqltools.sql.util
 Bundle-Vendor: Eclipse.org

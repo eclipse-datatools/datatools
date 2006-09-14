@@ -29,6 +29,9 @@ public final class Messages extends NLS {
 	}
 
 	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.messages";//$NON-NLS-1$
+	
+	public static String SQLEditor_profile_disconnected;
+    public static String SQLEditor_profile_information;
 
 	private Messages() {
 		// Do not instantiate

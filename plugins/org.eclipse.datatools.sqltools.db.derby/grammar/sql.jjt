@@ -49,6 +49,7 @@ public class DerbySQLParser extends SQLParser implements SQLParserConstants
 	private static DerbySQLParser _instance = new DerbySQLParser(new StringReader(""));
     private boolean _debug = false;
 
+    private ParsingResult result = null;
     private ArrayList exceptions = new ArrayList();
     private ArrayList knownExceptions = new ArrayList();
 	private static final int[] STMT_START = new int[]{ALTER, BEGIN, BREAK, CHECKPOINT, CLOSE, COMMIT, CONNECT,
@@ -72,6 +73,9 @@ public class DerbySQLParser extends SQLParser implements SQLParserConstants
 	private static final int[] TERMINATORS = new int[]{GO, SEMICOLON};
 	private static final String[] TERMINATORS_STRING = new String[]{"GO", ";"};
 
+	//FIXME do we need this field?
+	private boolean isContentAssist = true;
+	
     /*
     * Singleton
     */
@@ -172,22 +176,22 @@ public class DerbySQLParser extends SQLParser implements SQLParserConstants
 		}
 
         Boolean consumeException = (Boolean)getParameters().getProperty(ParserParameters.PARAM_CONSUME_EXCEPTION);
-        DerbyParsingResult result = null;
+        result.setRootNode(node);
         if ( consumeException == null || consumeException.booleanValue())
         {
-        	result = new DerbyParsingResult(node, knownExceptions);
+        	result.setExceptions(knownExceptions);
         }
         else
         {
-        	result = new DerbyParsingResult(node, exceptions);
+        	result.setExceptions(exceptions);
         }
     	return result;
     }
 
 	private void initParsing(){
+		result = new DerbyParsingResult();
 		exceptions = new ArrayList();
 		knownExceptions = new ArrayList();
-		_expectedUnreservedKeywords.clear();
 	}
 	
 	private boolean isSupportedStatementStartToken(int kind)
@@ -242,11 +246,7 @@ public class DerbySQLParser extends SQLParser implements SQLParserConstants
     }
 	if (currentTokenKind == INVALID_TOKEN)
 	{
-		  if(!_expectedUnreservedKeywords.contains(unReservedKeyword))
-    	{
-    		_expectedUnreservedKeywords.add(unReservedKeyword);
-    		
-    	}
+		  result.addExpectedUnreservedKeywords(unReservedKeyword);
 	}
     return false;
     }
@@ -272,10 +272,7 @@ public class DerbySQLParser extends SQLParser implements SQLParserConstants
 	{
 		for (int i=0; i< multiKeywords.length; i++)
 		{
-    		if(!_expectedUnreservedKeywords.contains(multiKeywords[i]))
-        	{
-        		_expectedUnreservedKeywords.add(multiKeywords[i]);
-        	}
+    		result.addExpectedUnreservedKeywords(multiKeywords[i]);
         }
 	}
     return false;
@@ -1095,7 +1092,7 @@ ASTSQLDelimiter delimiter() #SQLDelimiter:{}
 	}
 }
 
-void statement() : {setScope("SQL Statement", SCOPE_DEFAULT);/*the default scope*/} 
+void statement() : {setScope("SQL Statement", SCOPE_DEFAULT);/*the default scope*/result.clearCurrentTableNames(isContentAssist);} 
 {
 		try{
 		(
@@ -1284,7 +1281,7 @@ ASTSQLDataType base_datatype()   #SQLDataType: {Token t= null; int length=0, sca
 	                                                         {
                                                     if ((length < scale))                                                                                     
                                                     {                                                                                                         
-                                             		    ParseException e = new ParseException(Messages.getString("SQLParser.datatype.judgeLengthAndScale"));  
+                                             		    ParseException e = new ParseException(Messages.SQLParser_datatype_judgeLengthAndScale);  
                                              		    e.currentToken = t.next;                                                                                 
                                              		    exceptions.add(e);                                                                                       
                                                     }
@@ -1673,7 +1670,7 @@ void program() : {}
 
 void declare() : {}
 {
-	{int oldScope = setScope(SCOPE_VARIABLES);}
+	{int oldScope = setScope(SCOPE_DEFINE_VARIABLES);}
 			(LOOKAHEAD(2) declare_prefix() declaration_list()
         	| ( declare_prefix()  declare_cursor() ) #SQLStatement )
     {setScope(oldScope);}
@@ -2082,6 +2079,12 @@ String from_unit() : {String retval = null; Token aliasNameToken = null;}
 			optional_as() aliasNameToken = idplus() ]  forceoptions() holdlock() readpast() shared() )
 	   | "("  select() ")" optional_as() derived_table_name()  optional_derived_col_name_list()  holdlock() readpast() shared()
     )
+    {
+   	 String aliasName = null;
+   	 if (aliasNameToken != null)
+   	 	aliasName = aliasNameToken.image;
+     result.addCurrentTables(retval, aliasName, isContentAssist);
+    }
     {return retval;}
 }
 
@@ -2517,6 +2520,7 @@ String object() : {String retval = ""; Token t;}
 String table_object() : {String retval = "";}
 {
        retval = qualified_name()
+       {result.addCurrentTables(retval, null, isContentAssist);}
        {return retval;}
 }
 

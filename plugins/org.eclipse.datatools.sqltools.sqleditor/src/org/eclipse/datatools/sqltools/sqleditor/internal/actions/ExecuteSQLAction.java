@@ -12,6 +12,8 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -36,6 +38,7 @@ public class ExecuteSQLAction extends BaseExecuteAction
         setToolTipText(Messages.ExecuteSQLAction_tooltip);
         setImageDescriptor(SQLEditorResources.getImageDescriptor("execute"));
         setActionDefinitionId(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
+        setId(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
         //no need to set image
         setActiveEditor(targetEditor);
         update();
@@ -56,7 +59,7 @@ public class ExecuteSQLAction extends BaseExecuteAction
 
     public void update()
     {
-        setEnabled(_sqlEditor != null && _sqlEditor.getConnectionInfo().getSharedConnection() != null);
+        setEnabled(_sqlEditor != null && _sqlEditor.isConnected() && _sqlEditor.getSQLType()== SQLParserConstants.TYPE_SQL_ROOT);
     }
 
     public DatabaseIdentifier getDatabaseIdentifier()
@@ -77,7 +80,7 @@ public class ExecuteSQLAction extends BaseExecuteAction
      */
     public String getSQLStatements()
     {
-        return _sqlEditor == null ? null : _sqlEditor.getText();
+    	return _sqlEditor == null ? null : SQLToolsFacade.getDBHelper(getDatabaseIdentifier()).preprocessSQLScript(_sqlEditor.getText());
     }
 
     /*

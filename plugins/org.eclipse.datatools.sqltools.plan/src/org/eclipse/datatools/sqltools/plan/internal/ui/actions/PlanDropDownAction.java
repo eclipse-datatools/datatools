@@ -11,8 +11,9 @@
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
 
-import org.eclipse.datatools.sqltools.plan.PlanRequest;
+import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
+import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.ui.view.PlanView;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
@@ -93,16 +94,16 @@ public class PlanDropDownAction extends Action implements IMenuCreator
             }
             else
             {
-                switch (planType)
-                {
-                    case PlanRequest.TEXT_PLAN:
-                        image = Images.DESC_TEXT_PLAN;
-                        break;
-                    case PlanRequest.GRAPHIC_PLAN:
-                        image = Images.DESC_GRAPHIC_PLAN;
-                    default:
-                        break;
-                }
+            	IPlanService service = PlanServiceRegistry.getInstance().getPlanService(instance.getPlanRequest().getDatabaseDefinitionId());
+            	boolean isGraphicPlan = service.getPlanOption().isGraphicPlan(planType);
+            	if (isGraphicPlan)
+            	{
+            		image = Images.DESC_GRAPHIC_PLAN;
+            	}
+            	else
+            	{
+            		image = Images.DESC_TEXT_PLAN;
+            	}
             }
             ShowPlanAction action = new ShowPlanAction(_planView, instance, label, image, ""); //$NON-NLS-1$
             if (instances[i].equals(current))

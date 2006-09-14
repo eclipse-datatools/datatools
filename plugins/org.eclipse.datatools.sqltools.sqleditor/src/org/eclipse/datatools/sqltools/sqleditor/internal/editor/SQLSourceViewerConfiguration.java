@@ -13,20 +13,22 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
+import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLAutoIndentStrategy;
+import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLCommentAutoIndentStrategy;
+import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLStringAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.BestMatchHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLPartitions;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAnnotationHover;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCompletionProcessor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDoubleClickStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLUpperCaseFormattingStrategy;
+import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLWordStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
-import org.eclipse.jface.text.DefaultAutoIndentStrategy;
-import org.eclipse.jface.text.IAutoIndentStrategy;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.ITextHover;
@@ -90,16 +92,39 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         return new SQLAnnotationHover(getSQLEditor());
     }
     
-    /**
-     * Returns the auto indentation strategy ready to be used with the given source viewer
-     * when manipulating text of the given content type.
-     * 
-     * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getAutoIndentStrategy(org.eclipse.jface.text.source.ISourceViewer, java.lang.String)
+    /*
+     * @see SourceViewerConfiguration#getAutoIndentStrategy(ISourceViewer, String)
      */
-    public IAutoIndentStrategy getAutoIndentStrategy( ISourceViewer sourceViewer, String contentType ) {
-        return (IDocument.DEFAULT_CONTENT_TYPE.equals( contentType ) ? new SQLAutoIndentStrategy() : new DefaultAutoIndentStrategy());
+    public IAutoEditStrategy[] getAutoEditStrategies(ISourceViewer sourceViewer, String contentType)
+    {
+        if (SQLPartitionScanner.SQL_CODE.equals(contentType) || IDocument.DEFAULT_CONTENT_TYPE.equals(contentType))
+        {
+            return new IAutoEditStrategy[] 
+            {
+                new SQLAutoIndentStrategy(SQLPartitionScanner.SQL_PARTITIONING)
+            }
+            ;
+        }
+        else if (SQLPartitionScanner.SQL_COMMENT.equals(contentType)
+        || SQLPartitionScanner.SQL_MULTILINE_COMMENT.equals(contentType))
+        {
+            return new IAutoEditStrategy[] 
+            {
+                new SQLCommentAutoIndentStrategy(SQLPartitionScanner.SQL_PARTITIONING)
+            }
+            ;
+        }
+        else if (SQLPartitionScanner.SQL_STRING.equals(contentType) || SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER.equals(contentType))
+        {
+            return new IAutoEditStrategy[] 
+            {
+                new SQLStringAutoIndentStrategy(SQLPartitionScanner.SQL_STRING)
+            }
+            ;
+        }
+        return null;
     }
-    
+
     /**
      * Returns the configured partitioning for the given source viewer. The partitioning is
      * used when the querying content types from the source viewer's input document.
@@ -116,12 +141,16 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
      * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getContentAssistant(ISourceViewer)
      */
     public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {
+    	IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
         ContentAssistant assistant = new ContentAssistant();
     
         assistant.setDocumentPartitioning( getConfiguredDocumentPartitioning( sourceViewer ));
         
         // Set content assist processors for various content types.
-        fCompletionProcessor = new SQLCompletionProcessor();
+        if (fCompletionProcessor == null)
+        {
+        	fCompletionProcessor = new SQLCompletionProcessor();
+        }
         assistant.setContentAssistProcessor( fCompletionProcessor, IDocument.DEFAULT_CONTENT_TYPE);
         ISQLDBProposalsService proposalsService = getDBProposalsService();
         if (proposalsService != null) {
@@ -129,15 +158,18 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         }
     
         // Configure how content assist information will appear.
-        assistant.enableAutoActivation( true );
-        assistant.setAutoActivationDelay( 500 );
+        assistant.enableAutoActivation(store.getBoolean(PreferenceConstants.ENABLE_AUTO_ACTIVATION));
+        assistant.setAutoActivationDelay(store.getInt(PreferenceConstants.AUTO_ACTIVATION_DELAY));
         assistant.setProposalPopupOrientation( IContentAssistant.PROPOSAL_STACKED );
         assistant.setContextInformationPopupOrientation( IContentAssistant.CONTEXT_INFO_ABOVE );
         assistant.setContextInformationPopupBackground( SQLEditorPlugin.getDefault().getSQLColorProvider().getColor( new RGB( 150, 150, 0 )));
+        //Set auto insert mode.
+        assistant.enableAutoInsert(store.getBoolean(PreferenceConstants.INSERT_SINGLE_PROPOSALS_AUTO));
         //Set to Carolina blue
 //        assistant.setContextInformationPopupBackground( SQLEditorPlugin.getDefault().getSQLColorProvider().getColor( new RGB( 0, 191, 255 )));
         
         return assistant;
+        
     }
 
     /**
@@ -149,7 +181,8 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         ContentFormatter formatter = new ContentFormatter();
         formatter.setDocumentPartitioning( SQLPartitionScanner.SQL_PARTITIONING );
         
-        IFormattingStrategy formattingStrategy = new SQLUpperCaseFormattingStrategy();
+        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfigurationByVendorIdentifier(getSQLEditor().getConnectionInfo().getDatabaseVendorDefinitionId());
+        IFormattingStrategy formattingStrategy = new SQLWordStrategy(factory.getSQLService().getSQLSyntax());
         formatter.setFormattingStrategy( formattingStrategy, IDocument.DEFAULT_CONTENT_TYPE );
         
         return formatter;
@@ -204,6 +237,13 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         reconciler.setDamager( dr, IDocument.DEFAULT_CONTENT_TYPE );
         reconciler.setRepairer( dr, IDocument.DEFAULT_CONTENT_TYPE );
         
+        // rule for multiline comments
+        // We just need a scanner that does nothing but returns a token with
+        // the corrresponding text attributes
+        dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_MULTILINE_COMMENT_COLOR))));
+        reconciler.setDamager(dr, SQLPartitionScanner.SQL_MULTILINE_COMMENT);
+        reconciler.setRepairer(dr, SQLPartitionScanner.SQL_MULTILINE_COMMENT);
+
         // Add a "damager-repairer" for changes witin one-line SQL comments.
         dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_COMMENT_COLOR ))));
         reconciler.setDamager( dr, SQLPartitionScanner.SQL_COMMENT );
@@ -211,13 +251,13 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
 
         // Add a "damager-repairer" for changes witin quoted literals.
         dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_QUOTED_LITERAL_COLOR ))));
-        reconciler.setDamager( dr, SQLPartitionScanner.SQL_QUOTED_LITERAL );
-        reconciler.setRepairer( dr, SQLPartitionScanner.SQL_QUOTED_LITERAL );
+        reconciler.setDamager( dr, SQLPartitionScanner.SQL_STRING );
+        reconciler.setRepairer( dr, SQLPartitionScanner.SQL_STRING );
 
         // Add a "damager-repairer" for changes witin delimited identifiers.
         dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DELIMITED_IDENTIFIER_COLOR ))));
-        reconciler.setDamager( dr, SQLPartitionScanner.SQL_DELIMITED_IDENTIFIER );
-        reconciler.setRepairer( dr, SQLPartitionScanner.SQL_DELIMITED_IDENTIFIER );
+        reconciler.setDamager( dr, SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER );
+        reconciler.setRepairer( dr, SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER );
 
         return reconciler;
     }

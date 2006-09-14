@@ -18,7 +18,9 @@ import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.Messages;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
+import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
+import org.eclipse.datatools.sqltools.sql.parser.ParserProposalAdvisor;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLDelimiter;
@@ -131,5 +133,18 @@ public class SQLService
 	    return (String[]) groups.toArray(new String[groups.size()]);
 	}
 
+	public ParserProposalAdvisor getParserProposalAdvisor()
+	{
+		return new ParserProposalAdvisor();
+	}
 
+    /**
+     * Returns Identifier Validator
+     * TODO implement IIdentifierValidator
+     * @return
+     */
+    public IIdentifierValidator getIdentifierValidator()
+    {
+    	return null;
+    }
 }

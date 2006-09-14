@@ -35,7 +35,7 @@ import org.eclipse.debug.core.model.IBreakpoint;
 public class SPDebugModelUtil
 {
     /**
-     * Returns the identifier of the debug model the <code>SPLineBreakpoint</code> is
+     * Returns the identifier of the debug model presentation the <code>SPLineBreakpoint</code> is
      * associated with.
      */
     public static String getModelIdentifier()

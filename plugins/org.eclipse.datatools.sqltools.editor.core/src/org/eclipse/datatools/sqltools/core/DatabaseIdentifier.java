@@ -75,6 +75,11 @@ public class DatabaseIdentifier
         this._profileName = profileName;
     }
 
+    public void setDBname(String dbName)
+    {
+    	this._dbname = dbName;
+    }
+    
     /*
      * (non-Javadoc)
      * 

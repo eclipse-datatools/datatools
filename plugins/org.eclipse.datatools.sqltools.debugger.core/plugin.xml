@@ -140,6 +140,8 @@
                   relative="org.eclipse.debug.ui.DebugView"
                   id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>                
              
+             <!-- Add New Wizards !-->
+             <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
              
              <!-- Add View Shortcuts !-->
             <viewShortcut id="org.eclipse.debug.ui.DebugView" />  
@@ -166,4 +168,112 @@
       </launchConfigurationType>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.popupMenus">
+	  <!-- properties dialog for SP breakpoint -->
+      <objectContribution
+            objectClass="org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint"
+            id="org.eclipse.datatools.sqltools.debugger.SPBreakpointActions">
+         <action
+               enablesFor="1"
+               label="P&amp;roperties"
+               class="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesAction"
+               menubarPath="additions"
+               id="org.eclipse.jdt.debug.ui.actions.SPBreakpointProperties"/>
+      </objectContribution>
+            <!--
+      	breakpoint related ruler context menu items. 
+      -->
+      <viewerContribution
+            targetID="#SQLEditorRulerContext"
+            id="org.eclipse.datatools.sqltools.sqleditor.debug.ui.SQLEditorPopupActions">
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.breakpoint_properties_action"
+               label="Breakpoint Properties..."
+               class="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.SPBreakpointPropertiesRulerActionDelegate">
+         </action>
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.enable_disable_breakpoint_action"
+               label="Enable Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.EnableDisableBreakpointRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.EnableDisableBreakpointRulerActionDelegate">
+         </action>
+         <action
+               helpContextId="org.eclipse.datatools.sqltools.sqleditor.debugger.toggle_breakpoint_action"
+               label="Toggle Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate"
+               menubarPath="debug"
+               id="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate">
+         </action>
+      </viewerContribution>
+      
+	</extension>
+	
+	   
+   <!-- debug model presentation -->
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="org.eclipse.datatools.sqltools.debugger.debug.SPModelPresentation"
+            id="org.eclipse.datatools.sqltools.debugger.core.debugModelPresentation"/>
+   </extension>
+   
+         
+   <!-- breakpoints -->
+   <extension
+         id="spLineBreakpointMarker"
+         name="SP Line breakpoint Marker"
+         point="org.eclipse.core.resources.markers">
+      <persistent value="true"/>
+      <super type="org.eclipse.debug.core.lineBreakpointMarker"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.procIdentifier"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.condition"/>
+      <attribute name="org.eclipse.datatools.sqltools.debugger.core.conditionEnabled"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint"
+            markerType="org.eclipse.datatools.sqltools.debugger.core.spLineBreakpointMarker"
+            id="spLineBreakpoint"/>
+   </extension>
+   
+       <!-- adapters for retargetable actions -->
+	<extension point="org.eclipse.core.runtime.adapters">
+         <factory 
+            class="org.eclipse.datatools.sqltools.debugger.actions.RetargettableActionAdapterFactory" 
+            adaptableType="org.eclipse.datatools.sqltools.sqleditor.SQLEditor">
+            <adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
+            <adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+         </factory>
+    </extension>
+    
+    <!-- ruler double click for toggle breakpoint -->
+    <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor"
+            id="org.eclipse.datatools.sqltools.rullerDoubleClick">
+         <action
+               label="Add Breakpoint"
+               class="org.eclipse.datatools.sqltools.debugger.actions.ManageBreakpointRulerActionDelegate"
+               actionID="RulerDoubleClick"
+               id="org.eclipse.jdt.debug.ui.actions.ManageBreakpointRulerAction">
+         </action>
+      </editorContribution>
+   </extension>
+
+   <!-- watch expression for debugger -->
+   <extension
+         point="org.eclipse.debug.core.watchExpressionDelegates">
+      <watchExpressionDelegate
+            debugModel="org.eclipse.datatools.sqltools.debugger.debug.debugModelPresentation"
+            delegateClass="org.eclipse.datatools.sqltools.debugger.model.SPWatchExpressionDelegate"/>
+   </extension>
+         
+	
+   
 </plugin>

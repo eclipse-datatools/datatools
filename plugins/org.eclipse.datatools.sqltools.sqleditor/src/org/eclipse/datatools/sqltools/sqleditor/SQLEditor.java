@@ -10,54 +10,77 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.plan.IPlanOption;
+import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
+import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorDocumentSetupParticipant;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SymbolInserter;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.AddTemplateAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.InformationDispatchAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ToggleCommentAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContentOutlinePage;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLOutlinePage;
-import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLUpdater;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
+import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLPartitions;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
+import org.eclipse.datatools.sqltools.sqleditor.preferences.ContentAssistPreference;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.IDocumentPartitioner;
+import org.eclipse.jface.text.IInformationControl;
+import org.eclipse.jface.text.IInformationControlCreator;
 import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.ITextViewerExtension;
+import org.eclipse.jface.text.TextViewer;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistant;
+import org.eclipse.jface.text.information.InformationPresenter;
 import org.eclipse.jface.text.rules.FastPartitioner;
+import org.eclipse.jface.text.source.IOverviewRuler;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.ISourceViewerExtension2;
 import org.eclipse.jface.text.source.IVerticalRuler;
+import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
@@ -69,23 +92,30 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.internal.PartSite;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.IUpdate;
+import org.eclipse.ui.texteditor.TextEditorAction;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
@@ -150,7 +180,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             }
         }
     }
-	
+    
     /**
      * Updates the selection in the editor's widget with the selection of the outline page.
      */
@@ -165,6 +195,57 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             setSelection(node);
         }
     }
+    
+    class AdaptedSourceViewer extends ProjectionViewer
+    {
+
+        /**
+         * @param parent
+         * @param verticalRuler
+         * @param overviewRuler
+         * @param showAnnotationsOverview
+         * @param styles
+         */
+        public AdaptedSourceViewer(Composite parent, IVerticalRuler verticalRuler, IOverviewRuler overviewRuler,
+            boolean showAnnotationsOverview, int styles)
+        {
+            super(parent, verticalRuler, overviewRuler, showAnnotationsOverview, styles);
+        }
+
+        public IContentAssistant getContentAssistant()
+        {
+            return fContentAssistant;
+        }
+    }
+
+    class propertyChangeListener implements IPropertyChangeListener
+    {
+
+        /*
+         * (non-Javadoc)
+         * 
+         * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
+         */
+        public void propertyChange(PropertyChangeEvent event)
+        {
+            AdaptedSourceViewer asv = (AdaptedSourceViewer) getSourceViewer();
+            if (asv != null)
+            {
+                String p = event.getProperty();
+                ContentAssistant contentAssistant = (ContentAssistant) asv.getContentAssistant();
+
+                if (contentAssistant instanceof ContentAssistant)
+                {
+                    ContentAssistPreference.changeConfiguration((ContentAssistant) contentAssistant,
+                        getPreferenceStore(), event);
+                }
+                SQLEditor.this.handlePreferenceStoreChanged(event);
+            }
+
+        }
+
+    }
+
 
 	public static final String PLUGIN_NAME = "org.eclipse.datatools.sqltools.sqleditor"; //$NON-NLS-1$
 	public static final String HELP_CONTEXT_ID = PLUGIN_NAME + ".sqleditorhelp"; //$NON-NLS-1$
@@ -182,15 +263,25 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     /** The content assist proposal service for database objects. */
     private ISQLDBProposalsService fDBProposalsService;
     /** The result value generated by SQLParser */
-    private ParsingResult                                     _parsingResult                    = null;
-
+    protected ParsingResult                                     _parsingResult                    = null;
+    private SymbolInserter                                    _symbolInserter                   = null;
+    private ArrayList                                         _profileListeners                 = new ArrayList();
+    private InformationPresenter                              _informationPresenter;
+    
     /**
      * Constructs an instance of this class. This is the default constructor.
      */
     public SQLEditor() {
         super();
+        _symbolInserter = new SymbolInserter(this);
     }
 
+    public void init(IEditorSite site, IEditorInput input) throws PartInitException
+    {
+        super.init(site, input);
+        fireConnectionProfileAttached();
+    }
+    
     /**
      * Creates and installs the editor actions.
      * 
@@ -199,6 +290,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     protected void createActions() {
         super.createActions();
         ResourceBundle bundle = getResourceBundle();
+        IActionBars bars = ((PartSite) getSite()).getActionBars();
 
         IAction a = new TextOperationAction( bundle,
                 "ContentAssistProposal.", this, ISourceViewer.CONTENTASSIST_PROPOSALS ); //$NON-NLS-1$
@@ -212,21 +304,29 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         a = new TextOperationAction( bundle, "ContentFormat.", this, ISourceViewer.FORMAT ); //$NON-NLS-1$
         setAction( "ContentFormat", a ); //$NON-NLS-1$
 
-        //ToggleCommentAction
+        a = new TextOperationAction(bundle,
+				"ShowSQLInfo.", this, ISourceViewer.INFORMATION, true); //$NON-NLS-1$
+		a = new InformationDispatchAction(bundle,
+				"ShowSQLInfo.", (TextOperationAction) a, this); //$NON-NLS-1$
+		a.setActionDefinitionId(ISQLEditorActionConstants.SHOW_INFORMATION_ACTION_ID);
+		setAction(ISQLEditorActionConstants.SHOW_INFORMATION_ACTION_ID, a);
+
+        // ToggleCommentAction
         a = new ToggleCommentAction(bundle, "SQLEditor.action.toggle.commect.", this); //$NON-NLS-1$
         setAction(ISQLEditorActionConstants.TOGGLE_COMMENT, a); //$NON-NLS-1$
         configureToggleCommentAction(a);
+        markAsStateDependentAction(ISQLEditorActionConstants.TOGGLE_COMMENT, true);
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.TOGGLE_COMMENT, getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
 
         setAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, new ExecuteSQLAction(this));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
 
         setAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, new ExecuteSelectionSQLAction(this));
-
-        markAsStateDependentAction(ISQLEditorActionConstants.TOGGLE_COMMENT, true);
-        
-        IActionBars bars = ((PartSite) getSite()).getActionBars();
-        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
-        bars.setGlobalActionHandler(ISQLEditorActionConstants.TOGGLE_COMMENT, getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
+
+        setAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, new AddTemplateAction(getResourceBundle(),
+				"AddTemplateAction.", this));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, getAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID));
 
     }
 
@@ -247,7 +347,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      * @see org.eclipse.ui.texteditor.AbstractTextEditor#createPartControl(org.eclipse.swt.widgets.Composite)
      */
     public void createPartControl( Composite parent ) {
-    	setupDocumentProvider();
+    	setupDocumentPartitioner();
         
         super.createPartControl( parent );
         setProjectionSupport( createProjectionSupport() );
@@ -257,12 +357,80 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
          */
         ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
         viewer.doOperation( ProjectionViewer.TOGGLE );
-        
+
+        ((TextViewer) this.getSourceViewer()).setDocumentPartitioning(ISQLPartitions.SQL_PARTITIONING);
+
+        getSite().setSelectionProvider((SourceViewer) getSourceViewer());
+        hookContextMenu();
+
         //only when there's control, need we update update outline and annotation
         installSQLUpdater();
+
+        SQLEditorPlugin.getDefault().getPreferenceStore().addPropertyChangeListener(new propertyChangeListener());
+
+        IInformationControlCreator informationControlCreator = new IInformationControlCreator()
+        {
+            public IInformationControl createInformationControl(Shell shell)
+            {
+                boolean cutDown = false;
+                int style = cutDown ? SWT.NONE : (SWT.V_SCROLL | SWT.H_SCROLL);
+                return new DefaultInformationControl(shell, SWT.RESIZE, style, null);
+            }
+        }
+        ;
+
+        _informationPresenter = new InformationPresenter(informationControlCreator);
+        _informationPresenter.setSizeConstraints(60, 10, true, true);
+        _informationPresenter.install(getSourceViewer());
+
+        //TODO install EditorSelectionChangedListener to update the Java outline page selection and this editor's range indicator.
+
+        //symbol inserter
+        IPreferenceStore preferenceStore = SQLEditorPlugin.getDefault().getPreferenceStore();
+        boolean closeSingleQuotes = preferenceStore.getBoolean(PreferenceConstants.SQLEDITOR_CLOSE_SINGLE_QUOTES);
+        boolean closeDoubleQuotes = preferenceStore.getBoolean(PreferenceConstants.SQLEDITOR_CLOSE_DOUBLE_QUOTES);
+        boolean closeBrackets = preferenceStore.getBoolean(PreferenceConstants.SQLEDITOR_CLOSE_BRACKETS);
+
+
+        _symbolInserter.setCloseSingleQuotesEnabled(closeSingleQuotes);
+        _symbolInserter.setCloseDoubleQuotesEnabled(closeDoubleQuotes);
+        _symbolInserter.setCloseBracketsEnabled(closeBrackets);
+
+        ISourceViewer sourceViewer = getSourceViewer();
+        if (sourceViewer instanceof ITextViewerExtension)
+        ((ITextViewerExtension) sourceViewer).prependVerifyKeyListener(_symbolInserter);
+
         
         /* Set a help context ID to enable F1 help. */
         PlatformUI.getWorkbench().getHelpSystem().setHelp( parent, HELP_CONTEXT_ID );
+    }
+
+    public void updatePartControl(IEditorInput input)
+    {
+        super.updatePartControl(input);
+        refreshActionStatus();
+        refreshConnectionStatus();
+    }
+
+    private void hookContextMenu()
+    {
+        StyledText styledText = getSourceViewer().getTextWidget();
+        MenuManager menuMgr = new MenuManager("#PopupMenu"); //$NON-NLS-1$
+        menuMgr.setRemoveAllWhenShown(true);
+
+        menuMgr.addMenuListener(new IMenuListener()
+        {
+            public void menuAboutToShow(IMenuManager manager)
+            {
+                // editorContextMenuAboutToShow(manager);// Display what comes by default
+                SQLEditor.this.fillContextMenu(manager);
+            }
+        }
+        );
+
+        Menu menu = menuMgr.createContextMenu(styledText);
+        styledText.setMenu(menu);
+        getSite().registerContextMenu(EditorConstants.EDITOR_ID, menuMgr, getSelectionProvider());
     }
 
     /**
@@ -288,8 +456,15 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      *      org.eclipse.jface.text.source.IVerticalRuler, int)
      */
     protected ISourceViewer createSourceViewer( Composite parent, IVerticalRuler ruler, int styles ) {
-        SQLSourceViewer viewer = new SQLSourceViewer( parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
-                styles );
+    	fAnnotationAccess = createAnnotationAccess();
+        fOverviewRuler = createOverviewRuler(getSharedColors());
+
+        ISourceViewer viewer = new AdaptedSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
+            styles);
+        // ensure decoration support has been created and configured.
+        getSourceViewerDecorationSupport(viewer);
+        // ensure decoration support has been created and configured.
+        getSourceViewerDecorationSupport(viewer);
 
         return viewer;
     }
@@ -321,6 +496,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
         stopSQLUpdater();
         super.dispose();
+
+        ISourceViewer sourceViewer = getSourceViewer();
+        if (sourceViewer instanceof ITextViewerExtension)
+        ((ITextViewerExtension) sourceViewer).removeVerifyKeyListener(_symbolInserter);
+
     }
 
     /**
@@ -353,7 +533,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      */
     public void doSaveAs() {
         super.doSaveAs();
-        setupDocumentProvider();
+        setupDocumentPartitioner();
         runUpdater();
     }
 
@@ -393,7 +573,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                 SQLSourceViewerConfiguration sqlConfig = (SQLSourceViewerConfiguration) config;
                 sqlConfig.setDBProposalsService( fDBProposalsService );
             }
-            setupDocumentProvider();
+            setupDocumentPartitioner();
             IDocument document = getDocumentProvider().getDocument(input);
             if (_fSQLUpdater != null)
             {
@@ -417,8 +597,16 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      */
     protected void editorContextMenuAboutToShow( IMenuManager menu ) {
         super.editorContextMenuAboutToShow( menu );
+        fillContextMenu(menu);
+    }
 
-        menu.add(new Separator(ITextEditorActionConstants.GROUP_UNDO));
+    /**
+     * Fills the context menu with sql editor specific actions. This is different with editorContextMenuAboutToShow
+     * in that it does not show the inherited actions.
+     * @param menu
+     */
+	protected void fillContextMenu(IMenuManager menu) {
+		menu.add(new Separator(ITextEditorActionConstants.GROUP_UNDO));
         menu.add(new Separator(ISQLEditorActionConstants.GROUP_OPEN));
         menu.add(new Separator(ITextEditorActionConstants.GROUP_COPY));
         menu.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE));
@@ -428,17 +616,154 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         menu.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION));
         menu.add(new Separator(ITextEditorActionConstants.MB_ADDITIONS));
 
+        if (!isEditorInputReadOnly())
+        {
+            addAction(menu, ITextEditorActionConstants.GROUP_UNDO, ITextEditorActionConstants.UNDO);
+            if (getEditorInput() instanceof IFileEditorInput || getEditorInput() instanceof ILocationProvider)
+            {
+                addAction(menu, ITextEditorActionConstants.GROUP_UNDO, ITextEditorActionConstants.REVERT_TO_SAVED);
+            }
+            addAction(menu, ITextEditorActionConstants.GROUP_COPY, ITextEditorActionConstants.CUT);
+            addAction(menu, ITextEditorActionConstants.GROUP_COPY, ITextEditorActionConstants.COPY);
+            addAction(menu, ITextEditorActionConstants.GROUP_COPY, ITextEditorActionConstants.PASTE);
+        }
+        else
+        {
+            addAction(menu, ITextEditorActionConstants.GROUP_COPY, ITextEditorActionConstants.COPY);
+        }
         menu.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE, getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
         
-        menu.add( new Separator() );
-        addAction( menu, "ContentAssistProposal" ); //$NON-NLS-1$
-        addAction( menu, "ContentAssistTip" ); //$NON-NLS-1$
-        addAction( menu, "ContentFormat" ); //$NON-NLS-1$
+//        menu.add( new Separator() );
+//        addAction( menu, "ContentAssistProposal" ); //$NON-NLS-1$
+//        addAction( menu, "ContentAssistTip" ); //$NON-NLS-1$
+//        addAction( menu, "ContentFormat" ); //$NON-NLS-1$
 
         menu.add( new Separator() );
-            // Execute SQL
-        addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
-        addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
+        
+        //2006-7-20
+        SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByVendorIdentifier(getConnectionInfo().getDatabaseVendorDefinitionId());
+		SQLEditorService editorService = config.getSQLEditorService();
+        Collection excludedActionIds = editorService.getExcludedActionIds();
+		// Execute SQL
+        if (!excludedActionIds.contains(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
+        {
+        	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
+        }
+        if (!excludedActionIds.contains(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID))
+        {
+        	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
+        }
+
+        //Explain SQL
+        IPlanOption planOption = config.getPlanService().getPlanOption();
+        if (planOption != null && (!excludedActionIds.contains(ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID)))
+        {
+        	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID);
+        }
+
+        addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
+
+		//database specific actions go here
+        HashMap dbActions = editorService.getAdditionalActions();
+        if (dbActions != null && !dbActions.isEmpty())
+        {
+            MenuManager dbSubMenuMgr = new MenuManager(config.getDatabaseVendorDefinitionId().toString(),
+                ISQLEditorActionConstants.GROUP_SQLEDITOR_DB_SUBMENU); //$NON-NLS-1$
+            IActionBars bars = ((PartSite) getSite()).getActionBars();
+            for (Iterator iter = dbActions.keySet().iterator(); iter.hasNext();)
+            {
+                String key = (String)iter.next();
+                Object value = dbActions.get(key);
+                if (value instanceof Collection)
+                {
+                    for (Iterator iterator = ((Collection)value).iterator(); iterator.hasNext();)
+                    {
+                        addContributedMenus( key, iterator.next(), menu, dbSubMenuMgr);
+                    }
+                }
+                else
+                {
+                    addContributedMenus( key, value, menu, dbSubMenuMgr);
+                }
+            }
+            dbSubMenuMgr.add(new Separator(ITextEditorActionConstants.MB_ADDITIONS));
+            menu.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, dbSubMenuMgr);
+        }        
+
+        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToContextMenu(menu);
+		}
+    }
+
+    private void addContributedMenus(String key, Object dba, IMenuManager manager, MenuManager dbSubMenuMgr)
+    {
+        if (dba instanceof IEditorActionDelegate)
+        {
+            ((IEditorActionDelegate) dba).setActiveEditor(null, this);
+        }
+        else if (dba instanceof TextEditorAction)
+        {
+            ((TextEditorAction) dba).setEditor(this);
+        }
+        //only one level for now
+        if (dba instanceof IMenuManager)
+        {
+            IContributionItem[] items = ((IMenuManager)dba).getItems();
+            for (int i = 0; i < items.length; i++)
+            {
+                if (items[i] instanceof IEditorActionDelegate)
+                {
+                    ((IEditorActionDelegate) items[i]).setActiveEditor(null, this);
+                }
+                else if (items[i] instanceof TextEditorAction)
+                {
+                    ((TextEditorAction) items[i]).setEditor(this);
+                }
+            }
+        }
+        if (key != null && !key.equals(""))
+        {
+            String subMgrId = key;
+            String subGroupId = key;
+            if (key.indexOf("/") >0)
+            {
+                subMgrId = key.substring(0, key.indexOf("/"));
+                subGroupId = key.substring(key.indexOf("/") + 1);
+            }
+            if (manager.find(subMgrId) != null)
+            {
+                IMenuManager subMgr = manager;
+                if (manager.find(subMgrId) instanceof IMenuManager)
+                {
+                    subMgr = (IMenuManager)manager.find(subMgrId);
+                }
+                if (subMgr.find(subGroupId) != null)
+                {
+                    if (dba instanceof IAction)
+                    {
+                        subMgr.appendToGroup(subGroupId, (IAction) dba);
+                    }
+                    else if (dba instanceof IContributionItem)
+                    {
+                        subMgr.appendToGroup(subGroupId, (IContributionItem) dba);
+                    }
+                }
+            }
+            //otherwise ignore
+        }
+        else
+        {
+            if (dba instanceof IAction)
+            {
+                dbSubMenuMgr.add((IAction)dba);                 
+            }
+            else if (dba instanceof IContributionItem)
+            {
+                dbSubMenuMgr.add( (IContributionItem)dba);                 
+            }
+        }
     }
 
     /**
@@ -510,40 +835,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     		ISQLEditorConnectionInfo oldConnInfo = getConnectionInfo();
     		((ISQLEditorInput)getEditorInput()).setConnectionInfo(connInfo);
     		
-    		//save the document to persistent the connection info with the input
-            IRunnableWithProgress progressOp = new IRunnableWithProgress()
-            {
-                public void run(IProgressMonitor monitor)
-                {
-                    doSave(monitor);
-                }
-            }
-            ;
-
-            try
-            {
-                // Do the save.
-                PlatformUI.getWorkbench().getActiveWorkbenchWindow().run(false, true, progressOp);
-            }
-            catch (InvocationTargetException e)
-            {
-                Throwable targetExc = e.getTargetException();
-                String title = NLS.bind(SQLEditorResources.EditorManager_operationFailed, (new Object[]
-				{
-				    SQLEditorResources.Save
-				})); //$NON-NLS-1$
-                String message = targetExc.getMessage();
-                message = message == null? "":message;
-				IStatus status = new Status(IStatus.WARNING, SQLEditorPlugin.PLUGIN_ID, IStatus.OK,message, targetExc );
-                SQLEditorPlugin.getDefault().log(status);
-                MessageDialog.openError(getEditorSite().getShell(), SQLEditorResources.common_error, 
-                title + ':' + message);
-            }
-            catch (InterruptedException e)
-            {
-                // Ignore. The user pressed cancel.
-                return;
-            }
 
             if (connInfo != null && !connInfo.getDatabaseVendorDefinitionId().equals(oldConnInfo.getDatabaseVendorDefinitionId()))
     		{
@@ -554,15 +845,31 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             	getSourceViewer().configure(configuration);
             	//we have to do this since only configuring the source viewer doesn't work. PresentationReconciler won't get notified of the document changed event. 
             	setInput(getEditorInput());
+            	//do it twice because setInput might regenerate an editor input
+            	((ISQLEditorInput)getEditorInput()).setConnectionInfo(connInfo);
             }
-                
-            refreshActionStatus();
-            refreshConnectionStatus();
-            _fSQLUpdater.run();
-
-            //fireConnectionProfileAttached();
+            
+            SQLEditorPlugin.getDisplay().asyncExec(new Runnable()
+            {
+            	public void run()
+            	{
+            		refreshActionStatus();
+                    refreshConnectionStatus();
+                    _fSQLUpdater.run();
+                    fireConnectionProfileAttached();
+            	}
+            });
     		
     	}
+    }
+    
+    /**
+     * Requests a connection. Does not guarantee the connection is established. The default implementation does nothing.
+     *
+     */
+    public void requestConnection()
+    {
+    	//Do nothing by default
     }
     
     /**
@@ -661,7 +968,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         super.initializeEditor();
         setDocumentProvider(new SQLStorageDocumentProvider());
         setSourceViewerConfiguration( createSourceViewerConfiguration() );
-        setRangeIndicator( new DefaultRangeIndicator() );
+        setRulerContextMenuId("#SQLEditorRulerContext"); //$NON-NLS-1$
+        setRangeIndicator(new DefaultRangeIndicator());
+		// Sets the SQL editor's help context id.
+        setHelpContextId(IHelpContextIds.SQLEDITOR);
+        
     }
     
     /**
@@ -844,10 +1155,34 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     }
 
     /**
+     * Returns the parsing result no matter the "Enable syntax validation" is on or off. If this option is on, we will
+     * always keep the parsing result up-to-date, if it is off, we will check if the parsing result is kept sync with
+     * the editor content, if not, we will parse it to get the synchronized parsing result
+     * 
      * @return the recent parsing result since the last modification
      */
     public ParsingResult getParsingResult()
     {
+        boolean validationOn = SQLEditorPlugin.getDefault().getPreferenceStore().getBoolean(
+            PreferenceConstants.SYNTAX_VALIDATION);
+        /*
+         * If the "Enable syntax validation" is turned off and current editor is needed to be parsed again to keep the
+         * parsing result in sync with the editor content, then we will parse it
+         */
+        if (!validationOn && _fSQLUpdater.needToParse())
+        {
+        	ISQLEditorConnectionInfo connInfo = getConnectionInfo();
+        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), connInfo.getDatabaseVendorDefinitionId());
+            SQLParser parser = conf.getSQLService().getSQLParser();
+            String content = getSourceViewer().getDocument().get();
+            // Add '\n' to avoid parser to throw exception when last line is single line comment.
+            content = content + "\n";
+            
+            boolean useDelimiter = getSQLType() == SQLParserConstants.TYPE_SQL_ROOT;
+            _parsingResult = parser.parse(content, new ParserParameters(useDelimiter, getSQLType()));
+            _parsingResult.getRootNode().setDocument(getSV().getDocument());
+            _fSQLUpdater.setNeedToParse(false);
+        }
         return _parsingResult;
     }
 
@@ -859,14 +1194,17 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         _parsingResult = result;
     }
 
-
+    public InformationPresenter getInformationPresenter()
+    {
+        return _informationPresenter;
+    }
 
     ///////////////////////Document Provider////////////////////////////////////////
     /**
-     * Sets up the document provider. Since we support multiple dialects, each time when the database vendor definition for this SQL editor
+     * Sets up the document partitioner. Since we support multiple dialects, each time when the database vendor definition for this SQL editor
      * is changed, this method should be called to update the document partitioner.
      */
-    protected void setupDocumentProvider()
+    protected void setupDocumentPartitioner()
     {
     	IDocument document = getDocumentProvider().getDocument(getEditorInput());
     	DatabaseVendorDefinitionId vendorId = getConnectionInfo().getDatabaseVendorDefinitionId(); 
@@ -881,8 +1219,8 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 					_sqlPartitionSanner, new String[] {
 							SQLPartitionScanner.SQL_COMMENT,
 							SQLPartitionScanner.SQL_MULTILINE_COMMENT,
-							SQLPartitionScanner.SQL_QUOTED_LITERAL,
-							SQLPartitionScanner.SQL_DELIMITED_IDENTIFIER });
+							SQLPartitionScanner.SQL_STRING,
+							SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER });
             partitioner.connect(document);
             extension3.setDocumentPartitioner(SQLPartitionScanner.SQL_PARTITIONING, partitioner);
 
@@ -924,7 +1262,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                 ISQLEditorConnectionInfo connInfo = getConnectionInfo();
                 if (connInfo != null && connInfo.getConnectionProfile() != null) {
                     statusLineMgr.setErrorMessage( null );
-                    String connStatus = connInfo.getConnectionProfile().getName() ;
+                    String connStatus = connInfo.getName();
                     statusLineMgr.setMessage( connStatus );
                 }
                 else {
@@ -963,17 +1301,17 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         return sql;
     }
 
-   /**
-    * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#initializeKeyBindingScopes()
-    */
-   protected void initializeKeyBindingScopes()
-   {
-       setKeyBindingScopes(new String[]
-       {
-           "org.eclipse.datatools.sqltools.SQLEditorScope"
-       }
-       ); //$NON-NLS-1$
-   }
+    /**
+     * @see org.eclipse.ui.texteditor.AbstractDecoratedTextEditor#initializeKeyBindingScopes()
+     */
+    protected void initializeKeyBindingScopes()
+    {
+        setKeyBindingScopes(new String[]
+        {
+            "org.eclipse.datatools.sqltools.SQLEditorScope"
+        }
+        ); //$NON-NLS-1$
+    }
 
 	/*
 	 * @see org.eclipse.ui.part.WorkbenchPart#getOrientation()
@@ -983,6 +1321,22 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 		return SWT.LEFT_TO_RIGHT;	//SQL editors are always left to right by default
 	}
 
+    /**
+     * 
+     * @return the selected text or the whole text when there's no selection
+     */
+    public String getTargetText()
+    {
+        String sql = getSelectedText();
+        if (sql == null)
+        {
+            //get the document
+            IDocument document = getDocumentProvider().getDocument(getEditorInput());
+            sql = document.get();
+        }
+        return sql;
+    }
+    
     /**
      * Configures the toggle comment action
      * 
@@ -996,5 +1350,155 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             ((ToggleCommentAction) action).configure(sourceViewer, configuration);
         }
     }
+    
+    //
+    protected void handlePreferenceStoreChanged(PropertyChangeEvent event)
+    {
+        try
+        {
+            if (getSourceViewer() != null)
+            {
 
+                String p = event.getProperty();
+                IPreferenceStore preferenceStore = SQLEditorPlugin.getDefault().getPreferenceStore();
+                if (PreferenceConstants.SQLEDITOR_CLOSE_SINGLE_QUOTES.equals(p))
+                {
+                    _symbolInserter.setCloseSingleQuotesEnabled(preferenceStore.getBoolean(p));
+                    return;
+                }
+                if (PreferenceConstants.SQLEDITOR_CLOSE_DOUBLE_QUOTES.equals(p))
+                {
+                    _symbolInserter.setCloseDoubleQuotesEnabled(preferenceStore.getBoolean(p));
+                    return;
+                }
+                if (PreferenceConstants.SQLEDITOR_CLOSE_BRACKETS.equals(p))
+                {
+                    _symbolInserter.setCloseBracketsEnabled(preferenceStore.getBoolean(p));
+                    return;
+                }
+                //when user enbale "syntax validation", we update/recreate the parsing result for SQLEditor
+                if (PreferenceConstants.SYNTAX_VALIDATION.equals(p))
+                {
+                    if(_fSQLUpdater != null)
+                    {
+                        _fSQLUpdater.run();
+                    }
+                    return;
+                }
+            }
+
+        }
+        finally
+        {
+            super.handlePreferenceStoreChanged(event);
+        }
+    }
+
+    protected boolean isLineNumberRulerVisible()
+    {
+        IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
+        return store != null ? store
+            .getBoolean(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER) : false;
+    }
+
+    /**
+	 * Returns the outmost sql statement type that's allowed in this editor. The default sqlType is SQLParserConstants.TYPE_SQL_ROOT, which means any sql statements can occur.
+	 * @return
+	 */
+	public int getSQLType() {
+		return SQLParserConstants.TYPE_SQL_ROOT;
+	}
+
+    public void addConnectionProfileAttachListener(IConnectionProfileAttachListener listener)
+    {
+        if (!_profileListeners.contains(listener))
+        {
+            _profileListeners.add(listener);
+        }
+    }
+
+    public void removeConnectionProfileAttachListener(IConnectionProfileAttachListener listener)
+    {
+        _profileListeners.remove(listener);
+    }
+
+    public void fireConnectionProfileAttached()
+    {
+        for (Iterator iter = _profileListeners.iterator(); iter.hasNext();)
+        {
+            IConnectionProfileAttachListener l = (IConnectionProfileAttachListener) iter.next();
+            l.connectionProfileAttached(this);
+        }
+    }
+
+    /**
+     * Returns the DatabaseIdentifier associated with the connection info. 
+     * @return might be null
+     */
+    public DatabaseIdentifier getDatabaseIdentifier()
+    {
+        ISQLEditorConnectionInfo connInfo = getConnectionInfo();
+        if (connInfo != null && connInfo.getConnectionProfileName() != null)
+        {
+        	return new DatabaseIdentifier(connInfo.getConnectionProfileName(), connInfo.getDatabaseName());
+        }
+        return null;
+    }
+    
+    public String getDBType()
+    {
+    	return getConnectionInfo().getDatabaseVendorDefinitionId().toString();
+    }
+    
+    /**
+     * Insert the SQL text into editor
+     * 
+     * @param sqlText
+     */
+    public void insert(String sqlText)
+    {
+        //get the document
+        IDocument document = getDocumentProvider().getDocument(getEditorInput());
+
+        //get the selection
+        ITextSelection  selection = (ITextSelection) getSelectionProvider().getSelection();
+        int start = 0;
+        int length = 0;
+
+        //get the offset of the selection
+        if (!selection.isEmpty())
+        {
+            start = selection.getOffset();
+            length = selection.getLength();
+            if (length < 0)
+            {
+                length = -length;
+                start -= length;
+            }
+        }
+
+        //replace/insert
+        try {
+			document.replace(start, length, sqlText);
+		} catch (BadLocationException e) {
+	        IEditorSite editorSite = getEditorSite();
+	        if (editorSite != null) {
+	            IActionBars actionBars = editorSite.getActionBars();
+	            if (actionBars != null) {
+	                IStatusLineManager statusLineMgr = actionBars.getStatusLineManager();
+	                    statusLineMgr.setErrorMessage( e.getLocalizedMessage() );
+	            }
+	        }
+	        SQLEditorPlugin.getDefault().log(e);
+		}
+    }
+    
+    /**
+     * Utility methods to "getConnectionInfo().isConnected()"
+     * @return
+     */
+    public boolean isConnected()
+    {
+    	return getConnectionInfo().isConnected();
+    }
 } // end class

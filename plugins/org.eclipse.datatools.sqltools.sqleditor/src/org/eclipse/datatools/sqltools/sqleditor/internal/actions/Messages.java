@@ -21,6 +21,10 @@ public final class Messages extends NLS {
 		// Do not instantiate
 	}
 
+	public static String AddTemplateAction_error_write_title;
+	public static String AddTemplateAction_error_write_message;
+    public static String AddTemplateAction_label;
+    public static String AddTemplateAction_tooltip;
 	public static String common_error;
 	public static String CutAction_label;
 	public static String CutAction_tooltip;
@@ -57,6 +61,12 @@ public final class Messages extends NLS {
 	public static String ExecuteSQLActionDelegate_error_interrupted;
 	public static String ToggleComment_error_title;
 	public static String ToggleComment_error_message;
+	public static String DeployAction_label;
+	public static String DeployAction_error_title;
+	public static String DeployAction_error_message;
+	public static String DeployAction_save_information;
+	public static String DeployAction_save_message;
+;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

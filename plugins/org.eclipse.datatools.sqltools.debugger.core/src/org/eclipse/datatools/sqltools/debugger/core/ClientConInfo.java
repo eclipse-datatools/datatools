@@ -11,47 +11,42 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.debugger.core;
 
+
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.ServerIdentifier;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+
+
 /**
- * This class represents information of a client connection, which refers to those connections not created in data
- * tools.
+ * This class represents information of a client connection.
  */
 public class ClientConInfo
 {
-    private String             _connId;
-
-    private String             _database;
+    private int                _connId;            // ASA connid or ASE spid
     private String             _user;
-
-    private Object             _status = null;          // its type will depends on server type
-
-    private IDebuggerControlConnection _parentControlConnection;
-
-    public ClientConInfo(IDebuggerControlConnection control, String connid, String db, String user)
-    {
-        this._parentControlConnection = control;
-        this._connId = connid;
-        this._database = db;
-        this._user = user;
-    }
-
-    public IDebuggerControlConnection getParentControlConnection()
-    {
-        return _parentControlConnection;
-    }
-
-    public String getConnId()
-    {
-        return _connId;
-    }
+    private Object             _status = null;     // its type will depends on server type
 
     /**
-     * get the current database name this client con is for.
-     * 
-     * @return
+     * The debug handler related with this client connection
      */
-    public String getDatabaseName()
+    private IDebugHandler      _debugHandler;
+
+    private DatabaseIdentifier _databaseIdentifier;
+
+    private ServerIdentifier   _serverIdentifier;
+
+    public ClientConInfo(IDebugHandler debugHandler, DatabaseIdentifier databaseIdentifier, int connid, String user)
     {
-        return _database;
+        _debugHandler = debugHandler;
+        _databaseIdentifier = databaseIdentifier;
+        this._connId = connid;
+        this._user = user;
+        _serverIdentifier = ProfileUtil.getServerIdentifier(_databaseIdentifier);
+    }
+
+    public int getConnId()
+    {
+        return _connId;
     }
 
     public String getUser()
@@ -68,10 +63,10 @@ public class ClientConInfo
     public boolean updateStatus(String db, String user, Object status)
     {
         boolean changed = false;
-        if (!equals(db, _database))
+        if(!equals(db, _databaseIdentifier.getDBname()))
         {
             changed = true;
-            _database = db;
+            _databaseIdentifier.setDBname(db);
         }
         if (!equals(user, _user))
         {
@@ -113,11 +108,30 @@ public class ClientConInfo
      */
     public boolean isAttached()
     {
-        IDebuggerControlConnection parent = getParentControlConnection();
-        if (parent != null )
+        if(_debugHandler != null)
         {
-            return parent.isAttached(getConnId());
+            return _debugHandler.isAttached(getConnId());
         }
-        else return false;
+        return false;
+    }
+
+    public IDebugHandler getDebugHandler()
+    {
+        return _debugHandler;
+    }
+
+    public ServerIdentifier getServerIdentifier()
+    {
+        return _serverIdentifier;
+    }
+
+    public DatabaseIdentifier getDatabaseIdentifier()
+    {
+        return _databaseIdentifier;
+    }
+
+    public void setStatus(Object status)
+    {
+        _status = status;
     }
 }

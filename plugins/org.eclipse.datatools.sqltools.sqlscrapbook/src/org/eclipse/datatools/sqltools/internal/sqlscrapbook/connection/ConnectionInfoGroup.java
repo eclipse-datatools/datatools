@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
@@ -33,6 +32,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
@@ -141,6 +141,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			this._dbName = connInfo.getDatabaseName();
 			this._dbVendorId = connInfo.getDatabaseVendorDefinitionId();
 		}
+		
 		this._listener = listener;
 		this._showWarning = showWarning;
 		this._mustConnect = mustConnect;
@@ -184,19 +185,20 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 		_labelName = new Label(this, SWT.NONE);
 		_labelName.setText(Messages.SelectProfileDialog_profile_name); //$NON-NLS-1$
-		//hide the "create" button for now since we can't invoke the right wizard
-//		Composite compositeName = new Composite(this, SWT.NONE);
-//		gridData3.grabExcessHorizontalSpace = true;
-//		gridData3.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
-//		compositeName.setLayoutData(gridData3);
-//		gridLayout2.numColumns = 2;
-//		gridLayout2.marginHeight = 0;
-//		gridLayout2.marginWidth = 0;
-//		compositeName.setLayout(gridLayout2);
-		createComboProfileName(this);
-//		_create = new Button(compositeName, SWT.PUSH);
-//		_create.setText(Messages.getString("SelectProfileDialog.create")); //$NON-NLS-1$
-//		_create.addListener(SWT.Selection, this);
+		//connectivity layer does not associate profile with database defintions,
+		//so we have to use UIComponentService to create those wizards
+		Composite compositeName = new Composite(this, SWT.NONE);
+		gridData3.grabExcessHorizontalSpace = true;
+		gridData3.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
+		compositeName.setLayoutData(gridData3);
+		gridLayout2.numColumns = 2;
+		gridLayout2.marginHeight = 0;
+		gridLayout2.marginWidth = 0;
+		compositeName.setLayout(gridLayout2);
+		createComboProfileName(compositeName);
+		_create = new Button(compositeName, SWT.PUSH);
+		_create.setText(Messages.SelectProfileDialog_create); //$NON-NLS-1$
+		_create.addListener(SWT.Selection, this);
 
 		_labelDbName = new Label(this, SWT.NONE);
 		_labelDbName.setText(Messages.ConnectionInfoGroup_database_name);
@@ -260,6 +262,8 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				ProfileUtil.getReusableConnection(new DatabaseIdentifier(
 						_profileName, _dbName));
 				_isConnected = true;
+				String user = ProfileUtil.getProfileUserName(new DatabaseIdentifier(_profileName, _dbName), true);
+				_connInfo.setDefaultSchemaName(user);
 			} catch (Exception e) {
 				String statusmsg = e.getMessage();
 				if (statusmsg == null) {
@@ -317,7 +321,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			}
 			// FIXME: should invoke NewConnectionProfileWizard specific to the
 			// database vendor definition
-			NewConnectionProfileWizard wizard = new NewConnectionProfileWizard();
+			IWizard wizard = f.getUIComponentService().getProfileWizard();
 			String[] currentNames = getCurrentProfileNames();
 			WizardDialog dlg = new WizardDialog(getShell(), wizard);
 			int id = dlg.open();
@@ -510,9 +514,12 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 			public void focusGained(FocusEvent e) {
 				_combodbName.removeAll();
+				if (_checkBoxConnect.getSelection())
+				{
+					return;
+				}
 				String profileName = _comboProfileName.getText();
 				if (profileName != null) {
-					_combodbName.removeAll();
 					List list = ProfileUtil.getDatabaseList(profileName);
 					Iterator iterator = list.iterator();
 					while (iterator.hasNext()) {
@@ -579,8 +586,8 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		} else if (supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
 			_comboType.setText(_dbVendorId.toString());
 		} else if (supportedDBDefinitionNames.size() > 0) {
-			_comboType.setText((String) supportedDBDefinitionNames.iterator()
-					.next());
+			SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
+			_comboType.setText(defaultConfig.getDatabaseVendorDefinitionId().toString());
 		}
 		_comboType.addSelectionListener(this);
 

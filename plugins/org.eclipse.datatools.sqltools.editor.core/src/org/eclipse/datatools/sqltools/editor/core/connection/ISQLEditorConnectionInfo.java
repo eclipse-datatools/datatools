@@ -26,7 +26,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 public interface ISQLEditorConnectionInfo {
 	
     /**
-     * Gets a representing this object. Contains connection profile name and database name if any.
+     * Gets a String representing this object. Contains vendor definition, connection profile name and database name if any.
      * @return connection name
      */
     public String getName();
@@ -116,6 +116,7 @@ public interface ISQLEditorConnectionInfo {
     /**
      * Sets the default schema name to use with the connection or database
      * associated with this input.
+     * TODO register connection listener on connection profile to set the schema name here
      * 
      * @param schemaname the default schema name to set
      */
@@ -143,5 +144,10 @@ public interface ISQLEditorConnectionInfo {
 	 * @return A encoded String
 	 */
 	public String encode();
+
+	public int getProfileStatus();
+
+	public void setProfileStatus(int status);
 	
+	public boolean isConnected();
 }

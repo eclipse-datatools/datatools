@@ -60,4 +60,9 @@ public interface ISQLSyntax
      * Gets an array of SQL single line comments.
      */
     public String[] getSingleLineComments();
+    
+    /**
+     * Gets an array of global variables supported by this database.
+     */
+    public String[] getGlobalVariables();
 }

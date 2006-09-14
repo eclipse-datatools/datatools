@@ -40,7 +40,7 @@ public interface IDatabaseSetting
          */
         public NotSupportedSettingException(String propName)
         {
-            super(NLS.bind(Messages.NotSupportedConfigurationException_cause, propName));
+            super(NLS.bind(Messages.NotSupportedSettingException_cause, propName));
         }
     }
 
@@ -55,7 +55,8 @@ public interface IDatabaseSetting
      * Whether double string is regarded as quoted identifier in connection level
      */
     public static final String C_QUOTED_IDENTIFIER = "C_QUOTED_IDENTIFIER";
-
+    public static final String C_CHAINED_MODE      = "C_CHAINED_MODE";
+    
     /**
      * Retrieves the database level configuration value
      * 

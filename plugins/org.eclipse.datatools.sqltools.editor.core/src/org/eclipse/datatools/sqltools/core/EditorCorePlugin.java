@@ -13,12 +13,18 @@ package org.eclipse.datatools.sqltools.core;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileProxyListener;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
+import org.eclipse.datatools.sqltools.internal.core.IConfigurationRegistryListener;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
 
 /**
  * The main plugin class to be used in the desktop.
@@ -32,7 +38,7 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	//The shared instance.
 	private static EditorCorePlugin plugin;
 	private IControlConnectionManager       _controlConnectionManager;
-	
+
 	/**
 	 * The constructor.
 	 */
@@ -45,8 +51,19 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
+		EditorCorePlugin.addConfigurationRegistryListener(new IConfigurationRegistryListener(){
+			public void configurationLoaded() {
+				register();
+			}
+        });
 	}
 
+	private void register() {
+		ProfileManager pManager = ProfileManager.getInstance();
+        IConnectionProfile[] profiles = ProfileUtil.getProfiles();
+        pManager.addProfileListener(new SQLToolsProfileProxyListener(profiles));
+	}
+	
 	/**
 	 * This method is called when the plug-in is stopped
 	 */
@@ -133,9 +150,15 @@ public class EditorCorePlugin extends AbstractUIPlugin {
         log(createErrorStatus(message, e));
     }
 
-    public static SQLDevToolsConfigRegistry getDatabaseFactoryRegistry()
+	public static SQLDevToolsConfigRegistry getDatabaseFactoryRegistry()
     {
         return SQLDevToolsConfigRegistryImpl.INSTANCE;
     }
-    
+	
+
+    public static void addConfigurationRegistryListener(IConfigurationRegistryListener listener)
+    {
+    	getDatabaseFactoryRegistry().addConfigurationRegistryListener(listener);
+    }
+
 }

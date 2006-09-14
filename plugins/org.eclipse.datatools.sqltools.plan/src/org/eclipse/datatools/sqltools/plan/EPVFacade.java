@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan;
 
-import org.eclipse.datatools.sqltools.plan.internal.Constants;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManager;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
@@ -174,7 +174,7 @@ public class EPVFacade
             {
                 try
                 {
-                    _activePage.showView(Constants.PLAN_VIEW_ID, null, mode);
+                    _activePage.showView(PlanConstants.PLAN_VIEW_ID, null, mode);
                 }
                 catch (PartInitException ex)
                 {

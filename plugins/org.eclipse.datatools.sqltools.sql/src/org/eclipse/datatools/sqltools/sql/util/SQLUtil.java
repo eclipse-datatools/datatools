@@ -11,6 +11,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.util;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Contains various SQL processing utilities.
  * @author Hui Cao
@@ -22,6 +28,41 @@ public class SQLUtil
     public static final int MATCHING_SINGLE_QUOTES=1;
     public static final int MATCHING_DOUBLE_QUOTES=2;
     public static final int NO_MATCHING_QUOTES=3;
+
+    private static Pattern ID_PATTERN = Pattern.compile("((\\Q[\\E([^\"]|(\"\"))+\\Q]\\E|[^\\s\"\\Q.\\E]+|\"([^\"]|(\"\"))+\")\\Q.\\E?)");
+    private static Pattern STRING_PATTERN = Pattern.compile("(([^\\s']+)|('([^']|(''))+'))");
+    public static int MAX_NAME_LENGTH_FOR_MESSAGE_DIALOGS = 30;
+
+
+    /**
+     * "objstr" is a string representing a database object. Possibly in following formats: <ll>
+     * <li>objname</li>
+     * <li>ownername.objname</li>
+     * <li>databasename.ownername.objname</li>
+     * <li>databasename..objname</li>
+     * </ll>
+     * 
+     * This method will try to figure it out, and return a string array. with the first element be the last segment in
+     * "objstr".
+     * 
+     * In case of invalid objstr, will return null
+     * 
+     * NOTE: it is allowed to have whitespace in objname/ownername/databasename, in that case, the name is quoted in
+     * "'". See SQL grammer for detail.
+     * 
+     * @param objstr a string identifying a database object.
+     * @return string array
+     */
+    public static String[] parseDatabaseObject(String objstr)
+    {
+        ArrayList ids = new ArrayList();
+        Matcher m = ID_PATTERN.matcher(objstr);
+        while (m.find())
+        {
+            ids.add(0, SQLUtil.unquote(m.group(2)));
+        }
+        return (String[])ids.toArray(new String[ids.size()]);
+    }
 
     public static int findQuotes(String content)
     {
@@ -75,6 +116,18 @@ public class SQLUtil
         return buffer.toString();
     }
     
+    /**
+     * surround content with quoteMark and double every quoteMark inside content
+     * 
+     * @param content
+     * @param quoteMark
+     * @return
+     */
+    public static String quote(String content, String quoteMark)
+    {
+        return quoteMark + content.replaceAll(quoteMark, quoteMark + quoteMark) + quoteMark;
+    }
+
     /**
      * Removes the surrounding quotation mark (' or ") and restores 2 successive quotation marks to 1.
      * 
@@ -137,4 +190,113 @@ public class SQLUtil
         }
         return new String(sb);
     }
+    
+    public static String[] splitDotStr(String input)
+    {
+        int i = 0, count = 0;
+        while (i < input.length())
+        {
+            if (input.charAt(i) == '.')
+            {
+                count++;
+            }
+            i++;
+        }
+
+        String[] tokens = new String[count + 1];
+
+        i = 0;
+        int start = 0, end = 0, j = 0;
+        while (i < input.length())
+        {
+            if (input.charAt(i) == '.')
+            {
+                if (start < i)
+                {
+                    tokens[j] = input.substring(start, i);
+                }
+                else
+                {
+                    tokens[j] = null;
+                }
+                start = i + 1;
+                j++;
+            }
+            i++;
+        }
+        if (start <= i - 1)
+        {
+            tokens[j] = input.substring(start, i);
+        }
+        else
+        {
+            //Hui Cao: change "" to null to be consistent with previous tokens
+            tokens[j] = null; //$NON-NLS-1$
+        }
+
+        return tokens;
+    }
+
+    private static String[]  _allCurrencySymbols;
+	/**
+     * Returns all the currency symbols
+     * 
+     * @return
+     */
+    public synchronized static String[] getAvaiableCurrencySymbols()
+    {
+        if (_allCurrencySymbols == null)
+        {
+            Locale[] locals = Locale.getAvailableLocales();
+            ArrayList list = new ArrayList();
+            for (int i = 0; i < locals.length; i++)
+            {
+                list.add(NumberFormat.getInstance(locals[i]).getCurrency().getSymbol(locals[i]));
+            }
+            _allCurrencySymbols = (String[]) list.toArray(new String[list.size()]);
+            return _allCurrencySymbols;
+        }
+        else
+        {
+            return _allCurrencySymbols;
+        }
+    }
+
+    /**
+     * Returns whether the 2 Strings are equal by ignoring the surrounding quotes
+     * @param s1
+     * @param s2
+     * @param caseSensitive whether to consider case
+     * @return
+     */
+    public static boolean equalsIgnoreQuote(String s1, String s2, boolean caseSensitive)
+    {
+        if (caseSensitive)
+        {
+            boolean e = s1.equals(s2);
+            if (!e)
+            {
+                s1 = unquote(s1);
+                s2 = unquote(s2);
+                e = s1.equals(s2);
+            }
+            return e;
+        }
+        else
+        {
+            boolean e = s1.equalsIgnoreCase(s2);
+            if (!e)
+            {
+                if (s1.equals(unquote(s2)) || s2.equals(unquote(s1)))
+                {
+                    return true;
+                }
+                s1 = unquote(s1);
+                s2 = unquote(s2);
+                e = s1.equalsIgnoreCase(s2);
+            }
+            return e;
+        }
+    }
+
 }

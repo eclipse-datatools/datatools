@@ -13,6 +13,8 @@
 package org.eclipse.datatools.sqltools.core;
 
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Map;
 
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 
@@ -41,7 +43,8 @@ public interface IControlConnectionManager
 
     /**
      * Checks whether there is a controlconnection exists for the specified database identifier. If yes, return
-     * the controlconnection, otherwise return null
+     * the controlconnection, otherwise try to find another control connection associated with the same 
+     * connection profile, if failed again, return null
      * 
      * @param databaseIdentifier the database identifier
      * @return the corresponding control connection
@@ -87,4 +90,56 @@ public interface IControlConnectionManager
      * Shuts down this control connection manager. It will dispose all control connections
      */
     public void shutdown();
+    
+    /**
+     * Returns the skipped connections of the specified server
+     * @param serverIdentifier the server
+     * @return the skipped connections of the specified server
+     */
+    public HashSet getSkippedConnections(ServerIdentifier serverIdentifier);
+
+    /**
+     * Registers the given connection id as a skipped connection for the specified server
+     * @param serverIdentifier the server
+     * @param connid the skipped connection id
+     */
+    public void registerSkippedConnection(ServerIdentifier serverIdentifier, int connid);
+
+    /**
+     * Unregisters the given connection id as a skipped connection for the specified server
+     * @param serverIdentifier the server
+     * @param connid the skipped connection id
+     */
+    public void unregisterSkippedConnection(ServerIdentifier serverIdentifier, int connid);
+
+    /**
+     * Returns the control connections set for the given server identifier
+     * @return
+     */
+    public HashSet getControlConnections(ServerIdentifier serverIdentifier);
+
+    /**
+     * Returns the map from server ids to control connections
+     * @return
+     */
+    public Map getServerConnectionMap();
+
+    /**
+     * Adds a resource dispose listener, the specified method will be called when the profile is closing
+     * @param resourceDisposeListener
+     */
+    public void addResourceDisposeListener(String profileName, IResourceDisposeListener resourceDisposeListener);
+
+    /**
+     * Removes the given listener
+     * @param profileName
+     */
+    public void removeResourceDisposeListener(String profileName);
+
+    /**
+     * Disposes the resources of the given profile
+     * @param profileName
+     */
+    public void fireDispose(String profileName);
+    
 }

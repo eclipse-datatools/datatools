@@ -26,10 +26,17 @@ import org.eclipse.datatools.connectivity.ConnectEvent;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IManagedConnectionListener;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
@@ -47,8 +54,9 @@ import org.eclipse.datatools.sqltools.core.internal.dbitem.SQLObjectItem;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
-import org.eclipse.datatools.sqltools.editor.contentassist.model.IDatatype;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
+import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
+import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.util.Assert;
 
@@ -180,6 +188,8 @@ public abstract class AbstractControlConnection implements IControlConnection {
 			IManagedConnection managedConn = profile
 					.getManagedConnection("java.sql.Connection");
 			managedConn.removeConnectionListener(_managedConnectionListener);
+		} catch (NoSuchProfileException e) {
+			//ignore, this happens when the connection profile is deleted
 		} catch (Exception e) {
 			EditorCorePlugin.getDefault().log(e);
 		}
@@ -213,7 +223,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	 * @see com.sybase.stf.dmp.core.IControlConnection#saveStoredProcedure(com.sybase.stf.dmp.core.ProcIdentifier,
 	 *      java.lang.String)
 	 */
-	public void createRoutine(String[] src) throws SQLException {
+	public void executeDDL(String[] src) throws SQLException {
 		// we will try to use a new connection so can have transaction
 		Connection con;
 		con = getReusableConnection();
@@ -259,6 +269,12 @@ public abstract class AbstractControlConnection implements IControlConnection {
 					procs.add(SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, routine));
 				}
 			}
+			//TODO MO Event
+			EList events = db.getEvents();
+			for (Iterator iter = events.iterator(); iter.hasNext();) {
+				Event event = (Event) iter.next();
+				procs.add(SQLDevToolsUtil.getProcIdentifier(_databaseIdentifier, event));
+			}
 		}
 		return (ProcIdentifier[]) procs
 				.toArray(new ProcIdentifier[procs.size()]);
@@ -286,7 +302,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	 * @see com.sybase.stf.dmp.core.IControlConnection#saveStoredProcedure(com.sybase.stf.dmp.core.ProcIdentifier,
 	 *      java.lang.String)
 	 */
-	public void saveStoredProcedure(ProcIdentifier proc, String code)
+	public void saveRoutine(ProcIdentifier proc, String code)
 			throws SQLException {
 		IDBItem item = getDBItem(proc);
 		if (item instanceof IItemWithCode) {
@@ -333,65 +349,10 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	 * @param proc
 	 */
 	protected IDBItem createDBItem(ProcIdentifier proc) {
-		Database db = ProfileUtil.getDatabase(_databaseIdentifier);
-		if (db != null) {
-			EList schemas = db.getSchemas();
-			Iterator i = schemas.iterator();
-			for (; i.hasNext();) {
-				Schema schema = (Schema) i.next();
-				if (schema.getName() != null
-						&& schema.getName().equals(proc.getOwnerName())) {
-					// trigger is not routine in SQL model
-					if (proc.getType() == ProcIdentifier.TYPE_TRIGGER) {
-						EList tables = schema.getTables();
-						for (Iterator iter = tables.iterator(); iter.hasNext();) {
-							Table table = (Table) iter.next();
-							EList triggers = table.getTriggers();
-							for (Iterator itera = triggers.iterator(); itera.hasNext();) {
-								Trigger trigger = (Trigger) itera.next();
-								if (table.getName().equals(proc.getTableName())
-										&& trigger.getName().equals(
-												proc.getProcName())) {
-									return new SQLObjectItem(proc, trigger, this);
-								}
-							}
-						}
-					} else {
-						EList routines = schema.getRoutines();
-						for (Iterator iter = routines.iterator(); iter
-								.hasNext();) {
-							Routine routine = (Routine) iter.next();
-							if (proc.getType() == ProcIdentifier.TYPE_SP) {
-								if (routine instanceof Procedure
-										&& routine.getName().equals(
-												proc.getProcName())) {
-									return new SQLObjectItem(proc, routine,
-											this);
-								}
-							} else if (proc.getType() == ProcIdentifier.TYPE_UDF) {
-								if (routine instanceof Function
-										&& routine.getName().equals(
-												proc.getProcName())) {
-									return new SQLObjectItem(proc, routine,
-											this);
-								}
-							}
-							// unmark these line when Event object is introduced
-							// in sql model
-							// else if (proc.getType() ==
-							// ProcIdentifier.TYPE_EVENT)
-							// {
-							// if (routine instanceof Event &&
-							// routine.getName().equals(proc.getProcName()))
-							// {
-							// return new RoutineItem(proc, routine, this);
-							// }
-							// }
-
-						}
-					}
-				}
-			}
+		SQLObject obj = ModelUtil.findProceduralObject(proc);
+		if (obj != null)
+		{
+			return new SQLObjectItem(proc, obj, this);
 		}
 		return null;
 	}
@@ -433,7 +394,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	 * 
 	 * @see com.sybase.stf.dmp.core.IControlConnection#createConnection(int[])
 	 */
-	public Connection createConnection(int[] connId) throws SQLException,
+	public Connection createConnection(String[] connId) throws SQLException,
 			CoreException, NoSuchProfileException {
 		// using connection pool for debugging may produce unexpected results
 		SQLDevToolsConfiguration f = SQLToolsFacade
@@ -444,7 +405,7 @@ public abstract class AbstractControlConnection implements IControlConnection {
 		Connection con = conService.createConnection(getDatabaseIdentifier()
 				.getProfileName(), getDatabaseIdentifier().getDBname());
 		if (connId != null && connId.length == 1) {
-			connId[0] = 0;
+			connId[0] = "0";
 		}
 		return con;
 	}
@@ -487,15 +448,47 @@ public abstract class AbstractControlConnection implements IControlConnection {
 	 *            name of a user-defined datatype
 	 * @return
 	 */
-	protected abstract IDatatype getUserDataType(String typeName)
-			throws SQLException;
+	protected IDatatype getUserDataType(String typeName)
+	throws SQLException
+	{
+        Database db = ProfileUtil.getDatabase(_databaseIdentifier);
+        String user = ProfileUtil.getProfileUserName(_databaseIdentifier, false);
+        DatabaseDefinition dbdef = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db);
+        for (Iterator i = db.getSchemas().iterator(); i.hasNext();) {
+			Schema schema = (Schema) i.next();
+			if (schema.getName().equals(user))
+			{
+				EList tables = schema.getUserDefinedTypes();
+				for (Iterator iter = tables.iterator(); iter.hasNext();) {
+					UserDefinedType type = (UserDefinedType) iter.next();
+					if (type.getName().equals(typeName))
+					{
+						return ModelUtil.map(dbdef, type, user);
+					}
+				}
+			}
+		}
+        return null;
+	}
 
+	
 	public boolean supportsDebugging() {
 		return false;
 	}
 
 	public IDatatype getTypeByNameStr(String nameStr) throws Exception {
-		return null;
+        Database db = ProfileUtil.getDatabase(_databaseIdentifier);
+        String user = ProfileUtil.getProfileUserName(_databaseIdentifier, false);
+        DatabaseDefinition dbdef = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db);
+        PredefinedDataType pretype = DataTypeHelper.getPredefinedDataTypeForNamedType(nameStr);
+        if (pretype != null)
+        {
+        	return ModelUtil.map(dbdef, pretype, user);
+        }
+        else
+        {
+        	return getUserDataType(nameStr);
+        }
 	}
 
 	public class SQLToolsManagedConnectionListener implements

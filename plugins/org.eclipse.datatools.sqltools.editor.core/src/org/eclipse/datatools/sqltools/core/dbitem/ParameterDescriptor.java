@@ -149,23 +149,24 @@ public class ParameterDescriptor
      */
     public String getParamTypeAsString()
     {
-    	return ParameterMode.get(_parmType).toString();
-//    	switch (_parmType)
-//        {
-//            case DatabaseMetaData.procedureColumnIn:
-//                return "IN"; //$NON-NLS-1$
-//            case DatabaseMetaData.procedureColumnInOut:
-//                return "INOUT"; //$NON-NLS-1$
-//            case DatabaseMetaData.procedureColumnOut:
-//                return "OUT"; //$NON-NLS-1$
-//            case DatabaseMetaData.procedureColumnResult:
-//                return "RESULT"; //$NON-NLS-1$
-//            case DatabaseMetaData.procedureColumnReturn:
-//                return "RETURN"; //$NON-NLS-1$
-//            case DatabaseMetaData.procedureColumnUnknown:
-//            default:
-//                return "UNKNOWN"; //$NON-NLS-1$
-//        }
+    	//TODO MO
+    	//return ParameterMode.get(_parmType).toString();
+    	switch (_parmType)
+        {
+            case DatabaseMetaData.procedureColumnIn:
+                return "IN"; //$NON-NLS-1$
+            case DatabaseMetaData.procedureColumnInOut:
+                return "INOUT"; //$NON-NLS-1$
+            case DatabaseMetaData.procedureColumnOut:
+                return "OUT"; //$NON-NLS-1$
+            case DatabaseMetaData.procedureColumnResult:
+                return "RESULT"; //$NON-NLS-1$
+            case DatabaseMetaData.procedureColumnReturn:
+                return "RETURN"; //$NON-NLS-1$
+            case DatabaseMetaData.procedureColumnUnknown:
+            default:
+                return "UNKNOWN"; //$NON-NLS-1$
+        }
     }
 
     /**

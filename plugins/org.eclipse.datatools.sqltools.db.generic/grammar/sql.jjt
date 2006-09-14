@@ -49,6 +49,7 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
 	private static GenericSQLParser _instance = new GenericSQLParser(new StringReader(""));
     private boolean _debug = false;
 
+    private ParsingResult result = null;
     private ArrayList exceptions = new ArrayList();
 	private static final int[] STMT_START = new int[]{ALTER, BEGIN, BREAK, CHECKPOINT, CLOSE, COMMIT, CONNECT,
 		CONTINUE, CREATE, DEALLOCATE, DECLARE, DELETE, DISK, DROP, DUMP, EXECUTE, EXEC,
@@ -82,7 +83,10 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
     {
     }
 
-   
+    public boolean isComplete()
+    {
+    	return false;
+    }
     
 	//Implements JavaCC methods
     void jjtreeOpenNodeScope(Node n)
@@ -171,22 +175,22 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
 		}
         //Since this grammar is not accurate, do not show parse exceptions by default
         Boolean consumeException = (Boolean)getParameters().getProperty(ParserParameters.PARAM_CONSUME_EXCEPTION);
-        GenericParsingResult result = null;
+        result.setRootNode(node);
         if ( consumeException == null || consumeException.booleanValue())
         {
-        	result = new GenericParsingResult(node, new ArrayList());
+        	result.setExceptions(new ArrayList());
         }
         else
         {
-        	result = new GenericParsingResult(node, exceptions);
+        	result.setExceptions(exceptions);
         }
         
     	return result;
     }
 
 	private void initParsing(){
+		result = new GenericParsingResult();
 		exceptions = new ArrayList();
-		_expectedUnreservedKeywords.clear();
 	}
 	
 	private boolean isSupportedStatementStartToken(int kind)
@@ -241,11 +245,7 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
     }
 	if (currentTokenKind == INVALID_TOKEN)
 	{
-		  if(!_expectedUnreservedKeywords.contains(unReservedKeyword))
-    	{
-    		_expectedUnreservedKeywords.add(unReservedKeyword);
-    		
-    	}
+		  result.addExpectedUnreservedKeywords(unReservedKeyword);
 	}
     return false;
     }
@@ -271,10 +271,7 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
 	{
 		for (int i=0; i< multiKeywords.length; i++)
 		{
-    		if(!_expectedUnreservedKeywords.contains(multiKeywords[i]))
-        	{
-        		_expectedUnreservedKeywords.add(multiKeywords[i]);
-        	}
+    		result.addExpectedUnreservedKeywords(multiKeywords[i]);
         }
 	}
     return false;
@@ -1202,7 +1199,7 @@ ASTSQLDataType base_datatype()   #SQLDataType: {Token t= null; int length=0, sca
 	                                                         {
                                                     if ((length < scale))                                                                                     
                                                     {                                                                                                         
-                                             		    ParseException e = new ParseException(Messages.getString("SQLParser.datatype.judgeLengthAndScale"));  
+                                             		    ParseException e = new ParseException(Messages.SQLParser_datatype_judgeLengthAndScale);  
                                              		    e.currentToken = t.next;                                                                                 
                                              		    exceptions.add(e);                                                                                       
                                                     }
@@ -1591,7 +1588,7 @@ void program() : {}
 
 void declare() : {}
 {
-	{int oldScope = setScope(SCOPE_VARIABLES);}
+	{int oldScope = setScope(SCOPE_DEFINE_VARIABLES);}
 			(LOOKAHEAD(2) declare_prefix() declaration_list()
         	| ( declare_prefix()  declare_cursor() ) #SQLStatement )
     {setScope(oldScope);}

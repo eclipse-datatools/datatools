@@ -168,6 +168,18 @@ public class SPLineBreakpoint extends LineBreakpoint implements ISPBreakpoint
         }
     }
 
+    public String getEncodedProcIdentifier() throws CoreException
+    {
+    	IMarker m = this.getMarker();
+    	String name = (String) m.getAttribute(ATTR_PROCIDENTIFIER, ""); //$NON-NLS-1$
+    	if (name == null || name.length() == 0) 
+    	{
+    		throw new CoreException(new Status(IStatus.ERROR, DebuggerCorePlugin.PLUGIN_ID, 0, DebuggerMessages.SPLineBreakpoint_invalidProcIdentifier, null));  
+    	}
+    	
+    	return name;
+    }
+    
     public void setProcId(String encodedProc) throws CoreException
     {
         Map attris = this.ensureMarker().getAttributes();

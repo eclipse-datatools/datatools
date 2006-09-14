@@ -18,6 +18,11 @@ package org.eclipse.datatools.sqltools.editor.core.connection;
 public interface IConnectionTracker
 {
     /**
+     * Notifies the listener that the connection being tracked is to be closed.
+     */
+    public void connectionAboutToBeClosed();
+
+    /**
      * Notifies the listener that the connection being tracked is closed.
      */
     public void connectionClosed();

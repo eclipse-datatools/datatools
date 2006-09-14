@@ -12,7 +12,11 @@
 package org.eclipse.datatools.sqltools.sql.parser;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeployable;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
@@ -21,6 +25,8 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatement;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
+import org.eclipse.datatools.sqltools.sql.reference.internal.Table;
+import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.jface.text.IDocument;
 
 /**
@@ -35,14 +41,34 @@ public abstract class ParsingResult
 
     protected IASTStart _rootNode;
     protected ArrayList _exceptions;
+    protected int fScope;
 
+    /**
+	 * Expected token list can be retrieved from ParseException, while expected
+	 * unreserved keywords should be retrieved from this list, which is
+	 * populated by the parser. 
+	 */
+    protected List              _expectedUnreservedKeywords  = new ArrayList();
+    /**
+     * _currentTableNames contains all table objects for content assist.
+     */
+    private List             _currentTableNames = new ArrayList();
+	private HashMap fEntries = new HashMap();
+    
+    /**
+     *  
+     */
+    public ParsingResult()
+    {
+    }
+    
     /**
      *  
      */
     public ParsingResult(Node rootNode, ArrayList exceptions)
     {
-        this._rootNode = (IASTStart) rootNode;
-        this._exceptions = exceptions;
+    	this._rootNode = (IASTStart) rootNode;
+    	this._exceptions = exceptions;
     }
 
     /**
@@ -60,6 +86,50 @@ public abstract class ParsingResult
         return _rootNode;
     }
 
+    /**
+    /**
+     * Accumulates all the exceptions during the parsing process
+     * 
+     * @return Collections of ParseExceptions
+     */
+    public void setExceptions(ArrayList exceptions)
+    {
+    	_exceptions = exceptions;
+    }
+    
+    public void setRootNode(Node rootNode)
+    {
+    	_rootNode = (IASTStart) rootNode;
+    }
+    
+    
+    /**
+     * Returns the expected unreserved keywords, used in content assist.
+     * @return String list
+     */
+    public List getExpectedUnreservedKeywords()
+    {
+    	return Collections.unmodifiableList(_expectedUnreservedKeywords);
+    }
+    
+    
+    /**
+     * Adds an unreserved keyword if it doesn't exist in the list.
+     * @return String list
+     */
+    public void addExpectedUnreservedKeywords(String unReservedKeyword)
+    {
+    	if (_expectedUnreservedKeywords == null)
+    	{
+    		_expectedUnreservedKeywords = new ArrayList();
+    	}
+    	if(!_expectedUnreservedKeywords.contains(unReservedKeyword))
+    	{
+    		_expectedUnreservedKeywords.add(unReservedKeyword);
+    		
+    	}
+    }
+    
     /**
      * Returns all the cursor names that can be used at the position indicated by offset.
      * @param document
@@ -336,7 +406,161 @@ public abstract class ParsingResult
         }
         return map;
     }
+    
+    
+    /**
+	 * Gets the current scope at the position where content assist is invoked.
+	 * This is used by content assist processor to determine what database meta
+	 * info should be retrieved.
+	 * 
+	 * @see SQLParserConstants
+	 * @return scope constants defined in <code>SQLParserConstants</code>
+	 */
+    public int getScope()
+    {
+        return fScope;
+    }
 
+
+	/**
+	 * Sets the current scope
+	 */
+    public void setScope(int scope)
+    {
+        fScope = scope;
+    }
+    
+    /**
+     * Return the current table list.
+     * @return List the current table list.
+     */
+    public List getCurrentTables()
+    {
+        return _currentTableNames;
+    }
+
+    /**
+     * Add a new table object into the current table list.
+     * The new table object will not be added when isContentAssist is true for avoiding to be done repeatedly. 
+     * @param simpleNode the node's text which is the table name.
+     * @param token the token's image which is the alias name of table.
+     * @param isContentAssist true for content assist.
+     * TODO revisit the necessity of isContentAssist
+     * 
+     */
+    public void addCurrentTables(Node simpleNode, Token token, boolean isContentAssist)
+    {
+        if (!isContentAssist)
+        {
+            return;
+        }
+        if (simpleNode instanceof SimpleNode)
+        {
+            String tableName = ((SimpleNode) simpleNode).getText();
+            String aliasName = null;
+            if (token != null && token.image != null)
+            {
+                aliasName = token.image;
+            }
+            addCurrentTables(tableName, aliasName, isContentAssist);
+        }
+    }
+
+    /**
+     * Add a new table object into the current table list.
+     * The new table object will not be added when isContentAssist is true for avoiding to be done repeatedly. 
+     * @param tableName the table name.
+     * @param aliasName the alias name of the table.
+     * @param isContentAssist true for content assist.
+     */
+    public void addCurrentTables(String tableName, String aliasName, boolean isContentAssist)
+    {
+        if (!isContentAssist)
+        {
+            return;
+        }
+
+
+        String[] objects = SQLUtil.splitDotStr(tableName);
+        int length = objects.length;
+        String owner = null;
+        String name = null;
+        switch (length)
+        {
+            case 1:
+                name = objects[0].trim();
+                break;
+            case 2:
+                owner = objects[0].trim();
+                name = objects[1].trim();
+                break;
+            default:
+                break;
+        }
+
+        //Remove duplicate table.
+        if (_currentTableNames != null)
+        {
+            for (int i = 0; i < _currentTableNames.size(); i++)
+            {
+                Table table1 = (Table) _currentTableNames.get(i);
+                if (owner != null && owner.equals(table1.getOwner()))
+                {
+                    if (name != null && name.equals(table1.getName()))
+                    {
+                        table1.setAliasName(aliasName);
+                        return;
+                    }
+                }
+                else if (owner == null)
+                {
+                    if (name != null && name.equals(table1.getName()))
+                    {
+                        table1.setAliasName(aliasName);
+                        return;
+                    }
+                }
+
+            }
+        }
+
+
+        Table table = new Table();
+
+        if (name != null)
+        {
+            table.setName(name);
+        }
+        if (owner != null)
+        {
+            table.setOwner(owner);
+        }
+        table.setAliasName(aliasName);
+        if (!_currentTableNames.contains(table))
+        {
+            _currentTableNames.add(table);
+        }
+
+    }
+
+    /**
+     * Clear the content of the current table list.
+     * If isContentAssist is true, just return.
+     * @param isContentAssist true for content assist.
+     */
+    public void clearCurrentTableNames(boolean isContentAssist)
+    {
+        if (!isContentAssist)
+        {
+            return;
+        }
+        if (_currentTableNames != null && !_currentTableNames.isEmpty())
+        {
+            _currentTableNames.clear();
+        }
+    }
+
+    
     /**
      * Checks whether the token list represents a valiad database object.
      * 
@@ -370,4 +594,124 @@ public abstract class ParsingResult
      * @return
      */
     public abstract ArrayList getUnSharableTempTables(IDocument document, int offset);
+
+    /**
+	 * This methoe used to find out all referenced tables in sp/trigger.
+	 * So far, this method can only support DML statements as "select", 
+	 * "insert","update","delete","create table","declare cursor" and "truncate table"
+	 */
+    protected void findReferencedTables(SimpleNode node, ArrayList refTables) 
+    {
+        if (node instanceof IASTSQLStatement)
+        {
+            int nodeType = ((IASTSQLStatement) node).getType(); 
+            switch(nodeType)
+            {
+                //for "create" statement
+                case SQLParserConstants.TYPE_SQL_CREATE_TABLE:
+                    {
+                        Token token = node.getFirstToken();
+                        if ("create".equalsIgnoreCase(token.image))
+                        {
+                            token = token.next;
+                            if ("table".equalsIgnoreCase(token.image))
+                            {
+                                token = token.next;
+                                //if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
+                                //retrieve the table_name.
+                                while(token.next.image=="."&&token.next.next.image!="(")token = token.next.next;
+                                if (!refTables.contains(token.image))
+                                {
+                                    refTables.add(token.image);
+                                }
+                            }
+                        }
+                        break;
+                    }
+                    //for "truncate" statement
+                case SQLParserConstants.TYPE_SQL_OTHERS:
+                    {
+                        Token token = node.getFirstToken();
+                        if ("truncate".equalsIgnoreCase(token.image))
+                        {
+                            token = token.next;
+                            if ("table".equalsIgnoreCase(token.image))
+                            {
+                                token = token.next;
+                                //        				if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
+                                //retrieve the table_name.
+                                while(token.next.image=="."&&token.next.next.image!="(")token = token.next.next;
+                                if (!refTables.contains(token.image))
+                                {
+                                    refTables.add(token.image);
+                                }
+                            }
+                        }
+                        break;
+                    }
+                    //for other DML statement
+                default:
+                    {
+                        Collection params = ((IASTSQLStatement)node).getObjectIdentifiers();
+                        if (params != null && params.size() > 0)
+                        {
+                            for (Iterator iter = params.iterator(); iter.hasNext();)
+                            {
+                                String name = (String) iter.next();
+                                //if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
+                                //retrieve the table_name.
+                                int indexOfLastDot = name.lastIndexOf(".");
+                                if(indexOfLastDot!=-1)
+                                {
+                                    name = name.substring(indexOfLastDot+1,name.length());	
+                                }
+                                if (!refTables.contains(name))
+                                {
+                                    refTables.add(name);
+                                }
+                            }
+                        }
+                    }
+            }
+        }
+        for (int i = 0; i < node.jjtGetNumChildren(); i++)
+        {
+            findReferencedTables((SimpleNode) node.jjtGetChild(i), refTables);
+        }
+    }
+
+    public ArrayList getReferencedTables() 
+    {
+        ArrayList tables = new ArrayList();
+        SimpleNode context = (SimpleNode) _rootNode;
+        if (context != null)
+        {
+            findReferencedTables(context, tables);
+        }
+        return tables;
+    }
+    
+    public void addEntry(Object t, String type) 
+    {
+        List objects = (ArrayList) fEntries.get(type);
+        if (objects == null)
+        {
+            objects = new ArrayList();
+        }
+        if (!objects.contains(t))
+        {
+        	objects.add(t);
+        }
+        fEntries .put(type,objects);
+    }
+    /**
+     * 
+     * @param type defined in SQLParserConstants
+     * @return
+     */
+    public String[] getEntries(String type)
+    {
+    	return new String[0];
+    }
+
 }

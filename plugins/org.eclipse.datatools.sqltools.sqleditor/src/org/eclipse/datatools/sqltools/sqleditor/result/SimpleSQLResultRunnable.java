@@ -31,7 +31,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
  */
 public class SimpleSQLResultRunnable extends ResultSupportRunnable
 {
-    private static final int SQL_SHORT_DESC_LENGTH = 40;
+	protected static final int SQL_SHORT_DESC_LENGTH = 40;
 	protected Connection         _connection;
     protected String             _sql;
     protected boolean            _closeCon;
@@ -39,8 +39,8 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     protected boolean            _promptVar = false;
     /*holds the var declarations in the scope from the beginning of the selected text up to the very beginning*/
     protected HashMap            _varDecs   = null;
-    private ILaunchConfiguration _configuration;
-    private OperationCommand _command = null;
+    protected ILaunchConfiguration _configuration;
+    protected OperationCommand _command = null;
 
 //    /**
 //     * 
@@ -187,4 +187,5 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     {
         return _configuration;
     }
+
 }

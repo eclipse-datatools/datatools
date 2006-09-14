@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
 import java.util.ArrayList;
 
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTDeployable;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParamDefList;
@@ -23,7 +24,9 @@ import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.CCPActionGroup;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DeployAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
 import org.eclipse.jface.action.IAction;
@@ -201,7 +204,7 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
     private Node           _input;
     private OutlineViewer  _viewer;
     private CCPActionGroup _actionGroups;
-//    private DeployAction   _deployAction;
+    private DeployAction   _deployAction;
     private IAction        _fUndo;
     private IAction        _fRedo;
 
@@ -240,10 +243,9 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
 
         //we must create the groups after we have set the selection provider to the site
         _actionGroups = new CCPActionGroup(this);
-//        _deployAction = new DeployAction(this.getSite());
-//        _deployAction.setImageDescriptor(EditorImages.DESC_SAVE_TO_DATABASE);
-
-//        addSelectionChangedListener(_deployAction);
+        _deployAction = new DeployAction(this.getSite());
+        _deployAction.setImageDescriptor(SQLEditorResources.getImageDescriptor("save_to_database"));
+        addSelectionChangedListener(_deployAction);
 
 
         // register global actions
@@ -333,6 +335,7 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
         {
             _actionGroups.dispose();
         }
+        removeSelectionChangedListener(_deployAction);
         _editor.outlinePageClosed();
     }
 
@@ -351,8 +354,14 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
             .getAction(ISQLEditorActionConstants.TOGGLE_COMMENT));
         manager.add(new Separator());
 
-        manager.add(new ExecuteSQLAction(_editor));
-        manager.add(new ExecuteSelectionSQLAction(_editor));
+        if (_editor.getSQLType() != SQLParserConstants.TYPE_SQL_ROOT)
+        {
+            manager.add(_deployAction);
+        }
+        manager.add(_editor
+                .getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
+        manager.add(_editor
+                .getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
     }
 
     public void setSelection(ISelection selection)

@@ -17,9 +17,9 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.IReExecutionRunnable;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.internal.Constants;
 
 /**
  * Utility class to read the extensions
@@ -37,7 +37,7 @@ public class ReExecutionRegistryReader
     public static IReExecutionRunnable readProperReExecutionHandler(OperationCommand cmd)
     {
         IExtensionRegistry registry = Platform.getExtensionRegistry();
-        IExtensionPoint point = registry.getExtensionPoint(Constants.PLUGIN_ID, Constants.RE_EXECUTION_POINT_ID);
+        IExtensionPoint point = registry.getExtensionPoint(ResultsConstants.PLUGIN_ID, ResultsConstants.RE_EXECUTION_POINT_ID);
         if(point == null)
         {
             // Should not happen
@@ -49,8 +49,8 @@ public class ReExecutionRegistryReader
             IConfigurationElement[] elements = extensions[i].getConfigurationElements();
             for (int j = 0; j < elements.length; j++)
             {
-                String database_id = elements[j].getAttribute(Constants.EXTENSION_POINT_DATABASE_ID);
-                String consumer_name = elements[j].getAttribute(Constants.EXTENSION_POINT_CONSUMER_NAME);
+                String database_id = elements[j].getAttribute(ResultsConstants.EXTENSION_POINT_DATABASE_ID);
+                String consumer_name = elements[j].getAttribute(ResultsConstants.EXTENSION_POINT_CONSUMER_NAME);
                 IConnectionProfile profile = ProfileManager.getInstance().getProfileByName(cmd.getProfileName());
                 if (profile == null)
                 {
@@ -61,7 +61,7 @@ public class ReExecutionRegistryReader
                     try
                     {
                         IReExecutionRunnable reExecutionRunnable = (IReExecutionRunnable) elements[j]
-                                .createExecutableExtension(Constants.EXTENSION_POINT_CLASS_NAME);
+                                .createExecutableExtension(ResultsConstants.EXTENSION_POINT_CLASS_NAME);
                         return reExecutionRunnable;
                     }
                     catch (Exception e)

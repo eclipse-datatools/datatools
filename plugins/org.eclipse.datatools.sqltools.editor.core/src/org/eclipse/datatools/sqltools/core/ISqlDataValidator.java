@@ -12,7 +12,7 @@
 
 package org.eclipse.datatools.sqltools.core;
 
-import org.eclipse.datatools.sqltools.editor.contentassist.model.IDatatype;
+import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 
 
 /**
@@ -72,6 +72,6 @@ public interface ISqlDataValidator
      * @return converted value
      * @throws Exception
      */
-    public Object convert(String dataType,String inputValue,DatabaseIdentifier databaseIdentifier) throws Exception;
+    public Object convert(String dataType,String inputValue,String profileName, String dbName) throws Exception;
 
 }

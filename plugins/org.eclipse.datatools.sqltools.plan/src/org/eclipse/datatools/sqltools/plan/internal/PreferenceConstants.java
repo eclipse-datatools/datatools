@@ -19,17 +19,17 @@ public interface PreferenceConstants
 {
     public static final String PLAN_PREFERENCE_PAGE_ID                 = "org.eclipse.datatools.sqltools.plan.executionPlanPage";
 
-    public static final String VERTICAL_LAYOUT_PLAN_VIEW               = Constants.PLUGIN_ID
+    public static final String VERTICAL_LAYOUT_PLAN_VIEW               = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.VerticalLayoutPlanView";
-    public static final String HORIZONTAL_LAYOUT_PLAN_VIEW             = Constants.PLUGIN_ID
+    public static final String HORIZONTAL_LAYOUT_PLAN_VIEW             = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.HorizontalLayoutPlanView";    
-    public static final String EXPORT_FORMAT_OTHER_ENCODEING           = Constants.PLUGIN_ID
+    public static final String EXPORT_FORMAT_OTHER_ENCODEING           = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.exportformat.other";
-    public static final String EXPORT_FORMAT_OTHER_ENCODEING_SELECTION = Constants.PLUGIN_ID
+    public static final String EXPORT_FORMAT_OTHER_ENCODEING_SELECTION = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.exportformat.other.selection";
-    public static final String EXPORT_FORMAT_PREF_ENCODING             = Constants.PLUGIN_ID
+    public static final String EXPORT_FORMAT_PREF_ENCODING             = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.exportformat.pref_encoding";
-    public static final String EXPORT_FORMAT_DEFAULT_ENCODEING         = Constants.PLUGIN_ID
+    public static final String EXPORT_FORMAT_DEFAULT_ENCODEING         = PlanConstants.PLUGIN_ID
                                                                                + ".preferences.exportformat.defalut";
     
 }

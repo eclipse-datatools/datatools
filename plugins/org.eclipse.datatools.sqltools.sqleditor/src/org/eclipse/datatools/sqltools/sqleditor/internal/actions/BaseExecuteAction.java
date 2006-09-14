@@ -52,7 +52,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
         {
             SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByProfileName(databaseIdentifier.getProfileName());
             ConnectionService conService = f.getConnectionService();
-            conn = conService.createConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname());
+            conn = conService.createConnection(databaseIdentifier, true);
 
             String[] groups = new String[] 
             {
@@ -68,7 +68,6 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             _job = new GroupSQLResultRunnable(conn, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations());
             _job.setUser(true);
             _job.schedule();
-            _job.join();
 
             // In fact, currently, this ExecuteParallelRunnable is especially used for "Show plan while executing SQL
             // statements in vendor option page"

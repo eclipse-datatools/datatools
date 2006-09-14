@@ -17,7 +17,6 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.eclipse.datatools.sqltools.result.internal.Constants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
@@ -458,7 +457,7 @@ public class ResultsViewAPI
             {
                 try
                 {
-                    _activePage.showView(Constants.SQL_RESULTS_VIEW_ID);
+                    _activePage.showView(ResultsConstants.SQL_RESULTS_VIEW_ID);
                 }
                 catch (PartInitException ex)
                 {

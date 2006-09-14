@@ -23,7 +23,7 @@ public interface IConnectionObserver
      * This is called by the IControlConnection to notify the debuggee observer of something change for the specified
      * connection.
      * 
-     * @param connid connection id @see org.eclipse.datatools.sqltools.core.services.IConnectionService#getConnectionId(org.eclipse.datatools.sqltools.core.DatabaseIdentifier, java.sql.Connection)
+     * @param connid connection id @see org.eclipse.datatools.sqltools.core.services.ConnectionService#getConnectionId(org.eclipse.datatools.sqltools.core.DatabaseIdentifier, java.sql.Connection)
      * @param event this is defined by different database type. Currently, for ASE it will be ASEEvent; for ASA, will be
      *            an integer object containing the event id.
      */
@@ -39,7 +39,7 @@ public interface IConnectionObserver
      * Requests the observer to stop observing the client connection.
      * This is only a oneway request, the observer may or may not really disconnect. But if
      * they do really disconnect, should call {@link org.eclipse.datatools.sqltools.core.IControlConnection#unregisterInternalConn(String)}
-     * @param connid the database specific connection id @see org.eclipse.datatools.sqltools.core.services.IConnectionService#getConnectionId(org.eclipse.datatools.sqltools.core.DatabaseIdentifier, java.sql.Connection)
+     * @param connid the database specific connection id @see org.eclipse.datatools.sqltools.core.services.ConnectionService#getConnectionId(org.eclipse.datatools.sqltools.core.DatabaseIdentifier, java.sql.Connection)
      */
     public void requestDisconnect(String connid);
 }

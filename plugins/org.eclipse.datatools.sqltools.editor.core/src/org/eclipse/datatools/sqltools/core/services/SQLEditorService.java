@@ -12,7 +12,9 @@
 
 package org.eclipse.datatools.sqltools.core.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.datatools.sqltools.editor.IExtendedSaveSupport;
 import org.eclipse.datatools.sqltools.launching.IExtendedLaunchSupport;
@@ -62,20 +64,21 @@ public class SQLEditorService
      */
     public Collection getExcludedActionIds()
     {
-        // TODO Auto-generated method stub
-        return null;
+        return new ArrayList();
     }
 
     /**
-     * Returns data server specific actions, which will be added to menu/context menu and tool bar. To appear in the toolbar,
-     * the action must define action id.
+     * Returns data server specific actions, which will be added to menu/context menu and tool bar. To appear in the
+     * toolbar, the action must define action id. Note: because more than one action may use the same action path, the value
+     * might be collection of <code>org.eclipse.jface.action.IContributionItem</code> objects.
      * 
-     * @return collection of <code>org.eclipse.jface.action.Action</code> objects.
+     * @return key: action path, if it's empty
+     *         string "" or null, the action will be added to vendor actions sub menu;
+     *         value: <code>org.eclipse.jface.action.IContributionItem</code> objects or Collection of <code>org.eclipse.jface.action.IContributionItem</code> objects.
      */
-    public Collection getAdditionalActions()
+    public HashMap getAdditionalActions()
     {
-        // TODO Auto-generated method stub
-        return null;
+    	 return new HashMap();
     }
 
 }

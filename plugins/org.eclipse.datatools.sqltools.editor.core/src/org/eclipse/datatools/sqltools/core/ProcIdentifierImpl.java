@@ -16,7 +16,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -144,6 +145,33 @@ public class ProcIdentifierImpl implements ProcIdentifier
         return false;
     }
 
+    /**
+     * Returns whether the given object equals to this ProcIdentifier object. 
+     * If the profile names are different, the comparison will base on the
+     * server url.
+     * @param obj
+     * @return
+     */
+    public boolean equalsByServer(Object obj)
+    {
+        if (obj instanceof ProcIdentifierImpl)
+        {
+            ProcIdentifierImpl p = (ProcIdentifierImpl) obj;
+            boolean e =
+                getDatabaseIdentifier().equals(p.getDatabaseIdentifier());
+                if (! e)
+                {
+                	ServerIdentifier si1 = ProfileUtil.getServerIdentifier(getDatabaseIdentifier());
+                	ServerIdentifier si2 = ProfileUtil.getServerIdentifier(p.getDatabaseIdentifier());
+                	e = si1.equals(si2);
+                }
+                e = e && (getType() == p.getType()) 
+                && propertyMap.equals(p.propertyMap);
+            return e;
+        }
+        return false;
+    }
+    
     public String toString()
     {
         return encode();
@@ -328,19 +356,17 @@ public class ProcIdentifierImpl implements ProcIdentifier
         /**
          * modify this method in CR378414 since user can configure the "quoted_identifier" option
          */
-        String db = null;
         String ownerName = null;
         String procName = null;
-
+        String db = _database.getDBname();
+		db = SQLDevToolsUtil.quoteWhenNecessary(db, new DatabaseIdentifier(_database.getProfileName(), db));
         if (quoted_id)
         {
-            db = SQLUtil.quote(_database.getDBname(), '"');
-            ownerName = SQLUtil.quote(getOwnerName(), '"');
-            procName = SQLUtil.quote(getProcName(), '"');
+            ownerName = SQLDevToolsUtil.quoteWhenNecessary(getOwnerName(), _database);
+            procName = SQLDevToolsUtil.quoteWhenNecessary(getProcName(), _database);
         }
         else
         {
-            db = _database.getDBname();
             ownerName = getOwnerName();
             procName= getProcName();
         }

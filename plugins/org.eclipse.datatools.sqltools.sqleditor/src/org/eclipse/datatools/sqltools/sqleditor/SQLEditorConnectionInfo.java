@@ -28,7 +28,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
-	public static SQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId()); 
+	public static ISQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId()); 
 	private DatabaseVendorDefinitionId _dbVendorId = null;
 	private DatabaseVendorDefinition _dbVendor = null;
 	private String _profileName = null;
@@ -36,13 +36,15 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	private Database _database = null;
 	private String _defaultSchemaName = null;
 	private Connection _sharedConn = null;
-	
+    private int _profileStatus = EditorConstants.CP_STATUS_OTHER;
+
 	/**
 	 * Constructs a <code>SQLEditorConnectionInfo</code> by
 	 * <code>DatabaseVendorDefinitionId</code>. This is used when connction
 	 * profile information is not available.
 	 * 
-	 * @param dbVendorId <code>DatabaseVendorDefinitionId</code>
+	 * @param dbVendorId
+	 *            <code>DatabaseVendorDefinitionId</code>
 	 * @see DefaultDBFactory.getDefaultInstance().getDatabaseVendorDefinitionId()
 	 */
 	public SQLEditorConnectionInfo( DatabaseVendorDefinitionId dbVendorId) {
@@ -156,7 +158,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	 * @param code
 	 * @return <code>SQLEditorConnectionInfo</code> object
 	 */
-	public static SQLEditorConnectionInfo decode(String code)
+	public static ISQLEditorConnectionInfo decode(String code)
 	{
 		if (code == null || !code.matches(".*:.*:.*:.*"))
 		{
@@ -195,8 +197,17 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
     public String getName()
     {
         StringBuffer code = new StringBuffer("");
-        code.append(_profileName == null? "":_profileName).append(":");
-        code.append(_databaseName == null? "":_databaseName.toString());
+        code.append(NLS.bind(SQLEditorResources.SQLEditor_status_dbType,_dbVendorId.toString()));
+        code.append(_profileName == null? "":NLS.bind(SQLEditorResources.SQLEditor_status_profile,_profileName));
+        code.append(_databaseName == null? "":NLS.bind(SQLEditorResources.SQLEditor_status_database,_databaseName));
+        if (isConnected())
+        {
+        	code.append(SQLEditorResources.SQLEditor_status_profile_connected);
+        }
+        else
+        {
+        	code.append(SQLEditorResources.SQLEditor_status_profile_notconnected);
+        }
         return code.toString();
     }
 
@@ -214,6 +225,19 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 			}
 		}
 		return _sharedConn;
+	}
+
+	public int getProfileStatus() {
+		return _profileStatus;
+	}
+
+	public void setProfileStatus(int status) {
+		_profileStatus = status;
+	}
+
+	public boolean isConnected() {
+		//FIXME: here we doesn't call Connection.isClosed for performance issue
+		return getSharedConnection() != null && _profileStatus == EditorConstants.CP_STATUS_CONNECTED;
 	}
 
 }

@@ -11,12 +11,9 @@
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
-import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.views.execute.SQLScrapbookSelectConnectionAction;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorFileEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
@@ -40,38 +37,33 @@ public class SQLScrapbookEditorInput extends SQLEditorFileEditorInput implements
 
     private IEditorSite editorSite;
 
+    /**
+	 * Constructs a SQLScrapbookEditorInput using an IFile. 
+	 * The connection info will be restored from the workspace metadata.
+	 * @param file
+	 */
 	public SQLScrapbookEditorInput(IFile file) {
         super(file);
 			
-		String encodedConnection = null;
-		if (file != null) {
-			try {
-				encodedConnection = file
-						.getPersistentProperty(new QualifiedName(
-								SqlscrapbookPlugin.PLUGIN_ID,
-								"encodedConnection"));
-			} catch (CoreException e) {
-				e.printStackTrace();
-			}
-		}
-		SQLEditorConnectionInfo connectionInfo;
-		if ((encodedConnection != null)
-				&& (!encodedConnection.trim().equals(""))) {
-			connectionInfo = SQLEditorConnectionInfo.decode(encodedConnection);
-		} else {
-			connectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
-		}
+		ISQLEditorConnectionInfo connectionInfo = SQLFileUtil.getConnectionInfo(file);
 		setConnectionInfo(connectionInfo);
 		
-    }	
+    }
 
-    public SQLScrapbookEditorInput(IFile file, ISQLEditorConnectionInfo connectionInfo) {
+	/**
+	 * Constructs a SQLScrapbookEditorInput using an IFile and an ISQLEditorConnectionInfo. 
+	 * The connection info will be saved.
+	 * @param file
+	 * @param connectionInfo
+	 */
+	public SQLScrapbookEditorInput(IFile file, ISQLEditorConnectionInfo connectionInfo) {
         super(file);
         setConnectionInfo( connectionInfo );
+        SQLFileUtil.setEncodedConnectionInfo(file, connectionInfo.encode());
     }
 
     public SQLScrapbookEditorInput(IFile file, String statementSQL) {
-        super(file);
+        this(file);
         this.statementSQL = statementSQL;
     }
 
@@ -136,6 +128,10 @@ public class SQLScrapbookEditorInput extends SQLEditorFileEditorInput implements
     }
 
     public void showMessageConnection() {
+    	if (editorSite == null)
+    	{
+    		return;
+    	}
         IActionBars bars = editorSite.getActionBars();
         ISQLEditorConnectionInfo connectionInfo = getConnectionInfo();
         if (bars != null && connectionInfo != null && connectionInfo.getConnectionProfile() != null && connectionInfo.getDatabaseName() != null) {

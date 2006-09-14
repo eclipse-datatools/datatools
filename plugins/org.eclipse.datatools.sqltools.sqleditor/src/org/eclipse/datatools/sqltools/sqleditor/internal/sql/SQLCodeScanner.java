@@ -26,6 +26,7 @@ import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WhitespaceRule;
 import org.eclipse.jface.text.rules.WordRule;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -70,9 +71,9 @@ public class SQLCodeScanner extends RuleBasedScanner {
         if (Display.getDefault().getHighContrast() == true) {
             commentToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_COMMENT_COLOR )));
             stringToken     = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_QUOTED_LITERAL_COLOR )));
-            keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_KEYWORD_COLOR )));
-            datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_KEYWORD_COLOR )));
-            functionToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_KEYWORD_COLOR )));
+            keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_KEYWORD_COLOR), null, SWT.BOLD));
+            datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_TYPE_COLOR), null, SWT.BOLD ));
+            functionToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_IDENTIFIER_COLOR )));
 //            identifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_IDENTIFIER_COLOR )));
             delimitedIdentifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_DELIMITED_IDENTIFIER_COLOR )));
             otherToken      = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_DEFAULT_COLOR )));
@@ -80,9 +81,9 @@ public class SQLCodeScanner extends RuleBasedScanner {
         else {
             commentToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_COMMENT_COLOR )));
             stringToken     = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_QUOTED_LITERAL_COLOR )));
-            keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_KEYWORD_COLOR )));
-            datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_KEYWORD_COLOR )));
-            functionToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_KEYWORD_COLOR )));
+            keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_KEYWORD_COLOR), null, SWT.BOLD ));
+            datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_TYPE_COLOR), null, SWT.BOLD ));
+            functionToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_IDENTIFIER_COLOR )));
 //            identifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_IDENTIFIER_COLOR )));
             delimitedIdentifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DELIMITED_IDENTIFIER_COLOR )));
             otherToken      = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DEFAULT_COLOR )));
@@ -144,7 +145,7 @@ public class SQLCodeScanner extends RuleBasedScanner {
         }
         
         // Add the SQL constants to the word rule.
-        String[] constants = sqlSyntax.getFunctions();
+        String[] constants = sqlSyntax.getConstants();
         for (int i = 0; i < constants.length; i++)
         {
             wordRule.addWord(constants[i].toLowerCase(), datatypeToken);

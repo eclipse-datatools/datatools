@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.internal.dbitem;
 
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import org.eclipse.datatools.sqltools.core.dbitem.IItemWithCode;
 import org.eclipse.datatools.sqltools.core.dbitem.ISPUDF;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -99,9 +101,13 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 			boolean generateDrop = opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
 					.getBoolean();
 			boolean fullName = opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean();
+			boolean oldQuotedId = opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].getBoolean();
+			boolean quotedId = SQLDevToolsUtil.getQuotedIdentifier(_proc.getDatabaseIdentifier());
 			opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
 					.setBoolean(false);
 			opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].setBoolean(true);
+			opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].setBoolean(quotedId);
+			
 			
 			String[] ddl = ddlg.generateDDL(new SQLObject[] { _routine }, null);
 			if (ddl != null && ddl.length > 0) {
@@ -111,6 +117,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 			opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
 					.setBoolean(generateDrop);
 			opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].setBoolean(fullName);
+			opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].setBoolean(oldQuotedId);
 		}
 		return code;
 	}
@@ -131,7 +138,26 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 			String[] ddl = new String[2];
 			ddl[0] = drop[0];
 			ddl[1] = code;
-			_controlConn.createRoutine(ddl);
+			_controlConn.executeDDL(ddl);
+		}
+	}
+
+
+	public void drop() throws SQLException {
+		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
+				_proc.getProfileName()).getDDLGenerator();
+		if (ddlg != null) {
+			EngineeringOption[] opts = ddlg.getOptions();
+			String[] drop = ddlg
+					.dropSQLObjects(
+							new SQLObject[] { _routine },
+							opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER]
+									.getBoolean(),
+							true, null);
+			// we alway use "true" instead of
+			// opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean()
+			//controlconnection will refresh and dispose this object
+			_controlConn.executeDDL(drop);
 		}
 	}
 
@@ -181,5 +207,15 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		//TODO define defaultValue for Parameter sql model
 		return new HashMap();
 	}
+	
+
+    /**
+     * get the JDBC connection that can be used. Caller should close this connection.
+     * @return
+     */
+    protected Connection getConnection()
+    {
+        return _controlConn.getReusableConnection();
+    }
 
 }

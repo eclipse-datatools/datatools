@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
 
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
@@ -83,8 +84,8 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
                     while (tokenizer.hasMoreTokens()) {
                         tokenList.add(tokenizer.nextToken());
                     }
-                  
-                    proposalList = fProposalFactory.getDBObjectProposals( tokenList );
+                   SQLDBProposalsRequest request = new SQLDBProposalsRequest(sortingString, SQLParserConstants.SCOPE_DEFAULT , null, null);
+                    proposalList = fProposalFactory.getDBObjectProposals( request);
                       
                 }
 

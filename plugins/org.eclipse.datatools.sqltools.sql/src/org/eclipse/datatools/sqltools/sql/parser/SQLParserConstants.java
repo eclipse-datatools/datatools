@@ -70,9 +70,17 @@ public interface SQLParserConstants
      */
     public final static int SCOPE_EVENTS               = 0x0800;
     /**
+     * Scope constant indicating variable list information is NOT required because we are defining a new one.
+     */
+    public final static int SCOPE_DEFINE_VARIABLES     = 0x1000;
+    /**
      * Scope constant indicating variable list information is required.
      */
-    public final static int SCOPE_VARIABLES               = 0x1000;
+    public final static int SCOPE_REFERENCE_VARIABLES  = 0x10000;
+    /**
+     * Scope constant indicating table name should be removed for columns. Combined with SCOPE_COLUMNS.
+     */
+    public final static int SCOPE_WITHOUT_TABLE        = 0x20000;
 
     // SQL statement types
 
@@ -105,5 +113,21 @@ public interface SQLParserConstants
     public final static int TYPE_SQL_ALTER_INDEX       = 165;
     public final static int TYPE_SQL_DROP_VIEW         = 257;
     public final static int TYPE_SQL_SELECT_INTO       = 300;
+
+    /*
+     * Entry type constants
+     */
+    public static final String DATABASES                  = "__databases";
+    public static final String TABLES                     = "__tables";
+    public static final String COLUMNS                    = "__columns";
+    /* key for variable names referenced in sql statements */
+    public static final String VARIABLE_REFERENCES        = "__variable_references";
+    public static final String VARIABLE_DECLARATIONS      = "__variable_declarations";
+    public static final String VARIABLE_ASSIGNMENTS       = "__variable_assignments";
+    public static final String GLOBAL_VARIABLES           = "__globalvariables";
+    public static final String PARAMETERS                 = "__parameters";
+    public static final String EVENT_PARAMETERS           = "__eventparameters";
+    public static final String DML_STATEMENTS             = "__dml";
+    public static final String DDL_STATEMENTS             = "__ddl";
 
 }

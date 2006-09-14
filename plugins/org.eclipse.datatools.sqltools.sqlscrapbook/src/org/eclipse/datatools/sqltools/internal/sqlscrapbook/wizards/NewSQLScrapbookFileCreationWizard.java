@@ -10,9 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards;
 
-import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -28,8 +26,6 @@ public class NewSQLScrapbookFileCreationWizard extends Wizard implements
     private NewSQLScrapbookFileWizardPage fPage;
 
     private IStructuredSelection fSelection;
-
-    private ISQLEditorConnectionInfo connectionInfo; // tau 04.07.04
 
     public NewSQLScrapbookFileCreationWizard() {
         setNeedsProgressMonitor(true);
@@ -53,11 +49,7 @@ public class NewSQLScrapbookFileCreationWizard extends Wizard implements
      * @see Wizard#performFinish
      */
     public boolean performFinish() {
-    	if (connectionInfo == null)
-    	{
-    		connectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
-    	}
-        return fPage.finish(connectionInfo); // tau 04.07.04
+        return fPage.finish(); // tau 04.07.04
     }
 
     /*
@@ -68,11 +60,4 @@ public class NewSQLScrapbookFileCreationWizard extends Wizard implements
         // setDefaultPageImageDescriptor(JavaPluginImages.DESC_WIZBAN_NEWSCRAPPAGE);
     }
 
-    /**
-     * @param connection
-     *            The connection to set. tau 04.07.04
-     */
-    public void setConnectionInfo(ISQLEditorConnectionInfo connectionInfo) {
-        this.connectionInfo = connectionInfo;
-    }
 }

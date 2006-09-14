@@ -17,9 +17,4 @@ package org.eclipse.datatools.sqltools.core;
  */
 public interface SQLToolsConstants {
 
-	/**
-     * The category constant for database connection profiles
-     */
-    public static final String   DB_CP_CATEGORY        = "org.eclipse.datatools.connectivity.db.category"; //$NON-NLS-1$
-
 }

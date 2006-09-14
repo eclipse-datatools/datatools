@@ -29,7 +29,8 @@ import org.osgi.framework.BundleContext;
 public class PlanViewPlugin extends AbstractUIPlugin
 {
 
-    private ResourceBundle        _bundle = ResourceBundle.getBundle(Constants.PLUGIN_RESOURCE_BUNDLE);
+    private static final int INTERNAL_ERROR = -1;
+	private ResourceBundle        _bundle = ResourceBundle.getBundle(PlanConstants.PLUGIN_RESOURCE_BUNDLE);
     // The shared instance.
     private static PlanViewPlugin plugin;
     
@@ -88,7 +89,7 @@ public class PlanViewPlugin extends AbstractUIPlugin
      */
     public static ILogger getLogger(ResourceBundle bundle)
     {
-        return new StatusLogger(getDefault().getLog(), Constants.PLUGIN_ID, bundle == null ? getDefault()._bundle
+        return new StatusLogger(getDefault().getLog(), PlanConstants.PLUGIN_ID, bundle == null ? getDefault()._bundle
                 : bundle);
     }
     

@@ -14,6 +14,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 import java.util.HashMap;
 
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -43,6 +44,7 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
         setToolTipText(Messages.ExecuteSelectionSQLAction_tooltip);
         setImageDescriptor(SQLEditorResources.getImageDescriptor("sql_execute_selection"));
         setActionDefinitionId(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
+        setId(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
         setActiveEditor(targetEditor);
         targetEditor.getSelectionProvider().addSelectionChangedListener(this);
         update();
@@ -63,7 +65,7 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
 
     public void update()
     {
-        setEnabled(_sqlEditor != null && _sqlEditor.getConnectionInfo().getSharedConnection() != null && _sqlEditor.getSelectedText() != null);
+        setEnabled(_sqlEditor != null && _sqlEditor.isConnected() && _sqlEditor.getSelectedText() != null);
     }
 
     /*
@@ -73,7 +75,7 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
      */
     public String getSQLStatements()
     {
-        return _sqlEditor == null ? null : _sqlEditor.getSelectedText();
+    	return _sqlEditor == null ? null : SQLToolsFacade.getDBHelper(getDatabaseIdentifier()).preprocessSQLScript(_sqlEditor.getSelectedText());
     }
 
     /*

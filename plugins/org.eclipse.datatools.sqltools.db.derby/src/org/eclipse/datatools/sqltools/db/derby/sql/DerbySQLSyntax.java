@@ -61,9 +61,6 @@ public class DerbySQLSyntax extends GenericSQLSyntax {
 
 	private static final String[] _comments = { "--" };
 
-	private Object[] allWords = { reservedwords, _unreservedwords, predicates,
-			types, constants, functions };
-
 	/**
 	 * @return Returns the functions.
 	 */
@@ -97,13 +94,6 @@ public class DerbySQLSyntax extends GenericSQLSyntax {
 	}
 
 	/**
-	 * @return Returns the allWords.
-	 */
-	public Object[] getAllWords() {
-		return allWords;
-	}
-
-	/**
 	 * @return Returns the constants.
 	 */
 	public String[] getConstants() {
@@ -114,4 +104,7 @@ public class DerbySQLSyntax extends GenericSQLSyntax {
 		return _comments;
 	}
 
+	public String[] getGlobalVariables() {
+		return EMPTY;
+	}
 }

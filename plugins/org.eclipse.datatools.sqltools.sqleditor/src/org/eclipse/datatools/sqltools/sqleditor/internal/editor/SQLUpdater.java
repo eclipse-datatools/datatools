@@ -25,8 +25,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
@@ -36,6 +38,9 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
@@ -48,6 +53,7 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
@@ -70,7 +76,8 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     private ArrayList          _staleAnnotations       = new ArrayList();
     private boolean            _remembered             = false;
 	private ParsingResult _result;
-
+	private boolean            _needToParse            = true;
+	
     /**
      * @param editor
      */
@@ -117,6 +124,12 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
 
     public void run()
     {
+        if (enableSyntaxValidation() == false)
+        {
+        	removeMarkers();
+            return;
+        }
+
         setInput(_editor.getEditorInput());
         try
         {
@@ -459,4 +472,112 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         _remembered = false;
     }
 
+    /**
+     * Enable syntax validation based on preference options and user's selection.
+     * 
+     * @return true means syntax validation is enabled.
+     * @author lihuang
+     */
+    private boolean enableSyntaxValidation()
+    {
+        if (_editor != null && _editor.getConnectionInfo() != null)
+        {
+        	ISQLEditorConnectionInfo connInfo = _editor.getConnectionInfo();
+        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(_editor.getDatabaseIdentifier(), connInfo.getDatabaseVendorDefinitionId());
+            SQLParser p = conf.getSQLService().getSQLParser();
+            if (p == null || !p.isComplete())
+            {
+                return false;
+            }
+        }
+        IPreferenceStore preferenceStore = SQLEditorPlugin.getDefault().getPreferenceStore();
+
+        boolean enableSyntaxValidation = true;
+        boolean isMaxLineLimitation = preferenceStore.getBoolean(PreferenceConstants.SYNTAX_VALIDATION_MAX_LINE);
+        // just return false if syntax validation is turned off.
+        if (preferenceStore.getBoolean(PreferenceConstants.SYNTAX_VALIDATION) == false)
+        {
+            enableSyntaxValidation = false;
+        }
+        else if (isMaxLineLimitation)
+        {
+
+            // show prompt dialog when the number of lines is more than maximun number of lines.
+            int lines = ((SQLEditor) _editor).getSV().getDocument().getNumberOfLines();
+            int maximunLines = Integer.parseInt(preferenceStore
+                .getString(PreferenceConstants.SYNTAX_VALIDATION_MAX_LINE_NUMBER));
+            if (preferenceStore.getBoolean(
+            PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION) == true)
+            {
+                if (lines >= maximunLines)
+                {
+                    Shell shell = SQLEditorPlugin.getActiveWorkbenchShell();
+
+                    // Activate the shell if necessary so the prompt is visible
+                    if (shell.getMinimized())
+                    {
+                        shell.setMinimized(false);
+                    }
+                    MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(shell,
+                        SQLEditorResources.SQLUpdate_dialog_title, NLS.bind(SQLEditorResources.SQLUpdate_dialog_message,(new Object[]
+                    {
+                        Integer.toString(maximunLines)
+                    }
+                    )), SQLEditorResources.SQLUpdate_dialog_toggle, false, EditorCorePlugin.getDefault()
+                        .getPreferenceStore(), PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION);
+                    if (dialog.getReturnCode() == IDialogConstants.YES_ID)
+                    {
+                        enableSyntaxValidation = false;
+                    }
+                    else if (dialog.getReturnCode() == IDialogConstants.NO_ID && preferenceStore.getString(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION).equals(MessageDialogWithToggle.NEVER))
+                    {
+                        enableSyntaxValidation = true;
+                        preferenceStore.setValue(PreferenceConstants.SYNTAX_VALIDATION_MAX_LINE, false);
+                    }
+                    else
+                    {
+                        enableSyntaxValidation = true;
+                    }
+                }
+            }
+            else
+            {
+                if (lines >= maximunLines)
+                {
+                    enableSyntaxValidation = false;
+                }
+                else
+                {
+                    enableSyntaxValidation = true;
+                }
+            }
+
+        }
+        if (enableSyntaxValidation == false)
+        {
+            if (_fOutlinePage != null)
+            {
+                _fOutlinePage.update(null);
+            }
+            if (_annotationModel != null)
+            {
+                removeMarkers();
+            }
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public boolean needToParse()
+    {
+        return _needToParse;
+    }
+
+    public void setNeedToParse(boolean needToParse)
+    {
+        _needToParse = needToParse;
+    }
 }

@@ -14,18 +14,37 @@ package org.eclipse.datatools.sqltools.internal.core;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
+import org.eclipse.datatools.modelbase.sql.routines.Routine;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.IControlConnectionListener;
 import org.eclipse.datatools.sqltools.core.IControlConnectionManager;
+import org.eclipse.datatools.sqltools.core.IResourceDisposeListener;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.ServerIdentifier;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.jface.util.ListenerList;
 import org.eclipse.osgi.util.NLS;
 
@@ -33,7 +52,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * @author Yang Liu
  */
-public class ControlConnectionManager implements IControlConnectionManager
+public class ControlConnectionManager implements IControlConnectionManager, ICatalogObjectListener
 {
 
     // XXX: org.eclipse.jface.util.ListenerList depends on jface, which is UI. But this class
@@ -45,6 +64,16 @@ public class ControlConnectionManager implements IControlConnectionManager
      */ 
     public Map          _controlConnectionMap = new HashMap();
 
+    Map                        _serverControlConnectionMap = new Hashtable();
+
+    Map                        _skippedConnections         = new Hashtable();
+
+    Map                        _resourceDisposeListeners   = new Hashtable();
+    
+    public ControlConnectionManager() {
+    	RefreshManager.getInstance().AddListener(null, this);
+	}
+    
     /* (non-Javadoc)
      * @see com.sybase.stf.dmp.core.IControlConnectionManager#getControlConnection(java.lang.String)
      */
@@ -61,18 +90,45 @@ public class ControlConnectionManager implements IControlConnectionManager
 
         if (con == null)
         {
-            con = SQLToolsFacade.getConfiguration(databaseIdentifier, null).getConnectionService().createControlConnection(databaseIdentifier);
+        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(databaseIdentifier, null);
+            con = conf.getConnectionService().createControlConnection(databaseIdentifier);
             //TODO differentiate unknow server type and other exception
             if (con == null)
             {
                 throw new SQLException(NLS.bind(Messages.ControlConnectionManager_unknownServerType, (new Object[]{databaseIdentifier.getProfileName()}))); 
             }
             _controlConnectionMap.put(databaseIdentifier, con);
+
+            // Add server
+            ServerIdentifier serverId = ProfileUtil.getServerIdentifier(databaseIdentifier);
+            if(serverId == null)
+            {
+                // Should not happen
+                return null;
+            }
+
+            // we don't support generic JDBC profile
+            if(serverId.getHost().length() != 0 && serverId.getPort().length() != 0)
+            {
+                HashSet controlConnections = (HashSet) _serverControlConnectionMap.get(serverId);
+                if (controlConnections != null)
+                {
+                    if (!controlConnections.contains(con))
+                    {
+                        controlConnections.add(con);
+                    }
+                }
+                else
+                {
+                    HashSet newServerConnections = new HashSet();
+                    newServerConnections.add(con);
+                    _serverControlConnectionMap.put(serverId, newServerConnections);
+                }
+            }
             this.fireAdded(con);
         }
+        fireRefreshed(con);
         return con;
-
-
     }
 
     /*
@@ -187,10 +243,40 @@ public class ControlConnectionManager implements IControlConnectionManager
      * This should only be called from AbstractControlConnection.
      * @param connection
      */
-    public void remove(IControlConnection connection)
+    protected void remove(AbstractControlConnection connection)
     {
         _controlConnectionMap.remove(connection.getDatabaseIdentifier());
+        cleanUpServerRelatedMap(connection);
         fireDetached(connection);
+    }
+
+    private synchronized void cleanUpServerRelatedMap(AbstractControlConnection connection)
+    {
+        // clean up
+        Set servers = _serverControlConnectionMap.keySet();
+        Iterator serverIter = servers.iterator();
+        ArrayList shouldRemoveServers = new ArrayList();
+        while(serverIter.hasNext())
+        {
+            ServerIdentifier serverIdentifier = (ServerIdentifier) serverIter.next();
+            HashSet conns = (HashSet) _serverControlConnectionMap.get(serverIdentifier);
+            if(conns.contains(connection) && conns.size() == 1)
+            {
+                shouldRemoveServers.add(serverIdentifier);
+            }
+            else
+            {
+                conns.remove(connection);
+            }
+        }
+
+        Iterator iter = shouldRemoveServers.iterator();
+        while(iter.hasNext())
+        {
+            ServerIdentifier serverIdentifier = (ServerIdentifier)iter.next();
+            _serverControlConnectionMap.remove(serverIdentifier);
+            _skippedConnections.remove(serverIdentifier);
+        }
     }
 
     /* (non-Javadoc)
@@ -198,6 +284,8 @@ public class ControlConnectionManager implements IControlConnectionManager
      */
     public void shutdown()
     {
+        _serverControlConnectionMap.clear();
+        _skippedConnections.clear();
         List list = new ArrayList(this._controlConnectionMap.values());
         for (Iterator iter = list.iterator(); iter.hasNext();)
         {
@@ -221,7 +309,7 @@ public class ControlConnectionManager implements IControlConnectionManager
 
         if (databaseIdentifiers.size() < 1)
         {
-            return null;
+            return new IControlConnection[0];
         }
 
         for (int i = 0; i < databaseIdentifiers.size(); i++)
@@ -238,7 +326,125 @@ public class ControlConnectionManager implements IControlConnectionManager
 
     public IControlConnection getControlConnection(DatabaseIdentifier databaseIdentifier)
     {
-        return (IControlConnection) _controlConnectionMap.get(databaseIdentifier);
+        IControlConnection controlConnection = (IControlConnection) _controlConnectionMap.get(databaseIdentifier);
+        if (controlConnection == null)
+        {
+        	IControlConnection[] cc = getControlConnection(databaseIdentifier.getProfileName());
+        	if (cc != null && cc.length > 0)
+        	{
+        		controlConnection = cc[0];
+        	}
+        }
+		return controlConnection;
     }
 
+    public HashSet getSkippedConnections(ServerIdentifier serverIdentifier)
+    {
+        if(serverIdentifier == null)
+        {
+            return null;
+}
+        return (HashSet)_skippedConnections.get(serverIdentifier);
+    }
+    public void registerSkippedConnection(ServerIdentifier serverIdentifier, int connid)
+    {
+        if(serverIdentifier == null)
+        {
+            return;
+        }
+        HashSet skippedConnections = (HashSet)_skippedConnections.get(serverIdentifier);
+        if(skippedConnections == null)
+        {
+            skippedConnections = new HashSet();
+            skippedConnections.add(new Integer(connid));
+            _skippedConnections.put(serverIdentifier, skippedConnections);
+        }
+        else
+        {
+            skippedConnections.add(new Integer(connid));
+        }
+    }
+
+    public void unregisterSkippedConnection(ServerIdentifier serverIdentifier, int connid)
+    {
+        if(serverIdentifier == null)
+        {
+            return;
+        }
+        HashSet skippedConnections = (HashSet)_skippedConnections.get(serverIdentifier);
+        if(skippedConnections != null)
+        {
+            skippedConnections.remove(new Integer(connid));
+        }
+    }
+
+    public HashSet getControlConnections(ServerIdentifier serverIdentifier)
+    {
+        return (HashSet)_serverControlConnectionMap.get(serverIdentifier);
+    }
+
+    public Map getServerConnectionMap()
+    {
+        return _serverControlConnectionMap;
+    }
+
+    public void addResourceDisposeListener(String profileName, IResourceDisposeListener resourceDisposeListener)
+    {
+        if(resourceDisposeListener == null || profileName == null || profileName.trim().length() == 0)
+        {
+            return;
+        }
+        if(_resourceDisposeListeners.get(profileName) == null)
+        {
+            _resourceDisposeListeners.put(profileName, resourceDisposeListener);
+        }
+    }
+
+    public void removeResourceDisposeListener(String profileName)
+    {
+        if(profileName == null || profileName.trim().length() == 0)
+        {
+            return;
+        }
+        _resourceDisposeListeners.remove(profileName);
+    }
+
+    public void fireDispose(String profileName)
+    {
+        if(profileName == null || profileName.trim().length() == 0)
+        {
+            return;
+        }
+        IResourceDisposeListener listener = (IResourceDisposeListener)_resourceDisposeListeners.get(profileName);
+        if(listener != null)
+        {
+            listener.dispose();
+        }
+    }
+
+	public void notifyChanged(ICatalogObject dmElement, int eventType) {
+		//TODO When we can handle other sql objects than the procedrual objects, remove this evaluation
+		if (!(dmElement instanceof Routine || dmElement instanceof Trigger || dmElement instanceof Event))
+		{
+			return;
+		}
+		Database catalogDatabase = dmElement.getCatalogDatabase();
+		ConnectionInfo connInfo = DatabaseConnectionRegistry.getInstance()
+				.getConnectionForDatabase(catalogDatabase);
+		if (connInfo instanceof ConnectionInfoImpl) {
+			IConnectionProfile connectionProfile = ((ConnectionInfoImpl) connInfo)
+					.getConnectionProfile();
+			DatabaseIdentifier dbid = new DatabaseIdentifier(connectionProfile.getName(), catalogDatabase.getName());
+			IControlConnection con = (IControlConnection)_controlConnectionMap.get(dbid);
+			if (con == null)
+			{
+				dbid = new DatabaseIdentifier(connectionProfile.getName());
+				con = (IControlConnection)_controlConnectionMap.get(dbid);
+			}
+			if (con != null)
+			{
+				con.refresh(SQLDevToolsUtil.getProcIdentifier(dbid, (SQLObject)dmElement));
+			}
+		}
+	}
 }

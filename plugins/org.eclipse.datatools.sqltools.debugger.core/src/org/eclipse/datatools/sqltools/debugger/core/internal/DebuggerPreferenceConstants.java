@@ -22,7 +22,7 @@ public class DebuggerPreferenceConstants
 {
 
     // begin: preference page ids
-    public static final String PAGE_SQLDEBUG                           = "com.sybase.stf.dmp.debugger.preferences.SQLDebug";
+    public static final String PAGE_SQLDEBUG                           = DebuggerCorePlugin.PLUGIN_ID + ".preferences.SQLDebug";
     // end: preference page ids
 
 

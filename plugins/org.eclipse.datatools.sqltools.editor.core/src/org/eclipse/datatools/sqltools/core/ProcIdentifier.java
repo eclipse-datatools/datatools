@@ -12,6 +12,8 @@
 
 package org.eclipse.datatools.sqltools.core;
 
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+
 /**
  * This interface is used to identify a database object.
  * 
@@ -120,4 +122,13 @@ public interface ProcIdentifier
      * @param quoted_id whether "quoted identifier" is on
      */
     public String getCallableStringWithoutGroupNumber(boolean quoted_id);
+
+	/**
+	 * Returns whether the given object equals to this ProcIdentifier object. 
+	 * If the profile names are different, the comparison will base on the
+	 * server url.
+	 * @param obj
+	 * @return
+	 */
+	public boolean equalsByServer(Object obj);
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.sqltools.result.internal.Constants;
+import org.eclipse.datatools.sqltools.result.ResultsConstants;
 
 /**
  * Utility class of connection profile
@@ -34,7 +34,7 @@ public class ProfileUtil
     {
         if (connectionProfile != null)
         {
-            if (connectionProfile.getCategory().getId().equalsIgnoreCase(Constants.DB_CP_CATEGORY))
+            if (connectionProfile.getCategory().getId().equalsIgnoreCase(ResultsConstants.DB_CP_CATEGORY))
             {
                 return true;
             }

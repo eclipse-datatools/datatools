@@ -24,6 +24,14 @@ import org.eclipse.jface.text.IDocument;
  * 
  */
 public class GenericParsingResult extends ParsingResult {
+	/**
+	 * @param rootNode
+	 * @param exceptions
+	 */
+	public GenericParsingResult()
+	{
+	}
+	
     /**
      * @param rootNode
      * @param exceptions

@@ -17,19 +17,20 @@ import java.util.Map;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
-import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileAnnotationModel;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLUtility;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
+import org.eclipse.ui.editors.text.ILocationProvider;
 
 public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 	
@@ -86,7 +87,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 		if ((encodedConnection == null) && (fileResource != null) && !fileResource.getFileExtension().equalsIgnoreCase("sqlpage")) {
 			// get encodedConnection from PersistentProperty
 			if (fileResource.exists()){
-				encodedConnection = fileResource.getPersistentProperty(new QualifiedName(SqlscrapbookPlugin.PLUGIN_ID, "encodedConnection"));
+				encodedConnection = SQLFileUtil.getEncodedConnectionInfo(fileResource);
 			}
 
 		}	
@@ -104,9 +105,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 				
 		if ((encodedConnection != null) && (fileResource != null) && !fileResource.getFileExtension().equalsIgnoreCase("sqlpage")){
 			// Save PersistentProperty encodedConnection for not *.sqlpage
-			if (fileResource.exists()){			
-				fileResource.setPersistentProperty(new QualifiedName(SqlscrapbookPlugin.PLUGIN_ID, "encodedConnection"),encodedConnection);
-			}
+			SQLFileUtil.setEncodedConnectionInfo(fileResource, encodedConnection);
 		}
 		
 		if (storageDocument == null) storageDocument = document;
@@ -121,10 +120,14 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
         
     }
 
-	
+	protected IAnnotationModel createAnnotationModel(Object element) throws CoreException {
+        if (element instanceof ILocationProvider)
+        {
+            return new ExternalSQLFileAnnotationModel(((ILocationProvider)element).getPath(element));
+        }
+		return super.createAnnotationModel(element);
+	}
 
-	
-	
 	
 }
 

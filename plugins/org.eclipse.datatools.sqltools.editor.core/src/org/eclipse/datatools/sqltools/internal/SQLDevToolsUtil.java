@@ -11,6 +11,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
@@ -19,15 +22,24 @@ import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
+import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
+import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
+import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
+import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * 
@@ -36,7 +48,9 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
  */
 public class SQLDevToolsUtil {
 
-	
+    private static Pattern ID_PATTERN = Pattern.compile("((\\Q[\\E([^\"]|(\"\"))+\\Q]\\E|[^\\s\"\\Q.\\E]+|\"([^\"]|(\"\"))+\")\\Q.\\E?)");
+    private static Pattern STRING_PATTERN = Pattern.compile("(([^\\s']+)|('([^']|(''))+'))");
+
 	/**
 	 * Converts the <code>Routine</code> or <code>Trigger</code> object into
 	 * <code>ProcIdentifier</code>.
@@ -52,6 +66,11 @@ public class SQLDevToolsUtil {
 			db = ((Routine) routine).getSchema().getDatabase();
 		} else if (routine instanceof Trigger) {
 			db = ((Trigger) routine).getSchema().getDatabase();
+		} else if (routine instanceof Event) {
+			db = ((Event) routine).getDatabase();
+		} else if (routine.eClass().getEStructuralFeature("schema") != null) {
+			//TODO deprecated for backward compatibility
+			db = ((Schema)routine.eGet(routine.eClass().getEStructuralFeature("schema"))).getDatabase();
 		}else{
 			return null;
 		}
@@ -95,13 +114,33 @@ public class SQLDevToolsUtil {
 						.getName(), ProcIdentifier.TYPE_UDF, null, schema
 						.getName());
 			}
-			// TODO Event
 		} else if (routine instanceof Trigger) {
 			Schema schema = ((Trigger) routine).getSchema();
 			Table table = ((Trigger) routine).getSubjectTable();
 			proc = h.getProcIdentifier(databaseIdentifier, routine.getName(),
 					ProcIdentifier.TYPE_TRIGGER, table.getName(), schema
 							.getName());
+		} else if (routine instanceof Event) {
+			String creator = "";
+			EStructuralFeature creatorFeature = routine.eClass()
+			.getEStructuralFeature("eventCreator");
+			if (creatorFeature != null)
+			{
+				creator = (String) routine.eGet(creatorFeature);
+			}
+			
+			proc = h.getProcIdentifier(databaseIdentifier, routine.getName(),
+					ProcIdentifier.TYPE_EVENT, null, creator);
+		} else {
+			EStructuralFeature schemaFeature = routine.eClass().getEStructuralFeature("schema");
+			EStructuralFeature eventIdFeature = routine.eClass().getEStructuralFeature("eventId");
+			if (schemaFeature != null && eventIdFeature != null)
+			{
+				proc = h.getProcIdentifier(databaseIdentifier, routine.getName(),
+						ProcIdentifier.TYPE_EVENT, null, ((Schema)routine.eGet(schemaFeature)).getName());
+				//TODO deprecated for backward compatibility 
+			}
+
 		}
 
 		return proc;
@@ -123,11 +162,15 @@ public class SQLDevToolsUtil {
 			return ProcIdentifier.TYPE_UDF;
 		}
 		// TODO add Event support
-		// else if (routine instanceof Event)
-		// {
-		// return ProcIdentifier.TYPE_EVENT;
-		// }
+		 else if (routine instanceof Event || isEventType(routine) != null)
+		 {
+			 return ProcIdentifier.TYPE_EVENT;
+		 }
 		return ProcIdentifier.TYPE_SQL;
+	}
+
+	public static EStructuralFeature isEventType(SQLObject routine) {
+		return routine.eClass().getEStructuralFeature("eventId");
 	}
 
 	public static DatabaseIdentifier getDatabaseIdentifier(Database database) {
@@ -141,5 +184,181 @@ public class SQLDevToolsUtil {
 
 		return null;
 	}
+
+	
+    /**
+     * Returns the quoted identifier setting for the database
+     * @param dbid the database identifier
+     */
+    public static boolean getQuotedIdentifier(DatabaseIdentifier dbid)
+    {
+        boolean quoted_id = false;
+        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfiguration(null, dbid);
+        IDatabaseSetting config = factory.getDatabaseSetting(dbid);
+        if (config != null)
+        {
+            try
+            {
+                Boolean value = (Boolean)config.getConnectionConfigProperty( IDatabaseSetting.C_QUOTED_IDENTIFIER);
+                quoted_id = value.booleanValue();
+            }
+            catch (NotSupportedSettingException e)
+            {
+                EditorCorePlugin.getDefault().log( e);
+            }
+        }
+        return quoted_id;
+    }
+    
+    /**
+     * Get Quoted identifier if ON return true else return false
+     * 
+     * @param databaseIdentifier Database Identifier 
+     * @return Quoted identifier if ON return true else return false
+     */
+    public static boolean isQuotedIdentifierOn(DatabaseIdentifier databaseIdentifier)
+    {
+        boolean quotedIdentifier = false;
+        Object quotedIdentifierCfg = null;
+        try
+        {
+        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(null, databaseIdentifier); 
+            quotedIdentifierCfg = conf.getDatabaseSetting(databaseIdentifier)
+                .getConnectionConfigProperty(IDatabaseSetting.C_QUOTED_IDENTIFIER);
+        }
+        catch (NotSupportedSettingException e)
+        {
+        }
+        if (quotedIdentifierCfg instanceof Boolean)
+        {
+            quotedIdentifier = ((Boolean) quotedIdentifierCfg).booleanValue();
+        }
+        return quotedIdentifier;
+    }
+
+    /**
+     * Quotes the string when it contains space or single quote and is not properly quoted.
+     * @param objstr
+     * @return
+     */
+    public static String quoteStringWhenNecessary(String objstr)
+    {
+        String r = null;
+        Matcher m = STRING_PATTERN.matcher(objstr);
+        while (m.find())
+        {
+            r = m.group();
+            break;
+        }
+        if (r != null && r.equals(objstr))
+        {
+            return r;
+        }
+        return SQLUtil.quote(objstr, "'");
+
+    }
+
+    /**
+     * This is a convenience method of
+     * <code>quoteWhenNecessary(String content, DatabaseIdentifier _databaseIdentifier, String
+     * quote)</code>
+     * 
+     * @param content original identifier
+     * @return
+     */
+    public static String quoteWhenNecessary(String content, DatabaseIdentifier databaseIdentifier)
+    {
+        return quoteWhenNecessary(content, databaseIdentifier, "\"");
+    }
+
+    /**
+     * Checks the validity and quoted identifier setting and surrounds content with proper quotation mark if necessary.
+     * 
+     * @param id Identifier
+     * @param databaseIdentifier database Identfier
+     * @param quote quotes, maybe single quote or double quote
+     * @param IdentifierType identfierType,see IIdentfierValidator API
+     * @return quoted String
+     */
+    public static String quoteWhenNecessary(String id, DatabaseIdentifier databaseIdentifier, String quote, int identiferType)
+    {
+        if (id == null || id.equals("") || databaseIdentifier == null)
+        {
+            return id;
+        }
+        SQLDevToolsConfiguration conf = SQLToolsFacade.getConfigurationByProfileName(databaseIdentifier.getProfileName());
+        IIdentifierValidator validator = conf.getSQLService().getIdentifierValidator();
+        if (validator != null)
+        {
+            ValidatorMessage msg = validator.isValid(id, identiferType, databaseIdentifier);
+            if (msg == null || !ValidatorMessage.hasError(msg, ValidatorMessage.ERROR))
+            {
+                return id;
+            }
+        }
+
+        boolean quoted_id = false;
+        //initiate connection with quoted_identifier option
+        IDatabaseSetting dbSetting = conf.getDatabaseSetting(
+            databaseIdentifier);
+        if (dbSetting != null)
+        {
+            try
+            {
+                quoted_id = ((Boolean) dbSetting
+                    .getConnectionConfigProperty(IDatabaseSetting.C_QUOTED_IDENTIFIER)).booleanValue();
+            }
+            catch (Exception e)
+            {
+                // can't get setting, assume it's false
+            }
+        }
+
+        if (quoted_id)
+        {
+            return SQLUtil.quote(id, quote);
+        }
+        return id;
+
+    }
+
+    /**
+     * Checks the validity and quoted identifier setting and surrounds content with proper quotation mark if necessary.
+     * 
+     * @param id original identifier
+     * @return
+     */
+    public static String quoteWhenNecessary(String id, DatabaseIdentifier databaseIdentifier, String quote)
+    {
+        return quoteWhenNecessary(id, databaseIdentifier, quote,IIdentifierValidator.IDENTIFIER_TYPE_UNKNOW);
+    }
+
+    /**
+     * Checks the validity of the unquoted identifier and unquotes content if necessary. 
+     * 
+     * @param id original identifier
+     * @return
+     */
+    public static String unquoteWhenNecessary(String id, DatabaseIdentifier databaseIdentifier)
+    {
+        if (id == null || id.equals("") || databaseIdentifier == null)
+        {
+            return id;
+        }
+        String newId = SQLUtil.unquote(id);
+        SQLDevToolsConfiguration conf = SQLToolsFacade.getConfigurationByProfileName(databaseIdentifier.getProfileName());
+        IIdentifierValidator validator = conf.getSQLService().getIdentifierValidator();
+        if (validator != null)
+        {
+            ValidatorMessage msg = validator.isValid(newId, IIdentifierValidator.IDENTIFIER_TYPE_UNKNOW, databaseIdentifier);
+            if (msg == null || !ValidatorMessage.hasError(msg, ValidatorMessage.ERROR))
+            {
+                return newId;
+            }
+        }
+        return id;
+
+    }
+
 
 }

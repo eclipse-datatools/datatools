@@ -14,9 +14,13 @@ package org.eclipse.datatools.sqltools.core.services;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
 
@@ -97,5 +101,49 @@ public class ConnectionService
     {
     	return ProfileUtil.createConnection(profileName, dbName);
     }
+
+    /**
+     * Returns a connection for caller to use. By default there's no connection pool associated with a connection 
+     * profile and this method just ignore the usePool parameter and delegates to {@link #createConnection(String, String)}.
+     * Vendors who has the requirement to use connection pool may override this method.
+     * @param databaseIdentifier the database identifier
+     * @param usePool whether to retrieve the connection from connection pool.
+     * @return a <code>Connection</code> instance
+     * @throws SQLException if database error occurs
+     */
+    public Connection createConnection(DatabaseIdentifier databaseIdentifier,
+			boolean usePool) throws SQLException, NoSuchProfileException {
+		return createConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname());
+	}
+    /**
+	 * Returns the default properties of the given profile for creating a
+	 * connection to that profile
+	 * 
+	 * @param profileName
+	 *            the profile name
+	 * @return properties of this profile
+	 * @throws NoSuchProfileException
+	 *             if this profile does not exist
+	 */
+    public Properties getDefaultConnectionProperties(String profileName) throws NoSuchProfileException
+    {
+        Properties props = new Properties();
+        Properties profProps = ProfileUtil.getProfile(profileName).getBaseProperties();
+        props.put("user", profProps.getProperty(ProfileUtil.UID)); //$NON-NLS-1$
+        props.put("password", profProps.getProperty(ProfileUtil.PWD)); //$NON-NLS-1$
+        //TODO CONN get properties
+//        String nameValuePairs = profProps.getProperty(IJDBCProfilePropertyConstants.PROP_DB_CONN_PROPS);
+//        if (nameValuePairs != null && nameValuePairs.length() > 0)
+//        {
+//            String[] pairs = ProfileUtil.parseString(nameValuePairs, ","); //$NON-NLS-1$
+//            for (int i = 0; i < pairs.length; i++)
+//            {
+//                String[] namevalue = ProfileUtil.parseString(pairs[i], "="); //$NON-NLS-1$
+//                props.setProperty(namevalue[0], namevalue[1]);
+//            }
+//        }
+        return props;
+    }
+
 
 }

@@ -13,7 +13,9 @@
 package org.eclipse.datatools.sqltools.core.services;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
@@ -28,7 +30,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 public class ExecutionService
 {
 	/**
-     * Returns a <code>Runnable</code> object capable of running CallableStatement.
+     * Returns a <code>Runnable</code> object capable of running CallableStatement. Might be null.
      * @param con the connection
      * @param configuration the lauch configuration
      * @param closeCon whether should close connection
@@ -40,6 +42,25 @@ public class ExecutionService
 	{
 		return null;
 	}
+    
+    /**
+     * Returns a <code>Runnable</code> object capable of running sql statements. Might be null.
+     * @see org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable
+     * @param con the connection
+     * @param sql the statement to be executed
+     * @param closeCon whether should close connection
+     * @param tracker if closeCon is true and tracker is not null, will notify it when close the connection
+     * @param parentMonitor
+     * @param databaseIdentifier 
+     * @param configuration the lauch configuration
+     * @param addInfo TODO
+     * @para
+     */
+    public Runnable createSimpleSQLResultRunnable(Connection con, String sql, boolean closeCon, IConnectionTracker tracker,
+            IProgressMonitor parentMonitor, DatabaseIdentifier databaseIdentifier, ILaunchConfiguration configuration, HashMap addInfo)
+    {
+    	return null;
+    }
     
 
 	/**

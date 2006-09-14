@@ -464,7 +464,7 @@ public class SimpleNode implements Node
     }
 
     /**
-     * get node text
+     * Returns the node text by concatenate tokens with white spaces.
      * @return node text
      * @author Li Huang
      */
@@ -478,8 +478,16 @@ public class SimpleNode implements Node
             text.append(token.image);
             while(token.next != null && token != node.getLastToken())
             {
-                token = token.next;
-                text.append(" ");
+            	//to prevent insert white spaces between a qualified db object name
+                if (token.image.equals(".") || token.next.image.equals("."))
+                {
+                    token = token.next;
+                }
+                else
+                {
+                    token = token.next;
+                    text.append(" ");
+                }
                 text.append(token.image);
             }
         }

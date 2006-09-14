@@ -158,10 +158,15 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
 	public static final String TOGGLE_COMMENT = SQLEditorPlugin.PLUGIN_ID + ".toggleCommentAction";
 
     /**
-     * Context menu id for save selected text as template action.
+     * Context menu id for the standard workbench save as menu.
      */
-	public static final String SAVE_AS_TEMPLATE_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".saveAsTemplateAction";
+	public static final String SAVE_AS_ACTION_ID = "org.eclipse.ui.file.saveAs";
 
+	/**
+	 * Context menu id for save selected text as template action.
+	 */
+	public static final String SAVE_AS_TEMPLATE_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".saveAsTemplateAction";
+	
     /**
      * Context menu id for run routine action.
      */
@@ -176,5 +181,11 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
      * Context menu id for open declaration action.
      */
 	public static final String OPEN_DECLARATION_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".openDeclarationAction";
+
+    /**
+     * Context menu id for rename action.
+     */
+	public static final String RENAME_ACTION_ID = SQLEditorPlugin.PLUGIN_ID
+			+ ".RenameAction";
 
 }

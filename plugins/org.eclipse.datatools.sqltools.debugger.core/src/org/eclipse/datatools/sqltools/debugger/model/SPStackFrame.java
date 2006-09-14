@@ -169,7 +169,13 @@ public abstract class SPStackFrame extends SPDebugElement implements IStackFrame
         return _depth;
     }
 
-    public abstract Connection getDebuggerConnection();
+    /**
+     * Return a new connection for debug use.
+     * For example, referenced tables view needs connection to retrieve data from database.
+     * @return
+     */
+    public abstract Connection getConnection();
+
     //-------------------------------------------------------------------------------------
     //	Varialbe
     //-------------------------------------------------------------------------------------
@@ -530,12 +536,5 @@ public abstract class SPStackFrame extends SPDebugElement implements IStackFrame
     {
         return _paramStr;
     }
-
-    /**
-     * Returns whether the referenced tables view is supported 
-     * when debugging the procedural object.  
-     * @return
-     */
-    public abstract boolean supportsReferencedTablesView();
 
 }

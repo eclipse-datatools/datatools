@@ -50,21 +50,24 @@ public class SQLCompletionProposal implements ISQLCompletionProposal
      * The relevance of this proposal.
      * <p>
      * database column table stored procedure trigger event reserved keyword unreserved keyword variable other
+     * </p>
+     * large numbers will appear first
      */
     private int                 _relevance;
     public final static int     TEMPLATE           = 0;
     public final static int     OPERATOR           = 1;
     public final static int     OTHER              = 2;
     public final static int     KEYWORD            = 3;
-    public final static int     UNRESERVEDKEYWORD  = 3;
+    public final static int     UNRESERVEDKEYWORD  = 3;//TODO?
     public final static int     DATABASE           = 4;
     public final static int     TABLE              = 5;
     public final static int     STORED_PROCEDURE   = 6;
+    public final static int     FUNCTION           = 6;
     public final static int     TRIGGER            = 7;
     public final static int     EVENT              = 8;
     public final static int     COLUMN             = 9;
     public final static int     VARIABLE           = 0;
-    public final static int     TEMPTABLE_TEMPLATE = 10;
+    public final static int     TEMPTABLE_TEMPLATE = 11;
     private IAction             _postAction        = null;
 
     /**

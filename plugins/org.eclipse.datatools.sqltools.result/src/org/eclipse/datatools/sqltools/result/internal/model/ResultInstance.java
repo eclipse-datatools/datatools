@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultSetObject;
-import org.eclipse.datatools.sqltools.result.internal.Constants;
 import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
@@ -58,7 +58,7 @@ public class ResultInstance implements IResultInstance
         this._operationCommand = command;
         _resultList = new ArrayList(5);
         this._terminateHandler = terminateHandler;
-        _date = Constants.FORMATTER.format(new Date());
+        _date = ResultsConstants.FORMATTER.format(new Date());
         _execFrequency = 1;
     }
 

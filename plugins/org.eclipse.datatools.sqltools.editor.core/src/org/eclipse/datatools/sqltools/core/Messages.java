@@ -22,7 +22,7 @@ private Messages() {
 }
 
 public static String DefaultDBFactory_version;
-public static String NotSupportedConfigurationException_cause;
+public static String NotSupportedSettingException_cause;
 public static String plugin_internal_error;
 public static String ProcIdentifierImpl_map_cant_be_null;
 public static String ProcIdentifierImpl_invalid_identifier_string;

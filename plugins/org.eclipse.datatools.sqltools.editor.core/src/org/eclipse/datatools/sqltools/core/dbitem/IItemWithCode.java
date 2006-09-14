@@ -34,6 +34,12 @@ public interface IItemWithCode
     public void save(String code) throws SQLException;
 
     /**
+     * Drops the underlying database object
+     * @param code
+     */
+    public void drop() throws SQLException;
+    
+    /**
      * Given the line number, finds out the valid line number that is 
      * greater than number that can set breakpoint.
      * 

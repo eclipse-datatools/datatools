@@ -10,7 +10,7 @@
             default="true"
             extensions="ddl,sql,sqlpage"
             icon="images/qrydoc.gif"
-            id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor"
+            id="org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor"
             name="%ScrapbookEditor.name"/>
    </extension>
 
@@ -53,4 +53,23 @@
          </description>
       </wizard>
    </extension>
+   
+   <!-- preference pages -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.SQLFilePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%datatools.preferences.sqlfile.name"
+            id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.sqlfile"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+         <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.attach"
+            id="org.eclipse.datatools.sqltools.sqleditor.attachProfileAction"/>
+   </extension>
+   
 </plugin>

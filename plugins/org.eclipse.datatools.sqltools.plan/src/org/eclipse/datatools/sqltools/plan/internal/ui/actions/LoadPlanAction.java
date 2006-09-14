@@ -17,9 +17,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
-import org.eclipse.datatools.sqltools.plan.internal.Constants;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
+import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
@@ -120,12 +122,14 @@ public class LoadPlanAction extends Action
                             {
                                 dbDefinitionId = dbId.getNodeValue();
                             }
+                            IPlanService service = PlanServiceRegistry.getInstance().getPlanService(dbDefinitionId);
+                            
                             if (subNode.getFirstChild() != null)
                             {
                                 CDATASection sqlCDATA = (CDATASection) subNode.getFirstChild();
                                 sql = sqlCDATA.getNodeValue();
                             }
-                            request = new PlanRequest(sql, dbDefinitionId, getTypeId(type.getNodeValue()),
+                            request = new PlanRequest(sql, dbDefinitionId, service.getPlanOption().getOptionId(type.getNodeValue()) ,
                                     PlanRequest.VIEW_ACTIVATE);
                         }
                         else if (subNode.getNodeName().equals("rawPlan"))
@@ -154,7 +158,7 @@ public class LoadPlanAction extends Action
             }
             catch (Exception e)
             {
-                final IStatus fstatus = new Status(IStatus.ERROR, Constants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
+                final IStatus fstatus = new Status(IStatus.ERROR, PlanConstants.PLUGIN_ID, IStatus.OK, e.getMessage(), e);
                 final String title = Messages.LoadPlanAction_error; 
                 final String msg = Messages.LoadPlanAction_errorinfo; 
                 Display display = PlanViewPlugin.getActiveWorkbenchShell().getDisplay();
@@ -187,16 +191,4 @@ public class LoadPlanAction extends Action
         }
     }
 
-    private int getTypeId(String desc)
-    {
-        if (desc.equals("GRAPHIC_PLAN"))
-        {
-            return PlanRequest.GRAPHIC_PLAN;
-        }
-        if (desc.equals("TEXT_PLAN"))
-        {
-            return PlanRequest.TEXT_PLAN;
-        }
-        return PlanRequest.TEXT_PLAN;
-    }
 }

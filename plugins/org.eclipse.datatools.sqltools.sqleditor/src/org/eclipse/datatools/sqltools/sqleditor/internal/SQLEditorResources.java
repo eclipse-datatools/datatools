@@ -42,6 +42,9 @@ public final class SQLEditorResources extends NLS {
 	public static String SQLUpdater_error_location;
 	public static String SQLUpdater_error_annotation;
 	public static String SQLUpdater_error_removemarker;
+    public static String SQLUpdate_dialog_title;
+    public static String SQLUpdate_dialog_message;
+    public static String SQLUpdate_dialog_toggle;
 	public static String SQLErrorHover_makeStickyHint = null;
 	public static String SQLEditor_outlinePage_sqlSegment_titlePattern;
 	public static String SQLEditor_connection_status_noConnection;
@@ -51,6 +54,13 @@ public final class SQLEditorResources extends NLS {
 	public static String Save;
 	public static String SQLEditor_error_while_trying_to_install_sql_updater;
 	public static String SQLEditorStorage_default_name;
+	public static String SQLEditor_status_profile;
+	public static String SQLEditor_status_database;
+	public static String SQLEditor_status_dbType;
+	public static String SQLEditor_save_message;
+	public static String SQLEditor_status_profile_connected;
+	public static String SQLEditor_status_profile_notconnected;
+
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, SQLEditorResources.class);

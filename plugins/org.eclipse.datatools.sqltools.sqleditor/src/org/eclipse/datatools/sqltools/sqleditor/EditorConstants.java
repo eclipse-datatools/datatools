@@ -17,6 +17,14 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 
 public interface EditorConstants
 {
+    public static final int      CP_STATUS_OTHER                  = 0;
+    public static final int      CP_STATUS_DELETED                = 1;
+    public static final int      CP_STATUS_DISCONNECTED           = 2;
+    public static final int      CP_STATUS_RENAMED                = 3;
+    public static final int      CP_STATUS_PROP_CHANGED           = 4;
+    public static final int      CP_STATUS_CONNECTED              = 5;
+
+
 	/**
 	 * Marker type contant for SQL portability targets.
 	 */
@@ -45,6 +53,8 @@ public interface EditorConstants
 	 * The length of SQL statement short description 
 	 */
     public static final int    SQL_SHORT_DESC_LENGTH   = 40;
+    
+    public static final String EDITOR_ID               = "org.eclipse.datatools.sqltools.sqleditor.SQLEditor";
 
 	
 }

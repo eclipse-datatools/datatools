@@ -80,5 +80,7 @@ public interface SQLDevToolsConfigRegistry
      * @return <code>IDBDebuggerFactory</code> collection
      */
     public Collection getDebuggerConfigurations();
+
+	public void addConfigurationRegistryListener(IConfigurationRegistryListener listener);
     
 }

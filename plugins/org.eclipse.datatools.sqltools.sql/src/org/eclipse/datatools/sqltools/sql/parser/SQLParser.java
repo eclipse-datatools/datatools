@@ -19,6 +19,7 @@ import java.util.List;
  * Abstract SQL parser. Vendor developers should extend this parser to support
  * their own dialect in content assist and syntax validation features.
  * 
+ * TODO: move scope to ParsingResult, which should keep track of scopes like Partitions
  * @see ParserParameters
  * @see ParsingResult
  * @author Hui Cao
@@ -31,6 +32,17 @@ public abstract class SQLParser implements SQLParserConstants
      */
     public static final String SPECIAL_TOKEN = "!%^&";
 
+//    /**
+//     * Token type constants
+//     */
+//    public static final int TOKEN_TYPE_OTHER = 0;
+//    public static final int TOKEN_TYPE_VARIABLE = 1;
+//    public static final int TOKEN_TYPE_PARAMETER = 2;
+//    public static final int TOKEN_TYPE_GLOBAL_VARIABLE = 3;
+//    public static final int TOKEN_TYPE_RESERVED_KEYWORD = 4;
+//    public static final int TOKEN_TYPE_UNRESERVED_KEYWORD = 5;
+//    public static final int TOKEN_TYPE_IDENTIFIER = 6;
+    
     /**
      * The prameter used during parsing.
      */
@@ -39,20 +51,13 @@ public abstract class SQLParser implements SQLParserConstants
     protected int fScope;
 
     /**
-	 * Expected token list can be retrieved from ParseException, while expected
-	 * unreserved keywords should be retrieved from this list, which is
-	 * populated by the parser. 
-	 */
-    protected List              _expectedUnreservedKeywords  = new ArrayList();
-    
-    /**
      * Parses the given sql text using the default parameter. Records the abstract syntax tree nodes and accumulates
      * <code>ParseException</code> in the <code>ParsingResult</code>.
      * 
      * @param text sql text to be parsed
      * @return <code>ParsingResult</code> containing root AST node and <code>ParseException</code>s.
      */
-    public ParsingResult parse(String text)
+    public synchronized ParsingResult parse(String text)
     {
         ParserParameters param = new ParserParameters(false, SQLParserConstants.TYPE_SQL_ROOT);
         return parse(text, param);
@@ -66,23 +71,16 @@ public abstract class SQLParser implements SQLParserConstants
      * @param parameters parameter used by parser
      * @return <code>ParsingResult</code> containing root AST node and <code>ParseException</code>s.
      */
-    public ParsingResult parse(String text, ParserParameters parameters)
+    public synchronized ParsingResult parse(String text, ParserParameters parameters)
     {
         ParserParameters oldParameters = _parameters;
         setParameters(parameters);
         ParsingResult result = doParse(text);
+        result.setScope(getScope());
         setParameters(oldParameters);
         return result;
     }
-    
-    /**
-     * Returns the expected unreserved keywords, used in content assist.
-     * @return String list
-     */
-    public List getExpectedUnreservedKeywords()
-    {
-    	return Collections.unmodifiableList(_expectedUnreservedKeywords);
-    }
+
 
     /**
 	 * Returns the statement terminator array. Different vendors will have their
@@ -106,7 +104,7 @@ public abstract class SQLParser implements SQLParserConstants
      * @see SQLParserConstants
      * @return scope constants defined in <code>SQLParserConstants</code> 
      */
-    public int getScope()
+    protected int getScope()
     {
         return fScope;
     }
@@ -152,4 +150,27 @@ public abstract class SQLParser implements SQLParserConstants
         return oldScope;
     }
 
+    /**
+     * Returns whether the parser has captured the complete grammar for the database.
+     * @return default value is true
+     */
+    public boolean isComplete()
+    {
+    	return true;
+    }
+    
+//    /**
+//	 * Returns the token type constant. The default implementation simply
+//	 * returns TOKEN_TYPE_OTHER. Subclasses should override it.
+//	 * 
+//	 * @param tokenDefinition
+//	 * @return
+//	 */
+//    public int getTokenType(String tokenDefinition)
+//    {
+//    	return TOKEN_TYPE_OTHER;
+//    }
+    
+
+    
 }

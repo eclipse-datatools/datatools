@@ -10,19 +10,30 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
+import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionContributorExtension;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLDisconnectAction;
+import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.editors.text.TextEditorActionContributor;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.texteditor.ITextEditor;
+import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 
 /**
@@ -34,7 +45,7 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
     protected RetargetTextEditorAction fContentAssistTipAction;
     protected RetargetTextEditorAction fContentFormatAction;
     private IPropertyChangeListener    fConnectActionListener;
-
+    private Collection fExtensions = new ArrayList();
     /**
      * Constructs an instance of this class.  This is the default constructor.
      */
@@ -45,6 +56,11 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
         fContentAssistProposalAction = new RetargetTextEditorAction( bundle, "ContentAssistProposal." ); // $NON-NLS-1$
         fContentAssistTipAction =  new RetargetTextEditorAction( bundle, "ContentAssistTip." ); // $NON-NLS-1$
         fContentFormatAction = new RetargetTextEditorAction( bundle, "ContentFormat." ); // $NON-NLS-1$
+        fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.setParent(this);
+		}
     }
 
     /**
@@ -60,6 +76,10 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
             editMenu.add( fContentFormatAction );
             editMenu.add( fContentAssistTipAction );
         }
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToMenu(mm);
+		}
     }
     
     /**
@@ -120,7 +140,73 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
                 disconnectAction.addPropertyChangeListener( fConnectActionListener );
             }            
             
+            for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+            	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+            	ext.setActiveEditor(sqlEditor);
+            }
+        }
+        
+    }
+    
+    /**
+     * Contributes to the given status line.
+     * <p>
+     * The <code>EditorActionBarContributor</code> implementation of this method
+     * does nothing. Subclasses may reimplement to add to the status line portion of
+     * this contribution.
+     * </p>
+     *
+     * @param statusLineManager the manager of the status line
+     */
+    public void contributeToStatusLine(IStatusLineManager statusLineManager) {
+    	super.contributeToStatusLine(statusLineManager);
+    	for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToStatusLine(statusLineManager);
         }
     }
+
+	public void contributeToCoolBar(ICoolBarManager coolBarManager) {
+		super.contributeToCoolBar(coolBarManager);
+		for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToCoolBar(coolBarManager);
+        }
+	}
+
+	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		toolBarManager.add(new Separator(ITextEditorActionConstants.GROUP_UNDO));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_OPEN));
+        toolBarManager.add(new Separator(ITextEditorActionConstants.GROUP_COPY));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_SOURCE));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_WIZARD));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE));
+        toolBarManager.add(new Separator(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION));
+        toolBarManager.add(new Separator(ITextEditorActionConstants.MB_ADDITIONS));
+		super.contributeToToolBar(toolBarManager);
+		for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToToolBar(toolBarManager);
+        }
+	}
+
+	public void init(IActionBars bars, IWorkbenchPage page) {
+		super.init(bars, page);
+		for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.init(bars, page);
+        }
+	}
+
+	public void dispose() {
+		super.dispose();
+		for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.dispose();
+        }
+	}
+	
+	
     
 } // end class

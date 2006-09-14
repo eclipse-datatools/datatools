@@ -27,15 +27,6 @@ package org.eclipse.datatools.sqltools.plan;
  */
 public class PlanRequest
 {
-    /**
-     * Graphic execution plan
-     */
-    public static final int GRAPHIC_PLAN = 1;
-    
-    /**
-     * Text execution plan
-     */
-    public static final int TEXT_PLAN    = 0;
     
     /**
      * Make the SQL Execution Plan view visible and activated
@@ -55,20 +46,24 @@ public class PlanRequest
     
     /* The database definition id, use "product_name"_"version" to uniquely identify a database product */
     private String          _databaseDefinitionId;
-    /* The plan type, can be TEXT_PLAN or GRAPHIC_PLAN */
+    /* The plan type, each vendor can define their own plan types. The framework will use GRAPHIC_PLAN or TEXT_PLAN 
+     * to bitwise and this plan type to determine whether it's a graphic plan or text plan.*/
     private int             _planType;
     /* The SQL statement from which the execution plan is generated */
     private String          _sql;
     /* The show view mode */
     private int             _mode;
-    
+    /**
+     * Whether to execute the sql statement when retrieving the execution plan
+     */
+    private boolean _noexec;
     /**
      * Constructs a plan request
      * 
      * @param sql the SQL statement from which the execution plan is generated
      * @param databaseDefinitionId the database definition id, use "product_name"_"version" to uniquely identify a
      *            database product
-     * @param planType the plan type, can be TEXT_PLAN or GRAPHIC_PLAN
+     * @param planType the plan type, vendor-specific plan types
      * @param mode the show view mode
      */
     public PlanRequest(String sql, String databaseDefinitionId, int planType, int mode)
@@ -76,14 +71,7 @@ public class PlanRequest
         super();
         this._sql = sql == null ? "" : sql;
         this._databaseDefinitionId = databaseDefinitionId == null?"":databaseDefinitionId;
-        if (planType != TEXT_PLAN && planType != GRAPHIC_PLAN)
-        {
-            this._planType = TEXT_PLAN;
-        }
-        else
-        {
-            this._planType = planType;
-        }
+        this._planType = planType;
         
         if(mode != VIEW_ACTIVATE && mode != VIEW_CREATE && mode != VIEW_VISIBLE)
         {
@@ -163,5 +151,20 @@ public class PlanRequest
     public int getMode()
     {
         return _mode;
+    }
+    
+    /**
+     * @return Returns whether to execute the sql statement when retrieving the execution plan
+     */
+    public boolean isNoexec()
+    {
+        return _noexec;
+    }
+    /**
+     * @param _noexec Sets whether to execute the sql statement when retrieving the execution plan
+     */
+    public void setNoexec(boolean _noexec)
+    {
+        this._noexec = _noexec;
     }
 }

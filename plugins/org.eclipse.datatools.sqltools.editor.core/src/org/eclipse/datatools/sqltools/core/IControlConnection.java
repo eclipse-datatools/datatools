@@ -15,11 +15,15 @@ package org.eclipse.datatools.sqltools.core;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
+import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
+import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.contentassist.ContentAssistQueryRequest;
-import org.eclipse.datatools.sqltools.editor.contentassist.model.DBObject;
-import org.eclipse.datatools.sqltools.editor.contentassist.model.IDatatype;
+import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
+import org.eclipse.datatools.sqltools.sql.reference.DBObject;
+import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 
 /**
  * For each connected database, we keep a "control connection". This connection is used for all shared usage to that
@@ -121,27 +125,7 @@ public interface IControlConnection extends IAdaptable
      * @param string source code of the routine object
      * @throws SQLException
      */
-    public void saveStoredProcedure(ProcIdentifier proc, String string) throws SQLException;
-
-    /**
-     * Queries the database about database objects information based on the request. The following example demos the
-     * usage:
-     * 
-     * <pre>
-     * // build request object to get all columns for this table.
-     * ContentAssistQueryRequest req = new ContentAssistQueryRequest();
-     * req.setQueryType(ContentAssistQueryRequest.QUERY_GET_COLUMNS);
-     * req.setDatabaseName(db);
-     * req.setOwnerName(owner);
-     * req.setTableName(table);
-     * return fControlConnection.getContentAssistInfo(req);
-     * 
-     * </pre>
-     * 
-     * @param request ContentAssitQueryRequest
-     * @throws SQLException
-     */
-    public DBObject[] getContentAssistInfo(ContentAssistQueryRequest request) throws SQLException;
+    public void saveRoutine(ProcIdentifier proc, String string) throws SQLException;
 
     /**
      * NOTE: caller should check whether the return value is null.
@@ -152,11 +136,11 @@ public interface IControlConnection extends IAdaptable
     public IDBItem getDBItem(ProcIdentifier identifier);
 
     /**
-     * Creates a routine object in the database by executing the definition statement
+     * Creates or drops a routine object in the database by executing the definition statement
      * 
      * @param sql the ddl statements
      */
-    public void createRoutine(String[] sql) throws SQLException;
+    public void executeDDL(String[] sql) throws SQLException;
 
     /**
      * Refreshs all the cached routine object definitions. Wrapper method for connectivity layer.
@@ -188,22 +172,6 @@ public interface IControlConnection extends IAdaptable
     public boolean isTextHidden(DatabaseIdentifier databaseIdentifier, String dbObjectName, int dbObjectType);
 
     /**
-     * Tells the control connection should skip the specified connection. Normally this is the connection used by the
-     * debugger itself or other non-user connection.
-     * 
-     * @param connid the connection objectid
-     */
-    public void registerInternalConn(String connid);
-
-    /**
-     * Tells the control connection stop skipping the specified connection. Normally called when that connection is
-     * closed.
-     * 
-     * @param connid the connection objectid
-     */
-    public void unregisterInternalConn(String connid);
-
-    /**
      * As the connection id used inside IControlConnection may be different from those external ids. So sometimes when
      * people have external id and exteranl name, they need to convert to internal id first.
      * For vendors that don't care about it, just return the externalId is fine.
@@ -222,5 +190,8 @@ public interface IControlConnection extends IAdaptable
      * @return true if so; false otherwise
      */
     public boolean supportsDebugging();
+
+	public Connection createConnection(String[] connId) throws SQLException, CoreException, NoSuchProfileException;
+    
 
 }

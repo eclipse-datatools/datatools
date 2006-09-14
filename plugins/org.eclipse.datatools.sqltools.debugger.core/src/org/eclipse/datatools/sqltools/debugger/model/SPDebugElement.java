@@ -47,7 +47,7 @@ public class SPDebugElement extends PlatformObject implements IDebugElement
      */
     public String getModelIdentifier()
     {
-        return DebuggerCorePlugin.PLUGIN_ID;
+        return SPDebugModelUtil.getModelIdentifier();
     }
 
     /*
