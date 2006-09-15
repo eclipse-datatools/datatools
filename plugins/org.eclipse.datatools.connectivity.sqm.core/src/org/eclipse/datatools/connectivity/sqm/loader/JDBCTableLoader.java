@@ -11,12 +11,15 @@
 package org.eclipse.datatools.connectivity.sqm.loader;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
@@ -93,6 +96,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	public static final String TYPE_REF_DERIVED = "DERIVED"; //$NON-NLS-1$
 
 	private Map mTableFactories;
+	private boolean mSupportedColumnsInitialized;
 
 	/**
 	 * @param catalogObject the Database object upon which this loader operates.
@@ -121,12 +125,25 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadTables(List existingTables) throws SQLException {
-		List retVal = new ArrayList(existingTables.size());
+	public List loadTables() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
-			for (rs = createResultSet(); rs.next();) {
-				Table table = processRow(rs, existingTables);
+			rs = createResultSet();
+			if (!mSupportedColumnsInitialized) {
+				Set supportedColumns = new TreeSet();
+				ResultSetMetaData rsmd = rs.getMetaData();
+				for (int colNum = 1, colCount = rsmd.getColumnCount(); colNum <= colCount; ++colNum) {
+					supportedColumns.add(rsmd.getColumnName(colNum));
+				}
+				for (Iterator it = mTableFactories.values().iterator(); it
+						.hasNext();) {
+					((ITableFactory) it.next())
+							.setSupportedColumns(supportedColumns);
+				}
+			}
+			while (rs.next()) {
+				Table table = processRow(rs);
 				if (table != null) {
 					retVal.add(table);
 				}
@@ -137,11 +154,10 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearTables(existingTables);
 		}
 	}
 
-	protected void clearTables(List tables) {
+	public void clearTables(List tables) {
 		tables.clear();
 	}
 
@@ -160,8 +176,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Table processRow(ResultSet rs, List existingTables)
-			throws SQLException {
+	protected Table processRow(ResultSet rs) throws SQLException {
 		String tableName = rs.getString(COLUMN_TABLE_NAME);
 		if (tableName == null || isFiltered(tableName)) {
 			return null;
@@ -171,29 +186,12 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 			return null;
 		}
 
-		Table table = null;
-
 		ITableFactory tableFactory = (ITableFactory) mTableFactories
 				.get(tableType);
-		EClass tableClass = tableFactory.getTableEClass();
-		for (Iterator it = existingTables.iterator(); table != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (tableName.equals(((Table) obj).getName())
-					&& tableClass.isSuperTypeOf(((Table) obj).eClass())) {
-				table = (Table) obj;
-			}
-		}
-		if (table == null) {
-			table = tableFactory.createTable(rs);
-		}
-		else {
-			((ICatalogObject) table).refresh();
-			existingTables.remove(table);
-		}
+		Table table = tableFactory.createTable(rs);
 		return table;
 	}
-	
+
 	protected Schema getSchema() {
 		return (Schema) getCatalogObject();
 	}
@@ -208,13 +206,17 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	}
 
 	public static interface ITableFactory {
-		
+
 		EClass getTableEClass();
 
 		Table createTable(ResultSet rs) throws SQLException;
+
+		void setSupportedColumns(Set supportedColumns);
 	}
 
 	public static class TableFactory implements ITableFactory {
+
+		protected Set mSupportedColumns;
 
 		public EClass getTableEClass() {
 			return SQLTablesPackage.eINSTANCE.getPersistentTable();
@@ -226,28 +228,37 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 			return retVal;
 		}
 
+		public void setSupportedColumns(Set supportedColumns) {
+			mSupportedColumns = supportedColumns;
+		}
+
 		protected Table newTable() {
 			return new JDBCTable();
 		}
 
 		protected void initialize(Table table, ResultSet rs)
 				throws SQLException {
-			String srcg = rs.getString(COLUMN_REF_GENERATION);
-			if (TYPE_REF_SYSTEM.equals(srcg)) {
-				table
-						.setSelfRefColumnGeneration(ReferenceType.SYSTEM_GENERATED_LITERAL);
-			}
-			else if (TYPE_REF_USER.equals(srcg)) {
-				table
-						.setSelfRefColumnGeneration(ReferenceType.USER_GENERATED_LITERAL);
-			}
-			else if (TYPE_REF_DERIVED.equals(srcg)) {
-				table
-						.setSelfRefColumnGeneration(ReferenceType.DERIVED_SELF_REF_LITERAL);
+			if (mSupportedColumns.contains(COLUMN_REF_GENERATION)) {
+				String srcg = rs.getString(COLUMN_REF_GENERATION);
+				if (TYPE_REF_SYSTEM.equals(srcg)) {
+					table
+							.setSelfRefColumnGeneration(ReferenceType.SYSTEM_GENERATED_LITERAL);
+				}
+				else if (TYPE_REF_USER.equals(srcg)) {
+					table
+							.setSelfRefColumnGeneration(ReferenceType.USER_GENERATED_LITERAL);
+				}
+				else if (TYPE_REF_DERIVED.equals(srcg)) {
+					table
+							.setSelfRefColumnGeneration(ReferenceType.DERIVED_SELF_REF_LITERAL);
+				}
 			}
 
 			table.setName(rs.getString(COLUMN_TABLE_NAME));
-			table.setDescription(rs.getString(COLUMN_REMARKS));
+
+			if (mSupportedColumns.contains(COLUMN_REMARKS)) {
+				table.setDescription(rs.getString(COLUMN_REMARKS));
+			}
 
 			// String selfRefColName = rs
 			// .getString(COLUMN_SELF_REFERENCING_COL_NAME);
@@ -268,6 +279,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		public EClass getTableEClass() {
 			return SQLTablesPackage.eINSTANCE.getViewTable();
 		}
+
 		protected Table newTable() {
 			return new JDBCView();
 		}
@@ -278,6 +290,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		public EClass getTableEClass() {
 			return SQLTablesPackage.eINSTANCE.getTemporaryTable();
 		}
+
 		protected Table newTable() {
 			return new JDBCTemporaryTable();
 		}

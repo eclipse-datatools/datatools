@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.hierar;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.AbstractOnDemandContentProviderNav;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -45,6 +48,14 @@ public class ServerExplorerHierarContentProviderNav extends AbstractOnDemandCont
      * Will display all the databases available under this node for this database
      */
     protected Object[] displayDatabaseNodeChildren(Object parent)
+    {
+        return EMPTY_ELEMENT_ARRAY;
+    }
+
+    /**
+     * Will display all the databases available under this node for this database
+     */
+    protected Object[] displayCatalogNodeChildren(Object parent)
     {
         return EMPTY_ELEMENT_ARRAY;
     }
@@ -215,7 +226,33 @@ public class ServerExplorerHierarContentProviderNav extends AbstractOnDemandCont
     protected Object[] displayDatabaseChildren(Object parent)
     {
         Database database = (Database) parent;
-        return getArrays(parent, database.getSchemas());
+        List catalogs = new ArrayList(database.getCatalogs());
+        if (catalogs.size() == 0) {
+        	// probably a legacy loader which doesn't support catalogs
+        	System.err.println("No catalogs found for database.  Update catalog loader to support catalogs.");
+        	return getArrays(database,database.getSchemas());
+        }
+        for (Iterator it = catalogs.iterator(); it.hasNext();) {
+        	Catalog catalog = (Catalog)it.next();
+        	if (catalog.getName().length() == 0) {
+        		// handle special case for schema without a catalog
+        		it.remove();
+        		catalogs.addAll(catalog.getSchemas());
+        		break;
+        	}
+        }
+        return getArrays(parent, catalogs);
+    }
+
+    /**
+     * Will display the nodes availables under each Database Node
+     * @param parent - The catalog Node
+     * @return
+     */
+    protected Object[] displayCatalogChildren(Object parent)
+    {
+        Catalog catalog = (Catalog) parent;
+        return getArrays(parent, catalog.getSchemas());
     }
 
     /**

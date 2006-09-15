@@ -14,7 +14,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
@@ -35,20 +34,6 @@ import org.eclipse.emf.ecore.EClass;
  * Created on Aug 28, 2006
  */
 public class JDBCRoutineLoader extends JDBCBaseLoader {
-
-	/**
-	 * The column name containing the table name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getProcedures()
-	 */
-	public static final String COLUMN_PROCEDURE_CAT = "PROCEDURE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getProcedures()
-	 */
-	public static final String COLUMN_PROCEDURE_SCHEM = "PROCEDURE_SCHEM"; //$NON-NLS-1$
 
 	/**
 	 * The column name containing the catalog name.
@@ -106,12 +91,12 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadRoutines(List existingRoutines) throws SQLException {
-		List retVal = new ArrayList(existingRoutines.size());
+	public List loadRoutines() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
 			for (rs = createResultSet(); rs.next();) {
-				Routine routine = processRow(rs, existingRoutines);
+				Routine routine = processRow(rs);
 				if (routine != null) {
 					retVal.add(routine);
 				}
@@ -122,11 +107,10 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearRoutines(existingRoutines);
 		}
 	}
 
-	protected void clearRoutines(List routines) {
+	public void clearRoutines(List routines) {
 		routines.clear();
 	}
 
@@ -145,33 +129,15 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Routine processRow(ResultSet rs, List existingRoutines)
-			throws SQLException {
+	protected Routine processRow(ResultSet rs) throws SQLException {
 		String routineName = rs.getString(COLUMN_PROCEDURE_NAME);
 		if (routineName == null || isFiltered(routineName)) {
 			return null;
 		}
-		Routine routine = null;
 
 		IRoutineFactory routineFactory = rs.getShort(COLUMN_PROCEDURE_TYPE) == DatabaseMetaData.procedureNoResult ? mProcedureFactory
 				: mUserDefinedFunctionFactory;
-		EClass routineClass = routineFactory.getRoutineEClass();
-		for (Iterator it = existingRoutines.iterator(); routine != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (routineName.equals(((Routine) obj).getName())
-					&& routineClass.isSuperTypeOf(((Routine) obj).eClass())) {
-				routine = (Routine) obj;
-			}
-		}
-		if (routine == null) {
-			routine = routineFactory.createRoutine(rs);
-		}
-		else {
-			((ICatalogObject) routine).refresh();
-			existingRoutines.remove(routine);
-		}
-		return routine;
+		return routineFactory.createRoutine(rs);
 	}
 
 	protected Schema getSchema() {

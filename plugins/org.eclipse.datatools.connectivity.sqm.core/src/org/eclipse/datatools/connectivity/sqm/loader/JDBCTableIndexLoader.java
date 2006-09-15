@@ -38,27 +38,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 public class JDBCTableIndexLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_TABLE_CAT = "TABLE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_TABLE_NAME = "TABLE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getIndexes()
@@ -91,13 +70,6 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getIndexes()
 	 */
-	public static final String COLUMN_ORDINAL_POSITION = "ORDINAL_POSITION"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
 	public static final String COLUMN_COLUMN_NAME = "COLUMN_NAME"; //$NON-NLS-1$
 
 	/**
@@ -106,27 +78,6 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 	 * @see java.sql.DatabaseMetaData.getIndexes()
 	 */
 	public static final String COLUMN_ASC_OR_DESC = "ASC_OR_DESC"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_CARDINALITY = "CARDINALITY"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_PAGES = "PAGES"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
-	 */
-	public static final String COLUMN_FILTER_CONDITION = "FILTER_CONDITION"; //$NON-NLS-1$
 
 	public static final String TYPE_ORDER_ASC = "A"; //$NON-NLS-1$
 	public static final String TYPE_ORDER_DESC = "D"; //$NON-NLS-1$
@@ -150,15 +101,36 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadIndexes(List existingIndexes) throws SQLException {
-		List retVal = new ArrayList(existingIndexes.size());
+	public List loadIndexes() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			Index index = null;
 			for (rs = createResultSet(); rs.next();) {
-				Index index = processRow(rs, existingIndexes);
-				if (index != null) {
+				String indexName = rs.getString(COLUMN_INDEX_NAME);
+				if (indexName == null
+						|| isFiltered(indexName)
+						|| DatabaseMetaData.tableIndexStatistic == rs
+								.getShort(COLUMN_TYPE)) {
+					continue;
+				}
+				if (index == null || !index.getName().equals(indexName)) {
+					index = createIndex();
+					initIndex(index, rs);
 					retVal.add(index);
 				}
+				Column column = findColumn(rs.getString(COLUMN_COLUMN_NAME));
+				if (column == null) {
+					continue;
+				}
+				IndexMember im = createIndexMember();
+				if (im == null) {
+					continue;
+				}
+				im.setColumn(column);
+				im.setIncrementType(getIncrementType(rs
+						.getString(COLUMN_ASC_OR_DESC)));
+				index.getIncludedMembers().add(im);
 			}
 			return retVal;
 		}
@@ -166,11 +138,10 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearIndexes(existingIndexes);
 		}
 	}
 
-	protected void clearIndexes(List indexes) {
+	public void clearIndexes(List indexes) {
 		indexes.clear();
 	}
 
@@ -190,43 +161,16 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Index processRow(ResultSet rs, List existingIndexes)
-			throws SQLException {
-		String indexName = rs.getString(COLUMN_COLUMN_NAME);
-		if (indexName == null || isFiltered(indexName)) {
-			return null;
-		}
-		if (DatabaseMetaData.tableIndexStatistic == rs.getShort(COLUMN_TYPE)) {
-			// skip statistical indices
-			return null;
-		}
-		Index index = createIndex();
-		initialize(index, rs);
-		return index;
-	}
-
 	protected Index createIndex() {
 		return new JDBCIndex();
 	}
 
-	protected void initialize(Index index, ResultSet rs) throws SQLException {
+	protected void initIndex(Index index, ResultSet rs) throws SQLException {
 		index.setName(rs.getString(COLUMN_INDEX_NAME));
 		index.setUnique(!rs.getBoolean(COLUMN_NON_UNIQUE));
 		index.setSchema(findSchema(rs.getString(COLUMN_INDEX_QUALIFIER)));
 		index.setClustered(DatabaseMetaData.tableIndexClustered == rs
 				.getShort(COLUMN_TYPE));
-
-		Column column = findColumn(rs.getString(COLUMN_COLUMN_NAME));
-		if (column == null) {
-			return;
-		}
-		IndexMember im = createIndexMember();
-		if (im == null) {
-			return;
-		}
-		im.setColumn(column);
-		im.setIncrementType(getIncrementType(rs.getString(COLUMN_ASC_OR_DESC)));
-		index.getIncludedMembers().add(im);
 	}
 
 	protected Table getTable() {

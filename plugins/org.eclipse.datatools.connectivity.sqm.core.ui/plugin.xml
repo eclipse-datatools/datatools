@@ -278,6 +278,11 @@
 			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.CachedConnectionSelector"
 			displayType = "%cachedConnection">
 		</contributor>
+		<contributor
+			type = "org.eclipse.datatools.modelbase.sql.schema.Catalog"
+			iconLocation = "/icons/database.gif"
+			displayType = "%catalog">
+		</contributor>
 	</extension>
  <extension
        point="org.eclipse.ui.propertyPages">

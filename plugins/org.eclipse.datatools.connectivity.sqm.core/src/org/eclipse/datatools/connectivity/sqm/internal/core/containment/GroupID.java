@@ -25,4 +25,5 @@ public interface GroupID {
 	public static final String TRIGGER = "core.sql.tables.Trigger";  //$NON-NLS-1$
 	public static final String USER_DEFINED_TYPE = "core.sql.datatypes.UserDefinedType";  //$NON-NLS-1$
 	public static final String VIEW = "core.sql.tables.ViewTable";  //$NON-NLS-1$
+	public static final String CATALOG = "core.sql.schema.Catalog";  //$NON-NLS-1$
 }

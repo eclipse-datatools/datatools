@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Generic JDBC" version="1.0" maximumIdentifierLength="64" joinSupported="true" tablespacesSupported="false" maximumCommentLength="60" schemaSupported="true" aliasSupported="true" SQLStatementSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Generic JDBC" version="1.0" maximumIdentifierLength="64" joinSupported="true" tablespacesSupported="false" maximumCommentLength="60" schemaSupported="true" aliasSupported="true" SQLStatementSupported="true" userDefinedTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>

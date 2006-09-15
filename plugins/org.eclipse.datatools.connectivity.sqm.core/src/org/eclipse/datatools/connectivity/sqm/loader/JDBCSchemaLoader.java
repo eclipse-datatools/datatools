@@ -11,10 +11,12 @@
 package org.eclipse.datatools.connectivity.sqm.loader;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCSchema;
@@ -36,14 +38,16 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
-	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM"; //$NON-NLS-1$
+	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM";
 
 	/**
 	 * The column name containing the catalog name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
-	public static final String COLUMN_TABLE_CATALOG = "TABLE_CATALOG"; //$NON-NLS-1$
+	public static final String COLUMN_TABLE_CATALOG = "TABLE_CATALOG";
+
+	private Set mSupportedColumns;
 
 	/**
 	 * @param catalogObject the Database object upon which this loader operates.
@@ -63,12 +67,20 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadSchemas(List existingSchemas) throws SQLException {
-		List retVal = new ArrayList(existingSchemas.size());
+	public List loadSchemas() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
-			for (rs = createResultSet(); rs.next();) {
-				Schema schema = processRow(rs, existingSchemas);
+			rs = createResultSet();
+			if (mSupportedColumns == null) {
+				mSupportedColumns = new TreeSet();
+				ResultSetMetaData rsmd = rs.getMetaData();
+				for (int colNum = 1, colCount = rsmd.getColumnCount(); colNum <= colCount; ++colNum) {
+					mSupportedColumns.add(rsmd.getColumnName(colNum));
+				}
+			}
+			while (rs.next()) {
+				Schema schema = processRow(rs);
 				if (schema != null) {
 					retVal.add(schema);
 				}
@@ -79,16 +91,15 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearSchemas(existingSchemas);
 		}
 	}
 
-	protected void clearSchemas(List schemas) {
+	public void clearSchemas(List schemas) {
 		schemas.clear();
 	}
 
 	protected ResultSet createResultSet() throws SQLException {
-		return getCatalogObject().getConnection().getMetaData().getCatalogs();
+		return getCatalogObject().getConnection().getMetaData().getSchemas();
 	}
 
 	protected void closeResultSet(ResultSet rs) {
@@ -99,36 +110,34 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Schema processRow(ResultSet rs, List existingSchemas)
-			throws SQLException {
-		Catalog catalog = getCatalog();
-		String catalogName = rs.getString(COLUMN_TABLE_CATALOG);
-		if (!catalog.getName().equals(catalogName)
-				|| (catalogName == null && catalog.getName().length() != 0)) {
-			return null;
+	protected Schema processRow(ResultSet rs) throws SQLException {
+		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
+			Catalog catalog = getCatalog();
+			String catalogName = rs.getString(COLUMN_TABLE_CATALOG);
+			if (!catalog.getName().equals(catalogName)
+					|| (catalogName == null && catalog.getName().length() != 0)) {
+				return null;
+			}
+		}
+		else {
+			// work around. some databases only return the schema column
+			// check to see if the current catalog matches this catalog or
+			// if the current catalog does not exist and this is the catalog
+			// for objects without a catalog.
+			if (!getCatalog().getName().equals(
+					getCatalogObject().getConnection().getCatalog())
+					&& !(getCatalog().getName().length() == 0 && getCatalogObject()
+							.getConnection().getCatalog() == null)) {
+				return null;
+			}
 		}
 
 		String schemaName = rs.getString(COLUMN_TABLE_SCHEM);
 		if (schemaName == null || isFiltered(schemaName)) {
 			return null;
 		}
-		Schema schema = null;
-		for (Iterator it = existingSchemas.iterator(); schema != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (obj instanceof Schema
-					&& schemaName.equals(((Schema) obj).getName())) {
-				schema = (Schema) obj;
-			}
-		}
-		if (schema == null) {
-			schema = createSchema();
-			initialize(schema, rs);
-		}
-		else {
-			((ICatalogObject) schema).refresh();
-			existingSchemas.remove(schema);
-		}
+		Schema schema = createSchema();
+		initialize(schema, rs);
 		return schema;
 	}
 

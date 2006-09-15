@@ -31,27 +31,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 public class JDBCUDTSuperTypeLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_CAT = "TYPE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_SCHEM = "TYPE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_NAME = "TYPE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()

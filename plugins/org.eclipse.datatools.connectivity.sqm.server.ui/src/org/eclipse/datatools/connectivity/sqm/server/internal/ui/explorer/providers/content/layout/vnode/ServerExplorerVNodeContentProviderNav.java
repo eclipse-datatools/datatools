@@ -19,7 +19,9 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.AbstractOnDemandContentProviderNav;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -49,10 +51,15 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	private static final String DEPENDENCY = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.DEPENDENCY"); //$NON-NLS-1$
 	private static final String STORED_PROCEDURE = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE");  //$NON-NLS-1$
 	private static final String UDF = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.UDF"); //$NON-NLS-1$
+	private static final String CATALOG = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.CATALOG"); //$NON-NLS-1$
 	
 	private DatabaseDefinition  getDatabaseDefinition (Object parent)
 	{
-	    if (parent instanceof Schema)
+	    if (parent instanceof ICatalogObject)
+	    {
+	        return registry.getDefinition(((ICatalogObject)parent).getCatalogDatabase());
+	    }
+	    else if (parent instanceof Schema)
 	    {
 	        return registry.getDefinition(((Schema)parent).getDatabase());
 	    }
@@ -77,6 +84,17 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	    return list;
 	}
 	
+	protected Object[] displayCatalogNodeChildren(Object parent) {
+		Database database = (Database) ((IVirtualNode)parent).getParent();
+		return getArrays(parent, getChildren(((IVirtualNode)parent).getGroupID(), database.getCatalogs()));
+	}
+
+	protected Object[] displayCatalogChildren(Object parent) {
+		List collection = new ArrayList (1);
+		collection.add(nodeFactory.makeSchemaNode(SCHEMA, SCHEMA, parent));
+		return getArrays (parent, collection);
+	}
+
 	/**
 	 * Will display all the schemas available under this Node for this database
 	 * @param schemaNode
@@ -84,10 +102,14 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 */
 	protected Object[] displaySchemaNodeChildren (Object parent)
 	{
-		Database database = (Database) ((IVirtualNode)parent).getParent();
-		return getArrays(parent, getChildren(((IVirtualNode)parent).getGroupID(), database.getSchemas()));
+		Object modelParent = ((IVirtualNode)parent).getParent();
+		if (modelParent instanceof Catalog) {
+			return getArrays(parent, getChildren(((IVirtualNode)parent).getGroupID(), ((Catalog)modelParent).getSchemas()));
+		}
+		else {
+			return getArrays(parent, getChildren(((IVirtualNode)parent).getGroupID(), ((Database)modelParent).getSchemas()));
+		}
 	}
-	
 
 	/**
 	 * Will display all the Nodes available under each schemas
@@ -275,16 +297,40 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 * @param parent - The database Node
 	 * @return
 	 */
-	protected Object [] displayDatabaseChildren (Object parent)
-	{
-		List collection = new ArrayList (1);
-		collection.add(nodeFactory.makeSchemaNode(SCHEMA, SCHEMA, parent));
-		return getArrays (parent, collection);
+	protected Object[] displayDatabaseChildren(Object parent) {
+		List collection = new ArrayList(2);
+		List catalogs = ((Database) parent).getCatalogs();
+		if (catalogs.size() == 0) {
+			// probably a legacy loader which doesn't support catalogs
+			System.err
+					.println("No catalogs found for database.  Update catalog loader to support catalogs.");
+			collection.add(nodeFactory.makeSchemaNode(SCHEMA, SCHEMA, parent));
+		}
+		else {
+			for (Iterator it = catalogs.iterator(); it.hasNext();) {
+				Catalog catalog = (Catalog) it.next();
+				if (catalog.getName().length() == 0) {
+					// Handle special case where catalog name == "". This
+					// catalog
+					// contains schema not belonging to any specific catalog.
+					collection.add(nodeFactory.makeSchemaNode(SCHEMA, SCHEMA,
+							catalog));
+					break;
+				}
+			}
+		}
+
+		if (collection.size() == 0 || catalogs.size() > 1) {
+			// if this db doesn't support catalogs, we can skip this
+			collection.add(nodeFactory
+					.makeCatalogNode(CATALOG, CATALOG, parent));
+		}
+		return getArrays(parent, collection);
 	}
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.AbstractOnDemandContentProviderNav#displayDependencyNodeChildren(java.lang.Object)
-     */
+	 * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.AbstractOnDemandContentProviderNav#displayDependencyNodeChildren(java.lang.Object)
+	 */
     protected Object[] displayDependencyNodeChildren(Object parent)
     {
 		SQLObject object = (SQLObject) ((IVirtualNode)parent).getParent();

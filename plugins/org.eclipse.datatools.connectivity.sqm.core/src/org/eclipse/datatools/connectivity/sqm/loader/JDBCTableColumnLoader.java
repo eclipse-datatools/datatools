@@ -47,27 +47,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class JDBCTableColumnLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_CAT = "TABLE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_NAME = "TABLE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
@@ -107,13 +86,6 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
-	public static final String COLUMN_NUM_PREC_RADIX = "NUM_PREC_RADIX"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
 	public static final String COLUMN_NULLABLE = "NULLABLE"; //$NON-NLS-1$
 
 	/**
@@ -135,20 +107,6 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
-	public static final String COLUMN_CHAR_OCTET_LENGTH = "CHAR_OCTET_LENGTH"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_ORDINAL_POSITION = "ORDINAL_POSITION"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
 	public static final String COLUMN_SCOPE_CATALOG = "SCOPE_CATALOG"; //$NON-NLS-1$
 
 	/**
@@ -164,13 +122,6 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_SCOPE_TABLE = "SCOPE_TABLE"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_SOURCE_DATA_TYPE = "SOURCE_DATA_TYPE"; //$NON-NLS-1$
 
 	private Pattern mUDTNameMatcherPattern;
 	private boolean mCatalogAtStart;
@@ -194,12 +145,12 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadColumns(List existingColumns) throws SQLException {
-		List retVal = new ArrayList(existingColumns.size());
+	public List loadColumns() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
 			for (rs = createResultSet(); rs.next();) {
-				Column column = processRow(rs, existingColumns);
+				Column column = processRow(rs);
 				if (column != null) {
 					retVal.add(column);
 				}
@@ -210,11 +161,10 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearColumns(existingColumns);
 		}
 	}
 
-	protected void clearColumns(List columns) {
+	public void clearColumns(List columns) {
 		columns.clear();
 	}
 
@@ -234,24 +184,12 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Column processRow(ResultSet rs, List existingColumns)
-			throws SQLException {
+	protected Column processRow(ResultSet rs) throws SQLException {
 		String columnName = rs.getString(COLUMN_COLUMN_NAME);
 		if (columnName == null || isFiltered(columnName)) {
 			return null;
 		}
-		Column column = null;
-		for (Iterator it = existingColumns.iterator(); column != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (obj instanceof Column
-					&& columnName.equals(((Column) obj).getName())) {
-				column = (Column) obj;
-			}
-		}
-		if (column == null) {
-			column = createColumn();
-		}
+		Column column = createColumn();
 		initialize(column, rs);
 		return column;
 	}
@@ -261,7 +199,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	}
 
 	protected void initialize(Column column, ResultSet rs) throws SQLException {
-		column.setName(rs.getString(COLUMN_TABLE_SCHEM));
+		column.setName(rs.getString(COLUMN_COLUMN_NAME));
 		column.setDescription(rs.getString(COLUMN_REMARKS));
 		column.setDefaultValue(rs.getString(COLUMN_COLUMN_DEF));
 
@@ -279,7 +217,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 
 		// See if it's a predefined type
 		List pdts = getDatabaseDefinition()
-				.getPredefinedDataTypeDefinitionsByJDBCEnumType(typeCode);
+				.getPredefinedDataTypesByJDBCEnumType(typeCode);
 		if (typeName == null && pdts.size() > 0) {
 			pdt = (PredefinedDataType) pdts.get(0);
 		}
@@ -456,10 +394,28 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 			return null;
 		}
 		if (catalogScope == null) {
-			catalogScope = new String();
+			catalogScope = getTable().getSchema().getCatalog().getName();
+			try {
+				if (getCatalogObject().getConnection().getMetaData()
+						.supportsCatalogsInTableDefinitions()) {
+					catalogScope = new String();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		if (schemaScope == null) {
-			schemaScope = new String();
+			schemaScope = getTable().getSchema().getName();
+			try {
+				if (getCatalogObject().getConnection().getMetaData()
+						.supportsSchemasInTableDefinitions()) {
+					schemaScope = new String();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		Database db = getCatalogObject().getCatalogDatabase();

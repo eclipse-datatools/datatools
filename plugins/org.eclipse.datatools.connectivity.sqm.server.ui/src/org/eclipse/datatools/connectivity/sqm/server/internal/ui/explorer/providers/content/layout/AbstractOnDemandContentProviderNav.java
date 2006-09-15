@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
@@ -37,6 +38,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
@@ -109,12 +111,18 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 	protected abstract Object[] displayConstraintChildren (Object parent);
 	protected abstract Object [] displayUDFNodeChildren (Object parent);
 	protected abstract Object [] displayStoredProcedureNodeChildren (Object parent);
+	protected abstract Object[] displayCatalogNodeChildren (Object parent);
+	protected abstract Object[] displayCatalogChildren (Object parent);
 
 	private Object [] getChildren (EObject parent)
 	{
 		if (parent instanceof Database && containmentService.getGroupId(parent) == GroupID.DATABASE) 
 		{
 			return displayDatabaseChildren (parent);
+		}
+		else if (parent instanceof Catalog && containmentService.getGroupId(parent) == GroupID.CATALOG)
+		{
+			return displayCatalogChildren (parent);
 		}
 		else if (parent instanceof Schema && containmentService.getGroupId(parent) == GroupID.SCHEMA)
 		{
@@ -164,6 +172,10 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 		else if (parent instanceof IConnectionNode)
 		{
 			return displayServerChildren (parent);
+		}
+		else if (parent instanceof ICatalogNode)
+		{
+			return displayCatalogNodeChildren (parent);
 		}
 		else if (parent instanceof ISchemaNode)
 		{

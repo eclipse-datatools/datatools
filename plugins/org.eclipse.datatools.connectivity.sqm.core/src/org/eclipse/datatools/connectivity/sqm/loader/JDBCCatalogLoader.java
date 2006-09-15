@@ -13,7 +13,7 @@ package org.eclipse.datatools.connectivity.sqm.loader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
@@ -57,15 +57,21 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadCatalogs(List existingCatalogs) throws SQLException {
-		List retVal = new ArrayList(existingCatalogs.size());
+	public Collection loadCatalogs() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
 			for (rs = createResultSet(); rs.next();) {
-				Catalog catalog = processRow(rs, existingCatalogs);
+				Catalog catalog = processRow(rs);
 				if (catalog != null) {
 					retVal.add(catalog);
 				}
+			}
+			if (retVal.size() == 0) {
+				// Create a default catalog
+				Catalog catalog = createCatalog();
+				catalog.setName(new String());
+				retVal.add(catalog);
 			}
 			return retVal;
 		}
@@ -73,11 +79,10 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearCatalogs(existingCatalogs);
 		}
 	}
 
-	protected void clearCatalogs(List catalogs) {
+	public void clearCatalogs(Collection catalogs) {
 		catalogs.clear();
 	}
 
@@ -93,29 +98,13 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected Catalog processRow(ResultSet rs, List existingCatalogs)
-			throws SQLException {
+	protected Catalog processRow(ResultSet rs) throws SQLException {
 		String catalogName = rs.getString(COLUMN_TABLE_CAT);
 		if (catalogName == null || isFiltered(catalogName)) {
 			return null;
 		}
-		Catalog catalog = null;
-		for (Iterator it = existingCatalogs.iterator(); catalog != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (obj instanceof Catalog
-					&& catalogName.equals(((Catalog) obj).getName())) {
-				catalog = (Catalog) obj;
-			}
-		}
-		if (catalog == null) {
-			catalog = createCatalog();
-			initialize(catalog, rs);
-		}
-		else {
-			((ICatalogObject) catalog).refresh();
-			existingCatalogs.remove(catalog);
-		}
+		Catalog catalog = createCatalog();
+		initialize(catalog, rs);
 		return catalog;
 	}
 

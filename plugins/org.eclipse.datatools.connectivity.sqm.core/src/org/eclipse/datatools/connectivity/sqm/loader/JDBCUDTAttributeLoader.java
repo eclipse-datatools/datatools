@@ -47,27 +47,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_CAT = "TYPE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_SCHEM = "TYPE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TYPE_NAME = "TYPE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
@@ -107,13 +86,6 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
-	public static final String COLUMN_NUM_PREC_RADIX = "NUM_PREC_RADIX"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
 	public static final String COLUMN_NULLABLE = "NULLABLE"; //$NON-NLS-1$
 
 	/**
@@ -135,20 +107,6 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
-	public static final String COLUMN_CHAR_OCTET_LENGTH = "CHAR_OCTET_LENGTH"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_ORDINAL_POSITION = "ORDINAL_POSITION"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
 	public static final String COLUMN_SCOPE_CATALOG = "SCOPE_CATALOG"; //$NON-NLS-1$
 
 	/**
@@ -164,13 +122,6 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_SCOPE_TABLE = "SCOPE_TABLE"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_SOURCE_DATA_TYPE = "SOURCE_DATA_TYPE"; //$NON-NLS-1$
 
 	private Pattern mUDTNameMatcherPattern;
 	private boolean mCatalogAtStart;
@@ -274,7 +225,7 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 
 	protected void initAttributeDefinitionType(AttributeDefinition attrDef,
 			ResultSet rs) throws SQLException {
-		String typeName = rs.getString(COLUMN_TYPE_NAME);
+		String typeName = rs.getString(COLUMN_ATTR_TYPE_NAME);
 		int typeCode = rs.getInt(COLUMN_DATA_TYPE);
 		PredefinedDataType pdt = null;
 

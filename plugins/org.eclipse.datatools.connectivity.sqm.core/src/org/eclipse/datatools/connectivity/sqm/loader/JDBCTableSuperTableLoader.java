@@ -29,27 +29,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_CAT = "TABLE_CAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_TABLE_NAME = "TABLE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()

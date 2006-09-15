@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
@@ -46,4 +47,5 @@ public interface IVirtualNodeServiceFactory
 	public IIndexNode makeIndexNode (String name, String displayName, Object parent);
 	public IConstraintNode makeConstraintNode (String name, String displayName, Object parent);
 	public IDependencyNode makeDependencyNode (String name, String displayName, Object parent);
+	public ICatalogNode makeCatalogNode (String name, String displayName, Object parent);
 }

@@ -16,9 +16,11 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCForeignKey;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCPrimaryKey;
@@ -33,6 +35,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
 
 /**
  * Base loader implementation for loading a database's catalog objects. This
@@ -193,8 +197,9 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 			for (Iterator it = constraints.entrySet().iterator(); it.hasNext();) {
 				Map.Entry entry = (Map.Entry) it.next();
 				UniqueConstraint uc = (UniqueConstraint) entry.getValue();
-				for (Iterator colIt = ((Map) constraintColumns.get(entry
-						.getKey())).values().iterator(); colIt.hasNext();) {
+				for (Iterator colIt = ((Map) constraintColumns
+						.get(uc.getName())).values().iterator(); colIt
+						.hasNext();) {
 					uc.getMembers().add(colIt.next());
 				}
 			}
@@ -212,7 +217,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		try {
 			Map constraints = new HashMap();
 			Map constraintColumns = new HashMap();
-			for (rs = createUniqueConstraintResultSet(); rs.next();) {
+			for (rs = createForeignKeyResultSet(); rs.next();) {
 				String fkName = rs.getString(COLUMN_FK_NAME);
 				if (!constraints.containsKey(fkName)) {
 					// create the next FK
@@ -287,10 +292,12 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 			for (Iterator it = constraints.entrySet().iterator(); it.hasNext();) {
 				Map.Entry entry = (Map.Entry) it.next();
 				ForeignKey fk = (ForeignKey) entry.getValue();
-				for (Iterator colIt = ((Map) constraintColumns.get(entry
-						.getKey())).values().iterator(); colIt.hasNext();) {
+				for (Iterator colIt = ((Map) constraintColumns
+						.get(fk.getName())).values().iterator(); colIt
+						.hasNext();) {
 					fk.getMembers().add(colIt.next());
 				}
+				initReferenceAnnotation(fk);
 			}
 			return constraints.values();
 		}
@@ -299,6 +306,10 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 				closeResultSet(rs);
 			}
 		}
+	}
+
+	public void clearConstraints(EList constraintContainer, List remove) {
+		constraintContainer.removeAll(remove);
 	}
 
 	protected ResultSet createPrimaryKeyResultSet() throws SQLException {
@@ -312,11 +323,9 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	protected ResultSet createUniqueConstraintResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
-		// this is a bit more robust than using getExportedKeys(). some
-		// implementations of getExportedKeys() only return primary keys.
 		return getCatalogObject().getConnection().getMetaData()
-				.getCrossReference(schema.getCatalog().getName(),
-						schema.getName(), table.getName(), null, null, "%");
+				.getExportedKeys(schema.getCatalog().getName(),
+						schema.getName(), table.getName());
 	}
 
 	protected ResultSet createForeignKeyResultSet() throws SQLException {
@@ -349,6 +358,39 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 
 	protected Table getTable() {
 		return (Table) getCatalogObject();
+	}
+
+	protected void initReferenceAnnotation(ForeignKey fk) {
+		EAnnotation eAnnotation = fk
+				.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
+		fk.addEAnnotationDetail(eAnnotation,
+				RDBCorePlugin.FK_IS_IDENTIFYING_RELATIONSHIP, new Boolean(
+						foreignKeyIsIdentifyingRelationship(fk)).toString());
+
+		fk.addEAnnotationDetail(eAnnotation,
+				RDBCorePlugin.FK_CHILD_MULTIPLICITY, RDBCorePlugin.MANY);
+		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_CHILD_ROLE_NAME,
+				new String());
+		fk.addEAnnotationDetail(eAnnotation,
+				RDBCorePlugin.FK_PARENT_MULTIPLICITY,
+				(fk.getMembers().size() > 0) ? RDBCorePlugin.ZERO_TO_ONE
+						: RDBCorePlugin.ONE);
+		fk.addEAnnotationDetail(eAnnotation, RDBCorePlugin.FK_PARENT_ROLE_NAME,
+				new String());
+	}
+
+	protected boolean foreignKeyIsIdentifyingRelationship(ForeignKey fk) {
+		boolean isIdentifying = true;
+
+		for (Iterator it = fk.getMembers().iterator(); it.hasNext();) {
+			Column column = (Column) it.next();
+			if (!column.isPartOfPrimaryKey()) {
+				isIdentifying = false;
+				break;
+			}
+		}
+
+		return isIdentifying;
 	}
 
 	protected Column findColumn(String columnName) {
@@ -390,10 +432,28 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 			return null;
 		}
 		if (catalogName == null) {
-			catalogName = new String();
+			catalogName = getTable().getSchema().getCatalog().getName();
+			try {
+				if (getCatalogObject().getConnection().getMetaData()
+						.supportsCatalogsInTableDefinitions()) {
+					catalogName = new String();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		if (schemaName == null) {
-			schemaName = new String();
+			schemaName = getTable().getSchema().getName();
+			try {
+				if (getCatalogObject().getConnection().getMetaData()
+						.supportsSchemasInTableDefinitions()) {
+					schemaName = new String();
+				}
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		Database db = getCatalogObject().getCatalogDatabase();
@@ -418,4 +478,5 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		}
 		return null;
 	}
+
 }

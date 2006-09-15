@@ -73,6 +73,11 @@
             class="UserDefinedType"
             provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.UserDefinedTypeContainmentProvider">
       </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/schema.ecore"
+            class="Catalog"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.CatalogContainmentProvider">
+      </containment>
    </extension>
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">

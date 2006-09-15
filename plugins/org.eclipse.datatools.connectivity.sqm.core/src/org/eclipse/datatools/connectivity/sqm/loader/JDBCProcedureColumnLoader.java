@@ -49,27 +49,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the catalog name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_PROCEDURE_CAT = "PROCEDURECAT"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_PROCEDURE_SCHEM = "PROCEDURE_SCHEM"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_PROCEDURE_NAME = "PROCEDURE_NAME"; //$NON-NLS-1$
-
-	/**
 	 * The column name containing the schema name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
@@ -81,7 +60,7 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
-	public static final String COLUMN_COLUMN_TYPE = "DATA_TYPE"; //$NON-NLS-1$
+	public static final String COLUMN_COLUMN_TYPE = "COLUMN_TYPE"; //$NON-NLS-1$
 
 	/**
 	 * The column name containing the schema name.
@@ -117,13 +96,6 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_SCALE = "SCALE"; //$NON-NLS-1$
-
-	/**
-	 * The column name containing the schema name.
-	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
-	 */
-	public static final String COLUMN_RADIX = "RADIX"; //$NON-NLS-1$
 
 	/**
 	 * The column name containing the schema name.

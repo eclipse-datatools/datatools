@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
@@ -146,4 +147,10 @@ public class VirtualNodeServiceFactory implements IVirtualNodeServiceFactory
     {
         return new UDFNode (name, displayName, parent);
     }
+
+	public ICatalogNode makeCatalogNode(String name, String displayName, Object parent)
+	{
+		return new CatalogNode (name, displayName, parent);
+	}
+
 }

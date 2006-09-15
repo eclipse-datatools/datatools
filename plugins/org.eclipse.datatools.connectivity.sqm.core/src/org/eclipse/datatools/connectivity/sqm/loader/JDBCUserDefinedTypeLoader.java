@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -115,12 +114,12 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadUDTs(List existingUDTs) throws SQLException {
-		List retVal = new ArrayList(existingUDTs.size());
+	public List loadUDTs() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
 			for (rs = createResultSet(); rs.next();) {
-				UserDefinedType udt = processRow(rs, existingUDTs);
+				UserDefinedType udt = processRow(rs);
 				if (udt != null) {
 					retVal.add(udt);
 				}
@@ -131,11 +130,10 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearUDTs(existingUDTs);
 		}
 	}
 
-	protected void clearUDTs(List existingUDTs) {
+	public void clearUDTs(List existingUDTs) {
 		existingUDTs.clear();
 	}
 
@@ -154,13 +152,11 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected UserDefinedType processRow(ResultSet rs, List existingUDTs)
-			throws SQLException {
+	protected UserDefinedType processRow(ResultSet rs) throws SQLException {
 		String udtName = rs.getString(COLUMN_TYPE_NAME);
 		if (udtName == null || isFiltered(udtName)) {
 			return null;
 		}
-		UserDefinedType udt = null;
 
 		IUDTFactory udtFactory = null;
 		switch (rs.getInt(COLUMN_DATA_TYPE)) {
@@ -178,22 +174,7 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 			return null;
 		}
 
-		EClass udtClass = udtFactory.getUDTEClass();
-		for (Iterator it = existingUDTs.iterator(); udt != null && it.hasNext();) {
-			Object obj = it.next();
-			if (udtName.equals(((UserDefinedType) obj).getName())
-					&& udtClass.isSuperTypeOf(((UserDefinedType) obj).eClass())) {
-				udt = (UserDefinedType) obj;
-			}
-		}
-		if (udt == null) {
-			udt = udtFactory.createUDT(rs);
-		}
-		else {
-			((ICatalogObject) udt).refresh();
-			existingUDTs.remove(udt);
-		}
-		return udt;
+		return udtFactory.createUDT(rs);
 	}
 
 	protected Schema getSchema() {
