@@ -61,7 +61,9 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	private void register() {
 		ProfileManager pManager = ProfileManager.getInstance();
         IConnectionProfile[] profiles = ProfileUtil.getProfiles();
-        pManager.addProfileListener(new SQLToolsProfileProxyListener(profiles));
+        SQLToolsProfileProxyListener listener = SQLToolsProfileProxyListener.getInstance();
+        listener.init(profiles);
+        pManager.addProfileListener(listener);
 	}
 	
 	/**

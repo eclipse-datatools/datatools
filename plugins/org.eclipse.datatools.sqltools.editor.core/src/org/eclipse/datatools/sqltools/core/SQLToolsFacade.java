@@ -206,20 +206,26 @@ public class SQLToolsFacade
 	 */
     public static SQLDevToolsConfiguration getDefaultConfiguration()
     {
-    	return SQLDevToolsConfigRegistryImpl.getDefaultConfiguration();
+    	SQLDevToolsConfiguration defaultConfiguration = SQLDevToolsConfigRegistryImpl.getDefaultConfiguration();
+    	if (defaultConfiguration == null)
+    	{
+    		defaultConfiguration = SQLDevToolsConfiguration.getDefaultInstance();
+    	}
+		return defaultConfiguration;
     }
     
     public static DatabaseVendorDefinitionId recognize(String product, String version)
     {
+    	DatabaseVendorDefinitionId defaultId = getDefaultConfiguration().getDatabaseVendorDefinitionId();
     	Collection configs = getConfigurations();
     	for (Iterator iter = configs.iterator(); iter.hasNext();) {
     		SQLDevToolsConfiguration conf = (SQLDevToolsConfiguration) iter.next();
-			if (conf.recognize(product, version) && !(conf.equals(SQLDevToolsConfiguration.getDefaultInstance())))
+			if (conf.recognize(product, version) && !(conf.getDatabaseVendorDefinitionId().equals(defaultId)))
 			{
 				return conf.getDatabaseVendorDefinitionId();
 			}
 		}
-    	return SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId();
+		return defaultId;
     }
     
     //temporary methods, to be inlined.

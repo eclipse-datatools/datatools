@@ -1235,8 +1235,17 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     protected void refreshActionStatus()
     {
         List actionList = new ArrayList();
-        actionList.add(getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
-        actionList.add(getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
+        IAction action = getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
+        if (action != null)
+        {
+        	actionList.add(action);
+        }
+        action = getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
+        if (action != null)
+        {
+        	actionList.add(action);
+        }
+        //TODO notify ISQLEditorActionContributorExtension
         
         Iterator iterator = actionList.iterator();
         while (iterator.hasNext())

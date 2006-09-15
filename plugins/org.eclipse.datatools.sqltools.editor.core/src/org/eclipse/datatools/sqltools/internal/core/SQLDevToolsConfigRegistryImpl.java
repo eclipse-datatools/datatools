@@ -237,8 +237,18 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     	return DEFAULT_CONFIG;
     }
 
-    public void addConfigurationRegistryListener(IConfigurationRegistryListener listener)
+    public void addConfigurationRegistryListener(final IConfigurationRegistryListener listener)
     {
-    	_listeners .add(listener);
+    	_listeners.add(listener);
+    	if (_factoriesLoaded)
+    	{
+    		new Thread()
+			{
+				public void run()
+				{
+					listener.configurationLoaded();
+				}
+			}.start();
+    	}
     }
 }

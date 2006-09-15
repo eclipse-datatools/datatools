@@ -28,7 +28,24 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
     SQLToolsProfileListenersManager _dmpProfileManager;
     SQLToolsConnectListenersManager _dmpConnectManager;
 
-    public SQLToolsProfileProxyListener(IConnectionProfile[] profiles)
+    private static SQLToolsProfileProxyListener INSTANCE = null;
+    
+    private SQLToolsProfileProxyListener()
+    {
+    	_dmpProfileManager = SQLToolsProfileListenersManager.getInstance();
+        _dmpConnectManager = SQLToolsConnectListenersManager.getInstance();
+    }
+    
+    public static synchronized SQLToolsProfileProxyListener getInstance()
+    {
+    	if (INSTANCE == null)
+    	{
+    		INSTANCE = new SQLToolsProfileProxyListener();
+    	}
+    	return INSTANCE;
+    }
+    
+    public void init(IConnectionProfile[] profiles)
     {
         for (int i = 0; i < profiles.length; i++)
         {
@@ -36,8 +53,7 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
             IManagedConnection mc = profiles[i].getManagedConnection(ConnectionInfo.class.getName());
             mc.addConnectionListener(this);
         }
-        _dmpProfileManager = SQLToolsProfileListenersManager.getInstance();
-        _dmpConnectManager = SQLToolsConnectListenersManager.getInstance();
+        
     }
 
     public void profileAdded(IConnectionProfile profile)
@@ -61,14 +77,12 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         //Modified by Daniel.
         IControlConnection[] controlConnections = EditorCorePlugin.getControlConnectionManager().getControlConnections(profile.getName());
 
-        if (controlConnections == null || controlConnections.length == 0)
+        if (controlConnections != null )
         {
-        	return;
-        }
-        
-        for (int i = 0; i < controlConnections.length; i++)
-        {
-            controlConnections[i].disconnect(true);
+        	for (int i = 0; i < controlConnections.length; i++)
+        	{
+        		controlConnections[i].disconnect(true);
+        	}
         }
 
         //self clean up
@@ -105,19 +119,19 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         //controlconnection
 
         IControlConnection[] controlCons = EditorCorePlugin.getControlConnectionManager().getControlConnections(oldName);
-        //for supporting multi db profile, multi controlConnections are returned by profileName.
-        //Those controlConnections are closed when this profile is deleted.
-        //Modified by Daniel.    
-        for (int n = 0; n < controlCons.length; n++)
+        if (controlCons != null )
         {
-            if(onlyNameChanged)
-            {
-                controlCons[n].profileRenamed(profile.getName());
-            }
-            else
-            {
-                controlCons[n].disconnect(true);
-            }
+        	// for supporting multi db profile, multi controlConnections are
+        	// returned by profileName.
+			// Those controlConnections are closed when this profile is deleted.
+			// Modified by Daniel.
+			for (int n = 0; n < controlCons.length; n++) {
+				if (onlyNameChanged) {
+					controlCons[n].profileRenamed(profile.getName());
+				} else {
+					controlCons[n].disconnect(true);
+				}
+			}
         }
         _dmpProfileManager.fireProfileChanged(profile, oldName, oldDesc, oldAutoConnect, onlyNameChanged, oldProfile);
     }

@@ -36,4 +36,15 @@ public class GenericDBConfiguration extends SQLDevToolsConfiguration {
 		return new GenericSQLService();
 	}
 	
+	/**
+	 * Always returns true since this configuration class can be used
+	 * to handle all kinds of databases.
+	 * @param product
+	 * @param version
+	 * @return
+	 */
+	public boolean recognize(String product, String version)
+	{
+		return true;
+	}
 }

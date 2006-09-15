@@ -24,6 +24,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -128,20 +129,15 @@ public class ModelUtil {
 			} else {
 				EList schemas = db.getSchemas();
 				if (schemas == null || schemas.size() == 0) {
-					EStructuralFeature catalogsFeature = db.eClass()
-							.getEStructuralFeature("catalogs");
-					// TODO MO temporary solution
-					EList catalogs = (EList) db.eGet(catalogsFeature);
+					EList catalogs = db.getCatalogs();
 					if (catalogs != null) {
 						for (Iterator iter = catalogs.iterator(); iter
 								.hasNext();) {
-							SQLObject catalog = (SQLObject) iter.next();
+							Catalog catalog = (Catalog) iter.next();
 							if (catalog.getName()
 									.equals(proc.getDatabaseName())) {
-								EStructuralFeature schemaFeature = catalog
-										.eClass().getEStructuralFeature(
-												"sybschemas");
-								schemas = (EList) catalog.eGet(schemaFeature);
+								
+								schemas = (EList) catalog.getSchemas();
 								break;
 							}
 						}
@@ -201,6 +197,18 @@ public class ModelUtil {
 		return null;
 	}
 	
+	public static Database getDatabase(Schema schema)
+	{
+		Catalog catalog = schema.getCatalog();
+		if (catalog != null)
+		{
+			return catalog.getDatabase();
+		}
+		else
+		{
+			return schema.getDatabase();
+		}
+	}
 	
 	/**
 	 * Returns the database name by taking catalog into account.
@@ -210,10 +218,9 @@ public class ModelUtil {
 	public static String getDatabaseName(Schema schema)
 	{
 		String _dbName = null;
-		EStructuralFeature catalogFeature = schema.eClass().getEStructuralFeature("catalog");
-		if (catalogFeature != null)
+		Catalog catalog = schema.getCatalog();
+		if (catalog != null)
 		{
-			SQLObject catalog = (SQLObject)schema.eGet(catalogFeature);
 			_dbName = catalog.getName();
 		}
 		else
@@ -249,26 +256,20 @@ public class ModelUtil {
 		}
 		EList schemas = database.getSchemas();
 		if (schemas == null || schemas.size() == 0) {
-			EStructuralFeature catalogsFeature = database.eClass()
-					.getEStructuralFeature("catalogs");
-			// TODO MO temporary solution
-			EList catalogs = (EList) database.eGet(catalogsFeature);
+			EList catalogs = database.getCatalogs();
 			if (catalogs != null) {
 				for (Iterator iter = catalogs.iterator(); iter
 						.hasNext();) {
-					SQLObject catalog = (SQLObject) iter.next();
+					Catalog catalog = (Catalog) iter.next();
 					if (catalog.getName()
 							.equals(catalogName)) {
-						EStructuralFeature schemaFeature = catalog
-								.eClass().getEStructuralFeature(
-										"sybschemas");
-						schemas = (EList) catalog.eGet(schemaFeature);
+						
+						schemas = (EList) catalog.getSchemas();
 						break;
 					}
 				}
 			}
 		}
-		
 		return schemas;
 	}
 
