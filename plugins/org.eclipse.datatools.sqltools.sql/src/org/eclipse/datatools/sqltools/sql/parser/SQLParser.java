@@ -152,6 +152,7 @@ public abstract class SQLParser implements SQLParserConstants
 
     /**
      * Returns whether the parser has captured the complete grammar for the database.
+     * This will determine whether to enable syntax validation.
      * @return default value is true
      */
     public boolean isComplete()

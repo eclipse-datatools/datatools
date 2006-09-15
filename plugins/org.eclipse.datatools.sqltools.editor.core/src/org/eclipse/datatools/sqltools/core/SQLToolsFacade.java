@@ -214,7 +214,7 @@ public class SQLToolsFacade
     	Collection configs = getConfigurations();
     	for (Iterator iter = configs.iterator(); iter.hasNext();) {
     		SQLDevToolsConfiguration conf = (SQLDevToolsConfiguration) iter.next();
-			if (conf.recognize(product, version))
+			if (conf.recognize(product, version) && !(conf.equals(SQLDevToolsConfiguration.getDefaultInstance())))
 			{
 				return conf.getDatabaseVendorDefinitionId();
 			}

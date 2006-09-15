@@ -174,7 +174,7 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	
 	/**
 	 * Returns true if the given product name and version is recognized by this SQLDevToolsConfiguration.
-	 * By default always returns false.
+	 * By default always returns false. Subclasses must override it.
 	 * @param product
 	 * @param version
 	 * @return

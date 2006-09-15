@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.db.derby.core;
 
 import org.eclipse.datatools.sqltools.core.DBHelper;
+import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
@@ -28,7 +29,8 @@ import org.eclipse.datatools.sqltools.db.generic.GenericDBConfiguration;
 public class DerbyConfiguration extends GenericDBConfiguration
 {
     private static DerbyConfiguration _instance = null;
-
+    public static final String[] DERBY_ALIASES = new String[]{"Derby","Apache Derby"};
+    
     // for eclipse to load this class, we must declare it as public
     public DerbyConfiguration()
     {
@@ -57,4 +59,16 @@ public class DerbyConfiguration extends GenericDBConfiguration
 		return new DerbyExecutionService();
 	}
     
+	public boolean recognize(String product, String version)
+	{
+		DatabaseVendorDefinitionId targetid = new DatabaseVendorDefinitionId(product, version);
+		for (int i = 0; i < DERBY_ALIASES.length; i++) {
+			DatabaseVendorDefinitionId id = new DatabaseVendorDefinitionId(DERBY_ALIASES[i], getDatabaseVendorDefinitionId().getVersion());
+			if (id.equals(targetid))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }

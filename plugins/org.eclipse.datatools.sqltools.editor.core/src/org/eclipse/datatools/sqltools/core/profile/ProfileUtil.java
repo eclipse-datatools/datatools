@@ -152,36 +152,38 @@ public class ProfileUtil
 		} catch (NoSuchProfileException e) {
 			EditorCorePlugin.getDefault().log(e);
 		}
-    	if (profile != null)
-    	{
-    		//try to get vendor name and version from connection profile first, because this should
-    		//be the REAL info.
-    		String vendor = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_NAME);
-            String version = getProductVersion(profileName);
-            if (vendor != null && version != null)
-            {
-            	vendorId = new DatabaseVendorDefinitionId(vendor, version);
-            }else
-            {
-            
-            // then try to get the info from driver template, this is the
-			// DECLARED info.
-    		String driverID = profile.getBaseProperties().getProperty(
-    				ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
-    		if (driverID == null) {
-    			EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_getdriver, (new Object[]{profileName})));
-    		}
-    		else
-    		{
-	    		DriverInstance driver = DriverManager.getInstance().getDriverInstanceByID(driverID);
-	    		if (driver != null)
-	    		{
-	    			vendor = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-	    			version = driver.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
-	    			vendorId = new DatabaseVendorDefinitionId(vendor, version);
-	    		}
-    		}
-            }
+    	if (profile != null) {
+			// try to get vendor name and version from connection profile first,
+			// because this should
+			// be the REAL info.
+			String vendor = profile.getBaseProperties().getProperty(
+					ConnectionProfileConstants.PROP_SERVER_NAME);
+			String version = getProductVersion(profileName);
+			if (vendor != null && version != null) {
+				vendorId = new DatabaseVendorDefinitionId(vendor, version);
+			} else {
+
+				// then try to get the info from driver template, this is the
+				// DECLARED info.
+				String driverID = profile.getBaseProperties().getProperty(
+						ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
+				if (driverID == null) {
+					EditorCorePlugin.getDefault().log(
+							NLS.bind(Messages.ProfileUtil_error_getdriver,
+									(new Object[] { profileName })));
+				} else {
+					DriverInstance driver = DriverManager.getInstance()
+							.getDriverInstanceByID(driverID);
+					if (driver != null) {
+						vendor = driver
+								.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+						version = driver
+								.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+						vendorId = new DatabaseVendorDefinitionId(vendor,
+								version);
+					}
+				}
+			}
     	}
     	Collection vendors = SQLToolsFacade.getSupportedDBDefinitionNames();
     	if(vendors.contains(vendorId.toString()))

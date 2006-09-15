@@ -12,25 +12,15 @@
 package org.eclipse.datatools.sqltools.core.internal.dbitem;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOption;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGenerationOptions;
-import org.eclipse.datatools.modelbase.sql.datatypes.ExactNumericDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
-import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
-import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.dbitem.IDBItem;
@@ -39,7 +29,10 @@ import org.eclipse.datatools.sqltools.core.dbitem.ISPUDF;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.datatools.sqltools.sql.util.ParameterUtil;
+import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
+
+
 
 /**
  * An adapter that makes <code>Routine</code>/<code>Trigger</code> and
@@ -78,18 +71,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 	}
 
 	public void dispose() {
-		if (_routine instanceof ICatalogObject) {
-			//Unmark this line when 129092 is fixed
-			((ICatalogObject) _routine).refresh();
-			if (_routine instanceof Trigger)
-			{
-				Table table = ((Trigger)_routine).getSubjectTable();
-				if (table instanceof ICatalogObject)
-				{
-					((ICatalogObject) table).refresh();
-				}
-			}
-		}
+		_parameterDescriptors = null; 
 	}
 
 	public String getCode() throws SQLException {
@@ -166,48 +148,107 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 	}
 
 	public ParameterDescriptor[] getParameterDescriptor() throws SQLException {
+//        if (_parameterDescriptors == null)
+//        {
+//        	ArrayList paramList = new ArrayList();
+//            if (_routine instanceof Routine)
+//            {
+//            	Routine r = (Routine)_routine;
+//            	EList ps = r.getParameters();
+//            	for (Iterator iter = ps.iterator(); iter.hasNext();) {
+//					Parameter p = (Parameter) iter.next();
+//					String name = p.getName();
+//					int type = p.getMode().getValue();
+//					String dataTypeName = p.getDataType().getName();
+//					int dataType = DataTypeHelper.getJDBCTypeForNamedType(dataTypeName);
+//					int precision = 0;
+//					int scale = 0;
+//					if (p.getDataType() instanceof NumericalDataType)
+//					{
+//						precision = ((NumericalDataType)p.getDataType()).getPrecision();
+//					}
+//					if (p.getDataType() instanceof ExactNumericDataType)
+//					{
+//						scale = ((ExactNumericDataType)p.getDataType()).getScale();
+//					}
+//					//TODO get nullable?
+//					short nullable = DatabaseMetaData.attributeNullableUnknown;
+//					ParameterDescriptor pd = new ParameterDescriptor(_proc
+//							.getDatabaseIdentifier(), name, type, dataType,
+//							precision, (short) scale, dataTypeName, nullable,
+//							null);
+//					paramList.add(pd);
+//				}
+//            }
+//            _parameterDescriptors = (ParameterDescriptor[]) paramList.toArray(new ParameterDescriptor[paramList.size()]);
+//        }
+//        return _parameterDescriptors;	
+        if (_parameterDescriptors == null && _routine instanceof Routine)
+        {
+            Connection conn = null;
+            conn = getConnection();
+            _parameterDescriptors = ParameterUtil.getParameterDescriptors(getControlConnection().getDatabaseIdentifier(),
+            		conn, getProcIdentifier().getType(), getProcIdentifier());
+
+            String sql = this.getCode();
+            Map defaultparamvalue = getParameterDefalutValues(sql);
+            Map typeNames = getSPParamTypeNameMapFromParser(sql);
+            if (_parameterDescriptors!=null) 
+            {
+                for (int i=0;i<_parameterDescriptors.length;i++) 
+                {
+                    ParameterDescriptor param = _parameterDescriptors[i];
+                    // get sql type name from editor parser
+                    String typeName = (String)typeNames.get(param.getName());
+                    if (typeName!=null)
+                    {
+                        param.setSqlTypeNameFromParser(typeName);
+                    }
+                    if (defaultparamvalue!=null) 
+                    {
+                        String value = (String)defaultparamvalue.get(param.getName());
+                        if (value!=null)
+                        {
+                            if (SQLUtil.isStringType(param.getSqlDataType()))
+                            {
+                                param.setDefaultValue(SQLUtil.unquote(value));
+                            }
+                            else
+                            {
+                                param.setDefaultValue(value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         if (_parameterDescriptors == null)
         {
-        	ArrayList paramList = new ArrayList();
-            if (_routine instanceof Routine)
-            {
-            	Routine r = (Routine)_routine;
-            	EList ps = r.getParameters();
-            	for (Iterator iter = ps.iterator(); iter.hasNext();) {
-					Parameter p = (Parameter) iter.next();
-					String name = p.getName();
-					int type = p.getMode().getValue();
-					String dataTypeName = p.getDataType().getName();
-					int dataType = DataTypeHelper.getJDBCTypeForNamedType(dataTypeName);
-					int precision = 0;
-					int scale = 0;
-					if (p.getDataType() instanceof NumericalDataType)
-					{
-						precision = ((NumericalDataType)p.getDataType()).getPrecision();
-					}
-					if (p.getDataType() instanceof ExactNumericDataType)
-					{
-						scale = ((ExactNumericDataType)p.getDataType()).getScale();
-					}
-					//TODO get nullable?
-					short nullable = DatabaseMetaData.attributeNullableUnknown;
-					ParameterDescriptor pd = new ParameterDescriptor(_proc
-							.getDatabaseIdentifier(), name, type, dataType,
-							precision, (short) scale, dataTypeName, nullable,
-							null);
-					paramList.add(pd);
-				}
-            }
-            _parameterDescriptors = (ParameterDescriptor[]) paramList.toArray(new ParameterDescriptor[paramList.size()]);
+        	_parameterDescriptors = new ParameterDescriptor[0];
         }
-        return _parameterDescriptors;	
+        return _parameterDescriptors;		
     }
 
 	public Map getParameterDefalutValues(String sql) throws SQLException {
-		//TODO define defaultValue for Parameter sql model
+		if (sql!=null && !"".equals(sql.trim())) 
+        {
+            //call parser to get parameter default value
+            Map prameterValueMap = ParameterUtil.getSPParamDefaultValues(getControlConnection().getDatabaseIdentifier(),sql);
+            return prameterValueMap;
+        }
 		return new HashMap();
 	}
 	
+	public Map getSPParamTypeNameMapFromParser(String sql) throws SQLException
+    {
+        if (sql!=null && !"".equals(sql.trim())) 
+        {
+            //call parser to get parameter default value
+            Map typeNames = ParameterUtil.getSPParamTypeNameMapFromParser(getControlConnection().getDatabaseIdentifier(),sql);
+            return typeNames;
+        }
+        return new HashMap();
+    }
 
     /**
      * get the JDBC connection that can be used. Caller should close this connection.

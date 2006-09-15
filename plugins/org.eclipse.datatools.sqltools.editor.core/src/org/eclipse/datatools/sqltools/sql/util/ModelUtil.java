@@ -23,8 +23,6 @@ import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
-import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
@@ -273,4 +271,5 @@ public class ModelUtil {
 		
 		return schemas;
 	}
+
 }

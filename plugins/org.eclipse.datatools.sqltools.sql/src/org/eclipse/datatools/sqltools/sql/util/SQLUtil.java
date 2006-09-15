@@ -11,11 +11,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.util;
 
+import java.sql.Types;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
+import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 
 /**
  * Contains various SQL processing utilities.
@@ -297,6 +301,99 @@ public class SQLUtil
             }
             return e;
         }
+    }
+
+    public static boolean isBinaryType(IDatatype datatype)
+    {
+        if(datatype.isUDT())
+        {
+            return isBinaryType(datatype.getBaseType().toString());
+        }
+        else
+        {
+            return isBinaryType(datatype.toString());
+        }
+
+    }
+
+    public static boolean isBinaryType(String datatype)
+    {
+        String strType = datatype;
+        int position = strType.indexOf('(');
+        if(position > 0)
+        {
+            strType = strType.substring(0,position);
+        }
+        int _sqlDataType = convert2SQLType(strType);
+        return _sqlDataType == Types.BINARY || _sqlDataType == Types.LONGVARBINARY || _sqlDataType == Types.VARBINARY;
+    }
+
+
+    public static boolean isNumericType(String datatype)
+    {
+        int position = datatype.indexOf('(');
+        if(position > 0)
+        {
+            datatype = datatype.substring(0,position);
+        }
+        int _sqlDataType = convert2SQLType(datatype);
+        return _sqlDataType == Types.BIGINT || _sqlDataType == Types.DECIMAL || _sqlDataType == Types.DOUBLE|| _sqlDataType == Types.FLOAT
+            || _sqlDataType == Types.INTEGER|| _sqlDataType == Types.NUMERIC|| _sqlDataType == Types.REAL|| _sqlDataType == Types.SMALLINT
+            || _sqlDataType == Types.TINYINT;
+    }
+
+    public static int convert2SQLType(String datatype) {
+    	return DataTypeHelper. getJDBCTypeForNamedType(datatype);
+	}
+
+	public static boolean isNumericType(int datatype)
+    {
+        return datatype == Types.BIGINT || datatype == Types.DECIMAL || datatype == Types.DOUBLE|| datatype == Types.FLOAT
+            || datatype == Types.INTEGER|| datatype == Types.NUMERIC|| datatype == Types.REAL|| datatype == Types.SMALLINT
+            || datatype == Types.TINYINT;
+    }
+
+    public static boolean isNumericType(IDatatype datatype)
+    {
+        if(datatype.isUDT())
+        {
+            return isNumericType(datatype.getBaseType().toString());
+        }
+        else
+        {
+            return isNumericType(datatype.toString());
+        }
+    }
+
+    public static boolean isStringType(String datatype)
+    {
+        String strType = datatype;
+        int position = strType.indexOf('(');
+        if(position > 0)
+        {
+            strType = strType.substring(0,position);
+        }
+        //TODO test all types
+        int _sqlDataType = convert2SQLType(strType);
+        return isStringType(_sqlDataType);
+    }
+
+    public static boolean isStringType(IDatatype datatype)
+    {
+        if(datatype.isUDT())
+        {
+            return isStringType(datatype.getBaseType().toString());
+        }
+        else
+        {
+            return isStringType(datatype.toString());
+        }
+    }
+
+    public static boolean isStringType(int sqlType)
+    {
+        return sqlType == Types.CHAR || sqlType == Types.VARCHAR || sqlType == Types.LONGVARCHAR
+            || sqlType == Types.DATE || sqlType == Types.TIME || sqlType == Types.TIMESTAMP;
     }
 
 }
