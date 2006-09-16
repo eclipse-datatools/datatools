@@ -60,7 +60,9 @@ This consumer application id must match the value of the IPropertyProvider.ODA_C
          <attribute name="providerClass" type="string" use="required">
             <annotation>
                <documentation>
-                  The concrete class that implements the &lt;code&gt;org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider&lt;/code&gt; interface to provide the application-specific service to obtain and adjust the data source connection property name-value pairs.
+                  The concrete class that implements the &lt;code&gt;org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider&lt;/code&gt; interface to provide an application-specific service to obtain and adjust the data source connection properties.
+&lt;p&gt;
+See &lt;code&gt;org.eclipse.datatools.connectivity.oda.consumer.services.impl.PropertyProviderImpl&lt;/code&gt; for an exemplary base class implementation of the &lt;code&gt;IPropertyProvider&lt;/code&gt; interface.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider"/>
