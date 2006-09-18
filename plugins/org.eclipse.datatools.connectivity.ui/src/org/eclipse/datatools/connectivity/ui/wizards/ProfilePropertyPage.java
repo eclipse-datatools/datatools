@@ -78,6 +78,10 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 				.getAdapter(IConnectionProfile.class);
 		return profile;
 	}
+	
+	protected String getPropertiesID() {
+		return getConnectionProfile().getProviderId();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -86,7 +90,7 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 	 */
 	public boolean performOk() {
 		IConnectionProfile profile = getConnectionProfile();
-		Properties oldProps = profile.getBaseProperties();
+		Properties oldProps = profile.getProperties(getPropertiesID());
 		Properties newProps = collectProperties();
 
 		boolean changed = false;
@@ -100,8 +104,7 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 		}
 
 		if (changed) {
-			oldProps.putAll(newProps);
-			profile.setBaseProperties(oldProps);
+			profile.setProperties(getPropertiesID(),newProps);
 
 			if (mAffectsConnectionProperties && profile.isConnected()) {
 				if (MessageDialog

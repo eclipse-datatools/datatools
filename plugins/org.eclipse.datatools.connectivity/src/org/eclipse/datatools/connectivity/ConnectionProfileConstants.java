@@ -31,32 +31,44 @@ public class ConnectionProfileConstants {
 	// Properties common to all profiles
 	public static final String PROP_UID = PROP_PREFIX + "uid"; //$NON-NLS-1$
 	public static final String PROP_PWD = PROP_PREFIX + "pwd"; //$NON-NLS-1$
-	public static final String PROP_DRIVER_DEFINITION_ID = PROP_PREFIX + "driverDefinitionID"; //$NON-NLS-1$
+	public static final String PROP_DRIVER_DEFINITION_ID = PROP_PREFIX
+			+ "driverDefinitionID"; //$NON-NLS-1$
 
 	// Version caching
-	public static final String PROP_SERVER_PREFIX = PROP_PREFIX + "server."; //$NON-NLS-1$
+	/**
+	 * The profile extension ID used to store filter settings.
+	 */
+	public static final String VERSION_INFO_PROFILE_EXTENSION_ID = "org.eclipse.datatools.connectivity.versionInfo"; //$NON-NLS-1$
 
-	public static final String PROP_TECHNOLOGY_PREFIX = PROP_PREFIX
-			+ "technology."; //$NON-NLS-1$
-	public static final String PROP_TECHNOLOGY_VERSION_SUFFIX = ".version"; //$NON-NLS-1$
-	public static final String PROP_TECHNOLOGY_NAME_SUFFIX = ".mame"; //$NON-NLS-1$
+	public static final String PROP_SERVER_PREFIX = "server."; //$NON-NLS-1$
 
-	public static final String PROP_SERVER_VERSION = PROP_SERVER_PREFIX
-			+ "version"; //$NON-NLS-1$
+	public static final String PROP_SERVER_VERSION = PROP_SERVER_PREFIX + "version"; //$NON-NLS-1$
 	public static final String PROP_SERVER_NAME = PROP_SERVER_PREFIX + "name"; //$NON-NLS-1$
+
+	public static final String PROP_TECHNOLOGY_PREFIX = "technology."; //$NON-NLS-1$
+
+	public static final String PROP_TECHNOLOGY_NAME_PREFIX = PROP_TECHNOLOGY_PREFIX + "name."; //$NON-NLS-1$
+	public static final String PROP_TECHNOLOGY_VERSION_PREFIX = PROP_TECHNOLOGY_PREFIX + "version."; //$NON-NLS-1$
 
 	public static final String UNKNOWN_VERSION = ConnectivityPlugin
 			.getDefault().getResourceString(
 					"ConnectionProfileConstants.unknownVersion"); //$NON-NLS-1$
 
+	/**
+	 * @deprecated
+	 */
+	public static final String PROP_TECHNOLOGY_VERSION_SUFFIX = ".version"; //$NON-NLS-1$
+	/**
+	 * @deprecated
+	 */
+	public static final String PROP_TECHNOLOGY_NAME_SUFFIX = ".mame"; //$NON-NLS-1$
+
 	public static final String createTechnologyVersionKey(String technology) {
-		return PROP_TECHNOLOGY_PREFIX + technology
-				+ PROP_TECHNOLOGY_VERSION_SUFFIX;
+		return PROP_TECHNOLOGY_VERSION_PREFIX + technology;
 	}
 
 	public static final String createTechnologyNameKey(String technology) {
-		return PROP_TECHNOLOGY_PREFIX + technology
-				+ PROP_TECHNOLOGY_NAME_SUFFIX;
+		return PROP_TECHNOLOGY_NAME_PREFIX + technology;
 	}
 
 	// Not intended to be instantiated

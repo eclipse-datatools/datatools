@@ -23,14 +23,15 @@ import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
  * clearConnectionCache() to remove version information from the profile (this
  * will prevent possible bogus data from being displayed in the property page).
  * 
- * Version information is stored in the base properties of the profile (i.e.
- * IConnectionProfile.getBaseProperties()). The server version information can
- * be accessed using the keys ConnectionProfileConstants.PROP_SERVER_VERSION and
- * PROP_SERVER_NAME. The technology version can be accessed using property keys
- * created using the createTechnologyNameKey() and createTechnologyVersionKey()
- * methods. (These methods return strings of the form
- * org.eclipse.datatools.connectivity.technology. &lt;tech_name&gt;.name and
- * org.eclipse.datatools.connectivity.technology. &lt;tech_name&gt;.version.
+ * Version information is stored in the
+ * ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID properties of
+ * the profile (i.e. IConnectionProfile.getProperties()). The server version
+ * information can be accessed using the keys
+ * ConnectionProfileConstants.PROP_SERVER_VERSION and PROP_SERVER_NAME. The
+ * technology version can be accessed using property keys created using the
+ * createTechnologyNameKey() and createTechnologyVersionKey() methods. (These
+ * methods return strings of the form technology.name.&lt;tech_name&gt; and
+ * technology.version&lt;tech_name&gt;.
  * 
  * Server version information is collected from the connection created by the
  * connection factory that is registered as the ping connection factory for the
@@ -76,7 +77,7 @@ public abstract class VersionProviderConnection implements IConnection,
 	 * version information will not be displayed in the enterprise explorer.
 	 */
 	protected void updateVersionCache() {
-		Properties props = mProfile.getBaseProperties();
+		Properties props = mProfile.getProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID);
 		boolean saveProps = updateTechnologyVersion(props);
 		IConnectionFactoryProvider icfp = mProfile.getProvider()
 				.getConnectionFactory(
@@ -86,7 +87,7 @@ public abstract class VersionProviderConnection implements IConnection,
 			saveProps = updateServerVersion(props) || saveProps;
 		}
 		if (saveProps) {
-			mProfile.internalSetProperties(mProfile.getProviderId(), props);
+			mProfile.internalSetProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID, props);
 			InternalProfileManager.getInstance().saveChanges();
 		}
 	}
@@ -98,7 +99,7 @@ public abstract class VersionProviderConnection implements IConnection,
 	 */
 	protected void clearVersionCache() {
 		boolean saveProps = false;
-		Properties props = mProfile.getBaseProperties();
+		Properties props = mProfile.getProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID);
 		IConnectionFactoryProvider icfp = mProfile.getProvider()
 				.getConnectionFactory(
 						ConnectionProfileConstants.PING_FACTORY_ID);
@@ -132,7 +133,7 @@ public abstract class VersionProviderConnection implements IConnection,
 			}
 		}
 		if (saveProps) {
-			mProfile.internalSetProperties(mProfile.getProviderId(), props);
+			mProfile.internalSetProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID, props);
 		}
 	}
 

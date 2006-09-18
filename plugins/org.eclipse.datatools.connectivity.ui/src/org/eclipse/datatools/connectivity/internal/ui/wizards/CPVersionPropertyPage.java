@@ -62,7 +62,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 				.getResourceString("CPVersionPropertyPage.desc", //$NON-NLS-1$
 						new Object[] { profile.getName()}));
 
-		Properties props = profile.getBaseProperties();
+		Properties props = profile.getProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID);
 		if (props.getProperty(ConnectionProfileConstants.PROP_SERVER_NAME) == null) {
 			Label label = new Label(content, SWT.NULL);
 			label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -98,12 +98,10 @@ public class CPVersionPropertyPage extends PropertyPage implements
 				String key = (String) entry.getKey();
 				if (key != null
 						&& key
-								.startsWith(ConnectionProfileConstants.PROP_TECHNOLOGY_PREFIX)
-						&& key
-								.endsWith(ConnectionProfileConstants.PROP_TECHNOLOGY_NAME_SUFFIX)) {
+								.startsWith(ConnectionProfileConstants.PROP_TECHNOLOGY_NAME_PREFIX)) {
 					String name = ((String) entry.getValue()) + ':';
-					String verKey = key.substring(0, key.lastIndexOf('.'))
-							+ ConnectionProfileConstants.PROP_TECHNOLOGY_VERSION_SUFFIX;
+					String verKey = ConnectionProfileConstants.PROP_TECHNOLOGY_VERSION_PREFIX
+							+ key.substring(key.lastIndexOf('.') + 1);
 					String version = props.getProperty(verKey);
 					if (version == null || version.length() == 0) {
 						version = ConnectionProfileConstants.UNKNOWN_VERSION;
@@ -146,7 +144,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 
 		return content;
 	}
-
+	
 	private IConnectionProfile getConnectionProfile() {
 		IAdaptable element = getElement();
 		IConnectionProfile profile = (IConnectionProfile) element
