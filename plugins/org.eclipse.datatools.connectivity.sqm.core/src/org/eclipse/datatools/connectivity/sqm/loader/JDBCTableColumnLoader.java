@@ -218,15 +218,18 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		// See if it's a predefined type
 		List pdts = getDatabaseDefinition()
 				.getPredefinedDataTypesByJDBCEnumType(typeCode);
-		if (typeName == null && pdts.size() > 0) {
-			pdt = (PredefinedDataType) pdts.get(0);
-		}
-		else {
+		if (pdts.size() > 0) {
 			for (Iterator it = pdts.iterator(); pdt == null && it.hasNext();) {
 				PredefinedDataType curPDT = (PredefinedDataType) it.next();
-				if (typeName.equals(curPDT.getName())) {
+				if (curPDT.getName().equals(typeName)) {
 					pdt = curPDT;
+					break;
 				}
+			}
+
+			if (pdt == null) {
+				// Use the first element by default
+				pdt = (PredefinedDataType) pdts.get(0);
 			}
 		}
 		if (pdt == null) {

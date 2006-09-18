@@ -32,11 +32,11 @@ public class SchemaContainmentProvider extends AbstractContainmentProvider {
 	}
 
 	public EObject getContainer(EObject obj) {
-		return ((Schema) obj).getDatabase();
+		return ((Schema) obj).getCatalog();
 	}
 
 	public EStructuralFeature getContainmentFeature(EObject obj) {
-		return SQLSchemaPackage.eINSTANCE.getDatabase_Schemas();
+		return SQLSchemaPackage.eINSTANCE.getCatalog_Schemas();
 	}
 
 	public String getGroupId(EObject obj) {

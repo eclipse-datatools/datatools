@@ -24,6 +24,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
@@ -131,9 +132,10 @@ public class ColumnHelper implements IColumnHelperService
 	{
         Table table;
         Schema schema;
+        Catalog catalog;
         Database database;
 	    DataType datatype = column.getDataType();
-        if ((table = column.getTable()) != null && (schema = table.getSchema()) != null && (database = schema.getDatabase()) != null)
+        if ((table = column.getTable()) != null && (schema = table.getSchema()) != null && (((catalog = schema.getCatalog()) != null && (database = catalog.getDatabase()) != null) || (database = schema.getDatabase()) != null))
         {
 	        DatabaseDefinition definition = dbRegistry.getDefinition(database);
 	        if(datatype != null) 

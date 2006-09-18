@@ -12,16 +12,26 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.containment;
 
 import java.util.Collection;
 
-import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class CatalogContainmentProvider extends AbstractContainmentProvider {
 
 	public Collection getContainedElements(EObject obj) {
-		Database database = (Database) obj;
+		Catalog catalog = (Catalog) obj;
 		Collection children = super.getContainedElements(obj);
-		children.addAll(database.getSchemas());
+		children.addAll(catalog.getSchemas());
 		return children;
+	}
+
+	public EObject getContainer(EObject obj) {
+		return ((Catalog) obj).getDatabase();
+	}
+
+	public EStructuralFeature getContainmentFeature(EObject obj) {
+		return SQLSchemaPackage.eINSTANCE.getDatabase_Catalogs();
 	}
 
 	public String getGroupId(EObject obj) {
