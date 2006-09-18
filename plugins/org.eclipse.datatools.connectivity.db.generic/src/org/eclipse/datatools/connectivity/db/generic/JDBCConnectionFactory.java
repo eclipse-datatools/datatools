@@ -49,6 +49,7 @@ public class JDBCConnectionFactory implements IConnectionFactory {
 	 */
 	public IConnection createConnection(IConnectionProfile profile) {
 		JDBCConnection connection = new JDBCConnection(profile, getClass());
+		connection.open();
 		return connection;
 	}
 

@@ -45,7 +45,6 @@ public class JDBCConnection extends DriverConnectionBase {
 
 	public JDBCConnection(IConnectionProfile profile, Class factoryClass) {
 		super(profile, factoryClass);
-		open();
 	}
 
 	protected Object createConnection(ClassLoader cl) throws Throwable {
