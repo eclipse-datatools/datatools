@@ -8,18 +8,6 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="32" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
-    <defaultValueTypes>NULL</defaultValueTypes>
-    <name>GRAPHIC</name>
-  </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true"  defaultLength="32" maximumLength="16336" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
-    <defaultValueTypes>NULL</defaultValueTypes>
-    <name>VARGRAPHIC</name>
-  </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_2" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
-    <defaultValueTypes>NULL</defaultValueTypes>
-    <name>LONG VARGRAPHIC</name>
-  </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
@@ -33,11 +21,6 @@
     <name>CHARACTER LARGE OBJECT</name>
     <name>CHAR LARGE OBJECT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="DOUBLE_BYTE" defaultLength="1024" maximumLength="1073741823" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
-    <defaultValueTypes>CURRENT_USER</defaultValueTypes>
-    <defaultValueTypes>NULL</defaultValueTypes>
-    <name>DBCLOB</name>
-  </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" keyConstraintSupported="true" defaultLength="32" maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
@@ -45,10 +28,22 @@
     <name>CHARACTER VARYING</name>
     <name>CHAR VARYING</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" primitiveType="CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="DOUBLE_BYTE" defaultLength="1024" maximumLength="1073741823" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
-    <name>LONG VARCHAR</name>
+    <name>DBCLOB</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="32" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>GRAPHIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true"  defaultLength="32" maximumLength="16336" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARGRAPHIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_2" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONG VARGRAPHIC</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
     <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
@@ -102,14 +97,20 @@
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true"  defaultLength="1" keyConstraintSupported="true" maximumLength="254" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BINARY</name>
     <name>CHAR () FOR BIT DATA</name>
     <name>CHARACTER () FOR BIT DATA</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true"  defaultLength="1" keyConstraintSupported="true" maximumLength="32672" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARBINARY</name>
     <name>VARCHAR () FOR BIT DATA</name>
     <name>CHARACTER VARYING () FOR BIT DATA</name>
     <name>CHAR VARYING () FOR BIT DATA</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BOOLEAN_1" lengthSupported="false"  primitiveType="BOOLEAN" jdbcEnumType="16" javaClassName="boolean">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BOOLEAN</name>
   </predefinedDataTypeDefinitions>
   <storedProcedureDefinition/>
   <triggerDefinition/>
