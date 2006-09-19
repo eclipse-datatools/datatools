@@ -145,14 +145,12 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	 * @return
 	 * @throws SQLException
 	 */
-	public List loadAttributeDefinitions(List existingAttributeDefinitions)
-			throws SQLException {
-		List retVal = new ArrayList(existingAttributeDefinitions.size());
+	public List loadAttributeDefinitions() throws SQLException {
+		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
 			for (rs = createResultSet(); rs.next();) {
-				AttributeDefinition attrDef = processRow(rs,
-						existingAttributeDefinitions);
+				AttributeDefinition attrDef = processRow(rs);
 				if (attrDef != null) {
 					retVal.add(attrDef);
 				}
@@ -163,11 +161,10 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 			if (rs != null) {
 				closeResultSet(rs);
 			}
-			clearAttributeDefinitions(existingAttributeDefinitions);
 		}
 	}
 
-	protected void clearAttributeDefinitions(List attrDefs) {
+	public void clearAttributeDefinitions(List attrDefs) {
 		attrDefs.clear();
 	}
 
@@ -187,26 +184,15 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		}
 	}
 
-	protected AttributeDefinition processRow(ResultSet rs,
-			List existingAttributeDefinitions) throws SQLException {
+	protected AttributeDefinition processRow(ResultSet rs) throws SQLException {
 		String attrDefName = rs.getString(COLUMN_ATTR_NAME);
 		if (attrDefName == null || isFiltered(attrDefName)) {
 			return null;
 		}
-		AttributeDefinition attrDef = null;
-		for (Iterator it = existingAttributeDefinitions.iterator(); attrDef != null
-				&& it.hasNext();) {
-			Object obj = it.next();
-			if (obj instanceof AttributeDefinition
-					&& attrDefName
-							.equals(((AttributeDefinition) obj).getName())) {
-				attrDef = (AttributeDefinition) obj;
-			}
-		}
-		if (attrDef == null) {
-			attrDef = createAttributeDefinition();
-		}
+
+		AttributeDefinition attrDef = createAttributeDefinition();
 		initialize(attrDef, rs);
+
 		return attrDef;
 	}
 
@@ -232,17 +218,21 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		// See if it's a predefined type
 		List pdts = getDatabaseDefinition()
 				.getPredefinedDataTypeDefinitionsByJDBCEnumType(typeCode);
-		if (typeName == null && pdts.size() > 0) {
-			pdt = (PredefinedDataType) pdts.get(0);
-		}
-		else {
+		if (pdts.size() > 0) {
 			for (Iterator it = pdts.iterator(); pdt == null && it.hasNext();) {
 				PredefinedDataType curPDT = (PredefinedDataType) it.next();
 				if (typeName.equals(curPDT.getName())) {
 					pdt = curPDT;
+					break;
 				}
 			}
+
+			if (pdt == null) {
+				// Use the first element by default
+				pdt = (PredefinedDataType) pdts.get(0);
+			}
 		}
+
 		if (pdt == null) {
 			if (typeName == null)
 				return;

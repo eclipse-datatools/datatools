@@ -232,6 +232,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				pdt = (PredefinedDataType) pdts.get(0);
 			}
 		}
+
 		if (pdt == null) {
 			if (typeName == null)
 				return;
