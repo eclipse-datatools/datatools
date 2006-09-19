@@ -36,15 +36,16 @@ import org.eclipse.ui.texteditor.ITextEditor;
 public class RoutineUtil {
 
     /**
+     * Returns the prefix used to construct a sql statement to directly invoke a procedural object.
      * @return "exec ", "call ", "TRIGGER EVENT " or "" based on type
      */
-    public static String getCallableStatementPrefix(int type)
+    public static String getDirectInvocationPrefix(int type)
     {
         String prefix = "";
         switch (type)
         {
             case ProcIdentifier.TYPE_SP:
-                prefix = "call ";
+                prefix = "exec ";
                 break;
             case ProcIdentifier.TYPE_UDF:
                 prefix = "select ";
@@ -58,6 +59,7 @@ public class RoutineUtil {
 
 
     /**
+     * Constructs a sql string which can be used in a CallableStatement to invoke the Routine.
      * @param proc can be null
      * @param list must be valid value list
      * @param pds
@@ -65,7 +67,7 @@ public class RoutineUtil {
      * @return
      */
 
-    public static String constructCALLSPUDFString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
+    public static String constructCallableSPUDFString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
     {
         StringBuffer buffer = new StringBuffer(20);
         buffer.append("{?=");
@@ -119,14 +121,20 @@ public class RoutineUtil {
     }
 
     /**
-     * @param proc can be null
-     * @param list must be valid value list
-     * @param pds
-     * @param quoted_id
-     * @return
-     */
+	 * Constructs a sql string which can be used to show the detailed
+	 * information about a CallableStatement to execute the given Routine. This
+	 * is for display purpose only.
+	 * 
+	 * @param proc
+	 *            can be null
+	 * @param list
+	 *            must be valid value list
+	 * @param pds
+	 * @param quoted_id
+	 * @return
+	 */
 
-    public static String constructDetailCALLSPUDFString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
+    public static String constructCallableSPUDFDisplayString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
     {
         StringBuffer buffer = new StringBuffer(20);
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
@@ -222,18 +230,18 @@ public class RoutineUtil {
     }
 
     /**
+     * Constructs a sql string to directly invoke the Routine.
      * @param proc can be null
      * @param list must be valid value list
      * @param pds
      * @param quoted_id
      * @return
      */
-    public static String constructSPUDFString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
+    public static String constructSPUDFDirectInvocationString(ProcIdentifier proc, List values, ParameterDescriptor[] pds, boolean quoted_id)
     {
         StringBuffer buffer = new StringBuffer(20);
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
-		SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(proc.getDatabaseIdentifier().getProfileName());
-        buffer.append(config.getExecutionService().getCallableStatementPrefix(proc.getType()));
+        buffer.append(getDirectInvocationPrefix(proc.getType()));
 
         if (proc != null)
         buffer.append(proc.getCallableString(quoted_id));
@@ -272,6 +280,7 @@ public class RoutineUtil {
         return buffer.toString();
     }
     /**
+     * Constructs a sql string to directly invoke the Event object.
      * @param proc can be null
      * @param quoted_id
      * @param triggerParams

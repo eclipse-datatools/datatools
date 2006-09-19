@@ -314,10 +314,11 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
     }
 
     /**
+     * Constructs a sql string to directly invoke the launch configuration.
      * @param configuration
      * @return @throws CoreException
      */
-    public static String constructFinalSQLString(ILaunchConfiguration configuration) throws CoreException,
+    public static String constructDirectInvocationSQLString(ILaunchConfiguration configuration) throws CoreException,
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
@@ -330,7 +331,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructSPUDFString(proc, readParameterList(configuration),LaunchUI.getParameterDescriptors(proc), quoted_id);   
+                return RoutineUtil.constructSPUDFDirectInvocationString(proc, readParameterList(configuration),LaunchUI.getParameterDescriptors(proc), quoted_id);   
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
             case ProcIdentifier.TYPE_TRIGGER:
@@ -341,10 +342,11 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
     }
 
     /**
+     * Constructs a SQL string which can be used in a CallableStatement.
      * @param configuration
      * @return @throws CoreException
      */
-    public static String constructFinalCallSQLString(ILaunchConfiguration configuration) throws CoreException,
+    public static String constructCallableStatementSQLString(ILaunchConfiguration configuration) throws CoreException,
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
@@ -357,7 +359,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructCALLSPUDFString(proc, readParameterList(configuration), LaunchUI
+                return RoutineUtil.constructCallableSPUDFString(proc, readParameterList(configuration), LaunchUI
                     .getAllParameterDescriptors(proc), quoted_id);
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);
@@ -367,10 +369,14 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
     }
 
     /**
-     * @param configuration
-     * @return @throws CoreException
-     */
-    public static String constructFinalCallDetailSQLString(ILaunchConfiguration configuration) throws CoreException,
+	 * Constructs a sql statement to show the detailed information of a
+	 * CallableStatement, which includes parameters if any.
+	 * This string is for display purpose and should not be executed.
+	 * @param configuration
+	 * @return
+	 * @throws CoreException
+	 */
+    public static String constructCallableStatementDisplayString(ILaunchConfiguration configuration) throws CoreException,
         SQLException, NoSuchProfileException
     {
         if (isAdHocSQL(configuration))
@@ -383,7 +389,7 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         {
             case ProcIdentifier.TYPE_SP:
             case ProcIdentifier.TYPE_UDF:
-                return RoutineUtil.constructDetailCALLSPUDFString(proc, readParameterList(configuration), LaunchUI
+                return RoutineUtil.constructCallableSPUDFDisplayString(proc, readParameterList(configuration), LaunchUI
                     .getAllParameterDescriptors(proc), quoted_id);
             case ProcIdentifier.TYPE_EVENT:
                 return RoutineUtil.constructTriggerEventString(proc, readEventParameter(configuration), quoted_id);

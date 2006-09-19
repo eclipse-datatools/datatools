@@ -77,7 +77,7 @@ public class ExecutionService
 	
 
     /**
-     * Returns a String prefix for invoking Routine/Event with the specified type
+     * Returns a String prefix for invoking Routine/Event with the specified type in a CalllableStatement.
      * @return SQL construct that can invoke Routine/Event with the specified type
      */
     public String getCallableStatementPrefix(int type)

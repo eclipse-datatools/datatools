@@ -71,8 +71,8 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         super(null, null, databaseIdentifier); //$NON-NLS-1$
         _connection = con;
         _configuration = configuration;
-        _sql = LaunchHelper.constructFinalCallSQLString(configuration);
-        _detailSql = LaunchHelper.constructFinalCallDetailSQLString(configuration);
+        _sql = LaunchHelper.constructCallableStatementSQLString(configuration);
+        _detailSql = LaunchHelper.constructCallableStatementDisplayString(configuration);
         _closeCon = closeCon;
         _tracker = tracker;
     }
