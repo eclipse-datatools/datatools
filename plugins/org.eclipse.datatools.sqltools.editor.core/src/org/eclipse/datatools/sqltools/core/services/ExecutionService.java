@@ -68,7 +68,7 @@ public class ExecutionService
 	 * @param addInfo
 	 *            vendor specific options
 	 */
-	public Runnable createFucntionRunnable(Connection con, String sql,
+	public Runnable createFunctionRunnable(Connection con, String sql,
 			boolean closeCon, IConnectionTracker tracker,
 			IProgressMonitor parentMonitor,
 			DatabaseIdentifier databaseIdentifier,
