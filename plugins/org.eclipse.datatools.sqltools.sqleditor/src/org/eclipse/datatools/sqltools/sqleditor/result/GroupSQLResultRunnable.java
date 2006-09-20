@@ -137,7 +137,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 				.getConfigurationByProfileName(_databaseIdentifier
 						.getProfileName());
                 _currentJob = f.getExecutionService()
-				.createSimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
+				.createAdHocScriptRunnable(_conn, _groups[i], false, _tracker, monitor,
 	                    getDatabaseIdentifier(), null, null);
 				if (_currentJob == null) {
 					_currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,

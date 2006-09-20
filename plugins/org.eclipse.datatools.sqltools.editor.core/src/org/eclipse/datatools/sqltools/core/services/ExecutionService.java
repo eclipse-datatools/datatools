@@ -29,13 +29,128 @@ import org.eclipse.debug.core.ILaunchConfiguration;
  */
 public class ExecutionService
 {
+
+	/**
+     * Returns a <code>Runnable</code> object capable of running a stored procedure. Might be null.
+     * @param con the connection
+     * @param configuration the lauch configuration
+     * @param closeCon whether should close connection
+     * @param tracker if closeCon is true and tracker is not null, will notify it when close the connection
+     * @param databaseIdentifier
+     * @see org.eclipse.datatools.sqltools.routineeditor.result.CallableSQLResultRunnable
+     */
+	public Runnable createStoredProcedureRunnable(Connection con,
+			ILaunchConfiguration configuration, boolean closeCon,
+			IConnectionTracker tracker, DatabaseIdentifier databaseIdentifier) {
+		return createCallableSQLResultRunnable(con, configuration, closeCon,
+		        tracker, databaseIdentifier);
+	}
+
+    /**
+     * 
+	 * Returns a <code>Runnable</code> object capable of running a UDF.
+	 * Might be null.
+	 * 
+	 * @see org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable
+	 * @param con
+	 *            the connection
+	 * @param sql
+	 *            the statement to be executed
+	 * @param closeCon
+	 *            whether should close connection
+	 * @param tracker
+	 *            if closeCon is true and tracker is not null, will notify it
+	 *            when close the connection
+	 * @param parentMonitor
+	 * @param databaseIdentifier
+	 * @param configuration
+	 *            the lauch configuration
+	 * @param addInfo
+	 *            vendor specific options
+	 */
+	public Runnable createFucntionRunnable(Connection con, String sql,
+			boolean closeCon, IConnectionTracker tracker,
+			IProgressMonitor parentMonitor,
+			DatabaseIdentifier databaseIdentifier,
+			ILaunchConfiguration configuration, HashMap addInfo) {
+		return createSimpleSQLResultRunnable(con, sql,
+				closeCon, tracker,
+				parentMonitor,
+				databaseIdentifier,
+				configuration, addInfo);
+	}
+
+    /**
+     * 
+	 * Returns a <code>Runnable</code> object capable of running ad hoc sql
+	 * statements. Might be null.
+	 * 
+	 * @see org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable
+	 * @param con
+	 *            the connection
+	 * @param sql
+	 *            the statement to be executed
+	 * @param closeCon
+	 *            whether should close connection
+	 * @param tracker
+	 *            if closeCon is true and tracker is not null, will notify it
+	 *            when close the connection
+	 * @param parentMonitor
+	 * @param databaseIdentifier
+	 * @param configuration
+	 *            the lauch configuration
+	 * @param addInfo
+	 *            vendor specific options
+	 */
+	public Runnable createAdHocScriptRunnable(Connection con, String sql,
+			boolean closeCon, IConnectionTracker tracker,
+			IProgressMonitor parentMonitor,
+			DatabaseIdentifier databaseIdentifier,
+			ILaunchConfiguration configuration, HashMap addInfo) {
+		return createSimpleSQLResultRunnable(con, sql,
+				closeCon, tracker,
+				parentMonitor,
+				databaseIdentifier,
+				configuration, addInfo);
+	}
+    
+    /**
+     * 
+	 * Returns a <code>Runnable</code> object capable of running sql
+	 * statements. Might be null.
+	 * 
+	 * @see org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable
+	 * @param con
+	 *            the connection
+	 * @param sql
+	 *            the statement to be executed
+	 * @param closeCon
+	 *            whether should close connection
+	 * @param tracker
+	 *            if closeCon is true and tracker is not null, will notify it
+	 *            when close the connection
+	 * @param parentMonitor
+	 * @param databaseIdentifier
+	 * @param configuration
+	 *            the lauch configuration
+	 * @param addInfo
+	 *            vendor specific options
+	 * @deprecated for backward compatibility. Use createAdHocScriptRunnable instead
+	 */
+    public Runnable createSimpleSQLResultRunnable(Connection con, String sql, boolean closeCon, IConnectionTracker tracker,
+            IProgressMonitor parentMonitor, DatabaseIdentifier databaseIdentifier, ILaunchConfiguration configuration, HashMap addInfo)
+    {
+    	return null;
+    }
+    
 	/**
      * Returns a <code>Runnable</code> object capable of running CallableStatement. Might be null.
      * @param con the connection
      * @param configuration the lauch configuration
      * @param closeCon whether should close connection
      * @param tracker if closeCon is true and tracker is not null, will notify it when close the connection
-     * @param databaseIdentifier 
+     * @param databaseIdentifier
+     * @deprecated for backward compatibility. Use createAdHocScriptRunnable instead 
      */
     public Runnable createCallableSQLResultRunnable(Connection con, ILaunchConfiguration configuration, boolean closeCon,
         IConnectionTracker tracker, DatabaseIdentifier databaseIdentifier)
@@ -43,26 +158,6 @@ public class ExecutionService
 		return null;
 	}
     
-    /**
-     * Returns a <code>Runnable</code> object capable of running sql statements. Might be null.
-     * @see org.eclipse.datatools.sqltools.sqleditor.result.ResultSupportRunnable
-     * @param con the connection
-     * @param sql the statement to be executed
-     * @param closeCon whether should close connection
-     * @param tracker if closeCon is true and tracker is not null, will notify it when close the connection
-     * @param parentMonitor
-     * @param databaseIdentifier 
-     * @param configuration the lauch configuration
-     * @param addInfo TODO
-     * @para
-     */
-    public Runnable createSimpleSQLResultRunnable(Connection con, String sql, boolean closeCon, IConnectionTracker tracker,
-            IProgressMonitor parentMonitor, DatabaseIdentifier databaseIdentifier, ILaunchConfiguration configuration, HashMap addInfo)
-    {
-    	return null;
-    }
-    
-
 	/**
 	 * The returned thread will be started together with the SQL execution
 	 * logic. A typical usage of this method is to retrieve query plan while

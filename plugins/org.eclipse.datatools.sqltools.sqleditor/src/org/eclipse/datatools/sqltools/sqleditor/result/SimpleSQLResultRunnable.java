@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
@@ -161,7 +162,7 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
                 //before we use it.
                 if (_closeCon)
                 {
-                    connection.close();
+                	ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), connection);
                 }
             }
         }
