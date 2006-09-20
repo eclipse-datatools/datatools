@@ -215,8 +215,7 @@ public class DesignSessionUtilBase
     protected static void toElementOptionalAttributes( 
             DataElementAttributes paramAttrs, 
             IParameterMetaData pmd, 
-            int i ) 
-        throws OdaException
+            int i )
     {
         try
         {
@@ -228,7 +227,14 @@ public class DesignSessionUtilBase
         catch( UnsupportedOperationException e )
         {
             // ignore; optional attributes
+            // TODO - log info
             e.printStackTrace();
+        }
+        catch( OdaException odaEx )
+        {
+            // ignore; optional attributes
+            // TODO - log info
+            odaEx.printStackTrace();
         }
     }
 

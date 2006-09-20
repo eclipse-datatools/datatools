@@ -400,11 +400,10 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             try
             {
                 columnAttrs.setName( md.getColumnName(i) );
-                columnAttrs.setPrecision( md.getPrecision(i) );
-                columnAttrs.setScale( md.getScale(i) );
                 columnAttrs.setNullability( 
                         toElementNullability( md.isNullable(i) ));
-                columnDef.setAttributes( columnAttrs );
+                columnAttrs.setPrecision( md.getPrecision(i) );
+                columnAttrs.setScale( md.getScale(i) );
                 
                 outAttrs.setLabel( md.getColumnLabel(i) );
 
@@ -415,7 +414,13 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                 // ignore; optional attributes
                 // TODO - log info
             }
+            catch( OdaException odaEx )
+            {
+                // ignore; optional attributes
+                // TODO - log info
+            }
 
+            columnDef.setAttributes( columnAttrs );
             outAttrs.setFormattingHints( formatHints );
             columnDef.setUsageHints( outAttrs );
             
