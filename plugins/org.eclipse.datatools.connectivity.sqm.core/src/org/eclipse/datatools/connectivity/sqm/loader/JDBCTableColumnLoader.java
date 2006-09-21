@@ -211,28 +211,12 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 
 	protected void initColumnType(Column column, ResultSet rs)
 			throws SQLException {
-		String typeName = rs.getString(COLUMN_TYPE_NAME);
+		// db definition types are always upper case: make sure the typeName is upper too
+		String typeName = rs.getString(COLUMN_TYPE_NAME).toUpperCase();
 		int typeCode = rs.getInt(COLUMN_DATA_TYPE);
-		PredefinedDataType pdt = null;
-
-		// See if it's a predefined type
-		List pdts = getDatabaseDefinition()
-				.getPredefinedDataTypesByJDBCEnumType(typeCode);
-		if (pdts.size() > 0) {
-			for (Iterator it = pdts.iterator(); pdt == null && it.hasNext();) {
-				PredefinedDataType curPDT = (PredefinedDataType) it.next();
-				if (curPDT.getName().equals(typeName)) {
-					pdt = curPDT;
-					break;
-				}
-			}
-
-			if (pdt == null) {
-				// Use the first element by default
-				pdt = (PredefinedDataType) pdts.get(0);
-			}
-		}
-
+		
+		PredefinedDataType pdt = getDatabaseDefinition().getPredefinedDataType(typeName);
+	
 		if (pdt == null) {
 			if (typeName == null)
 				return;
@@ -257,9 +241,17 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				column.setDataType(udt);
 			}
 		}
-		else {
+		else {			
 			PredefinedDataTypeDefinition pdtd = getDatabaseDefinition()
 					.getPredefinedDataTypeDefinition(pdt.getName());
+			
+			// This shouldn't happen if the db definition is consistent,
+			// but to avoid NPE if not..
+			if (pdtd == null) {
+				column.setDataType(pdt);
+				return;
+			}
+			
 			if (pdtd.isLengthSupported()) {
 				EStructuralFeature feature = pdt.eClass()
 						.getEStructuralFeature("length"); //$NON-NLS-1$
