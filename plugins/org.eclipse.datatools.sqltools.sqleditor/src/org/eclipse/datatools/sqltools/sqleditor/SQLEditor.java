@@ -290,7 +290,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     protected void createActions() {
         super.createActions();
         ResourceBundle bundle = getResourceBundle();
-        IActionBars bars = ((PartSite) getSite()).getActionBars();
+        IActionBars bars = ((IEditorSite) getSite()).getActionBars();
 
         IAction a = new TextOperationAction( bundle,
                 "ContentAssistProposal.", this, ISourceViewer.CONTENTASSIST_PROPOSALS ); //$NON-NLS-1$
@@ -663,7 +663,14 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 
         addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
 
-		//database specific actions go here
+
+        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+        	ext.contributeToContextMenu(menu);
+		}
+        
+        //database specific actions go here
         HashMap dbActions = editorService.getAdditionalActions();
         if (dbActions != null && !dbActions.isEmpty())
         {
@@ -690,11 +697,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             menu.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, dbSubMenuMgr);
         }        
 
-        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
-        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
-        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
-        	ext.contributeToContextMenu(menu);
-		}
     }
 
     private void addContributedMenus(String key, Object dba, IMenuManager manager, MenuManager dbSubMenuMgr)

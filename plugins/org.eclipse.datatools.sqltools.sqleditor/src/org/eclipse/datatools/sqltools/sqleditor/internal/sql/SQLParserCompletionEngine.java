@@ -130,9 +130,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		_config = SQLToolsFacade
 				.getConfigurationByVendorIdentifier(_databaseVendorDefinitionId);
 		SQLParser _parser = _config.getSQLService().getSQLParser();
-		if (_parser == null) {
-			return getTemplateProposalsAtLineStart();
-		}
+		
 		_selection = selection;
 		String text = doc.get();
 		if (text.trim().length() == 0) {
@@ -145,9 +143,12 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 
 			int wordOffset = SQLWordFinder.getWordStartOffset(text,
 					documentOffset - 1);
-			int expStart = findStatementStart(text, _fDocumentOffset - 1,
-					_parser.getStatementStartTokens(), _parser
-							.getStatementTerminators());
+			int expStart = 0;
+			if (_parser != null) {
+				findStatementStart(text, _fDocumentOffset - 1,
+				_parser.getStatementStartTokens(), _parser
+						.getStatementTerminators());
+			}
 			String uptoCurrentCursorText = text.substring(0, documentOffset);
 			String sqlCmdStartToCurrentCursorText = text.substring(expStart,
 					documentOffset);
@@ -161,6 +162,10 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 
 		}
 
+		if (_parser == null) {
+			return getTemplateProposalsAtLineStart();
+		}
+		
 		String parseText = null;
 
 		if (_fFullText.equals("")) //$NON-NLS-1$

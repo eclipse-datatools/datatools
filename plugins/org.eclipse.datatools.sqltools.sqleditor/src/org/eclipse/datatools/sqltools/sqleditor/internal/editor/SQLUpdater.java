@@ -124,13 +124,13 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
 
     public void run()
     {
+    	setInput(_editor.getEditorInput());
         if (enableSyntaxValidation() == false)
         {
         	removeMarkers();
             return;
         }
 
-        setInput(_editor.getEditorInput());
         try
         {
             //use ISchedulingRule to avoid locking the whole workspace

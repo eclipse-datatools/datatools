@@ -360,6 +360,10 @@ public class ProfileUtil
     public static Connection getReusableConnection(DatabaseIdentifier databaseIdentifier) throws SQLException, NoSuchProfileException
     {
     	IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+    	if (!profile.isConnected())
+    	{
+    		throw new SQLException(NLS.bind(Messages.ProfileUtil_error_not_connected, (new Object[]{databaseIdentifier.getProfileName()})));
+    	}
     	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
     	if (managedConn == null || !managedConn.isConnected())
     	{
@@ -394,7 +398,41 @@ public class ProfileUtil
     }
     
     /**
-     * Returns a connection from the connection layer
+     * Connects the connection profile and returns the shared connection. If for some reason,
+     * the connection can't be made, the result would be null.
+     * @param profileName
+     * @return
+     */
+    public static Connection connectProfile(String profileName)
+    {
+    	IConnectionProfile profile = null;
+    	Connection conn = null;
+		try {
+			profile = getProfile(profileName);
+		} catch (NoSuchProfileException e1) {
+			EditorCorePlugin.getDefault().log(e1);
+			return null;
+		}
+        if (!profile.isConnected())
+        {
+        	IStatus status = profile.connect();
+        	if (!status.isOK())
+        	{
+        		return null;
+        	}
+        }
+        try {
+        	conn = getReusableConnection(new DatabaseIdentifier(profileName));
+        } catch (Exception e1) {
+        	EditorCorePlugin.getDefault().log(e1);
+        	return null;
+        }
+        return conn;
+    }
+    
+    /**
+     * Returns a connection from the connection layer. If the connection profile is not in "connected"
+     * state, connect it first and returns the shared connection.
      * 
      * @param profile
      * @param dbName
@@ -402,6 +440,10 @@ public class ProfileUtil
      */
     public static Connection createConnection(IConnectionProfile profile, String dbName)
     {
+    	if (!profile.isConnected())
+    	{
+    		return connectProfile(profile.getName());
+    	}
         try
         {
             Connection conn = null;
@@ -497,26 +539,13 @@ public class ProfileUtil
 			EditorCorePlugin.getDefault().log(e1);
 			return list;
 		}
-        String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
-        try {
-			conn = getReusableConnection(new DatabaseIdentifier(profileName));
-        }
-        catch (Exception e)
-        {
-        	IStatus status = profile.connect();
-        	if (!status.isOK())
-        	{
-        		EditorCorePlugin.getDefault().log(status);
-        		return list;
-        	}
-        	try {
-				conn = getReusableConnection(new DatabaseIdentifier(profileName));
-			} catch (Exception e1) {
-				EditorCorePlugin.getDefault().log(e1);
-				return list;
-			}
-        }
-        try {
+		String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
+		conn = connectProfile(profileName);
+		if (conn == null)
+		{
+			return list;
+		}
+		try {
 
 			rs = conn.getMetaData().getCatalogs();
             while (rs.next())
