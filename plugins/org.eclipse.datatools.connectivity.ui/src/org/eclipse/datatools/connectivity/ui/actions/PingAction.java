@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.SameShellProvider;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
@@ -57,7 +58,7 @@ public class PingAction implements IActionDelegate, ISelectionProvider {
 	 */
 	public void run(IAction action) {
 		PropertyDialogAction propertyDialogAction = new PropertyDialogAction(
-				mParentShell, this);
+				new SameShellProvider(mParentShell), this);
 		propertyDialogAction
 				.selectionChanged((IStructuredSelection) getSelection());
 		if (!mConnectionProfile.arePropertiesComplete()

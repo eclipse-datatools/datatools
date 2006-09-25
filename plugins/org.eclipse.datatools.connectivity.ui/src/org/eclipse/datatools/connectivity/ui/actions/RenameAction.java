@@ -10,11 +10,14 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
-import org.eclipse.datatools.connectivity.ConnectionProfileException;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileRenameProcessor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IInputValidator;
@@ -22,6 +25,9 @@ import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
+import org.eclipse.ltk.core.refactoring.CheckConditionsOperation;
+import org.eclipse.ltk.core.refactoring.PerformRefactoringOperation;
+import org.eclipse.ltk.core.refactoring.participants.RenameRefactoring;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
@@ -72,14 +78,37 @@ public class RenameAction extends Action implements IActionDelegate {
 			return;
 
 		try {
-			ProfileManager.getInstance().modifyProfile(mProfile, d.getValue(),
-					null);
-		}
-		catch (ConnectionProfileException e) {
+			refactor(mProfile, d.getValue());
+//			ProfileManager.getInstance().modifyProfile(mProfile, d.getValue(),
+//					null);
+//		} catch (ConnectionProfileException e) {
+//			ExceptionHandler.showException(mParentShell, ConnectivityUIPlugin
+//					.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
+//					.getMessage(), e);
+		} catch (CoreException e) {
 			ExceptionHandler.showException(mParentShell, ConnectivityUIPlugin
-					.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
-					.getMessage(), e);
+			.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
+			.getMessage(), e);
 		}
+	}
+	
+	private void refactor (IConnectionProfile profile, String newName) throws CoreException {
+    	//  Refactor for rename
+    	PerformRefactoringOperation refOperation = new PerformRefactoringOperation(
+    			new RenameRefactoring(new ConnectionProfileRenameProcessor(profile, newName)), 
+    				CheckConditionsOperation.ALL_CONDITIONS);
+    	try 
+    	{
+    		ResourcesPlugin.getWorkspace().run(refOperation, null);
+    	}
+    	catch (OperationCanceledException oce) 
+    	{
+    		throw new OperationCanceledException();			
+    	}
+    	catch (CoreException ce) 
+    	{
+    		throw ce;
+    	}	
 	}
 
 	/*

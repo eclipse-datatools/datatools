@@ -12,15 +12,18 @@ package org.eclipse.datatools.connectivity.ui.wizards;
 
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.ConnectionProfileException;
-import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCreateChange;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ltk.core.refactoring.PerformChangeOperation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -50,13 +53,19 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 */
 	public boolean performFinish() {
 		try {
-			ProfileManager.getInstance().createProfile(
-					mProfilePage.getProfileName(),
-					mProfilePage.getProfileDescription(), mProviderID,
-					getProfileProperties(), getParentProfile(),
-					mProfilePage.getAutoConnect());
-		}
-		catch (ConnectionProfileException e) {
+			doFinish();
+//			ProfileManager.getInstance().createProfile(
+//					mProfilePage.getProfileName(),
+//					mProfilePage.getProfileDescription(), mProviderID,
+//					getProfileProperties(), getParentProfile(),
+//					mProfilePage.getAutoConnect());
+//		} catch (ConnectionProfileException e) {
+//			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
+//					.getDefault().getResourceString(
+//							"NewConnectionProfileWizard.create.failure"), e //$NON-NLS-1$
+//					.getLocalizedMessage(), e);
+//			return false;
+		} catch (CoreException e) {
 			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
 					.getDefault().getResourceString(
 							"NewConnectionProfileWizard.create.failure"), e //$NON-NLS-1$
@@ -64,6 +73,28 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 			return false;
 		}
 		return true;
+	}
+	
+	private void doFinish() throws CoreException {
+    	//  Refactor for finish
+    	PerformChangeOperation refOperation = new PerformChangeOperation(
+    			new ConnectionProfileCreateChange(mProfilePage.getProfileName(),
+    					mProfilePage.getProfileDescription(), mProviderID,
+    					getProfileProperties(), getParentProfile(),
+    					mProfilePage.getAutoConnect(),
+    					getShell()));
+    	try 
+    	{
+    		ResourcesPlugin.getWorkspace().run(refOperation, null);
+    	}
+    	catch (OperationCanceledException oce) 
+    	{
+    		throw new OperationCanceledException();			
+    	}
+    	catch (CoreException ce) 
+    	{
+    		throw ce;
+    	}	
 	}
 
 	/**

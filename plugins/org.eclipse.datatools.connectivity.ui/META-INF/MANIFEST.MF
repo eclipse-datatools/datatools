@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.expressions;bundle-version="[3.2.0,4.0.0)",
- com.ibm.icu;bundle-version="[3.4.0,4.0.0)"
+ com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
+ org.eclipse.ltk.core.refactoring,
+ org.eclipse.ltk.ui.refactoring
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.connectivity.internal.ui,
  org.eclipse.datatools.connectivity.internal.ui.dialogs,

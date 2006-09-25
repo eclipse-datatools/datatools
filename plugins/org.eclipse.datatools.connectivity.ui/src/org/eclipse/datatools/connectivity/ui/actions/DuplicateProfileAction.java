@@ -10,15 +10,20 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
-import org.eclipse.datatools.connectivity.ConnectionProfileException;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCopyProcessor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ltk.core.refactoring.CheckConditionsOperation;
+import org.eclipse.ltk.core.refactoring.PerformRefactoringOperation;
+import org.eclipse.ltk.core.refactoring.participants.CopyRefactoring;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate;
@@ -45,21 +50,44 @@ public class DuplicateProfileAction extends Action implements IActionDelegate {
 	 */
 	public void run() {
 		try {
-			String newProfile = ProfileManager.getInstance().duplicateProfile(
-					mConnectionProfile);
-			IConnectionProfile profile = ProfileManager.getInstance()
-					.getProfileByName(newProfile);
-			if (profile.isAutoConnect())
-				profile.connect();
+			refactor(mConnectionProfile);
+//			String newProfile = ProfileManager.getInstance().duplicateProfile(
+//					mConnectionProfile);
+//			IConnectionProfile profile = ProfileManager.getInstance()
+//					.getProfileByName(newProfile);
+//			if (profile.isAutoConnect())
+//				profile.connect();
 			
-		}
-		catch (ConnectionProfileException e) {
+//		} catch (ConnectionProfileException e) {
+//			ExceptionHandler.showException(mParentShell, ConnectivityUIPlugin
+//					.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
+//					.getMessage(), e);
+		} catch (CoreException e) {
 			ExceptionHandler.showException(mParentShell, ConnectivityUIPlugin
-					.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
-					.getMessage(), e);
+				.getDefault().getResourceString("dialog.title.error"), e //$NON-NLS-1$
+				.getMessage(), e);
 		}
 	}
 	
+	private void refactor (IConnectionProfile profile) throws CoreException {
+    	//  Refactor for rename
+    	PerformRefactoringOperation refOperation = new PerformRefactoringOperation(
+    			new CopyRefactoring(new ConnectionProfileCopyProcessor(profile)), 
+    				CheckConditionsOperation.ALL_CONDITIONS);
+    	try 
+    	{
+    		ResourcesPlugin.getWorkspace().run(refOperation, null);
+    	}
+    	catch (OperationCanceledException oce) 
+    	{
+    		throw new OperationCanceledException();			
+    	}
+    	catch (CoreException ce) 
+    	{
+    		throw ce;
+    	}	
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

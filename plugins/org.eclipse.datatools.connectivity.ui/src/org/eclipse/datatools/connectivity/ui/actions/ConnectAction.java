@@ -29,6 +29,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.window.SameShellProvider;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
@@ -106,7 +107,7 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 			
 			for (int i = 0; i < list.size(); i++) {
 				PropertyDialogAction propertyDialogAction = new PropertyDialogAction(
-						mShell, this);
+						new SameShellProvider(mShell), this);
 				if (list.get(i) instanceof IConnectionProfile) {
 					IConnectionProfile profile = (IConnectionProfile) list.get(i);
 					StructuredSelection ssel = new StructuredSelection(profile);
