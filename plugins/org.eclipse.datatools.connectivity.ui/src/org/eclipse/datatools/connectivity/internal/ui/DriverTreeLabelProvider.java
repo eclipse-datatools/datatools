@@ -19,22 +19,23 @@ import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.jface.viewers.ILabelDecorator;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.internal.dialogs.ViewLabelProvider;
 
 /**
  * Label provider and decorator for the driver tree
  * 
  * @author brianf
  */
-public class DriverTreeLabelProvider extends ViewLabelProvider implements
+public class DriverTreeLabelProvider extends LabelProvider implements
 		ILabelDecorator {
 
 	// Images
 	private Image mNullImage = DriverImages.NULLIMAGE.createImage();
 	private Image mDriverImage = DriverImages.DRIVER.createImage();
 	private Image mCategoryImage = DriverImages.CATEGORY.createImage();
-
+    
 	// List of images
 	private static DriverImages driverImage_ = new DriverImages();
 
@@ -60,7 +61,7 @@ public class DriverTreeLabelProvider extends ViewLabelProvider implements
 	 */
 	public Image getImage(Object element) {
 		Image returnImage = null;
-		if (element instanceof DriversProvider)
+        if (element instanceof DriversProvider)
 			returnImage = null;
 		else if (element instanceof CategoryDescriptor) {
 			returnImage = this.mCategoryImage;
@@ -149,5 +150,26 @@ public class DriverTreeLabelProvider extends ViewLabelProvider implements
 				driverImage_, decoratorImageKeys);
 		image = overlayIcon.getImage();
 		return image;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.LabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 */
+	public void addListener(ILabelProviderListener listener) {
+		// nothing
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.LabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+	 */
+	public boolean isLabelProperty(Object element, String property) {
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.viewers.LabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
+	 */
+	public void removeListener(ILabelProviderListener listener) {
+		// nothing
 	}
 }
