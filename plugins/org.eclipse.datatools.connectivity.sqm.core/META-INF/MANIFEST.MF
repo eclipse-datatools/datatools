@@ -2,11 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.core; singleton:=true
-Bundle-Version: 0.9.1.200608251
+Bundle-Version: 0.9.1.20060926
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.connectivity.sqm.core.util,
  org.eclipse.datatools.connectivity.sqm.internal.core,
  org.eclipse.datatools.connectivity.sqm.internal.core.connection,
  org.eclipse.datatools.connectivity.sqm.internal.core.containment,
@@ -14,7 +15,8 @@ Export-Package: org.eclipse.datatools.connectivity.sqm.core,
  org.eclipse.datatools.connectivity.sqm.internal.core.rte,
  org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe,
  org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc,
- org.eclipse.datatools.connectivity.sqm.internal.core.util
+ org.eclipse.datatools.connectivity.sqm.internal.core.util,
+ org.eclipse.datatools.connectivity.sqm.loader
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.ecore.xmi;bundle-version="[2.2.0,3.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
