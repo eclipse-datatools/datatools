@@ -25,7 +25,6 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
-import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
@@ -107,11 +106,8 @@ public class DesignSessionUtilBase
                                         String odaDataSetId )
         throws OdaException
     {
-        UIExtensionManifest manifest =
-            UIManifestExplorer.getInstance().getExtensionManifest( odaDataSourceId );
-        DataSetUIElement dataSetElement = null;
-        if( manifest != null )
-            dataSetElement = manifest.getDataSetUIElement( odaDataSetId );
+        DataSetUIElement dataSetElement = UIManifestExplorer.getInstance()
+                .getDataSetUIElement( odaDataSourceId, odaDataSetId );
         if( dataSetElement == null )
             throw new OdaException( 
                     Messages.bind( Messages.designSession_missingDataSetUIElement,
