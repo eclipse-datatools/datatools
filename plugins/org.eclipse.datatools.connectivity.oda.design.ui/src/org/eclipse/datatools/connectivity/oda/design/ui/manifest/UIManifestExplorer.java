@@ -156,7 +156,7 @@ public class UIManifestExplorer
     {
         return getExtensionManifest( dataSourceId, DTP_ODA_UI_EXT_POINT );
     }
-
+    
     /**
      * Returns the DataSetUIElement instance that
      * represents the dataSetUI element with the given id defined
@@ -199,7 +199,8 @@ public class UIManifestExplorer
      * @param extensionPoint    the id of the extension point to search
      * @return                  the extension manifest information,
      *                          or null if no extension configuration is found.
-     * @throws OdaException     if the extension manifest is invalid.
+     * @throws OdaException     if any specified argument is invalid, or
+     *                          the manifest found is not valid.
      */
     private UIExtensionManifest getExtensionManifest( 
                                         String dataSourceId, 
@@ -319,9 +320,11 @@ public class UIManifestExplorer
             ProfileWizardProvider wizardProvider = new ProfileWizardProvider( wizardElement );
             
             /* The first extension found with matching odaDataSourceId 
-             * in its newWizard.id attribute is considered a match.
+             * in its newWizard.profile attribute is considered a match.
+             * An ODA profile uses the odaDataSourceId as its profile identifier,
+             * which uniquely identifies an ODA run-time data source extension.
              */
-            if( odaDataSourceId.equalsIgnoreCase( wizardProvider.getId() ) )
+            if( odaDataSourceId.equalsIgnoreCase( wizardProvider.getProfile() ) )
             {
                 String wizardName = wizardProvider.getName();
                 if( wizardName != null && wizardName.length() > 0 )
