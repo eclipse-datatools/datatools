@@ -1,0 +1,99 @@
+X					Y					Value					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 3					All regions 3					12752.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments 2					All regions 2					12751.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					555555555.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					
+All segments					All regions					12750.0					

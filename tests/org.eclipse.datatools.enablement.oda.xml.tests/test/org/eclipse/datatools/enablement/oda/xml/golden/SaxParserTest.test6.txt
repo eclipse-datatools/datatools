@@ -1,0 +1,7 @@
+author					title					category					category2					
+Giada De Laurentiis					Everyday Italian					COOKING					COOKING					
+J K. Rowling					Harry Potter					COOKING					null					
+James McGovern					XQuery Kick Start					COOKING					WEB					
+Per Bothner					XQuery Kick Start					COOKING					WEB					
+Erik T. Ray					Learning XML					COOKING					WEB					
+R.C.Martin					Learning XML					COOKING					WEB					

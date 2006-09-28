@@ -1,0 +1,7 @@
+title					lang					author					country					date					isn					category					
+Everyday Italian					en					Giada De Laurentiis					it					2005-02-02					12325423					COOKING					
+Harry Potter					en					J K. Rowling					uk					2004-04-04					12325323					null					
+XQuery Kick Start					en					James McGovern					us					2003-03-03					12325423					WEB					
+XQuery Kick Start					en					Per Bothner					us					2003-03-03					12325423					WEB					
+Learning XML					en					Erik T. Ray					us					2002-02-02					52325423					WEB					
+Learning XML					en					R.C.Martin					us					2002-02-02					52325423					WEB					

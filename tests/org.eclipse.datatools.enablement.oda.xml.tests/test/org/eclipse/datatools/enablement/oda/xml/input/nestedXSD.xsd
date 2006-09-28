@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.books.org"
+            xmlns="http://www.books.org"
+            elementFormDefault="qualified">
+    <xsd:element name="BookStore">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="Book" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Book">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="Title" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="Author" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="Date" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="ISBN" minOccurs="1" maxOccurs="1"/>
+                <xsd:element ref="Publisher" minOccurs="1" maxOccurs="1"/>
+                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            	   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement1" />
+            	   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement2" />
+          	       <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement3" />
+           		   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement4" />
+		      	       <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            			   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement5" />
+        		    	   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement6" />
+		          	       <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement7" />
+           				   <xsd:element minOccurs="0" maxOccurs="unbounded" ref="groupelement8" />
+	                   </xsd:sequence>
+      	        </xsd:sequence>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Title" type="xsd:string"/>
+    <xsd:element name="Author" type="xsd:string"/>
+    <xsd:element name="Date" type="xsd:string"/>
+    <xsd:element name="ISBN" type="xsd:string"/>
+    <xsd:element name="Publisher" type="xsd:string"/>
+    <xsd:element name="groupelement1" type="xsd:string"/>
+    <xsd:element name="groupelement2" type="xsd:string"/>
+    <xsd:element name="groupelement3" type="xsd:string"/>
+    <xsd:element name="groupelement4" type="xsd:string"/>
+    <xsd:element name="groupelement5" type="xsd:string"/>
+    <xsd:element name="groupelement6" type="xsd:string"/>
+    <xsd:element name="groupelement7" type="xsd:string"/>
+    <xsd:element name="groupelement8" type="xsd:string"/>
+</xsd:schema>

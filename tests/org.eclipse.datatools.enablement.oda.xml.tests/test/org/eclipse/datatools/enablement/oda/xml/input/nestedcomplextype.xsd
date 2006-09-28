@@ -1,0 +1,20 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="ITEMS">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ITEMSROW" maxOccurs="unbounded">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="ITEMCODE" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="DESCRIPTION" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="PRICEQUOTE" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="QUANTITY" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="CATEGORY" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="ORDERID" type="xsd:int" minOccurs="1" maxOccurs="1"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+</xsd:schema>

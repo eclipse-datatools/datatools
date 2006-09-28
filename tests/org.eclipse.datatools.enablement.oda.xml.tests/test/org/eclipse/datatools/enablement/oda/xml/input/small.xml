@@ -1,0 +1,55 @@
+﻿<?xml version="1.0"?>
+<library>
+
+<book category="COOKING">
+  <title lang="en">Everyday Italian</title>
+  <author name="Giada De Laurentiis" country="it"/>
+  <date>2005-02-02</date>
+  <time>12:21:55.123</time>
+  <price>25.99</price>
+  <isn>12325423</isn>
+  <timestamp>2000-02-02 00:00:00.000000001</timestamp>
+</book>
+
+<book>
+  <title lang="en">Harry Potter</title>
+  <author name="J K. Rowling" country="uk" />
+  <date>2004-04-04</date>
+  <time>12:21:56.123</time>
+  <price>14.59</price>
+  <isn>12325323</isn>
+  <timestamp>2000-02-01T00:00:00.000000001Z</timestamp>
+</book>
+
+<book category="WEB">
+  <author name="James McGovern" country="us" />
+  <author name="Per Bothner" country="us" />
+  <date>2003-03-03</date>  
+  <title lang="en">XQuery Kick Start</title>
+  <time>12:21:57.123</time>
+  <price>33.55</price>
+  <isn>12325423</isn>
+  <timestamp>2000-12-02T00:00:00.000000001</timestamp>
+</book>
+
+<book category="WEB">
+  <author name="Erik T. Ray" country="us" />
+  <author name="R.C.Martin" country="us" />
+  <date>2002-02-02</date>
+  <time>12:21:58.123</time>
+  <price>222.10</price>
+  <isn>52325423</isn>
+  <timestamp>2000-02-12 00:00:00.000000001</timestamp>
+  <title lang="en">Learning XML</title>
+</book>
+
+<audio format="CD" category="MUSIC">
+  <title lang="en">Feels Like Home</title>
+  <artist name="Norah Jones" country="us" />
+  <date>2002-02-02</date>
+  <time>12:21:59.123</time>
+  <price>22.1</price>
+  <isn>12325423</isn>
+  <timestamp>2010-02-02T00:00:00.000Z</timestamp>
+</audio>
+</library>
