@@ -15,6 +15,7 @@
          <sequence>
             <element ref="dataSource"/>
             <element ref="dataSet" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -54,7 +55,7 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  A fully qualified ID that uniquely identifies this ODA data source extension within an ODA consumer application&apos;s environment. If a data source designer extension (TBD) for this ODA driver is available, the value of this attribute must match that of the designer extension&apos;s &lt;i&gt;id&lt;/i&gt; attribute in its data source element.
+                  A fully qualified ID that uniquely identifies this ODA data source extension within an ODA consumer application&apos;s environment. If a data source designer extension (that implements &lt;i&gt;org.eclipse.datatools.connectivity.oda.design.ui.dataSource&lt;/i&gt; extension point) is available for this ODA driver, the value of this attribute must match that of the designer extension&apos;s &lt;i&gt;id&lt;/i&gt; attribute in its data source element.
                </documentation>
             </annotation>
          </attribute>
@@ -462,6 +463,40 @@ The configured values are passed through to the driver&apos;s implementation of 
             <element ref="propertyGroup" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="propertyVisibility" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
+      </complexType>
+   </element>
+
+   <element name="relationship">
+      <annotation>
+         <documentation>
+            An optional element to specify the relationship of this dataSource extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="type" use="required">
+            <annotation>
+               <documentation>
+                  The type of relationship that this extension has with the &lt;i&gt;relatedDataSourceId&lt;/i&gt; extension.
+Valid value(s) are: 
+&lt;br&gt;* &quot;replacedBy&quot; - this dataSource extension is deprecated and replaced by that of &lt;i&gt;relatedDataSourceId&lt;/i&gt;.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
+&lt;br&gt;* (Additional types are TBD.)
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="replacedBy">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="relatedDataSourceId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully qualified ID of the related ODA data source extension.
+Its value must match that of the &lt;i&gt;dataSource.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

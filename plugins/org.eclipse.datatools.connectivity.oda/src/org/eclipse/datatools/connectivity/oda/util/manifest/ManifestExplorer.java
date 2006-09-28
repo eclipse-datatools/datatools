@@ -74,7 +74,7 @@ public class ManifestExplorer
         sm_logger = null;
     }
     
-    private static Logger getLogger()
+    static Logger getLogger()
     {
         if( sm_logger == null )
             sm_logger = Logger.getLogger( PACKAGE_NAME );        
@@ -194,36 +194,54 @@ public class ManifestExplorer
 	
 	    IExtension[] extensions = getExtensions( extensionPoint );
 	    
-	    IExtension extension = findExtension( dataSourceId, extensions );
+	    IExtension dataSourceExtn = findExtension( dataSourceId, extensions );
 	
-        if ( extension == null )    // not found
+        if ( dataSourceExtn == null )    // not found
             return null;
         
         // found extension 
-        aManifest = newExtensionManifest( extension );
+        
+        return getExtensionManifest( dataSourceExtn );
+	}
+    
+    /**
+     * Returns the extension configuration information found
+     * in the plugin manifest file for the specified data source
+     * extension. 
+     * Applies the matching manifest from the cached collection, 
+     * if exists.  Otherwise, instantiates a new manifest, and saves in cache.
+     * @param dataSourceExtn    data source extension object
+     * @return                  the extension manifest information
+     * @throws OdaException     if the extension manifest is invalid
+     */
+    private ExtensionManifest getExtensionManifest( IExtension dataSourceExtn )
+        throws OdaException
+    {
+        if( dataSourceExtn == null )
+            throw new OdaException( 
+                    new IllegalArgumentException( Messages.manifest_nullArgument ));
+
+        IConfigurationElement dataSourceElement = 
+            getDataSourceElement( dataSourceExtn );
+        assert( dataSourceElement != null );
+        
+        String dataSourceId = dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
+
+        // first check if specified extension's dataSourceId manifest
+        // is already in cache, and use it
+        ExtensionManifest aManifest =
+            (ExtensionManifest) getCachedManifests().get( dataSourceId );
+        if( aManifest != null )
+            return aManifest;
+            
+        // validate and create its extension manifest
+        aManifest = new ExtensionManifest( dataSourceExtn );
         
         // keep it in cached collection
         getCachedManifests().put( dataSourceId, aManifest );
         
         return aManifest;
-	}
-
-	/**
-	 * Returns the extension configuration information found
-	 * in the plugin manifest file for the specified data source
-	 * extension of the specified extension point.
-	 * @param platformExtension	core platform extension object
-	 * @return					the extension manifest information
-	 * @throws OdaException		if the extension manifest is invalid
-	 */
-	ExtensionManifest newExtensionManifest( IExtension platformExtension ) 
-		throws OdaException
-	{
-	    if ( platformExtension == null )
-			throw new IllegalArgumentException( Messages.manifest_nullArgument );
-	    
-        return new ExtensionManifest( platformExtension );
-	}
+    }
 
 	/**
 	 * Returns an array of DTP ODA dataSource extension configuration information  
@@ -296,11 +314,10 @@ public class ManifestExplorer
 		ArrayList manifestList = new ArrayList( length );
 		for( int i = 0; i < length; i++ )
 		{
-			IExtension extension = extensions[i];	
+			IExtension dataSourceExtn = extensions[i];	
 			try
 			{
-				// validate and create extension manifest
-                ExtensionManifest manifest = newExtensionManifest( extension );
+                ExtensionManifest manifest = getExtensionManifest( dataSourceExtn );
                 
                 /* includes this extension manifest if the specified argument indicates 
                  * to include those without data set element
@@ -360,8 +377,8 @@ public class ManifestExplorer
 	{
 		return getExtensions( DTP_ODA_EXT_POINT );
 	}
-	
-	// Package static helper methods
+
+    // Package static helper methods
     
     /*
      * Returns all the plugin extensions that implements the given

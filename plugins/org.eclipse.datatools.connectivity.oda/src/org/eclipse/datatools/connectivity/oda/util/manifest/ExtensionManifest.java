@@ -46,6 +46,7 @@ public class ExtensionManifest
 	private Properties m_propsVisibility;
     private IConfigurationElement m_dataSourceElement;
     private IExtension m_dataSourceExtn;
+    private Relationship m_relationship;
 
 	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
     {
@@ -119,6 +120,9 @@ public class ExtensionManifest
 		    m_properties = getPropertyDefinitions( propertiesElement );
 		    m_propsVisibility = getPropertyVisibilities( propertiesElement );
 		}
+        
+        // relationship element
+        m_relationship = Relationship.createInstance( dataSourceExtn );
         
         // successfully initialized
         m_dataSourceExtn = dataSourceExtn;
@@ -427,5 +431,26 @@ public class ExtensionManifest
 	        m_propsVisibility = new Properties();
 	    return m_propsVisibility;
 	}
+    
+    /**
+     * Indicates whether this extension is defined to be deprecated.
+     */
+    public boolean isDeprecated()
+    {
+        return ( m_relationship != null && m_relationship.isDeprecated() );
+    }
 
+    /**
+     * Returns the related oda data source element id, if specified.
+     * @return  the related oda data source element id, or 
+     *          null if none is specified.
+     */
+    public String getRelatedDataSourceId()
+    {
+        if( m_relationship == null )
+            return null;
+        
+        return m_relationship.getRelatedDataSourceId();
+    }
+    
 }
