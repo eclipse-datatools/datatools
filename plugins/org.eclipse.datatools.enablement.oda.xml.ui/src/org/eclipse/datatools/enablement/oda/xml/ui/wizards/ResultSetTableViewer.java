@@ -21,7 +21,7 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.xml.ui.Messages;
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.15 $ $Date: 2006/06/10 08:56:05 $
+ * @version $Revision: 1.1 $ $Date: 2006/09/28 10:19:11 $
  */
 public final class ResultSetTableViewer
 {

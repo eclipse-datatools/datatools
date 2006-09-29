@@ -14,7 +14,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 import java.util.HashMap;
 
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
-import org.eclipse.datatools.enablement.oda.xml.ui.Messages;
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 
 /**
  *	This class is used to make transformation between data type display name and 

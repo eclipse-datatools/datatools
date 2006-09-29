@@ -19,7 +19,7 @@ import java.util.Map;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.xml.ui.Messages;
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -40,7 +40,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.5 $ $Date: 2006/05/24 07:17:51 $
+ * @version $Revision: 1.1 $ $Date: 2006/09/28 10:19:11 $
  */
 public final class ColumnMappingTableViewer
 {

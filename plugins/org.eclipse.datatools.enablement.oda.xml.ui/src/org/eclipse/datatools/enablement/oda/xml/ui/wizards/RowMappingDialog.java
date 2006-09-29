@@ -13,7 +13,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.List;
 
-import org.eclipse.datatools.enablement.oda.xml.ui.Messages;
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
