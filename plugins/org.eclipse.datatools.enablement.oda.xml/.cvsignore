@@ -1,2 +1,5 @@
 bin
+download
+*.jar
+*.zip
 utestreports
