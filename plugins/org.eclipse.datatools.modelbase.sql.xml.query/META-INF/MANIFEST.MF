@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.modelbase.sql.xml.query; singleton:=true
-Bundle-Version: 0.9.0.200608311
+Bundle-Version: 1.0.0.200609291
 Bundle-ClassPath: sqlxmlquerymodel.jar
 Bundle-Activator: org.eclipse.datatools.modelbase.sql.xml.query.util.SQLXMLQueryModelPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: 
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.modelbase.sql.query;visibility:=reexport;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.modelbase.sql;visibility:=reexport;bundle-version="[0.9.0,1.0.0)"
+ org.eclipse.datatools.modelbase.sql.query;bundle-version="[0.9.0,1.5.0)";visibility:=reexport,
+ org.eclipse.datatools.modelbase.sql;bundle-version="[0.9.0,1.5.0)";visibility:=reexport
 Eclipse-AutoStart: true
 Export-Package: 
  org.eclipse.datatools.modelbase.sql.xml.query,
