@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlscrapbook; singleton:=true
-Bundle-Version: 0.9.0.200605101
+Bundle-Version: 1.0.0.200609291
 Bundle-Activator: org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -15,7 +15,7 @@ Export-Package: org.eclipse.datatools.sqltools.internal.externalfile,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.util,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.views.execute,
  org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards
-Require-Bundle: org.eclipse.datatools.sqltools.sqleditor;bundle-version="[0.9.0,1.0.0)",
+Require-Bundle: org.eclipse.datatools.sqltools.sqleditor;bundle-version="[0.9.0,1.5.0)",
  org.eclipse.jface.text;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
@@ -23,15 +23,15 @@ Require-Bundle: org.eclipse.datatools.sqltools.sqleditor;bundle-version="[0.9.0,
  org.eclipse.ui.editors;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.workbench.texteditor;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.modelbase.sql;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.sqltools.sql;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.sqltools.editor.core;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.sqltools.common.ui;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity.db.generic;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.modelbase.sql;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.sqltools.sql;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.sqltools.editor.core;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.sqltools.common.ui;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity.db.generic;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[0.9.0,1.5.0)",
  org.eclipse.core.filesystem;bundle-version="[1.0.0,2.0.0)"
 Eclipse-LazyStart: true
 

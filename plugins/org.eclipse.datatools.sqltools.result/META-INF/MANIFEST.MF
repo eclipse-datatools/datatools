@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Results View Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.result; singleton:=true
-Bundle-Version: 0.9.0.200605101
+Bundle-Version: 1.0.0.200609291
 Bundle-Activator: org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.workbench.texteditor;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.editors;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[0.9.0,1.0.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.0,1.5.0)",
  org.apache.lucene;bundle-version="[1.4.0,2.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)"
 Export-Package: org.eclipse.datatools.sqltools.result,
