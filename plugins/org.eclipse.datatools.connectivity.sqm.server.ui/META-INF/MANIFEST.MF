@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.server.ui; singleton:=true
-Bundle-Version: 0.9.1.200608251
+Bundle-Version: 1.0.0.200609291
 Bundle-ClassPath: rdb.server.ui.jar
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin
 Bundle-Vendor: %providerName
@@ -31,12 +31,12 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.modelbase.edit;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity.sqm.core;bundle-version="[0.9.1,1.0.0)",
- org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[0.9.1,1.0.0)",
- org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[0.9.0,1.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.0.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.0.0)",
+ org.eclipse.datatools.modelbase.edit;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity.sqm.core;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.ui.views;bundle-version="[3.2.0,4.0.0)",
