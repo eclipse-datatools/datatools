@@ -111,7 +111,7 @@
             driverClass="org.eclipse.datatools.enablement.oda.xml.impl.Driver"
             defaultDisplayName="%datasource.name"
             id="org.eclipse.datatools.enablement.oda.xml"
-            setThreadContextClassLoader="true">
+            setThreadContextClassLoader="false">
          <properties>
          <propertyGroup
                defaultDisplayName="Connection Properties"
