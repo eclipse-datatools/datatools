@@ -245,8 +245,7 @@ public class ManifestExplorer
 
 	/**
 	 * Returns an array of DTP ODA dataSource extension configuration information  
-	 * found in the plugin manifest file.  Includes all matching extensions,
-     * regardless of whether an extension has no dataSet elements defined.
+	 * found in corresponding plugin manifest file.
      * Returns an empty array if there are no data source extensions found.
 	 * Invalid data source extension definitions are ignored.
 	 * @return	an <code>ExtensionManifest</code> array containing 
@@ -254,44 +253,47 @@ public class ManifestExplorer
 	 */
 	public ExtensionManifest[] getExtensionManifests()
 	{
-        // for 0.7 backward compatibility, do not include those extensions 
-        // that have no data set elements defined
-        return getExtensionManifests( false );
+        return getExtensionManifests( DTP_ODA_EXT_POINT );
     }
-    
-    /**
-     * Returns an array of DTP ODA dataSource extension configuration information  
-     * found in the plugin manifest file.
-     * The argument specifies whether to include all matching extensions, regardless of
-     * whether it has defined no dataSet element, such as a driver adapter plugin.
-     * @param includesAllExtensions     true to include all matching extensions;
-     *              false to include only those matching extensions
-     *              with at least one valid dataSet element defined 
-     * @return an <code>ExtensionManifest</code> array containing 
-     *          the definition of all matching ODA data source extensions.
-     */
-    public ExtensionManifest[] getExtensionManifests( boolean includesAllExtensions )
-    {
-        return getExtensionManifests( DTP_ODA_EXT_POINT, includesAllExtensions );
-	}
 
     /**
      * Returns an array of ODA dataSource extension configuration information
      * of those extensions that implement the specified extension point.  
-     * Includes all matching extensions, regardless of whether an extension 
-     * has no dataSet elements defined.
      * Returns an empty array if there are no data source extensions found.
      * Invalid data source extension definitions are ignored.
      * @param extensionPoint    name of an ODA data source extension point  
      * @return  an <code>ExtensionManifest</code> array containing 
      *          the definition of all matching ODA data source extensions.
      */
-	public ExtensionManifest[] getExtensionManifests( String extensionPoint )
-	{
-        // for 0.7 backward compatibility, do not include those extensions 
-        // that have no data set elements defined
-        return getExtensionManifests( extensionPoint, false );
+    public ExtensionManifest[] getExtensionManifests( String extensionPoint )
+    {
+        // for backward compatibility, exclude those extensions 
+        // that have no data set elements defined, and
+        // include deprecated extensions
+        Filter aFilter = createFilter();
+        aFilter.setMissingDataSetTypesFilter( true );
+        aFilter.setDeprecatedFilter( false );
+        return getExtensionManifests( extensionPoint, aFilter );
     }
+    
+    /**
+     * Returns an array of DTP ODA dataSource extension configuration information  
+     * found in corresponding plugin manifest file.
+     * The argument specifies whether to include all matching extensions, regardless of
+     * whether it has defined no dataSet element, such as a driver adapter plugin.
+     * @param includesAllExtensions     true to return all matching extensions,
+     *              including those with no valid dataSet element defined;
+     *              false to include only those matching extensions
+     *              with at least one valid dataSet element defined 
+     * @return an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     * @deprecated  As of DTP 1.0, replaced by 
+     *      {@link #getExtensionManifests(String, org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer.Filter)}
+     */
+    public ExtensionManifest[] getExtensionManifests( boolean includesAllExtensions )
+    {
+        return getExtensionManifests( DTP_ODA_EXT_POINT, includesAllExtensions );
+	}
     
     /**
      * Returns an array of ODA dataSource extension configuration information
@@ -299,14 +301,37 @@ public class ManifestExplorer
      * The argument specifies whether to include all matching extensions, regardless of
      * whether it has defined no dataSet element, such as a driver adapter plugin.
      * @param extensionPoint    name of an ODA data source extension point  
-     * @param includesAllExtensions     true to include all matching extensions;
+     * @param includesAllExtensions     true to return all matching extensions,
+     *              including those with no valid dataSet element defined;
      *              false to include only those matching extensions
      *              with at least one valid dataSet element defined 
      * @return  an <code>ExtensionManifest</code> array containing 
      *          the definition of all matching ODA data source extensions.
+     * @deprecated  As of DTP 1.0, replaced by 
+     *      {@link #getExtensionManifests(String, org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer.Filter)}
      */
     public ExtensionManifest[] getExtensionManifests( String extensionPoint, 
                                                 boolean includesAllExtensions )
+    {
+        Filter aFilter = createFilter();
+        aFilter.setMissingDataSetTypesFilter( includesAllExtensions == false );
+        aFilter.setDeprecatedFilter( false );
+        return getExtensionManifests( extensionPoint, aFilter );
+    }
+    
+    /**
+     * Returns an array of ODA dataSource extension configuration information
+     * of those extensions that implement the specified extension point and
+     * meet the filter criteria.  
+     * @param extensionPoint    name of an ODA data source extension point  
+     * @param collectionFilter  specifies the types of extensions to exclude in
+     *                          the returned collection; 
+     *                          may be null if no filtering is needed
+     * @return  an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     */
+    public ExtensionManifest[] getExtensionManifests( String extensionPoint, 
+                                                        Filter collectionFilter )
     {
 		IExtension[] extensions = getExtensions( extensionPoint );
 		int length = ( extensions == null ) ? 
@@ -319,10 +344,27 @@ public class ManifestExplorer
 			{
                 ExtensionManifest manifest = getExtensionManifest( dataSourceExtn );
                 
-                /* includes this extension manifest if the specified argument indicates 
-                 * to include those without data set element
-                 */
-                if( includesAllExtensions || manifest.getDataSetTypeCount() > 0 )
+                boolean includeExtension = true;
+                
+                // applies filter options, if specified
+                if( collectionFilter != null )
+                {
+                    /* excludes this extension manifest if the specified filter argument  
+                     * indicates to filter out those without a data set element
+                     */
+                    if( collectionFilter.isMissingDataSetTypesFilterOn() && 
+                        manifest.getDataSetTypeCount() <= 0 )
+                        includeExtension = false;
+                    
+                    /* excludes this extension manifest if the filter argument
+                     * indicates to filter out deprecated extensions
+                     */
+                    if( collectionFilter.isDeprecatedFilterOn() &&
+                        manifest.isDeprecated() )
+                        includeExtension = false;
+                }
+                
+                if( includeExtension )
                     manifestList.add( manifest );
 			}
 			catch( OdaException ex )
@@ -563,4 +605,65 @@ public class ManifestExplorer
         return setType.getDefaultOdaDataTypeCode( nativeTypeCode );        
     }
 
+    /**
+     * Instantiates a new Filter object for the manifest explorer to apply when
+     * retrieving a collection of ODA data source extension manifests.
+     * @return  a new Filter object
+     */
+    public static Filter createFilter()
+    {
+        return getInstance().new Filter();
+    }
+    
+    /**
+     * Filtering options for the manifest explorer to apply when
+     * retrieving a collection of ODA data source extension manifests.
+     */
+    public class Filter
+    {
+        private boolean m_noDataSetTypes;   // extensions with no data set types defined
+        private boolean m_deprecated;       // deprecated extensions
+        
+        Filter()
+        {
+            // do not exclude or filter out any extensions, by default
+            m_noDataSetTypes = false;
+            m_deprecated = false;       
+        }
+        
+        /**
+         * Specifies whether to exclude extensions with no data set types defined.
+         * @param exclude   true to exclude, false otherwise.
+         */
+        public void setMissingDataSetTypesFilter( boolean exclude )
+        {
+            m_noDataSetTypes = exclude;
+        }
+        
+        /**
+         * Specifies whether to exclude deprecated extensions.
+         * @param exclude   true to exclude, false otherwise.
+         */
+        public void setDeprecatedFilter( boolean exclude )
+        {
+            m_deprecated = exclude;
+        }
+
+        /**
+         * Indicates whether to exclude extensions with no data set types defined.
+         */
+        public boolean isMissingDataSetTypesFilterOn()
+        {
+            return m_noDataSetTypes;
+        }
+
+        /**
+         * Indicates whether to exclude deprecated extensions.
+         */
+        public boolean isDeprecatedFilterOn()
+        {
+            return m_deprecated;
+        }        
+    }
+    
 }
