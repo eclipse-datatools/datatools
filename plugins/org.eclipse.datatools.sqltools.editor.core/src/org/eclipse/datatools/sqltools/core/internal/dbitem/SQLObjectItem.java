@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.internal.dbitem;
 
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -79,7 +80,9 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
+			// TODO: Hack! Fix me!
+			EngineeringOption[] opts = getOldOptions(ddlg);
+//			EngineeringOption[] opts = ddlg.getOptions();
 			boolean generateDrop = opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
 					.getBoolean();
 			boolean fullName = opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean();
@@ -108,7 +111,9 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
+			// TODO: Hack! Fix me!
+			EngineeringOption[] opts = getOldOptions(ddlg);
+//			EngineeringOption[] opts = ddlg.getOptions();
 			String[] drop = ddlg
 					.dropSQLObjects(
 							new SQLObject[] { _routine },
@@ -129,7 +134,9 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
+			// TODO: Hack! Fix me!
+			EngineeringOption[] opts = getOldOptions(ddlg);
+//			EngineeringOption[] opts = ddlg.getOptions();
 			String[] drop = ddlg
 					.dropSQLObjects(
 							new SQLObject[] { _routine },
@@ -258,5 +265,16 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
     {
         return _controlConn.getReusableConnection();
     }
-
+    
+    // JG: Hacked temporary method for DDL changes in M2
+    private EngineeringOption[] getOldOptions(DDLGenerator ddlg) {
+    	EngineeringOption[] opts = null;
+    	try {
+			Method m = ddlg.getClass().getMethod("getOptions", new Class[0]);
+			opts = (EngineeringOption[])m.invoke(ddlg, new Object[0]);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return opts;
+    }
 }
