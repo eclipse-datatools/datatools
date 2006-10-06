@@ -12,6 +12,8 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.containment;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.ecore.EObject;
@@ -32,7 +34,12 @@ public class SchemaContainmentProvider extends AbstractContainmentProvider {
 	}
 
 	public EObject getContainer(EObject obj) {
-		return ((Schema) obj).getCatalog();
+		Catalog catalog = ((Schema) obj).getCatalog();
+		if (catalog != null) {
+			return catalog;
+		} else {
+			return ((Schema) obj).getDatabase();
+		}
 	}
 
 	public EStructuralFeature getContainmentFeature(EObject obj) {
