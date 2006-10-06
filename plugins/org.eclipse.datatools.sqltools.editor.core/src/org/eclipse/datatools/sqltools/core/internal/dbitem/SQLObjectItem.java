@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.internal.dbitem;
 
-import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,7 +18,7 @@ import java.util.Map;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOption;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGenerationOptions;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionID;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
@@ -80,29 +79,15 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			// TODO: Hack! Fix me!
-			EngineeringOption[] opts = getOldOptions(ddlg);
-//			EngineeringOption[] opts = ddlg.getOptions();
-			boolean generateDrop = opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
-					.getBoolean();
-			boolean fullName = opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean();
-			boolean oldQuotedId = opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].getBoolean();
+			SQLObject[] sqlElements = new SQLObject[] { _routine };
+			EngineeringOption[] opts = ddlg.getOptions(sqlElements);
 			boolean quotedId = SQLDevToolsUtil.getQuotedIdentifier(_proc.getDatabaseIdentifier());
-			opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
-					.setBoolean(false);
-			opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].setBoolean(true);
-			opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].setBoolean(quotedId);
-			
-			
-			String[] ddl = ddlg.generateDDL(new SQLObject[] { _routine }, null);
+			EngineeringOptionID.setOptionValueByID(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER,opts,quotedId);
+
+			String[] ddl = ddlg.generateDDL(sqlElements, null);
 			if (ddl != null && ddl.length > 0) {
 				code = ddl[0];
 			}
-			// restore
-			opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
-					.setBoolean(generateDrop);
-			opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].setBoolean(fullName);
-			opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER].setBoolean(oldQuotedId);
 		}
 		return code;
 	}
@@ -111,14 +96,12 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			// TODO: Hack! Fix me!
-			EngineeringOption[] opts = getOldOptions(ddlg);
-//			EngineeringOption[] opts = ddlg.getOptions();
+			SQLObject[] sqlElements = new SQLObject[] { _routine };
+			EngineeringOption[] opts = ddlg.getOptions(sqlElements);
 			String[] drop = ddlg
 					.dropSQLObjects(
-							new SQLObject[] { _routine },
-							opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER]
-									.getBoolean(),
+							sqlElements,
+							EngineeringOptionID.getOptionValueByID(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER,opts),
 							true, null);
 			// we alway use "true" instead of
 			// opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean()
@@ -134,14 +117,12 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			// TODO: Hack! Fix me!
-			EngineeringOption[] opts = getOldOptions(ddlg);
-//			EngineeringOption[] opts = ddlg.getOptions();
+			SQLObject[] sqlElements = new SQLObject[] { _routine };
+			EngineeringOption[] opts = ddlg.getOptions(sqlElements);
 			String[] drop = ddlg
 					.dropSQLObjects(
-							new SQLObject[] { _routine },
-							opts[GenericDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER]
-									.getBoolean(),
+							sqlElements,
+							EngineeringOptionID.getOptionValueByID(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER,opts),
 							true, null);
 			// we alway use "true" instead of
 			// opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean()
@@ -266,15 +247,5 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
         return _controlConn.getReusableConnection();
     }
     
-    // JG: Hacked temporary method for DDL changes in M2
-    private EngineeringOption[] getOldOptions(DDLGenerator ddlg) {
-    	EngineeringOption[] opts = null;
-    	try {
-			Method m = ddlg.getClass().getMethod("getOptions", new Class[0]);
-			opts = (EngineeringOption[])m.invoke(ddlg, new Object[0]);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return opts;
-    }
+    
 }
