@@ -79,7 +79,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions();
+			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
 			boolean generateDrop = opts[GenericDdlGenerationOptions.GENERATE_DROP_STATEMENTS]
 					.getBoolean();
 			boolean fullName = opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean();
@@ -108,7 +108,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions();
+			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
 			String[] drop = ddlg
 					.dropSQLObjects(
 							new SQLObject[] { _routine },
@@ -129,7 +129,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
 				_proc.getProfileName()).getDDLGenerator();
 		if (ddlg != null) {
-			EngineeringOption[] opts = ddlg.getOptions();
+			EngineeringOption[] opts = ddlg.getOptions(new SQLObject[0]);
 			String[] drop = ddlg
 					.dropSQLObjects(
 							new SQLObject[] { _routine },
