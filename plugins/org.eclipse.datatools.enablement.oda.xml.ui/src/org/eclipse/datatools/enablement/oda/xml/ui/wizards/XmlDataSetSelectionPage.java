@@ -152,17 +152,14 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			this.useDataSourceXMLDataSelected = true;
 			this.folderLocation.setText( "" );
 			enableFolderLocation( false );
-			xmlFile = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );;
-		}else
+		}
+		else
 		{
 			this.useDataSourceXMLDataSelected = false;
 			this.folderLocation.setText( xmlFile );
 			enableFolderLocation( true );
 		}
 		useDataSourceXMLDataCheckBox.setSelection( this.useDataSourceXMLDataSelected );
-		this.fileLocation = xmlFile == null ? "" : xmlFile;
-		XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_XML_FILE,
-				fileLocation );
 		
 		String rowNumber = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW );
 		try
