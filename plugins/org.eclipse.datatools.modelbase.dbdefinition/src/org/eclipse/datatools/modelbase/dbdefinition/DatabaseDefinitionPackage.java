@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface DatabaseDefinitionPackage extends EPackage{
+public interface DatabaseDefinitionPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -462,7 +462,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 42;
 
 	/**
-	 * The number of structural features of the the '<em>Database Vendor Definition</em>' class.
+	 * The number of structural features of the '<em>Database Vendor Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -859,7 +859,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR = 41;
 
 	/**
-	 * The number of structural features of the the '<em>Predefined Data Type Definition</em>' class.
+	 * The number of structural features of the '<em>Predefined Data Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -986,7 +986,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 11;
 
 	/**
-	 * The number of structural features of the the '<em>Table Space Definition</em>' class.
+	 * The number of structural features of the '<em>Table Space Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1140,7 +1140,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 14;
 
 	/**
-	 * The number of structural features of the the '<em>Stored Procedure Definition</em>' class.
+	 * The number of structural features of the '<em>Stored Procedure Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1258,7 +1258,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 10;
 
 	/**
-	 * The number of structural features of the the '<em>Trigger Definition</em>' class.
+	 * The number of structural features of the '<em>Trigger Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1358,7 +1358,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 8;
 
 	/**
-	 * The number of structural features of the the '<em>Column Definition</em>' class.
+	 * The number of structural features of the '<em>Column Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1494,7 +1494,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH = 12;
 
 	/**
-	 * The number of structural features of the the '<em>Constraint Definition</em>' class.
+	 * The number of structural features of the '<em>Constraint Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1576,7 +1576,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 6;
 
 	/**
-	 * The number of structural features of the the '<em>Index Definition</em>' class.
+	 * The number of structural features of the '<em>Index Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1613,7 +1613,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int EXTENDED_DEFINITION__VALUE = 1;
 
 	/**
-	 * The number of structural features of the the '<em>Extended Definition</em>' class.
+	 * The number of structural features of the '<em>Extended Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1686,7 +1686,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 5;
 
 	/**
-	 * The number of structural features of the the '<em>Table Definition</em>' class.
+	 * The number of structural features of the '<em>Table Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1786,7 +1786,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE = 8;
 
 	/**
-	 * The number of structural features of the the '<em>Sequence Definition</em>' class.
+	 * The number of structural features of the '<em>Sequence Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1841,7 +1841,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 3;
 
 	/**
-	 * The number of structural features of the the '<em>User Defined Type Definition</em>' class.
+	 * The number of structural features of the '<em>User Defined Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1923,7 +1923,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int QUERY_DEFINITION__TABLE_ALIAS_IN_DELETE_SUPPORTED = 6;
 
 	/**
-	 * The number of structural features of the the '<em>Query Definition</em>' class.
+	 * The number of structural features of the '<em>Query Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1969,7 +1969,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER = 2;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Syntax Definition</em>' class.
+	 * The number of structural features of the '<em>SQL Syntax Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2015,7 +2015,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 2;
 
 	/**
-	 * The number of structural features of the the '<em>Nickname Definition</em>' class.
+	 * The number of structural features of the '<em>Nickname Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2043,7 +2043,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 0;
 
 	/**
-	 * The number of structural features of the the '<em>Schema Definition</em>' class.
+	 * The number of structural features of the '<em>Schema Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2071,7 +2071,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 0;
 
 	/**
-	 * The number of structural features of the the '<em>View Definition</em>' class.
+	 * The number of structural features of the '<em>View Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2162,7 +2162,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED = 7;
 
 	/**
-	 * The number of structural features of the the '<em>Field Qualifier Definition</em>' class.
+	 * The number of structural features of the '<em>Field Qualifier Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2190,7 +2190,7 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	int DEBUGGER_DEFINITION__CONDITION_SUPPORTED = 0;
 
 	/**
-	 * The number of structural features of the the '<em>Debugger Definition</em>' class.
+	 * The number of structural features of the '<em>Debugger Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4745,5 +4745,1876 @@ public interface DatabaseDefinitionPackage extends EPackage{
 	 * @generated
 	 */
 	DatabaseDefinitionFactory getDatabaseDefinitionFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl <em>Database Vendor Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDatabaseVendorDefinition()
+		 * @generated
+		 */
+		EClass DATABASE_VENDOR_DEFINITION = eINSTANCE.getDatabaseVendorDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS = eINSTANCE.getDatabaseVendorDefinition_PredefinedDataTypeDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Space Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_TableSpaceDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Stored Procedure Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_StoredProcedureDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Trigger Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_TriggerDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_ColumnDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_ConstraintDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS = eINSTANCE.getDatabaseVendorDefinition_ExtendedDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_IndexDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_TableDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Sequence Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_SequenceDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Udt Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__UDT_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_UdtDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_QueryDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL Syntax Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_SQLSyntaxDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Nickname Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_NicknameDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_SchemaDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>View Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_ViewDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Debugger Definition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_DebuggerDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Vendor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__VENDOR = eINSTANCE.getDatabaseVendorDefinition_Vendor();
+
+		/**
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__VERSION = eINSTANCE.getDatabaseVendorDefinition_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_ConstraintsSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getDatabaseVendorDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Trigger Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_TriggerSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Snapshot View Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SnapshotViewSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Join Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_JoinSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>View Trigger Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_ViewTriggerSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Tablespaces Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_TablespacesSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Comment Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = eINSTANCE.getDatabaseVendorDefinition_MaximumCommentLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Sequence Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SequenceSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>MQT Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_MQTSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SchemaSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_AliasSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Synonym Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SynonymSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>User Defined Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_UserDefinedTypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Domain Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_DomainSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>SQL Statement Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SQLStatementSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Nickname Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_NicknameSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Quoted DML Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_QuotedDMLSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Quoted DDL Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_QuotedDDLSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Xml Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__XML_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_XmlSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>MQT Index Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_MQTIndexSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Event Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_EventSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Sql UDF Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_SqlUDFSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Stored Procedure Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_StoredProcedureSupported();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPredefinedDataTypeDefinition()
+		 * @generated
+		 */
+		EClass PREDEFINED_DATA_TYPE_DEFINITION = eINSTANCE.getPredefinedDataTypeDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Leading Field Qualifier Definition</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION = eINSTANCE.getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Trailing Field Qualifier Definition</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION = eINSTANCE.getPredefinedDataTypeDefinition_TrailingFieldQualifierDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Trailing Field Qualifier Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION = eINSTANCE.getPredefinedDataTypeDefinition_DefaultTrailingFieldQualifierDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Leading Field Qualifier Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION = eINSTANCE.getPredefinedDataTypeDefinition_DefaultLeadingFieldQualifierDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Length Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_LengthSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Scale Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__SCALE_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_ScaleSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Precision Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__PRECISION_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_PrecisionSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Key Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__KEY_CONSTRAINT_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_KeyConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__IDENTITY_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_IdentitySupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiple Columns Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MULTIPLE_COLUMNS_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_MultipleColumnsSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Nullable Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__NULLABLE_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_NullableSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_DefaultSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Clustering Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__CLUSTERING_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_ClusteringSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Fill Factor Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__FILL_FACTOR_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_FillFactorSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Bit Data Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__BIT_DATA_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_BitDataSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_VALUE = eINSTANCE.getPredefinedDataTypeDefinition_MaximumValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Minimum Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_VALUE = eINSTANCE.getPredefinedDataTypeDefinition_MinimumValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_LENGTH = eINSTANCE.getPredefinedDataTypeDefinition_MaximumLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_PRECISION = eINSTANCE.getPredefinedDataTypeDefinition_MaximumPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MAXIMUM_SCALE = eINSTANCE.getPredefinedDataTypeDefinition_MaximumScale();
+
+		/**
+		 * The meta object literal for the '<em><b>Minimum Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__MINIMUM_SCALE = eINSTANCE.getPredefinedDataTypeDefinition_MinimumScale();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value Types</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_VALUE_TYPES = eINSTANCE.getPredefinedDataTypeDefinition_DefaultValueTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Primitive Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__PRIMITIVE_TYPE = eINSTANCE.getPredefinedDataTypeDefinition_PrimitiveType();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__NAME = eINSTANCE.getPredefinedDataTypeDefinition_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Jdbc Enum Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__JDBC_ENUM_TYPE = eINSTANCE.getPredefinedDataTypeDefinition_JdbcEnumType();
+
+		/**
+		 * The meta object literal for the '<em><b>Character Set</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET = eINSTANCE.getPredefinedDataTypeDefinition_CharacterSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Encoding Scheme</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME = eINSTANCE.getPredefinedDataTypeDefinition_EncodingScheme();
+
+		/**
+		 * The meta object literal for the '<em><b>Character Set Suffix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__CHARACTER_SET_SUFFIX = eINSTANCE.getPredefinedDataTypeDefinition_CharacterSetSuffix();
+
+		/**
+		 * The meta object literal for the '<em><b>Encoding Scheme Suffix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__ENCODING_SCHEME_SUFFIX = eINSTANCE.getPredefinedDataTypeDefinition_EncodingSchemeSuffix();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__JAVA_CLASS_NAME = eINSTANCE.getPredefinedDataTypeDefinition_JavaClassName();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LENGTH = eINSTANCE.getPredefinedDataTypeDefinition_DefaultLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_PRECISION = eINSTANCE.getPredefinedDataTypeDefinition_DefaultPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_SCALE = eINSTANCE.getPredefinedDataTypeDefinition_DefaultScale();
+
+		/**
+		 * The meta object literal for the '<em><b>Cutoff Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__CUTOFF_PRECISION = eINSTANCE.getPredefinedDataTypeDefinition_CutoffPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Length Unit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_UNIT = eINSTANCE.getPredefinedDataTypeDefinition_LengthUnit();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__ORDERING_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_OrderingSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__GROUPING_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_GroupingSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME = eINSTANCE.getPredefinedDataTypeDefinition_DisplayName();
+
+		/**
+		 * The meta object literal for the '<em><b>Display Name Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__DISPLAY_NAME_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_DisplayNameSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Leading Field Qualifier Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Trailing Field Qualifier Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Field Qualifier Separator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR = eINSTANCE.getPredefinedDataTypeDefinition_FieldQualifierSeparator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableSpaceDefinition()
+		 * @generated
+		 */
+		EClass TABLE_SPACE_DEFINITION = eINSTANCE.getTableSpaceDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__TYPE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_TypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Extent Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__EXTENT_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_ExtentSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Prefetch Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__PREFETCH_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_PrefetchSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Managed By Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__MANAGED_BY_SUPPORTED = eINSTANCE.getTableSpaceDefinition_ManagedBySupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Page Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__PAGE_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_PageSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Buffer Pool Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__BUFFER_POOL_SUPPORTED = eINSTANCE.getTableSpaceDefinition_BufferPoolSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__DEFAULT_SUPPORTED = eINSTANCE.getTableSpaceDefinition_DefaultSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Container Maximum Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__CONTAINER_MAXIMUM_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_ContainerMaximumSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Container Initial Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__CONTAINER_INITIAL_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_ContainerInitialSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Container Extent Size Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__CONTAINER_EXTENT_SIZE_SUPPORTED = eINSTANCE.getTableSpaceDefinition_ContainerExtentSizeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Space Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__TABLE_SPACE_TYPE = eINSTANCE.getTableSpaceDefinition_TableSpaceType();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getTableSpaceDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl <em>Stored Procedure Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.StoredProcedureDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getStoredProcedureDefinition()
+		 * @generated
+		 */
+		EClass STORED_PROCEDURE_DEFINITION = eINSTANCE.getStoredProcedureDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Input Action Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_NullInputActionSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Package Generation Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_PackageGenerationSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Determininstic Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__DETERMININSTIC_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_DetermininsticSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Returned Null Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__RETURNED_NULL_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ReturnedNullSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Returned Type Declaration Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__RETURNED_TYPE_DECLARATION_CONSTRAINT_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ReturnedTypeDeclarationConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Init Value Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PARAMETER_INIT_VALUE_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ParameterInitValueSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Style Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ParameterStyleSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Return Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__RETURN_TYPE_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ReturnTypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Declaration Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PARAMETER_DECLARATION_CONSTRAINT_SUPPORTED = eINSTANCE.getStoredProcedureDefinition_ParameterDeclarationConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Action Body Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH = eINSTANCE.getStoredProcedureDefinition_MaximumActionBodyLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter Style</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PARAMETER_STYLE = eINSTANCE.getStoredProcedureDefinition_ParameterStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>Language Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__LANGUAGE_TYPE = eINSTANCE.getStoredProcedureDefinition_LanguageType();
+
+		/**
+		 * The meta object literal for the '<em><b>Function Language Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__FUNCTION_LANGUAGE_TYPE = eINSTANCE.getStoredProcedureDefinition_FunctionLanguageType();
+
+		/**
+		 * The meta object literal for the '<em><b>Procedure Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__PROCEDURE_TYPE = eINSTANCE.getStoredProcedureDefinition_ProcedureType();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getStoredProcedureDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl <em>Trigger Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.TriggerDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTriggerDefinition()
+		 * @generated
+		 */
+		EClass TRIGGER_DEFINITION = eINSTANCE.getTriggerDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Reference Part Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH = eINSTANCE.getTriggerDefinition_MaximumReferencePartLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Action Body Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH = eINSTANCE.getTriggerDefinition_MaximumActionBodyLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__TYPE_SUPPORTED = eINSTANCE.getTriggerDefinition_TypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>When Clause Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__WHEN_CLAUSE_SUPPORTED = eINSTANCE.getTriggerDefinition_WhenClauseSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Granularity Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__GRANULARITY_SUPPORTED = eINSTANCE.getTriggerDefinition_GranularitySupported();
+
+		/**
+		 * The meta object literal for the '<em><b>References Clause Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__REFERENCES_CLAUSE_SUPPORTED = eINSTANCE.getTriggerDefinition_ReferencesClauseSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Per Column Update Trigger Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__PER_COLUMN_UPDATE_TRIGGER_SUPPORTED = eINSTANCE.getTriggerDefinition_PerColumnUpdateTriggerSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Instead Of Trigger Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__INSTEAD_OF_TRIGGER_SUPPORTED = eINSTANCE.getTriggerDefinition_InsteadOfTriggerSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Row Trigger Reference Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__ROW_TRIGGER_REFERENCE_SUPPORTED = eINSTANCE.getTriggerDefinition_RowTriggerReferenceSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Trigger Reference Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__TABLE_TRIGGER_REFERENCE_SUPPORTED = eINSTANCE.getTriggerDefinition_TableTriggerReferenceSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getTriggerDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl <em>Column Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.ColumnDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getColumnDefinition()
+		 * @generated
+		 */
+		EClass COLUMN_DEFINITION = eINSTANCE.getColumnDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Column Data Type Definitions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS = eINSTANCE.getColumnDefinition_IdentityColumnDataTypeDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_SUPPORTED = eINSTANCE.getColumnDefinition_IdentitySupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Computed Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__COMPUTED_SUPPORTED = eINSTANCE.getColumnDefinition_ComputedSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Start Value Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_START_VALUE_SUPPORTED = eINSTANCE.getColumnDefinition_IdentityStartValueSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Increment Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_INCREMENT_SUPPORTED = eINSTANCE.getColumnDefinition_IdentityIncrementSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Minimum Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_MINIMUM_SUPPORTED = eINSTANCE.getColumnDefinition_IdentityMinimumSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Maximum Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_MAXIMUM_SUPPORTED = eINSTANCE.getColumnDefinition_IdentityMaximumSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Identity Cycle Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__IDENTITY_CYCLE_SUPPORTED = eINSTANCE.getColumnDefinition_IdentityCycleSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getColumnDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl <em>Constraint Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.ConstraintDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getConstraintDefinition()
+		 * @generated
+		 */
+		EClass CONSTRAINT_DEFINITION = eINSTANCE.getConstraintDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Deferrable Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__DEFERRABLE_CONSTRAINT_SUPPORTED = eINSTANCE.getConstraintDefinition_DeferrableConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Informational Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__INFORMATIONAL_CONSTRAINT_SUPPORTED = eINSTANCE.getConstraintDefinition_InformationalConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Clustered Primary Key Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__CLUSTERED_PRIMARY_KEY_SUPPORTED = eINSTANCE.getConstraintDefinition_ClusteredPrimaryKeySupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Clustered Unique Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__CLUSTERED_UNIQUE_CONSTRAINT_SUPPORTED = eINSTANCE.getConstraintDefinition_ClusteredUniqueConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Primary Key Nullable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__PRIMARY_KEY_NULLABLE = eINSTANCE.getConstraintDefinition_PrimaryKeyNullable();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Key Nullable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__UNIQUE_KEY_NULLABLE = eINSTANCE.getConstraintDefinition_UniqueKeyNullable();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Check Expression Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__MAXIMUM_CHECK_EXPRESSION_LENGTH = eINSTANCE.getConstraintDefinition_MaximumCheckExpressionLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Update DRI Rule Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__PARENT_UPDATE_DRI_RULE_TYPE = eINSTANCE.getConstraintDefinition_ParentUpdateDRIRuleType();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Delete DRI Rule Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__PARENT_DELETE_DRI_RULE_TYPE = eINSTANCE.getConstraintDefinition_ParentDeleteDRIRuleType();
+
+		/**
+		 * The meta object literal for the '<em><b>Check Option</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__CHECK_OPTION = eINSTANCE.getConstraintDefinition_CheckOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Primary Key Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__MAXIMUM_PRIMARY_KEY_IDENTIFIER_LENGTH = eINSTANCE.getConstraintDefinition_MaximumPrimaryKeyIdentifierLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Foreign Key Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__MAXIMUM_FOREIGN_KEY_IDENTIFIER_LENGTH = eINSTANCE.getConstraintDefinition_MaximumForeignKeyIdentifierLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Check Constraint Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT_DEFINITION__MAXIMUM_CHECK_CONSTRAINT_IDENTIFIER_LENGTH = eINSTANCE.getConstraintDefinition_MaximumCheckConstraintIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl <em>Index Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.IndexDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getIndexDefinition()
+		 * @generated
+		 */
+		EClass INDEX_DEFINITION = eINSTANCE.getIndexDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Percent Free Terminology</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY = eINSTANCE.getIndexDefinition_PercentFreeTerminology();
+
+		/**
+		 * The meta object literal for the '<em><b>Percent Free Changeable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__PERCENT_FREE_CHANGEABLE = eINSTANCE.getIndexDefinition_PercentFreeChangeable();
+
+		/**
+		 * The meta object literal for the '<em><b>Clustering Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__CLUSTERING_SUPPORTED = eINSTANCE.getIndexDefinition_ClusteringSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Cluster Changeable</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__CLUSTER_CHANGEABLE = eINSTANCE.getIndexDefinition_ClusterChangeable();
+
+		/**
+		 * The meta object literal for the '<em><b>Fill Factor Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__FILL_FACTOR_SUPPORTED = eINSTANCE.getIndexDefinition_FillFactorSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Included Columns Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__INCLUDED_COLUMNS_SUPPORTED = eINSTANCE.getIndexDefinition_IncludedColumnsSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getIndexDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ExtendedDefinitionImpl <em>Extended Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.ExtendedDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getExtendedDefinition()
+		 * @generated
+		 */
+		EClass EXTENDED_DEFINITION = eINSTANCE.getExtendedDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DEFINITION__NAME = eINSTANCE.getExtendedDefinition_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXTENDED_DEFINITION__VALUE = eINSTANCE.getExtendedDefinition_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl <em>Table Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.TableDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableDefinition()
+		 * @generated
+		 */
+		EClass TABLE_DEFINITION = eINSTANCE.getTableDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Audit Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__AUDIT_SUPPORTED = eINSTANCE.getTableDefinition_AuditSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Capture Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__DATA_CAPTURE_SUPPORTED = eINSTANCE.getTableDefinition_DataCaptureSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Edit Proc Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__EDIT_PROC_SUPPORTED = eINSTANCE.getTableDefinition_EditProcSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Encoding Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__ENCODING_SUPPORTED = eINSTANCE.getTableDefinition_EncodingSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid Proc Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__VALID_PROC_SUPPORTED = eINSTANCE.getTableDefinition_ValidProcSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getTableDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl <em>Sequence Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.SequenceDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getSequenceDefinition()
+		 * @generated
+		 */
+		EClass SEQUENCE_DEFINITION = eINSTANCE.getSequenceDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Data Type Definitions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS = eINSTANCE.getSequenceDefinition_PredefinedDataTypeDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Data Type Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION = eINSTANCE.getSequenceDefinition_DefaultDataTypeDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Enumeration Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__TYPE_ENUMERATION_SUPPORTED = eINSTANCE.getSequenceDefinition_TypeEnumerationSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Cache Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__CACHE_SUPPORTED = eINSTANCE.getSequenceDefinition_CacheSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Order Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__ORDER_SUPPORTED = eINSTANCE.getSequenceDefinition_OrderSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>No Maximum Value String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__NO_MAXIMUM_VALUE_STRING = eINSTANCE.getSequenceDefinition_NoMaximumValueString();
+
+		/**
+		 * The meta object literal for the '<em><b>No Minimum Value String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__NO_MINIMUM_VALUE_STRING = eINSTANCE.getSequenceDefinition_NoMinimumValueString();
+
+		/**
+		 * The meta object literal for the '<em><b>No Cache String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__NO_CACHE_STRING = eINSTANCE.getSequenceDefinition_NoCacheString();
+
+		/**
+		 * The meta object literal for the '<em><b>Cache Default Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE = eINSTANCE.getSequenceDefinition_CacheDefaultValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl <em>User Defined Type Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.UserDefinedTypeDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getUserDefinedTypeDefinition()
+		 * @generated
+		 */
+		EClass USER_DEFINED_TYPE_DEFINITION = eINSTANCE.getUserDefinedTypeDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Value Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_DEFINITION__DEFAULT_VALUE_SUPPORTED = eINSTANCE.getUserDefinedTypeDefinition_DefaultValueSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Distinct Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_DEFINITION__DISTINCT_TYPE_SUPPORTED = eINSTANCE.getUserDefinedTypeDefinition_DistinctTypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Structured Type Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_DEFINITION__STRUCTURED_TYPE_SUPPORTED = eINSTANCE.getUserDefinedTypeDefinition_StructuredTypeSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER_DEFINED_TYPE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getUserDefinedTypeDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl <em>Query Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.QueryDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getQueryDefinition()
+		 * @generated
+		 */
+		EClass QUERY_DEFINITION = eINSTANCE.getQueryDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Identifier Quote String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING = eINSTANCE.getQueryDefinition_IdentifierQuoteString();
+
+		/**
+		 * The meta object literal for the '<em><b>Host Variable Marker</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__HOST_VARIABLE_MARKER = eINSTANCE.getQueryDefinition_HostVariableMarker();
+
+		/**
+		 * The meta object literal for the '<em><b>Host Variable Marker Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__HOST_VARIABLE_MARKER_SUPPORTED = eINSTANCE.getQueryDefinition_HostVariableMarkerSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Cast Expression Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__CAST_EXPRESSION_SUPPORTED = eINSTANCE.getQueryDefinition_CastExpressionSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Keyword For Insert Value Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__DEFAULT_KEYWORD_FOR_INSERT_VALUE_SUPPORTED = eINSTANCE.getQueryDefinition_DefaultKeywordForInsertValueSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Extended Grouping Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__EXTENDED_GROUPING_SUPPORTED = eINSTANCE.getQueryDefinition_ExtendedGroupingSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Alias In Delete Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_DEFINITION__TABLE_ALIAS_IN_DELETE_SUPPORTED = eINSTANCE.getQueryDefinition_TableAliasInDeleteSupported();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SQLSyntaxDefinitionImpl <em>SQL Syntax Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.SQLSyntaxDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getSQLSyntaxDefinition()
+		 * @generated
+		 */
+		EClass SQL_SYNTAX_DEFINITION = eINSTANCE.getSQLSyntaxDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Keywords</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_SYNTAX_DEFINITION__KEYWORDS = eINSTANCE.getSQLSyntaxDefinition_Keywords();
+
+		/**
+		 * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_SYNTAX_DEFINITION__OPERATORS = eINSTANCE.getSQLSyntaxDefinition_Operators();
+
+		/**
+		 * The meta object literal for the '<em><b>Termination Character</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER = eINSTANCE.getSQLSyntaxDefinition_TerminationCharacter();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl <em>Nickname Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.NicknameDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getNicknameDefinition()
+		 * @generated
+		 */
+		EClass NICKNAME_DEFINITION = eINSTANCE.getNicknameDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NICKNAME_DEFINITION__CONSTRAINT_SUPPORTED = eINSTANCE.getNicknameDefinition_ConstraintSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NICKNAME_DEFINITION__INDEX_SUPPORTED = eINSTANCE.getNicknameDefinition_IndexSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NICKNAME_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getNicknameDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.SchemaDefinitionImpl <em>Schema Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.SchemaDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getSchemaDefinition()
+		 * @generated
+		 */
+		EClass SCHEMA_DEFINITION = eINSTANCE.getSchemaDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCHEMA_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getSchemaDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl <em>View Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getViewDefinition()
+		 * @generated
+		 */
+		EClass VIEW_DEFINITION = eINSTANCE.getViewDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Identifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getViewDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl <em>Field Qualifier Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getFieldQualifierDefinition()
+		 * @generated
+		 */
+		EClass FIELD_QUALIFIER_DEFINITION = eINSTANCE.getFieldQualifierDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Valid Trailing Field Qualifier Definitions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS = eINSTANCE.getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__NAME = eINSTANCE.getFieldQualifierDefinition_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__MAXIMUM_PRECISION = eINSTANCE.getFieldQualifierDefinition_MaximumPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Precision</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__DEFAULT_PRECISION = eINSTANCE.getFieldQualifierDefinition_DefaultPrecision();
+
+		/**
+		 * The meta object literal for the '<em><b>Precision Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__PRECISION_SUPPORTED = eINSTANCE.getFieldQualifierDefinition_PrecisionSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Maximum Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__MAXIMUM_SCALE = eINSTANCE.getFieldQualifierDefinition_MaximumScale();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Scale</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__DEFAULT_SCALE = eINSTANCE.getFieldQualifierDefinition_DefaultScale();
+
+		/**
+		 * The meta object literal for the '<em><b>Scale Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIELD_QUALIFIER_DEFINITION__SCALE_SUPPORTED = eINSTANCE.getFieldQualifierDefinition_ScaleSupported();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl <em>Debugger Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DebuggerDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getDebuggerDefinition()
+		 * @generated
+		 */
+		EClass DEBUGGER_DEFINITION = eINSTANCE.getDebuggerDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEBUGGER_DEFINITION__CONDITION_SUPPORTED = eINSTANCE.getDebuggerDefinition_ConditionSupported();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.CheckOption <em>Check Option</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.CheckOption
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getCheckOption()
+		 * @generated
+		 */
+		EEnum CHECK_OPTION = eINSTANCE.getCheckOption();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType <em>Language Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.LanguageType
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLanguageType()
+		 * @generated
+		 */
+		EEnum LANGUAGE_TYPE = eINSTANCE.getLanguageType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle <em>Parameter Style</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParameterStyle()
+		 * @generated
+		 */
+		EEnum PARAMETER_STYLE = eINSTANCE.getParameterStyle();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentDeleteDRIRuleType()
+		 * @generated
+		 */
+		EEnum PARENT_DELETE_DRI_RULE_TYPE = eINSTANCE.getParentDeleteDRIRuleType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentUpdateDRIRuleType()
+		 * @generated
+		 */
+		EEnum PARENT_UPDATE_DRI_RULE_TYPE = eINSTANCE.getParentUpdateDRIRuleType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ProcedureType <em>Procedure Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.ProcedureType
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getProcedureType()
+		 * @generated
+		 */
+		EEnum PROCEDURE_TYPE = eINSTANCE.getProcedureType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType <em>Table Space Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableSpaceType()
+		 * @generated
+		 */
+		EEnum TABLE_SPACE_TYPE = eINSTANCE.getTableSpaceType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology <em>Percent Free Terminology</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPercentFreeTerminology()
+		 * @generated
+		 */
+		EEnum PERCENT_FREE_TERMINOLOGY = eINSTANCE.getPercentFreeTerminology();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.LengthUnit <em>Length Unit</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.LengthUnit
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLengthUnit()
+		 * @generated
+		 */
+		EEnum LENGTH_UNIT = eINSTANCE.getLengthUnit();
+
+	}
 
 } //DatabaseDefinitionPackage

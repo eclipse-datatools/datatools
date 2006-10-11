@@ -293,7 +293,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getTableSpaceDefinition();
+		return DatabaseDefinitionPackage.Literals.TABLE_SPACE_DEFINITION;
 	}
 
 	/**
@@ -544,8 +544,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
 				return isTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__EXTENT_SIZE_SUPPORTED:
@@ -571,7 +571,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -579,8 +579,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
 				setTypeSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -619,7 +619,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -627,8 +627,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
 				setTypeSupported(TYPE_SUPPORTED_EDEFAULT);
 				return;
@@ -666,7 +666,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -674,8 +674,8 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__TYPE_SUPPORTED:
 				return typeSupported != TYPE_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__EXTENT_SIZE_SUPPORTED:
@@ -701,7 +701,7 @@ public class TableSpaceDefinitionImpl extends EObjectImpl implements TableSpaceD
 			case DatabaseDefinitionPackage.TABLE_SPACE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

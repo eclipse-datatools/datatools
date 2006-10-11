@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSyntaxDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
+ * $Id: SQLSyntaxDefinitionImpl.java,v 1.2 2006/03/09 23:48:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -94,7 +94,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getSQLSyntaxDefinition();
+		return DatabaseDefinitionPackage.Literals.SQL_SYNTAX_DEFINITION;
 	}
 
 	/**
@@ -147,8 +147,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__KEYWORDS:
 				return getKeywords();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__OPERATORS:
@@ -156,7 +156,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
 				return getTerminationCharacter();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -164,8 +164,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__KEYWORDS:
 				getKeywords().clear();
 				getKeywords().addAll((Collection)newValue);
@@ -178,7 +178,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 				setTerminationCharacter((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -186,8 +186,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__KEYWORDS:
 				getKeywords().clear();
 				return;
@@ -198,7 +198,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 				setTerminationCharacter(TERMINATION_CHARACTER_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -206,8 +206,8 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__KEYWORDS:
 				return keywords != null && !keywords.isEmpty();
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__OPERATORS:
@@ -215,7 +215,7 @@ public class SQLSyntaxDefinitionImpl extends EObjectImpl implements SQLSyntaxDef
 			case DatabaseDefinitionPackage.SQL_SYNTAX_DEFINITION__TERMINATION_CHARACTER:
 				return TERMINATION_CHARACTER_EDEFAULT == null ? terminationCharacter != null : !TERMINATION_CHARACTER_EDEFAULT.equals(terminationCharacter);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

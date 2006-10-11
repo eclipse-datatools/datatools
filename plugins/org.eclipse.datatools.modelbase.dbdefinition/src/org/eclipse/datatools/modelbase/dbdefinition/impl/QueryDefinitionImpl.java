@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDefinitionImpl.java,v 1.3 2005/06/15 18:16:00 ledunnel Exp $
+ * $Id: QueryDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -192,7 +192,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getQueryDefinition();
+		return DatabaseDefinitionPackage.Literals.QUERY_DEFINITION;
 	}
 
 	/**
@@ -347,8 +347,8 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
 				return getIdentifierQuoteString();
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__HOST_VARIABLE_MARKER:
@@ -364,7 +364,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__TABLE_ALIAS_IN_DELETE_SUPPORTED:
 				return isTableAliasInDeleteSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -372,8 +372,8 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
 				setIdentifierQuoteString((String)newValue);
 				return;
@@ -396,7 +396,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 				setTableAliasInDeleteSupported(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -404,8 +404,8 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
 				setIdentifierQuoteString(IDENTIFIER_QUOTE_STRING_EDEFAULT);
 				return;
@@ -428,7 +428,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 				setTableAliasInDeleteSupported(TABLE_ALIAS_IN_DELETE_SUPPORTED_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -436,8 +436,8 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__IDENTIFIER_QUOTE_STRING:
 				return IDENTIFIER_QUOTE_STRING_EDEFAULT == null ? identifierQuoteString != null : !IDENTIFIER_QUOTE_STRING_EDEFAULT.equals(identifierQuoteString);
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__HOST_VARIABLE_MARKER:
@@ -453,7 +453,7 @@ public class QueryDefinitionImpl extends EObjectImpl implements QueryDefinition 
 			case DatabaseDefinitionPackage.QUERY_DEFINITION__TABLE_ALIAS_IN_DELETE_SUPPORTED:
 				return tableAliasInDeleteSupported != TABLE_ALIAS_IN_DELETE_SUPPORTED_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

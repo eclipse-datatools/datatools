@@ -863,7 +863,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getPredefinedDataTypeDefinition();
+		return DatabaseDefinitionPackage.Literals.PREDEFINED_DATA_TYPE_DEFINITION;
 	}
 
 	/**
@@ -897,8 +897,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public FieldQualifierDefinition getDefaultTrailingFieldQualifierDefinition() {
 		if (defaultTrailingFieldQualifierDefinition != null && defaultTrailingFieldQualifierDefinition.eIsProxy()) {
-			FieldQualifierDefinition oldDefaultTrailingFieldQualifierDefinition = defaultTrailingFieldQualifierDefinition;
-			defaultTrailingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy((InternalEObject)defaultTrailingFieldQualifierDefinition);
+			InternalEObject oldDefaultTrailingFieldQualifierDefinition = (InternalEObject)defaultTrailingFieldQualifierDefinition;
+			defaultTrailingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy(oldDefaultTrailingFieldQualifierDefinition);
 			if (defaultTrailingFieldQualifierDefinition != oldDefaultTrailingFieldQualifierDefinition) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_TRAILING_FIELD_QUALIFIER_DEFINITION, oldDefaultTrailingFieldQualifierDefinition, defaultTrailingFieldQualifierDefinition));
@@ -935,8 +935,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 */
 	public FieldQualifierDefinition getDefaultLeadingFieldQualifierDefinition() {
 		if (defaultLeadingFieldQualifierDefinition != null && defaultLeadingFieldQualifierDefinition.eIsProxy()) {
-			FieldQualifierDefinition oldDefaultLeadingFieldQualifierDefinition = defaultLeadingFieldQualifierDefinition;
-			defaultLeadingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy((InternalEObject)defaultLeadingFieldQualifierDefinition);
+			InternalEObject oldDefaultLeadingFieldQualifierDefinition = (InternalEObject)defaultLeadingFieldQualifierDefinition;
+			defaultLeadingFieldQualifierDefinition = (FieldQualifierDefinition)eResolveProxy(oldDefaultLeadingFieldQualifierDefinition);
 			if (defaultLeadingFieldQualifierDefinition != oldDefaultLeadingFieldQualifierDefinition) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__DEFAULT_LEADING_FIELD_QUALIFIER_DEFINITION, oldDefaultLeadingFieldQualifierDefinition, defaultLeadingFieldQualifierDefinition));
@@ -1733,18 +1733,14 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
-					return ((InternalEList)getLeadingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
-				case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
-					return ((InternalEList)getTrailingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
+				return ((InternalEList)getLeadingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
+				return ((InternalEList)getTrailingFieldQualifierDefinition()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -1752,8 +1748,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
 				return getLeadingFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
@@ -1841,7 +1837,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				return getFieldQualifierSeparator();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -1849,8 +1845,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
 				getLeadingFieldQualifierDefinition().clear();
 				getLeadingFieldQualifierDefinition().addAll((Collection)newValue);
@@ -1984,7 +1980,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				setFieldQualifierSeparator((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -1992,8 +1988,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
 				getLeadingFieldQualifierDefinition().clear();
 				return;
@@ -2121,7 +2117,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				setFieldQualifierSeparator(FIELD_QUALIFIER_SEPARATOR_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -2129,8 +2125,8 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
 				return leadingFieldQualifierDefinition != null && !leadingFieldQualifierDefinition.isEmpty();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_DEFINITION:
@@ -2216,7 +2212,7 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				return FIELD_QUALIFIER_SEPARATOR_EDEFAULT == null ? fieldQualifierSeparator != null : !FIELD_QUALIFIER_SEPARATOR_EDEFAULT.equals(fieldQualifierSeparator);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

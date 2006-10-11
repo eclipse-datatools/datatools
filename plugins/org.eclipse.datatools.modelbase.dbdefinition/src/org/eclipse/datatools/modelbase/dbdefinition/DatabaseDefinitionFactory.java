@@ -20,14 +20,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage
  * @generated
  */
-public interface DatabaseDefinitionFactory extends EFactory{
+public interface DatabaseDefinitionFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	DatabaseDefinitionFactory eINSTANCE = new org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionFactoryImpl();
+	DatabaseDefinitionFactory eINSTANCE = org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Database Vendor Definition</em>'.

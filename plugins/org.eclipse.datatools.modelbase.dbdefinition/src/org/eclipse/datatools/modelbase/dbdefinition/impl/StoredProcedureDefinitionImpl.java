@@ -328,7 +328,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getStoredProcedureDefinition();
+		return DatabaseDefinitionPackage.Literals.STORED_PROCEDURE_DEFINITION;
 	}
 
 	/**
@@ -615,8 +615,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				return isNullInputActionSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED:
@@ -648,7 +648,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -656,8 +656,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				setNullInputActionSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -708,7 +708,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -716,8 +716,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				setNullInputActionSupported(NULL_INPUT_ACTION_SUPPORTED_EDEFAULT);
 				return;
@@ -764,7 +764,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -772,8 +772,8 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__NULL_INPUT_ACTION_SUPPORTED:
 				return nullInputActionSupported != NULL_INPUT_ACTION_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__PACKAGE_GENERATION_SUPPORTED:
@@ -805,7 +805,7 @@ public class StoredProcedureDefinitionImpl extends EObjectImpl implements Stored
 			case DatabaseDefinitionPackage.STORED_PROCEDURE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

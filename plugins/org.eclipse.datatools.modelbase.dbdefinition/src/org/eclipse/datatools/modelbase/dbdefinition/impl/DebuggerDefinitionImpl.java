@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: DebuggerDefinitionImpl.java,v 1.1 2006/02/27 23:19:06 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -66,7 +66,7 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getDebuggerDefinition();
+		return DatabaseDefinitionPackage.Literals.DEBUGGER_DEFINITION;
 	}
 
 	/**
@@ -95,12 +95,12 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
 				return isConditionSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -108,13 +108,13 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
 				setConditionSupported(((Boolean)newValue).booleanValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -122,13 +122,13 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
 				setConditionSupported(CONDITION_SUPPORTED_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -136,12 +136,12 @@ public class DebuggerDefinitionImpl extends EObjectImpl implements DebuggerDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION__CONDITION_SUPPORTED:
 				return conditionSupported != CONDITION_SUPPORTED_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

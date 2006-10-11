@@ -88,7 +88,7 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getExtendedDefinition();
+		return DatabaseDefinitionPackage.Literals.EXTENDED_DEFINITION;
 	}
 
 	/**
@@ -138,14 +138,14 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__NAME:
 				return getName();
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__VALUE:
 				return getValue();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__NAME:
 				setName((String)newValue);
 				return;
@@ -162,7 +162,7 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 				setValue((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -179,7 +179,7 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -187,14 +187,14 @@ public class ExtendedDefinitionImpl extends EObjectImpl implements ExtendedDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DatabaseDefinitionPackage.EXTENDED_DEFINITION__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

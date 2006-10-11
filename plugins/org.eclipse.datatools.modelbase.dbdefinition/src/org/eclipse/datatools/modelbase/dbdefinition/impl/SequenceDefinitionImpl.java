@@ -221,7 +221,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getSequenceDefinition();
+		return DatabaseDefinitionPackage.Literals.SEQUENCE_DEFINITION;
 	}
 
 	/**
@@ -388,46 +388,8 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PredefinedDataTypeDefinition getDefaultDataTypeDefinition() {
-		if (defaultDataTypeDefinition != null && defaultDataTypeDefinition.eIsProxy()) {
-			PredefinedDataTypeDefinition oldDefaultDataTypeDefinition = defaultDataTypeDefinition;
-			defaultDataTypeDefinition = (PredefinedDataTypeDefinition)eResolveProxy((InternalEObject)defaultDataTypeDefinition);
-			if (defaultDataTypeDefinition != oldDefaultDataTypeDefinition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
-			}
-		}
-		return defaultDataTypeDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PredefinedDataTypeDefinition basicGetDefaultDataTypeDefinition() {
-		return defaultDataTypeDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultDataTypeDefinition(PredefinedDataTypeDefinition newDefaultDataTypeDefinition) {
-		PredefinedDataTypeDefinition oldDefaultDataTypeDefinition = defaultDataTypeDefinition;
-		defaultDataTypeDefinition = newDefaultDataTypeDefinition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
 				return getPredefinedDataTypeDefinitions();
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION:
@@ -448,7 +410,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE:
 				return new Integer(getCacheDefaultValue());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -456,8 +418,8 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
 				getPredefinedDataTypeDefinitions().clear();
 				getPredefinedDataTypeDefinitions().addAll((Collection)newValue);
@@ -487,7 +449,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 				setCacheDefaultValue(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -495,8 +457,8 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
 				getPredefinedDataTypeDefinitions().clear();
 				return;
@@ -525,7 +487,7 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 				setCacheDefaultValue(CACHE_DEFAULT_VALUE_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -533,8 +495,8 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
 				return predefinedDataTypeDefinitions != null && !predefinedDataTypeDefinitions.isEmpty();
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION:
@@ -554,7 +516,45 @@ public class SequenceDefinitionImpl extends EObjectImpl implements SequenceDefin
 			case DatabaseDefinitionPackage.SEQUENCE_DEFINITION__CACHE_DEFAULT_VALUE:
 				return cacheDefaultValue != CACHE_DEFAULT_VALUE_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredefinedDataTypeDefinition getDefaultDataTypeDefinition() {
+		if (defaultDataTypeDefinition != null && defaultDataTypeDefinition.eIsProxy()) {
+			InternalEObject oldDefaultDataTypeDefinition = (InternalEObject)defaultDataTypeDefinition;
+			defaultDataTypeDefinition = (PredefinedDataTypeDefinition)eResolveProxy(oldDefaultDataTypeDefinition);
+			if (defaultDataTypeDefinition != oldDefaultDataTypeDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
+			}
+		}
+		return defaultDataTypeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredefinedDataTypeDefinition basicGetDefaultDataTypeDefinition() {
+		return defaultDataTypeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultDataTypeDefinition(PredefinedDataTypeDefinition newDefaultDataTypeDefinition) {
+		PredefinedDataTypeDefinition oldDefaultDataTypeDefinition = defaultDataTypeDefinition;
+		defaultDataTypeDefinition = newDefaultDataTypeDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.SEQUENCE_DEFINITION__DEFAULT_DATA_TYPE_DEFINITION, oldDefaultDataTypeDefinition, defaultDataTypeDefinition));
 	}
 
 	/**

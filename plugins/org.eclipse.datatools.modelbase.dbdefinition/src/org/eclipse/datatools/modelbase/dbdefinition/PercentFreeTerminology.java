@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PercentFreeTerminology.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: PercentFreeTerminology.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -67,7 +67,7 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final PercentFreeTerminology PERCENT_FREE_LITERAL = new PercentFreeTerminology(PERCENT_FREE, "PERCENT_FREE"); //$NON-NLS-1$
+	public static final PercentFreeTerminology PERCENT_FREE_LITERAL = new PercentFreeTerminology(PERCENT_FREE, "PERCENT_FREE", "PERCENT_FREE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>FILL FACTOR</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final PercentFreeTerminology FILL_FACTOR_LITERAL = new PercentFreeTerminology(FILL_FACTOR, "FILL_FACTOR"); //$NON-NLS-1$
+	public static final PercentFreeTerminology FILL_FACTOR_LITERAL = new PercentFreeTerminology(FILL_FACTOR, "FILL_FACTOR", "FILL_FACTOR"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>THRESHOLD</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final PercentFreeTerminology THRESHOLD_LITERAL = new PercentFreeTerminology(THRESHOLD, "THRESHOLD"); //$NON-NLS-1$
+	public static final PercentFreeTerminology THRESHOLD_LITERAL = new PercentFreeTerminology(THRESHOLD, "THRESHOLD", "THRESHOLD"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Percent Free Terminology</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Percent Free Terminology</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Percent Free Terminology</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static PercentFreeTerminology get(String name) {
+	public static PercentFreeTerminology get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PercentFreeTerminology result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Percent Free Terminology</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Percent Free Terminology</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static PercentFreeTerminology getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			PercentFreeTerminology result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Percent Free Terminology</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class PercentFreeTerminology extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PercentFreeTerminology(int value, String name) {
-		super(value, name);
+	private PercentFreeTerminology(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //PercentFreeTerminology

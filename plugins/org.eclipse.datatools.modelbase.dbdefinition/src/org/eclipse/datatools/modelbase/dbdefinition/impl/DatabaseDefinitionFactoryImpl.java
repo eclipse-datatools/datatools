@@ -14,9 +14,13 @@ import org.eclipse.datatools.modelbase.dbdefinition.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +29,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements DatabaseDefinitionFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static DatabaseDefinitionFactory init() {
+		try {
+			DatabaseDefinitionFactory theDatabaseDefinitionFactory = (DatabaseDefinitionFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore"); //$NON-NLS-1$ 
+			if (theDatabaseDefinitionFactory != null) {
+				return theDatabaseDefinitionFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new DatabaseDefinitionFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -73,51 +96,24 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case DatabaseDefinitionPackage.CHECK_OPTION: {
-				CheckOption result = CheckOption.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.LANGUAGE_TYPE: {
-				LanguageType result = LanguageType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.PARAMETER_STYLE: {
-				ParameterStyle result = ParameterStyle.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.PARENT_DELETE_DRI_RULE_TYPE: {
-				ParentDeleteDRIRuleType result = ParentDeleteDRIRuleType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.PARENT_UPDATE_DRI_RULE_TYPE: {
-				ParentUpdateDRIRuleType result = ParentUpdateDRIRuleType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.PROCEDURE_TYPE: {
-				ProcedureType result = ProcedureType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.TABLE_SPACE_TYPE: {
-				TableSpaceType result = TableSpaceType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.PERCENT_FREE_TERMINOLOGY: {
-				PercentFreeTerminology result = PercentFreeTerminology.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
-			case DatabaseDefinitionPackage.LENGTH_UNIT: {
-				LengthUnit result = LengthUnit.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				return result;
-			}
+			case DatabaseDefinitionPackage.CHECK_OPTION:
+				return createCheckOptionFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.LANGUAGE_TYPE:
+				return createLanguageTypeFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.PARAMETER_STYLE:
+				return createParameterStyleFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.PARENT_DELETE_DRI_RULE_TYPE:
+				return createParentDeleteDRIRuleTypeFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.PARENT_UPDATE_DRI_RULE_TYPE:
+				return createParentUpdateDRIRuleTypeFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.PROCEDURE_TYPE:
+				return createProcedureTypeFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.TABLE_SPACE_TYPE:
+				return createTableSpaceTypeFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.PERCENT_FREE_TERMINOLOGY:
+				return createPercentFreeTerminologyFromString(eDataType, initialValue);
+			case DatabaseDefinitionPackage.LENGTH_UNIT:
+				return createLengthUnitFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -131,23 +127,23 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case DatabaseDefinitionPackage.CHECK_OPTION:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertCheckOptionToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.LANGUAGE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertLanguageTypeToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.PARAMETER_STYLE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertParameterStyleToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.PARENT_DELETE_DRI_RULE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertParentDeleteDRIRuleTypeToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.PARENT_UPDATE_DRI_RULE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertParentUpdateDRIRuleTypeToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.PROCEDURE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertProcedureTypeToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.TABLE_SPACE_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertTableSpaceTypeToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.PERCENT_FREE_TERMINOLOGY:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertPercentFreeTerminologyToString(eDataType, instanceValue);
 			case DatabaseDefinitionPackage.LENGTH_UNIT:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertLengthUnitToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -341,6 +337,186 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public DebuggerDefinition createDebuggerDefinition() {
 		DebuggerDefinitionImpl debuggerDefinition = new DebuggerDefinitionImpl();
 		return debuggerDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckOption createCheckOptionFromString(EDataType eDataType, String initialValue) {
+		CheckOption result = CheckOption.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertCheckOptionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LanguageType createLanguageTypeFromString(EDataType eDataType, String initialValue) {
+		LanguageType result = LanguageType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLanguageTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterStyle createParameterStyleFromString(EDataType eDataType, String initialValue) {
+		ParameterStyle result = ParameterStyle.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertParameterStyleToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParentDeleteDRIRuleType createParentDeleteDRIRuleTypeFromString(EDataType eDataType, String initialValue) {
+		ParentDeleteDRIRuleType result = ParentDeleteDRIRuleType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertParentDeleteDRIRuleTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParentUpdateDRIRuleType createParentUpdateDRIRuleTypeFromString(EDataType eDataType, String initialValue) {
+		ParentUpdateDRIRuleType result = ParentUpdateDRIRuleType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertParentUpdateDRIRuleTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcedureType createProcedureTypeFromString(EDataType eDataType, String initialValue) {
+		ProcedureType result = ProcedureType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertProcedureTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableSpaceType createTableSpaceTypeFromString(EDataType eDataType, String initialValue) {
+		TableSpaceType result = TableSpaceType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTableSpaceTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PercentFreeTerminology createPercentFreeTerminologyFromString(EDataType eDataType, String initialValue) {
+		PercentFreeTerminology result = PercentFreeTerminology.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPercentFreeTerminologyToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LengthUnit createLengthUnitFromString(EDataType eDataType, String initialValue) {
+		LengthUnit result = LengthUnit.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLengthUnitToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

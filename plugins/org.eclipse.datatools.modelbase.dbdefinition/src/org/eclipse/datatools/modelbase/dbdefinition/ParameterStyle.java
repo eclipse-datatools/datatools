@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterStyle.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: ParameterStyle.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -111,7 +111,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle DB2SQL_LITERAL = new ParameterStyle(DB2SQL, "DB2SQL"); //$NON-NLS-1$
+	public static final ParameterStyle DB2SQL_LITERAL = new ParameterStyle(DB2SQL, "DB2SQL", "DB2SQL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>GENERAL</b></em>' literal object.
@@ -125,7 +125,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle GENERAL_LITERAL = new ParameterStyle(GENERAL, "GENERAL"); //$NON-NLS-1$
+	public static final ParameterStyle GENERAL_LITERAL = new ParameterStyle(GENERAL, "GENERAL", "GENERAL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>GENERAL WITH NULLS</b></em>' literal object.
@@ -139,7 +139,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle GENERAL_WITH_NULLS_LITERAL = new ParameterStyle(GENERAL_WITH_NULLS, "GENERAL_WITH_NULLS"); //$NON-NLS-1$
+	public static final ParameterStyle GENERAL_WITH_NULLS_LITERAL = new ParameterStyle(GENERAL_WITH_NULLS, "GENERAL_WITH_NULLS", "GENERAL_WITH_NULLS"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DB2GENRL</b></em>' literal object.
@@ -153,7 +153,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle DB2GENRL_LITERAL = new ParameterStyle(DB2GENRL, "DB2GENRL"); //$NON-NLS-1$
+	public static final ParameterStyle DB2GENRL_LITERAL = new ParameterStyle(DB2GENRL, "DB2GENRL", "DB2GENRL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DB2DARI</b></em>' literal object.
@@ -167,7 +167,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle DB2DARI_LITERAL = new ParameterStyle(DB2DARI, "DB2DARI"); //$NON-NLS-1$
+	public static final ParameterStyle DB2DARI_LITERAL = new ParameterStyle(DB2DARI, "DB2DARI", "DB2DARI"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>JAVA</b></em>' literal object.
@@ -181,7 +181,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle JAVA_LITERAL = new ParameterStyle(JAVA, "JAVA"); //$NON-NLS-1$
+	public static final ParameterStyle JAVA_LITERAL = new ParameterStyle(JAVA, "JAVA", "JAVA"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SQL</b></em>' literal object.
@@ -195,7 +195,7 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParameterStyle SQL_LITERAL = new ParameterStyle(SQL, "SQL"); //$NON-NLS-1$
+	public static final ParameterStyle SQL_LITERAL = new ParameterStyle(SQL, "SQL", "SQL"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Parameter Style</b></em>' enumerators.
@@ -223,15 +223,15 @@ public final class ParameterStyle extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Parameter Style</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Parameter Style</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterStyle get(String name) {
+	public static ParameterStyle get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ParameterStyle result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -239,7 +239,23 @@ public final class ParameterStyle extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Parameter Style</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Parameter Style</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ParameterStyle getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ParameterStyle result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Parameter Style</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -263,8 +279,8 @@ public final class ParameterStyle extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterStyle(int value, String name) {
-		super(value, name);
+	private ParameterStyle(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ParameterStyle

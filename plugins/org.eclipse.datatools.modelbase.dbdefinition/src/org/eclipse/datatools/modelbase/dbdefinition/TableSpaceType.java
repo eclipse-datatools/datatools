@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableSpaceType.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: TableSpaceType.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -122,7 +122,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType REGULAR_LITERAL = new TableSpaceType(REGULAR, "REGULAR"); //$NON-NLS-1$
+	public static final TableSpaceType REGULAR_LITERAL = new TableSpaceType(REGULAR, "REGULAR", "REGULAR"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>LOB</b></em>' literal object.
@@ -136,7 +136,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType LOB_LITERAL = new TableSpaceType(LOB, "LOB"); //$NON-NLS-1$
+	public static final TableSpaceType LOB_LITERAL = new TableSpaceType(LOB, "LOB", "LOB"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SYSTEM TEMPORARY</b></em>' literal object.
@@ -150,7 +150,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType SYSTEM_TEMPORARY_LITERAL = new TableSpaceType(SYSTEM_TEMPORARY, "SYSTEM_TEMPORARY"); //$NON-NLS-1$
+	public static final TableSpaceType SYSTEM_TEMPORARY_LITERAL = new TableSpaceType(SYSTEM_TEMPORARY, "SYSTEM_TEMPORARY", "SYSTEM_TEMPORARY"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>USER TEMPORARY</b></em>' literal object.
@@ -164,7 +164,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType USER_TEMPORARY_LITERAL = new TableSpaceType(USER_TEMPORARY, "USER_TEMPORARY"); //$NON-NLS-1$
+	public static final TableSpaceType USER_TEMPORARY_LITERAL = new TableSpaceType(USER_TEMPORARY, "USER_TEMPORARY", "USER_TEMPORARY"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>PERMANENT</b></em>' literal object.
@@ -178,7 +178,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType PERMANENT_LITERAL = new TableSpaceType(PERMANENT, "PERMANENT"); //$NON-NLS-1$
+	public static final TableSpaceType PERMANENT_LITERAL = new TableSpaceType(PERMANENT, "PERMANENT", "PERMANENT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>TEMPORARY</b></em>' literal object.
@@ -192,7 +192,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType TEMPORARY_LITERAL = new TableSpaceType(TEMPORARY, "TEMPORARY"); //$NON-NLS-1$
+	public static final TableSpaceType TEMPORARY_LITERAL = new TableSpaceType(TEMPORARY, "TEMPORARY", "TEMPORARY"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>LONG</b></em>' literal object.
@@ -206,7 +206,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType LONG_LITERAL = new TableSpaceType(LONG, "LONG"); //$NON-NLS-1$
+	public static final TableSpaceType LONG_LITERAL = new TableSpaceType(LONG, "LONG", "LONG"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>LARGE</b></em>' literal object.
@@ -220,7 +220,7 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final TableSpaceType LARGE_LITERAL = new TableSpaceType(LARGE, "LARGE"); //$NON-NLS-1$
+	public static final TableSpaceType LARGE_LITERAL = new TableSpaceType(LARGE, "LARGE", "LARGE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Table Space Type</b></em>' enumerators.
@@ -249,15 +249,15 @@ public final class TableSpaceType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Table Space Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Table Space Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static TableSpaceType get(String name) {
+	public static TableSpaceType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			TableSpaceType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -265,7 +265,23 @@ public final class TableSpaceType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Table Space Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Table Space Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static TableSpaceType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			TableSpaceType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Table Space Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -290,8 +306,8 @@ public final class TableSpaceType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TableSpaceType(int value, String name) {
-		super(value, name);
+	private TableSpaceType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //TableSpaceType

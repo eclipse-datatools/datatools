@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParentDeleteDRIRuleType.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: ParentDeleteDRIRuleType.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -89,7 +89,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParentDeleteDRIRuleType NO_ACTION_LITERAL = new ParentDeleteDRIRuleType(NO_ACTION, "NO_ACTION"); //$NON-NLS-1$
+	public static final ParentDeleteDRIRuleType NO_ACTION_LITERAL = new ParentDeleteDRIRuleType(NO_ACTION, "NO_ACTION", "NO_ACTION"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>RESTRICT</b></em>' literal object.
@@ -103,7 +103,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParentDeleteDRIRuleType RESTRICT_LITERAL = new ParentDeleteDRIRuleType(RESTRICT, "RESTRICT"); //$NON-NLS-1$
+	public static final ParentDeleteDRIRuleType RESTRICT_LITERAL = new ParentDeleteDRIRuleType(RESTRICT, "RESTRICT", "RESTRICT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CASCADE</b></em>' literal object.
@@ -117,7 +117,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParentDeleteDRIRuleType CASCADE_LITERAL = new ParentDeleteDRIRuleType(CASCADE, "CASCADE"); //$NON-NLS-1$
+	public static final ParentDeleteDRIRuleType CASCADE_LITERAL = new ParentDeleteDRIRuleType(CASCADE, "CASCADE", "CASCADE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SET NULL</b></em>' literal object.
@@ -131,7 +131,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParentDeleteDRIRuleType SET_NULL_LITERAL = new ParentDeleteDRIRuleType(SET_NULL, "SET_NULL"); //$NON-NLS-1$
+	public static final ParentDeleteDRIRuleType SET_NULL_LITERAL = new ParentDeleteDRIRuleType(SET_NULL, "SET_NULL", "SET_NULL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>SET DEFAULT</b></em>' literal object.
@@ -145,7 +145,7 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ParentDeleteDRIRuleType SET_DEFAULT_LITERAL = new ParentDeleteDRIRuleType(SET_DEFAULT, "SET_DEFAULT"); //$NON-NLS-1$
+	public static final ParentDeleteDRIRuleType SET_DEFAULT_LITERAL = new ParentDeleteDRIRuleType(SET_DEFAULT, "SET_DEFAULT", "SET_DEFAULT"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Parent Delete DRI Rule Type</b></em>' enumerators.
@@ -171,15 +171,15 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParentDeleteDRIRuleType get(String name) {
+	public static ParentDeleteDRIRuleType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ParentDeleteDRIRuleType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -187,7 +187,23 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ParentDeleteDRIRuleType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ParentDeleteDRIRuleType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Parent Delete DRI Rule Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -209,8 +225,8 @@ public final class ParentDeleteDRIRuleType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParentDeleteDRIRuleType(int value, String name) {
-		super(value, name);
+	private ParentDeleteDRIRuleType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ParentDeleteDRIRuleType

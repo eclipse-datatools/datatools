@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LengthUnit.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: LengthUnit.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -78,7 +78,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LengthUnit DECIMAL_LITERAL = new LengthUnit(DECIMAL, "DECIMAL"); //$NON-NLS-1$
+	public static final LengthUnit DECIMAL_LITERAL = new LengthUnit(DECIMAL, "DECIMAL", "DECIMAL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>BIT</b></em>' literal object.
@@ -92,7 +92,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LengthUnit BIT_LITERAL = new LengthUnit(BIT, "BIT"); //$NON-NLS-1$
+	public static final LengthUnit BIT_LITERAL = new LengthUnit(BIT, "BIT", "BIT"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>BYTE</b></em>' literal object.
@@ -106,7 +106,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LengthUnit BYTE_LITERAL = new LengthUnit(BYTE, "BYTE"); //$NON-NLS-1$
+	public static final LengthUnit BYTE_LITERAL = new LengthUnit(BYTE, "BYTE", "BYTE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>DOUBLE BYTE</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LengthUnit DOUBLE_BYTE_LITERAL = new LengthUnit(DOUBLE_BYTE, "DOUBLE_BYTE"); //$NON-NLS-1$
+	public static final LengthUnit DOUBLE_BYTE_LITERAL = new LengthUnit(DOUBLE_BYTE, "DOUBLE_BYTE", "DOUBLE_BYTE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Length Unit</b></em>' enumerators.
@@ -145,15 +145,15 @@ public final class LengthUnit extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static LengthUnit get(String name) {
+	public static LengthUnit get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			LengthUnit result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -161,7 +161,23 @@ public final class LengthUnit extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static LengthUnit getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			LengthUnit result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Length Unit</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -182,8 +198,8 @@ public final class LengthUnit extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LengthUnit(int value, String name) {
-		super(value, name);
+	private LengthUnit(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //LengthUnit

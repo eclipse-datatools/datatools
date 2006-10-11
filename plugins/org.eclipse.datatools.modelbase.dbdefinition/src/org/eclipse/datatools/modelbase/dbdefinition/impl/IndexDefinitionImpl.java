@@ -194,7 +194,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getIndexDefinition();
+		return DatabaseDefinitionPackage.Literals.INDEX_DEFINITION;
 	}
 
 	/**
@@ -349,8 +349,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
 				return getPercentFreeTerminology();
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_CHANGEABLE:
@@ -366,7 +366,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -374,8 +374,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
 				setPercentFreeTerminology((PercentFreeTerminology)newValue);
 				return;
@@ -398,7 +398,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -406,8 +406,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
 				setPercentFreeTerminology(PERCENT_FREE_TERMINOLOGY_EDEFAULT);
 				return;
@@ -430,7 +430,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -438,8 +438,8 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_TERMINOLOGY:
 				return percentFreeTerminology != PERCENT_FREE_TERMINOLOGY_EDEFAULT;
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__PERCENT_FREE_CHANGEABLE:
@@ -455,7 +455,7 @@ public class IndexDefinitionImpl extends EObjectImpl implements IndexDefinition 
 			case DatabaseDefinitionPackage.INDEX_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

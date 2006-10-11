@@ -172,7 +172,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getTableDefinition();
+		return DatabaseDefinitionPackage.Literals.TABLE_DEFINITION;
 	}
 
 	/**
@@ -306,8 +306,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
 				return isAuditSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__DATA_CAPTURE_SUPPORTED:
@@ -321,7 +321,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -329,8 +329,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
 				setAuditSupported(((Boolean)newValue).booleanValue());
 				return;
@@ -350,7 +350,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -358,8 +358,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
 				setAuditSupported(AUDIT_SUPPORTED_EDEFAULT);
 				return;
@@ -379,7 +379,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -387,8 +387,8 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__AUDIT_SUPPORTED:
 				return auditSupported != AUDIT_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__DATA_CAPTURE_SUPPORTED:
@@ -402,7 +402,7 @@ public class TableDefinitionImpl extends EObjectImpl implements TableDefinition 
 			case DatabaseDefinitionPackage.TABLE_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

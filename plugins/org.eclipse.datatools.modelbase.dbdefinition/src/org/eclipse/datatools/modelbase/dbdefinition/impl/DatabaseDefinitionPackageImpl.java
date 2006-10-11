@@ -42,9 +42,23 @@ import org.eclipse.datatools.modelbase.dbdefinition.TriggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
 
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
+
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
+
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl;
 import org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl;
@@ -56,6 +70,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -319,15 +335,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		isInited = true;
 
 		// Initialize simple dependencies
-		SQLSchemaPackageImpl.init();
-		SQLConstraintsPackageImpl.init();
-		SQLDataTypesPackageImpl.init();
-		SQLExpressionsPackageImpl.init();
-		SQLRoutinesPackageImpl.init();
-		SQLStatementsPackageImpl.init();
-		SQLTablesPackageImpl.init();
-		SQLAccessControlPackageImpl.init();
-		EcorePackageImpl.init();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDatabaseDefinitionPackage.createPackageContents();
@@ -2665,7 +2681,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
 
 		// Add supertypes to classes
 
@@ -2868,7 +2884,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getUserDefinedTypeDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, UserDefinedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(queryDefinitionEClass, QueryDefinition.class, "QueryDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getQueryDefinition_IdentifierQuoteString(), ecorePackage.getEString(), "identifierQuoteString", "\"", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		initEAttribute(getQueryDefinition_IdentifierQuoteString(), ecorePackage.getEString(), "identifierQuoteString", "\\\"", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		initEAttribute(getQueryDefinition_HostVariableMarker(), ecorePackage.getEString(), "hostVariableMarker", ":", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getQueryDefinition_HostVariableMarkerSupported(), ecorePackage.getEBoolean(), "hostVariableMarkerSupported", "false", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getQueryDefinition_CastExpressionSupported(), ecorePackage.getEBoolean(), "castExpressionSupported", "false", 0, 1, QueryDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$

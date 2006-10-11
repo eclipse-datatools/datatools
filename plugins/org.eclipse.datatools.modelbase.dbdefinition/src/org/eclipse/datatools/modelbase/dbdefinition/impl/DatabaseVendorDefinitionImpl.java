@@ -804,7 +804,7 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getDatabaseVendorDefinition();
+		return DatabaseDefinitionPackage.Literals.DATABASE_VENDOR_DEFINITION;
 	}
 
 	/**
@@ -1351,6 +1351,527 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		storedProcedureSupported = newStoredProcedureSupported;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED, oldStoredProcedureSupported, storedProcedureSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return ((InternalEList)getPredefinedDataTypeDefinitions()).basicRemove(otherEnd, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
+				return basicSetTableSpaceDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
+				return basicSetStoredProcedureDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
+				return basicSetTriggerDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
+				return basicSetColumnDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
+				return basicSetConstraintDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
+				return ((InternalEList)getExtendedDefinitions()).basicRemove(otherEnd, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
+				return basicSetIndexDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
+				return basicSetTableDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
+				return basicSetSequenceDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
+				return basicSetUdtDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
+				return basicSetQueryDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
+				return basicSetSQLSyntaxDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
+				return basicSetNicknameDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				return basicSetSchemaDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				return basicSetViewDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				return basicSetDebuggerDefinition(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return getPredefinedDataTypeDefinitions();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
+				return getTableSpaceDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
+				return getStoredProcedureDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
+				return getTriggerDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
+				return getColumnDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
+				return getConstraintDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
+				return getExtendedDefinitions();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
+				return getIndexDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
+				return getTableDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
+				return getSequenceDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
+				return getUdtDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
+				return getQueryDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
+				return getSQLSyntaxDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
+				return getNicknameDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				return getSchemaDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				return getViewDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				return getDebuggerDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
+				return getVendor();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
+				return getVersion();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
+				return isConstraintsSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return new Integer(getMaximumIdentifierLength());
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
+				return isTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
+				return isSnapshotViewSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
+				return isJoinSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
+				return isViewTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
+				return isTablespacesSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
+				return new Integer(getMaximumCommentLength());
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
+				return isSequenceSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
+				return isMQTSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
+				return isSchemaSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
+				return isAliasSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
+				return isSynonymSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
+				return isUserDefinedTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
+				return isDomainSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
+				return isSQLStatementSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
+				return isNicknameSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
+				return isQuotedDMLSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
+				return isQuotedDDLSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				return isXmlSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				return isMQTIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				return isEventSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				return isSqlUDFSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				return isStoredProcedureSupported() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				getPredefinedDataTypeDefinitions().clear();
+				getPredefinedDataTypeDefinitions().addAll((Collection)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
+				setTableSpaceDefinition((TableSpaceDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
+				setStoredProcedureDefinition((StoredProcedureDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
+				setTriggerDefinition((TriggerDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
+				setColumnDefinition((ColumnDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
+				setConstraintDefinition((ConstraintDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
+				getExtendedDefinitions().clear();
+				getExtendedDefinitions().addAll((Collection)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
+				setIndexDefinition((IndexDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
+				setTableDefinition((TableDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
+				setSequenceDefinition((SequenceDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
+				setUdtDefinition((UserDefinedTypeDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
+				setQueryDefinition((QueryDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
+				setSQLSyntaxDefinition((SQLSyntaxDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
+				setNicknameDefinition((NicknameDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				setSchemaDefinition((SchemaDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				setViewDefinition((ViewDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				setDebuggerDefinition((DebuggerDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
+				setVendor((String)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
+				setVersion((String)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
+				setConstraintsSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(((Integer)newValue).intValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
+				setTriggerSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
+				setSnapshotViewSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
+				setJoinSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
+				setViewTriggerSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
+				setTablespacesSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
+				setMaximumCommentLength(((Integer)newValue).intValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
+				setSequenceSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
+				setMQTSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
+				setSchemaSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
+				setAliasSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
+				setSynonymSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
+				setUserDefinedTypeSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
+				setDomainSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
+				setSQLStatementSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
+				setNicknameSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
+				setQuotedDMLSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
+				setQuotedDDLSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				setXmlSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				setMQTIndexSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				setEventSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				setSqlUDFSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				setStoredProcedureSupported(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				getPredefinedDataTypeDefinitions().clear();
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
+				setTableSpaceDefinition((TableSpaceDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
+				setStoredProcedureDefinition((StoredProcedureDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
+				setTriggerDefinition((TriggerDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
+				setColumnDefinition((ColumnDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
+				setConstraintDefinition((ConstraintDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
+				getExtendedDefinitions().clear();
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
+				setIndexDefinition((IndexDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
+				setTableDefinition((TableDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
+				setSequenceDefinition((SequenceDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
+				setUdtDefinition((UserDefinedTypeDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
+				setQueryDefinition((QueryDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
+				setSQLSyntaxDefinition((SQLSyntaxDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
+				setNicknameDefinition((NicknameDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				setSchemaDefinition((SchemaDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				setViewDefinition((ViewDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				setDebuggerDefinition((DebuggerDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
+				setVendor(VENDOR_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
+				setVersion(VERSION_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
+				setConstraintsSupported(CONSTRAINTS_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
+				setTriggerSupported(TRIGGER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
+				setSnapshotViewSupported(SNAPSHOT_VIEW_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
+				setJoinSupported(JOIN_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
+				setViewTriggerSupported(VIEW_TRIGGER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
+				setTablespacesSupported(TABLESPACES_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
+				setMaximumCommentLength(MAXIMUM_COMMENT_LENGTH_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
+				setSequenceSupported(SEQUENCE_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
+				setMQTSupported(MQT_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
+				setSchemaSupported(SCHEMA_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
+				setAliasSupported(ALIAS_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
+				setSynonymSupported(SYNONYM_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
+				setUserDefinedTypeSupported(USER_DEFINED_TYPE_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
+				setDomainSupported(DOMAIN_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
+				setSQLStatementSupported(SQL_STATEMENT_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
+				setNicknameSupported(NICKNAME_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
+				setQuotedDMLSupported(QUOTED_DML_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
+				setQuotedDDLSupported(QUOTED_DDL_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				setXmlSupported(XML_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				setMQTIndexSupported(MQT_INDEX_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				setEventSupported(EVENT_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				setSqlUDFSupported(SQL_UDF_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				setStoredProcedureSupported(STORED_PROCEDURE_SUPPORTED_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
+				return predefinedDataTypeDefinitions != null && !predefinedDataTypeDefinitions.isEmpty();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
+				return tableSpaceDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
+				return storedProcedureDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
+				return triggerDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
+				return columnDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
+				return constraintDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
+				return extendedDefinitions != null && !extendedDefinitions.isEmpty();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
+				return indexDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
+				return tableDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
+				return sequenceDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
+				return udtDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
+				return queryDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
+				return sqlSyntaxDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
+				return nicknameDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
+				return schemaDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
+				return viewDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
+				return debuggerDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
+				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
+				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
+				return constraintsSupported != CONSTRAINTS_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
+				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
+				return triggerSupported != TRIGGER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
+				return snapshotViewSupported != SNAPSHOT_VIEW_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
+				return joinSupported != JOIN_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
+				return viewTriggerSupported != VIEW_TRIGGER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
+				return tablespacesSupported != TABLESPACES_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
+				return maximumCommentLength != MAXIMUM_COMMENT_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
+				return sequenceSupported != SEQUENCE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
+				return mQTSupported != MQT_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
+				return schemaSupported != SCHEMA_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
+				return aliasSupported != ALIAS_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
+				return synonymSupported != SYNONYM_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
+				return userDefinedTypeSupported != USER_DEFINED_TYPE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
+				return domainSupported != DOMAIN_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
+				return sqlStatementSupported != SQL_STATEMENT_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
+				return nicknameSupported != NICKNAME_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
+				return quotedDMLSupported != QUOTED_DML_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
+				return quotedDDLSupported != QUOTED_DDL_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
+				return xmlSupported != XML_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
+				return mQTIndexSupported != MQT_INDEX_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
+				return eventSupported != EVENT_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
+				return sqlUDFSupported != SQL_UDF_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
+				return storedProcedureSupported != STORED_PROCEDURE_SUPPORTED_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
 	}
 
 	/**
@@ -2020,531 +2541,6 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION, newDebuggerDefinition, newDebuggerDefinition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
-					return ((InternalEList)getPredefinedDataTypeDefinitions()).basicRemove(otherEnd, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
-					return basicSetTableSpaceDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
-					return basicSetStoredProcedureDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
-					return basicSetTriggerDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
-					return basicSetColumnDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
-					return basicSetConstraintDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
-					return ((InternalEList)getExtendedDefinitions()).basicRemove(otherEnd, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
-					return basicSetIndexDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
-					return basicSetTableDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
-					return basicSetSequenceDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
-					return basicSetUdtDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
-					return basicSetQueryDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
-					return basicSetSQLSyntaxDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
-					return basicSetNicknameDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
-					return basicSetSchemaDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
-					return basicSetViewDefinition(null, msgs);
-				case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
-					return basicSetDebuggerDefinition(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
-				return getPredefinedDataTypeDefinitions();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
-				return getTableSpaceDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
-				return getStoredProcedureDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
-				return getTriggerDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
-				return getColumnDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
-				return getConstraintDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
-				return getExtendedDefinitions();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
-				return getIndexDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
-				return getTableDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
-				return getSequenceDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
-				return getUdtDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
-				return getQueryDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
-				return getSQLSyntaxDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
-				return getNicknameDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
-				return getSchemaDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
-				return getViewDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
-				return getDebuggerDefinition();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
-				return getVendor();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
-				return getVersion();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
-				return isConstraintsSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return new Integer(getMaximumIdentifierLength());
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
-				return isTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
-				return isSnapshotViewSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
-				return isJoinSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
-				return isViewTriggerSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
-				return isTablespacesSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				return new Integer(getMaximumCommentLength());
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
-				return isSequenceSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
-				return isMQTSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
-				return isSchemaSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
-				return isAliasSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
-				return isSynonymSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
-				return isUserDefinedTypeSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
-				return isDomainSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
-				return isSQLStatementSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
-				return isNicknameSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
-				return isQuotedDMLSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
-				return isQuotedDDLSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
-				return isXmlSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
-				return isMQTIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
-				return isEventSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
-				return isSqlUDFSupported() ? Boolean.TRUE : Boolean.FALSE;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
-				return isStoredProcedureSupported() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
-				getPredefinedDataTypeDefinitions().clear();
-				getPredefinedDataTypeDefinitions().addAll((Collection)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
-				setTableSpaceDefinition((TableSpaceDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
-				setStoredProcedureDefinition((StoredProcedureDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
-				setTriggerDefinition((TriggerDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
-				setColumnDefinition((ColumnDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
-				setConstraintDefinition((ConstraintDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
-				getExtendedDefinitions().clear();
-				getExtendedDefinitions().addAll((Collection)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
-				setIndexDefinition((IndexDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
-				setTableDefinition((TableDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
-				setSequenceDefinition((SequenceDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
-				setUdtDefinition((UserDefinedTypeDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
-				setQueryDefinition((QueryDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
-				setSQLSyntaxDefinition((SQLSyntaxDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
-				setNicknameDefinition((NicknameDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
-				setSchemaDefinition((SchemaDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
-				setViewDefinition((ViewDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
-				setDebuggerDefinition((DebuggerDefinition)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
-				setVendor((String)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
-				setVersion((String)newValue);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
-				setConstraintsSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				setMaximumIdentifierLength(((Integer)newValue).intValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
-				setTriggerSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
-				setSnapshotViewSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
-				setJoinSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
-				setViewTriggerSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
-				setTablespacesSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				setMaximumCommentLength(((Integer)newValue).intValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
-				setSequenceSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
-				setMQTSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
-				setSchemaSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
-				setAliasSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
-				setSynonymSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
-				setUserDefinedTypeSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
-				setDomainSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
-				setSQLStatementSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
-				setNicknameSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
-				setQuotedDMLSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
-				setQuotedDDLSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
-				setXmlSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
-				setMQTIndexSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
-				setEventSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
-				setSqlUDFSupported(((Boolean)newValue).booleanValue());
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
-				setStoredProcedureSupported(((Boolean)newValue).booleanValue());
-				return;
-		}
-		eDynamicSet(eFeature, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
-				getPredefinedDataTypeDefinitions().clear();
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
-				setTableSpaceDefinition((TableSpaceDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
-				setStoredProcedureDefinition((StoredProcedureDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
-				setTriggerDefinition((TriggerDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
-				setColumnDefinition((ColumnDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
-				setConstraintDefinition((ConstraintDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
-				getExtendedDefinitions().clear();
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
-				setIndexDefinition((IndexDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
-				setTableDefinition((TableDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
-				setSequenceDefinition((SequenceDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
-				setUdtDefinition((UserDefinedTypeDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
-				setQueryDefinition((QueryDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
-				setSQLSyntaxDefinition((SQLSyntaxDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
-				setNicknameDefinition((NicknameDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
-				setSchemaDefinition((SchemaDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
-				setViewDefinition((ViewDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
-				setDebuggerDefinition((DebuggerDefinition)null);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
-				setVendor(VENDOR_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
-				setVersion(VERSION_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
-				setConstraintsSupported(CONSTRAINTS_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
-				setTriggerSupported(TRIGGER_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
-				setSnapshotViewSupported(SNAPSHOT_VIEW_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
-				setJoinSupported(JOIN_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
-				setViewTriggerSupported(VIEW_TRIGGER_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
-				setTablespacesSupported(TABLESPACES_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				setMaximumCommentLength(MAXIMUM_COMMENT_LENGTH_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
-				setSequenceSupported(SEQUENCE_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
-				setMQTSupported(MQT_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
-				setSchemaSupported(SCHEMA_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
-				setAliasSupported(ALIAS_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
-				setSynonymSupported(SYNONYM_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
-				setUserDefinedTypeSupported(USER_DEFINED_TYPE_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
-				setDomainSupported(DOMAIN_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
-				setSQLStatementSupported(SQL_STATEMENT_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
-				setNicknameSupported(NICKNAME_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
-				setQuotedDMLSupported(QUOTED_DML_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
-				setQuotedDDLSupported(QUOTED_DDL_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
-				setXmlSupported(XML_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
-				setMQTIndexSupported(MQT_INDEX_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
-				setEventSupported(EVENT_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
-				setSqlUDFSupported(SQL_UDF_SUPPORTED_EDEFAULT);
-				return;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
-				setStoredProcedureSupported(STORED_PROCEDURE_SUPPORTED_EDEFAULT);
-				return;
-		}
-		eDynamicUnset(eFeature);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
-				return predefinedDataTypeDefinitions != null && !predefinedDataTypeDefinitions.isEmpty();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_SPACE_DEFINITION:
-				return tableSpaceDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_DEFINITION:
-				return storedProcedureDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_DEFINITION:
-				return triggerDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__COLUMN_DEFINITION:
-				return columnDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINT_DEFINITION:
-				return constraintDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EXTENDED_DEFINITIONS:
-				return extendedDefinitions != null && !extendedDefinitions.isEmpty();
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__INDEX_DEFINITION:
-				return indexDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLE_DEFINITION:
-				return tableDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_DEFINITION:
-				return sequenceDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__UDT_DEFINITION:
-				return udtDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUERY_DEFINITION:
-				return queryDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_SYNTAX_DEFINITION:
-				return sqlSyntaxDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_DEFINITION:
-				return nicknameDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION:
-				return schemaDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION:
-				return viewDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
-				return debuggerDefinition != null;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
-				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
-				return VERSION_EDEFAULT == null ? version != null : !VERSION_EDEFAULT.equals(version);
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED:
-				return constraintsSupported != CONSTRAINTS_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
-				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED:
-				return triggerSupported != TRIGGER_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED:
-				return snapshotViewSupported != SNAPSHOT_VIEW_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED:
-				return joinSupported != JOIN_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED:
-				return viewTriggerSupported != VIEW_TRIGGER_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED:
-				return tablespacesSupported != TABLESPACES_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH:
-				return maximumCommentLength != MAXIMUM_COMMENT_LENGTH_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED:
-				return sequenceSupported != SEQUENCE_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED:
-				return mQTSupported != MQT_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED:
-				return schemaSupported != SCHEMA_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED:
-				return aliasSupported != ALIAS_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED:
-				return synonymSupported != SYNONYM_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED:
-				return userDefinedTypeSupported != USER_DEFINED_TYPE_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED:
-				return domainSupported != DOMAIN_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED:
-				return sqlStatementSupported != SQL_STATEMENT_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED:
-				return nicknameSupported != NICKNAME_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED:
-				return quotedDMLSupported != QUOTED_DML_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED:
-				return quotedDDLSupported != QUOTED_DDL_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__XML_SUPPORTED:
-				return xmlSupported != XML_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED:
-				return mQTIndexSupported != MQT_INDEX_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED:
-				return eventSupported != EVENT_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED:
-				return sqlUDFSupported != SQL_UDF_SUPPORTED_EDEFAULT;
-			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
-				return storedProcedureSupported != STORED_PROCEDURE_SUPPORTED_EDEFAULT;
-		}
-		return eDynamicIsSet(eFeature);
 	}
 
 	/**

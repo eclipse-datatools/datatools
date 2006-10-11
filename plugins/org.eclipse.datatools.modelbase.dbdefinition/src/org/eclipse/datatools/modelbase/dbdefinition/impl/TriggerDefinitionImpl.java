@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TriggerDefinitionImpl.java,v 1.1 2005/08/02 22:56:23 ledunnel Exp $
+ * $Id: TriggerDefinitionImpl.java,v 1.2 2006/03/09 23:48:17 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -276,7 +276,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getTriggerDefinition();
+		return DatabaseDefinitionPackage.Literals.TRIGGER_DEFINITION;
 	}
 
 	/**
@@ -515,8 +515,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
 				return new Integer(getMaximumReferencePartLength());
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
@@ -540,7 +540,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -548,8 +548,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
 				setMaximumReferencePartLength(((Integer)newValue).intValue());
 				return;
@@ -584,7 +584,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -592,8 +592,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
 				setMaximumReferencePartLength(MAXIMUM_REFERENCE_PART_LENGTH_EDEFAULT);
 				return;
@@ -628,7 +628,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -636,8 +636,8 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_REFERENCE_PART_LENGTH:
 				return maximumReferencePartLength != MAXIMUM_REFERENCE_PART_LENGTH_EDEFAULT;
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_ACTION_BODY_LENGTH:
@@ -661,7 +661,7 @@ public class TriggerDefinitionImpl extends EObjectImpl implements TriggerDefinit
 			case DatabaseDefinitionPackage.TRIGGER_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LanguageType.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: LanguageType.java,v 1.2 2005/12/22 23:32:56 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -188,7 +188,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType SQL_LITERAL = new LanguageType(SQL, "SQL"); //$NON-NLS-1$
+	public static final LanguageType SQL_LITERAL = new LanguageType(SQL, "SQL", "SQL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>JAVA</b></em>' literal object.
@@ -202,7 +202,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType JAVA_LITERAL = new LanguageType(JAVA, "JAVA"); //$NON-NLS-1$
+	public static final LanguageType JAVA_LITERAL = new LanguageType(JAVA, "JAVA", "JAVA"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>C</b></em>' literal object.
@@ -216,7 +216,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType C_LITERAL = new LanguageType(C, "C"); //$NON-NLS-1$
+	public static final LanguageType C_LITERAL = new LanguageType(C, "C", "C"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>OLE</b></em>' literal object.
@@ -230,7 +230,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType OLE_LITERAL = new LanguageType(OLE, "OLE"); //$NON-NLS-1$
+	public static final LanguageType OLE_LITERAL = new LanguageType(OLE, "OLE", "OLE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>ASSEMBLY</b></em>' literal object.
@@ -244,7 +244,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType ASSEMBLY_LITERAL = new LanguageType(ASSEMBLY, "ASSEMBLY"); //$NON-NLS-1$
+	public static final LanguageType ASSEMBLY_LITERAL = new LanguageType(ASSEMBLY, "ASSEMBLY", "ASSEMBLY"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>COBOL</b></em>' literal object.
@@ -258,7 +258,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType COBOL_LITERAL = new LanguageType(COBOL, "COBOL"); //$NON-NLS-1$
+	public static final LanguageType COBOL_LITERAL = new LanguageType(COBOL, "COBOL", "COBOL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>PLI</b></em>' literal object.
@@ -272,7 +272,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType PLI_LITERAL = new LanguageType(PLI, "PLI"); //$NON-NLS-1$
+	public static final LanguageType PLI_LITERAL = new LanguageType(PLI, "PLI", "PLI"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CPLUSPLUS</b></em>' literal object.
@@ -286,7 +286,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType CPLUSPLUS_LITERAL = new LanguageType(CPLUSPLUS, "CPLUSPLUS"); //$NON-NLS-1$
+	public static final LanguageType CPLUSPLUS_LITERAL = new LanguageType(CPLUSPLUS, "CPLUSPLUS", "CPLUSPLUS"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CL</b></em>' literal object.
@@ -300,7 +300,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType CL_LITERAL = new LanguageType(CL, "CL"); //$NON-NLS-1$
+	public static final LanguageType CL_LITERAL = new LanguageType(CL, "CL", "CL"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>COBOLLE</b></em>' literal object.
@@ -314,7 +314,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType COBOLLE_LITERAL = new LanguageType(COBOLLE, "COBOLLE"); //$NON-NLS-1$
+	public static final LanguageType COBOLLE_LITERAL = new LanguageType(COBOLLE, "COBOLLE", "COBOLLE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>FORTRAN</b></em>' literal object.
@@ -328,7 +328,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType FORTRAN_LITERAL = new LanguageType(FORTRAN, "FORTRAN"); //$NON-NLS-1$
+	public static final LanguageType FORTRAN_LITERAL = new LanguageType(FORTRAN, "FORTRAN", "FORTRAN"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>REXX</b></em>' literal object.
@@ -342,7 +342,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType REXX_LITERAL = new LanguageType(REXX, "REXX"); //$NON-NLS-1$
+	public static final LanguageType REXX_LITERAL = new LanguageType(REXX, "REXX", "REXX"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>RPG</b></em>' literal object.
@@ -356,7 +356,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType RPG_LITERAL = new LanguageType(RPG, "RPG"); //$NON-NLS-1$
+	public static final LanguageType RPG_LITERAL = new LanguageType(RPG, "RPG", "RPG"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>RPGLE</b></em>' literal object.
@@ -370,7 +370,7 @@ public final class LanguageType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final LanguageType RPGLE_LITERAL = new LanguageType(RPGLE, "RPGLE"); //$NON-NLS-1$
+	public static final LanguageType RPGLE_LITERAL = new LanguageType(RPGLE, "RPGLE", "RPGLE"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Language Type</b></em>' enumerators.
@@ -405,15 +405,15 @@ public final class LanguageType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Language Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Language Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static LanguageType get(String name) {
+	public static LanguageType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			LanguageType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -421,7 +421,23 @@ public final class LanguageType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Language Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Language Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static LanguageType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			LanguageType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Language Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -452,8 +468,8 @@ public final class LanguageType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LanguageType(int value, String name) {
-		super(value, name);
+	private LanguageType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //LanguageType

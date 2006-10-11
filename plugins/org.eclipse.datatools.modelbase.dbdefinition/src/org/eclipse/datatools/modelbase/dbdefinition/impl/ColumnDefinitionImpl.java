@@ -233,7 +233,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * @generated
 	 */
 	protected EClass eStaticClass() {
-		return DatabaseDefinitionPackage.eINSTANCE.getColumnDefinition();
+		return DatabaseDefinitionPackage.Literals.COLUMN_DEFINITION;
 	}
 
 	/**
@@ -421,8 +421,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
 				return getIdentityColumnDataTypeDefinitions();
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
@@ -442,7 +442,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -450,8 +450,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
 				getIdentityColumnDataTypeDefinitions().clear();
 				getIdentityColumnDataTypeDefinitions().addAll((Collection)newValue);
@@ -481,7 +481,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
@@ -489,8 +489,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
 				getIdentityColumnDataTypeDefinitions().clear();
 				return;
@@ -519,7 +519,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
@@ -527,8 +527,8 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_COLUMN_DATA_TYPE_DEFINITIONS:
 				return identityColumnDataTypeDefinitions != null && !identityColumnDataTypeDefinitions.isEmpty();
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__IDENTITY_SUPPORTED:
@@ -548,7 +548,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
 			case DatabaseDefinitionPackage.COLUMN_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

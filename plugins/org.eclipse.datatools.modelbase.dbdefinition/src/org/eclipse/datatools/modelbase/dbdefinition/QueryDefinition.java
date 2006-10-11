@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDefinition.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: QueryDefinition.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -30,10 +30,10 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface QueryDefinition extends EObject{
+public interface QueryDefinition extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Identifier Quote String</b></em>' attribute.
-	 * The default value is <code>"\""</code>.
+	 * The default value is <code>"\\\""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Identifier Quote String</em>' attribute isn't clear,
@@ -43,7 +43,7 @@ public interface QueryDefinition extends EObject{
 	 * @return the value of the '<em>Identifier Quote String</em>' attribute.
 	 * @see #setIdentifierQuoteString(String)
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getQueryDefinition_IdentifierQuoteString()
-	 * @model default="\""
+	 * @model default="\\\""
 	 * @generated
 	 */
 	String getIdentifierQuoteString();

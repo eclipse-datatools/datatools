@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckOption.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: CheckOption.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -67,7 +67,7 @@ public final class CheckOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckOption NONE_LITERAL = new CheckOption(NONE, "NONE"); //$NON-NLS-1$
+	public static final CheckOption NONE_LITERAL = new CheckOption(NONE, "NONE", "NONE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>CASCADE</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class CheckOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckOption CASCADE_LITERAL = new CheckOption(CASCADE, "CASCADE"); //$NON-NLS-1$
+	public static final CheckOption CASCADE_LITERAL = new CheckOption(CASCADE, "CASCADE", "CASCADE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>LOCAL</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class CheckOption extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final CheckOption LOCAL_LITERAL = new CheckOption(LOCAL, "LOCAL"); //$NON-NLS-1$
+	public static final CheckOption LOCAL_LITERAL = new CheckOption(LOCAL, "LOCAL", "LOCAL"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Check Option</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class CheckOption extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Check Option</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Check Option</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CheckOption get(String name) {
+	public static CheckOption get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CheckOption result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class CheckOption extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Check Option</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Check Option</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static CheckOption getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			CheckOption result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Check Option</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class CheckOption extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private CheckOption(int value, String name) {
-		super(value, name);
+	private CheckOption(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //CheckOption

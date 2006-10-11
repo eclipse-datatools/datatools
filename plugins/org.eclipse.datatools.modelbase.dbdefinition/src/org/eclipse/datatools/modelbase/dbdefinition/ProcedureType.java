@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcedureType.java,v 1.1 2005/08/02 22:56:24 ledunnel Exp $
+ * $Id: ProcedureType.java,v 1.2 2005/12/22 23:32:55 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition;
 
@@ -56,7 +56,7 @@ public final class ProcedureType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ProcedureType PROCEDURE_LITERAL = new ProcedureType(PROCEDURE, "PROCEDURE"); //$NON-NLS-1$
+	public static final ProcedureType PROCEDURE_LITERAL = new ProcedureType(PROCEDURE, "PROCEDURE", "PROCEDURE"); //$NON-NLS-1$
 
 	/**
 	 * The '<em><b>FUNCTION</b></em>' literal object.
@@ -70,7 +70,7 @@ public final class ProcedureType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final ProcedureType FUNCTION_LITERAL = new ProcedureType(FUNCTION, "FUNCTION"); //$NON-NLS-1$
+	public static final ProcedureType FUNCTION_LITERAL = new ProcedureType(FUNCTION, "FUNCTION", "FUNCTION"); //$NON-NLS-1$
 
 	/**
 	 * An array of all the '<em><b>Procedure Type</b></em>' enumerators.
@@ -93,15 +93,15 @@ public final class ProcedureType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Procedure Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Procedure Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ProcedureType get(String name) {
+	public static ProcedureType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ProcedureType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -109,7 +109,23 @@ public final class ProcedureType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Procedure Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Procedure Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ProcedureType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ProcedureType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Procedure Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -128,8 +144,8 @@ public final class ProcedureType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ProcedureType(int value, String name) {
-		super(value, name);
+	private ProcedureType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //ProcedureType
