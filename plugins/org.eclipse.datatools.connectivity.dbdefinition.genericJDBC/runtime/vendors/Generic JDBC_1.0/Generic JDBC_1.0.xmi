@@ -4,6 +4,10 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
   </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" multipleColumnsSupported="true" primitiveType="INTEGER" jdbcEnumType="-7" javaClassName="boolean">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIT</name>
+  </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
@@ -94,6 +98,10 @@
     <defaultValueTypes>CURRENT_TIME_STAMP</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TIMESTAMP</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="short">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYINT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true"  defaultLength="1" keyConstraintSupported="true" maximumLength="254" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
