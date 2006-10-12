@@ -483,8 +483,7 @@ public class DriverManager {
 						"]", index) + 1); //$NON-NLS-1$
 				String pluginId = null;
 				if (toReplace.toUpperCase().equals("[PLUGIN]")) { //$NON-NLS-1$
-					pluginId = template.getElement().getDeclaringExtension()
-							.getNamespaceIdentifier();
+					pluginId = template.getElement().getContributor().getName();
 				}
 				else {
 					pluginId = toReplace.substring(1, toReplace.length() - 1);

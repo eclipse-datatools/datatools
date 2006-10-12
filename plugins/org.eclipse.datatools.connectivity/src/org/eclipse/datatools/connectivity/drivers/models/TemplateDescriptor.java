@@ -156,8 +156,7 @@ public class TemplateDescriptor implements Comparable {
 		if (!jarList.matches(".*" + PLUGIN_LOC + ".*")) //$NON-NLS-1$ //$NON-NLS-2$
 			return jarList;
 		try {
-			String pluginID = this.fElement.getDeclaringExtension()
-					.getNamespaceIdentifier();
+			String pluginID = this.fElement.getContributor().getName();
 			String pluginLoc = FileLocator.resolve(
 					Platform.getBundle(pluginID).getEntry("")).getFile(); //$NON-NLS-1$
 			if (pluginLoc.charAt(0) == '/')

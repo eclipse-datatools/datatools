@@ -85,7 +85,7 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 		String iconAttr = mElement.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
 			URL url = Platform.getBundle(
-					mElement.getDeclaringExtension().getNamespaceIdentifier()).getEntry(
+					mElement.getContributor().getName()).getEntry(
 					iconAttr);
 			mIcon = ImageDescriptor.createFromURL(url);
 		}
