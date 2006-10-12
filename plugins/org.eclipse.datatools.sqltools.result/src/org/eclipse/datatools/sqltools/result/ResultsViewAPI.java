@@ -160,6 +160,46 @@ public class ResultsViewAPI
     }
     
     /**
+     * Returns the exceptions thrown when generating the result instance
+     * @param cmd the operation request, should not be null
+     * @return the exceptions thrown
+     */
+    public Throwable[] getFailThrowables(OperationCommand cmd)
+    {
+        if(cmd == null)
+        {
+            return null;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            return instance.getFailThrowables();
+        }
+        return null;
+    }
+    
+    /**
+     * Appends an exception to the result instance, this won't affect the UI. The consumer can store the exceptions here
+     * and use them later.
+     * 
+     * @param th the exception thrown
+     */
+    public boolean appendThrowable(OperationCommand cmd, Throwable th)
+    {
+        if(cmd == null)
+        {
+            return false;
+        }
+        IResultInstance instance = _manager.getInstance(cmd);
+        if (instance != null)
+        {
+            instance.moreThrowable(th);
+            return true;
+        }
+        return false;
+    }
+    
+    /**
      * Appends a plain message to the result instance, when using multiple windows display mode, this kind of messages
      * will be displayed on "Message" tab
      * 

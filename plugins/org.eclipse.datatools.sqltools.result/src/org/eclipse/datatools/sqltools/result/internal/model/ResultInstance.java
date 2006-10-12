@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultSetObject;
+import org.eclipse.datatools.sqltools.result.ResultsConstants;
 import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
@@ -51,6 +51,8 @@ public class ResultInstance implements IResultInstance
     private String             _date;
 
     private int                _execFrequency;
+    
+    private List               _throwables;
     
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
@@ -239,5 +241,23 @@ public class ResultInstance implements IResultInstance
         {
             _resultManager.fireStatusUpdated(this);
         }
+    }
+
+    public Throwable[] getFailThrowables()
+    {
+        if(_throwables == null)
+        {
+            _throwables = new ArrayList();
+        }
+        return (Throwable[]) _throwables.toArray(new Throwable[_throwables.size()]);
+    }
+
+    public void moreThrowable(Throwable th)
+    {
+        if(_throwables == null)
+        {
+            _throwables = new ArrayList();
+        }
+        _throwables.add(th);
     }
 }

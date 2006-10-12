@@ -45,6 +45,9 @@ public class Parameter implements Serializable
     public static final String INPUT            = "INPUT"; //$NON-NLS-1$
     public static final String OUTPUT           = "OUTPUT"; //$NON-NLS-1$
     public static final String IN_OUT           = "IN/OUT"; //$NON-NLS-1$
+    public static final String RETURN           = "RETURN"; //$NON-NLS-1$
+    public static final String RESULT           = "RESULT"; //$NON-NLS-1$
+    public static final String UNKNOWN           = "UNKNOWN"; //$NON-NLS-1$
 
     /**
      * Constructs a parameter. A simple validation will be performed during the construction
@@ -60,9 +63,10 @@ public class Parameter implements Serializable
     public Parameter(String paramName, String paramType, String paramValue, String paramDataType)
     {
     	Assert.isLegal(paramName != null && !paramName.trim().equals(""), Messages.Parameter_constructor_error); 
-    	Assert.isLegal(!(paramType == null
-                || (!paramType.trim().equals(INPUT) && paramType.trim().equals(OUTPUT) && paramType.trim().equals(
-                        IN_OUT))), Messages.Parameter_constructor_error); 
+    	Assert.isLegal((paramType != null
+                && (paramType.trim().equals(INPUT) || paramType.trim().equals(OUTPUT) || paramType.trim().equals(
+                        IN_OUT)|| paramType.trim().equals(RETURN) || paramType.trim().equals(RESULT) || paramType
+                .trim().equals(UNKNOWN))), Messages.Parameter_constructor_error);
         _paramName = paramName;
         _paramType = paramType;
         _paramDataType = (paramDataType == null)?"":paramDataType; //$NON-NLS-1$

@@ -95,6 +95,8 @@ public final class Messages extends NLS {
 	public static String OperationCommand_action_validate;
 	public static String OperationCommand_action_browse;
 	public static String RedoAction_title;
+    public static String SingleTabDisplayAction_single_tab;
+    public static String TextModeDisplayAction_textmode_tip;
 	public static String UndoAction_title;
 	public static String TerminateInstanceAction_terminate;
 	public static String TerminateInstanceAction_terminate_tooltip;
