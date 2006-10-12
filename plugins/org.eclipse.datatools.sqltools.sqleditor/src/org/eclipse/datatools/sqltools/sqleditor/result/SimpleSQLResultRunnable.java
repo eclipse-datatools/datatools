@@ -106,7 +106,7 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
      * 
      * @see com.sybase.stf.dmp.launching.ResultSupportRunnable#getOperationCommand()
      */
-    protected OperationCommand getOperationCommand()
+    public OperationCommand getOperationCommand()
     {
     	if (_command == null)
     	{

@@ -156,6 +156,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 					}
 					catch (InterruptedException e)
 					{
+                        resultsViewAPI.appendThrowable(getOperationCommand(), e);
 						synchronized (resultSupportRunnable.getOperationCommand()) {
 							resultsViewAPI.appendStatusMessage(resultSupportRunnable.getOperationCommand(), e.getLocalizedMessage());
 							resultsViewAPI.updateStatus(resultSupportRunnable.getOperationCommand(), OperationCommand.STATUS_FAILED);
