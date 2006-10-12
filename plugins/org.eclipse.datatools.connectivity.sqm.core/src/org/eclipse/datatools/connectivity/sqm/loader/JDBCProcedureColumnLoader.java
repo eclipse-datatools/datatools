@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.sqm.loader;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -250,56 +251,70 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 
 	protected void initType(TypedElement element, ResultSet rs)
 			throws SQLException {
-		String typeName = rs.getString(COLUMN_TYPE_NAME);
+		// db definition types are always upper case: make sure the typeName is
+		// upper too
+		String typeName = rs.getString(COLUMN_TYPE_NAME).toUpperCase();
 		int typeCode = rs.getInt(COLUMN_DATA_TYPE);
-		PredefinedDataType pdt = null;
 
 		// See if it's a predefined type
-		List pdts = getDatabaseDefinition()
+		List pdtds = getDatabaseDefinition()
 				.getPredefinedDataTypeDefinitionsByJDBCEnumType(typeCode);
-		if (pdts.size() > 0) {
-			for (Iterator it = pdts.iterator(); pdt == null && it.hasNext();) {
-				PredefinedDataType curPDT = (PredefinedDataType) it.next();
-				if (typeName.equals(curPDT.getName())) {
-					pdt = curPDT;
-					break;
+		if (pdtds.size() > 0) {
+			PredefinedDataTypeDefinition pdtd = null;
+			for (Iterator it = pdtds.iterator(); pdtd == null && it.hasNext();) {
+				PredefinedDataTypeDefinition curPDTD = (PredefinedDataTypeDefinition) it
+						.next();
+				for (Iterator nameIt = curPDTD.getName().iterator(); nameIt
+						.hasNext();) {
+					String name = (String) nameIt.next();
+					if (typeName.equals(name)) {
+						pdtd = curPDTD;
+						break;
+					}
 				}
 			}
 
-			if (pdt == null) {
-				// Use the first element by default
-				pdt = (PredefinedDataType) pdts.get(0);
+			if (pdtd == null) {
+				// See if we can find one for the named type
+				pdtd = getDatabaseDefinition().getPredefinedDataTypeDefinition(
+						typeName);
 			}
-		}
-		
-		if (pdt == null) {
-			if (typeName == null)
-				return;
 
-			// see if we can locate a UDT
-			UserDefinedType udt = findUserDefinedType(typeName);
-			element.setDataType(udt);
+			if (pdtd != null
+					|| (pdtd == null && typeCode != Types.OTHER && typeCode != Types.REF)) {
+				if (pdtd == null) {
+					// Use the first element by default
+					pdtd = (PredefinedDataTypeDefinition) pdtds.get(0);
+				}
+
+				PredefinedDataType pdt = getDatabaseDefinition()
+						.getPredefinedDataType(pdtd);
+				if (pdtd.isLengthSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("length"); //$NON-NLS-1$
+					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_LENGTH)));
+				}
+				if (pdtd.isPrecisionSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("precision"); //$NON-NLS-1$
+					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_PRECISION)));
+				}
+				if (pdtd.isScaleSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("scale"); //$NON-NLS-1$
+					pdt.eSet(feature, new Integer(rs.getInt(COLUMN_SCALE)));
+				}
+				element.setDataType(pdt);
+				return;
+			}
 		}
-		else {
-			PredefinedDataTypeDefinition pdtd = getDatabaseDefinition()
-					.getPredefinedDataTypeDefinition(pdt.getName());
-			if (pdtd.isLengthSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("length"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt(COLUMN_LENGTH)));
-			}
-			if (pdtd.isPrecisionSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("precision"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt(COLUMN_PRECISION)));
-			}
-			if (pdtd.isScaleSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("scale"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt(COLUMN_SCALE)));
-			}
-			element.setDataType(pdt);
-		}
+
+		if (typeName == null)
+			return;
+
+		// see if we can locate a UDT
+		UserDefinedType udt = findUserDefinedType(typeName);
+		element.setDataType(udt);
 	}
 
 	protected Procedure getProcedure() {

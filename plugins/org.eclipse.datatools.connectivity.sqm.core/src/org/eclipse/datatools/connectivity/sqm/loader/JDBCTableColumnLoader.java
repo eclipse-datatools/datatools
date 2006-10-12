@@ -211,65 +211,89 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 
 	protected void initColumnType(Column column, ResultSet rs)
 			throws SQLException {
-		// db definition types are always upper case: make sure the typeName is upper too
+		// db definition types are always upper case: make sure the typeName is
+		// upper too
 		String typeName = rs.getString(COLUMN_TYPE_NAME).toUpperCase();
 		int typeCode = rs.getInt(COLUMN_DATA_TYPE);
-		
-		PredefinedDataType pdt = getDatabaseDefinition().getPredefinedDataType(typeName);
-	
-		if (pdt == null) {
-			if (typeName == null)
-				return;
 
-			// see if we can locate a UDT
-			if (Types.REF == typeCode) {
-				ReferenceDataType ref = createReferenceDataType();
-				if (ref == null) {
-					// TODO: Add some logging maybe?
-					return;
+		// See if it's a predefined type
+		List pdtds = getDatabaseDefinition()
+				.getPredefinedDataTypeDefinitionsByJDBCEnumType(typeCode);
+		if (pdtds.size() > 0) {
+			PredefinedDataTypeDefinition pdtd = null;
+			for (Iterator it = pdtds.iterator(); pdtd == null && it.hasNext();) {
+				PredefinedDataTypeDefinition curPDTD = (PredefinedDataTypeDefinition) it
+						.next();
+				for (Iterator nameIt = curPDTD.getName().iterator(); nameIt
+						.hasNext();) {
+					String name = (String) nameIt.next();
+					if (typeName.equals(name)) {
+						pdtd = curPDTD;
+						break;
+					}
 				}
-				UserDefinedType udt = findUserDefinedType(typeName);
-				Table table = findScopedTable(rs
-						.getString(COLUMN_SCOPE_CATALOG), rs
-						.getString(COLUMN_SCOPE_SCHEMA), rs
-						.getString(COLUMN_SCOPE_TABLE));
-				initReferenceDataType(ref, udt, table);
-				column.setDataType(ref);
 			}
-			else {
-				UserDefinedType udt = findUserDefinedType(typeName);
-				column.setDataType(udt);
-			}
-		}
-		else {			
-			PredefinedDataTypeDefinition pdtd = getDatabaseDefinition()
-					.getPredefinedDataTypeDefinition(pdt.getName());
-			
-			// This shouldn't happen if the db definition is consistent,
-			// but to avoid NPE if not..
+
 			if (pdtd == null) {
+				// See if we can find one for the named type
+				pdtd = getDatabaseDefinition().getPredefinedDataTypeDefinition(
+						typeName);
+			}
+
+			if (pdtd != null
+					|| (pdtd == null && typeCode != Types.OTHER && typeCode != Types.REF)) {
+				if (pdtd == null) {
+					// If we still couldn't find it, use the first element
+					// that maps to the JDBC type
+					pdtd = (PredefinedDataTypeDefinition) pdtds.get(0);
+				}
+
+				PredefinedDataType pdt = getDatabaseDefinition()
+						.getPredefinedDataType(pdtd);
+				if (pdtd.isLengthSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("length"); //$NON-NLS-1$
+					pdt.eSet(feature,
+							new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+				}
+				if (pdtd.isPrecisionSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("precision"); //$NON-NLS-1$
+					pdt.eSet(feature,
+							new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+				}
+				if (pdtd.isScaleSupported()) {
+					EStructuralFeature feature = pdt.eClass()
+							.getEStructuralFeature("scale"); //$NON-NLS-1$
+					pdt.eSet(feature, new Integer(rs
+							.getInt(COLUMN_DECIMAL_DIGITS)));
+				}
 				column.setDataType(pdt);
 				return;
 			}
-			
-			if (pdtd.isLengthSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("length"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+		}
+
+		// Couldn't find predefined type.  Try looking for a ref or udt.
+		if (typeName == null)
+			return;
+
+		// see if we can locate a UDT
+		if (Types.REF == typeCode) {
+			ReferenceDataType ref = createReferenceDataType();
+			if (ref == null) {
+				// TODO: Add some logging maybe?
+				return;
 			}
-			if (pdtd.isPrecisionSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("precision"); //$NON-NLS-1$
-				pdt.eSet(feature, new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
-			}
-			if (pdtd.isScaleSupported()) {
-				EStructuralFeature feature = pdt.eClass()
-						.getEStructuralFeature("scale"); //$NON-NLS-1$
-				pdt
-						.eSet(feature, new Integer(rs
-								.getInt(COLUMN_DECIMAL_DIGITS)));
-			}
-			column.setDataType(pdt);
+			UserDefinedType udt = findUserDefinedType(typeName);
+			Table table = findScopedTable(rs.getString(COLUMN_SCOPE_CATALOG),
+					rs.getString(COLUMN_SCOPE_SCHEMA), rs
+							.getString(COLUMN_SCOPE_TABLE));
+			initReferenceDataType(ref, udt, table);
+			column.setDataType(ref);
+		}
+		else {
+			UserDefinedType udt = findUserDefinedType(typeName);
+			column.setDataType(udt);
 		}
 	}
 
