@@ -79,6 +79,16 @@ public abstract class TreePlanNodeComponent
     }
 
     /**
+     * Empty constructor, the consumer should call setXXX methods after constructing the node
+     *
+     */
+    public TreePlanNodeComponent()
+    {
+        super();
+    }
+
+
+    /**
      * Returns the children of this node, return <code>null</code> if this node is a leaf
      * 
      * @return the children of this node

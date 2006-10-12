@@ -120,6 +120,25 @@ public class EPVFacade
     }
     
     /**
+     * Returns the status of the plan request
+     * @param request the plan request
+     * @return the status of the plan request
+     */
+    public int getStatus(PlanRequest request)
+    {
+        if(request == null)
+        {
+            return IPlanInstance.FAILED;
+        }
+        IPlanInstance instance = _manager.getPlanInstance(request);
+        if(instance == null)
+        {
+            return IPlanInstance.FAILED;
+        }
+        return instance.getStatus();
+    }
+    
+    /**
      * Checks if the SQL Execution Plan View is active, if not, create it.
      * 
      * @return <code>true</code> if operation succeeds; <code>false</code> otherwise

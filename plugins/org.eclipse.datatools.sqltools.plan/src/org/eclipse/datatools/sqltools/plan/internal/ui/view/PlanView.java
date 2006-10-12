@@ -14,10 +14,10 @@ import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManagerListener;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.LoadPlanAction;
@@ -258,7 +258,7 @@ public class PlanView extends ViewPart
                         	boolean isGraphicPlan = service.getPlanOption().isGraphicPlan(planType);
 
                             if (isGraphicPlan) {
-								if (rawPlan == null) {
+								if (rawPlan == null || rawPlan.trim().equals("")) {
 									control = _fNoPlanShownLabel;
 								} else {
 									if (!isGraphicPlanSupported(instance)) {

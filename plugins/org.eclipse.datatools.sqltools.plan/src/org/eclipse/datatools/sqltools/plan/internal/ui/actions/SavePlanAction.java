@@ -22,9 +22,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
@@ -191,9 +191,17 @@ public class SavePlanAction extends Action
 
                     if (instance.getStatus() == IPlanInstance.SUCCESS)
                     {
-                        CDATASection rawPlanData = document.createCDATASection(instance.getRawPlan().toString()
-                                .replaceAll(CDATA_END, CDATA_END_SUB));
-                        rawPlanNode.appendChild(rawPlanData);
+                        if(instance.getRawPlan() == null)
+                        {
+                            CDATASection rawPlanData = document.createCDATASection("");
+                            rawPlanNode.appendChild(rawPlanData);
+                        }
+                        else
+                        {
+                            CDATASection rawPlanData = document.createCDATASection(instance.getRawPlan().toString()
+                                    .replaceAll(CDATA_END, CDATA_END_SUB));
+                            rawPlanNode.appendChild(rawPlanData);
+                        }
                     }
                     else
                     {

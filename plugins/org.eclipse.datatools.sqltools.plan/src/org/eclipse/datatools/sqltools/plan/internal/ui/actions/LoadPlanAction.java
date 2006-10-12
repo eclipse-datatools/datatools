@@ -19,9 +19,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
@@ -139,6 +139,7 @@ public class LoadPlanAction extends Action
                             {
                                 CDATASection rawPlanCDATA = (CDATASection) subNode.getFirstChild();
                                 rawPlan = rawPlanCDATA.getNodeValue();
+                                rawPlan  = rawPlan.replaceAll(SavePlanAction.CDATA_END_SUB, SavePlanAction.CDATA_END);
                             }
                             if (request != null)
                             {

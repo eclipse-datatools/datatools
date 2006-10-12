@@ -12,8 +12,8 @@ package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
 
 import org.eclipse.datatools.sqltools.plan.IPlanService;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.ui.view.PlanView;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;

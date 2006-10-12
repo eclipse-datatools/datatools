@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class TreePlanNodeComposite extends TreePlanNodeComponent
 {
-    private ArrayList _children;
+    private ArrayList _children;           
 
     public TreePlanNodeComposite(String name, String tip, String detail, Object data, String label1,
             boolean isLabel1Highlighted, String label2, boolean isLabel2Highlighted, TreePlanNodeComponent parent)
@@ -27,6 +27,17 @@ public class TreePlanNodeComposite extends TreePlanNodeComponent
         super(name, tip, detail, data, label1, isLabel1Highlighted, label2, isLabel2Highlighted, parent);
         _children = new ArrayList();
     }
+
+    /**
+     * Empty constructor
+     *
+     */
+    public TreePlanNodeComposite()
+    {
+        super();
+        _children = new ArrayList();
+    }
+
 
     /*
      * (non-Javadoc)

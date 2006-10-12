@@ -15,8 +15,8 @@ import org.eclipse.datatools.sqltools.plan.IExecutionPlanDocument;
 import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -129,6 +129,11 @@ public class ExecutionPlansDrawer
         {
             _drawer.drawPlan(doc);
         }
+        else
+        {
+            // error occurs? how to handle?
+        }
+        
         // Note: setMinimumSize has no effect upon the scroll bar
         _scComposite.setMinSize(_graphicComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         _scComposite.redraw();
@@ -145,6 +150,22 @@ public class ExecutionPlansDrawer
         IPlanService planService = PlanServiceRegistry.getInstance().getPlanService(
                 instance.getPlanRequest().getDatabaseDefinitionId());
         _drawer = planService.getPlanDrawer();
+        
+        // Clear the content and re-init
+        if(!_graphicComposite.isDisposed())
+        {
+            _graphicComposite.dispose();
+        }
+        _graphicComposite = new Composite(_scComposite, SWT.NONE);
+        _graphicComposite.setLayout(new GridLayout());
+        _graphicComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
+        _scComposite.setContent(_graphicComposite);
+
+        //createComboQuery(_graphicComposite);
+        _canvas = new Canvas(_graphicComposite, SWT.NONE);
+        _canvas.setLayout(new GridLayout());
+        _canvas.setLayoutData(new GridData(GridData.FILL_BOTH));
+        
         _drawer.setCanvas(_canvas);
         _drawer.setBrowser(_browser);
         _drawer.init();
@@ -156,7 +177,8 @@ public class ExecutionPlansDrawer
             // Cache the execution plan documents
             instance.setPlanDocuments(_planDocs);
         }
-
+        _planDocs = instance.getPlanDocuments();
+        
         // if there is only one document, we don't display the combo
         if (_planDocs != null && _planDocs.length > 1)
         {

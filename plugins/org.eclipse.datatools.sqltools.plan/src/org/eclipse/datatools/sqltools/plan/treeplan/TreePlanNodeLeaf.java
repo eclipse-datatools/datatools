@@ -25,6 +25,15 @@ public class TreePlanNodeLeaf extends TreePlanNodeComponent
         super(name, tip, detail, data, label1, isLabel1Highlighted, label2, isLabel2Highlighted, parent);
     }
 
+    /**
+     * Empty constructor
+     *
+     */
+    public TreePlanNodeLeaf()
+    {
+        super();
+    }
+    
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.sqltools.plan.treeplan.TreePlanNodeComponent#getChildren()

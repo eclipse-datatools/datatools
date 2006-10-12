@@ -44,6 +44,22 @@ public class PlanRequest
      */
     public static final int VIEW_CREATE   = 3;
     
+    /**
+     * Indicates that the plan is generating, still not finished
+     */
+    public static final int RUNNING = 0;
+    
+    /**
+     * Indicates that the plan is successfully generated
+     */
+    public static final int SUCCESS = 1;
+    
+    /**
+     * Indicates it's failed to generated the execution plan
+     */
+    public static final int FAILED  = 2;
+    
+    
     /* The database definition id, use "product_name"_"version" to uniquely identify a database product */
     private String          _databaseDefinitionId;
     /* The plan type, each vendor can define their own plan types. The framework will use GRAPHIC_PLAN or TEXT_PLAN 

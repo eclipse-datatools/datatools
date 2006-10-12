@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.treeplan;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.datatools.sqltools.plan.AbstractPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IExecutionPlanDocument;
+import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
 import org.eclipse.draw2d.ChopboxAnchor;
 import org.eclipse.draw2d.ColorConstants;
@@ -68,7 +71,8 @@ public class TreePlanDrawer extends AbstractPlanDrawer
 
     private String                 _htmlStart       = "<html><body>";
     private String                 _htmlEnd         = "</body></html>";
-
+    private static final String    HTML_FILE_NAME   = "query_plan.html"; 
+    
     public TreePlanDrawer()
     {
         super();
@@ -184,13 +188,31 @@ public class TreePlanDrawer extends AbstractPlanDrawer
             figure.getNameLabel().setIcon(Images.get(Images.IMG_CURRENT_OPERATOR));
             figure.getNameLabel().setText(figure.getNameLabel().getText().trim());
             _last = f;
-            _browser.setText(_htmlStart + ((TreePlanNodeComponent) _node2Plan.get(f)).getDetail() + _htmlEnd);
+            String planFileStr = PlanViewPlugin.getDefault().getStateLocation().append(HTML_FILE_NAME).toOSString();
+            File planFile = new File(planFileStr);
+            String content = _htmlStart + ((TreePlanNodeComponent) _node2Plan.get(f)).getDetail() + _htmlEnd;
+            if (planFile.exists())
+            {
+                planFile.delete();
+            }
+            try
+            {
+                planFile.createNewFile();
+                FileOutputStream fos = new FileOutputStream(planFile);
+                fos.write(content.getBytes());
+                // Does this work in Unix system?
+                _browser.setUrl("file:///" + planFileStr);
+            }
+            catch (Exception ex)
+            {
+                _browser.setText(content);
+            }
         }
     }
 
     /**
      * Draws the execution plan document
-     *
+     * 
      */
     private void draw()
     {

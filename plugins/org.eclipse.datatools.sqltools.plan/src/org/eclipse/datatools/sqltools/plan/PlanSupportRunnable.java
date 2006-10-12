@@ -26,7 +26,6 @@ public abstract class PlanSupportRunnable extends Job
     protected Connection         _conn;
     protected String             _plan;
     protected Statement          _stmt;
-    protected IPlanInstance      _planInstance;
     protected Map                _varDecs;
     protected String _profileName;
     protected String _dbName;
@@ -81,7 +80,7 @@ public abstract class PlanSupportRunnable extends Job
      */
     protected void handleSuccess()
     {
-        _planInstance.finishSuccess(getPlan());
+        EPVFacade.getInstance().planGenerated(_request, getPlan());
     }
 
     /**
@@ -133,10 +132,5 @@ public abstract class PlanSupportRunnable extends Job
     public void setVarDecs(Map decs)
     {
         _varDecs = decs;
-    }
-    
-    public IPlanInstance getPlanInstance()
-    {
-    	return _planInstance;
     }
 }
