@@ -93,7 +93,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
      * 
      * @see com.sybase.stf.dmp.launching.ResultSupportRunnable#getOperationCommand()
      */
-    protected OperationCommand getOperationCommand()
+    public OperationCommand getOperationCommand()
     {
     	if (_operationCommand == null)
     	{
@@ -384,7 +384,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
     	ArrayList params = new ArrayList();
     	for (int i = 0; i < pws.length; i++) {
     		ParameterDescriptor pd = pws[i].getParameterDescriptor();
-			Parameter param = new Parameter(pd.getName(), pd.getParamTypeAsString(), pws[i].getInValue(), pws[i].getOutValue(), pd.getTypeName());
+			Parameter param = new Parameter(pd.getName(), pd.getParamTypeAsString(), pws[i].getInValue(), pd.getTypeName(), pws[i].getOutValue());
 			params.add(param);
 		}
     	return params;
