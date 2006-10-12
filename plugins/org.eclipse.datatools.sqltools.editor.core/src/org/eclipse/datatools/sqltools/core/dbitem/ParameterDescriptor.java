@@ -16,6 +16,7 @@ import java.sql.Types;
 
 import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.result.Parameter;
 
 /**
  * This class is the meta information of a parameter passed to a procedure call.
@@ -154,18 +155,18 @@ public class ParameterDescriptor
     	switch (_parmType)
         {
             case DatabaseMetaData.procedureColumnIn:
-                return "IN"; //$NON-NLS-1$
+                return Parameter.INPUT;
             case DatabaseMetaData.procedureColumnInOut:
-                return "INOUT"; //$NON-NLS-1$
+                return Parameter.IN_OUT;
             case DatabaseMetaData.procedureColumnOut:
-                return "OUT"; //$NON-NLS-1$
+                return Parameter.OUTPUT;
             case DatabaseMetaData.procedureColumnResult:
-                return "RESULT"; //$NON-NLS-1$
+                return Parameter.RESULT;
             case DatabaseMetaData.procedureColumnReturn:
-                return "RETURN"; //$NON-NLS-1$
+                return Parameter.RETURN;
             case DatabaseMetaData.procedureColumnUnknown:
             default:
-                return "UNKNOWN"; //$NON-NLS-1$
+                return Parameter.UNKNOWN;
         }
     }
 

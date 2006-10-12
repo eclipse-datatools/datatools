@@ -20,7 +20,7 @@ import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
-import org.eclipse.datatools.sqltools.plan.internal.PlanServiceRegistry;
+import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 
 /**
  * This class bundles the configuration space for a particular database. Instances of
