@@ -31,7 +31,7 @@ of the ODA run-time interfaces.
 It performs basic data source provider functionalities including:
 <p>
 <ul>
-<li>Executes a query on a specific CSV data file using SQL-like query syntax</li>
+<li>Executes a query on a specific flat file(CSV, SSV, TSV, PSV) using SQL-like query syntax</li>
 <li>Provides the query's result set metadata</li>
 <li>Retrieves the query's result set data from the CSV data file</li>
 </ul>
@@ -43,9 +43,11 @@ It performs basic data source provider functionalities including:
 <li>Open the connection using the IConnection.open( Properties prop ) method. 
 The driver-specific connection property names are:
 <ul>
-<li>"HOME" : The directory of the CSV data file (required property)</li>
+<li>"HOME" : The directory of the flat file (required property)</li>
 <li>"CHARSET" : The character set for decoding the data file; default value= "UTF-8"</li>
-<li>"INCLTYPELINE" : Indicates whether the CVS data file contains data type meta-data; valid values= "YES" (default), "NO"</li>
+<li>"INCLCOLUMNNAME": Indicates whether the  flat file contains column name meta-data; valid values= "YES" (default), "NO"</li>
+<li>"INCLTYPELINE" : Indicates whether the flat file contains data type meta-data; valid values= "YES" (default), "NO"</li>
+<li>"DELIMTYPE": Indicates the delimiter type the flat file uses; valid values="COMMA"(default), "SEMICOLON", "TAB", "PIPE"</li>
 </ul>
 <li>Create an IQuery instance by the IConnection.newQuery( String dataSetType ) method.</li>
 <li>Execute the query by the IQuery.executeQuery method, which returns an IResultSet for data retrieval.</li>
@@ -55,19 +57,19 @@ The driver-specific connection property names are:
 <h2>Data store format</h2>
 <p>
 The flat file ODA driver expects that both meta-data (including column names 
-and data types) and data are kept in a single CSV file.
-The first line of a CSV file specifies data column names.
+and data types) and data are kept in a single flat file.
+The first line of a flat file specifies data column names.
 The second line may optionally specify the column data types. 
 The remaining portion of the file contains data.
 </p>
 <p>
 <h3>Redundant Spaces</h3>
-Redundant spaces are allowed in a CSV file, but will be trimmed once processed by the flat file driver.
+Redundant spaces are allowed in a flat file, but will be trimmed once processed by the flat file driver.
 </p>
 <h3>Double Quotes</h3>
-Double Quotes can be used in a CSV file for the purpose of clarity. 
+Double Quotes can be used in a flat file for the purpose of clarity. 
 The quotes, however, will be trimmed once processed by the driver. 
-That is, a line in CSV file like
+That is, a line in flat file like
 <ul>100,"I'm a string","1"</ul>
 is processed to be the same as the following line:
 <ul>100,I'm a string,1</ul>
@@ -83,7 +85,7 @@ i.e. "I'm", "however", and "a really normal String".
 <p>
 <h3>Null Values</h3>
 Null values are allowed. They are presented as blanks, and are comma-separated from other data. 
-A CSV file that contains only one column, and all the data is of null value will be treated as an empty table.
+A flat file that contains only one column, and all the data is of null value will be treated as an empty table.
 </p> 
 
 <h2>Data Types</h2>
@@ -135,7 +137,10 @@ However, the following queries are invalid:
 <ul>Id FROM EMPLOYEE.csv  			<br>// missing keyword "SELECT"</ul>
 <ul>Select id       			  <br>// missing keyword "FROM"</ul>
 <ul>SELECT I FROM employee.csv	<br>// invalid column name</ul>
-
+<br><br>
+<b>Advanced SOL-like query-text is also defined, and it can be used in the dataset design, 
+for detailed information please refer to "<i>org.eclipse.datatolls.connectivity.oda.flatfile.util.querytextutil.package.html</i>"</b>
+<br><br>
 <!-- Put @see and @since tags down here. -->
 @since 3.0
 
