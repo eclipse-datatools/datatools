@@ -444,6 +444,7 @@ public class FlatFileQuery implements IQuery
 		}
 	}
 
+	
 	/**
 	 * Return the String that contains column name(s) selected in a query.
 	 * Multiple column names, if any, are separated by comma.
@@ -606,7 +607,9 @@ public class FlatFileQuery implements IQuery
 				|| !array[0].trim( )
 						.equalsIgnoreCase( CommonConstants.KEYWORD_SELECT ) )
 			throw new OdaException( Messages.getString( "query_COMMAND_NOT_VALID" ) ); //$NON-NLS-1$
-		return array[1];
+		//if we meet '\"' escape in query text, we replace it 
+		//with '""', which is standard csv escaper for '"' .
+		return array[1].replaceAll( "\\Q\\\"\\E", "\"\"" );
 	}
 
 	/**
@@ -1037,8 +1040,6 @@ public class FlatFileQuery implements IQuery
 						}
 					}
 				}
-
-				// additional judgement added for semicolon seperated CSV
 				else if ( chars[i] == delimiter.toCharArray( )[0]
 						&& !startDoubleQuote )
 				{
@@ -1153,7 +1154,9 @@ public class FlatFileQuery implements IQuery
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
 			{
-				queryColumnNames = getPreparedColumnNames( queryFragments ).split( CommonConstants.DELIMITER_COMMA_VALUE );
+				queryColumnNames = getStringArrayFromVector( splitDoubleQuotedString( getPreparedColumnNames( queryFragments ),
+						CommonConstants.DELIMITER_COMMA_VALUE )); 
+				
 				queryColumnTypes = hasTypeLine == true
 						? getQueryColumnTypes( allColumnNames,
 								allColumnTypes,
