@@ -1173,7 +1173,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				for ( int n = 0; n < columns.length; n++ )
 				{
 					buf.append( CommonConstants.DELIMITER_DOUBLEQUOTE
-							+ columns[n]
+							+ columns[n].replaceAll( "\\Q\"\\E", "\\\\\"" )
 							+ CommonConstants.DELIMITER_DOUBLEQUOTE );
 					if ( n < columns.length - 1 )
 					{
