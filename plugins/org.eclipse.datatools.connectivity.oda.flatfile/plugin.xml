@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.7 2006/05/24 00:11:51 lchan Exp $
+ * $Id: plugin.xml,v 1.8 2006/06/27 23:38:29 lchan Exp $
  */
 -->
 
@@ -33,14 +33,52 @@
                   defaultDisplayName="%datasource.property.home"
                   canInherit="true"
                   name="HOME"/>
+         	<property
+                  defaultDisplayName="%datasource.property.csvdelimitertype"
+                  defaultValue="COMMA"
+                  name="DELIMTYPE"
+                  canInherit="true"
+                  type="choice">
+               <choice
+                     defaultDisplayName="%property.value.comma"
+                     name="COMMA"
+                     value="COMMA"/>
+               <choice
+                     defaultDisplayName="%property.value.semicolon"
+                     name="SEMICOLON"
+                     value="SEMICOLON"/>
+               <choice
+                     defaultDisplayName="%property.value.pipe"
+                     name="PIPE"
+                     value="PIPE"/>
+               <choice
+                     defaultDisplayName="%property.value.tab"
+                     name="TAB"
+                     value="TAB"/>
+            </property>      
             <property
                   type="string"
                   defaultDisplayName="%datasource.property.charset"
                   canInherit="true"
                   name="CHARSET"/>
             <property
+                  defaultDisplayName="%datasource.property.inclcolumnnameline"
+                  defaultValue="YES"
+                  name="INCLCOLUMNNAME"
+                  canInherit="true"
+                  type="choice">
+               <choice
+                     defaultDisplayName="%property.value.yes"
+                     name="YES"
+                     value="YES"/>
+               <choice
+                     defaultDisplayName="%property.value.no"
+                     name="NO"
+                     value="NO"/>
+            </property>         
+            <property
                   defaultDisplayName="%datasource.property.incltypeline"
-                  defaultValue="NO"
+                  defaultValue="YES"
                   name="INCLTYPELINE"
                   canInherit="true"
                   type="choice">
@@ -52,7 +90,7 @@
                      defaultDisplayName="%property.value.no"
                      name="NO"
                      value="NO"/>
-            </property>                 
+            </property>          
          </properties>
       </dataSource>
       <dataSet

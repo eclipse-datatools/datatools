@@ -113,7 +113,7 @@ public final class DateUtil
 		}
 		else
 		{
-			throw new OdaException( Messages.getString( "DateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
 		}
 	}
 
@@ -171,7 +171,7 @@ public final class DateUtil
 		// for the String can not be parsed, throws a OdaException
 		if ( resultDate == null )
 		{
-			throw new OdaException( Messages.getString("DateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
+			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
 		}
 
 		// never access here
@@ -261,7 +261,7 @@ public final class DateUtil
 		// for the String can not be parsed, throws a OdaException
 		if ( resultDate == null )
 		{
-			throw new OdaException( Messages.getString("DateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
+			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
 		}
 
 		// never access here
