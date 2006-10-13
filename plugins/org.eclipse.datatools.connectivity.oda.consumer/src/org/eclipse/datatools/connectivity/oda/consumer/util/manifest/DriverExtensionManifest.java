@@ -48,7 +48,7 @@ public class DriverExtensionManifest
     {
         assert( bridgeExtension != null );
         m_bridgeExtension = bridgeExtension;
-        m_namespace = m_bridgeExtension.getNamespaceIdentifier();
+        m_namespace = m_bridgeExtension.getContributor().getName();
 
         m_bridgeElement =  ExtensionExplorer.getNamedElement( m_bridgeExtension,
                                                   BRIDGE_ELEMENT,
@@ -84,7 +84,7 @@ public class DriverExtensionManifest
     }
 
     /**
-     * Returns the namespace of the plugin that implements this extension.
+     * Returns the namespace of the plugin that contributes this extension.
      * @return 
      */
     public String getNamespace()

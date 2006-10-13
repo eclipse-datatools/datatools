@@ -53,7 +53,7 @@ public class PropertyProviderManifest
     {
         assert( providerExtension != null );
         m_providerExtension = providerExtension;
-        m_namespace = m_providerExtension.getNamespaceIdentifier();
+        m_namespace = m_providerExtension.getContributor().getName();
 
         m_propServiceElement =  ExtensionExplorer.getNamedElement( m_providerExtension,                                       
                                                         PROP_SERVICE_ELEMENT,
@@ -82,7 +82,7 @@ public class PropertyProviderManifest
     }
 
     /**
-     * Returns the namespace of the plugin that implements this extension.
+     * Returns the namespace of the plugin that contributes this extension.
      * @return 
      */
     public String getNamespace()

@@ -45,7 +45,7 @@ public class UIExtensionManifest
             UIManifestExplorer.getNamedElement( dataSourceExtn, DATA_SOURCE_ELEMENT_NAME );
         assert( dataSourceElement != null );
 
-        m_namespace = dataSourceExtn.getNamespaceIdentifier();
+        m_namespace = dataSourceExtn.getContributor().getName();
         
         // first cache the data source element's attributes
         m_dataSourceElementId = dataSourceElement.getAttribute( "id" );  //$NON-NLS-1$
@@ -99,7 +99,7 @@ public class UIExtensionManifest
     }
 
     /**
-     * Returns the extension plugin namespace.
+     * Returns the namespace of the plugin that contributes this extension.
      * @return
      */
     public String getNamespace()

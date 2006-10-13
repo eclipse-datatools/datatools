@@ -62,7 +62,7 @@ public class ExtensionManifest
         m_dataSourceElement = 
 	        ManifestExplorer.getDataSourceElement( dataSourceExtn );
 		assert( m_dataSourceElement != null );
-		m_namespace = dataSourceExtn.getNamespaceIdentifier();
+		m_namespace = dataSourceExtn.getContributor().getName();
 		
 		// first cache the data source element's attributes
 		m_dataSourceElementId = m_dataSourceElement.getAttribute( "id" ); //$NON-NLS-1$
@@ -203,8 +203,8 @@ public class ExtensionManifest
 	}
 	
 	/**
-	 * Returns the namespace associated with this ODA runtime driver.
-	 * @return	the namespace for the ODA driver, null if the driver does not have 
+     * Returns the namespace of the plugin that contributes this ODA runtime extension.
+	 * @return	the plugin namespace for the ODA driver, null if the driver does not have 
 	 * 			a namespace.
 	 */
 	public String getNamespace()
