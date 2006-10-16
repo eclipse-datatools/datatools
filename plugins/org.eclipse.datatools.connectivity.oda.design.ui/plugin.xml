@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: $
+ * $Id: plugin.xml,v 1.11 2006/03/10 00:43:12 lchan Exp $
  */
 -->
 
@@ -26,6 +26,14 @@
       <category
             id="%oda.parent.category.id"
             name="%oda.parent.category.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
+            class="org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences.OpenDataAccessPage"
+            id="org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences.OpenDataAccessPage"
+            name="%oda.preference.page.name"/>
    </extension>
 
 </plugin>
