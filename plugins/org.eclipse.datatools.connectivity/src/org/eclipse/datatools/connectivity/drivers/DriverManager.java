@@ -452,7 +452,8 @@ public class DriverManager {
 					IConfigurationElement prop = templateprops[i];
 					String propid = prop.getAttribute("id"); //$NON-NLS-1$
 					String propvalue = prop.getAttribute("value"); //$NON-NLS-1$
-					props.setProperty(propid, propvalue);
+					props.setProperty(propid, propvalue == null ? new String()
+						: propvalue);
 				}
 			}
 
