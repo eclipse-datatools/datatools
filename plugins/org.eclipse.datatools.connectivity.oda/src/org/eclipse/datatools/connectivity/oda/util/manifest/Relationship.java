@@ -15,8 +15,8 @@
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * Represents a data source extension manifest's relationship element.
@@ -24,7 +24,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 class Relationship
 {
     static final String ELEMENT_NAME = "relationship";  //$NON-NLS-1$
-    static final String RELATED_ATTRIBUTE_NAME = "relatedDataSourceId";  //$NON-NLS-1$
+    static final String RELATED_ID_ATTRIBUTE_NAME = "relatedId";  //$NON-NLS-1$
     static final String TYPE_ATTRIBUTE_NAME = "type";  //$NON-NLS-1$
 
     // relationship types
@@ -36,21 +36,22 @@ class Relationship
     };
     
     private int m_type;
-    private String m_relatedDataSourceId;
+    private String m_relatedId;
     
     /**
      * Instantiates a Relationship object that represents the content
-     * of the relationship element in the specified extension.
-     * @param dataSourceExtn    data source extension object
+     * of the relationship element in the specified parent element.
+     * @param relationshipParentElement    configuration element that may contain
+     *                                     a relationship element
      * @return  the relationship object, or null if none is defined or 
      *          has an invalid element
      */
-    static Relationship createInstance( IExtension dataSourceExtn )
+    static Relationship createInstance( IConfigurationElement relationshipParentElement )
     {
         Relationship anInstance = new Relationship();
         try
         {
-            anInstance.init( dataSourceExtn );
+            anInstance.init( relationshipParentElement );
         }
         catch( OdaException e )
         {
@@ -64,20 +65,24 @@ class Relationship
     private Relationship()
     {           
     }
-    
-    private void init( IExtension dataSourceExtn )
+        
+    private void init( IConfigurationElement parentElement )
         throws OdaException
     {
+        if( parentElement == null )
+            throw new OdaException();       // nothing to initialize
         IConfigurationElement[] elements =
-                ManifestExplorer.getNamedElements( 
-                    dataSourceExtn, ELEMENT_NAME, RELATED_ATTRIBUTE_NAME );
-        if( elements.length < 1 )   // none or invalid relationship element
+            parentElement.getChildren( ELEMENT_NAME );
+        if( elements.length < 1 )           // no relationship element
             throw new OdaException();
-
+    
         // expects one element only, use the first element found
-        IConfigurationElement relationshipElement = elements[0];
-        m_relatedDataSourceId = relationshipElement.getAttribute( RELATED_ATTRIBUTE_NAME );
-        assert( m_relatedDataSourceId != null );    // already validated by getNamedElements
+        IConfigurationElement relationshipElement = elements[0];        
+        m_relatedId = relationshipElement.getAttribute( RELATED_ID_ATTRIBUTE_NAME );
+        if( m_relatedId == null || m_relatedId.length() == 0 )
+            throw new OdaException( 
+                    Messages.bind( Messages.manifest_NO_ATTRIBUTE_ID_DEFINED, 
+                            RELATED_ID_ATTRIBUTE_NAME, ELEMENT_NAME ));
         
         setRelationshipType( relationshipElement.getAttribute( TYPE_ATTRIBUTE_NAME ) );
     }
@@ -105,17 +110,17 @@ class Relationship
      * Indicates whether this extension is defined to be deprecated with
      * a replacedBy relationship type.
      */
-    public boolean isDeprecated()
+    boolean isDeprecated()
     {
         return ( m_type == TYPE_REPLACED_BY_CODE );
     }
 
     /**
-     * Returns the related dataSourceId.
+     * Returns the related id.
      */
-    public String getRelatedDataSourceId()
+    String getRelatedId()
     {
-        return m_relatedDataSourceId;
+        return m_relatedId;
     }
 
 }

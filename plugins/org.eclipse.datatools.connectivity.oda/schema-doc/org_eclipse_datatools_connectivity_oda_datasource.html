@@ -15,13 +15,13 @@
 <p>
 <h6 class=CaptionFigColumn id=header>Description: </h6>This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the <i>org.eclipse.datatools.connectivity.oda</i> package.</p>
 <p><h6 class=CaptionFigColumn id=header>Configuration Markup:</h6></p>
-<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSource">dataSource</a> , <a href="#e.dataSet">dataSet</a>+ , <a href="#e.relationship">relationship</a>?)&gt;</p>
+<p class=code id=dtd>&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.dataSource">dataSource</a> , <a href="#e.dataSet">dataSet</a>+)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST extension</p>
 <p class=code id=dtdAttlist>point&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>name&nbsp;&nbsp;CDATA #IMPLIED&gt;</p>
 <p></p>
 <ul class=ConfigMarkup id=attlistDesc>
 </ul>
-<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSource">dataSource</a> (<a href="#e.traceLogging">traceLogging</a>? , <a href="#e.properties">properties</a>?)&gt;</p>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSource">dataSource</a> (<a href="#e.traceLogging">traceLogging</a>? , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>?)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataSource</p>
 <p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>odaVersion&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA "3.0"<p class=code id=dtdAttlist>defaultDisplayName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>driverClass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>setThreadContextClassLoader&nbsp;(true | false) "false"&gt;</p>
 <p></p>
@@ -39,7 +39,7 @@ Any data source plug-in extension with this flag set to true would take preceden
 <br>
 If the thread context class loader being set is the OSGi class loader that was used to load this ODA runtime plugin, it is not designed to be used by a plugin to in turn load additional classes.  If further class loading is needed, it is up to individual ODA runtime plugin implementation to provide its own URLClassLoader, and switch thread context class loader as appropriate.</li>
 </ul>
-<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSet">dataSet</a> (<a href="#e.dataTypeMapping">dataTypeMapping</a>+ , <a href="#e.properties">properties</a>?)&gt;</p>
+<br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataSet">dataSet</a> (<a href="#e.dataTypeMapping">dataTypeMapping</a>+ , <a href="#e.properties">properties</a>? , <a href="#e.relationship">relationship</a>?)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataSet</p>
 <p class=code id=dtdAttlist>id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>defaultDisplayName&nbsp;CDATA #IMPLIED&gt;</p>
 <p></p>
@@ -170,18 +170,18 @@ A collection of property definitions in a data source extension or its supported
 <br><br>
 <p class=code id=dtd>&lt;!ELEMENT <a name="e.relationship">relationship</a> EMPTY&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST relationship</p>
-<p class=code id=dtdAttlist>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(replacedBy) <p class=code id=dtdAttlist>relatedDataSourceId&nbsp;CDATA #REQUIRED&gt;</p>
+<p class=code id=dtdAttlist>type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(replacedBy) <p class=code id=dtdAttlist>relatedId&nbsp;CDATA #REQUIRED&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
-An optional element to specify the relationship of this dataSource extension.</p>
+An optional element to specify the relationship of this element.</p>
 <br>
 <ul class=ConfigMarkup id=attlistDesc>
-<li><b>type</b> - The type of relationship that this extension has with the <i>relatedDataSourceId</i> extension.
+<li><b>type</b> - The type of relationship that this extension's dataSource or dataSet element has with the <i>relatedId</i> element.
 Valid value(s) are: 
-<br>* "replacedBy" - this dataSource extension is deprecated and replaced by that of <i>relatedDataSourceId</i>.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
+<br>* "replacedBy" - this dataSource/dataSet is deprecated and replaced by that of <i>relatedId</i>.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
 <br>* (Additional types are TBD.)</li>
-<li><b>relatedDataSourceId</b> - The fully qualified ID of the related ODA data source extension.
-Its value must match that of the <i>dataSource.id</i> attribute defined in another ODA driver's <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension.</li>
+<li><b>relatedId</b> - The fully qualified ID of the related ODA data source or data set element.
+Its value must match that of the corresponding <i>dataSource.id</i> or <i>dataSet.id</i> attribute defined in another ODA driver's <i>org.eclipse.datatools.connectivity.oda.dataSource</i> extension.</li>
 </ul>
 <br><h6 class=CaptionFigColumn id=header>Examples: </h6><p>
    <pre>

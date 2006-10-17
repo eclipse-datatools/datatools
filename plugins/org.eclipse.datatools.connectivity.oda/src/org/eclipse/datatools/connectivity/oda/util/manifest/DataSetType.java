@@ -36,6 +36,7 @@ public class DataSetType
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_configElement;
+    private Relationship m_relationship;
 	
 	DataSetType( IConfigurationElement dataSetElement ) throws OdaException
     {
@@ -78,6 +79,9 @@ public class DataSetType
 		    m_properties = ExtensionManifest.getPropertyDefinitions( propertiesElement );
 		    m_propsVisibility = ExtensionManifest.getPropertyVisibilities( propertiesElement );
 		}
+        
+        // relationship element
+        m_relationship = Relationship.createInstance( dataSetElement );
         
         // successfully initialized
         m_configElement = dataSetElement;
@@ -218,5 +222,26 @@ public class DataSetType
 	        m_propsVisibility = new Properties();
 	    return m_propsVisibility;
 	}
+    
+    /**
+     * Indicates whether this data set type is defined to be deprecated.
+     */
+    public boolean isDeprecated()
+    {
+        return ( m_relationship != null && m_relationship.isDeprecated() );
+    }
+
+    /**
+     * Returns the related oda data set element id, if specified.
+     * @return  the related oda data set element id, or 
+     *          null if none is specified.
+     */
+    public String getRelatedDataSetId()
+    {
+        if( m_relationship == null )
+            return null;
+        
+        return m_relationship.getRelatedId();
+    }
 
 }

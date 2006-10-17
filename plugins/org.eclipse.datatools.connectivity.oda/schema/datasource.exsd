@@ -15,7 +15,6 @@
          <sequence>
             <element ref="dataSource"/>
             <element ref="dataSet" minOccurs="1" maxOccurs="unbounded"/>
-            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -51,6 +50,7 @@
          <sequence>
             <element ref="traceLogging" minOccurs="0" maxOccurs="1"/>
             <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -107,6 +107,7 @@ If the thread context class loader being set is the OSGi class loader that was u
          <sequence>
             <element ref="dataTypeMapping" minOccurs="1" maxOccurs="unbounded"/>
             <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -469,16 +470,16 @@ The configured values are passed through to the driver&apos;s implementation of 
    <element name="relationship">
       <annotation>
          <documentation>
-            An optional element to specify the relationship of this dataSource extension.
+            An optional element to specify the relationship of this element.
          </documentation>
       </annotation>
       <complexType>
          <attribute name="type" use="required">
             <annotation>
                <documentation>
-                  The type of relationship that this extension has with the &lt;i&gt;relatedDataSourceId&lt;/i&gt; extension.
+                  The type of relationship that this extension&apos;s dataSource or dataSet element has with the &lt;i&gt;relatedId&lt;/i&gt; element.
 Valid value(s) are: 
-&lt;br&gt;* &quot;replacedBy&quot; - this dataSource extension is deprecated and replaced by that of &lt;i&gt;relatedDataSourceId&lt;/i&gt;.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
+&lt;br&gt;* &quot;replacedBy&quot; - this dataSource/dataSet is deprecated and replaced by that of &lt;i&gt;relatedId&lt;/i&gt;.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
 &lt;br&gt;* (Additional types are TBD.)
                </documentation>
             </annotation>
@@ -489,11 +490,11 @@ Valid value(s) are:
                </restriction>
             </simpleType>
          </attribute>
-         <attribute name="relatedDataSourceId" type="string" use="required">
+         <attribute name="relatedId" type="string" use="required">
             <annotation>
                <documentation>
-                  The fully qualified ID of the related ODA data source extension.
-Its value must match that of the &lt;i&gt;dataSource.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
+                  The fully qualified ID of the related ODA data source or data set element.
+Its value must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; or &lt;i&gt;dataSet.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
                </documentation>
             </annotation>
          </attribute>

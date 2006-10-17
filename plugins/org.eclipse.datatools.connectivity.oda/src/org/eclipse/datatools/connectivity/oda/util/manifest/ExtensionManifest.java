@@ -122,12 +122,12 @@ public class ExtensionManifest
 		}
         
         // relationship element
-        m_relationship = Relationship.createInstance( dataSourceExtn );
+        m_relationship = Relationship.createInstance( m_dataSourceElement );
         
         // successfully initialized
         m_dataSourceExtn = dataSourceExtn;
 	}
-	
+    
     /**
      * Returns the data source extension element used to initialize this instance.
      */
@@ -450,7 +450,7 @@ public class ExtensionManifest
         if( m_relationship == null )
             return null;
         
-        return m_relationship.getRelatedDataSourceId();
+        return m_relationship.getRelatedId();
     }
     
 }
