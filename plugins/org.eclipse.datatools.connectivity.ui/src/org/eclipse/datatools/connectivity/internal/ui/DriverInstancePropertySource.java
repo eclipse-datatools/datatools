@@ -7,23 +7,26 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ * 				 brianf - updated property descriptor to use createExecutableExtension
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
+import org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
+import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
 
 /**
@@ -37,8 +40,6 @@ public class DriverInstancePropertySource implements IPropertySource {
 	private static final String P_CATEGORY = "category"; //$NON-NLS-1$
 	private static final String P_CUSTOM_PROPERTY_DESCRIPTOR = "customPropertyDescriptor"; //$NON-NLS-1$
 	
-	private static final String METHOD_SET_CATEGORY = "setCategory"; //$NON-NLS-1$
-
 	private DriverInstance mDI;
 	private TemplateDescriptor descriptor = null;
 
@@ -93,28 +94,30 @@ public class DriverInstancePropertySource implements IPropertySource {
 					if (ctceClass != null) {
 						if (ctceClass != null) {
 							try {
-								Class tceClass = Class.forName(ctceClass);
-								Constructor constructor = tceClass.getConstructor(new Class[] {Object.class, String.class});
-								Method method = tceClass.getMethod(METHOD_SET_CATEGORY, new Class[] {String.class});
-								Object pd = constructor.newInstance(new Object[] {id, name});
+								PropertyDescriptor pd = (PropertyDescriptor) ice.createExecutableExtension(P_CUSTOM_PROPERTY_DESCRIPTOR);
 								
 								if (category != null) {
-									method.invoke(pd, new Object[]{category});
+									pd.setCategory(category);
+								}
+								
+								if (pd instanceof IDriverInstancePropertyDescriptor ) {
+									((IDriverInstancePropertyDescriptor)pd).setDriverInstance(this.mDI);
 								}
 								descList.add(pd);
 							} catch (SecurityException e) {
-								e.printStackTrace();
-							} catch (NoSuchMethodException e) {
+								ExceptionHandler.showException(new Shell(), 
+										ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+										e.getLocalizedMessage(), e);
 								e.printStackTrace();
 							} catch (IllegalArgumentException e) {
+								ExceptionHandler.showException(new Shell(), 
+										ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+										e.getLocalizedMessage(), e);
 								e.printStackTrace();
-							} catch (InstantiationException e) {
-								e.printStackTrace();
-							} catch (IllegalAccessException e) {
-								e.printStackTrace();
-							} catch (InvocationTargetException e) {
-								e.printStackTrace();
-							} catch (ClassNotFoundException e) {
+							} catch (CoreException e ) {
+								ExceptionHandler.showException(new Shell(), 
+										ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+										e.getLocalizedMessage(), e);
 								e.printStackTrace();
 							}
 						}

@@ -6,11 +6,12 @@
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: brianf - initial API and implementation
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui;
 
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -26,6 +27,13 @@ import org.eclipse.ui.views.properties.TextPropertyDescriptor;
  */
 public class PasswordTextPropertyDescriptor extends TextPropertyDescriptor {
 
+	private static String PASSWORD_PROP_ID = "org.eclipse.datatools.connectivity.db.password"; //$NON-NLS-1$
+	
+	public PasswordTextPropertyDescriptor() {
+		this(PASSWORD_PROP_ID, 
+				ConnectivityUIPlugin.getDefault().getResourceString("PasswordTextPropertyDescriptor.property.label")); //$NON-NLS-1$
+	}
+	
 	/**
 	 * @param id
 	 * @param displayName
@@ -66,20 +74,20 @@ public class PasswordTextPropertyDescriptor extends TextPropertyDescriptor {
 			if (element instanceof String) {
 				String value = (String) element;
 				if (value != null) {
-					String mask = "";
+					String mask = ""; //$NON-NLS-1$
 					for (int i = 0; i < value.length(); i++) {
-						mask = mask + "*";
+						mask = mask + "*"; //$NON-NLS-1$
 					}
 					return mask;
 				}
 			}
 			else if (element instanceof DriverInstance) {
 				DriverInstance di = (DriverInstance) element;
-				String value = di.getNamedProperty("password");
+				String value = di.getNamedProperty("password"); //$NON-NLS-1$
 				if (value != null) {
-					String mask = "";
+					String mask = ""; //$NON-NLS-1$
 					for (int i = 0; i < value.length(); i++) {
-						mask = mask + "*";
+						mask = mask + "*"; //$NON-NLS-1$
 					}
 					return mask;
 				}

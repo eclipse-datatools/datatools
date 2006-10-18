@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui; singleton:=true
-Bundle-Version: 1.0.0.200609291
+Bundle-Version: 1.0.0.20061018
 Bundle-Activator: org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -20,6 +20,7 @@ Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.connectivity.internal.ui,
  org.eclipse.datatools.connectivity.internal.ui.dialogs,
  org.eclipse.datatools.connectivity.internal.ui.preferences,
+ org.eclipse.datatools.connectivity.internal.ui.refactoring,
  org.eclipse.datatools.connectivity.internal.ui.wizards,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.connectivity.ui.actions,
