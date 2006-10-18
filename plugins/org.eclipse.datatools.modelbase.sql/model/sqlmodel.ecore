@@ -371,7 +371,7 @@
           defaultValueLiteral="1"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="coercibility" eType="#//datatypes/CoercibilityType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fixedLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          changeable="false" derived="true"/>
+          changeable="false"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="collationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="characterSet" lowerBound="1"
           eType="#//datatypes/CharacterSet"/>
@@ -513,7 +513,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.1 Data types&#xD;&#xA;"/>
+        <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.1 Data types"/>
       </eAnnotations>
       <eLiterals name="CHARACTER"/>
       <eLiterals name="CHARACTER_VARYING" value="1"/>
@@ -578,7 +578,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DataLinkDataType" eSuperTypes="#//datatypes/PredefinedDataType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.1 Data Types"/>
+        <details key="documentation" value="Represents a link to a file/location outside the system. "/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="linkControl" eType="#//datatypes/LinkControlOption"/>
@@ -678,12 +678,21 @@
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionDefault" eSuperTypes="#//schema/SQLObject #//expressions/QueryExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Place holder for the default query expression."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SQL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SearchConditionDefault" eSuperTypes="#//schema/SQLObject #//expressions/SearchCondition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Place holder for the default search condition."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SQL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionDefault" eSuperTypes="#//schema/SQLObject #//expressions/ValueExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Place holder for the default value expression."/>
+      </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="SQL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
   </eSubpackages>
@@ -815,7 +824,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mutator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="returnTable" eType="#//routines/RoutineResultTable"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="returnScaler" eType="#//routines/Parameter"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="returnScalar" eType="#//routines/Parameter"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="returnCast" eType="#//routines/Parameter"
           containment="true"/>

@@ -56,7 +56,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
+/**
 	 * The default value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -64,7 +64,7 @@ public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean INSTANTIABLE_EDEFAULT = false;
+	protected static final boolean INSTANTIABLE_EDEFAULT = false ;
 
 /**
 	 * The cached value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.

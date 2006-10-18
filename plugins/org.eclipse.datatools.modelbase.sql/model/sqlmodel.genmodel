@@ -451,7 +451,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/typePreserving"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//routines/Function/mutator"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnTable"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnScaler"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnScalar"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sqlmodel.ecore#//routines/Function/returnCast"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//routines/RoutineResultTable"/>

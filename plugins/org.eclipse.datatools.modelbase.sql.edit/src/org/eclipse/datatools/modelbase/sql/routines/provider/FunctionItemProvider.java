@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: FunctionItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -183,7 +183,7 @@ public class FunctionItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnTable());
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler());
+			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar());
 			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast());
 		}
 		return childrenFeatures;
@@ -243,7 +243,7 @@ public class FunctionItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -268,7 +268,7 @@ public class FunctionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler(),
+				(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar(),
 				 SQLRoutinesFactory.eINSTANCE.createParameter()));
 
 		newChildDescriptors.add
@@ -289,7 +289,7 @@ public class FunctionItemProvider
 
 		boolean qualify =
 			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar() ||
 			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
 
 		if (qualify) {

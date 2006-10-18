@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#isTypePreserving <em>Type Preserving</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#isMutator <em>Mutator</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnTable <em>Return Table</em>}</li>
- *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnScaler <em>Return Scaler</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnScalar <em>Return Scalar</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.routines.impl.FunctionImpl#getReturnCast <em>Return Cast</em>}</li>
  * </ul>
  * </p>
@@ -168,14 +168,14 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	protected RoutineResultTable returnTable = null;
 
 	/**
-	 * The cached value of the '{@link #getReturnScaler() <em>Return Scaler</em>}' containment reference.
+	 * The cached value of the '{@link #getReturnScalar() <em>Return Scalar</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getReturnScaler()
+	 * @see #getReturnScalar()
 	 * @generated
 	 * @ordered
 	 */
-	protected Parameter returnScaler = null;
+	protected Parameter returnScalar = null;
 
 	/**
 	 * The cached value of the '{@link #getReturnCast() <em>Return Cast</em>}' containment reference.
@@ -358,8 +358,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter getReturnScaler() {
-		return returnScaler;
+	public Parameter getReturnScalar() {
+		return returnScalar;
 	}
 
 	/**
@@ -367,11 +367,11 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetReturnScaler(Parameter newReturnScaler, NotificationChain msgs) {
-		Parameter oldReturnScaler = returnScaler;
-		returnScaler = newReturnScaler;
+	public NotificationChain basicSetReturnScalar(Parameter newReturnScalar, NotificationChain msgs) {
+		Parameter oldReturnScalar = returnScalar;
+		returnScalar = newReturnScalar;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALER, oldReturnScaler, newReturnScaler);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, oldReturnScalar, newReturnScalar);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -382,18 +382,18 @@ public class FunctionImpl extends RoutineImpl implements Function {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setReturnScaler(Parameter newReturnScaler) {
-		if (newReturnScaler != returnScaler) {
+	public void setReturnScalar(Parameter newReturnScalar) {
+		if (newReturnScalar != returnScalar) {
 			NotificationChain msgs = null;
-			if (returnScaler != null)
-				msgs = ((InternalEObject)returnScaler).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALER, null, msgs);
-			if (newReturnScaler != null)
-				msgs = ((InternalEObject)newReturnScaler).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALER, null, msgs);
-			msgs = basicSetReturnScaler(newReturnScaler, msgs);
+			if (returnScalar != null)
+				msgs = ((InternalEObject)returnScalar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, null, msgs);
+			if (newReturnScalar != null)
+				msgs = ((InternalEObject)newReturnScalar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, null, msgs);
+			msgs = basicSetReturnScalar(newReturnScalar, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALER, newReturnScaler, newReturnScaler));
+			eNotify(new ENotificationImpl(this, Notification.SET, SQLRoutinesPackage.FUNCTION__RETURN_SCALAR, newReturnScalar, newReturnScalar));
 	}
 
 	/**
@@ -448,8 +448,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 		switch (featureID) {
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
 				return basicSetReturnTable(null, msgs);
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-				return basicSetReturnScaler(null, msgs);
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
+				return basicSetReturnScalar(null, msgs);
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				return basicSetReturnCast(null, msgs);
 		}
@@ -475,8 +475,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 				return isMutator() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
 				return getReturnTable();
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-				return getReturnScaler();
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
+				return getReturnScalar();
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				return getReturnCast();
 		}
@@ -508,8 +508,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
 				setReturnTable((RoutineResultTable)newValue);
 				return;
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-				setReturnScaler((Parameter)newValue);
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
+				setReturnScalar((Parameter)newValue);
 				return;
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				setReturnCast((Parameter)newValue);
@@ -543,8 +543,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
 				setReturnTable((RoutineResultTable)null);
 				return;
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-				setReturnScaler((Parameter)null);
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
+				setReturnScalar((Parameter)null);
 				return;
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				setReturnCast((Parameter)null);
@@ -572,8 +572,8 @@ public class FunctionImpl extends RoutineImpl implements Function {
 				return mutator != MUTATOR_EDEFAULT;
 			case SQLRoutinesPackage.FUNCTION__RETURN_TABLE:
 				return returnTable != null;
-			case SQLRoutinesPackage.FUNCTION__RETURN_SCALER:
-				return returnScaler != null;
+			case SQLRoutinesPackage.FUNCTION__RETURN_SCALAR:
+				return returnScalar != null;
 			case SQLRoutinesPackage.FUNCTION__RETURN_CAST:
 				return returnCast != null;
 		}

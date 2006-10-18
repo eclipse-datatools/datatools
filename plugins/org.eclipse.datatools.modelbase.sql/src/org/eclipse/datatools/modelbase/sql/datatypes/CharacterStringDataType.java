@@ -102,7 +102,7 @@ public interface CharacterStringDataType extends PredefinedDataType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fixed Length</em>' attribute.
 	 * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getCharacterStringDataType_FixedLength()
-	 * @model changeable="false" derived="true"
+	 * @model changeable="false"
 	 * @generated
 	 */
 	boolean isFixedLength();

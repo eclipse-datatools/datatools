@@ -1861,7 +1861,7 @@
 		    (object Attribute
 			tool       	"Ada95"
 			name       	"TypeEqualityName"
-			value      	(value Text 
+			value      	(value Text
 |"="
 			))
 		    (object Attribute
@@ -5323,7 +5323,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlInterfaceAttributes"
-			value      	(value Text 
+			value      	(value Text
 |endpoint("")
 |local
 |object
@@ -5340,7 +5340,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlCoClassAttributes"
-			value      	(value Text 
+			value      	(value Text
 |uuid("")
 |helpstring("")
 |helpcontext("")
@@ -5353,14 +5353,14 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlCoClassInterfaceAttributes"
-			value      	(value Text 
+			value      	(value Text
 |default
 |source
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlParameterAttributes"
-			value      	(value Text 
+			value      	(value Text
 |in
 |out
 |retval
@@ -5368,7 +5368,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlMethodAttributes"
-			value      	(value Text 
+			value      	(value Text
 |id(1)
 |helpstring("")
 |call_as("")
@@ -5383,7 +5383,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"IdlPropertyAttributes"
-			value      	(value Text 
+			value      	(value Text
 |id()
 |helpstring("")
 |call_as("")
@@ -5444,7 +5444,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"AttributeTypes"
-			value      	(value Text 
+			value      	(value Text
 |attr1=bool
 |attr2=short
 |attr3=int
@@ -5680,7 +5680,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Containers"
-			value      	(value Text 
+			value      	(value Text
 |cont1=CArray<$TYPE, $TYPE&>
 |cont2=CByteArray
 |cont3=CDWordArray
@@ -5712,7 +5712,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ClassMethods"
-			value      	(value Text 
+			value      	(value Text
 |*_body=// ToDo: Add your specialized code here and/or call the base class
 |cm1=$NAME()
 |cm2=$NAME(orig:const $NAME&)
@@ -5739,7 +5739,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Accessors"
-			value      	(value Text 
+			value      	(value Text
 |agf=<<const>> get_$BASICNAME():const $TYPE
 |agf_body=return $NAME;
 |asf=set_$BASICNAME(value:$TYPE):void
@@ -5764,7 +5764,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Conditionals"
-			value      	(value Text 
+			value      	(value Text
 |*_decl=#ifdef _DEBUG
 |*_base=CObject
 |cond1=<<virtual, const>> AssertValid():void
@@ -5775,7 +5775,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"Patterns"
-			value      	(value Text 
+			value      	(value Text
 |patrn1=cm1,cm3,cond1,cond2
 |Patrn1_name=Default
 			))
@@ -5822,21 +5822,21 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"InternalMap"
-			value      	(value Text 
+			value      	(value Text
 |*:AUTO:AUTO
 |
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ExportMap"
-			value      	(value Text 
+			value      	(value Text
 |*:AUTO:AUTO
 |
 			))
 		    (object Attribute
 			tool       	"VC++"
 			name       	"InitialSourceIncludes"
-			value      	(value Text 
+			value      	(value Text
 |"stdafx.h"
 			))
 		    (object Attribute
@@ -5874,7 +5874,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"BodyExtensions"
-			value      	(value Text 
+			value      	(value Text
 |.cpp
 |.cxx
 |.inl
@@ -5882,7 +5882,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"HeaderExtensions"
-			value      	(value Text 
+			value      	(value Text
 |.h
 |.hpp
 |.hxx
@@ -5891,7 +5891,7 @@
 		    (object Attribute
 			tool       	"VC++"
 			name       	"ProjectFolders"
-			value      	(value Text 
+			value      	(value Text
 |Source Files
 |Header Files
 			))

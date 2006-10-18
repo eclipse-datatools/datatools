@@ -64,7 +64,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
+/**
 	 * The cached value of the '{@link #getIdentitySpecifier() <em>Identity Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -112,7 +112,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean NULLABLE_EDEFAULT = true;
+	protected static final boolean NULLABLE_EDEFAULT = false;
 
 /**
 	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
@@ -434,7 +434,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
 	}
 
-		/**
+			/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */

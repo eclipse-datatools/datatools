@@ -918,13 +918,13 @@ public interface SQLRoutinesPackage extends EPackage {
 	int FUNCTION__RETURN_TABLE = ROUTINE_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Return Scaler</b></em>' containment reference.
+	 * The feature id for the '<em><b>Return Scalar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION__RETURN_SCALER = ROUTINE_FEATURE_COUNT + 6;
+	int FUNCTION__RETURN_SCALAR = ROUTINE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Return Cast</b></em>' containment reference.
@@ -1343,13 +1343,13 @@ public interface SQLRoutinesPackage extends EPackage {
 	int METHOD__RETURN_TABLE = FUNCTION__RETURN_TABLE;
 
 	/**
-	 * The feature id for the '<em><b>Return Scaler</b></em>' containment reference.
+	 * The feature id for the '<em><b>Return Scalar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD__RETURN_SCALER = FUNCTION__RETURN_SCALER;
+	int METHOD__RETURN_SCALAR = FUNCTION__RETURN_SCALAR;
 
 	/**
 	 * The feature id for the '<em><b>Return Cast</b></em>' containment reference.
@@ -1623,13 +1623,13 @@ public interface SQLRoutinesPackage extends EPackage {
 	int USER_DEFINED_FUNCTION__RETURN_TABLE = FUNCTION__RETURN_TABLE;
 
 	/**
-	 * The feature id for the '<em><b>Return Scaler</b></em>' containment reference.
+	 * The feature id for the '<em><b>Return Scalar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_DEFINED_FUNCTION__RETURN_SCALER = FUNCTION__RETURN_SCALER;
+	int USER_DEFINED_FUNCTION__RETURN_SCALAR = FUNCTION__RETURN_SCALAR;
 
 	/**
 	 * The feature id for the '<em><b>Return Cast</b></em>' containment reference.
@@ -1885,13 +1885,13 @@ public interface SQLRoutinesPackage extends EPackage {
 	int BUILT_IN_FUNCTION__RETURN_TABLE = FUNCTION__RETURN_TABLE;
 
 	/**
-	 * The feature id for the '<em><b>Return Scaler</b></em>' containment reference.
+	 * The feature id for the '<em><b>Return Scalar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUILT_IN_FUNCTION__RETURN_SCALER = FUNCTION__RETURN_SCALER;
+	int BUILT_IN_FUNCTION__RETURN_SCALAR = FUNCTION__RETURN_SCALAR;
 
 	/**
 	 * The feature id for the '<em><b>Return Cast</b></em>' containment reference.
@@ -2280,15 +2280,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	EReference getFunction_ReturnTable();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.routines.Function#getReturnScaler <em>Return Scaler</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.routines.Function#getReturnScalar <em>Return Scalar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Return Scaler</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.routines.Function#getReturnScaler()
+	 * @return the meta object for the containment reference '<em>Return Scalar</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.routines.Function#getReturnScalar()
 	 * @see #getFunction()
 	 * @generated
 	 */
-	EReference getFunction_ReturnScaler();
+	EReference getFunction_ReturnScalar();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.datatools.modelbase.sql.routines.Function#getReturnCast <em>Return Cast</em>}'.
@@ -2672,12 +2672,12 @@ public interface SQLRoutinesPackage extends EPackage {
 		EReference FUNCTION__RETURN_TABLE = eINSTANCE.getFunction_ReturnTable();
 
 		/**
-		 * The meta object literal for the '<em><b>Return Scaler</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Return Scalar</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION__RETURN_SCALER = eINSTANCE.getFunction_ReturnScaler();
+		EReference FUNCTION__RETURN_SCALAR = eINSTANCE.getFunction_ReturnScalar();
 
 		/**
 		 * The meta object literal for the '<em><b>Return Cast</b></em>' containment reference feature.

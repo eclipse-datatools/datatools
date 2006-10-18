@@ -17,7 +17,7 @@ package org.eclipse.datatools.modelbase.sql.datatypes;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Reference: 5WD-02-Foundation-2002-12 4.1 Data Types
+ * Represents a link to a file/location outside the system. 
  * <!-- end-model-doc -->
  *
  * <p>

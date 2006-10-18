@@ -119,7 +119,7 @@
 	(object Class_Category "Schema"
 	    is_unit    	TRUE
 	    is_loaded  	FALSE
-	    file_name  	"$CDM_EXTRACT_PATH\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Schema.cat"
+	    file_name  	"$CDM_EXTRACT_PATH\\\org.eclipse.datatools.modelbase.sql\\model\\SQLModel-Schema.cat"
 	    quid       	"3F27D66B01AB")
 	(object Class_Category "Constraints"
 	    is_unit    	TRUE

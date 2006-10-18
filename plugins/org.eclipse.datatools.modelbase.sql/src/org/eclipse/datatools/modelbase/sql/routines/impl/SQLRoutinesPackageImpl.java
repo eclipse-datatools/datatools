@@ -518,7 +518,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunction_ReturnScaler() {
+	public EReference getFunction_ReturnScalar() {
 		return (EReference)functionEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -667,7 +667,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		createEAttribute(functionEClass, FUNCTION__TYPE_PRESERVING);
 		createEAttribute(functionEClass, FUNCTION__MUTATOR);
 		createEReference(functionEClass, FUNCTION__RETURN_TABLE);
-		createEReference(functionEClass, FUNCTION__RETURN_SCALER);
+		createEReference(functionEClass, FUNCTION__RETURN_SCALAR);
 		createEReference(functionEClass, FUNCTION__RETURN_CAST);
 
 		routineResultTableEClass = createEClass(ROUTINE_RESULT_TABLE);
@@ -761,7 +761,7 @@ public class SQLRoutinesPackageImpl extends EPackageImpl implements SQLRoutinesP
 		initEAttribute(getFunction_TypePreserving(), ecorePackage.getEBoolean(), "typePreserving", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getFunction_Mutator(), ecorePackage.getEBoolean(), "mutator", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getFunction_ReturnTable(), this.getRoutineResultTable(), null, "returnTable", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFunction_ReturnScaler(), this.getParameter(), null, "returnScaler", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getFunction_ReturnScalar(), this.getParameter(), null, "returnScalar", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getFunction_ReturnCast(), this.getParameter(), null, "returnCast", null, 0, 1, Function.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(routineResultTableEClass, RoutineResultTable.class, "RoutineResultTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

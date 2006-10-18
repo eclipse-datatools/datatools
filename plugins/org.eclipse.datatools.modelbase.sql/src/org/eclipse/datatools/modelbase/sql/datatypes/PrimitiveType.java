@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitiveType.java,v 1.2 2005/12/22 23:31:34 bpayton Exp $
+ * $Id: PrimitiveType.java,v 1.3 2006/09/07 00:19:48 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes;
 
@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * <!-- end-user-doc -->
  * <!-- begin-model-doc -->
  * Reference: 5WD-02-Foundation-2002-12 4.1 Data types
- * 
  * <!-- end-model-doc -->
  * @see org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage#getPrimitiveType()
  * @model

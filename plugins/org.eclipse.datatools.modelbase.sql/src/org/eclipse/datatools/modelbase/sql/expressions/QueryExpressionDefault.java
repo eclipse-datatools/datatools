@@ -18,6 +18,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * A representation of the model object '<em><b>Query Expression Default</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Place holder for the default query expression.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -29,7 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model
  * @generated
  */
-public interface QueryExpressionDefault extends SQLObject, QueryExpression{
+public interface QueryExpressionDefault extends SQLObject, QueryExpression {
 	/**
 	 * Returns the value of the '<em><b>SQL</b></em>' attribute.
 	 * <!-- begin-user-doc -->

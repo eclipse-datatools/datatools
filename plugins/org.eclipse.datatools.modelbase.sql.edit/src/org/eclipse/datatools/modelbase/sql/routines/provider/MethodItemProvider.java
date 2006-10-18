@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MethodItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: MethodItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -171,7 +171,7 @@ public class MethodItemProvider
 
 		boolean qualify =
 			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScaler() ||
+			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar() ||
 			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
 
 		if (qualify) {

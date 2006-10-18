@@ -102,6 +102,7 @@
 		    uid        	0)))
 	(object Class "QueryExpressionDefault"
 	    quid       	"404912EB0127"
+	    documentation 	"Place holder for the default query expression."
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"4049139E0233"
@@ -118,6 +119,7 @@
 		    exportControl 	"Public")))
 	(object Class "SearchConditionDefault"
 	    quid       	"404912F601A5"
+	    documentation 	"Place holder for the default search condition."
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"404913AC0388"
@@ -134,6 +136,7 @@
 		    exportControl 	"Public")))
 	(object Class "ValueExpressionDefault"
 	    quid       	"4049130202ED"
+	    documentation 	"Place holder for the default value expression."
 	    superclasses 	(list inheritance_relationship_list
 		(object Inheritance_Relationship
 		    quid       	"404913C20267"
@@ -269,7 +272,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	3
-			max_width  	594)
+			max_width  	603)
 		    width      	720
 		    height     	292
 		    annotation 	8
@@ -327,7 +330,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	3
-			max_width  	594)
+			max_width  	603)
 		    width      	720
 		    height     	292
 		    annotation 	8
@@ -374,7 +377,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	2
-			max_width  	275)
+			max_width  	284)
 		    width      	570
 		    height     	186
 		    annotation 	8
@@ -421,7 +424,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	2
-			max_width  	275)
+			max_width  	284)
 		    width      	552
 		    height     	186
 		    annotation 	8
@@ -468,7 +471,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	2
-			max_width  	275)
+			max_width  	284)
 		    width      	562
 		    height     	186
 		    annotation 	8
@@ -521,7 +524,7 @@
 			fill_color 	16777215
 			anchor     	2
 			nlines     	3
-			max_width  	391)
+			max_width  	400)
 		    width      	482
 		    height     	282
 		    annotation 	8
