@@ -27,6 +27,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined;
+import org.eclipse.datatools.modelbase.sql.query.SearchConditionNested;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableReference;
@@ -197,59 +198,73 @@ public static List getTableRefsFromExpression (QueryValueExpression valueExpr) {
  */
 public static List getColumnsFromSearchCondition( QuerySearchCondition aSearchCond) {
 
-  List columns = new ArrayList();
-  QuerySearchCondition sc = aSearchCond;
-  if ( sc instanceof SearchConditionCombined ) {
-     QuerySearchCondition left = ((SearchConditionCombined)sc).getLeftCondition();
-     QuerySearchCondition right = ((SearchConditionCombined)sc).getRightCondition();
+	List columns = new ArrayList();
+    QuerySearchCondition sc = aSearchCond;
+    // Check if we have a "combined" condition (that is, two conditions combined 
+    // by AND or OR).  If so, process each side of the condition separately.
+    if (sc instanceof SearchConditionCombined) {
+        QuerySearchCondition left = ((SearchConditionCombined)sc).getLeftCondition();
+        QuerySearchCondition right = ((SearchConditionCombined)sc).getRightCondition();
 
-     columns.addAll(getColumnsFromSearchCondition(left));
-     columns.addAll(getColumnsFromSearchCondition(right));
+        columns.addAll(getColumnsFromSearchCondition(left));
+        columns.addAll(getColumnsFromSearchCondition(right));
+    } 
+    // [161670] bgp 19Oct2006 - begin
+    // Handle a "nested" condition, that is, a condition in parens.  Get the nested
+    // condition and process it.
+    else if (sc instanceof SearchConditionNested) {
+        QuerySearchCondition nested = ((SearchConditionNested)sc).getNestedCondition();
+        columns.addAll(getColumnsFromSearchCondition(nested));
+    }
+    // [161670] bgp 19Oct2006 - end
+    // Handle a "basic" predicate.  A basic predicate has a simple 
+    // relational operator (ie, "=").
+    else if (sc instanceof PredicateBasic) {
+        QueryValueExpression valueExpr = ((PredicateBasic)sc).getLeftValueExpr();
+        addExpressionsToList(columns, valueExpr);
 
-  } else
-  // it is a predicate
-  if ( (sc instanceof PredicateBasic) ||
-       (sc instanceof PredicateBetween)  ||
-       (sc instanceof PredicateInValueList)  ) {
-     QueryValueExpression valueExpr = ((PredicateBasic)sc).getLeftValueExpr();
-     addExpressionsToList(columns, valueExpr);
-
-     if (sc instanceof PredicateBasic) {
         valueExpr = ((PredicateBasic)sc).getRightValueExpr();
         addExpressionsToList(columns, valueExpr);
-     } else
-     if (sc instanceof PredicateBetween) {
+    } 
+    // Handle a BETWEEN predicate.
+    else if (sc instanceof PredicateBetween) {
+        // [161670] bgp 19Oct2006 - begin
+        QueryValueExpression valueExpr = ((PredicateBetween)sc).getLeftValueExpr();
+        addExpressionsToList(columns, valueExpr);
+        // [161670] bgp 19Oct2006 - end
         QueryValueExpression lower =
-           (QueryValueExpression)((PredicateBetween)sc).getRightValueExpr1();
+            (QueryValueExpression)((PredicateBetween)sc).getRightValueExpr1();
         addExpressionsToList(columns, lower);
         QueryValueExpression upper =
-           (QueryValueExpression)((PredicateBetween)sc).getRightValueExpr2();
+            (QueryValueExpression)((PredicateBetween)sc).getRightValueExpr2();
         addExpressionsToList(columns, upper);
-     } else
-     if (sc instanceof PredicateInValueList) {
+    } 
+    // Handle a IN predicate.
+    else if (sc instanceof PredicateInValueList) {
+        QueryValueExpression valueExpr = ((PredicateInValueList)sc).getValueExpr();
+        addExpressionsToList(columns, valueExpr);
+
         List inValues = ((PredicateInValueList)sc).getValueExprList();
         Iterator ivIter = inValues.iterator();
         while (ivIter.hasNext()) {
-          QueryValueExpression inExpr = (QueryValueExpression)ivIter.next();
-          addExpressionsToList(columns, inExpr);
+            QueryValueExpression inExpr = (QueryValueExpression)ivIter.next();
+            addExpressionsToList(columns, inExpr);
         }
-     }
-
-  // LIKE predicate
-  } else
-  if (sc instanceof PredicateLike) {
-     QueryValueExpression valueExpr = ((PredicateLike)sc).getMatchingValueExpr();
-     addExpressionsToList(columns, valueExpr);
-     valueExpr = (QueryValueExpression)((PredicateLike)sc).getPatternValueExpr();
-     addExpressionsToList(columns, valueExpr);
-
-  // IS NULL predicate
-  } else
-  if (sc instanceof PredicateIsNull) {
-     QueryValueExpression valueExpr = ((PredicateIsNull)sc).getValueExpr();
-     addExpressionsToList(columns, valueExpr);
-  }
-  return columns;
+    }
+    // Handle a LIKE predicate.
+    else if (sc instanceof PredicateLike) {
+        QueryValueExpression valueExpr = ((PredicateLike)sc).getMatchingValueExpr();
+        addExpressionsToList(columns, valueExpr);
+        valueExpr = (QueryValueExpression)((PredicateLike)sc).getPatternValueExpr();
+        addExpressionsToList(columns, valueExpr);
+    } 
+    // Handle a IS NULL predicate.
+    else if (sc instanceof PredicateIsNull) {
+        QueryValueExpression valueExpr = ((PredicateIsNull)sc).getValueExpr();
+        addExpressionsToList(columns, valueExpr);
+    }
+    
+    return columns;
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
