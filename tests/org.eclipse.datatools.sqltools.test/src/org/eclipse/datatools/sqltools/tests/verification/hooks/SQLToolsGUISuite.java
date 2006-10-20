@@ -85,7 +85,9 @@ public class SQLToolsGUISuite extends AutoGUIVerificationHook {
 	{
 		Messages.log("verifyDriverEntry:" + arg0.getData());
 		
+		//get the dialog
 		Object data = arg0.getData();
+		//using reflection
 		Method m = data.getClass().getMethod("getPropertySet", null);
 		Object pset = m.invoke(data, null);
 		m = pset.getClass().getMethod("getBaseProperties", null);

@@ -54,7 +54,11 @@ public interface EditorConstants
 	 */
     public static final int    SQL_SHORT_DESC_LENGTH   = 40;
     
-    public static final String EDITOR_ID               = "org.eclipse.datatools.sqltools.sqleditor.SQLEditor";
+    public static final String EDITOR_ID = "org.eclipse.datatools.sqltools.sqleditor.SQLEditor";
+
+	public static final String ROUTINE_EDITOR_ID = "org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditor";
+
+	public static final String SQLFILE_EDITOR_ID = "org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor";
 
 	
 }

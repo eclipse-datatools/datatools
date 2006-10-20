@@ -22,6 +22,8 @@ import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
@@ -81,7 +83,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 
     }
 
-    private Connection              _conn;
     private Runnable                _postRun;
     private String[]                _groups;
     private Runnable _currentJob = null;
@@ -89,7 +90,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private HashMap                 _varDefs    = null;
     private IStatus                 _errorStatus = new Status(IStatus.ERROR, SQLEditorPlugin.PLUGIN_ID, 0, "", null);
     /**
-     * @param con
+     * @param con if con is null, corresponding ConnectionService.createConnection will be called.
      * @param sql
      * @param tracker
      */
@@ -97,7 +98,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         Runnable postRun, DatabaseIdentifier databaseIdentifier, boolean promptVar, HashMap varDefs)
     {
         super(con, "", false, tracker,null, databaseIdentifier,null);
-        this._conn = con;
         this._postRun = postRun;
         this._groups = groups;
         this._promptVar = promptVar;
@@ -128,6 +128,16 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 
         try
         {
+        	if (getConnection() == null)
+        	{
+                SQLDevToolsConfiguration f = SQLToolsFacade
+						.getConfigurationByProfileName(_databaseIdentifier
+								.getProfileName());
+				ConnectionService conService = f.getConnectionService();
+				Connection conn = conService.createConnection(
+						_databaseIdentifier, true);
+				setConnection(conn);
+        	}
             for (int i = 0; i < _groups.length; i++)
             {
                 if (_groups.length > 1)
@@ -138,10 +148,10 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 				.getConfigurationByProfileName(_databaseIdentifier
 						.getProfileName());
                 _currentJob = f.getExecutionService()
-				.createAdHocScriptRunnable(_conn, _groups[i], false, _tracker, monitor,
+				.createAdHocScriptRunnable(getConnection(), _groups[i], false, _tracker, monitor,
 	                    getDatabaseIdentifier(), null, null);
 				if (_currentJob == null) {
-					_currentJob = new SimpleSQLResultRunnable(_conn, _groups[i], false, _tracker, monitor,
+					_currentJob = new SimpleSQLResultRunnable(getConnection(), _groups[i], false, _tracker, monitor,
 							getDatabaseIdentifier(), null);
 				}
 				//TODO other types of Runnable
@@ -216,6 +226,10 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 				
             }
         }
+        catch(Exception e)
+        {
+        	SQLEditorPlugin.getDefault().log(e); 
+        }
         finally
         {
             monitor.done();
@@ -223,6 +237,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             {
             	PlatformUI.getWorkbench().getDisplay().syncExec(_postRun);
             }
+            ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), getConnection());
         }
         return allSucceeded ? Status.OK_STATUS : _errorStatus;
     }

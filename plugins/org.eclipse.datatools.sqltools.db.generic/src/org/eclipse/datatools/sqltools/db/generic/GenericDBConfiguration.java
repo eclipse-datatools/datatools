@@ -47,4 +47,9 @@ public class GenericDBConfiguration extends SQLDevToolsConfiguration {
 	{
 		return true;
 	}
+	
+	public String[] getAssociatedConnectionProfileType()
+	{
+		return new String[]{"org.eclipse.datatools.connectivity.db.generic.connectionProfile"};
+	}
 }

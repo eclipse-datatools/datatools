@@ -24,6 +24,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.plan.IPlanOption;
@@ -532,9 +533,13 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      * @see org.eclipse.ui.ISaveablePart#doSaveAs()
      */
     public void doSaveAs() {
+    	ISQLEditorConnectionInfo connInfo = getConnectionInfo();
         super.doSaveAs();
+        //now the input should be IFileEditorInput if saveas succeeded
+        setConnectionInfo(connInfo);
         setupDocumentPartitioner();
         runUpdater();
+
     }
 
     /**
@@ -642,21 +647,21 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         
         //2006-7-20
         SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByVendorIdentifier(getConnectionInfo().getDatabaseVendorDefinitionId());
-		SQLEditorService editorService = config.getSQLEditorService();
-        Collection excludedActionIds = editorService.getExcludedActionIds();
-		// Execute SQL
-        if (!excludedActionIds.contains(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
+		ActionService actionServie = config.getActionService();
+        SQLEditorService editorService = config.getSQLEditorService();
+  		// Execute SQL
+        if (actionServie.supportsAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
         {
         	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
         }
-        if (!excludedActionIds.contains(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID))
+        if (actionServie.supportsAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID))
         {
         	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
         }
 
         //Explain SQL
         IPlanOption planOption = config.getPlanService().getPlanOption();
-        if (planOption != null && (!excludedActionIds.contains(ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID)))
+        if (planOption != null && (actionServie.supportsAction(ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID)))
         {
         	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID);
         }
@@ -1248,6 +1253,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         	actionList.add(action);
         }
         //TODO notify ISQLEditorActionContributorExtension
+        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+            ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+            ext.updateAction();
+        }
         
         Iterator iterator = actionList.iterator();
         while (iterator.hasNext())

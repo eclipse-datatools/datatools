@@ -261,7 +261,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			else
 			{
 				try {
-					ProfileUtil.getReusableConnection(new DatabaseIdentifier(
+					ProfileUtil.getOrCreateReusableConnection(new DatabaseIdentifier(
 							_profileName, _dbName));
 					_isConnected = true;
 					String user = ProfileUtil.getProfileUserName(new DatabaseIdentifier(_profileName, _dbName), true);

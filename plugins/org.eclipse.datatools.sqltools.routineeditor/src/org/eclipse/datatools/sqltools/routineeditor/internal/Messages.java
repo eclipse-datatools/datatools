@@ -39,6 +39,9 @@ public final class Messages extends NLS {
     public static String SQLEditor_error_save_notsupport;
     public static String SQLEditor_profile_disconnected;
     public static String SQLEditor_profile_information;
+    public static String Editor_error_save_message;
+    public static String Editor_error_save_title;
+    public static String Editor_warning_save_delete;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

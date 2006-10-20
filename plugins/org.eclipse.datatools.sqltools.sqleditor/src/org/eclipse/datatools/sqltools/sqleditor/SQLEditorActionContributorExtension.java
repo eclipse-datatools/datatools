@@ -184,4 +184,9 @@ public class SQLEditorActionContributorExtension implements IMenuListener, ISQLE
 		return true;
 	}
 
+    public void updateAction()
+    {
+                
+    }
+
 }

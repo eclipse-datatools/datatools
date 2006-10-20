@@ -187,5 +187,11 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
      */
 	public static final String RENAME_ACTION_ID = SQLEditorPlugin.PLUGIN_ID
 			+ ".RenameAction";
+    
+    /**
+     * Context menu id for create database action.
+     */
+    public static final String CREATE_DATABASE_ACTION_ID = SQLEditorPlugin.PLUGIN_ID
+            + ".CreateDBAction";
 
 }

@@ -103,5 +103,7 @@ public interface ISQLEditorActionContributorExtension {
 	public void contributeToCoolBar(ICoolBarManager coolBarManager);
 
 	public void setParent(TextEditorActionContributor parent);
+    
+    public void updateAction();
 
 }

@@ -101,6 +101,11 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
         return _connection;
     }
 
+    protected void setConnection(Connection conn)
+    {
+        _connection = conn;
+    }
+    
     /*
      * (non-Javadoc)
      * 

@@ -7,7 +7,7 @@
 	<property name="basenl" value="${nl}"/>
 
 	<!-- Compiler settings. -->
-	<property name="javacFailOnError" value="false"/>
+	<property name="javacFailOnError" value="true"/>
 	<property name="javacDebugInfo" value="on"/>
 	<property name="javacVerbose" value="false"/>
 	<property name="logExtension" value=".log"/>
@@ -51,48 +51,36 @@
 		</antcall>
 		<zip destfile="${plugin.destination}/org.eclipse.datatools.sqltools.plan_0.9.0.200604101.jar" basedir="${temp.folder}/org.eclipse.datatools.sqltools.plan_0.9.0.200604101" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
+		<delete dir="${build.result.folder}/@dot"/>
 	</target>
 
 	<target name="@dot" depends="init" unless="@dot" description="Create jar: org.eclipse.datatools.sqltools.plan @dot.">
 		<delete dir="${temp.folder}/@dot.bin"/>
 		<mkdir dir="${temp.folder}/@dot.bin"/>
 		<path id="@dot.classpath">
-			<pathelement path="../../plugins/org.eclipse.ui_3.2.0.I20060330-2000.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.runtime_3.2.0.v20060327-1200.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060215a/runtime_registry_compatibility.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060215a"/>
-			<pathelement path="../../plugins/org.eclipse.equinox.registry_3.2.0.v20060327.jar"/>
-			<pathelement path="../../plugins/org.eclipse.osgi_3.2.0.v20060328.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.jobs_3.2.0.v20060327.jar"/>
-			<pathelement path="../../plugins/org.eclipse.equinox.common_3.2.0.v20060329.jar"/>
-			<pathelement path="../../plugins/org.eclipse.equinox.preferences_3.2.0.v20060327-1200.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.runtime.compatibility.registry_3.2.0.v20060215a/@dot"/>
-			<pathelement path="../../plugins/org.eclipse.core.contenttype_3.2.0.v20060327.jar"/>
-			<pathelement path="../../plugins/org.eclipse.swt_3.2.0.v3229j.jar"/>
-			<pathelement path="../../plugins/org.eclipse.swt.win32.win32.x86_3.2.0.v3229c.jar"/>
-			<pathelement path="../../plugins/org.eclipse.jface_3.2.0.I20060329-0010.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.commands_3.2.0.I20060327-0010.jar"/>
-			<pathelement path="../../plugins/org.eclipse.ui.workbench_3.2.0.I20060330-2000.jar"/>
-			<pathelement path="../../plugins/org.eclipse.ui.workbench.compatibility_3.2.0.I20060207-0800/@dot"/>
-			<pathelement path="../../plugins/org.eclipse.ui.workbench.compatibility_3.2.0.I20060207-0800/compatibility.jar"/>
-			<pathelement path="../../plugins/org.eclipse.help_3.2.0.v20060327a.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.expressions_3.2.0.v20060329-1600.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.resources_3.2.0.v20060328.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.resources.compatibility_3.2.0.v20060313.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.resources.win32_3.2.0.v20060130.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.runtime.compatibility_3.1.100.v20060313.jar"/>
-			<pathelement path="../../plugins/org.eclipse.update.configurator_3.1.100.v20060329.jar"/>
-			<pathelement path="../../plugins/org.eclipse.ant.core_3.1.100.v20060330.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.variables_3.1.100.v20060227.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.filesystem_1.0.0.v20060317.jar"/>
-			<pathelement path="../../plugins/org.eclipse.core.filesystem.win32.x86_1.0.0.v20051114.jar"/>
-			<pathelement path="../../plugins/org.eclipse.draw2d_3.2.0.I20060331.jar"/>
-			<pathelement path="../org.eclipse.datatools.sqltools.common.ui/bin/"/>
-			<pathelement path="../org.eclipse.datatools.sqltools.common.ui/@dot"/>
-			<pathelement path="../../plugins/org.eclipse.jface.text_3.2.0.v20060329-1600.jar"/>
-			<pathelement path="../../plugins/org.eclipse.text_3.2.0.v20060329-1600.jar"/>
-			<pathelement path="../../plugins/org.eclipse.debug.core_3.2.0.v20060329b.jar"/>
-			<pathelement path="../../plugins/com.ibm.icu_3.4.3.jar"/>
+			<fileset dir="${eclipse.home}/plugins">
+	            <include name="com.ibm.icu*.jar"/>
+	            <include name="org.eclipse.core.*.jar"/>
+	            <include name="org.eclipse.equinox.*.jar"/>
+	            <include name="org.eclipse.ui.*.jar"/>
+	            <include name="org.eclipse.swt.*.jar"/>
+	            <include name="org.eclipse.jface*.jar"/>
+	            <include name="org.eclipse.text*.jar"/>
+	            <include name="org.junit_*.jar"/>
+	            <include name="org.eclipse.osgi*.jar"/>
+	            <include name="org.eclipse.update.ui.forms_*.jar"/>
+	            <include name="org.eclipse.search_*.jar"/>
+	            <include name="org.eclipse.debug.*.jar"/>
+				<include name="org.eclipse.emf.common*.jar"/>
+				<include name="org.eclipse.emf.ecore*.jar"/>
+				<include name="org.eclipse.draw2d*.jar"/>
+	        </fileset>
+			<!--The generated dtp plugins-->
+			<fileset dir="${plugin.destination}">
+		            <include name="org.eclipse.datatools*/*.jar"/>
+					<include name="*.jar"/>
+	        </fileset>
+
 		</path>
 		<!-- compile the source code -->
 		<javac destdir="${temp.folder}/@dot.bin" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bundleBootClasspath}" source="${bundleJavacSource}" target="${bundleJavacTarget}"		>
@@ -143,7 +131,7 @@
 	<target name="build.zips" depends="init">
 	</target>
 
-	<target name="gather.sources" depends="init" if="destination.temp.folder">
+	<target name="gather.sources" depends="init,build.sources" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/org.eclipse.datatools.sqltools.plan_0.9.0.200604101"/>
 		<copy file="${build.result.folder}/src.zip" todir="${destination.temp.folder}/org.eclipse.datatools.sqltools.plan_0.9.0.200604101" failonerror="false" overwrite="false"/>
 	</target>

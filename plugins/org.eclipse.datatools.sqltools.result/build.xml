@@ -31,7 +31,7 @@
 	<!-- Compiler settings. -->
 	<property name="javacFailOnError" value="true"/>
 	<property name="javacDebugInfo" value="on"/>
-	<property name="javacVerbose" value="true"/>
+	<property name="javacVerbose" value="false"/>
 	<property name="javacSource" value="${javac.source}"/>
 	<property name="javacTarget" value="${javac.target}"/>
 	<property name="compilerArg" value=""/>
@@ -40,24 +40,22 @@
 			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="${eclipse.home}/plugins">
-			<!-- Include jared plug-ins -->
-			<include name="org.eclipse.core.runtime_*.jar"/>
-			<include name="org.eclipse.osgi_*.jar"/>
-			<include name="org.eclipse.ui_*.jar"/>
-			<include name="org.eclipse.swt_*.jar"/>
-			<include name="org.eclipse.swt.*_*.jar"/>
-			<include name="org.eclipse.jface_*.jar"/>
-			<include name="org.eclipse.core.commands_*.jar"/>
-			<include name="org.eclipse.ui.workbench_*.jar"/>
-			<include name="org.eclipse.jface.text_*.jar"/>
-			<include name="org.eclipse.text_*.jar"/>
-			<include name="org.eclipse.ui.workbench.texteditor_*.jar"/>
-			<include name="org.eclipse.core.resources_*.jar"/>
-			<include name="org.eclipse.ui.ide_*.jar"/>
-			<include name="org.eclipse.ui.editors_*.jar"/>
-			<include name="org.eclipse.core.filebuffers_*.jar"/>
-			<include name="org.eclipse.ui.console_*.jar"/>
-			<include name="com.ibm.icu_*.jar"/>
+            <include name="com.ibm.icu*.jar"/>
+            <include name="org.eclipse.core.*.jar"/>
+            <include name="org.eclipse.equinox.*.jar"/>
+            <include name="org.eclipse.ui*.jar"/>
+            <include name="org.eclipse.swt*.jar"/>
+            <include name="org.eclipse.jface*.jar"/>
+            <include name="org.eclipse.text*.jar"/>
+            <include name="org.junit_*.jar"/>
+            <include name="org.eclipse.osgi*.jar"/>
+            <include name="org.eclipse.update.ui.forms_*.jar"/>
+            <include name="org.eclipse.search_*.jar"/>
+            <include name="org.eclipse.debug.*.jar"/>
+			<include name="org.eclipse.emf.common*.jar"/>
+			<include name="org.eclipse.emf.ecore*.jar"/>
+        </fileset>		
+		<fileset dir="${eclipse.home}/plugins">
 			<!-- Include expanded plug-ins -->
 			<include name="org.eclipse.core.runtime_*/org.eclipse.core.runtime_*.jar"/>
 			<include name="org.eclipse.osgi_*/org.eclipse.osgi_*.jar"/>
@@ -78,13 +76,11 @@
 			<include name="org.apache.lucene_*/lucene-*.jar"/>
 			<include name="org.apache.lucene_*/parser.jar"/>
 		</fileset>
-		<!-- Dependencies on other DTP plug-ins, built before this one -->
-		<fileset dir="../">
-			<include name="org.eclipse.datatools.connectivity/connectivity.jar"/>
-		</fileset>
-		<dirset dir="../">
-			<include name="org.eclipse.datatools.connectivity/bin"/>
-		</dirset>
+		<!--The generated dtp plugins-->
+		<fileset dir="${plugin.destination}">
+	            <include name="org.eclipse.datatools*/*.jar"/>
+				<include name="*.jar"/>
+        </fileset>
 	</path>
 	<property name="bootclasspath" refid="path_bootclasspath"/>
 
@@ -115,6 +111,7 @@
 		</antcall>
 		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.jar" basedir="${temp.folder}/${module.name}_${plugin.version}" filesonly="false" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
+		<delete dir="${build.result.folder}/@dot"/>
 	</target>
 
 	<target name="sqlresult.jar" depends="init" unless="sqlresult.jar" description="Create jar: org.eclipse.datatools.sqltools.result sqlresult.jar.">
@@ -131,13 +128,15 @@
 			<fileset dir="src/" excludes="**/*.java, **/package.htm*,null"			/>
 		</copy>
 		<mkdir dir="${build.result.folder}"/>
-		<jar destfile="${build.result.folder}/sqlresult.jar" basedir="${temp.folder}/sqlresult.jar.bin"/>
+		<copy todir="${build.result.folder}/@dot" failonerror="true" overwrite="false">
+					<fileset dir="${temp.folder}/sqlresult.jar.bin"			/>
+				</copy>
 		<delete dir="${temp.folder}/sqlresult.jar.bin"/>
 	</target>
 
-	<target name="sqlresultsrc.zip" depends="init" unless="sqlresultsrc.zip">
+	<target name="src.zip" depends="init" unless="src.zip">
 		<mkdir dir="${build.result.folder}"/>
-		<zip destfile="${build.result.folder}/sqlresultsrc.zip" filesonly="false" whenempty="skip" update="false">
+		<zip destfile="${build.result.folder}/src.zip" filesonly="false" whenempty="skip" update="false">
 			<fileset dir="src/" includes="**/*.java"			/>
 		</zip>
 	</target>
@@ -148,29 +147,26 @@
 	</target>
 
 	<target name="build.sources" depends="init">
-		<available property="sqlresultsrc.zip" file="${build.result.folder}/sqlresultsrc.zip"/>
-		<antcall target="sqlresultsrc.zip"/>
+		<available property="src.zip" file="${build.result.folder}/src.zip"/>
+		<antcall target="src.zip"/>
 	</target>
 
 	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${build.result.folder}" includes="sqlresult.jar"			/>
+			<fileset dir="${build.result.folder}/@dot" includes="**"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="META-INF/,sqlresult.jar,about.html,icons/,plugin.properties,plugin.xml"			/>
-		</copy>
-		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false">
-			<fileset dir="${basedir}" includes="sqlresultsrc.zip"/>
+			<fileset dir="${basedir}" includes="META-INF/,about.html,icons/,plugin.properties,plugin.xml"			/>
 		</copy>
 	</target>
 
 	<target name="build.zips" depends="init">
 	</target>
 
-	<target name="gather.sources" depends="init" if="destination.temp.folder">
+	<target name="gather.sources" depends="init,build.sources" if="destination.temp.folder">
 		<mkdir dir="${destination.temp.folder}/${module.name}_${plugin.version}"/>
-		<copy file="${build.result.folder}/sqlresultsrc.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
+		<copy file="${build.result.folder}/src.zip" todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="false" overwrite="false"/>
 	</target>
 
 	<target name="gather.logs" depends="init" if="destination.temp.folder">
@@ -179,8 +175,8 @@
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.datatools.sqltools.result of all the zips, jars and logs created.">
-		<delete file="${build.result.folder}/sqlresult.jar"/>
-		<delete file="${build.result.folder}/sqlresultsrc.zip"/>
+		<delete dir="${build.result.folder}/@dot"/>
+		<delete file="${build.result.folder}/src.zip"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.jar"/>
 		<delete file="${plugin.destination}/${module.name}_${plugin.version}.zip"/>
 		<delete dir="${temp.folder}"/>

@@ -40,8 +40,7 @@ import org.eclipse.ui.editors.text.ILocationProvider;
 
 public class SQLScrapbookEditor extends SQLEditor {
 
-	public static final String EDITOR_ID = SqlscrapbookPlugin.PLUGIN_ID
-	+ ".SQLScrapbookEditor";
+	public static final String EDITOR_ID = EditorConstants.SQLFILE_EDITOR_ID;
 	
 	private class ProfileStatusChecker implements IPartListener2
 	{

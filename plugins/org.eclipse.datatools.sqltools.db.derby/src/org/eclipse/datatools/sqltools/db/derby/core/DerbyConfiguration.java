@@ -71,4 +71,9 @@ public class DerbyConfiguration extends GenericDBConfiguration
 		}
 		return false;
 	}
+	
+	public String[] getAssociatedConnectionProfileType()
+	{
+		return new String[]{"org.eclipse.datatools.connectivity.db.derby.embedded.connectionProfile"};
+	}
 }
