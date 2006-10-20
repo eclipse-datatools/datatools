@@ -13,6 +13,7 @@
 package org.eclipse.datatools.sqltools.core;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.core.services.SQLDataService;
@@ -155,6 +156,14 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	public DBHelper getDBHelper() {
 		return new DBHelper();
 	}
+    
+    /**
+     * Returns the Action service
+     * 
+     */
+    public ActionService getActionService() {
+        return new ActionService();
+    }
 
 	/**
 	 * Returns an object which is an instance of the given class
@@ -182,5 +191,18 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	public boolean recognize(String product, String version)
 	{
 		return false;
+	}
+	
+	/**
+	 * Returns the connection profile types associated with this configuration. 
+	 * The default implementation simply returns null to indicate there's no specific
+	 * associated connection profile type. Subclasses may
+	 * override. 
+	 * @see extension point: org.eclipse.datatools.connectivity.connectionProfile
+	 * @return
+	 */
+	public String[] getAssociatedConnectionProfileType()
+	{
+		return null;
 	}
 }

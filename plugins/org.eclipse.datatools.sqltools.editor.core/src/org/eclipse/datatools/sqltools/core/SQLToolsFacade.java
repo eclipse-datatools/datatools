@@ -474,13 +474,9 @@ public class SQLToolsFacade
         f = getConfigurationByDBDefName(dbType);
         if (f != null)
         {
-            Collection excludes = f.getSQLEditorService().getExcludedActionIds();
-            if (excludes != null)
-            {
-                return !excludes.contains(actionId);
-            }
+            return f.getActionService().supportsAction(actionId);
         }
-        return true;
+        return false;
     }
 
     public static SQLDevToolsConfiguration getConfiguration(String dbType, DatabaseIdentifier databaseIdentifier)

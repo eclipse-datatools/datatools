@@ -56,7 +56,11 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ProfileUtil
 {
-    public static final String UID                = IDBDriverDefinitionConstants.USERNAME_PROP_ID;
+	public static final String PROFILE_DB_VERSION = ConnectionProfileConstants.PROP_SERVER_VERSION;
+	public static final String DRIVER_DB_VERSION = IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID;
+	public static final String DRIVER_DB_VENDOR_NAME = IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID;
+	public static final String PROFILE_DB_VENDOR_NAME = ConnectionProfileConstants.PROP_SERVER_NAME;
+	public static final String UID                = IDBDriverDefinitionConstants.USERNAME_PROP_ID;
     public static final String PWD                = IDBDriverDefinitionConstants.PASSWORD_PROP_ID;
     public static final String DRIVERDEFINITIONID = ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID;
     public static final String DATABASENAME       = IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID;
@@ -157,7 +161,7 @@ public class ProfileUtil
 			// because this should
 			// be the REAL info.
 			String vendor = profile.getBaseProperties().getProperty(
-					ConnectionProfileConstants.PROP_SERVER_NAME);
+					PROFILE_DB_VENDOR_NAME);
 			String version = getProductVersion(profileName);
 			if (vendor != null && version != null) {
 				vendorId = new DatabaseVendorDefinitionId(vendor, version);
@@ -176,9 +180,9 @@ public class ProfileUtil
 							.getDriverInstanceByID(driverID);
 					if (driver != null) {
 						vendor = driver
-								.getProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+								.getProperty(DRIVER_DB_VENDOR_NAME);
 						version = driver
-								.getProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+								.getProperty(DRIVER_DB_VERSION);
 						vendorId = new DatabaseVendorDefinitionId(vendor,
 								version);
 					}
@@ -235,7 +239,7 @@ public class ProfileUtil
         try
         {
             IConnectionProfile profile = getProfile(profileName);
-            String version = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
+            String version = profile.getBaseProperties().getProperty(PROFILE_DB_VERSION);
             if (version == null)
             {
                 // if we have failed to get version for this profile before, do not do it again. Otherwise, it will be a
@@ -245,7 +249,7 @@ public class ProfileUtil
                     return null;
                 }
                 profile.createConnection(ConnectionProfileConstants.PING_FACTORY_ID);
-                version = profile.getBaseProperties().getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
+                version = profile.getBaseProperties().getProperty(PROFILE_DB_VERSION);
                 if (version == null)
                 {
                     _unknowVersionProfiles.add(profile);
@@ -363,6 +367,38 @@ public class ProfileUtil
     	if (!profile.isConnected())
     	{
     		throw new SQLException(NLS.bind(Messages.ProfileUtil_error_not_connected, (new Object[]{databaseIdentifier.getProfileName()})));
+    	}
+    	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
+    	if (managedConn == null || !managedConn.isConnected())
+    	{
+    		throw new SQLException(NLS.bind(Messages.ProfileUtil_error_getReusableConnection, (new Object[]{databaseIdentifier.toString()})));
+    	}
+    	
+    	IConnection iconn = managedConn.getConnection();
+    	DBHelper helper = SQLToolsFacade.getDBHelper(databaseIdentifier);
+    	Connection conn = (Connection)iconn.getRawConnection();
+        helper.switchDatabase(databaseIdentifier, conn);
+		return conn;
+    }
+
+    /**
+	 * Gets the shared connection from the connection profile. If the profile is
+	 * not connected yet, IConnectionProfile.connect will be called first. TODO
+	 * Now this method delegates to IConnectionProfile, which doesn't manage a
+	 * connection for each database.
+	 * 
+	 * @param databaseIdentifier
+	 *            database identifier used to locate the connection profile
+	 * @return the shared connection managed by the connection profile
+	 * @throws SQLException
+	 * @throws NoSuchProfileException
+	 */
+    public static Connection getOrCreateReusableConnection(DatabaseIdentifier databaseIdentifier) throws SQLException, NoSuchProfileException
+    {
+    	IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+    	if (!profile.isConnected())
+    	{
+    		connectProfile(databaseIdentifier.getProfileName());
     	}
     	IManagedConnection managedConn = profile.getManagedConnection("java.sql.Connection");
     	if (managedConn == null || !managedConn.isConnected())

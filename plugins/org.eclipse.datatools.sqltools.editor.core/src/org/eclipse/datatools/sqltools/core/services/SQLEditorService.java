@@ -52,22 +52,6 @@ public class SQLEditorService
     }
 
     /**
-     * The following actions can be excluded in SQL Editor: 
-     * <code>ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID</code>
-     * <code>ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID</code>
-     * <code>ISQLEditorActionConstants.EXECTUE_SELECTION_SQL_ACTION_ID</code>
-     * <code>ISQLEditorActionConstants.GROUP_NEW_ROUTINE_ID</code>
-     * <code>ISQLEditorActionConstants.GROUP_INSERT_QUERY_ID</code>
-     * <code>ISQLEditorActionConstants.RUN_ACTION_ID</code>
-     * <code>ISQLEditorActionConstants.DEBUG_ACTION_ID</code>
-     * 
-     */
-    public Collection getExcludedActionIds()
-    {
-        return new ArrayList();
-    }
-
-    /**
      * Returns data server specific actions, which will be added to menu/context menu and tool bar. To appear in the
      * toolbar, the action must define action id. Note: because more than one action may use the same action path, the value
      * might be collection of <code>org.eclipse.jface.action.IContributionItem</code> objects.

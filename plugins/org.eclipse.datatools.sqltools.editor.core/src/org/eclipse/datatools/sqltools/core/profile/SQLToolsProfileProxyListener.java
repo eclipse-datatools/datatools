@@ -51,7 +51,10 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         {
             _profiles.add(new ConnectProfile(profiles[i]));
             IManagedConnection mc = profiles[i].getManagedConnection(ConnectionInfo.class.getName());
-            mc.addConnectionListener(this);
+            if (mc != null)
+            {
+            	mc.addConnectionListener(this);
+            }
         }
         
     }
