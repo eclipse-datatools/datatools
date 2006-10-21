@@ -34,7 +34,7 @@ public class LogPathHelper
      * @throws  IllegalStateException when the plugin activator 
      * 					is not instantiated yet
      */
-    public static IPath getPluginLogPath() throws IllegalStateException
+    static IPath getPluginLogPath() throws IllegalStateException
     {
         // try to use plugin's default state location's log folder as its parent
         OdaConsumerPlugin thePlugin = OdaConsumerPlugin.getDefault();
@@ -53,13 +53,37 @@ public class LogPathHelper
      * 					 or empty for no sub-directory
      * @return
      */
-    public static File getConsumerLogParent( String subdirName )
+    static File getConsumerLogParent( String subdirName )
     {
     	IPath pluginLogPath = getPluginLogPath();
     	
     	if( subdirName == null || subdirName.length() == 0 )
     		return pluginLogPath.toFile();
     	return pluginLogPath.append( subdirName ).toFile();
+    }
+    
+    /**
+     * Returns the specified logDirectory as an absolute path name.
+     * If specified logDirectory is already absolute, use as is.
+     * Otherwise, use the odaconsumer plugin's default logs folder
+     * as the parent directory.
+     * @param logDirectory  non-empty log directory which may be a 
+     *                      relative or absolute path
+     * @return  an absolute directory path for the log files; 
+     *          or null if specified argument is null or empty
+     */
+    public static String getAbsoluteLogDirName( String logDirectory )
+    {
+        if( logDirectory == null || logDirectory.length() == 0 )
+            return null;
+        File logParent = new File( logDirectory );
+        if( logParent.isAbsolute() )
+            return logDirectory;   // use as is
+        
+        // the specified logDirectory is relative, 
+        // set its parent to the odaconsumer plugin's default logs folder 
+        return LogPathHelper.getConsumerLogParent( 
+                        logDirectory ).getPath();
     }
 
 }

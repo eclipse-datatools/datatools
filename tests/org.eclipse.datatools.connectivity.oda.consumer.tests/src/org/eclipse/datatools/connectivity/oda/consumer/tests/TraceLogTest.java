@@ -20,26 +20,39 @@ import java.io.IOException;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaConsumerPlugin;
 import org.eclipse.datatools.connectivity.oda.consumer.helper.OdaDriver;
-import org.eclipse.datatools.connectivity.oda.util.OdaPlugin;
 import org.eclipse.datatools.connectivity.oda.util.logging.Level;
 
 public class TraceLogTest extends FlatFileTestCase
 {
-	private static final String TEST_LOG_PREFIX = "OdaHelperLog"; //$NON-NLS-1$
-    private static File sm_testLogDir;
-	
+	private static final String CONSUMER_LOG_PREFIX = TraceLogTestUtil.CONSUMER_LOG_PREFIX;
+    private static File sm_consumerLogDir;
+    private String m_driverLogRelativeDirName;
+	private File m_driverLogAbsoluteDir;
+    
     protected void setUp() throws Exception
     {
         super.setUp();
-        
-        if( sm_testLogDir == null )
+            
+        if( sm_consumerLogDir == null )
         {
-	        sm_testLogDir = 
+	        sm_consumerLogDir = 
 	        		OdaConsumerPlugin.getDefault().getStateLocation()
 	        			.append( "logs" )
 	        			.append( TEST_FLATFILE_ID ).toFile();
         }
-        cleanupTestLogFiles( sm_testLogDir );
+        cleanupTestLogFiles( sm_consumerLogDir );       
+        
+        if( getName() == "testDefaultLogDir" )
+            m_driverLogRelativeDirName = "./OdaLogs";
+        else if( getName() == "testSetLogDir" )
+            m_driverLogRelativeDirName = "testSetLogDir";
+        
+        if( m_driverLogRelativeDirName != null )
+            m_driverLogAbsoluteDir = 
+                OdaConsumerPlugin.getDefault().getStateLocation()
+                    .append( "logs" )
+                    .append( m_driverLogRelativeDirName ).toFile();
+        cleanupTestLogFiles( m_driverLogAbsoluteDir );
     }
 
     /*
@@ -57,96 +70,69 @@ public class TraceLogTest extends FlatFileTestCase
 		    new LogConfiguration( 
 		    		TEST_FLATFILE_ID,
 					 Level.OFF, 
-					 "./OdaLogs",
-					 TEST_LOG_PREFIX, 
-					 "java.util.logging.SimpleFormatter" );
+                     m_driverLogRelativeDirName,
+					 CONSUMER_LOG_PREFIX, 
+					 null );
     	getOdaDriver().setLogConfiguration( offLogConfig );
 		
-        cleanupTestLogFiles( sm_testLogDir );
+        cleanupTestLogFiles( sm_consumerLogDir );
+        cleanupTestLogFiles( m_driverLogAbsoluteDir );
     }
     
 	private void cleanupTestLogFiles( File logDir ) throws IOException
-    {        
-		if( logDir == null || ! logDir.exists() )
-			return;		// nothing to clear
-        File[] filesInDir = logDir.listFiles();
-        if( filesInDir == null )
-            return;		// nothing to clear
-        
-        for ( int i = 0; i < filesInDir.length; i += 1 )
-        {         
-            boolean deleted = filesInDir[i].delete();
-            if ( ! deleted )
-                throw new IOException( "Cannot delete file: " + filesInDir[i].getName() );
-        }
+    {      
+        TraceLogTestUtil.cleanupTestLogFiles( logDir );
     }
 
     public void testDefaultLogDir() throws Exception
     {
     	LogConfiguration logConfig = new LogConfiguration( TEST_FLATFILE_ID,
     						 Level.FINE, 
-    						 "./OdaLogs",
-    						 TEST_LOG_PREFIX, 
-    						 "java.util.logging.SimpleFormatter" );
+    						 m_driverLogRelativeDirName,
+    						 CONSUMER_LOG_PREFIX, 
+    						 null );
     	
-    	assertFalse( hasTestLogFiles( sm_testLogDir ) );
+    	assertFalse( hasTestLogFiles( sm_consumerLogDir ) );
+        if( getOdaDriver() instanceof OdaDriver )
+        {
+            // reset to use default odaconsumer log dir
+            ((OdaDriver) getOdaDriver()).setLogDirectory( sm_consumerLogDir.getPath() );
+        }
     	getOdaDriver().setLogConfiguration( logConfig );
     	
-    	assertTrue( sm_testLogDir.exists() );
-    	assertTrue( hasTestLogFiles( sm_testLogDir ) );
+    	assertTrue( hasTestLogFiles( sm_consumerLogDir ) );
     }
     
     public void testSetLogDir() throws Exception
     {
     	LogConfiguration logConfig = new LogConfiguration( TEST_FLATFILE_ID,
     						 Level.FINE, 
-    						 "./OdaLogs",
-    						 TEST_LOG_PREFIX, 
-    						 "java.util.logging.SimpleFormatter" );
+                             m_driverLogRelativeDirName,
+    						 CONSUMER_LOG_PREFIX, 
+    						 null );
     	
-    	assertFalse( hasTestLogFiles( sm_testLogDir ) );
+    	assertFalse( hasTestLogFiles( sm_consumerLogDir ) );
     	
-    	String ownLogDir = "testSetLogDir";
+    	String ownLogDir = m_driverLogRelativeDirName;
     	if( getOdaDriver() instanceof OdaDriver )
     	{
     		// overrides the default log dir
     		((OdaDriver) getOdaDriver()).setLogDirectory( ownLogDir );
     	}
     		
+        // this is expected to use odaconsumer's logs/$m_logRelativeDirName 
+        // to log driver's unsupported operation exception
     	getOdaDriver().setLogConfiguration( logConfig );
     	
     	// default log dir still should not exist
-    	assertFalse( hasTestLogFiles( sm_testLogDir ) );
-    	
-    	// expects to find log file relative to the oda LogManager base dir
-    	File relativeBaseDir = 
-    		OdaPlugin.getDefault().getStateLocation()
-        			.append( "logs" )
-        			.append( ownLogDir ).toFile();
-    	assertTrue( hasTestLogFiles( relativeBaseDir ) );
-    	
-    	// cleanup 
-    	LogConfiguration offLogConfig = new LogConfiguration( 
-    										logConfig.getDataSourceId(),
-    										Level.OFF,
-    										logConfig.getLogDirectory(),
-    										logConfig.getLogPrefix(),
-    										logConfig.getFormatterClassName() );
-    	getOdaDriver().setLogConfiguration( offLogConfig );
-        cleanupTestLogFiles( relativeBaseDir );
+    	assertFalse( hasTestLogFiles( sm_consumerLogDir ) );
+    	    	
+    	// expects to find log file relative to the odaconsumer logs base dir
+    	assertTrue( hasTestLogFiles( m_driverLogAbsoluteDir ) );
     }
     
     private boolean hasTestLogFiles( File logDir )
     {
-    	String[] filesInDir = logDir.list();
-    	if( filesInDir == null )
-        	return false;
-
-    	for( int i = 0; i < filesInDir.length; i++ )
-    	{
-    		if( filesInDir[i].startsWith( TEST_LOG_PREFIX ) )
-    			return true;
-    	}    	
-    	return false;
+        return TraceLogTestUtil.hasTestLogFiles( logDir, CONSUMER_LOG_PREFIX );
     }
 }

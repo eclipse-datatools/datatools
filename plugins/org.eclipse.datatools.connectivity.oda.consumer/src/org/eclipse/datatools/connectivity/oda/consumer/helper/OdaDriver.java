@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
 import org.eclipse.datatools.connectivity.oda.LogConfiguration;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogConfigHelper;
 import org.eclipse.datatools.connectivity.oda.consumer.internal.impl.LogPathHelper;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.DriverExtensionManifest;
@@ -178,6 +179,9 @@ public class OdaDriver extends OdaObject
         // store the underlying driver instance within this OdaDriver
         setObject( wrappedDriver );
 
+        // initialize log configuration for this helper and its underlying ODA driver
+        setLogConfiguration( driverConfig );
+        
         logMethodExitWithReturn( context, this );
     }
 
@@ -462,6 +466,20 @@ public class OdaDriver extends OdaObject
 	{
 		m_logDirectory = logDirectory;
 	}
+    
+    /**
+     * Initialize and set the trace logging configuration for this 
+     * oda consumer helper instance and its underlying ODA runtime driver.
+     * Uses the default trace logging configuration specified for
+     * the underlying ODA runtime driver.
+     * @throws OdaException
+     */
+    private void setLogConfiguration( ExtensionManifest driverManifest ) 
+        throws OdaException
+    {
+        LogConfigHelper configHelper = new LogConfigHelper( driverManifest );
+        setLogConfiguration( configHelper.getDriverLogConfiguration() );
+    }
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.datatools.connectivity.oda.IDriver#setLogConfiguration(org.eclipse.datatools.connectivity.oda.LogConfiguration)
@@ -471,6 +489,13 @@ public class OdaDriver extends OdaObject
 	    final String context = "OdaDriver.setLogConfiguration( " +  //$NON-NLS-1$
 						 logConfig + " )\t"; //$NON-NLS-1$
 		logMethodCalled( context );
+        
+        if( logConfig == null )
+        {
+            // nothing to set, done
+            logMethodExit( context );
+            return;
+        }
 		
         // set log configuration for the oda consumer helper
 		try
@@ -481,15 +506,18 @@ public class OdaDriver extends OdaObject
 			if( LogManager.getLogger( getLoggerName() ) == null && 
 				m_logDirectory == null )
             {
-                m_logDirectory = 
-                	LogPathHelper.getConsumerLogParent( 
-                			logConfig.getDataSourceId() ).getPath();
+                // use underlying oda data source id as the logs' relative sub-directory
+                m_logDirectory = logConfig.getDataSourceId();
             }
 
             // set log configuration values in the ODA consumer helper of the driver,
             // whose logging requires a log directory
             if( m_logDirectory != null && m_logDirectory.length() > 0 )	
             {
+                // ensure that either user-defined or default log directory
+                // has an absolute path
+                m_logDirectory = LogPathHelper.getAbsoluteLogDirName( m_logDirectory );
+
                 LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
 								  m_logDirectory, "OdaHelperLog", null ); //$NON-NLS-1$
             }
@@ -683,5 +711,5 @@ public class OdaDriver extends OdaObject
 		
 		logMethodExit( methodName );
 	}
-	
+    
 }
