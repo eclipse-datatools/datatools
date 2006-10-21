@@ -174,6 +174,7 @@ public class ManifestExplorer
 	 * @return					the extension manifest information,
 	 * 							or null if no extension configuration is found.
 	 * @throws OdaException		if the extension manifest is invalid.
+     * @throws IllegalArgumentException if no argument(s) are specified
 	 */
 	public ExtensionManifest getExtensionManifest( String dataSourceId, 
 	        									   String extensionPoint ) 
