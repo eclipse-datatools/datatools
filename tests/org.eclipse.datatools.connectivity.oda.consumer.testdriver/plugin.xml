@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+     <extension
+         id="org.eclipse.datatools.connectivity.oda.consumer.testdriver"
+         point="org.eclipse.datatools.connectivity.oda.dataSource">
+      <dataSource
+            odaVersion="3.0"
+            driverClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestDriverImpl"
+            setThreadContextClassLoader="false"
+            id="org.eclipse.datatools.connectivity.oda.consumer.testdriver"/>
+      <dataSet id="org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet">
+         <dataTypeMapping
+               nativeDataType="String"
+               nativeDataTypeCode="12"
+               odaScalarDataType="String"/>
+         <dataTypeMapping
+               nativeDataType="Date"
+               nativeDataTypeCode="91"
+               odaScalarDataType="Date"/>
+      </dataSet>
+   </extension>
+   
+</plugin>
