@@ -39,7 +39,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 * @param colLabels
 	 * @throws OdaException
 	 */
-	ResultSetMetaData( String[] colNames, String[] colTypes, String[] colLabels )
+	public ResultSetMetaData( String[] colNames, String[] colTypes, String[] colLabels )
 			throws OdaException
 	{
 		if ( colNames == null )
@@ -62,6 +62,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	ResultSetMetaData( String savedSelectedColumnsInfoString )
 	{
+		assert savedSelectedColumnsInfoString !=null;
 		this.columnNames = ColumnsInfoUtil.getColumnNames( savedSelectedColumnsInfoString );
 		this.columnTypeNames = ColumnsInfoUtil.getColumnTypeNames( savedSelectedColumnsInfoString );
 		this.originalColumnNames = ColumnsInfoUtil.getOriginalColumnNames( savedSelectedColumnsInfoString );
