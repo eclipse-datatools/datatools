@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Flatfile Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile.tests
-Bundle-Version: 3.0.2.200610121
+Bundle-Version: 3.0.2.200610231
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.tests.plugin.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
