@@ -1172,8 +1172,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 				for ( int n = 0; n < columns.length; n++ )
 				{
+					StringBuffer sb = new StringBuffer();
+					char[] columnChars = columns[n].toCharArray( );
+					for(int i =0; i<columnChars.length; i++)
+					{
+						if(columnChars[i]=='"')
+							sb.append( "\\\"");
+						else if(columnChars[i]=='\\')
+							sb.append("\\\\");
+						else
+							sb.append(columnChars[i]);
+					}
+					
 					buf.append( CommonConstants.DELIMITER_DOUBLEQUOTE
-							+ columns[n].replaceAll( "\\Q\"\\E", "\\\\\"" )
+							+ sb.toString( )
 							+ CommonConstants.DELIMITER_DOUBLEQUOTE );
 					if ( n < columns.length - 1 )
 					{
@@ -1194,7 +1206,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private void updateValuesFromQuery( String queryText )
 	{
-
 		try
 		{
 			String query = QueryTextUtil.getQuery( queryText );

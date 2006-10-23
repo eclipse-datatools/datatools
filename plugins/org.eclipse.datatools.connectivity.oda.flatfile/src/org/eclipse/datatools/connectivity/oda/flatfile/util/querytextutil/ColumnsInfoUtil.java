@@ -12,7 +12,7 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil;
 
 import java.util.ArrayList;
-import java.util.List;;
+import java.util.List;
 
 /**
  * Utility class for extracting column names, original column names, and column
@@ -172,7 +172,12 @@ public class ColumnsInfoUtil
 
 		return columnsInfoList;
 	}
-	
+
+	/**
+	 * 
+	 * @param charactor
+	 * @return
+	 */
 	public static boolean isColumnsInfoKeyWord( char charactor )
 	{
 		return ( charactor == '"'

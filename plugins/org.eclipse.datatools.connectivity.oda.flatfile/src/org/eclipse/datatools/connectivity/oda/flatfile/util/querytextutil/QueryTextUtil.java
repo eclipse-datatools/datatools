@@ -21,11 +21,11 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 public class QueryTextUtil
 {
 
-	private static final char queryTextDelimiter = ':';
+	private static final char QUERY_TEXT_DELIMITER = ':';
 
-	private static final char columnsInfoStartSymbol = '{';
+	private static final char COLUMNSINFO_BEGIN_DELIMITER = '{';
 
-	private static final char columnsInfoEndSymbol = '}';
+	private static final char COLUMNSINFO_END_DELIMITER = '}';
 
 	/**
 	 * 
@@ -61,81 +61,52 @@ public class QueryTextUtil
 
 	/**
 	 * 
-	 * @param queryText
-	 * @return
-	 * @throws OdaException
 	 */
 	private static String[] splitQueryText( String queryText )
 			throws OdaException
 	{
+		int delimiterIndex = -1;
+		int columnsInfoBeginIndex = -1;
+		int columnsInfoEndIndex = -1;
+
 		String[] splittedQueryText = {
 				"", ""
 		};
-		char[] queryTextChars = queryText.toCharArray( );
-		boolean isQuoteStart = false;
-		boolean isQuoteEnd = false;
-		int queryTextDelimiterIndex = 0;
-		int columnsInfoStartIndex = 0;
-		int columnsInfoEndIndex = 0;
-
-		for ( int i = 0; i < queryTextChars.length; i++ )
+		boolean inQuote = false;
+		char[] chars = queryText.toCharArray( );
+		for ( int i = 0; i < chars.length; i++ )
 		{
-			if ( queryTextChars[i] == '"' )
+			if ( chars[i] == '"' )
 			{
-				if ( !isQuoteStart && !isQuoteEnd )
-				{
-					isQuoteStart = !isQuoteStart;
-				}
-				else if ( isQuoteStart && !isQuoteEnd )
-				{
-					isQuoteStart = !isQuoteStart;
-				}
-
+				if ( i > 0 && chars[i - 1] == '\\' )
+					continue;
+				inQuote = !inQuote;
 			}
-			else if ( queryTextChars[i] == queryTextDelimiter )
-			{
-				if ( !isQuoteStart && !isQuoteEnd )
-				{
-					queryTextDelimiterIndex = i;
-				}
-			}
-			else if ( queryTextChars[i] == columnsInfoStartSymbol )
-			{
-				if ( !isQuoteStart && !isQuoteEnd )
-				{
-					columnsInfoStartIndex = i;
-				}
-			}
-			else if ( queryTextChars[i] == columnsInfoEndSymbol )
-			{
-				if ( !isQuoteStart && !isQuoteEnd )
-				{
-					columnsInfoEndIndex = i;
-					break;
-				}
-			}
+			else if ( ( !inQuote ) && chars[i] == QUERY_TEXT_DELIMITER )
+				delimiterIndex = i;
+			else if ( ( !inQuote ) && chars[i] == COLUMNSINFO_BEGIN_DELIMITER )
+				columnsInfoBeginIndex = i;
+			else if ( ( !inQuote ) && chars[i] == COLUMNSINFO_END_DELIMITER )
+				columnsInfoEndIndex = i;
 		}
 
-		if ( queryTextDelimiterIndex != 0
-				&& columnsInfoStartIndex > queryTextDelimiterIndex
-				&& columnsInfoEndIndex > columnsInfoStartIndex )
-		{
-			splittedQueryText[0] = queryText.substring( 0,
-					queryTextDelimiterIndex ).trim( );
-			splittedQueryText[1] = queryText.substring( columnsInfoStartIndex + 1,
-					columnsInfoEndIndex )
-					.trim( );
-		}
-		else if ( queryTextDelimiterIndex == 0 )
-		{
-			splittedQueryText[0] = queryText.trim( );
-		}
-		else
-		{
+		if ( inQuote )
 			throw new OdaException( Messages.getString( "query_text_error" ) );
+
+		if ( delimiterIndex != -1
+				&& columnsInfoBeginIndex != -1 && columnsInfoEndIndex != -1 )
+		{
+			splittedQueryText[0] = queryText.substring( 0, delimiterIndex )
+					.trim( );
+			splittedQueryText[1] = queryText.substring( columnsInfoBeginIndex + 1,
+					columnsInfoEndIndex ).trim( );
 		}
+		else if ( delimiterIndex == -1
+				&& columnsInfoBeginIndex == -1 && columnsInfoEndIndex == -1 )
+			splittedQueryText[0] = queryText.trim( );
+		else
+			throw new OdaException( Messages.getString( "query_text_error" ) );
 
 		return splittedQueryText;
 	}
-
 }
