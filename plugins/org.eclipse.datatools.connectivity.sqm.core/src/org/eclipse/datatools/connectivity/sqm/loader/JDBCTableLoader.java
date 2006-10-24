@@ -196,12 +196,12 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		return (Schema) getCatalogObject();
 	}
 
-	protected ITableFactory registerTableFactory(String type,
+	public ITableFactory registerTableFactory(String type,
 			ITableFactory factory) {
 		return (ITableFactory) mTableFactories.put(type, factory);
 	}
 
-	protected ITableFactory unregisterTableFactory(String type) {
+	public ITableFactory unregisterTableFactory(String type) {
 		return (ITableFactory) mTableFactories.remove(type);
 	}
 
