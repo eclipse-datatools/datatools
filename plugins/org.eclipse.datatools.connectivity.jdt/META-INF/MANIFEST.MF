@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.Name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.jdt;singleton:=true
+Bundle-Version: 1.0.0.20061024
+Bundle-Activator: org.eclipse.datatools.connectivity.jdt.internal.ConnJDTPlugin
+Bundle-Vendor: %Plugin.ProviderName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.jdt.core;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
+ org.eclipse.jdt.ui;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)"
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.connectivity.jdt.internal
+Bundle-ClassPath: connectivityjdt.jar
