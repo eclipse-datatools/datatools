@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile; singleton:=true
-Bundle-Version: 3.0.2.200610231
+Bundle-Version: 3.0.3.200610241
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.plugin.FlatfilePlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -10,7 +10,6 @@ Export-Package: org.eclipse.datatools.connectivity.oda.flatfile,org.eclipse.data
  org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil;x-friends:="org.eclipse.datatools.connectivity.oda.flatfile.ui",
  org.eclipse.datatools.connectivity.oda.flatfile.plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.junit;bundle-version="[3.8.1,4.0.0)";resolution:=optional,
  com.ibm.icu;bundle-version="[3.4.4,4.0.0)",
- org.eclipse.datatools.connectivity.oda
+ org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.2,4.0.0)"
 Eclipse-LazyStart: true
