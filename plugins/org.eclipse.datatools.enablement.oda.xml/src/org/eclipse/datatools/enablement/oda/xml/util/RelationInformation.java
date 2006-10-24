@@ -29,7 +29,7 @@ import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
  */
 public class RelationInformation
 {
-	private static final String TEMPCOLUMNNAMEPREFIX = "TEMP";
+	private static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
 	//
 	public static final String CONST_TABLE_DELIMITER = "#-#";
 	public static final String CONST_TABLE_COLUMN_DELIMITER = "#:#";

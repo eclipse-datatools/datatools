@@ -17,7 +17,6 @@ import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
-import org.eclipse.datatools.enablement.oda.xml.impl.ResultSet;
 
 /**
  * This class is an implementation of ISaxParserConsumer. The instance of this class deligate the communication
@@ -26,8 +25,6 @@ import org.eclipse.datatools.enablement.oda.xml.impl.ResultSet;
 public class SaxParserConsumer implements ISaxParserConsumer
 {
 	private static final int INVALID_COLUMN_INDEX = -1;
-	//The ResultSet this instance served for.
-	private ResultSet resultSet;
 	
 	//The SaxParser this instance dealing with.
 	private SaxParser sp;
@@ -80,10 +77,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	 * @param tName
 	 * @throws OdaException
 	 */
-	public SaxParserConsumer( ResultSet rs, RelationInformation rinfo, XMLDataInputStream is, String tName) throws OdaException
+	public SaxParserConsumer( RelationInformation rinfo, XMLDataInputStream is, String tName) throws OdaException
 	{
-		this.resultSet = rs;
-		                                 
 		//must start from 0
 		cachedResultSetRowNo = 0;
 		
@@ -100,13 +95,13 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		cachedRootRows = new ArrayList();
 		cachedOrderedTempRowRoots = new ArrayList();
 		
-		cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][resultSet.getMetaData().getColumnCount( )];
+		cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][relationInfo.getTableRealColumnNames( tableName ).length];
 		this.rootPath = relationInfo.getTableRootPath( tableName );
 		
 		this.namesOfCachedComplexNestedColumns = relationInfo.getTableComplexNestedXMLColumnNames( tableName );
 		this.namesOfCachedSimpleNestedColumns = relationInfo.getTableSimpleNestedXMLColumnNames( tableName );
 		
-		this.namesOfColumns = relationInfo.getTableColumnNames( tableName );
+		this.namesOfColumns = relationInfo.getTableRealColumnNames( tableName );
 		
 		XMLDataInputStream xdis = is;
 		
@@ -352,7 +347,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		for ( int i = 0; i < cachedResultSet[cachedResultSetRowNo].length; i++ )
 		{
 			if ( relationInfo.getTableFilter( tableName )
-					.containsKey( relationInfo.getTableColumnNames( tableName )[i] ) )
+					.containsKey( relationInfo.getTableRealColumnNames( tableName )[i] ) )
 			{
 				if ( isCurrentColumnValueNotMatchFilterValue( i ) )
 
@@ -375,8 +370,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	private boolean isCurrentColumnValueNotMatchFilterValue( int i )
 	{
 		return !( relationInfo.getTableFilter( tableName )
-				.get( relationInfo.getTableColumnNames( tableName )[i] ) == cachedResultSet[cachedResultSetRowNo][i] || relationInfo.getTableFilter( tableName )
-				.get( relationInfo.getTableColumnNames( tableName )[i] )
+				.get( relationInfo.getTableRealColumnNames( tableName )[i] ) == cachedResultSet[cachedResultSetRowNo][i] || relationInfo.getTableFilter( tableName )
+				.get( relationInfo.getTableRealColumnNames( tableName )[i] )
 				.equals( cachedResultSet[cachedResultSetRowNo][i] ) );
 	}
 
@@ -458,7 +453,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			cachedTimes++;
 			// Recache the result set.
 			cachedResultSetRowNo = 0;
-			cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][resultSet.getMetaData().getColumnCount( )];
+			cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][relationInfo.getTableRealColumnNames( tableName ).length];
 			sp.setStart( true );
 		}
 	}
