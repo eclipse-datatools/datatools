@@ -245,7 +245,7 @@ public class ConnectionProfileMgmt {
 									.getProfileExtensions().get(type);
 							if (pep != null) {
 								props = pep.getPropertiesPersistenceHook()
-										.getPersitentProperties(new Properties(props));
+										.getPersitentProperties(props);
 							}
 						}
 						catch (Exception e) {

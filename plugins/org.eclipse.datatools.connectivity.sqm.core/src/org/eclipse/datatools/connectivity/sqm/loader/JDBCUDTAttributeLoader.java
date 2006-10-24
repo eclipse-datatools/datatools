@@ -149,6 +149,7 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
 				AttributeDefinition attrDef = processRow(rs);
 				if (attrDef != null) {

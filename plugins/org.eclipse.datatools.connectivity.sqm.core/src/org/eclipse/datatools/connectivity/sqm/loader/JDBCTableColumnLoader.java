@@ -149,6 +149,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
 				Column column = processRow(rs);
 				if (column != null) {

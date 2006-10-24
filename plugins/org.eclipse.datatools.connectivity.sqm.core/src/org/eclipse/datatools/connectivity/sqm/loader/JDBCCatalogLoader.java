@@ -61,6 +61,7 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
 				Catalog catalog = processRow(rs);
 				if (catalog != null) {

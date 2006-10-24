@@ -105,6 +105,7 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			Index index = null;
 			for (rs = createResultSet(); rs.next();) {
 				String indexName = rs.getString(COLUMN_INDEX_NAME);

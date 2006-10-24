@@ -70,9 +70,9 @@ public class ConnectionFilterImpl implements ConnectionFilter {
         if (predicate != null) {
             try {
                 if (predicate.indexOf("(") < 0) { //$NON-NLS-1$
-                    operator = predicate.substring(0, predicate.indexOf("'")); //$NON-NLS-1$
+                    operator = predicate.substring(0, predicate.indexOf("'")).trim(); //$NON-NLS-1$
                 } else {
-                    operator = predicate.substring(0, predicate.indexOf("(")); //$NON-NLS-1$
+                    operator = predicate.substring(0, predicate.indexOf("(")).trim(); //$NON-NLS-1$
                 }
             } catch (Exception e) {
                 // Bury the exception - if the predicate is an unexpected string

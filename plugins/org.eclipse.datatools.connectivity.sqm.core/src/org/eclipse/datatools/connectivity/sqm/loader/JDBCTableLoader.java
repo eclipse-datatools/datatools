@@ -129,6 +129,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			rs = createResultSet();
 			if (!mSupportedColumnsInitialized) {
 				Set supportedColumns = new TreeSet();

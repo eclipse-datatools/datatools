@@ -71,6 +71,7 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			rs = createResultSet();
 			if (mSupportedColumns == null) {
 				mSupportedColumns = new TreeSet();

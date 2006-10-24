@@ -140,6 +140,7 @@ public class JDBCUDFColumnLoader extends JDBCBaseLoader {
 		List retVal = new ArrayList();
 		ResultSet rs = null;
 		try {
+			initActiveFilter();
 			RoutineResultTable rst = null;
 			for (rs = createResultSet(); rs.next();) {
 				TypedElement element = processRow(rs);
