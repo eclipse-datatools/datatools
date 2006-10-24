@@ -114,6 +114,26 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		routines.clear();
 	}
 
+	public IRoutineFactory getProcedureFactory() {
+		return mProcedureFactory;
+	}
+
+	
+	public void setProcedureFactory(IRoutineFactory procedureFactory) {
+		mProcedureFactory = procedureFactory;
+	}
+
+	
+	public IRoutineFactory getUserDefinedFunctionFactory() {
+		return mUserDefinedFunctionFactory;
+	}
+
+	
+	public void setUserDefinedFunctionFactory(
+			IRoutineFactory userDefinedFunctionFactory) {
+		mUserDefinedFunctionFactory = userDefinedFunctionFactory;
+	}
+
 	protected ResultSet createResultSet() throws SQLException {
 		Schema schema = getSchema();
 		return getCatalogObject().getConnection().getMetaData().getProcedures(
@@ -186,4 +206,5 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		}
 	}
 
+	
 }
