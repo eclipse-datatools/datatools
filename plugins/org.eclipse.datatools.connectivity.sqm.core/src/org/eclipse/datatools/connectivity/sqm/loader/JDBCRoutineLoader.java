@@ -118,17 +118,14 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		return mProcedureFactory;
 	}
 
-	
 	public void setProcedureFactory(IRoutineFactory procedureFactory) {
 		mProcedureFactory = procedureFactory;
 	}
 
-	
 	public IRoutineFactory getUserDefinedFunctionFactory() {
 		return mUserDefinedFunctionFactory;
 	}
 
-	
 	public void setUserDefinedFunctionFactory(
 			IRoutineFactory userDefinedFunctionFactory) {
 		mUserDefinedFunctionFactory = userDefinedFunctionFactory;
@@ -155,13 +152,17 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 			return null;
 		}
 
-		IRoutineFactory routineFactory = rs.getShort(COLUMN_PROCEDURE_TYPE) == DatabaseMetaData.procedureNoResult ? mProcedureFactory
+		IRoutineFactory routineFactory = isProcedure(rs) ? mProcedureFactory
 				: mUserDefinedFunctionFactory;
 		return routineFactory.createRoutine(rs);
 	}
 
 	protected Schema getSchema() {
 		return (Schema) getCatalogObject();
+	}
+
+	protected boolean isProcedure(ResultSet rs) throws SQLException {
+		return rs.getShort(COLUMN_PROCEDURE_TYPE) == DatabaseMetaData.procedureNoResult;
 	}
 
 	public static interface IRoutineFactory {
@@ -206,5 +207,4 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		}
 	}
 
-	
 }
