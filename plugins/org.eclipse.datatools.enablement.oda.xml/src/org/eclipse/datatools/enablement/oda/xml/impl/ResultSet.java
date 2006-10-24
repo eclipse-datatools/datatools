@@ -62,7 +62,7 @@ public class ResultSet implements IResultSet
 		
 		isClosed = false;
 		
-		spConsumer = new SaxParserConsumer( this, ri, is, tableName );
+		spConsumer = new SaxParserConsumer( ri, is, tableName );
 	}
 
 	/*

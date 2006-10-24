@@ -57,11 +57,11 @@ public class ResultSetTest extends BaseTest
 		dates = new Date[]{Date.valueOf("2005-2-2"), Date.valueOf("2004-4-4"),Date.valueOf("2003-3-3"),Date.valueOf("2002-2-2")}; 
 		Connection conn = new Connection();
 		Properties prop = new Properties();
-		queryText =	"book#-TNAME-#book#:#[//book]#:#{book.category;String;[@category]}," +
+		queryText =	"book#-TNAME-#book#:#[//book]#:#{book.category;String;/@category}," +
 				"{book.title;String;title}," +
-				"{book.title.language;String;title[@lang]}," +
-				"{book.author.name;String;author[@name]}," +
-				"{book.author.country;String;author[@country]}," +
+				"{book.title.language;String;title/@lang}," +
+				"{book.author.name;String;author/@name}," +
+				"{book.author.country;String;author/@country}," +
 				"{book.date;Date;date}," +
 				"{book.price;Double;price}," +
 				"{book.isn;Int;isn}," +

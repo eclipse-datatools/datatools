@@ -36,7 +36,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	{
 		this.ri = ri;
 		this.tableName = tableName;
-		columnNames = ri.getTableColumnNames(tableName);
+		this.columnNames = ri.getTableColumnNames(tableName);
 	}
 	
 	/*

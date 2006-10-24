@@ -26,7 +26,7 @@ public class QueryTest extends BaseTest
 {	
 	IQuery query;
 	Connection conn;
-	String queryText = "book#-TNAME-#book#:#[//book]#:#{book.category;String;[@category]}";
+	String queryText = "book#-TNAME-#book#:#[//book]#:#{book.category;String;/@category}";
 	protected void setUp( ) throws Exception
 	{
 		super.setUp( );

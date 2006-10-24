@@ -38,16 +38,17 @@ public class SaxParserTest extends BaseTest
 
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
-	private String testString = "book#-TNAME-#book#:#[//book]#:#{book.category;String;//book[@category]},{book.title;String;//book/title},{book.author_1;String;//book/author[1][@name]},{book.author_2;String;//book/author[2][@name]}"
+	private String testString = "book#-TNAME-#book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
 			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat;String;../@category}"
-			+ "#-# aut  hor  #:#[//book/author]#:#{title;String;../title},{lang;String;../title[@lang]},{author;String;[@name]},{country;String;[@country]},{date;String;../date},{isn;String;../isn},{category;String;../@category}"
-			+ "#-# title#:#[/library/*/ad/../title]#:#{title;String;},{lang;String;[@lang]},{author;String;../*[@name]}"
+			+ "#-# aut  hor  #:#[//book/author]#:#{title;String;../title},{lang;String;../title/@lang},{author;String;/@name},{country;String;/@country},{date;String;../date},{isn;String;../isn},{category;String;../@category}"
+			+ "#-# title#:#[/library/*/ad/../title]#:#{title;String;},{lang;String;/@lang},{author;String;../*/@name}"
 			+ "#-# one#:#[//author]#:#{author;String;@name},{title;String;../title},{category;String;../../book[1]/@category},{category2;String;../@category}"
 			+ "#-# none#:#[//]#:#{author;String;@name}"
 			+ "#-# recursive#:#[//Book]#:#{locationD;String;D/@location},{locationBook;String;@location},{locationC;String;../@location},{locationB;String;../../B/@location},{locationA;String;../../@location}"
 			+ "#-# utf#:#[//book]#:#{title;String;title}"
 			+ "#-# duplicate#:#[//suburb]#:#{name;String;@name}"
-			+ "#-# complexNest#:#[//suburb]#:#{name;String;@name},{nest-2;String;../../nest},{nest-1;String;../nest},{nest0;String;/nest},{nest1;String;/suburb/nest},{nest3;String;suburb/suburb/nest},{nest4;String;suburb/suburb/suburb/nest}";
+			+ "#-# complexNest#:#[//suburb]#:#{name;String;@name},{nest-2;String;../../nest},{nest-1;String;../nest},{nest0;String;/nest},{nest1;String;/suburb/nest},{nest3;String;suburb/suburb/nest},{nest4;String;suburb/suburb/suburb/nest}"
+			+ "#-# filter1#:#[/library/book]#:#{title;String;[@category=\"WEB\"]},{book.category;String;/@category},{book.author_1;String;/author[1][@name=\"James McGovern\"]},{book.author_2;String;/author[2]/@name}";
 
 	private RelationInformation ri;
 
@@ -573,5 +574,47 @@ public class SaxParserTest extends BaseTest
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST12_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST12_GOLDEN_XML ) ) );
+	}
+	
+	/**
+	 * Test nest duplicate recusive xml files.
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test13( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST13_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.SMALL_XML_FILE )
+				.createXMLDataInputStream( ),
+				ri,
+				"filter1", 
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST13_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST13_GOLDEN_XML ) ) );
 	}
 }
