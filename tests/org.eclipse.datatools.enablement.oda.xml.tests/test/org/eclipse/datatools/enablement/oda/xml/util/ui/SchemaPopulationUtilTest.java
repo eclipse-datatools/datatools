@@ -16,17 +16,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestUtil;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
-
-import junit.framework.TestCase;
 
 /**
  * 
  */
-public class SchemaPopulationUtilTest extends TestCase
+public class SchemaPopulationUtilTest extends BaseTest
 {
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged(
             new sun.security.action.GetPropertyAction("line.separator"));

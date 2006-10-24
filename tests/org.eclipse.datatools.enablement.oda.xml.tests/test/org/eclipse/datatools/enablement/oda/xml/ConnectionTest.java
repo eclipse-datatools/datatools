@@ -12,18 +12,15 @@ package org.eclipse.datatools.enablement.oda.xml;
 
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 
 /**
  * 
  */
-public class ConnectionTest extends TestCase
+public class ConnectionTest extends BaseTest
 {
 	Connection conn;
 	Properties prop;

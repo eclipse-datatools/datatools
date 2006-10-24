@@ -1,0 +1,37 @@
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *******************************************************************************/
+package org.eclipse.datatools.enablement.oda.xml;
+
+import java.net.URL;
+
+import junit.framework.TestCase;
+
+/**
+ * 
+ */
+public abstract class BaseTest extends TestCase
+{
+	protected void setUp( ) throws Exception
+	{
+		super.setUp( );
+		URL url = this.getClass( ).getProtectionDomain( ).getCodeSource( ).getLocation( );
+		String pathBase = url.getPath( );
+
+		if ( pathBase.endsWith( "bin/" ) ) //$NON-NLS-1$
+			pathBase = pathBase.substring( 0,
+					pathBase.length( ) - 4 );
+		if ( pathBase.endsWith( "bin" ) ) //$NON-NLS-1$
+			pathBase = pathBase.substring( 0,
+					pathBase.length( ) - 3 );
+		
+		System.setProperty( "xml.home", pathBase );
+	}
+}

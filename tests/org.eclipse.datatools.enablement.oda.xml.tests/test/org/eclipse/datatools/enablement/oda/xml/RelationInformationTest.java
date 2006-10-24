@@ -13,12 +13,10 @@ package org.eclipse.datatools.enablement.oda.xml;
 
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 
-import junit.framework.TestCase;
-
 /**
  * 
  */
-public class RelationInformationTest extends TestCase
+public class RelationInformationTest extends BaseTest
 {
 	private String testString = "person#:#[/personnel/person/name]#:#{name.family;String;/family},{name.given;String;/given},{email;String;../email},{link.subordinates;String;../link/@subordinates}"+
 	                            "#-#name#:#[//name]#:#{family;String;/family},{given;String;/given}"+

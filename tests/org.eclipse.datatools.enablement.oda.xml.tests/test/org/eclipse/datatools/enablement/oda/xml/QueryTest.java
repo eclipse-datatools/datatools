@@ -12,20 +12,17 @@ package org.eclipse.datatools.enablement.oda.xml;
 
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 
 /**
  * 
  */
-public class QueryTest extends TestCase
+public class QueryTest extends BaseTest
 {	
 	IQuery query;
 	Connection conn;

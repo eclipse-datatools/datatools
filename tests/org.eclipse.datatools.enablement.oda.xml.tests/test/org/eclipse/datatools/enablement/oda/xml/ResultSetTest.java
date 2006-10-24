@@ -14,22 +14,20 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
-import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
-import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
-import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
+import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
+import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 
 import com.ibm.icu.util.TimeZone;
 
 /**
  * ResultSet test case.
  */
-public class ResultSetTest extends TestCase
+public class ResultSetTest extends BaseTest
 {
 	TimeZone defaultZone = null;
 	IResultSet rs;
@@ -48,8 +46,9 @@ public class ResultSetTest extends TestCase
 	double[] prices = new double[]{25.99,14.59,33.55,222.10};
 	int[] isns = new int[]{12325423,12325323,12325423,52325423};
 	String[] timestamps = new String[]{"2000-02-02 00:00:00.000000001","2000-02-01 00:00:00.000000001",
-			"2000-02-12 00:00:00.0","2000-02-12 00:00:00.000000001"};
+			"2000-12-02 00:00:00.000000001","2000-02-12 00:00:00.000000001"};
 	String[] time = new String[]{"12:21:55","12:21:56","12:21:57","12:21:58","12:21:59"};
+	
 	protected void setUp( ) throws Exception
 	{
 		super.setUp( );

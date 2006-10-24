@@ -12,14 +12,12 @@ package org.eclipse.datatools.enablement.oda.xml.util.ui;
 
 import java.util.List;
 
-import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
-
-import junit.framework.TestCase;
+import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 
 /**
  * 
  */
-public class XPathPopulationUtilTest extends TestCase
+public class XPathPopulationUtilTest extends BaseTest
 {
 
 	protected void setUp( ) throws Exception

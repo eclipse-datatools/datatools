@@ -19,24 +19,21 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
 import org.eclipse.datatools.enablement.oda.xml.impl.ResultSet;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestUtil;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
 
 import sun.awt.AppContext;
 
 /**
  * 
  */
-public class SaxParserTest extends TestCase
+public class SaxParserTest extends BaseTest
 {
 
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );

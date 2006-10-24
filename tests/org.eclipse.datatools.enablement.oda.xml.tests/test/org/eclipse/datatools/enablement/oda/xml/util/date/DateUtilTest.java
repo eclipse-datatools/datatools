@@ -15,8 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
-
-import junit.framework.TestCase;
+import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 
 import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.TimeZone;
@@ -25,7 +24,7 @@ import com.ibm.icu.util.TimeZone;
  * 
  * Test case for DateUtil
  */
-public class DateUtilTest extends TestCase
+public class DateUtilTest extends BaseTest
 {
 
 	public Object[] testObject;
