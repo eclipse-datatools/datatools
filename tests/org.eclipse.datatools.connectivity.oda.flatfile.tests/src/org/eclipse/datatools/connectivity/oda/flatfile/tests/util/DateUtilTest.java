@@ -32,6 +32,7 @@ public class DateUtilTest extends TestCase
 
 	public Object[] testObject;
 	public Object[] resultDate;
+	private TimeZone defaultTimeZone;
 
 	/*
 	 * @see TestCase#setUp()
@@ -39,6 +40,9 @@ public class DateUtilTest extends TestCase
 	protected void setUp( ) throws Exception
 	{
 		super.setUp( );
+		defaultTimeZone = TimeZone.getDefault( );
+		TimeZone.setDefault( TimeZone.getTimeZone( "GMT" ) );
+				
 		// input Data
 		testObject = new Object[]{
 				new Integer( 1 ),
@@ -90,6 +94,7 @@ public class DateUtilTest extends TestCase
 	protected void tearDown( ) throws Exception
 	{
 		testObject = null;
+		TimeZone.setDefault( defaultTimeZone );
 		super.tearDown( );
 	}
 
@@ -132,9 +137,9 @@ public class DateUtilTest extends TestCase
 		Calendar calendar = Calendar.getInstance( TimeZone.getTimeZone( "GMT + 0" ) );
 
 		Date[] resultDates = {
-				new Date( 97, 0, 1 ),
-				new Date( 97, 6, 1 ),
-				new Date( 97, 6, 16 ),
+				null,
+				null,
+				null,
 				null,
 				null,
 				null,
@@ -143,6 +148,13 @@ public class DateUtilTest extends TestCase
 				null
 		};
 		calendar.clear( );
+		calendar.set( 1997, 0, 1 );
+		resultDates[0] = calendar.getTime( );
+		calendar.set( 1997, 6, 1 );
+		resultDates[1] = calendar.getTime( );
+		calendar.set( 1997, 6, 16 );
+		resultDates[2] = calendar.getTime( );
+		
 		calendar.set( 1997, 6, 16, 17, 20, 0 );
 		resultDates[3] = calendar.getTime( );
 		calendar.set( 1997, 6, 16, 18, 20, 30 );
