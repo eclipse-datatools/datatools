@@ -11,6 +11,7 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.preference;
 
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
@@ -68,7 +69,7 @@ public class DataSetPreferencePage extends PreferencePage
 		Group columnMappingPageGroup = new Group( mainComposite, SWT.NONE );
 
 		columnMappingPageGroup.setLayout( layout );
-		columnMappingPageGroup.setText( UiPlugin.getResourceString( "designer.preview.preference.columnMappingPage.group.title" ) );
+		columnMappingPageGroup.setText( Messages.getString( "designer.preview.preference.columnMappingPage.group.title" ) );
 		columnMappingPageGroup.setLayoutData( data );
 
 		columnMappingPageGroup.setEnabled( true );
@@ -77,7 +78,7 @@ public class DataSetPreferencePage extends PreferencePage
 		maxNumberOfElementPassed = new IntegerFieldEditor( USER_MAX_NUM_OF_ELEMENT_PASSED, "", columnMappingPageGroup ); 
 		
 		Label lab = maxNumberOfElementPassed.getLabelControl( columnMappingPageGroup );
-        lab.setText(UiPlugin.getResourceString("designer.preview.preference.numberOfElementPassedToGetSchema" ));
+        lab.setText(Messages.getString("designer.preview.preference.numberOfElementPassedToGetSchema" ));
 		
 		maxNumberOfElementPassed.setPage(this);
 		maxNumberOfElementPassed.setTextLimit( Integer.toString( MAX_INTEGER ).length( ) );
@@ -92,7 +93,7 @@ public class DataSetPreferencePage extends PreferencePage
             }
         });
 		
-		maxNumberOfElementPassed.setErrorMessage( UiPlugin.getFormattedString( "designer.preview.preference.numberOfElementPassedToGetSchema.errormessage",
+		maxNumberOfElementPassed.setErrorMessage( Messages.getFormattedString( "designer.preview.preference.numberOfElementPassedToGetSchema.errormessage",
 				new Object[]{new Integer( MAX_INTEGER )	} ) );
 		
 		String defaultMaxSchema = UiPlugin.getDefault( )
