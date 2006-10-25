@@ -25,8 +25,6 @@ public class QueryTextUtil
 
 	private static final char COLUMNSINFO_BEGIN_DELIMITER = '{';
 
-	private static final char COLUMNSINFO_END_DELIMITER = '}';
-
 	/**
 	 * 
 	 */
@@ -67,43 +65,53 @@ public class QueryTextUtil
 	{
 		int delimiterIndex = -1;
 		int columnsInfoBeginIndex = -1;
-		int columnsInfoEndIndex = -1;
-
+		
+		String trimmedQueryText = queryText.trim( );
+		
 		String[] splittedQueryText = {
 				"", ""
 		};
 		boolean inQuote = false;
-		char[] chars = queryText.toCharArray( );
+		boolean isEscaped = false;
+		char[] chars = trimmedQueryText.toCharArray( );
+		
 		for ( int i = 0; i < chars.length; i++ )
 		{
 			if ( chars[i] == '"' )
 			{
-				if ( i > 0 && chars[i - 1] == '\\' )
-					continue;
-				inQuote = !inQuote;
+				if ( !isEscaped )
+					inQuote = !inQuote;
+				else
+					isEscaped = !isEscaped;
+			}
+			else if ( chars[i] == '\\' )
+			{
+				isEscaped = !isEscaped;
 			}
 			else if ( ( !inQuote ) && chars[i] == QUERY_TEXT_DELIMITER )
 				delimiterIndex = i;
 			else if ( ( !inQuote ) && chars[i] == COLUMNSINFO_BEGIN_DELIMITER )
+			{
 				columnsInfoBeginIndex = i;
-			else if ( ( !inQuote ) && chars[i] == COLUMNSINFO_END_DELIMITER )
-				columnsInfoEndIndex = i;
+				break;
+			}
 		}
 
 		if ( inQuote )
 			throw new OdaException( Messages.getString( "query_text_error" ) );
 
 		if ( delimiterIndex != -1
-				&& columnsInfoBeginIndex != -1 && columnsInfoEndIndex != -1 )
+				&& columnsInfoBeginIndex != -1 )
 		{
-			splittedQueryText[0] = queryText.substring( 0, delimiterIndex )
+			splittedQueryText[0] = trimmedQueryText.substring( 0, delimiterIndex )
 					.trim( );
-			splittedQueryText[1] = queryText.substring( columnsInfoBeginIndex + 1,
-					columnsInfoEndIndex ).trim( );
+			splittedQueryText[1] = trimmedQueryText.substring( columnsInfoBeginIndex + 1,
+					trimmedQueryText.length( )-1 )
+					.trim( );
 		}
 		else if ( delimiterIndex == -1
-				&& columnsInfoBeginIndex == -1 && columnsInfoEndIndex == -1 )
-			splittedQueryText[0] = queryText.trim( );
+				&& columnsInfoBeginIndex == -1 )
+			splittedQueryText[0] = trimmedQueryText;
 		else
 			throw new OdaException( Messages.getString( "query_text_error" ) );
 

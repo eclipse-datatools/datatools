@@ -22,6 +22,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IConnection;
@@ -533,7 +535,8 @@ public class FlatFileQuery implements IQuery
 		String selectedColumns = querySelectAndFromFragments[0];
 		if ( !isWildCard( selectedColumns ) )
 		{
-			String[] columns = selectedColumns.split( CommonConstants.DELIMITER_COMMA_VALUE );
+			String[] columns = getStringArrayFromVector( getFormattedColumnNamesVector( selectedColumns ) );
+
 			for ( int i = 0; i < columns.length; i++ )
 			{
 				String[] columnNameAlias = columns[i].split( CommonConstants.DELIMITER_SPACE
@@ -564,6 +567,67 @@ public class FlatFileQuery implements IQuery
 			result[0] = CommonConstants.KEYWORD_ASTERISK;
 			result[1] = null;
 		}
+
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param formattedColumnNames
+	 * @return
+	 */
+	private Vector getFormattedColumnNamesVector( String formattedColumnNames )
+	{
+		Vector result = new Vector( );
+		char[] chars = formattedColumnNames.toCharArray( );
+		List indiceList = new ArrayList( );
+		boolean inQuote = false;
+		boolean isEscaped = false;
+		int beginIndex = 0;
+		int endIndex = 0;
+
+		for ( int i = 0; i < chars.length; i++ )
+		{
+			if ( chars[i] == '"' )
+			{
+				if ( !isEscaped )
+					inQuote = !inQuote;
+				else
+					isEscaped = !isEscaped;
+			}
+			else if ( chars[i] == '\\' )
+			{
+				isEscaped = !isEscaped;
+			}
+			else if ( chars[i] == ',' )
+			{
+				if ( inQuote )
+					continue;
+				else
+					indiceList.add( new Integer( i ) );
+			}
+		}
+
+		if ( indiceList.size( ) > 0 )
+		{
+			for ( int j = 0; j < indiceList.size( ); j++ )
+			{
+
+				endIndex = ( (Integer) indiceList.get( j ) ).intValue( );
+
+				result.add( formattedColumnNames.substring( beginIndex,
+						endIndex ).trim( ) );
+				beginIndex = endIndex + 1;
+
+				if ( j == indiceList.size( ) - 1 )
+				{
+					result.add( formattedColumnNames.substring( beginIndex,
+							formattedColumnNames.length( ) ).trim( ) );
+				}
+			}
+		}
+		else
+			result.add( formattedColumnNames );
 
 		return result;
 	}
@@ -742,7 +806,6 @@ public class FlatFileQuery implements IQuery
 			return trimStringArray( result );
 
 		}
-
 		catch ( IOException e )
 		{
 			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
@@ -755,11 +818,12 @@ public class FlatFileQuery implements IQuery
 	 * 
 	 * @param row
 	 * @return
+	 * @throws OdaException
 	 */
-	private boolean isEmptyRow( String row )
+	private boolean isEmptyRow( String row ) throws OdaException
 	{
 		if ( row == null )
-			return true;
+			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
 
 		return row.trim( ).length( ) <= 0;
 	}
@@ -1081,6 +1145,9 @@ public class FlatFileQuery implements IQuery
 				{
 					if ( !startDoubleQuote )
 						throw new OdaException( Messages.getString( "Invalid" ) );
+
+					if ( i == chars.length - 1 )
+						result.add( currentString );
 				}
 				else if ( chars[i] == this.delimiter.toCharArray( )[0] )
 				{
@@ -1116,7 +1183,23 @@ public class FlatFileQuery implements IQuery
 
 		for ( int i = 0; i < columnNamesChars.length; i++ )
 		{
-			if ( columnNamesChars[i] == '\\' )
+			if ( i == columnNamesChars.length - 1 )
+			{
+				if ( !inQuote )
+				{
+					columnNameBuf.append( columnNamesChars[i] );
+					columnNameVector.add( columnNameBuf.toString( ).trim( ) );
+				}
+				else
+				{
+					if ( columnNamesChars[i] == CommonConstants.DELIMITER_DOUBLEQUOTE.toCharArray( )[0]
+							&& !isEscaped )
+						columnNameVector.add( columnNameBuf.toString( ).trim( ) );
+					else
+						throw new OdaException( Messages.getString( "query_text_error" ) );
+				}
+			}
+			else if ( columnNamesChars[i] == '\\' )
 			{
 				if ( isEscaped )
 				{
@@ -1137,26 +1220,17 @@ public class FlatFileQuery implements IQuery
 					inQuote = !inQuote;
 				}
 			}
-			else if ( columnNamesChars[i] == CommonConstants.DELIMITER_COMMA_VALUE.toCharArray( )[0]
-					|| i == columnNames.length( ) - 1 )
+			else if ( columnNamesChars[i] == CommonConstants.DELIMITER_COMMA_VALUE.toCharArray( )[0] )
 			{
 				if ( !inQuote )
 				{
-					if ( i != columnNames.length( ) - 1 )
-					{
-						columnNameVector.add( columnNameBuf.toString( ).trim( ) );
-						columnNameBuf = new StringBuffer( );
-					}
-					else
-					{
-						columnNameBuf.append( columnNamesChars[i] );
-						columnNameVector.add( columnNameBuf.toString( ).trim( ) );
-					}
+					columnNameVector.add( columnNameBuf.toString( ).trim( ) );
+					columnNameBuf = new StringBuffer( );
 				}
 				else if ( inQuote )
+				{
 					columnNameBuf.append( columnNamesChars[i] );
-				else
-					throw new OdaException( Messages.getString( "Invalid" ) );
+				}
 			}
 			else
 			{
@@ -1242,15 +1316,15 @@ public class FlatFileQuery implements IQuery
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
 			{
-
 				queryColumnNames = getStringArrayFromVector( getColumnNamesVectorFromQuery( getPreparedColumnNames( queryFragments ) ) );
 
-				queryColumnTypes = hasTypeLine == true
+				queryColumnTypes = hasTypeLine
 						? getQueryColumnTypes( allColumnNames,
 								allColumnTypes,
-								queryColumnNames ) : allColumnTypes;
-				queryColumnLables = hasColumnNames == true
-						? getColumnLabels( queryFragments ) : allColumnNames;
+								queryColumnNames )
+						: createTempColumnTypes( queryColumnNames.length );
+				queryColumnLables = hasColumnNames
+						? getColumnLabels( queryFragments ) : queryColumnNames;
 				if ( queryColumnLables == null )
 					queryColumnLables = queryColumnNames;
 
