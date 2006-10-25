@@ -551,7 +551,7 @@ public class TestUtil
 
 			String header = "\"\"\"Column_1\"\"\"\"\""
 					+ delimiter + "\" Column_2,C2\"" + delimiter
-					+ "\"Column_3, \"\", C3,\"\n";
+					+ "\"Column_3, \"\", C3,\\\"\n";
 			String type = "STRING"
 					+ delimiter + "STRING" + delimiter + "STRING\n";
 			String contant = "column1"

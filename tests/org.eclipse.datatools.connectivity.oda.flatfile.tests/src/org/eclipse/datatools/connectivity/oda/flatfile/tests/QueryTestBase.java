@@ -197,6 +197,16 @@ public abstract class QueryTestBase extends TestCase
 		{
 			assertTrue( false );
 		}
+		
+		try
+		{
+			statement.prepare( "select \"Column_3, \\\", C3,\\\\\" from table8"
+					+ getSuffix( ) + getExtension( ) );
+		}
+		catch ( OdaException e )
+		{
+			assertTrue( false );
+		}
 
 		// re-setUp the connection properties where the column names are
 		// indicated as none
