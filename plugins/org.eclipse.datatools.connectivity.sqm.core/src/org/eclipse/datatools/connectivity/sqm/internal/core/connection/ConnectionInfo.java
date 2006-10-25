@@ -12,25 +12,16 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Iterator;
-import java.util.Properties;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
-public interface ConnectionInfo {
+public interface ConnectionInfo extends org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo {
 	
 	public static final String CONNECTION = "connection/"; //$NON-NLS-1$
 	public static final String INFO_FILE_EXTENSION = "info"; //$NON-NLS-1$
 	public static final String FILTER = "filter"; //$NON-NLS-1$
-	
-	/**
-	 * A user friendly name of the connection info.
-	 * @return the connection info name - null means it is not named.
-	 */
-	public String getName();
 	
 	/**
 	 * Change the connection info name.
@@ -39,26 +30,10 @@ public interface ConnectionInfo {
 	public void setName(String name);
 	
 	/**
-	 * @return the database definition associated to this connection info
-	 */
-	public DatabaseDefinition getDatabaseDefinition();
-	
-	/**
-	 * @return the driver class loading path
-	 */
-	public String getLoadingPath();
-
-	/**
 	 * specify the extra class path to load the driver class.
 	 * @param path semicolon separated class path
 	 */
 	public void   setLoadingPath(String path);
-	
-	/**
-	 * 
-	 * @return the JDBC driver class full name.
-	 */
-	public String getDriverClassName();
 	
 	/**
 	 * 
@@ -68,21 +43,9 @@ public interface ConnectionInfo {
 	
 	/**
 	 * 
-	 * @return JDBC connection URL
-	 */
-	public String getURL();
-	
-	/**
-	 * 
 	 * @param url JDBC connection URL
 	 */
 	public void   setURL(String url);
-	
-	/**
-	 * Helper function for property "user". The value can be accessed directly using Properties
-	 * @return value of property "user" 
-	 */
-	public String getUserName();
 	
 	/**
 	 * Helper function for property "user". The value can be set directly using Properties
@@ -91,44 +54,18 @@ public interface ConnectionInfo {
 	public void setUserName(String id);
 
 	/**
-	 * Helper function for property "password". The value can be accessed directly using Properties
-	 * @return value of property "password" 
-	 */
-	public String getPassword();
-
-	/**
 	 * Helper function for property "password". The value can be set directly using Properties
 	 * @param password value of property "password"
 	 */
 	public void setPassword(String password);
 		
-	/*
-	 * the following 2 method are used as a work around for some databases 
-	 */
-	public String getDatabaseName();
-	
 	public void setDatabaseName(String databasename);
-	
-	public String getIdentifierQuoteString();
-
-	public String getDatabaseProductVersion();
-
-	/**
-	 * 
-	 * @return the properties for JDBC connection
-	 */
-	public Properties getProperties();
 	
 	/**
 	 * Flag for auto-detecting vendor and version when connect.
 	 */
 	public void discoverDatabaseDefinitionWhenConnect();
 
-	/**
-	 * @return true is the auto-detection of vendor and version is set on connect - false otherwise 
-	 */
-	public boolean isDiscoverDatabaseDefinitionWhenConnectEnabled ();
-	
 	/**
 	 * Helper function to create a JDBC connection.
 	 * @return a JDBC connetion
@@ -144,12 +81,6 @@ public interface ConnectionInfo {
 	public void setSharedConnection(Connection connection);
 	
 	/**
-	 * Retrive the shared connection.
-	 * @return if no shared connection set, return null.
-	 */
-	public Connection getSharedConnection();
-	
-	/**
 	 * Remove the shared connection. If no shared connection set, an IllegalStateException will be thrown.
 	 * If the function succeeds, notification will be sent out to all registered listeners
 	 */
@@ -162,12 +93,6 @@ public interface ConnectionInfo {
 	 * @param database
 	 */
 	public void setSharedDatabase(Database database);
-	
-	/**
-	 * retrieve the shared database
-	 * @return if no shared databsae set, return null
-	 */		
-	public Database getSharedDatabase();
 	
 	/**
 	 * Remove the shared database. If no shared database set, an IllegalStateException will be thrown.
@@ -194,14 +119,6 @@ public interface ConnectionInfo {
 	public void cacheDatabase(Database database) throws IOException;
 	
 	/**
-	 * Load a database from workspace cache.
-	 * @return
-	 */
-	public Database getCachedDatabase();
-	
-	public long getCachedDatabaseTimestamp();
-
-	/**
 	 * set a filter.
 	 * @param key
 	 * @param filter
@@ -222,19 +139,6 @@ public interface ConnectionInfo {
 	 * @return
 	 */
 	public void removeFilter(String key);
-	
-
-	/**
-	 * return all the connection filters
-	 *
-	 */
-	public Iterator getFilters();
-	
-	/**
-	 * Retrive all dependent projects
-	 * @return
-	 */
-	public IProject[] getDependentProjects();
 	
 	/**
 	 * Add a dependent project. If the project is already in the list, it will be ignored.
