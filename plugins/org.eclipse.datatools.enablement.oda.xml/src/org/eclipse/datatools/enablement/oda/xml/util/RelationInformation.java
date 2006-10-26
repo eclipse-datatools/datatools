@@ -479,7 +479,7 @@ class TableInfo
 		List l = new ArrayList();
 		for( int i = 0; i < temp.length; i ++ )
 		{
-			if( temp[i].matches( "\\QTEMP\\E.*" ))
+			if( temp[i].matches( "\\Q-$TEMP_XML_COLUMN$-\\E.*" ))
 				break;
 			else
 				l.add( temp[i] );
