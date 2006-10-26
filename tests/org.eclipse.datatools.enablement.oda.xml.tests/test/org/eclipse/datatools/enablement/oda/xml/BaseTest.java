@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml;
 
+import java.net.URI;
 import java.net.URL;
 
 import junit.framework.TestCase;
@@ -23,8 +24,9 @@ public abstract class BaseTest extends TestCase
 	{
 		super.setUp( );
 		URL url = this.getClass( ).getProtectionDomain( ).getCodeSource( ).getLocation( );
-		String pathBase = url.getPath( );
-
+		String pathBase = url.toString( );
+		if( !pathBase.matches( ".*\\Q \\E.*" ))
+			pathBase = new URI( pathBase ).getPath( );
 		if ( pathBase.endsWith( "bin/" ) ) //$NON-NLS-1$
 			pathBase = pathBase.substring( 0,
 					pathBase.length( ) - 4 );
