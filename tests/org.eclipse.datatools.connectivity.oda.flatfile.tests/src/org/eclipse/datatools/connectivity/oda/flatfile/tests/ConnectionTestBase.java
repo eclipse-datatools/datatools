@@ -109,7 +109,7 @@ public abstract class ConnectionTestBase extends TestCase
 	protected Properties setUpDefaultProperties( )
 	{
 		Properties prop = new Properties( );
-		prop.setProperty( CommonConstants.CONN_HOME_DIR_PROP, "testdatabase" );
+		prop.setProperty( CommonConstants.CONN_HOME_DIR_PROP, TestUtil.getHomeDir( ) );
 		prop.setProperty( CommonConstants.CONN_CHARSET_PROP, "UTF-16LE" );
 		return prop;
 	}
