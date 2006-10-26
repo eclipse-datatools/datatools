@@ -16,6 +16,9 @@ package org.eclipse.datatools.connectivity.oda.flatfile.tests;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Random;
@@ -48,7 +51,7 @@ public class TestUtil
 	 */
 	public static void createTestFile( String delimiter ) throws OdaException
 	{
-		createTestFileDirectory( );
+		String path = createTestFileDirectory( );
 
 		if ( delimiter.equals( CommonConstants.DELIMITER_COMMA_VALUE ) )
 			fileExtension = CSV_EXTENSION;
@@ -59,45 +62,85 @@ public class TestUtil
 		else if ( delimiter.equals( CommonConstants.DELIMITER_PIPE_VALUE ) )
 			fileExtension = PSV_EXTENSION;
 
-		createTestFile_test1( delimiter );
-		createTestFile_test2( delimiter );
-		createTestFile_test3( delimiter );
-		createTestFile_test4( delimiter );
-		createTestFile_test5( delimiter );
-		createTestFile_test6( delimiter );
-		createTestFile_test7( delimiter );
-		createTestFile_test8( delimiter );
+		createTestFile_test1( path, delimiter );
+		createTestFile_test2( path, delimiter );
+		createTestFile_test3( path, delimiter );
+		createTestFile_test4( path, delimiter );
+		createTestFile_test5( path, delimiter );
+		createTestFile_test6( path, delimiter );
+		createTestFile_test7( path, delimiter );
+		createTestFile_test8( path, delimiter );
 
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static String getHomeDir( )
+	{
+		URL url = TestUtil.class.getProtectionDomain( ).getCodeSource( ).getLocation( );
+		String pathBase = url.toString( );
+		
+		if( !pathBase.matches( ".*\\Q \\E.*" ))
+			try
+			{
+				pathBase = new URI( pathBase ).getPath( );
+			}
+			catch ( URISyntaxException e1 )
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		if ( pathBase.endsWith( "bin/" ) ) //$NON-NLS-1$
+			pathBase = pathBase.substring( 0,
+					pathBase.length( ) - 4 );
+		if ( pathBase.endsWith( "bin" ) ) //$NON-NLS-1$
+			pathBase = pathBase.substring( 0,
+					pathBase.length( ) - 3 );
+		
+		return pathBase + "testdatabase";
 	}
 
 	/**
 	 * 
 	 * @throws OdaException
+	 * @throws URISyntaxException 
 	 */
-	private static void createTestFileDirectory( ) throws OdaException
+	private static String createTestFileDirectory( ) throws OdaException
 	{
-		File file = new File( "testdatabase" );
+		
+		String path = getHomeDir();
+		File file = new File( path );
 		if ( file.exists( ) )
-			return;
+		{
+			file.deleteOnExit( );
+			return path;
+		}
 		try
 		{
 			file.mkdirs( );
+			file.deleteOnExit( );
 		}
 		catch ( SecurityException e )
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		return path;
 	}
 
-	private static void createTestFile_test1( String delimiter )
+	private static void createTestFile_test1( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table1" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -167,18 +210,22 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test2( String delimiter )
+	private static void createTestFile_test2( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table2" + getSuffix( delimiter )
 				+ fileExtension );
 
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -241,17 +288,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test3( String delimiter )
+	private static void createTestFile_test3( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table3" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -304,17 +355,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test4( String delimiter )
+	private static void createTestFile_test4( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table4" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -379,17 +434,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test5( String delimiter )
+	private static void createTestFile_test5( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table5" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -434,17 +493,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test6( String delimiter )
+	private static void createTestFile_test6( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table6" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -487,17 +550,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test7( String delimiter )
+	private static void createTestFile_test7( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table7" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -530,17 +597,21 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
-	private static void createTestFile_test8( String delimiter )
+	private static void createTestFile_test8( String path, String delimiter )
 			throws OdaException
 	{
 		File file = null;
-		file = new File( "testdatabase"
+		file = new File( path
 				+ File.separator + "table8" + getSuffix( delimiter )
 				+ fileExtension );
 		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
 			return;
+		}
 		try
 		{
 			FileOutputStream fos = new FileOutputStream( file );
@@ -568,6 +639,7 @@ public class TestUtil
 		{
 			throw new OdaException( e.getMessage( ) );
 		}
+		file.deleteOnExit( );
 	}
 
 	private static String getSuffix( String delimiter )

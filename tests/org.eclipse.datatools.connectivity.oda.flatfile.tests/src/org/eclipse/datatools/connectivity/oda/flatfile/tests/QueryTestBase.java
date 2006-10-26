@@ -312,7 +312,7 @@ public abstract class QueryTestBase extends TestCase
 	{
 		connection = new Connection( );
 		prop = new Properties( );
-		prop.setProperty( CommonConstants.CONN_HOME_DIR_PROP, "testdatabase" );
+		prop.setProperty( CommonConstants.CONN_HOME_DIR_PROP, TestUtil.getHomeDir( ) );
 		prop.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
 		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
