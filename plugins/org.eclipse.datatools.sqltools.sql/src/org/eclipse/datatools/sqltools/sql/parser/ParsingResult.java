@@ -617,12 +617,15 @@ public abstract class ParsingResult
                             if ("table".equalsIgnoreCase(token.image))
                             {
                                 token = token.next;
-                                //if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
-                                //retrieve the table_name.
-                                while(token.next.image=="."&&token.next.next.image!="(")token = token.next.next;
-                                if (!refTables.contains(token.image))
+                                String tableName = token.image;
+                                while(token.next.image=="."||token.image==".")
                                 {
-                                    refTables.add(token.image);
+                                    token = token.next;      
+                                    tableName = tableName+token.image;
+                                }
+                                if (!refTables.contains(tableName))
+                                {
+                                    refTables.add(tableName);
                                 }
                             }
                         }
@@ -638,12 +641,15 @@ public abstract class ParsingResult
                             if ("table".equalsIgnoreCase(token.image))
                             {
                                 token = token.next;
-                                //        				if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
-                                //retrieve the table_name.
-                                while(token.next.image=="."&&token.next.next.image!="(")token = token.next.next;
-                                if (!refTables.contains(token.image))
+                                String tableName = token.image;
+                                while(token.next.image=="."||token.image==".")
                                 {
-                                    refTables.add(token.image);
+                                    token = token.next;      
+                                    tableName = tableName+token.image;
+                                }
+                                if (!refTables.contains(tableName))
+                                {
+                                    refTables.add(tableName);
                                 }
                             }
                         }
@@ -658,13 +664,6 @@ public abstract class ParsingResult
                             for (Iterator iter = params.iterator(); iter.hasNext();)
                             {
                                 String name = (String) iter.next();
-                                //if encounter full name [[database.]owner.]table_name such as master.dbo.authors,
-                                //retrieve the table_name.
-                                int indexOfLastDot = name.lastIndexOf(".");
-                                if(indexOfLastDot!=-1)
-                                {
-                                    name = name.substring(indexOfLastDot+1,name.length());	
-                                }
                                 if (!refTables.contains(name))
                                 {
                                     refTables.add(name);
