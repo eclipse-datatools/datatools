@@ -81,3 +81,22 @@ CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = Type de profil
 DSE.Refresh.label = &Actualiser
+
+CPDeleteChange.name = Supprimer le profil de connexion {0}
+CPDeleteChange.error.ProfileDoesNotExist = Le profil de connexion que vous essayez de supprimer n'existe pas.
+CPDeleteChange.delete.failure = Echec de la suppression du profil de connexion.
+CPDeleteProcessor.name = Processeur de suppression de connectivité DTP
+CPDuplicateProcessor.name = Processeur de duplication de connectivité DTP
+CPCopyChange.name = Dupliquer le profil de connexion {0}
+CPCopyChange.error.ProfileDoesNotExist = Le profil de connexion que vous essayez de dupliquer n'existe pas.
+CPCopyChange.title.error = Echec de la duplication du profil de connexion.
+CPCreateChange.name = Créer le profil de connexion {0}
+CPCreateChange.error.NewProfileDoesNotHaveName = Un nom est requis pour la création du nouveau profil de connexion.
+CPCreateChange.error.NewProfileAlreadyExists = Un profil de connexion portant le nouveau nom existe déjà.
+CPCreateChange.error.NewProfileDoesNotHaveProviderID = Un ID de fournisseur de profils de connexion est requis pour la création du nouveau profil de connexion.
+CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject = Un objet de propriétés non nul est requis pour la création du nouveau profil de connexion.
+CPCreateChange.create.failure = Echec de la création du profil de connexion.
+CPCreateProcessor.name = Processeur de création de connectivité DTP
+CPRenameChange.name = Renommer le profil de connexion {0}
+CPRenameProcessor.name = Processeur de réattribution de nom de connectivité DTP
+CPRenameChange.title.error = Echec de la réattribution d'un nom au profil de connexion.

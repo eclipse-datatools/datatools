@@ -82,3 +82,22 @@ CommonLabelProviderBase.label.version=v.
 properties.connectionprofile.type = プロファイルの種類
 DSE.Refresh.label = 更新(&R)
 
+CPDeleteChange.name = {0} 接続プロファイルの削除
+CPDeleteChange.error.ProfileDoesNotExist = 削除しようとしている接続プロファイルは存在しません。
+CPDeleteChange.delete.failure = 接続プロファイルを削除できませんでした。
+CPDeleteProcessor.name = DTP 接続の削除プロセッサ
+CPDuplicateProcessor.name = DTP 接続の重複プロセッサ
+CPCopyChange.name = {0} 接続プロファイルの重複
+CPCopyChange.error.ProfileDoesNotExist = 重複しようとしている接続プロファイルは存在しません。
+CPCopyChange.title.error = 接続プロファイルを重複できませんでした。
+CPCreateChange.name = {0} 接続プロファイルの作成
+CPCreateChange.error.NewProfileDoesNotHaveName = 新しい接続プロファイルを作成するには、名前が必要です。
+CPCreateChange.error.NewProfileAlreadyExists = この名前の接続プロファイルは、すでに使用されています。
+CPCreateChange.error.NewProfileDoesNotHaveProviderID = 新しい接続プロファイルを作成するには、接続プロファイルのプロバイダ ID が必要です。
+CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject = 新しい接続プロファイルを作成するには、Null 以外のプロパティオブジェクトが必要です。
+CPCreateChange.create.failure = 接続プロファイルを作成できませんでした。
+CPCreateProcessor.name = DTP 接続の作成プロセッサ
+CPRenameChange.name = {0} 接続プロファイルの名前の変更
+CPRenameProcessor.name = DTP 接続の名前の変更プロセッサ
+CPRenameChange.title.error = 接続プロファイルの名前を変更できませんでした。
+

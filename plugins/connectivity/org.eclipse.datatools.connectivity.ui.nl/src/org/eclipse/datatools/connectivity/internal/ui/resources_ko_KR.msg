@@ -81,3 +81,22 @@ CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = 프로필 형식
 DSE.Refresh.label = 새로 고침(&R)
+
+CPDeleteChange.name = {0} 연결 프로필 삭제
+CPDeleteChange.error.ProfileDoesNotExist = 삭제하려는 연결 프로필이 없습니다.
+CPDeleteChange.delete.failure = 연결 프로필을 삭제하지 못했습니다.
+CPDeleteProcessor.name = DTP 연결 삭제 프로세서
+CPDuplicateProcessor.name = DTP 연결 중복 프로세서
+CPCopyChange.name = {0} 연결 프로필 중복
+CPCopyChange.error.ProfileDoesNotExist = 중복하려는 연결 프로필이 없습니다.
+CPCopyChange.title.error = 연결 프로필을 중복하지 못했습니다.
+CPCreateChange.name = {0} 연결 프로필 생성 
+CPCreateChange.error.NewProfileDoesNotHaveName = 새 연결 프로필을 만들려면 이름이 필요합니다. 
+CPCreateChange.error.NewProfileAlreadyExists = 새 이름을 가진 연결 프로필이 이미 있습니다.
+CPCreateChange.error.NewProfileDoesNotHaveProviderID = 새 연결 프로필을 만들려면 연결 프로필 공급자 ID가 필요합니다.
+CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject = 새 연결 프로필을 만들려면 널(null)이 아닌 속성 개체가 필요합니다.
+CPCreateChange.create.failure = 연결 프로필을 만들지 못했습니다.
+CPCreateProcessor.name = DTP 연결 생성 프로세서
+CPRenameChange.name = {0} 연결 프로필 이름 바꾸기
+CPRenameProcessor.name = DTP 연결 이름 바꾸기 프로세서
+CPRenameChange.title.error = 연결 프로필 이름을 바꾸지 못했습니다.

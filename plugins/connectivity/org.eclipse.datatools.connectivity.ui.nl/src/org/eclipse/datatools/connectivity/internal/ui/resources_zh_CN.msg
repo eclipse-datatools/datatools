@@ -81,3 +81,22 @@ CommonLabelProviderBase.label.version=V.
 
 properties.connectionprofile.type = 配置文件类型
 DSE.Refresh.label = 刷新(&R)
+
+CPDeleteChange.name = 删除 {0} 连接配置文件
+CPDeleteChange.error.ProfileDoesNotExist = 您尝试删除的连接配置文件不存在。
+CPDeleteChange.delete.failure = 未能删除连接配置文件。
+CPDeleteProcessor.name = DTP 连接删除处理程序
+CPDuplicateProcessor.name = DTP 连接复制处理程序
+CPCopyChange.name = 复制 {0} 连接配置文件
+CPCopyChange.error.ProfileDoesNotExist = 您尝试复制的连接配置文件不存在。
+CPCopyChange.title.error = 未能复制连接配置文件。
+CPCreateChange.name = 创建 {0} 连接配置文件
+CPCreateChange.error.NewProfileDoesNotHaveName = 创建新连接配置文件需要名称。
+CPCreateChange.error.NewProfileAlreadyExists = 具有新名称的连接配置文件已存在。
+CPCreateChange.error.NewProfileDoesNotHaveProviderID = 创建新连接配置文件需要连接配置文件提供者 ID。
+CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject = 创建新连接配置文件需要非空属性对象。
+CPCreateChange.create.failure = 未能创建连接配置文件。
+CPCreateProcessor.name = DTP 连接创建处理程序
+CPRenameChange.name = 重命名 {0} 连接配置文件
+CPRenameProcessor.name = DTP 连接重命名处理程序
+CPRenameChange.title.error = 未能重命名连接配置文件。

@@ -81,3 +81,22 @@ CommonLabelProviderBase.label.version=v.
 
 properties.connectionprofile.type = Profiltyp
 DSE.Refresh.label = &Aktualisieren
+
+CPDeleteChange.name = Verbindungsprofil {0} löschen
+CPDeleteChange.error.ProfileDoesNotExist = Das Verbindungsprofil, das Sie löschen möchten, ist nicht vorhanden.
+CPDeleteChange.delete.failure = Das Löschen des Verbindungsprofils ist fehlgeschlagen.
+CPDeleteProcessor.name = Prozessor zum Löschen der DTP-Verbindung
+CPDuplicateProcessor.name = Prozessor zum Vervielfältigen der DTP-Verbindung
+CPCopyChange.name = Verbindungsprofil {0} vervielfältigen
+CPCopyChange.error.ProfileDoesNotExist = Das Verbindungsprofil, das Sie vervielfältigen möchten, ist nicht vorhanden.
+CPCopyChange.title.error = Das Vervielfältigen des Verbindungsprofils ist fehlgeschlagen.
+CPCreateChange.name = Verbindungsprofil {0} erstellen
+CPCreateChange.error.NewProfileDoesNotHaveName = Für das Erstellen eines neuen Verbindungsprofils ist ein Name erforderlich.
+CPCreateChange.error.NewProfileAlreadyExists = Ein Verbindungsprofil mit dem neuen Namen ist bereits vorhanden.
+CPCreateChange.error.NewProfileDoesNotHaveProviderID = Die Anbieter-ID des Verbindungsprofils ist für eine Erstellung des neuen Verbindungsprofils erforderlich.
+CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject = Ein Eigenschaftsobjekt mit einem Wert ungleich Null ist für die Erstellung eines neuen Verbindungsprofils erforderlich.
+CPCreateChange.create.failure = Das Erstellen des Verbindungsprofils ist fehlgeschlagen.
+CPCreateProcessor.name = Prozessor zum Erstellen der DTP-Verbindung
+CPRenameChange.name = Verbindungsprofil {0} umbenennen
+CPRenameProcessor.name = Prozessor zum Umbenennen der DTP-Verbindung
+CPRenameChange.title.error = Das Umbenennen des Verbindungsprofils ist fehlgeschlagen.
