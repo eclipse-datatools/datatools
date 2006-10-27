@@ -379,9 +379,9 @@ public class ResultSet implements IResultSet
                 {
                     return new Date( stringToLongDate( stringValue ) );
                 }
-                catch( ParseException e1 )
+                catch(OdaException e1)
                 {
-                    this.wasNull = true;
+                	this.wasNull = true;
                 }
             }
         }
@@ -408,9 +408,9 @@ public class ResultSet implements IResultSet
                 {
                     return new Time( stringToLongDate( stringValue ) );
                 }
-                catch( ParseException e1 )
+                catch( OdaException e1)
                 {
-                    this.wasNull = true;
+                	this.wasNull = true;
                 }
             }
         }
@@ -468,7 +468,7 @@ public class ResultSet implements IResultSet
      * @throws ParseException
      * @throws OdaException
      */
-    private long stringToLongDate( String stringValue ) throws ParseException, OdaException
+    private long stringToLongDate( String stringValue ) throws OdaException
     {
         java.util.Date d = DateUtil.toDate( stringValue );
         if( d == null )

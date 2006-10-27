@@ -438,7 +438,7 @@ public class FlatFileQuery implements IQuery
 				// split the column names according to the selected value
 				// delimiter
 				// of this connection
-				validateColumnName( getStringArrayFromVector( getColumnNamesVectorFromQuery( preparedColumnNames ) ),
+				validateColumnName( getStringArrayFromVector( stripFormatInfoFromQueryColumnNames(getQueryColumnNamesVector( preparedColumnNames ) ) ),
 						discoverActualColumnMetaData( getPreparedTableNames( parsedQuerySegments ),
 								NAME_LITERAL ) );
 			}
@@ -535,7 +535,7 @@ public class FlatFileQuery implements IQuery
 		String selectedColumns = querySelectAndFromFragments[0];
 		if ( !isWildCard( selectedColumns ) )
 		{
-			String[] columns = getStringArrayFromVector( getFormattedColumnNamesVector( selectedColumns ) );
+			String[] columns = getStringArrayFromVector( getQueryColumnNamesVector( selectedColumns ) );
 
 			for ( int i = 0; i < columns.length; i++ )
 			{
@@ -573,13 +573,13 @@ public class FlatFileQuery implements IQuery
 
 	/**
 	 * 
-	 * @param formattedColumnNames
+	 * @param queryColumnNames
 	 * @return
 	 */
-	private Vector getFormattedColumnNamesVector( String formattedColumnNames )
+	private Vector getQueryColumnNamesVector( String queryColumnNames )
 	{
 		Vector result = new Vector( );
-		char[] chars = formattedColumnNames.toCharArray( );
+		char[] chars = queryColumnNames.toCharArray( );
 		List indiceList = new ArrayList( );
 		boolean inQuote = false;
 		boolean isEscaped = false;
@@ -615,23 +615,72 @@ public class FlatFileQuery implements IQuery
 
 				endIndex = ( (Integer) indiceList.get( j ) ).intValue( );
 
-				result.add( formattedColumnNames.substring( beginIndex,
+				result.add( queryColumnNames.substring( beginIndex,
 						endIndex ).trim( ) );
 				beginIndex = endIndex + 1;
 
 				if ( j == indiceList.size( ) - 1 )
 				{
-					result.add( formattedColumnNames.substring( beginIndex,
-							formattedColumnNames.length( ) ).trim( ) );
+					result.add( queryColumnNames.substring( beginIndex,
+							queryColumnNames.length( ) ).trim( ) );
 				}
 			}
 		}
 		else
-			result.add( formattedColumnNames );
+			result.add( queryColumnNames );
 
 		return result;
 	}
-
+	
+	/**
+	 * 
+	 * @param queryColumnNames
+	 * @return
+	 */
+	private Vector stripFormatInfoFromQueryColumnNames( Vector queryColumnNames)
+	{
+		Vector columnNames = new Vector( );
+		
+		boolean isEscaped = false;
+		
+		for(int i = 0; i< queryColumnNames.size( ); i++)
+		{
+			StringBuffer sb = new StringBuffer();
+			char[] chars = ((String)queryColumnNames.get( i )).toCharArray( );
+			
+			if(chars[0]!=CommonConstants.DELIMITER_DOUBLEQUOTE)
+			{
+				columnNames.add( queryColumnNames.get( i ) );
+				continue;
+			}
+			
+			for(int j = 0; j <chars.length; j++)
+			{
+				if(chars[j]==CommonConstants.DELIMITER_DOUBLEQUOTE)
+				{
+					if (isEscaped)
+					{
+						sb.append( chars[j] );
+						isEscaped = !isEscaped;
+					}
+				}
+				else if( chars[j] == '\\')
+				{
+					if(isEscaped)
+						sb.append( chars[j] );
+						
+					isEscaped = !isEscaped;
+				}
+				else
+					sb.append( chars[j] );
+			}
+			
+			columnNames.add( sb.toString( ) );
+		}
+		
+		return columnNames;
+	}
+	
 	/**
 	 * Split the given query fragments before and after the FROM keyword
 	 * 
@@ -1167,80 +1216,6 @@ public class FlatFileQuery implements IQuery
 	}
 
 	/**
-	 * 
-	 * @param columnNames
-	 * @return
-	 * @throws OdaException
-	 */
-	private Vector getColumnNamesVectorFromQuery( String columnNames )
-			throws OdaException
-	{
-		Vector columnNameVector = new Vector( );
-		char[] columnNamesChars = columnNames.toCharArray( );
-		StringBuffer columnNameBuf = new StringBuffer( );
-		boolean isEscaped = false;
-		boolean inQuote = false;
-
-		for ( int i = 0; i < columnNamesChars.length; i++ )
-		{
-			if ( i == columnNamesChars.length - 1 )
-			{
-				if ( !inQuote )
-				{
-					columnNameBuf.append( columnNamesChars[i] );
-					columnNameVector.add( columnNameBuf.toString( ).trim( ) );
-				}
-				else
-				{
-					if ( columnNamesChars[i] == CommonConstants.DELIMITER_DOUBLEQUOTE.toCharArray( )[0]
-							&& !isEscaped )
-						columnNameVector.add( columnNameBuf.toString( ).trim( ) );
-					else
-						throw new OdaException( Messages.getString( "query_text_error" ) );
-				}
-			}
-			else if ( columnNamesChars[i] == '\\' )
-			{
-				if ( isEscaped )
-				{
-					columnNameBuf.append( columnNamesChars[i] );
-				}
-				isEscaped = !isEscaped;
-
-			}
-			else if ( columnNamesChars[i] == CommonConstants.DELIMITER_DOUBLEQUOTE.toCharArray( )[0] )
-			{
-				if ( isEscaped )
-				{
-					columnNameBuf.append( columnNamesChars[i] );
-					isEscaped = !isEscaped;
-				}
-				else
-				{
-					inQuote = !inQuote;
-				}
-			}
-			else if ( columnNamesChars[i] == CommonConstants.DELIMITER_COMMA_VALUE.toCharArray( )[0] )
-			{
-				if ( !inQuote )
-				{
-					columnNameVector.add( columnNameBuf.toString( ).trim( ) );
-					columnNameBuf = new StringBuffer( );
-				}
-				else if ( inQuote )
-				{
-					columnNameBuf.append( columnNamesChars[i] );
-				}
-			}
-			else
-			{
-				columnNameBuf.append( columnNamesChars[i] );
-			}
-		}
-		return columnNameVector;
-	}
-
-	/**
 	 * Feed the row data from a Vector to a two-dimension array. The string
 	 * value is trimmed before being copied into array.
 	 * 
@@ -1281,6 +1256,7 @@ public class FlatFileQuery implements IQuery
 			throws OdaException
 	{
 		String[] queryFragments = parsePreparedQueryText( query );
+		
 		// the name of table against which the query will be executed
 		String tableName = getPreparedTableNames( queryFragments );
 
@@ -1316,8 +1292,8 @@ public class FlatFileQuery implements IQuery
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
 			{
-				queryColumnNames = getStringArrayFromVector( getColumnNamesVectorFromQuery( getPreparedColumnNames( queryFragments ) ) );
-
+				queryColumnNames = getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
+				
 				queryColumnTypes = hasTypeLine
 						? getQueryColumnTypes( allColumnNames,
 								allColumnTypes,
