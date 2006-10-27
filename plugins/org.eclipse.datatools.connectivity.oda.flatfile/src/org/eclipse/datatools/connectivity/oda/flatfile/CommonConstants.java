@@ -38,7 +38,7 @@ public final class CommonConstants
 	public static final String DELIMITER_TAB_VALUE = "\t";
 
 	public static final String DELIMITER_SPACE = " "; //$NON-NLS-1$
-	public static final String DELIMITER_DOUBLEQUOTE = "\""; //$NON-NLS-1$
+	public static final char DELIMITER_DOUBLEQUOTE = '"'; //$NON-NLS-1$
 	public static final String KEYWORD_SELECT = "SELECT"; //$NON-NLS-1$
 	public static final String KEYWORD_FROM = "FROM"; //$NON-NLS-1$
 	public static final String KEYWORD_AS = "AS"; //$NON-NLS-1$

@@ -455,6 +455,25 @@ public abstract class ResultSetTestBase extends TestCase
 			assertTrue( true );
 		}
 	}
+	
+	/**
+	 * 
+	 * @throws OdaException
+	 */
+	public void testDateConvertFailure( ) throws OdaException
+	{
+		statement.prepare( "select  INT0_COL , INT1_COL , DOUBLE0_COL ,"
+				+ " DOUBLE1_COL , TIME_COL , DATE_COL , BLOB_COL , STRING_COL , BIGDECIMAL_COL   from   table2"
+				+ getSuffix( ) + getExtension( ) );
+		IResultSet rs = statement.executeQuery( );
+
+		while ( rs.next( ) )
+		{
+			assertTrue( rs.getTime( "STRING_COL" ) == null );
+			assertTrue( rs.getDate( "STRING_COL" ) == null );
+			assertTrue( rs.getTimestamp( "STRING_COL" ) == null );
+		}
+	}
 
 	/**
 	 * 
