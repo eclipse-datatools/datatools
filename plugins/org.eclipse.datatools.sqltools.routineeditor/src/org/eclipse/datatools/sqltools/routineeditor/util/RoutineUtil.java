@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
+import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
@@ -34,29 +35,6 @@ import org.eclipse.ui.texteditor.ITextEditor;
  * 
  */
 public class RoutineUtil {
-
-    /**
-     * Returns the prefix used to construct a sql statement to directly invoke a procedural object.
-     * @return "exec ", "call ", "TRIGGER EVENT " or "" based on type
-     */
-    public static String getDirectInvocationPrefix(int type)
-    {
-        String prefix = "";
-        switch (type)
-        {
-            case ProcIdentifier.TYPE_SP:
-                prefix = "exec ";
-                break;
-            case ProcIdentifier.TYPE_UDF:
-                prefix = "select ";
-                break;
-            case ProcIdentifier.TYPE_EVENT:
-                prefix = "TRIGGER EVENT ";
-                break;
-        }
-        return prefix;
-    }
-
 
     /**
      * Constructs a sql string which can be used in a CallableStatement to invoke the Routine.
@@ -241,7 +219,8 @@ public class RoutineUtil {
     {
         StringBuffer buffer = new StringBuffer(20);
         int type = proc == null ? ProcIdentifier.TYPE_SP : proc.getType();
-        buffer.append(getDirectInvocationPrefix(proc.getType()));
+		SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByProfileName(proc.getDatabaseIdentifier().getProfileName());
+        buffer.append(config.getExecutionService().getDirectInvocationPrefix(proc.getType()));
 
         if (proc != null)
         buffer.append(proc.getCallableString(quoted_id));

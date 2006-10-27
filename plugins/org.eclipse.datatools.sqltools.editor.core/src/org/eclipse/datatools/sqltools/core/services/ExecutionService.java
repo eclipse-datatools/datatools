@@ -191,6 +191,28 @@ public class ExecutionService
                 break;
         }
         return prefix;
-    }	
+    }
+
+	/**
+	 * Returns the prefix used to construct a sql statement to directly invoke a procedural object.
+	 * @return "exec ", "call ", "TRIGGER EVENT " or "" based on type
+	 */
+	public String getDirectInvocationPrefix(int type)
+	{
+	    String prefix = "";
+	    switch (type)
+	    {
+	        case ProcIdentifier.TYPE_SP:
+	            prefix = "exec ";
+	            break;
+	        case ProcIdentifier.TYPE_UDF:
+	            prefix = "select ";
+	            break;
+	        case ProcIdentifier.TYPE_EVENT:
+	            prefix = "TRIGGER EVENT ";
+	            break;
+	    }
+	    return prefix;
+	}	
 
 }
