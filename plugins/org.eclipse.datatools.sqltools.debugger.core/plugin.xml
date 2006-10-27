@@ -46,9 +46,9 @@
 	    	 <actionSet
                id="org.eclipse.debug.ui.breakpointActionSet">
              </actionSet>
-	    	 <actionSet
+	    	 <!--actionSet
                id="org.eclipse.datatools.sqltools.debugger.actionsets">
-             </actionSet>
+             </actionSet-->
              
 		<!-- Top left -->
          <view
