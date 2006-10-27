@@ -13,10 +13,14 @@ package org.eclipse.datatools.connectivity.ui.actions;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.eclipse.ui.internal.dialogs.PropertyPageContributorManager;
 import org.eclipse.ui.internal.dialogs.PropertyPageManager;
@@ -26,7 +30,13 @@ import org.eclipse.ui.internal.dialogs.PropertyPageManager;
  */
 public class ViewPropertyAction extends Action {
 
+	public final static String MEMENTO_ROOT = "Connectivity_Property_Dialog_Root";//$NON-NLS-1$
+	public final static String MEMENTO_DIALOG_SIZE_HEIGHT = "Dialog_Size_Height";//$NON-NLS-1$
+	public final static String MEMENTO_DIALOG_SIZE_WIDTH = "Dialog_Size_Width";//$NON-NLS-1$
+
 	private TreeViewer mViewer;
+	
+	private Shell mShell;
 
 	/**
 	 * Constructor
@@ -73,8 +83,32 @@ public class ViewPropertyAction extends Action {
 		PropertyDialog propertyDialog = new PropertyDialog(mViewer.getControl()
 				.getShell(), pageManager, mViewer.getSelection());
 		propertyDialog.create();
+
+		IDialogSettings dset = ConnectivityUIPlugin.getDefault()
+			.getDialogSettings();
+		int height = 0;
+		int width = 0;
+		boolean foundSettings = false;
+		if (dset != null) {
+			IDialogSettings dSection = dset.getSection(MEMENTO_ROOT);
+			if (dSection != null) {
+				if (dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT) != null
+						&& dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT).trim()
+								.length() > 0) {
+					height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
+					width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
+					foundSettings = true;
+				}
+			}
+		}
+		if (foundSettings) {
+			propertyDialog.getShell().setSize(new Point(width, height));
+		}
+		this.mShell = propertyDialog.getShell();
 		propertyDialog.getShell().setText(title);
-		propertyDialog.open();
+		int rtn_val = propertyDialog.open();
+		if (rtn_val == Dialog.OK)
+			saveState();
 
 		mViewer.setSelection(mViewer.getSelection());
 	}
@@ -89,5 +123,23 @@ public class ViewPropertyAction extends Action {
 			selectedObj = structuredSelection.getFirstElement();
 		}
 		return selectedObj;
+	}
+
+	/*
+	 * Save the dialog settings
+	 */
+	private void saveState() {
+		IDialogSettings dset = ConnectivityUIPlugin.getDefault()
+				.getDialogSettings();
+		if (dset != null && this.mShell != null ) {
+			IDialogSettings dSection = dset.getSection(MEMENTO_ROOT);
+			if (dSection == null)
+				dSection = dset.addNewSection(MEMENTO_ROOT);
+			if (dSection != null) {
+				Point size = this.mShell.getSize();
+				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
+				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
+			}
+		}
 	}
 }

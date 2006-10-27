@@ -257,13 +257,31 @@ public class ExportProfilesDialog extends Dialog {
 							"actions.export.nofile")); //$NON-NLS-1$
 			return;
 		}
-
+		
 		for (int i = 0; i < elements.length; i++) {
 			vec.add(elements[i]);
 		}
 		mProfiles = (IConnectionProfile[]) vec
 				.toArray(new IConnectionProfile[0]);
 		mFile = new File(txtFile.getText());
+		
+		/* validate that the file name has a valid directory as parent */
+		String fileParent = mFile.getParent();
+		boolean hasParent = !(fileParent == null || mFile.getParent().length() == 0);
+		boolean pathEndsInFileSeparator = false;
+		boolean hasValidParent = false;
+		if (hasParent) {
+			pathEndsInFileSeparator = fileParent.endsWith("" + File.separatorChar);
+			File parentFile = new File(fileParent);
+			hasValidParent = parentFile.exists();
+		}
+		if (!hasParent || !hasValidParent || !pathEndsInFileSeparator ) {
+			MessageDialog.openError(getShell(), ConnectivityUIPlugin
+					.getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
+					ConnectivityUIPlugin.getDefault().getResourceString(
+							"actions.export.notvalidfile")); //$NON-NLS-1$
+			return;
+		}
 		mNeedEncryption = btnEncryption.getSelection();
 		super.okPressed();
 	}
