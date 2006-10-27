@@ -97,8 +97,9 @@ public abstract class DriverConnectionBase extends VersionProviderConnection {
 	private void internalCreateConnection() {
 		try {
 			DriverInstance driver = getDriverDefinition();
-			ClassLoader driverCL = driver
-					.createClassLoader(getParentClassLoader());
+			ClassLoader parentCL = getParentClassLoader();
+			ClassLoader driverCL = parentCL == null ? driver.getClassLoader()
+					: driver.createClassLoader(parentCL);
 			
 			mConnection = createConnection(driverCL);
 
