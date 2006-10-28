@@ -37,6 +37,7 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting.NotSupportedSettingException;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
+import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -62,17 +63,23 @@ public class SQLDevToolsUtil {
 	 */
 	public static ProcIdentifier getProcIdentifier( SQLObject routine) {
 		Database db = null;
-		if (routine instanceof Routine) {
-			db = ((Routine) routine).getSchema().getDatabase();
-		} else if (routine instanceof Trigger) {
-			db = ((Trigger) routine).getSchema().getDatabase();
-		} else if (routine instanceof Event) {
+		if (routine instanceof Event) {
 			db = ((Event) routine).getDatabase();
-		} else if (routine.eClass().getEStructuralFeature("schema") != null) {
-			//TODO deprecated for backward compatibility
-			db = ((Schema)routine.eGet(routine.eClass().getEStructuralFeature("schema"))).getDatabase();
-		}else{
-			return null;
+		}
+		else
+		{
+			Schema schema = null;
+			if (routine instanceof Routine) {
+				schema = ((Routine) routine).getSchema();
+			} else if (routine instanceof Trigger) {
+				schema = ((Trigger) routine).getSchema();
+			} else if (routine.eClass().getEStructuralFeature("schema") != null) {
+				//TODO deprecated for backward compatibility
+				schema = ((Schema)routine.eGet(routine.eClass().getEStructuralFeature("schema")));
+			}else{
+				return null;
+			}
+			db = ModelUtil.getDatabase(schema);
 		}
 		return getProcIdentifier(getDatabaseIdentifier(db), routine);
 	}
