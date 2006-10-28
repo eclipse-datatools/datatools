@@ -32,7 +32,7 @@ import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
 public class TestDriverImpl implements IDriver
 {
     public static final String TEST_DRIVER_CONN_STATE = 
-        "org.eclipse.birt.data.engine.odaconsumer.TestDriverImpl.connstate";
+        "org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestDriverImpl.connstate";
     public static final String TEST_DRIVER_CONN_STATE_OPEN = "isOpen";
 
     private Object m_appContext;
@@ -91,7 +91,7 @@ public class TestDriverImpl implements IDriver
      */
     public int getMaxConnections() throws OdaException
     {
-        return 0;
+        return 2;
     }
     
     /* (non-Javadoc)
