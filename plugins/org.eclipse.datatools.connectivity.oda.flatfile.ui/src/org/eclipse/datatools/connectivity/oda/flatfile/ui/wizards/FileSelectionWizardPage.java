@@ -456,7 +456,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		data.right = new FormAttachment( 100, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
 
-		selectedColumnsViewer = new TableViewer( composite, SWT.FULL_SELECTION );
+		selectedColumnsViewer = new TableViewer( composite, SWT.FULL_SELECTION
+				| SWT.BORDER );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
 
@@ -1172,18 +1173,18 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 				for ( int n = 0; n < columns.length; n++ )
 				{
-					StringBuffer sb = new StringBuffer();
+					StringBuffer sb = new StringBuffer( );
 					char[] columnChars = columns[n].toCharArray( );
-					for(int i =0; i<columnChars.length; i++)
+					for ( int i = 0; i < columnChars.length; i++ )
 					{
-						if(columnChars[i]=='"')
-							sb.append( "\\\"");
-						else if(columnChars[i]=='\\')
-							sb.append("\\\\");
+						if ( columnChars[i] == '"' )
+							sb.append( "\\\"" );
+						else if ( columnChars[i] == '\\' )
+							sb.append( "\\\\" );
 						else
-							sb.append(columnChars[i]);
+							sb.append( columnChars[i] );
 					}
-					
+
 					buf.append( CommonConstants.DELIMITER_DOUBLEQUOTE
 							+ sb.toString( )
 							+ CommonConstants.DELIMITER_DOUBLEQUOTE );
