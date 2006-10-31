@@ -175,7 +175,7 @@ public class FolderSelectionPageHelper
 
 		// set custom driver specific properties
 		props.setProperty( CommonConstants.CONN_HOME_DIR_PROP,
-				getFolderLocation( ) );
+				getFolderLocation( ).trim( ) );
 		props.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getFlatfileStyle( ) );
 		props.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
