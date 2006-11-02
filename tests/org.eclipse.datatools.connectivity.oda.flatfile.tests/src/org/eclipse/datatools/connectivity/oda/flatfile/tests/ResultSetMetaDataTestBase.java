@@ -79,7 +79,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 	}
 
@@ -185,7 +184,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
@@ -195,7 +193,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 	}
@@ -236,7 +233,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
@@ -246,7 +242,7 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
+
 		}
 
 	}
@@ -285,7 +281,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
@@ -295,7 +290,6 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 	}
