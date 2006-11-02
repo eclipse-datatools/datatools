@@ -77,7 +77,7 @@ public class FlatFileQuery implements IQuery
 	private boolean hasTypeLine = true;
 
 	// The delimiter used
-	private String delimiter = null;
+	private char delimiter = ',';
 
 	/**
 	 * 
@@ -98,7 +98,7 @@ public class FlatFileQuery implements IQuery
 		this.homeDirectory = homeDir;
 		this.connection = host;
 		this.charSet = charSet;
-		this.delimiter = delimiter;
+		this.delimiter = delimiter.charAt( 0 );
 		this.hasColumnNames = inclColumnNames;
 		this.hasTypeLine = inclTypeLine;
 	}
@@ -429,19 +429,24 @@ public class FlatFileQuery implements IQuery
 			throws OdaException
 	{
 		String preparedColumnNames = getPreparedColumnNames( parsedQuerySegments );
+		String tableName = getPreparedTableNames( parsedQuerySegments );
 		if ( !isWildCard( preparedColumnNames ) )
 		{
+			String[] originalColumnNames = null;
 			// if the existance of data column name are specified in the
 			// property
 			if ( this.hasColumnNames )
 			{
-				// split the column names according to the selected value
-				// delimiter
-				// of this connection
-				validateColumnName( getStringArrayFromVector( stripFormatInfoFromQueryColumnNames(getQueryColumnNamesVector( preparedColumnNames ) ) ),
-						discoverActualColumnMetaData( getPreparedTableNames( parsedQuerySegments ),
-								NAME_LITERAL ) );
+				originalColumnNames = discoverActualColumnMetaData( getPreparedTableNames( parsedQuerySegments ),
+						NAME_LITERAL );
 			}
+			else
+			{
+				originalColumnNames = createTempColumnNames( getColumnCount( tableName ) );
+			}
+			
+			validateColumnName( getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( preparedColumnNames ) ) ),
+					originalColumnNames );
 		}
 	}
 
@@ -1148,7 +1153,7 @@ public class FlatFileQuery implements IQuery
 						else
 						{
 							// """
-							if ( i < chars.length - 1 && chars[i + 2] == '"' )
+							if ( i < chars.length - 2 && chars[i + 2] == '"' )
 							{
 								currentString += '"';
 								i += 2;
@@ -1174,7 +1179,7 @@ public class FlatFileQuery implements IQuery
 						}
 					}
 				}
-				else if ( chars[i] == this.delimiter.toCharArray( )[0]
+				else if ( chars[i] == this.delimiter
 						&& !startDoubleQuote )
 				{
 					result.add( currentString );
@@ -1184,7 +1189,7 @@ public class FlatFileQuery implements IQuery
 				else
 				{
 					if ( finishAnElement == true && chars[i] != ' ' )
-						throw new OdaException( Messages.getString( "Invalid" ) );
+						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
 					currentString += chars[i];
 				}
 			}
@@ -1193,25 +1198,33 @@ public class FlatFileQuery implements IQuery
 				if ( chars[i] == '"' )
 				{
 					if ( !startDoubleQuote )
-						throw new OdaException( Messages.getString( "Invalid" ) );
-
-					if ( i == chars.length - 1 )
+						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+					else
+					{
 						result.add( currentString );
+						startDoubleQuote = !startDoubleQuote;
+						finishAnElement = true;
+					}
 				}
-				else if ( chars[i] == this.delimiter.toCharArray( )[0] )
+				else if ( chars[i] == this.delimiter )
 				{
 					result.add( currentString );
 					result.add( "" );
+					finishAnElement = false;
 				}
 				else
 				{
 					currentString += chars[i];
 					result.add( currentString );
+					finishAnElement = false;
 				}
-				finishAnElement = false;
 
 			}
 		}
+		
+		if(startDoubleQuote && !finishAnElement)
+			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+		
 		return result;
 	}
 
