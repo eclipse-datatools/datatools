@@ -452,7 +452,6 @@ public abstract class ResultSetTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 	}
 	

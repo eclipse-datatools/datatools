@@ -101,7 +101,6 @@ public abstract class QueryTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 	}
@@ -116,11 +115,10 @@ public abstract class QueryTestBase extends TestCase
 		try
 		{
 			statement.prepare( "adfasf" );
-
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
@@ -128,10 +126,10 @@ public abstract class QueryTestBase extends TestCase
 			statement.prepare( "select Int0_col from table1"
 					+ getSuffix( ) + getExtension( ) + ",table2" + getSuffix( )
 					+ getExtension( ) );
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		// Try to parse a valid input command
@@ -150,7 +148,6 @@ public abstract class QueryTestBase extends TestCase
 		{
 			statement.prepare( " select * from table2"
 					+ getSuffix( ) + getExtension( ) );
-
 		}
 		catch ( OdaException e )
 		{
@@ -162,30 +159,30 @@ public abstract class QueryTestBase extends TestCase
 		{
 			statement.prepare( "select INT0_COL ,C from table1"
 					+ getSuffix( ) + getExtension( ) );
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		// Try to parse an invalid input command
 		try
 		{
 			statement.prepare( "select INT0_COL from table12" );
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
 		{
 			statement.prepare( "select \"\"Column_1\"\"\" from table8"
 					+ getSuffix( ) + getExtension( ) );
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
 		try
@@ -195,6 +192,7 @@ public abstract class QueryTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
+			e.printStackTrace( );
 			assertTrue( false );
 		}
 		
@@ -206,6 +204,19 @@ public abstract class QueryTestBase extends TestCase
 		catch ( OdaException e )
 		{
 			assertTrue( false );
+		}
+		
+		// Try to parse an invalid flatfile with one double quote in flatfile column name
+		try
+		{
+			statement.prepare( "select * from table9"
+					+ getSuffix( ) + getExtension( ) );
+			
+			fail("Should not arrive here.");
+		}
+		catch ( OdaException e )
+		{
+			
 		}
 
 		// re-setUp the connection properties where the column names are
@@ -224,13 +235,13 @@ public abstract class QueryTestBase extends TestCase
 		{
 			statement_noColumnNames.prepare( " select INT0_col ,  int1_col from table7"
 					+ getSuffix( ) + getExtension( ) );
+			fail("Should not arrive here.");
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
 		}
 
-		// Try to parse an invalid query text
+		//Try to parse an valid query
 		try
 		{
 			statement_noColumnNames.prepare( " select COLUMN_1 from table7"
@@ -238,7 +249,7 @@ public abstract class QueryTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
+			assert( false );
 		}
 
 		// Try to parse a valid query text
@@ -251,7 +262,6 @@ public abstract class QueryTestBase extends TestCase
 		{
 			assertTrue( false );
 		}
-
 	}
 
 	/**
@@ -281,6 +291,7 @@ public abstract class QueryTestBase extends TestCase
 	/**
 	 * 
 	 * 
+	 * 
 	 */
 	public void testCSVBufferReader( )
 	{
@@ -302,7 +313,7 @@ public abstract class QueryTestBase extends TestCase
 		}
 		catch ( OdaException e )
 		{
-			assertTrue( true );
+			fail( "Should not arrive here.");
 		}
 	}
 
