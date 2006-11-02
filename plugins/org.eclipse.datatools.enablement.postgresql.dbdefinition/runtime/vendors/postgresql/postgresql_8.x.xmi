@@ -96,7 +96,7 @@
 	<!-- bpchar data type -->
 	<predefinedDataTypeDefinitions xmi:id="BPCHAR"
 		lengthSupported="true" keyConstraintSupported="true" defaultLength="32"
-		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+		maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="1"
 		javaClassName="java.lang.String">
 		<defaultValueTypes>NULL</defaultValueTypes>
 		<name>BPCHAR</name>
