@@ -11,11 +11,14 @@ query_IO_EXCEPTION=Beim Lesen der Datei ist eine E/A-Ausnahmebedingung aufgetret
 query_SOURCE_DATA_ERROR=Doppelte Spaltennamen in Quellendaten gefunden.
 query_COLUMN_NAME_ERROR=Fehler bei Spaltennamen
 query_INVALID_FLAT_FILE=Die Flatfile-Datenquelle ist ungültig.
+query_text_error=Formatfehler in Abfragetext
 
 resultSet_COLUMN_NOT_FOUND=Spalte nicht gefunden\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=Der Cursor wurde noch nicht initialisiert.
 
 resultSetMetaData_INVALID_COLUMN_INDEX=Ungültiger Spaltenindex\:
+
+savedSelectedColumnsInfoString_INVALID=Ungültige gespeicherte Spalteninformationen
 
 dataTypes_TYPE_NAME_INVALID=Ungültiger Typname\:
 
@@ -24,6 +27,12 @@ dataSetMetaData_PRODUCT_NAME=Datenquellenprovider für DTP-ODA-Flachdatei
 common_ARGUMENT_CANNOT_BE_NULL=Argumente dürfen nicht Null sein.
 common_CONNECTION_HAS_NOT_OPEN=Die Verbindung ist nicht geöffnet.
 common_CANNOT_FIND_COLUMN=Keine Spalten gefunden.
+common_NULL_QUERY_TEXT = Abfragetext ist gleich Null
+
+data_read_error=Daten können nicht korrekt gelesen werden. Vermutlich wurden die Einstellungen für die Datenquelle geändert.
+
+Invalid_column_name = Ungültiger Spaltenname
+
 query_streamClosed=Datenstrom geschlossen
 query_invalidTableName=Ungültiger Tabellenname\:
 

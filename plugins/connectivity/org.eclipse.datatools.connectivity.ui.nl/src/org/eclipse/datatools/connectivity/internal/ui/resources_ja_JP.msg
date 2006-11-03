@@ -101,3 +101,9 @@ CPRenameChange.name = {0} 接続プロファイルの名前の変更
 CPRenameProcessor.name = DTP 接続の名前の変更プロセッサ
 CPRenameChange.title.error = 接続プロファイルの名前を変更できませんでした。
 
+PropertyDescriptor.error.title = ドライバ定義のプロパティ記述子の処理エラー
+PasswordTextPropertyDescriptor.property.label = パスワード
+DriverClassBrowsePropertyDescriptor.property.label = ドライバクラス
+DriverClassBrowsePropertyDescriptor.jardialog.title = jar リストの使用可能なクラス
+DriverClassBrowsePropertyDescriptor.jardialog.msg = 使用できるいずれか 1 つのクラスを選択してください。
+

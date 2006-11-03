@@ -11,11 +11,14 @@ query_IO_EXCEPTION=Se ha producido una excepción de E/S al leer el archivo.
 query_SOURCE_DATA_ERROR=Se han encontrado nombres de columna duplicados en los datos fuente.
 query_COLUMN_NAME_ERROR=Error de nombre de columna
 query_INVALID_FLAT_FILE=La fuente de datos de archivo sin formato no es válida.
+query_text_error=Error de formato de texto de consulta
 
 resultSet_COLUMN_NOT_FOUND=No se ha encontrado la columna\:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=El cursor todavía no se ha inicializado.
 
 resultSetMetaData_INVALID_COLUMN_INDEX=Índice de columna no válido\:
+
+savedSelectedColumnsInfoString_INVALID=Información de columnas guardada no válida
 
 dataTypes_TYPE_NAME_INVALID=Nombre de tipo no válido\:
 
@@ -24,6 +27,12 @@ dataSetMetaData_PRODUCT_NAME=Proveedor de origen de datos de archivo plano de OD
 common_ARGUMENT_CANNOT_BE_NULL=Los argumentos no pueden ser nulos.
 common_CONNECTION_HAS_NOT_OPEN=La conexión no está abierta.
 common_CANNOT_FIND_COLUMN=No se puede encontrar columnas.
+common_NULL_QUERY_TEXT = El texto de consulta es nulo
+
+data_read_error=No se pueden leer los datos correctamente, es posible que los ajustes de fuente de datos se hayan modificado
+
+Invalid_column_name = Nombre de columna no válido
+
 query_streamClosed=Corriente cerrada
 query_invalidTableName=Nombre de tabla no válido\:
 

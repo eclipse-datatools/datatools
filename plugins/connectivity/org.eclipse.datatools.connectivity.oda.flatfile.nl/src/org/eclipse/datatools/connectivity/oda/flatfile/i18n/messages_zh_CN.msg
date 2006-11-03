@@ -11,11 +11,14 @@ query_IO_EXCEPTION=读取文件时发生了 I/O 异常。
 query_SOURCE_DATA_ERROR=在源数据中找到重复的列名。
 query_COLUMN_NAME_ERROR=列名错误
 query_INVALID_FLAT_FILE=平面文件数据源无效。
+query_text_error=查询文本格式错误
 
 resultSet_COLUMN_NOT_FOUND=找不到列：
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=尚未初始化游标。
 
 resultSetMetaData_INVALID_COLUMN_INDEX=无效列索引：
+
+savedSelectedColumnsInfoString_INVALID=无法的保存列信息
 
 dataTypes_TYPE_NAME_INVALID=无效类型名称：
 
@@ -24,6 +27,12 @@ dataSetMetaData_PRODUCT_NAME=DTP ODA 平面文件数据源提供程序
 common_ARGUMENT_CANNOT_BE_NULL=参数不能为空。
 common_CONNECTION_HAS_NOT_OPEN=连接未打开。
 common_CANNOT_FIND_COLUMN=找不到任何列。
+common_NULL_QUERY_TEXT = 查询文本为空
+
+data_read_error=无法正确读取数据，数据源设置可能已更改
+
+Invalid_column_name = 无效的列名称
+
 query_streamClosed=流已关闭
 query_invalidTableName=表名无效：
 

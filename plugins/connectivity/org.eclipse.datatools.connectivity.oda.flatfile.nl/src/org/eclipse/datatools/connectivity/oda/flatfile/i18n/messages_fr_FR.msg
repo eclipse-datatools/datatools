@@ -11,11 +11,14 @@ query_IO_EXCEPTION=Une exception E-S s'est produite lors de la lecture du fichie
 query_SOURCE_DATA_ERROR=Des noms de colonnes en double ont été trouvées dans les données source.
 query_COLUMN_NAME_ERROR=Erreur de nom de colonne
 query_INVALID_FLAT_FILE=La source de données Flatfile est incorrecte.
+query_text_error=Erreur de format du texte de la requête
 
 resultSet_COLUMN_NOT_FOUND=Colonne introuvable \:
 resultSet_CURSOR_HAS_NOT_BEEN_INITIALIZED=Le curseur n'a pas encore été initialisé.
 
 resultSetMetaData_INVALID_COLUMN_INDEX=Index de colonne incorrecte \:
+
+savedSelectedColumnsInfoString_INVALID=Informations de colonnes enregistrées incorrectes
 
 dataTypes_TYPE_NAME_INVALID=Nom de type incorrect \:
 
@@ -24,6 +27,12 @@ dataSetMetaData_PRODUCT_NAME=Fournisseur de source de données de fichier à plat 
 common_ARGUMENT_CANNOT_BE_NULL=Les arguments ne peuvent pas avoir la valeur null.
 common_CONNECTION_HAS_NOT_OPEN=La connexion n'est pas établie.
 common_CANNOT_FIND_COLUMN=Colonnes introuvables.
+common_NULL_QUERY_TEXT = La valeur du texte de la requête est nulle
+
+data_read_error=Impossible de lire les données correctement, les paramètres de la source de données ont probablement été modifiés
+
+Invalid_column_name = Nom de colonne incorrect
+
 query_streamClosed=Flux fermé
 query_invalidTableName=Nom de table incorrect \:
 

@@ -33,3 +33,5 @@ error.savedriversxml=ƒhƒ‰ƒCƒo[EƒCƒ“ƒXƒ^ƒ“ƒXEƒf[ƒ^‚Ì•ÛŠÇ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚
 trace.error.propertiesPersistenceHook=propertiesPersistenceHook ‚ğƒ[ƒh‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BƒfƒtƒHƒ‹ƒg‚ğg—p‚µ‚Ü‚· (ƒvƒƒtƒ@ƒCƒ‹Eƒ^ƒCƒv\={0}, Šg’£q\={1})
 trace.error.propertiesPersistenceHookSaveError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½; ‚·‚×‚Ä‚ÌƒvƒƒpƒeƒB[‚ğ•Û‚µ‚Ü‚· (ƒvƒƒtƒ@ƒCƒ‹\={0}AŠg’£q\={1})
 trace.error.propertiesPersistenceHookLoadError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½; ˆêƒvƒƒpƒeƒB[‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ (ƒvƒƒtƒ@ƒCƒ‹\={0}AŠg’£q\={1})
+
+DriverUtil.taskName = {0} ‚ÅƒNƒ‰ƒX‚ğˆ—’†‚Å‚·B

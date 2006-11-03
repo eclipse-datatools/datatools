@@ -33,3 +33,5 @@ error.savedriversxml=Erreur lors de la sauvegarde des données de l'instance du p
 trace.error.propertiesPersistenceHook=Impossible de charger propertiesPersistenceHook, utilisation des propriétés par défaut (type de profil\={0}, extension\={1})
 trace.error.propertiesPersistenceHookSaveError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; conservation de toutes les propriétés (profil\={0}, extension\={1})
 trace.error.propertiesPersistenceHookLoadError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; propriétés transitoires non définies (profil\={0}, extension\={1})
+
+DriverUtil.taskName = Traitement des classes dans {0}

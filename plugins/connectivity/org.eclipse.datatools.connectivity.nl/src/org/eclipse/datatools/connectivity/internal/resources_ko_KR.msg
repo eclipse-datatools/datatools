@@ -33,3 +33,5 @@ error.savedriversxml=드라이버 인스턴스 데이터 저장 중에 오류가 발생했습니다.
 trace.error.propertiesPersistenceHook=기본값(프로파일 유형\={0}, 확장\={1})을 사용하는 propertiesPersistenceHook를 로드할 수 없습니다.
 trace.error.propertiesPersistenceHookSaveError=특성 지속 후크 호출 중에 오류 발생; 모든 특성 지속(프로파일\={0}, 확장\={1})
 trace.error.propertiesPersistenceHookLoadError=특성 지속 후크 호출 중에 오류 발생; 임시 특성이 설정되지 않음(프로파일\={0}, 확장\={1})
+
+DriverUtil.taskName = {0}의 클래스 처리 중

@@ -100,3 +100,10 @@ CPCreateProcessor.name = Prozessor zum Erstellen der DTP-Verbindung
 CPRenameChange.name = Verbindungsprofil {0} umbenennen
 CPRenameProcessor.name = Prozessor zum Umbenennen der DTP-Verbindung
 CPRenameChange.title.error = Das Umbenennen des Verbindungsprofils ist fehlgeschlagen.
+
+PropertyDescriptor.error.title = Fehler beim Verarbeiten des Eigenschaften-Deskriptors für die Treiberdefinition
+PasswordTextPropertyDescriptor.property.label = Kennwort
+DriverClassBrowsePropertyDescriptor.property.label = Treiberklasse
+DriverClassBrowsePropertyDescriptor.jardialog.title = In der JAR-Liste verfügbare Klassen
+DriverClassBrowsePropertyDescriptor.jardialog.msg = Wählen Sie eine der verfügbaren Klassen aus.
+

@@ -33,3 +33,5 @@ error.savedriversxml=Error al guardar los datos de instancia del controlador.
 trace.error.propertiesPersistenceHook=No se ha podido cargar propertiesPersistenceHook, se utiliza el valor predeterminado (tipo de perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persistente de propiedades; se persisten todas las propiedades (perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})
+
+DriverUtil.taskName = Procesando clases en {0}

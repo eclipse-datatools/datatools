@@ -33,3 +33,4 @@ error.savedriversxml=保存驱动程序实例数据时出错。
 trace.error.propertiesPersistenceHook=无法装入 propertiesPersistenceHook，使用缺省值（概要文件类型为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookSaveError=调用属性持久挂钩时出错；保存所有属性（概要文件为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookLoadError=调用属性持久挂钩时出错；未设置瞬态属性（概要文件为 {0}，扩展名为 {1}）
+DriverUtil.taskName = 正在处理 {0} 中的类

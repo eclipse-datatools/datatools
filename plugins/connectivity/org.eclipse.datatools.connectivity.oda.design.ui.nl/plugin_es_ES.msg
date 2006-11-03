@@ -9,3 +9,4 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 #
 plugin.name=Plug-in Infraestructura de UI de diseñador ODA de DTP
 oda.parent.category.name=Orígenes de datos de ODA
+oda.preference.page.name=Acceso a datos abiertos
