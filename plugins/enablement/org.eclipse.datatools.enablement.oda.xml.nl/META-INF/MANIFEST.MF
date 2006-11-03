@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Nl Fragment
+Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.nl
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: org.eclipse.datatools.enablement.oda.xml;bundle-version="[1.0.0,2.0.0)"
+Bundle-Localization: plugin
