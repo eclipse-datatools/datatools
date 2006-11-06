@@ -55,10 +55,12 @@ public class ProfileUtil
 
         for (int i = 0; i < allProfiles.length; i++)
         {
-            if(isDatabaseProfile(allProfiles[i]))
-            {
-                profileList.add(allProfiles[i]);
-            }
+            // Temporaryly add all profile
+            profileList.add(allProfiles[i]);
+//            if(isDatabaseProfile(allProfiles[i]))
+//            {
+//                profileList.add(allProfiles[i]);
+//            }
         }
 
         IConnectionProfile[] profiles = (IConnectionProfile[]) profileList.toArray(new IConnectionProfile[profileList
