@@ -11,7 +11,7 @@
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.ui.IContentExtension;
 import org.eclipse.datatools.connectivity.ui.ManagedContentExtensionBase;

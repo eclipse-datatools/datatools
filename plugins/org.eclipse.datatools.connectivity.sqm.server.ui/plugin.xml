@@ -25,7 +25,7 @@
                      <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
 				     <test
 						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
-						value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+						value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
                   </and>
             </triggerPoints>
             <possibleChildren>

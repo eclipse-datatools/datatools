@@ -83,7 +83,7 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <connectionFactoryAdapter
             class="org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory"
-            id="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"
+            id="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"
             name="SQL Model Connection"
             factory="java.sql.Connection"/>
       <profileExtension

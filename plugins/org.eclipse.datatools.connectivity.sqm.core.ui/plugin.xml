@@ -293,7 +293,7 @@
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
-            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+            value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
@@ -302,7 +302,7 @@
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
-            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+            value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
@@ -311,7 +311,7 @@
           objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
-            value="org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo"/>
+            value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"

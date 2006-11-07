@@ -17,7 +17,7 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Connectio
 /**
  * <code>org.eclipse.datatools.connectivity.IConnectionFactory</code> for
  * creating
- * <code>org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo</code>
+ * <code>org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo</code>
  * connections.
  * 
  * To use this class in a custom DB connection profile, you must make sure your
