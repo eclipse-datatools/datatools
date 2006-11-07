@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.drivers;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -29,7 +30,7 @@ public class DriverInstance {
 	private TemplateDescriptor mTemplate;
 	private IPropertySet mInstance;
 	private Properties mInstanceProps;
-	private ClassLoader mClassLoader;
+	private SoftReference mClassLoader;
 
 	/**
 	 * Basic constructor. Picks up template details from the property set.
@@ -171,10 +172,10 @@ public class DriverInstance {
 	 * @throws Exception
 	 */
 	public ClassLoader getClassLoader() throws Exception {
-		if (mClassLoader == null) {
-			mClassLoader = createClassLoader(null);
+		if (mClassLoader == null || mClassLoader.get() == null ) {
+			mClassLoader = new SoftReference(createClassLoader(null));
 		}
-		return mClassLoader;
+		return (ClassLoader) mClassLoader.get();
 	}
 
 	/**
@@ -225,5 +226,5 @@ public class DriverInstance {
 	public int hashCode() {
 		return getId().hashCode();
 	}
-
+	
 }

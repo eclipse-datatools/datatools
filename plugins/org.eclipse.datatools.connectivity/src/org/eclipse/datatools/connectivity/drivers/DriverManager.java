@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -36,7 +37,9 @@ import com.ibm.icu.util.StringTokenizer;
 public class DriverManager {
 
 	private static DriverManager sInstance;
-
+	
+	private HashMap mDriverInstanceMap;
+	
 	/**
 	 * Retrieve an instance of the DriverManager
 	 * @return DriverManager
@@ -48,8 +51,43 @@ public class DriverManager {
 		return sInstance;
 	}
 
+	private synchronized void loadAllInstances() {
+		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
+		try {
+			IPropertySet[] psets = XMLFileManager.loadPropertySets();
+			if (psets.length > 0) {
+				for (int i = 0; i < psets.length; i++) {
+					IPropertySet pset = psets[i];
+					DriverInstance ndi = new DriverInstance(pset);
+					mDriverInstanceMap.put(ndi.getId(), ndi);
+				}
+
+				return;
+			}
+		}
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
+		}
+	}
+	
 	private DriverManager() {
 		resetDefaultInstances();
+	}
+
+	private DriverInstance getDriverInstanceFromMapByName( String name ) {
+		if (mDriverInstanceMap.containsKey(name))
+			return (DriverInstance) mDriverInstanceMap.get(name);
+		return null;
+	}
+	
+	private DriverInstance getDriverInstanceFromMapByID( String id ) {
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			if (di.getId().equals(id))
+				return di;
+		}
+		return null;
 	}
 
 	/**
@@ -58,22 +96,26 @@ public class DriverManager {
 	 * @return DriverInstance
 	 */
 	public DriverInstance getDriverInstanceByID(String id) {
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		try {
-			IPropertySet[] psets = XMLFileManager.loadPropertySets();
-			if (psets.length > 0) {
-				for (int i = 0; i < psets.length; i++) {
-					IPropertySet pset = psets[i];
-					if (pset.getID().equals(id)) {
-						return new DriverInstance(pset);
+		DriverInstance di = getDriverInstanceFromMapByID(id);
+		if (di == null) {
+			XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
+			try {
+				IPropertySet[] psets = XMLFileManager.loadPropertySets();
+				if (psets.length > 0) {
+					for (int i = 0; i < psets.length; i++) {
+						IPropertySet pset = psets[i];
+						if (pset.getID().equals(id)) {
+							di = new DriverInstance(pset);
+							mDriverInstanceMap.put(di.getId(), di);
+						}
 					}
 				}
 			}
+			catch (CoreException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
 		}
-		catch (CoreException e) {
-			ConnectivityPlugin.getDefault().log(e);
-		}
-		return null;
+		return di;
 	}
 
 	/**
@@ -82,22 +124,26 @@ public class DriverManager {
 	 * @return Driver Instance
 	 */
 	public DriverInstance getDriverInstanceByName(String name) {
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		try {
-			IPropertySet[] psets = XMLFileManager.loadPropertySets();
-			if (psets.length > 0) {
-				for (int i = 0; i < psets.length; i++) {
-					IPropertySet pset = psets[i];
-					if (pset.getName().equals(name)) {
-						return new DriverInstance(pset);
+		DriverInstance di = getDriverInstanceFromMapByName(name);
+		if (di == null) {
+			XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
+			try {
+				IPropertySet[] psets = XMLFileManager.loadPropertySets();
+				if (psets.length > 0) {
+					for (int i = 0; i < psets.length; i++) {
+						IPropertySet pset = psets[i];
+						if (pset.getName().equals(name)) {
+							di = new DriverInstance(pset);
+							mDriverInstanceMap.put(di.getId(), di);
+						}
 					}
 				}
 			}
+			catch (CoreException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
 		}
-		catch (CoreException e) {
-			ConnectivityPlugin.getDefault().log(e);
-		}
-		return null;
+		return di;
 	}
 
 	/**
@@ -105,59 +151,44 @@ public class DriverManager {
 	 * @return String
 	 */
 	public String getFullJarList() {
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		try {
-			IPropertySet[] psets = XMLFileManager.loadPropertySets();
-			if (psets.length > 0) {
-				String fullList = ""; //$NON-NLS-1$
-				for (int i = 0; i < psets.length; i++) {
-					IPropertySet pset = psets[i];
-					if (pset.getBaseProperties() != null) {
-						if (pset.getBaseProperties().getProperty(
-								IDriverMgmtConstants.PROP_DEFN_JARLIST) != null) {
-							String jarlist = pset
-									.getBaseProperties()
-									.getProperty(
-											IDriverMgmtConstants.PROP_DEFN_JARLIST)
-									.trim();
-							fullList = fullList + jarlist
-									+ IDriverMgmtConstants.PATH_DELIMITER;
-						}
-					}
-				}
-				if (fullList
-						.substring(fullList.length() - 1, fullList.length())
-						.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
-					fullList = fullList.substring(0, fullList.length() - 1);
-				}
-
-				String[] paths = parseString(fullList,
-						IDriverMgmtConstants.PATH_DELIMITER);
-				ArrayList list = new ArrayList();
-				for (int i = 0; i < paths.length; i++) {
-					File testFile = new File(paths[i]);
-					if (testFile.exists()) {
-						if (!list.contains(paths[i]))
-							list.add(paths[i]);
-					}
-				}
-
-				String newList = ""; //$NON-NLS-1$
-				Iterator iter = list.iterator();
-				while (iter.hasNext()) {
-					newList = newList + iter.next()
-							+ IDriverMgmtConstants.PATH_DELIMITER;
-				}
-				if (newList.substring(newList.length() - 1, newList.length())
-						.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
-					newList = newList.substring(0, newList.length() - 1);
-				}
-
-				return newList;
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		String fullList = ""; //$NON-NLS-1$
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			if (di.getJarList() != null) {
+				String jarlist = di.getJarList().trim();
+				fullList = fullList + jarlist
+					+ IDriverMgmtConstants.PATH_DELIMITER;
 			}
-		}
-		catch (CoreException e) {
-			ConnectivityPlugin.getDefault().log(e);
+			if (fullList
+					.substring(fullList.length() - 1, fullList.length())
+					.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
+				fullList = fullList.substring(0, fullList.length() - 1);
+			}
+
+			String[] paths = parseString(fullList,
+					IDriverMgmtConstants.PATH_DELIMITER);
+			ArrayList list = new ArrayList();
+			for (int i = 0; i < paths.length; i++) {
+				File testFile = new File(paths[i]);
+				if (testFile.exists()) {
+					if (!list.contains(paths[i]))
+						list.add(paths[i]);
+				}
+			}
+
+			String newList = ""; //$NON-NLS-1$
+			Iterator iter2 = list.iterator();
+			while (iter2.hasNext()) {
+				newList = newList + iter2.next()
+						+ IDriverMgmtConstants.PATH_DELIMITER;
+			}
+			if (newList.substring(newList.length() - 1, newList.length())
+					.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
+				newList = newList.substring(0, newList.length() - 1);
+			}
+
+			return newList;
 		}
 		return null;
 	}
@@ -183,31 +214,30 @@ public class DriverManager {
 	 */
 	public DriverInstance[] getValidDriverInstances() {
 		DriverInstance[] array = new DriverInstance[0];
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		try {
-			IPropertySet[] psets = XMLFileManager.loadPropertySets();
-			if (psets.length > 0) {
-				ArrayList list = new ArrayList();
-				for (int i = 0; i < psets.length; i++) {
-					IPropertySet pset = psets[i];
-					DriverInstance ndi = new DriverInstance(pset);
-					DriverValidator validator = new DriverValidator(ndi);
-					if (validator.isValid())
-						list.add(ndi);
-				}
-
-				array = new DriverInstance[list.size()];
-				for (int i = 0; i < list.size(); i++) {
-					array[i] = (DriverInstance) list.get(i);
-				}
-
-				return array;
-			}
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		ArrayList list = new ArrayList();
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			DriverValidator validator = new DriverValidator(di);
+			if (validator.isValid())
+				list.add(di);
 		}
-		catch (CoreException e) {
-			ConnectivityPlugin.getDefault().log(e);
+		array = new DriverInstance[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			array[i] = (DriverInstance) list.get(i);
 		}
+
 		return array;
+	}
+	
+	private IPropertySet[] getPropertySetsFromMap() {
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		ArrayList list = new ArrayList();
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			list.add(di.getPropertySet());
+		}
+		return (IPropertySet[]) list.toArray(new IPropertySet[list.size()]);
 	}
 
 	/**
@@ -277,16 +307,15 @@ public class DriverManager {
 	 * @param pset IPropertySet
 	 */
 	private void addDriverInstance(IPropertySet pset) {
+		DriverInstance di = new DriverInstance(pset);
+		mDriverInstanceMap.put(di.getId(), di);
+		IPropertySet[] psets = getPropertySetsFromMap();
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
-			IPropertySet[] psets = XMLFileManager.loadPropertySets();
-			IPropertySet[] newPsets = new IPropertySet[psets.length + 1];
-			for (int i = 0; i < psets.length; i++) {
-				newPsets[i] = psets[i];
-			}
-			newPsets[psets.length] = pset;
-
-			XMLFileManager.saveNamedPropertySet(newPsets);
+			XMLFileManager.saveNamedPropertySet(psets);
+			
+			mDriverInstanceMap = new HashMap();
+			loadAllInstances();
 		}
 		catch (CoreException e) {
 			ConnectivityPlugin.getDefault().log(e);
@@ -324,14 +353,14 @@ public class DriverManager {
 		// prep the file for reading
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 
+		// load the hash map from the file to in memory
+		if (mDriverInstanceMap == null) {
+			mDriverInstanceMap = new HashMap();
+			loadAllInstances();
+		}
+
 		// Now grab all the driver instances from the file
-		IPropertySet[] psets = new IPropertySet[0];
-		try {
-			psets = XMLFileManager.loadPropertySets();
-		}
-		catch (CoreException e) {
-			ConnectivityPlugin.getDefault().log(e);
-		}
+		IPropertySet[] psets = getPropertySetsFromMap();
 
 		// now process the templates and see if we need to
 		// create any instances
@@ -359,22 +388,7 @@ public class DriverManager {
 			// exist, create one and add it to the list.
 			if (type.getCreateDefaultFlag() && !alreadyExists) {
 				IPropertySet newPset = createDefaultInstance(type);
-				psets_list.add(newPset);
-			}
-		}
-
-		// Now update the file
-		if (!psets_list.isEmpty()) {
-			Object[] objs = psets_list.toArray();
-			IPropertySet[] propsets = new IPropertySet[objs.length];
-			for (int i = 0; i < objs.length; i++) {
-				propsets[i] = (IPropertySet) objs[i];
-			}
-			try {
-				XMLFileManager.saveNamedPropertySet(propsets);
-			}
-			catch (CoreException e) {
-				ConnectivityPlugin.getDefault().log(e);
+				addDriverInstance(newPset);
 			}
 		}
 	}
@@ -552,5 +566,5 @@ public class DriverManager {
 
 		return jarList;
 	}
-
+	
 }
