@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -58,7 +59,13 @@ public class DriverUtil {
 	 */
 	public static String[] getDriverClassesFromJar ( File jarFile, IProgressMonitor monitor ) throws Exception {
 		ArrayList list = new ArrayList();
-		JarFile jar = new JarFile(jarFile);
+		JarFile jar = null;
+		try {
+			jar = new JarFile(jarFile);
+		} catch (ZipException e) {
+			// must not be a zip file - return empty list
+			return new String[0];
+		}
 		ZipFile zip = new ZipFile(jarFile);
 		String taskDescription = 
 			ConnectivityPlugin.getDefault().getResourceString("DriverUtil.taskName",  //$NON-NLS-1$
@@ -121,6 +128,11 @@ public class DriverUtil {
 				//ignore
 			} catch (NoClassDefFoundError err) {
 				//ignore
+			} catch (UnsupportedClassVersionError err) {
+				String reason = err.toString();
+				Exception ce = new Exception(reason);
+				ce.setStackTrace(err.getStackTrace());
+				throw ce;
 			}
 		} catch (Exception e) {
 			String reason = e.toString();

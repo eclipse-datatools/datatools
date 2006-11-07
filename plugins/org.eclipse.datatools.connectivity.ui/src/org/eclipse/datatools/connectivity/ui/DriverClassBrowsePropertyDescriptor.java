@@ -11,15 +11,20 @@
 package org.eclipse.datatools.connectivity.ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.jar.JarFile;
+import java.util.zip.ZipException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor;
 import org.eclipse.datatools.connectivity.internal.DriverUtil;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.CellEditor;
@@ -103,9 +108,24 @@ public class DriverClassBrowsePropertyDescriptor extends TextPropertyDescriptor 
 		 */
 		protected Object openDialogBox(Control cellEditorWindow) {
 			final ArrayList classes = new ArrayList();
-			for (int i = 0; i < mJarList.length; i++) {
+			for (int i = 0; i < DriverClassBrowsePropertyDescriptor.this.mJarList.length; i++) {
 				String filepath = mJarList[i];
 				final File file = new File(filepath);
+				try {
+					new JarFile(file);
+				} catch (ZipException e) {
+					// must not be a zip file - skip it
+					continue;
+				} catch (IOException e) {
+					String msg = e.getLocalizedMessage();
+					if (e.getLocalizedMessage() == null || e.getLocalizedMessage().trim().length() == 0) {
+						msg = ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.msg");//$NON-NLS-1$
+					}
+					ExceptionHandler.showException(cellEditorWindow.getShell(), 
+							ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+							msg, e);
+					return null;
+				}
 				ProgressMonitorDialog pmd = new ProgressMonitorDialog(cellEditorWindow.getShell());
 				try {
 					pmd.run(true, false, new IRunnableWithProgress() {
@@ -115,32 +135,58 @@ public class DriverClassBrowsePropertyDescriptor extends TextPropertyDescriptor 
 								String[] classStr = DriverUtil.getDriverClassesFromJar(file, monitor);
 								classes.addAll(Arrays.asList(classStr));
 							} catch (Exception e1) {
-								e1.printStackTrace();
+								InvocationTargetException ce = new InvocationTargetException(e1);
+								throw ce;
 							}
 						}
 					});
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
+					String msg = e.getLocalizedMessage();
+					if (e.getLocalizedMessage() == null || e.getLocalizedMessage().trim().length() == 0) {
+						msg = ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.msg");//$NON-NLS-1$
+					}
+					ExceptionHandler.showException(cellEditorWindow.getShell(), 
+							ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+							msg, e);
+					return null;
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					String msg = e.getLocalizedMessage();
+					if (e.getLocalizedMessage() == null || e.getLocalizedMessage().trim().length() == 0) {
+						msg = ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.msg");//$NON-NLS-1$
+					}
+					ExceptionHandler.showException(cellEditorWindow.getShell(), 
+							ConnectivityUIPlugin.getDefault().getResourceString("PropertyDescriptor.error.title"), //$NON-NLS-1$
+							msg, e);
+					return null;
 				}
 			}
-			ListDialog listDialog = new ListDialog(cellEditorWindow.getShell());
-			listDialog.setTitle(
-					ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.jardialog.title")); //$NON-NLS-1$
-			listDialog.setMessage(
-					ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.jardialog.msg")); //$NON-NLS-1$
-			listDialog.setHelpAvailable(false);
-			listDialog.setContentProvider(new ListContentProvider(classes));
-			listDialog.setLabelProvider(new ListLabelProvider());
-			listDialog.setInput(classes);
-			listDialog.setInitialSelections(new Object[] {getValue()});
-			int returnCode = listDialog.open();
-			if (returnCode == Window.OK) {
-				Object[] results = listDialog.getResult();
-				if (results.length > 0 && results[0] instanceof String) {
-					return results[0];
+			if (classes.size() > 0) {
+				ListDialog listDialog = new ListDialog(cellEditorWindow.getShell());
+				listDialog.setTitle(
+						ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.jardialog.title")); //$NON-NLS-1$
+				listDialog.setMessage(
+						ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.jardialog.msg")); //$NON-NLS-1$
+				listDialog.setHelpAvailable(false);
+				listDialog.setContentProvider(new ListContentProvider(classes));
+				listDialog.setLabelProvider(new ListLabelProvider());
+				listDialog.setInput(classes);
+				listDialog.setInitialSelections(new Object[] {getValue()});
+				int returnCode = listDialog.open();
+				if (returnCode == Window.OK) {
+					Object[] results = listDialog.getResult();
+					if (results.length > 0 && results[0] instanceof String) {
+						return results[0];
+					}
 				}
+			}
+			else {
+				String title = 
+					ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.title");//$NON-NLS-1$
+				String message = 
+					ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.msg");//$NON-NLS-1$
+				MessageDialog.openInformation(cellEditorWindow.getShell(),
+						title, 
+						message);
 			}
 			return null;
 		}

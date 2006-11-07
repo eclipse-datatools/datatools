@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
@@ -232,7 +233,10 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 						if (dlg.getEditImmediately()) {
 							EditDriverDialog editdlg = new EditDriverDialog(
 									getShell(), instance);
-							editdlg.open();
+							int rtn_code = editdlg.open();
+							if (rtn_code != EditDriverDialog.OK) {
+								instance = editdlg.getInitialPropertySet();
+							}
 						}
 
 						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
@@ -264,9 +268,27 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				if (selection.getFirstElement() instanceof IPropertySet) {
 					IPropertySet instance = (IPropertySet) selection
 							.getFirstElement();
+					IPropertySet copy = duplicatePropertySet(instance);
 					EditDriverDialog dlg = new EditDriverDialog(getShell(),
-							instance);
+							copy);
 					if (dlg.open() == Window.OK) {
+						copyPropertySet(copy, instance);
+						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
+								.getContentProvider()).getDriverInstances();
+						psetsList.remove(instance);
+						
+						/*
+						 * This call to garbage collect is to try and reclaim
+						 * the classloader held by the last instance of the 
+						 * DriverInstance that is being dropped and re-added.
+						 * Note that if the class is in use (i.e. any profile
+						 * is connected that uses the referenced driver), it 
+						 * won't be unloaded and subsequent connections will 
+						 * fail.
+						 */
+						System.gc();
+						
+						psetsList.add(instance);
 						DriverDefinitionsDialog.this.mDirty = true;
 						DriverDefinitionsDialog.this.mTreeViewer.refresh();
 						validate(instance);
@@ -566,4 +588,21 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		return this.mInitialDriverName;
 	}
 
+	private IPropertySet duplicatePropertySet ( IPropertySet pset ) {
+		IPropertySet newPset = new PropertySetImpl(pset.getName(), pset.getID());
+		if (pset.getBaseProperties().size() > 0) {
+			Properties newProps = new Properties();
+			newPset.setBaseProperties(newProps);
+			newPset.getBaseProperties().putAll(pset.getBaseProperties());
+		}
+		return newPset;
+	}
+
+	private void copyPropertySet ( IPropertySet fromPset, IPropertySet topset ) {
+		topset.setID(fromPset.getID());
+		topset.setName(fromPset.getName());
+		if (topset.getBaseProperties().size() > 0) {
+			topset.getBaseProperties().putAll(fromPset.getBaseProperties());
+		}
+	}
 }

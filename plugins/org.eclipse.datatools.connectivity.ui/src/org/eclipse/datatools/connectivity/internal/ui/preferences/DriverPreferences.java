@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.internal.ui.preferences;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
@@ -350,7 +351,10 @@ public class DriverPreferences extends PreferencePage implements
 				if (dlg.getEditImmediately()) {
 					EditDriverDialog editdlg = new EditDriverDialog(getShell(),
 							instance);
-					editdlg.open();
+					int rtn_code = editdlg.open();
+					if (rtn_code != EditDriverDialog.OK) {
+						instance = editdlg.getInitialPropertySet();
+					}
 				}
 
 				// stash the new instance
@@ -370,8 +374,26 @@ public class DriverPreferences extends PreferencePage implements
 		StructuredSelection sselection = (StructuredSelection) selection;
 		if (sselection.getFirstElement() instanceof IPropertySet) {
 			IPropertySet instance = (IPropertySet) sselection.getFirstElement();
-			EditDriverDialog dlg = new EditDriverDialog(getShell(), instance);
+			IPropertySet copy = duplicatePropertySet(instance);
+			EditDriverDialog dlg = new EditDriverDialog(getShell(), copy);
 			if (dlg.open() == Window.OK) {
+				copyPropertySet(copy, instance);
+				List psetsList = ((DriverTreeContentProvider) DriverPreferences.this.mTreeViewer
+						.getContentProvider()).getDriverInstances();
+				psetsList.remove(instance);
+				
+				/*
+				 * This call to garbage collect is to try and reclaim
+				 * the classloader held by the last instance of the 
+				 * DriverInstance that is being dropped and re-added.
+				 * Note that if the class is in use (i.e. any profile
+				 * is connected that uses the referenced driver), it 
+				 * won't be unloaded and subsequent connections will 
+				 * fail.
+				 */
+				System.gc();
+				
+				psetsList.add(instance);
 				saveChanges();
 				DriverPreferences.this.mDirty = true;
 				DriverPreferences.this.mTreeViewer.refresh();
@@ -590,6 +612,24 @@ public class DriverPreferences extends PreferencePage implements
 
 		public void run() {
 			copyDriver(DriverPreferences.this.mTreeViewer.getSelection());
+		}
+	}
+
+	private IPropertySet duplicatePropertySet ( IPropertySet pset ) {
+		IPropertySet newPset = new PropertySetImpl(pset.getName(), pset.getID());
+		if (pset.getBaseProperties().size() > 0) {
+			Properties newProps = new Properties();
+			newPset.setBaseProperties(newProps);
+			newPset.getBaseProperties().putAll(pset.getBaseProperties());
+		}
+		return newPset;
+	}
+
+	private void copyPropertySet ( IPropertySet fromPset, IPropertySet topset ) {
+		topset.setID(fromPset.getID());
+		topset.setName(fromPset.getName());
+		if (topset.getBaseProperties().size() > 0) {
+			topset.getBaseProperties().putAll(fromPset.getBaseProperties());
 		}
 	}
 }

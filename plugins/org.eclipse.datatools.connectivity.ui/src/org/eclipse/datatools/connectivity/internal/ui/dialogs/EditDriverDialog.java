@@ -70,6 +70,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 	private static String previouslyBrowsedDirectory = ""; //$NON-NLS-1$
 	private PageBook book = null;
 	private IPropertySet mPropertySet = null;
+	private IPropertySet mInitialPropertySet = null;
 	private TemplateDescriptor descriptor = null;
 
 	// ui components
@@ -106,7 +107,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 
 	public EditDriverDialog(Shell parentShell, IPropertySet pset) {
 		this(parentShell);
-		this.mPropertySet = pset;
+		setPropertySet(pset);
 		if (this.mPropertySet.getBaseProperties().getProperty(
 				IDriverMgmtConstants.PROP_DEFN_TYPE) != null) {
 			String driverType = this.mPropertySet.getBaseProperties()
@@ -326,6 +327,21 @@ public class EditDriverDialog extends TitleAreaDialog {
 
 		return area;
 	}
+	
+	private void updatePropertyDescriptors() {
+        PropertySheetPage page = new PropertySheetPage();
+        page.createControl(book);
+		DriverPropertySourceProvider mpsp = null;
+		if (this.mPropertySet != null) {
+			mpsp = new DriverPropertySourceProvider(this.mPropertySet, this.descriptor);
+		}
+		else {
+			mpsp = new DriverPropertySourceProvider();
+		}
+		page.setPropertySourceProvider(mpsp);
+        book.showPage(page.getControl());
+		page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
+	}
 
 	private void validateName() {
 		boolean isOk = false;
@@ -353,7 +369,10 @@ public class EditDriverDialog extends TitleAreaDialog {
 	 */
 	private void updateJarList() {
 		this.mJarList = createList(this.list.getItems());
+		this.mPropertySet.getBaseProperties().setProperty(
+				IDriverMgmtConstants.PROP_DEFN_JARLIST, this.mJarList);
 		isValid();
+		updatePropertyDescriptors();
 	}
 	/*
 	 * (non-Javadoc)
@@ -575,6 +594,10 @@ public class EditDriverDialog extends TitleAreaDialog {
 	public IPropertySet getPropertySet() {
 		return this.mPropertySet;
 	}
+	
+	public IPropertySet getInitialPropertySet() {
+		return this.mInitialPropertySet;
+	}
 
 	/**
 	 * Return the category descriptor
@@ -632,6 +655,7 @@ public class EditDriverDialog extends TitleAreaDialog {
 	 */
 	public void setPropertySet(IPropertySet propset) {
 		this.mPropertySet = propset;
+		this.mInitialPropertySet = DuplicatePropertySet(propset);
 	}
 
 	/**
@@ -719,4 +743,28 @@ public class EditDriverDialog extends TitleAreaDialog {
 			}
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
+	 */
+	protected void cancelPressed() {
+		this.mPropertySet = this.mInitialPropertySet;
+		super.cancelPressed();
+	}
+	
+	/*
+	 * Duplicates the passed in property set
+	 * @param pset
+	 * @return
+	 */
+	private IPropertySet DuplicatePropertySet ( IPropertySet pset ) {
+		IPropertySet newPset = new PropertySetImpl(pset.getName(), pset.getID());
+		if (pset.getBaseProperties().size() > 0) {
+			Properties newProps = new Properties();
+			newPset.setBaseProperties(newProps);
+			newPset.getBaseProperties().putAll(pset.getBaseProperties());
+		}
+		return newPset;
+	}
+	                                                        
 }

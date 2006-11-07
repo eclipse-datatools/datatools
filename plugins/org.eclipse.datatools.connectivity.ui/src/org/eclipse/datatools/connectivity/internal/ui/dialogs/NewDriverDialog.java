@@ -89,6 +89,8 @@ public class NewDriverDialog extends TitleAreaDialog {
 	// NOTE: this flag only remembers user's choice, so when the driver don't support
 	// editImmediately, we won't change this flag.
 	private boolean mEditImmediately = true;
+	
+	private String mErrorMessage = null;
 
 	/**
 	 * Constructor
@@ -188,7 +190,8 @@ public class NewDriverDialog extends TitleAreaDialog {
 				StructuredSelection selection = (StructuredSelection) NewDriverDialog.this.mTreeViewer
 					.getSelection();
 				if (selection.getFirstElement() instanceof TemplateDescriptor) {
-					okPressed();
+					if (NewDriverDialog.this.mErrorMessage == null)
+						okPressed();
 				}
 			}
 		});
@@ -245,12 +248,14 @@ public class NewDriverDialog extends TitleAreaDialog {
 		if (obj == null) {
 			isOk = true;
 			this.setErrorMessage(null);
+			this.mErrorMessage = null;
 		}
 		else {
 			isOk = false;
 			String errorMessage = DriverMgmtMessages
 					.getString("NewDriverDialog.driverExistsWithName"); //$NON-NLS-1$
 			this.setErrorMessage(errorMessage);
+			this.mErrorMessage = errorMessage;
 		}
 
 		if (testName != null
@@ -259,6 +264,7 @@ public class NewDriverDialog extends TitleAreaDialog {
 			String errorMessage = DriverMgmtMessages
 					.getString("NewDriverDialog.driverNameNoSpaces"); //$NON-NLS-1$
 			this.setErrorMessage(errorMessage);
+			this.mErrorMessage = errorMessage;
 		}
 
 		StructuredSelection selection = (StructuredSelection) NewDriverDialog.this.mTreeViewer
