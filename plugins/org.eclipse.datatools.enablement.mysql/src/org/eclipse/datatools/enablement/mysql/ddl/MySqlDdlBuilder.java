@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentServiceImpl;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
