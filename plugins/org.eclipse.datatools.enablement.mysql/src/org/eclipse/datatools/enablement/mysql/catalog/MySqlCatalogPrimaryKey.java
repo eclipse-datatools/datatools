@@ -12,7 +12,7 @@
 
 import java.sql.Connection;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.PrimaryKeyImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 

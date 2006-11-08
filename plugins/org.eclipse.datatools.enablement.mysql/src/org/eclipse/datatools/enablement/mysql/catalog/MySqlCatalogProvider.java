@@ -15,7 +15,7 @@ import java.sql.Connection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogProvider;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogProvider;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 public class MySqlCatalogProvider implements ICatalogProvider,

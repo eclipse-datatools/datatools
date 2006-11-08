@@ -19,8 +19,8 @@ import java.util.HashSet;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;

@@ -13,8 +13,8 @@
 import java.sql.Connection;
 import java.util.Iterator;
 
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl;

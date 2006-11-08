@@ -12,8 +12,8 @@
 
 import java.sql.Connection;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
 import org.eclipse.datatools.modelbase.sql.tables.impl.ColumnImpl;
