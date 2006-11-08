@@ -14,7 +14,7 @@ import java.io.StringWriter;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 
 /**
  * @author ledunnel

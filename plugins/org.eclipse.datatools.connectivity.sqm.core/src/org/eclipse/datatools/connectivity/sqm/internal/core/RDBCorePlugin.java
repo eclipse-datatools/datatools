@@ -13,7 +13,7 @@ package org.eclipse.datatools.connectivity.sqm.internal.core;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
 

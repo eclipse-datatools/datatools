@@ -8,12 +8,19 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
+package org.eclipse.datatools.connectivity.sqm.core.definition;
 
 import java.sql.Connection;
+import java.util.Iterator;
 
-import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 
-public interface IDatabaseRecognizer {
+public interface DatabaseDefinitionRegistry {
+	public Iterator getProducts();
+	public Iterator getConnectibleProducts(); 
+	public Iterator getVersions(String product);
+	public Iterator getConnectibleVersions(String product);
+	public DatabaseDefinition getDefinition(String product, String version);
+	public DatabaseDefinition getDefinition(Database database);
 	public DatabaseDefinition recognize(Connection connection);
 }

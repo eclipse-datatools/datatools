@@ -8,19 +8,11 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
+package org.eclipse.datatools.connectivity.sqm.core.definition;
 
-import org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-public class DefaultDataModelElementFactory	implements DataModelElementFactory {
-	public static DataModelElementFactory INSTANCE = new DefaultDataModelElementFactory();
-	 
-	public EObject create(EClass metaclass) {
-		return metaclass.getEPackage().getEFactoryInstance().create(metaclass);
-	}
-	
-	protected DefaultDataModelElementFactory() {
-	}
+public interface DataModelElementFactory {
+	public EObject create(EClass metaclass);
 }
