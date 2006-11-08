@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.containment;
 
+import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
 import org.eclipse.emf.ecore.EObject;
 
 public class DependencyContainmentProvider extends AbstractContainmentProvider {

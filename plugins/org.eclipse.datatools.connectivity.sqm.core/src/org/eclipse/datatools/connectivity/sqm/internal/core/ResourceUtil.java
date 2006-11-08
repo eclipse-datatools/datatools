@@ -18,8 +18,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentServiceImpl;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 

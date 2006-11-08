@@ -8,25 +8,32 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.datatools.connectivity.sqm.internal.core.containment;
+package org.eclipse.datatools.connectivity.sqm.core.containment;
 
-import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
-import org.eclipse.datatools.modelbase.sql.constraints.Index;
-import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentProvider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+public abstract class AbstractContainmentProvider implements ContainmentProvider {
+	public Collection getContainedElements(EObject obj) {
+	    List children = new LinkedList();
+	    children.addAll(obj.eContents());
+	    return children;
+	}
 
-public class IndexContainmentProvider extends AbstractContainmentProvider {
+	public boolean isDisplayableElement(EObject obj) {
+		return true;
+	}
+
 	public EObject getContainer(EObject obj) {
-		return ((Index) obj).getTable();
+		return obj.eContainer();
 	}
 
 	public EStructuralFeature getContainmentFeature(EObject obj) {
-		return SQLTablesPackage.eINSTANCE.getTable_Index();
-	}
-
-	public String getGroupId(EObject obj) {
-		return GroupID.INDEX;
+		return obj.eContainingFeature();
 	}
 }

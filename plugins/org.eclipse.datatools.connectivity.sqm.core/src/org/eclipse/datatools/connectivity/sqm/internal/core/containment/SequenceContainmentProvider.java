@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.containment;
 
+import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Sequence;
 import org.eclipse.emf.ecore.EObject;
