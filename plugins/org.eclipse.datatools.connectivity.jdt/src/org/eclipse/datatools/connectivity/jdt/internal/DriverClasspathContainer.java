@@ -90,6 +90,12 @@ public class DriverClasspathContainer implements IClasspathContainer {
 		for (int i = 0; i < mDriverInstance.getJarListAsArray().length; i++) {
 			String path = mDriverInstance.getJarListAsArray()[i];
 			java.io.File file = new java.io.File(path);
+
+			// if it's not a jar or zip, don't process it
+			if (!(file.getName().endsWith(".jar") ||
+					file.getName().endsWith(".zip")))
+				continue;
+			
 			IPath jarPath = getPathForJavaIOFile(file);
 			ClasspathEntry entry = new ClasspathEntry(
 					ClasspathEntry.CPE_LIBRARY, 
