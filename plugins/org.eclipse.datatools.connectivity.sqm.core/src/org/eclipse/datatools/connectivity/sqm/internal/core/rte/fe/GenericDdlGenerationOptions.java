@@ -3,10 +3,10 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOption;
+import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
+import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionID;
 
 public class GenericDdlGenerationOptions {
 	public final static byte GENERATE_FULLY_QUALIFIED_NAME = 0;

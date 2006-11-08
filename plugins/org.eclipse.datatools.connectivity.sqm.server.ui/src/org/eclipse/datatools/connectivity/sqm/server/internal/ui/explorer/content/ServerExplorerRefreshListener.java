@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServicesManager;
 
 

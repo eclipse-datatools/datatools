@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCForeignKey;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCPrimaryKey;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCUniqueConstraint;

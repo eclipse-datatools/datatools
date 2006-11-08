@@ -10,9 +10,9 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.loader;
 
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 public class SchemaObjectFilterProvider extends ConnectionFilterProvider {

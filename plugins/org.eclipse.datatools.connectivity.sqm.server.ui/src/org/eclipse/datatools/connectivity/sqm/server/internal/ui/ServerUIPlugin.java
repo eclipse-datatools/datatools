@@ -12,8 +12,8 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui;
 
 import java.net.URL;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerRefreshListener;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

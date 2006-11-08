@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCColumn;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCTable;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCTemporaryTable;

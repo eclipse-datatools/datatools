@@ -29,11 +29,11 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.ServerExplorerViewer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerInitializer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;

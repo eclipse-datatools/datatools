@@ -12,8 +12,8 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
 import java.sql.Connection;
 
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogProvider;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 /**

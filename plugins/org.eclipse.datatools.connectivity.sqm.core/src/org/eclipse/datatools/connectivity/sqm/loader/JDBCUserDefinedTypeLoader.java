@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCDistinctUDT;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCStructuredUDT;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;

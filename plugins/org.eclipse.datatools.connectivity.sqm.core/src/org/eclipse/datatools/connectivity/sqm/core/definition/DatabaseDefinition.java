@@ -13,10 +13,10 @@ package org.eclipse.datatools.connectivity.sqm.core.definition;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLGenerator;
+import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLParser;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogProvider;
 import org.eclipse.datatools.modelbase.dbdefinition.DebuggerDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
