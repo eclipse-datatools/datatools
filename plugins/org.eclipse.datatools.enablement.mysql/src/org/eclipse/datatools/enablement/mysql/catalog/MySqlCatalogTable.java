@@ -20,9 +20,9 @@ import java.util.TreeMap;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DataModelElementFactory;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;

@@ -19,8 +19,8 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
 import org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogTable;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
@@ -742,7 +742,7 @@ public class MySqlDdlBuilder {
 				EObject root = ContainmentServiceImpl.INSTANCE
 						.getRootElement(typedElement);
 				if (root instanceof Database) {
-					DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE
+					DatabaseDefinition def = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry()
 							.getDefinition((Database) root);
 					return def.getPredefinedDataTypeFormattedName(
                             (PredefinedDataType) containedType);
