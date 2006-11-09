@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
+import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;

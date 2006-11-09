@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.helpers;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IColumnHelperService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IForeignKeyHelperService;
+import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.emf.ecore.EAnnotation;

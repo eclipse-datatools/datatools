@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ITriggerNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 
 

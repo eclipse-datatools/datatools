@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provide
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IViewNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;

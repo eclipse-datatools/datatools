@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provider
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IExplorerInteractionService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.DataToolsUIConstants;
+import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
@@ -99,7 +100,7 @@ public class DataToolsUIServiceManager implements IDataToolsUIServiceManager, ID
 	}
 
 	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager#getForeignKeyHelperService()
+	 * @see org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager#getForeignKeyHelperService()
 	 */
 	public IForeignKeyHelperService getForeignKeyHelperService()
 	{
@@ -107,7 +108,7 @@ public class DataToolsUIServiceManager implements IDataToolsUIServiceManager, ID
 	}
 
 	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager#getDecorationService()
+	 * @see org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager#getDecorationService()
 	 */
 	public IDecorationService getDecorationService()
 	{
@@ -115,7 +116,7 @@ public class DataToolsUIServiceManager implements IDataToolsUIServiceManager, ID
 	}
 
 	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager#getVirtualNodeServiceFactory()
+	 * @see org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager#getVirtualNodeServiceFactory()
 	 */
 	public IVirtualNodeServiceFactory getVirtualNodeServiceFactory()
 	{
@@ -123,7 +124,7 @@ public class DataToolsUIServiceManager implements IDataToolsUIServiceManager, ID
 	}
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager#getImageService(java.lang.Object)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager#getImageService(java.lang.Object)
      */
     public Image getImageService(Object element)
     {

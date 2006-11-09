@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.core.ui; singleton:=true
-Bundle-Version: 1.0.0.200611083
+Bundle-Version: 1.0.0.200611091
 Bundle-ClassPath: rdb.core.ui.jar
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin
 Bundle-Vendor: %providerName
@@ -23,7 +23,9 @@ Export-Package: org.eclipse.datatools.connectivity.sqm.core.internal.ui,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.services,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.util,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources,
- org.eclipse.datatools.connectivity.sqm.core.internal.ui.widgets
+ org.eclipse.datatools.connectivity.sqm.core.internal.ui.widgets,
+  org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual,
+ org.eclipse.datatools.connectivity.sqm.core.ui.services
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",

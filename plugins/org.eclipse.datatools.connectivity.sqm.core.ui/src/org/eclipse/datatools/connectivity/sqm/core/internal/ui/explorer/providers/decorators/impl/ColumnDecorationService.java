@@ -13,7 +13,7 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provide
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.IColumnDecorationService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons.ImageDescription;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.ColumnDecoratorUtil;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IDataToolsUIServiceManager;
+import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.jface.viewers.IDecoration;
 
