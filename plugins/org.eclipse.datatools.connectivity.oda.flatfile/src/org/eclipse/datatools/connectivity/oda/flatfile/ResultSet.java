@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.text.ParseException;
-
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
@@ -367,24 +365,19 @@ public class ResultSet implements IResultSet
 
     private Date stringToDate( String stringValue ) throws OdaException
     {
-        if( stringValue != null )
-        {
-            try
-            {
-                return Date.valueOf( stringValue );
-            }
-            catch( IllegalArgumentException e )
-            {
-                try
-                {
-                    return new Date( stringToLongDate( stringValue ) );
-                }
-                catch(OdaException e1)
-                {
-                	this.wasNull = true;
-                }
-            }
-        }
+    	if ( stringValue != null )
+		{
+			try
+			{
+				java.util.Date date = DateUtil.toDate( stringValue );
+				return new Date( date.getTime( ) );
+			}
+			catch ( OdaException oe )
+			{
+			}
+		}
+		
+		this.wasNull = true;
         return null;
     }
 
@@ -396,25 +389,19 @@ public class ResultSet implements IResultSet
      */
     private Time stringToTime( String stringValue ) throws OdaException
     {
-        if( stringValue != null )
-        {
-            try
-            {
-                return Time.valueOf( stringValue );
-            }
-            catch( IllegalArgumentException e )
-            {
-                try
-                {
-                    return new Time( stringToLongDate( stringValue ) );
-                }
-                catch( OdaException e1)
-                {
-                	this.wasNull = true;
-                }
-            }
-        }
-        return null;
+    	if ( stringValue != null )
+		{
+			try
+			{
+				java.util.Date date = DateUtil.toDate( stringValue );
+				return new Time( date.getTime( ) );
+			}
+			catch ( OdaException oe )
+			{
+			}
+		}
+		this.wasNull = true;
+		return null;
     }
 
     /**
@@ -424,57 +411,35 @@ public class ResultSet implements IResultSet
      */
     private Timestamp stringToTimestamp( String stringValue )
     {
-    	if ( stringValue == null )
-    	{
-    		this.wasNull = true;
-    		return null;
-    	}
-    	
-        try
+    	if( stringValue != null )
         {
-        	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0];
-        	return Timestamp.valueOf( stringValue );
+            try
+            {
+            	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0];
+            	return Timestamp.valueOf( stringValue );
+            }
+            catch( IllegalArgumentException e )
+            {
+            	try{
+            		long timeMills = new Long(stringValue).longValue();
+            		return new Timestamp( timeMills );
+            	}catch ( NumberFormatException e1)
+            	{
+            		try
+					{
+						java.util.Date date = DateUtil.toDate( stringValue );
+						Timestamp timeStamp = new Timestamp( date.getTime( ) );
+
+						return timeStamp;
+					}
+					catch ( OdaException oe )
+					{
+					}
+            	}
+            	
+            }
         }
-        catch( IllegalArgumentException e )
-        {
-        	try
-			{
-				long timeMills = new Long( stringValue ).longValue( );
-				return new Timestamp( timeMills );
-			}
-			catch ( NumberFormatException e1 )
-			{
-				try
-				{
-					java.util.Date date = DateUtil.toDate( stringValue );
-					Timestamp timeStamp = new Timestamp( date.getTime( ) );
-
-					return timeStamp;
-				}
-				catch ( OdaException oe )
-				{
-					this.wasNull = true;
-					return null;
-				}
-			}
-        	
-        }
+    	this.wasNull = true;
+        return null;
     }
-
-    /**
-     * 
-     * @param stringValue
-     * @return
-     * @throws ParseException
-     * @throws OdaException
-     */
-    private long stringToLongDate( String stringValue ) throws OdaException
-    {
-        java.util.Date d = DateUtil.toDate( stringValue );
-        if( d == null )
-        	return -1;
-        else
-        	return d.getTime( );
-    }
-
 }

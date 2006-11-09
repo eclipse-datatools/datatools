@@ -19,13 +19,12 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
 import com.ibm.icu.text.DateFormat;
-import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.util.ULocale;
 
 /**
- * A utility function The convert method converts the source object, which can
- * be any supported data type, into an object given specified type. If no
- * reasonable conversion can be made, throw a OdaException.
+ * A utility class. The convert method converts the source object into an Date
+ * object given specified type. If no reasonable conversion can be made, throw a
+ * OdaException.
  */
 public final class DateUtil
 {
@@ -37,57 +36,7 @@ public final class DateUtil
 	// Default Date/Time Style 
 	private static int DEFAULT_DATE_STYLE = DateFormat.MEDIUM;
 
-	//all SimpleDateFormatter of ICU
-	private static SimpleDateFormat[] simpleDateFormatter = null;
-	
-	//all SimpleDateFormatter of ICU
-	private static SimpleDateFormat[] simpleTimeFormatter = null;
-	
 	public static long count = 0;
-
-	static
-	{
-		// date format pattern defined in ISO8601
-		// notice the order is significant.
-		String[] dateFormatPattern = {
-				"yyyy-MM-dd HH:mm:ss.S z",
-				"yyyy-MM-dd HH:mm:ss.Sz",
-				"yyyy-MM-dd HH:mm:ss.S",
-				"yyyy-MM-dd HH:mm:ss z",
-				"yyyy-MM-dd HH:mm:ssz",
-				"yyyy-MM-dd HH:mm:ss",
-				"yyyy-MM-dd HH:mm z",
-				"yyyy-MM-dd HH:mmz",
-				"yyyy-MM-dd HH:mm",
-				"yyyy-MM-dd",
-				"yyyy-MM",
-				"yyyy",
-		};
-		String[] timeFormatPattern = {
-				"HH:mm:ss.S z",
-				"HH:mm:ss.Sz",
-				"HH:mm:ss.S",
-				"HH:mm:ss z",
-				"HH:mm:ssz",
-				"HH:mm:ss",
-				"HH:mm z",
-				"HH:mmz",
-				"HH:mm",
-		};
-		simpleDateFormatter = new SimpleDateFormat[dateFormatPattern.length];
-		for ( int i = 0; i < dateFormatPattern.length; i++ )
-		{
-			simpleDateFormatter[i] = new SimpleDateFormat( dateFormatPattern[i] );
-			simpleDateFormatter[i].setLenient( false );
-		}
-		
-		simpleTimeFormatter = new SimpleDateFormat[dateFormatPattern.length];
-		for ( int i = 0; i < timeFormatPattern.length; i++ )
-		{
-			simpleTimeFormatter[i] = new SimpleDateFormat( timeFormatPattern[i] );
-			simpleTimeFormatter[i].setLenient( false );
-		}
-	}
 
 	/**
 	 * Number -> Date
@@ -222,50 +171,15 @@ public final class DateUtil
 	{
 		Date resultDate = null;
 
-		source = source.replaceFirst( "T", " " );
-		
-		boolean onlyTime = source.matches( "[0-9]+:[0-9]+:[0-9]+.*" )
-				|| source.matches( "[0-9]+:[0-9]+.*" );
-		
-		SimpleDateFormat[] simpleFormatter = null;
-		
-		if(onlyTime)
-			simpleFormatter = simpleTimeFormatter;
-		else
-			simpleFormatter = simpleDateFormatter;
-			
-		
-		for ( int i = 0; i < simpleFormatter.length - 1; i++ )
+		try
 		{
-			try
-			{
-				resultDate = simpleFormatter[i].parse( source );
-				return resultDate;
-			}
-			catch ( ParseException e1 )
-			{
-			}
+			resultDate = DateFormatISO8601.parse( source );
+			return resultDate;
 		}
-//		Only string matching "[0-9]+" can be applied to simpleDateFormatter.
-		if ( source.length( ) <= 4 && source.matches( "[0-9]+" ) )
+		catch ( ParseException e1 )
 		{
-			try
-			{
-				resultDate = simpleDateFormatter[simpleDateFormatter.length - 1].parse( source );
-				return resultDate;
-			}
-			catch ( ParseException e1 )
-			{
-			}
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) );
 		}
-		// for the String can not be parsed, throws a OdaException
-		if ( resultDate == null )
-		{
-			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
-		}
-
-		// never access here
-		return resultDate;
 	}
 }
 /**
