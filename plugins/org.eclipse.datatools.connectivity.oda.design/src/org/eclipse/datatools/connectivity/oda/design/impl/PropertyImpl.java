@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertyImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: PropertyImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -97,6 +97,7 @@ public class PropertyImpl extends EObjectImpl implements Property
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Property#getName()
+     * @generated NOT
      */
     public String getName()
     {
@@ -107,6 +108,7 @@ public class PropertyImpl extends EObjectImpl implements Property
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Property#getValue()
+     * @generated NOT
      */
     public String getValue()
     {
@@ -117,6 +119,7 @@ public class PropertyImpl extends EObjectImpl implements Property
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Property#setNameValue(java.lang.String, java.lang.String)
+     * @generated NOT
      */
     public void setNameValue( String name, String value )
     {
@@ -252,6 +255,34 @@ public class PropertyImpl extends EObjectImpl implements Property
             eNotify( new ENotificationImpl( this, Notification.SET,
                     DesignPackage.PROPERTY__DESIGN_ATTRIBUTES,
                     newDesignAttributes, newDesignAttributes ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Property#isEditable()
+     * @generated NOT
+     */
+    public boolean isEditable()
+    {
+        PropertyAttributes propAttrs = getDesignAttributes();
+        if( propAttrs == null || 
+            propAttrs.getElementAttributes() == null )
+            return true;    // default state
+        
+        return propAttrs.getElementAttributes().isEditable();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.Property#isMaskedValue()
+     * @generated NOT
+     */
+    public boolean isMaskedValue()
+    {
+        PropertyAttributes propAttrs = getDesignAttributes();
+        if( propAttrs == null || 
+            propAttrs.getElementAttributes() == null )
+            return false;    // default state
+        
+        return propAttrs.getElementAttributes().isMasksValue();
     }
 
     /**

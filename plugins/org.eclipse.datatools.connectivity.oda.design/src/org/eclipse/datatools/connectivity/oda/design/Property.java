@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Property.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
+ * $Id: Property.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -123,5 +123,29 @@ public interface Property extends EObject
      * @generated
      */
     void setDesignAttributes( PropertyAttributes value );
+    
+    /**
+     * A convenience method to indicate whether this property value 
+     * is editable or read-only in a host designer.  
+     * Applicable only if its container is visible, e.g. for 
+     * public properties and input parameters.
+     * @return  true if property is defined to be editable (default);
+     *          false if the property value should be read only.
+     * @see #getDesignAttributes()
+     * @generated NOT
+     */
+    public boolean isEditable();
 
+    /**
+     * A convenience method to indicate whether the property's
+     * input value should be masked or encrypted in persistent store 
+     * and any UI display.  Applies to default value as well.
+     * @return  true if property value is defined to be masked;
+     *          false otherwise. 
+     *          The default return value is false, if not explicitly defined.
+     * @see #getDesignAttributes()
+     * @generated NOT
+     */
+    public boolean isMaskedValue();
+    
 } // Property

@@ -11,12 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterDefinitionImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
@@ -150,6 +152,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements ParameterDef
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#isInput()
+     * @generated NOT
      */
     public boolean isInput()
     {
@@ -160,6 +163,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements ParameterDef
     
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#isOutput()
+     * @generated NOT
      */
     public boolean isOutput()
     {
@@ -170,11 +174,53 @@ public class ParameterDefinitionImpl extends EObjectImpl implements ParameterDef
     
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#isScalar()
+     * @generated NOT
      */
     public boolean isScalar()
     {
         return ( getFields() == null || 
                  getFields().getFieldCollection().isEmpty() );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#getDefaultScalarValue()
+     * @generated NOT
+     */
+    public String getDefaultScalarValue()
+    {
+        if( ! isInput() || ! isScalar() )
+            return null;
+        if( getInputAttributes() == null || 
+            getInputAttributes().getElementAttributes() == null )
+            return null;
+        
+        return getInputAttributes().getElementAttributes().getDefaultScalarValue();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#setDefaultScalarValue(java.lang.String)
+     * @generated NOT
+     */
+    public void setDefaultScalarValue( String value )
+    {
+        if( ! isInput() || ! isScalar() )
+            return;     // ignore specified value
+        
+        InputParameterAttributes paramAttributes = getInputAttributes();
+        if( paramAttributes == null )
+        {
+            paramAttributes = DesignFactory.eINSTANCE.createInputParameterAttributes();
+            setInputAttributes( paramAttributes );
+        }
+        
+        InputElementAttributes inputAttributes = paramAttributes.getElementAttributes();
+        if( inputAttributes == null )
+        {
+            inputAttributes = DesignFactory.eINSTANCE.createInputElementAttributes();
+            paramAttributes.setElementAttributes( inputAttributes );
+        }
+        
+        inputAttributes.setDefaultScalarValue( value );
     }
 
     /**

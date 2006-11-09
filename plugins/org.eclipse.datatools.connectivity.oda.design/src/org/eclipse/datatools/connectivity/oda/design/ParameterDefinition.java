@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.2 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -75,6 +75,27 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     boolean isScalar();
+    
+    /**
+     * A convenience method to return this parameter's default input value.
+     * @return the value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute;
+     *         returns null if this is not a scalar input parameter.
+     * @see #setDefaultScalarValue(String)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
+     * @generated NOT
+     */
+    String getDefaultScalarValue();
+    
+    /**
+     * A convenience method to set this parameter's default input value.
+     * The specified value is applied only if this is defined as
+     * a scalar input parameter.
+     * @param value the new value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute.
+     * @see #getDefaultScalarValue()
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
+     * @generated NOT
+     */
+    void setDefaultScalarValue( String value );
 
     /**
      * Returns the value of the '<em><b>In Out Mode</b></em>' attribute.
