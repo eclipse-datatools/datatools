@@ -23,11 +23,11 @@ import java.util.Set;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObjectListener;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.RefreshManager;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;

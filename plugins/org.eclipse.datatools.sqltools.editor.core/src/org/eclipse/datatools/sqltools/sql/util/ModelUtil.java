@@ -15,10 +15,10 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
-import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinition;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.ICatalogObject;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;

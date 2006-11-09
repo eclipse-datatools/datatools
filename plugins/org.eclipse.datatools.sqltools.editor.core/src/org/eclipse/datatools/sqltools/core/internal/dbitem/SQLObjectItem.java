@@ -16,9 +16,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLGenerator;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOption;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionID;
+import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
+import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
+import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
