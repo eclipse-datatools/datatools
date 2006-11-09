@@ -12,18 +12,17 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.tests;
 
 import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Properties;
+
+import junit.framework.TestCase;
 
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
-
-import junit.framework.TestCase;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
 
 /**
  * Base class for testing ResultSet
@@ -300,7 +299,7 @@ public abstract class ResultSetTestBase extends TestCase
 				+ getSuffix( ) + getExtension( ) );
 		IResultSet rs = statement.executeQuery( );
 		rs.next( );
-		assertEquals( rs.getDate( 1 ), Date.valueOf( "2005-01-30" ) );
+		assertEquals( rs.getDate( 1 ), DateUtil.toDate( "2005-01-30" ) );
 		assertFalse( rs.wasNull( ) );
 	}
 
@@ -315,7 +314,7 @@ public abstract class ResultSetTestBase extends TestCase
 				+ getSuffix( ) + getExtension( ) );
 		IResultSet rs = statement.executeQuery( );
 		rs.next( );
-		assertEquals( rs.getDate( "DATE_COL" ), Date.valueOf( "2005-01-30" ) );
+		assertEquals( rs.getDate( "DATE_COL" ), DateUtil.toDate( "2005-01-30" ) );
 		assertFalse( rs.wasNull( ) );
 	}
 
@@ -330,7 +329,7 @@ public abstract class ResultSetTestBase extends TestCase
 				+ getSuffix( ) + getExtension( ) );
 		IResultSet rs = statement.executeQuery( );
 		rs.next( );
-		assertEquals( rs.getTime( 1 ), Time.valueOf( "12:04:59" ) );
+		assertEquals( rs.getTime( 1 ), DateUtil.toDate( "12:04:59" ) );
 		assertFalse( rs.wasNull( ) );
 	}
 
@@ -345,7 +344,7 @@ public abstract class ResultSetTestBase extends TestCase
 				+ getSuffix( ) + getExtension( ) );
 		IResultSet rs = statement.executeQuery( );
 		rs.next( );
-		assertEquals( rs.getTime( "TIME_COL" ), Time.valueOf( "12:04:59" ) );
+		assertEquals( rs.getTime( "TIME_COL" ), DateUtil.toDate( "12:04:59" ) );
 		assertFalse( rs.wasNull( ) );
 
 	}
