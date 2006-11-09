@@ -375,6 +375,12 @@ public class DriverListCombo {
 			this.mComboList.setText(driverName);
 		}
 	}
+	
+	public void selectFirstItem() {
+		if (this.mComboList.getItemCount() > 0) {
+			this.mComboList.select(0);
+		}
+	}
 
 	private boolean passesFilter(TemplateDescriptor template, IPropertySet pset) {
 		boolean rtn = true;
@@ -405,6 +411,18 @@ public class DriverListCombo {
 				}
 				else if (arg.equals("templateIDStartsWith")) { //$NON-NLS-1$
 					if (!template.getId().startsWith(value)) {
+						rtn = false;
+						break;
+					}
+				}
+				else if (arg.equals("templateIDEndsWith")) { //$NON-NLS-1$
+					if (!template.getId().endsWith(value)) {
+						rtn = false;
+						break;
+					}
+				}
+				else if (arg.equals("templateIDContains")) { //$NON-NLS-1$
+					if (template.getId().indexOf(value) == -1) {
 						rtn = false;
 						break;
 					}
