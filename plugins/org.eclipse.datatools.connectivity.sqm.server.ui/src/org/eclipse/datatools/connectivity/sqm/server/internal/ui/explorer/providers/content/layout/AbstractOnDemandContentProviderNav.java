@@ -29,7 +29,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDFNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDTNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IViewNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;

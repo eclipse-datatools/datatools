@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
@@ -48,7 +48,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
 	}
 	
 	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#getName()
+	 * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getName()
 	 */
 	public String getName()
 	{
@@ -56,7 +56,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
 	}
 
 	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#getDisplayName()
+	 * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getDisplayName()
 	 */
 	public String getDisplayName()
 	{
@@ -64,7 +64,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
 	}
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#getParent()
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getParent()
      */
     public Object getParent()
     {
@@ -72,7 +72,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#getChildren()
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getChildren()
      */
     protected List getChildren()
     {
@@ -80,7 +80,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#hasChildren()
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#hasChildren()
      */
     public boolean hasChildren()
     {
@@ -88,7 +88,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#getChildrenArray()
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getChildrenArray()
      */
     public Object[] getChildrenArray()
     {
@@ -96,7 +96,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#addChildren(java.lang.Object)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#addChildren(java.lang.Object)
      */
     public void addChildren(Object child)
     {
@@ -107,7 +107,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#removeChildren(java.lang.Object)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#removeChildren(java.lang.Object)
      */
     public void removeChildren(Object child)
     {
@@ -126,7 +126,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
     
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#supports(org.eclipse.emf.ecore.EClass)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#supports(org.eclipse.emf.ecore.EClass)
      */
     public boolean supports(EClass type)
     {
@@ -134,7 +134,7 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     }
 
     /**
-     * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode#addChildren(java.util.Collection)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#addChildren(java.util.Collection)
      */
     public void addChildren(Collection collection)
     {

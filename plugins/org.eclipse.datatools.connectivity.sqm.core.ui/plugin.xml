@@ -94,7 +94,7 @@
 	                  name="org.eclipse.datatools.modelbase.sql.schema.SQLObject">
 	            </objectClass>
 	            <objectClass
-	                  name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode">
+	                  name="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode">
 	            </objectClass>
 	        </or>
          </enablement>
@@ -246,7 +246,7 @@
 			displayType = "%foreignKey">
 		</contributor>
 		<contributor
-			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"
+			type = "org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"
 			iconLocation = "/icons/closedFolder.gif"
 			displayType = "%folder">
 		</contributor>

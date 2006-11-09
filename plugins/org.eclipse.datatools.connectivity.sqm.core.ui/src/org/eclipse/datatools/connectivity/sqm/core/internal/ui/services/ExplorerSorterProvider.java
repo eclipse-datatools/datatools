@@ -16,7 +16,7 @@ import java.util.Locale;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.tables.Table;

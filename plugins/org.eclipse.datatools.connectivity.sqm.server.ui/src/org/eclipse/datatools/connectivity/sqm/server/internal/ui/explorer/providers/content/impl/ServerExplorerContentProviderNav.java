@@ -26,11 +26,11 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;

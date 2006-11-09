@@ -31,7 +31,7 @@
             <possibleChildren>
                <or>
                   <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
-                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
                   <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
                </or>
             </possibleChildren>
@@ -60,7 +60,7 @@
             overrides="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode"/>
+               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
             </or>
          </enablement>

@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.label;
 
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;

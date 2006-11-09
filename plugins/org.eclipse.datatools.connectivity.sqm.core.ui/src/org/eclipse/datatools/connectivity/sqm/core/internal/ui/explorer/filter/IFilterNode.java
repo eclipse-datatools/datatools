@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 
 /**
  * @author ljulien
