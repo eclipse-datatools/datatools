@@ -42,6 +42,7 @@ public final class Messages extends NLS {
     public static String Editor_error_save_message;
     public static String Editor_error_save_title;
     public static String Editor_warning_save_delete;
+	public static String plugin_internal_error;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -15,8 +15,8 @@ package org.eclipse.datatools.sqltools.core.services;
 import java.util.ArrayList;
 
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.core.Messages;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
+import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;

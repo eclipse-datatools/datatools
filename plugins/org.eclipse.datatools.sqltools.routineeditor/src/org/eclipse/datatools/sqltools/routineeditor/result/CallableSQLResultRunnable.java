@@ -32,6 +32,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.Parameter;
 import org.eclipse.datatools.sqltools.routineeditor.internal.RoutineEditorActivator;
+import org.eclipse.datatools.sqltools.routineeditor.internal.result.Messages;
 import org.eclipse.datatools.sqltools.routineeditor.launching.LaunchHelper;
 import org.eclipse.datatools.sqltools.routineeditor.parameter.ParameterInOutWrapper;
 import org.eclipse.datatools.sqltools.routineeditor.ui.launching.LaunchUI;

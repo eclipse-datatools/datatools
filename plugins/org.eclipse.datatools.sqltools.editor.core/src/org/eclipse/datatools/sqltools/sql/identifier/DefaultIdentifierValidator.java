@@ -9,6 +9,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
+import org.eclipse.datatools.sqltools.sql.internal.identifier.Messages;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.osgi.util.NLS;
 

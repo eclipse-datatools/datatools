@@ -19,6 +19,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileProxyListener;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
 import org.eclipse.datatools.sqltools.internal.core.IConfigurationRegistryListener;
+import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistry;
 import org.eclipse.datatools.sqltools.internal.core.SQLDevToolsConfigRegistryImpl;
 import org.eclipse.jface.resource.ImageDescriptor;

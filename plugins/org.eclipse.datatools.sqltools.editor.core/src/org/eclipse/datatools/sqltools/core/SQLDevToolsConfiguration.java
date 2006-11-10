@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.core.services.SQLDataService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
+import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 

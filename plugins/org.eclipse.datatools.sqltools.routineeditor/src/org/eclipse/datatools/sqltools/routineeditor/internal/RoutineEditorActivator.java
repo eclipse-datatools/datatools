@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.routineeditor.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.datatools.sqltools.core.Messages;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileListenersManager;
 import org.eclipse.datatools.sqltools.routineeditor.launching.SQLToolsLaunchProfileListener;
 import org.eclipse.datatools.sqltools.routineeditor.parameter.internal.LaunchConfigurationParamsHistoryListener;

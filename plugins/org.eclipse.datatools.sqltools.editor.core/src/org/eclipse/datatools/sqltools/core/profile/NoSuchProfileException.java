@@ -12,6 +12,7 @@
 
 package org.eclipse.datatools.sqltools.core.profile;
 
+import org.eclipse.datatools.sqltools.internal.core.profile.Messages;
 import org.eclipse.osgi.util.NLS;
 
 

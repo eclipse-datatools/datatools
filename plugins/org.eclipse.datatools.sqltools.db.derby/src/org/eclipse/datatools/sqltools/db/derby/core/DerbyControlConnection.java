@@ -96,12 +96,6 @@ public class DerbyControlConnection extends AbstractControlConnection implements
 
 	}
 
-	public DBObject[] getContentAssistInfo(ContentAssistQueryRequest request)
-			throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void registerInternalConn(String connid) {
 		// TODO Auto-generated method stub
 

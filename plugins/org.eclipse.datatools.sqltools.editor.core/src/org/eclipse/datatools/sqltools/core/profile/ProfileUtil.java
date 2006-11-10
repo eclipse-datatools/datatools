@@ -44,6 +44,7 @@ import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.ServerIdentifier;
+import org.eclipse.datatools.sqltools.internal.core.profile.Messages;
 import org.eclipse.osgi.util.NLS;
 
 /**

@@ -12,6 +12,7 @@
 
 package org.eclipse.datatools.sqltools.core;
 
+import org.eclipse.datatools.sqltools.internal.core.Messages;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.osgi.util.NLS;
 

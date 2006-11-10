@@ -7,6 +7,7 @@ package org.eclipse.datatools.sqltools.core.profile;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 
 /**
  * Connection profile is used to describe how to connect to a particular database. It contains a DatabaseIdentifier to
@@ -142,34 +143,39 @@ public class ConnectProfile
 //        }
 
 
-        //If profile type is database(ASE, ASA, ASIQ), database name will be compared.
-        //Other profiles (for example, Replication Server) doesn't need to compare database name.
-        //Modified by Daniel Huang
-        boolean equals = p.getProviderId().equals(this._providerId);
-        equals = equals && ((p.getHost() == null && this._host == null) || (p.getHost() != null && p.getHost().equals(this._host)));
-        equals = equals && (p.getPort() == this._port);
-        equals = equals && ((p.getServerType() == null && this._serverType == null) || (p.getServerType() != null && p.getServerType().equals(this._serverType)));
-        equals = equals && ((p.getUser() == null && this._user == null) || (p.getUser() != null && p.getUser().equals(this._user)));
-        equals = equals && (p.getName().equals(_name));
-        if (equals)
+        try{
+	        //If profile type is database(ASE, ASA, ASIQ), database name will be compared.
+	        //Other profiles (for example, Replication Server) doesn't need to compare database name.
+	        //Modified by Daniel Huang
+	        boolean equals = p.getProviderId().equals(this._providerId);
+	        equals = equals && ((p.getHost() == null && this._host == null) || (p.getHost() != null && p.getHost().equals(this._host)));
+	        equals = equals && (p.getPort() == this._port);
+	        equals = equals && ((p.getServerType() == null && this._serverType == null) || (p.getServerType() != null && p.getServerType().equals(this._serverType)));
+	        equals = equals && ((p.getUser() == null && this._user == null) || (p.getUser() != null && p.getUser().equals(this._user)));
+	        equals = equals && (p.getName().equals(_name));
+	        if (equals)
+	        {
+	            if (ProfileUtil.isDatabaseProfile(p)||ProfileUtil.isDatabaseProfile(this))
+	            {
+	
+	                if (_dbname != null && this._dbname.equals(p.getDbName()))
+	                {
+	                    return true;
+	                }
+	                else if (_dbname == null && p.getDbName() == null)
+	                {
+	                    return true;
+	                }
+	                else
+	                {
+	                    return false;
+	                }
+	            }
+	            return true;
+	        }
+        }catch(Exception e)
         {
-            if (ProfileUtil.isDatabaseProfile(p)||ProfileUtil.isDatabaseProfile(this))
-            {
-
-                if (_dbname != null && this._dbname.equals(p.getDbName()))
-                {
-                    return true;
-                }
-                else if (_dbname == null && p.getDbName() == null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return true;
+        	EditorCorePlugin.getDefault().log(e);
         }
         return false;
     }

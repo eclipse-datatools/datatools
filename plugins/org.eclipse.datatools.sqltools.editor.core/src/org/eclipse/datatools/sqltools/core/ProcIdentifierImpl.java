@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
+import org.eclipse.datatools.sqltools.internal.core.Messages;
 
 import com.ibm.icu.util.StringTokenizer;
 
