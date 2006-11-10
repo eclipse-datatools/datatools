@@ -11,6 +11,7 @@
 
 package org.eclipse.datatools.connectivity.oda.flatfile.tests;
 
+import java.sql.Types;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -18,7 +19,6 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.Connection;
-import org.eclipse.datatools.connectivity.oda.flatfile.DataTypes;
 import org.eclipse.datatools.connectivity.oda.flatfile.ResultSetMetaData;
 
 import junit.framework.TestCase;
@@ -31,6 +31,16 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 {
 
 	protected IQuery statement = null;
+  
+    static final int INT = Types.INTEGER;
+    static final int DOUBLE = Types.DOUBLE;
+    static final int STRING = Types.VARCHAR;
+    static final int DATE = Types.DATE;
+    static final int TIME = Types.TIME;
+    static final int TIMESTAMP = Types.TIMESTAMP;
+    static final int BLOB = Types.BLOB;
+    static final int CLOB = Types.CLOB;
+    static final int BIGDECIMAL = Types.NUMERIC; 
 
 	/*
 	 * @see TestCase#setUp()
@@ -208,17 +218,17 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 		IResultSetMetaData resultSetMetaData = statement.getMetaData( );
 		try
 		{
-			assertEquals( DataTypes.INT, resultSetMetaData.getColumnType( 1 ) );
-			assertEquals( DataTypes.DOUBLE, resultSetMetaData.getColumnType( 2 ) );
-			assertEquals( DataTypes.STRING, resultSetMetaData.getColumnType( 3 ) );
-			assertEquals( DataTypes.DATE, resultSetMetaData.getColumnType( 4 ) );
-			assertEquals( DataTypes.TIME, resultSetMetaData.getColumnType( 5 ) );
-			assertEquals( DataTypes.TIMESTAMP,
+			assertEquals( INT, resultSetMetaData.getColumnType( 1 ) );
+			assertEquals( DOUBLE, resultSetMetaData.getColumnType( 2 ) );
+			assertEquals( STRING, resultSetMetaData.getColumnType( 3 ) );
+			assertEquals( DATE, resultSetMetaData.getColumnType( 4 ) );
+			assertEquals( TIME, resultSetMetaData.getColumnType( 5 ) );
+			assertEquals( TIMESTAMP,
 					resultSetMetaData.getColumnType( 6 ) );
-			assertEquals( DataTypes.BLOB, resultSetMetaData.getColumnType( 7 ) );
-			assertEquals( DataTypes.INT, resultSetMetaData.getColumnType( 8 ) );
-			assertEquals( DataTypes.DOUBLE, resultSetMetaData.getColumnType( 9 ) );
-			assertEquals( DataTypes.BIGDECIMAL,
+			assertEquals( BLOB, resultSetMetaData.getColumnType( 7 ) );
+			assertEquals( INT, resultSetMetaData.getColumnType( 8 ) );
+			assertEquals( DOUBLE, resultSetMetaData.getColumnType( 9 ) );
+			assertEquals( BIGDECIMAL,
 					resultSetMetaData.getColumnType( 10 ) );
 		}
 		catch ( OdaException e )
