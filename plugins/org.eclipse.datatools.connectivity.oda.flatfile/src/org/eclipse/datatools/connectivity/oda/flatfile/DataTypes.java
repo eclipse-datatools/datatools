@@ -14,10 +14,12 @@
 package org.eclipse.datatools.connectivity.oda.flatfile;
 
 import java.sql.Types;
-import java.util.HashMap;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
+import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 
 /**
  * Defines the data types that are supported by this driver.
@@ -26,32 +28,12 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 public final class DataTypes
 {
 
-    public static final int INT = Types.INTEGER;
-    public static final int DOUBLE = Types.DOUBLE;
-    public static final int STRING = Types.VARCHAR;
-    public static final int DATE = Types.DATE;
-    public static final int TIME = Types.TIME;
-    public static final int TIMESTAMP = Types.TIMESTAMP;
-    public static final int BLOB = Types.BLOB;
-    public static final int CLOB = Types.CLOB;
-    public static final int BIGDECIMAL = Types.NUMERIC;
-    public static final int NULL = Types.NULL;
+    static final int STRING = Types.VARCHAR;
+    static final int NULL = Types.NULL;
+    static final String NULL_LITERAL = "NULL"; //$NON-NLS-1$
 
-    private static HashMap typeStringIntPair = new HashMap();
-
-    static
-    {
-        typeStringIntPair.put( "INT", new Integer( INT ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "DOUBLE", new Integer( DOUBLE ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "STRING", new Integer( STRING ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "DATE", new Integer( DATE ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "TIME", new Integer( TIME ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "TIMESTAMP", new Integer( TIMESTAMP ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "BLOB", new Integer( BLOB ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "CLOB", new Integer( CLOB ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "BIGDECIMAL", new Integer( BIGDECIMAL ) ); //$NON-NLS-1$
-        typeStringIntPair.put( "NULL", new Integer( NULL ) ); //$NON-NLS-1$
-    }
+    private static final String FLATFILE_DATA_SOURCE_ID = 
+        "org.eclipse.datatools.connectivity.oda.flatfile"; //$NON-NLS-1$
 
     /**
      * Returns the data type code that represents the given type name.
@@ -62,9 +44,16 @@ public final class DataTypes
     public static int getTypeCode( String typeName ) throws OdaException
     {
         String preparedTypeName = typeName.trim().toUpperCase();
-        if( typeStringIntPair.containsKey( preparedTypeName ) )
-            return ( (Integer) typeStringIntPair.get( preparedTypeName ) )
-                    .intValue();
+        
+        if( preparedTypeName == NULL_LITERAL )
+            return NULL;
+        
+        // get the data type definition from my plugin manifest for all other types
+        DataTypeMapping typeMapping = getManifest().getDataSetType( null )
+                                        .getDataTypeMapping( preparedTypeName );
+        if( typeMapping != null )
+            return typeMapping.getNativeTypeCode();
+
         throw new OdaException( Messages
                 .getString( "dataTypes_TYPE_NAME_INVALID" ) + typeName ); //$NON-NLS-1$
     }
@@ -77,10 +66,39 @@ public final class DataTypes
      */
     public static boolean isValidType( String typeName )
     {
-        return typeStringIntPair.containsKey( typeName.trim().toUpperCase() );
+        String preparedTypeName = typeName.trim().toUpperCase();
+        
+        if( preparedTypeName == NULL_LITERAL )
+            return true;
+        
+        // check the data type definition in my plugin manifest for all other types
+        DataTypeMapping typeMapping = null;
+        try
+        {
+            typeMapping = getManifest().getDataSetType( null )
+                                            .getDataTypeMapping( preparedTypeName );
+        }
+        catch( OdaException e )
+        {
+            // ignore
+        }
+        
+        return( typeMapping != null );
     }
 
     private DataTypes()
     {
     }
+    
+    /**
+     * Returns the object that represents this extension's manifest.
+     * @throws OdaException
+     */
+    static ExtensionManifest getManifest()
+        throws OdaException
+    {
+        return ManifestExplorer.getInstance()
+                .getExtensionManifest( FLATFILE_DATA_SOURCE_ID );
+    }
+
 }
