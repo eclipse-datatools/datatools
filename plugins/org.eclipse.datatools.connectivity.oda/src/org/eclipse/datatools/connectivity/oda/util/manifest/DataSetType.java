@@ -26,13 +26,14 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 /**
  * Defines a type of data set supported by the ODA data source extension. 
  * A data set definition has a unique id, display name
- * and a set of driver to ODA data type mappings.
+ * and a set of driver-specific data type to ODA data type(s) mappings.
  */
 public class DataSetType
 {
 	private String m_id;
 	private String m_displayName;
-	private Hashtable m_dataTypeMappings;
+	private Hashtable m_dataTypeMappingsByNativeCode;
+    private Hashtable m_dataTypeMappingsByNativeName;
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_configElement;
@@ -54,7 +55,8 @@ public class DataSetType
 		m_displayName = ManifestExplorer.getElementDisplayName( dataSetElement );
 
 		// dataTypeMapping elements
-		m_dataTypeMappings = new Hashtable();
+		m_dataTypeMappingsByNativeCode = new Hashtable();
+        m_dataTypeMappingsByNativeName = new Hashtable();
 		IConfigurationElement[] typeMappings = dataSetElement.getChildren( "dataTypeMapping" ); //$NON-NLS-1$
 		int numOfTypeMappings = typeMappings.length;
 		if( numOfTypeMappings == 0 )
@@ -64,9 +66,11 @@ public class DataSetType
 		for( int i = 0; i < numOfTypeMappings; i++ )
 		{
 			IConfigurationElement typeMapping = typeMappings[i];
-			String nativeDataTypeCode = typeMapping.getAttribute( "nativeDataTypeCode" ); //$NON-NLS-1$
-			m_dataTypeMappings.put( nativeDataTypeCode, 
-									new DataTypeMapping( typeMapping, m_id ) );
+            
+            DataTypeMapping dataTypeMap = new DataTypeMapping( typeMapping, m_id );
+			m_dataTypeMappingsByNativeCode.put( 
+                    new Integer( dataTypeMap.getNativeTypeCode() ), dataTypeMap );
+            m_dataTypeMappingsByNativeName.put( dataTypeMap.getNativeType(), dataTypeMap );
 		}
 		
 		// properties element
@@ -119,16 +123,29 @@ public class DataSetType
 	
 	/**
 	 * Returns the data type mapping for the specified native data type code.
-	 * @param nativeDataTypeCode	the native data type code.
-	 * @return	the data type mapping for the native type code, or null 
-	 * 			if there is no data type mapping for the native type code in 
-	 * 			the data set type.
+	 * @param nativeDataTypeCode	a native data type code.
+     * @return  the data type mapping for the specified native type code, or null 
+     *          if there is no corresponding data type mapping defined in 
+     *          this data set type.
 	 */
 	public DataTypeMapping getDataTypeMapping( int nativeDataTypeCode )
 	{
-		String typeCode = Integer.toString( nativeDataTypeCode );
-		return (DataTypeMapping) m_dataTypeMappings.get( typeCode );
+		Integer typeCode = new Integer( nativeDataTypeCode );
+		return (DataTypeMapping) m_dataTypeMappingsByNativeCode.get( typeCode );
 	}
+    
+    /**
+     * Returns the data type mapping for the specified native data type name.
+     * @param nativeDataTypeName    a native data type name.
+     * @return  the data type mapping for the specified native type name, or null 
+     *          if there is no corresponding data type mapping defined in 
+     *          this data set type.
+     * @since 3.0.3
+     */
+    public DataTypeMapping getDataTypeMapping( String nativeDataTypeName )
+    {
+        return (DataTypeMapping) m_dataTypeMappingsByNativeName.get( nativeDataTypeName );
+    }
 	
 	/**
 	 * Returns the data type mappings for the data set type, or an 
@@ -138,7 +155,7 @@ public class DataSetType
 	 */
 	public DataTypeMapping[] getDataTypeMappings()
 	{
-		Collection typeMappings = m_dataTypeMappings.values();
+		Collection typeMappings = m_dataTypeMappingsByNativeCode.values();
 		int count = typeMappings.size();
 		return ( DataTypeMapping[] ) typeMappings.toArray( new DataTypeMapping[count] );
 	}
@@ -225,6 +242,8 @@ public class DataSetType
     
     /**
      * Indicates whether this data set type is defined to be deprecated.
+     * @return  true if this data set type is deprecated; false otherwise
+     * @since 3.0.3
      */
     public boolean isDeprecated()
     {
@@ -232,9 +251,10 @@ public class DataSetType
     }
 
     /**
-     * Returns the related oda data set element id, if specified.
+     * Gets the related oda data set element id, if specified.
      * @return  the related oda data set element id, or 
      *          null if none is specified.
+     * @since 3.0.3
      */
     public String getRelatedDataSetId()
     {
