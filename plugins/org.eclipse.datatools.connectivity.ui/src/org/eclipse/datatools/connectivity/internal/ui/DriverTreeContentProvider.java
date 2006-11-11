@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
@@ -24,8 +25,8 @@ import org.eclipse.datatools.connectivity.drivers.XMLFileManager;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.ui.internal.dialogs.ViewContentProvider;
 
 /**
  * Content provider for the driver tree.
@@ -37,7 +38,7 @@ import org.eclipse.ui.internal.dialogs.ViewContentProvider;
  * 
  * @author brianf
  */
-public class DriverTreeContentProvider extends ViewContentProvider {
+public class DriverTreeContentProvider implements ITreeContentProvider {
 
 	// local list of driver instances
 	private List psetsList;
@@ -80,7 +81,8 @@ public class DriverTreeContentProvider extends ViewContentProvider {
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 	 */
 	public void dispose() {
-		super.dispose();
+		if (this.psetsList != null)
+			this.psetsList.clear();
 	}
 
 	/*
@@ -154,6 +156,12 @@ public class DriverTreeContentProvider extends ViewContentProvider {
 		else if (element instanceof TemplateDescriptor) {
 			TemplateDescriptor descriptor = (TemplateDescriptor) element;
 			return descriptor.getParent();
+		}
+		else if (element instanceof IPropertySet) {
+			IPropertySet propset = (IPropertySet) element;
+			DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(propset.getID());
+			if (di != null)
+				return di.getTemplate();
 		}
 		return null;
 	}

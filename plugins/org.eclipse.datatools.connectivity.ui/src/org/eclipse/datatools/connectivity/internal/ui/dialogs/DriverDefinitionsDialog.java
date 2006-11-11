@@ -10,10 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
@@ -34,9 +36,13 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -214,37 +220,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				StructuredSelection selection = (StructuredSelection) DriverDefinitionsDialog.this.mTreeViewer
 						.getSelection();
 				if (selection.getFirstElement() instanceof CategoryDescriptor) {
-					CategoryDescriptor descriptor = (CategoryDescriptor) selection
-							.getFirstElement();
-					NewDriverDialog dlg;
-					if (DriverDefinitionsDialog.this.mCategoryId != null) {
-						dlg = new NewDriverDialog(getShell(), descriptor
-								.getId());
-					}
-					else {
-						dlg = new NewDriverDialog(getShell());
-					}
-
-					if (dlg.open() == Window.OK) {
-						IPropertySet instance = dlg.getNewDriverInstance();
-
-						DriverDefinitionsDialog.this.mDirty = true;
-
-						if (dlg.getEditImmediately()) {
-							EditDriverDialog editdlg = new EditDriverDialog(
-									getShell(), instance);
-							int rtn_code = editdlg.open();
-							if (rtn_code != EditDriverDialog.OK) {
-								instance = editdlg.getInitialPropertySet();
-							}
-						}
-
-						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
-								.getContentProvider()).getDriverInstances();
-						psetsList.add(instance);
-
-						DriverDefinitionsDialog.this.mTreeViewer.refresh();
-					}
+					addDriver(selection);
 				}
 			}
 
@@ -266,33 +242,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				StructuredSelection selection = (StructuredSelection) DriverDefinitionsDialog.this.mTreeViewer
 						.getSelection();
 				if (selection.getFirstElement() instanceof IPropertySet) {
-					IPropertySet instance = (IPropertySet) selection
-							.getFirstElement();
-					IPropertySet copy = duplicatePropertySet(instance);
-					EditDriverDialog dlg = new EditDriverDialog(getShell(),
-							copy);
-					if (dlg.open() == Window.OK) {
-						copyPropertySet(copy, instance);
-						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
-								.getContentProvider()).getDriverInstances();
-						psetsList.remove(instance);
-						
-						/*
-						 * This call to garbage collect is to try and reclaim
-						 * the classloader held by the last instance of the 
-						 * DriverInstance that is being dropped and re-added.
-						 * Note that if the class is in use (i.e. any profile
-						 * is connected that uses the referenced driver), it 
-						 * won't be unloaded and subsequent connections will 
-						 * fail.
-						 */
-						System.gc();
-						
-						psetsList.add(instance);
-						DriverDefinitionsDialog.this.mDirty = true;
-						DriverDefinitionsDialog.this.mTreeViewer.refresh();
-						validate(instance);
-					}
+					editDriver(selection);
 				}
 			}
 
@@ -314,26 +264,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				StructuredSelection selection = (StructuredSelection) DriverDefinitionsDialog.this.mTreeViewer
 						.getSelection();
 				if (selection.getFirstElement() instanceof IPropertySet) {
-					IPropertySet instance = (IPropertySet) selection
-							.getFirstElement();
-					if (MessageDialog
-							.openQuestion(
-									getShell(),
-									DriverMgmtMessages
-											.getString("DriverPreferences.title.removeMessage"), //$NON-NLS-1$
-									DriverMgmtMessages
-											.format(
-													"DriverPreferences.text.removeMessage", //$NON-NLS-1$ 
-													new String[] { instance
-															.getName()})) == true) {
-						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
-								.getContentProvider()).getDriverInstances();
-						psetsList.remove(instance);
-						CategoryDescriptor category = getCategoryFromPropertySet(instance);
-						DriverDefinitionsDialog.this.mTreeViewer
-								.refresh(category);
-						DriverDefinitionsDialog.this.mDirty = true;
-					}
+					removeDriver(selection);
 				}
 			}
 
@@ -355,30 +286,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				StructuredSelection selection = (StructuredSelection) DriverDefinitionsDialog.this.mTreeViewer
 						.getSelection();
 				if (selection.getFirstElement() instanceof IPropertySet) {
-					IPropertySet instance = (IPropertySet) selection
-							.getFirstElement();
-					if (instance != null) {
-						IPropertySet cloned = (IPropertySet) ((PropertySetImpl) instance)
-								.clone();
-
-						String copyPrefix = DriverMgmtMessages
-								.getString("PropertySetImpl.copy_prefix"); //$NON-NLS-1$
-						String copyIdSuffix = DriverMgmtMessages
-								.getString("PropertySetImpl.copy_id_suffix"); //$NON-NLS-1$
-						String name = copyPrefix + instance.getName();
-						String id = instance.getID() + copyIdSuffix;
-						cloned.setID(id);
-						cloned.setName(name);
-
-						List psetsList = ((DriverTreeContentProvider) DriverDefinitionsDialog.this.mTreeViewer
-								.getContentProvider()).getDriverInstances();
-						psetsList.add(cloned);
-
-						DriverDefinitionsDialog.this.mTreeViewer.refresh();
-
-						DriverDefinitionsDialog.this.mTreeViewer
-								.setSelection(new StructuredSelection(cloned));
-					}
+					copyDriver(selection);
 				}
 			}
 
@@ -394,9 +302,19 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 		if (this.mInitialDriverName != null) {
 			IPropertySet pset = getNamedInstance(this.mInitialDriverName);
-			if (pset != null)
-				this.mTreeViewer.setSelection(new StructuredSelection(pset),
-						true);
+			if (pset != null) {
+				LinkedList queue = new LinkedList();
+				ITreeContentProvider itcp = (ITreeContentProvider) this.mTreeViewer.getContentProvider();
+				Object treeparent = itcp.getParent(pset);
+				queue.add(pset);
+				while (treeparent != null) {
+					queue.addFirst(treeparent);
+					treeparent = itcp.getParent(treeparent);
+				}
+				TreePath path = new TreePath(queue.toArray());
+				TreeSelection tselection = new TreeSelection(path);
+				this.mTreeViewer.setSelection(tselection);
+			}
 			else {
 				this.mTreeViewer.setSelection(new StructuredSelection(
 						CategoryDescriptor.getRootCategories()[0]));
@@ -603,6 +521,123 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		topset.setName(fromPset.getName());
 		if (topset.getBaseProperties().size() > 0) {
 			topset.getBaseProperties().putAll(fromPset.getBaseProperties());
+		}
+	}
+
+	private void addDriver(ISelection selection) {
+		StructuredSelection sselection = (StructuredSelection) selection;
+
+		// Add a new driver instance from one of the templates for the category
+		if (sselection.getFirstElement() instanceof CategoryDescriptor) {
+
+			CategoryDescriptor descriptor = (CategoryDescriptor) sselection
+					.getFirstElement();
+			NewDriverDialog dlg = null;
+			if (DriverDefinitionsDialog.this.mCategoryId != null) {
+				dlg = new NewDriverDialog(getShell(), descriptor
+						.getId());
+			}
+			else {
+				dlg = new NewDriverDialog(getShell());
+			}
+			if (dlg.open() == Window.OK) {
+				IPropertySet instance = dlg.getNewDriverInstance();
+
+				DriverDefinitionsDialog.this.mDirty = true;
+
+				// Should we edit immediately? if yes, pop up the edit dialog
+				if (dlg.getEditImmediately()) {
+					EditDriverDialog editdlg = new EditDriverDialog(getShell(),
+							instance);
+					int rtn_code = editdlg.open();
+					if (rtn_code != EditDriverDialog.OK) {
+						instance = editdlg.getInitialPropertySet();
+					}
+				}
+
+				// stash the new instance
+				DriverManager.getInstance().addDriverInstance(instance);
+
+				// refresh
+				DriverDefinitionsDialog.this.mTreeViewer.refresh();
+
+			}
+		}
+	}
+
+	private void editDriver(ISelection selection) {
+		StructuredSelection sselection = (StructuredSelection) selection;
+		if (sselection.getFirstElement() instanceof IPropertySet) {
+			IPropertySet instance = (IPropertySet) sselection.getFirstElement();
+			IPropertySet copy = duplicatePropertySet(instance);
+			EditDriverDialog dlg = new EditDriverDialog(getShell(), copy);
+			if (dlg.open() == Window.OK) {
+				
+				copyPropertySet(copy, instance);
+				DriverManager.getInstance().removeDriverInstance(instance.getID());
+				
+				/*
+				 * This call to garbage collect is to try and reclaim
+				 * the classloader held by the last instance of the 
+				 * DriverInstance that is being dropped and re-added.
+				 * Note that if the class is in use (i.e. any profile
+				 * is connected that uses the referenced driver), it 
+				 * won't be unloaded and subsequent connections will 
+				 * fail.
+				 */
+				System.gc();
+				
+				DriverManager.getInstance().addDriverInstance(instance);
+				DriverDefinitionsDialog.this.mDirty = true;
+				DriverDefinitionsDialog.this.mTreeViewer.refresh();
+				validate(instance);
+			}
+		}
+	}
+
+	private void removeDriver(ISelection selection) {
+		StructuredSelection sselection = (StructuredSelection) selection;
+		if (sselection.getFirstElement() instanceof IPropertySet) {
+			IPropertySet instance = (IPropertySet) sselection.getFirstElement();
+			if (MessageDialog.openQuestion(getShell(), DriverMgmtMessages
+					.getString("DriverPreferences.title.removeMessage"), //$NON-NLS-1$
+					DriverMgmtMessages.format(
+							"DriverPreferences.text.removeMessage", //$NON-NLS-1$ 
+							new String[] { instance.getName()})) == true) {
+				DriverManager.getInstance().removeDriverInstance(instance.getID());
+
+				CategoryDescriptor category = getCategoryFromPropertySet(instance);
+				DriverDefinitionsDialog.this.mTreeViewer.refresh(category);
+				DriverDefinitionsDialog.this.mDirty = true;
+				DriverDefinitionsDialog.this.mErrorLabel.setText(""); //$NON-NLS-1$
+			}
+		}
+	}
+
+	private void copyDriver(ISelection selection) {
+		StructuredSelection sselection = (StructuredSelection) selection;
+		if (sselection.getFirstElement() instanceof IPropertySet) {
+			IPropertySet instance = (IPropertySet) sselection.getFirstElement();
+			if (instance != null) {
+				IPropertySet cloned = (IPropertySet) ((PropertySetImpl) instance)
+						.clone();
+
+				String copyPrefix = DriverMgmtMessages
+						.getString("PropertySetImpl.copy_prefix"); //$NON-NLS-1$
+				String copyIdSuffix = DriverMgmtMessages
+						.getString("PropertySetImpl.copy_id_suffix"); //$NON-NLS-1$
+				String name = copyPrefix + instance.getName();
+				String id = instance.getID() + copyIdSuffix;
+				cloned.setID(id);
+				cloned.setName(name);
+				
+				DriverManager.getInstance().addDriverInstance(cloned);
+
+				DriverDefinitionsDialog.this.mTreeViewer.refresh();
+
+				DriverDefinitionsDialog.this.mTreeViewer
+						.setSelection(new StructuredSelection(cloned));
+			}
 		}
 	}
 }

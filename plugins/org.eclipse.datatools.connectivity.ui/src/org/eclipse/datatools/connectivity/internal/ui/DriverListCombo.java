@@ -18,14 +18,13 @@ import java.util.List;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
+import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
-import org.eclipse.datatools.connectivity.drivers.XMLFileManager;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDefinitionsDialog;
@@ -440,13 +439,12 @@ public class DriverListCombo {
 		getCombo().removeAll();
 
 		IPropertySet[] psets = new IPropertySet[0];
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		try {
-			psets = XMLFileManager.loadPropertySets();
-		}
-		catch (CoreException e) {
-			ConnectivityUIPlugin.getDefault().log(e);
-			return;
+		DriverInstance[] dilist = DriverManager.getInstance().getAllDriverInstances();
+		if (dilist != null && dilist.length > 0) {
+			psets = new IPropertySet[dilist.length];
+			for (int i = 0; i< psets.length; i++) {
+				psets[i] = dilist[i].getPropertySet();
+			}
 		}
 
 		if (this.mCategoryId != null) {
@@ -463,11 +461,10 @@ public class DriverListCombo {
 			else {
 				populateAssociatedDriverTypes(category,templates);
 			}
-			Iterator iter = templates.iterator();
-			while (iter.hasNext()) {
-				TemplateDescriptor template = (TemplateDescriptor) iter.next();
-				for (int i = 0; i < psets.length; i++) {
-					IPropertySet pset = psets[i];
+			for (int i = 0; i < templates.size(); i++)  {
+				TemplateDescriptor template = (TemplateDescriptor) templates.get(i);
+				for (int j = 0; j < psets.length; j++) {
+					IPropertySet pset = psets[j];
 					String driverType = pset.getBaseProperties().getProperty(
 							IDriverMgmtConstants.PROP_DEFN_TYPE); //$NON-NLS-1$
 					if (driverType.equals(template.getId())) {

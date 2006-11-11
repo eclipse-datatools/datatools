@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
@@ -358,10 +359,7 @@ public class DriverPreferences extends PreferencePage implements
 				}
 
 				// stash the new instance
-				List psetsList = ((DriverTreeContentProvider) DriverPreferences.this.mTreeViewer
-						.getContentProvider()).getDriverInstances();
-				psetsList.add(instance);
-				saveChanges();
+				DriverManager.getInstance().addDriverInstance(instance);
 
 				// refresh
 				DriverPreferences.this.mTreeViewer.refresh();
@@ -377,10 +375,9 @@ public class DriverPreferences extends PreferencePage implements
 			IPropertySet copy = duplicatePropertySet(instance);
 			EditDriverDialog dlg = new EditDriverDialog(getShell(), copy);
 			if (dlg.open() == Window.OK) {
+				
 				copyPropertySet(copy, instance);
-				List psetsList = ((DriverTreeContentProvider) DriverPreferences.this.mTreeViewer
-						.getContentProvider()).getDriverInstances();
-				psetsList.remove(instance);
+				DriverManager.getInstance().removeDriverInstance(instance.getID());
 				
 				/*
 				 * This call to garbage collect is to try and reclaim
@@ -393,8 +390,7 @@ public class DriverPreferences extends PreferencePage implements
 				 */
 				System.gc();
 				
-				psetsList.add(instance);
-				saveChanges();
+				DriverManager.getInstance().addDriverInstance(instance);
 				DriverPreferences.this.mDirty = true;
 				DriverPreferences.this.mTreeViewer.refresh();
 				validate(instance);
@@ -411,10 +407,8 @@ public class DriverPreferences extends PreferencePage implements
 					DriverMgmtMessages.format(
 							"DriverPreferences.text.removeMessage", //$NON-NLS-1$ 
 							new String[] { instance.getName()})) == true) {
-				List psetsList = ((DriverTreeContentProvider) DriverPreferences.this.mTreeViewer
-						.getContentProvider()).getDriverInstances();
-				psetsList.remove(instance);
-				saveChanges();
+				DriverManager.getInstance().removeDriverInstance(instance.getID());
+
 				CategoryDescriptor category = getCategoryFromPropertySet(instance);
 				DriverPreferences.this.mTreeViewer.refresh(category);
 				DriverPreferences.this.mDirty = true;
@@ -439,11 +433,8 @@ public class DriverPreferences extends PreferencePage implements
 				String id = instance.getID() + copyIdSuffix;
 				cloned.setID(id);
 				cloned.setName(name);
-
-				List psetsList = ((DriverTreeContentProvider) DriverPreferences.this.mTreeViewer
-						.getContentProvider()).getDriverInstances();
-				psetsList.add(cloned);
-				saveChanges();
+				
+				DriverManager.getInstance().addDriverInstance(cloned);
 
 				DriverPreferences.this.mTreeViewer.refresh();
 

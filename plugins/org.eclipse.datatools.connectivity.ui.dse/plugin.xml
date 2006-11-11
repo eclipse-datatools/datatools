@@ -192,6 +192,24 @@
 			      	</or>
 	         </visibility>
 		 </objectContribution>
+<!--         <objectContribution
+               adaptable="false"
+               id="org.eclipse.datatools.connectivity.ui.dse.refreshContribution"
+               objectClass="java.lang.Object">
+            <action
+                  class="org.eclipse.datatools.connectivity.ui.actions.RefreshViewAction"
+                  definitionId="org.eclipse.ui.file.refresh"
+                  id="org.eclipse.datatools.connectivity.ui.dse.refresh"
+                  label="Refresh2"
+                  menubarPath="slot3">
+               <enablement>
+                  <or>
+                     <objectClass name="org.eclipse.datatools.connectivity.ICategory"/>
+                     <objectClass name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+                  </or>
+               </enablement>
+            </action>
+         </objectContribution> -->
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">

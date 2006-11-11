@@ -90,6 +90,28 @@ public class DriverManager {
 		return null;
 	}
 
+	private DriverInstance[] getDriverInstancesFromMapByCategoryID( String categoryid ) {
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		ArrayList list = new ArrayList();
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			if (di.getTemplate().getParent().getId().equals(categoryid))
+				list.add(di);
+		}
+		return (DriverInstance[]) list.toArray(new DriverInstance[list.size()]);
+	}
+
+	private DriverInstance[] getDriverInstancesFromMapForTemplateID( String templateid ) {
+		Iterator iter = mDriverInstanceMap.values().iterator();
+		ArrayList list = new ArrayList();
+		while (iter.hasNext()) {
+			DriverInstance di = (DriverInstance) iter.next();
+			if (di.getTemplate().getId().equals(templateid))
+				list.add(di);
+		}
+		return (DriverInstance[]) list.toArray(new DriverInstance[list.size()]);
+	}
+
 	/**
 	 * Retrieve a DriverInstance by Id
 	 * @param id ID of the driver
@@ -116,6 +138,14 @@ public class DriverManager {
 			}
 		}
 		return di;
+	}
+
+	public DriverInstance[] getDriverInstancesByCategory(String categoryid) {
+		return getDriverInstancesFromMapByCategoryID(categoryid);
+	}
+
+	public DriverInstance[] getDriverInstancesByTemplate(String templateid) {
+		return getDriverInstancesFromMapForTemplateID(templateid);
 	}
 
 	/**
@@ -151,12 +181,14 @@ public class DriverManager {
 	 * @return String
 	 */
 	public String getFullJarList() {
-		Iterator iter = mDriverInstanceMap.values().iterator();
+		Object[] drivers = mDriverInstanceMap.values().toArray();
 		String fullList = ""; //$NON-NLS-1$
-		while (iter.hasNext()) {
-			DriverInstance di = (DriverInstance) iter.next();
+		for (int x = 0; x < drivers.length; x++) {
+			DriverInstance di = (DriverInstance) drivers[x];
 			if (di.getJarList() != null) {
 				String jarlist = di.getJarList().trim();
+				if (fullList.trim().length() > 0)
+					fullList = fullList + IDriverMgmtConstants.PATH_DELIMITER;
 				fullList = fullList + jarlist
 					+ IDriverMgmtConstants.PATH_DELIMITER;
 			}
@@ -165,7 +197,8 @@ public class DriverManager {
 					.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
 				fullList = fullList.substring(0, fullList.length() - 1);
 			}
-
+		}
+		if (fullList.trim().length() > 0) {
 			String[] paths = parseString(fullList,
 					IDriverMgmtConstants.PATH_DELIMITER);
 			ArrayList list = new ArrayList();
@@ -183,11 +216,12 @@ public class DriverManager {
 				newList = newList + iter2.next()
 						+ IDriverMgmtConstants.PATH_DELIMITER;
 			}
-			if (newList.substring(newList.length() - 1, newList.length())
-					.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
-				newList = newList.substring(0, newList.length() - 1);
+			if (newList.length() > 0) {
+				if (newList.substring(newList.length() - 1, newList.length())
+						.equals(IDriverMgmtConstants.PATH_DELIMITER)) {
+					newList = newList.substring(0, newList.length() - 1);
+				}
 			}
-
 			return newList;
 		}
 		return null;
@@ -230,6 +264,16 @@ public class DriverManager {
 		return array;
 	}
 	
+	/**
+	 * Returns an array of all driver instances
+	 * @return DriverInstance[]
+	 */
+	public DriverInstance[] getAllDriverInstances() {
+		return (DriverInstance[]) 
+			mDriverInstanceMap.values().toArray(
+					new DriverInstance[mDriverInstanceMap.values().size()]);
+	}
+
 	private IPropertySet[] getPropertySetsFromMap() {
 		Iterator iter = mDriverInstanceMap.values().iterator();
 		ArrayList list = new ArrayList();
@@ -292,6 +336,8 @@ public class DriverManager {
 					}
 					if (rtnFlag == true) {
 						XMLFileManager.saveNamedPropertySet(newPsets);
+						mDriverInstanceMap = new HashMap();
+						loadAllInstances();
 					}
 				}
 			}
@@ -302,12 +348,7 @@ public class DriverManager {
 		return rtnFlag;
 	}
 
-	/**
-	 * Adds a new driver instance to the Drivers file
-	 * @param pset IPropertySet
-	 */
-	private void addDriverInstance(IPropertySet pset) {
-		DriverInstance di = new DriverInstance(pset);
+	public void addDriverInstance ( DriverInstance di ) {
 		mDriverInstanceMap.put(di.getId(), di);
 		IPropertySet[] psets = getPropertySetsFromMap();
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
@@ -320,6 +361,15 @@ public class DriverManager {
 		catch (CoreException e) {
 			ConnectivityPlugin.getDefault().log(e);
 		}
+	}
+	
+	/**
+	 * Adds a new driver instance to the Drivers file
+	 * @param pset IPropertySet
+	 */
+	public void addDriverInstance(IPropertySet pset) {
+		DriverInstance di = new DriverInstance(pset);
+		addDriverInstance(di);
 	}
 
 	/**
