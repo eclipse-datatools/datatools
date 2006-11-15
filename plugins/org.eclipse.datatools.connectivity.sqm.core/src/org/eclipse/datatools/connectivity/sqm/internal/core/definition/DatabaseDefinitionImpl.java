@@ -30,11 +30,11 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogProvider;
 import org.eclipse.datatools.connectivity.sqm.core.rte.fe.GenericDdlGenerator;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DDLParser;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDeltaDdlGenerator;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCProvider;
 import org.eclipse.datatools.modelbase.dbdefinition.ColumnDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ConstraintDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition;

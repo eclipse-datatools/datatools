@@ -21,10 +21,10 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCForeignKey;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCPrimaryKey;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCUniqueConstraint;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCForeignKey;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCPrimaryKey;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCUniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;

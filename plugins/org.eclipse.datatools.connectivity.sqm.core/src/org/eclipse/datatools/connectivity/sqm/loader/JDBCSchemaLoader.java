@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCSchema;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCSchema;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 

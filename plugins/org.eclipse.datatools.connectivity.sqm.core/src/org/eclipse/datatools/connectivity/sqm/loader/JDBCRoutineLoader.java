@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCProcedure;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCUserDefinedFunction;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCProcedure;
-import org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc.JDBCUserDefinedFunction;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
