@@ -648,7 +648,7 @@ public class ResultsViewAPI
             return false;
         }
         IResultInstance parentResult = _manager.getInstance(parentCmd);
-        if (parentResult != null)
+        if (parentResult != null && !parentResult.isFinished())
         {
             parentResult.createSubResult(cmd, terminateHandler);
             return true;
