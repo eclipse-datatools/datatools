@@ -201,8 +201,10 @@ public class ResultsViewAPITest extends TestCase
     }
 
     /**
-     * Create new result instance and append result set to it, then set its status
-     *
+     * Create new result instance and append result set to it, then set its status.
+     * <p>
+     * ATTN: This case wont pass unless the url is properly set, and the driver class for Sybase database can be found
+     * 
      */
     public void testAppendResultSetOperationCommandResultSet()
     {
@@ -218,7 +220,7 @@ public class ResultsViewAPITest extends TestCase
         ResultSet rs = null;
         
         // put a right url here when testing this case
-        String url = "jdbc:sybase:Tds:dyang-desktop:5000/master";
+        String url = "jdbc:sybase:Tds:127.0.0.1:5000/master";
         try
         {
             // put a right driver class when testing this case
@@ -519,5 +521,113 @@ public class ResultsViewAPITest extends TestCase
         System.out.println("Update status (expect:false):" + succeeded);
         Assert.assertEquals(false, succeeded);
     }
-
+    
+    /**
+     * Create a sub instance of an existing instance
+     *
+     */
+    public void testCreateSubInstance()
+    {
+        OperationCommand cmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        boolean succeeded = true;
+        succeeded = _resultsViewAPI.createNewInstance(cmd, null);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd, null);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(subCmd, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(cmd, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        // negative case
+        OperationCommand subCmd1 = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd1, null);
+        assertEquals(false, succeeded);
+    }
+    
+    /**
+     * Create two sub instances, and get them
+     *
+     */
+    public void testGetSubOperationCommand()
+    {
+        OperationCommand cmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        boolean succeeded = true;
+        succeeded = _resultsViewAPI.createNewInstance(cmd, null);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd1 = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd1, null);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(subCmd1, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd2 = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd2, null);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(subCmd2, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(cmd, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCommandReturned1 = _resultsViewAPI.getSubOperationCommand(cmd, 0);
+        assertNotNull(subCommandReturned1);
+        
+        assertEquals(subCmd1, subCommandReturned1);
+        
+        OperationCommand subCommandReturned2 = _resultsViewAPI.getSubOperationCommand(cmd, 1);
+        assertNotNull(subCommandReturned2);
+        
+        assertEquals(subCmd2, subCommandReturned2);
+    }
+    
+    /**
+     * Create two sub instances, change the status of them, calculte the status of the parent instance
+     *
+     */
+    public void testCalculateStatus()
+    {
+        OperationCommand cmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        boolean succeeded = true;
+        succeeded = _resultsViewAPI.createNewInstance(cmd, null);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd1 = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd1, null);
+        assertEquals(true, succeeded);
+        
+        succeeded = _resultsViewAPI.updateStatus(subCmd1, OperationCommand.STATUS_SUCCEEDED);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd2 = new OperationCommand(OperationCommand.ACTION_EXECUTE, "Junit test string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd2, null);
+        assertEquals(true, succeeded);
+        
+        int status = _resultsViewAPI.calculateStatus(cmd);
+        assertEquals(OperationCommand.STATUS_STARTED, status);
+        
+        succeeded = _resultsViewAPI.updateStatus(subCmd2, OperationCommand.STATUS_WARNING);
+        assertEquals(true, succeeded);
+        
+        status = _resultsViewAPI.calculateStatus(cmd);
+        assertEquals(OperationCommand.STATUS_WARNING, status);
+        
+        assertEquals(true, _resultsViewAPI.updateStatus(cmd, status));
+    }
 }

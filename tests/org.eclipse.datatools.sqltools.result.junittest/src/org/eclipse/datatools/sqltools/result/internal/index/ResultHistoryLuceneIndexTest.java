@@ -325,6 +325,24 @@ public class ResultHistoryLuceneIndexTest extends TestCase
         {
             System.out.println("Display str: " + ins[i].getOperationCommand().getDisplayString());
         }
+        
+        //search after group results feature is supported
+        OperationCommand cmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "parent display string", "Junit",
+                "ase", "master");
+        boolean succeeded = true;
+        succeeded = _resultsViewAPI.createNewInstance(cmd, null);
+        assertEquals(true, succeeded);
+        
+        OperationCommand subCmd = new OperationCommand(OperationCommand.ACTION_EXECUTE, "sub display string", "Junit",
+                "ase", "master");
+        succeeded = _resultsViewAPI.createSubInstance(cmd, subCmd, null);
+        assertEquals(true, succeeded);
+        
+        _historyIndex.addResult(_resultManager.getInstance(cmd));
+        
+        ins = _historyIndex.search("sub AND parent");
+        assertEquals(1, ins.length);
+        assertEquals("parent display string", ins[0].getOperationCommand().getDisplayString());
     }
 
     /*
