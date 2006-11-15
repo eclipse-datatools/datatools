@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DTP ODA Profile Tests Suite
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.profile.tests
+Bundle-Version: 3.0.2.200611151
+Bundle-Localization: plugin
+Require-Bundle: org.junit;bundle-version="[3.8.1,4.0.0)",
+ org.eclipse.datatools.connectivity.oda.profile;bundle-version="[3.0.2,4.0.0)",
+ org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.0.2,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)"
+Bundle-Vendor: Eclipse.org
