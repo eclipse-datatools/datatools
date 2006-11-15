@@ -114,9 +114,31 @@ public class Connection implements IConnection
 	 */
 	public void setAppContext( Object context ) throws OdaException
 	{
-		if( !( context instanceof Map ) )
-			throw new OdaException( Messages.getString("Connection.InvalidAppContext") ); 
-		this.appContext = (Map)context;
+		if ( !( context instanceof Map ) )
+			throw new OdaException( Messages.getString( "Connection.InvalidAppContext" ) );
+		this.appContext = (Map) context;
+
+		// The following code are for backward compatibility only.Once we
+		// nolonger
+		// support original BIRT ODA XML Driver this code block should be
+		// removed.
+		// ///////////////////////////////////////////////////////////////////
+		String legacyInputStreamKey = "org.eclipse.birt.report.data.oda.xml.inputStream";
+		if ( this.appContext.get( legacyInputStreamKey ) != null )
+		{
+			this.appContext.put( Constants.APPCONTEXT_INPUTSTREAM,
+					this.appContext.get( legacyInputStreamKey ) );
+			this.appContext.remove( legacyInputStreamKey );
+		}
+
+		String legacyCloseInputStreamKey = "org.eclipse.birt.report.data.oda.xml.closeInputStream";
+		if ( this.appContext.get( legacyCloseInputStreamKey ) != null )
+		{
+			this.appContext.put( Constants.APPCONTEXT_CLOSEINPUTSTREAM,
+					this.appContext.get( legacyCloseInputStreamKey ) );
+			this.appContext.remove( legacyCloseInputStreamKey );
+		}
+		/////////////////////////////////////////////////////////////////////
 	}
 
 	/*
