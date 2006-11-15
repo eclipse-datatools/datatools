@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.result.internal.index;
 
 import java.util.List;
 
+import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
@@ -25,8 +26,7 @@ public class HistoryIndexListener implements IResultManagerListener
 {
     public void resultInstanceCreated(IResultInstance instance)
     {
-        IResultHistoryIndex index = ResultsViewPlugin.getDefault().getResultHistoryIndex();
-        index.addResult(instance);
+        // Only when the instance is finished will we add it for searching
     }
 
     public void resultInstanceRemoved(IResultInstance instance)
@@ -47,7 +47,12 @@ public class HistoryIndexListener implements IResultManagerListener
 
     public void resultInstanceStatusUpdated(IResultInstance instance)
     {
-        // Do nothing for now
+        // if current status is FINISHED and it is a parent result
+        if(instance.isFinished() && instance.isParentResult())
+        {
+            IResultHistoryIndex index = ResultsViewPlugin.getDefault().getResultHistoryIndex();
+            index.addResult(instance);
+        }
     }
 
     public void resultInstanceReset(IResultInstance instance)

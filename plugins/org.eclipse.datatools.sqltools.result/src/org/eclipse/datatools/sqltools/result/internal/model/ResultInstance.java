@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
@@ -54,6 +55,10 @@ public class ResultInstance implements IResultInstance
     
     private List               _throwables;
     
+    private List               _subResults; 
+    
+    private IResultInstance    _parentResult;
+    
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
         this._resultManager = resultmanager;
@@ -62,6 +67,13 @@ public class ResultInstance implements IResultInstance
         this._terminateHandler = terminateHandler;
         _date = ResultsConstants.FORMATTER.format(new Date());
         _execFrequency = 1;
+        _subResults = new ArrayList(5);
+    }
+    
+    public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler, IResultInstance parentResult)
+    {
+        this(resultmanager, command, terminateHandler);
+        _parentResult = parentResult;
     }
 
     public void morePlainMessage(String msg)
@@ -157,12 +169,24 @@ public class ResultInstance implements IResultInstance
             _terminateHandler.run();
         }
         _status = OperationCommand.STATUS_TERMINATED;
+        
+        // terminate all the sub-results
+        Iterator iter = _subResults.iterator();
+        while(iter.hasNext())
+        {
+            IResultInstance subIns = (IResultInstance)iter.next();
+            if(!subIns.isFinished())
+            {
+                subIns.terminate();
+            }
+        }
+        
         if (_resultManager != null)
         {
             _resultManager.fireStatusUpdated(this);
         }
     }
-
+    
     public void dispose()
     {
         for (int i = 0; i < _resultList.size(); i++)
@@ -259,5 +283,64 @@ public class ResultInstance implements IResultInstance
             _throwables = new ArrayList();
         }
         _throwables.add(th);
+    }
+
+    public void createSubResult(OperationCommand cmd, Runnable terminateHandler)
+    {
+        IResultInstance instance = new ResultInstance(_resultManager, cmd, terminateHandler, this);
+        synchronized (_subResults)
+        {
+            _subResults.add(instance);
+        }
+        _resultManager.newSubResultCreated(cmd, instance);
+    }
+
+    public List getSubResults()
+    {
+        return _subResults;
+    }
+
+    public IResultInstance getParentResult()
+    {
+        return _parentResult;
+    }
+
+    public boolean isParentResult()
+    {
+        if(_parentResult == null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int calculateStatus()
+    {
+        if (getSubResults().size() == 0)
+        {
+            return getStatus();
+        }
+        Iterator iter = getSubResults().iterator();
+        int severeFirstStatus = OperationCommand.STATUS_SUCCEEDED;
+        while (iter.hasNext())
+        {
+            IResultInstance ins = (IResultInstance) iter.next();
+            int status = ins.calculateStatus();
+            // it should be STARTED or RUNNING if one of its sub-result is still started/running
+            if (status == OperationCommand.STATUS_STARTED || status == OperationCommand.STATUS_RUNNING)
+            {
+                return status;
+            }
+            // it should be terminated if one of its sub-result is terminated
+            if (status == OperationCommand.STATUS_TERMINATED)
+            {
+                return status;
+            }
+            if (status > severeFirstStatus)
+            {
+                severeFirstStatus = status;
+            }
+        }
+        return severeFirstStatus;
     }
 }

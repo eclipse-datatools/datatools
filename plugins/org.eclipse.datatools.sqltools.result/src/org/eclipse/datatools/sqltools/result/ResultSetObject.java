@@ -136,7 +136,8 @@ public class ResultSetObject implements IResultSetObject
                             dir.mkdir();
                         }
                         _backupFile = File.createTempFile(String.valueOf(resultset.hashCode()), ".result", dir); //$NON-NLS-1$
-                        _backupFile.deleteOnExit();
+                        
+                        // The file will be deleted when the result instance is removed by the user
                         if (_backupFile.exists())
                         {
                             oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(_backupFile)));

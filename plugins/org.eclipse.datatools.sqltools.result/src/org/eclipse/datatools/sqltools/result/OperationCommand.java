@@ -48,9 +48,9 @@ public class OperationCommand implements Serializable
 
     /* 7 statuses defined */
     public static final int   STATUS_CRITICAL_ERROR = 7;
-    public static final int   STATUS_WARNING        = 6;
+    public static final int   STATUS_FAILED         = 6;
     public static final int   STATUS_TERMINATED     = 5;
-    public static final int   STATUS_FAILED         = 4;
+    public static final int   STATUS_WARNING        = 4;
     public static final int   STATUS_SUCCEEDED      = 3;
     public static final int   STATUS_RUNNING        = 2;
     public static final int   STATUS_STARTED        = 1;

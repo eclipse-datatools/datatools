@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.result.internal.index;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -83,6 +84,19 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         });
     }
 
+    private String getCombinedDisplayString(IResultInstance instance)
+    {
+        StringBuffer sb = new StringBuffer("");
+        sb.append(instance.getOperationCommand().getDisplayString()).append(" ");
+        Iterator iter = instance.getSubResults().iterator();
+        while(iter.hasNext())
+        {
+            IResultInstance ins = (IResultInstance)iter.next();
+            sb.append(getCombinedDisplayString(ins));
+        }
+        return sb.toString();
+    }
+    
     public void addResults(IResultInstance[] instances)
     {
         synchronized (this)
@@ -99,7 +113,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                         if (instance != null)
                         {
                             Document doc = new Document();
-                            doc.add(Field.Text(FIELD_OPERATION, instance.getOperationCommand().getDisplayString()));
+                            doc.add(Field.Text(FIELD_OPERATION, getCombinedDisplayString(instance)));
                             doc.add(Field.Text(FIELD_ACTION, OperationCommand.getActionString(instance
                                     .getOperationCommand().getActionType())));
                             doc.add(Field.Text(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName()));

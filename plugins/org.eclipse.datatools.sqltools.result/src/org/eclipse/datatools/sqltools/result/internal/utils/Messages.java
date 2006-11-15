@@ -22,7 +22,8 @@ public final class Messages extends NLS {
 		// Do not instantiate
 	}
 
-	public static String ResultHistorySection_status;
+	public static String ResultHistoryPage_no_column_selected;
+    public static String ResultHistorySection_status;
 	public static String ResultHistoryPage_operation;
 	public static String ResultHistoryPage_frequency;
 	public static String ResultHistorySection_query_expression;

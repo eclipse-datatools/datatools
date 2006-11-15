@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.result;
 
 import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -625,5 +626,79 @@ public class ResultsViewAPI
             }
             return false;
         }
+    }
+    
+    /**
+     * Creates a sub result instance for the given parent result instance.
+     * 
+     * @param parentCmd the operation request instance of the parent result, can not be null
+     * @param cmd the operation request instance, can not be null
+     * @param terminateHandler the handler to terminate the new instance, can be null
+     * @return <code>true</code> if the creation succeeds; <code>false</code> otherwise
+     */
+    public boolean createSubInstance(OperationCommand parentCmd, OperationCommand cmd, Runnable terminateHandler)
+    {
+        if (!checkView())
+        {
+            return false;
+        }
+
+        if (cmd == null || parentCmd == null)
+        {
+            return false;
+        }
+        IResultInstance parentResult = _manager.getInstance(parentCmd);
+        if (parentResult != null)
+        {
+            parentResult.createSubResult(cmd, terminateHandler);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Returns the operation request of the sub-result
+     * 
+     * @param parentCmd the parent operation request, can not be null
+     * @param subNum the number of the sub-instance, 0-based
+     * @return the operation request of the sub-result
+     */
+    public OperationCommand getSubOperationCommand(OperationCommand parentCmd, int subNum)
+    {
+        if (parentCmd == null)
+        {
+            return null;
+        }
+        IResultInstance parentResult = _manager.getInstance(parentCmd);
+        if (parentResult != null)
+        {
+            if(subNum > parentResult.getSubResults().size() - 1)
+            {
+                return null;
+            }
+            return ((IResultInstance) parentResult.getSubResults().get(subNum)).getOperationCommand();
+        }
+        return null;
+    }
+
+    /**
+     * Calculates the status of the result instance based on its sub-results' status. The consumer should update the
+     * status of the parent result by invoking this method to caculate its status
+     * 
+     * @param command the operation command
+     * @return the status of the result instance
+     */
+    public int calculateStatus(OperationCommand command)
+    {
+        if (command == null)
+        {
+            return OperationCommand.STATUS_FAILED;
+        }
+        IResultInstance result = _manager.getInstance(command);
+        if (result != null)
+        {
+            return result.calculateStatus();
+        }
+        return OperationCommand.STATUS_FAILED;
     }
 }

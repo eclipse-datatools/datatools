@@ -75,7 +75,7 @@ public interface IResultManager extends Serializable
     public void removeAllFinished();
 
     /**
-     * Given the OperationCommand, returns the instance
+     * Given the OperationCommand, returns the instance. The returned instance can be a nested result (sub-result)
      * 
      * @param cmd the operation command
      * @return the result instance
@@ -112,4 +112,11 @@ public interface IResultManager extends Serializable
      * @param params the <code>Parameter</code> instances list
      */
     public void fireParametersShow(IResultInstance instance, List params);
+
+    /**
+     * A new sub-result has been added
+     * @param operation the operation request instance
+     * @param instance the sub-result instance
+     */
+    public void newSubResultCreated(OperationCommand operation, IResultInstance instance);
 }
