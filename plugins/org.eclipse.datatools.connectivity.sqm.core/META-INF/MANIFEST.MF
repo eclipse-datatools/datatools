@@ -18,7 +18,7 @@ Export-Package: org.eclipse.datatools.connectivity.sqm.core,
  org.eclipse.datatools.connectivity.sqm.internal.core.definition,
  org.eclipse.datatools.connectivity.sqm.internal.core.rte,
  org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe,
- org.eclipse.datatools.connectivity.sqm.internal.core.rte.jdbc,
+ org.eclipse.datatools.connectivity.sqm.core.rte.jdbc,
  org.eclipse.datatools.connectivity.sqm.internal.core.util,
  org.eclipse.datatools.connectivity.sqm.loader
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
