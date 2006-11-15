@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.oda.nls.Messages;
 
 /**
  * Represents a data source extension manifest's relationship element.
+ * @since 3.0.3
  */
 class Relationship
 {

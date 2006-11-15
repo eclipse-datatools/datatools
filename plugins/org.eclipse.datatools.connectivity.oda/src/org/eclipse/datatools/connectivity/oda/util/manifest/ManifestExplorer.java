@@ -330,6 +330,7 @@ public class ManifestExplorer
      *                          may be null if no filtering is needed
      * @return  an <code>ExtensionManifest</code> array containing 
      *          the definition of all matching ODA data source extensions.
+     * @since 3.0.3
      */
     public ExtensionManifest[] getExtensionManifests( String extensionPoint, 
                                                         Filter collectionFilter )
@@ -610,6 +611,7 @@ public class ManifestExplorer
      * Instantiates a new Filter object for the manifest explorer to apply when
      * retrieving a collection of ODA data source extension manifests.
      * @return  a new Filter object
+     * @since 3.0.3
      */
     public static Filter createFilter()
     {

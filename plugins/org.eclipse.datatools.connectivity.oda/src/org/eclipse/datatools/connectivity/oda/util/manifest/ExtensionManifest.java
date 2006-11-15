@@ -434,6 +434,7 @@ public class ExtensionManifest
     
     /**
      * Indicates whether this extension is defined to be deprecated.
+     * @since 3.0.3
      */
     public boolean isDeprecated()
     {
@@ -444,6 +445,7 @@ public class ExtensionManifest
      * Returns the related oda data source element id, if specified.
      * @return  the related oda data source element id, or 
      *          null if none is specified.
+     * @since 3.0.3
      */
     public String getRelatedDataSourceId()
     {
