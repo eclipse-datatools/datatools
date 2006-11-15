@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Property.java,v 1.4 2006/02/08 08:06:17 lchan Exp $
+ * $Id: Property.java,v 1.5 2006/11/09 00:50:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -132,6 +132,7 @@ public interface Property extends EObject
      * @return  true if property is defined to be editable (default);
      *          false if the property value should be read only.
      * @see #getDesignAttributes()
+     * @since 3.0.3
      * @generated NOT
      */
     public boolean isEditable();
@@ -144,6 +145,7 @@ public interface Property extends EObject
      *          false otherwise. 
      *          The default return value is false, if not explicitly defined.
      * @see #getDesignAttributes()
+     * @since 3.0.3
      * @generated NOT
      */
     public boolean isMaskedValue();

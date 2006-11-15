@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.2 2006/02/07 05:52:28 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.3 2006/11/09 00:50:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -82,6 +82,7 @@ public interface ParameterDefinition extends EObject
      *         returns null if this is not a scalar input parameter.
      * @see #setDefaultScalarValue(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
+     * @since 3.0.3
      * @generated NOT
      */
     String getDefaultScalarValue();
@@ -93,6 +94,7 @@ public interface ParameterDefinition extends EObject
      * @param value the new value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute.
      * @see #getDefaultScalarValue()
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
+     * @since 3.0.3
      * @generated NOT
      */
     void setDefaultScalarValue( String value );

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.6 2006/04/25 11:45:40 lchan Exp $
+ * $Id: DesignUtil.java,v 1.7 2006/05/23 02:04:33 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -35,7 +35,8 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
 /**
- * An utility class to handle the ODA Design API objects.
+ * [<b>Provisional</b>] An utility class to handle the 
+ * ODA Design API objects.
  * @generated NOT
  */
 public class DesignUtil
