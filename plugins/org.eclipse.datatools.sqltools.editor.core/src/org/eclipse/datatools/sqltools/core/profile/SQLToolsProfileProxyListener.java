@@ -67,7 +67,10 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         }
         _profiles.add(new ConnectProfile(profile));
         IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
-        mc.addConnectionListener(this);
+        if (mc != null)
+        {
+        	mc.addConnectionListener(this);
+        }
         _dmpProfileManager.fireProfileAdded(profile);
 
     }
@@ -182,7 +185,7 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
      */
     public boolean okToClose(ConnectEvent event)
     {
-        String profileName = event.getConnectionProfile().getName();
+//        String profileName = event.getConnectionProfile().getName();
         boolean okToClose = _dmpConnectManager.fireOkToClose(event);
         return okToClose;
     }
