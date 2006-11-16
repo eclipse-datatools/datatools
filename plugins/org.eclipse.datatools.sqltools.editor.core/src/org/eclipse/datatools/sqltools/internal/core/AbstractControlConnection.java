@@ -59,12 +59,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.util.Assert;
 
 /**
- * This class is used as base class for ASAControlConnection and
- * ASEControlConnection.
- * 
+ * This class provides default implementations for <code>IControlConnection</code>
+ * TODO: rename this class since it's not abstract.
  * @author Yang Liu
  */
-public abstract class AbstractControlConnection implements IControlConnection {
+public class AbstractControlConnection implements IControlConnection {
 	protected Set _skipConnections = new HashSet();
 
 	protected DatabaseIdentifier _databaseIdentifier;

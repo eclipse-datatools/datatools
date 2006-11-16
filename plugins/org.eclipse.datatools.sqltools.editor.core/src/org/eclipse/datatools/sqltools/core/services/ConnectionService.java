@@ -18,11 +18,13 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
+import org.eclipse.datatools.sqltools.internal.core.AbstractControlConnection;
 
 /**
  * A connection related service specific to a database definition.
@@ -68,8 +70,7 @@ public class ConnectionService
      */
     public IControlConnection createControlConnection(DatabaseIdentifier databaseIdentifier) throws SQLException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return new AbstractControlConnection(EditorCorePlugin.getControlConnectionManager(), databaseIdentifier);
     }
 
     /**
