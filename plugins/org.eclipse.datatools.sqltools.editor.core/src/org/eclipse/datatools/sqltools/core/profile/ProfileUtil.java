@@ -30,12 +30,14 @@ import org.eclipse.datatools.connectivity.db.generic.IDBConnectionProfileConstan
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
-import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
@@ -46,6 +48,7 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.ServerIdentifier;
 import org.eclipse.datatools.sqltools.internal.core.profile.Messages;
 import org.eclipse.osgi.util.NLS;
+
 
 /**
  * Utility class for <code>IConnectionProfile</code> in connectivity layer. Encapsulating all the code to processing
@@ -73,6 +76,82 @@ public class ProfileUtil
 	//TODO CONN this might change because we are using the generic db connection profile constant
 	public static final String PROP_DB_CONN_PROPS  = IDBConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID;
 
+	/**
+	 * SQL Model operation mode indicating no SQL model is involved.
+	 */
+	public static final int SQLMODEL_MODE_NONE = 0;
+	/**
+	 * SQL Model operation mode indicating a connection is established to data server and the SQL model reflects the data server metadata.
+	 */
+	public static final int SQLMODEL_MODE_ONLINE = 1;
+	/**
+	 * SQL Model operation mode indicating a local resource is used to load SQL models.
+	 */
+	public static final int SQLMODEL_MODE_OFFLINE = 2;
+	
+	/**
+	 * Given an instance of <code>SQLObject</code>, returns the SQL model operation mode.
+	 * @param object
+	 * @return
+	 */
+	public static int getSQLModelMode(SQLObject object)
+	{
+		if (object == null)
+		{
+			return SQLMODEL_MODE_NONE;
+		}
+		else if (object instanceof ICatalogObject)
+		{
+			return SQLMODEL_MODE_ONLINE;
+		}
+		else
+		{
+			return SQLMODEL_MODE_OFFLINE;
+		}
+	}
+	
+	/**
+	 * Given a connection profile name, returns the SQL model operation mode.
+	 * @param profileName
+	 * @return
+	 */	
+	public static int getSQLModelMode(String profileName)
+	{
+    	try {
+    		IConnectionProfile profile = getProfile(profileName);
+    		if (!profile.isConnected())
+    		{
+    			return SQLMODEL_MODE_NONE;
+    		}
+    		else
+    		{
+    			IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
+    			IConnection ic = mc.getConnection();
+    			Object rawConn = ic.getRawConnection();
+    			if (rawConn instanceof ConnectionInfo)
+    			{
+    				ConnectionInfo ci = (ConnectionInfo)rawConn;
+    				if (ci.getSharedDatabase() == null)
+    				{
+    					return SQLMODEL_MODE_NONE;
+    				}
+    				else if (ci.getSharedConnection() == null)
+    				{
+    					return SQLMODEL_MODE_OFFLINE;
+    				}
+    				else
+    				{
+    					return SQLMODEL_MODE_ONLINE;
+    				}
+    			}
+    			
+    		}
+		} catch (NoSuchProfileException e) {
+			EditorCorePlugin.getDefault().log(e);
+		}
+		return SQLMODEL_MODE_NONE;
+	}
+	
     /**
      * Returns the associated DatabaseVendorDefinition object from the given connection profile.
      * The DatabaseVendorDefinition object is contributed by vendor tool plugins. Clients of 
@@ -337,9 +416,9 @@ public class ProfileUtil
 			if (rawConn instanceof ConnectionInfo)
 			{
 				ConnectionInfo ci = (ConnectionInfo)rawConn;
-				String expectedDB = databaseIdentifier.getDBname(); 
-				String realDB = ci.getDatabaseName(); 
 				//TODO MO catalog
+//				String expectedDB = databaseIdentifier.getDBname(); 
+//				String realDB = ci.getDatabaseName(); 
 //				if ( expectedDB != null && !expectedDB.equals(realDB))
 //				{
 //					//this should not happen if connection profile can handle multiple db well
