@@ -15,7 +15,7 @@ import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
 
-	private static final String BUNDLE_NAME = "org.eclipse.datatools.sqltools.core.profile.messages";//$NON-NLS-1$
+	private static final String BUNDLE_NAME = Messages.class.getPackage().getName() + ".messages";//$NON-NLS-1$
 
 	private Messages() {
 		// Do not instantiate

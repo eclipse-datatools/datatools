@@ -252,6 +252,10 @@ public class ProfileUtil
 				String driverID = profile.getBaseProperties().getProperty(
 						ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
 				if (driverID == null) {
+		    		if (profile.getCategory()== null || !DATABASE_CATEGORY_ID.equals(profile.getCategory().getId()))
+		    		{
+		    			return null;
+		    		}
 					EditorCorePlugin.getDefault().log(
 							NLS.bind(Messages.ProfileUtil_error_getdriver,
 									(new Object[] { profileName })));
