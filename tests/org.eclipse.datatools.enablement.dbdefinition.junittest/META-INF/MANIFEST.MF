@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.datatools.enablement.dbdefinition.junittest
+Bundle-SymbolicName: org.eclipse.datatools.enablement.dbdefinition.junittest
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Require-Bundle: org.junit,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.datatools.modelbase.dbdefinition
