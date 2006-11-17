@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.ui;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 
 /**
  * Base implementation for IContentExtension.  Connection life cycle management
@@ -76,8 +77,8 @@ public abstract class ManagedContentExtensionBase extends PlatformObject
 	 * @see org.eclipse.datatools.connectivity.IContentExtension#getConnection()
 	 */
 	public IConnection getConnection() {
-		return getConnectionProfile().getManagedConnection(getFactoryID())
-				.getConnection();
+		IManagedConnection imc = getConnectionProfile().getManagedConnection(getFactoryID());
+		return imc == null ? null : imc.getConnection();
 	}
 
 }

@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -26,6 +27,8 @@ public class NewCPWizard extends BaseWizard implements INewWizard {
 	private CPWizardSelectionPage mProfilePage;
 
 	private ViewerFilter mViewerFilter;
+	
+	private IConnectionProfile mParentProfile;
 
 	/**
 	 * 
@@ -36,9 +39,10 @@ public class NewCPWizard extends BaseWizard implements INewWizard {
 				"NewCPWizard.title")); //$NON-NLS-1$
 	}
 
-	public NewCPWizard(ViewerFilter filter) {
+	public NewCPWizard(ViewerFilter filter,IConnectionProfile parentProfile) {
 		this();
 		mViewerFilter = filter;
+		mParentProfile = parentProfile;
 	}
 
 	/**
@@ -78,5 +82,9 @@ public class NewCPWizard extends BaseWizard implements INewWizard {
 	 */
 	public boolean needsPreviousAndNextButtons() {
 		return true;
+	}
+	
+	public IConnectionProfile getParentProfile() {
+		return mParentProfile;
 	}
 }

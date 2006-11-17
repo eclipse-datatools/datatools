@@ -321,7 +321,7 @@
                   The class that implements this new wizard.  The specified class must be an instance of IWizard.  &lt;samp&gt;org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard&lt;/samp&gt; is a base implementation intended to be extended by connection profile providers.  &lt;samp&gt;org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage&lt;/samp&gt; is a base wizard page implementation intended for use with the above wizard implementation.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.jface.wizard.IWizard"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard:org.eclipse.jface.wizard.IWizard"/>
                </appInfo>
             </annotation>
          </attribute>

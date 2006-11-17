@@ -1,0 +1,34 @@
+Connection profiles are contained by a store
+
+A connection profile may be moved/copied between stores
+
+A store may be read only
+
+A store provides de/serialization of profiles
+
+need functionality for creating/modifying/deleting stores
+
+do we need namespacing (e.g. store name/profile name)?
+	for now, all profile names must be unique
+	won't work.  can't guarantee that the user won't connect to a store that defines a profile with a duplicate name
+
+should a profile store be implemented as a connection profile?
+	e.g. an app server could expose its db connections and jee connector connections
+	not a bad idea.  there's already a getParent() method on IConnectionProfile
+
+how will profile serialization work?
+	is the store responsible for serialization?
+	what about propertyPersistenceHooks()
+	what about things like the app. server case above?
+		what profile types would it create for existing connections?
+	certain properties may be read-only.
+		how can this be incorporated into the existing profile property pages?
+
+A repository will be a connection profile
+A connection factory type will be defined for repositories
+If this connection factory type exists on a profile it will be identified as a repository
+An interface will be defined for the connection type provided by the factory
+Connection profiles contained by the repository will have their parent profile set to the repository's profile
+A repository may provide its own connection profile types.  These types may not be available for creation in other repositories.
+	Certain connection profile types may only be created in certain repositories
+A repository may not provide support for all profile types.

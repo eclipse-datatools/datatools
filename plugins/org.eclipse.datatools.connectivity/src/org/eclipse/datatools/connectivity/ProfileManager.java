@@ -39,7 +39,7 @@ public class ProfileManager implements IAdaptable {
 	 * @return connection profiles
 	 */
 	public IConnectionProfile[] getProfiles() {
-		return InternalProfileManager.getInstance().getProfiles();
+		return InternalProfileManager.getInstance().getProfiles(false);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class ProfileManager implements IAdaptable {
 	 */
 	public IConnectionProfile[] getProfilesByCategory(String catID) {
 		return InternalProfileManager.getInstance()
-				.getProfilesByCategory(catID);
+				.getProfilesByCategory(catID,false);
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class ProfileManager implements IAdaptable {
 	 * @return IConnectionProfile[]
 	 */
 	public IConnectionProfile[] getProfileByProviderID(String ID) {
-		return InternalProfileManager.getInstance().getProfileByProviderID(ID);
+		return InternalProfileManager.getInstance().getProfileByProviderID(ID,false);
 	}
 
 	/**

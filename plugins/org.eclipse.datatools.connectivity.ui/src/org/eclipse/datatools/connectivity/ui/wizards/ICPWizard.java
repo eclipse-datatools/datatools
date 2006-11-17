@@ -10,10 +10,14 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+
 /**
  * @author shongxum
  */
 public interface ICPWizard {
 
 	public void initProviderID(String providerID);
+	
+	public void setParentProfile(IConnectionProfile profile);
 }

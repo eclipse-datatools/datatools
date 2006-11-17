@@ -79,7 +79,7 @@ public class ConnectionProfileActionFilter extends PropertyTester implements ICo
 	}
 
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		return testAttribute(receiver, property, (String) expectedValue);
+		return testAttribute(receiver, property, expectedValue == null ? null : expectedValue.toString());
 	}
 
 }

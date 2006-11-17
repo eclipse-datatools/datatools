@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
 import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
@@ -248,5 +249,12 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	 */
 	public boolean needsMaintainConnection() {
 		return mMaintainConnection;
+	}
+	
+	public boolean compatibleWithRepository(IConnectionProfile repository) {
+		//RJC: TODO: Implement and integrate this with the new wizard and
+		// copy/move actions
+		// Some profiles may be specific to a particular repository.
+		return true;
 	}
 }

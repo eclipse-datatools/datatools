@@ -47,6 +47,7 @@ import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileRule;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 
 /**
  * @author rcernich, shongxum
@@ -73,6 +74,7 @@ public class ConnectionProfile extends PlatformObject implements
 	private boolean mIsCreating;
 	private String mInstanceID;
 	private Map mFactoryIDToManagedConnection;
+	private IConnectionProfileRepository mRepository;
 
 	public ConnectionProfile(String name, String desc, String providerID) {
 		this(name, desc, providerID, "", false); //$NON-NLS-1$
@@ -167,6 +169,16 @@ public class ConnectionProfile extends PlatformObject implements
 			return null;
 		}
 		return InternalProfileManager.getInstance().getProfileByName(mParentProfile);
+	}
+
+	
+	public IConnectionProfileRepository getRepository() {
+		return mRepository;
+	}
+
+	
+	public void setRepository(IConnectionProfileRepository repository) {
+		mRepository = repository;
 	}
 
 	/*
@@ -487,7 +499,7 @@ public class ConnectionProfile extends PlatformObject implements
 		return getInstanceID().hashCode();
 	}
 	
-	/*package*/ void dispose() {
+	public void dispose() {
 		Job disconnectJob = new DisconnectJob(true);
 		disconnectJob.schedule();
 		try {

@@ -67,6 +67,8 @@ public class SharedImages {
 	public static final String IMG_OBJ_UNCHECK = NAME_PREFIX
 			+ "uncheck_obj.gif"; //$NON-NLS-1$
 
+	public static final String IMG_CVIEW_EXPLORER = NAME_PREFIX + "enterprise_explorer.gif"; //$NON-NLS-1$
+
 	// console
 	public static final String IMG_CLEAR = NAME_PREFIX + "clear_co.gif"; //$NON-NLS-1$
 
@@ -81,6 +83,8 @@ public class SharedImages {
 	private static final String T_DLCL = "dlcl16"; //$NON-NLS-1$
 
 	private static final String T_ELCL = "elcl16"; //$NON-NLS-1$
+
+	private static final String T_CVIEW = "cview16"; //$NON-NLS-1$
 
 	public static final ImageDescriptor DESC_OBJ_SERVER_STARTED = createManaged(
 			T_OBJ, IMG_OBJ_SERVER_STARTED);
@@ -105,6 +109,9 @@ public class SharedImages {
 
 	public static final ImageDescriptor DESC_OBJ_UNCHECK = createManaged(T_OBJ,
 			IMG_OBJ_UNCHECK);
+
+	public static final ImageDescriptor DESC_CVIEW_EXPLORER = createManaged(T_CVIEW,
+			IMG_CVIEW_EXPLORER);
 
 	// console
 	public static final ImageDescriptor DESC_CLEAR = createManaged(T_CLCL,

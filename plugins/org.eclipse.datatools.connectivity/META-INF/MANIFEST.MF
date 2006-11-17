@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity; singleton:=true
-Bundle-Version: 1.0.0.20061110
+Bundle-Version: 1.0.0.200611161
 Bundle-Activator: org.eclipse.datatools.connectivity.internal.ConnectivityPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -14,5 +14,6 @@ Export-Package: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.drivers,
  org.eclipse.datatools.connectivity.drivers.models,
  org.eclipse.datatools.connectivity.internal,
+ org.eclipse.datatools.connectivity.internal.repository,
  org.eclipse.datatools.connectivity.internal.security
 Bundle-ClassPath: connectivity.jar

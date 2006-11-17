@@ -68,4 +68,49 @@
             properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID"
             type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
    </extension>
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryContentProviderExtension"
+            id="org.eclipse.datatools.connectivity.repositoryContent"
+            labelProvider="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryLabelProviderExtension"
+            name="Connection Profiles">
+         <triggerPoints>
+            <or>
+	            <and>
+                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+				     <test
+						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
+	                     value="org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository"/>
+	            </and>
+               <instanceof
+	                     value="org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryContentExtension">
+               </instanceof>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof
+	                     value="org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryContentExtension">
+               </instanceof>
+            </or>
+         </possibleChildren>
+      </navigatorContent>
+   </extension>
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.connectivity.repositoryContent"/>
+            </includes>
+         </viewerContentBinding>
+      </extension>  
+
 </plugin>

@@ -15,6 +15,7 @@ import java.util.Properties;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
@@ -38,6 +39,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	protected NewConnectionProfileWizardPage mProfilePage;
 	protected SummaryWizardPage mSummaryPage;
 	protected String mProviderID;
+	protected IConnectionProfile mParentProfile;
 
 	public NewConnectionProfileWizard() {
 		setWindowTitle(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -145,7 +147,11 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 * @return
 	 */
 	public String getParentProfile() {
-		return ""; //$NON-NLS-1$
+		return mParentProfile == null ? new String() : mParentProfile.getName();
+	}
+
+	public void setParentProfile(IConnectionProfile profile) {
+		mParentProfile = profile;
 	}
 
 	/*

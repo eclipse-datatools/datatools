@@ -38,6 +38,7 @@ import org.eclipse.ui.IViewPart;
 public class AddProfileViewAction extends Action implements IViewActionDelegate {
 
 	private ICategory category;
+	private IConnectionProfile parentProfile;
 	private int returnCode;
 	private IConnectionProfile addedProfile;
 
@@ -113,7 +114,7 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 				return false;
 			}
 		};
-		wizard = new NewCPWizard(viewerFilter);
+		wizard = new NewCPWizard(viewerFilter,parentProfile);
 		wizardDialog = new WizardDialog(ConnectivityUIPlugin.getDefault()
 				.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 		wizardDialog.setBlockOnOpen(true);
@@ -167,6 +168,14 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 */
 	public ICategory getCategory () {
 		return this.category;
+	}
+	
+	public void setParentProfile(IConnectionProfile profile) {
+		parentProfile = profile;
+	}
+	
+	public IConnectionProfile getParentProfile() {
+		return parentProfile;
 	}
 	
 	/**
