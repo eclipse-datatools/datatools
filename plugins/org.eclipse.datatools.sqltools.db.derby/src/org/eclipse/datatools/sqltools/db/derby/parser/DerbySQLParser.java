@@ -51,6 +51,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
         private static final int[] TERMINATORS = new int[]{GO, SEMICOLON};
         private static final String[] TERMINATORS_STRING = new String[]{"GO", ";"};
+        private static int[] STMT_START_TERMINATORS = new int[STMT_START.length + TERMINATORS.length];
+
+        static
+        {
+                System.arraycopy(STMT_START, 0, STMT_START_TERMINATORS, 0, STMT_START.length);
+                System.arraycopy(TERMINATORS, 0, STMT_START_TERMINATORS, STMT_START.length, TERMINATORS.length);
+        }
 
         //FIXME do we need this field?
         private boolean isContentAssist = true;
@@ -1253,13 +1260,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
         } catch (ParseException e) {
                         //TODO can we create an UnknownStatement?
                     exceptions.add(e);
-                    error_skiptobefore(new int[]{SEMICOLON, END}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
         } catch (Throwable t) {
                 //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                         ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                         e.currentToken = getToken(0);
                         exceptions.add(e);
-                    error_skiptobefore(new int[]{END, SEMICOLON}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
         }
       }
       jj_consume_token(0);
@@ -1425,13 +1432,22 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
       }
     } catch (ParseException e) {
           exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+            //to generate an ASTSQLDelimiter node so that the statement can be separated
+            if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+            {
+                delimiter();
+            }
     } catch (Throwable t) {
         //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                 ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                 e.currentToken = getToken(0);
                 exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+            if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+            {
+                delimiter();
+            }
     }
 
   }
@@ -1563,11 +1579,11 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
       jj_consume_token(-1);
       throw new ParseException();
     }
-                error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
   }
 
   final public void any_stmt_token() throws ParseException {
-                error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
   }
 
   final public void use() throws ParseException {
@@ -6092,7 +6108,7 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     } catch (ParseException e) {
         knownExceptions.add(e);
         //error recovery
-        error_skiptobefore(new int []{END, SEMICOLON}, STMT_START);
+        error_skiptobefore(new int []{END}, STMT_START_TERMINATORS);
     }
   }
 
@@ -7564,16 +7580,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     finally { jj_save(191, xla); }
   }
 
-  final private boolean jj_3R_313() {
-    if (jj_scan_token(DELETE)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_463() {
-    if (jj_3R_485()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_411() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9028,16 +9034,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3_15() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(81)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(222)) return true;
-    }
-    return false;
-  }
-
   final private boolean jj_3_167() {
     if (jj_3R_78()) return true;
     return false;
@@ -9045,6 +9041,16 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
   final private boolean jj_3R_388() {
     if (jj_3R_404()) return true;
+    return false;
+  }
+
+  final private boolean jj_3_15() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(81)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(222)) return true;
+    }
     return false;
   }
 
@@ -9098,6 +9104,22 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_354() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(207)) {
+    jj_scanpos = xsp;
+    if (jj_3R_381()) {
+    jj_scanpos = xsp;
+    if (jj_3R_382()) {
+    jj_scanpos = xsp;
+    if (jj_3R_383()) return true;
+    }
+    }
+    }
+    return false;
+  }
+
   final private boolean jj_3R_60() {
     if (jj_3R_202()) return true;
     return false;
@@ -9143,8 +9165,18 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_383() {
+    if (jj_3R_370()) return true;
+    return false;
+  }
+
   final private boolean jj_3R_54() {
     if (jj_3R_196()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_382() {
+    if (jj_3R_395()) return true;
     return false;
   }
 
@@ -9202,24 +9234,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_52() {
-    if (jj_3R_194()) return true;
+  final private boolean jj_3R_381() {
+    if (jj_3R_135()) return true;
     return false;
   }
 
-  final private boolean jj_3R_354() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(207)) {
-    jj_scanpos = xsp;
-    if (jj_3R_381()) {
-    jj_scanpos = xsp;
-    if (jj_3R_382()) {
-    jj_scanpos = xsp;
-    if (jj_3R_383()) return true;
-    }
-    }
-    }
+  final private boolean jj_3R_52() {
+    if (jj_3R_194()) return true;
     return false;
   }
 
@@ -9230,6 +9251,19 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
   final private boolean jj_3R_50() {
     if (jj_3R_192()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_353() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(202)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(203)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(209)) return true;
+    }
+    }
     return false;
   }
 
@@ -9244,34 +9278,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     if (jj_3_14()) {
     jj_scanpos = xsp;
     if (jj_3R_188()) return true;
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_383() {
-    if (jj_3R_370()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_382() {
-    if (jj_3R_395()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_381() {
-    if (jj_3R_135()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_353() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(202)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(203)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(209)) return true;
-    }
     }
     return false;
   }
@@ -9306,11 +9312,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3_1() {
-    if (jj_3R_45()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_205() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9325,6 +9326,11 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3_1() {
+    if (jj_3R_45()) return true;
+    return false;
+  }
+
   final private boolean jj_3R_63() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9332,10 +9338,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     jj_scanpos = xsp;
     if (jj_3R_205()) return true;
     }
-    return false;
-  }
-
-  final private boolean jj_3R_237() {
     return false;
   }
 
@@ -9355,7 +9357,7 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_236() {
+  final private boolean jj_3R_237() {
     return false;
   }
 
@@ -9372,23 +9374,8 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_95() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("varchar");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_237()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_368() {
     if (jj_3R_134()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_235() {
     return false;
   }
 
@@ -9407,6 +9394,45 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_236() {
+    return false;
+  }
+
+  final private boolean jj_3R_95() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("varchar");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_237()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_262() {
+    if (jj_3R_331()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_235() {
+    return false;
+  }
+
+  final private boolean jj_3R_136() {
+    Token xsp;
+    if (jj_3R_262()) return true;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_262()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  final private boolean jj_3_165() {
+    if (jj_3R_136()) return true;
+    return false;
+  }
+
   final private boolean jj_3R_94() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9422,18 +9448,8 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_262() {
-    if (jj_3R_331()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_136() {
-    Token xsp;
-    if (jj_3R_262()) return true;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_262()) { jj_scanpos = xsp; break; }
-    }
+  final private boolean jj_3R_290() {
+    if (jj_3R_134()) return true;
     return false;
   }
 
@@ -9445,31 +9461,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     lookingAhead = false;
     if (!jj_semLA || jj_3R_235()) return true;
     if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3_165() {
-    if (jj_3R_136()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_92() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("unichar");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_234()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_203() {
-    return false;
-  }
-
-  final private boolean jj_3R_290() {
-    if (jj_3R_134()) return true;
     return false;
   }
 
@@ -9489,7 +9480,35 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_92() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("unichar");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_234()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_203() {
+    return false;
+  }
+
   final private boolean jj_3R_233() {
+    return false;
+  }
+
+  final private boolean jj_3R_168() {
+    if (jj_3R_164()) return true;
+    return false;
+  }
+
+  final private boolean jj_3_164() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_168()) jj_scanpos = xsp;
+    if (jj_scan_token(DOT)) return true;
     return false;
   }
 
@@ -9508,19 +9527,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_168() {
-    if (jj_3R_164()) return true;
-    return false;
-  }
-
-  final private boolean jj_3_164() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_168()) jj_scanpos = xsp;
-    if (jj_scan_token(DOT)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_91() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9532,27 +9538,12 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_232() {
-    return false;
-  }
-
-  final private boolean jj_3R_89() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("timestamp");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_231()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_550() {
-    return false;
-  }
-
   final private boolean jj_3R_304() {
     if (jj_3R_136()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_232() {
     return false;
   }
 
@@ -9579,17 +9570,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_90() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("time");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_232()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3_163() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9598,19 +9578,23 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_458() {
-    if (jj_3R_100()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_544() {
+  final private boolean jj_3R_89() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("then");
+    jj_semLA = check("timestamp");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_550()) return true;
+    if (!jj_semLA || jj_3R_231()) return true;
     if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_550() {
+    return false;
+  }
+
+  final private boolean jj_3R_458() {
+    if (jj_3R_100()) return true;
     return false;
   }
 
@@ -9619,7 +9603,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_302() {
+  final private boolean jj_3R_90() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("time");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_232()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9640,7 +9631,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_230() {
+  final private boolean jj_3R_544() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("then");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_550()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9652,9 +9650,35 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_302() {
+    return false;
+  }
+
   final private boolean jj_3R_527() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_458()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_545() {
+    if (jj_3R_100()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_230() {
+    return false;
+  }
+
+  final private boolean jj_3R_537() {
+    if (jj_scan_token(ELSE)) return true;
+    if (jj_3R_545()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_528() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_537()) jj_scanpos = xsp;
     return false;
   }
 
@@ -9673,8 +9697,16 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_545() {
-    if (jj_3R_100()) return true;
+  final private boolean jj_3R_482() {
+    if (jj_scan_token(WHEN)) return true;
+    if (jj_3R_148()) return true;
+    if (jj_3R_544()) return true;
+    if (jj_3R_545()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_538() {
+    if (jj_3R_482()) return true;
     return false;
   }
 
@@ -9689,20 +9721,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_537() {
-    if (jj_scan_token(ELSE)) return true;
-    if (jj_3R_545()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_228() {
     return false;
   }
 
-  final private boolean jj_3R_528() {
+  final private boolean jj_3R_460() {
+    if (jj_3R_482()) return true;
     Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_537()) jj_scanpos = xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_538()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -9717,20 +9746,20 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_482() {
+  final private boolean jj_3R_249() {
+    return false;
+  }
+
+  final private boolean jj_3R_481() {
     if (jj_scan_token(WHEN)) return true;
-    if (jj_3R_148()) return true;
+    if (jj_3R_100()) return true;
     if (jj_3R_544()) return true;
     if (jj_3R_545()) return true;
     return false;
   }
 
-  final private boolean jj_3R_249() {
-    return false;
-  }
-
-  final private boolean jj_3R_538() {
-    if (jj_3R_482()) return true;
+  final private boolean jj_3R_536() {
+    if (jj_3R_481()) return true;
     return false;
   }
 
@@ -9745,25 +9774,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_460() {
-    if (jj_3R_482()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_538()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
   final private boolean jj_3R_251() {
     return false;
   }
 
-  final private boolean jj_3R_481() {
-    if (jj_scan_token(WHEN)) return true;
-    if (jj_3R_100()) return true;
-    if (jj_3R_544()) return true;
-    if (jj_3R_545()) return true;
+  final private boolean jj_3R_459() {
+    if (jj_3R_481()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_536()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -9778,22 +9799,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_443() {
+    if (jj_3R_460()) return true;
+    if (jj_3R_528()) return true;
+    if (jj_scan_token(END)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_301() {
-    return false;
-  }
-
-  final private boolean jj_3R_536() {
-    if (jj_3R_481()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_459() {
-    if (jj_3R_481()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_536()) { jj_scanpos = xsp; break; }
-    }
     return false;
   }
 
@@ -9808,14 +9821,30 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_166() {
+    if (jj_3R_100()) return true;
+    if (jj_3R_459()) return true;
+    if (jj_3R_528()) return true;
+    if (jj_scan_token(END)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_269() {
     return false;
   }
 
-  final private boolean jj_3R_443() {
-    if (jj_3R_460()) return true;
-    if (jj_3R_528()) return true;
-    if (jj_scan_token(END)) return true;
+  final private boolean jj_3R_437() {
+    if (jj_3R_443()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_423() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_162()) {
+    jj_scanpos = xsp;
+    if (jj_3R_437()) return true;
+    }
     return false;
   }
 
@@ -9830,50 +9859,12 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_257() {
-    return false;
-  }
-
-  final private boolean jj_3R_166() {
-    if (jj_3R_100()) return true;
-    if (jj_3R_459()) return true;
-    if (jj_3R_528()) return true;
-    if (jj_scan_token(END)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_142() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("right");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_269()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_437() {
-    if (jj_3R_443()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_360() {
-    return false;
-  }
-
-  final private boolean jj_3R_423() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_162()) {
-    jj_scanpos = xsp;
-    if (jj_3R_437()) return true;
-    }
-    return false;
-  }
-
   final private boolean jj_3_162() {
     if (jj_3R_166()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_257() {
     return false;
   }
 
@@ -9890,39 +9881,24 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_121() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("relative");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_257()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_227() {
-    return false;
-  }
-
   final private boolean jj_3R_403() {
     if (jj_scan_token(CASE)) return true;
     if (jj_3R_423()) return true;
     return false;
   }
 
-  final private boolean jj_3R_300() {
+  final private boolean jj_3R_142() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("referencing");
+    jj_semLA = check("right");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_360()) return true;
+    if (!jj_semLA || jj_3R_269()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
 
-  final private boolean jj_3R_253() {
+  final private boolean jj_3R_360() {
     return false;
   }
 
@@ -9941,19 +9917,23 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_422() {
-    if (jj_3R_436()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_85() {
+  final private boolean jj_3R_121() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("real");
+    jj_semLA = check("relative");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_227()) return true;
+    if (!jj_semLA || jj_3R_257()) return true;
     if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_227() {
+    return false;
+  }
+
+  final private boolean jj_3R_422() {
+    if (jj_3R_436()) return true;
     return false;
   }
 
@@ -9964,10 +9944,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
       xsp = jj_scanpos;
       if (jj_3_160()) { jj_scanpos = xsp; break; }
     }
-    return false;
-  }
-
-  final private boolean jj_3R_267() {
     return false;
   }
 
@@ -9986,6 +9962,41 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_300() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("referencing");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_360()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_253() {
+    return false;
+  }
+
+  final private boolean jj_3R_387() {
+    if (jj_3R_403()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_85() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("real");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_227()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_267() {
+    return false;
+  }
+
   final private boolean jj_3R_117() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10001,8 +10012,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_387() {
-    if (jj_3R_403()) return true;
+  final private boolean jj_3_156() {
+    if (jj_3R_161()) return true;
+    return false;
+  }
+
+  final private boolean jj_3_159() {
+    if (jj_3R_163()) return true;
     return false;
   }
 
@@ -10017,58 +10033,18 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_305() {
-    return false;
-  }
-
-  final private boolean jj_3_156() {
-    if (jj_3R_161()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_186() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("old_table");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_307()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_299() {
-    return false;
-  }
-
-  final private boolean jj_3_159() {
-    if (jj_3R_163()) return true;
-    return false;
-  }
-
   final private boolean jj_3_158() {
     if (jj_3R_162()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_305() {
     return false;
   }
 
   final private boolean jj_3_157() {
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_scan_token(SELECT)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_184() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("old");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_305()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_218() {
     return false;
   }
 
@@ -10124,6 +10100,21 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_186() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("old_table");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_307()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_299() {
+    return false;
+  }
+
   final private boolean jj_3R_285() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10154,17 +10145,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_177() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("of");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_299()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_323() {
     if (jj_3R_163()) return true;
     return false;
@@ -10183,10 +10163,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_217() {
-    return false;
-  }
-
   final private boolean jj_3_155() {
     if (jj_scan_token(260)) return true;
     return false;
@@ -10197,8 +10173,23 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_184() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("old");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_305()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3_154() {
     if (jj_scan_token(258)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_218() {
     return false;
   }
 
@@ -10209,17 +10200,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
   final private boolean jj_3_152() {
     if (jj_scan_token(MINUS)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_76() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S2, "nchar varying");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_218()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S2)) return true;
     return false;
   }
 
@@ -10238,7 +10218,18 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_216() {
+  final private boolean jj_3R_177() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("of");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_299()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_217() {
     return false;
   }
 
@@ -10265,18 +10256,18 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_75() {
+  final private boolean jj_3R_76() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S1, "national character varying");
+    jj_semLA = check( UK_NVARCHAR_S2, "nchar varying");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_217()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S1)) return true;
+    if (!jj_semLA || jj_3R_218()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S2)) return true;
     return false;
   }
 
-  final private boolean jj_3R_215() {
+  final private boolean jj_3R_216() {
     return false;
   }
 
@@ -10290,18 +10281,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_74() {
+  final private boolean jj_3R_75() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S, "national char varying");
+    jj_semLA = check( UK_NVARCHAR_S1, "national character varying");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_216()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_226() {
+    if (!jj_semLA || jj_3R_217()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S1)) return true;
     return false;
   }
 
@@ -10317,23 +10304,27 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_215() {
+    return false;
+  }
+
   final private boolean jj_3R_347() {
     if (jj_3R_100()) return true;
     return false;
   }
 
-  final private boolean jj_3R_73() {
+  final private boolean jj_3R_74() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("nvarchar");
+    jj_semLA = check( UK_NVARCHAR_S, "national char varying");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_215()) return true;
-    if (jj_scan_token(ID)) return true;
+    if (!jj_semLA || jj_3R_216()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S)) return true;
     return false;
   }
 
-  final private boolean jj_3R_250() {
+  final private boolean jj_3R_226() {
     return false;
   }
 
@@ -10353,13 +10344,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_84() {
+  final private boolean jj_3R_73() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("numeric");
+    jj_semLA = check("nvarchar");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_226()) return true;
+    if (!jj_semLA || jj_3R_215()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
@@ -10371,20 +10362,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_494() {
-    if (jj_scan_token(SELECT)) return true;
-    if (jj_3R_401()) return true;
+  final private boolean jj_3R_250() {
     return false;
   }
 
-  final private boolean jj_3R_114() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NO_SCROLL, "no scroll");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_250()) return true;
-    if (jj_scan_token(UK_NO_SCROLL)) return true;
+  final private boolean jj_3R_494() {
+    if (jj_scan_token(SELECT)) return true;
+    if (jj_3R_401()) return true;
     return false;
   }
 
@@ -10401,7 +10385,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_308() {
+  final private boolean jj_3R_84() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("numeric");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_226()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10411,7 +10402,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_306() {
+  final private boolean jj_3R_114() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NO_SCROLL, "no scroll");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_250()) return true;
+    if (jj_scan_token(UK_NO_SCROLL)) return true;
     return false;
   }
 
@@ -10421,6 +10419,32 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     if (jj_scan_token(113)) jj_scanpos = xsp;
     if (jj_scan_token(LIKE)) return true;
     if (jj_3R_495()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_308() {
+    return false;
+  }
+
+  final private boolean jj_3_148() {
+    if (jj_3R_159()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_344() {
+    if (jj_scan_token(EXISTS)) return true;
+    if (jj_3R_365()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_306() {
+    return false;
+  }
+
+  final private boolean jj_3R_475() {
+    if (jj_3R_150()) return true;
+    if (jj_3R_102()) return true;
+    if (jj_3R_365()) return true;
     return false;
   }
 
@@ -10439,13 +10463,9 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3_148() {
-    if (jj_3R_159()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_344() {
-    if (jj_scan_token(EXISTS)) return true;
+  final private boolean jj_3R_474() {
+    if (jj_3R_150()) return true;
+    if (jj_scan_token(ANY)) return true;
     if (jj_3R_365()) return true;
     return false;
   }
@@ -10461,21 +10481,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_475() {
-    if (jj_3R_150()) return true;
-    if (jj_3R_102()) return true;
-    if (jj_3R_365()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_214() {
     return false;
   }
 
-  final private boolean jj_3R_474() {
-    if (jj_3R_150()) return true;
-    if (jj_scan_token(ANY)) return true;
-    if (jj_3R_365()) return true;
+  final private boolean jj_3R_159() {
+    if (jj_3R_100()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_522()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -10494,31 +10510,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_72() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NCHAR_S1, "national character");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_214()) return true;
-    if (jj_scan_token(UK_NCHAR_S1)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_159() {
-    if (jj_3R_100()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_522()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_212() {
-    return false;
-  }
-
   final private boolean jj_3R_479() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10534,31 +10525,24 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_71() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NCHAR_S, "national char");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_213()) return true;
-    if (jj_scan_token(UK_NCHAR_S)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_522() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_100()) return true;
     return false;
   }
 
-  final private boolean jj_3R_70() {
+  final private boolean jj_3R_72() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("nchar");
+    jj_semLA = check( UK_NCHAR_S1, "national character");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_212()) return true;
-    if (jj_scan_token(ID)) return true;
+    if (!jj_semLA || jj_3R_214()) return true;
+    if (jj_scan_token(UK_NCHAR_S1)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_212() {
     return false;
   }
 
@@ -10567,7 +10551,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_225() {
+  final private boolean jj_3R_71() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NCHAR_S, "national char");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_213()) return true;
+    if (jj_scan_token(UK_NCHAR_S)) return true;
     return false;
   }
 
@@ -10597,11 +10588,26 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_70() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("nchar");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_212()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3_143() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(113)) jj_scanpos = xsp;
     if (jj_scan_token(LIKE)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_225() {
     return false;
   }
 
@@ -10639,17 +10645,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_83() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("money");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_225()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3_139() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10662,10 +10657,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
   final private boolean jj_3R_151() {
     if (jj_3R_150()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_268() {
     return false;
   }
 
@@ -10700,10 +10691,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_255() {
-    return false;
-  }
-
   final private boolean jj_3R_453() {
     if (jj_3R_479()) return true;
     return false;
@@ -10714,8 +10701,23 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_83() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("money");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_225()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_451() {
     if (jj_3R_477()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_268() {
     return false;
   }
 
@@ -10729,23 +10731,8 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_141() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("left");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_268()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_448() {
     if (jj_3R_474()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_211() {
     return false;
   }
 
@@ -10769,6 +10756,10 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_255() {
+    return false;
+  }
+
   final private boolean jj_3R_345() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10779,21 +10770,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     if (jj_scan_token(226)) return true;
     }
     }
-    return false;
-  }
-
-  final private boolean jj_3R_119() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("last");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_255()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_210() {
     return false;
   }
 
@@ -10839,11 +10815,26 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_141() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("left");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_268()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_281() {
     if (jj_scan_token(GREATER)) return true;
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(230)) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_211() {
     return false;
   }
 
@@ -10861,21 +10852,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_69() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("integer");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_211()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_248() {
-    return false;
-  }
-
   final private boolean jj_3R_492() {
     if (jj_3R_150()) return true;
     return false;
@@ -10883,6 +10859,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
 
   final private boolean jj_3R_154() {
     if (jj_3R_100()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_119() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("last");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_255()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10894,6 +10881,10 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     if (jj_3R_493()) return true;
     }
     if (jj_3R_100()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_210() {
     return false;
   }
 
@@ -10914,6 +10905,26 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_69() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("integer");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_211()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3_146() {
+    if (jj_3R_155()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_248() {
+    return false;
+  }
+
   final private boolean jj_3R_68() {
     Token xsp;
     xsp = jj_scanpos;
@@ -10926,33 +10937,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
   }
 
   final private boolean jj_3R_266() {
-    return false;
-  }
-
-  final private boolean jj_3_146() {
-    if (jj_3R_155()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_112() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("insensitive");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_248()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_139() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( "inner");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_266()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10983,17 +10967,35 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_112() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("insensitive");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_248()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3_144() {
     if (jj_scan_token(EXISTS)) return true;
     return false;
   }
 
-  final private boolean jj_3R_224() {
+  final private boolean jj_3R_490() {
+    if (jj_3R_100()) return true;
     return false;
   }
 
-  final private boolean jj_3R_490() {
-    if (jj_3R_100()) return true;
+  final private boolean jj_3R_139() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( "inner");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_266()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -11004,10 +11006,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
       xsp = jj_scanpos;
       if (jj_3R_491()) { jj_scanpos = xsp; break; }
     }
-    return false;
-  }
-
-  final private boolean jj_3R_254() {
     return false;
   }
 
@@ -11055,6 +11053,10 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_224() {
+    return false;
+  }
+
   final private boolean jj_3R_447() {
     if (jj_scan_token(BY)) return true;
     if (jj_3R_473()) return true;
@@ -11064,6 +11066,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
   final private boolean jj_3R_491() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_490()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_440() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_447()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_254() {
     return false;
   }
 
@@ -11078,10 +11091,11 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_440() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_447()) jj_scanpos = xsp;
+  final private boolean jj_3R_472() {
+    if (jj_scan_token(SUM)) return true;
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_100()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
     return false;
   }
 
@@ -11093,18 +11107,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     lookingAhead = false;
     if (!jj_semLA || jj_3R_254()) return true;
     if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_219() {
-    return false;
-  }
-
-  final private boolean jj_3R_472() {
-    if (jj_scan_token(SUM)) return true;
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_100()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
     return false;
   }
 
@@ -11143,15 +11145,37 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_209() {
-    return false;
-  }
-
   final private boolean jj_3R_470() {
     if (jj_scan_token(MAX)) return true;
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_100()) return true;
     if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_219() {
+    return false;
+  }
+
+  final private boolean jj_3R_469() {
+    if (jj_scan_token(AVG)) return true;
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_100()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_209() {
+    return false;
+  }
+
+  final private boolean jj_3R_439() {
+    if (jj_3R_445()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_446()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -11166,25 +11190,20 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_469() {
-    if (jj_scan_token(AVG)) return true;
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_100()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_208() {
     return false;
   }
 
-  final private boolean jj_3R_439() {
+  final private boolean jj_3R_427() {
+    if (jj_scan_token(COMPUTE)) return true;
+    if (jj_3R_439()) return true;
+    if (jj_3R_440()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_446() {
+    if (jj_scan_token(COMMA)) return true;
     if (jj_3R_445()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_446()) { jj_scanpos = xsp; break; }
-    }
     return false;
   }
 
@@ -11196,34 +11215,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     lookingAhead = false;
     if (!jj_semLA || jj_3R_209()) return true;
     if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_427() {
-    if (jj_scan_token(COMPUTE)) return true;
-    if (jj_3R_439()) return true;
-    if (jj_3R_440()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_66() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("decimal");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_208()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_446() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_445()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_222() {
     return false;
   }
 
@@ -11242,12 +11233,49 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_223() {
+  final private boolean jj_3R_66() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("decimal");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_208()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_222() {
     return false;
   }
 
   final private boolean jj_3R_393() {
     if (jj_3R_410()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_376() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_393()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_438() {
+    if (jj_3R_444()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_223() {
+    return false;
+  }
+
+  final private boolean jj_3R_444() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(19)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(54)) return true;
+    }
     return false;
   }
 
@@ -11262,29 +11290,7 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_376() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_393()) jj_scanpos = xsp;
-    return false;
-  }
-
   final private boolean jj_3R_207() {
-    return false;
-  }
-
-  final private boolean jj_3R_438() {
-    if (jj_3R_444()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_444() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(19)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(54)) return true;
-    }
     return false;
   }
 
@@ -11300,17 +11306,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
   }
 
   final private boolean jj_3R_206() {
-    return false;
-  }
-
-  final private boolean jj_3R_65() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("character");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_207()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -11332,25 +11327,21 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_64() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("char");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_206()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_221() {
-    return false;
-  }
-
   final private boolean jj_3R_392() {
     if (jj_scan_token(ORDER)) return true;
     if (jj_scan_token(BY)) return true;
     if (jj_3R_409()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_65() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("character");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_207()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -11373,10 +11364,30 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_64() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("char");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_206()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_467() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3R_489()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_221() {
+    return false;
+  }
+
+  final private boolean jj_3R_520() {
+    if (jj_3R_100()) return true;
     return false;
   }
 
@@ -11395,15 +11406,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_520() {
-    if (jj_3R_100()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_241() {
-    return false;
-  }
-
   final private boolean jj_3R_509() {
     if (jj_3R_520()) return true;
     Token xsp;
@@ -11414,23 +11416,12 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_78() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("binary");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_220()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_303() {
-    return false;
-  }
-
   final private boolean jj_3_136() {
     if (jj_3R_102()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_241() {
     return false;
   }
 
@@ -11447,26 +11438,11 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_102() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("all");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_241()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_488() {
     if (jj_scan_token(GROUP)) return true;
     if (jj_scan_token(BY)) return true;
     if (jj_3R_508()) return true;
     if (jj_3R_509()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_256() {
     return false;
   }
 
@@ -11501,6 +11477,21 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3R_78() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("binary");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_220()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_303() {
+    return false;
+  }
+
   final private boolean jj_3_134() {
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_148()) return true;
@@ -11508,13 +11499,13 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_181() {
+  final private boolean jj_3R_102() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("after");
+    jj_semLA = check("all");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_303()) return true;
+    if (!jj_semLA || jj_3R_241()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
@@ -11525,13 +11516,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
-  final private boolean jj_3R_120() {
+  final private boolean jj_3R_256() {
+    return false;
+  }
+
+  final private boolean jj_3R_181() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("absolute");
+    jj_semLA = check("after");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_256()) return true;
+    if (!jj_semLA || jj_3R_303()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
@@ -11560,6 +11555,17 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     jj_scanpos = xsp;
     if (jj_3R_379()) return true;
     }
+    return false;
+  }
+
+  final private boolean jj_3R_120() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("absolute");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_256()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -11655,6 +11661,14 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     return false;
   }
 
+  final private boolean jj_3_128() {
+    if (jj_3R_144()) return true;
+    if (jj_3R_145()) return true;
+    if (jj_scan_token(ON)) return true;
+    if (jj_3R_148()) return true;
+    return false;
+  }
+
   final private boolean jj_3R_135() {
     Token xsp;
     xsp = jj_scanpos;
@@ -11662,14 +11676,6 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     jj_scanpos = xsp;
     if (jj_scan_token(206)) return true;
     }
-    return false;
-  }
-
-  final private boolean jj_3_128() {
-    if (jj_3R_144()) return true;
-    if (jj_3R_145()) return true;
-    if (jj_scan_token(ON)) return true;
-    if (jj_3R_148()) return true;
     return false;
   }
 
@@ -12943,6 +12949,16 @@ public class DerbySQLParser extends SQLParser implements/*@bgen(jjtree)*/ DerbyS
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_385()) return true;
     if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_313() {
+    if (jj_scan_token(DELETE)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_463() {
+    if (jj_3R_485()) return true;
     return false;
   }
 

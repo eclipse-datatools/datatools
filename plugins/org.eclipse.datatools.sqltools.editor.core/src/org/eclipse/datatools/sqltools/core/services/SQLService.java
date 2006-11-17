@@ -24,6 +24,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ParserProposalAdvisor;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLDelimiter;
+import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatementElement;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.jface.text.Document;
@@ -91,39 +92,39 @@ public class SQLService
 	        IASTStart root = result.getRootNode();
 	        root.setDocument(doc);
 	        String group = "";
-	        int start = 0;
-	        int end = 0;
 	        if (root.jjtGetNumChildren() > 0)
 	        {
-	            for (int i = 0; i < root.jjtGetNumChildren(); i++)
-	            {
-	                Node node = root.jjtGetChild(i);
-	                if (node instanceof IASTSQLDelimiter)
-	                {
-	                	end = node.getStartOffset();
-	                	group = doc.get(start, end - start);
-	                	start = node.getEndOffset();
-	                    // trim() will remove ascii control characters as well
-	                    if (!group.trim().equals(""))
-	                    {
-	                        groups.add(group);
-	                        group = "";
-	                    }
-	                }
-	            }
+                for (int i = 0; i < root.jjtGetNumChildren(); i++)
+                {
+                    Node node = root.jjtGetChild(i);
+                    if (node instanceof IASTSQLDelimiter)
+                    {
+                        //trim() will remove ascii control characters as well
+                        if (!group.trim().equals(""))
+                        {
+                            groups.add(group);
+                            group = "";
+                        }
+                    }
+                    else if (node instanceof IASTSQLStatementElement)
+                    {
+                        group += node.getSQLText() + " ";
+                    }
+                    else
+                    {
+                        group += node.getSQLText() + System.getProperty("line.separator");
+
+                    }
+                }
 	        }
 	        else
 	        {
 	            group = sql;
 	        }
-	        if (end < doc.getLength() )
-	        {
-	        	group = doc.get(start, doc.getLength() - start );
-	        }
-	        if (!group.trim().equals(""))
-	        {
-	            groups.add(group);
-	        }
+            if (!group.trim().equals(""))
+            {
+                groups.add(group);
+            }
 	
 	    }
 	    catch (Exception e1)
