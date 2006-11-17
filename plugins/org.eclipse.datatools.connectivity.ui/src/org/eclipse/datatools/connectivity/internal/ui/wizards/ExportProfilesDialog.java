@@ -271,9 +271,9 @@ public class ExportProfilesDialog extends Dialog {
 		boolean pathEndsInFileSeparator = false;
 		boolean hasValidParent = false;
 		if (hasParent) {
-			pathEndsInFileSeparator = fileParent.endsWith("" + File.separatorChar);
 			File parentFile = new File(fileParent);
 			hasValidParent = parentFile.exists();
+			pathEndsInFileSeparator = parentFile.isDirectory();
 		}
 		if (!hasParent || !hasValidParent || !pathEndsInFileSeparator ) {
 			MessageDialog.openError(getShell(), ConnectivityUIPlugin
