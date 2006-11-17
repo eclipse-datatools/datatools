@@ -34,12 +34,12 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" maximumPrecision="64" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
     <name>DEC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" maximumPrecision="64" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
   </predefinedDataTypeDefinitions>
@@ -103,7 +103,7 @@
   </predefinedDataTypeDefinitions>
   <storedProcedureDefinition/>
   <triggerDefinition/>
-  <columnDefinition identitySupported="true" identityIncrementSupported="true"/>
+  <columnDefinition maximumIdentifierLength="64" identitySupported="true" identityIncrementSupported="true"/>
   <constraintDefinition clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true" primaryKeyNullable="true" uniqueKeyNullable="true">
     <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
     <parentUpdateDRIRuleType>CASCADE</parentUpdateDRIRuleType>
@@ -117,6 +117,7 @@
   <indexDefinition/>
   <tableDefinition/>
   <udtDefinition/>
+  <tableDefinition maximumIdentifierLength="64"/>
   <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
   <SQLSyntaxDefinition>
     <keywords>ADD</keywords>
