@@ -18,7 +18,7 @@
             description="%V5R3Description"
             productDisplayString="%V5R3ProductString"
             versionDisplayString="%V5R3VersionString"
-            file="runtime/vendors/DB2 UDB iSeries_5/DB2 UDB iSeries_5.xmi">
+            file="runtime/vendors/DB2 UDB iSeries_5R3/DB2 UDB iSeries_5R3.xmi">
       </definition>
 
    </extension>

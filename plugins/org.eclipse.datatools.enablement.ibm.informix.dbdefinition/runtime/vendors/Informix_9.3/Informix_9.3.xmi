@@ -8,14 +8,14 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="254" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="32767" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>DBSERVERNAME</defaultValueTypes>
     <defaultValueTypes>SITENAME</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="254" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="32767" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>DBSERVERNAME</defaultValueTypes>
     <defaultValueTypes>SITENAME</defaultValueTypes>
@@ -30,7 +30,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>DBSERVERNAME</defaultValueTypes>
     <defaultValueTypes>SITENAME</defaultValueTypes>
@@ -45,7 +45,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NVARCHAR</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" lengthSupported="true" maximumLength="32700" primitiveType="CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" lengthSupported="true" maximumLength="32739" primitiveType="CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LVARCHAR</name>
   </predefinedDataTypeDefinitions>
@@ -54,12 +54,12 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATE</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" maximumPrecision="32" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
     <name>DEC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_2" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_2" scaleSupported="true" precisionSupported="true" maximumPrecision="32" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>MONEY</name>
   </predefinedDataTypeDefinitions>

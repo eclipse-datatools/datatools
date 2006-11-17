@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB" version="V8.1" maximumIdentifierLength="64" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" mQTSupported="true" aliasSupported="true" SQLStatementSupported="true" nicknameSupported="true" userDefinedTypeSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB" version="V8.1" maximumIdentifierLength="8" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" mQTSupported="true" aliasSupported="true" SQLStatementSupported="true" nicknameSupported="true" userDefinedTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
@@ -26,7 +26,7 @@
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CLOB</name>
@@ -111,12 +111,12 @@
     <name>CHARACTER VARYING () FOR BIT DATA</name>
     <name>CHAR VARYING () FOR BIT DATA</name>
   </predefinedDataTypeDefinitions>
-  <tableSpaceDefinition typeSupported="true" extentSizeSupported="true" prefetchSizeSupported="true" managedBySupported="true" pageSizeSupported="true" bufferPoolSupported="true">
+  <tableSpaceDefinition maximumIdentifierLength="18" typeSupported="true" extentSizeSupported="true" prefetchSizeSupported="true" managedBySupported="true" pageSizeSupported="true" bufferPoolSupported="true">
     <tableSpaceType>REGULAR</tableSpaceType>
     <tableSpaceType>TEMPORARY</tableSpaceType>
     <tableSpaceType>LARGE</tableSpaceType>
   </tableSpaceDefinition>
-  <storedProcedureDefinition nullInputActionSupported="true" determininsticSupported="true" returnedNullSupported="true" parameterStyleSupported="true">
+  <storedProcedureDefinition maximumIdentifierLength="128" nullInputActionSupported="true" determininsticSupported="true" returnedNullSupported="true" parameterStyleSupported="true">
     <languageType>SQL</languageType>
     <languageType>JAVA</languageType>
     <languageType>C</languageType>
@@ -129,8 +129,8 @@
     <procedureType>PROCEDURE</procedureType>
     <procedureType>FUNCTION</procedureType>
   </storedProcedureDefinition>
-  <triggerDefinition whenClauseSupported="true" granularitySupported="true" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true"/>
-  <columnDefinition identitySupported="true" computedSupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
+  <triggerDefinition maximumIdentifierLength="18" whenClauseSupported="true" granularitySupported="true" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true"/>
+  <columnDefinition maximumIdentifierLength="30" identitySupported="true" computedSupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
   <constraintDefinition clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true" informationalConstraintSupported="true">
     <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
@@ -143,9 +143,13 @@
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
   <sequenceDefinition predefinedDataTypeDefinitions="BIGINT_1 INTEGER_1 SMALLINT_1 DECIMAL_1" defaultDataTypeDefinition="INTEGER_1" typeEnumerationSupported="true" cacheSupported="true" orderSupported="true" noMaximumValueString="NO MAXVALUE" noMinimumValueString="NO MINVALUE" noCacheString="NO CACHE" cacheDefaultValue="20"/>
-  <udtDefinition distinctTypeSupported="true" structuredTypeSupported="true"/>
+  <udtDefinition maximumIdentifierLength="18" distinctTypeSupported="true" structuredTypeSupported="true"/>
   <indexDefinition clusteringSupported="true"/>
   <queryDefinition hostVariableMarker=":"/>
+    <nicknameDefinition maximumIdentifierLength="128"/>
+  <viewDefinition maximumIdentifierLength="128"/>
+  <tableDefinition maximumIdentifierLength="128"/>
+  <schemaDefinition maximumIdentifierLength="30"/>
   <SQLSyntaxDefinition>
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>

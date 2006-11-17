@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB zSeries" version="8 (Compatibility Mode)" maximumIdentifierLength="64" maximumCommentLength="64" aliasSupported="true" synonymSupported="true" userDefinedTypeSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB zSeries" version="8 (Compatibility Mode)" maximumIdentifierLength="8" maximumCommentLength="64" aliasSupported="true" synonymSupported="true" userDefinedTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
@@ -8,7 +8,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>GRAPHIC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" maximumLength="16336" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" maximumLength="16352" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARGRAPHIC</name>
@@ -18,13 +18,13 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONG VARGRAPHIC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CLOB</name>
@@ -36,7 +36,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DBCLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="32672" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="32704" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARCHAR</name>
@@ -53,7 +53,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATE</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" identitySupported="true" scaleSupported="true" precisionSupported="true" defaultPrecision="5"  defaultScale="0" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" identitySupported="true" scaleSupported="true" precisionSupported="true" defaultPrecision="5"  maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
     <name>DEC</name>
@@ -71,7 +71,7 @@
     <name>INTEGER</name>
     <name>INT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5"  defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5"  maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
     <name>NUM</name>
@@ -110,12 +110,12 @@
     <name>CHARACTER VARYING () FOR BIT DATA</name>
     <name>CHAR VARYING () FOR BIT DATA</name>
   </predefinedDataTypeDefinitions>
-  <tableSpaceDefinition>
+  <tableSpaceDefinition maximumIdentifierLength="8">
     <tableSpaceType>REGULAR</tableSpaceType>
     <tableSpaceType>LOB</tableSpaceType>
     <tableSpaceType>LARGE</tableSpaceType>
   </tableSpaceDefinition>
-  <storedProcedureDefinition parameterStyleSupported="true">
+  <storedProcedureDefinition maximumIdentifierLength="128" parameterStyleSupported="true">
     <parameterStyle>DB2SQL</parameterStyle>
     <parameterStyle>GENERAL</parameterStyle>
     <parameterStyle>GENERAL_WITH_NULLS</parameterStyle>
@@ -127,13 +127,17 @@
     <languageType>ASSEMBLY</languageType>
     <languageType>PLI</languageType>
   </storedProcedureDefinition>
-  <columnDefinition identitySupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
+  <columnDefinition maximumIdentifierLength="30" identitySupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
   <constraintDefinition>
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
   </constraintDefinition>
   <sequenceDefinition predefinedDataTypeDefinitions="INTEGER_1 SMALLINT_1 DECIMAL_1" defaultDataTypeDefinition="INTEGER_1" typeEnumerationSupported="true" cacheSupported="true" orderSupported="true" noMaximumValueString="NO MAXVALUE" noMinimumValueString="NO MINVALUE" noCacheString="NO CACHE" cacheDefaultValue="20"/>
+  <triggerDefinition maximumIdentifierLength="128"/>
   <indexDefinition clusteringSupported="true"/>
   <queryDefinition hostVariableMarker=":"/>
+  <viewDefinition maximumIdentifierLength="128"/>
+  <tableDefinition maximumIdentifierLength="128"/>
+  <schemaDefinition maximumIdentifierLength="128"/>
   <SQLSyntaxDefinition>
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>
