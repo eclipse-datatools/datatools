@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/wst/rdb/models/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2000" maximumIdentifierLength="128">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2000" maximumIdentifierLength="128">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
@@ -71,7 +71,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATETIME</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" maximumPrecision="38" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
     <name>DEC</name>
@@ -80,7 +80,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DOUBLE PRECISION</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" maximumPrecision="53" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
   </predefinedDataTypeDefinitions>
@@ -89,7 +89,7 @@
     <name>INTEGER</name>
     <name>INT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" maximumPrecision="38" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
   </predefinedDataTypeDefinitions>
