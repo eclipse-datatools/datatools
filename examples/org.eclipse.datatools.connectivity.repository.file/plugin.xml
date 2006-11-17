@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.connectionProfileRepositoryCategory"
+            id="org.eclipse.datatools.connectivity.repository.file.connectionProfile"
+            name="File Based Connection Profile Repository"
+            pingFactory="org.eclipse.datatools.connectivity.repository.file.FileRepositoryConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.connectivity.repository.file.PropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.repository.file.FileRepositoryConnectionFactory"
+            id="org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository"
+            name="Connection Profile Repository Connection"
+            profile="org.eclipse.datatools.connectivity.repository.file.connectionProfile"/>
+      <newWizard
+            class="org.eclipse.datatools.connectivity.repository.file.NewFileRepositoryProfileWizard"
+            id="org.eclipse.datatools.connectivity.repository.file.newWizard1"
+            name="File Based Connection Profile Repository"
+            profile="org.eclipse.datatools.connectivity.repository.file.connectionProfile"/>
+   </extension>
+
+</plugin>
