@@ -64,6 +64,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
 
             //don't pass in connection, let GroupSQLResultRunnable create and close the connection
             _job = new GroupSQLResultRunnable(null, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations());
+            _job.setName(Messages.BaseExecuteAction_job_title);
             _job.setUser(true);
             //don't call job.join() to prevent blocking eclipse
             _job.schedule();

@@ -89,7 +89,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private Runnable _currentJob = null;
     private boolean                 _promptVar  = false;
     private HashMap                 _varDefs    = null;
-    private IStatus                 _errorStatus = new Status(IStatus.ERROR, SQLEditorPlugin.PLUGIN_ID, 0, "", null);
     /**
      * @param con if con is null, corresponding ConnectionService.createConnection will be called.
      * @param sql
@@ -240,7 +239,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             }
             ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), getConnection());
         }
-        return allSucceeded ? Status.OK_STATUS : _errorStatus;
+        return allSucceeded ? Status.OK_STATUS : Status.CANCEL_STATUS;
     }
 
     public void run()
