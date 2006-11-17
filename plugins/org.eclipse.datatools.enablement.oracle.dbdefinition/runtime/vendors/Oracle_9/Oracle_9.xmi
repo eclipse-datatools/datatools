@@ -95,7 +95,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="2000" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>UID</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
