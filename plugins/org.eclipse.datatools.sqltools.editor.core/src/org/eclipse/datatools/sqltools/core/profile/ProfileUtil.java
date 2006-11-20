@@ -60,10 +60,13 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ProfileUtil
 {
+	//PROFILE_DB_VERSION and PROFILE_DB_VENDOR_NAME are used to get the real vendor and version
+	public static final String PROFILE_DB_VERSION_TYPE = ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID;
 	public static final String PROFILE_DB_VERSION = ConnectionProfileConstants.PROP_SERVER_VERSION;
+	public static final String PROFILE_DB_VENDOR_NAME = ConnectionProfileConstants.PROP_SERVER_NAME;
+	//DRIVER_DB_ constants are used to get the declared vendor and version in the driver template
 	public static final String DRIVER_DB_VERSION = IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID;
 	public static final String DRIVER_DB_VENDOR_NAME = IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID;
-	public static final String PROFILE_DB_VENDOR_NAME = ConnectionProfileConstants.PROP_SERVER_NAME;
 	public static final String UID                = IDBDriverDefinitionConstants.USERNAME_PROP_ID;
     public static final String PWD                = IDBDriverDefinitionConstants.PASSWORD_PROP_ID;
     public static final String DRIVERDEFINITIONID = ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID;
@@ -240,8 +243,7 @@ public class ProfileUtil
 			// try to get vendor name and version from connection profile first,
 			// because this should
 			// be the REAL info.
-			String vendor = profile.getBaseProperties().getProperty(
-					PROFILE_DB_VENDOR_NAME);
+			String vendor = getVendorInProperties(profile);
 			String version = getProductVersion(profileName);
 			if (vendor != null && version != null) {
 				vendorId = new DatabaseVendorDefinitionId(vendor, version);
@@ -323,7 +325,7 @@ public class ProfileUtil
         try
         {
             IConnectionProfile profile = getProfile(profileName);
-            String version = profile.getBaseProperties().getProperty(PROFILE_DB_VERSION);
+            String version = getVersionInProperties(profile);
             if (version == null)
             {
                 // if we have failed to get version for this profile before, do not do it again. Otherwise, it will be a
@@ -333,7 +335,7 @@ public class ProfileUtil
                     return null;
                 }
                 profile.createConnection(ConnectionProfileConstants.PING_FACTORY_ID);
-                version = profile.getBaseProperties().getProperty(PROFILE_DB_VERSION);
+                version = getVersionInProperties(profile);
                 if (version == null)
                 {
                     _unknowVersionProfiles.add(profile);
@@ -347,6 +349,25 @@ public class ProfileUtil
         }
     }
 
+    private static String getVersionInProperties(IConnectionProfile profile)
+    {
+    	Properties props = profile.getProperties(PROFILE_DB_VERSION_TYPE);
+    	if (props != null)
+    	{
+    		return props.getProperty(PROFILE_DB_VERSION);
+    	}
+    	return null;
+    }
+    
+    private static String getVendorInProperties(IConnectionProfile profile)
+    {
+    	Properties props = profile.getProperties(PROFILE_DB_VERSION_TYPE);
+    	if (props != null)
+    	{
+    		return props.getProperty(PROFILE_DB_VENDOR_NAME);
+    	}
+    	return null;
+    }
     
     /**
      * Gets the user name defined in the <code>IConnectionProfile </code> object.
