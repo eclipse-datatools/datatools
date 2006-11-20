@@ -26,6 +26,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.result.Messages;
@@ -89,6 +90,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private Runnable _currentJob = null;
     private boolean                 _promptVar  = false;
     private HashMap                 _varDefs    = null;
+    private String                  _parentDisplayName;
     /**
      * @param con if con is null, corresponding ConnectionService.createConnection will be called.
      * @param sql
@@ -97,13 +99,19 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     public GroupSQLResultRunnable(Connection con, String[] groups, IConnectionTracker tracker,
         Runnable postRun, DatabaseIdentifier databaseIdentifier, boolean promptVar, HashMap varDefs)
     {
-        super(con, "", false, tracker,null, databaseIdentifier,null);
+        super(con, "", false, tracker,null, databaseIdentifier,null); //$NON-NLS-1$
         this._postRun = postRun;
         this._groups = groups;
         this._promptVar = promptVar;
         this._varDefs = varDefs;
     }
 
+    public GroupSQLResultRunnable(Connection con, String[] groups, IConnectionTracker tracker, Runnable postRun,
+            DatabaseIdentifier databaseIdentifier, boolean promptVar, HashMap varDefs, String parentDisplayName)
+    {
+        this(con, groups, tracker, postRun, databaseIdentifier, promptVar, varDefs);
+        this._parentDisplayName = parentDisplayName;
+    }
     /*
      * (non-Javadoc)
      * 
@@ -113,6 +121,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     {
         boolean allSucceeded = true;
         //Obtain the Platform job manager
+        ResultsViewAPI resultsViewAPI = ResultsViewAPI.getInstance();
         IJobManager manager = Platform.getJobManager();
         if (monitor == null)
         {
@@ -122,7 +131,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         String task = Messages.GroupSQLResultRunnable_name;
         if (_groups.length > 1)
         {
-            task += NLS.bind("GroupSQLResultRunnable.groups", (new Object[]{"" + _groups.length}));
+            task += NLS.bind("GroupSQLResultRunnable.groups", (new Object[]{"" + _groups.length})); //$NON-NLS-1$ //$NON-NLS-2$
         }
         monitor.beginTask(task, _groups.length);
 
@@ -138,11 +147,17 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 						_databaseIdentifier, true);
 				setConnection(conn);
         	}
+            if (_groups.length > 1)
+            {
+                resultsViewAPI.createNewInstance(getOperationCommand(), null);
+            }
             for (int i = 0; i < _groups.length; i++)
             {
+                OperationCommand parentCommand = _groups.length > 1 ? getOperationCommand() : null;
                 if (_groups.length > 1)
                 {
-                    monitor.subTask(NLS.bind("GroupSQLResultRunnable.group", (new Object[]{"" + i})));
+                    resultsViewAPI.appendStatusMessage(getOperationCommand(), _groups[i]);
+                    monitor.subTask(NLS.bind("GroupSQLResultRunnable.group", (new Object[]{"" + i}))); //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 SQLDevToolsConfiguration f = SQLToolsFacade
 				.getConfigurationByProfileName(_databaseIdentifier
@@ -158,6 +173,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 				if (_currentJob instanceof ResultSupportRunnable)
 				{
 					ResultSupportRunnable resultSupportRunnable = ((ResultSupportRunnable)_currentJob);
+                    resultSupportRunnable.setParentOperCommand(parentCommand);
 					resultSupportRunnable.setProgressGroup(monitor, 1);
 					resultSupportRunnable.schedule();
 					try
@@ -183,6 +199,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 					if (monitor.isCanceled())
 					{
 						resultSupportRunnable.terminateExecution();
+                        resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
 						return Status.CANCEL_STATUS;
 					}
 					else if (resultsViewAPI.getCurrentStatus(resultSupportRunnable.getOperationCommand()) != OperationCommand.STATUS_SUCCEEDED && i < _groups.length - 1)
@@ -190,6 +207,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 						//since we'll kill the connection during terminating, there's no way to continue
 						if (resultsViewAPI.getCurrentStatus(resultSupportRunnable.getOperationCommand()) == OperationCommand.STATUS_TERMINATED)
 						{
+                            resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
 							return Status.CANCEL_STATUS;
 						}
 						
@@ -209,6 +227,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 							);
 							if (!run._goon)
 							{
+                                resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
 								return Status.CANCEL_STATUS;
 							}
 						}
@@ -239,6 +258,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             }
             ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), getConnection());
         }
+        resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
         return allSucceeded ? Status.OK_STATUS : Status.CANCEL_STATUS;
     }
 
@@ -247,4 +267,15 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         run(null);
     }
 
+    public OperationCommand getOperationCommand()
+    {
+        if (_command == null)
+        {
+            String parentDspName = _parentDisplayName == null ? Messages.GroupSQLResultRunnable_group_exec
+                    : _parentDisplayName;
+            _command = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, "SQL Editor", //$NON-NLS-2$
+                    _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
+        }
+        return _command;
+    }
 }
