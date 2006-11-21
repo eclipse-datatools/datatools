@@ -21,6 +21,7 @@ public final class Messages extends NLS {
 		// Do not instantiate
 	}
 
+    public static String GroupSQLResultRunnable_group_exec;
 	public static String ResultSupportRunnable_name;
 	public static String ResultSupportRunnable_task_connection;
 	public static String ResultSupportRunnable_task_statement;

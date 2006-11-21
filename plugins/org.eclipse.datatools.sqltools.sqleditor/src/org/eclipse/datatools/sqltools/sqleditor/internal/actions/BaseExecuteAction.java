@@ -63,7 +63,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             }
 
             //don't pass in connection, let GroupSQLResultRunnable create and close the connection
-            _job = new GroupSQLResultRunnable(null, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations());
+            _job = new GroupSQLResultRunnable(null, groups, null, getPostRun(), databaseIdentifier, promptVariable(), getVariableDeclarations(), Messages.BaseExecuteAction_group_exec_title);
             _job.setName(Messages.BaseExecuteAction_job_title);
             _job.setUser(true);
             //don't call job.join() to prevent blocking eclipse
@@ -113,7 +113,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
                 IStatus stat = status;
                 if (stat == null)
                 {
-                    stat = new Status(IStatus.ERROR, SQLEditorPlugin.PLUGIN_ID, 0, error.getMessage() == null ? "" : error
+                    stat = new Status(IStatus.ERROR, SQLEditorPlugin.PLUGIN_ID, 0, error.getMessage() == null ? "" : error //$NON-NLS-1$
                         .getMessage(), error);
                 }
                 String title = Messages.common_error;

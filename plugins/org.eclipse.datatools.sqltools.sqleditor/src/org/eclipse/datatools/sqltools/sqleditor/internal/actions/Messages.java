@@ -25,6 +25,7 @@ public final class Messages extends NLS {
 	public static String AddTemplateAction_error_write_message;
     public static String AddTemplateAction_label;
     public static String AddTemplateAction_tooltip;
+    public static String BaseExecuteAction_group_exec_title;
 	public static String common_error;
 	public static String CutAction_label;
 	public static String CutAction_tooltip;
