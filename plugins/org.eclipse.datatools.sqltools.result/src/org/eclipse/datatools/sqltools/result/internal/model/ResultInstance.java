@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.model;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class ResultInstance implements IResultInstance
 
     private int                _execFrequency;
     
-    private List               _throwables;
+    private transient List     _throwables;
     
     private List               _subResults; 
     
@@ -342,5 +343,19 @@ public class ResultInstance implements IResultInstance
             }
         }
         return severeFirstStatus;
+    }
+    
+    private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException
+    {
+        stream.defaultReadObject();
+        if (_subResults == null) 
+        {
+			_subResults = new ArrayList(5);
+		}
+        
+        if(_resultList == null)
+        {
+        	_resultList = new ArrayList(5);
+        }
     }
 }
