@@ -149,10 +149,16 @@
 	               enablesFor="1"
 	               id="org.eclipse.datatools.connectivity.internal.ui.actions.connectaction">
 	            <enablement>
+<!--	               <and>
+	                  <objectState
+	                        value="true"
+	                        name="org.eclipse.datatools.connectivity.profile.property.maintainConnection"/>
+-->	                      
 	                  <objectState
 	                        name="org.eclipse.datatools.connectivity.profile.property.isConnected"
 	                        value="false">
 	                  </objectState>
+<!--	               </and> -->
 	            </enablement>
 	         </action>
 	         <action
@@ -186,22 +192,24 @@
 			      	</or>
 	         </visibility>
 		 </objectContribution>
-         <viewerContribution
-               id="org.eclipse.datatools.connectivity.ui.dse.viewerContribution1"
-               targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+<!--         <objectContribution
+               adaptable="false"
+               id="org.eclipse.datatools.connectivity.ui.dse.refreshContribution"
+               objectClass="java.lang.Object">
             <action
                   class="org.eclipse.datatools.connectivity.ui.actions.RefreshViewAction"
                   definitionId="org.eclipse.ui.file.refresh"
-                  enablesFor="*"
-                  id="org.eclipse.datatools.connectivity.ui.dse.action1"
-                  label="%DSE.Refresh.label"
-                  menubarPath="slot3"
-                  overrideActionId="org.eclipse.ui.file.refresh"
-                  tooltip="%DSE.Refresh.label"/>
-            <visibility>
-               <objectClass name="java.lang.Object"/>
-            </visibility>
-         </viewerContribution>
+                  id="org.eclipse.datatools.connectivity.ui.dse.refresh"
+                  label="Refresh2"
+                  menubarPath="slot3">
+               <enablement>
+                  <or>
+                     <objectClass name="org.eclipse.datatools.connectivity.ICategory"/>
+                     <objectClass name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+                  </or>
+               </enablement>
+            </action>
+         </objectContribution> -->
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
@@ -225,20 +233,14 @@
          <commonSorter
                class="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileSorter"
                id="org.eclipse.datatools.connectivity.ui.dse.commonSorter"/>
-         <triggerPoints>
+         <enablement>
             <or>
                <adapt type="org.eclipse.datatools.connectivity.ICategory"/>
                <adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
                <adapt type="org.eclipse.datatools.connectivity.ProfileManager"/>
                <instanceof value="org.eclipse.core.resources.IWorkspaceRoot"/>
             </or>
-         </triggerPoints>
-         <possibleChildren>
-               <adapt type="org.eclipse.datatools.connectivity.ICategory"/>
-               <adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-               <adapt type="org.eclipse.datatools.connectivity.ProfileManager"/>
-               <instanceof value="org.eclipse.core.resources.IWorkspaceRoot"/>
-         </possibleChildren>
+         </enablement>
       </navigatorContent>
    </extension>
    <extension
@@ -275,7 +277,7 @@
          </includes>
       </viewerActionBinding>
    </extension>
-  <extension
+   <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <actionProvider
             class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider"

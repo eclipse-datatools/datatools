@@ -17,8 +17,9 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.ui.IViewActionDelegate;
+import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
 
@@ -26,7 +27,7 @@ import org.eclipse.ui.navigator.CommonNavigator;
  * @author shongxum, brianf
  * 
  */
-public class RefreshViewAction extends Action implements IViewActionDelegate {
+public class RefreshViewAction extends Action implements IObjectActionDelegate {
 
 	protected Object m_selobj = null;
 	protected IViewPart view = null;
@@ -43,14 +44,6 @@ public class RefreshViewAction extends Action implements IViewActionDelegate {
 		this.setActionDefinitionId(ActionFactory.REFRESH.getId());
 		this.setAccelerator(SWT.F5);
 		this.aViewer = viewer;
-	}
-	
-	public RefreshViewAction() {
-		super();
-//		setText(ConnectivityUIPlugin.getDefault().getResourceString("DSE.Refresh.label"));//$NON-NLS-1$
-//		setToolTipText(this.getText());
-//		this.setActionDefinitionId(ActionFactory.REFRESH.getId());
-//		this.setAccelerator(SWT.F5);
 	}
 	
 	/**
@@ -86,17 +79,19 @@ public class RefreshViewAction extends Action implements IViewActionDelegate {
 	}
 
 	/* (non-Javadoc)
+	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
+	 */
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+		if (targetPart instanceof CommonNavigator) {
+			this.view = (IViewPart) targetPart;
+		}
+	}
+
+	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
 		run();
-	}
-
-	public void init(IViewPart view) {
-		if (view instanceof CommonNavigator) {
-			this.view = (IViewPart) view;
-			this.aViewer = ((CommonNavigator)this.view).getCommonViewer();
-		}
 	}
 
 }
