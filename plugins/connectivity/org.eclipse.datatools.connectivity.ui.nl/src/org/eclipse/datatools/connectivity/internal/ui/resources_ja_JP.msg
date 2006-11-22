@@ -14,6 +14,7 @@ ImportProfilesDialog.null.title=接続プロファイルのインポート
 ExportProfilesDialog.btnEncryption.text=ファイル・コンテンツの暗号化
 actions.export.noselection=少なくとも 1 つの接続プロファイルを選択してください。
 actions.export.nofile=ファイル名を指定してください。
+actions.export.notvalidfile = 有効なファイル名とパスを指定してください。
 dialog.exception.title=例外
 dialog.exception.message=キャッチされた例外\: {0}
 NewCPWizard.title=新規接続プロファイル

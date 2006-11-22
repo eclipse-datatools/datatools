@@ -14,6 +14,7 @@ ImportProfilesDialog.null.title=Verbindungsprofile importieren
 ExportProfilesDialog.btnEncryption.text=Dateiinhalt verschlüsseln
 actions.export.noselection=Bitte wählen Sie mindestens ein Verbindungsprofil aus\!
 actions.export.nofile=Bitte geben Sie den Dateinamen an\!
+actions.export.notvalidfile = Geben Sie einen gültigen Dateinamen und Pfad an.
 dialog.exception.title=Ausnahmebedingung
 dialog.exception.message=Abgefangene Ausnahmebedingung\: {0}
 NewCPWizard.title=Neues Verbindungsprofil

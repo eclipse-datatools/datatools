@@ -33,6 +33,8 @@ data_read_error=Daten können nicht korrekt gelesen werden. Vermutlich wurden die
 
 Invalid_column_name = Ungültiger Spaltenname
 
+invalid_flatfile_format = Ungültiges Flatfileformat
+
 query_streamClosed=Datenstrom geschlossen
 query_invalidTableName=Ungültiger Tabellenname\:
 

@@ -33,6 +33,8 @@ data_read_error=데이터를 정확하게 읽을 수 없습니다. 원본 데이터가 변경된 것 같습
 
 Invalid_column_name = 잘못된 열 이름
 
+invalid_flatfile_format = 잘못된 플랫 파일 형식
+
 query_streamClosed=스트림의 처리가 완료되었습니다.
 query_invalidTableName=올바르지 않은 테이블 이름\:
 

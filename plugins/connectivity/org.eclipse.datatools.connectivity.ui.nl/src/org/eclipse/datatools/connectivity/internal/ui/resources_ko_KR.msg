@@ -14,6 +14,7 @@ ImportProfilesDialog.null.title=연결 프로파일 가져오기
 ExportProfilesDialog.btnEncryption.text=파일 컨텐츠 암호화
 actions.export.noselection=하나 이상의 연결 프로파일을 선택하십시오.
 actions.export.nofile=파일 이름을 지정하십시오.
+actions.export.notvalidfile = 올바른 파일 이름 및 경로를 지정하십시오!
 dialog.exception.title=예외
 dialog.exception.message=예외 발견\: {0}
 NewCPWizard.title=새 연결 프로파일

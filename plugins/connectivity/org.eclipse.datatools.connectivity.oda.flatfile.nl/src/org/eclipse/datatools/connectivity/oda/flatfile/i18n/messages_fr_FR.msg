@@ -33,6 +33,8 @@ data_read_error=Impossible de lire les données correctement, les paramètres de l
 
 Invalid_column_name = Nom de colonne incorrect
 
+invalid_flatfile_format = Format de fichier plat incorrect
+
 query_streamClosed=Flux fermé
 query_invalidTableName=Nom de table incorrect \:
 

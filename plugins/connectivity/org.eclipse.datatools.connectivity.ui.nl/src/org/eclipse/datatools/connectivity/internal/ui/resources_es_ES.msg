@@ -14,6 +14,7 @@ ImportProfilesDialog.null.title=Importar perfiles de conexión
 ExportProfilesDialog.btnEncryption.text=Cifrar el contenido del archivo
 actions.export.noselection=¡Por favor, seleccione un perfil de conexión como mínimo\!
 actions.export.nofile=¡Por favor, especifique un nombre de archivo\!
+actions.export.notvalidfile = Especifique un nombre de archivo y ruta válidos.
 dialog.exception.title=Excepción
 dialog.exception.message=Excepción capturada\: {0}
 NewCPWizard.title=Perfil de conexión nuevo

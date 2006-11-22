@@ -33,6 +33,8 @@ data_read_error=データを正しく読み取れません。データソースの設定が変更された可能
 
 Invalid_column_name = 列名が無効です。
 
+invalid_flatfile_format = フラットファイルの形式が無効です。
+
 query_streamClosed=ストリームがクローズされました。
 query_invalidTableName=無効なテーブル名\:
 

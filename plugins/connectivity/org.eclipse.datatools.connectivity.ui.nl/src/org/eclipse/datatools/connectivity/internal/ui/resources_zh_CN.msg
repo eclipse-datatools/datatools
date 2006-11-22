@@ -14,6 +14,7 @@ ImportProfilesDialog.null.title=导入连接概要文件
 ExportProfilesDialog.btnEncryption.text=对文件内容进行加密
 actions.export.noselection=请至少选择一个连接概要文件！
 actions.export.nofile=请指定文件名！
+actions.export.notvalidfile = 请指定有效的文件名和路径!
 dialog.exception.title=异常
 dialog.exception.message=捕获异常：{0}
 NewCPWizard.title=新建连接概要文件

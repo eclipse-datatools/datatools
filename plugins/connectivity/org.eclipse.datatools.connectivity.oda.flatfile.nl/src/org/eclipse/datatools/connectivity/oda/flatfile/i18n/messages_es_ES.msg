@@ -33,6 +33,8 @@ data_read_error=No se pueden leer los datos correctamente, es posible que los aj
 
 Invalid_column_name = Nombre de columna no válido
 
+invalid_flatfile_format = Archivo sin formato no válido
+
 query_streamClosed=Corriente cerrada
 query_invalidTableName=Nombre de tabla no válido\:
 

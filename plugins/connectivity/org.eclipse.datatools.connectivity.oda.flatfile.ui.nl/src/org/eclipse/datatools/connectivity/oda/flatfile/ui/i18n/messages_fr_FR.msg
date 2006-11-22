@@ -7,32 +7,32 @@ label.fileFilter=Filt&re de fichier :
 label.includeTypeLine=Utilisez la deuxième ligne comme indicateur du type de &données
 label.includeColumnNameLine = Utiliser la première ligne en tant qu'indicateur de &nom de colonne
 label.selectCharset=Sélectionnez un &jeu de caractères :
-label.selectFlatfileStyle=Select flatfile &style:
+label.selectFlatfileStyle=Sélectionnez un &style de fichier plat :
 label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-editor.title.name=Name
-editor.title.originalName=Original Name
+editor.title.name=Nom
+editor.title.originalName=Nom d'origine
 editor.title.type=Type
 
 
-datatypes.dateTime=Timestamp
-datatypes.decimal=Big Decimal
+datatypes.dateTime=Horodateur
+datatypes.decimal=Grande décimale
 datatypes.float=Double
-datatypes.integer=Integer
-datatypes.string=String
+datatypes.integer=Entier
+datatypes.string=Chaîne
 datatypes.date=Date
-datatypes.time=Time
+datatypes.time=Heure
 
-tooltip.flatfilestyle=Move the mouse to each flat file style for more infomation
-tooltip.csv=Comma-{ , } Seperated Values
-tooltip.ssv=Semicolon-{ ; } Seperated Values
-tooltip.psv=Pipe-{ | } Seperated Values
-tooltip.tsv=Tab-{ Tab } Seperated Values
-tooltip.columnnameline=Please make sure the existence of column names\n in the first row of the selected file
-tooltip.typeline=Please make sure the existence of data type line\n in the second row of the selected file
+tooltip.flatfilestyle=Déplacez la souris sur chaque style de fichier plat pour en savoir plus
+tooltip.csv=Valeurs séparées par une virgule-{ , }
+tooltip.ssv=Valeurs séparées par un point virgule-{ ; }
+tooltip.psv=Valeurs séparées par une barre décimale-{ | }
+tooltip.tsv=Valeurs séparées par une tabulation-{ Tabulation }
+tooltip.columnnameline=Vérifiez l'existence des noms de colonnes\n dans la première ligne du fichier sélectionné
+tooltip.typeline=Vérifiez l'existence de la ligne de type de données\n dans la deuxième ligne du fichier sélectionné
 error.selectFolder=Sélectionnez un dossier correct.
 error.selectColumns=Sélectionnez au moins une colonne pour ce fichier.
 error.emptyPath=Entrez un chemin d'accès.
@@ -46,6 +46,6 @@ error.invalidColumnName=Nom de colonne incorrect
 error.invalidQureyText=Texte de la requête incorrect
 
 title.warning=Avertissement
-warning.columnExtensionInvalid=Le fichier sélectionné n'est peut-être pas un fichier à plat correct.  Souhaitez-vous poursuivre ?
+warning.fileExtensionInvalid=Le fichier sélectionné n'est peut-être pas un fichier plat correct.
 confirm.reselectFileFilterTitle=Confirmez pour sélectionner un autre filtre de fichier.
-confirm.reselectFileFilterMessage=Si vous sélectionnez un autre filtre de fichier, les opérations précédentes ne seront pas enregistrées.\n\nVoulez-vous vraiment effectuer cette opération ?
+confirm.reselectFileFilterMessage=La sélection d'un autre filtre de fichier ne permettra pas l'enregistrement des opérations précédentes.\n\nVoulez-vous continuer ?

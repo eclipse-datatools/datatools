@@ -33,6 +33,8 @@ data_read_error=无法正确读取数据，数据源设置可能已更改
 
 Invalid_column_name = 无效的列名称
 
+invalid_flatfile_format = 无效的平面文件格式
+
 query_streamClosed=流已关闭
 query_invalidTableName=表名无效：
 

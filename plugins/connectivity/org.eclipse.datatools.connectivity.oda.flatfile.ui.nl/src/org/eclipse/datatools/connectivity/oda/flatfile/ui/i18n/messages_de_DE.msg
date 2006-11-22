@@ -7,32 +7,33 @@ label.fileFilter=Dateifilte&r:
 label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden
 label.includeColumnNameLine = Erste Zeile als Spalten&namenindikator verwenden
 label.selectCharset=Zei&chensatz auswählen:
-label.selectFlatfileStyle=Select flatfile &style:
+label.selectFlatfileStyle=Flatfile-&Stil auswählen:
 label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 editor.title.name=Name
-editor.title.originalName=Original Name
-editor.title.type=Type
+editor.title.originalName=Originalname
+editor.title.type=Typ
 
 
 datatypes.dateTime=Timestamp
-datatypes.decimal=Big Decimal
+datatypes.decimal=Große Dezimalzahl
 datatypes.float=Double
-datatypes.integer=Integer
-datatypes.string=String
-datatypes.date=Date
-datatypes.time=Time
+datatypes.integer=Ganzzahl
+datatypes.string=Zeichenfolge
+datatypes.date=Datum
+datatypes.time=Zeit
 
-tooltip.flatfilestyle=Move the mouse to each flat file style for more infomation
-tooltip.csv=Comma-{ , } Seperated Values
-tooltip.ssv=Semicolon-{ ; } Seperated Values
-tooltip.psv=Pipe-{ | } Seperated Values
-tooltip.tsv=Tab-{ Tab } Seperated Values
-tooltip.columnnameline=Please make sure the existence of column names\n in the first row of the selected file
-tooltip.typeline=Please make sure the existence of data type line\n in the second row of the selected file
+tooltip.flatfilestyle=Für weitere Informationen bewegen Sie die Maus zu jedem Flatfile-Stil.
+tooltip.csv=Durch Komma { , } getrennte Werte
+tooltip.ssv=Durch Semikolon { ; } getrennte Werte
+tooltip.psv=Durch Pipe { | } getrennte Werte
+tooltip.tsv=Durch Tab { Tab } getrennte Werte
+tooltip.columnnameline=Vergewissern Sie sich, dass in der ersten Zeile der \nausgewählten Datei Spaltennamen vorhanden sind.
+tooltip.typeline=Vergewissern Sie sich, dass in der zweiten Zeile der \nausgewählten Datei Datentypzeilen vorhanden sind.
+
 error.selectFolder=Bitte wählen Sie einen gültigen Ordner.
 error.selectColumns=Bitte wählen Sie für diesen Datensatz mindestens eine Spalte aus.
 error.emptyPath=Geben Sie einen Pfad ein.
@@ -46,6 +47,6 @@ error.invalidColumnName=Ungültiger Spaltenname
 error.invalidQureyText=Ungültiger Abfragetext
 
 title.warning=Warnung
-warning.columnExtensionInvalid=Die ausgewählte Datei ist möglicherweise keine gültige Flachdatei.  Wollen Sie dennoch fortfahren?
+warning.fileExtensionInvalid=Bei der ausgewählten Datei handelt es sich möglicherweise nicht um eine gültige Flatfile.
 confirm.reselectFileFilterTitle=Auswahl eines anderen Filters bestätigen.
-confirm.reselectFileFilterMessage=Wenn Sie einen anderen Filter auswählen werden die vorherigen Operationen nicht gespeichert. \n\nSind Sie sicher?
+confirm.reselectFileFilterMessage=Bei Auswahl eines anderen Dateifilters werden vorherige Vorgänge nicht gespeichert.\n\nTrotzdem fortfahren?
