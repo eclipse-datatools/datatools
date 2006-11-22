@@ -24,8 +24,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -288,6 +288,18 @@ public class InternalProfileManager {
 		createProfile(profileName, cp.getDescription(), cp.getProviderId(),
 				props, cp.getParentProfile() == null ? "" : cp //$NON-NLS-1$
 						.getParentProfile().getName(), cp.isAutoConnect());
+		
+		// now that we have the base profile and its properties set, 
+		// walk through any extended properties and grab those also
+		IConnectionProfile dupeProfile = getInstance().getProfileByName(profileName);
+		Set extensionIDs = cp.getPropertiesMap().keySet();
+		Iterator iter = extensionIDs.iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			Properties oldProps = cp.getProperties(key);
+			Properties newProps = (Properties) oldProps.clone();
+			dupeProfile.setProperties(key, newProps);
+		}
 		return profileName;
 	}
 
@@ -537,7 +549,7 @@ public class InternalProfileManager {
 			URL url = ConnectivityPlugin.getDefault().getBundle().getEntry(
 					ConnectionProfileMgmt.DEFAULTCP_FILENAME);
 			if (url != null) {
-				defaultFile = new File(Platform.asLocalURL(url).getFile());
+				defaultFile = new File(FileLocator.toFileURL(url).getFile());
 			}
 		}
 		catch (IOException e) {
