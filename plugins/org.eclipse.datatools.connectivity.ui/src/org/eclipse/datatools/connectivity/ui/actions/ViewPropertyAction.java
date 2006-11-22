@@ -19,7 +19,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.eclipse.ui.internal.dialogs.PropertyPageContributorManager;
@@ -30,13 +31,16 @@ import org.eclipse.ui.internal.dialogs.PropertyPageManager;
  */
 public class ViewPropertyAction extends Action {
 
+	// for stashing the size of the dialog for consistency 
 	public final static String MEMENTO_ROOT = "Connectivity_Property_Dialog_Root";//$NON-NLS-1$
 	public final static String MEMENTO_DIALOG_SIZE_HEIGHT = "Dialog_Size_Height";//$NON-NLS-1$
 	public final static String MEMENTO_DIALOG_SIZE_WIDTH = "Dialog_Size_Width";//$NON-NLS-1$
+	private int mShellWidth = 0;
+	private int mShellHeight = 0;
 
 	private TreeViewer mViewer;
-	
 	private Shell mShell;
+	
 
 	/**
 	 * Constructor
@@ -84,10 +88,9 @@ public class ViewPropertyAction extends Action {
 				.getShell(), pageManager, mViewer.getSelection());
 		propertyDialog.create();
 
+		// check for size settings
 		IDialogSettings dset = ConnectivityUIPlugin.getDefault()
 			.getDialogSettings();
-		int height = 0;
-		int width = 0;
 		boolean foundSettings = false;
 		if (dset != null) {
 			IDialogSettings dSection = dset.getSection(MEMENTO_ROOT);
@@ -95,17 +98,35 @@ public class ViewPropertyAction extends Action {
 				if (dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT) != null
 						&& dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT).trim()
 								.length() > 0) {
-					height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
-					width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
+					mShellHeight = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
+					mShellWidth = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
 					foundSettings = true;
 				}
 			}
 		}
+		// if we found them, set it to the old values
 		if (foundSettings) {
-			propertyDialog.getShell().setSize(new Point(width, height));
+			propertyDialog.getShell().setSize(mShellWidth, mShellHeight);
+			propertyDialog.getShell().layout();
 		}
 		this.mShell = propertyDialog.getShell();
 		propertyDialog.getShell().setText(title);
+		
+		// add a listener to make sure we get any resizes of the dialog
+		// to store for the next time
+		this.mShell.addControlListener(new ControlListener(){
+
+			public void controlMoved(ControlEvent e) {
+			}
+
+			public void controlResized(ControlEvent e) {
+				if (e.getSource() instanceof Shell) {
+					Shell shell = (Shell) e.getSource();
+					ViewPropertyAction.this.mShellHeight = shell.getSize().y;
+					ViewPropertyAction.this.mShellWidth = shell.getSize().x;
+				}
+			}
+		});
 		int rtn_val = propertyDialog.open();
 		if (rtn_val == Dialog.OK)
 			saveState();
@@ -136,9 +157,8 @@ public class ViewPropertyAction extends Action {
 			if (dSection == null)
 				dSection = dset.addNewSection(MEMENTO_ROOT);
 			if (dSection != null) {
-				Point size = this.mShell.getSize();
-				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
-				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, mShellHeight);
+				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, mShellWidth);
 			}
 		}
 	}
