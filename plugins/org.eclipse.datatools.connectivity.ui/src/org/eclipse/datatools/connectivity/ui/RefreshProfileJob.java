@@ -105,7 +105,9 @@ public class RefreshProfileJob extends UIJob {
 		setRule(new ProfileRule(profile));
 		setSystem(false);
 		setUser(true);
-		setDisplay(viewer.getTree().getDisplay());
+		if (!viewer.getTree().isDisposed()) {
+			setDisplay(viewer.getTree().getDisplay());
+		}
 		mProfile = profile;
 		mViewer = viewer;
 	}
@@ -118,7 +120,7 @@ public class RefreshProfileJob extends UIJob {
 	public IStatus runInUIThread(IProgressMonitor monitor) {
 		monitor.beginTask(getName(), 1);
 		if (mViewer != null && !mViewer.getTree().isDisposed()) {
-			mViewer.refresh();//(mProfile);
+			mViewer.refresh(mProfile);
 			mViewer.setExpandedState(mProfile, true);
 		}
 		monitor.worked(1);
