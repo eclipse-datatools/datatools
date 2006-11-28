@@ -59,6 +59,8 @@ public class InternalProfileManager {
 		public void propertySetChanged(IPropertySetChangeEvent event) {
 			setDirty(true);
 			saveChanges();
+			// Pass this through to any listeners on the manager
+			fireProfileChanged(event.getConnectionProfile(),null,null,null);
 		}
 	};
 

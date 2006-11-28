@@ -40,6 +40,8 @@ public abstract class ConnectionProfileRepositoryBase implements
 	private IPropertySetListener mPropertySetListener = new IPropertySetListener() {
 		public void propertySetChanged(IPropertySetChangeEvent event) {
 			save();
+			// Pass this through to any listeners on the repository
+			fireProfileChanged(event.getConnectionProfile(),null,null,null);
 		}
 	};
 
