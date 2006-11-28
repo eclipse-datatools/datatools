@@ -55,6 +55,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.templates.TemplateProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.internal.Workbench;
@@ -119,8 +120,16 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		// init
 		resultCollector = new ResultCollector();
 
-		_editor = (SQLEditor) Workbench.getInstance()
+		IEditorPart part = Workbench.getInstance()
 				.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if (part != null)
+		{
+			_editor = (SQLEditor) part.getAdapter(SQLEditor.class);
+		}
+		if (_editor == null)
+		{
+			return null;
+		}
 		_fDocumentOffset = documentOffset;
 		if (!needsContentAssist()) {
 			return null;

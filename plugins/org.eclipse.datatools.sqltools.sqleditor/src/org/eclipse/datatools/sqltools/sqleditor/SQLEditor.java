@@ -796,6 +796,14 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             }
             adapter = _fOutlinePage;
         }
+        /*
+         * This allows consumers to get an instance of SQLEditor via the active editor
+         * in a consistent way.  
+         */
+        else if (SQLEditor.class.equals( classForWhichAdapterNeeded )) 
+    	{
+    		return this;
+    	}
         /* Delegate getting the adapter to the projection support object,
          * if there is one. Projection refers to the ability to visibly collapse
          * and expand sections of the document.
