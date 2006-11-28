@@ -13,11 +13,10 @@ package org.eclipse.datatools.sqltools.plan.internal.ui.view;
 import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
-import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
-import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanManagerListener;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.LoadPlanAction;
@@ -37,6 +36,8 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -77,6 +78,9 @@ public class PlanView extends ViewPart
     private HorizontalLayoutAction _hLayoutAction;
     private static final String    ORIENTATION_GROUP = "orientation";
 
+    private static final String    FONT_STYLE        = "Courier New";
+    private static final int       FONT_SIZE         = 10;
+    
     /**
      * 
      */
@@ -107,7 +111,10 @@ public class PlanView extends ViewPart
         _textPlan = new Text(_fPagebook, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
         _textPlan.setEditable(false);
         _textPlan.setBackground(ColorConstants.white);
-
+        FontData fd = new FontData(FONT_STYLE, FONT_SIZE, SWT.NORMAL);
+        Font font = new Font(_textPlan.getDisplay(), fd);
+        _textPlan.setFont(font);
+        
         // Page 4 of page book (graphics Control )
         _graphicsControl = new GraphicsPlanControl(_fPagebook, SWT.NONE);
 
