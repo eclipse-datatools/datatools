@@ -10,7 +10,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import org.eclipse.datatools.sqltools.result.internal.utils.HexHelper;
 
 /**
  * The <code>ResultSetRow</code> is a standard implementation of <code>IResultSetRow</code>.
@@ -114,5 +117,34 @@ public class ResultSetRow implements IResultSetRow, Serializable
     public void setData(Object obj, int index)
     {
         _values[index] = obj;
+    }
+    
+    /**
+     * Converts the objects to strings such that it can be successfully loaded next time
+     * 
+     * @param out the output stream
+     * @throws IOException - if I/O error occurs
+     */
+    private void writeObject(java.io.ObjectOutputStream out) throws IOException
+    {
+        for (int i = 0; i < _values.length; i++)
+        {
+            Object data = _values[i];
+            String dataStr = null;
+            if (data != null)
+            {
+                if (data instanceof byte[])
+                {
+                    byte[] os = (byte[]) data;
+                    dataStr = HexHelper.toHexString(os);
+                }
+                else
+                {
+                    dataStr = data.toString();
+                }
+            }
+            _values[i] = dataStr;
+        }
+        out.defaultWriteObject();
     }
 }
