@@ -299,13 +299,11 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	public void widgetSelected(SelectionEvent e) {
 		if (e.widget == _comboType) {
 			refreshProfileNames(_comboType.getText(), null);
-		} else if (e.widget == _comboProfileName) {
-			canFinish();
 		}
 		updateFields();
+		canFinish();
 
 		notifyListener();
-
 	}
 
 	/*
@@ -364,21 +362,23 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	public boolean canFinish() {
 		IConnectionProfile connectionProfile = ProfileManager.getInstance()
 				.getProfileByName(_profileName);
-		// OK is disabled if profileName is selected and database name is empty.
-		if (SWTUtils.notEmpty(_comboType)
-				&& !SWTUtils.notEmpty(_comboProfileName)) {
-			return true;
-		} else if ((SWTUtils.notEmpty(_comboProfileName) && SWTUtils
-				.notEmpty(_combodbName))) {
-			return true;
-		}
-		// For Replication Server
-		else if (SWTUtils.notEmpty(_comboType)
-				&& !ProfileUtil.isDatabaseProfile(connectionProfile)) {
-			return true;
-		} else {
+		//_comboType must not be empty
+		if (!SWTUtils.notEmpty(_comboType))
+		{
 			return false;
 		}
+		// OK is disabled if profileName is selected and database name is empty.
+		else if (!SWTUtils.notEmpty(_comboProfileName)) {
+			return true;
+		}
+		else
+		{
+			//Database connection profile must have database name
+			if ( SWTUtils.notEmpty(_combodbName) || !ProfileUtil.isDatabaseProfile(connectionProfile) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getWarning() {
