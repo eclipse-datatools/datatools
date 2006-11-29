@@ -206,7 +206,19 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
                                 param.setDefaultValue(value);
                             }
                         }
+                        else
+                        {
+                        	//BZ 131539: Java routine don't allow passing null to numeric parameters
+                        	if (_routine instanceof Routine) {
+    							Routine r = (Routine) _routine;
+    							if (SQLUtil.isNumericType(param.getSqlDataType())
+    									&& "JAVA".equalsIgnoreCase(r.getLanguage())) {
+    								param.setDefaultValue("0");
+    							}
+    						}
+                        }
                     }
+                    
                 }
             }
         }
