@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
@@ -97,4 +98,10 @@ public interface ConnectionInfo {
 	 */
 	public Iterator getFilters();
 	
+	/**
+	 * return the profile from the connection
+	 * @return IConnectionProfile
+	 */
+	public IConnectionProfile getConnectionProfile();
+
 }

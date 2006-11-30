@@ -11,7 +11,6 @@
  *******************************************************************************/ 
 package org.eclipse.datatools.connectivity.sqm.core.connection;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 /**
