@@ -120,7 +120,10 @@ public class RefreshProfileJob extends UIJob {
 	public IStatus runInUIThread(IProgressMonitor monitor) {
 		monitor.beginTask(getName(), 1);
 		if (mViewer != null && !mViewer.getTree().isDisposed()) {
-			mViewer.refresh(mProfile);
+			// BZ 166522: we should be able to refresh the object,
+			// but due to a bug in the platform, we currently have
+			// to refresh the entire viewer
+			mViewer.refresh();//mProfile); 
 			mViewer.setExpandedState(mProfile, true);
 		}
 		monitor.worked(1);
