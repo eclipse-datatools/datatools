@@ -123,19 +123,17 @@ public class DateUtilTest extends TestCase
 
 	public void testToDate1( )
 	{
-		String[] testStrings = {
-				"1997",
+		String[] testStrings = {"1997",
 				"1997-07",
 				"1997-07-16",
-				"1997-07-16T19:20+02:00",
-				"1997-07-16T19:20:30+01:00",
+				"1997-07-16T19:20+02",
+				"1997-07-16T19:20:30GMT+01:00",
 				"1997-07-16T19:20:30.45+01:00",
 				"1997-07-16 19:20+01:00",
 				"1997-07-16 19:20:30+01:00",
-				"1997-07-16 19:20:30.45+01:00"
-		};
-		Calendar calendar = Calendar.getInstance( TimeZone.getTimeZone( "GMT + 0" ) );
-
+				"1997-07-16 19:20:30.45+01:00"};
+		Calendar calendar = Calendar.getInstance( );
+		
 		Date[] resultDates = {
 				null,
 				null,
@@ -147,43 +145,47 @@ public class DateUtilTest extends TestCase
 				null,
 				null
 		};
-		calendar.clear( );
-		calendar.set( 1997, 0, 1 );
+		calendar.clear();
+		calendar.set(1997,0,1);
 		resultDates[0] = calendar.getTime( );
-		calendar.set( 1997, 6, 1 );
+		calendar.set(1997,6,1);
 		resultDates[1] = calendar.getTime( );
-		calendar.set( 1997, 6, 16 );
+		calendar.set(1997,6,16);
 		resultDates[2] = calendar.getTime( );
-		
-		calendar.set( 1997, 6, 16, 17, 20, 0 );
+		calendar.set(1997,6,16,17,20,0);
 		resultDates[3] = calendar.getTime( );
-		calendar.set( 1997, 6, 16, 18, 20, 30 );
+		calendar.set(1997,6,16,18,20,30);
 		resultDates[4] = calendar.getTime( );
-		calendar.set( 1997, 6, 16, 18, 20, 30 );
+		calendar.set(1997,6,16,18,20,30);
 		calendar.set( Calendar.MILLISECOND, 450 );
 		resultDates[5] = calendar.getTime( );
-		calendar.set( 1997, 6, 16, 18, 20, 0 );
+		calendar.set(1997,6,16,18,20,0);
 		calendar.set( Calendar.MILLISECOND, 0 );
 		resultDates[6] = calendar.getTime( );
-		calendar.set( 1997, 6, 16, 18, 20, 30 );
+		calendar.set(1997,6,16,18,20,30);
 		resultDates[7] = calendar.getTime( );
-		calendar.set( 1997, 6, 16, 18, 20, 30 );
+		calendar.set(1997,6,16,18,20,30);
 		calendar.set( Calendar.MILLISECOND, 450 );
 		resultDates[8] = calendar.getTime( );
-
+		
 		for ( int i = 0; i < testStrings.length; i++ )
 		{
 			try
 			{
 				Date dateResult = DateUtil.toDate( testStrings[i] );
-
+				System.out.println( "i:" + i );
+				System.out.println( dateResult );
+				System.out.println( resultDates[i] );
+				System.out.println();
+				System.out.println(dateResult.getTime( ));
+				System.out.println(resultDates[i].getTime( ));
 				assertEquals( dateResult, resultDates[i] );
 			}
 			catch ( OdaException e )
 			{
 				fail( "Should not throw Exception." );
 			}
-
+			
 		}
 	}
 
