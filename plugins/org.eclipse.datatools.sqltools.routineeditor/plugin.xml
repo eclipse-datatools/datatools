@@ -147,4 +147,51 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>
       
+    <!-- Configure link with editor and double click to eidt in DSE-->
+    <extension
+          point="org.eclipse.ui.navigator.linkHelper">
+       <linkHelper
+             class="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper"
+             id="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper">
+          <selectionEnablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+             </or>
+          </selectionEnablement>
+          <editorInputEnablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput"/>
+             </or>
+          </editorInputEnablement>
+       </linkHelper>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.viewer">
+       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <includes>
+             <contentExtension pattern="org.eclipse.datatools.sqltools.routineeditor.internal.DataSourceExplorerLinkHelper"/>
+          </includes>
+       </viewerContentBinding>
+       <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <includes>
+             <actionExtension pattern="org.eclipse.datatools.sqltools.routineeditor.ui.actions.*"/>
+          </includes>
+       </viewerActionBinding>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <actionProvider
+             class="org.eclipse.datatools.sqltools.routineeditor.ui.actions.DoubleClickActionProvider"
+             id="org.eclipse.datatools.sqltools.routineeditor.ui.actions.DoubleClickActionProvider">
+          <enablement>
+             <or>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Routine"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Event"/>
+             </or>
+          </enablement>
+       </actionProvider>
+    </extension>
 </plugin>
