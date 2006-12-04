@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.core.services;
 
+import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ISqlDataValidator;
 
@@ -53,4 +54,15 @@ public class SQLDataService
         return null;
     }
 
+	/** 
+	 * Gets the JDBC datatype identifier corresponding to the given named  datatype.
+	 * The default implementation simply delegates to {@link org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper#getJDBCTypeForNamedType}.
+	 * TODO replace SQLUtil.convert2SQLType with this method
+	 * @param aTypeName a  type name to use to lookup a JDBC datatype without parentheses
+	 * @return int a JDBC type identifier.
+	 */
+	public static int getJDBCTypeForNamedType( String aTypeName ) {
+		return DataTypeHelper.getJDBCTypeForNamedType(aTypeName);
+	}
+	
 }
