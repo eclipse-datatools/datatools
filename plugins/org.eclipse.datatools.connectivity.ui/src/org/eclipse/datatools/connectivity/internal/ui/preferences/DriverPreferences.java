@@ -362,7 +362,11 @@ public class DriverPreferences extends PreferencePage implements
 				DriverManager.getInstance().addDriverInstance(instance);
 
 				// refresh
-				DriverPreferences.this.mTreeViewer.refresh();
+				DriverPreferences.this.mTreeViewer.getControl().setRedraw(false);
+				DriverPreferences.this.mTreeViewer.setInput(DriversProvider.getInstance());
+				DriverPreferences.this.mTreeViewer.refresh(descriptor);
+				DriverPreferences.this.mTreeViewer.expandToLevel(descriptor, 1);
+				DriverPreferences.this.mTreeViewer.getControl().setRedraw(true);
 
 			}
 		}
@@ -524,6 +528,7 @@ public class DriverPreferences extends PreferencePage implements
 	 * Save the changes back to the instances file.
 	 */
 	private void saveChanges() {
+		// this code isn't needed any more because 
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		List psetsList = ((DriverTreeContentProvider) this.mTreeViewer
 				.getContentProvider()).getDriverInstances();
