@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ibm.icu.text.SimpleDateFormat;
-import com.ibm.icu.util.Calendar;
-import com.ibm.icu.util.TimeZone;
 
 /**
  * DateFormatISO8601 is a utility class for formatting and parsing dates
@@ -67,7 +65,6 @@ public class DateFormatISO8601
 			patterKey = getPatterKey( dateFormatPattern[i] );
 			simpleDateFormatter = new SimpleDateFormat( dateFormatPattern[i] );
 			simpleDateFormatter.setLenient( false );
-			simpleDateFormatter.setCalendar( Calendar.getInstance( TimeZone.getTimeZone( "GMT" ) ) );
 			simpleDateFormatterMap.put( patterKey, simpleDateFormatter );
 		}
 	}

@@ -120,18 +120,18 @@ public class DateUtilTest extends BaseTest
 		String[] testStrings = {"1997",
 				"1997-07",
 				"1997-07-16",
-				"1997-07-16T19:20+02:00",
-				"1997-07-16T19:20:30+01:00",
+				"1997-07-16T19:20+02",
+				"1997-07-16T19:20:30GMT+01:00",
 				"1997-07-16T19:20:30.45+01:00",
 				"1997-07-16 19:20+01:00",
 				"1997-07-16 19:20:30+01:00",
 				"1997-07-16 19:20:30.45+01:00"};
-		Calendar calendar = Calendar.getInstance( TimeZone.getTimeZone("GMT + 0"));
+		Calendar calendar = Calendar.getInstance( );
 		
 		Date[] resultDates = {
-				new Date(97,0,1),
-				new Date(97,6,1),
-				new Date(97,6,16),
+				null,
+				null,
+				null,
 				null,
 				null,
 				null,
@@ -140,6 +140,12 @@ public class DateUtilTest extends BaseTest
 				null
 		};
 		calendar.clear();
+		calendar.set(1997,0,1);
+		resultDates[0] = calendar.getTime( );
+		calendar.set(1997,6,1);
+		resultDates[1] = calendar.getTime( );
+		calendar.set(1997,6,16);
+		resultDates[2] = calendar.getTime( );
 		calendar.set(1997,6,16,17,20,0);
 		resultDates[3] = calendar.getTime( );
 		calendar.set(1997,6,16,18,20,30);
@@ -161,9 +167,12 @@ public class DateUtilTest extends BaseTest
 			try
 			{
 				Date dateResult = DateUtil.toDate( testStrings[i] );
+				System.out.println( "i:" + i );
 				System.out.println( dateResult );
 				System.out.println( resultDates[i] );
 				System.out.println();
+				System.out.println(dateResult.getTime( ));
+				System.out.println(resultDates[i].getTime( ));
 				assertEquals( dateResult, resultDates[i] );
 			}
 			catch ( OdaException e )
