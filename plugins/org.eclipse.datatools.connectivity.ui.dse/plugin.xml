@@ -254,6 +254,9 @@
                   name="slot1"
                   separator="true"/>
             <insertionPoint
+                  name="slotOffline"
+                  separator="true"/>
+            <insertionPoint
                   name="slot2"
                   separator="true"/>
             <insertionPoint

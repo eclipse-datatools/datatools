@@ -447,6 +447,14 @@ public class ConnectionProfile extends PlatformObject implements
 			return;
 		}
 
+        // Changes the connected flag
+        if (IConnectionProfile.CONNECTION_PROFILE_PROPERTY_SET.equals(event.getPropertySetType())
+                && event.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID) != null)
+        {
+            this.mConnected = Boolean.valueOf(event.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID)
+                    .getNewValue()).booleanValue();
+        }
+
 		Object[] listeners = mPropertySetListeners.getListeners();
 		for (int index = 0, count = listeners.length; index < count; ++index) {
 			try {
@@ -665,8 +673,6 @@ public class ConnectionProfile extends PlatformObject implements
 			}
 
 			if (someOK) {
-				// Changes the connected flag since somebody actually connected
-				mConnected = true;
 				// Notify any property listeners of a state change
 				firePropertySetChangeEvent(new PropertySetChangeEvent(
 						ConnectionProfile.this,
@@ -851,8 +857,6 @@ public class ConnectionProfile extends PlatformObject implements
 				statuses.add(status);
 			}
 
-			// Changes the connected flag
-			mConnected = false;
 			// Notify any property listeners of a state change
 			firePropertySetChangeEvent(new PropertySetChangeEvent(
 					ConnectionProfile.this,

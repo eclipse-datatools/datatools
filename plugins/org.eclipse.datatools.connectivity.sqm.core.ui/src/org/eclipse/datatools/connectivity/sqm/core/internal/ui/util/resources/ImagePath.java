@@ -61,5 +61,6 @@ public class ImagePath
     public static final String PKFK_DECORATION = "pkfk_decorate.gif"; //$NON-NLS-1$
     public static final String PK_DECORATION = "pk_decorate.gif"; //$NON-NLS-1$
     public static final String GENERATE_DDL_WIZARD = "generate_ddl_wiz.gif"; //$NON-NLS-1$
+    public static final String SAMPLE_CONTENT = "sampleContents.gif"; //$NON-NLS-1$
 }
 

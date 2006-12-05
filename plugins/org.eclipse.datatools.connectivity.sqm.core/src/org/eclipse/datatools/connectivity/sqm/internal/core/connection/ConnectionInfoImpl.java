@@ -592,41 +592,69 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		return this.detectDefinition;
 	}
 
-	/*
-	 * DriverConnectionBase implemented methods
-	 */
-	
-	public ConnectionInfoImpl(IConnectionProfile profile, Class factoryClass) {
-		super(profile, factoryClass);
-		//TODO set DBDefinition and connection name
-		String vendor = null;
-		String version = null;
-		String databaseName = null;
-		try{
-			vendor = profile.getBaseProperties().getProperty(
-				IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-			version = profile.getBaseProperties().getProperty(
-				IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
-			databaseName = profile.getBaseProperties().getProperty(
-					IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID);
-		} catch (Exception e){
-			e.printStackTrace();
-		}
-		DatabaseDefinitionRegistry defRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
-		DatabaseDefinition dbDef = defRegistry.getDefinition(vendor, version);
-		this.setDatabaseDefinition(dbDef);
-		this.setDatabaseName(databaseName);
-		
-		this.name = "conn1"; // TODO get name from connection profile //$NON-NLS-1$
-		
-		jdbcConnection = profile.createConnection(Connection.class.getName());
-		Connection connection = (Connection) jdbcConnection.getRawConnection();
-		if (connection != null) {
-			this.setSharedConnection(connection);
-	        new DatabaseProviderHelper().setDatabase(connection,
-	                this, this.getDatabaseName());
-	        profile.addPropertySetListener(profilePropertyListener);
-		}
+    public ConnectionInfoImpl(IConnectionProfile profile, Class factoryClass) {
+        super(profile, factoryClass);
+        //TODO set DBDefinition and connection name
+        String vendor = null;
+        String version = null;
+        String databaseName = null;
+        try{
+            vendor = profile.getBaseProperties().getProperty(
+                IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+            version = profile.getBaseProperties().getProperty(
+                IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+            databaseName = profile.getBaseProperties().getProperty(
+                    IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        DatabaseDefinitionRegistry defRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
+        DatabaseDefinition dbDef = defRegistry.getDefinition(vendor, version);
+        this.setDatabaseDefinition(dbDef);
+        this.setDatabaseName(databaseName);
+        
+        this.name = profile.getName();
+    }
+    
+	public ConnectionInfoImpl(final IConnectionProfile profile, Class factoryClass, boolean createConnection) {
+		this(profile, factoryClass);
+        
+        if (createConnection)
+        {
+    		jdbcConnection = profile.createConnection(Connection.class.getName());
+    		Connection connection = (Connection) jdbcConnection.getRawConnection();
+    		if (connection != null) {
+    			this.setSharedConnection(connection);
+    	        new DatabaseProviderHelper().setDatabase(connection,
+    	                this, this.getDatabaseName());
+    	        profile.addPropertySetListener(profilePropertyListener);
+    		}
+        }
+        else
+        {
+            jdbcConnection = new IConnection ()
+            {
+                public void close()
+                {
+                }
+
+                public Throwable getConnectException()
+                {
+                    return null;
+                }
+
+                public IConnectionProfile getConnectionProfile()
+                {
+                    return profile;
+                }
+
+                public Object getRawConnection()
+                {
+                    return null;
+                }
+            };
+            profile.addPropertySetListener(profilePropertyListener);
+        }
 	}
 	
 	private void processFilterChanges(IPropertySetChangeEvent event) {

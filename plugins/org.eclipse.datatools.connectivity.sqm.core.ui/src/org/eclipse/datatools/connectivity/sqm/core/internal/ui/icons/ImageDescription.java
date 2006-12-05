@@ -78,4 +78,9 @@ public class ImageDescription
     {
         return getDescriptor (ImagePath.SERVER_EXPLORER);
     }
+    
+    public static ImageDescriptor getSampleContent ()
+    {
+        return getDescriptor (ImagePath.SAMPLE_CONTENT);
+    }
 }

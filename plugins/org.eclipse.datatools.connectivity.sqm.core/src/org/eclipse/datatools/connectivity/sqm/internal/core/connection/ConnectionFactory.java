@@ -33,7 +33,7 @@ public class ConnectionFactory implements IConnectionFactory {
 	 * @see org.eclipse.datatools.connectivity.IConnectionFactory#createConnection(org.eclipse.datatools.connectivity.IConnectionProfile)
 	 */
 	public IConnection createConnection(IConnectionProfile profile) {
-		IConnection connection = new ConnectionInfoImpl(profile, getClass());
+		IConnection connection = new ConnectionInfoImpl(profile, getClass(), true);
 		return connection;
 	}
 

@@ -41,7 +41,7 @@ public class PropertySetChangeEvent implements
 		this(profile, propertiesType);
 		mChangedProperties = new HashMap(1);
 		mChangedProperties.put(property, new ChangedProperty(property,
-				newValue, oldValue));
+                oldValue, newValue));
 	}
 
 	public PropertySetChangeEvent(IConnectionProfile profile,
