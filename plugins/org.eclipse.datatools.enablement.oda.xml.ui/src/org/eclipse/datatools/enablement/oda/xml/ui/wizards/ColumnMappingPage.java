@@ -1057,9 +1057,13 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private boolean isXpathValid( String value )
 	{
+		//TODO add xpath validation codes
+		return true;
+		/*
 		if( value == null )
 			return true;
 		return !value.trim( ).matches( ".*\\Q[\\E.*\\Q]\\E.+" );
+		*/
 	}
 	
 	/**

@@ -104,15 +104,18 @@ public class RelationInformation
 					String value = columnXpath.replaceAll( ".*\\Q[@\\E.*\\Q=\\E",
 							"" )
 							.trim( );
-					value = value.substring( 1, value.length( ) - 2 );
-				
+					value = value.replaceAll( "\\Q]\\E.*", "" ).trim( );
 					
+					//by now, the value should be something like "ABC" or 'ABC'
+					if ( ( value.startsWith( "'" ) && value.endsWith( "'" ) )
+							|| ( value.startsWith( "\"" ) && value.endsWith( "\"" ) ) )
+						value = value.substring( 1, value.length( ) - 1 );
 					
 					String filterOriginalColumnXpath = originalColumnXpath.replaceAll( "\\Q=\\E.*","]" );
 					String filterColumnXpath = columnXpath.replaceAll( "\\Q=\\E.*","]" );
 					
 					//originalColumnXpath = originalColumnXpath.replaceAll( "\\Q[\\E.*\\Q]\\E", "" ); 
-					columnXpath = columnXpath.replaceAll( "\\Q[\\E.*\\Q]\\E", "" );
+					columnXpath = columnXpath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", "" );
 
 					String tempColumnName = TEMPCOLUMNNAMEPREFIX
 							+ filterColumnInfos.size( ) + 1;
