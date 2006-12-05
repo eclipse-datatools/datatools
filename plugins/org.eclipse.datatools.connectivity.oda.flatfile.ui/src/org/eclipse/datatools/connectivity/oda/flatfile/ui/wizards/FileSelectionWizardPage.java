@@ -144,6 +144,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	/** store latest selected file */
 	private File selectedFile;
 
+	private String nameOfFileWithErrorInLastAccess = null;
+	
 	private java.util.List originalFileColumnsInfoList = new ArrayList( );
 	private java.util.List savedSelectedColumnsInfoList = new ArrayList( );
 
@@ -250,12 +252,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
-		if ( !hasValidData( ) )
-			return design;
 		savePage( design );
 		return design;
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -728,26 +728,25 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		int count = 0;
 		java.util.List existedColumns = new ArrayList( );
-		if ( savedSelectedColumnsInfoList != null )
+		
+		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
 		{
-			for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
+			if ( columnName.equals( ( (String[]) savedSelectedColumnsInfoList.get( i ) )[1] ) )
 			{
-				if ( columnName.equals( ( (String[]) savedSelectedColumnsInfoList.get( i ) )[1] ) )
-				{
-					count++;
-					existedColumns.add( savedSelectedColumnsInfoList.get( i ) );
-				}
-			}
-
-			for ( int j = 0; j < existedColumns.size( ); j++ )
-			{
-				if ( ( columnName + "_" + count ).equals( ( (String[]) savedSelectedColumnsInfoList.get( j ) )[0] ) )
-				{
-					count++;
-					j = -1;
-				}
+				count++;
+				existedColumns.add( savedSelectedColumnsInfoList.get( i ) );
 			}
 		}
+
+		for ( int j = 0; j < existedColumns.size( ); j++ )
+		{
+			if ( ( columnName + "_" + count ).equals( ( (String[]) savedSelectedColumnsInfoList.get( j ) )[0] ) )
+			{
+				count++;
+				j = -1;
+			}
+		}
+		
 
 		return count;
 	}
@@ -798,6 +797,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		savedSelectedColumnsInfoList.clear( );
 
 		availableList.removeAll( );
+		
+		nameOfFileWithErrorInLastAccess = null;
 
 		// String fileName = m_fileViewer.getCombo().getText().toLowerCase();
 		String fileName = file.getName( );
@@ -805,7 +806,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		if ( columnNames != null && columnNames.length != 0 )
 		{
-			enableAll( );
+			enableListAndViewer( );
 			availableList.setItems( columnNames );
 			availableList.select( 0 );
 			btnRemove.setEnabled( false );
@@ -863,7 +864,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 				if ( files != null )
 				{
-					setMessage( DEFAULT_MESSAGE );
 					fileViewer.setInput( files );
 				}
 				else
@@ -878,7 +878,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			File[] files = (File[]) fileViewer.getInput( );
 			if ( files.length > 0 )
 			{
-				enableAll( );
+				enableListAndViewer( );
 				File toSelectFile = null;
 				if ( selectedFile != null )
 					for ( int i = 0; i < files.length; i++ )
@@ -893,6 +893,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					toSelectFile = files[0];
 
 				fileViewer.setSelection( new StructuredSelection( toSelectFile ) );
+				if (!( nameOfFileWithErrorInLastAccess != null
+						&& nameOfFileWithErrorInLastAccess.equals( fileViewer.getCombo( )
+								.getText( ) ) ))
+					setMessage( DEFAULT_MESSAGE );
 			}
 			else
 			{
@@ -946,7 +950,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 			int columnCount = metadata.getColumnCount( );
 			if ( columnCount == 0 )
-				return null;
+				return new ArrayList( );
 
 			for ( int i = 0; i < columnCount; i++ )
 			{
@@ -965,14 +969,34 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		catch ( OdaException e )
 		{
 			setMessage( e.getLocalizedMessage( ), ERROR ); //$NON-NLS-1$
-			disableAll( );
-			return null;
+			updateExceptionInfo( );
+			return new ArrayList( );
 		}
 		finally
 		{
-			closeConnection( conn );
+				closeConnection( conn );
 		}
 
+	}
+
+	private void updateExceptionInfo( )
+	{
+		nameOfFileWithErrorInLastAccess = fileViewer.getCombo( ).getText( );	
+		if ( availableList.getItemCount( ) == 0 )
+			disableAvailableListAndButtons( );
+	}
+
+	/**
+	 * 
+	 *
+	 */
+	private void disableAvailableListAndButtons( )
+	{
+		availableList.setEnabled( false );
+		btnAdd.setEnabled( false );
+		btnRemove.setEnabled( false );
+		btnMoveDown.setEnabled( false );
+		btnMoveUp.setEnabled( false );
 	}
 
 	/**
@@ -1101,14 +1125,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	/**
 	 * Enable all control of this page
 	 */
-	private void enableAll( )
+	private void enableListAndViewer( )
 	{
 		availableList.setEnabled( true );
 		selectedColumnsViewer.getTable( ).setEnabled( true );
-		btnAdd.setEnabled( true );
-		btnRemove.setEnabled( true );
-		btnMoveUp.setEnabled( true );
-		btnMoveDown.setEnabled( true );
 	}
 
 	/**
@@ -1141,13 +1161,16 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	}
 
 	/**
-	 * get the query text of this data set
+	 * get the query text(select clause) of this data set
 	 * 
-	 * @return query text
+	 * @return query
 	 * 
 	 */
 	private String getQuery( )
 	{
+		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
+			return "";
+		
 		String tableName = null;
 		StringBuffer buf = new StringBuffer( );
 		File file = (File) ( (StructuredSelection) fileViewer.getSelection( ) ).getFirstElement( );
@@ -1233,8 +1256,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		catch ( OdaException e )
 		{
-			setMessage( e.getLocalizedMessage( ), ERROR );
-			disableAll( );
+			setMessage( e.getLocalizedMessage( ), ERROR ); //$NON-NLS-1$
+			updateExceptionInfo( );
 		}
 
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
@@ -1428,6 +1451,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void addColumns( )
 	{
 		java.util.List addedItems = createAddedColumnsInfo( availableList.getSelection( ) );
+		
 		for ( int i = 0; i < addedItems.size( ); i++ )
 		{
 			savedSelectedColumnsInfoList.add( addedItems.get( i ) );
@@ -1478,6 +1502,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		return addedColumnsInfo;
 	}
 
+	/**
+	 * 
+	 * @param columnName
+	 * @return
+	 */
 	private String getColumnTypeName( String columnName )
 	{
 		for ( int i = 0; i < originalFileColumnsInfoList.size( ); i++ )
@@ -1486,23 +1515,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				return ( (String[]) originalFileColumnsInfoList.get( i ) )[2];
 		}
 		return null;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	private boolean hasValidData( )
-	{
-		if ( fileViewer == null )
-			return false;
-
-		if ( isPageComplete( ) )
-		{
-			return true;
-		}
-		setMessage( Messages.getString( "error.selectColumns" ), ERROR ); //$NON-NLS-1$
-		return false;
 	}
 
 	/**
@@ -1530,6 +1542,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		if ( index > 0 )
 			selectedColumnsViewer.getTable( ).setSelection( index - 1 );
+		else
+			selectedColumnsViewer.getTable( ).setSelection( index );
 
 		if ( selectedColumnsViewer.getTable( ).getSelectionCount( ) == 0 )
 			btnRemove.setEnabled( false );
@@ -1579,12 +1593,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void savePage( DataSetDesign dataSetDesign )
 	{
-		String query = getQuery( );
-		String queryText = query
-				+ CommonConstants.DELIMITER_SPACE + queryTextDelimiter
-				+ CommonConstants.DELIMITER_SPACE + columnsInfoStartSymbol
-				+ createSelectedColumnsInfoString( dataSetDesign )
-				+ columnsInfoEndSymbol;
+		String queryText = getQueryText( );
 		dataSetDesign.setQueryText( queryText );
 
 		// obtain query's result set metadata, and update
@@ -1622,13 +1631,29 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	}
 
 	/**
+	 * Gets the query text
+	 * @return query text
+	 */
+	private String getQueryText( )
+	{
+		String query = getQuery( );
+		String queryText = query.length( ) > 0 
+				? query
+				+ CommonConstants.DELIMITER_SPACE + queryTextDelimiter
+				+ CommonConstants.DELIMITER_SPACE + columnsInfoStartSymbol
+				+ createSelectedColumnsInfoString( )
+				+ columnsInfoEndSymbol : "";
+		return queryText;
+	}
+
+	/**
 	 * create the SelectedColumnsinfo string
 	 * 
 	 * @param dataSetDesign
 	 *            the current dataSetDesign
 	 * @return String that contains the seleced columns infomation
 	 */
-	private String createSelectedColumnsInfoString( DataSetDesign dataSetDesign )
+	private String createSelectedColumnsInfoString( )
 	{
 		String prop = "";
 		// If the length is equal to 2 then we have a valid query
