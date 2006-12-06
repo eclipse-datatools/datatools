@@ -1002,9 +1002,17 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					setDetailsMessage( DEFAULT_PAGE_Message, IMessageProvider.NONE );
 					if ( property.equals( COLUMN_NAME ) )
 					{
-						if ( isUniqueName( (String) value , (ColumnMappingElement) actualElement ) )
+						if ( isUniqueName( (String) value,
+								(ColumnMappingElement) actualElement ) )
 						{
-							( (ColumnMappingElement) actualElement ).setColumnName( (String) value );
+							if ( columnMap.get( ( (ColumnMappingElement) actualElement ).getColumnName( ) ) != null )
+							{
+								columnMap.remove( ( (ColumnMappingElement) actualElement ).getColumnName( ) );
+								( (ColumnMappingElement) actualElement ).setColumnName( (String) value );
+								columnMap.put( (String) value, actualElement );
+							}
+							else
+								( (ColumnMappingElement) actualElement ).setColumnName( (String) value );
 						}
 						else
 							return;
@@ -1043,6 +1051,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 							columnMappingTable.getViewer( ).refresh( );
 							setPageProperties( );
 						}
+
 						refreshXMLConnection( );
 					}
 				}
