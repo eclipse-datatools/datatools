@@ -103,7 +103,10 @@ CPRenameProcessor.name = DTP 连接重命名处理程序
 CPRenameChange.title.error = 未能重命名连接配置文件。
 
 PropertyDescriptor.error.title = 处理驱动程序定义的属性描述符时出错
+PropertyDescriptor.error.msg = 处理驱动程序定义的属性时出错。
 PasswordTextPropertyDescriptor.property.label = 密码
 DriverClassBrowsePropertyDescriptor.property.label = 驱动程序类
 DriverClassBrowsePropertyDescriptor.jardialog.title = Jar 列表中的可用类
 DriverClassBrowsePropertyDescriptor.jardialog.msg = 选择可用类之一。
+DriverClassBrowsePropertyDescriptor.noclasses.title = 没有可用的驱动程序类
+DriverClassBrowsePropertyDescriptor.noclasses.msg = 没有可供当前 jar 列表使用的驱动程序类。

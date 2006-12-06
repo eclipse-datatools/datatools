@@ -28,8 +28,8 @@ DriverConnectionBase.error.driverDefinitionNotSpecified=La définition du pilote 
 DriverConnectionBase.error.driverDefinitionNotFound=La définition du pilote est introuvable.
 error.loadprofilesxml=Erreur lors du chargement des données du profil de connexion.
 error.saveprofilesxml=Erreur lors de la sauvegarde des données du profil de connexion.
-error.loaddriversxml=Erreur lors du chargement des données de l'instance du pilote.
-error.savedriversxml=Erreur lors de la sauvegarde des données de l'instance du pilote.
+error.loaddriversxml = Erreur lors du chargement des données de définition du pilote.
+error.savedriversxml = Erreur lors de l'enregistrement des données de définition du pilote.
 trace.error.propertiesPersistenceHook=Impossible de charger propertiesPersistenceHook, utilisation des propriétés par défaut (type de profil\={0}, extension\={1})
 trace.error.propertiesPersistenceHookSaveError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; conservation de toutes les propriétés (profil\={0}, extension\={1})
 trace.error.propertiesPersistenceHookLoadError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; propriétés transitoires non définies (profil\={0}, extension\={1})

@@ -103,7 +103,10 @@ CPRenameProcessor.name = Procesador de cambio de nombre de conectividad de DTP
 CPRenameChange.title.error = Error al cambiar el nombre al perfil de conexión.
 
 PropertyDescriptor.error.title = Error al procesar el descriptor de propiedad para la definición de controlador
+PropertyDescriptor.error.msg = Se ha encontrado un error al procesar propiedades para la definición de controlador.
 PasswordTextPropertyDescriptor.property.label = Contraseña
 DriverClassBrowsePropertyDescriptor.property.label = Clase de controlador
 DriverClassBrowsePropertyDescriptor.jardialog.title = Clases disponibles en la lista Jar
 DriverClassBrowsePropertyDescriptor.jardialog.msg = Seleccione una de las clases disponibles.
+DriverClassBrowsePropertyDescriptor.noclasses.title = Sin clases de controlador disponibles
+DriverClassBrowsePropertyDescriptor.noclasses.msg = No hay clases de controlador disponibles para la lista jar actual.

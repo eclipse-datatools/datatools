@@ -28,8 +28,8 @@ DriverConnectionBase.error.driverDefinitionNotSpecified=ドライバー定義が指定され
 DriverConnectionBase.error.driverDefinitionNotFound=ドライバー定義が見つかりません。
 error.loadprofilesxml=接続プロファイル・データのロード中にエラーが発生しました。
 error.saveprofilesxml=接続プロファイル・データの保管中にエラーが発生しました。
-error.loaddriversxml=ドライバー・インスタンス・データのロード中にエラーが発生しました。
-error.savedriversxml=ドライバー・インスタンス・データの保管中にエラーが発生しました。
+error.loaddriversxml = ドライバ定義のデータを読み込み中にエラーが発生しました。
+error.savedriversxml = ドライバ定義のデータを保存中にエラーが発生しました。
 trace.error.propertiesPersistenceHook=propertiesPersistenceHook をロードできませんでした。デフォルトを使用します (プロファイル・タイプ\={0}, 拡張子\={1})
 trace.error.propertiesPersistenceHookSaveError=プロパティー永続フックの起動中にエラーが発生しました; すべてのプロパティーを保持します (プロファイル\={0}、拡張子\={1})
 trace.error.propertiesPersistenceHookLoadError=プロパティー永続フックの起動中にエラーが発生しました; 一時プロパティーが設定されていません (プロファイル\={0}、拡張子\={1})

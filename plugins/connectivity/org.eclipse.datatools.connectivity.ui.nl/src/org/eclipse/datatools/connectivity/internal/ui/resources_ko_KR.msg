@@ -103,7 +103,10 @@ CPRenameProcessor.name = DTP 연결 이름 바꾸기 프로세서
 CPRenameChange.title.error = 연결 프로필 이름을 바꾸지 못했습니다.
 
 PropertyDescriptor.error.title = 드라이버 정의의 속성 설명자를 처리하는 중 오류 발생
+PropertyDescriptor.error.msg = 드라이버 정의의 속성을 처리하는 중 오류 발생
 PasswordTextPropertyDescriptor.property.label = 암호
 DriverClassBrowsePropertyDescriptor.property.label = 드라이버 클래스
 DriverClassBrowsePropertyDescriptor.jardialog.title = Jar 목록의 사용 가능한 클래스
 DriverClassBrowsePropertyDescriptor.jardialog.msg = 사용 가능한 클래스 중 하나를 선택합니다.
+DriverClassBrowsePropertyDescriptor.noclasses.title = 사용 가능한 드라이버 클래스 없음
+DriverClassBrowsePropertyDescriptor.noclasses.msg = 현재 jar 목록에 사용 가능한 드라이버 클래스가 없습니다.

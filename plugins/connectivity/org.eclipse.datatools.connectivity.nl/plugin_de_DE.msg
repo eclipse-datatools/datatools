@@ -3,3 +3,4 @@ Plugin.Name=Data Tools Platform - Plug-in für Konnektivität
 Plugin.ProviderName=Eclipse.org
 extension-point.name.connectionProfile=Erweiterung für Verbindungsprofil
 extension-point.name.driverExtension=driverExtension
+ConnectionProfileRepository.Category.Name = Repositories für Verbindungsprofile

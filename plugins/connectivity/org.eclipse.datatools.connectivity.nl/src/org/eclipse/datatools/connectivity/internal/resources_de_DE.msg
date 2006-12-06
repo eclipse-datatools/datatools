@@ -28,8 +28,8 @@ DriverConnectionBase.error.driverDefinitionNotSpecified=Die Treiberdefinition wa
 DriverConnectionBase.error.driverDefinitionNotFound=Die Treiberdefinition wurde nicht gefunden.
 error.loadprofilesxml=Beim Laden der Verbindungsprofildaten trat ein Fehler auf.
 error.saveprofilesxml=Beim Speichern der Verbindungsprofildaten trat ein Fehler auf.
-error.loaddriversxml=Beim Laden der Treiberexemplardaten trat ein Fehler auf.
-error.savedriversxml=Beim Speichern der Treiberexemplardaten trat ein Fehler auf.
+error.loaddriversxml = Fehler beim Laden der Treiberdefinitionsdaten.
+error.savedriversxml = Fehler beim Speichern der Treiberdefinitionsdaten.
 trace.error.propertiesPersistenceHook=''propertiesPersistenceHook'' konnte nicht geladen werden; Standardwert wird verwendet (Profiltyp\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookSaveError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Alle Eigenschaften bleiben permanent bestehen (Profil\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookLoadError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Temporäre Eigenschaften werden nicht festgelegt (Profil\={0}, Erweiterung\={1})

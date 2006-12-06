@@ -28,8 +28,8 @@ DriverConnectionBase.error.driverDefinitionNotSpecified=No se ha especificado la
 DriverConnectionBase.error.driverDefinitionNotFound=No se ha encontrado la definición de controlador.
 error.loadprofilesxml=Error al cargar los datos del perfil de conexión.
 error.saveprofilesxml=Error al guardar los datos del perfil de conexión.
-error.loaddriversxml=Error al cargar los datos de instancia del controlador.
-error.savedriversxml=Error al guardar los datos de instancia del controlador.
+error.loaddriversxml = Error al cargar los datos de definición de controlador.
+error.savedriversxml = Error al guardar los datos de definición de controlador.
 trace.error.propertiesPersistenceHook=No se ha podido cargar propertiesPersistenceHook, se utiliza el valor predeterminado (tipo de perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persistente de propiedades; se persisten todas las propiedades (perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})
