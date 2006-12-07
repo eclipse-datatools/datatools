@@ -21,6 +21,8 @@ import java.util.SortedMap;
 
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -94,6 +96,9 @@ public class FolderSelectionPageHelper
 		setupColumnNameLineCheckBox( content );
 
 		setupTypeLineCheckBox( content );
+		
+		Utility.setSystemHelp( content,
+				IHelpConstants.CONEXT_ID_DATASOURCE_FLATFILE );
 	}
 
 	/**

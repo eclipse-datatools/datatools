@@ -33,6 +33,8 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
+import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -182,6 +184,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		setControl( createPageControl( parent ) );
 		initializeControl( );
+
+		Utility.setSystemHelp( getControl( ),
+				IHelpConstants.CONEXT_ID_DATASET_FLATFILE );
 	}
 
 	/**
@@ -1771,6 +1776,16 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			else
 				return name.toLowerCase( ).endsWith( extension );
 		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
+	 */
+	public void setVisible( boolean visible )
+	{
+		super.setVisible( visible );
+		getControl( ).setFocus( );
 	}
 
 }
