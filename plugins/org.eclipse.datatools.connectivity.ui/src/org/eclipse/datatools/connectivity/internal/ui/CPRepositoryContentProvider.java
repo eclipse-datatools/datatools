@@ -38,14 +38,14 @@ public class CPRepositoryContentProvider implements ITreeContentProvider {
 		public void profileAdded(IConnectionProfile profile) {
 			if (isChildProfile(profile)) {
 				profile.addPropertySetListener(mPropertyListener);
-				refreshViewer(profile, true);
+				refreshViewer(profile.getCategory(), true);
 			}
 		}
 
 		public void profileDeleted(IConnectionProfile profile) {
 			if (isChildProfile(profile)) {
 				profile.removePropertySetListener(mPropertyListener);
-				refreshViewer(profile, false);
+				refreshViewer(profile.getCategory(), true);
 			}
 		}
 
@@ -127,10 +127,10 @@ public class CPRepositoryContentProvider implements ITreeContentProvider {
 		mViewer = viewer;
 	}
 
-	protected void refreshViewer(final IConnectionProfile profile,
+	protected void refreshViewer(final Object object,
 			final boolean expand) {
-		if (mViewer instanceof TreeViewer && profile != null) {
-			RefreshProfileJob.scheduleRefreshProfileJob(profile,
+		if (mViewer instanceof TreeViewer && object instanceof IConnectionProfile ) {
+			RefreshProfileJob.scheduleRefreshProfileJob((IConnectionProfile)object,
 					(TreeViewer) mViewer);
 		}
 		else {

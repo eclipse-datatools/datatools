@@ -123,7 +123,12 @@ public class RefreshProfileJob extends UIJob {
 			// BZ 166522: we should be able to refresh the object,
 			// but due to a bug in the platform, we currently have
 			// to refresh the entire viewer
-			mViewer.refresh();//mProfile); 
+			// Turns out this is only a problem when adding or
+			// removing a profile.  It needs to be documented that
+			// this class only works to refresh an existing profile,
+			// not added or removed profiles.  For those cases,
+			// the parent category should be refreshed.
+			mViewer.refresh(mProfile); 
 			mViewer.setExpandedState(mProfile, true);
 		}
 		monitor.worked(1);
