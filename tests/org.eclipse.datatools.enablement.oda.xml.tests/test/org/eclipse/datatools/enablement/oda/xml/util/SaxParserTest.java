@@ -48,14 +48,15 @@ public class SaxParserTest extends BaseTest
 			+ "#-# utf#:#[//book]#:#{title;String;title}"
 			+ "#-# duplicate#:#[//suburb]#:#{name;String;@name}"
 			+ "#-# complexNest#:#[//suburb]#:#{name;String;@name},{nest-2;String;../../nest},{nest-1;String;../nest},{nest0;String;/nest},{nest1;String;/suburb/nest},{nest3;String;suburb/suburb/nest},{nest4;String;suburb/suburb/suburb/nest}"
-			+ "#-# filter1#:#[/library/book]#:#{title;String;[@category=\"WEB\"]},{book.category;String;/@category},{book.author_1;String;/author[1][@name=\"James McGovern\"]},{book.author_2;String;/author[2]/@name}";
+			+ "#-# filter1#:#[//entry]#:#{b-bar1;String;/field[@b='bar1']},{b-bar2;String;/field[@b='bar2']},{b-bar9;String;/field[@b='bar9']},{a-foo;String;/field[@a='foo']}"
+			+ "#-# filter2#:#[//field]#:#{b-bar1;String;[@b='time']}"
+			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{b-bar1;String;}";
 
 	private RelationInformation ri;
 
 	protected void setUp( ) throws Exception
 	{
 		super.setUp( );
-
 	}
 
 	protected void tearDown( ) throws Exception
@@ -100,6 +101,7 @@ public class SaxParserTest extends BaseTest
 		File path = new File( file.getParent( ) );
 		if ( !path.exists( ) )
 			path.mkdir( );
+		System.out.println(file.getAbsolutePath());
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
@@ -107,7 +109,7 @@ public class SaxParserTest extends BaseTest
 		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.SMALL_XML_FILE )
 				.createXMLDataInputStream( ),
 				ri,
-				"aut  hor ", 
+				"aut  hor", 
 				0);
 
 		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
@@ -594,7 +596,7 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.SMALL_XML_FILE )
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.TEST_FILTER )
 				.createXMLDataInputStream( ),
 				ri,
 				"filter1", 
@@ -617,4 +619,88 @@ public class SaxParserTest extends BaseTest
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST13_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST13_GOLDEN_XML ) ) );
 	}
+	
+	/**
+	 * Test nest duplicate recusive xml files.
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test14( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST14_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.TEST_FILTER )
+				.createXMLDataInputStream( ),
+				ri,
+				"filter2", 
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST14_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST14_GOLDEN_XML ) ) );
+	}
+	
+	/**
+	 * Test nest duplicate recusive xml files.
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	/*public void atest15( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST15_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.TEST_FILTER )
+				.createXMLDataInputStream( ),
+				ri,
+				"filter3", 
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST15_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST15_GOLDEN_XML ) ) );
+	}*/
 }

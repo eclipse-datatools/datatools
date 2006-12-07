@@ -27,8 +27,7 @@ public class RelationInformationTest extends BaseTest
 								"#-#table1#:#[/root/country]#:#{name;String;/city[@iscapital='y']/@name}"+
 								"#-#table2#:#[/root/country]#:#{name;String;/city[2]/@name}"+
 								"#-#table3#:#[/root/country]#:#{name;String;/city[2][@iscapital='y']/@name}"+
-								"#-#table4#:#[/root/country/city]#:#{name;String;[@iscapital='y']/@name}"
-								;
+								"#-#table4#:#[/root/country/city]#:#{name;String;[@iscapital='y']/@name}";
 	                   
 	private RelationInformation ri1;
 
@@ -54,10 +53,10 @@ public class RelationInformationTest extends BaseTest
 		assertEquals(ri1.getTableColumnPath("person","link.subordinates"),"/personnel/person/link[@subordinates]");
 		assertEquals(ri1.getTableColumnPath("name","family"), "//name/family");
 		assertEquals(ri1.getTableColumnPath("name","given"),"//name/given");
-		assertEquals(ri1.getTableColumnPath( "table1", "name" ),"/root/country/city[@name]");
+		assertEquals(ri1.getTableColumnPath( "table1", "name" ),"/root/country/city[*][@name]");
 		assertEquals(ri1.getTableColumnPath( "table2", "name" ),"/root/country/city[2][@name]");
 		assertEquals(ri1.getTableColumnPath( "table3", "name" ),"/root/country/city[2][@name]");
-		assertEquals(ri1.getTableColumnPath( "table4", "name" ),"/root/country/city[@name]");
+		assertEquals(ri1.getTableColumnPath( "table4", "name" ),"/root/country/city[*][@name]");
 	}
 	
 	/*

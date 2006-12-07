@@ -16,6 +16,7 @@ package org.eclipse.datatools.enablement.oda.xml.util;
  */
 public class SaxParserUtil
 {
+	private static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
 	/**
 	 * 
 	 * @param path
@@ -92,11 +93,23 @@ public class SaxParserUtil
 			return false;
 		}
 
-		if ( ( !generatedPath.matches( UtilConstants.XPATH_ELEM_WITH_INDEX_REF_PATTERN ) )
-				|| definedPath.matches( UtilConstants.XPATH_ELEM_WITH_INDEX_REF_PATTERN ) )
-			return generatedPath.equals( definedPath );
-		return generatedPath.replaceFirst( UtilConstants.XPATH_ELEM_INDEX_PATTERN, "" )
-				.equals( definedPath );
+		if ((!generatedPath
+				.matches(UtilConstants.XPATH_ELEM_WITH_INDEX_REF_PATTERN))
+				|| definedPath
+						.matches(UtilConstants.XPATH_ELEM_WITH_INDEX_REF_PATTERN))
+			return generatedPath.equals(definedPath);
+
+		if (definedPath.matches(UtilConstants.XPATH_ELEM_WITH_INDEX_WILDCARD))
+			return definedPath
+					.replaceFirst(
+							UtilConstants.XPATH_ELEM_INDEX_WILDCARD_PATTERN, "")
+					.equals(
+							generatedPath.replaceFirst(
+									UtilConstants.XPATH_ELEM_INDEX_PATTERN, ""));
+		else
+			return generatedPath.replaceFirst(
+					UtilConstants.XPATH_ELEM_INDEX_PATTERN, "").equals(
+					definedPath);
 	}
 
 	/**
@@ -150,5 +163,30 @@ public class SaxParserUtil
 		if( path.startsWith( "///" ))
 			path = path.replaceFirst( "\\Q/\\E", "" );
 		return path;
+	}
+	
+	/**
+	 * Create a temp column name. The temp column are used for filtering.
+	 * 
+	 * @param index
+	 * @return
+	 */
+	static String createTempColumnName( int index )
+	{
+		return TEMPCOLUMNNAMEPREFIX + index;
+	}
+	
+	/**
+	 * Return if the given column name stands for a temp column.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	static boolean isTempColumn( String name )
+	{
+		if( name == null )
+			return false;
+		else
+			return name.startsWith( TEMPCOLUMNNAMEPREFIX );
 	}
 }

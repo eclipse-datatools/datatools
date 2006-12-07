@@ -24,7 +24,7 @@ public abstract class BaseTest extends TestCase
 	{
 		super.setUp( );
 		URL url = this.getClass( ).getProtectionDomain( ).getCodeSource( ).getLocation( );
-		String pathBase = url.toString( );
+		String pathBase = url.getFile();
 		if( !pathBase.matches( ".*\\Q \\E.*" ))
 			pathBase = new URI( pathBase ).getPath( );
 		if ( pathBase.endsWith( "bin/" ) ) //$NON-NLS-1$
