@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.result;
 
 import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -159,13 +160,14 @@ public class ResultsViewAPI
         }
         return -1;   
     }
-    
+
     /**
      * Returns the exceptions thrown when generating the result instance
      * @param cmd the operation request, should not be null
+     * @param includeSubThrowables whether include all the sub results' throwables or not
      * @return the exceptions thrown
      */
-    public Throwable[] getFailThrowables(OperationCommand cmd)
+    public Throwable[] getFailThrowables(OperationCommand cmd, boolean includeSubThrowables)
     {
         if(cmd == null)
         {
@@ -174,9 +176,56 @@ public class ResultsViewAPI
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
-            return instance.getFailThrowables();
+            List errors = new ArrayList();
+            
+            // Add parent throwables
+            Throwable[] parentErrors = instance.getFailThrowables();
+            for (int i = 0; i < parentErrors.length; i++)
+            {
+                if (parentErrors[i] != null)
+                {
+                    errors.add(parentErrors[i]);
+                }
+            }
+            
+            if (!includeSubThrowables)
+            {
+                return (Throwable[]) errors.toArray(new Throwable[errors.size()]);
+            }
+            
+            // Add all sub throwables
+            Iterator iter = instance.getSubResults().iterator();
+            while (iter.hasNext())
+            {
+                IResultInstance subIns = (IResultInstance) iter.next();
+                OperationCommand subCmd = subIns.getOperationCommand();
+                Throwable[] subErrors = getFailThrowables(subCmd, true);
+                if(subErrors == null)
+                {
+                	continue;
+                }
+                for (int i = 0; i < subErrors.length; i++)
+                {
+                    if (subErrors[i] != null)
+                    {
+                        errors.add(subErrors[i]);
+                    }
+                }
+            }
+            
+            return (Throwable[]) errors.toArray(new Throwable[errors.size()]);
         }
         return null;
+    }
+    
+    /**
+     * Returns the exceptions thrown when generating the result instance
+     * @param cmd the operation request, should not be null
+     * @return the exceptions thrown
+     */
+    public Throwable[] getFailThrowables(OperationCommand cmd)
+    {
+        return this.getFailThrowables(cmd, false);
     }
     
     /**

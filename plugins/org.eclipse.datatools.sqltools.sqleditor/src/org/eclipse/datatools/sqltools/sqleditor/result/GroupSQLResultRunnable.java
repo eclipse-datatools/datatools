@@ -176,6 +176,12 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     resultSupportRunnable.setParentOperCommand(parentCommand);
 					resultSupportRunnable.setProgressGroup(monitor, 1);
 					resultSupportRunnable.schedule();
+                    
+                    // wont generate group result
+                    if (_groups.length == 1)
+                    {
+                        _command = resultSupportRunnable.getOperationCommand();
+                    }
 					try
 					{
 						//wait until it finishes
