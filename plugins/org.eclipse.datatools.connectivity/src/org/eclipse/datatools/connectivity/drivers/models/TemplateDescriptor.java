@@ -322,4 +322,18 @@ public class TemplateDescriptor implements Comparable {
 		}
 		return false;
     }
+
+	public boolean equals(Object obj) {
+		if (obj instanceof TemplateDescriptor) {
+			TemplateDescriptor compare = (TemplateDescriptor) obj;
+			return this.getId().equals(compare.getId());
+		}
+		return super.equals(obj);
+	}
+
+	public int hashCode() {
+		if (this.getId() != null)
+			return this.getId().hashCode();
+		return super.hashCode();
+	}
 }

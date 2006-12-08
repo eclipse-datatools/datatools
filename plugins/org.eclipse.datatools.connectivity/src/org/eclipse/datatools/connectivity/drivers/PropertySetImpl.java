@@ -116,4 +116,18 @@ public class PropertySetImpl implements IPropertySet {
 
 		return cloned;
 	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof PropertySetImpl) {
+			PropertySetImpl compare = (PropertySetImpl) obj;
+			return this.mID.equals(compare.getID());
+		}
+		return super.equals(obj);
+	}
+
+	public int hashCode() {
+		if (this.mID != null)
+			return this.mID.hashCode();
+		return super.hashCode();
+	}
 }

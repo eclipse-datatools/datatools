@@ -10,11 +10,11 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
@@ -38,11 +38,9 @@ import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -300,29 +298,37 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		setMessage(DriverMgmtMessages
 				.getString("DriverDefinitionsDialog.message")); //$NON-NLS-1$
 
+		IPropertySet pset = null;
+		IStructuredSelection selection = null;
 		if (this.mInitialDriverName != null) {
-			IPropertySet pset = getNamedInstance(this.mInitialDriverName);
-			if (pset != null) {
-				LinkedList queue = new LinkedList();
-				ITreeContentProvider itcp = (ITreeContentProvider) this.mTreeViewer.getContentProvider();
-				Object treeparent = itcp.getParent(pset);
-				queue.add(pset);
-				while (treeparent != null) {
-					queue.addFirst(treeparent);
-					treeparent = itcp.getParent(treeparent);
-				}
-				TreePath path = new TreePath(queue.toArray());
-				TreeSelection tselection = new TreeSelection(path);
-				this.mTreeViewer.setSelection(tselection);
-			}
-			else {
-				this.mTreeViewer.setSelection(new StructuredSelection(
-						CategoryDescriptor.getRootCategories()[0]));
-			}
+			DriverInstance di = 
+				DriverManager.getInstance().getDriverInstanceByName(this.mInitialDriverName);
+			pset = di.getPropertySet();
+			
 		}
-		else
-			this.mTreeViewer.setSelection(new StructuredSelection(
-					CategoryDescriptor.getRootCategories()[0]));
+
+		if (pset == null) {
+			if (this.mCategoryId == null) {
+				if (CategoryDescriptor.getRootCategories() == null || 
+						CategoryDescriptor.getRootCategories().length == 0) {
+					selection = null;
+				}
+				else {
+					selection = new StructuredSelection(CategoryDescriptor.getRootCategories()[0]);
+				}
+			} else {
+				selection = new StructuredSelection(CategoryDescriptor.getCategoryDescriptor(this.mCategoryId));
+			}
+		} else {
+			selection = new StructuredSelection(pset);
+		}
+		if (selection != null) {
+			mTreeViewer.expandToLevel(selection.getFirstElement(),1);
+			mTreeViewer.setSelection(selection,true);
+		}
+		else {
+			mTreeViewer.expandToLevel(3);
+		}
 
 		return content;
 
@@ -418,22 +424,6 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 		}
 		saveState();
 		super.okPressed();
-	}
-
-	/*
-	 * Retrieve a named instance
-	 */
-	private IPropertySet getNamedInstance(String name) {
-		List psetsList = ((DriverTreeContentProvider) this.mTreeViewer
-				.getContentProvider()).getDriverInstances();
-		Object[] objs = psetsList.toArray();
-		for (int i = 0; i < objs.length; i++) {
-			IPropertySet pset = (IPropertySet) objs[i];
-			if (pset.getName().equals(name)) {
-				return pset;
-			}
-		}
-		return null;
 	}
 
 	/*

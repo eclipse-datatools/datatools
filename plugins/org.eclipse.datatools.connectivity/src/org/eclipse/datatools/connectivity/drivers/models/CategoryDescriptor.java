@@ -275,4 +275,19 @@ public class CategoryDescriptor implements Comparable {
 	public String toString() {
 		return getName();
 	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof CategoryDescriptor) {
+			CategoryDescriptor compare = (CategoryDescriptor) obj;
+			return this.getId().equals(compare.getId());
+		}
+		return super.equals(obj);
+	}
+
+	public int hashCode() {
+		if (this.getId() != null)
+			return this.getId().hashCode();
+		return super.hashCode();
+	}
+
 }
