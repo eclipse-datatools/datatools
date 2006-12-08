@@ -85,12 +85,13 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 
     }
 
-    private Runnable                _postRun;
-    private String[]                _groups;
+    private Runnable _postRun;
+    private String[] _groups;
     private Runnable _currentJob = null;
-    private boolean                 _promptVar  = false;
-    private HashMap                 _varDefs    = null;
-    private String                  _parentDisplayName;
+    private boolean  _promptVar  = false;
+    private HashMap  _varDefs    = null;
+    private String   _parentDisplayName;
+    private String   _consumerName;
     /**
      * @param con if con is null, corresponding ConnectionService.createConnection will be called.
      * @param sql
@@ -107,10 +108,11 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     }
 
     public GroupSQLResultRunnable(Connection con, String[] groups, IConnectionTracker tracker, Runnable postRun,
-            DatabaseIdentifier databaseIdentifier, boolean promptVar, HashMap varDefs, String parentDisplayName)
+            DatabaseIdentifier databaseIdentifier, boolean promptVar, HashMap varDefs, String parentDisplayName, String consumerName)
     {
         this(con, groups, tracker, postRun, databaseIdentifier, promptVar, varDefs);
         this._parentDisplayName = parentDisplayName;
+        this._consumerName = consumerName;
     }
     /*
      * (non-Javadoc)
@@ -279,7 +281,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         {
             String parentDspName = _parentDisplayName == null ? Messages.GroupSQLResultRunnable_group_exec
                     : _parentDisplayName;
-            _command = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, "SQL Editor", //$NON-NLS-2$
+            _command = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, _consumerName, //$NON-NLS-2$
                     _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
         }
         return _command;
