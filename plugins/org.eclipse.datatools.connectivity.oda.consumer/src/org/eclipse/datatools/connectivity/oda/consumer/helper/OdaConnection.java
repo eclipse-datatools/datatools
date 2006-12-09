@@ -322,6 +322,14 @@ public class OdaConnection extends OdaObject
 		{
 			setContextClassloader();
 			
+            // check if underlying connection is not open
+            if( ! checkIsOpen() )
+            {
+                log( context, "The ODA connection is not open; skip call to the IConnection.close method." ); //$NON-NLS-1$
+                logMethodExit( context );
+                return;
+            }
+            
 			getConnection().close();
 			clearDriverError();
 			
@@ -382,7 +390,13 @@ public class OdaConnection extends OdaObject
 		ClassLoader driverClassLoader = getConnection().getClass().getClassLoader();
 		Object value = counts.get( driverClassLoader );
 		int i = ( value == null ) ? 0 : ( (Integer) value ).intValue();
-		i = ( increment ) ? ++i : --i;
+        if( increment )
+            ++i;
+        else    // decrement
+        {
+            if( i > 0 ) // decrement down to the floor of 0 count
+                --i;
+        }
 		Integer newValue = new Integer( i );
 		counts.put( driverClassLoader, newValue );
 	}
