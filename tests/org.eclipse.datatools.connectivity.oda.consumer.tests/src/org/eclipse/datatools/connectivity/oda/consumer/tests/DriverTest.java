@@ -16,6 +16,8 @@ package org.eclipse.datatools.connectivity.oda.consumer.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.Platform;
@@ -60,21 +62,27 @@ public class DriverTest extends OdaTestCase
     
     public final void testGetMaxConnections() throws OdaException
     {
+        IDriver testDriver = getNewTestDriver();
     	// Verify that the test driver's maximum number of concurrent connections is 2
     	int maxConnections = 2;
-        assertTrue( getTestDriver().getMaxConnections() == maxConnections );
+        assertTrue( testDriver.getMaxConnections() == maxConnections );
 
 		Properties connProperties = null;
-
+        ArrayList openConnList = new ArrayList();
+        boolean testPassed = false;
+        
         // Try opening connection "maxConnections + 1" times.
         // The last time should trigger an exception.
 		for( int i = 1 ; i <= maxConnections + 1; i++ )
 		{
 			try
 			{
-				IConnection connection = getTestDriver().getConnection( TEST_DATA_SOURCE_ID );
+				IConnection connection = testDriver.getConnection( TEST_DATA_SOURCE_ID );
 				assertNotNull( connection );
 				connection.open( connProperties );
+                
+				// cache the connection in a collection for cleanup
+                openConnList.add( connection );
 			}
 			catch( OdaException e )
 			{
@@ -82,12 +90,20 @@ public class DriverTest extends OdaTestCase
                  * has exceeded the maximum allowed.
 				 */
 				assertTrue( i == maxConnections + 1 );
-				return;
+                testPassed = true;
 			}
 		}
 		
-		// Should not reach here.
-		fail();
+		// verify if expected exception did occur
+		assertTrue( testPassed );
+        
+        // Close all opened connections
+        Iterator openConnItr = openConnList.iterator();
+        while( openConnItr.hasNext() )
+        {
+            IConnection conn = ( IConnection ) openConnItr.next();
+            conn.close();
+        }
     }
     
     public final void testSetLogConfiguration() throws OdaException

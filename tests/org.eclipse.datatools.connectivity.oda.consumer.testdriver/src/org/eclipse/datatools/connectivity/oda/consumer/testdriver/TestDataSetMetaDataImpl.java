@@ -26,10 +26,28 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 public class TestDataSetMetaDataImpl implements IDataSetMetaData
 {
 	private IConnection m_connection;
+	private boolean m_supportsMultipleResultSets;
+	private boolean m_supportsMultipleOpenResults;
+	private boolean m_supportsNamedResultSets;
+	private boolean m_supportsNamedParameters;
+	private boolean m_supportsInParameters;
+	private boolean m_supportsOutParameters;
 	
-	protected TestDataSetMetaDataImpl( IConnection connection )
+	private static final String MULTIPLE_RESULT_SETS_DATA_SET = "Multiple Result Sets Data Set";
+	private static final String NAMED_RESULT_SETS_DATA_SET = "Named Result Sets Data Set";
+	
+	TestDataSetMetaDataImpl( IConnection connection, String dataSetType )
 	{
 		m_connection = connection;
+		
+		m_supportsMultipleResultSets = ( dataSetType != null &&
+				dataSetType.equals( MULTIPLE_RESULT_SETS_DATA_SET ) );
+		m_supportsMultipleOpenResults = false;
+		m_supportsNamedResultSets = ( dataSetType != null && 
+				dataSetType.equals( NAMED_RESULT_SETS_DATA_SET ) );
+		m_supportsNamedParameters = true;
+		m_supportsInParameters = true;
+		m_supportsOutParameters = true;
 	}
 	
 	/**
@@ -53,7 +71,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public int getDataSourceMajorVersion() throws OdaException
 	{
-		return 0;
+		return 2;
 	}
 
 	/**
@@ -61,7 +79,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public int getDataSourceMinorVersion() throws OdaException
 	{
-		return 0;
+		return 3;
 	}
 
 	/**
@@ -94,7 +112,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsMultipleResultSets() throws OdaException
 	{
-		return false;
+		return m_supportsMultipleResultSets;
 	}
 
 	/**
@@ -102,7 +120,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsMultipleOpenResults() throws OdaException
 	{
-		return false;
+		return m_supportsMultipleOpenResults;
 	}
 
 	/**
@@ -110,7 +128,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsNamedResultSets() throws OdaException
 	{
-		return false;
+		return m_supportsNamedResultSets;
 	}
 
 	/**
@@ -118,7 +136,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsNamedParameters() throws OdaException
 	{
-		return false;
+		return m_supportsNamedParameters;
 	}
 
 	/**
@@ -126,7 +144,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsInParameters() throws OdaException
 	{
-		return false;
+		return m_supportsInParameters;
 	}
 
 	/**
@@ -134,7 +152,7 @@ public class TestDataSetMetaDataImpl implements IDataSetMetaData
 	 */
 	public boolean supportsOutParameters() throws OdaException
 	{
-		return true;
+		return m_supportsOutParameters;
 	}
 
 	/**

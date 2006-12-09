@@ -11,13 +11,41 @@
             id="org.eclipse.datatools.connectivity.oda.consumer.testdriver"/>
       <dataSet id="org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet">
          <dataTypeMapping
-               nativeDataType="String"
+               nativeDataType="CHAR"
                nativeDataTypeCode="12"
                odaScalarDataType="String"/>
          <dataTypeMapping
-               nativeDataType="Date"
+               nativeDataType="DATE"
                nativeDataTypeCode="91"
                odaScalarDataType="Date"/>
+         <dataTypeMapping
+               nativeDataType="BCD"
+               nativeDataTypeCode="3"
+               odaScalarDataType="Decimal"/>
+         <dataTypeMapping
+               nativeDataType="DOUBLE"
+               nativeDataTypeCode="8"
+               odaScalarDataType="Double"/>
+         <dataTypeMapping
+               nativeDataType="INT"
+               nativeDataTypeCode="4"
+               odaScalarDataType="Integer"/>
+         <dataTypeMapping
+               nativeDataType="TIME"
+               nativeDataTypeCode="92"
+               odaScalarDataType="Time"/>
+         <dataTypeMapping
+               nativeDataType="TIMESTAMP"
+               nativeDataTypeCode="93"
+               odaScalarDataType="Timestamp"/>
+         <dataTypeMapping
+               nativeDataType="BLOB"
+               nativeDataTypeCode="97"
+               odaScalarDataType="Blob"/>
+         <dataTypeMapping
+               nativeDataType="CLOB"
+               nativeDataTypeCode="98"
+               odaScalarDataType="Clob"/>
       </dataSet>
    </extension>
    

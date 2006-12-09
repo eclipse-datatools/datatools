@@ -54,6 +54,10 @@ public class OutputParametersTest extends OdaTestCase
             
             outParam2Value = hostQuery.getDate( 2 );
             outParam3Value = hostQuery.getString( 3 );
+            
+            // close query and connection
+            hostQuery.close();
+            hostConn.close();
         }
         catch( OdaException e )
         {

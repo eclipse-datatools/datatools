@@ -139,6 +139,10 @@ public class AppContextTest extends OdaTestCase
         // Verify if the app context returned by the
         // query object is same as the one originally assigned to the driver.
         assertEquals( sm_appContextMap.toString(), queryContextStr );
+        
+        // close the query
+        hostQuery.close();
+        hostConn.close();
     } 
     
     /*

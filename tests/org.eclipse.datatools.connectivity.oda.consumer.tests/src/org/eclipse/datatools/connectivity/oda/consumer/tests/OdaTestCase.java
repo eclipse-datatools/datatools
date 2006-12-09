@@ -28,14 +28,19 @@ abstract class OdaTestCase extends TestCase
 {
     private static final String TEST_DRIVER_ID = 
         "org.eclipse.datatools.connectivity.oda.consumer.testdriver";
-    private static IDriver sm_driver = null;
+    private IDriver m_driver = null;
     
-    static IDriver getTestDriver() throws OdaException
+    IDriver getTestDriver() throws OdaException
     {
-    	if ( sm_driver == null )
-    		sm_driver = new OdaDriver( TEST_DRIVER_ID );
+    	if ( m_driver == null )
+    		m_driver = getNewTestDriver();
     	
-    	return sm_driver;
+    	return m_driver;
+    }
+    
+    IDriver getNewTestDriver() throws OdaException
+    {
+        return new OdaDriver( getTestDriverId() );
     }
     
     static String getTestDriverId()

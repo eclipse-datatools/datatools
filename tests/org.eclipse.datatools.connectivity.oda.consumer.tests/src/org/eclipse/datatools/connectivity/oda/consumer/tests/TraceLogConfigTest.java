@@ -119,6 +119,7 @@ public class TraceLogConfigTest extends TestCase
                  logDir,
                  logFilePrefix, 
                  "throwsException" );   // triggers test driver to throw exception
+        ((OdaDriver) sm_odaDriver ).setLogDirectory( sm_consumerLogDir.getAbsolutePath() );
         sm_odaDriver.setLogConfiguration( logConfig );
 
         // expects driver has thrown exception, so no log is written

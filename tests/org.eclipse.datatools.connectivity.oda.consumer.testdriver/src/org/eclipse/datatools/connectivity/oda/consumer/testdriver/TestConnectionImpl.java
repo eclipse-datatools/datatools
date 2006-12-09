@@ -31,6 +31,8 @@ public class TestConnectionImpl implements IConnection
 {
     private Object m_appContext;
     private boolean m_isOpen = false;
+    private boolean m_limitRowsCurrentState = false;
+    private boolean m_limitRowsSavedState = false;
     
     public TestConnectionImpl()
     {
@@ -54,6 +56,7 @@ public class TestConnectionImpl implements IConnection
      */
     public void commit() throws OdaException
     {
+    	m_limitRowsSavedState = m_limitRowsCurrentState;
     }
     
     /* (non-Javadoc)
@@ -61,7 +64,8 @@ public class TestConnectionImpl implements IConnection
      */
     public int getMaxQueries() throws OdaException
     {
-        return 0;
+    	// Allow a maximum of 3 active queries.
+        return 3;
     }
     
     /* (non-Javadoc)
@@ -70,7 +74,7 @@ public class TestConnectionImpl implements IConnection
     public IDataSetMetaData getMetaData( String dataSetType )
             throws OdaException
     {
-        return new TestDataSetMetaDataImpl( this );
+        return new TestDataSetMetaDataImpl( this, dataSetType );
     }
     
     /* (non-Javadoc)
@@ -86,7 +90,7 @@ public class TestConnectionImpl implements IConnection
      */
     public IQuery newQuery( String dataSetType ) throws OdaException
     {
-       return new TestAdvQueryImpl();
+       return new TestAdvQueryImpl( this );
     }
     
     /* (non-Javadoc)
@@ -102,6 +106,7 @@ public class TestConnectionImpl implements IConnection
      */
     public void rollback() throws OdaException
     {
+    	m_limitRowsCurrentState = m_limitRowsSavedState;
     }
     
     /* (non-Javadoc)
@@ -115,5 +120,15 @@ public class TestConnectionImpl implements IConnection
     public Object getAppContext()
     {
         return m_appContext;
+    }
+    
+    void setLimitRows()
+    {
+    	m_limitRowsCurrentState = true;
+    }
+    
+    boolean getLimitRows()
+    {
+    	return m_limitRowsCurrentState;
     }
 }

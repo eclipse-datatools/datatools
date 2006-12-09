@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import org.eclipse.datatools.connectivity.oda.IAdvancedQuery;
 import org.eclipse.datatools.connectivity.oda.IBlob;
@@ -37,12 +38,52 @@ import org.eclipse.datatools.connectivity.oda.SortSpec;
  */
 public class TestAdvQueryImpl implements IAdvancedQuery
 {
+	private TestConnectionImpl m_conn;
     private Object m_appContext;
     private boolean m_isPrepareCalled = false;
-    private IParameterMetaData m_paramMetaData;
-
-    public TestAdvQueryImpl()
+    private IParameterMetaData m_paramMetaData = null;
+    private ArrayList m_resultSetInfoList = new ArrayList();
+    private int m_maxRows = 0;
+    private boolean m_isOpen = true;
+    private boolean m_wasNull = false;
+    private static final String TEST_QUERY_PROP_NAME = "TEST_QUERY_PROP_NAME";
+    private int m_outputParamStartIndex = 0;
+    
+    // 0-based result set index.
+    private int m_curResultSetIndex = -1;
+    
+    // Constants for indicating the type of 
+    // query specified.  Currently there are 2 types:
+    // - Simple Query : no input parameter.  Just 3 output parameters, including one
+    //                  output parameter for the use of returning context.
+    // - Complex Query : has scalar input parameters.
+    // - Advanced Query : has both complex input parameters and scalar/complex output parameters.
+    // - Multiple Result Sets Query : has multiple result sets.  No parameters.
+    // - Limit Rows Command : This makes any subsequent query return only 1 row of data.
+    //                        This is to simulate the effect of commit/rollback 
+    //                        changing the database content.  If IConnection.rollback()
+    //         				  is called, then the database will return the default number
+    //                        of rows (same as before.)
+    public static final String SIMPLE_QUERY = "Simple Query";
+    public static final String COMPLEX_QUERY = "Complex Query";
+    public static final String ADVANCED_QUERY = "Advanced Query";
+    public static final String MULTIPLE_RESULT_SETS_QUERY = "Multiple Result Sets Query";
+    public static final String LIMIT_ROWS_COMMAND = "Limit Rows Command";
+    
+    private static final int queryTypeUnknown = -1;
+    private static final int queryTypeSimple = 0;
+    private static final int queryTypeComplex = 1;
+    private static final int queryTypeAdvanced = 2;
+    private static final int queryTypeMultipleResultSets = 3;
+    private static final int queryTypeLimitRowsCommand = 4;
+    
+    private int m_queryType = queryTypeUnknown;
+    
+    private Object[] m_inputParamValues;
+	
+    public TestAdvQueryImpl( TestConnectionImpl conn )
     {
+    	m_conn = conn;
     }
 
     /* (non-Javadoc)
@@ -50,9 +91,119 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void prepare( String queryText ) throws OdaException
     {
-        m_isPrepareCalled = true;
+    	if ( ! m_isOpen )
+    		throw new OdaException( "Query cannot be prepared because it has been closed." );
+    	
+    	if ( queryText == null )
+    		throw new OdaException( "Query text cannot be null." );
+    	
+    	queryText.trim();
+    	
+    	if ( queryText.length() == 0 )
+    		throw new OdaException( "Query text cannot be an empty string." );
+    	
+    	if ( queryText.equals( SIMPLE_QUERY ) )
+    	{
+    		m_queryType = queryTypeSimple;
+        	setResultSetMetaData( new TestResultSetMetaDataImpl() );
+    		m_paramMetaData = 
+    			new TestParamMetaDataImpl( TestParamMetaDataImpl.QUERY_TYPE_SIMPLE );
+    	}
+    	else if ( queryText.equals( COMPLEX_QUERY ) )
+    	{
+    		m_queryType = queryTypeComplex;
+        	setResultSetMetaData( new TestResultSetMetaDataImpl() );
+    		m_paramMetaData = 
+    			new TestParamMetaDataImpl( TestParamMetaDataImpl.QUERY_TYPE_COMPLEX );
+    	}
+    	else if ( queryText.equals( ADVANCED_QUERY ) )
+    	{
+    		m_queryType = queryTypeAdvanced;
+        	setResultSetMetaData( new TestResultSetMetaDataImpl() );
+    		m_paramMetaData = 
+    			new TestParamMetaDataImpl( TestParamMetaDataImpl.QUERY_TYPE_ADVANCED );
+    		m_outputParamStartIndex = 3;
+    	}
+    	else if ( queryText.equals( MULTIPLE_RESULT_SETS_QUERY ) )
+    	{
+    		m_queryType = queryTypeMultipleResultSets;
+    		
+    		// Two result sets.
+        	setResultSetMetaData( "ResultSet1", new TestResultSetMetaDataImpl() );
+        	addResultSetMetaData( "ResultSet2", new TestResultSetMetaDataImpl() );
+    		m_paramMetaData = null;
+    	}
+    	else if ( queryText.equals( LIMIT_ROWS_COMMAND ) )
+    	{
+    		m_queryType = queryTypeLimitRowsCommand;
+        	m_paramMetaData = null;
+        	clearAllResultSetInfo();
+    	}
+
+    	resetInputParamValuesArray();
+    	m_isPrepareCalled = true;
+    }
+    
+    private final void resetInputParamValuesArray() throws OdaException
+    {
+    	// Find number of input parameters.
+    	int numInputParams = getNumInputParams();
+    	
+    	if ( numInputParams == 0 )
+    		m_inputParamValues = null;
+    	else
+    		m_inputParamValues = new Object[ numInputParams ];
     }
 
+    private void setResultSetMetaData( IResultSetMetaData rsmd ) throws OdaException
+    {
+    	setResultSetMetaData( "DefaultName", rsmd );
+    }
+    
+    private void setResultSetMetaData( String resultSetName, IResultSetMetaData rsmd ) throws OdaException
+    {
+    	clearAllResultSetInfo();
+    	
+    	if ( rsmd != null )
+    	{
+    		TestResultSetInfo rsInfo = new TestResultSetInfo( resultSetName, rsmd );
+    		m_resultSetInfoList.add( rsInfo );
+    		m_curResultSetIndex = 0;
+    	}
+    }
+    
+    private void clearAllResultSetInfo()
+    {
+    	m_resultSetInfoList.clear();
+    	m_curResultSetIndex = -1;    	
+    }
+    
+    private void addResultSetMetaData( String resultSetName, IResultSetMetaData rsmd ) throws OdaException
+    {
+    	if ( rsmd == null )
+    		throw new OdaException( "Cannot add null result set meta data." );
+
+    	TestResultSetInfo rsInfo = new TestResultSetInfo( resultSetName, rsmd );
+    	m_resultSetInfoList.add( rsInfo );
+    }
+    
+    private int getNumInputParams() throws OdaException
+    {
+    	if ( m_paramMetaData == null )
+    		return 0;
+    	
+    	int numInputParams = 0;
+    	int totalParamCount = m_paramMetaData.getParameterCount();
+    	for( int i = 1; i <= totalParamCount; i++ )
+    	{
+    		if ( m_paramMetaData.getParameterMode( i ) == IParameterMetaData.parameterModeIn ||
+    			m_paramMetaData.getParameterMode( i ) == IParameterMetaData.parameterModeInOut )
+    			numInputParams++;
+    	}  
+    	
+    	return numInputParams;
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setAppContext(java.lang.Object)
      */
@@ -76,6 +227,10 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setProperty( String name, String value ) throws OdaException
     {
+    	// Currently, just test if the supplied prop name is valid.
+    	// Throw an exception if not. 
+    	if ( ! name.equals( TEST_QUERY_PROP_NAME ) )
+    		throw new OdaException( "Invalid prop name: " + name );
     }
 
     /* (non-Javadoc)
@@ -83,6 +238,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void close() throws OdaException
     {
+    	m_isOpen = false;
     }
 
     /* (non-Javadoc)
@@ -90,6 +246,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setMaxRows( int max ) throws OdaException
     {
+    	m_maxRows = max;
     }
 
     /* (non-Javadoc)
@@ -97,7 +254,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public int getMaxRows() throws OdaException
     {
-        return 0;
+        return m_maxRows;
     }
 
     /* (non-Javadoc)
@@ -105,7 +262,12 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IResultSetMetaData getMetaData() throws OdaException
     {
-        return null;
+    	if ( m_resultSetInfoList.size() == 0 )
+    		return null;
+    	
+    	// Return the current result set.
+        return ( ( TestResultSetInfo ) 
+        		m_resultSetInfoList.get( m_curResultSetIndex ) ).getResultSetMetaData();
     }
 
     /* (non-Javadoc)
@@ -113,7 +275,10 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IResultSet executeQuery() throws OdaException
     {
-        return null;
+    	execute();
+    	
+    	// Return (current) result set, if exists.
+    	return getResultSet();
     }
 
     /* (non-Javadoc)
@@ -121,6 +286,12 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void clearInParameters() throws OdaException
     {
+    	if ( m_inputParamValues != null )
+    	{
+    		// Check if the input parameters are non-null values.
+    		for( int i = 0; i < m_inputParamValues.length; i++ )
+    			m_inputParamValues[ i ] = null;
+    	}
     }
 
     /* (non-Javadoc)
@@ -128,6 +299,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setInt( String parameterName, int value ) throws OdaException
     {
+    	setValue( parameterName, new Integer( value ) );
     }
 
     /* (non-Javadoc)
@@ -135,6 +307,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setInt( int parameterId, int value ) throws OdaException
     {
+    	setValue( parameterId, new Integer( value ) );
     }
 
     /* (non-Javadoc)
@@ -143,6 +316,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setDouble( String parameterName, double value )
             throws OdaException
     {
+    	setValue( parameterName, new Double( value ) ); 
     }
 
     /* (non-Javadoc)
@@ -150,6 +324,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setDouble( int parameterId, double value ) throws OdaException
     {
+    	setValue( parameterId, new Double( value ) );
     }
 
     /* (non-Javadoc)
@@ -158,6 +333,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setBigDecimal( String parameterName, BigDecimal value )
             throws OdaException
     {
+    	setValue( parameterName, value );
     }
 
     /* (non-Javadoc)
@@ -166,6 +342,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setBigDecimal( int parameterId, BigDecimal value )
             throws OdaException
     {
+    	setValue( parameterId, value );
     }
 
     /* (non-Javadoc)
@@ -174,6 +351,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setString( String parameterName, String value )
             throws OdaException
     {
+    	setValue( parameterName, value );  
     }
 
     /* (non-Javadoc)
@@ -181,6 +359,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setString( int parameterId, String value ) throws OdaException
     {
+    	setValue( parameterId, value );
     }
 
     /* (non-Javadoc)
@@ -188,6 +367,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setDate( String parameterName, Date value ) throws OdaException
     {
+    	setValue( parameterName, value );
     }
 
     /* (non-Javadoc)
@@ -195,6 +375,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setDate( int parameterId, Date value ) throws OdaException
     {
+    	setValue( parameterId, value );
     }
 
     /* (non-Javadoc)
@@ -202,6 +383,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setTime( String parameterName, Time value ) throws OdaException
     {
+    	setValue( parameterName, value ); 
     }
 
     /* (non-Javadoc)
@@ -209,6 +391,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setTime( int parameterId, Time value ) throws OdaException
     {
+    	setValue( parameterId, value );
     }
 
     /* (non-Javadoc)
@@ -217,6 +400,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setTimestamp( String parameterName, Timestamp value )
             throws OdaException
     {
+    	setValue( parameterName, value );
     }
 
     /* (non-Javadoc)
@@ -225,6 +409,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setTimestamp( int parameterId, Timestamp value )
             throws OdaException
     {
+    	setValue( parameterId, value );
     }
 
     /* (non-Javadoc)
@@ -232,8 +417,15 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public int findInParameter( String parameterName ) throws OdaException
     {
-        // test driver does not handle input parameters
-        throw new UnsupportedOperationException();
+    	if ( m_queryType != queryTypeComplex && m_queryType != queryTypeAdvanced )
+    		throw new OdaException( "Invalid query type." );
+    	
+    	TestParamMetaDataImpl paramMetaData = ( TestParamMetaDataImpl ) getParameterMetaData();
+    	int index = paramMetaData.findInParameter( parameterName ); 
+    	if ( index == 0 )
+    		throw new OdaException( "Invalid input parameter name : " + parameterName );
+    	
+    	return index;
     }
 
     /* (non-Javadoc)
@@ -241,8 +433,6 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IParameterMetaData getParameterMetaData() throws OdaException
     {
-        if( m_paramMetaData == null )
-            m_paramMetaData = new TestParamMetaDataImpl();
         return m_paramMetaData;
     }
 
@@ -251,6 +441,11 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void setSortSpec( SortSpec sortBy ) throws OdaException
     {
+    	TestResultSetInfo rsInfo = getCurrentResultSetInfo();
+    	if ( rsInfo == null )
+    		throw new OdaException( "There is no result set available for setting sort spec." );
+    	
+    	rsInfo.setSortSpec( sortBy );
     }
 
     /* (non-Javadoc)
@@ -258,7 +453,11 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public SortSpec getSortSpec() throws OdaException
     {
-        return null;
+    	TestResultSetInfo rsInfo = getCurrentResultSetInfo();
+    	if ( rsInfo == null )
+    		throw new OdaException( "There is no result set available for getting sort spec." );
+    	
+    	return rsInfo.getSortSpec();
     }
 
     /* (non-Javadoc)
@@ -266,6 +465,43 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public boolean execute() throws OdaException
     {
+    	if ( m_queryType == queryTypeLimitRowsCommand )
+    	{
+    		// This command will simulate modifying the database
+    		// content so that a small result set will be returned
+    		// in any query.
+    		m_conn.setLimitRows();
+    	}
+    	else if ( m_queryType == queryTypeMultipleResultSets )
+    	{
+    		// Create 2 result sets.
+    		int numResultSets = 2;
+    		
+    		for( int i = 0; i < numResultSets; i++ )
+    			addNewResultSetToList( i, new TestResultSetImpl( this, m_conn.getLimitRows() ) );
+    		
+	    	// Point current result set index to the first result set.
+       		m_curResultSetIndex = 0;
+    	}
+    	else
+    	{
+	    	if ( m_inputParamValues != null )
+	    	{
+	    		// Check if the input parameters are non-null values.
+	    		for( int i = 0; i < m_inputParamValues.length; i++ )
+	    		{
+	    			if ( m_inputParamValues[ i ] == null )
+	    				throw new OdaException( "Input parameter(s) cannot be null." );
+	    		}
+	    	}
+	    	
+	    	// Add result set.  ( There is only 1 so far. )
+			addNewResultSetToList( 0, new TestResultSetImpl( this, m_conn.getLimitRows() ) );
+			
+	    	// Point current result set index to the first result set.
+       		m_curResultSetIndex = 0;
+    	}
+
         return true;
     }
     
@@ -274,8 +510,15 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public int findOutParameter( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	if ( m_queryType != queryTypeAdvanced )
+    		throw new OdaException( "Invalid query type." );
+    	
+    	TestParamMetaDataImpl paramMetaData = ( TestParamMetaDataImpl ) getParameterMetaData();
+    	int index = paramMetaData.findOutParameter( parameterName );
+    	if ( index == 0 )
+    		throw new OdaException( "Invalid output parameter name : " + parameterName );
+    	
+    	return index;
     }
     
     /* (non-Javadoc)
@@ -283,8 +526,22 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public BigDecimal getBigDecimal( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createBigDecimalData();
+    }
+    
+    private int getOutputParamIndex( String parameterName ) throws OdaException
+    {
+    	int index = findOutParameter( parameterName );
+    	return index;
+    }
+    
+    private void checkOutputParameterIndex( int index ) throws OdaException
+    {
+    	if ( m_paramMetaData == null || 
+    			( index <= getNumInputParams() || index > m_paramMetaData.getParameterCount() ) )
+    		throw new OdaException( "Output parameter index is invalid: " + index );
     }
     
     /* (non-Javadoc)
@@ -292,8 +549,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public BigDecimal getBigDecimal( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getBigDecimal( index );
     }
     
     /* (non-Javadoc)
@@ -301,8 +558,17 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IBlob getBlob( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	checkOutputParameterIndex( parameterId );
+    	
+    	// Simulate having 2 blob-type output parameters.
+    	if ( parameterId == m_outputParamStartIndex + 1 )
+    	{
+    		m_wasNull = false;
+    		return TestData.createBlobData();
+    	}
+
+   		m_wasNull = true;
+   		return null;
     }
     
     /* (non-Javadoc)
@@ -310,8 +576,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IBlob getBlob( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getBlob( index );
     }
     
     /* (non-Javadoc)
@@ -319,8 +585,17 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IClob getClob( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	checkOutputParameterIndex( parameterId );
+    	
+    	// Simulate having 2 blob-type output parameters.
+    	if ( parameterId == m_outputParamStartIndex + 3 )
+    	{
+    		m_wasNull = false;
+    		return TestData.createClobData();
+    	}
+    	
+    	m_wasNull = true;
+    	return null;
     }
     
     /* (non-Javadoc)
@@ -328,8 +603,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IClob getClob( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getClob( index );
     }
     
     /* (non-Javadoc)
@@ -337,11 +612,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Date getDate( int parameterId ) throws OdaException
     {
-        validateOutputParamId( parameterId );
-        
-        if( parameterId == 2 )
-            return Date.valueOf( "2005-11-13" );
-        return null;
+    	checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createDateData();
     }
     
     /* (non-Javadoc)
@@ -349,8 +622,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Date getDate( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getDate( index );
     }
     
     /* (non-Javadoc)
@@ -358,8 +631,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public double getDouble( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createDoubleData();
     }
     
     /* (non-Javadoc)
@@ -367,8 +641,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public double getDouble( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getDouble( index );
     }
     
     /* (non-Javadoc)
@@ -376,8 +650,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public int getInt( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createIntData();
     }
     
     /* (non-Javadoc)
@@ -385,8 +660,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public int getInt( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getInt( index );
     }
     
     /* (non-Javadoc)
@@ -395,8 +670,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public IResultSetMetaData getMetaDataOf( String resultSetName )
             throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	TestResultSetInfo rsInfo = findResultSetInfo( resultSetName, true );
+    	return rsInfo.getResultSetMetaData();
     }
     
     /* (non-Javadoc)
@@ -404,8 +679,11 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public boolean getMoreResults() throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	if ( m_curResultSetIndex >= m_resultSetInfoList.size() - 1 )
+    		return false;
+    	
+   		m_curResultSetIndex++;
+    	return true;
     }
     
     /* (non-Javadoc)
@@ -413,8 +691,10 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IResultSet getResultSet() throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	if ( m_curResultSetIndex == -1 )
+    		return null;
+    	
+    	return ( ( TestResultSetInfo ) m_resultSetInfoList.get( m_curResultSetIndex ) ).getResultSet();
     }
     
     /* (non-Javadoc)
@@ -422,8 +702,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IResultSet getResultSet( String resultSetName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	TestResultSetInfo rsInfo = findResultSetInfo( resultSetName, false );
+    	return ( rsInfo == null ? null : rsInfo.getResultSet() );
     }
     
     /* (non-Javadoc)
@@ -431,8 +711,14 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public String[] getResultSetNames() throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	if ( m_resultSetInfoList.size() == 0 )
+    		return null;
+    	
+    	String[] names = new String[ m_resultSetInfoList.size() ];
+    	for( int i = 0; i < m_resultSetInfoList.size(); i++ )
+    		names[ i ] = ( ( TestResultSetInfo ) m_resultSetInfoList.get( i ) ).getName();
+    	
+    	return names;    	
     }
     
     /* (non-Javadoc)
@@ -440,8 +726,10 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IParameterRowSet getRow( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	// Only structure parameter is supported.
+    	checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createStructData();
     }
     
     /* (non-Javadoc)
@@ -449,8 +737,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IParameterRowSet getRow( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getRow( index );
     }
     
     /* (non-Javadoc)
@@ -458,8 +746,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public SortSpec getSortSpec( String resultSetName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+   		TestResultSetInfo rsInfo = findResultSetInfo( resultSetName, true );
+    	return rsInfo.getSortSpec();
     }
     
     /* (non-Javadoc)
@@ -467,38 +755,31 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public String getString( int parameterId ) throws OdaException
     {
-        validateOutputParamId( parameterId );
+        if ( m_queryType == queryTypeSimple )
+        {
+        	// return appContext object for parameter 1
+        	if( parameterId == 1 && getAppContext() != null )
+        		return getAppContext().toString();
+        	if( parameterId == 3 )
+        		return "parameter 3 value as a String";
+        }
+        else if ( m_queryType == queryTypeAdvanced )
+        {
+            checkOutputParameterIndex( parameterId );
+        	m_wasNull = false;
+        	return TestData.createStringData();
+        }
         
-        // return appContext object for parameter 1
-        if( parameterId == 1 && getAppContext() != null )
-            return getAppContext().toString();
-        if( parameterId == 3 )
-            return "parameter 3 value as a String";
         return null;
     }
     
-    /**
-     * @param parameterId
-     * @throws OdaException
-     */
-    private void validateOutputParamId( int parameterId ) throws OdaException
-    {
-        IParameterMetaData paramMD = getParameterMetaData();
-        if( paramMD == null )
-            throw new OdaException( "Problem with getting query's paramter meta-data." );
-        if( parameterId > paramMD.getParameterCount() )
-            throw new OdaException( "Given paramter id does not match parameter meta-data." );
-        if( paramMD.getParameterMode( parameterId ) == IParameterMetaData.parameterModeIn )
-            throw new OdaException( "Given paramter id is not an output parameter." );
-    }
-
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getString(java.lang.String)
      */
     public String getString( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getString( index );   	
     }
     
     /* (non-Javadoc)
@@ -506,8 +787,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Time getTime( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+        checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createTimeData();
     }
     
     /* (non-Javadoc)
@@ -515,8 +797,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Time getTime( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getTime( index );  
     }
     
     /* (non-Javadoc)
@@ -524,8 +806,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Timestamp getTimestamp( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+        checkOutputParameterIndex( parameterId );
+    	m_wasNull = false;
+    	return TestData.createTimestampData();
     }
     
     /* (non-Javadoc)
@@ -533,8 +816,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public Timestamp getTimestamp( String parameterName ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	int index = getOutputParamIndex( parameterName );
+    	return getTimestamp( index );  
     }
     
     /* (non-Javadoc)
@@ -542,8 +825,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IParameterRowSet setNewRow( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	return setNewParamRowSet( parameterId, false );
     }
     
     /* (non-Javadoc)
@@ -552,8 +834,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public IParameterRowSet setNewRow( String parameterName )
             throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+		int paramIndex = findInParameter( parameterName );
+		return setNewRow( paramIndex );
     }
     
     /* (non-Javadoc)
@@ -561,8 +843,20 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public IParameterRowSet setNewRowSet( int parameterId ) throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	return setNewParamRowSet( parameterId, true );
+    }
+    
+    private IParameterRowSet setNewParamRowSet( int parameterId, boolean isTable )
+    	throws OdaException
+    {
+    	if ( m_queryType != queryTypeAdvanced )
+    		throw new OdaException( "Invalid query type." );
+    	
+    	checkInputParamIndex( parameterId );
+   		IParameterRowSet prs = new TestInputParamRowSetImpl( isTable );
+   		
+   		setValue( parameterId, prs );
+   		return prs;
     }
     
     /* (non-Javadoc)
@@ -571,8 +865,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public IParameterRowSet setNewRowSet( String parameterName )
             throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+		int paramIndex = findInParameter( parameterName );
+		return setNewRowSet( paramIndex );
     }
     
     /* (non-Javadoc)
@@ -581,8 +875,8 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     public void setSortSpec( String resultSetName, SortSpec sortBy )
             throws OdaException
     {
-        // test driver does not support this
-        throw new UnsupportedOperationException();
+    	TestResultSetInfo rsInfo = findResultSetInfo( resultSetName, true );
+    	rsInfo.setSortSpec( sortBy );
     }
     
     /* (non-Javadoc)
@@ -590,7 +884,128 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public boolean wasNull() throws OdaException
     {
-        // use whatever value was obtained, which could be null
-        return false;	
+        return m_wasNull;	
+    }
+    
+    private void handleInvalidParamName( String parameterName )
+    	throws OdaException
+    {
+    	throw new OdaException( "Invalid parameter name: " + parameterName );
+    }
+    
+    private void checkInputParamIndex( int index ) throws OdaException
+    {
+    	IParameterMetaData pmd = getParameterMetaData();
+    	
+    	if ( index < 1 || index > pmd.getParameterCount() )
+    		throw new OdaException( "Invalid parameter index: " + index );
+    	
+    	if ( pmd.getParameterMode( index ) == IParameterMetaData.parameterModeOut )
+    		throw new OdaException( "Invalid input parameter index: " + index ); 	
+    }
+    
+    private void setValue( String parameterName, Object value )
+    	throws OdaException
+	{
+		int paramIndex = findInParameter( parameterName );
+		setValue( paramIndex, value );
+	}
+    
+    private void setValue( int parameterId, Object value ) throws OdaException
+    {
+    	if ( m_paramMetaData == null )
+    		throw new OdaException( "Unable to set parameter value.  Parameter meta data is null." );
+    	
+    	checkInputParamIndex( parameterId );
+    	
+    	// Need to find the corresponding position in the input param values array.
+    	int pos = -1;
+    	for( int i = 1; i <= parameterId; i++ )
+    	{
+    		if ( m_paramMetaData.getParameterMode( i ) == IParameterMetaData.parameterModeIn ||
+    			m_paramMetaData.getParameterMode( i ) == IParameterMetaData.parameterModeInOut )
+    		{
+    			pos++;
+    		}
+    	}
+    	m_inputParamValues[ pos ] = value;
+    }
+    
+    private TestResultSetInfo findResultSetInfo( String resultSetName, boolean throwExceptionWhenNotFound )
+    	throws OdaException
+    {
+    	for( int i = 0; i < m_resultSetInfoList.size(); i++ )
+    	{
+    		TestResultSetInfo rsInfo = ( TestResultSetInfo ) m_resultSetInfoList.get( i );
+    		if ( rsInfo != null )
+    			return rsInfo;
+    	}   	
+    	
+    	if ( throwExceptionWhenNotFound )
+    		throw new OdaException( "Cannot find result set with name: " + resultSetName );
+
+    	return null;    		
+    }
+    
+    private TestResultSetInfo getCurrentResultSetInfo()
+    {
+    	if ( m_curResultSetIndex == -1 )
+    		return null;
+    	
+    	TestResultSetInfo rsInfo = ( TestResultSetInfo ) m_resultSetInfoList.get( m_curResultSetIndex );
+    	return rsInfo;
+    }
+    
+    private void addNewResultSetToList( int index, IResultSet resultSet ) throws OdaException
+    {
+    	resultSet.setMaxRows( getMaxRows() );
+    	
+    	TestResultSetInfo rsInfo = ( TestResultSetInfo ) m_resultSetInfoList.get( index );
+    	rsInfo.setResultSet( resultSet );
+    }
+    
+    class TestResultSetInfo
+    {
+    	private String m_name = null;
+    	private IResultSet m_resultSet = null;
+    	private IResultSetMetaData m_resultSetMetaData = null;
+    	private SortSpec m_sortSpec = null;
+    	
+    	TestResultSetInfo( String name, IResultSetMetaData rsmd )
+    	{
+    		m_name = name; 
+    		m_resultSetMetaData = rsmd;
+    	}
+    	
+    	String getName()
+    	{
+    		return m_name;
+    	}
+    	
+    	void setResultSet( IResultSet rs )
+    	{
+    		m_resultSet = rs;
+    	}
+    	
+    	IResultSet getResultSet()
+    	{
+    		return m_resultSet;
+    	}
+    	
+    	IResultSetMetaData getResultSetMetaData()
+    	{
+    		return m_resultSetMetaData;
+    	}
+    	
+    	void setSortSpec( SortSpec ss )
+    	{
+    		m_sortSpec = ss;
+    	}
+    	
+    	SortSpec getSortSpec()
+    	{
+    		return m_sortSpec;
+    	}
+    	
     }
 }
