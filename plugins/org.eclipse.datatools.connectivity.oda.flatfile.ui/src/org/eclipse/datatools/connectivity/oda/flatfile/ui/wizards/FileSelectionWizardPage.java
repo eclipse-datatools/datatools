@@ -257,6 +257,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
+		//if this page in DataSetEditor hasn't been activated
+		if ( fileViewer == null )
+			return design;
+		
 		savePage( design );
 		return design;
 	}
