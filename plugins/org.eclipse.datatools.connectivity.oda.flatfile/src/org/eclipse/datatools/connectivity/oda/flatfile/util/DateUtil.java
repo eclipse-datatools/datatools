@@ -47,7 +47,7 @@ public final class DateUtil
 	 * @return
 	 * @throws OdaException
 	 */
-	public static Date toDate( Object source ) throws OdaException
+	public static synchronized Date toDate( Object source ) throws OdaException
 	{
 		if ( source == null )
 			return null;
@@ -75,7 +75,7 @@ public final class DateUtil
 	 * 			  the locate of the string
 	 * @return result Date
 	 */
-	public static Date toDate( String source, ULocale locale )
+	public synchronized static Date toDate( String source, ULocale locale )
 			throws OdaException
 	{
 		if ( source == null )
