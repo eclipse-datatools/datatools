@@ -176,7 +176,11 @@ public class ConnectionProfileMgmt {
 		throws CoreException 
 	{
 		try {
-		    Document document = getDocumentBuilder().newDocument();
+			DocumentBuilder builder = getDocumentBuilder();
+			Document document;
+			synchronized (builder) {
+				document = builder.newDocument();
+			}
 		    Element rootElement = document.createElement(ROOTNAME);
 		    document.appendChild(rootElement);
 			if (!file.exists())
@@ -197,7 +201,18 @@ public class ConnectionProfileMgmt {
 				DOMSource source = new DOMSource(document);
 	            StreamResult result = new StreamResult(outw);
 	        	
-	            getTransformer().transform(source, result);	
+	            Transformer transformer = getTransformer();
+	            synchronized (transformer) {
+	            	transformer.transform(source, result);
+					try {
+						writer.close();
+						writer = null;
+					}
+					catch (IOException e) {
+						writer = null;
+						throw e;
+					}
+	            }
 	
 			}
 			finally {
@@ -381,7 +396,11 @@ public class ConnectionProfileMgmt {
 			// .getInstance().getDecryptCipher());
 			InputSource source = new InputSource(is);
 			source.setEncoding("UTF-8"); //$NON-NLS-1$
-			Document document = getDocumentBuilder().parse(source);
+			DocumentBuilder builder = getDocumentBuilder();
+			Document document;
+			synchronized (builder) {
+				document = builder.parse(source);
+			}
 			ConnectionProfile cp = null;
 			NodeList nl = document.getElementsByTagName(CHILDNAME);
 			for (int i = 0; i < nl.getLength(); i++) {
@@ -641,11 +660,17 @@ public class ConnectionProfileMgmt {
 			source.setEncoding("UTF-8"); //$NON-NLS-1$
 			Document document = null;
 			try {
-				document = getDocumentBuilder().parse(source);
+				DocumentBuilder builder = getDocumentBuilder();
+				synchronized (builder) {
+					document = builder.parse(source);
+				}
 			} catch (SAXException e) {
 				// if we get this, the parser may already be in use, so try again
 				try {
-					document = getDocumentBuilder(true).parse(source);
+					DocumentBuilder builder = getDocumentBuilder(true);
+					synchronized (builder) {
+						document = builder.parse(source);
+					}
 				} catch (SAXException e2) {
 					// if we got this again, some other issue may be occurring
 					throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
