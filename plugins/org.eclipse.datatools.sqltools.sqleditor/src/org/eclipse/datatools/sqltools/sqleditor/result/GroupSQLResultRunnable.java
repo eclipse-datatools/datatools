@@ -91,7 +91,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private boolean  _promptVar  = false;
     private HashMap  _varDefs    = null;
     private String   _parentDisplayName;
-    private String   _consumerName;
     /**
      * @param con if con is null, corresponding ConnectionService.createConnection will be called.
      * @param sql
@@ -281,7 +280,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         {
             String parentDspName = _parentDisplayName == null ? Messages.GroupSQLResultRunnable_group_exec
                     : _parentDisplayName;
-            _operationCommand = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, _consumerName, //$NON-NLS-2$
+            _operationCommand = new OperationCommand(getActionType(), parentDspName, getConsumerName(), //$NON-NLS-2$
                     _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
         }
         return _operationCommand;
