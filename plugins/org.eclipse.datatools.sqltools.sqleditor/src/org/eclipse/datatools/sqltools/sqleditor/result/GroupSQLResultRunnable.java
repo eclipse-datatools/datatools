@@ -182,7 +182,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     // wont generate group result
                     if (_groups.length == 1)
                     {
-                        _command = resultSupportRunnable.getOperationCommand();
+                        _operationCommand = resultSupportRunnable.getOperationCommand();
                     }
 					try
 					{
@@ -277,13 +277,13 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 
     public OperationCommand getOperationCommand()
     {
-        if (_command == null)
+        if (_operationCommand == null)
         {
             String parentDspName = _parentDisplayName == null ? Messages.GroupSQLResultRunnable_group_exec
                     : _parentDisplayName;
-            _command = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, _consumerName, //$NON-NLS-2$
+            _operationCommand = new OperationCommand(OperationCommand.ACTION_EXECUTE, parentDspName, _consumerName, //$NON-NLS-2$
                     _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
         }
-        return _command;
+        return _operationCommand;
     }
 }

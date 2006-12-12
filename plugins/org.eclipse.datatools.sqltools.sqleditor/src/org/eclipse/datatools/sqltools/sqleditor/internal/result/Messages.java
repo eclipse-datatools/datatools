@@ -28,6 +28,7 @@ public final class Messages extends NLS {
 	public static String ResultSupportRunnable_task_run;
 	public static String ResultSupportRunnable_task_iterate;
 	public static String ResultSupportRunnable_exception_terminated;
+	public static String sqlEditorName;
 	public static String GroupSQLResultRunnable_name;
 	public static String GroupSQLResultRunnable_groups;
 	public static String GroupSQLResultRunnable_group;

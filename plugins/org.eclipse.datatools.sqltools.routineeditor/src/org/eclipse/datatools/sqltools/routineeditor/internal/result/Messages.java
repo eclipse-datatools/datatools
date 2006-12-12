@@ -26,6 +26,7 @@ public final class Messages extends NLS {
 	public static String CallableSQLResultRunnable_setInParameter_debug;
 	public static String CallableSQLResultRunnable_getStatementOutParam;
 	public static String CallableSQLResultRunnable_prepareStatement;
+	public static String Routineeditor_name;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

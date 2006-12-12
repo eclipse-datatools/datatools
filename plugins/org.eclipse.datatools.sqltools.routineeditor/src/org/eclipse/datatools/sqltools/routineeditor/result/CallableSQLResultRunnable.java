@@ -57,8 +57,6 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
     protected ILaunchConfiguration    _configuration;
     protected ParameterInOutWrapper[] _pws;
     protected String                  _procName;
-    protected OperationCommand _operationCommand;
-
     /**
      * 
      * @param con the connection
@@ -89,19 +87,17 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         return _connection;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sybase.stf.dmp.launching.ResultSupportRunnable#getOperationCommand()
-     */
-    public OperationCommand getOperationCommand()
-    {
-    	if (_operationCommand == null)
-    	{
-    		_operationCommand = new OperationCommand(OperationCommand.ACTION_EXECUTE, _detailSql, "Routine Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
-    	}
-		return _operationCommand;
-    }
+    protected OperationCommand createDefaultOperationCommand() {
+		return new OperationCommand(getActionType(), _detailSql, getConsumerName(), _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
+	}
+
+	public String getConsumerName() {
+		if (_consumerName == null)
+		{
+			_consumerName = Messages.Routineeditor_name;
+		}
+		return _consumerName;
+	}
 
     /**
      * 

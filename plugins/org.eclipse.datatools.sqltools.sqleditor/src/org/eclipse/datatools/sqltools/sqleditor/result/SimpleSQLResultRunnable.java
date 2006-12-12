@@ -41,7 +41,6 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     /*holds the var declarations in the scope from the beginning of the selected text up to the very beginning*/
     protected HashMap            _varDecs   = null;
     protected ILaunchConfiguration _configuration;
-    protected OperationCommand _command = null;
 
 //    /**
 //     * 
@@ -106,19 +105,9 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
         _connection = conn;
     }
     
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.sybase.stf.dmp.launching.ResultSupportRunnable#getOperationCommand()
-     */
-    public OperationCommand getOperationCommand()
-    {
-    	if (_command == null)
-    	{
-    		_command = new OperationCommand(OperationCommand.ACTION_EXECUTE, _sql, "SQL Editor", _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
-    	}
-    	return _command;
-    }
+    protected OperationCommand createDefaultOperationCommand() {
+		return new OperationCommand(getActionType(), _sql, getConsumerName(), _databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname());
+	}
 
     /*
      * (non-Javadoc)
