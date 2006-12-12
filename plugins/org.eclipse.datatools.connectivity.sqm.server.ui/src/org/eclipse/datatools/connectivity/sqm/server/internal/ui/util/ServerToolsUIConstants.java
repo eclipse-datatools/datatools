@@ -17,7 +17,6 @@ public class ServerToolsUIConstants
 {
 	public static final String SERVER_EXPLORER_VIEW_ID = "org.eclipse.datatools.connectivity.sqm.server.ui.navigator.serverExplorer"; //$NON-NLS-1$
 	public static final String SERVER_STATUS_DECORATION = "com.ibm.datatools.project.internal.ui.explorer.ServerStateDecoration"; //$NON-NLS-1$
-	public static final String DATA_MENU_ID = "org.eclipse.datatools.connectivity.sqm.server.ui.data"; //$NON-NLS-1$
     public static final String OFFLINE_PROPERTY_SET = "offlineMode"; //$NON-NLS-1$
     public static final String CONNECTION_INFO = "ConnectionInfo"; //$NON-NLS-1$
     public static final String SLOT_OFFLINE = "slotOffline"; //$NON-NLS-1$
