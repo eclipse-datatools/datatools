@@ -242,8 +242,9 @@ abstract class OdaTemplateSection extends OptionTemplateSection
         if( page != null )
         {
             page.setPageComplete( false );
-            String message = Messages.baseSection_illegaCharsForIdentifier + option.getMessageLabel();
-            page.setErrorMessage( message );
+            page.setErrorMessage( 
+                    Messages.bind( Messages.baseSection_illegaCharsForIdentifier, 
+                            option.getMessageLabel() ) );
         }
         return false;
     }
