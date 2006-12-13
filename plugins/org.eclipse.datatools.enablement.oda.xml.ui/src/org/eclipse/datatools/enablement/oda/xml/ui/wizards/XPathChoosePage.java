@@ -66,7 +66,8 @@ public class XPathChoosePage extends DataSetWizardPage
 	
 	private ATreeNode treeNode;
 	private TreeItem selectedItem;
-	private String fileName;
+	private String xsdFileName;
+	private String xmlFileName;
 
 	private String rootPath;
 
@@ -110,9 +111,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void initializeControl( )
 	{
-		fileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		if ( fileName == null || fileName.trim( ).equals( "" ) )
-			fileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+	
 		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 
 		String tableName = XMLRelationInfoUtil.getTableName( queryText );
@@ -135,9 +136,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.rowMapping" );
 		XMLInformationHolder.start( dataSetDesign );
-		fileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		if ( fileName == null || fileName.trim( ).equals( "" ) )
-			fileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+
 		populateXMLTree( );
 		this.setMessage( DEFAULT_MESSAGE );
 	}
@@ -338,7 +339,8 @@ public class XPathChoosePage extends DataSetWizardPage
 		try
 		{
 			availableXmlTree.removeAll( );
-			if ( fileName != null && fileName.trim( ).length( ) > 0 )
+			if ( ( xsdFileName != null && xsdFileName.trim( ).length( ) > 0 )
+					|| ( xmlFileName != null && xmlFileName.trim( ).length( ) > 0 ) )
 			{
 				int numberOfElement = 0;
 				Preferences preferences = UiPlugin.getDefault( )
@@ -359,7 +361,7 @@ public class XPathChoosePage extends DataSetWizardPage
 				// ).findResource( fileName,IResourceLocator.LIBRARY );
 				//				
 				// if( url != null )
-				treeNode = SchemaPopulationUtil.getSchemaTree( fileName, false, numberOfElement );
+				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, false, numberOfElement );
 				if ( treeNode == null || treeNode.getChildren( ).length == 0 )
 				{
 					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );

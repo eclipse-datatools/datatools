@@ -43,7 +43,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			FileOutputStream fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD, true, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD, null, true, 0 ),0,fos);
 			//printTree(SchemaPopulationUtil.getSchemaTree( "C:\\Documents and Settings\\lzhu\\Desktop\\data1\\pubSchema.xsd" ),0,fos);
 			fos.close();
 			
@@ -60,7 +60,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_INPUT_XSD, true, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_INPUT_XSD, null, true, 0 ),0,fos);
 			//printTree(SchemaPopulationUtil.getSchemaTree( "C:\\Documents and Settings\\lzhu\\Desktop\\data1\\pubSchema.xsd" ),0,fos);
 			fos.close();
 			
@@ -75,7 +75,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_INPUT_XSD, false, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_INPUT_XSD, null, false, 0 ),0,fos);
 			fos.close();
 			
 			assertTrue( TestUtil.compareTextFile(
@@ -89,12 +89,38 @@ public class SchemaPopulationUtilTest extends BaseTest
 				file.delete();
 			file.createNewFile();
 			fos = new FileOutputStream( file );
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.BOOKSTORE_XML_FILE, true, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( null, TestConstants.BOOKSTORE_XML_FILE, true, 0 ),0,fos);
 			fos.close();
 			
 			assertTrue( TestUtil.compareTextFile(
 					    new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML),
 						new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML)));
+			
+			file = new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XSD_WITHOUT_XML );
+
+			if ( file.exists( ) )
+				file.delete( );
+			file.createNewFile( );
+			fos = new FileOutputStream( file );
+			printTree( SchemaPopulationUtil.getSchemaTree( TestConstants.BOOKSTORE_XSD_FILE, null, true, 0 ), 0, fos );
+			fos.close( );
+
+			assertTrue( TestUtil.compareTextFile( 
+						new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XSD_WITHOUT_XML ),
+						new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XSD_WITHOUT_XML ) ) );
+			
+			file = new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_WITH_XSD );
+
+			if ( file.exists( ) )
+				file.delete( );
+			file.createNewFile( );
+			fos = new FileOutputStream( file );
+			printTree( SchemaPopulationUtil.getSchemaTree( TestConstants.BOOKSTORE_XSD_FILE, TestConstants.BOOKSTORE_XML_FILE, true, 0 ), 0, fos );
+			fos.close( );
+
+			assertTrue( TestUtil.compareTextFile( 
+						new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML_WITH_XSD ),
+						new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_WITH_XSD ) ) );
 			
 			file = new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_WITHOUT_ATTR);
 			
@@ -102,7 +128,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 				file.delete();
 			file.createNewFile();
 			fos = new FileOutputStream( file );
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.SMALL_XML_FILE, false, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( null, TestConstants.SMALL_XML_FILE, false, 0 ),0,fos);
 			fos.close();
 			
 			assertTrue( TestUtil.compareTextFile(
@@ -115,7 +141,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 				file.delete();
 			file.createNewFile();
 			fos = new FileOutputStream( file );
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.BOOKSTORE_XML_FILE, true, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( null, TestConstants.BOOKSTORE_XML_FILE, true, 0 ),0,fos);
 			fos.close();
 			
 			assertTrue( TestUtil.compareTextFile(
@@ -132,7 +158,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.NESTED_COMPLEXTYPE_XSD, true, 0 ),0,fos);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.NESTED_COMPLEXTYPE_XSD, null, true, 0 ),0,fos);
 			//printTree(SchemaPopulationUtil.getSchemaTree( "C:\\Documents and Settings\\lzhu\\Desktop\\data1\\pubSchema.xsd" ),0,fos);
 			fos.close();
 			
@@ -151,7 +177,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.DATATYPE_XSD, true, 0 ),0,fos, true);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.DATATYPE_XSD, null, true, 0 ),0,fos, true);
 			
 			fos.close();
 			
@@ -170,7 +196,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 		
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD_GROUP, true, 0 ),0,fos, true);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD_GROUP, null, true, 0 ),0,fos, true);
 			
 			fos.close();
 			
@@ -206,7 +232,7 @@ public class SchemaPopulationUtilTest extends BaseTest
 			file.createNewFile();
 			fos = new FileOutputStream( file );
 			
-			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD_SELFRECURSIVE, true, 0 ),0,fos, true);
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD_SELFRECURSIVE, null, true, 0 ),0,fos, true);
 			
 			fos.close();
 			

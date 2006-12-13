@@ -1,0 +1,8 @@
+  ROOT:0:0
+    BookStore:1:1
+      Book:1:2
+        Title:1:3
+        Author:1:3
+        Date:1:3
+        ISBN:1:3
+        Publisher:1:3

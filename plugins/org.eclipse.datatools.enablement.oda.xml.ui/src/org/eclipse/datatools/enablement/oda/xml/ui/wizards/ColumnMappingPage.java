@@ -91,7 +91,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	private ResultSetTableViewer previewViewer;
 
 	private String tableName;
-	private String schemaFileName;
+	private String xsdFileName;
+	private String xmlFileName;
 	private Map columnMap;
 	private List columnMappingList = new ArrayList( );
 	private ColumnMappingElement newColumn;
@@ -159,9 +160,10 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private void initializeControl( )
 	{
-		schemaFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		if ( schemaFileName == null || schemaFileName.trim( ).equals( "" ) )
-			schemaFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
+			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 		tableName = XMLRelationInfoUtil.getTableName( queryText );
 
@@ -202,11 +204,15 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	public void refresh( )
 	{
 		selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
-		schemaFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		if ( schemaFileName == null || schemaFileName.trim( ).equals( "" ) )
-			schemaFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
+			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		if ( selectedTreeItemText != null )
+		{
+			selectedItem = null;
 			populateXMLTree( );
+		}	
 	}
 	
 	/*
@@ -844,9 +850,16 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			// Object url = StructureFactory.getModuleHandle( ).findResource(
 			// schemaFileName,IResourceLocator.LIBRARY );
 			// if( url != null )
-			treeNode = SchemaPopulationUtil.getSchemaTree( schemaFileName, true, numberOfElement );
+			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, true, numberOfElement );
 			Object[] childs = treeNode.getChildren( );
 			populateTreeItems( availableXmlTree, childs, 0 );
+			
+			if ( selectedItem == null )
+			{
+				btnAdd.setEnabled( false );
+				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),
+						ERROR );
+			}
 		}
 		catch ( Exception e )
 		{
@@ -999,7 +1012,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				Object actualElement = ( (TableItem) element ).getData( );
 				if ( value != null )
 				{
-					setDetailsMessage( DEFAULT_PAGE_Message, IMessageProvider.NONE );
 					if ( property.equals( COLUMN_NAME ) )
 					{
 						if ( isUniqueName( (String) value,
@@ -1223,9 +1235,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 * 
 	 * @param fileName
 	 */
-	public void setSchmeFile( String fileName )
+	public void setSchemaFile( String fileName )
 	{
-		this.schemaFileName = fileName;
+		this.xsdFileName = fileName;
 
 	}
 
