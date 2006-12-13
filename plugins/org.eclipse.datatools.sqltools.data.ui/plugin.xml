@@ -23,8 +23,8 @@
    <extension point="org.eclipse.ui.navigator.navigatorContent">
       <actionProvider
             class="org.eclipse.datatools.sqltools.data.internal.ui.editor.EditTableDataActionProvider"
-            id="org.eclipse.datatools.sqltools.data.internal.edit"
-            dependsOn="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.DataGroupProvider">
+            id="org.eclipse.datatools.sqltools.data.internal.edit"            
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
             	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>  	            	
             </enablement>
@@ -32,7 +32,7 @@
       <actionProvider
             class="org.eclipse.datatools.sqltools.data.internal.ui.load.LoadDataActionProvider"
             id="org.eclipse.datatools.sqltools.data.internal.load"
-            dependsOn="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.DataGroupProvider">
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
             	<adapt type="org.eclipse.datatools.modelbase.sql.tables.BaseTable"/>
   	       	</enablement>
@@ -40,7 +40,7 @@
       <actionProvider
             class="org.eclipse.datatools.sqltools.data.internal.ui.extract.ExtractDataActionProvider"
             id="org.eclipse.datatools.sqltools.data.internal.extract"
-            dependsOn="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.DataGroupProvider">
+            dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
             	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
   	        </enablement>
