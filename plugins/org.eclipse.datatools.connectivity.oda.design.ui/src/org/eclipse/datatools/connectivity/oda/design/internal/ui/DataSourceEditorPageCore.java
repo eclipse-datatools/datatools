@@ -384,14 +384,19 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
             throw new OdaException( Messages.common_notInDesignSession );
         
         // gets a copy of the data source design, and updates
-        // with the pubic properties collected by
+        // with the property values collected by
         // this editor page
         DataSourceDesign editedDesign = getEditingDataSource();
-
+        Properties propertyValuePairs = collectProperties();
+        
         editedDesign.setPublicProperties(
                 DesignSessionUtil.createDataSourcePublicProperties( 
                         editedDesign.getOdaExtensionDataSourceId(),
-                        collectProperties() ));
+                        propertyValuePairs ));
+        editedDesign.setPrivateProperties( 
+                DesignSessionUtil.createDataSourceNonPublicProperties( 
+                        editedDesign.getOdaExtensionDataSourceId(),
+                        propertyValuePairs ));
 
         // calls abstract method provided by custom extension
         // to further specify its data source design

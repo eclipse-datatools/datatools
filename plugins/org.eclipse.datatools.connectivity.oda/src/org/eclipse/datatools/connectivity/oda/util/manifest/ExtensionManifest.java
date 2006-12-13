@@ -381,12 +381,12 @@ public class ExtensionManifest
 	}
 	
 	/**
-	 * Returns an array of Property definition instances that represent
-	 * the properties defined by this data source extension.
-	 * The collection includes both top-level properties and
-	 * those in a group.
-	 * @return	an array of property definitions; 
-	 * 			an empty array is returned if no properties are defined.
+     * Returns an array of Property definition instances that represent
+     * all the properties defined by this data source extension.
+     * The collection includes both top-level properties and
+     * those in a group, and could be defined as either visible or hidden.
+     * @return  an array of all property definitions; 
+     *          an empty array is returned if no properties are defined.
 	 */
 	public Property[] getProperties()
 	{
@@ -397,6 +397,32 @@ public class ExtensionManifest
 	    }
 	    return m_properties;
 	}
+
+    /**
+     * A convenience method to return an array of Property definition instances 
+     * that represent the properties defined as visible by this data source extension.
+     * The collection includes both top-level properties and those in a group.
+     * @return  an array of visible property definitions; 
+     *          an empty array is returned if no visible properties are defined.
+     */
+    public Property[] getVisibleProperties()
+    {
+        return ManifestUtil.getVisiblePropertiesDefn( getProperties(), 
+                getPropertiesVisibility());
+    }
+
+    /**
+     * A convenience method to return an array of Property definition instances 
+     * that represent the properties defined as hidden by this data source extension.
+     * The collection includes both top-level properties and those in a group.
+     * @return  an array of hidden property definitions; 
+     *          an empty array is returned if no hidden properties are defined.
+     */
+    public Property[] getHiddenProperties()
+    {
+        return ManifestUtil.getHiddenPropertiesDefn( getProperties(), 
+                getPropertiesVisibility());
+    }
     
     /**
      * Returns the Property definition instance that matches the specified name

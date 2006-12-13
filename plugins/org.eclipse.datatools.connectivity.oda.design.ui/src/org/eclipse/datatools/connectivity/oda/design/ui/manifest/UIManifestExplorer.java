@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvider;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestUtil;
 
 
 /**
@@ -429,7 +430,7 @@ public class UIManifestExplorer
             String elementName ) 
         throws OdaException
     {
-        return ManifestExplorer.getNamedElement( extension, elementName );
+        return ManifestUtil.getNamedElement( extension, elementName );
     }
     
     /**
@@ -444,7 +445,7 @@ public class UIManifestExplorer
                                             String elementName ) 
         throws OdaException
     {
-        return ManifestExplorer.getNamedElements( extension, elementName );
+        return ManifestUtil.getNamedElements( extension, elementName );
     }
 
 }

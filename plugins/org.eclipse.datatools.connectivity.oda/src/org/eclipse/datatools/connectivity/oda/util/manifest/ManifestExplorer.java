@@ -446,24 +446,20 @@ public class ManifestExplorer
 	static IConfigurationElement getDataSourceElement( IExtension extension ) 
 		throws OdaException
     {
-        return getNamedElement( extension, "dataSource" );  //$NON-NLS-1$
+        return ManifestUtil.getNamedElement( extension, "dataSource" );  //$NON-NLS-1$
     }
     
     /**
      * Returns the configuration element of the given extension
      * and element name.
      * <br>For internal use only.
+     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
      */
     public static IConfigurationElement getNamedElement( IExtension extension,
             String elementName ) 
         throws OdaException
     {
-        IConfigurationElement[] configElements =
-                        getNamedElements( extension, elementName );
-        if( configElements.length == 0 )
-            throw new OdaException( Messages.manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED );
-
-        return configElements[0];   // returns the first matching element
+        return ManifestUtil.getNamedElement( extension, elementName );
     }
     
     /**
@@ -472,13 +468,14 @@ public class ManifestExplorer
      * Validates that each element has an id attribute defined.
      * @return a collection of matching configuration elements
      * <br>For internal use only.
+     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
      */
     public static IConfigurationElement[] getNamedElements( 
                                             IExtension extension,
                                             String elementName ) 
         throws OdaException
     {
-        return getNamedElements( extension, elementName, "id" );    //$NON-NLS-1$
+        return ManifestUtil.getNamedElements( extension, elementName );
     }
     
     /**
@@ -487,6 +484,7 @@ public class ManifestExplorer
      * Validates that each element has the specified attribute defined.
      * @return a collection of matching configuration elements
      * <br>For internal use only.
+     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
      */
     public static IConfigurationElement[] getNamedElements( 
                                             IExtension extension,
@@ -494,26 +492,8 @@ public class ManifestExplorer
                                             String requiredAttributeName ) 
         throws OdaException
 	{
-		IConfigurationElement[] configElements = extension.getConfigurationElements();
-        ArrayList matchedElements = new ArrayList();
-		for( int i = 0, n = configElements.length; i < n; i++ )
-		{
-			IConfigurationElement configElement = configElements[i];
-			if( ! configElement.getName().equalsIgnoreCase( elementName ) )
-			    continue;
-
-			// validate that the element has the required attribute with non-empty value
-			String attrValue = configElement.getAttribute( requiredAttributeName );
-			if( attrValue == null || attrValue.length() == 0 )
-				throw new OdaException( 
-                        Messages.bind( Messages.manifest_NO_ATTRIBUTE_ID_DEFINED, 
-                                        requiredAttributeName, elementName ));
-
-            matchedElements.add( configElement );
-		}
-		
-		return (IConfigurationElement[]) matchedElements.toArray( 
-                    new IConfigurationElement[ matchedElements.size() ] );
+        return ManifestUtil.getNamedElements( extension, elementName, 
+                requiredAttributeName );
 	}
 	
 	/*
@@ -525,7 +505,7 @@ public class ManifestExplorer
 		throws OdaException
 	{
         IConfigurationElement[] configElements =
-            getNamedElements( extension, "dataSet" ); //$NON-NLS-1$
+            ManifestUtil.getNamedElements( extension, "dataSet" ); //$NON-NLS-1$
 		Hashtable dataSetElements = new Hashtable();
         
         int numConfigElements = configElements.length;

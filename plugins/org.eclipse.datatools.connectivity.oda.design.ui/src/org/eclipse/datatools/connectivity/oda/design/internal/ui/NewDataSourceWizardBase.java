@@ -411,10 +411,16 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             newDesign.setName( getOdaDataSourceId() );
         }
         
+        // assign those properties that have values collected in wizard page
+        Properties propertyValuePairs = getProfileProperties();
         newDesign.setPublicProperties(
                 DesignSessionUtil.createDataSourcePublicProperties( 
                             getOdaDataSourceId(),
-                            getProfileProperties() ));
+                            propertyValuePairs ));
+        newDesign.setPrivateProperties( 
+                DesignSessionUtil.createDataSourceNonPublicProperties( 
+                            getOdaDataSourceId(),
+                            propertyValuePairs ));
     
         // adds attributes of linked profile, if specified,
         // to the data source design

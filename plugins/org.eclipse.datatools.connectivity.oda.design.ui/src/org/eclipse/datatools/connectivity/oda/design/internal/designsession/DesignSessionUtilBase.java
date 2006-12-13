@@ -31,6 +31,7 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataSetType;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
 
 /**
  *  Base class implementation of an utility class to help an ODA host designer or
@@ -49,8 +50,8 @@ public class DesignSessionUtilBase
      * an ODA extension that implements the 
      * oda.datasource run-time extension point.
      */
-    protected static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
-        getDataSourcePublicPropertiesDefn( String odaDataSourceId )
+    protected static Property[] getDataSourcePublicPropertiesDefn( 
+            String odaDataSourceId )
         throws OdaException
     {
         try
@@ -58,7 +59,8 @@ public class DesignSessionUtilBase
             ExtensionManifest runtimeManifest = 
                 ManifestExplorer.getInstance().getExtensionManifest( 
                         odaDataSourceId );
-            return runtimeManifest.getProperties();
+
+            return runtimeManifest.getVisibleProperties();
         }
         catch( IllegalArgumentException ex )
         {
@@ -72,8 +74,8 @@ public class DesignSessionUtilBase
      * an ODA extension that implements the 
      * oda.datasource run-time extension point.
      */
-    protected static org.eclipse.datatools.connectivity.oda.util.manifest.Property[] 
-        getDataSetPublicPropertiesDefn( String odaDataSourceId, String odaDataSetId )
+    protected static Property[] getDataSetPublicPropertiesDefn( 
+            String odaDataSourceId, String odaDataSetId )
         throws OdaException
     {
         try
@@ -82,14 +84,15 @@ public class DesignSessionUtilBase
                 ManifestExplorer.getInstance().getExtensionManifest( 
                         odaDataSourceId );
             DataSetType dataSetType = runtimeManifest.getDataSetType( odaDataSetId );
-            return dataSetType.getProperties();
+            
+            return dataSetType.getVisibleProperties();
         }
         catch( IllegalArgumentException ex )
         {
             throw new OdaException( ex );
         }        
     }
-
+    
     /**
      * Returns the data set ui element manifest that
      * defines customized data set designer

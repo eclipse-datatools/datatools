@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestUtil;
 
 /**
  * The Extension Explorer is the entry point to explore and access
@@ -245,7 +246,7 @@ public class ExtensionExplorer
         IConfigurationElement[] namedElements = null;
         try
         {
-            namedElements = ManifestExplorer.getNamedElements( extension, 
+            namedElements = ManifestUtil.getNamedElements( extension, 
                                 elementName, requiredAttributeName );
         }
         catch( OdaException e )
