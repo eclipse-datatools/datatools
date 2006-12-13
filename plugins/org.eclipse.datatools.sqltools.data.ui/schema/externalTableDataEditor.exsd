@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.sqltools.data.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.sqltools.data.ui" id="externalTableDataEditor" name="External Table Data Editors"/>
+      </appInfo>
+      <documentation>
+         The externalTableDataEditor allows to contribute an IExternalTableDataEditor object to be used with a particular vendor, version and datatype and length.
+The contributed object is then used to edit the currently selected cell of the table editor, allowing to implement support for database-specific data types.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="externalEditor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="externalEditor">
+      <annotation>
+         <documentation>
+            This element specifies an IExternalTableDataEditor to be used with a combination of vendor/version/data type/length.
+If several contributions match a given column, the best fitting contribution is used (i.e. the one that specifies the highest number of criteria).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="vendor" type="string">
+            <annotation>
+               <documentation>
+                  Vendor: String as returned by org.eclipse.wst.rdb.internal.models.sql.schema.Database.getVendor().
+Ommit to match all vendors.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="version" type="string">
+            <annotation>
+               <documentation>
+                  Version: String as returned by org.eclipse.wst.rdb.internal.models.sql.schema.Database.getVersion(). 
+Ommit to match all versions.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="dataType" type="string">
+            <annotation>
+               <documentation>
+                  Data Type name: String as returned by org.eclipse.wst.rdb.internal.models.sql.datatypes.DataType.getName().
+Ommit to match all data types.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="length" type="string">
+            <annotation>
+               <documentation>
+                  Data Type length: int as returned by that org.eclipse.wst.rdb.internal.models.sql.datatypes.PredefinedDataType that provide a getLength() method (currently i.e. DataLinkDataType, BinaryStringDataType, CharacterStringDataType). The external Editor is invoked for columns whose length attribute is greater or equal to the specified length.
+Ommit to match all data type lengths.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Class name: Fully qualified name of the Class that is instantiated for the external table data editing. The class must implement the org.eclipse.wst.rdb.data.internal.ui.editor.IExternalTableDataEditor interface and provide a zero-argument Constructor to allow instantiation.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         The default implementation in this plugin calls DefaultExternalTableDataWizard (implementing IExternalTableDataEditor) for any column of a datatype (that supports a length attribute) whose length &gt;= 30
+&lt;extension
+   id=&quot;org.eclipse.wst.rdb.data.ui.defaultExternalTableDataEditor&quot;
+   name=&quot;Default External Table Data Editor&quot;
+   point=&quot;org.eclipse.wst.rdb.data.ui.externalTableDataEditor&quot;&gt;
+      &lt;externalEditor length=&quot;30&quot;  class=&quot;org.eclipse.wst.rdb.data.internal.ui.editor.DefaultExternalTableDataWizard&quot;/&gt;
+&lt;/extension&gt;
+
+This example would invoke the CloudscapeV10ExternalTableDataEditor for columns of the datatype TIME on a Cloudscape database version 10.0.
+&lt;extension
+   id=&quot;org.eclipse.wst.rdb.data.ui.defaultExternalTableDataEditor&quot;
+   name=&quot;Default External Table Data Editor&quot;
+   point=&quot;org.eclipse.wst.rdb.data.ui.externalTableDataEditor&quot;&gt;
+      &lt;externalEditor vendor=&quot;IBM Cloudscape&quot; version=&quot;10.0&quot; datatype=&quot;TIME&quot; class=&quot;org.eclipse.wst.rdb.data.internal.ui.editor.CloudscapeV10ExternalTableDataEditor&quot;/&gt;
+&lt;/extension&gt;
+
+This example invokes the CloudscapeExternalTableDataEditor for columns of the datatype TIME on any Cloudscape database. If the example above is also defined, this one would be called for any Cloudscape version other than 10.0 as for that one the example above would be called.
+&lt;extension
+   id=&quot;org.eclipse.wst.rdb.data.ui.defaultExternalTableDataEditor&quot;
+   name=&quot;Default External Table Data Editor&quot;
+   point=&quot;org.eclipse.wst.rdb.data.ui.externalTableDataEditor&quot;&gt;
+      &lt;externalEditor vendor=&quot;IBM Cloudscape&quot; datatype=&quot;TIME&quot; class=&quot;org.eclipse.wst.rdb.data.internal.ui.editor.CloudscapeExternalTableDataEditor&quot;/&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
