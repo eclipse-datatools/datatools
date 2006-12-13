@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?NLS type="org.eclipse.help.contexts"?>
+
+<contexts>
+<context id="dummy_outer_container" title="Data Tools ODA contexts">
+<description>Contexts for items identified by Actuate, 2006-12-13</description>
+</context>
+<context id="Wizard_XML_Datasource_ID" title="New XML File Data Source Profile">
+<description>Use this dialog box to define an XML file data source.
+
+
+
+</description>
+</context>
+<context id="Wizard_FlatfileDatasource_ID" title="New Flat File Data Source Profile">
+<description>Use this dialog box to define the profile for a new flat file
+
+
+
+</description>
+</context>
+<context id="Dialog_SelectTableColumn_ID" title="Select Table - Select Columns">
+<description>Use this dialog box to select columns for the data set.
+
+
+
+</description>
+</context>
+<context id="Wizard_XMLSample_ID" title="DTP XML DataSet">
+<description>Use this dialog box to specify a sample XML source for data preview.
+
+
+
+</description>
+</context>
+<context id="Wizard_XMLXPath_ID" title="Table Mapping">
+<description>Use this dialog box to map a table.
+
+
+
+</description>
+</context>
+<context id="Dialog_XPathExpression_ID" title="Select or edit the XPath expression">
+<description>Use this dialog box to specify the XPath expression to be used.
+
+
+
+</description>
+</context>
+<context id="Wizard_XML_ColumnMapping_ID" title="Column Mapping">
+<description>Use this page to map XML elements to columns.
+
+
+
+</description>
+</context>
+<context id="Dialog_ColumnMapping_ID" title="Column Mapping">
+<description>Use this dialog box to map a column to an XPath expression.
+
+
+
+</description>
+</context>
+<context id="Preference_DataSetEditor_XML_ID" title="Preferences - XML Data Set">
+<description>Use this dialog box to set preferences for XML data sets.
+
+
+
+</description>
+</context>
+</contexts>
