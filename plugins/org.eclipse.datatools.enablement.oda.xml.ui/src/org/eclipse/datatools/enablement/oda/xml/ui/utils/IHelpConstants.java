@@ -18,7 +18,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.utils;
 public interface IHelpConstants
 {
 
-	public static final String PREFIX = "org.eclipse.birt.cshelp" + "."; //$NON-NLS-1$
+	public static final String PREFIX = "org.eclipse.datatools.oda.cshelp" + "."; //$NON-NLS-1$
 
 	public static final String CONEXT_ID_DATASOURCE_XML = PREFIX
 			+ "Wizard_XML_Datasource_ID";//$NON-NLS-1$
@@ -39,6 +39,6 @@ public interface IHelpConstants
 			+ "Dialog_ColumnMapping_ID";//$NON-NLS-1$
 
 	public static final String CONEXT_ID_PREFERENCE_DATASET_XML = PREFIX
-			+ "Preference_BIRT_DataSetEditor_XML_ID";//$NON-NLS-1$
+			+ "Preference_DataSetEditor_XML_ID";//$NON-NLS-1$
 
 }
