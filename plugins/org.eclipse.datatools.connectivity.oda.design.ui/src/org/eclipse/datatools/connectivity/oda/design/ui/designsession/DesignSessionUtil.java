@@ -83,7 +83,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * @param odaDataSetId      an ODA extension data set element id;
      *              may be null if the associated data source extension 
      *              supports only one type of data set 
-     * @param utilProps      java.util.properties
+     * @param utilProps      collection of property name and value pairs
      * @return  ODA design public property collection for inclusion
      *          in an OdaDesignSession's Data Set Design
      * @throws OdaException
@@ -104,9 +104,9 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * Convert specified public properties defined in an ODA runtime extension manifest,
      * and corresponding values specified in the given Properties collection
      * into an ODA design property collection.
-     * @param publicPropDefns
-     * @param utilProps
-     * @return
+     * @param publicPropDefns   public properties defined in an ODA runtime extension manifest
+     * @param utilProps         collection of property name and value pairs
+     * @return  converted collection of ODA design public properties 
      */
     public static Properties createPublicProperties( 
             org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
@@ -188,9 +188,10 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * Convert given Properties collection that are not defined as
      * public properties in an ODA runtime extension manifest,
      * into an ODA design property collection.
-     * @param publicPropDefns
-     * @param utilProps
-     * @return
+     * @param publicPropDefns   public properties defined in an ODA runtime extension manifest
+     * @param utilProps a java.util.Properties collection,
+     *                  such as those collected from a connection profile
+     * @return  converted collection of ODA design non-public properties 
      */
     public static Properties createNonPublicProperties( 
             org.eclipse.datatools.connectivity.oda.util.manifest.Property[] publicPropDefns, 
@@ -228,7 +229,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
 
         return designProps;
     }
-
+    
     /**
      * Creates a new OdaDesignSession instance with a session
      * request that contains a new data set design of
@@ -285,7 +286,8 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * <code>org.eclipse.datatools.connectivity.oda.design.ui.dataSource</code>
      * extension point.
      * @param odaDataSourceId   an ODA data source extension type's element id 
-     * @return
+     * @return  true if specified ODA data source has implemented a valid 
+     *          ODA designer extension; false otherwise
      */
     public static boolean hasValidOdaDesignUIExtension( 
                                     String odaDataSourceId )
