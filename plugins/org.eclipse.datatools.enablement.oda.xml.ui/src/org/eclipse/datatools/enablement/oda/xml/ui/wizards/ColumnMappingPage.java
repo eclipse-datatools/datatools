@@ -18,21 +18,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
+import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
@@ -162,8 +162,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	{
 		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
 		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
-			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 		tableName = XMLRelationInfoUtil.getTableName( queryText );
 
@@ -1350,6 +1348,10 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	{
 		if ( dataSetDesign != null )
 		{
+			if ( dataSetDesign.getQueryText( ) == null )
+			{
+				dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+			}
 			if ( dataSetDesign.getQueryText( ) != null
 					&& !dataSetDesign.getQueryText( )
 							.equals( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) ) )
@@ -1357,14 +1359,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				DataSetDesignPopulator.populateResultSet( dataSetDesign );
 				dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 			}
-			dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_XML_FILE )
-					.setNameValue( Constants.CONST_PROP_XML_FILE,
-							XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE ) );
-			dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW )
-					.setNameValue( Constants.CONST_PROP_MAX_ROW,
-							XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW ) );
 		}
 	}
 	

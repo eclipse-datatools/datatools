@@ -93,7 +93,22 @@ public class XMLInformationHolder
 					tableName );
 			setPropertyValue( Constants.CONST_PROP_XPATH, xpath );
 		}
-		if ( dataSetDesign.getPublicProperties( ) != null )
+		if ( dataSetDesign.getPrivateProperties( ) != null )
+		{
+			setPropertyValue( Constants.CONST_PROP_XML_FILE,
+					dataSetDesign.getPrivateProperties( )
+							.findProperty( Constants.CONST_PROP_XML_FILE )
+							.getValue( ) );
+			String maxRow = dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.CONST_PROP_MAX_ROW )
+					.getValue( );
+			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
+					? maxRow : "-1" );
+
+		}
+		// backward compatibility. should be removed when Model has done the
+		// backward.
+		else if ( dataSetDesign.getPublicProperties( ) != null )
 		{
 			setPropertyValue( Constants.CONST_PROP_XML_FILE,
 					dataSetDesign.getPublicProperties( )
@@ -102,10 +117,12 @@ public class XMLInformationHolder
 			String maxRow = dataSetDesign.getPublicProperties( )
 					.findProperty( Constants.CONST_PROP_MAX_ROW )
 					.getValue( );
-			if ( maxRow != null )
-				setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow );
-			else
-				setPropertyValue( Constants.CONST_PROP_MAX_ROW, "-1" );
+			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
+					? maxRow : "-1" );
+			dataSetDesign.getPublicProperties( )
+					.unsetProperty( Constants.CONST_PROP_MAX_ROW );
+			dataSetDesign.getPublicProperties( )
+					.unsetProperty( Constants.CONST_PROP_XML_FILE );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{

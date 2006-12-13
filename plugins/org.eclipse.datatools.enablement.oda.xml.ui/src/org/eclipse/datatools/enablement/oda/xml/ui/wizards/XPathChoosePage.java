@@ -543,6 +543,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		try
 		{
+			resetXPathText( rootPath );
 			savePage( design );
 		}
 		catch ( OdaException e )

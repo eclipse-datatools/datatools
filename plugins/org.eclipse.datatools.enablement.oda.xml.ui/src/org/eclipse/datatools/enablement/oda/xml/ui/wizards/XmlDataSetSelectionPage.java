@@ -536,32 +536,33 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
      */
     private void savePage( DataSetDesign dataSetDesign ) throws OdaException
 	{
-		if ( dataSetDesign.getPublicProperties( ) == null )
+		if ( dataSetDesign.getPrivateProperties( ) == null )
 		{
 			try
 			{
-				dataSetDesign.setPublicProperties( DesignSessionUtil.createDataSetPublicProperties( dataSetDesign.getOdaExtensionDataSourceId( ),
+				dataSetDesign.setPrivateProperties( DesignSessionUtil.createDataSetNonPublicProperties( dataSetDesign.getOdaExtensionDataSourceId( ),
 						dataSetDesign.getOdaExtensionDataSetId( ),
 						getPageProperties( ) ) );
 			}
 			catch ( OdaException e )
 			{
-				e.printStackTrace( );
 			}
 		}
-		dataSetDesign.getPublicProperties( )
-				.findProperty( Constants.CONST_PROP_XML_FILE )
-				.setNameValue( Constants.CONST_PROP_XML_FILE, fileLocation );
-		dataSetDesign.getPublicProperties( )
-				.findProperty( Constants.CONST_PROP_MAX_ROW )
-				.setNameValue( Constants.CONST_PROP_MAX_ROW,
-						Integer.toString( maxRow ) );
-		if ( dataSetDesign.getQueryText( ) != null
-				&& !dataSetDesign.getQueryText( )
-						.equals( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) ) )
+	
+		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
-			DataSetDesignPopulator.populateResultSet( dataSetDesign );
-			dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+			if ( dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.CONST_PROP_XML_FILE ) != null )
+				dataSetDesign.getPrivateProperties( )
+						.findProperty( Constants.CONST_PROP_XML_FILE )
+						.setNameValue( Constants.CONST_PROP_XML_FILE,
+								XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE ) );
+			if ( dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.CONST_PROP_MAX_ROW ) != null )
+				dataSetDesign.getPrivateProperties( )
+						.findProperty( Constants.CONST_PROP_MAX_ROW )
+						.setNameValue( Constants.CONST_PROP_MAX_ROW,
+								XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW ) );
 		}
 	}
 
