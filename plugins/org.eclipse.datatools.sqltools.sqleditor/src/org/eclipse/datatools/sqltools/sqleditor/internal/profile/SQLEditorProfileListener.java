@@ -66,7 +66,7 @@ public class SQLEditorProfileListener implements ISQLToolsProfileListener, ISQLT
 		return EditorUtil.okToCloseEditors(profileName);
 	}
 
-	public void profileAboutToConnect(ConnectEvent event) {
+	public void aboutToClose(ConnectEvent event) {
 		// TODO Auto-generated method stub
 		
 	}

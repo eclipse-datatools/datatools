@@ -28,14 +28,14 @@ public interface ISQLToolsConnectListener
     public boolean okToClose(ConnectEvent event);
 
     /**
-     * The profile is about to connect
+     * The profile is about to close
      * 
      * @param event the connect event
      */
-    public void profileAboutToConnect(ConnectEvent event);
+    public void aboutToClose(ConnectEvent event);
 
     /**
-     * The profile is connected. There is no guarantee that all compnents (which depend on connectivity) are
+     * The profile is connected. There is no guarantee that all components (which depend on connectivity) are
      * successfully connected
      * 
      * @param event the connect event

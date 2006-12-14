@@ -262,7 +262,7 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         // fire all dmp connect listeners
         try
         {
-            _dmpConnectManager.fireProfileAboutToConnect(event);
+            _dmpConnectManager.fireAboutToClose(event);
         }
         catch (Exception e)
         {

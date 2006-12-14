@@ -65,12 +65,12 @@ public class SQLToolsConnectListenersManager
         return okToClose;
     }
 
-    public void fireProfileAboutToConnect(ConnectEvent event) throws CoreException
+    public void fireAboutToClose(ConnectEvent event) throws CoreException
     {
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsConnectListener) listeners[i]).profileAboutToConnect(event);
+            ((ISQLToolsConnectListener) listeners[i]).aboutToClose(event);
         }
     }
 
