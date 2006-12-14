@@ -101,13 +101,37 @@ final public class XPathPopulationUtil
 			}
 		}
 			
-		if( columnPath.startsWith( rootPath ))
+		if ( isDescendantOrSelf( columnPath, rootPath ) )
 		{
 			return columnPath.replaceFirst("\\Q"+rootPath+"\\E", "");
 		}else
 		{
 			return getXPathExpression( rootPath, columnPath );
 		}
+	}
+	
+	/**
+	 * Retrieves whether the candidate is DescendantOrSelf of the target
+	 * 
+	 * @param candidate
+	 * @param target
+	 * @return
+	 */
+	private static boolean isDescendantOrSelf( String candidate, String target )
+	{
+		if ( !candidate.startsWith( target ) )
+			return false;
+
+		String[] candidateFgt = candidate.split( UtilConstants.XPATH_SLASH );
+		String[] targetFgt = target.split( UtilConstants.XPATH_SLASH );
+
+		for ( int i = 0; i < targetFgt.length; i++ )
+		{
+			if ( !targetFgt[i].equals( candidateFgt[i] ) )
+				return false;
+		}
+
+		return true;
 	}
 
 	/**
