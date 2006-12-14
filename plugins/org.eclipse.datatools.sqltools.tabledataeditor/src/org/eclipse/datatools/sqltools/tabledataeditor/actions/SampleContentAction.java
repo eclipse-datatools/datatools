@@ -25,6 +25,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute.QueryOutputHelper;
@@ -63,6 +64,11 @@ public class SampleContentAction extends AbstractAction
         return this.wrapName(table.getSchema().getName()) + "." + this.wrapName(table.getName()); //$NON-NLS-1$
     }
 
+    private Database getDatabase (Schema schema)
+    {
+        return schema.getCatalog() == null ? schema.getDatabase() : schema.getCatalog().getDatabase();
+    }
+    
     public void selectionChanged(SelectionChangedEvent event)
     {
         super.selectionChanged(event);
@@ -107,7 +113,7 @@ public class SampleContentAction extends AbstractAction
             
             if (selectedObj instanceof Table)
             {
-                database = ((Table)selectedObj).getSchema().getCatalog().getDatabase();
+                database = getDatabase(((Table)selectedObj).getSchema());
                 if (connection == null)
                 {
                     connection = ((ICatalogObject) selectedObj).getConnection();
@@ -135,7 +141,7 @@ public class SampleContentAction extends AbstractAction
                 final Column column = (Column) selectedObj;
                 final String columnName = column.getName();
 
-                database = column.getTable().getSchema().getCatalog().getDatabase();
+                database = getDatabase(column.getTable().getSchema());
                 final DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry()
                         .getDefinition(database);
                 DataType datatype = column.getDataType();
