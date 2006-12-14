@@ -71,7 +71,10 @@ public class TestUtil
 		createTestFile_test7( path, delimiter );
 		createTestFile_test8( path, delimiter );
 		createTestFile_test9( path, delimiter );
-
+		createTestFile_test10( path, delimiter );
+		createTestFile_test11( path, delimiter );
+		createTestFile_test12( path, delimiter );
+		createTestFile_test13( path, delimiter );
 	}
 	
 	/**
@@ -668,6 +671,165 @@ public class TestUtil
 					+ "City\n";
 			String type = "STRING"
 					+ delimiter + "INT" + delimiter + "STRING\n";
+			String contant = "column1"
+					+ delimiter + "column2" + delimiter + "column3";
+
+			osw.write( header );
+			osw.write( type );
+			osw.write( contant );
+			osw.write( endOfLine );
+
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
+	private static void createTestFile_test10( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table10" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+
+			String header = "Name"
+					+ delimiter + "ID\"\"" + delimiter + "City\n";
+			String type = "STRING" + delimiter + "INT" + delimiter + "STRING\n";
+			String contant = "column1"
+					+ delimiter + "column2" + delimiter + "column3";
+
+			osw.write( header );
+			osw.write( type );
+			osw.write( contant );
+			osw.write( endOfLine );
+
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+
+	private static void createTestFile_test11( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table11" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+
+			String header = "\"Name\"\"\""
+					+ delimiter + "ID" + delimiter + "\"\"\"\"\"\"\n";
+			String type = "STRING" + delimiter + "INT" + delimiter + "STRING\n";
+			String contant = "column1"
+					+ delimiter + "column2" + delimiter + "column3";
+
+			osw.write( header );
+			osw.write( type );
+			osw.write( contant );
+			osw.write( endOfLine );
+
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
+	private static void createTestFile_test12( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table12" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+
+			String header = "Name"
+					+ delimiter + "ID" + delimiter + "\"\"\n";
+			String type = "STRING" + delimiter + "INT" + delimiter + "STRING\n";
+			String contant = "column1"
+					+ delimiter + "column2" + delimiter + "column3";
+
+			osw.write( header );
+			osw.write( type );
+			osw.write( contant );
+			osw.write( endOfLine );
+
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
+	private static void createTestFile_test13( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table13" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+
+			String header = "Name" + delimiter + "ID" + delimiter + "Test\"\"\n";
+			String type = "STRING" + delimiter + "INT" + delimiter + "STRING\n";
 			String contant = "column1"
 					+ delimiter + "column2" + delimiter + "column3";
 

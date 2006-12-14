@@ -83,13 +83,14 @@ public abstract class ResultSetMetaDataTestBase extends TestCase
 	{
 		try
 		{
-			new ResultSetMetaData( null, null, null );
+			new ResultSetMetaData( null );
 			assertTrue( false );
-			
 		}
 		catch ( OdaException e )
 		{
+			
 		}
+		
 	}
 
 	/**
