@@ -30,7 +30,8 @@ public abstract class QueryTestBase extends TestCase
 {
 
 	protected Connection connection = null;
-	protected Properties prop = null;
+	protected Properties defaltProp = null;
+	protected Properties propWithNoTypeLine = null;
 	protected IQuery statement = null;
 	protected IQuery statement_noTypeLine = null;
 	protected IQuery statement_noColumnNames = null;
@@ -80,7 +81,7 @@ public abstract class QueryTestBase extends TestCase
 						.getColumnTypeName( 3 )
 						.toUpperCase( )
 						.toUpperCase( ) );
-		int id = 0;
+		int id = 1;
 		while ( resultSet.next( ) )
 		{
 			assertEquals( resultSet.getRow( ), id++ );
@@ -95,7 +96,7 @@ public abstract class QueryTestBase extends TestCase
 	{
 		try
 		{
-			new FlatFileQuery( null, null, null, null, true, true );
+			new FlatFileQuery( null, null );
 
 			fail( "Should not arrive here" );
 		}
@@ -218,6 +219,46 @@ public abstract class QueryTestBase extends TestCase
 		{
 			
 		}
+		
+		try
+		{
+			statement.prepare( "select * from table10"
+					+ getSuffix( ) + getExtension( ) );
+			fail( "Should not arrive here." );
+		}
+		catch ( OdaException e )
+		{
+		}
+
+		try
+		{
+			statement.prepare( "select * from table11"
+					+ getSuffix( ) + getExtension( ) );
+		}
+		catch ( OdaException e )
+		{
+			assertTrue( false );
+		}
+		
+		try
+		{
+			statement.prepare( "select * from table12"
+					+ getSuffix( ) + getExtension( ) );
+		}
+		catch ( OdaException e )
+		{
+			assertTrue( false );
+		}
+		
+		try
+		{
+			statement.prepare( "select * from table13"
+					+ getSuffix( ) + getExtension( ) );
+			fail( "Should not arrive here." );
+		}
+		catch ( OdaException e )
+		{
+		}
 
 		// re-setUp the connection properties where the column names are
 		// indicated as none
@@ -262,6 +303,7 @@ public abstract class QueryTestBase extends TestCase
 		{
 			assertTrue( false );
 		}
+		
 	}
 
 	/**
@@ -322,18 +364,23 @@ public abstract class QueryTestBase extends TestCase
 	protected void setUpwithDefaultProperties( ) throws OdaException
 	{
 		connection = new Connection( );
-		prop = new Properties( );
-		prop.setProperty( CommonConstants.CONN_HOME_DIR_PROP, TestUtil.getHomeDir( ) );
-		prop.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
-		prop.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+		defaltProp = new Properties( );
+		defaltProp.setProperty( CommonConstants.CONN_HOME_DIR_PROP, TestUtil.getHomeDir( ) );
+		defaltProp.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
+		defaltProp.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 				getDelimiterName( ) );
-		connection.open( prop );
-
-		Connection connection_noTypeLine = new Connection( );
-		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
-		connection_noTypeLine.open( prop );
-
+		connection.open( defaltProp );
 		statement = connection.newQuery( "FLATFILE" );
+		
+		Connection connection_noTypeLine = new Connection( );
+		propWithNoTypeLine = new Properties( );
+		propWithNoTypeLine.setProperty( CommonConstants.CONN_HOME_DIR_PROP, TestUtil.getHomeDir( ) );
+		propWithNoTypeLine.setProperty( CommonConstants.CONN_CHARSET_PROP, TestUtil.DATASET );
+		propWithNoTypeLine.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+				getDelimiterName( ) );
+		propWithNoTypeLine.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
+		connection_noTypeLine.open( propWithNoTypeLine );
+
 		statement_noTypeLine = connection_noTypeLine.newQuery( "FLATFILE" );
 	}
 
@@ -341,16 +388,16 @@ public abstract class QueryTestBase extends TestCase
 	// the CSV file
 	protected void setUpWithNoColumnNameSpecified( ) throws OdaException
 	{
-		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+		defaltProp.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
 				CommonConstants.INC_COLUMN_NAME_NO );
-		connection.open( prop );
+		connection.open( defaltProp );
 
 		Connection connection_noTypeLine = new Connection( );
-		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
-		connection_noTypeLine.open( prop );
+		defaltProp.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
+		connection_noTypeLine.open( defaltProp );
 
 		Connection connection_noColumnNames = new Connection( );
-		connection_noColumnNames.open( prop );
+		connection_noColumnNames.open( defaltProp );
 
 		statement = connection.newQuery( "FLATFILE" );
 		statement_noTypeLine = connection_noTypeLine.newQuery( "FLATFILE" );
@@ -361,13 +408,13 @@ public abstract class QueryTestBase extends TestCase
 	// CSV file
 	protected void setUpwithColunmNameSpecified( ) throws OdaException
 	{
-		prop.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+		defaltProp.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
 				CommonConstants.INC_COLUMN_NAME_YES );
-		connection.open( prop );
+		connection.open( defaltProp );
 
 		Connection connection_noTypeLine = new Connection( );
-		prop.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
-		connection_noTypeLine.open( prop );
+		defaltProp.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP, "No" );
+		connection_noTypeLine.open( defaltProp );
 
 		statement = connection.newQuery( "FLATFILE" );
 		statement_noTypeLine = connection_noTypeLine.newQuery( "FLATFILE" );

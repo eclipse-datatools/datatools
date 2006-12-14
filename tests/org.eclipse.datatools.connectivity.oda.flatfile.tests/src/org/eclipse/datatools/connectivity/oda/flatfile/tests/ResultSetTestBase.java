@@ -118,10 +118,10 @@ public abstract class ResultSetTestBase extends TestCase
 		statement.prepare( "select INT0_COL from table1"
 				+ getSuffix( ) + getExtension( ) );
 		IResultSet rs = statement.executeQuery( );
-		int counter = -1;
+		int counter = 0;
 		while ( rs.next( ) )
 			assertEquals( rs.getRow( ), ++counter );
-		assertEquals( counter, 1233 );
+		assertEquals( counter, 1234 );
 	}
 
 	/**
