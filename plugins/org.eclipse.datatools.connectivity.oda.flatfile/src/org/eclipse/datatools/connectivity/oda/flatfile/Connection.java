@@ -28,16 +28,8 @@ import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
 public class Connection implements IConnection
 {
+	private Properties connProperties;
 
-	private String homeDir = null;
-	private String charSet = null;
-
-	// Default type of delimiter is comma
-	private String delimiter = null;
-
-	// Default connection property with column names included
-	private boolean includeColumnNames = true;
-	private boolean includeTypeLine = true;
 	private boolean isOpen = false;
 
 	/*
@@ -48,9 +40,9 @@ public class Connection implements IConnection
 		if ( connProperties == null )
 			throw new OdaException( Messages.getString( "connection_CONNECTION_PROPERTIES_MISSING" ) ); //$NON-NLS-1$
 
-		populateHomeDir( connProperties );
-
-		populateCharSet( connProperties );
+		this.connProperties = connProperties;
+		
+		validateHomeDir( connProperties );
 
 		populateDelimiter( connProperties );
 
@@ -65,10 +57,10 @@ public class Connection implements IConnection
 	 * @param connProperties
 	 * @throws OdaException
 	 */
-	private void populateHomeDir( Properties connProperties )
+	private void validateHomeDir( Properties connProperties )
 			throws OdaException
 	{
-		homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
+		String homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
 		File file = new File( homeDir );
 		if ( file.exists( ) )
 			this.isOpen = true;
@@ -80,36 +72,23 @@ public class Connection implements IConnection
 	/**
 	 * 
 	 * @param connProperties
-	 */
-	private void populateCharSet( Properties connProperties )
-	{
-		charSet = connProperties.getProperty( CommonConstants.CONN_CHARSET_PROP );
-	}
-
-	/**
-	 * 
-	 * @param connProperties
 	 * @throws OdaException
 	 */
 	private void populateDelimiter( Properties connProperties )
 			throws OdaException
 	{
-		delimiter = CommonConstants.getDelimiterValue( ( connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE ) != null
-				? connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE )
-				: CommonConstants.DELIMITER_COMMA ) );
-
-		validateDelimiter( );
-	}
-
-	/**
-	 * 
-	 * @throws OdaException
-	 */
-	private void validateDelimiter( ) throws OdaException
-	{
-		if ( delimiter == null )
-			throw new OdaException( Messages.getString( "Unsupported_Delimiter" ) //$NON-NLS-1$
-			);
+		String delimiterName = connProperties.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
+		if ( delimiterName == null )
+			connProperties.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+					CommonConstants.DELIMITER_COMMA );
+		else
+		{
+			if ( CommonConstants.isValidDelimiterName( delimiterName ) )
+				connProperties.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
+						delimiterName );
+			else
+				throw new OdaException( Messages.getString( "Unsupported_Delimiter" ) );
+		}
 	}
 
 	/**
@@ -118,13 +97,15 @@ public class Connection implements IConnection
 	 */
 	private void populateInclColumnNames( Properties connProperties )
 	{
+		boolean includeColumnNames = true;
 		String inclColumnNames = connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		if ( inclColumnNames != null && inclColumnNames.trim( ).length( ) > 0 )
 			includeColumnNames = inclColumnNames.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO )
 					? false : true;
-		else
-			// default value
-			includeColumnNames = true;
+		
+		connProperties.setProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP,
+					includeColumnNames ? CommonConstants.INC_COLUMN_NAME_YES
+							: CommonConstants.INC_COLUMN_NAME_NO );
 	}
 
 	/**
@@ -133,10 +114,15 @@ public class Connection implements IConnection
 	 */
 	private void populateInclTypeLine( Properties connProperties )
 	{
+		boolean includeTypeLine = true;
 		String inclTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP );
 		if ( inclTypeLine != null && inclTypeLine.trim( ).length( ) > 0 )
 			includeTypeLine = inclTypeLine.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO )
 					? false : true;
+		
+		connProperties.setProperty( CommonConstants.CONN_INCLTYPELINE_PROP,
+					includeTypeLine ? CommonConstants.INC_TYPE_LINE_YES
+							: CommonConstants.INC_TYPE_LINE_NO );
 	}
 
 	/*
@@ -152,7 +138,6 @@ public class Connection implements IConnection
 	 */
 	public void close( ) throws OdaException
 	{
-		this.homeDir = null;
 		this.isOpen = false;
 	}
 
@@ -181,13 +166,7 @@ public class Connection implements IConnection
 		if ( !isOpen( ) )
 			throw new OdaException( Messages.getString( "common_CONNECTION_HAS_NOT_OPEN" ) ); //$NON-NLS-1$
 
-		return new FlatFileQuery( this.homeDir,
-				this,
-				charSet,
-				this.delimiter,
-				this.includeColumnNames,
-				this.includeTypeLine );
-
+		return new FlatFileQuery( connProperties, this );
 	}
 
 	/*

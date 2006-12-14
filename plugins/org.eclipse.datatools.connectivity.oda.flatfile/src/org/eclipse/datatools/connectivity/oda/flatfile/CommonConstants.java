@@ -29,7 +29,7 @@ public final class CommonConstants
 
 	public static final String DELIMITER_COMMA = "COMMA"; //$NON-NLS-1$
 	public static final String DELIMITER_COMMA_VALUE = ",";
-	// added for CSV seperated by semicolon
+	// added for flatfiles seperated by semicolon
 	public static final String DELIMITER_SEMICOLON = "SEMICOLON"; //$NON-NLS-1$
 	public static final String DELIMITER_SEMICOLON_VALUE = ";";
 	public static final String DELIMITER_PIPE = "PIPE";
@@ -80,4 +80,25 @@ public final class CommonConstants
 			return null;
 
 	}
+	
+	/**
+	 * To see if the delimiter name given is legal or not
+	 * 
+	 * @param delimiterName
+	 * @return
+	 */
+	public static boolean isValidDelimiterName( String delimiterName )
+	{
+		if ( delimiterName.equalsIgnoreCase( CommonConstants.DELIMITER_COMMA ) )
+			return true;
+		else if ( delimiterName.equalsIgnoreCase( CommonConstants.DELIMITER_SEMICOLON ) )
+			return true;
+		else if ( delimiterName.equalsIgnoreCase( CommonConstants.DELIMITER_PIPE ) )
+			return true;
+		else if ( delimiterName.equalsIgnoreCase( CommonConstants.DELIMITER_TAB ) )
+			return true;
+		else
+			return false;
+	}
+	
 }

@@ -16,7 +16,6 @@ package org.eclipse.datatools.connectivity.oda.flatfile;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
-import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
 
 /**
  * Flat file data provider's implementation of the ODA IResultSetMetaData
@@ -34,44 +33,26 @@ public class ResultSetMetaData implements IResultSetMetaData
 	/**
 	 * Constructor
 	 * 
-	 * @param colNames
-	 * @param colTypes
-	 * @param colLabels
-	 * @throws OdaException
+	 * @param rsmdHelper
+	 * @throws OdaException 
 	 */
-	public ResultSetMetaData( String[] colNames, String[] colTypes, String[] colLabels )
-			throws OdaException
+	public ResultSetMetaData( ResultSetMetaDataHelper rsmdHelper ) throws OdaException
 	{
-		if ( colNames == null )
-			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
-
-		this.columnNames = colNames;
-		this.columnTypeNames = colTypes;
-		this.columnLabels = colLabels;
-		this.originalColumnNames = colNames;
+		if( rsmdHelper == null )
+			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) );
+		
+		this.columnNames = rsmdHelper.getColumnNames( );
+		this.columnTypeNames = rsmdHelper.getColumnTypes( );
+		this.originalColumnNames = rsmdHelper.getOriginalColumnNames( );
+		this.columnLabels = rsmdHelper.getColumnLabels( );
 
 		trimMetaDataStrings( );
 	}
 
 	/**
-	 * Constructor
 	 * 
-	 * @param savedSelectedColumnsInfoString
-	 *            the saved selected columns information string
-	 * 
+	 *
 	 */
-	ResultSetMetaData( String savedSelectedColumnsInfoString )
-	{
-		assert savedSelectedColumnsInfoString !=null;
-		this.columnNames = ColumnsInfoUtil.getColumnNames( savedSelectedColumnsInfoString );
-		this.columnTypeNames = ColumnsInfoUtil.getColumnTypeNames( savedSelectedColumnsInfoString );
-		this.originalColumnNames = ColumnsInfoUtil.getOriginalColumnNames( savedSelectedColumnsInfoString );
-		this.columnLabels = this.columnNames;
-
-		trimMetaDataStrings( );
-
-	}
-
 	private void trimMetaDataStrings( )
 	{
 		assert columnNames.length == columnTypeNames.length
@@ -95,29 +76,6 @@ public class ResultSetMetaData implements IResultSetMetaData
 		return this.columnNames.length;
 	}
 
-	String getOriginalColumnName( int index ) throws OdaException
-	{
-		validateColumnIndex( index );
-		if ( originalColumnNames == null )
-			originalColumnNames = columnNames;
-
-		return this.originalColumnNames[index - 1].trim( );
-	}
-
-	String getOriginalColumnName( String columnName )
-	{
-		String originName = null;
-
-		for ( int i = 0; i < columnNames.length; i++ )
-		{
-			if ( columnName.equals( columnNames[i] ) )
-			{
-				originName = originalColumnNames[i];
-			}
-		}
-
-		return originName;
-	}
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnName(int)

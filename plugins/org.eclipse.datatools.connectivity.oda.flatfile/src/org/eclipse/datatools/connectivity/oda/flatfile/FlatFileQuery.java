@@ -12,18 +12,15 @@
 package org.eclipse.datatools.connectivity.oda.flatfile;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IConnection;
@@ -34,6 +31,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.FlatFileDataReader;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
 
 /**
@@ -47,15 +45,17 @@ public class FlatFileQuery implements IQuery
 	private static final String NAME_LITERAL = "NAME"; //$NON-NLS-1$
 	private static final String TYPE_LITERAL = "TYPE"; //$NON-NLS-1$
 
-	// The home directory specified in associated connection
-	private String homeDirectory = null;
+	// whether the CSV file has the column names
+	private boolean hasColumnNames;
+
+	// Whether to use 2nd line as Type line
+	private boolean hasTypeLine ;
+
+	//the properties of the connection
+	private Properties connProperties;
 
 	// The table that the query operates on
 	private String currentTableName = null;
-
-	// The temporary column name created
-	// if there is no column name line in the table
-	private String[] tempColumnNames = null;
 
 	// The max number of rows that can be read
 	private int maxRows = 0;
@@ -66,19 +66,53 @@ public class FlatFileQuery implements IQuery
 	// The meta data of the query's result set.
 	// It is available only after a query is prepared.
 	private IResultSetMetaData resultSetMetaData = null;
+	
+	private ResultSetMetaDataHelper resultSetMetaDataHelper = null;
 
-	// The charset value to decode the flat file data
-	private String charSet = null;
+	/**
+	 * Constructor
+	 * 
+	 * @param connProperties
+	 * @param host
+	 * @throws OdaException 
+	 */
+	public FlatFileQuery(Properties connProperties, IConnection host ) throws OdaException
+	{
+		if ( connProperties == null
+				|| connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP ) == null
+				|| host == null )
+			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
+		this.connProperties = connProperties;
+		this.connection = host;
+		extractsHasColumnNamesInfo( );
+		extractsHasColumnTypeLineInfo( );
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	private void extractsHasColumnNamesInfo( )
+	{
+		this.hasColumnNames = connProperties.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP )
+				.equalsIgnoreCase( CommonConstants.INC_COLUMN_NAME_NO ) 
+				? false
+				: true;
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	private void extractsHasColumnTypeLineInfo( )
+	{
+		this.hasTypeLine = connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP )
+				.equalsIgnoreCase( CommonConstants.INC_TYPE_LINE_NO ) 
+				? false
+				: true;
+	}
 
-	// whether the CSV file has the column names
-	private boolean hasColumnNames = true;
-
-	// Whether to use 2nd line as Type line
-	private boolean hasTypeLine = true;
-
-	// The delimiter used
-	private char delimiter = ',';
-
+	
 	/**
 	 * 
 	 * @param homeDir
@@ -89,7 +123,7 @@ public class FlatFileQuery implements IQuery
 	 * @param inclTypeLine
 	 * @throws OdaException
 	 */
-	public FlatFileQuery( String homeDir, IConnection host, String charSet,
+/*	public FlatFileQuery( String homeDir, IConnection host, String charSet,
 			String delimiter, boolean inclColumnNames, boolean inclTypeLine )
 			throws OdaException
 	{
@@ -101,7 +135,7 @@ public class FlatFileQuery implements IQuery
 		this.delimiter = delimiter.charAt( 0 );
 		this.hasColumnNames = inclColumnNames;
 		this.hasTypeLine = inclTypeLine;
-	}
+	}*/
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#prepare(java.lang.String)
@@ -144,7 +178,6 @@ public class FlatFileQuery implements IQuery
 	public void close( ) throws OdaException
 	{
 		currentTableName = null;
-		homeDirectory = null;
 		maxRows = 0;
 		connection = null;
 		resultSetMetaData = null;
@@ -179,15 +212,14 @@ public class FlatFileQuery implements IQuery
 	 */
 	public IResultSet executeQuery( ) throws OdaException
 	{
-		// fetch data from file to a Vector
-		Vector v = fetchQueriedDataFromFileToVector( );
-
-		// initialize a String array with data from a Vector
-		String[][] rowSet = copyDataFromVectorToTwoDimensionArray( v );
-
-		return new ResultSet( rowSet, this.resultSetMetaData );
+		return new ResultSet( new FlatFileDataReader( this.connProperties,
+				this.currentTableName,
+				this.maxRows,
+				this.resultSetMetaData,
+				this.resultSetMetaDataHelper ),
+				this.resultSetMetaData );
 	}
-
+	
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setInt(java.lang.String,
 	 *      int)
@@ -442,10 +474,14 @@ public class FlatFileQuery implements IQuery
 			}
 			else
 			{
-				originalColumnNames = createTempColumnNames( getColumnCount( tableName ) );
+				originalColumnNames = createTempColumnNames( ( new FlatFileDataReader( this.connProperties,
+						tableName,
+						0,
+						null,
+						null ) ).getColumnCount( ) );
 			}
 			
-			validateColumnName( getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( preparedColumnNames ) ) ),
+			validateColumnName( FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( preparedColumnNames ) ) ),
 					originalColumnNames );
 		}
 	}
@@ -540,7 +576,7 @@ public class FlatFileQuery implements IQuery
 		String selectedColumns = querySelectAndFromFragments[0];
 		if ( !isWildCard( selectedColumns ) )
 		{
-			String[] columns = getStringArrayFromVector( getQueryColumnNamesVector( selectedColumns ) );
+			String[] columns = FlatFileDataReader.getStringArrayFromVector( getQueryColumnNamesVector( selectedColumns ) );
 
 			for ( int i = 0; i < columns.length; i++ )
 			{
@@ -728,53 +764,6 @@ public class FlatFileQuery implements IQuery
 	}
 
 	/**
-	 * Find the absolute path of the file in which a specific table resides.
-	 * 
-	 * @param tableName
-	 *            the name of table
-	 * @return the String which contains the absolute path of that table
-	 * @throws OdaException
-	 *             if the table name cannot be found
-	 */
-	private String findDataFileAbsolutePath( String tableName )
-			throws OdaException
-	{
-		File file = new File( this.homeDirectory
-				+ File.separator + tableName.trim( ) );
-		if ( !file.exists( ) )
-			throw new OdaException( Messages.getString( "query_invalidTableName" ) + tableName ); //$NON-NLS-1$
-		return file.getAbsolutePath( );
-	}
-
-	/**
-	 * 
-	 * @param tableName
-	 * @return
-	 * @throws OdaException
-	 */
-	private int getColumnCount( String tableName ) throws OdaException
-	{
-		int count;
-		try
-		{
-			String dataFilePath = findDataFileAbsolutePath( tableName );
-			this.examCharset( dataFilePath );
-			FileInputStream fis = new FileInputStream( dataFilePath );
-			InputStreamReader isr = new InputStreamReader( fis, this.charSet );
-			FlatFileBufferedReader br = new FlatFileBufferedReader( isr );
-			count = splitDoubleQuotedString( br.readLine( ) ).size( );
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
-					+ findDataFileAbsolutePath( tableName ) );
-		}
-
-		return count;
-
-	}
-
-	/**
 	 * 
 	 * @param columnCount
 	 * @return
@@ -787,8 +776,6 @@ public class FlatFileQuery implements IQuery
 		{
 			tempColumnNames[i] = "COLUMN_" + ( i + 1 );
 		}
-
-		this.tempColumnNames = tempColumnNames;
 
 		return tempColumnNames;
 	}
@@ -822,14 +809,13 @@ public class FlatFileQuery implements IQuery
 	private String[] discoverActualColumnMetaData( String tableName,
 			String metaDataType ) throws OdaException
 	{
+		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connProperties,
+				tableName,
+				0,
+				null,
+				null );
 		try
 		{
-			String dataFilePath = findDataFileAbsolutePath( tableName );
-			this.examCharset( dataFilePath );
-			FileInputStream fis = new FileInputStream( dataFilePath );
-			InputStreamReader isr = new InputStreamReader( fis, this.charSet );
-			FlatFileBufferedReader br = new FlatFileBufferedReader( isr );
-
 			if ( !( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) || metaDataType.trim( )
 					.equalsIgnoreCase( TYPE_LITERAL ) ) )
 				throw new OdaException( Messages.getString( "query_ARGUMENT_ERROR" ) ); //$NON-NLS-1$
@@ -839,18 +825,18 @@ public class FlatFileQuery implements IQuery
 			// line
 			if ( metaDataType.trim( ).equalsIgnoreCase( TYPE_LITERAL ) )
 			{
-				while ( isEmptyRow( br.readLine( ) ) )
+				while ( FlatFileDataReader.isEmptyRow( ffdsr.readLine( ) ) )
 					continue;
 			}
 			// Skip all the empty lines until reach the first line
 			String columnNameLine;
-			while ( isEmptyRow( columnNameLine = br.readLine( ) ) )
+			while ( FlatFileDataReader.isEmptyRow( columnNameLine = ffdsr.readLine( ) ) )
 				continue;
 
-			String[] result = getColumnNameArray( columnNameLine,
+			String[] result = ffdsr.getColumnNameArray( columnNameLine,
 					metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) );
 
-			br.close( );
+			ffdsr.clearBufferedReader( );
 
 			if ( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) )
 				this.validateUniqueName( result );
@@ -863,23 +849,9 @@ public class FlatFileQuery implements IQuery
 		catch ( IOException e )
 		{
 			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
-					+ findDataFileAbsolutePath( tableName ) );
+					+ ffdsr.findDataFileAbsolutePath( ) );
 		}
 
-	}
-
-	/**
-	 * 
-	 * @param row
-	 * @return
-	 * @throws OdaException
-	 */
-	private boolean isEmptyRow( String row ) throws OdaException
-	{
-		if ( row == null )
-			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
-
-		return row.trim( ).length( ) <= 0;
 	}
 
 	/**
@@ -955,7 +927,7 @@ public class FlatFileQuery implements IQuery
 	private void validateColumnTypeConsistency( String[] aCT )
 			throws OdaException
 	{
-		if ( !hasTypeLine )
+		if ( !this.hasTypeLine )
 			return;
 		for ( int i = 0; i < aCT.length; i++ )
 		{
@@ -985,279 +957,6 @@ public class FlatFileQuery implements IQuery
 	}
 
 	/**
-	 * Return the 0-based position of a value in the given array
-	 * 
-	 * @param value
-	 * @param array
-	 * @return
-	 * @throws OdaException
-	 */
-	private int findLocationOfValueInStringArray( String value, String[] array )
-			throws OdaException
-	{
-		int result = -1;
-		try
-		{
-			for ( int i = 0; i < array.length; i++ )
-			{
-				if ( value.trim( ).equalsIgnoreCase( array[i].trim( ) ) )
-				{
-					result = i;
-					break;
-				}
-			}
-			return result;
-		}
-		catch ( Exception e )
-		{
-			throw new OdaException( Messages.getString( "query_COLUMN_NAME_ERROR" ) ); //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * Fetch queried data from source file and return in a vector
-	 * 
-	 * @return a Vector which contains queried data
-	 * @throws OdaException
-	 */
-	private Vector fetchQueriedDataFromFileToVector( ) throws OdaException
-	{
-		Vector result = new Vector( );
-
-		try
-		{
-			String dataFilePath = findDataFileAbsolutePath( currentTableName );
-			if ( charSet == null || charSet.trim( ).length( ) == 0 )
-				this.examCharset( dataFilePath );
-			FileInputStream fis = new FileInputStream( dataFilePath );
-
-			InputStreamReader isr = new InputStreamReader( fis, this.charSet );
-
-			FlatFileBufferedReader br = new FlatFileBufferedReader( isr );
-
-			String[] originalColumnNames = null;
-
-			// make a copy of column names if there are
-			if ( hasColumnNames )
-			{
-				String columeNameLine;
-				while ( isEmptyRow( columeNameLine = br.readLine( ) ) )
-				{
-					continue;
-				}
-				originalColumnNames = getColumnNameArray( columeNameLine, true );
-			}
-			else
-				originalColumnNames = this.tempColumnNames;
-
-			// skip Type information. The type information is in the second line
-			// of file
-			if ( hasTypeLine )
-			{
-				while ( isEmptyRow( br.readLine( ) ) )
-					continue;
-			}
-
-			// temporary variable which is used to store the data of a row
-			// fetched from a flat file
-			String aLine = null;
-
-			int fetchCounter = 0;
-			while ( ( aLine = br.readLine( ) ) != null
-					&& ( this.maxRows <= 0 ? true : fetchCounter < this.maxRows ) )
-			{
-
-				if ( !isEmptyRow( aLine ) )
-				{
-					fetchCounter++;
-					result.add( fetchQueriedDataFromRow( aLine,
-							originalColumnNames ) );
-				}
-				// end of the file
-				else
-					continue;
-			}
-			br.close( );
-			return result;
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( e.getMessage( ) );
-		}
-	}
-
-	/**
-	 * Fetch data from a row.
-	 * 
-	 * @param aRow
-	 *            a row read from table
-	 * @param originalColumnNames
-	 *            an array that contains all column names of a table
-	 * @return an array of data values for each specified column names from a
-	 *         row. The "specified column names" are obtained from meta data
-	 * @throws OdaException
-	 */
-	private String[] fetchQueriedDataFromRow( String aRow,
-			String[] originalColumnNames ) throws OdaException
-	{
-		String[] sArray = new String[this.getMetaData( ).getColumnCount( )];
-		// Ignore all quotes which is used in the input file for the
-		// clarity of the data
-		Vector vTemp = splitDoubleQuotedString( aRow );
-		ResultSetMetaData metadata = (ResultSetMetaData) getMetaData( );
-		for ( int i = 0; i < sArray.length; i++ )
-		{
-			int location = findLocationOfValueInStringArray( metadata.getOriginalColumnName( metadata.getColumnName( i + 1 ) ),
-					originalColumnNames );
-			if ( location != -1 )
-			{
-				if ( location >= vTemp.size( ) )
-					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
-				sArray[i] = vTemp.elementAt( location ).toString( );
-			}
-		}
-		return sArray;
-	}
-
-	/**
-	 * 
-	 * @param aRow
-	 * @return
-	 * @throws OdaException
-	 */
-	private Vector splitDoubleQuotedString( String aRow ) throws OdaException
-	{
-		Vector result = new Vector( );
-		char[] chars = aRow.toCharArray( );
-
-		boolean startDoubleQuote = false;
-		boolean finishAnElement = false;
-		String currentString = "";
-
-		for ( int i = 0; i < chars.length; i++ )
-		{
-			if ( i < chars.length - 1 )
-			{
-				// "
-				if ( chars[i] == '"' )
-				{
-					// ""
-					if ( chars[i + 1] == '"' )
-					{
-						if ( startDoubleQuote )
-						{
-							currentString += '"';
-							i += 1;
-							continue;
-						}
-						else
-						{
-							// """
-							if ( i < chars.length - 2 && chars[i + 2] == '"' )
-							{
-								currentString += '"';
-								i += 2;
-								startDoubleQuote = !startDoubleQuote;
-								continue;
-							}
-							else
-							{
-								i += 1;
-								finishAnElement = true;
-								continue;
-							}
-						}
-					}
-					// "*
-					else
-					{
-						startDoubleQuote = !startDoubleQuote;
-						if ( !startDoubleQuote )
-						{
-							finishAnElement = true;
-							continue;
-						}
-					}
-				}
-				else if ( chars[i] == this.delimiter
-						&& !startDoubleQuote )
-				{
-					result.add( currentString );
-					currentString = "";
-					finishAnElement = false;
-				}
-				else
-				{
-					if ( finishAnElement == true && chars[i] != ' ' )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
-					currentString += chars[i];
-				}
-			}
-			else
-			{
-				if ( chars[i] == '"' )
-				{
-					if ( !startDoubleQuote )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
-					else
-					{
-						result.add( currentString );
-						startDoubleQuote = !startDoubleQuote;
-						finishAnElement = true;
-					}
-				}
-				else if ( chars[i] == this.delimiter )
-				{
-					result.add( currentString );
-					result.add( "" );
-					finishAnElement = false;
-				}
-				else
-				{
-					currentString += chars[i];
-					result.add( currentString );
-					finishAnElement = false;
-				}
-
-			}
-		}
-		
-		if(startDoubleQuote && !finishAnElement)
-			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
-		
-		return result;
-	}
-
-	/**
-	 * Feed the row data from a Vector to a two-dimension array. The string
-	 * value is trimmed before being copied into array.
-	 * 
-	 * @param v
-	 * @return a String two dimension array with each horizontal array contains
-	 *         a row
-	 * @throws OdaException
-	 */
-	private String[][] copyDataFromVectorToTwoDimensionArray( Vector v )
-			throws OdaException
-	{
-		String[][] rowSet = new String[v.size( )][this.resultSetMetaData.getColumnCount( )];
-		for ( int i = 0; i < v.size( ); i++ )
-		{
-			String[] temp = (String[]) v.elementAt( i );
-			for ( int j = 0; j < temp.length; j++ )
-			{
-				if ( temp[j] != null )
-					rowSet[i][j] = temp[j].trim( );
-				else
-				{
-					throw new OdaException( Messages.getString( "data_read_error" ) );
-				}
-			}
-		}
-		return rowSet;
-	}
-
-	/**
 	 * Prepare the meta data which will be used in execution of a query text. It
 	 * sets the value of two member variables: resultSetMetaData and
 	 * currentTableName
@@ -1273,18 +972,20 @@ public class FlatFileQuery implements IQuery
 		// the name of table against which the query will be executed
 		String tableName = getPreparedTableNames( queryFragments );
 
+		FlatFileDataReader ffdsr = new FlatFileDataReader( this.connProperties , tableName, 0, null, null );
+		
 		// the array that contains the actual column names read from data file
-		String[] allColumnNames = hasColumnNames
+		String[] allColumnNames = this.hasColumnNames
 				? discoverActualColumnMetaData( tableName, NAME_LITERAL )
-				: createTempColumnNames( getColumnCount( tableName ) );
+				: createTempColumnNames( ffdsr.getColumnCount( ) );
 
 		// the array that contains the actual data type names read from data
 		// file
 		String[] allColumnTypes;
-
-		allColumnTypes = hasTypeLine ? discoverActualColumnMetaData( tableName,
-				TYPE_LITERAL )
-				: createTempColumnTypes( getColumnCount( tableName ) );
+		
+		allColumnTypes = this.hasTypeLine
+				? discoverActualColumnMetaData( tableName, TYPE_LITERAL )
+				: createTempColumnTypes( ffdsr.getColumnCount( ) );
 
 		// the array that contains the column names read from command
 		String[] queryColumnNames = null;
@@ -1296,34 +997,36 @@ public class FlatFileQuery implements IQuery
 			queryColumnNames = allColumnNames;
 			queryColumnTypes = allColumnTypes;
 			queryColumnLables = allColumnNames;
-			this.resultSetMetaData = new ResultSetMetaData( queryColumnNames,
+			this.resultSetMetaDataHelper = new ResultSetMetaDataHelper(queryColumnNames,
 					queryColumnTypes,
 					queryColumnLables );
+			this.resultSetMetaData = new ResultSetMetaData( this.resultSetMetaDataHelper );
 		}
 		else
 		{
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
 			{
-				queryColumnNames = getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
+				queryColumnNames = FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
 				
-				queryColumnTypes = hasTypeLine
+				queryColumnTypes = this.hasTypeLine
 						? getQueryColumnTypes( allColumnNames,
 								allColumnTypes,
 								queryColumnNames )
 						: createTempColumnTypes( queryColumnNames.length );
-				queryColumnLables = hasColumnNames
+				queryColumnLables = this.hasColumnNames
 						? getColumnLabels( queryFragments ) : queryColumnNames;
 				if ( queryColumnLables == null )
 					queryColumnLables = queryColumnNames;
-
-				this.resultSetMetaData = new ResultSetMetaData( queryColumnNames,
+				this.resultSetMetaDataHelper = new ResultSetMetaDataHelper( queryColumnNames,
 						queryColumnTypes,
 						queryColumnLables );
+				this.resultSetMetaData = new ResultSetMetaData( this.resultSetMetaDataHelper );
 			}
 			else
 			{
-				this.resultSetMetaData = new ResultSetMetaData( savedSelectedColInfo );
+				this.resultSetMetaDataHelper = new ResultSetMetaDataHelper( savedSelectedColInfo );
+				this.resultSetMetaData = new ResultSetMetaData( this.resultSetMetaDataHelper );
 
 			}
 
@@ -1331,7 +1034,7 @@ public class FlatFileQuery implements IQuery
 
 		this.currentTableName = tableName;
 	}
-
+	
 	/**
 	 * Returns the array that contains the types of column names read from a
 	 * query text.
@@ -1347,7 +1050,7 @@ public class FlatFileQuery implements IQuery
 	private String[] getQueryColumnTypes( String[] allColumnNames,
 			String[] allColumnTypes, String[] queryColumnNames )
 	{
-		if ( !hasTypeLine )
+		if ( !this.hasTypeLine )
 			return null;
 
 		// the array that contains the types of column names read from a query
@@ -1408,118 +1111,11 @@ public class FlatFileQuery implements IQuery
 	}
 
 	/**
-	 * If Charset is not set (that is, of null or empty value), test whether the
-	 * file is encoded with "UTF-16LE" or "UTF-16BE". If neither, then treat
-	 * file as using default "UTF-8"
-	 */
-	private void examCharset( String filepath ) throws OdaException,
-			IOException
-	{
-		if ( this.charSet != null && this.charSet.length( ) > 0 )
-			return;
-		FileInputStream fis = new FileInputStream( filepath );
-		byte[] byteMarker = new byte[2];
-		fis.read( byteMarker );
-		// file encoded using UTF-16LE sometimes have two bytes prefix
-		// -1, -2
-		// file encoded using UTF-16BE sometimes have two bytes prefix
-		// -2, -1
-		if ( byteMarker[0] == -1 && byteMarker[1] == -2 )
-			this.charSet = "UTF-16LE"; //$NON-NLS-1$
-		else if ( byteMarker[0] == -2 && byteMarker[1] == -1 )
-			this.charSet = "UTF-16BE"; //$NON-NLS-1$
-		else
-			this.charSet = CommonConstants.CONN_DEFAULT_CHARSET;
-		fis.close( );
-	}
-
-	/**
-	 * 
-	 * @param line
-	 * @param isFirstLine
-	 * @return
-	 * @throws OdaException
-	 */
-	private String[] getColumnNameArray( String line, boolean isFirstLine )
-			throws OdaException
-	{
-		if ( line == null )
-			throw new OdaException( Messages.getString( "common_CANNOT_FIND_COLUMN" ) ); //$NON-NLS-1$
-		String[] result = null;
-		if ( isFirstLine )
-		{
-			try
-			{
-				if ( CommonConstants.CONN_DEFAULT_CHARSET.equals( charSet ) )
-				{
-					byte[] firstLineByteCodes;
-					firstLineByteCodes = line.getBytes( charSet );
-					if ( isUTF8BOMFormat( firstLineByteCodes ) )
-						line = line.substring( 1 );
-				}
-				// result = line.split( "\\Q"+this.delimiter+"\\E" );
-				result = getStringArrayFromVector( splitDoubleQuotedString( line ) );
-			}
-			catch ( UnsupportedEncodingException e )
-			{
-				throw new OdaException( e );
-			}
-		}
-		else
-		{
-			// result = line.split( "\\Q"+this.delimiter+"\\E" );
-			result = getStringArrayFromVector( splitDoubleQuotedString( line ) );
-
-		}
-
-		return result;
-	}
-
-	/**
-	 * 
-	 * @param vector
-	 * @return
-	 */
-	private String[] getStringArrayFromVector( Vector vector )
-	{
-		String[] array = null;
-		if ( vector != null )
-		{
-			array = new String[vector.size( )];
-			for ( int i = 0; i < vector.size( ); i++ )
-				array[i] = (String) vector.get( i );
-		}
-		return array;
-	}
-
-	/**
-	 * 
-	 * @param bytecodes
-	 * @return
-	 */
-	private boolean isUTF8BOMFormat( byte[] bytecodes )
-	{
-		// file encoded using UTF-8 sometimes have three bytes prefix
-		// -17,-69, and -65
-		int[] UTF8Prefix = new int[]{
-				-17, -69, -65
-		};
-		if ( bytecodes.length < UTF8Prefix.length )
-			return false;
-		for ( int i = 0; i < UTF8Prefix.length; i++ )
-		{
-			if ( bytecodes[i] != UTF8Prefix[i] )
-				return false;
-		}
-		return true;
-	}
-
-	/**
 	 * CVSBufferReader will buffer the input from the specified file. Read a
 	 * line of text. A line is considered to be terminated by any one of a line
 	 * feed ('\n'), or a carriage return followed immediately by a linefeed.
 	 */
-	private static class FlatFileBufferedReader
+	public static class FlatFileBufferedReader
 	{
 
 		//
@@ -1534,7 +1130,7 @@ public class FlatFileQuery implements IQuery
 		 * 
 		 * @param in
 		 */
-		FlatFileBufferedReader( Reader in )
+		public FlatFileBufferedReader( Reader in )
 		{
 			reader = new BufferedReader( in );
 

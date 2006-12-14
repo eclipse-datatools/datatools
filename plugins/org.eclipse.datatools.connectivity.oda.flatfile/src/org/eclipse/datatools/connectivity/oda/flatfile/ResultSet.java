@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.FlatFileDataReader;
 
 /**
  * Flat file data provider's implementation of the ODA IResultSet interface.
@@ -38,20 +39,23 @@ public class ResultSet implements IResultSet
     private IResultSetMetaData resultSetMetaData = null;
     private int maxRows = 0;
     private int cursor = CURSOR_INITIAL_VALUE;
-
+    private FlatFileDataReader flatFileDataReader;
     //Boolean which marks whether it is successful of last call to getXXX();
     private boolean wasNull = false;
-
+    //a counter that counts the total number of rows read from the flatfile
+    private int fetchAccumulator = 0;
+    
+    
     /**
      * Constructor
-     * @param sData a two-dimension array which holds the data extracted from a
-     *            flat file.
-     * @param rsmd the metadata of sData
+     * @param ffr flat file data source reader 
+     * @param rsmd
      */
-    ResultSet( String[][] sData, IResultSetMetaData rsmd )
+    ResultSet(FlatFileDataReader ffr, IResultSetMetaData rsmd )
     {
-        this.sourceData = sData;
-        this.resultSetMetaData = rsmd;
+    	this.flatFileDataReader = ffr;
+    	this.resultSetMetaData = rsmd;
+    	this.maxRows = this.flatFileDataReader.getMaxRowsToRead( this.maxRows );
     }
 
     /*
@@ -83,25 +87,49 @@ public class ResultSet implements IResultSet
     /*
      * @see org.eclipse.datatools.connectivity.oda.IResultSet#next()
      */
-    public boolean next() throws OdaException
-    {
-        if( ( this.maxRows <= 0 ? false : cursor >= this.maxRows - 1 )
-                || cursor >= this.sourceData.length - 1 )
-        {
-            cursor = CURSOR_INITIAL_VALUE;
-            return false;
-        }
-        cursor++;
-        return true;
-    }
+    public boolean next( ) throws OdaException
+	{	
+    	//first time to call next
+    	if ( cursor == CURSOR_INITIAL_VALUE )
+		{
+			sourceData = this.flatFileDataReader.getSourceData( );
+		}
+
+		if ( ( this.maxRows <= 0 ? false : fetchAccumulator >= this.maxRows ) )
+		{
+			this.flatFileDataReader.clearBufferedReader( );
+			cursor = CURSOR_INITIAL_VALUE;
+			fetchAccumulator = 0;
+			return false;
+		}
+
+		if ( cursor == this.sourceData.length-1 )
+		{
+			sourceData = this.flatFileDataReader.getSourceData( );
+
+			cursor = CURSOR_INITIAL_VALUE;
+			
+			if ( sourceData.length == 0 )
+			{
+				this.flatFileDataReader.clearBufferedReader( );
+				fetchAccumulator = 0;
+				return false;
+			}
+		}
+		
+		fetchAccumulator++;
+		cursor++;
+
+		return true;
+	}
 
     /*
-     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getRow()
-     */
+	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getRow()
+	 */
     public int getRow() throws OdaException
     {
         validateCursorState();
-        return this.cursor;
+        return this.fetchAccumulator;
     }
 
     /*
@@ -159,7 +187,7 @@ public class ResultSet implements IResultSet
         return stringToDouble( getString( columnName ) );
     }
 
-    /*
+    /*   
      * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBigDecimal(int)
      */
     public BigDecimal getBigDecimal( int index ) throws OdaException
