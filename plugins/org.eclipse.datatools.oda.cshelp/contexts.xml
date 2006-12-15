@@ -8,64 +8,80 @@
 <context id="Wizard_XML_Datasource_ID" title="New XML File Data Source Profile">
 <description>Use this dialog box to define an XML file data source.
 
+The XML source must contain well-formed XML.
 
+To set the value for Enter the URL of the XML source or browse to the file containing the data:
+* Type the URL for XML data that is a network resource
+Or
+* Use the Browse button to locate a file on the file system
 
+The next field is Enter the URL of the XML schema or browse to the file containing the schema. Leave this empty if no schema is available.
+You provide a value for this field in the same way as the previous field. If you do not have an XML schema, the data source uses the data you provide in the XML file as a template for defining data tables and columns. In this case, make sure that the data file contains a representative selection of data. If the data file does not contain all the required columns, you will not be able to use the columns in your report design.
+
+To test that the values in the fields are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.
 </description>
 </context>
 <context id="Wizard_FlatfileDatasource_ID" title="New Flat File Data Source Profile">
-<description>Use this dialog box to define the profile for a new flat file
+<description>Use this dialog box to define the profile for a new flat file.
 
+A flat file data source contains values for a single table as comma-separated values in a text file.
 
+To set the value for the folder that contains the files of text data, either type the path to the folder in Select folder, or use the Browse button to navigate to the folder on the file system.
 
+In Select charset, select the character set that your data files use.
+
+To test that the values you entered are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.
 </description>
 </context>
 <context id="Dialog_SelectTableColumn_ID" title="Select Table - Select Columns">
-<description>Use this dialog box to select columns for the data set.
+<description>Use this dialog box to select columns for the tables in a flat file data set.
 
-
+In Select File, select the file that contains the data for a table.
+For each table, use the arrow keys to move the available columns from the list on the left to the right. Columns in the list on the right are available to the report design.
 
 </description>
 </context>
 <context id="Wizard_XMLSample_ID" title="DTP XML DataSet">
 <description>Use this dialog box to specify a sample XML source for data preview.
 
+You can use the data file that the data source specifies or a different file that contains XML data with the same structure. To use the same file, select Use the XML file defined in data source. To use a different file, deselect this field, then type the path to the file you want to use in Enter the URL of the XML source or browse to the file containing the data. Alternatively, you can use the Browse button to find a file on the file system.
 
-
+If your XML data file is large, you can reduce the number of rows that the Report Designer reads when you preview the report. To set the number of rows, select Preview first, then enter the number of rows of data in the next field. When you choose this option, make sure that your data file contains all the data fields that you need in your report design in the set of rows that you choose.
 </description>
 </context>
 <context id="Wizard_XMLXPath_ID" title="Table Mapping">
 <description>Use this dialog box to map a table.
 
-
-
+Select an XML element in the XML structure diagram to represent the table root. To set the element as the table, choose the arrow button.
+After you verify the XPath expression for the table, the table path appears in Table Mapping-XPath Expression.
 </description>
 </context>
 <context id="Dialog_XPathExpression_ID" title="Select or edit the XPath expression">
 <description>Use this dialog box to specify the XPath expression to be used.
 
-
-
+The XPath expression represents the XML element that you selected as the table root. You can make changes to this expression if you want to filter the data. You must use valid XPath syntax.
 </description>
 </context>
 <context id="Wizard_XML_ColumnMapping_ID" title="Column Mapping">
 <description>Use this page to map XML elements to columns.
 
-
-
+Select an XML element or attribute in the XML structure diagram to represent a data column. To set the element as a column, choose the arrow button.
+After you verify the definition for the column, the column details appear in the Column Mapping table.
+Select as many XML elements to represent columns as you need in your report design.
 </description>
 </context>
 <context id="Dialog_ColumnMapping_ID" title="Column Mapping">
-<description>Use this dialog box to map a column to an XPath expression.
+<description>Use this dialog box to complete the definition of a column.
 
-
-
+The Column Name field contains the name of the XML element or attribute that you selected as the column. You can change this name to make it more meaningful. For example, your data structure might use the same attribute name in multiple elements. You can set the name so that you know which element is the source of the column.
+The XPath expression represents the XML element that you selected as the column. You can make changes to this expression if you want to filter the data. You must use valid XPath syntax.
+In Data Type, select the correct data type for the column.
 </description>
 </context>
 <context id="Preference_DataSetEditor_XML_ID" title="Preferences - XML Data Set">
 <description>Use this dialog box to set preferences for XML data sets.
 
-
-
+Set the number of rows of XML data to parse if the XML data source does not use a schema file to define the data structure.
 </description>
 </context>
 </contexts>
