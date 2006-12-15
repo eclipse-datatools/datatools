@@ -24,11 +24,25 @@ To test that the values in the fields are valid, choose Test Connection. When Te
 <context id="Wizard_FlatfileDatasource_ID" title="New Flat File Data Source Profile">
 <description>Use this dialog box to define the profile for a new flat file.
 
-A flat file data source contains values for a single table as comma-separated values in a text file.
+A flat file data source contains values for a single table as character-separated values in a text file. The first line of the file can include the names of the columns. The second line of the file can include the data types of the columns.
 
 To set the value for the folder that contains the files of text data, either type the path to the folder in Select folder, or use the Browse button to navigate to the folder on the file system.
 
 In Select charset, select the character set that your data files use.
+
+In Select flatfile style, select the character that separates the values in each line in your text file. The available characters are comma (,), semi-colon (;), tab (character value 9), and pipe (|). Select CSV, SSV, TSV, or PSV respectively for these separators.
+
+If the first line of the file contains the column names, select Use first line as column name indicator. Column names must be separated by the same character that the file uses to separate data values.
+
+If the second line of the file contains data types for the columns, select Use second line as data type indicator. Data types must be separated by the same character that the file uses to separate data values. This choice is not available unless the first line contains column names.
+Valid data types are:
+Big Decimal
+Date
+Double
+Integer
+String
+Time
+Timestamp
 
 To test that the values you entered are valid, choose Test Connection. When Test Connection shows Ping succeeded, choose Finish.
 </description>
@@ -37,8 +51,10 @@ To test that the values you entered are valid, choose Test Connection. When Test
 <description>Use this dialog box to select columns for the tables in a flat file data set.
 
 In Select File, select the file that contains the data for a table.
-For each table, use the arrow keys to move the available columns from the list on the left to the right. Columns in the list on the right are available to the report design.
 
+For each table, use the right arrow button to move the available columns from the list on the left to the right. Columns in the list on the right are available to the report design. You can change the name and data type of a column in this list.
+To remove a column from the data set, use the X button.
+To change the order of the columns in the data set, use the up and down arrow buttons.
 </description>
 </context>
 <context id="Wizard_XMLSample_ID" title="DTP XML DataSet">
@@ -66,8 +82,10 @@ The XPath expression represents the XML element that you selected as the table r
 <description>Use this page to map XML elements to columns.
 
 Select an XML element or attribute in the XML structure diagram to represent a data column. To set the element as a column, choose the arrow button.
-After you verify the definition for the column, the column details appear in the Column Mapping table.
+After you verify the definition for the column, the column details appear in the Column Mapping table. You can change the name and data type of a column in this list.
 Select as many XML elements to represent columns as you need in your report design.
+To remove a column from the data set, use the X button.
+To change the order of the columns in the data set, use the up and down arrow buttons.
 </description>
 </context>
 <context id="Dialog_ColumnMapping_ID" title="Column Mapping">
