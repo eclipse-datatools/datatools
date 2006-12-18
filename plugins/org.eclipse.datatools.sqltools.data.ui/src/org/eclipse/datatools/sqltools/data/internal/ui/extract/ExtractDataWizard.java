@@ -80,7 +80,9 @@ public class ExtractDataWizard extends Wizard
          int actionType = OperationCommand.ACTION_LOAD;
          String displayStr = qualifiedTableName;
          String consumerName = null;
-         Database database = table.getSchema().getCatalog().getDatabase();
+         Database database = table.getSchema().getCatalog() != null ?
+        		 table.getSchema().getCatalog().getDatabase():
+        		 table.getSchema().getDatabase();         
          ConnectionInfo connInfo = DatabaseConnectionRegistry.getConnectionForDatabase(database);
          String connectionProfieName = 
          	((ConnectionInfoImpl)connInfo).getConnectionProfile().getName();         

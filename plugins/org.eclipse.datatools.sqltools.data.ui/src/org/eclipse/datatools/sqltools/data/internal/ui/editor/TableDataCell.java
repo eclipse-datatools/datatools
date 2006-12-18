@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.data.internal.ui.editor;
 
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.sqltools.data.internal.core.editor.IRowData;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.ui.IActionFilter;
 
 /**
@@ -78,10 +79,16 @@ public class TableDataCell implements IActionFilter {
 	public boolean testAttribute(Object target, String name, String value) {
 		
 		if (name.equals("vendor")) { //$NON-NLS-1$
-			String vendor = editor.getSqlTable().getSchema().getCatalog().getDatabase().getVendor();
+			Database db = editor.getSqlTable().getSchema().getCatalog() != null ?
+					editor.getSqlTable().getSchema().getCatalog().getDatabase():
+					editor.getSqlTable().getSchema().getDatabase();
+			String vendor = db.getVendor();
 			return value.equals(vendor);
 		} else if (name.equals("version")) { //$NON-NLS-1$
-			String version = editor.getSqlTable().getSchema().getCatalog().getDatabase().getVersion();
+			Database db = editor.getSqlTable().getSchema().getCatalog() != null ?
+					editor.getSqlTable().getSchema().getCatalog().getDatabase():
+					editor.getSqlTable().getSchema().getDatabase();
+			String version = db.getVersion();
 			return value.equals(version);
 		} else if (name.equals("dataType")) {//$NON-NLS-1$
 			Column sqlCol = (Column) editor.getSqlTable().getColumns().get(col);

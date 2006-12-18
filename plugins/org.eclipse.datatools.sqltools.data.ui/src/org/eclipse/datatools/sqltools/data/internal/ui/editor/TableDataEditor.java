@@ -171,8 +171,10 @@ public class TableDataEditor extends EditorPart
         
         int actionType = OperationCommand.ACTION_EDIT;
         String displayStr = qualifiedTableName;
-        String consumerName = null;       
-        Database database = sqlTable.getSchema().getCatalog().getDatabase();
+        String consumerName = null;  
+        Database database = sqlTable.getSchema().getCatalog() != null ?
+        		sqlTable.getSchema().getCatalog().getDatabase():
+        		sqlTable.getSchema().getDatabase();        
         ConnectionInfo connInfo = DatabaseConnectionRegistry.getConnectionForDatabase(database);
         String connectionProfieName = 
         	((ConnectionInfoImpl)connInfo).getConnectionProfile().getName();

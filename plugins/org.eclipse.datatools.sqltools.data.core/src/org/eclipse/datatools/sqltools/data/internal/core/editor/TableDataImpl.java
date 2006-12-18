@@ -197,7 +197,9 @@ public class TableDataImpl implements ITableData {
     {
         Table table = sqlCol.getTable();
         Schema schema = table.getSchema();
-        Database db = schema.getCatalog().getDatabase();
+        Database db = schema.getCatalog() != null ?
+        	schema.getCatalog().getDatabase():
+        	schema.getDatabase();        
         DatabaseDefinition dbDef = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(db);
         DataType dt = sqlCol.getDataType();
         if (dt != null) {

@@ -326,7 +326,9 @@ public class DataUIPlugin extends AbstractUIPlugin
         IExternalTableDataEditor externalEditor = null;
         
         try {
-            Database db = sqlCol.getTable().getSchema().getCatalog().getDatabase();
+        	Database db = sqlCol.getTable().getSchema().getCatalog() != null?
+        			sqlCol.getTable().getSchema().getCatalog().getDatabase():
+        			sqlCol.getTable().getSchema().getDatabase();        	
             DataType type = sqlCol.getDataType();
             
             String vendor = db.getVendor();

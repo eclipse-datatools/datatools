@@ -129,15 +129,21 @@ public class DataCorePlugin extends Plugin
 				new Status(severity, getBundle().getSymbolicName(), code, message, exception));
 	}
 	
-    public static String getQualifiedTableName(Table table) {    	
-        return quoteIdentifier(table.getSchema().getCatalog().getDatabase(), table.getSchema().getName()) 
-            + "." + quoteIdentifier(table.getSchema().getCatalog().getDatabase(), table.getName()); //$NON-NLS-1$
+    public static String getQualifiedTableName(Table table) { 
+    	Database db = table.getSchema().getCatalog() != null ?
+    			table.getSchema().getCatalog().getDatabase():
+    			table.getSchema().getDatabase();
+        return quoteIdentifier(db, table.getSchema().getName()) 
+            + "." + quoteIdentifier(db, table.getName()); //$NON-NLS-1$
     }
     
     public static String getQualifiedUDTName(UserDefinedType udt)
     {
-        return quoteIdentifier(udt.getSchema().getCatalog().getDatabase(), udt.getSchema().getName()) 
-        + "." + quoteIdentifier(udt.getSchema().getCatalog().getDatabase(), udt.getName()); //$NON-NLS-1$
+    	Database db = udt.getSchema().getCatalog() != null ?
+    			udt.getSchema().getCatalog().getDatabase():
+    			udt.getSchema().getDatabase();
+    	return quoteIdentifier(db, udt.getSchema().getName()) 
+        + "." + quoteIdentifier(db, udt.getName()); //$NON-NLS-1$
     }
     
     public static String quoteIdentifier(Database db, String s)
@@ -228,9 +234,10 @@ public class DataCorePlugin extends Plugin
     		throw new CoreException (status);
     	}
     	
-    	try {
-	    	//Database db = sqlCol.getTable().getSchema().getDatabase();
-	    	Database db = sqlCol.getTable().getSchema().getCatalog().getDatabase();
+    	try {	    	
+    		Database db = sqlCol.getTable().getSchema().getCatalog() != null ?
+    				sqlCol.getTable().getSchema().getCatalog().getDatabase():
+    				sqlCol.getTable().getSchema().getDatabase();	    	
 	    	String vendor = db.getVendor();
 	    	String version = db.getVersion();	    	
 	    	String dataType = sqlCol.getDataType().getName();

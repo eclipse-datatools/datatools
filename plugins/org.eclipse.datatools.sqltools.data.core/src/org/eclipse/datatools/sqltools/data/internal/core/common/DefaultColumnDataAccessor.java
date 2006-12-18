@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.DataDeserializer;
 import org.eclipse.datatools.sqltools.data.internal.core.common.data.DataSerializer;
@@ -129,7 +130,10 @@ public class DefaultColumnDataAccessor implements IColumnDataAccessor
 	
 	protected String getQuotedColumnName()
     {
-        return DataCorePlugin.quoteIdentifier(sqlCol.getTable().getSchema().getCatalog().getDatabase(), sqlCol.getName());
+		Database db = sqlCol.getTable().getSchema().getCatalog() != null ?
+				sqlCol.getTable().getSchema().getCatalog().getDatabase():
+				sqlCol.getTable().getSchema().getDatabase();
+		return DataCorePlugin.quoteIdentifier(db, sqlCol.getName());
     }
 	
 	protected String argString(String arg, int type)
