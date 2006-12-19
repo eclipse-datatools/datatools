@@ -599,10 +599,14 @@ public class QueryOutputHelper
      */
     private Vector getSQLExecutionProviders()
     {
+    	//TODO: Post 1.0, clean this up -- need to figure out what this ext point is in DTP
         Vector providers = new Vector();
         IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
         IExtensionPoint extensionPoint = pluginRegistry
                 .getExtensionPoint("org.eclipse.wst.rdb.server.ui", "SQLExecutionProvider"); //$NON-NLS-1$ //$NON-NLS-2$
+        if (extensionPoint == null) {
+        	return new Vector();
+        }
         IExtension[] extensions = extensionPoint.getExtensions();
 
         for (int i = 0; i < extensions.length; ++i)
