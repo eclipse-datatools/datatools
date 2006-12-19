@@ -905,7 +905,7 @@
 	
 	<udtDefinition/>
 	
-	<queryDefinition identifierQuoteString="`" hostVariableMarker="@"
+	<queryDefinition identifierQuoteString="&quot;" hostVariableMarker="@"
 		hostVariableMarkerSupported="true"/>
 	
 	<SQLSyntaxDefinition>
