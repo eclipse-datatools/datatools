@@ -137,6 +137,13 @@ public class DriverTreeContentProvider implements ITreeContentProvider {
 			CategoryDescriptor descriptor = (CategoryDescriptor) element;
 			children = descriptor.getChildCategories();
 			children.addAll(descriptor.getAssociatedDriverTypes());
+			Iterator iter = descriptor.getAssociatedDriverTypes().iterator();
+			while (iter.hasNext()) {
+				TemplateDescriptor template = (TemplateDescriptor) iter
+						.next();
+				children.addAll(Arrays.asList(getDriverDefn(template
+						.getId())));
+			}
 		}
 		return children.toArray();
 	}
@@ -194,9 +201,10 @@ public class DriverTreeContentProvider implements ITreeContentProvider {
 	private Object[] getDriverDefn(String categoryID) {
 
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		if (this.psetsList == null
+		String newModified = XMLFileManager.getFileDateTimeStamp();
+		if (this.psetsList == null || (modified == null && newModified != null)
 				|| ((this.modified != null) && !(this.modified
-						.equals(XMLFileManager.getFileDateTimeStamp())))) {
+						.equals(newModified)))) {
 
 			DriverManager.getInstance().resetDefaultInstances();
 

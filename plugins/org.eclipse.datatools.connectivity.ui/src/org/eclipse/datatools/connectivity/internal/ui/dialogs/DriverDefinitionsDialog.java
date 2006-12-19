@@ -10,10 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
-import java.util.List;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
@@ -21,7 +19,6 @@ import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
-import org.eclipse.datatools.connectivity.drivers.XMLFileManager;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
@@ -430,20 +427,8 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 	 * Save the instances back to the file
 	 */
 	private void saveChanges() {
-		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		List psetsList = ((DriverTreeContentProvider) this.mTreeViewer
-				.getContentProvider()).getDriverInstances();
-		Object[] objs = psetsList.toArray();
-		IPropertySet[] propsets = new IPropertySet[objs.length];
-		for (int i = 0; i < objs.length; i++) {
-			propsets[i] = (IPropertySet) objs[i];
-		}
-		try {
-			XMLFileManager.saveNamedPropertySet(propsets);
-		}
-		catch (CoreException e) {
-			ConnectivityUIPlugin.getDefault().log(e);
-		}
+		// no longer necessary, as this is handled by the DriverManager
+		// BZ 166637 - BTF 12192006
 		this.mDirty = false;
 	}
 
@@ -549,7 +534,10 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 				DriverManager.getInstance().addDriverInstance(instance);
 
 				// refresh
-				DriverDefinitionsDialog.this.mTreeViewer.refresh();
+				this.mTreeViewer.setInput(DriversProvider.getInstance());
+				this.mTreeViewer.refresh();
+				this.mTreeViewer.expandToLevel(descriptor, 1);
+				this.mTreeViewer.reveal(descriptor);
 
 			}
 		}

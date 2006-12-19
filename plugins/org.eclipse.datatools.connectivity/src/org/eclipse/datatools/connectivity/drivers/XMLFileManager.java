@@ -126,7 +126,7 @@ public class XMLFileManager {
 	 * @param pss To be saved property sets
 	 * @throws IOException
 	 */
-	public static void saveNamedPropertySet(IPropertySet[] pss)
+	public static synchronized void saveNamedPropertySet(IPropertySet[] pss)
 		throws CoreException 
 	{
 		try {
