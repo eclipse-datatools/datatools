@@ -85,7 +85,9 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		if (_connInfo == null || _connInfo.getConnectionProfile() == null ) {
 			Label label = new Label(composite, SWT.NONE);
-			label.setText(Messages.SelectProfileDialog_noprofile);
+// BZ168411: Disabling error message for no cp selected because of problems on Linux
+//           To be resolved post DTP 1.0
+//			label.setText(Messages.SelectProfileDialog_noprofile);
 			label.setForeground(JFaceColors.getErrorText(label.getDisplay()));
 		}else 
 		{
