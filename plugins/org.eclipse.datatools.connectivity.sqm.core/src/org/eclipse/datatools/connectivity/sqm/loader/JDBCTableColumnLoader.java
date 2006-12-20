@@ -37,87 +37,88 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
- * class may be specialized as necessary to meet a particular vendor's needs.
+ * Base loader implementation for loading a table's column objects. This class
+ * may be specialized as necessary to meet a particular vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCTableColumnLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_COLUMN_NAME = "COLUMN_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's data type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_DATA_TYPE = "DATA_TYPE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's type name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_TYPE_NAME = "TYPE_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's size.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_COLUMN_SIZE = "COLUMN_SIZE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's decimal digits.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_DECIMAL_DIGITS = "DECIMAL_DIGITS"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's nullable attribute.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_NULLABLE = "NULLABLE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's description.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_REMARKS = "REMARKS"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's default value.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_COLUMN_DEF = "COLUMN_DEF"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the catalog name of the column's UDT reference
+	 * type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_SCOPE_CATALOG = "SCOPE_CATALOG"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the schema name of the column's UDT reference
+	 * type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
 	public static final String COLUMN_SCOPE_SCHEMA = "SCOPE_SCHEMA"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the table name of the column's UDT reference
+	 * type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getColumns()
 	 */
@@ -127,12 +128,19 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	private boolean mCatalogAtStart;
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using no filtering.
+	 * 
+	 * @param catalogObject the Table object upon which this loader operates.
 	 */
 	public JDBCTableColumnLoader(ICatalogObject catalogObject) {
 		this(catalogObject, null);
 	}
 
+	/**
+	 * @param catalogObject the Table object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "column" objects being loaded
+	 */
 	public JDBCTableColumnLoader(
 									ICatalogObject catalogObject,
 									IConnectionFilterProvider connectionFilterProvider) {
@@ -141,9 +149,18 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * @param existingCatalogs the catalog objects which were previously loaded
-	 * @return
-	 * @throws SQLException
+	 * Loads the "column" objects from the database. This method uses the result
+	 * set from createResultSet() to load the "column" objects from the server.
+	 * Row handling for the result set is delegated to processRow(). Column
+	 * objects are created using the factory method, createColumn().
+	 * 
+	 * This method should only be overridden as a last resort when the desired
+	 * behavior cannot be acheived by overriding createResultSet(),
+	 * closeResultSet(), processRow(), createColumn() and initialize().
+	 * 
+	 * @return a collection of Column objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
 	 */
 	public List loadColumns() throws SQLException {
 		List retVal = new ArrayList();
@@ -165,10 +182,28 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Removes the specified schema from the model.
+	 * 
+	 * @param schemas the schemas to be removed from the model.
+	 */
 	public void clearColumns(List columns) {
 		columns.clear();
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getColumns() to create the result set.
+	 * This method may be overridden to use a vendor specific query. However,
+	 * the default logic requires the columns named by the "COLUMN_*" fields.
+	 * Keep this in mind if you plan to reuse the default logic (e.g.
+	 * initialize())
+	 * 
+	 * @return a result containing the information used to initialize Column
+	 *         objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
@@ -177,6 +212,14 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				table.getName(), null);
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -185,6 +228,16 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Processes a single row in the result set. By default, this method
+	 * determines whether or not the named column is filtered, invokes
+	 * createColumn() followed by initialize(), finally returning the newly
+	 * created, initialized Column object.
+	 * 
+	 * @param rs the result set
+	 * @return a new Column object
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected Column processRow(ResultSet rs) throws SQLException {
 		String columnName = rs.getString(COLUMN_COLUMN_NAME);
 		if (columnName == null || isFiltered(columnName)) {
@@ -195,10 +248,26 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		return column;
 	}
 
+	/**
+	 * Returns a new Column object. By default, this method returns a new
+	 * JDBCColumn.
+	 * 
+	 * @return a new Column object.
+	 */
 	protected Column createColumn() {
 		return new JDBCColumn();
 	}
 
+	/**
+	 * Used to initialize a newly created Column object. By default, this method
+	 * initializes the name, description, default value, data type and nullable
+	 * attribute of the Column. This method may be overridden to initialize any
+	 * vendor specific properties.
+	 * 
+	 * @param column a newly created Column object
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initialize(Column column, ResultSet rs) throws SQLException {
 		column.setName(rs.getString(COLUMN_COLUMN_NAME));
 		column.setDescription(rs.getString(COLUMN_REMARKS));
@@ -210,6 +279,15 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				.setNullable(rs.getInt(COLUMN_NULLABLE) == DatabaseMetaData.attributeNullable);
 	}
 
+	/**
+	 * Initializes the type of the Column object. This method will resolve any
+	 * dependencies necessary depending on whether the object is typed as a user
+	 * defined type or predefined data type.
+	 * 
+	 * @param column a Column
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initColumnType(Column column, ResultSet rs)
 			throws SQLException {
 		// db definition types are always upper case: make sure the typeName is
@@ -274,7 +352,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 			}
 		}
 
-		// Couldn't find predefined type.  Try looking for a ref or udt.
+		// Couldn't find predefined type. Try looking for a ref or udt.
 		if (typeName == null)
 			return;
 
@@ -298,10 +376,23 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Creates a new ReferenceDataType. Default implementation returns null.
+	 * 
+	 * @return a new ReferenceDataType
+	 */
 	protected ReferenceDataType createReferenceDataType() {
 		return null;
 	}
 
+	/**
+	 * Initializes a new ReferenceDataType. Associates the specified UDT with
+	 * the new reference type.
+	 * 
+	 * @param ref a new reference data type
+	 * @param udt a structured user defined type
+	 * @param scopeTable the table to which the reference is scoped
+	 */
 	protected void initReferenceDataType(ReferenceDataType ref,
 			UserDefinedType udt, Table scopeTable) {
 		if (udt instanceof StructuredUserDefinedType) {
@@ -313,15 +404,37 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		ref.setScopeTable(scopeTable);
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Table (i.e.
+	 *         (Table) getCatalogObject()).
+	 */
 	protected Table getTable() {
 		return (Table) getCatalogObject();
 	}
 
+	/**
+	 * Utility method. Retrieves the DatabaseDefinition that applies to the
+	 * catalog object.
+	 * 
+	 * @return the DatabaseDefinition for the catalog object
+	 */
 	protected DatabaseDefinition getDatabaseDefinition() {
 		return RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry()
 				.getDefinition(getCatalogObject().getCatalogDatabase());
 	}
 
+	/**
+	 * Utility method. This method is used to create a Matcher that will be used
+	 * for finding a referenced UDT. The Matcher accounts for the naming scheme
+	 * used by the database (e.g. whether the catalog name is placed at the
+	 * beginning or end of a fully qualified object name).
+	 * 
+	 * @param name the UDT name
+	 * @return a Matcher
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected Matcher getUDTNameMatcher(String name) throws SQLException {
 		if (mUDTNameMatcherPattern == null) {
 			// pattern match
@@ -351,6 +464,12 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		return mUDTNameMatcherPattern.matcher(name);
 	}
 
+	/**
+	 * Used by initType() to resolve a UDT.
+	 * 
+	 * @param typeName the UDT name being searched for
+	 * @return the UDT, if found; null otherwise.
+	 */
 	protected UserDefinedType findUserDefinedType(String typeName) {
 		Matcher matcher;
 		try {
@@ -409,6 +528,14 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		return null;
 	}
 
+	/**
+	 * Resloves the table scoped to a referenced UDT.
+	 * 
+	 * @param catalogScope catalog containing the scoped table
+	 * @param schemaScope schema containing the scoped table
+	 * @param tableScope the scoped table's name
+	 * @return the scoped table; null if it couldn't be found
+	 */
 	protected Table findScopedTable(String catalogScope, String schemaScope,
 			String tableScope) {
 		if (tableScope == null) {

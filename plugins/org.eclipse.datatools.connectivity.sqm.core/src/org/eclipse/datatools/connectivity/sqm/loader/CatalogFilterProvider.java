@@ -14,8 +14,20 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 
+/**
+ * Implementation for use with the "catalog" object loader.
+ * 
+ * @since 1.0
+ */
 public class CatalogFilterProvider extends ConnectionFilterProvider {
 
+	/*
+	 * (non-Javadoc) Returns the ConnectionFilter to be used when loading
+	 * "catalog" objects from the server. This is only applicable to servers
+	 * supporting multiple catalogs (e.g. Sybase ASE).
+	 * 
+	 * @see org.eclipse.datatools.connectivity.sqm.loader.IConnectionFilterProvider#getConnectionFilter(org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject)
+	 */
 	public ConnectionFilter getConnectionFilter(ICatalogObject catalogObject) {
 		ConnectionInfo ci = getConnectionInfo(catalogObject);
 		return ci.getFilter(ConnectionFilter.CATALOG_FILTER);

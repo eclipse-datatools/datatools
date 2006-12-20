@@ -37,89 +37,87 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
- * class may be specialized as necessary to meet a particular vendor's needs.
+ * Base loader implementation for loading a UDT's attribute objects. This class
+ * may be specialized as necessary to meet a particular vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_ATTR_NAME = "ATTR_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's data type.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_DATA_TYPE = "DATA_TYPE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's type name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_ATTR_TYPE_NAME = "ATTR_TYPE_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's size.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_ATTR_SIZE = "ATTR_SIZE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's decimal digits.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_DECIMAL_DIGITS = "DECIMAL_DIGITS"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's nullable.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_NULLABLE = "NULLABLE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's description.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_REMARKS = "REMARKS"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's default value.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_ATTR_DEF = "ATTR_DEF"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's scope catalog.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_SCOPE_CATALOG = "SCOPE_CATALOG"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's scope schema.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_SCOPE_SCHEMA = "SCOPE_SCHEMA"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the attribute's scope table.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getAttributes()
 	 */
 	public static final String COLUMN_SCOPE_TABLE = "SCOPE_TABLE"; //$NON-NLS-1$
 
@@ -127,12 +125,19 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	private boolean mCatalogAtStart;
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using no filtering.
+	 * 
+	 * @param catalogObject the UDT object upon which this loader operates.
 	 */
 	public JDBCUDTAttributeLoader(ICatalogObject catalogObject) {
 		this(catalogObject, null);
 	}
 
+	/**
+	 * @param catalogObject the UDT object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "column" objects being loaded
+	 */
 	public JDBCUDTAttributeLoader(
 									ICatalogObject catalogObject,
 									IConnectionFilterProvider connectionFilterProvider) {
@@ -141,9 +146,20 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * @param existingCatalogs the catalog objects which were previously loaded
-	 * @return
-	 * @throws SQLException
+	 * Loads the "attribute" objects from the database. This method uses the
+	 * result set from createResultSet() to load the "attribute" objects from
+	 * the server. Row handling for the result set is delegated to processRow().
+	 * AttributeDefinition objects are created using the factory method,
+	 * createAttributeDefinition().
+	 * 
+	 * This method should only be overridden as a last resort when the desired
+	 * behavior cannot be acheived by overriding createResultSet(),
+	 * closeResultSet(), processRow(), createAttributeDefinition() and
+	 * initialize().
+	 * 
+	 * @return a collection of AttributeDefinition objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
 	 */
 	public List loadAttributeDefinitions() throws SQLException {
 		List retVal = new ArrayList();
@@ -165,10 +181,28 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Removes the specified attribute definitions from the model.
+	 * 
+	 * @param attrDefs the attribute definitions to be removed from the model.
+	 */
 	public void clearAttributeDefinitions(List attrDefs) {
 		attrDefs.clear();
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getAttributes() to create the result
+	 * set. This method may be overridden to use a vendor specific query.
+	 * However, the default logic requires the columns named by the "COLUMN_*"
+	 * fields. Keep this in mind if you plan to reuse the default logic (e.g.
+	 * initialize())
+	 * 
+	 * @return a result containing the information used to initialize
+	 *         AttributeDefinition objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		UserDefinedType udt = getUserDefinedType();
 		Schema schema = udt.getSchema();
@@ -177,6 +211,14 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 				"%");
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -185,6 +227,16 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Processes a single row in the result set. By default, this method
+	 * determines whether or not the named attribute definition is filtered,
+	 * invokes createAttributeDefinition() followed by initialize(), finally
+	 * returning the newly created, initialized AttributeDefinition object.
+	 * 
+	 * @param rs the result set
+	 * @return a new AttributeDefinition object
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected AttributeDefinition processRow(ResultSet rs) throws SQLException {
 		String attrDefName = rs.getString(COLUMN_ATTR_NAME);
 		if (attrDefName == null || isFiltered(attrDefName)) {
@@ -197,10 +249,26 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		return attrDef;
 	}
 
+	/**
+	 * Returns a new AttributeDefinition object. By default, this method returns
+	 * a new AttributeDefinitionImpl.
+	 * 
+	 * @return a new AttributeDefinition object.
+	 */
 	protected AttributeDefinition createAttributeDefinition() {
 		return SQLDataTypesFactory.eINSTANCE.createAttributeDefinition();
 	}
 
+	/**
+	 * Used to initialize a newly created AttributeDefinition object. By
+	 * default, this method initializes the name, description, default value,
+	 * data type and nullable attribute of the Column. This method may be
+	 * overridden to initialize any vendor specific properties.
+	 * 
+	 * @param attrDef a newly created Column object
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initialize(AttributeDefinition attrDef, ResultSet rs)
 			throws SQLException {
 		attrDef.setName(rs.getString(COLUMN_ATTR_NAME));
@@ -210,6 +278,15 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		initAttributeDefinitionType(attrDef, rs);
 	}
 
+	/**
+	 * Initializes the type of the AttributeDefinition object. This method will
+	 * resolve any dependencies necessary depending on whether the object is
+	 * typed as a user defined type or predefined data type.
+	 * 
+	 * @param attrDef a AttributeDefinition
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initAttributeDefinitionType(AttributeDefinition attrDef,
 			ResultSet rs) throws SQLException {
 		// db definition types are always upper case: make sure the typeName is
@@ -294,10 +371,23 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Creates a new ReferenceDataType. Default implementation returns null.
+	 * 
+	 * @return a new ReferenceDataType
+	 */
 	protected ReferenceDataType createReferenceDataType() {
 		return null;
 	}
 
+	/**
+	 * Initializes a new ReferenceDataType. Associates the specified UDT with
+	 * the new reference type.
+	 * 
+	 * @param ref a new reference data type
+	 * @param udt a structured user defined type
+	 * @param scopeTable the table to which the reference is scoped
+	 */
 	protected void initReferenceDataType(ReferenceDataType ref,
 			UserDefinedType udt, Table scopeTable) {
 		if (udt instanceof StructuredUserDefinedType) {
@@ -309,15 +399,37 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		ref.setScopeTable(scopeTable);
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a
+	 *         UserDefinedType (i.e. (UserDefinedType) getCatalogObject()).
+	 */
 	protected UserDefinedType getUserDefinedType() {
 		return (UserDefinedType) getCatalogObject();
 	}
 
+	/**
+	 * Utility method. Retrieves the DatabaseDefinition that applies to the
+	 * catalog object.
+	 * 
+	 * @return the DatabaseDefinition for the catalog object
+	 */
 	protected DatabaseDefinition getDatabaseDefinition() {
 		return RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry()
 				.getDefinition(getCatalogObject().getCatalogDatabase());
 	}
 
+	/**
+	 * Utility method. This method is used to create a Matcher that will be used
+	 * for finding a referenced UDT. The Matcher accounts for the naming scheme
+	 * used by the database (e.g. whether the catalog name is placed at the
+	 * beginning or end of a fully qualified object name).
+	 * 
+	 * @param name the UDT name
+	 * @return a Matcher
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected Matcher getUDTNameMatcher(String name) throws SQLException {
 		if (mUDTNameMatcherPattern == null) {
 			// pattern match
@@ -347,6 +459,12 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		return mUDTNameMatcherPattern.matcher(name);
 	}
 
+	/**
+	 * Used by initType() to resolve a UDT.
+	 * 
+	 * @param typeName the UDT name being searched for
+	 * @return the UDT, if found; null otherwise.
+	 */
 	protected UserDefinedType findUserDefinedType(String typeName) {
 		Matcher matcher;
 		try {
@@ -405,6 +523,14 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 		return null;
 	}
 
+	/**
+	 * Resloves the table scoped to a referenced UDT.
+	 * 
+	 * @param catalogScope catalog containing the scoped table
+	 * @param schemaScope schema containing the scoped table
+	 * @param tableScope the scoped table's name
+	 * @return the scoped table; null if it couldn't be found
+	 */
 	protected Table findScopedTable(String catalogScope, String schemaScope,
 			String tableScope) {
 		if (tableScope == null) {

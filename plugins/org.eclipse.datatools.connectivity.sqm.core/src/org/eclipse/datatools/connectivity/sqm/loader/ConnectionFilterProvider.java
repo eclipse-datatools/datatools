@@ -14,9 +14,21 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
 
+/**
+ * Base implementation for IConnectionFilterProvider. Provides a helper method
+ * for retrieving the ConnectionInfo object associated with the specified
+ * catalog object.
+ * 
+ * @since 1.0
+ */
 public abstract class ConnectionFilterProvider implements
 		IConnectionFilterProvider {
 
+	/**
+	 * @param catalogObject the catalog object
+	 * @return the ConnectionInfo object used to load the specified catalog
+	 *         object
+	 */
 	protected ConnectionInfo getConnectionInfo(ICatalogObject catalogObject) {
 		return DatabaseConnectionRegistry.getInstance()
 				.getConnectionForDatabase(catalogObject.getCatalogDatabase());

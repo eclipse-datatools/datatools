@@ -24,24 +24,20 @@ import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
+ * Base loader implementation for loading a database's schema objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
- * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
  */
 public class JDBCSchemaLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the schema's name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
 	public static final String COLUMN_TABLE_SCHEM = "TABLE_SCHEM";
 
 	/**
-	 * The column name containing the catalog name.
+	 * The column name containing the schema's catalog name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getSchemas()
 	 */
@@ -50,12 +46,19 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	private Set mSupportedColumns;
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using a SchemaFilterProvider filter.
+	 * 
+	 * @param catalogObject the Catalog object upon which this loader operates.
 	 */
 	public JDBCSchemaLoader(ICatalogObject catalogObject) {
 		this(catalogObject, new SchemaFilterProvider());
 	}
 
+	/**
+	 * @param catalogObject the Catalog object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "schema" objects being loaded
+	 */
 	public JDBCSchemaLoader(ICatalogObject catalogObject,
 							IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
@@ -63,9 +66,18 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * @param existingCatalogs the catalog objects which were previously loaded
-	 * @return
-	 * @throws SQLException
+	 * Loads the "schema" objects from the database. This method uses the result
+	 * set from createResultSet() to load the "schema" objects from the server.
+	 * Row handling for the result set is delegated to processRow(). Schema
+	 * objects are created using the factory method, createSchema().
+	 * 
+	 * This method should only be overridden as a last resort when the desired
+	 * behavior cannot be acheived by overriding createResultSet(),
+	 * closeResultSet(), processRow(), createSchema() and initialize().
+	 * 
+	 * @return a collection of Schema objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
 	 */
 	public List loadSchemas() throws SQLException {
 		List retVal = new ArrayList();
@@ -95,14 +107,40 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Removes the specified schema from the model.
+	 * 
+	 * @param schemas the schemas to be removed from the model.
+	 */
 	public void clearSchemas(List schemas) {
 		schemas.clear();
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getSchemas() to create the result set.
+	 * This method may be overridden to use a vendor specific query. However,
+	 * the default logic requires the columns named by the "COLUMN_*" fields.
+	 * Keep this in mind if you plan to reuse the default logic (e.g.
+	 * initialize())
+	 * 
+	 * @return a result containing the information used to initialize Schema
+	 *         objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		return getCatalogObject().getConnection().getMetaData().getSchemas();
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -111,6 +149,16 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Processes a single row in the result set. By default, this method
+	 * determines whether or not the named schema is filtered, invokes
+	 * createSchema() followed by initialize(), finally returning the newly
+	 * created, initialized Schema object.
+	 * 
+	 * @param rs the result set
+	 * @return a new Schema object
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected Schema processRow(ResultSet rs) throws SQLException {
 		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
 			Catalog catalog = getCatalog();
@@ -142,14 +190,35 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		return schema;
 	}
 
+	/**
+	 * Returns a new Schema object. By default, this method returns a new
+	 * JDBCSchema.
+	 * 
+	 * @return a new Schema object.
+	 */
 	protected Schema createSchema() {
 		return new JDBCSchema();
 	}
 
+	/**
+	 * Used to initialize a newly created Schema object. By default, this method
+	 * initializes the name of the Schema. This method may be overridden to
+	 * initialize any vendor specific properties.
+	 * 
+	 * @param schema a newly created Schema object
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initialize(Schema schema, ResultSet rs) throws SQLException {
 		schema.setName(rs.getString(COLUMN_TABLE_SCHEM));
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Catalog (i.e.
+	 *         (Catalog) getCatalogObject()).
+	 */
 	protected Catalog getCatalog() {
 		return (Catalog) getCatalogObject();
 	}

@@ -40,75 +40,73 @@ import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
- * class may be specialized as necessary to meet a particular vendor's needs.
+ * Base loader implementation for loading a SP's parameter objects. This class
+ * may be specialized as necessary to meet a particular vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_COLUMN_NAME = "COLUMN_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's type.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_COLUMN_TYPE = "COLUMN_TYPE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's data type.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_DATA_TYPE = "DATA_TYPE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's type name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_TYPE_NAME = "TYPE_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's precision.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_PRECISION = "PRECISION"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's length.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_LENGTH = "LENGTH"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's scale.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_SCALE = "SCALE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's nullable attribute.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_NULLABLE = "NULLABLE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's remarks.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getProcedureColumns()
 	 */
 	public static final String COLUMN_REMARKS = "REMARKS"; //$NON-NLS-1$
 
@@ -116,12 +114,21 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	private boolean mCatalogAtStart;
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using no filtering.
+	 * 
+	 * @param catalogObject the Procedure object upon which this loader
+	 *        operates.
 	 */
 	public JDBCProcedureColumnLoader(ICatalogObject catalogObject) {
 		this(catalogObject, null);
 	}
 
+	/**
+	 * @param catalogObject the Procedure object upon which this loader
+	 *        operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "column" objects being loaded
+	 */
 	public JDBCProcedureColumnLoader(
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
@@ -130,11 +137,22 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * Loads the "parameter" objects for the SP. This method uses the result set
+	 * from createResultSet() to load the "parameter" objects from the server.
+	 * Row handling for the result set is delegated to processRow(). Parameter
+	 * objects are created using the factory method, createParameter(). If a
+	 * result set is returned by the SP, createRoutineResultTable() is used to
+	 * create the container object, while createColumn() is used to create the
+	 * columns in the result table.
+	 * 
+	 * This method should only be overridden as a last resort when the desired
+	 * behavior cannot be acheived by overriding other methods.
+	 * 
 	 * @return List of Parameter objects. If a result set is created by this
 	 *         routine, the last element in the list will be a
 	 *         RoutineResultTable object
 	 * 
-	 * @throws SQLException
+	 * @throws SQLException if anything goes wrong
 	 */
 	public List loadColumns() throws SQLException {
 		List retVal = new ArrayList();
@@ -165,11 +183,27 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 			}
 		}
 	}
-	
+
+	/**
+	 * @param columns removes the parameters.
+	 */
 	public void clearColumns(List columns) {
 		columns.clear();
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getProcedureColumns() to create the
+	 * result set. This method may be overridden to use a vendor specific query.
+	 * However, the default logic requires columns named according to the
+	 * "COLUMN_*" fields. Keep this in mind if you plan to reuse the default
+	 * logic (e.g. initialize())
+	 * 
+	 * @return a result containing the information used to initialize Parameter
+	 *         objects
+	 * 
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		Procedure procedure = getProcedure();
 		Schema schema = procedure.getSchema();
@@ -178,6 +212,14 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 						schema.getName(), procedure.getName(), null);
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -186,6 +228,18 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Processes a single row in the result set. By default, this method
+	 * determines whether or not the named object is filtered. If not, it
+	 * invokes either createParameter() or createColumn() (depending on whether
+	 * or not the object represents a parameter or procedure result column),
+	 * followed by initParameter() or initColumn(), finally returning the newly
+	 * created, initialized Parameter or Column object.
+	 * 
+	 * @param rs the result set
+	 * @return a new Parameter or Column object
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected TypedElement processRow(ResultSet rs) throws SQLException {
 		String columnName = rs.getString(COLUMN_COLUMN_NAME);
 		if (columnName == null || isFiltered(columnName)) {
@@ -203,18 +257,38 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 		return retVal;
 	}
 
+	/**
+	 * @return a new Parameter object. Default is ParameterImpl.
+	 */
 	protected Parameter createParameter() {
 		return SQLRoutinesFactory.eINSTANCE.createParameter();
 	}
 
+	/**
+	 * @return a new Column object. Default is ColumnImpl.
+	 */
 	protected Column createColumn() {
 		return SQLTablesFactory.eINSTANCE.createColumn();
 	}
 
+	/**
+	 * @return a new RoutineResultTable object. Default is
+	 *         RoutineResultTableImpl.
+	 */
 	protected RoutineResultTable createRoutineResultTable() {
 		return SQLRoutinesFactory.eINSTANCE.createRoutineResultTable();
 	}
 
+	/**
+	 * Used to initialize a newly created parameter object. By default, this
+	 * method initializes the name, description, type and direction
+	 * (in/out/inout). This method may be overridden to initialize any vendor
+	 * specific properties.
+	 * 
+	 * @param parameter a newly created Parameter object
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initParameter(Parameter parameter, ResultSet rs)
 			throws SQLException {
 		parameter.setName(rs.getString(COLUMN_COLUMN_NAME));
@@ -240,6 +314,15 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 		initType(parameter, rs);
 	}
 
+	/**
+	 * Used to initialize a newly created column object. By default, this method
+	 * initializes the name, description, type and nullable. This method may be
+	 * overridden to initialize any vendor specific properties.
+	 * 
+	 * @param column a newly created Column object
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initColumn(Column column, ResultSet rs) throws SQLException {
 		column.setName(rs.getString(COLUMN_COLUMN_NAME));
 		column.setDescription(rs.getString(COLUMN_REMARKS));
@@ -250,6 +333,15 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 				.setNullable(rs.getInt(COLUMN_NULLABLE) == DatabaseMetaData.attributeNullable);
 	}
 
+	/**
+	 * Initializes the type of the Parameter or Column object. This method will
+	 * resolve any dependencies necessary depending on whether the object is
+	 * typed as a user defined type or predefined data type.
+	 * 
+	 * @param element a Parameter or Column
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected void initType(TypedElement element, ResultSet rs)
 			throws SQLException {
 		// db definition types are always upper case: make sure the typeName is
@@ -318,15 +410,37 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 		element.setDataType(udt);
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Procedure
+	 *         (i.e. (Procedure) getCatalogObject()).
+	 */
 	protected Procedure getProcedure() {
 		return (Procedure) getCatalogObject();
 	}
 
+	/**
+	 * Utility method. Retrieves the DatabaseDefinition that applies to the
+	 * catalog object.
+	 * 
+	 * @return the DatabaseDefinition for the catalog object
+	 */
 	protected DatabaseDefinition getDatabaseDefinition() {
 		return RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry()
 				.getDefinition(getCatalogObject().getCatalogDatabase());
 	}
 
+	/**
+	 * Utility method. This method is used to create a Matcher that will be used
+	 * for finding a referenced UDT. The Matcher accounts for the naming scheme
+	 * used by the database (e.g. whether the catalog name is placed at the
+	 * beginning or end of a fully qualified object name).
+	 * 
+	 * @param name the UDT name
+	 * @return a Matcher
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected Matcher getUDTNameMatcher(String name) throws SQLException {
 		if (mUDTNameMatcherPattern == null) {
 			// pattern match
@@ -356,6 +470,12 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 		return mUDTNameMatcherPattern.matcher(name);
 	}
 
+	/**
+	 * Used by initType() to resolve a UDT.
+	 * 
+	 * @param typeName the UDT name being searched for
+	 * @return the UDT, if found; null otherwise.
+	 */
 	protected UserDefinedType findUserDefinedType(String typeName) {
 		Matcher matcher;
 		try {

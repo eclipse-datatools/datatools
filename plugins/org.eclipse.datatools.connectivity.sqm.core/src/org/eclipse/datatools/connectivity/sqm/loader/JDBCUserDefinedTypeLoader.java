@@ -33,42 +33,40 @@ import org.eclipse.emf.ecore.EClass;
  * Base loader implementation for loading a database's catalog objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the table name.
+	 * The column name containing the UDT's name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getUDTs()
 	 */
 	public static final String COLUMN_TYPE_NAME = "TYPE_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the catalog name.
+	 * The column name containing the UDT's class name.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getUDTs()
 	 */
 	public static final String COLUMN_CLASS_NAME = "CLASS_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the catalog name.
+	 * The column name containing the UDT's data type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getUDTs()
 	 */
 	public static final String COLUMN_DATA_TYPE = "DATA_TYPE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the catalog name.
+	 * The column name containing the UDT's description.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getUDTs()
 	 */
 	public static final String COLUMN_REMARKS = "REMARKS"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the catalog name.
+	 * The column name containing the UDT's base type.
 	 * 
 	 * @see java.sql.DatabaseMetaData.getUDTs()
 	 */
@@ -79,13 +77,23 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 	private IUDTFactory mStructTypeFactory;
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using the default DistinctTypeFactory
+	 * StructTypeFactory, no Java type factory, and uses the
+	 * ConnectionFilter.USER_DEFINED_TYPE_FILTER filter.
+	 * 
+	 * @param catalogObject the Schema object upon which this loader operates.
 	 */
 	public JDBCUserDefinedTypeLoader(ICatalogObject catalogObject) {
 		this(catalogObject, new SchemaObjectFilterProvider(
 				ConnectionFilter.USER_DEFINED_TYPE_FILTER));
 	}
 
+	/**
+	 * This constructs the loader using the default DistinctTypeFactory
+	 * StructTypeFactory, and no Java type factory.
+	 * 
+	 * @param catalogObject the Schema object upon which this loader operates.
+	 */
 	public JDBCUserDefinedTypeLoader(
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
@@ -95,6 +103,14 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 				new StructTypeFactory(), null);
 	}
 
+	/**
+	 * @param catalogObject the Schema object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "UDT" objects being loaded
+	 * @param distinctTypeFactory factory for distinct UDTs
+	 * @param structTypeFactory factory for struct UDTs
+	 * @param javaTypeFactory factory for Java UDTs
+	 */
 	public JDBCUserDefinedTypeLoader(
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider,
@@ -110,9 +126,20 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * @param existingCatalogs the catalog objects which were previously loaded
-	 * @return
-	 * @throws SQLException
+	 * Loads the "UDT" objects from the database. This method uses the result
+	 * set from createResultSet() to load the "UDT" objects from the server. Row
+	 * handling for the result set is delegated to processRow(). UserDefinedType
+	 * objects are created and initialized using one of the registered
+	 * factories.
+	 * 
+	 * This method should only be overridden as a last resort when the desired
+	 * behavior cannot be acheived by overriding createResultSet(),
+	 * closeResultSet(), processRow(), and a specialized Struct, Distinct and
+	 * Java type factories.
+	 * 
+	 * @return a collection of UserDefinedType objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
 	 */
 	public List loadUDTs() throws SQLException {
 		List retVal = new ArrayList();
@@ -134,10 +161,28 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Removes the specified UDTs from the model.
+	 * 
+	 * @param existingUDTs the UDTs to be removed from the model.
+	 */
 	public void clearUDTs(List existingUDTs) {
 		existingUDTs.clear();
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getUDTs() to create the result set.
+	 * This method may be overridden to use a vendor specific query. However,
+	 * the default logic requires the columns named by the "COLUMN_*" fields.
+	 * Keep this in mind if you plan to reuse the default logic (e.g.
+	 * StructTypeFactory.initialize())
+	 * 
+	 * @return a result containing the information used to initialize Routine
+	 *         objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		Schema schema = getSchema();
 		return getCatalogObject().getConnection().getMetaData().getUDTs(
@@ -145,6 +190,14 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 				getJDBCFilterPattern(), null);
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -153,6 +206,17 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Processes a single row in the result set. By default, this method
+	 * determines whether or not the named UDT is filtered, determines whether
+	 * or not the UDT is a struct, distinct or Java type and invokes createUDT()
+	 * on the appropriate factory., returning the newly created, initialized
+	 * UserDefinedType object.
+	 * 
+	 * @param rs the result set
+	 * @return a new UserDefinedType object
+	 * @throws SQLException if anything goes wrong
+	 */
 	protected UserDefinedType processRow(ResultSet rs) throws SQLException {
 		String udtName = rs.getString(COLUMN_TYPE_NAME);
 		if (udtName == null || isFiltered(udtName)) {
@@ -178,17 +242,43 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		return udtFactory.createUDT(rs);
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Schema (i.e.
+	 *         (Schema) getCatalogObject()).
+	 */
 	protected Schema getSchema() {
 		return (Schema) getCatalogObject();
 	}
 
+	/**
+	 * Interface for providing creation logic for UDTs.
+	 */
 	public static interface IUDTFactory {
 
+		/**
+		 * @return the EClass used to represent the UDT objects created by this
+		 *         factory. This is used to identify existing objects in the
+		 *         model during a refresh (e.g. to reuse the object, preventing
+		 *         external references from breaking).
+		 */
 		EClass getUDTEClass();
 
+		/**
+		 * Creates and initializes a UDT object based on the meta-data in the
+		 * result set.
+		 * 
+		 * @param rs the result set
+		 * @return a new, initialized UserDefinedType object.
+		 * @throws SQLException if anything goes wrong
+		 */
 		UserDefinedType createUDT(ResultSet rs) throws SQLException;
 	}
 
+	/**
+	 * Base factory implementation for distinct UDTs.
+	 */
 	public static class DistinctTypeFactory extends StructTypeFactory {
 
 		private DatabaseDefinition mDatabaseDefinition;
@@ -197,18 +287,46 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 			mDatabaseDefinition = databaseDefinition;
 		}
 
+		/**
+		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.StructTypeFactory#getUDTEClass()
+		 * 
+		 * @return SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType()
+		 */
 		public EClass getUDTEClass() {
 			return SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType();
 		}
 
+		/**
+		 * Internal factory method. The default implementation returns a new
+		 * JDBCDistinctUDT object.
+		 * 
+		 * @return a new UserDefinedType object
+		 * 
+		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.StructTypeFactory#newUDT()
+		 */
 		protected UserDefinedType newUDT() {
 			return new JDBCDistinctUDT();
 		}
 
+		/**
+		 * @return the DatabaseDefinition associated with this object
+		 */
 		protected DatabaseDefinition getDatabaseDefinition() {
 			return mDatabaseDefinition;
 		}
 
+		/**
+		 * Initializes the new UserDefinedType object using the meta-data in the
+		 * result set. This method initializes the name, description and type of
+		 * the UDT.
+		 * 
+		 * @param udt a new UserDefinedType object
+		 * @param rs the result set
+		 * @throws SQLException if anything goes wrong
+		 * 
+		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.StructTypeFactory#initialize(org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType,
+		 *      java.sql.ResultSet)
+		 */
 		protected void initialize(UserDefinedType udt, ResultSet rs)
 				throws SQLException {
 			super.initialize(udt, rs);
@@ -225,22 +343,51 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Base factory implementation for struct UDTs.
+	 */
 	public static class StructTypeFactory implements IUDTFactory {
 
+		/**
+		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.IUDTFactory#getUDTEClass()
+		 * 
+		 * @return SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType()
+		 */
 		public EClass getUDTEClass() {
 			return SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType();
 		}
 
+		/**
+		 * Creates and initializes a new UserDefinedType object from the
+		 * meta-data in the result set.
+		 * 
+		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.IUDTFactory#createUDT(java.sql.ResultSet)
+		 */
 		public UserDefinedType createUDT(ResultSet rs) throws SQLException {
 			UserDefinedType retVal = newUDT();
 			initialize(retVal, rs);
 			return retVal;
 		}
 
+		/**
+		 * Internal factory method. The default implementation returns a new
+		 * JDBCStructuredUDT object.
+		 * 
+		 * @return a new UserDefinedType object
+		 */
 		protected UserDefinedType newUDT() {
 			return new JDBCStructuredUDT();
 		}
 
+		/**
+		 * Initializes the new UserDefinedType object using the meta-data in the
+		 * result set. This method initializes the name and description of the
+		 * UDT.
+		 * 
+		 * @param udt a new UserDefinedType object
+		 * @param rs the result set
+		 * @throws SQLException if anything goes wrong
+		 */
 		protected void initialize(UserDefinedType udt, ResultSet rs)
 				throws SQLException {
 			udt.setName(rs.getString(COLUMN_TYPE_NAME));

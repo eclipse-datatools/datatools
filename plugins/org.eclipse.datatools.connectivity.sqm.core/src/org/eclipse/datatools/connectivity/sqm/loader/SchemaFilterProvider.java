@@ -15,8 +15,19 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Connectio
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 
+/**
+ * Filter provider implementation for Schema objects.
+ * 
+ * @since 1.0
+ */
 public class SchemaFilterProvider extends ConnectionFilterProvider {
 
+	/**
+	 * @return the schema ConnectionFilter associated with the specified catalog
+	 *         object (which must be a Catalog).
+	 * 
+	 * @see org.eclipse.datatools.connectivity.sqm.loader.IConnectionFilterProvider#getConnectionFilter(org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject)
+	 */
 	public ConnectionFilter getConnectionFilter(ICatalogObject catalogObject) {
 		ConnectionInfo ci = getConnectionInfo(catalogObject);
 		ConnectionFilter retVal = ci.getFilter(((Catalog) catalogObject)

@@ -39,106 +39,112 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
- * class may be specialized as necessary to meet a particular vendor's needs.
+ * Base loader implementation for loading a table's constraint objects (e.g. PK,
+ * FK, etc.). This class may be specialized as necessary to meet a particular
+ * vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getExportedKeys()
 	 */
 	public static final String COLUMN_COLUMN_NAME = "COLUMN_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the column's key sequence.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getExportedKeys()
 	 */
 	public static final String COLUMN_KEY_SEQ = "KEY_SEQ"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the primary key's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getExportedKeys()
 	 */
 	public static final String COLUMN_PK_NAME = "PK_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing a primary key's column name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getExportedKeys()
 	 */
 	public static final String COLUMN_PKCOLUMN_NAME = "PKCOLUMN_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the primary key's catalog.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_PKTABLE_CAT = "PKTABLE_CAT"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the primary key's schema.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_PKTABLE_SCHEM = "PKTABLE_SCHEM"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the primary key's table.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_PKTABLE_NAME = "PKTABLE_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the foreign key's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_FKCOLUMN_NAME = "FKCOLUMN_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the constraint's update rule.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_UPDATE_RULE = "UPDATE_RULE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the constraint's delete rule.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_DELETE_RULE = "DELETE_RULE"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the foreign key's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_FK_NAME = "FK_NAME"; //$NON-NLS-1$
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the constraint's deferrability.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getIndexes()
+	 * @see java.sql.DatabaseMetaData.getImportedKeys()
 	 */
 	public static final String COLUMN_DEFERRABILITY = "DEFERRABILITY"; //$NON-NLS-1$
 
 	/**
-	 * @param catalogObject the Database object upon which this loader operates.
+	 * This constructs the loader using no filter.
+	 * 
+	 * @param catalogObject the Table object upon which this loader operates.
 	 */
 	public JDBCTableConstraintLoader(ICatalogObject catalogObject) {
 		this(catalogObject, null);
 	}
 
+	/**
+	 * @param catalogObject the Catalog object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "constraint" objects being loaded
+	 */
 	public JDBCTableConstraintLoader(
 										ICatalogObject catalogObject,
 										IConnectionFilterProvider connectionFilterProvider) {
@@ -146,6 +152,15 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		assert (catalogObject instanceof Table);
 	}
 
+	/**
+	 * Loads the "primary key" object from the database. This method uses the
+	 * result set from createPrimaryKeyResultSet() to load the "primary key"
+	 * object from the server..
+	 * 
+	 * @return the table's primary key
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 */
 	public PrimaryKey loadPrimaryKey() throws SQLException {
 		ResultSet rs = null;
 		try {
@@ -171,6 +186,17 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Loads the "unique constraint" objects from the database. This method uses
+	 * the result set from createUniqueConstraintResultSet() to load the "unique
+	 * constraint" objects from the server.
+	 * 
+	 * @param pk the table's primary key. Used to prevent duplicating the PK
+	 *        constraint.
+	 * @return a collection of UniqueConstraint objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 */
 	public Collection loadUniqueConstraints(PrimaryKey pk) throws SQLException {
 		ResultSet rs = null;
 		try {
@@ -212,6 +238,15 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Loads the "foreign key" objects from the database. This method uses the
+	 * result set from createUniqueConstraintResultSet() to load the "foreign
+	 * key" objects from the server.
+	 * 
+	 * @return a collection of ForeignKey objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 */
 	public Collection loadForeignKeys() throws SQLException {
 		ResultSet rs = null;
 		try {
@@ -308,10 +343,28 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Removes the specified constraints from the model.
+	 * 
+	 * @param constraintContainer the constraints container
+	 * @param remove the constraints to remove.
+	 */
 	public void clearConstraints(EList constraintContainer, List remove) {
 		constraintContainer.removeAll(remove);
 	}
 
+	/**
+	 * Creates a result set to be used by the primary key loading logic. The
+	 * default version uses of the JDBC DatabaseMetaData.getPrimaryKeys() to
+	 * create the result set. This method may be overridden to use a vendor
+	 * specific query. However, the default logic requires the columns named by
+	 * the "COLUMN_*" fields. Keep this in mind if you plan to reuse the default
+	 * logic (e.g. loadPrimaryKey()).
+	 * 
+	 * @return a result containing the information used to initialize PrimaryKey
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createPrimaryKeyResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
@@ -320,6 +373,19 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 				table.getName());
 	}
 
+	/**
+	 * Creates a result set to be used by the unique constraint loading logic.
+	 * The default version uses of the JDBC DatabaseMetaData.getExportedKeys()
+	 * to create the result set. This method may be overridden to use a vendor
+	 * specific query. However, the default logic requires the columns named by
+	 * the "COLUMN_*" fields. Keep this in mind if you plan to reuse the default
+	 * logic (e.g. loadUniqueConstraints()).
+	 * 
+	 * @return a result containing the information used to initialize
+	 *         UniqueConstraint objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createUniqueConstraintResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
@@ -328,6 +394,19 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						schema.getName(), table.getName());
 	}
 
+	/**
+	 * Creates a result set to be used by the unique constraint loading logic.
+	 * The default version uses of the JDBC DatabaseMetaData.getExportedKeys()
+	 * to create the result set. This method may be overridden to use a vendor
+	 * specific query. However, the default logic requires the columns named by
+	 * the "COLUMN_*" fields. Keep this in mind if you plan to reuse the default
+	 * logic (e.g. loadForeignKeys()).
+	 * 
+	 * @return a result containing the information used to initialize ForeignKey
+	 *         objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createForeignKeyResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
@@ -336,6 +415,14 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						schema.getName(), table.getName());
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -344,22 +431,51 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Returns a new PrimaryKey object. By default, this method returns a new
+	 * JDBCPrimaryKey.
+	 * 
+	 * @return a new PrimaryKey object.
+	 */
 	protected PrimaryKey createPrimaryKey() {
 		return new JDBCPrimaryKey();
 	}
 
+	/**
+	 * Returns a new UniqueConstraint object. By default, this method returns a
+	 * new JDBCUniqueConstraint.
+	 * 
+	 * @return a new UniqueConstraint object.
+	 */
 	protected UniqueConstraint createUniqueConstraint() {
 		return new JDBCUniqueConstraint();
 	}
 
+	/**
+	 * Returns a new ForeignKey object. By default, this method returns a new
+	 * JDBCForeignKey.
+	 * 
+	 * @return a new ForeignKey object.
+	 */
 	protected ForeignKey createForeignKey() {
 		return new JDBCForeignKey();
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Table (i.e.
+	 *         (Table) getCatalogObject()).
+	 */
 	protected Table getTable() {
 		return (Table) getCatalogObject();
 	}
 
+	/**
+	 * Initializes the reference annotations for the foreign key.
+	 * 
+	 * @param fk the foreign key to initialize
+	 */
 	protected void initReferenceAnnotation(ForeignKey fk) {
 		EAnnotation eAnnotation = fk
 				.addEAnnotation(RDBCorePlugin.FK_MODELING_RELATIONSHIP);
@@ -379,6 +495,11 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 				new String());
 	}
 
+	/**
+	 * @param fk the foreign key
+	 * @return true if one of the foreign key's columns is part of a table's
+	 *         primary key
+	 */
 	protected boolean foreignKeyIsIdentifyingRelationship(ForeignKey fk) {
 		boolean isIdentifying = true;
 
@@ -393,6 +514,13 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		return isIdentifying;
 	}
 
+	/**
+	 * Returns the column object with the specified columnName.
+	 * 
+	 * @param columnName the name of the column to find.
+	 * 
+	 * @return the Column; null if the named column does not exist.
+	 */
 	protected Column findColumn(String columnName) {
 		if (columnName == null) {
 			return null;
@@ -407,6 +535,16 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		return null;
 	}
 
+	/**
+	 * Returns the unique constraint for the catalog.schema.table.keyName.
+	 * 
+	 * @param catalogName the catalog name
+	 * @param schemaName the schema name
+	 * @param tableName the table name
+	 * @param keyName the key name
+	 * 
+	 * @return the UniqueConstraint; null if it does not exist.
+	 */
 	protected UniqueConstraint findUniqueConstraint(String catalogName,
 			String schemaName, String tableName, String keyName) {
 		if (keyName == null) {
@@ -426,6 +564,15 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 		return null;
 	}
 
+	/**
+	 * Returns the table for the catalog.schema.table.
+	 * 
+	 * @param catalogName the containing catalog's name
+	 * @param schemaName the containing schema's name
+	 * @param tableName the table's name
+	 * 
+	 * @return the Table; null if it does not exit.
+	 */
 	protected Table findTable(String catalogName, String schemaName,
 			String tableName) {
 		if (tableName == null) {

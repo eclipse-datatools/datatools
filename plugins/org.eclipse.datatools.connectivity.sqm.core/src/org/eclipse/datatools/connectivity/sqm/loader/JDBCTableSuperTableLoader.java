@@ -19,40 +19,44 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 /**
- * Base loader implementation for loading a database's catalog objects. This
+ * Base loader implementation for loading a table's super table objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
  * 
- * @author rcernich
- * 
- * Created on Aug 28, 2006
+ * @since 1.0
  */
 public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 
 	/**
-	 * The column name containing the schema name.
+	 * The column name containing the super table's name.
 	 * 
-	 * @see java.sql.DatabaseMetaData.getColumns()
+	 * @see java.sql.DatabaseMetaData.getSuperTables()
 	 */
 	public static final String COLUMN_SUPERTABLE_NAME = "SUPERTABLE_NAME"; //$NON-NLS-1$
 
 	/**
+	 * This constructs the loader using no filtering.
+	 * 
 	 * @param catalogObject the Database object upon which this loader operates.
 	 */
 	public JDBCTableSuperTableLoader(ICatalogObject catalogObject) {
 		this(catalogObject, null);
 	}
 
+	/**
+	 * @param catalogObject the Table object upon which this loader operates.
+	 * @param connectionFilterProvider the filter provider used for filtering
+	 *        the "table" objects being loaded
+	 */
 	public JDBCTableSuperTableLoader(
-									ICatalogObject catalogObject,
-									IConnectionFilterProvider connectionFilterProvider) {
+										ICatalogObject catalogObject,
+										IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
 		assert (catalogObject instanceof Table);
 	}
 
 	/**
-	 * @param existingCatalogs the catalog objects which were previously loaded
-	 * @return
-	 * @throws SQLException
+	 * @return the super table, null if no super table exists.
+	 * @throws SQLException if an error occurred during loading.
 	 */
 	public Table loadSuperTable() throws SQLException {
 		Table retVal = null;
@@ -71,6 +75,17 @@ public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Creates a result set to be used by the loading logic. The default version
+	 * uses of the JDBC DatabaseMetaData.getSuperTables() to create the result
+	 * set. This method may be overridden to use a vendor specific query.
+	 * However, the default logic requires the column named "SUPERTABLE_NAME"
+	 * 
+	 * @return a result containing the information used to initialize Index
+	 *         objects
+	 * 
+	 * @throws SQLException if an error occurs
+	 */
 	protected ResultSet createResultSet() throws SQLException {
 		Table table = getTable();
 		Schema schema = table.getSchema();
@@ -79,6 +94,14 @@ public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 				table.getName());
 	}
 
+	/**
+	 * Closes the result set used for catalog object loading. This method is
+	 * implemented as rs.close(). However, if you used a Statement object to
+	 * create the result set, this is where you would close that Statement.
+	 * 
+	 * @param rs the result set to close. This will be the result set created by
+	 *        createResultSet().
+	 */
 	protected void closeResultSet(ResultSet rs) {
 		try {
 			rs.close();
@@ -87,10 +110,22 @@ public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 		}
 	}
 
+	/**
+	 * Utility method.
+	 * 
+	 * @return returns the catalog object being operated upon as a Table (i.e.
+	 *         (Table) getCatalogObject()).
+	 */
 	protected Table getTable() {
 		return (Table) getCatalogObject();
 	}
 
+	/**
+	 * Returns the named table.
+	 * 
+	 * @param tableName the name of the table to find
+	 * @return the Table object if found; null if the table does not exist.
+	 */
 	protected Table findTable(String tableName) {
 		if (tableName == null) {
 			return null;
