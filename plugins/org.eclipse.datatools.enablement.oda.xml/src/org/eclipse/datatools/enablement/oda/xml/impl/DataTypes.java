@@ -12,9 +12,12 @@
 package org.eclipse.datatools.enablement.oda.xml.impl;
 
 import java.sql.Types;
-import java.util.HashMap;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 
 /**
  * This class hosts the information of data types that are supported by flat
@@ -22,7 +25,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public final class DataTypes
 {
-	//
 	public static final int INT = Types.INTEGER;
 	public static final int DOUBLE = Types.DOUBLE;
 	public static final int STRING = Types.VARCHAR;
@@ -30,31 +32,10 @@ public final class DataTypes
 	public static final int TIME = Types.TIME;
 	public static final int TIMESTAMP = Types.TIMESTAMP;
 	public static final int BLOB = Types.BLOB;
-	public static final int BIGDECIMAL = Types.NUMERIC;
-
-	//
-	private static HashMap typeStringIntPair = new HashMap( );
+	public static final int BIGDECIMAL = Types.NUMERIC; 
 	
-	private static HashMap typeIntStringPair = new HashMap( );
-	
-	static
-	{
-		typeStringIntPair.put( "Int", new Integer( INT ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "Double", new Integer( DOUBLE ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "String", new Integer( STRING ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "Date", new Integer( DATE ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "Time", new Integer( TIME ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "Timestamp", new Integer( TIMESTAMP ) ); //$NON-NLS-1$
-		typeStringIntPair.put( "Bigdecimal", new Integer( BIGDECIMAL ) ); //$NON-NLS-1$
-		
-		typeIntStringPair.put( new Integer( INT ),"Int" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( DOUBLE ),"Double" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( STRING ),"String" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( DATE ),"Date" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( TIME ),"Time" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( TIMESTAMP ),"Timestamp" ); //$NON-NLS-1$
-		typeIntStringPair.put( new Integer( BIGDECIMAL ),"Bigdecimal" ); //$NON-NLS-1$
-	}
+	private static final String XML_DATA_SOURCE_ID = 
+	        "org.eclipse.datatools.enablement.oda.xml"; //$NON-NLS-1$
 
 	/**
 	 * Return the int which stands for the type specified by input argument
@@ -67,10 +48,16 @@ public final class DataTypes
 	 */
 	public static int getType( String typeName ) throws OdaException
 	{
-		String preparedTypeName = typeName == null ? "":typeName.trim( );
-		if ( typeStringIntPair.containsKey( preparedTypeName ) )
-			return ( (Integer) typeStringIntPair.get( preparedTypeName ) ).intValue( );
-		throw new OdaException( ); //$NON-NLS-1$
+		  String preparedTypeName = typeName.trim().toUpperCase();
+	        
+	      // get the data type definition from my plugin manifest for all other types
+	      DataTypeMapping typeMapping = getManifest().getDataSetType( null )
+	                                        .getDataTypeMapping( preparedTypeName );
+	      if( typeMapping != null )
+	           return typeMapping.getNativeTypeCode();
+
+	      throw new OdaException( Messages
+	                .getString( "dataTypes.typeNameInvalid" ) + typeName ); //$NON-NLS-1$
 	}
 	
 	/**
@@ -84,10 +71,14 @@ public final class DataTypes
 	 */
 	public static String getTypeString( int type ) throws OdaException
 	{
-		Integer typeInteger = new Integer( type );
-		if ( typeIntStringPair.containsKey( typeInteger ) )
-			return typeIntStringPair.get( typeInteger ).toString();
-		throw new OdaException( ); //$NON-NLS-1$
+		 // get the data type definition from my plugin manifest for all other types
+	     DataTypeMapping typeMapping = getManifest().getDataSetType( null )
+	                                        .getDataTypeMapping( type );
+	        if( typeMapping != null )
+	            return typeMapping.getNativeType();
+
+	        throw new OdaException( Messages
+	                .getString( "dataTypes.typeNameInvalid" ) + type ); //$NON-NLS-1$
 	}
 	/**
 	 * Evalute whether an input String is a valid type that is supported by flat
@@ -98,9 +89,34 @@ public final class DataTypes
 	 */
 	public static boolean isValidType( String typeName )
 	{
-		return typeStringIntPair.containsKey( typeName.trim( ) );
+        String preparedTypeName = typeName.trim().toUpperCase();
+        
+        // check the data type definition in my plugin manifest for all other types
+        DataTypeMapping typeMapping = null;
+        try
+        {
+            typeMapping = getManifest().getDataSetType( null )
+                                            .getDataTypeMapping( preparedTypeName );
+        }
+        catch( OdaException e )
+        {
+            // ignore
+        }
+        
+        return( typeMapping != null );
 	}
 
+	 /**
+     * Returns the object that represents this extension's manifest.
+     * @throws OdaException
+     */
+    private static ExtensionManifest getManifest()
+        throws OdaException
+    {
+        return ManifestExplorer.getInstance()
+                .getExtensionManifest( XML_DATA_SOURCE_ID );
+    }
+    
 	private DataTypes( )
 	{
 	}
