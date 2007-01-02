@@ -31,6 +31,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
@@ -105,6 +106,97 @@ public class ModelUtil {
 		return findProceduralObject(proc, false);
 	}
 	
+    /**
+     * This method is used to find the table object in existing SQL modle.
+     * @param dbid
+     * @param dbname
+     * @param schemaName
+     * @param tableName
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName)
+    {
+        return findTableObject(dbid,dbname,schemaName,tableName,false);
+    }
+    
+    /**
+     * This method is used to find the table object in existing SQL modle.
+     * Attention: the method does not support ASE non-sharable temp table.
+     * @param dbid
+     * @param dbname
+     * @param schemaName
+     * @param tableName
+     * @param refresh
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh)
+    {
+        Database db = ProfileUtil.getDatabase(dbid);
+        if(db != null)
+        {
+            EList schemas = db.getSchemas();
+            if (schemas == null || schemas.size() == 0)
+            {
+                EList catalogs = db.getCatalogs();
+                if (catalogs != null)
+                {
+                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
+                    {
+                        Catalog catalog = (Catalog) iter.next();
+                        if (catalog.getName().equals(dbname))
+                        {
+                            schemas = (EList) catalog.getSchemas();
+                            break;
+                        }
+                    }
+                }
+            }
+           
+            for (Iterator i = schemas.iterator(); i.hasNext();)
+            {
+                Schema schema = (Schema) i.next();
+                if (schema.getName() != null && schema.getName().equals(schemaName))
+                {
+                    if (refresh)
+                    {
+                        ((ICatalogObject) schema).refresh();
+                    }
+                    for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
+                    {
+                        Table table = (Table) iter.next();
+                        //FIXME: 
+                        //handle non-sharable temp table for ASE,these code should be removed when
+                        //temp table catalog loader is ready
+                        if(tableName.startsWith("#"))
+                        {
+                            String tempTableNameInDB=table.getName();
+                            //Database will add 17 digital number after temp table name
+                            String nameWithoutPostfix = tempTableNameInDB.substring(tempTableNameInDB.length()-17, tempTableNameInDB.length());
+                            //ASE database does not add under score "_" as postfix, so we judge it firstly.
+                            if (nameWithoutPostfix.equals(tableName))
+                            {
+                                return table;
+                            }
+                            for(int k=nameWithoutPostfix.length();k>=0&&'_'==nameWithoutPostfix.charAt(k);k--)
+                            {
+                                if(tableName.equals(nameWithoutPostfix.substring(0, k)))
+                                {
+                                    return table;
+                                }
+                            }
+                            
+                        }
+                        else if (table.getName().equals(tableName))
+                        {
+                            return table;
+                        }
+                    }
+                }
+            }
+        }        
+        return null;
+    }
+    
 	/**
 	 * 
 	 * @param proc
