@@ -16,6 +16,7 @@ public class TableDataSaveStatus
     public int _updated = 0;
     public int _deleted = 0;  
     public boolean _duplicateRow = false;
+    public String _currentStmt  = "";
 
     public void reset()
     {
@@ -23,5 +24,6 @@ public class TableDataSaveStatus
         _updated = 0;
         _deleted = 0;
         _duplicateRow = false;
+        _currentStmt = "";
     }
 }
