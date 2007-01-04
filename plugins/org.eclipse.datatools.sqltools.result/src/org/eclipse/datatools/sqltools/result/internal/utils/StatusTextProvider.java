@@ -54,6 +54,9 @@ public class StatusTextProvider
     public static String getStatusText(IResultInstance instance)
     {
         StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
+        
+        // By default, the display string of this result is displayed in the "Status" tab
+        buff.append(instance.getOperationCommand().getDisplayString()).append(_LINESEPARATOR).append(_LINESEPARATOR);
         int count = instance.getItemCount();
         for(int i = 0; i<count; i++)
         {
