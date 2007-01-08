@@ -1,4 +1,4 @@
-/*
+﻿/*
  *************************************************************************
  * Copyright (c) 2004, 2005 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
@@ -15,7 +15,7 @@
 package org.eclipse.datatools.connectivity.oda;
 
 /**
- * Provides comprehensive information on the driver�s capabilities
+ * Provides comprehensive information on the driver’s capabilities
  * for a type of data set query.
  * <p>
  * An ODA runtime driver can implement a connection
