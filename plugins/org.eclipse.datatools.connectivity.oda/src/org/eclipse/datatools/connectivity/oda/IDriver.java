@@ -15,7 +15,7 @@
 package org.eclipse.datatools.connectivity.oda;
 
 /**
- * The entry point to a custom ODA run-time driver’s implementation.
+ * The entry point to a custom ODA run-time driver's implementation.
  * It is also a connection factory used to produce an IConnection object.
  */
 public interface IDriver
