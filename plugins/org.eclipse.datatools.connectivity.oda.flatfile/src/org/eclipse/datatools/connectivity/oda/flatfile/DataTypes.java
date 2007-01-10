@@ -43,6 +43,9 @@ public final class DataTypes
      */
     public static int getTypeCode( String typeName ) throws OdaException
     {
+        if( typeName == null || typeName.trim().length() == 0 )
+            return STRING;      // default data type
+              
         String preparedTypeName = typeName.trim().toUpperCase();
         
         if( preparedTypeName == NULL_LITERAL )
