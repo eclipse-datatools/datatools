@@ -48,7 +48,10 @@ public final class DataTypes
 	 */
 	public static int getType( String typeName ) throws OdaException
 	{
-		  String preparedTypeName = typeName.trim().toUpperCase();
+		  if ( typeName == null || typeName.trim().length() == 0 )
+    		return STRING;
+		  
+	      String preparedTypeName = typeName.trim().toUpperCase();
 	        
 	      // get the data type definition from my plugin manifest for all other types
 	      DataTypeMapping typeMapping = getManifest().getDataSetType( null )
