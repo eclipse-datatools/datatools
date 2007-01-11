@@ -8,8 +8,11 @@ package org.eclipse.datatools.sqltools.common.ui.resource;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URI;
 import java.util.Iterator;
 
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
@@ -261,14 +264,54 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
      */
     protected void createLinkTarget()
     {
-        String linkTarget = _linkedResourceGroup.getLinkTarget();
-        if (linkTarget != null)
+        try
         {
-            _linkTargetPath = new Path(linkTarget);
+            //Eclipse 3.2 and before
+            Method getLinkTarget = CreateLinkedResourceGroup.class.getMethod("getLinkTarget", null);
+            String linkTarget;
+            linkTarget = (String)getLinkTarget.invoke(_linkedResourceGroup, null);
+            if (linkTarget != null)
+            {
+                _linkTargetPath = new Path(linkTarget);
+            }
+            else
+            {
+                _linkTargetPath = null;
+            }
         }
-        else
+        catch (NoSuchMethodException e)
         {
-            _linkTargetPath = null;
+            // Eclipse 3.3
+            try
+            {
+                //Eclipse 3.2 and before
+                Method getLinkTargetURI = CreateLinkedResourceGroup.class.getMethod("getLinkTargetURI", null);
+                URI linkTargetURI = (URI)getLinkTargetURI.invoke(_linkedResourceGroup, null);
+                if (linkTargetURI != null)
+                {
+                    _linkTargetPath = URIUtil.toPath(linkTargetURI);
+                }
+                else
+                {
+                    _linkTargetPath = null;
+                }
+            }
+            catch (Exception ee)
+            {
+                Activator.getDefault().log(
+                        NLS.bind(Messages.WizardNewFileCreationPage_internalErrorMessage,  
+                        getClass().getName(), ee
+                    ));//$NON-NLS-1$
+
+            }
+        }
+        catch (Exception e)
+        {
+            Activator.getDefault().log(
+                    NLS.bind(Messages.WizardNewFileCreationPage_internalErrorMessage,  
+                    getClass().getName(), e
+                ));//$NON-NLS-1$
+
         }
     }
 
