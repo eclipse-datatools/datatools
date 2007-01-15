@@ -178,10 +178,14 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     	}
     }
     
-    public void notifyChanged(ICatalogObject dmElement, int eventType) {
+    public void notifyChanged(final ICatalogObject dmElement, int eventType) {
         if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH && viewer != null)
         {
-        	viewer.refresh(dmElement, true);
+            viewer.getControl().getDisplay().syncExec(new Runnable() {
+                public void run() {
+                    viewer.refresh(dmElement, true);
+                }
+            });
         }
 	}
 
