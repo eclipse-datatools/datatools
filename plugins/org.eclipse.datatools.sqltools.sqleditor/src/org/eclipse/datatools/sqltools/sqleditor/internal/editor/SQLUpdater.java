@@ -30,8 +30,10 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sql.parser.ParseException;
+import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -56,6 +58,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
@@ -190,8 +193,11 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
             removeMarkers(false);
             return;
         }
-                
-        _result = p.parse(content);
+
+        boolean useDelimiter = _editor.getSQLType() == SQLParserConstants.TYPE_SQL_ROOT;
+        ParserParameters parserParameters = new ParserParameters(useDelimiter, _editor.getSQLType());
+        _result = p.parse(content, parserParameters);
+
 		_result.getRootNode().setEditorInput(_input);
         IDocument document = _editor.getDocumentProvider().getDocument(_input);
         _result.getRootNode().setDocument(document);
@@ -209,7 +215,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         	pp = pf.getSQLService().getSQLParser();
         	if (pp != null && !(pp.getClass().equals(p.getClass())))
         	{
-        		ParsingResult presult = pp.parse(content);
+        		ParsingResult presult = pp.parse(content, parserParameters);
         		updatePortableAnnotation(presult.getExceptions());
         	}
         }
