@@ -11,8 +11,10 @@
 package org.eclipse.datatools.sqltools.result.internal.index;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -54,7 +56,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
     private Directory           _ramDir;
     private IndexWriter         _writer;
     private Analyzer            _analyzer;
-    
+    private List                _instances;
     public ResultHistoryLuceneIndex()
     {
         _ramDir = new RAMDirectory();
@@ -63,6 +65,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
         _analyzer = new WhitespaceAnalyzer();
         _id2result = new HashMap();
         _result2id = new HashMap();
+        _instances = new ArrayList();
         
         // Create the index
         try
@@ -110,8 +113,13 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                     for (int i = 0; i < instances.length; i++)
                     {
                         IResultInstance instance = instances[i];
+                        if(_instances.contains(instance))
+                        {
+                            continue;
+                        }
                         if (instance != null)
                         {
+                            _instances.add(instance);
                             Document doc = new Document();
                             doc.add(Field.Text(FIELD_OPERATION, getCombinedDisplayString(instance)));
                             doc.add(Field.Text(FIELD_ACTION, OperationCommand.getActionString(instance

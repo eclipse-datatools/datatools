@@ -22,7 +22,9 @@ public final class Messages extends NLS {
 		// Do not instantiate
 	}
 
-	public static String ResultHistoryPage_no_column_selected;
+	public static String MultipleTabsModeSection_warning;
+    public static String MultipleTabsModeSection_warning_info;
+    public static String ResultHistoryPage_no_column_selected;
     public static String ResultHistorySection_status;
 	public static String ResultHistoryPage_operation;
 	public static String ResultHistoryPage_frequency;
@@ -97,6 +99,11 @@ public final class Messages extends NLS {
 	public static String OperationCommand_action_browse;
 	public static String RedoAction_title;
     public static String SingleTabDisplayAction_single_tab;
+    public static String SingleWindowGridSection_warning_info;
+    public static String SQLResultsViewPage_limit_tables_number;
+    public static String SQLResultsViewPage_limit_tables_tooltip;
+    public static String SQLResultsViewPage_too_many_rows;
+    public static String SQLResultsViewPage_too_many_tabs;
     public static String TextModeDisplayAction_textmode_tip;
 	public static String UndoAction_title;
 	public static String TerminateInstanceAction_terminate;
