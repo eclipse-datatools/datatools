@@ -706,4 +706,20 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		return true;
 	}
 
+    protected void performDefaults()
+    {
+        super.performDefaults();
+        
+        //Restore default values and settings
+        disableFilterCheckbox.setSelection(true);
+        expressionField.setText("");
+        expressionPredicate.select(0);
+        selectionTable.clearAll();
+        selectionPredicate.select(0);
+        expressionRadioButton.setSelection(true);
+        selectionRadioButton.setSelection(false);
+        enableFilterSpecificationControls(false);
+        setErrorMessage(null);
+        setValid(true);
+    }    
 }
