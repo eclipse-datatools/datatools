@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
@@ -126,33 +128,63 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of UserDefinedType objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadUDTs(List, Collection)}
+	 */
+	public List loadUDTs() throws SQLException {
+		List retVal = new ArrayList();
+		loadUDTs(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "UDT" objects from the database. This method uses the result
-	 * set from createResultSet() to load the "UDT" objects from the server. Row
-	 * handling for the result set is delegated to processRow(). UserDefinedType
-	 * objects are created and initialized using one of the registered
-	 * factories.
+	 * set from createResultSet() to load the "UDT" objects from the server.
+	 * This method first checks the name of the "UDT" to determine whether or
+	 * not it should be filtered. If it is not filtered, it checks to see if an
+	 * object with that name was loaded previously. If it finds an existing
+	 * object, it refreshes that object and adds it to the containment list. If
+	 * the named object does not exist, the result set is passed to
+	 * processRow(). UserDefinedType objects are created and initialized using
+	 * one of the registered factories.
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), and a specialized Struct, Distinct and
 	 * Java type factories.
 	 * 
-	 * @return a collection of UserDefinedType objects
-	 * 
+	 * @param existingUDTs the catalog objects which were previously loaded
+	 * @param containmentList the containment list held by parent
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadUDTs() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadUDTs(List containmentList, Collection existingUDTs)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
-				UserDefinedType udt = processRow(rs);
-				if (udt != null) {
-					retVal.add(udt);
+				String udtName = rs.getString(COLUMN_TYPE_NAME);
+				if (udtName == null || isFiltered(udtName)) {
+					continue;
+				}
+				UserDefinedType udt = (UserDefinedType) getAndRemoveSQLObject(
+						existingUDTs, udtName);
+				if (udt == null) {
+					udt = processRow(rs);
+					if (udt != null) {
+						containmentList.add(udt);
+					}
+				}
+				else {
+					containmentList.add(udt);
+					if (udt instanceof ICatalogObject) {
+						((ICatalogObject) udt).refresh();
+					}
 				}
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -208,21 +240,15 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 
 	/**
 	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named UDT is filtered, determines whether
-	 * or not the UDT is a struct, distinct or Java type and invokes createUDT()
-	 * on the appropriate factory., returning the newly created, initialized
-	 * UserDefinedType object.
+	 * determines whether or not the UDT is a struct, distinct or Java type and
+	 * invokes createUDT() on the appropriate factory., returning the newly
+	 * created, initialized UserDefinedType object.
 	 * 
 	 * @param rs the result set
 	 * @return a new UserDefinedType object
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected UserDefinedType processRow(ResultSet rs) throws SQLException {
-		String udtName = rs.getString(COLUMN_TYPE_NAME);
-		if (udtName == null || isFiltered(udtName)) {
-			return null;
-		}
-
 		IUDTFactory udtFactory = null;
 		switch (rs.getInt(COLUMN_DATA_TYPE)) {
 		case Types.JAVA_OBJECT:

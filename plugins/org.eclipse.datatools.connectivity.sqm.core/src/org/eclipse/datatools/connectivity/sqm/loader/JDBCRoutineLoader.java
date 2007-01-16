@@ -14,6 +14,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -105,32 +107,62 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Routine objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadRoutines(List, Collection)}
+	 */
+	public List loadRoutines() throws SQLException {
+		List retVal = new ArrayList();
+		loadRoutines(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "routine" objects from the database. This method uses the
 	 * result set from createResultSet() to load the "routine" objects from the
-	 * server. Row handling for the result set is delegated to processRow().
-	 * Routine objects are created and initialized using one of the registered
-	 * factories.
+	 * server. This method first checks the name of the "routine" to determine
+	 * whether or not it should be filtered. If it is not filtered, it checks to
+	 * see if an object with that name was loaded previously. If it finds an
+	 * existing object, it refreshes that object and adds it to the containment
+	 * list. If the named object does not exist, the result set is passed
+	 * processRow(). Routine objects are created and initialized using one of
+	 * the registered factories.
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), and a specialized SP and UDF factories.
 	 * 
-	 * @return a collection of Routine objects
-	 * 
+	 * @param containmentList the containment list held by parent
+	 * @param existingRoutines the catalog objects which were previously loaded
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadRoutines() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadRoutines(List containmentList, Collection existingRoutines)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
-				Routine routine = processRow(rs);
-				if (routine != null) {
-					retVal.add(routine);
+				String routineName = rs.getString(COLUMN_PROCEDURE_NAME);
+				if (routineName == null || isFiltered(routineName)) {
+					continue;
+				}
+				Routine routine = (Routine) getAndRemoveSQLObject(
+						existingRoutines, routineName);
+				if (routine == null) {
+					routine = processRow(rs);
+					if (routine != null) {
+						containmentList.add(routine);
+					}
+				}
+				else {
+					containmentList.add(routine);
+					if (routine instanceof ICatalogObject) {
+						((ICatalogObject) routine).refresh();
+					}
 				}
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -215,21 +247,15 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 
 	/**
 	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named routine is filtered, determines
-	 * whether or not the routine is a SP or UDF and invokes createRoutine() on
-	 * the appropriate factory., returning the newly created, initialized
-	 * Routine object.
+	 * determines whether or not the routine is a SP or UDF and invokes
+	 * createRoutine() on the appropriate factory, returning the newly created,
+	 * initialized Routine object.
 	 * 
 	 * @param rs the result set
 	 * @return a new Routine object
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Routine processRow(ResultSet rs) throws SQLException {
-		String routineName = rs.getString(COLUMN_PROCEDURE_NAME);
-		if (routineName == null || isFiltered(routineName)) {
-			return null;
-		}
-
 		IRoutineFactory routineFactory = isProcedure(rs) ? mProcedureFactory
 				: mUserDefinedFunctionFactory;
 		return routineFactory.createRoutine(rs);

@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -149,31 +151,63 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Column objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadColumns(List, Collection)}
+	 */
+	public List loadColumns() throws SQLException {
+		List retVal = new ArrayList();
+		loadColumns(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "column" objects from the database. This method uses the result
 	 * set from createResultSet() to load the "column" objects from the server.
-	 * Row handling for the result set is delegated to processRow(). Column
-	 * objects are created using the factory method, createColumn().
+	 * This method first checks the name of the "column" to determine whether or
+	 * not it should be filtered. If it is not filtered, it checks to see if an
+	 * object with that name was loaded previously. If it finds an existing
+	 * object, it refreshes that object and adds it to the containment list. If
+	 * the named object does not exist, the result set is passed to
+	 * processRow(). Column objects are created using the factory method,
+	 * createColumn() and initialized through the initialize() method.
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), createColumn() and initialize().
 	 * 
-	 * @return a collection of Column objects
+	 * @param containmentList the containment list held by parent
+	 * @param existingColumns the catalog objects which were previously loaded
 	 * 
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadColumns() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadColumns(List containmentList, Collection existingColumns)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
 			for (rs = createResultSet(); rs.next();) {
-				Column column = processRow(rs);
-				if (column != null) {
-					retVal.add(column);
+				String columnName = rs.getString(COLUMN_COLUMN_NAME);
+				if (columnName == null || isFiltered(columnName)) {
+					continue;
+				}
+				Column column = (Column) getAndRemoveSQLObject(existingColumns,
+						columnName);
+				if (column == null) {
+					column = processRow(rs);
+					if (column != null) {
+						containmentList.add(column);
+					}
+				}
+				else {
+					containmentList.add(column);
+					if (column instanceof ICatalogObject) {
+						((ICatalogObject) column).refresh();
+					}
 				}
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -229,8 +263,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named column is filtered, invokes
+	 * Processes a single row in the result set. By default, this method invokes
 	 * createColumn() followed by initialize(), finally returning the newly
 	 * created, initialized Column object.
 	 * 
@@ -239,10 +272,6 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Column processRow(ResultSet rs) throws SQLException {
-		String columnName = rs.getString(COLUMN_COLUMN_NAME);
-		if (columnName == null || isFiltered(columnName)) {
-			return null;
-		}
 		Column column = createColumn();
 		initialize(column, rs);
 		return column;

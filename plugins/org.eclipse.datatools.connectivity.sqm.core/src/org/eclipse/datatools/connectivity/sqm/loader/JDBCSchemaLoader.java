@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -66,21 +68,39 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Schema objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadSchemas(List, Collection)}
+	 */
+	public List loadSchemas() throws SQLException {
+		List retVal = new ArrayList();
+		loadSchemas(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "schema" objects from the database. This method uses the result
 	 * set from createResultSet() to load the "schema" objects from the server.
-	 * Row handling for the result set is delegated to processRow(). Schema
-	 * objects are created using the factory method, createSchema().
+	 * This method first checks the name of the "schema" to determine whether or
+	 * not it should be filtered. If it is not filtered, it checks to see if an
+	 * object with that name was loaded previously. If it finds an existing
+	 * object, it refreshes that object and adds it to the containment list. If
+	 * the named object does not exist, the result set is passed to
+	 * processRow(). Schema objects are created using the factory method,
+	 * createSchema() and initialized through the initialize() method.
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), createSchema() and initialize().
 	 * 
-	 * @return a collection of Schema objects
-	 * 
+	 * @param containmentList the containment list held by parent
+	 * @param existingSchemas the catalog objects which were previously loaded
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadSchemas() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadSchemas(List containmentList, Collection existingSchemas)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
@@ -93,12 +113,28 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 				}
 			}
 			while (rs.next()) {
-				Schema schema = processRow(rs);
-				if (schema != null) {
-					retVal.add(schema);
+				if (!isSchemaInCatalog(rs)) {
+					continue;
+				}
+				String schemaName = rs.getString(COLUMN_TABLE_SCHEM);
+				if (schemaName == null || isFiltered(schemaName)) {
+					continue;
+				}
+				Schema schema = (Schema) getAndRemoveSQLObject(existingSchemas,
+						schemaName);
+				if (schema == null) {
+					schema = processRow(rs);
+					if (schema != null) {
+						containmentList.add(schema);
+					}
+				}
+				else {
+					containmentList.add(schema);
+					if (schema instanceof ICatalogObject) {
+						((ICatalogObject) schema).refresh();
+					}
 				}
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -150,8 +186,7 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named schema is filtered, invokes
+	 * Processes a single row in the result set. By default, this method invokes
 	 * createSchema() followed by initialize(), finally returning the newly
 	 * created, initialized Schema object.
 	 * 
@@ -160,34 +195,41 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Schema processRow(ResultSet rs) throws SQLException {
+		Schema schema = createSchema();
+		initialize(schema, rs);
+		return schema;
+	}
+
+	/**
+	 * Returns true if the meta-data in the result set represents a schema
+	 * contained by the catalog being loaded. This is a by product of the JDBC
+	 * DatabaseMetaData.getSchemas() call not supporting filtering by catalog.
+	 * 
+	 * If you override createResultSet() to provide a result set specific to the
+	 * catalog being populated, you should override this method as well to
+	 * simply return true (just to save some processing).
+	 * 
+	 * @param rs the result set
+	 * @return true if the meta-data represents a schema in the catalog
+	 * @throws SQLException if anything goes wrong
+	 */
+	protected boolean isSchemaInCatalog(ResultSet rs) throws SQLException {
 		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
 			Catalog catalog = getCatalog();
 			String catalogName = rs.getString(COLUMN_TABLE_CATALOG);
-			if (!catalog.getName().equals(catalogName)
-					|| (catalogName == null && catalog.getName().length() != 0)) {
-				return null;
-			}
+			return catalog.getName().equals(catalogName)
+					|| (catalogName == null && catalog.getName().length() == 0);
 		}
 		else {
 			// work around. some databases only return the schema column
 			// check to see if the current catalog matches this catalog or
 			// if the current catalog does not exist and this is the catalog
 			// for objects without a catalog.
-			if (!getCatalog().getName().equals(
+			return getCatalog().getName().equals(
 					getCatalogObject().getConnection().getCatalog())
-					&& !(getCatalog().getName().length() == 0 && getCatalogObject()
-							.getConnection().getCatalog() == null)) {
-				return null;
-			}
+					|| (getCatalog().getName().length() == 0 && getCatalogObject()
+							.getConnection().getCatalog() == null);
 		}
-
-		String schemaName = rs.getString(COLUMN_TABLE_SCHEM);
-		if (schemaName == null || isFiltered(schemaName)) {
-			return null;
-		}
-		Schema schema = createSchema();
-		initialize(schema, rs);
-		return schema;
 	}
 
 	/**

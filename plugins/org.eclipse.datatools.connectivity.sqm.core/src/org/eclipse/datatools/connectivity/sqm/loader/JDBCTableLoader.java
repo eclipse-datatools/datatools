@@ -14,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -154,23 +156,39 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Table objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadTables(List, Collection)}
+	 */
+	public List loadTables() throws SQLException {
+		List retVal = new ArrayList();
+		loadTables(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "table" objects from the database. This method uses the result
 	 * set from createResultSet() to load the "table" objects from the server.
-	 * Row handling for the result set is delegated to processRow(). Table
-	 * objects are created and initialized using one of the registered
-	 * factories.
-	 * 
+	 * This method first checks the name of the "table" to determine whether or
+	 * not it should be filtered. If it is not filtered, it checks to see if an
+	 * object with that name was loaded previously. If it finds an existing
+	 * object, it refreshes that object and adds it to the containment list. If
+	 * the named object does not exist, the result set is passed to
+	 * processRow(). Table objects are created and initialized using one of the
+	 * registered factories.
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), and a specialized factories.
 	 * 
-	 * @return a collection of Table objects
-	 * 
+	 * @param existingTables the catalog objects which were previously loaded
+	 * @param containmentList the containment list held by parent
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadTables() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadTables(List containmentList, Collection existingTables)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
@@ -188,12 +206,25 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 				}
 			}
 			while (rs.next()) {
-				Table table = processRow(rs);
-				if (table != null) {
-					retVal.add(table);
+				String tableName = rs.getString(COLUMN_TABLE_NAME);
+				if (tableName == null || isFiltered(tableName)) {
+					continue;
+				}
+				Table table = (Table) getAndRemoveSQLObject(existingTables,
+						tableName);
+				if (table == null) {
+					table = processRow(rs);
+					if (table != null) {
+						containmentList.add(table);
+					}
+				}
+				else {
+					containmentList.add(table);
+					if (table instanceof ICatalogObject) {
+						((ICatalogObject) table).refresh();
+					}
 				}
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -249,20 +280,15 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 
 	/**
 	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named table is filtered, determines the
-	 * table's type (e.g. VIEW, TABLE, etc.) and invokes createTable() on the
-	 * factory registered for that type, returning the newly created,
-	 * initialized Table object.
+	 * determines the table's type (e.g. VIEW, TABLE, etc.) and invokes
+	 * createTable() on the factory registered for that type, returning the
+	 * newly created, initialized Table object.
 	 * 
 	 * @param rs the result set
 	 * @return a new Table object
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Table processRow(ResultSet rs) throws SQLException {
-		String tableName = rs.getString(COLUMN_TABLE_NAME);
-		if (tableName == null || isFiltered(tableName)) {
-			return null;
-		}
 		String tableType = rs.getString(COLUMN_TABLE_TYPE);
 		if (!mTableFactories.containsKey(tableType)) {
 			return null;
@@ -306,6 +332,21 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	 */
 	public ITableFactory unregisterTableFactory(String type) {
 		return (ITableFactory) mTableFactories.remove(type);
+	}
+	
+	/**
+	 * Returns the table factory associated with the specified type. Returns
+	 * null if no factory has been associated with the specified type.
+	 * 
+	 * @param type the table type (e.g. VIEW, TABLE, etc.)
+	 * @return the registered factory; null if no factory is registered for the
+	 *         specified type.
+	 */
+	public ITableFactory getTableFactory(String type) {
+		if (mTableFactories.containsKey(type)) {
+			return (ITableFactory) mTableFactories.get(type);
+		}
+		return null;
 	}
 
 	/**

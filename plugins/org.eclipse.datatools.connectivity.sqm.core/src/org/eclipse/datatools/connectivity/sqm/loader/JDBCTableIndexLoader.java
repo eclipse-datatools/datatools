@@ -14,6 +14,8 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,20 +112,34 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Index objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadIndexes(List, Collection)}
+	 */
+	public List loadIndexes() throws SQLException {
+		List retVal = new ArrayList();
+		loadIndexes(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "index" objects from the database. This method uses the result
 	 * set from createResultSet() to load the "index" objects from the server.
 	 * Index objects are created using the factory method, createIndex().
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
-	 * closeResultSet(), createIndex() and initIndex().
+	 * closeResultSet(), createIndex(), initIndex(), createIndexMember() and
+	 * initIndexMember().
 	 * 
-	 * @return a collection of Index objects
-	 * 
+	 * @param existingIndexes the catalog objects which were previously loaded
+	 * @param containmentList the containment list held by parent
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public List loadIndexes() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadIndexes(List containmentList, Collection existingIndexes)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
@@ -137,9 +153,16 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 					continue;
 				}
 				if (index == null || !index.getName().equals(indexName)) {
-					index = createIndex();
-					initIndex(index, rs);
-					retVal.add(index);
+					index = (Index) getAndRemoveSQLObject(existingIndexes,
+							indexName);
+					if (index == null) {
+						index = createIndex();
+						initIndex(index, rs);
+					}
+					else if (index instanceof ICatalogObject) {
+						((ICatalogObject) index).refresh();
+					}
+					containmentList.add(index);
 				}
 				Column column = findColumn(rs.getString(COLUMN_COLUMN_NAME));
 				if (column == null) {
@@ -149,12 +172,9 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 				if (im == null) {
 					continue;
 				}
-				im.setColumn(column);
-				im.setIncrementType(getIncrementType(rs
-						.getString(COLUMN_ASC_OR_DESC)));
+				initIndexMember(im, column, rs);
 				index.getIncludedMembers().add(im);
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -235,6 +255,22 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 		index.setSchema(findSchema(rs.getString(COLUMN_INDEX_QUALIFIER)));
 		index.setClustered(DatabaseMetaData.tableIndexClustered == rs
 				.getShort(COLUMN_TYPE));
+	}
+
+	/**
+	 * Used to initialize a newly created IndexMember object. By default, this
+	 * method initializes the column and increment type of the IndexMember. This
+	 * method may be overridden to initialize any vendor specific properties.
+	 * 
+	 * @param im a newly created IndexMember object
+	 * @param column the Column
+	 * @param rs the result set containing the information
+	 * @throws SQLException if anything goes wrong
+	 */
+	protected void initIndexMember(IndexMember im, Column column, ResultSet rs)
+			throws SQLException {
+		im.setColumn(column);
+		im.setIncrementType(getIncrementType(rs.getString(COLUMN_ASC_OR_DESC)));
 	}
 
 	/**

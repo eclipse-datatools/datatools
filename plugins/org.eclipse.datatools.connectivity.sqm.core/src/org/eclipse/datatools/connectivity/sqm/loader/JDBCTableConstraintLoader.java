@@ -13,7 +13,9 @@ package org.eclipse.datatools.connectivity.sqm.loader;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -153,23 +155,48 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return the table's primary key
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadPrimaryKey(PrimaryKey)}
+	 */
+	public PrimaryKey loadPrimaryKey() throws SQLException {
+		return loadPrimaryKey(null);
+	}
+
+	/**
 	 * Loads the "primary key" object from the database. This method uses the
 	 * result set from createPrimaryKeyResultSet() to load the "primary key"
 	 * object from the server..
 	 * 
+	 * @param existingPK the existing primary key, if one exists.
 	 * @return the table's primary key
 	 * 
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public PrimaryKey loadPrimaryKey() throws SQLException {
+	public PrimaryKey loadPrimaryKey(PrimaryKey existingPK) throws SQLException {
 		ResultSet rs = null;
 		try {
 			Map columns = new TreeMap();
 			PrimaryKey pk = null;
 			for (rs = createPrimaryKeyResultSet(); rs.next();) {
 				if (pk == null) {
-					pk = createPrimaryKey();
-					pk.setName(rs.getString(COLUMN_PK_NAME));
+					String pkName = rs.getString(COLUMN_PK_NAME);
+					if (pkName == null) {
+						return null;
+					}
+					if (existingPK != null
+							&& pkName.equals(existingPK.getName())) {
+						pk = existingPK;
+						if (existingPK instanceof ICatalogObject) {
+							((ICatalogObject) pk).refresh();
+						}
+					}
+					else {
+						pk = createPrimaryKey();
+						pk.setName(pkName);
+					}
 				}
 				columns.put(new Integer(rs.getShort(COLUMN_KEY_SEQ)),
 						findColumn(rs.getString(COLUMN_COLUMN_NAME)));
@@ -187,34 +214,63 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @param pk the table's primary key. Used to prevent duplicating the PK
+	 *        constraint.
+	 * @return a collection of UniqueConstraint objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see
+	 *             {@link #loadUniqueConstraints(PrimaryKey, List, Collection)}
+	 */
+	public Collection loadUniqueConstraints(PrimaryKey pk) throws SQLException {
+		List retVal = new ArrayList();
+		loadUniqueConstraints(pk, retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "unique constraint" objects from the database. This method uses
 	 * the result set from createUniqueConstraintResultSet() to load the "unique
 	 * constraint" objects from the server.
 	 * 
 	 * @param pk the table's primary key. Used to prevent duplicating the PK
 	 *        constraint.
-	 * @return a collection of UniqueConstraint objects
+	 * @param containmentList the containment list held by parent
+	 * @param existingUCs the catalog objects which were previously loaded
 	 * 
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public Collection loadUniqueConstraints(PrimaryKey pk) throws SQLException {
+	public void loadUniqueConstraints(PrimaryKey pk, List containmentList,
+			Collection existingUCs) throws SQLException {
 		ResultSet rs = null;
+		if (pk != null) {
+			// Remove this guy from the list.
+			existingUCs.remove(pk);
+		}
 		try {
 			Map constraints = new HashMap();
 			Map constraintColumns = new HashMap();
 			for (rs = createUniqueConstraintResultSet(); rs.next();) {
 				String ucName = rs.getString(COLUMN_PK_NAME);
-				if (ucName.equals(pk.getName())) {
+				if (ucName.equals(pk == null ? null : pk.getName())) {
 					// Already seen this guy
 					continue;
 				}
 				else if (!constraints.containsKey(ucName)) {
-					// create the next UC
-					UniqueConstraint uc = createUniqueConstraint();
-					uc.setName(ucName);
+					UniqueConstraint uc = (UniqueConstraint) getAndRemoveSQLObject(
+							existingUCs, ucName);
+					if (uc == null) {
+						// create the next UC
+						uc = createUniqueConstraint();
+						uc.setName(ucName);
+					}
+					else if (uc instanceof ICatalogObject) {
+						((ICatalogObject) uc).refresh();
+					}
+					containmentList.add(uc);
 					constraints.put(ucName, uc);
 					constraintColumns.put(ucName, new TreeMap());
-
 				}
 				((Map) constraintColumns.get(ucName)).put(new Integer(rs
 						.getShort(COLUMN_KEY_SEQ)), findColumn(rs
@@ -229,7 +285,6 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 					uc.getMembers().add(colIt.next());
 				}
 			}
-			return constraints.values();
 		}
 		finally {
 			if (rs != null) {
@@ -239,25 +294,48 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of ForeignKey objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadForeignKeys(List, Collection)}
+	 */
+	public Collection loadForeignKeys() throws SQLException {
+		List retVal = new ArrayList();
+		loadForeignKeys(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "foreign key" objects from the database. This method uses the
 	 * result set from createUniqueConstraintResultSet() to load the "foreign
 	 * key" objects from the server.
 	 * 
-	 * @return a collection of ForeignKey objects
-	 * 
+	 * @param containmentList the containment list held by parent
+	 * @param existingFKs the catalog objects which were previously loaded
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public Collection loadForeignKeys() throws SQLException {
+	public void loadForeignKeys(List containmentList, Collection existingFKs)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			Map constraints = new HashMap();
 			Map constraintColumns = new HashMap();
 			for (rs = createForeignKeyResultSet(); rs.next();) {
 				String fkName = rs.getString(COLUMN_FK_NAME);
+
 				if (!constraints.containsKey(fkName)) {
-					// create the next FK
-					ForeignKey fk = createForeignKey();
-					fk.setName(fkName);
+					ForeignKey fk = (ForeignKey) getAndRemoveSQLObject(
+							existingFKs, fkName);
+					if (fk == null) {
+						// create the next FK
+						fk = createForeignKey();
+						fk.setName(fkName);
+					}
+					else if (fk instanceof ICatalogObject) {
+						((ICatalogObject) fk).refresh();
+					}
+					containmentList.add(fk);
 					switch (rs.getShort(COLUMN_UPDATE_RULE)) {
 					case DatabaseMetaData.importedKeyCascade:
 						fk.setOnUpdate(ReferentialActionType.CASCADE_LITERAL);
@@ -334,7 +412,6 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 				}
 				initReferenceAnnotation(fk);
 			}
-			return constraints.values();
 		}
 		finally {
 			if (rs != null) {

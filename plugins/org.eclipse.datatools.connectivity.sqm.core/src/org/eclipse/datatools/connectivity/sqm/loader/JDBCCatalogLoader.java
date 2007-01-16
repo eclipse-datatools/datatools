@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -58,42 +59,86 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 	}
 
 	/**
+	 * @return a collection of Catalog objects
+	 * 
+	 * @throws SQLException if an error occurred during loading.
+	 * 
+	 * @deprecated see {@link #loadCatalogs(List, Collection)}
+	 */
+	public Collection loadCatalogs() throws SQLException {
+		List retVal = new ArrayList();
+		loadCatalogs(retVal, Collections.EMPTY_SET);
+		return retVal;
+	}
+
+	/**
 	 * Loads the "catalog" objects from the database. This method uses the
 	 * result set from createResultSet() to load the "catalog" objects from the
-	 * server. Row handling for the result set is delegated to processRow().
-	 * Catalog objects are created using the factory method, createCatalog().
+	 * server. This method first checks the name of the "catalog" to determine
+	 * whether or not it should be filtered. If it is not filtered, it checks to
+	 * see if an object with that name was loaded previously. If it finds an
+	 * existing object, it refreshes that object and adds it to the containment
+	 * list. If the named object does not exist, the result set is passed to
+	 * processRow(), which creates and initializes a new object. Catalog objects
+	 * are created using the factory method, createCatalog() and initialized
+	 * through the initialize() method.
 	 * 
 	 * If no catalogs are loaded, the loader assumes catalogs are not supported
-	 * and creates a default Catalog object with an empty name.  (This is mimics
-	 * the behavior of the JDBC meta-data API where objects not belonging to
-	 * a catalog are associated with a "" named catalog.)
+	 * and creates a default Catalog object with an empty name. (This is mimics
+	 * the behavior of the JDBC meta-data API where objects not belonging to a
+	 * catalog are associated with a "" named catalog.)
 	 * 
 	 * This method should only be overridden as a last resort when the desired
 	 * behavior cannot be acheived by overriding createResultSet(),
 	 * closeResultSet(), processRow(), createCatalog() and initialize().
 	 * 
-	 * @return a collection of Catalog objects
-	 * 
+	 * @param containmentList the containment list held by parent
+	 * @param existingCatalogs the catalog objects which were previously loaded
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	public Collection loadCatalogs() throws SQLException {
-		List retVal = new ArrayList();
+	public void loadCatalogs(List containmentList, Collection existingCatalogs)
+			throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
+
+			boolean catalogsFiltered = false;
 			for (rs = createResultSet(); rs.next();) {
-				Catalog catalog = processRow(rs);
-				if (catalog != null) {
-					retVal.add(catalog);
+				String catalogName = rs
+						.getString(JDBCCatalogLoader.COLUMN_TABLE_CAT);
+				if (catalogName == null || isFiltered(catalogName)) {
+					catalogsFiltered = true;
+					continue;
+				}
+
+				Catalog catalog = (Catalog) getAndRemoveSQLObject(
+						existingCatalogs, catalogName);
+				if (catalog == null) {
+					catalog = processRow(rs);
+					if (catalog != null) {
+						containmentList.add(catalog);
+					}
+				}
+				else {
+					containmentList.add(catalog);
+					if (catalog instanceof ICatalogObject) {
+						((ICatalogObject) catalog).refresh();
+					}
 				}
 			}
-			if (retVal.size() == 0) {
+			if (containmentList.size() == 0 && !catalogsFiltered) {
 				// Create a default catalog
-				Catalog catalog = createCatalog();
-				catalog.setName(new String());
-				retVal.add(catalog);
+				Catalog catalog = (Catalog) getAndRemoveSQLObject(
+						existingCatalogs, new String());
+				if (catalog == null) {
+					catalog = createCatalog();
+					catalog.setName(new String());
+				}
+				else if (catalog instanceof ICatalogObject) {
+					((ICatalogObject) catalog).refresh();
+				}
+				containmentList.add(catalog);
 			}
-			return retVal;
 		}
 		finally {
 			if (rs != null) {
@@ -144,8 +189,7 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 	}
 
 	/**
-	 * Processes a single row in the result set. By default, this method
-	 * determines whether or not the named catalog is filtered, invokes
+	 * Processes a single row in the result set. By default, this method invokes
 	 * createCatalog() followed by initialize(), finally returning the newly
 	 * created, initialized Catalog object.
 	 * 
@@ -154,10 +198,6 @@ public class JDBCCatalogLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Catalog processRow(ResultSet rs) throws SQLException {
-		String catalogName = rs.getString(COLUMN_TABLE_CAT);
-		if (catalogName == null || isFiltered(catalogName)) {
-			return null;
-		}
 		Catalog catalog = createCatalog();
 		initialize(catalog, rs);
 		return catalog;

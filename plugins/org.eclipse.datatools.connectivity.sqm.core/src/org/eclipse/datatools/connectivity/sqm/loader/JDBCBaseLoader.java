@@ -10,8 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.loader;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
 /**
  * Base object for catalog loader helpers. This object provides basic services
@@ -114,4 +118,14 @@ public class JDBCBaseLoader {
 		return mActiveFilter.isFiltered(name);
 	}
 
+	protected SQLObject getAndRemoveSQLObject(Collection sqlObjs, String objName) {
+		for (Iterator it = sqlObjs.iterator(); it.hasNext();) {
+			SQLObject obj = (SQLObject) it.next();
+			if (obj.getName().equals(objName)) {
+				it.remove();
+				return obj;
+			}
+		}
+		return null;
+	}
 }
