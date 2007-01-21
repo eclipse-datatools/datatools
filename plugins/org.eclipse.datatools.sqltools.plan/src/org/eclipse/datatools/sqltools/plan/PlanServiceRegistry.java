@@ -30,10 +30,11 @@ import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
  */
 public class PlanServiceRegistry
 {
-    private static ILogger             _log = PlanViewPlugin.getLogger(null);
+    private static ILogger             _log            = PlanViewPlugin.getLogger(null);
     private static PlanServiceRegistry _instance;
     private static Map                 _extensions;
-    private static PlanService _defaultService = new PlanService();
+    private static PlanService         _defaultService = new PlanService();
+
     private PlanServiceRegistry()
     {
         _extensions = new HashMap();
