@@ -547,7 +547,7 @@ public class ResultsViewAPI
             {
                 try
                 {
-                    _activePage.showView(ResultsConstants.SQL_RESULTS_VIEW_ID);
+                    _activePage.showView(ResultsConstants.SQL_RESULTS_VIEW_ID, null, IWorkbenchPage.VIEW_VISIBLE);
                 }
                 catch (PartInitException ex)
                 {
