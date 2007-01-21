@@ -45,6 +45,7 @@ public class EPVFacade
      */
     public boolean createNewPlanInstance(PlanRequest request)
     {
+        checkView(request.getMode());
         if(request == null)
         {
             return false;
@@ -54,7 +55,6 @@ public class EPVFacade
             return false;
         }
         IPlanInstance instance = _manager.createNewPlanInstance(request);
-        checkView(request.getMode());
         return instance == null ? false : true;
     }
 
@@ -81,6 +81,7 @@ public class EPVFacade
      */
     public void planFailed(PlanRequest request, Throwable th)
     {
+        checkView(request.getMode());
         if(request == null)
         {
             return;
@@ -91,7 +92,6 @@ public class EPVFacade
             return;
         }
         instance.finishFail(th);
-        checkView(request.getMode());
     }
 
     /**
@@ -106,6 +106,7 @@ public class EPVFacade
      */
     public void planGenerated(PlanRequest request, String rawPlan)
     {
+        checkView(request.getMode());
         if(request == null)
         {
             return;
@@ -116,7 +117,6 @@ public class EPVFacade
             return;
         }
         instance.finishSuccess(rawPlan);
-        checkView(request.getMode());
     }
     
     /**
