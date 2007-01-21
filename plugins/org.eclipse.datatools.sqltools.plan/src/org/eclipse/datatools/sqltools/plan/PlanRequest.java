@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan;
 
+import java.util.Map;
+
 
 /**
  * Start point to use EPV (SQL Execution Plan View), every time when the consumer needs to display an execution plan on
@@ -27,7 +29,6 @@ package org.eclipse.datatools.sqltools.plan;
  */
 public class PlanRequest
 {
-    
     /**
      * Make the SQL Execution Plan view visible and activated
      */
@@ -60,19 +61,34 @@ public class PlanRequest
     public static final int FAILED  = 2;
     
     
-    /* The database definition id, use "product_name"_"version" to uniquely identify a database product */
+    //The database definition id, use "product_name"_"version" to uniquely identify a database product 
     private String          _databaseDefinitionId;
-    /* The plan type, each vendor can define their own plan types. The framework will use GRAPHIC_PLAN or TEXT_PLAN 
-     * to bitwise and this plan type to determine whether it's a graphic plan or text plan.*/
+    
+    /**
+     * The plan type, each vendor can define their own plan types. The framework will use GRAPHIC_PLAN or TEXT_PLAN to
+     * bitwise and this plan type to determine whether it's a graphic plan or text plan.
+     */
     private int             _planType;
-    /* The SQL statement from which the execution plan is generated */
+    
+    // The SQL statement from which the execution plan is generated
     private String          _sql;
-    /* The show view mode */
+    
+    // The show view mode
     private int             _mode;
+    
+    /**
+     * Since the statements to be explained may reference some variables, but the
+     * declarations of the variable are not included
+     */
+    private Map             _varDecs;
+    
+    // Application data
+    private Object          _data;
     /**
      * Whether to execute the sql statement when retrieving the execution plan
      */
     private boolean _noexec;
+    
     /**
      * Constructs a plan request
      * 
@@ -97,6 +113,12 @@ public class PlanRequest
         {
             _mode = mode;
         }
+    }
+    
+    public PlanRequest(String sql, String databaseDefinitionId, int planType, int mode, Map varDecs)
+    {
+        this(sql, databaseDefinitionId, planType, mode);
+        _varDecs = varDecs;
     }
 
     /**
@@ -182,5 +204,25 @@ public class PlanRequest
     public void setNoexec(boolean _noexec)
     {
         this._noexec = _noexec;
+    }
+
+    public Object getData()
+    {
+        return _data;
+    }
+
+    public void setData(Object data)
+    {
+        this._data = data;
+    }
+
+    public Map getVarDecs()
+    {
+        return _varDecs;
+    }
+
+    public void setVarDecs(Map decs)
+    {
+        _varDecs = decs;
     }
 }
