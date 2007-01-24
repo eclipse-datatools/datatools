@@ -94,7 +94,7 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 	public String getConsumerName() {
 		if (_consumerName == null)
 		{
-			_consumerName = Messages.Routineeditor_name;
+			_consumerName = ""; //$NON-NLS-1$
 		}
 		return _consumerName;
 	}
@@ -162,11 +162,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 
                 catch (SQLException e1)
                 {
-                    RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_getStatementOutParam_debug, e1); 
+                    RoutineEditorActivator.getDefault().log("", e1);  //$NON-NLS-1$
                 }
                 catch (NumberFormatException e1)
                 {
-                	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_getStatementOutParam_debug, e1); 
+                	RoutineEditorActivator.getDefault().log("", e1);  //$NON-NLS-1$
                 }
             }
         }
@@ -332,11 +332,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             }
             catch (NoSuchProfileException e1)
             {
-            	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_prepareStatement, e1); 
+            	RoutineEditorActivator.getDefault().log("", e1);  //$NON-NLS-1$
             }
             catch (CoreException e)
             {
-            	RoutineEditorActivator.getDefault().log(Messages.CallableSQLResultRunnable_prepareStatement, e); 
+            	RoutineEditorActivator.getDefault().log("", e);  //$NON-NLS-1$
             }
         }
         return cstmt;
@@ -365,12 +365,28 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         	getStatementOutParam(_stmt, _pws);
         	synchronized (getOperationCommand())
         	{
+                resultsViewAPI.appendStatusMessage(getOperationCommand(), getReturnStatusString());
         		resultsViewAPI.showParameters(getOperationCommand(), convert(_pws));
         	}
         }
 		return success;
     }
     
+    protected String getReturnStatusString()
+    {
+        StringBuffer buffer = new StringBuffer(""); //$NON-NLS-1$
+        for (int i = 0; i < _pws.length; i++)
+        {
+            int paramType = _pws[i].getParameterDescriptor().getParmType();
+            String paramName = _pws[i].getParameterDescriptor().getName();
+            String outValue = _pws[i].getOutValue();
+            if (paramType == DatabaseMetaData.procedureColumnReturn)
+            {
+                buffer.append(Messages.bind(Messages.CallableSQLResultRunnable_return_status, outValue));
+            }
+        }
+        return buffer.toString();
+    }
     /**
      * Converts ParameterInOutWrapper to list of Parameter required by results view
      * @param pws
