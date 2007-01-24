@@ -390,13 +390,6 @@ public class ResultsViewAPI
         IResultInstance instance = _manager.getInstance(cmd);
         if (instance != null)
         {
-            /**
-             * Can not append more result item when this instance is finished
-             */
-            if(instance.isFinished())
-            {
-                return false;
-            }
             instance.moreStatusMessage(message);
             return true;
         }
