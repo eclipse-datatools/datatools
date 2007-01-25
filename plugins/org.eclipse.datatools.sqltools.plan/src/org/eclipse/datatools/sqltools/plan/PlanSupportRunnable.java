@@ -1,13 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *    Sybase, Inc. - initial API and implementation
- *******************************************************************************/
+/**
+ * Created on 2004-11-16
+ * 
+ * Copyright (c) Sybase, Inc. 2004-2006 All rights reserved.
+ */
 package org.eclipse.datatools.sqltools.plan;
 
 import java.sql.Connection;
@@ -26,12 +21,13 @@ import org.eclipse.core.runtime.jobs.Job;
  */
 public abstract class PlanSupportRunnable extends Job
 {
-    protected PlanRequest _request;
-    protected Connection  _conn;
-    protected String      _plan;
-    protected Statement   _stmt;
-    protected String      _profileName;
-    protected String      _dbName;
+    protected PlanRequest        _request;
+    protected Connection         _conn;
+    protected String             _plan;
+    protected Statement          _stmt;
+    protected Map                _varDecs;
+    protected String _profileName;
+    protected String _dbName;
 
     public PlanSupportRunnable()
     {
@@ -92,10 +88,7 @@ public abstract class PlanSupportRunnable extends Job
      * @param connection
      * @param stmt
      */
-    protected void handleEnd(Connection connection, Statement stmt)
-    {
-        
-    }
+    protected abstract void handleEnd(Connection connection, Statement stmt);
 
 
     /**
@@ -133,5 +126,10 @@ public abstract class PlanSupportRunnable extends Job
     public void setRequest(PlanRequest _request)
     {
         this._request = _request;
+    }
+
+    public void setVarDecs(Map decs)
+    {
+        _varDecs = decs;
     }
 }
