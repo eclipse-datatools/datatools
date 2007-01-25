@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -45,7 +46,7 @@ import org.eclipse.ui.texteditor.TextEditorAction;
  * @author Li Huang
  *  
  */
-public class ToggleCommentAction extends TextEditorAction
+public class ToggleCommentAction extends TextEditorAction implements IPageUpdate
 {
 
     /** The text operation target */
@@ -54,6 +55,7 @@ public class ToggleCommentAction extends TextEditorAction
     private String               _documentPartitioning;
     /** The comment prefixes */
     private Map                  _prefixesMap;
+    private boolean              _isSourcePage = true;
 
     /**
      * Creates and initializes the action for the given sql editor. The action configures its visual representation from
@@ -319,6 +321,11 @@ public class ToggleCommentAction extends TextEditorAction
     public void update()
     {
         super.update();
+        if (! _isSourcePage)
+        {
+            setEnabled(false);
+            return;
+        }
         SQLEditor editor = (SQLEditor) getTextEditor();
         if (editor.isEditorInputReadOnly())
         {
@@ -386,6 +393,12 @@ public class ToggleCommentAction extends TextEditorAction
         }
         _documentPartitioning = configuration.getConfiguredDocumentPartitioning(sourceViewer);
         _prefixesMap = prefixesMap;
+    }
+
+    public void update(boolean isSQLEditorPage)
+    {
+        _isSourcePage  = isSQLEditorPage;
+        update();
     }
 
 }

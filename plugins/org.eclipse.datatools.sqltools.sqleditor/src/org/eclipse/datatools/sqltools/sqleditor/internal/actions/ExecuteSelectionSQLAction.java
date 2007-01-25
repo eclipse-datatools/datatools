@@ -16,6 +16,7 @@ import java.util.HashMap;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
+import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -30,10 +31,11 @@ import org.eclipse.ui.PlatformUI;
  * @author Li Huang
  *  
  */
-public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISelectionChangedListener
+public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISelectionChangedListener, IPageUpdate
 {
     private SQLEditor     _sqlEditor;
     private ITextSelection _selection;
+    private boolean        _isSourcePage = true;
     /**
      * @param text
      * @param image
@@ -65,7 +67,7 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
 
     public void update()
     {
-        setEnabled(_sqlEditor != null && _sqlEditor.isConnected() && _sqlEditor.getSelectedText() != null);
+        setEnabled(_isSourcePage && _sqlEditor != null && _sqlEditor.isConnected() && _sqlEditor.getSelectedText() != null);
     }
 
     /*
@@ -163,6 +165,12 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
     		return new DatabaseIdentifier(profileName, dbName);
     	}
         return null;
+    }
+
+    public void update(boolean isSQLEditorPage)
+    {
+        _isSourcePage = isSQLEditorPage;
+        update();
     }
 
 }

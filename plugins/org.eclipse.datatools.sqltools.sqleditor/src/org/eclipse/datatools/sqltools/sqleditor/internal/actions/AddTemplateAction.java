@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
+import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -30,9 +31,10 @@ import org.eclipse.ui.texteditor.TextEditorAction;
  * @author Hui Cao
  *  
  */
-public class AddTemplateAction extends TextEditorAction 
+public class AddTemplateAction extends TextEditorAction implements IPageUpdate
 {
     private SQLEditor      _sqlEditor;
+    private boolean _isSourcePage = true;
 
     /**
      *  
@@ -51,7 +53,7 @@ public class AddTemplateAction extends TextEditorAction
 
     public void update()
     {
-        setEnabled(_sqlEditor != null && _sqlEditor.getSelectedText() != null);
+        setEnabled(_isSourcePage && _sqlEditor != null && _sqlEditor.getSelectedText() != null);
     }
 
     /*
@@ -90,6 +92,12 @@ public class AddTemplateAction extends TextEditorAction
         String title = Messages.AddTemplateAction_error_write_title; 
         String message = Messages.AddTemplateAction_error_write_message; 
         MessageDialog.openError(null, title, message);
+    }
+
+    public void update(boolean isSQLEditorPage)
+    {
+        _isSourcePage  = isSQLEditorPage;
+        update();
     }
 
 }

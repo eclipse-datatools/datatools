@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchSite;
 import org.eclipse.ui.PlatformUI;
 
@@ -61,9 +62,13 @@ public class DeployAction extends SelectionDispatchAction
 
     private boolean canEnable(IStructuredSelection selection)
     {
-        SQLEditor editor = (SQLEditor) getSite().getPage().getActiveEditor();
-        return selection.size() == 1 && selection.getFirstElement() instanceof IASTDeployable && editor.isConnected();
-
+        IEditorPart activeEditor = getSite().getPage().getActiveEditor();
+        if (activeEditor != null && activeEditor.getAdapter(SQLEditor.class) != null)
+        {
+            SQLEditor editor = (SQLEditor) activeEditor.getAdapter(SQLEditor.class);
+            return selection.size() == 1 && selection.getFirstElement() instanceof IASTDeployable && editor.isConnected();
+        }
+        return false;
         //FIXME: Shall we check the syntax errors?
     }
 

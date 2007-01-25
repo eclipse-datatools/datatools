@@ -103,7 +103,16 @@ public interface ISQLEditorActionContributorExtension {
 	public void contributeToCoolBar(ICoolBarManager coolBarManager);
 
 	public void setParent(TextEditorActionContributor parent);
-    
+
+    /**
+     * Requests that this object update its actions. This is equivalent to udpateAction(true).  
+     */
     public void updateAction();
+
+    /**
+     * Requests that this object update its actions when the page is switched. 
+     * @param isSQLEditorPage whether the active page is an embeded instance of SQLEditor. 
+     */
+    public void updateAction(boolean isSQLEditorPage);
 
 }

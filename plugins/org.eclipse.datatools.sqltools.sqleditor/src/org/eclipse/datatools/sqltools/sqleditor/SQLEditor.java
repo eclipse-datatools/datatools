@@ -108,7 +108,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.internal.PartSite;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -323,10 +322,12 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
 
         setAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, new ExecuteSelectionSQLAction(this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
 
         setAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, new AddTemplateAction(getResourceBundle(),
 				"AddTemplateAction.", this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, getAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID));
 
     }
@@ -681,7 +682,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         {
             MenuManager dbSubMenuMgr = new MenuManager(config.getDatabaseVendorDefinitionId().toString(),
                 ISQLEditorActionConstants.GROUP_SQLEDITOR_DB_SUBMENU); //$NON-NLS-1$
-            IActionBars bars = ((PartSite) getSite()).getActionBars();
+            IActionBars bars = ((IEditorSite) getSite()).getActionBars();
             for (Iterator iter = dbActions.keySet().iterator(); iter.hasNext();)
             {
                 String key = (String)iter.next();
@@ -1321,6 +1322,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     public String getSelectedText()
     {
         String sql = null;
+        if (getSelectionProvider() == null)
+        {
+            return null;
+        }
         //get the selection
         ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
         if (!selection.isEmpty() && selection.getText() != null && !selection.getText().equals(""))

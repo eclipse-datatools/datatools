@@ -207,6 +207,12 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
         }
 	}
 	
-	
+    public void update(boolean isSQLEditorPage)
+    {
+        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
+            ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+            ext.updateAction(isSQLEditorPage);
+        }
+    }
     
 } // end class
