@@ -901,6 +901,13 @@ class ColumnInfo
 	 */
 	private void generateForwardRefNumber( String originalPath )
 	{
+		if ( originalPath.indexOf( UtilConstants.XPATH_DOUBLE_SLASH ) != -1 )
+		{
+			// forwardRefNumber won't make sense in relativeLocation
+			forwardRefNumber = UtilConstants.COLUMN_REFNUMBER_RELATIVE;
+			return;
+		}
+		
 		String path = originalPath;
 		String[] split = path.split( "/" );
 		int elementCount = 0;

@@ -202,7 +202,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	{
 		if( rootPath!= null )
 		{
-			if(rootPath.split( "/" ).length + columnFowardRef != currentPath.split( "/" ).length)
+			if ( columnFowardRef != UtilConstants.COLUMN_REFNUMBER_RELATIVE
+					&& rootPath.split( "/" ).length + columnFowardRef != currentPath.split( "/" ).length )
 				return false;
 		}
 		return SaxParserUtil.isSamePath( tableColumnPath, currentPath );
