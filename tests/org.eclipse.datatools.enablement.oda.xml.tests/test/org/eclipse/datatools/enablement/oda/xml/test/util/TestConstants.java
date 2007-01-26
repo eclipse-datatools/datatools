@@ -29,6 +29,7 @@ public class TestConstants
 	public static final String UTF8BOM = home+"test/org/eclipse/datatools/enablement/oda/xml/input/utf8bom.xml";
 	public static final String RECURSIVE_DUPLICATENAME = home+"test/org/eclipse/datatools/enablement/oda/xml/input/recursiveDuplicateName.xml";
 	public static final String TEST_FILTER = home+"test/org/eclipse/datatools/enablement/oda/xml/input/test.xml";
+	public static final String TEST_RELATIVE_LOCATION = home+"test/org/eclipse/datatools/enablement/oda/xml/input/sample.xml";
 	
 	public static final String BOOKSTORE_XML_FILE = home + "test/org/eclipse/datatools/enablement/oda/xml/input/BookStore.xml";
 	public static final String BOOKSTORE_XSD_FILE = home + "test/org/eclipse/datatools/enablement/oda/xml/input/BookStore.xsd";
