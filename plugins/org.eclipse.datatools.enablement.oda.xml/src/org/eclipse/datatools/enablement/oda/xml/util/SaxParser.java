@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Vector;
 
 import org.xml.sax.Attributes;
@@ -66,6 +67,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private String currentCacheValue;
 
 	private boolean stopCurrentThread;
+	
+	private Map cachedValues;
 	/**
 	 * 
 	 * @param fileName
@@ -80,6 +83,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		currentCacheValue = "";
 		currentElementRecoder = new HashMap();
 		stopCurrentThread = false;
+		cachedValues = new HashMap( );
 	}
 
 	/*
@@ -318,8 +322,9 @@ public class SaxParser extends DefaultHandler implements Runnable
 	{
 		//Manipulate the data. The currentCacheValue is trimed to delimite
 		//the heading and tailing junk spaces.
-		spConsumer.manipulateData( pathHolder.getPath( ), this.currentCacheValue.trim() );
-		this.currentCacheValue = "";
+		spConsumer.manipulateData( pathHolder.getPath( ),
+				(String) cachedValues.get( pathHolder.getPath( ) ) );
+		cachedValues.remove( pathHolder.getPath( ) );
 		spConsumer.detectNewRow( pathHolder.getPath( ), false );
 		//	this.currentElementRecoder.clear();
 		
@@ -357,10 +362,14 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void characters( char ch[], int start, int length )
 	{
-		for ( int i = 0; i < length; i++ )
+		currentCacheValue = new String( ch, start, length );
+		if ( !currentCacheValue.trim( ).equals( "" ) )
 		{
-			this.currentCacheValue = this.currentCacheValue + ch[start + i];
-		}	
+			if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
+				currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
+						+ currentCacheValue;
+			cachedValues.put( pathHolder.getPath( ), currentCacheValue.trim( ) );
+		}
 	}
 
 	/**
