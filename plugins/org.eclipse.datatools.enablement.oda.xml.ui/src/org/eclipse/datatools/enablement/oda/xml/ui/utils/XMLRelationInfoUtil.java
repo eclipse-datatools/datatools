@@ -110,11 +110,11 @@ public class XMLRelationInfoUtil
 	public static String replaceInfo( String tableName, String newString,
 			String relationInformation )
 	{
-		if ( relationInformation == null
-				|| tableName == null || newString == null )
+		if ( tableName == null || newString == null )
 			return null;
 
-		if ( relationInformation.trim( ).length( ) == 0 )
+		if ( relationInformation == null
+				|| relationInformation.trim( ).length( ) == 0 )
 			return newString;
 		String[] splitStr = relationInformation.split( "\\Q#-#\\E" );
 		for ( int i = 0; i < splitStr.length; i++ )
