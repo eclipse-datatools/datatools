@@ -858,6 +858,11 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),
 						ERROR );
 			}
+			else
+			{
+				btnAdd.setEnabled( true );
+				this.setMessage( DEFAULT_PAGE_Message );
+			}
 		}
 		catch ( Exception e )
 		{
