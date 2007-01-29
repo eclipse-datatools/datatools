@@ -13,9 +13,6 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.List;
 
-import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -26,6 +23,9 @@ import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferenceP
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -70,6 +70,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	private String xmlFileName;
 
 	private String rootPath;
+	private String initRootPath;
 
 	/**
 	 * @param string
@@ -118,13 +119,18 @@ public class XPathChoosePage extends DataSetWizardPage
 
 		String tableName = XMLRelationInfoUtil.getTableName( queryText );
 		if ( tableName != null )
-		{
 			rootPath = XMLRelationInfoUtil.getXPathExpression( queryText,
 					tableName );
-			xmlPathText.setText( rootPath );
-		}
 		else
 			rootPath = "";
+
+		backupRootPath( );
+		xmlPathText.setText( rootPath );
+	}
+	
+	private void backupRootPath( )
+	{
+		initRootPath = rootPath;
 	}
 
 	/*
@@ -140,6 +146,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
 
 		populateXMLTree( );
+		backupRootPath( );
 		this.setMessage( DEFAULT_MESSAGE );
 	}
 
@@ -431,8 +438,18 @@ public class XPathChoosePage extends DataSetWizardPage
 		}
 		else
 		{
+			if ( initRootPath != null
+					&& !initRootPath.equals( "" )
+					&& !initRootPath.equals( rootPath ) )
+			{
+				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),
+						INFORMATION );
+			}
+			else
+			{
+				setMessage( DEFAULT_MESSAGE );
+			}
 			setPageComplete( true );
-			setMessage( DEFAULT_MESSAGE );
 		}
 	}
 
