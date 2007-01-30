@@ -244,7 +244,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	}
 
 	public DeltaDDLGenerator getDeltaDDLGenerator() {
-		if(this.ddlGenerator == null) {
+		if(this.deltaDdlGenerator == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
