@@ -126,15 +126,17 @@ public class DateUtilTest extends TestCase
 		String[] testStrings = {"1997",
 				"1997-07",
 				"1997-07-16",
-				"1997-07-16T19:20+02",
-				"1997-07-16T19:20:30GMT+01:00",
-				"1997-07-16T19:20:30.45+01:00",
-				"1997-07-16 19:20+01:00",
-				"1997-07-16 19:20:30+01:00",
-				"1997-07-16 19:20:30.45+01:00"};
+				"1997-07-16T19:20",
+				"1997-07-16T19:20:30",
+				"1997-07-16T19:20:30.45",
+				"1997-07-16 19:20",
+				"1997-07-16 19:20:30",
+				"1997-07-16 19:20:30.45",
+				"1997-07-16 19:20:30.45"};
 		Calendar calendar = Calendar.getInstance( );
 		
 		Date[] resultDates = {
+				null,
 				null,
 				null,
 				null,
@@ -152,21 +154,22 @@ public class DateUtilTest extends TestCase
 		resultDates[1] = calendar.getTime( );
 		calendar.set(1997,6,16);
 		resultDates[2] = calendar.getTime( );
-		calendar.set(1997,6,16,17,20,0);
+		calendar.set(1997,6,16,19,20,0);
 		resultDates[3] = calendar.getTime( );
-		calendar.set(1997,6,16,18,20,30);
+		calendar.set(1997,6,16,19,20,30);
 		resultDates[4] = calendar.getTime( );
-		calendar.set(1997,6,16,18,20,30);
-		calendar.set( Calendar.MILLISECOND, 450 );
+		calendar.set(1997,6,16,19,20,30);
+		calendar.set( Calendar.MILLISECOND, 45 );
 		resultDates[5] = calendar.getTime( );
-		calendar.set(1997,6,16,18,20,0);
+		calendar.set(1997,6,16,19,20,0);
 		calendar.set( Calendar.MILLISECOND, 0 );
 		resultDates[6] = calendar.getTime( );
-		calendar.set(1997,6,16,18,20,30);
+		calendar.set(1997,6,16,19,20,30);
 		resultDates[7] = calendar.getTime( );
-		calendar.set(1997,6,16,18,20,30);
-		calendar.set( Calendar.MILLISECOND, 450 );
+		calendar.set(1997,6,16,19,20,30);
+		calendar.set( Calendar.MILLISECOND, 45 );
 		resultDates[8] = calendar.getTime( );
+		resultDates[9] = resultDates[8];
 		
 		for ( int i = 0; i < testStrings.length; i++ )
 		{
