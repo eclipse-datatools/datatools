@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP XML UI Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.ui;singleton:=true
-Bundle-Version: 1.0.0.200612141
+Bundle-Version: 1.0.0.200701301
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin
 Bundle-Vendor: Eclipse.org
