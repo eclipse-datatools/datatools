@@ -2,8 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.server.ui; singleton:=true
-Bundle-Version: 1.0.0.200701151
-Bundle-ClassPath: rdb.server.ui.jar
+Bundle-Version: 1.0.0.200702011
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
