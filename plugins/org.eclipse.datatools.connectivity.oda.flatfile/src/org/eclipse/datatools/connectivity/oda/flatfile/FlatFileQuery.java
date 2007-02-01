@@ -986,6 +986,9 @@ public class FlatFileQuery implements IQuery
 		allColumnTypes = this.hasTypeLine
 				? discoverActualColumnMetaData( tableName, TYPE_LITERAL )
 				: createTempColumnTypes( ffdsr.getColumnCount( ) );
+				
+		if ( allColumnNames.length != allColumnTypes.length )
+			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
 
 		// the array that contains the column names read from command
 		String[] queryColumnNames = null;
