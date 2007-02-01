@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.db.generic; singleton:=true
-Bundle-Version: 1.0.0.20061018
+Bundle-Version: 1.0.0.200702011
 Bundle-Activator: org.eclipse.datatools.connectivity.db.generic.GenericDBPlugin
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
@@ -12,4 +12,3 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)"
 Eclipse-AutoStart: true
 Export-Package: org.eclipse.datatools.connectivity.db.generic
-Bundle-ClassPath: genericdb.jar
