@@ -33,8 +33,8 @@ public class SQLUtil
     public static final int MATCHING_DOUBLE_QUOTES=2;
     public static final int NO_MATCHING_QUOTES=3;
 
-    private static Pattern ID_PATTERN = Pattern.compile("((\\Q[\\E([^\"]|(\"\"))+\\Q]\\E|[^\\s\"\\Q.\\E]+|\"([^\"]|(\"\"))+\")\\Q.\\E?)");
-    private static Pattern STRING_PATTERN = Pattern.compile("(([^\\s']+)|('([^']|(''))+'))");
+    public static final Pattern ID_PATTERN = Pattern.compile("((\\Q[\\E([^\"]|(\"\"))+\\Q]\\E|[^\\s\"\\Q.\\E]+|\"([^\"]|(\"\"))+\")\\Q.\\E?)");
+    public static final Pattern STRING_PATTERN = Pattern.compile("(([^\\s'\"]+)|('([^']|(''))+')|(\"([^\"]|(\"\"))+\"))");
     public static int MAX_NAME_LENGTH_FOR_MESSAGE_DIALOGS = 30;
 
 

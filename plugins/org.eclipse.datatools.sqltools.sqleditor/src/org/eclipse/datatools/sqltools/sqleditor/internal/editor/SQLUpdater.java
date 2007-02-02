@@ -529,7 +529,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                     {
                         Integer.toString(maximunLines)
                     }
-                    )), SQLEditorResources.SQLUpdate_dialog_toggle, false, EditorCorePlugin.getDefault()
+                    )), SQLEditorResources.SQLUpdate_dialog_toggle, false, SQLEditorPlugin.getDefault()
                         .getPreferenceStore(), PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION);
                     if (dialog.getReturnCode() == IDialogConstants.YES_ID)
                     {

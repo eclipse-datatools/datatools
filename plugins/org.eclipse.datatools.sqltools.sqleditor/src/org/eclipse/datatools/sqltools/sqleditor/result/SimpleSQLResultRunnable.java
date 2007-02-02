@@ -18,7 +18,10 @@ import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
@@ -36,6 +39,7 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
 	protected Connection         _connection;
     protected String             _sql;
     protected boolean            _closeCon;
+    protected int                _connid;
     protected IConnectionTracker _tracker;
     protected boolean            _promptVar = false;
     /*holds the var declarations in the scope from the beginning of the selected text up to the very beginning*/
@@ -88,6 +92,7 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
         _closeCon = closeCon;
         _tracker = tracker;
         _configuration = configuration;
+        _connid = SQLToolsFacade.getConnectionId(databaseIdentifier, _connection);
     }
 
     /*
@@ -138,6 +143,11 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     {
         try
         {
+            if (_tracker != null)
+            {
+                _tracker.connectionAboutToBeClosed();
+            }
+
             if (stmt != null)
             {
                 stmt.close();    
@@ -156,7 +166,10 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
                 //before we use it.
                 if (_closeCon)
                 {
-                	ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), connection);
+                    SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByProfileName(_databaseIdentifier
+                            .getProfileName());
+                    ConnectionService conService = f.getConnectionService();
+                    conService.closeConnection(connection, _connid, _databaseIdentifier);
                 }
             }
         }

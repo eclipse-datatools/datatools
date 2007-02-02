@@ -146,5 +146,16 @@ public class ConnectionService
         return props;
     }
 
+    /**
+     * Closes the connection object. Subclasses may need to do further log or cleanup jobs.
+     * @param connection
+     * @param connId 
+     * @param databaseIdentifier
+     * @throws SQLException
+     */
+    public void closeConnection(Connection connection, int connId, DatabaseIdentifier databaseIdentifier) throws SQLException
+    {
+        ProfileUtil.closeConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname(), connection);
+    }
 
 }

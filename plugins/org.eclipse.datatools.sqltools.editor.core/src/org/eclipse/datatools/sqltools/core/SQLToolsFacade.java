@@ -231,6 +231,10 @@ public class SQLToolsFacade
     //temporary methods, to be inlined.
     public static int getConnectionId(DatabaseIdentifier databaseIdentifier, Connection conn)
     {
+        if (databaseIdentifier == null || conn == null)
+        {
+            return 0;
+        }
         try
         {
             if (conn.isClosed())

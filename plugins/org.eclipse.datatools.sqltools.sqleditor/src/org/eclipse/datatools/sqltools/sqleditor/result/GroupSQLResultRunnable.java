@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.sqleditor.result;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -22,7 +23,6 @@ import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
@@ -136,17 +136,18 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         }
         monitor.beginTask(task, _groups.length);
 
+        SQLDevToolsConfiguration f = SQLToolsFacade
+        .getConfigurationByProfileName(_databaseIdentifier
+                .getProfileName());
+        ConnectionService conService = f.getConnectionService();
         try
         {
         	if (getConnection() == null)
         	{
-                SQLDevToolsConfiguration f = SQLToolsFacade
-						.getConfigurationByProfileName(_databaseIdentifier
-								.getProfileName());
-				ConnectionService conService = f.getConnectionService();
 				Connection conn = conService.createConnection(
 						_databaseIdentifier, true);
 				setConnection(conn);
+				_connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
         	}
             if (_groups.length > 1)
             {
@@ -160,9 +161,6 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     resultsViewAPI.appendStatusMessage(getOperationCommand(), _groups[i]);
                     monitor.subTask(NLS.bind("GroupSQLResultRunnable.group", (new Object[]{"" + i}))); //$NON-NLS-1$ //$NON-NLS-2$
                 }
-                SQLDevToolsConfiguration f = SQLToolsFacade
-				.getConfigurationByProfileName(_databaseIdentifier
-						.getProfileName());
                 _currentJob = f.getExecutionService()
 				.createAdHocScriptRunnable(getConnection(), _groups[i], false, _tracker, monitor,
 	                    getDatabaseIdentifier(), null, null);
@@ -173,6 +171,11 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 				//TODO other types of Runnable
 				if (_currentJob instanceof ResultSupportRunnable)
 				{
+                    if (i > 0)
+                    {
+                        //BZ 172630 only init once
+                        ((ResultSupportRunnable)_currentJob)._needsInitConnection = false;
+                    }
 					ResultSupportRunnable resultSupportRunnable = ((ResultSupportRunnable)_currentJob);
                     resultSupportRunnable.setParentOperCommand(parentCommand);
 					resultSupportRunnable.setProgressGroup(monitor, 1);
@@ -263,7 +266,14 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             {
             	PlatformUI.getWorkbench().getDisplay().syncExec(_postRun);
             }
-            ProfileUtil.closeConnection(_databaseIdentifier.getProfileName(), _databaseIdentifier.getDBname(), getConnection());
+            try
+            {
+                conService.closeConnection(getConnection(), _connid, _databaseIdentifier);
+            }
+            catch (SQLException e)
+            {
+                SQLEditorPlugin.getDefault().log(e); 
+            }
         }
         resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
         return allSucceeded ? Status.OK_STATUS : Status.CANCEL_STATUS;
