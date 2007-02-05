@@ -133,7 +133,11 @@ public class SQLDevToolsUtil {
 			.getEStructuralFeature("eventCreator");
 			if (creatorFeature != null)
 			{
-				creator = (String) routine.eGet(creatorFeature);
+				Object obj = routine.eGet(creatorFeature);
+                if (obj instanceof Schema)
+                {
+                    creator = ((Schema)obj).getName();
+                }
 			}
 			
 			proc = h.getProcIdentifier(databaseIdentifier, routine.getName(),
