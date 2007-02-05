@@ -18,6 +18,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.emf.ecore.EObject;
@@ -112,7 +113,11 @@ public class SQLDBProposal {
             fParentObject = ((Table) dbObject).getSchema();
             fGrandParentName = ModelUtil.getDatabaseName((Schema) fParentObject);
             fGrandGrandParentName = null;
-            setImage( SQLEditorResources.getImage( "table" )); //$NON-NLS-1$
+            if (dbObject instanceof ViewTable) {
+                setImage( SQLEditorResources.getImage( "view" )); //$NON-NLS-1$
+            } else {
+                setImage( SQLEditorResources.getImage( "table" )); //$NON-NLS-1$
+            }
         }
         else if (dbObject instanceof Column) {
             fType = TABLECOLUMN_OBJTYPE;

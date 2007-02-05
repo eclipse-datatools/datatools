@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -19,7 +20,6 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLAutoIndentStr
 import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLCommentAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLStringAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.BestMatchHover;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLAnnotationHover;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCompletionProcessor;

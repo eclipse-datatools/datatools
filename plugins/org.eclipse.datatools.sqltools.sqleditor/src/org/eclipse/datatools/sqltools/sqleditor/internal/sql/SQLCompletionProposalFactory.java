@@ -12,6 +12,9 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
+import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
+
 public final class SQLCompletionProposalFactory {
     
     private final static String[] fStatements = {};

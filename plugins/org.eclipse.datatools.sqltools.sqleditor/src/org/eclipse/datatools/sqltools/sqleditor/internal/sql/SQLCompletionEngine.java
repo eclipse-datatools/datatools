@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
 
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
+import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;

@@ -26,6 +26,7 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.ActionService;
 import org.eclipse.datatools.sqltools.core.services.SQLEditorService;
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.plan.IPlanOption;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
@@ -49,7 +50,6 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContent
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLOutlinePage;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLUpdater;
-import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.ISQLPartitions;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
@@ -573,7 +573,13 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         if (input instanceof ISQLEditorInput)
         {
             ISQLEditorInput sqlEditorInput = (ISQLEditorInput) input;
-            fDBProposalsService = new SQLDBProposalsService( sqlEditorInput.getConnectionInfo());
+            SQLDevToolsConfiguration toolsConfig = SQLToolsFacade.getConfigurationByVendorIdentifier(getConnectionInfo().getDatabaseVendorDefinitionId());
+            SQLEditorService editorService = toolsConfig.getSQLEditorService();
+            fDBProposalsService = editorService.getSQLDBProposalsService(getConnectionInfo());
+            if (fDBProposalsService == null)
+            {
+                fDBProposalsService = new SQLDBProposalsService(sqlEditorInput.getConnectionInfo());
+            }
             SourceViewerConfiguration config = getSourceViewerConfiguration();
             if (config != null && config instanceof SQLSourceViewerConfiguration) {
                 SQLSourceViewerConfiguration sqlConfig = (SQLSourceViewerConfiguration) config;

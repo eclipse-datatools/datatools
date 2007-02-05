@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.preference.IPreferenceStore;

@@ -28,10 +28,11 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
+import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
@@ -43,6 +44,7 @@ import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
 import org.eclipse.emf.common.util.EList;
@@ -421,12 +423,9 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 
 
 	public static String getDefaultSchemaName(ISQLEditorConnectionInfo connInfo) {
-		String defaultSchemaName = connInfo.getDefaultSchemaName();
-		if (defaultSchemaName == null)
-		{
-			DatabaseIdentifier dbid = new DatabaseIdentifier(connInfo.getConnectionProfileName());
-			defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
-		}
+		DatabaseIdentifier dbid = new DatabaseIdentifier(connInfo.getConnectionProfileName());
+		String defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
+
 		return defaultSchemaName;
 	}
 	
@@ -633,10 +632,10 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			return new ArrayList();
 		}
 
-		boolean showTable = true;
+		boolean notShowTable = false;
 		if ((scope & SQLParser.SCOPE_WITHOUT_TABLE) == SQLParser.SCOPE_WITHOUT_TABLE)
 		{
-			showTable = false;
+			notShowTable = true;
 		}
 		ArrayList result = new ArrayList();
 		String[] tokens = SQLUtil.splitDotStr(_fWord);
@@ -682,7 +681,8 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 
 			SQLObject parentObject = (SQLObject)proposal.getParentObject();
 			boolean displayParent = !(parentObject instanceof Schema)
-					|| needsDisplayOwner(proposal, length) || showTable;
+					|| needsDisplayOwner(proposal, length) || notShowTable;
+            
 			displayParent = displayParent && proposal.getDBObject() != null;
 			if (displayParent) {
 				display.append(proposal.getParentAlias());
@@ -722,7 +722,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		if (proposal.getDBObject() instanceof Table
 				|| proposal.getDBObject() instanceof ViewTable) {
 
-			boolean isShow = EditorCorePlugin.getDefault().getPreferenceStore()
+			boolean isShow = SQLEditorPlugin.getDefault().getPreferenceStore()
 					.getBoolean(PreferenceConstants.SHOW_OWNER_OF_TABLE);
 			if (!isShow) {
 				return false;
