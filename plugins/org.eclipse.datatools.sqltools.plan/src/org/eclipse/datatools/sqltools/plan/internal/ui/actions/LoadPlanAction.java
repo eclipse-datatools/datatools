@@ -129,7 +129,7 @@ public class LoadPlanAction extends Action
                                 CDATASection sqlCDATA = (CDATASection) subNode.getFirstChild();
                                 sql = sqlCDATA.getNodeValue();
                             }
-                            request = new PlanRequest(sql, dbDefinitionId, service.getPlanOption().getOptionId(type.getNodeValue()) ,
+                            request = new PlanRequest(sql, dbDefinitionId, service.getPlanOption().getTypeIdByName(type.getNodeValue()) ,
                                     PlanRequest.VIEW_ACTIVATE);
                         }
                         else if (subNode.getNodeName().equals("rawPlan"))

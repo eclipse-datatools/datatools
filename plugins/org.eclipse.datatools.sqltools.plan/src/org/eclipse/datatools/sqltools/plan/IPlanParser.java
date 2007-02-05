@@ -13,7 +13,8 @@ package org.eclipse.datatools.sqltools.plan;
 
 /**
  * Parse the execution plan from raw data to modeled data --- <code>IExecutionPlanDocument</code>, then
- * <code>IPlanDrawer</code> will draw it on a <code>Canvas</code>
+ * <code>IPlanDrawer</code> will draw it on a <code>Canvas</code>.<br>
+ * Generally speaking, the raw data of the plan is expected to be a well-formed xml string.
  * 
  * @see IExecutionPlanDocument
  * @author Dafan Yang

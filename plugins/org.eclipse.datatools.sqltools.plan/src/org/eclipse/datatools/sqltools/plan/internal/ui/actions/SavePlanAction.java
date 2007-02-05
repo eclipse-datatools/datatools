@@ -173,7 +173,7 @@ public class SavePlanAction extends Action
                     planNode.setAttributeNode(status);
                     
                     Attr type = document.createAttribute("type");
-                    type.setNodeValue(service.getPlanOption().getOptionName(instance.getPlanRequest().getPlanType()));
+                    type.setNodeValue(service.getPlanOption().getTypeNameById(instance.getPlanRequest().getPlanType()));
                     planNode.setAttributeNode(type);
                     root.appendChild(planNode);
 

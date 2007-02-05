@@ -1,16 +1,24 @@
-/**
- * Created on 2004-11-16
- * 
- * Copyright (c) Sybase, Inc. 2004-2006 All rights reserved.
- */
+/*******************************************************************************
+ * Copyright (c) 2005 Sybase, Inc.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Sybase, Inc. - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
 /**
@@ -21,21 +29,23 @@ import org.eclipse.core.runtime.jobs.Job;
  */
 public abstract class PlanSupportRunnable extends Job
 {
-    protected PlanRequest        _request;
-    protected Connection         _conn;
-    protected String             _plan;
-    protected Statement          _stmt;
-    protected Map                _varDecs;
-    protected String _profileName;
-    protected String _dbName;
+    protected PlanRequest _request;
+    protected Connection  _conn;
+    protected String      _rawPlanString;
+    protected Statement   _stmt;
+    protected String      _profileName;
+    protected String      _dbName;
 
     public PlanSupportRunnable()
     {
         super(Messages.PlanSupportRunnable_getplan_name);
     }
+    
     /**
-     * @param request
-     * @param profileName
+     * Constructor
+     * @param request the plan request 
+     * @param profileName the profile name
+     * @param dbName the database name
      */
     public PlanSupportRunnable(PlanRequest request, String profileName, String dbName)
     {
@@ -60,18 +70,19 @@ public abstract class PlanSupportRunnable extends Job
     /**
      * Subclass should override this method to provide database-specific operations to get plan.
      * 
-     * @param stmt
-     * @return the plan
-     * @throws SQLException
+     * @param stmt the statement
+     * @return the raw plan string
+     * @throws SQLException if database errors occur
      */
     protected abstract String explainPlan(Statement stmt) throws SQLException;
 
     /**
-     * @return
+     * Returns the raw plan string
+     * @return the raw plan string
      */
     protected String getPlan()
     {
-        return _plan;
+        return _rawPlanString;
     }
 
     /**
@@ -88,11 +99,28 @@ public abstract class PlanSupportRunnable extends Job
      * @param connection
      * @param stmt
      */
-    protected abstract void handleEnd(Connection connection, Statement stmt);
+    protected void handleEnd(Connection connection, Statement stmt)
+    {
+        try
+        {
+            if(stmt != null)
+            {
+                stmt.close();
+            }
+            if(connection != null && !connection.isClosed())
+            {
+                connection.close();
+            }
+        }
+        catch (SQLException e)
+        {
+            
+        }
+    }
 
 
     /**
-     * Retrieve plan from the result set on the assumption that there's only one row in the result set and the plan is
+     * Retrieves plan from the result set on the assumption that there's only one row in the result set and the plan is
      * the <code>columnIndex</code> column.
      * 
      * @param rs
@@ -128,8 +156,48 @@ public abstract class PlanSupportRunnable extends Job
         this._request = _request;
     }
 
-    public void setVarDecs(Map decs)
+    protected IStatus run(IProgressMonitor monitor)
     {
-        _varDecs = decs;
+        if (monitor == null)
+        {
+            monitor = new NullProgressMonitor();
+        }
+        boolean insCreated = EPVFacade.getInstance().createNewPlanInstance(getRequest());
+        if(!insCreated)
+        {
+            // should not happen
+            handleEnd(_conn, _stmt);
+            return Status.CANCEL_STATUS;
+        }
+
+        try
+        {
+            prepareConnection();
+            _stmt = prepareStatement(_conn);
+            _rawPlanString = explainPlan(_stmt);
+            handleSuccess();
+        }
+        catch (SQLException ex)
+        {
+            EPVFacade.getInstance().planFailed(getRequest(), ex);
+        }
+        catch (Throwable th)
+        {
+            EPVFacade.getInstance().planFailed(getRequest(), th);
+        }
+        finally
+        {
+            handleEnd(_conn, _stmt);
+        }
+        return Status.OK_STATUS;
+    }
+    
+    /**
+     * Subclass should override this method to prepare a connection, and assign it to <code>_conn</code>
+     * 
+     */
+    protected void prepareConnection()
+    {
+        
     }
 }

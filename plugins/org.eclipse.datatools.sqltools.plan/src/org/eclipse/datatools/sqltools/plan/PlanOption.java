@@ -46,7 +46,7 @@ public class PlanOption implements IPlanOption
         return TEXT_PLAN;
     }
 
-    public int getOptionId(String name)
+    public int getTypeIdByName(String name)
     {
         if (GRAPHIC_PLAN_DESC.equals(name))
         {
@@ -58,7 +58,7 @@ public class PlanOption implements IPlanOption
         }
     }
 
-    public String getOptionName(int type)
+    public String getTypeNameById(int type)
     {
         if (GRAPHIC_PLAN == type)
         {
@@ -78,13 +78,13 @@ public class PlanOption implements IPlanOption
         };
     }
 
-    public String getVendorName()
-    {
-        return "";
-    }
-
     public boolean isGraphicPlan(int type)
     {
         return type == GRAPHIC_PLAN;
+    }
+
+    public boolean supportPlan(int procType)
+    {
+        return false;
     }
 }
