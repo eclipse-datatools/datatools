@@ -15,6 +15,7 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
@@ -37,6 +38,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 import org.eclipse.datatools.sqltools.sql.reference.internal.Datatype;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -307,21 +309,24 @@ public class ModelUtil {
 	 * @param schema
 	 * @return
 	 */
-	public static String getDatabaseName(Schema schema)
-	{
-		String _dbName = null;
-		Catalog catalog = schema.getCatalog();
-		if (catalog != null)
-		{
-			_dbName = catalog.getName();
-		}
-		else
-		{
-			Database _database = schema.getDatabase();
-			_dbName = _database.getName(); 
-		}
-		return _dbName;
-	}
+    public static String getDatabaseName(EObject obj) {
+        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        while (container != null)
+        {
+            obj = container;
+            if (obj instanceof Catalog)
+            {
+                return ((Catalog)obj).getName();
+            }
+            else if (obj instanceof Database)
+            {
+                return ((Database)obj).getName();
+            }
+            container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        }
+        return null;
+    }
+    
 	
 	public static IConnectionProfile getConnectionProfile(Database database) {
 		if (database != null) {

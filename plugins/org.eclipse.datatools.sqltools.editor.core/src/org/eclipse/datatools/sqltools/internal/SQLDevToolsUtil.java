@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
@@ -40,6 +41,7 @@ import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -62,26 +64,12 @@ public class SQLDevToolsUtil {
 	 * @return
 	 */
 	public static ProcIdentifier getProcIdentifier( SQLObject routine) {
-		Database db = null;
-		if (routine instanceof Event) {
-			db = ((Event) routine).getDatabase();
+		EObject db = ContainmentServiceImpl.INSTANCE.getRootElement(routine);
+		if (db instanceof Database) {
+            String dbName = ModelUtil.getDatabaseName(routine);
+		    return getProcIdentifier(getDatabaseIdentifier((Database)db, dbName), routine);
 		}
-		else
-		{
-			Schema schema = null;
-			if (routine instanceof Routine) {
-				schema = ((Routine) routine).getSchema();
-			} else if (routine instanceof Trigger) {
-				schema = ((Trigger) routine).getSchema();
-			} else if (routine.eClass().getEStructuralFeature("schema") != null) {
-				//TODO deprecated for backward compatibility
-				schema = ((Schema)routine.eGet(routine.eClass().getEStructuralFeature("schema")));
-			}else{
-				return null;
-			}
-			db = ModelUtil.getDatabase(schema);
-		}
-		return getProcIdentifier(getDatabaseIdentifier(db), routine);
+        return null;
 	}
 	
 	/**
@@ -184,6 +172,12 @@ public class SQLDevToolsUtil {
 		return routine.eClass().getEStructuralFeature("eventId");
 	}
 
+    /**
+     * Returns DatabaseIdentifier for databases that doesn't support catalog
+     * @deprecated use #getDatabaseIdentifier(database, String) instead
+     * @param database
+     * @return
+     */
 	public static DatabaseIdentifier getDatabaseIdentifier(Database database) {
 		ConnectionInfo connInfo = DatabaseConnectionRegistry.getInstance()
 				.getConnectionForDatabase(database);
@@ -196,6 +190,29 @@ public class SQLDevToolsUtil {
 		return null;
 	}
 
+    /**
+     * Returns DatabaseIdentifier for the database
+     * @param database
+     * @param catalogName if null, database.getName() will be used instead
+     * @return
+     */
+	public static DatabaseIdentifier getDatabaseIdentifier(Database database, String catalogName) {
+	    ConnectionInfo connInfo = DatabaseConnectionRegistry.getInstance()
+	    .getConnectionForDatabase(database);
+	    if (connInfo instanceof ConnectionInfoImpl) {
+            String dbName = catalogName;
+            if (dbName == null)
+            {
+                dbName = database.getName();
+            }
+	        IConnectionProfile profile = ((ConnectionInfoImpl) connInfo)
+	        .getConnectionProfile();
+	        return new DatabaseIdentifier(profile.getName(), dbName);
+	    }
+	    
+	    return null;
+	}
+	
 	
     /**
      * Returns the quoted identifier setting for the database
