@@ -306,7 +306,7 @@ public class ModelUtil {
 	
 	/**
 	 * Returns the database name by taking catalog into account.
-	 * @param schema
+	 * @param obj
 	 * @return
 	 */
     public static String getDatabaseName(EObject obj) {
@@ -327,6 +327,24 @@ public class ModelUtil {
         return null;
     }
     
+    /**
+     * Returns the schema name by looking up parent in the containment service.
+     * @param 
+     * @return
+     */
+    public static String getSchemaName(EObject obj) {
+        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        while (container != null)
+        {
+            obj = container;
+            if (obj instanceof Schema)
+            {
+                return ((Schema)obj).getName();
+            }
+            container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        }
+        return null;
+    }
 	
 	public static IConnectionProfile getConnectionProfile(Database database) {
 		if (database != null) {
