@@ -16,3 +16,4 @@ Export-Package: org.eclipse.datatools.enablement.mysql;x-internal:=true,
  org.eclipse.datatools.enablement.mysql.catalog;x-internal:=true,
  org.eclipse.datatools.enablement.mysql.ddl;x-internal:=true
 Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
