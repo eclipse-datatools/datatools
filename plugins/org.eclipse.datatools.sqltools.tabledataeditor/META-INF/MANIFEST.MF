@@ -19,3 +19,4 @@ Eclipse-LazyStart: true
 Bundle-Activator: org.eclipse.datatools.sqltools.internal.tabledataeditor.TableDataEditorPlugin
 Export-Package: org.eclipse.datatools.sqltools.internal.tabledataeditor,
  org.eclipse.datatools.sqltools.tabledataeditor.actions.providers
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

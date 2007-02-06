@@ -13,3 +13,4 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.plan,
  org.eclipse.datatools.sqltools.plan.treeplan
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

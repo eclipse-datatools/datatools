@@ -16,4 +16,5 @@ Export-Package: org.eclipse.datatools.sqltools.db.generic;x-internal:=true,
  org.eclipse.datatools.sqltools.db.generic.parser;x-internal:=true,
  org.eclipse.datatools.sqltools.db.generic.service;x-internal:=true,
  org.eclipse.datatools.sqltools.db.generic.sql;x-internal:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
 

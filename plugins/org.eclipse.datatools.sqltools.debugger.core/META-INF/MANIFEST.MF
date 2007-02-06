@@ -24,3 +24,4 @@ Export-Package: org.eclipse.datatools.sqltools.debugger.actions,
  org.eclipse.datatools.sqltools.debugger.core,
  org.eclipse.datatools.sqltools.debugger.core.internal,
  org.eclipse.datatools.sqltools.debugger.model
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

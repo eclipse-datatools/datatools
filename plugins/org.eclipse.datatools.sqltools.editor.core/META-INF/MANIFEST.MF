@@ -43,3 +43,4 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.sql.identifier,
  org.eclipse.datatools.sqltools.sql.util
 Bundle-Vendor: Eclipse.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

@@ -22,3 +22,4 @@ Export-Package: org.eclipse.datatools.sqltools.sql,
  org.eclipse.datatools.sqltools.sql.reference.internal,
  org.eclipse.datatools.sqltools.sql.util;x-friends:="org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor"
 Bundle-Vendor: Eclipse.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
