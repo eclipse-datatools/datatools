@@ -13,3 +13,4 @@ Export-Package: org.eclipse.datatools.connectivity.oda.consumer.helper,
  org.eclipse.datatools.connectivity.oda.consumer.services.impl
 Eclipse-LazyStart: true
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.consumer.helper.OdaConsumerPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

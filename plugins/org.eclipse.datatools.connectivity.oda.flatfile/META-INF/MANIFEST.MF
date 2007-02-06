@@ -6,6 +6,7 @@ Bundle-Version: 3.0.3.200701301
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.flatfile.plugin.FlatfilePlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
 Export-Package: org.eclipse.datatools.connectivity.oda.flatfile,org.eclipse.datatools.connectivity.oda.flatfile.util;x-friends:="org.eclipse.datatools.connectivity.oda.flatfile.tests",
  org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil;x-friends:="org.eclipse.datatools.connectivity.oda.flatfile.ui",
  org.eclipse.datatools.connectivity.oda.flatfile.plugin

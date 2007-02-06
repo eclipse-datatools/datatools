@@ -20,3 +20,4 @@ Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.connectivity.ui.dse,
  org.eclipse.datatools.connectivity.ui.dse.actions,
  org.eclipse.datatools.connectivity.ui.dse.views
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

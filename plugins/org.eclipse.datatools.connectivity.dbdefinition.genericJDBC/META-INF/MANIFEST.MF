@@ -6,4 +6,5 @@ Bundle-Version: 1.0.0.200609291
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Eclipse-AutoStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
 

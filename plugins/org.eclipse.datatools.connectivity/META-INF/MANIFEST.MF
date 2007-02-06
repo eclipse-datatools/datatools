@@ -16,3 +16,4 @@ Export-Package: org.eclipse.datatools.connectivity,
  org.eclipse.datatools.connectivity.internal,
  org.eclipse.datatools.connectivity.internal.repository,
  org.eclipse.datatools.connectivity.internal.security
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
