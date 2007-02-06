@@ -213,6 +213,22 @@ public class SQLDevToolsUtil {
 	    return null;
 	}
 	
+	/**
+	 * Returns DatabaseIdentifier for the 
+	 * @param database
+	 * @param catalogName if null, database.getName() will be used instead
+	 * @return
+	 */
+	public static DatabaseIdentifier getDatabaseIdentifier(SQLObject obj) {
+        Object db = ContainmentServiceImpl.INSTANCE.getRootElement(obj);
+        if (db instanceof Database)
+        {
+            String dbName = ModelUtil.getDatabaseName(obj);
+            return getDatabaseIdentifier((Database)db, dbName);
+        }
+        return null;
+	}
+	
 	
     /**
      * Returns the quoted identifier setting for the database
