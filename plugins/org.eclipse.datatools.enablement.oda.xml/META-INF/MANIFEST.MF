@@ -16,3 +16,4 @@ Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.util;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.date;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.ui;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests"
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
