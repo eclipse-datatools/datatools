@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -207,6 +208,6 @@ public class ProfileExplorerPluginTest extends TestCase
     {
         Bundle bundle = Platform.getBundle( getClass().getPackage().getName() );
         URL url = bundle.getEntry( "src" );
-        return Platform.asLocalURL( url ).getPath();
+        return FileLocator.toFileURL( url ).getPath();
     }
 }
