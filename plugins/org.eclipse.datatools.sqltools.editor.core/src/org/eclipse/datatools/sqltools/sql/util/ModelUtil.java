@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
@@ -388,4 +389,13 @@ public class ModelUtil {
 		return schemas;
 	}
 
+	public static DatabaseDefinition getDatabaseDefinition(SQLObject obj)
+    {
+        Object database = ContainmentServiceImpl.INSTANCE.getRootElement(obj);
+        DatabaseDefinition dbdef = null;
+        if(database instanceof Database) {
+            dbdef = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition((Database) database);
+        }
+        return dbdef;
+    }
 }
