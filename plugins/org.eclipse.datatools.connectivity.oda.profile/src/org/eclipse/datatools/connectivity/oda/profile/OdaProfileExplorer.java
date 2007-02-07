@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -71,10 +71,8 @@ public class OdaProfileExplorer
     public Map getProfiles( String odaDataSourceId )
         throws OdaException
     {
-        // use the current storage location and default store filename
-        File profileStore = 
-            ConnectionProfileMgmt.getStorageLocation().append( 
-                    ConnectionProfileMgmt.FILENAME ).toFile();
+        // use the default storage location and default store filename
+        File profileStore = defaultProfileStoreFile();
         return getProfiles( odaDataSourceId, profileStore );
     }
 
@@ -131,13 +129,20 @@ public class OdaProfileExplorer
 
     /*
 	 * Reads and returns the profiles found in given storage file.
-     * @param storageFile
+     * @param storageFile   connection profile store file; may be null, which 
+     *                      will use the default store of the Connectivity plugin
      * @return
      * @throws OdaException
      */
     private IConnectionProfile[] loadProfiles( File storageFile ) 
         throws OdaException
     {
+        if( storageFile == null )
+        {
+            // TODO - add logging
+            storageFile = defaultProfileStoreFile();
+        }
+        
         IConnectionProfile[] profilesInFile;
         try
         {
@@ -217,6 +222,12 @@ public class OdaProfileExplorer
                 return profilesInFile[i];   // a match
         }
         return null;    // no match is found
+    }
+
+    File defaultProfileStoreFile()
+    {
+        return ConnectionProfileMgmt.getStorageLocation().append( 
+                    ConnectionProfileMgmt.FILENAME ).toFile();
     }
 
 }

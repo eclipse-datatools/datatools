@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,12 +46,12 @@ public class Property
     private String m_displayName;
     private String m_groupName;
     private String m_groupDisplayName;
-    private String m_type;
-    private boolean m_canInherit;
+    private String m_type = "string"; //$NON-NLS-1$;
+    private boolean m_canInherit = true;
     private String m_defaultValue;
-    private boolean m_isEncryptable;
+    private boolean m_isEncryptable = false;
     private PropertyChoice[] m_choices = null;
-    private boolean m_allowsEmptyValueAsNull;
+    private boolean m_allowsEmptyValueAsNull = true;
 
     Property( IConfigurationElement propertyElement )
     {
@@ -64,6 +64,17 @@ public class Property
         setAttributes( propertyElement, groupName, groupDisplayName );
     }
     
+    Property( String name, String displayName, 
+              String groupName, String groupDisplayName )
+    {
+        // no validation is done; up to the consumer to process
+        assert( name != null && name.length() > 0 );
+        m_name = name;
+        m_displayName = displayName;  
+        m_groupName = groupName;
+        m_groupDisplayName = groupDisplayName;
+     }
+    
     private void setAttributes( IConfigurationElement propertyElement,
             String groupName, String groupDisplayName )
     {
@@ -72,22 +83,25 @@ public class Property
         m_displayName = ManifestExplorer.getElementDisplayName( propertyElement );  
         m_groupName = groupName;
         m_groupDisplayName = groupDisplayName;
-        m_type = propertyElement.getAttribute( TYPE_ATTR );
-        if( m_type == null || m_type.length() == 0 )	// assign default
-        	m_type = "string"; //$NON-NLS-1$
+        String propType = propertyElement.getAttribute( TYPE_ATTR );
+        if( propType != null && propType.length() >= 0 )
+        	m_type = propType;     // use this instead of default type
         m_defaultValue = propertyElement.getAttribute( DEFAULT_VALUE_ATTR );
 
         Boolean boolValue = convertBooleanValue( 
                 propertyElement.getAttribute( ENCRYPTABLE_ATTR ) );
-        m_isEncryptable = ( boolValue != null ) ? boolValue.booleanValue() : false;
+        if( boolValue != null )
+            m_isEncryptable = boolValue.booleanValue();
 
         boolValue = convertBooleanValue( 
                 propertyElement.getAttribute( CAN_INHERIT_ATTR ) );
-        m_canInherit = ( boolValue != null ) ? boolValue.booleanValue() : true;
+        if( boolValue != null )
+            m_canInherit = boolValue.booleanValue();
 		
         boolValue = convertBooleanValue( 
                 propertyElement.getAttribute( EMPTY_VALUE_TYPE_ATTR ) );
-        m_allowsEmptyValueAsNull = ( boolValue != null ) ? boolValue.booleanValue() : true;
+        if( boolValue != null )
+            m_allowsEmptyValueAsNull = boolValue.booleanValue();
         
 		// choice elements
 		IConfigurationElement[] choiceElements = 

@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Consumer Helper Component Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer;singleton:=true
-Bundle-Version: 3.0.3.200701181
+Bundle-Version: 3.0.4.200702071
 Bundle-Localization: plugin
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.3,4.0.0)";visibility:=reexport
+ org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.4,4.0.0)";visibility:=reexport
 Export-Package: org.eclipse.datatools.connectivity.oda.consumer.helper,
  org.eclipse.datatools.connectivity.oda.consumer.nls;x-friends:="org.eclipse.datatools.connectivity.oda.consumer.tests",
  org.eclipse.datatools.connectivity.oda.consumer.services,

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.7 2006/03/11 02:59:42 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.8 2006/05/23 02:04:33 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,8 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
@@ -205,6 +205,20 @@ public class DataSourceDesignImpl extends EObjectImpl
     protected String m_linkedProfileStoreFilePath = LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT;
 
     /**
+     * property name for storing linked profile instance's name
+     * TODO - share common constants defined by core ODA plugin which introduces new plugin dependency
+     * @generated NOT
+     */
+    private static final String CONN_PROFILE_NAME_PROP = "OdaConnProfileName"; //$NON-NLS-1$
+
+    /**
+     * property name for storing linked profile store file path
+     * TODO - share common constants defined by core ODA plugin
+     * @generated NOT
+     */
+    private static final String CONN_PROFILE_STORE_FILE_PATH_PROP = "OdaConnProfileStorePath"; //$NON-NLS-1$
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -355,11 +369,34 @@ public class DataSourceDesignImpl extends EObjectImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Properties getPublicProperties()
+    public Properties getPublicPropertiesGen()
     {
         return m_publicProperties;
     }
-
+    
+    /**
+     * Returns a collection of public properties.
+     * @generated NOT
+     */
+    public Properties getPublicProperties()
+    {
+        Properties publicProps = getPublicPropertiesGen();
+        
+        // add linked profile info to properties, if exists
+        String profileName = getLinkedProfileNameGen();
+        if( profileName != null )   // linked profile instance is specified
+        {
+            // override existing property value, if exists
+            publicProps.setProperty( CONN_PROFILE_NAME_PROP, profileName );
+            
+            String filePath = this.getLinkedProfileStoreFilePathGen();
+            if( filePath != null )  // optional attribute
+                publicProps.setProperty( CONN_PROFILE_STORE_FILE_PATH_PROP, filePath );
+        }           
+        
+        return publicProps;
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -491,11 +528,39 @@ public class DataSourceDesignImpl extends EObjectImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getLinkedProfileName()
+    protected String getLinkedProfileNameGen()
     {
         return m_linkedProfileName;
     }
 
+    /**
+     * Returns the name of an associated profile instance.
+     * May be null if no profile instance is linked to the data source design.
+     * @generated NOT
+     */
+    public String getLinkedProfileName()
+    {
+        // use the one assigned by setter, if exists
+        String profileName = getLinkedProfileNameGen();
+        if( profileName != null )
+            return profileName;
+        return getLinkedProfileNameInProperties();
+    }
+
+    /**
+     * Returns the name of an associated profile instance, as specified
+     * in the public properties collection.
+     * @generated NOT
+     */
+    protected String getLinkedProfileNameInProperties()
+    {
+        Properties props = getPublicPropertiesGen();
+        if( props == null )
+            return null;
+        
+        return props.getProperty( CONN_PROFILE_NAME_PROP );             
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -510,17 +575,45 @@ public class DataSourceDesignImpl extends EObjectImpl
                     DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME,
                     oldLinkedProfileName, m_linkedProfileName ) );
     }
-
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getLinkedProfileStoreFilePath()
+    protected String getLinkedProfileStoreFilePathGen()
     {
         return m_linkedProfileStoreFilePath;
     }
 
+    /**
+     * Returns the file path of an associated profile store.
+     * May be null if no user-defined profile store is specified the data source design.
+     * @generated NOT
+     */
+    public String getLinkedProfileStoreFilePath()
+    {
+        // use the one assigned by setter, if exists
+        String filePath = getLinkedProfileStoreFilePathGen();          
+        if( filePath != null )
+            return filePath;
+        return getLinkedProfileStoreFilePathInProperties();      
+    }
+
+    /**
+     * Returns the file path of an associated profile store, as specified
+     * in the public properties collection.
+     * @generated NOT
+     */
+    protected String getLinkedProfileStoreFilePathInProperties()
+    {
+        Properties props = getPublicPropertiesGen();
+        if( props == null )
+            return null;
+        
+        return props.getProperty( CONN_PROFILE_STORE_FILE_PATH_PROP );             
+    }
+   
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -565,7 +658,7 @@ public class DataSourceDesignImpl extends EObjectImpl
         String filePath = null;
         try
         {
-            filePath = Platform.asLocalURL( storageFile.toURI().toURL() )
+            filePath = FileLocator.toFileURL( storageFile.toURI().toURL() )
                     .getPath();
         }
         catch( MalformedURLException e )

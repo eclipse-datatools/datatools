@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,6 +49,10 @@ public class Messages extends NLS
 	public static String manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE;
 	public static String manifest_INVALID_LOG_LEVEL_VALUE;
 	public static String manifest_NO_LOG_FILENAME_PREFIX_DEFINED;
+
+    public static String profileProperty_GROUP_PROPERTIES;
+    public static String profileProperty_PROFILE_NAME;
+    public static String profileProperty_PROFILE_STORE_PATH;
     
 	public static String sortSpec_INVALID_SORT_MODE_SPECIFIED;
 	public static String sortSpec_NULL_COLUMN_NAME_SPECIFIED;
