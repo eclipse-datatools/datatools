@@ -1,0 +1,85 @@
+<project default="build" basedir=".">
+	<description>
+		Base entry point build file for Data Tools Platform project.  The
+		targets in this project delegate to one of the build files in the
+		distribution folder as:
+		./distribution/${build.distribution}.&lt;target name&gt;/build.xml
+
+		Special properties defined in this project:
+		dtp.builder.home = base releng build folder (/path/to/org.eclipse.datatools.releng.builder)
+		
+		Required properties:
+		buildBranch			= the branch being built (R1.5)
+		build.distribution	= the distribution being built (dtp)
+	</description>
+
+	<target name="build" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.build/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+			<property name="buildBranch" value="${buildBranch}" />
+		</ant>
+	</target>
+
+
+	<target name="site" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.site/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+			<property name="buildBranch" value="${buildBranch}" />
+		</ant>
+	</target>
+
+	<target name="api" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.api/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+			<property name="buildBranch" value="${buildBranch}" />
+		</ant>
+	</target>
+	
+	<target name="test" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.tests/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+			<property name="buildBranch" value="${buildBranch}" />
+			<property name="testRoot" value="${build.home}/${build.tests}-${build.distribution}-${buildType}" />
+			<property name="dependencyTargets" value="${dtp.builder.home}/scripts/dependency/build.xml" />
+			<property name="local.cache.dir" value="${build.home}/${build.local.repository}" />
+		</ant>
+	</target>
+
+	<target name="upload" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.upload/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+		</ant>
+	</target>
+
+	<target name="whatisfixed" depends="init">
+		<ant antfile="${dtp.builder.home}/distribution/${build.distribution}.whatisfixed/build.xml">
+			<property name="dtp.builder.home" value="${dtp.builder.home}" />
+			<property name="buildBranch" value="${buildBranch}" />
+		</ant>
+	</target>
+
+	<target name="init">
+		<dirname file="${ant.file}" property="dtp.builder.home" />
+		<condition property="buildBranch" value="R1.5">
+			<equals arg1="${mapVersionTag}" arg2="HEAD" />
+		</condition>
+
+		<touch file="${user.home}/.cvspass" />
+
+		<property file="${dtp.builder.home}/build.properties" />
+		<touch file="${user.home}/.cvspass" />
+		<ant antfile="${dtp.builder.home}/scripts/build/label.xml" />
+		<property file="${buildDirectory}/label.properties" />
+
+		<!--fetch the HEAD stream of all projects if build type specified as N-->
+		<condition property="fetchTag" value="HEAD">
+			<equals arg1="${buildType}" arg2="N" />
+		</condition>
+
+		<condition property="tagMaps">
+			<equals arg1="${build.trial}" arg2="false" />
+		</condition>
+	</target>
+
+
+</project>
