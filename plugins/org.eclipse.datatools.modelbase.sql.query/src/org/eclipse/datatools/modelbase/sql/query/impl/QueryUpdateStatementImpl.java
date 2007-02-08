@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryUpdateStatementImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: QueryUpdateStatementImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -115,7 +115,7 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getQueryUpdateStatement();
+		return SQLQueryModelPackage.Literals.QUERY_UPDATE_STATEMENT;
 	}
 
 	/**
@@ -365,81 +365,55 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-					return ((InternalEList)getAssignmentClause()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-					if (whereCurrentOfClause != null)
-						msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
-					return basicSetWhereCurrentOfClause((CursorReference)otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-					if (whereClause != null)
-						msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, msgs);
-					return basicSetWhereClause((QuerySearchCondition)otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-					if (targetTable != null)
-						msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, msgs);
-					return basicSetTargetTable((TableInDatabase)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+				return ((InternalEList)getAssignmentClause()).basicAdd(otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+				if (whereCurrentOfClause != null)
+					msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
+				return basicSetWhereCurrentOfClause((CursorReference)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+				if (whereClause != null)
+					msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, msgs);
+				return basicSetWhereClause((QuerySearchCondition)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+				if (targetTable != null)
+					msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, msgs);
+				return basicSetTargetTable((TableInDatabase)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-					return ((InternalEList)getAssignmentClause()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-					return basicSetWhereCurrentOfClause(null, msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-					return basicUnsetWhereClause(msgs);
-				case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-					return basicUnsetTargetTable(msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+				return ((InternalEList)getAssignmentClause()).basicRemove(otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+				return basicSetWhereCurrentOfClause(null, msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+				return basicUnsetWhereClause(msgs);
+			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+				return basicUnsetTargetTable(msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__NAME:
-				return getName();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
 				return getAssignmentClause();
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
@@ -449,33 +423,16 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
 				return getTargetTable();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
 				getAssignmentClause().clear();
 				getAssignmentClause().addAll((Collection)newValue);
@@ -490,31 +447,16 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 				setTargetTable((TableInDatabase)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
 				getAssignmentClause().clear();
 				return;
@@ -528,26 +470,16 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 				unsetTargetTable();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
 				return assignmentClause != null && !assignmentClause.isEmpty();
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
@@ -557,7 +489,7 @@ public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implement
 			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
 				return isSetTargetTable();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLUpdateStatementImpl

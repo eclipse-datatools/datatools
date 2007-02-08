@@ -48,6 +48,8 @@ public class SQLQueryModelPlugin extends Plugin
     public SQLQueryModelPlugin()
     {
         super();
+        plugin = this;
+        registerSourceWriter();
     }
 
     

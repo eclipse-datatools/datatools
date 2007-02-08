@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryResultSpecificationImpl.java,v 1.2 2005/12/17 01:46:21 bpayton Exp $
+ * $Id: QueryResultSpecificationImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -50,7 +50,7 @@ public abstract class QueryResultSpecificationImpl extends SQLQueryObjectImpl im
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getQueryResultSpecification();
+		return SQLQueryModelPackage.Literals.QUERY_RESULT_SPECIFICATION;
 	}
 
 	/**
@@ -60,7 +60,17 @@ public abstract class QueryResultSpecificationImpl extends SQLQueryObjectImpl im
 	 */
     public QuerySelect getQuerySelect() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT) return null;
-		return (QuerySelect)eContainer;
+		return (QuerySelect)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetQuerySelect(QuerySelect newQuerySelect, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newQuerySelect, SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -69,15 +79,15 @@ public abstract class QueryResultSpecificationImpl extends SQLQueryObjectImpl im
 	 * @generated
 	 */
     public void setQuerySelect(QuerySelect newQuerySelect) {
-		if (newQuerySelect != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT && newQuerySelect != null)) {
+		if (newQuerySelect != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT && newQuerySelect != null)) {
 			if (EcoreUtil.isAncestor(this, newQuerySelect))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuerySelect != null)
 				msgs = ((InternalEObject)newQuerySelect).eInverseAdd(this, SQLQueryModelPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuerySelect, SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT, msgs);
+			msgs = basicSetQuerySelect(newQuerySelect, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -86,169 +96,97 @@ public abstract class QueryResultSpecificationImpl extends SQLQueryObjectImpl im
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetQuerySelect((QuerySelect)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
+				return basicSetQuerySelect(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__NAME:
-				return getName();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
 				return getQuerySelect();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
 				setQuerySelect((QuerySelect)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_RESULT_SPECIFICATION__QUERY_SELECT:
 				return getQuerySelect() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLResultColumnSpecificationImpl

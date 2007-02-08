@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableReferenceImpl.java,v 1.2 2005/12/17 01:46:19 bpayton Exp $
+ * $Id: TableReferenceImpl.java,v 1.3 2005/12/22 22:18:47 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -55,7 +55,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getTableReference();
+		return SQLQueryModelPackage.Literals.TABLE_REFERENCE;
 	}
 
 	/**
@@ -65,7 +65,17 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 */
     public TableJoined getTableJoinedRight() {
 		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT) return null;
-		return (TableJoined)eContainer;
+		return (TableJoined)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableJoinedRight(TableJoined newTableJoinedRight, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTableJoinedRight, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -74,15 +84,15 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 * @generated
 	 */
     public void setTableJoinedRight(TableJoined newTableJoinedRight) {
-		if (newTableJoinedRight != eContainer || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT && newTableJoinedRight != null)) {
+		if (newTableJoinedRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT && newTableJoinedRight != null)) {
 			if (EcoreUtil.isAncestor(this, newTableJoinedRight))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTableJoinedRight != null)
 				msgs = ((InternalEObject)newTableJoinedRight).eInverseAdd(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTableJoinedRight, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, msgs);
+			msgs = basicSetTableJoinedRight(newTableJoinedRight, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -96,7 +106,17 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 */
     public TableJoined getTableJoinedLeft() {
 		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT) return null;
-		return (TableJoined)eContainer;
+		return (TableJoined)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableJoinedLeft(TableJoined newTableJoinedLeft, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTableJoinedLeft, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -105,15 +125,15 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 * @generated
 	 */
     public void setTableJoinedLeft(TableJoined newTableJoinedLeft) {
-		if (newTableJoinedLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT && newTableJoinedLeft != null)) {
+		if (newTableJoinedLeft != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT && newTableJoinedLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newTableJoinedLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTableJoinedLeft != null)
 				msgs = ((InternalEObject)newTableJoinedLeft).eInverseAdd(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTableJoinedLeft, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, msgs);
+			msgs = basicSetTableJoinedLeft(newTableJoinedLeft, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -127,7 +147,17 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 */
     public QuerySelect getQuerySelect() {
 		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT) return null;
-		return (QuerySelect)eContainer;
+		return (QuerySelect)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetQuerySelect(QuerySelect newQuerySelect, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newQuerySelect, SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -136,15 +166,15 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 * @generated
 	 */
     public void setQuerySelect(QuerySelect newQuerySelect) {
-		if (newQuerySelect != eContainer || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT && newQuerySelect != null)) {
+		if (newQuerySelect != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT && newQuerySelect != null)) {
 			if (EcoreUtil.isAncestor(this, newQuerySelect))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuerySelect != null)
 				msgs = ((InternalEObject)newQuerySelect).eInverseAdd(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuerySelect, SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT, msgs);
+			msgs = basicSetQuerySelect(newQuerySelect, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -158,7 +188,17 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 */
   public TableNested getNest() {
 		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__NEST) return null;
-		return (TableNested)eContainer;
+		return (TableNested)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNest(TableNested newNest, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryModelPackage.TABLE_REFERENCE__NEST, msgs);
+		return msgs;
 	}
 
 	/**
@@ -167,15 +207,15 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 	 * @generated
 	 */
   public void setNest(TableNested newNest) {
-		if (newNest != eContainer || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__NEST && newNest != null)) {
+		if (newNest != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_REFERENCE__NEST && newNest != null)) {
 			if (EcoreUtil.isAncestor(this, newNest))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newNest != null)
 				msgs = ((InternalEObject)newNest).eInverseAdd(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryModelPackage.TABLE_REFERENCE__NEST, msgs);
+			msgs = basicSetNest(newNest, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -184,106 +224,76 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_REFERENCE__NEST, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTableJoinedRight((TableJoined)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTableJoinedLeft((TableJoined)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetQuerySelect((QuerySelect)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetNest((TableNested)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_REFERENCE__NEST, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
+				return basicSetTableJoinedRight(null, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
+				return basicSetTableJoinedLeft(null, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
+				return basicSetQuerySelect(null, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
+				return basicSetNest(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__QUERY_SELECT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
+			case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.TABLE_REFERENCE__NAME:
-				return getName();
-			case SQLQueryModelPackage.TABLE_REFERENCE__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.TABLE_REFERENCE__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.TABLE_REFERENCE__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
 				return getTableJoinedRight();
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
@@ -293,33 +303,16 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 			case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
 				return getNest();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
 				setTableJoinedRight((TableJoined)newValue);
 				return;
@@ -333,31 +326,16 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 				setNest((TableNested)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_REFERENCE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
 				setTableJoinedRight((TableJoined)null);
 				return;
@@ -371,26 +349,16 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 				setNest((TableNested)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_REFERENCE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.TABLE_REFERENCE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.TABLE_REFERENCE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.TABLE_REFERENCE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.TABLE_REFERENCE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_RIGHT:
 				return getTableJoinedRight() != null;
 			case SQLQueryModelPackage.TABLE_REFERENCE__TABLE_JOINED_LEFT:
@@ -400,7 +368,7 @@ public abstract class TableReferenceImpl extends SQLQueryObjectImpl implements T
 			case SQLQueryModelPackage.TABLE_REFERENCE__NEST:
 				return getNest() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLTableReferenceImpl

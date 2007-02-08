@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateComparisonOperator.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: PredicateComparisonOperator.java,v 1.3 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -100,7 +100,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator EQUAL_LITERAL = new PredicateComparisonOperator(EQUAL, "EQUAL");
+    public static final PredicateComparisonOperator EQUAL_LITERAL = new PredicateComparisonOperator(EQUAL, "EQUAL", "EQUAL");
 
 	/**
 	 * The '<em><b>NOT EQUAL</b></em>' literal object.
@@ -114,7 +114,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator NOT_EQUAL_LITERAL = new PredicateComparisonOperator(NOT_EQUAL, "NOT_EQUAL");
+    public static final PredicateComparisonOperator NOT_EQUAL_LITERAL = new PredicateComparisonOperator(NOT_EQUAL, "NOT_EQUAL", "NOT_EQUAL");
 
 	/**
 	 * The '<em><b>LESS THAN</b></em>' literal object.
@@ -128,7 +128,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator LESS_THAN_LITERAL = new PredicateComparisonOperator(LESS_THAN, "LESS_THAN");
+    public static final PredicateComparisonOperator LESS_THAN_LITERAL = new PredicateComparisonOperator(LESS_THAN, "LESS_THAN", "LESS_THAN");
 
 	/**
 	 * The '<em><b>GREATER THAN</b></em>' literal object.
@@ -142,7 +142,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator GREATER_THAN_LITERAL = new PredicateComparisonOperator(GREATER_THAN, "GREATER_THAN");
+    public static final PredicateComparisonOperator GREATER_THAN_LITERAL = new PredicateComparisonOperator(GREATER_THAN, "GREATER_THAN", "GREATER_THAN");
 
 	/**
 	 * The '<em><b>LESS THAN OR EQUAL</b></em>' literal object.
@@ -156,7 +156,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator LESS_THAN_OR_EQUAL_LITERAL = new PredicateComparisonOperator(LESS_THAN_OR_EQUAL, "LESS_THAN_OR_EQUAL");
+    public static final PredicateComparisonOperator LESS_THAN_OR_EQUAL_LITERAL = new PredicateComparisonOperator(LESS_THAN_OR_EQUAL, "LESS_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL");
 
 	/**
 	 * The '<em><b>GREATER THAN OR EQUAL</b></em>' literal object.
@@ -170,7 +170,7 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final PredicateComparisonOperator GREATER_THAN_OR_EQUAL_LITERAL = new PredicateComparisonOperator(GREATER_THAN_OR_EQUAL, "GREATER_THAN_OR_EQUAL");
+    public static final PredicateComparisonOperator GREATER_THAN_OR_EQUAL_LITERAL = new PredicateComparisonOperator(GREATER_THAN_OR_EQUAL, "GREATER_THAN_OR_EQUAL", "GREATER_THAN_OR_EQUAL");
 
 	/**
 	 * An array of all the '<em><b>Predicate Comparison Operator</b></em>' enumerators.
@@ -197,15 +197,15 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Predicate Comparison Operator</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Predicate Comparison Operator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static PredicateComparisonOperator get(String name) {
+    public static PredicateComparisonOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			PredicateComparisonOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -213,7 +213,23 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Predicate Comparison Operator</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Predicate Comparison Operator</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static PredicateComparisonOperator getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			PredicateComparisonOperator result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Predicate Comparison Operator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -236,8 +252,8 @@ public final class PredicateComparisonOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PredicateComparisonOperator(int value, String name) {
-		super(value, name);
+	private PredicateComparisonOperator(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //SQLPredicateComparisonOperator

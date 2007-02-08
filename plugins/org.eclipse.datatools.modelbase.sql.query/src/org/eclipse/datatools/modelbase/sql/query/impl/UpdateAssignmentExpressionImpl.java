@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateAssignmentExpressionImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: UpdateAssignmentExpressionImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -76,7 +76,7 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 	 * @generated
 	 */
   protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getUpdateAssignmentExpression();
+		return SQLQueryModelPackage.Literals.UPDATE_ASSIGNMENT_EXPRESSION;
 	}
 
 	/**
@@ -86,7 +86,17 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 	 */
   public QueryUpdateStatement getUpdateStatement() {
 		if (eContainerFeatureID != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT) return null;
-		return (QueryUpdateStatement)eContainer;
+		return (QueryUpdateStatement)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUpdateStatement(QueryUpdateStatement newUpdateStatement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -95,15 +105,15 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 	 * @generated
 	 */
   public void setUpdateStatement(QueryUpdateStatement newUpdateStatement) {
-		if (newUpdateStatement != eContainer || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT && newUpdateStatement != null)) {
+		if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT && newUpdateStatement != null)) {
 			if (EcoreUtil.isAncestor(this, newUpdateStatement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUpdateStatement != null)
 				msgs = ((InternalEObject)newUpdateStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, QueryUpdateStatement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT, msgs);
+			msgs = basicSetUpdateStatement(newUpdateStatement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -167,92 +177,62 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
-					return ((InternalEList)getTargetColumnList()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
-					if (updateSource != null)
-						msgs = ((InternalEObject)updateSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, null, msgs);
-					return basicSetUpdateSource((UpdateSource)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetUpdateStatement((QueryUpdateStatement)otherEnd, msgs);
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
+				return ((InternalEList)getTargetColumnList()).basicAdd(otherEnd, msgs);
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
+				if (updateSource != null)
+					msgs = ((InternalEObject)updateSource).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, null, msgs);
+				return basicSetUpdateSource((UpdateSource)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
-					return ((InternalEList)getTargetColumnList()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
-					return basicSetUpdateSource(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
+				return basicSetUpdateStatement(null, msgs);
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
+				return ((InternalEList)getTargetColumnList()).basicRemove(otherEnd, msgs);
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
+				return basicSetUpdateSource(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, QueryUpdateStatement.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, QueryUpdateStatement.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__NAME:
-				return getName();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
 				return getUpdateStatement();
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
@@ -260,33 +240,16 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
 				return getUpdateSource();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
 				setUpdateStatement((QueryUpdateStatement)newValue);
 				return;
@@ -298,31 +261,16 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 				setUpdateSource((UpdateSource)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
 				setUpdateStatement((QueryUpdateStatement)null);
 				return;
@@ -333,26 +281,16 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 				setUpdateSource((UpdateSource)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT:
 				return getUpdateStatement() != null;
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST:
@@ -360,7 +298,7 @@ public class UpdateAssignmentExpressionImpl extends SQLQueryObjectImpl implement
 			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE:
 				return updateSource != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //UpdateAssignmentExpressionImpl

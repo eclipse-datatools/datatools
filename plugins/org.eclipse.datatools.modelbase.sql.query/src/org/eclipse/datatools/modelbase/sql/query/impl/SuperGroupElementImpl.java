@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElementImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: SuperGroupElementImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -50,7 +50,7 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getSuperGroupElement();
+		return SQLQueryModelPackage.Literals.SUPER_GROUP_ELEMENT;
 	}
 
 	/**
@@ -60,7 +60,17 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
 	 */
     public SuperGroup getSuperGroup() {
 		if (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP) return null;
-		return (SuperGroup)eContainer;
+		return (SuperGroup)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSuperGroup(SuperGroup newSuperGroup, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newSuperGroup, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP, msgs);
+		return msgs;
 	}
 
 	/**
@@ -69,15 +79,15 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
 	 * @generated
 	 */
     public void setSuperGroup(SuperGroup newSuperGroup) {
-		if (newSuperGroup != eContainer || (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP && newSuperGroup != null)) {
+		if (newSuperGroup != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP && newSuperGroup != null)) {
 			if (EcoreUtil.isAncestor(this, newSuperGroup))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newSuperGroup != null)
 				msgs = ((InternalEObject)newSuperGroup).eInverseAdd(this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SuperGroup.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newSuperGroup, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP, msgs);
+			msgs = basicSetSuperGroup(newSuperGroup, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -86,169 +96,97 @@ public abstract class SuperGroupElementImpl extends SQLQueryObjectImpl implement
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetSuperGroup((SuperGroup)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
+				return basicSetSuperGroup(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SuperGroup.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SuperGroup.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__NAME:
-				return getName();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
 				return getSuperGroup();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
 				setSuperGroup((SuperGroup)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
 				setSuperGroup((SuperGroup)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP:
 				return getSuperGroup() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLSuperGroupElementImpl

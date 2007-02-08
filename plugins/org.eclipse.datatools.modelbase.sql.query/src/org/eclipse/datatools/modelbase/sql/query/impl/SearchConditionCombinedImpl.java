@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionCombinedImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: SearchConditionCombinedImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -98,7 +98,7 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getSearchConditionCombined();
+		return SQLQueryModelPackage.Literals.SEARCH_CONDITION_COMBINED;
 	}
 
 	/**
@@ -210,106 +210,21 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
-					if (leftCondition != null)
-						msgs = ((InternalEObject)leftCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, null, msgs);
-					return basicSetLeftCondition((QuerySearchCondition)otherEnd, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
-					if (rightCondition != null)
-						msgs = ((InternalEObject)rightCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, null, msgs);
-					return basicSetRightCondition((QuerySearchCondition)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
+				if (leftCondition != null)
+					msgs = ((InternalEObject)leftCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, null, msgs);
+				return basicSetLeftCondition((QuerySearchCondition)otherEnd, msgs);
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
+				if (rightCondition != null)
+					msgs = ((InternalEObject)rightCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, null, msgs);
+				return basicSetRightCondition((QuerySearchCondition)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
-					return basicSetLeftCondition(null, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
-					return basicSetRightCondition(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -317,71 +232,23 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
-				case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
+				return basicSetLeftCondition(null, msgs);
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
+				return basicSetRightCondition(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NAME:
-				return getName();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEGATED_CONDITION:
-				return isNegatedCondition() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-				return getUpdateStatement();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-				return getDeleteStatement();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-				return getTableJoined();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-				return getCombinedLeft();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-				return getCombinedRight();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-				return getQuerySelectHaving();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-				return getQuerySelectWhere();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				return getValueExprCaseSearchContent();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-				return getNest();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR:
 				return getCombinedOperator();
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
@@ -389,63 +256,16 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
 				return getRightCondition();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEGATED_CONDITION:
-				setNegatedCondition(((Boolean)newValue).booleanValue());
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-				setUpdateStatement((QueryUpdateStatement)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-				setDeleteStatement((QueryDeleteStatement)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-				setTableJoined((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-				setCombinedLeft((SearchConditionCombined)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-				setCombinedRight((SearchConditionCombined)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-				setQuerySelectHaving((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-				setQuerySelectWhere((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)newValue);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-				setNest((SearchConditionNested)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR:
 				setCombinedOperator((SearchConditionCombinedOperator)newValue);
 				return;
@@ -456,61 +276,16 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 				setRightCondition((QuerySearchCondition)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEGATED_CONDITION:
-				setNegatedCondition(NEGATED_CONDITION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-				setUpdateStatement((QueryUpdateStatement)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-				setDeleteStatement((QueryDeleteStatement)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-				setTableJoined((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-				setCombinedLeft((SearchConditionCombined)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-				setCombinedRight((SearchConditionCombined)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-				setQuerySelectHaving((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-				setQuerySelectWhere((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)null);
-				return;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-				setNest((SearchConditionNested)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR:
 				setCombinedOperator(COMBINED_OPERATOR_EDEFAULT);
 				return;
@@ -521,46 +296,16 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 				setRightCondition((QuerySearchCondition)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEGATED_CONDITION:
-				return negatedCondition != NEGATED_CONDITION_EDEFAULT;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__UPDATE_STATEMENT:
-				return getUpdateStatement() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__DELETE_STATEMENT:
-				return getDeleteStatement() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__TABLE_JOINED:
-				return getTableJoined() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_LEFT:
-				return getCombinedLeft() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_RIGHT:
-				return getCombinedRight() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_HAVING:
-				return getQuerySelectHaving() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__QUERY_SELECT_WHERE:
-				return getQuerySelectWhere() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				return getValueExprCaseSearchContent() != null;
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__NEST:
-				return getNest() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR:
 				return combinedOperator != COMBINED_OPERATOR_EDEFAULT;
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION:
@@ -568,7 +313,7 @@ public class SearchConditionCombinedImpl extends QuerySearchConditionImpl implem
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION:
 				return rightCondition != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

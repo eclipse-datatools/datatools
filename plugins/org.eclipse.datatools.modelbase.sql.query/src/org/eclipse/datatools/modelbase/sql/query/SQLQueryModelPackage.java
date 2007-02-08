@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryPackage.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: SQLQueryModelPackage.java,v 1.1 2005/12/22 22:18:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLQueryModelPackage extends EPackage{
+public interface SQLQueryModelPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -118,7 +118,16 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SQL_QUERY_OBJECT__LABEL = SQLSchemaPackage.SQL_OBJECT__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>SQL Query Object</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_QUERY_OBJECT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>SQL Query Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -182,7 +191,16 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_STATEMENT__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>Query Statement</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_STATEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Query Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -246,7 +264,16 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_CHANGE_STATEMENT__LABEL = QUERY_STATEMENT__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>Query Change Statement</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_CHANGE_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Query Change Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -310,6 +337,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_DELETE_STATEMENT__LABEL = QUERY_CHANGE_STATEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_DELETE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Where Current Of Clause</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -337,7 +373,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_DELETE_STATEMENT__TARGET_TABLE = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Query Delete Statement</em>' class.
+	 * The number of structural features of the '<em>Query Delete Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -401,6 +437,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_INSERT_STATEMENT__LABEL = QUERY_CHANGE_STATEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_INSERT_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Source Query</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -437,7 +482,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_INSERT_STATEMENT__TARGET_COLUMN_LIST = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Query Insert Statement</em>' class.
+	 * The number of structural features of the '<em>Query Insert Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -501,6 +546,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_SELECT_STATEMENT__LABEL = QUERY_STATEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SELECT_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -519,7 +573,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE = QUERY_STATEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Query Select Statement</em>' class.
+	 * The number of structural features of the '<em>Query Select Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -583,6 +637,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_UPDATE_STATEMENT__LABEL = QUERY_CHANGE_STATEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_UPDATE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Assignment Clause</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -619,7 +682,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_UPDATE_STATEMENT__TARGET_TABLE = QUERY_CHANGE_STATEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Query Update Statement</em>' class.
+	 * The number of structural features of the '<em>Query Update Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -683,6 +746,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_ASSIGNMENT_EXPRESSION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ASSIGNMENT_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Update Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -710,7 +782,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Update Assignment Expression</em>' class.
+	 * The number of structural features of the '<em>Update Assignment Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -774,6 +846,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int CURSOR_REFERENCE__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURSOR_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Update Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,7 +873,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int CURSOR_REFERENCE__DELETE_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Cursor Reference</em>' class.
+	 * The number of structural features of the '<em>Cursor Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -854,6 +935,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_SEARCH_CONDITION__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SEARCH_CONDITION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -946,7 +1036,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_SEARCH_CONDITION__NEST = SQL_QUERY_OBJECT_FEATURE_COUNT + 9;
 
 	/**
-	 * The number of structural features of the the '<em>Query Search Condition</em>' class.
+	 * The number of structural features of the '<em>Query Search Condition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1010,6 +1100,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_REFERENCE__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1046,7 +1145,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_REFERENCE__NEST = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Table Reference</em>' class.
+	 * The number of structural features of the '<em>Table Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1108,6 +1207,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int TABLE_EXPRESSION__LABEL = TABLE_REFERENCE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_EXPRESSION__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -1182,7 +1290,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_EXPRESSION__VALUE_EXPR_COLUMNS = TABLE_REFERENCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Table Expression</em>' class.
+	 * The number of structural features of the '<em>Table Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1244,6 +1352,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_EXPRESSION_BODY__LABEL = TABLE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_EXPRESSION_BODY__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -1372,7 +1489,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_EXPRESSION_BODY__WITH_TABLE_SPECIFICATION = TABLE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the the '<em>Query Expression Body</em>' class.
+	 * The number of structural features of the '<em>Query Expression Body</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1434,6 +1551,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_VALUE_EXPRESSION__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_VALUE_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -1733,7 +1859,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 32;
 
 	/**
-	 * The number of structural features of the the '<em>Query Value Expression</em>' class.
+	 * The number of structural features of the '<em>Query Value Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1795,6 +1921,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_EXPRESSION_ROOT__LABEL = SQL_QUERY_OBJECT__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_EXPRESSION_ROOT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Insert Statement</b></em>' container reference.
@@ -1878,7 +2013,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS = SQL_QUERY_OBJECT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the the '<em>Query Expression Root</em>' class.
+	 * The number of structural features of the '<em>Query Expression Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1942,6 +2077,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUES_ROW__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUES_ROW__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Insert Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1969,7 +2113,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUES_ROW__QUERY_VALUES = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Values Row</em>' class.
+	 * The number of structural features of the '<em>Values Row</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2031,6 +2175,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_VALUES__LABEL = QUERY_EXPRESSION_BODY__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_VALUES__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -2168,7 +2321,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_VALUES__VALUES_ROW_LIST = QUERY_EXPRESSION_BODY_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Query Values</em>' class.
+	 * The number of structural features of the '<em>Query Values</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2230,6 +2383,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int TABLE_JOINED__LABEL = TABLE_REFERENCE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_JOINED__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -2304,7 +2466,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_JOINED__TABLE_REF_LEFT = TABLE_REFERENCE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Table Joined</em>' class.
+	 * The number of structural features of the '<em>Table Joined</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2368,6 +2530,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int WITH_TABLE_SPECIFICATION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_TABLE_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Expression Root</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2404,7 +2575,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>With Table Specification</em>' class.
+	 * The number of structural features of the '<em>With Table Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2466,6 +2637,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE__LABEL = QUERY_SEARCH_CONDITION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -2585,7 +2765,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE__SELECTIVITY_VALUE = QUERY_SEARCH_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate</em>' class.
+	 * The number of structural features of the '<em>Predicate</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2647,6 +2827,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int SEARCH_CONDITION_COMBINED__LABEL = QUERY_SEARCH_CONDITION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_CONDITION_COMBINED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -2766,7 +2955,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SEARCH_CONDITION_COMBINED__RIGHT_CONDITION = QUERY_SEARCH_CONDITION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Search Condition Combined</em>' class.
+	 * The number of structural features of the '<em>Search Condition Combined</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2830,6 +3019,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_SPECIFICATION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2866,7 +3064,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_SPECIFICATION__SELECT_STATEMENT = SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Order By Specification</em>' class.
+	 * The number of structural features of the '<em>Order By Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2930,6 +3128,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_VALUE_EXPRESSION__LABEL = ORDER_BY_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_VALUE_EXPRESSION__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2975,7 +3182,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR = ORDER_BY_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Order By Value Expression</em>' class.
+	 * The number of structural features of the '<em>Order By Value Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3037,6 +3244,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_COMBINED__LABEL = QUERY_EXPRESSION_BODY__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_COMBINED__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -3192,7 +3408,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_COMBINED__RIGHT_QUERY = QUERY_EXPRESSION_BODY_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Query Combined</em>' class.
+	 * The number of structural features of the '<em>Query Combined</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3254,6 +3470,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int QUERY_SELECT__LABEL = QUERY_EXPRESSION_BODY__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SELECT__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -3445,7 +3670,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_SELECT__INTO_CLAUSE = QUERY_EXPRESSION_BODY_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the the '<em>Query Select</em>' class.
+	 * The number of structural features of the '<em>Query Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3509,6 +3734,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SPECIFICATION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3518,7 +3752,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SPECIFICATION__QUERY_SELECT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Specification</em>' class.
+	 * The number of structural features of the '<em>Grouping Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3582,6 +3816,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_RESULT_SPECIFICATION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_RESULT_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3591,7 +3834,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_RESULT_SPECIFICATION__QUERY_SELECT = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Query Result Specification</em>' class.
+	 * The number of structural features of the '<em>Query Result Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3655,6 +3898,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int RESULT_TABLE_ALL_COLUMNS__LABEL = QUERY_RESULT_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TABLE_ALL_COLUMNS__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3673,7 +3925,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR = QUERY_RESULT_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Result Table All Columns</em>' class.
+	 * The number of structural features of the '<em>Result Table All Columns</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3737,6 +3989,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int RESULT_COLUMN__LABEL = QUERY_RESULT_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_COLUMN__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3764,7 +4025,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int RESULT_COLUMN__ORDER_BY_RESULT_COL = QUERY_RESULT_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Result Column</em>' class.
+	 * The number of structural features of the '<em>Result Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -3826,6 +4087,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_BASIC__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_BASIC__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -3972,7 +4242,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_BASIC__LEFT_VALUE_EXPR = PREDICATE_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Basic</em>' class.
+	 * The number of structural features of the '<em>Predicate Basic</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4034,6 +4304,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_QUANTIFIED__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4153,7 +4432,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_QUANTIFIED__SELECTIVITY_VALUE = PREDICATE__SELECTIVITY_VALUE;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Quantified</em>' class.
+	 * The number of structural features of the '<em>Predicate Quantified</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4215,6 +4494,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_BETWEEN__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_BETWEEN__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4370,7 +4658,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2 = PREDICATE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Between</em>' class.
+	 * The number of structural features of the '<em>Predicate Between</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4432,6 +4720,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_EXISTS__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_EXISTS__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4560,7 +4857,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_EXISTS__QUERY_EXPR = PREDICATE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Exists</em>' class.
+	 * The number of structural features of the '<em>Predicate Exists</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4622,6 +4919,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_IN__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4750,7 +5056,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_IN__NOT_IN = PREDICATE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate In</em>' class.
+	 * The number of structural features of the '<em>Predicate In</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4812,6 +5118,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_LIKE__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_LIKE__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4967,7 +5282,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_LIKE__ESCAPE_VALUE_EXPR = PREDICATE_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Like</em>' class.
+	 * The number of structural features of the '<em>Predicate Like</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5029,6 +5344,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_IS_NULL__LABEL = PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IS_NULL__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5166,7 +5490,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_IS_NULL__VALUE_EXPR = PREDICATE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Is Null</em>' class.
+	 * The number of structural features of the '<em>Predicate Is Null</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5228,6 +5552,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_QUANTIFIED_VALUE_SELECT__LABEL = PREDICATE_QUANTIFIED__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED_VALUE_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5383,7 +5716,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR = PREDICATE_QUANTIFIED_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Quantified Value Select</em>' class.
+	 * The number of structural features of the '<em>Predicate Quantified Value Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5445,6 +5778,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_QUANTIFIED_ROW_SELECT__LABEL = PREDICATE_QUANTIFIED__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED_ROW_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5591,7 +5933,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST = PREDICATE_QUANTIFIED_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate Quantified Row Select</em>' class.
+	 * The number of structural features of the '<em>Predicate Quantified Row Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5653,6 +5995,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_IN_VALUE_SELECT__LABEL = PREDICATE_IN__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5799,7 +6150,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_IN_VALUE_SELECT__VALUE_EXPR = PREDICATE_IN_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate In Value Select</em>' class.
+	 * The number of structural features of the '<em>Predicate In Value Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -5861,6 +6212,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_IN_VALUE_LIST__LABEL = PREDICATE_IN__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_LIST__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6007,7 +6367,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_IN_VALUE_LIST__VALUE_EXPR = PREDICATE_IN_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate In Value List</em>' class.
+	 * The number of structural features of the '<em>Predicate In Value List</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6069,6 +6429,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int PREDICATE_IN_VALUE_ROW_SELECT__LABEL = PREDICATE_IN__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_ROW_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6215,7 +6584,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int PREDICATE_IN_VALUE_ROW_SELECT__QUERY_EXPR = PREDICATE_IN_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Predicate In Value Row Select</em>' class.
+	 * The number of structural features of the '<em>Predicate In Value Row Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6277,6 +6646,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_ATOMIC__LABEL = QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_ATOMIC__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -6576,7 +6954,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST = QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Atomic</em>' class.
+	 * The number of structural features of the '<em>Value Expression Atomic</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -6638,6 +7016,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_SIMPLE__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_SIMPLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -6946,7 +7333,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_SIMPLE__VALUE = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Simple</em>' class.
+	 * The number of structural features of the '<em>Value Expression Simple</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7008,6 +7395,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_COLUMN__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_COLUMN__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7352,7 +7748,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Column</em>' class.
+	 * The number of structural features of the '<em>Value Expression Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7414,6 +7810,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_VARIABLE__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_VARIABLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7722,7 +8127,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_VARIABLE__QUERY_SELECT = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Variable</em>' class.
+	 * The number of structural features of the '<em>Value Expression Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -7784,6 +8189,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_SCALAR_SELECT__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_SCALAR_SELECT__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8092,7 +8506,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Scalar Select</em>' class.
+	 * The number of structural features of the '<em>Value Expression Scalar Select</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8154,6 +8568,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_LABELED_DURATION__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_LABELED_DURATION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8471,7 +8894,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Labeled Duration</em>' class.
+	 * The number of structural features of the '<em>Value Expression Labeled Duration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8533,6 +8956,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8841,7 +9273,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE__CASE_ELSE = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -8903,6 +9335,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CAST__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CAST__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9211,7 +9652,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CAST__VALUE_EXPR = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Cast</em>' class.
+	 * The number of structural features of the '<em>Value Expression Cast</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9273,6 +9714,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_NULL_VALUE__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_NULL_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9572,7 +10022,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_NULL_VALUE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Null Value</em>' class.
+	 * The number of structural features of the '<em>Value Expression Null Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9634,6 +10084,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_DEFAULT_VALUE__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_DEFAULT_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9933,7 +10392,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_DEFAULT_VALUE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Default Value</em>' class.
+	 * The number of structural features of the '<em>Value Expression Default Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9995,6 +10454,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_FUNCTION__LABEL = VALUE_EXPRESSION_ATOMIC__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_FUNCTION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10339,7 +10807,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_FUNCTION__FUNCTION = VALUE_EXPRESSION_ATOMIC_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Function</em>' class.
+	 * The number of structural features of the '<em>Value Expression Function</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10401,6 +10869,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_COMBINED__LABEL = QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_COMBINED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10727,7 +11204,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR = QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Combined</em>' class.
+	 * The number of structural features of the '<em>Value Expression Combined</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10791,6 +11268,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS__LABEL = GROUPING_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10809,7 +11295,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST = GROUPING_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Sets</em>' class.
+	 * The number of structural features of the '<em>Grouping Sets</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10873,6 +11359,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING__LABEL = GROUPING_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10891,7 +11386,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING__GROUPING_SETS_ELEMENT_EXPR = GROUPING_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping</em>' class.
+	 * The number of structural features of the '<em>Grouping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -10955,6 +11450,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10964,7 +11468,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT__GROUPING_SETS = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Sets Element</em>' class.
+	 * The number of structural features of the '<em>Grouping Sets Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11028,6 +11532,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT_SUBLIST__LABEL = GROUPING_SETS_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT_SUBLIST__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11046,7 +11559,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST = GROUPING_SETS_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Sets Element Sublist</em>' class.
+	 * The number of structural features of the '<em>Grouping Sets Element Sublist</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11110,6 +11623,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT_EXPRESSION__LABEL = GROUPING_SETS_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT_EXPRESSION__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11137,7 +11659,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING = GROUPING_SETS_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Sets Element Expression</em>' class.
+	 * The number of structural features of the '<em>Grouping Sets Element Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11201,6 +11723,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP__LABEL = GROUPING__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP__COMMENTS = GROUPING__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11237,7 +11768,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST = GROUPING_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Super Group</em>' class.
+	 * The number of structural features of the '<em>Super Group</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11301,6 +11832,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_EXPRESSION__LABEL = GROUPING__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_EXPRESSION__COMMENTS = GROUPING__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11337,7 +11877,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR = GROUPING_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Grouping Expression</em>' class.
+	 * The number of structural features of the '<em>Grouping Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11401,6 +11941,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11410,7 +11959,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT__SUPER_GROUP = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Super Group Element</em>' class.
+	 * The number of structural features of the '<em>Super Group Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11474,6 +12023,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT_SUBLIST__LABEL = SUPER_GROUP_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT_SUBLIST__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11492,7 +12050,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT_SUBLIST__SUPER_GROUP_ELEMENT_EXPR_LIST = SUPER_GROUP_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Super Group Element Sublist</em>' class.
+	 * The number of structural features of the '<em>Super Group Element Sublist</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11556,6 +12114,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT_EXPRESSION__LABEL = SUPER_GROUP_ELEMENT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT_EXPRESSION__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11583,7 +12150,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR = SUPER_GROUP_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Super Group Element Expression</em>' class.
+	 * The number of structural features of the '<em>Super Group Element Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -11645,6 +12212,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE_SEARCH__LABEL = VALUE_EXPRESSION_CASE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SEARCH__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -11962,7 +12538,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST = VALUE_EXPRESSION_CASE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case Search</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case Search</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12024,6 +12600,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE_SIMPLE__LABEL = VALUE_EXPRESSION_CASE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SIMPLE__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -12350,7 +12935,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR = VALUE_EXPRESSION_CASE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case Simple</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case Simple</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12414,6 +12999,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_ELSE__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_ELSE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Expr Case</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12432,7 +13026,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case Else</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case Else</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12496,6 +13090,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12523,7 +13126,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case Search Content</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case Search Content</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12587,6 +13190,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Expr Case Simple</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12614,7 +13226,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR = SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Case Simple Content</em>' class.
+	 * The number of structural features of the '<em>Value Expression Case Simple Content</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12676,6 +13288,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int TABLE_IN_DATABASE__LABEL = TABLE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IN_DATABASE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -12795,7 +13416,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_IN_DATABASE__DERIVED_COLUMN_LIST = TABLE_EXPRESSION_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>Table In Database</em>' class.
+	 * The number of structural features of the '<em>Table In Database</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12857,6 +13478,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int TABLE_FUNCTION__LABEL = TABLE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_FUNCTION__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -12931,7 +13561,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_FUNCTION__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
-	 * The number of structural features of the the '<em>Table Function</em>' class.
+	 * The number of structural features of the '<em>Table Function</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -12995,6 +13625,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int COLUMN_NAME__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_NAME__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Correlation</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13013,7 +13652,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int COLUMN_NAME__WITH_TABLE_SPECIFICATION = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Column Name</em>' class.
+	 * The number of structural features of the '<em>Column Name</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13077,6 +13716,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_NESTED__LABEL = TABLE_REFERENCE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_NESTED__COMMENTS = TABLE_REFERENCE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13122,7 +13770,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_NESTED__NESTED_TABLE_REF = TABLE_REFERENCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Table Nested</em>' class.
+	 * The number of structural features of the '<em>Table Nested</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13186,7 +13834,16 @@ public interface SQLQueryModelPackage extends EPackage{
 	int QUERY_MERGE_STATEMENT__LABEL = QUERY_CHANGE_STATEMENT__LABEL;
 
 	/**
-	 * The number of structural features of the the '<em>Query Merge Statement</em>' class.
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_MERGE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
+	 * The number of structural features of the '<em>Query Merge Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13248,6 +13905,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int SEARCH_CONDITION_NESTED__LABEL = QUERY_SEARCH_CONDITION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_CONDITION_NESTED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -13349,7 +14015,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int SEARCH_CONDITION_NESTED__NESTED_CONDITION = QUERY_SEARCH_CONDITION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Search Condition Nested</em>' class.
+	 * The number of structural features of the '<em>Search Condition Nested</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13411,6 +14077,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_NESTED__LABEL = QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_NESTED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -13719,7 +14394,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR = QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Value Expression Nested</em>' class.
+	 * The number of structural features of the '<em>Value Expression Nested</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13783,6 +14458,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_ORDINAL__LABEL = ORDER_BY_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_ORDINAL__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13828,7 +14512,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_ORDINAL__ORDINAL_VALUE = ORDER_BY_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Order By Ordinal</em>' class.
+	 * The number of structural features of the '<em>Order By Ordinal</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13892,6 +14576,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_CORRELATION__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CORRELATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13910,7 +14603,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int TABLE_CORRELATION__COLUMN_NAME_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>Table Correlation</em>' class.
+	 * The number of structural features of the '<em>Table Correlation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -13974,6 +14667,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE__LABEL = SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13983,7 +14685,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR = SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Update Source</em>' class.
+	 * The number of structural features of the '<em>Update Source</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14047,6 +14749,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE_EXPR_LIST__LABEL = UPDATE_SOURCE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE_EXPR_LIST__COMMENTS = UPDATE_SOURCE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14065,7 +14776,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST = UPDATE_SOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Update Source Expr List</em>' class.
+	 * The number of structural features of the '<em>Update Source Expr List</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14129,6 +14840,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE_QUERY__LABEL = UPDATE_SOURCE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE_QUERY__COMMENTS = UPDATE_SOURCE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14147,7 +14867,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int UPDATE_SOURCE_QUERY__QUERY_EXPR = UPDATE_SOURCE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Update Source Query</em>' class.
+	 * The number of structural features of the '<em>Update Source Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14211,6 +14931,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_RESULT_COLUMN__LABEL = ORDER_BY_SPECIFICATION__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_RESULT_COLUMN__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14256,7 +14985,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int ORDER_BY_RESULT_COLUMN__RESULT_COL = ORDER_BY_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Order By Result Column</em>' class.
+	 * The number of structural features of the '<em>Order By Result Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -14318,6 +15047,15 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
 	int WITH_TABLE_REFERENCE__LABEL = TABLE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_TABLE_REFERENCE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -14401,7 +15139,7 @@ public interface SQLQueryModelPackage extends EPackage{
 	int WITH_TABLE_REFERENCE__WITH_TABLE_SPECIFICATION = TABLE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>With Table Reference</em>' class.
+	 * The number of structural features of the '<em>With Table Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -17801,5 +18539,2654 @@ public interface SQLQueryModelPackage extends EPackage{
 	 * @generated
 	 */
 	SQLQueryModelFactory getSQLQueryModelFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryStatementImpl <em>Query Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryStatement()
+		 * @generated
+		 */
+		EClass QUERY_STATEMENT = eINSTANCE.getQueryStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryDeleteStatementImpl <em>Query Delete Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryDeleteStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryDeleteStatement()
+		 * @generated
+		 */
+		EClass QUERY_DELETE_STATEMENT = eINSTANCE.getQueryDeleteStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Current Of Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_DELETE_STATEMENT__WHERE_CURRENT_OF_CLAUSE = eINSTANCE.getQueryDeleteStatement_WhereCurrentOfClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_DELETE_STATEMENT__WHERE_CLAUSE = eINSTANCE.getQueryDeleteStatement_WhereClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Table</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_DELETE_STATEMENT__TARGET_TABLE = eINSTANCE.getQueryDeleteStatement_TargetTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryInsertStatementImpl <em>Query Insert Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryInsertStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryInsertStatement()
+		 * @generated
+		 */
+		EClass QUERY_INSERT_STATEMENT = eINSTANCE.getQueryInsertStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Query</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_INSERT_STATEMENT__SOURCE_QUERY = eINSTANCE.getQueryInsertStatement_SourceQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Values Row List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST = eINSTANCE.getQueryInsertStatement_SourceValuesRowList();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Table</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_INSERT_STATEMENT__TARGET_TABLE = eINSTANCE.getQueryInsertStatement_TargetTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Column List</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_INSERT_STATEMENT__TARGET_COLUMN_LIST = eINSTANCE.getQueryInsertStatement_TargetColumnList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl <em>Query Select Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQuerySelectStatement()
+		 * @generated
+		 */
+		EClass QUERY_SELECT_STATEMENT = eINSTANCE.getQuerySelectStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT_STATEMENT__QUERY_EXPR = eINSTANCE.getQuerySelectStatement_QueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Order By Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT_STATEMENT__ORDER_BY_CLAUSE = eINSTANCE.getQuerySelectStatement_OrderByClause();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryUpdateStatementImpl <em>Query Update Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryUpdateStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryUpdateStatement()
+		 * @generated
+		 */
+		EClass QUERY_UPDATE_STATEMENT = eINSTANCE.getQueryUpdateStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Assignment Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE = eINSTANCE.getQueryUpdateStatement_AssignmentClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Current Of Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE = eINSTANCE.getQueryUpdateStatement_WhereCurrentOfClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_UPDATE_STATEMENT__WHERE_CLAUSE = eINSTANCE.getQueryUpdateStatement_WhereClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Table</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_UPDATE_STATEMENT__TARGET_TABLE = eINSTANCE.getQueryUpdateStatement_TargetTable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl <em>Update Assignment Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateAssignmentExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateAssignmentExpression()
+		 * @generated
+		 */
+		EClass UPDATE_ASSIGNMENT_EXPRESSION = eINSTANCE.getUpdateAssignmentExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT = eINSTANCE.getUpdateAssignmentExpression_UpdateStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Column List</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_ASSIGNMENT_EXPRESSION__TARGET_COLUMN_LIST = eINSTANCE.getUpdateAssignmentExpression_TargetColumnList();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE = eINSTANCE.getUpdateAssignmentExpression_UpdateSource();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.CursorReferenceImpl <em>Cursor Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.CursorReferenceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getCursorReference()
+		 * @generated
+		 */
+		EClass CURSOR_REFERENCE = eINSTANCE.getCursorReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CURSOR_REFERENCE__UPDATE_STATEMENT = eINSTANCE.getCursorReference_UpdateStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CURSOR_REFERENCE__DELETE_STATEMENT = eINSTANCE.getCursorReference_DeleteStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySearchConditionImpl <em>Query Search Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QuerySearchConditionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQuerySearchCondition()
+		 * @generated
+		 */
+		EClass QUERY_SEARCH_CONDITION = eINSTANCE.getQuerySearchCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Negated Condition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_SEARCH_CONDITION__NEGATED_CONDITION = eINSTANCE.getQuerySearchCondition_NegatedCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__UPDATE_STATEMENT = eINSTANCE.getQuerySearchCondition_UpdateStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__DELETE_STATEMENT = eINSTANCE.getQuerySearchCondition_DeleteStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Joined</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__TABLE_JOINED = eINSTANCE.getQuerySearchCondition_TableJoined();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__COMBINED_LEFT = eINSTANCE.getQuerySearchCondition_CombinedLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__COMBINED_RIGHT = eINSTANCE.getQuerySearchCondition_CombinedRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select Having</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING = eINSTANCE.getQuerySearchCondition_QuerySelectHaving();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select Where</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE = eINSTANCE.getQuerySearchCondition_QuerySelectWhere();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Search Content</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT = eINSTANCE.getQuerySearchCondition_ValueExprCaseSearchContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Nest</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SEARCH_CONDITION__NEST = eINSTANCE.getQuerySearchCondition_Nest();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionBodyImpl <em>Query Expression Body</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionBodyImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryExpressionBody()
+		 * @generated
+		 */
+		EClass QUERY_EXPRESSION_BODY = eINSTANCE.getQueryExpressionBody();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expression</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__QUERY_EXPRESSION = eINSTANCE.getQueryExpressionBody_QueryExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__COMBINED_LEFT = eINSTANCE.getQueryExpressionBody_CombinedLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__COMBINED_RIGHT = eINSTANCE.getQueryExpressionBody_CombinedRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Exists</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__PREDICATE_EXISTS = eINSTANCE.getQueryExpressionBody_PredicateExists();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Source Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__UPDATE_SOURCE_QUERY = eINSTANCE.getQueryExpressionBody_UpdateSourceQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>With Table Specification</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_BODY__WITH_TABLE_SPECIFICATION = eINSTANCE.getQueryExpressionBody_WithTableSpecification();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl <em>Query Value Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryValueExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryValueExpression()
+		 * @generated
+		 */
+		EClass QUERY_VALUE_EXPRESSION = eINSTANCE.getQueryValueExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Unary Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_VALUE_EXPRESSION__UNARY_OPERATOR = eINSTANCE.getQueryValueExpression_UnaryOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__DATA_TYPE = eINSTANCE.getQueryValueExpression_DataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Values Row</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUES_ROW = eINSTANCE.getQueryValueExpression_ValuesRow();
+
+		/**
+		 * The meta object literal for the '<em><b>Order By Value Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR = eINSTANCE.getQueryValueExpression_OrderByValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Column</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__RESULT_COLUMN = eINSTANCE.getQueryValueExpression_ResultColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Basic Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__BASIC_RIGHT = eINSTANCE.getQueryValueExpression_BasicRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Basic Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__BASIC_LEFT = eINSTANCE.getQueryValueExpression_BasicLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Like Pattern</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__LIKE_PATTERN = eINSTANCE.getQueryValueExpression_LikePattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Like Matching</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__LIKE_MATCHING = eINSTANCE.getQueryValueExpression_LikeMatching();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Null</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__PREDICATE_NULL = eINSTANCE.getQueryValueExpression_PredicateNull();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value List Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT = eINSTANCE.getQueryValueExpression_InValueListRight();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value List Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT = eINSTANCE.getQueryValueExpression_InValueListLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value Row Select Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT = eINSTANCE.getQueryValueExpression_InValueRowSelectLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value Select Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT = eINSTANCE.getQueryValueExpression_InValueSelectLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Row Select Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT = eINSTANCE.getQueryValueExpression_QuantifiedRowSelectLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Value Select Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT = eINSTANCE.getQueryValueExpression_QuantifiedValueSelectLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Between Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__BETWEEN_LEFT = eINSTANCE.getQueryValueExpression_BetweenLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Between Right1</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1 = eINSTANCE.getQueryValueExpression_BetweenRight1();
+
+		/**
+		 * The meta object literal for the '<em><b>Between Right2</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2 = eINSTANCE.getQueryValueExpression_BetweenRight2();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Cast</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST = eINSTANCE.getQueryValueExpression_ValueExprCast();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION = eINSTANCE.getQueryValueExpression_ValueExprFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Combined Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT = eINSTANCE.getQueryValueExpression_ValueExprCombinedLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Combined Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT = eINSTANCE.getQueryValueExpression_ValueExprCombinedRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__GROUPING_EXPR = eINSTANCE.getQueryValueExpression_GroupingExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Else</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE = eINSTANCE.getQueryValueExpression_ValueExprCaseElse();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Simple</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE = eINSTANCE.getQueryValueExpression_ValueExprCaseSimple();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Simple Content When</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN = eINSTANCE.getQueryValueExpression_ValueExprCaseSimpleContentWhen();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Simple Content Result</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT = eINSTANCE.getQueryValueExpression_ValueExprCaseSimpleContentResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Search Content</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT = eINSTANCE.getQueryValueExpression_ValueExprCaseSearchContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Like Escape</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__LIKE_ESCAPE = eINSTANCE.getQueryValueExpression_LikeEscape();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Labeled Duration</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION = eINSTANCE.getQueryValueExpression_ValueExprLabeledDuration();
+
+		/**
+		 * The meta object literal for the '<em><b>Nest</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__NEST = eINSTANCE.getQueryValueExpression_Nest();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Source Expr List</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST = eINSTANCE.getQueryValueExpression_UpdateSourceExprList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl <em>Query Expression Root</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryExpressionRoot()
+		 * @generated
+		 */
+		EClass QUERY_EXPRESSION_ROOT = eINSTANCE.getQueryExpressionRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__INSERT_STATEMENT = eINSTANCE.getQueryExpressionRoot_InsertStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Select Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__SELECT_STATEMENT = eINSTANCE.getQueryExpressionRoot_SelectStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>With Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__WITH_CLAUSE = eINSTANCE.getQueryExpressionRoot_WithClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Query</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__QUERY = eINSTANCE.getQueryExpressionRoot_Query();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value Row Select Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__IN_VALUE_ROW_SELECT_RIGHT = eINSTANCE.getQueryExpressionRoot_InValueRowSelectRight();
+
+		/**
+		 * The meta object literal for the '<em><b>In Value Select Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__IN_VALUE_SELECT_RIGHT = eINSTANCE.getQueryExpressionRoot_InValueSelectRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Row Select Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__QUANTIFIED_ROW_SELECT_RIGHT = eINSTANCE.getQueryExpressionRoot_QuantifiedRowSelectRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Value Select Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__QUANTIFIED_VALUE_SELECT_RIGHT = eINSTANCE.getQueryExpressionRoot_QuantifiedValueSelectRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Scalar Selects</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS = eINSTANCE.getQueryExpressionRoot_ValueExprScalarSelects();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValuesRowImpl <em>Values Row</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValuesRowImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValuesRow()
+		 * @generated
+		 */
+		EClass VALUES_ROW = eINSTANCE.getValuesRow();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUES_ROW__INSERT_STATEMENT = eINSTANCE.getValuesRow_InsertStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUES_ROW__EXPR_LIST = eINSTANCE.getValuesRow_ExprList();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Values</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUES_ROW__QUERY_VALUES = eINSTANCE.getValuesRow_QueryValues();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryValuesImpl <em>Query Values</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryValuesImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryValues()
+		 * @generated
+		 */
+		EClass QUERY_VALUES = eINSTANCE.getQueryValues();
+
+		/**
+		 * The meta object literal for the '<em><b>Values Row List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_VALUES__VALUES_ROW_LIST = eINSTANCE.getQueryValues_ValuesRowList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl <em>Table Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableReferenceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableReference()
+		 * @generated
+		 */
+		EClass TABLE_REFERENCE = eINSTANCE.getTableReference();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Joined Right</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_REFERENCE__TABLE_JOINED_RIGHT = eINSTANCE.getTableReference_TableJoinedRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Joined Left</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_REFERENCE__TABLE_JOINED_LEFT = eINSTANCE.getTableReference_TableJoinedLeft();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_REFERENCE__QUERY_SELECT = eINSTANCE.getTableReference_QuerySelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Nest</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_REFERENCE__NEST = eINSTANCE.getTableReference_Nest();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl <em>Table Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableExpression()
+		 * @generated
+		 */
+		EClass TABLE_EXPRESSION = eINSTANCE.getTableExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Column List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_EXPRESSION__COLUMN_LIST = eINSTANCE.getTableExpression_ColumnList();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Correlation</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_EXPRESSION__TABLE_CORRELATION = eINSTANCE.getTableExpression_TableCorrelation();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Table All Columns</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS = eINSTANCE.getTableExpression_ResultTableAllColumns();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Columns</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_EXPRESSION__VALUE_EXPR_COLUMNS = eINSTANCE.getTableExpression_ValueExprColumns();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl <em>Table Joined</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableJoinedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoined()
+		 * @generated
+		 */
+		EClass TABLE_JOINED = eINSTANCE.getTableJoined();
+
+		/**
+		 * The meta object literal for the '<em><b>Join Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_JOINED__JOIN_OPERATOR = eINSTANCE.getTableJoined_JoinOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Join Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_JOINED__JOIN_CONDITION = eINSTANCE.getTableJoined_JoinCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Ref Right</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_JOINED__TABLE_REF_RIGHT = eINSTANCE.getTableJoined_TableRefRight();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Ref Left</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_JOINED__TABLE_REF_LEFT = eINSTANCE.getTableJoined_TableRefLeft();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.WithTableSpecificationImpl <em>With Table Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.WithTableSpecificationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getWithTableSpecification()
+		 * @generated
+		 */
+		EClass WITH_TABLE_SPECIFICATION = eINSTANCE.getWithTableSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expression Root</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT = eINSTANCE.getWithTableSpecification_QueryExpressionRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>With Table Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR = eINSTANCE.getWithTableSpecification_WithTableQueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>With Table References</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES = eINSTANCE.getWithTableSpecification_WithTableReferences();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Name List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST = eINSTANCE.getWithTableSpecification_ColumnNameList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateImpl <em>Predicate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicate()
+		 * @generated
+		 */
+		EClass PREDICATE = eINSTANCE.getPredicate();
+
+		/**
+		 * The meta object literal for the '<em><b>Negated Predicate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__NEGATED_PREDICATE = eINSTANCE.getPredicate_NegatedPredicate();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Selectivity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__HAS_SELECTIVITY = eINSTANCE.getPredicate_HasSelectivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Selectivity Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE__SELECTIVITY_VALUE = eINSTANCE.getPredicate_SelectivityValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionCombinedImpl <em>Search Condition Combined</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionCombinedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombined()
+		 * @generated
+		 */
+		EClass SEARCH_CONDITION_COMBINED = eINSTANCE.getSearchConditionCombined();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR = eINSTANCE.getSearchConditionCombined_CombinedOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEARCH_CONDITION_COMBINED__LEFT_CONDITION = eINSTANCE.getSearchConditionCombined_LeftCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEARCH_CONDITION_COMBINED__RIGHT_CONDITION = eINSTANCE.getSearchConditionCombined_RightCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByValueExpressionImpl <em>Order By Value Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.OrderByValueExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderByValueExpression()
+		 * @generated
+		 */
+		EClass ORDER_BY_VALUE_EXPRESSION = eINSTANCE.getOrderByValueExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_BY_VALUE_EXPRESSION__VALUE_EXPR = eINSTANCE.getOrderByValueExpression_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryCombinedImpl <em>Query Combined</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryCombinedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombined()
+		 * @generated
+		 */
+		EClass QUERY_COMBINED = eINSTANCE.getQueryCombined();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_COMBINED__COMBINED_OPERATOR = eINSTANCE.getQueryCombined_CombinedOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Query</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_COMBINED__LEFT_QUERY = eINSTANCE.getQueryCombined_LeftQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Query</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_COMBINED__RIGHT_QUERY = eINSTANCE.getQueryCombined_RightQuery();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectImpl <em>Query Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQuerySelect()
+		 * @generated
+		 */
+		EClass QUERY_SELECT = eINSTANCE.getQuerySelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Distinct</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_SELECT__DISTINCT = eINSTANCE.getQuerySelect_Distinct();
+
+		/**
+		 * The meta object literal for the '<em><b>Having Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__HAVING_CLAUSE = eINSTANCE.getQuerySelect_HavingClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Where Clause</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__WHERE_CLAUSE = eINSTANCE.getQuerySelect_WhereClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Group By Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__GROUP_BY_CLAUSE = eINSTANCE.getQuerySelect_GroupByClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Select Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__SELECT_CLAUSE = eINSTANCE.getQuerySelect_SelectClause();
+
+		/**
+		 * The meta object literal for the '<em><b>From Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__FROM_CLAUSE = eINSTANCE.getQuerySelect_FromClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Into Clause</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_SELECT__INTO_CLAUSE = eINSTANCE.getQuerySelect_IntoClause();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingSpecificationImpl <em>Grouping Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingSpecificationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingSpecification()
+		 * @generated
+		 */
+		EClass GROUPING_SPECIFICATION = eINSTANCE.getGroupingSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SPECIFICATION__QUERY_SELECT = eINSTANCE.getGroupingSpecification_QuerySelect();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryResultSpecificationImpl <em>Query Result Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryResultSpecificationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryResultSpecification()
+		 * @generated
+		 */
+		EClass QUERY_RESULT_SPECIFICATION = eINSTANCE.getQueryResultSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY_RESULT_SPECIFICATION__QUERY_SELECT = eINSTANCE.getQueryResultSpecification_QuerySelect();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ResultTableAllColumnsImpl <em>Result Table All Columns</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ResultTableAllColumnsImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getResultTableAllColumns()
+		 * @generated
+		 */
+		EClass RESULT_TABLE_ALL_COLUMNS = eINSTANCE.getResultTableAllColumns();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Expr</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESULT_TABLE_ALL_COLUMNS__TABLE_EXPR = eINSTANCE.getResultTableAllColumns_TableExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ResultColumnImpl <em>Result Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ResultColumnImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getResultColumn()
+		 * @generated
+		 */
+		EClass RESULT_COLUMN = eINSTANCE.getResultColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESULT_COLUMN__VALUE_EXPR = eINSTANCE.getResultColumn_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Order By Result Col</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RESULT_COLUMN__ORDER_BY_RESULT_COL = eINSTANCE.getResultColumn_OrderByResultCol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateBasicImpl <em>Predicate Basic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateBasicImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateBasic()
+		 * @generated
+		 */
+		EClass PREDICATE_BASIC = eINSTANCE.getPredicateBasic();
+
+		/**
+		 * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_BASIC__COMPARISON_OPERATOR = eINSTANCE.getPredicateBasic_ComparisonOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_BASIC__RIGHT_VALUE_EXPR = eINSTANCE.getPredicateBasic_RightValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_BASIC__LEFT_VALUE_EXPR = eINSTANCE.getPredicateBasic_LeftValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedImpl <em>Predicate Quantified</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantified()
+		 * @generated
+		 */
+		EClass PREDICATE_QUANTIFIED = eINSTANCE.getPredicateQuantified();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateBetweenImpl <em>Predicate Between</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateBetweenImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateBetween()
+		 * @generated
+		 */
+		EClass PREDICATE_BETWEEN = eINSTANCE.getPredicateBetween();
+
+		/**
+		 * The meta object literal for the '<em><b>Not Between</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_BETWEEN__NOT_BETWEEN = eINSTANCE.getPredicateBetween_NotBetween();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_BETWEEN__LEFT_VALUE_EXPR = eINSTANCE.getPredicateBetween_LeftValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Value Expr1</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1 = eINSTANCE.getPredicateBetween_RightValueExpr1();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Value Expr2</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2 = eINSTANCE.getPredicateBetween_RightValueExpr2();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateExistsImpl <em>Predicate Exists</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateExistsImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateExists()
+		 * @generated
+		 */
+		EClass PREDICATE_EXISTS = eINSTANCE.getPredicateExists();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_EXISTS__QUERY_EXPR = eINSTANCE.getPredicateExists_QueryExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateInImpl <em>Predicate In</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateInImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateIn()
+		 * @generated
+		 */
+		EClass PREDICATE_IN = eINSTANCE.getPredicateIn();
+
+		/**
+		 * The meta object literal for the '<em><b>Not In</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_IN__NOT_IN = eINSTANCE.getPredicateIn_NotIn();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateLikeImpl <em>Predicate Like</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateLikeImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateLike()
+		 * @generated
+		 */
+		EClass PREDICATE_LIKE = eINSTANCE.getPredicateLike();
+
+		/**
+		 * The meta object literal for the '<em><b>Not Like</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_LIKE__NOT_LIKE = eINSTANCE.getPredicateLike_NotLike();
+
+		/**
+		 * The meta object literal for the '<em><b>Pattern Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_LIKE__PATTERN_VALUE_EXPR = eINSTANCE.getPredicateLike_PatternValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Matching Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_LIKE__MATCHING_VALUE_EXPR = eINSTANCE.getPredicateLike_MatchingValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Escape Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_LIKE__ESCAPE_VALUE_EXPR = eINSTANCE.getPredicateLike_EscapeValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateIsNullImpl <em>Predicate Is Null</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateIsNullImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateIsNull()
+		 * @generated
+		 */
+		EClass PREDICATE_IS_NULL = eINSTANCE.getPredicateIsNull();
+
+		/**
+		 * The meta object literal for the '<em><b>Not Null</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_IS_NULL__NOT_NULL = eINSTANCE.getPredicateIsNull_NotNull();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IS_NULL__VALUE_EXPR = eINSTANCE.getPredicateIsNull_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedValueSelectImpl <em>Predicate Quantified Value Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedValueSelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedValueSelect()
+		 * @generated
+		 */
+		EClass PREDICATE_QUANTIFIED_VALUE_SELECT = eINSTANCE.getPredicateQuantifiedValueSelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_QUANTIFIED_VALUE_SELECT__QUANTIFIED_TYPE = eINSTANCE.getPredicateQuantifiedValueSelect_QuantifiedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Comparison Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_QUANTIFIED_VALUE_SELECT__COMPARISON_OPERATOR = eINSTANCE.getPredicateQuantifiedValueSelect_ComparisonOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_QUANTIFIED_VALUE_SELECT__QUERY_EXPR = eINSTANCE.getPredicateQuantifiedValueSelect_QueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR = eINSTANCE.getPredicateQuantifiedValueSelect_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedRowSelectImpl <em>Predicate Quantified Row Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateQuantifiedRowSelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedRowSelect()
+		 * @generated
+		 */
+		EClass PREDICATE_QUANTIFIED_ROW_SELECT = eINSTANCE.getPredicateQuantifiedRowSelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Quantified Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDICATE_QUANTIFIED_ROW_SELECT__QUANTIFIED_TYPE = eINSTANCE.getPredicateQuantifiedRowSelect_QuantifiedType();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_QUANTIFIED_ROW_SELECT__QUERY_EXPR = eINSTANCE.getPredicateQuantifiedRowSelect_QueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST = eINSTANCE.getPredicateQuantifiedRowSelect_ValueExprList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueSelectImpl <em>Predicate In Value Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueSelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateInValueSelect()
+		 * @generated
+		 */
+		EClass PREDICATE_IN_VALUE_SELECT = eINSTANCE.getPredicateInValueSelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_SELECT__QUERY_EXPR = eINSTANCE.getPredicateInValueSelect_QueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_SELECT__VALUE_EXPR = eINSTANCE.getPredicateInValueSelect_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueListImpl <em>Predicate In Value List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueListImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateInValueList()
+		 * @generated
+		 */
+		EClass PREDICATE_IN_VALUE_LIST = eINSTANCE.getPredicateInValueList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST = eINSTANCE.getPredicateInValueList_ValueExprList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_LIST__VALUE_EXPR = eINSTANCE.getPredicateInValueList_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueRowSelectImpl <em>Predicate In Value Row Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.PredicateInValueRowSelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateInValueRowSelect()
+		 * @generated
+		 */
+		EClass PREDICATE_IN_VALUE_ROW_SELECT = eINSTANCE.getPredicateInValueRowSelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST = eINSTANCE.getPredicateInValueRowSelect_ValueExprList();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_IN_VALUE_ROW_SELECT__QUERY_EXPR = eINSTANCE.getPredicateInValueRowSelect_QueryExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionSimpleImpl <em>Value Expression Simple</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionSimpleImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionSimple()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_SIMPLE = eINSTANCE.getValueExpressionSimple();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_SIMPLE__VALUE = eINSTANCE.getValueExpressionSimple_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl <em>Value Expression Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionColumnImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionColumn()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_COLUMN = eINSTANCE.getValueExpressionColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Assignment Expr Target</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COLUMN__ASSIGNMENT_EXPR_TARGET = eINSTANCE.getValueExpressionColumn_AssignmentExprTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Table Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COLUMN__PARENT_TABLE_EXPR = eINSTANCE.getValueExpressionColumn_ParentTableExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Statement</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COLUMN__INSERT_STATEMENT = eINSTANCE.getValueExpressionColumn_InsertStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Expr</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COLUMN__TABLE_EXPR = eINSTANCE.getValueExpressionColumn_TableExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Table In Database</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE = eINSTANCE.getValueExpressionColumn_TableInDatabase();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionVariableImpl <em>Value Expression Variable</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionVariableImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionVariable()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_VARIABLE = eINSTANCE.getValueExpressionVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Select</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_VARIABLE__QUERY_SELECT = eINSTANCE.getValueExpressionVariable_QuerySelect();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionScalarSelectImpl <em>Value Expression Scalar Select</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionScalarSelectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionScalarSelect()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_SCALAR_SELECT = eINSTANCE.getValueExpressionScalarSelect();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR = eINSTANCE.getValueExpressionScalarSelect_QueryExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionLabeledDurationImpl <em>Value Expression Labeled Duration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionLabeledDurationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDuration()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_LABELED_DURATION = eINSTANCE.getValueExpressionLabeledDuration();
+
+		/**
+		 * The meta object literal for the '<em><b>Labeled Duration Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_LABELED_DURATION__LABELED_DURATION_TYPE = eINSTANCE.getValueExpressionLabeledDuration_LabeledDurationType();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR = eINSTANCE.getValueExpressionLabeledDuration_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseImpl <em>Value Expression Case</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCase()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE = eINSTANCE.getValueExpressionCase();
+
+		/**
+		 * The meta object literal for the '<em><b>Case Else</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE__CASE_ELSE = eINSTANCE.getValueExpressionCase_CaseElse();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCastImpl <em>Value Expression Cast</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCastImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCast()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CAST = eINSTANCE.getValueExpressionCast();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CAST__VALUE_EXPR = eINSTANCE.getValueExpressionCast_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionNullValueImpl <em>Value Expression Null Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionNullValueImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionNullValue()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_NULL_VALUE = eINSTANCE.getValueExpressionNullValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionDefaultValueImpl <em>Value Expression Default Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionDefaultValueImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionDefaultValue()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_DEFAULT_VALUE = eINSTANCE.getValueExpressionDefaultValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl <em>Value Expression Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionFunction()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_FUNCTION = eINSTANCE.getValueExpressionFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Special Register</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER = eINSTANCE.getValueExpressionFunction_SpecialRegister();
+
+		/**
+		 * The meta object literal for the '<em><b>Distinct</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_FUNCTION__DISTINCT = eINSTANCE.getValueExpressionFunction_Distinct();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Function</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION = eINSTANCE.getValueExpressionFunction_ColumnFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameter List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST = eINSTANCE.getValueExpressionFunction_ParameterList();
+
+		/**
+		 * The meta object literal for the '<em><b>Function</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_FUNCTION__FUNCTION = eINSTANCE.getValueExpressionFunction_Function();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCombinedImpl <em>Value Expression Combined</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCombinedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombined()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_COMBINED = eINSTANCE.getValueExpressionCombined();
+
+		/**
+		 * The meta object literal for the '<em><b>Combined Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VALUE_EXPRESSION_COMBINED__COMBINED_OPERATOR = eINSTANCE.getValueExpressionCombined_CombinedOperator();
+
+		/**
+		 * The meta object literal for the '<em><b>Left Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COMBINED__LEFT_VALUE_EXPR = eINSTANCE.getValueExpressionCombined_LeftValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Right Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_COMBINED__RIGHT_VALUE_EXPR = eINSTANCE.getValueExpressionCombined_RightValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsImpl <em>Grouping Sets</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingSets()
+		 * @generated
+		 */
+		EClass GROUPING_SETS = eINSTANCE.getGroupingSets();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Sets Element List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST = eINSTANCE.getGroupingSets_GroupingSetsElementList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingImpl <em>Grouping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGrouping()
+		 * @generated
+		 */
+		EClass GROUPING = eINSTANCE.getGrouping();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Sets Element Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING__GROUPING_SETS_ELEMENT_EXPR = eINSTANCE.getGrouping_GroupingSetsElementExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementImpl <em>Grouping Sets Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingSetsElement()
+		 * @generated
+		 */
+		EClass GROUPING_SETS_ELEMENT = eINSTANCE.getGroupingSetsElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Sets</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SETS_ELEMENT__GROUPING_SETS = eINSTANCE.getGroupingSetsElement_GroupingSets();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementSublistImpl <em>Grouping Sets Element Sublist</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementSublistImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingSetsElementSublist()
+		 * @generated
+		 */
+		EClass GROUPING_SETS_ELEMENT_SUBLIST = eINSTANCE.getGroupingSetsElementSublist();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Sets Element Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST = eINSTANCE.getGroupingSetsElementSublist_GroupingSetsElementExprList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementExpressionImpl <em>Grouping Sets Element Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingSetsElementExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingSetsElementExpression()
+		 * @generated
+		 */
+		EClass GROUPING_SETS_ELEMENT_EXPRESSION = eINSTANCE.getGroupingSetsElementExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Sets Element Sublist</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING_SETS_ELEMENT_SUBLIST = eINSTANCE.getGroupingSetsElementExpression_GroupingSetsElementSublist();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING = eINSTANCE.getGroupingSetsElementExpression_Grouping();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupImpl <em>Super Group</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroup()
+		 * @generated
+		 */
+		EClass SUPER_GROUP = eINSTANCE.getSuperGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SUPER_GROUP__SUPER_GROUP_TYPE = eINSTANCE.getSuperGroup_SuperGroupType();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group Element List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST = eINSTANCE.getSuperGroup_SuperGroupElementList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.GroupingExpressionImpl <em>Grouping Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.GroupingExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getGroupingExpression()
+		 * @generated
+		 */
+		EClass GROUPING_EXPRESSION = eINSTANCE.getGroupingExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_EXPRESSION__VALUE_EXPR = eINSTANCE.getGroupingExpression_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group Element Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GROUPING_EXPRESSION__SUPER_GROUP_ELEMENT_EXPR = eINSTANCE.getGroupingExpression_SuperGroupElementExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementImpl <em>Super Group Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupElement()
+		 * @generated
+		 */
+		EClass SUPER_GROUP_ELEMENT = eINSTANCE.getSuperGroupElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPER_GROUP_ELEMENT__SUPER_GROUP = eINSTANCE.getSuperGroupElement_SuperGroup();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementSublistImpl <em>Super Group Element Sublist</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementSublistImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupElementSublist()
+		 * @generated
+		 */
+		EClass SUPER_GROUP_ELEMENT_SUBLIST = eINSTANCE.getSuperGroupElementSublist();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group Element Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPER_GROUP_ELEMENT_SUBLIST__SUPER_GROUP_ELEMENT_EXPR_LIST = eINSTANCE.getSuperGroupElementSublist_SuperGroupElementExprList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementExpressionImpl <em>Super Group Element Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SuperGroupElementExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupElementExpression()
+		 * @generated
+		 */
+		EClass SUPER_GROUP_ELEMENT_EXPRESSION = eINSTANCE.getSuperGroupElementExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Super Group Element Sublist</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPER_GROUP_ELEMENT_EXPRESSION__SUPER_GROUP_ELEMENT_SUBLIST = eINSTANCE.getSuperGroupElementExpression_SuperGroupElementSublist();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouping Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SUPER_GROUP_ELEMENT_EXPRESSION__GROUPING_EXPR = eINSTANCE.getSuperGroupElementExpression_GroupingExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSearchImpl <em>Value Expression Case Search</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSearchImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCaseSearch()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE_SEARCH = eINSTANCE.getValueExpressionCaseSearch();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Content List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SEARCH__SEARCH_CONTENT_LIST = eINSTANCE.getValueExpressionCaseSearch_SearchContentList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSimpleImpl <em>Value Expression Case Simple</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSimpleImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCaseSimple()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE_SIMPLE = eINSTANCE.getValueExpressionCaseSimple();
+
+		/**
+		 * The meta object literal for the '<em><b>Content List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST = eINSTANCE.getValueExpressionCaseSimple_ContentList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR = eINSTANCE.getValueExpressionCaseSimple_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseElseImpl <em>Value Expression Case Else</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseElseImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCaseElse()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE_ELSE = eINSTANCE.getValueExpressionCaseElse();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE = eINSTANCE.getValueExpressionCaseElse_ValueExprCase();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR = eINSTANCE.getValueExpressionCaseElse_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSearchContentImpl <em>Value Expression Case Search Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSearchContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCaseSearchContent()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE_SEARCH_CONTENT = eINSTANCE.getValueExpressionCaseSearchContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR = eINSTANCE.getValueExpressionCaseSearchContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Search Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION = eINSTANCE.getValueExpressionCaseSearchContent_SearchCondition();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Search</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SEARCH_CONTENT__VALUE_EXPR_CASE_SEARCH = eINSTANCE.getValueExpressionCaseSearchContent_ValueExprCaseSearch();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSimpleContentImpl <em>Value Expression Case Simple Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionCaseSimpleContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCaseSimpleContent()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_CASE_SIMPLE_CONTENT = eINSTANCE.getValueExpressionCaseSimpleContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr Case Simple</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE = eINSTANCE.getValueExpressionCaseSimpleContent_ValueExprCaseSimple();
+
+		/**
+		 * The meta object literal for the '<em><b>When Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR = eINSTANCE.getValueExpressionCaseSimpleContent_WhenValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR = eINSTANCE.getValueExpressionCaseSimpleContent_ResultValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableInDatabaseImpl <em>Table In Database</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableInDatabaseImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableInDatabase()
+		 * @generated
+		 */
+		EClass TABLE_IN_DATABASE = eINSTANCE.getTableInDatabase();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_IN_DATABASE__UPDATE_STATEMENT = eINSTANCE.getTableInDatabase_UpdateStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Delete Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_IN_DATABASE__DELETE_STATEMENT = eINSTANCE.getTableInDatabase_DeleteStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Insert Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_IN_DATABASE__INSERT_STATEMENT = eINSTANCE.getTableInDatabase_InsertStatement();
+
+		/**
+		 * The meta object literal for the '<em><b>Database Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_IN_DATABASE__DATABASE_TABLE = eINSTANCE.getTableInDatabase_DatabaseTable();
+
+		/**
+		 * The meta object literal for the '<em><b>Derived Column List</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_IN_DATABASE__DERIVED_COLUMN_LIST = eINSTANCE.getTableInDatabase_DerivedColumnList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableFunctionImpl <em>Table Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableFunction()
+		 * @generated
+		 */
+		EClass TABLE_FUNCTION = eINSTANCE.getTableFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl <em>SQL Query Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSQLQueryObject()
+		 * @generated
+		 */
+		EClass SQL_QUERY_OBJECT = eINSTANCE.getSQLQueryObject();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryChangeStatementImpl <em>Query Change Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryChangeStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryChangeStatement()
+		 * @generated
+		 */
+		EClass QUERY_CHANGE_STATEMENT = eINSTANCE.getQueryChangeStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ColumnNameImpl <em>Column Name</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ColumnNameImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getColumnName()
+		 * @generated
+		 */
+		EClass COLUMN_NAME = eINSTANCE.getColumnName();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Correlation</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN_NAME__TABLE_CORRELATION = eINSTANCE.getColumnName_TableCorrelation();
+
+		/**
+		 * The meta object literal for the '<em><b>With Table Specification</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COLUMN_NAME__WITH_TABLE_SPECIFICATION = eINSTANCE.getColumnName_WithTableSpecification();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableNestedImpl <em>Table Nested</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableNestedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableNested()
+		 * @generated
+		 */
+		EClass TABLE_NESTED = eINSTANCE.getTableNested();
+
+		/**
+		 * The meta object literal for the '<em><b>Nested Table Ref</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_NESTED__NESTED_TABLE_REF = eINSTANCE.getTableNested_NestedTableRef();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryMergeStatementImpl <em>Query Merge Statement</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.QueryMergeStatementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryMergeStatement()
+		 * @generated
+		 */
+		EClass QUERY_MERGE_STATEMENT = eINSTANCE.getQueryMergeStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionNestedImpl <em>Search Condition Nested</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SearchConditionNestedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionNested()
+		 * @generated
+		 */
+		EClass SEARCH_CONDITION_NESTED = eINSTANCE.getSearchConditionNested();
+
+		/**
+		 * The meta object literal for the '<em><b>Nested Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEARCH_CONDITION_NESTED__NESTED_CONDITION = eINSTANCE.getSearchConditionNested_NestedCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionNestedImpl <em>Value Expression Nested</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionNestedImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionNested()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_NESTED = eINSTANCE.getValueExpressionNested();
+
+		/**
+		 * The meta object literal for the '<em><b>Nested Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR = eINSTANCE.getValueExpressionNested_NestedValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionAtomicImpl <em>Value Expression Atomic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionAtomicImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionAtomic()
+		 * @generated
+		 */
+		EClass VALUE_EXPRESSION_ATOMIC = eINSTANCE.getValueExpressionAtomic();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl <em>Order By Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.OrderBySpecificationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderBySpecification()
+		 * @generated
+		 */
+		EClass ORDER_BY_SPECIFICATION = eINSTANCE.getOrderBySpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Descending</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORDER_BY_SPECIFICATION__DESCENDING = eINSTANCE.getOrderBySpecification_Descending();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordering Spec Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORDER_BY_SPECIFICATION__ORDERING_SPEC_OPTION = eINSTANCE.getOrderBySpecification_OrderingSpecOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Ordering Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORDER_BY_SPECIFICATION__NULL_ORDERING_OPTION = eINSTANCE.getOrderBySpecification_NullOrderingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Select Statement</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_BY_SPECIFICATION__SELECT_STATEMENT = eINSTANCE.getOrderBySpecification_SelectStatement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByOrdinalImpl <em>Order By Ordinal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.OrderByOrdinalImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderByOrdinal()
+		 * @generated
+		 */
+		EClass ORDER_BY_ORDINAL = eINSTANCE.getOrderByOrdinal();
+
+		/**
+		 * The meta object literal for the '<em><b>Ordinal Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORDER_BY_ORDINAL__ORDINAL_VALUE = eINSTANCE.getOrderByOrdinal_OrdinalValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.TableCorrelationImpl <em>Table Correlation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.TableCorrelationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableCorrelation()
+		 * @generated
+		 */
+		EClass TABLE_CORRELATION = eINSTANCE.getTableCorrelation();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_CORRELATION__TABLE_EXPR = eINSTANCE.getTableCorrelation_TableExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Name List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TABLE_CORRELATION__COLUMN_NAME_LIST = eINSTANCE.getTableCorrelation_ColumnNameList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceImpl <em>Update Source</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateSource()
+		 * @generated
+		 */
+		EClass UPDATE_SOURCE = eINSTANCE.getUpdateSource();
+
+		/**
+		 * The meta object literal for the '<em><b>Update Assignment Expr</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR = eINSTANCE.getUpdateSource_UpdateAssignmentExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceExprListImpl <em>Update Source Expr List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceExprListImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateSourceExprList()
+		 * @generated
+		 */
+		EClass UPDATE_SOURCE_EXPR_LIST = eINSTANCE.getUpdateSourceExprList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_SOURCE_EXPR_LIST__VALUE_EXPR_LIST = eINSTANCE.getUpdateSourceExprList_ValueExprList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceQueryImpl <em>Update Source Query</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.UpdateSourceQueryImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getUpdateSourceQuery()
+		 * @generated
+		 */
+		EClass UPDATE_SOURCE_QUERY = eINSTANCE.getUpdateSourceQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference UPDATE_SOURCE_QUERY__QUERY_EXPR = eINSTANCE.getUpdateSourceQuery_QueryExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.OrderByResultColumnImpl <em>Order By Result Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.OrderByResultColumnImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderByResultColumn()
+		 * @generated
+		 */
+		EClass ORDER_BY_RESULT_COLUMN = eINSTANCE.getOrderByResultColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Col</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORDER_BY_RESULT_COLUMN__RESULT_COL = eINSTANCE.getOrderByResultColumn_ResultCol();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.WithTableReferenceImpl <em>With Table Reference</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.WithTableReferenceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getWithTableReference()
+		 * @generated
+		 */
+		EClass WITH_TABLE_REFERENCE = eINSTANCE.getWithTableReference();
+
+		/**
+		 * The meta object literal for the '<em><b>With Table Specification</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WITH_TABLE_REFERENCE__WITH_TABLE_SPECIFICATION = eINSTANCE.getWithTableReference_WithTableSpecification();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroupType
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupType()
+		 * @generated
+		 */
+		EEnum SUPER_GROUP_TYPE = eINSTANCE.getSuperGroupType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType <em>Predicate Quantified Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedType()
+		 * @generated
+		 */
+		EEnum PREDICATE_QUANTIFIED_TYPE = eINSTANCE.getPredicateQuantifiedType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator <em>Predicate Comparison Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateComparisonOperator()
+		 * @generated
+		 */
+		EEnum PREDICATE_COMPARISON_OPERATOR = eINSTANCE.getPredicateComparisonOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator <em>Search Condition Combined Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombinedOperator()
+		 * @generated
+		 */
+		EEnum SEARCH_CONDITION_COMBINED_OPERATOR = eINSTANCE.getSearchConditionCombinedOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator <em>Table Joined Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoinedOperator()
+		 * @generated
+		 */
+		EEnum TABLE_JOINED_OPERATOR = eINSTANCE.getTableJoinedOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator <em>Query Combined Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombinedOperator()
+		 * @generated
+		 */
+		EEnum QUERY_COMBINED_OPERATOR = eINSTANCE.getQueryCombinedOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator <em>Value Expression Unary Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionUnaryOperator()
+		 * @generated
+		 */
+		EEnum VALUE_EXPRESSION_UNARY_OPERATOR = eINSTANCE.getValueExpressionUnaryOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator <em>Value Expression Combined Operator</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombinedOperator()
+		 * @generated
+		 */
+		EEnum VALUE_EXPRESSION_COMBINED_OPERATOR = eINSTANCE.getValueExpressionCombinedOperator();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType <em>Value Expression Labeled Duration Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDurationType()
+		 * @generated
+		 */
+		EEnum VALUE_EXPRESSION_LABELED_DURATION_TYPE = eINSTANCE.getValueExpressionLabeledDurationType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType <em>Null Ordering Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.NullOrderingType
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getNullOrderingType()
+		 * @generated
+		 */
+		EEnum NULL_ORDERING_TYPE = eINSTANCE.getNullOrderingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType <em>Ordering Spec Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.query.OrderingSpecType
+		 * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderingSpecType()
+		 * @generated
+		 */
+		EEnum ORDERING_SPEC_TYPE = eINSTANCE.getOrderingSpecType();
+
+	}
 
 } //SQLQueryModelPackage

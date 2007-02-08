@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceQueryImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
+ * $Id: UpdateSourceQueryImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -60,7 +60,7 @@ public class UpdateSourceQueryImpl extends UpdateSourceImpl implements UpdateSou
 	 * @generated
 	 */
   protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getUpdateSourceQuery();
+		return SQLQueryModelPackage.Literals.UPDATE_SOURCE_QUERY;
 	}
 
 	/**
@@ -108,52 +108,17 @@ public class UpdateSourceQueryImpl extends UpdateSourceImpl implements UpdateSou
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR, msgs);
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
-					if (queryExpr != null)
-						msgs = ((InternalEObject)queryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR, null, msgs);
-					return basicSetQueryExpr((QueryExpressionBody)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
+				if (queryExpr != null)
+					msgs = ((InternalEObject)queryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR, null, msgs);
+				return basicSetQueryExpr((QueryExpressionBody)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-					return eBasicSetContainer(null, SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR, msgs);
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
-					return basicSetQueryExpr(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -161,132 +126,66 @@ public class UpdateSourceQueryImpl extends UpdateSourceImpl implements UpdateSou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
+				return basicSetQueryExpr(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__NAME:
-				return getName();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-				return getUpdateAssignmentExpr();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
 				return getQueryExpr();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-				setUpdateAssignmentExpr((UpdateAssignmentExpression)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
 				setQueryExpr((QueryExpressionBody)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-				setUpdateAssignmentExpr((UpdateAssignmentExpression)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
 				setQueryExpr((QueryExpressionBody)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__UPDATE_ASSIGNMENT_EXPR:
-				return getUpdateAssignmentExpr() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY__QUERY_EXPR:
 				return queryExpr != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //UpdateSourceQueryImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementSublistImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
+ * $Id: GroupingSetsElementSublistImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -60,7 +60,7 @@ public class GroupingSetsElementSublistImpl extends GroupingSetsElementImpl impl
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getGroupingSetsElementSublist();
+		return SQLQueryModelPackage.Literals.GROUPING_SETS_ELEMENT_SUBLIST;
 	}
 
 	/**
@@ -77,50 +77,15 @@ public class GroupingSetsElementSublistImpl extends GroupingSetsElementImpl impl
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS, msgs);
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
-					return ((InternalEList)getGroupingSetsElementExprList()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
+				return ((InternalEList)getGroupingSetsElementExprList()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-					return eBasicSetContainer(null, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS, msgs);
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
-					return ((InternalEList)getGroupingSetsElementExprList()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -128,133 +93,67 @@ public class GroupingSetsElementSublistImpl extends GroupingSetsElementImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
+				return ((InternalEList)getGroupingSetsElementExprList()).basicRemove(otherEnd, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__NAME:
-				return getName();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-				return getGroupingSets();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
 				return getGroupingSetsElementExprList();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-				setGroupingSets((GroupingSets)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
 				getGroupingSetsElementExprList().clear();
 				getGroupingSetsElementExprList().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-				setGroupingSets((GroupingSets)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
 				getGroupingSetsElementExprList().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS:
-				return getGroupingSets() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST__GROUPING_SETS_ELEMENT_EXPR_LIST:
 				return groupingSetsElementExprList != null && !groupingSetsElementExprList.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLGroupingSetsElementSublistImpl

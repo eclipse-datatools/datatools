@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: SuperGroupImpl.java,v 1.4 2005/12/22 22:18:47 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -85,7 +85,7 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getSuperGroup();
+		return SQLQueryModelPackage.Literals.SUPER_GROUP;
 	}
 
 	/**
@@ -123,56 +123,15 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-					return ((InternalEList)getSuperGroupElementList()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+				return ((InternalEList)getSuperGroupElementList()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-					return eBasicSetContainer(null, SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-					return ((InternalEList)getSuperGroupElementList()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -180,79 +139,36 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__GROUP_BY_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION__GROUPING, GroupingSetsElementExpression.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+				return ((InternalEList)getSuperGroupElementList()).basicRemove(otherEnd, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.SUPER_GROUP__NAME:
-				return getName();
-			case SQLQueryModelPackage.SUPER_GROUP__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.SUPER_GROUP__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.SUPER_GROUP__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-				return getQuerySelect();
-			case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-				return getGroupingSetsElementExpr();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
 				return getSuperGroupType();
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
 				return getSuperGroupElementList();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-				setQuerySelect((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-				setGroupingSetsElementExpr((GroupingSetsElementExpression)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
 				setSuperGroupType((SuperGroupType)newValue);
 				return;
@@ -261,37 +177,16 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 				getSuperGroupElementList().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-				setQuerySelect((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-				setGroupingSetsElementExpr((GroupingSetsElementExpression)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
 				setSuperGroupType(SUPER_GROUP_TYPE_EDEFAULT);
 				return;
@@ -299,36 +194,22 @@ public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 				getSuperGroupElementList().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.SUPER_GROUP__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.SUPER_GROUP__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.SUPER_GROUP__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.SUPER_GROUP__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.SUPER_GROUP__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.SUPER_GROUP__QUERY_SELECT:
-				return getQuerySelect() != null;
-			case SQLQueryModelPackage.SUPER_GROUP__GROUPING_SETS_ELEMENT_EXPR:
-				return getGroupingSetsElementExpr() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
 				return superGroupType != SUPER_GROUP_TYPE_EDEFAULT;
 			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
 				return superGroupElementList != null && !superGroupElementList.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

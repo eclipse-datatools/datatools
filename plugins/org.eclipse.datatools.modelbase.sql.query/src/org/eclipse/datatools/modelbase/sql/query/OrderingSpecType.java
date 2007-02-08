@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderingSpecType.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: OrderingSpecType.java,v 1.3 2005/12/22 22:18:50 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -75,7 +75,7 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingSpecType NONE_LITERAL = new OrderingSpecType(NONE, "NONE");
+	public static final OrderingSpecType NONE_LITERAL = new OrderingSpecType(NONE, "NONE", "NONE");
 
 	/**
 	 * The '<em><b>ASC</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingSpecType ASC_LITERAL = new OrderingSpecType(ASC, "ASC");
+	public static final OrderingSpecType ASC_LITERAL = new OrderingSpecType(ASC, "ASC", "ASC");
 
 	/**
 	 * The '<em><b>DESC</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final OrderingSpecType DESC_LITERAL = new OrderingSpecType(DESC, "DESC");
+	public static final OrderingSpecType DESC_LITERAL = new OrderingSpecType(DESC, "DESC", "DESC");
 
 	/**
 	 * An array of all the '<em><b>Ordering Spec Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Ordering Spec Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Ordering Spec Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OrderingSpecType get(String name) {
+	public static OrderingSpecType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			OrderingSpecType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Ordering Spec Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Ordering Spec Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static OrderingSpecType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			OrderingSpecType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Ordering Spec Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class OrderingSpecType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OrderingSpecType(int value, String name) {
-		super(value, name);
+	private OrderingSpecType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //OrderingSpecType

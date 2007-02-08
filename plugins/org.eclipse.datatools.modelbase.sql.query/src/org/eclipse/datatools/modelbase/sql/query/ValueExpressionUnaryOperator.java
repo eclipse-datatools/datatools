@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionUnaryOperator.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: ValueExpressionUnaryOperator.java,v 1.3 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -67,7 +67,7 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionUnaryOperator NONE_LITERAL = new ValueExpressionUnaryOperator(NONE, "NONE");
+    public static final ValueExpressionUnaryOperator NONE_LITERAL = new ValueExpressionUnaryOperator(NONE, "NONE", "NONE");
 
 	/**
 	 * The '<em><b>PLUS</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionUnaryOperator PLUS_LITERAL = new ValueExpressionUnaryOperator(PLUS, "PLUS");
+    public static final ValueExpressionUnaryOperator PLUS_LITERAL = new ValueExpressionUnaryOperator(PLUS, "PLUS", "PLUS");
 
 	/**
 	 * The '<em><b>MINUS</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final ValueExpressionUnaryOperator MINUS_LITERAL = new ValueExpressionUnaryOperator(MINUS, "MINUS");
+    public static final ValueExpressionUnaryOperator MINUS_LITERAL = new ValueExpressionUnaryOperator(MINUS, "MINUS", "MINUS");
 
 	/**
 	 * An array of all the '<em><b>Value Expression Unary Operator</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Value Expression Unary Operator</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Value Expression Unary Operator</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static ValueExpressionUnaryOperator get(String name) {
+    public static ValueExpressionUnaryOperator get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ValueExpressionUnaryOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Value Expression Unary Operator</b></em>' literal with the specified value.
+	 * Returns the '<em><b>Value Expression Unary Operator</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static ValueExpressionUnaryOperator getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ValueExpressionUnaryOperator result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>Value Expression Unary Operator</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class ValueExpressionUnaryOperator extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValueExpressionUnaryOperator(int value, String name) {
-		super(value, name);
+	private ValueExpressionUnaryOperator(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //SQLValueExpressionUnaryOperator

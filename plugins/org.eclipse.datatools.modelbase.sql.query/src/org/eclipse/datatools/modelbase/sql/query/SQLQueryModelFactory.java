@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryFactory.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
+ * $Id: SQLQueryModelFactory.java,v 1.1 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage
  * @generated
  */
-public interface SQLQueryModelFactory extends EFactory{
+public interface SQLQueryModelFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	SQLQueryModelFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl();
+	SQLQueryModelFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Query Delete Statement</em>'.

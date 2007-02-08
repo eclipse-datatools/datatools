@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableSpecificationImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: WithTableSpecificationImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -89,7 +89,7 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getWithTableSpecification();
+		return SQLQueryModelPackage.Literals.WITH_TABLE_SPECIFICATION;
 	}
 
 	/**
@@ -99,7 +99,17 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 	 */
     public QueryExpressionRoot getQueryExpressionRoot() {
 		if (eContainerFeatureID != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT) return null;
-		return (QueryExpressionRoot)eContainer;
+		return (QueryExpressionRoot)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetQueryExpressionRoot(QueryExpressionRoot newQueryExpressionRoot, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newQueryExpressionRoot, SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -108,15 +118,15 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 	 * @generated
 	 */
     public void setQueryExpressionRoot(QueryExpressionRoot newQueryExpressionRoot) {
-		if (newQueryExpressionRoot != eContainer || (eContainerFeatureID != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT && newQueryExpressionRoot != null)) {
+		if (newQueryExpressionRoot != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT && newQueryExpressionRoot != null)) {
 			if (EcoreUtil.isAncestor(this, newQueryExpressionRoot))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQueryExpressionRoot != null)
 				msgs = ((InternalEObject)newQueryExpressionRoot).eInverseAdd(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__WITH_CLAUSE, QueryExpressionRoot.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQueryExpressionRoot, SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT, msgs);
+			msgs = basicSetQueryExpressionRoot(newQueryExpressionRoot, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -192,96 +202,66 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
-					if (withTableQueryExpr != null)
-						msgs = ((InternalEObject)withTableQueryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR, null, msgs);
-					return basicSetWithTableQueryExpr((QueryExpressionBody)otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES:
-					return ((InternalEList)getWithTableReferences()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
-					return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetQueryExpressionRoot((QueryExpressionRoot)otherEnd, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
+				if (withTableQueryExpr != null)
+					msgs = ((InternalEObject)withTableQueryExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR, null, msgs);
+				return basicSetWithTableQueryExpr((QueryExpressionBody)otherEnd, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES:
+				return ((InternalEList)getWithTableReferences()).basicAdd(otherEnd, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
+				return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
-					return basicSetWithTableQueryExpr(null, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES:
-					return ((InternalEList)getWithTableReferences()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
-					return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
+				return basicSetQueryExpressionRoot(null, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
+				return basicSetWithTableQueryExpr(null, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_REFERENCES:
+				return ((InternalEList)getWithTableReferences()).basicRemove(otherEnd, msgs);
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
+				return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__WITH_CLAUSE, QueryExpressionRoot.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_EXPRESSION_ROOT__WITH_CLAUSE, QueryExpressionRoot.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__NAME:
-				return getName();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
 				return getQueryExpressionRoot();
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
@@ -291,33 +271,16 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
 				return getColumnNameList();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
 				setQueryExpressionRoot((QueryExpressionRoot)newValue);
 				return;
@@ -333,31 +296,16 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 				getColumnNameList().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
 				setQueryExpressionRoot((QueryExpressionRoot)null);
 				return;
@@ -371,26 +319,16 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 				getColumnNameList().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__QUERY_EXPRESSION_ROOT:
 				return getQueryExpressionRoot() != null;
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__WITH_TABLE_QUERY_EXPR:
@@ -400,7 +338,7 @@ public class WithTableSpecificationImpl extends SQLQueryObjectImpl implements Wi
 			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION__COLUMN_NAME_LIST:
 				return columnNameList != null && !columnNameList.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //WithTableSpecificationImpl

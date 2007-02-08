@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableCorrelationImpl.java,v 1.2 2005/12/17 01:46:20 bpayton Exp $
+ * $Id: TableCorrelationImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -64,7 +64,7 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getTableCorrelation();
+		return SQLQueryModelPackage.Literals.TABLE_CORRELATION;
 	}
 
 	/**
@@ -74,7 +74,17 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 	 */
     public TableExpression getTableExpr() {
 		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR) return null;
-		return (TableExpression)eContainer;
+		return (TableExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableExpr(TableExpression newTableExpr, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTableExpr, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
+		return msgs;
 	}
 
 	/**
@@ -83,15 +93,15 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 	 * @generated
 	 */
     public void setTableExpr(TableExpression newTableExpr) {
-		if (newTableExpr != eContainer || (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
+		if (newTableExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
 			if (EcoreUtil.isAncestor(this, newTableExpr))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTableExpr != null)
 				msgs = ((InternalEObject)newTableExpr).eInverseAdd(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTableExpr, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
+			msgs = basicSetTableExpr(newTableExpr, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -112,118 +122,71 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
-				case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-					return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTableExpr((TableExpression)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+				return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_CORRELATION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
-				case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-					return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+				return basicSetTableExpr(null, msgs);
+			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+				return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.TABLE_CORRELATION__NAME:
-				return getName();
-			case SQLQueryModelPackage.TABLE_CORRELATION__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.TABLE_CORRELATION__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.TABLE_CORRELATION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
 				return getTableExpr();
 			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
 				return getColumnNameList();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
 				setTableExpr((TableExpression)newValue);
 				return;
@@ -232,31 +195,16 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 				getColumnNameList().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
 				setTableExpr((TableExpression)null);
 				return;
@@ -264,32 +212,22 @@ public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCor
 				getColumnNameList().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.TABLE_CORRELATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.TABLE_CORRELATION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.TABLE_CORRELATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.TABLE_CORRELATION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
 				return getTableExpr() != null;
 			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
 				return columnNameList != null && !columnNameList.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLTableCorrelationImpl

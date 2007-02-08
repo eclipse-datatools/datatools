@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryFactoryImpl.java,v 1.2 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: SQLQueryModelFactoryImpl.java,v 1.1 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -12,7 +12,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +25,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryModelFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLQueryModelFactory init() {
+		try {
+			SQLQueryModelFactory theSQLQueryModelFactory = (SQLQueryModelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"); 
+			if (theSQLQueryModelFactory != null) {
+				return theSQLQueryModelFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLQueryModelFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -113,61 +136,28 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
 	 */
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SQLQueryModelPackage.SUPER_GROUP_TYPE: {
-				SuperGroupType result = SuperGroupType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE: {
-				PredicateQuantifiedType result = PredicateQuantifiedType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR: {
-				PredicateComparisonOperator result = PredicateComparisonOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR: {
-				SearchConditionCombinedOperator result = SearchConditionCombinedOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.TABLE_JOINED_OPERATOR: {
-				TableJoinedOperator result = TableJoinedOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR: {
-				QueryCombinedOperator result = QueryCombinedOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR: {
-				ValueExpressionUnaryOperator result = ValueExpressionUnaryOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR: {
-				ValueExpressionCombinedOperator result = ValueExpressionCombinedOperator.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE: {
-				ValueExpressionLabeledDurationType result = ValueExpressionLabeledDurationType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.NULL_ORDERING_TYPE: {
-				NullOrderingType result = NullOrderingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLQueryModelPackage.ORDERING_SPEC_TYPE: {
-				OrderingSpecType result = OrderingSpecType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
+			case SQLQueryModelPackage.SUPER_GROUP_TYPE:
+				return createSuperGroupTypeFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
+				return createPredicateQuantifiedTypeFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
+				return createPredicateComparisonOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
+				return createSearchConditionCombinedOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
+				return createTableJoinedOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
+				return createQueryCombinedOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
+				return createValueExpressionUnaryOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
+				return createValueExpressionCombinedOperatorFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
+				return createValueExpressionLabeledDurationTypeFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.NULL_ORDERING_TYPE:
+				return createNullOrderingTypeFromString(eDataType, initialValue);
+			case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
+				return createOrderingSpecTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -181,27 +171,27 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLQueryModelPackage.SUPER_GROUP_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertSuperGroupTypeToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertPredicateQuantifiedTypeToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertPredicateComparisonOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertSearchConditionCombinedOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertTableJoinedOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertQueryCombinedOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertValueExpressionUnaryOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertValueExpressionCombinedOperatorToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertValueExpressionLabeledDurationTypeToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.NULL_ORDERING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertNullOrderingTypeToString(eDataType, instanceValue);
 			case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertOrderingSpecTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -835,6 +825,226 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
 	public WithTableReference createWithTableReference() {
 		WithTableReferenceImpl withTableReference = new WithTableReferenceImpl();
 		return withTableReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SuperGroupType createSuperGroupTypeFromString(EDataType eDataType, String initialValue) {
+		SuperGroupType result = SuperGroupType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSuperGroupTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredicateQuantifiedType createPredicateQuantifiedTypeFromString(EDataType eDataType, String initialValue) {
+		PredicateQuantifiedType result = PredicateQuantifiedType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPredicateQuantifiedTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredicateComparisonOperator createPredicateComparisonOperatorFromString(EDataType eDataType, String initialValue) {
+		PredicateComparisonOperator result = PredicateComparisonOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPredicateComparisonOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SearchConditionCombinedOperator createSearchConditionCombinedOperatorFromString(EDataType eDataType, String initialValue) {
+		SearchConditionCombinedOperator result = SearchConditionCombinedOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSearchConditionCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableJoinedOperator createTableJoinedOperatorFromString(EDataType eDataType, String initialValue) {
+		TableJoinedOperator result = TableJoinedOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTableJoinedOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryCombinedOperator createQueryCombinedOperatorFromString(EDataType eDataType, String initialValue) {
+		QueryCombinedOperator result = QueryCombinedOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertQueryCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueExpressionUnaryOperator createValueExpressionUnaryOperatorFromString(EDataType eDataType, String initialValue) {
+		ValueExpressionUnaryOperator result = ValueExpressionUnaryOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertValueExpressionUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueExpressionCombinedOperator createValueExpressionCombinedOperatorFromString(EDataType eDataType, String initialValue) {
+		ValueExpressionCombinedOperator result = ValueExpressionCombinedOperator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertValueExpressionCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueExpressionLabeledDurationType createValueExpressionLabeledDurationTypeFromString(EDataType eDataType, String initialValue) {
+		ValueExpressionLabeledDurationType result = ValueExpressionLabeledDurationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertValueExpressionLabeledDurationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NullOrderingType createNullOrderingTypeFromString(EDataType eDataType, String initialValue) {
+		NullOrderingType result = NullOrderingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNullOrderingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrderingSpecType createOrderingSpecTypeFromString(EDataType eDataType, String initialValue) {
+		OrderingSpecType result = OrderingSpecType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertOrderingSpecTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

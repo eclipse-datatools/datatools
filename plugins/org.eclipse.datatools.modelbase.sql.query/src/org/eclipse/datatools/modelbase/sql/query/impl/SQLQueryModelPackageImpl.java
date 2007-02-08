@@ -2,9 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryPackageImpl.java,v 1.1 2005/12/16 13:11:11 bpayton Exp $
+ * $Id: SQLQueryModelPackageImpl.java,v 1.1 2005/12/22 22:18:47 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
+
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl;
 
@@ -136,6 +140,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
@@ -855,15 +861,15 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 		isInited = true;
 
 		// Initialize simple dependencies
-		SQLSchemaPackageImpl.init();
-		SQLConstraintsPackageImpl.init();
-		SQLDataTypesPackageImpl.init();
-		SQLExpressionsPackageImpl.init();
-		SQLRoutinesPackageImpl.init();
-		SQLStatementsPackageImpl.init();
-		SQLTablesPackageImpl.init();
-		SQLAccessControlPackageImpl.init();
-		EcorePackageImpl.init();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theSQLQueryModelPackage.createPackageContents();
@@ -4074,12 +4080,12 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLStatementsPackageImpl theSQLStatementsPackage = (SQLStatementsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
-		SQLExpressionsPackageImpl theSQLExpressionsPackage = (SQLExpressionsPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
-		SQLRoutinesPackageImpl theSQLRoutinesPackage = (SQLRoutinesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
-		SQLTablesPackageImpl theSQLTablesPackage = (SQLTablesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
-		SQLSchemaPackageImpl theSQLSchemaPackage = (SQLSchemaPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
+		SQLStatementsPackage theSQLStatementsPackage = (SQLStatementsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLStatementsPackage.eNS_URI);
+		SQLExpressionsPackage theSQLExpressionsPackage = (SQLExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(SQLExpressionsPackage.eNS_URI);
+		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLRoutinesPackage theSQLRoutinesPackage = (SQLRoutinesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLRoutinesPackage.eNS_URI);
+		SQLTablesPackage theSQLTablesPackage = (SQLTablesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLTablesPackage.eNS_URI);
+		SQLSchemaPackage theSQLSchemaPackage = (SQLSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(SQLSchemaPackage.eNS_URI);
 
 		// Add supertypes to classes
 		queryStatementEClass.getESuperTypes().add(this.getSQLQueryObject());
@@ -4501,10 +4507,10 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 		initEClass(sqlQueryObjectEClass, SQLQueryObject.class, "SQLQueryObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(sqlQueryObjectEClass, ecorePackage.getEString(), "getSQL");
+		addEOperation(sqlQueryObjectEClass, ecorePackage.getEString(), "getSQL", 0, 1);
 
 		EOperation op = addEOperation(sqlQueryObjectEClass, null, "setSQL");
-		addEParameter(op, ecorePackage.getEString(), "sqlText");
+		addEParameter(op, ecorePackage.getEString(), "sqlText", 0, 1);
 
 		initEClass(queryChangeStatementEClass, QueryChangeStatement.class, "QueryChangeStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

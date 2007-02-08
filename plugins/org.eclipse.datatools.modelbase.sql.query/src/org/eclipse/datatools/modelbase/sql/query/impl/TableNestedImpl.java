@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableNestedImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: TableNestedImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -61,7 +61,7 @@ public class TableNestedImpl extends TableReferenceImpl implements TableNested {
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getTableNested();
+		return SQLQueryModelPackage.Literals.TABLE_NESTED;
 	}
 
 	/**
@@ -109,70 +109,17 @@ public class TableNestedImpl extends TableReferenceImpl implements TableNested {
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_NESTED__NEST, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
-					if (nestedTableRef != null)
-						msgs = ((InternalEObject)nestedTableRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, null, msgs);
-					return basicSetNestedTableRef((TableReference)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
+				if (nestedTableRef != null)
+					msgs = ((InternalEObject)nestedTableRef).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, null, msgs);
+				return basicSetNestedTableRef((TableReference)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_NESTED__NEST, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
-					return basicSetNestedTableRef(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -180,168 +127,66 @@ public class TableNestedImpl extends TableReferenceImpl implements TableNested {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.TABLE_NESTED__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
+				return basicSetNestedTableRef(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.TABLE_NESTED__NAME:
-				return getName();
-			case SQLQueryModelPackage.TABLE_NESTED__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.TABLE_NESTED__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.TABLE_NESTED__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-				return getTableJoinedRight();
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-				return getTableJoinedLeft();
-			case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-				return getQuerySelect();
-			case SQLQueryModelPackage.TABLE_NESTED__NEST:
-				return getNest();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
 				return getNestedTableRef();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-				setTableJoinedRight((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-				setTableJoinedLeft((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-				setQuerySelect((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__NEST:
-				setNest((TableNested)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
 				setNestedTableRef((TableReference)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-				setTableJoinedRight((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-				setTableJoinedLeft((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-				setQuerySelect((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.TABLE_NESTED__NEST:
-				setNest((TableNested)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
 				setNestedTableRef((TableReference)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_NESTED__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.TABLE_NESTED__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.TABLE_NESTED__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.TABLE_NESTED__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.TABLE_NESTED__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_RIGHT:
-				return getTableJoinedRight() != null;
-			case SQLQueryModelPackage.TABLE_NESTED__TABLE_JOINED_LEFT:
-				return getTableJoinedLeft() != null;
-			case SQLQueryModelPackage.TABLE_NESTED__QUERY_SELECT:
-				return getQuerySelect() != null;
-			case SQLQueryModelPackage.TABLE_NESTED__NEST:
-				return getNest() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF:
 				return nestedTableRef != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLTableNestedImpl

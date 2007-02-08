@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultColumnImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: ResultColumnImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -74,7 +74,7 @@ public class ResultColumnImpl extends QueryResultSpecificationImpl implements Re
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getResultColumn();
+		return SQLQueryModelPackage.Literals.RESULT_COLUMN;
 	}
 
 	/**
@@ -134,56 +134,19 @@ public class ResultColumnImpl extends QueryResultSpecificationImpl implements Re
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
-					if (valueExpr != null)
-						msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR, null, msgs);
-					return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
-					return ((InternalEList)getOrderByResultCol()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
+				if (valueExpr != null)
+					msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR, null, msgs);
+				return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
+			case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
+				return ((InternalEList)getOrderByResultCol()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
-					return basicSetValueExpr(null, msgs);
-				case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
-					return ((InternalEList)getOrderByResultCol()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -191,72 +154,38 @@ public class ResultColumnImpl extends QueryResultSpecificationImpl implements Re
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__SELECT_CLAUSE, QuerySelect.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
+				return basicSetValueExpr(null, msgs);
+			case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
+				return ((InternalEList)getOrderByResultCol()).basicRemove(otherEnd, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.RESULT_COLUMN__NAME:
-				return getName();
-			case SQLQueryModelPackage.RESULT_COLUMN__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.RESULT_COLUMN__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.RESULT_COLUMN__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-				return getQuerySelect();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
 				return getValueExpr();
 			case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
 				return getOrderByResultCol();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-				setQuerySelect((QuerySelect)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)newValue);
 				return;
@@ -265,34 +194,16 @@ public class ResultColumnImpl extends QueryResultSpecificationImpl implements Re
 				getOrderByResultCol().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-				setQuerySelect((QuerySelect)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
 				setValueExpr((QueryValueExpression)null);
 				return;
@@ -300,34 +211,22 @@ public class ResultColumnImpl extends QueryResultSpecificationImpl implements Re
 				getOrderByResultCol().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.RESULT_COLUMN__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.RESULT_COLUMN__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.RESULT_COLUMN__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.RESULT_COLUMN__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.RESULT_COLUMN__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.RESULT_COLUMN__QUERY_SELECT:
-				return getQuerySelect() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.RESULT_COLUMN__VALUE_EXPR:
 				return valueExpr != null;
 			case SQLQueryModelPackage.RESULT_COLUMN__ORDER_BY_RESULT_COL:
 				return orderByResultCol != null && !orderByResultCol.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //SQLResultColumnImpl

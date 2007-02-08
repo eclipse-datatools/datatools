@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySearchConditionImpl.java,v 1.3 2005/12/19 20:56:36 bpayton Exp $
+ * $Id: QuerySearchConditionImpl.java,v 1.4 2005/12/22 22:18:47 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -85,7 +85,7 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getQuerySearchCondition();
+		return SQLQueryModelPackage.Literals.QUERY_SEARCH_CONDITION;
 	}
 
 	/**
@@ -116,7 +116,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public QueryUpdateStatement getUpdateStatement() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT) return null;
-		return (QueryUpdateStatement)eContainer;
+		return (QueryUpdateStatement)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUpdateStatement(QueryUpdateStatement newUpdateStatement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -125,15 +135,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setUpdateStatement(QueryUpdateStatement newUpdateStatement) {
-		if (newUpdateStatement != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT && newUpdateStatement != null)) {
+		if (newUpdateStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT && newUpdateStatement != null)) {
 			if (EcoreUtil.isAncestor(this, newUpdateStatement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newUpdateStatement != null)
 				msgs = ((InternalEObject)newUpdateStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newUpdateStatement, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, msgs);
+			msgs = basicSetUpdateStatement(newUpdateStatement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -147,7 +157,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public QueryDeleteStatement getDeleteStatement() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT) return null;
-		return (QueryDeleteStatement)eContainer;
+		return (QueryDeleteStatement)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDeleteStatement(QueryDeleteStatement newDeleteStatement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newDeleteStatement, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -156,15 +176,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setDeleteStatement(QueryDeleteStatement newDeleteStatement) {
-		if (newDeleteStatement != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT && newDeleteStatement != null)) {
+		if (newDeleteStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT && newDeleteStatement != null)) {
 			if (EcoreUtil.isAncestor(this, newDeleteStatement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newDeleteStatement != null)
 				msgs = ((InternalEObject)newDeleteStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newDeleteStatement, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, msgs);
+			msgs = basicSetDeleteStatement(newDeleteStatement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -178,7 +198,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public TableJoined getTableJoined() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED) return null;
-		return (TableJoined)eContainer;
+		return (TableJoined)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableJoined(TableJoined newTableJoined, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTableJoined, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, msgs);
+		return msgs;
 	}
 
 	/**
@@ -187,15 +217,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setTableJoined(TableJoined newTableJoined) {
-		if (newTableJoined != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED && newTableJoined != null)) {
+		if (newTableJoined != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED && newTableJoined != null)) {
 			if (EcoreUtil.isAncestor(this, newTableJoined))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTableJoined != null)
 				msgs = ((InternalEObject)newTableJoined).eInverseAdd(this, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTableJoined, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, msgs);
+			msgs = basicSetTableJoined(newTableJoined, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -209,7 +239,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public SearchConditionCombined getCombinedLeft() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT) return null;
-		return (SearchConditionCombined)eContainer;
+		return (SearchConditionCombined)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCombinedLeft(SearchConditionCombined newCombinedLeft, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newCombinedLeft, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -218,15 +258,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setCombinedLeft(SearchConditionCombined newCombinedLeft) {
-		if (newCombinedLeft != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT && newCombinedLeft != null)) {
+		if (newCombinedLeft != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT && newCombinedLeft != null)) {
 			if (EcoreUtil.isAncestor(this, newCombinedLeft))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCombinedLeft != null)
 				msgs = ((InternalEObject)newCombinedLeft).eInverseAdd(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newCombinedLeft, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT, msgs);
+			msgs = basicSetCombinedLeft(newCombinedLeft, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -240,7 +280,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public SearchConditionCombined getCombinedRight() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT) return null;
-		return (SearchConditionCombined)eContainer;
+		return (SearchConditionCombined)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCombinedRight(SearchConditionCombined newCombinedRight, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newCombinedRight, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -249,15 +299,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setCombinedRight(SearchConditionCombined newCombinedRight) {
-		if (newCombinedRight != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT && newCombinedRight != null)) {
+		if (newCombinedRight != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT && newCombinedRight != null)) {
 			if (EcoreUtil.isAncestor(this, newCombinedRight))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCombinedRight != null)
 				msgs = ((InternalEObject)newCombinedRight).eInverseAdd(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newCombinedRight, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT, msgs);
+			msgs = basicSetCombinedRight(newCombinedRight, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -271,7 +321,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public QuerySelect getQuerySelectHaving() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING) return null;
-		return (QuerySelect)eContainer;
+		return (QuerySelect)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetQuerySelectHaving(QuerySelect newQuerySelectHaving, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newQuerySelectHaving, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING, msgs);
+		return msgs;
 	}
 
 	/**
@@ -280,15 +340,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setQuerySelectHaving(QuerySelect newQuerySelectHaving) {
-		if (newQuerySelectHaving != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING && newQuerySelectHaving != null)) {
+		if (newQuerySelectHaving != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING && newQuerySelectHaving != null)) {
 			if (EcoreUtil.isAncestor(this, newQuerySelectHaving))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuerySelectHaving != null)
 				msgs = ((InternalEObject)newQuerySelectHaving).eInverseAdd(this, SQLQueryModelPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuerySelectHaving, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING, msgs);
+			msgs = basicSetQuerySelectHaving(newQuerySelectHaving, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -302,7 +362,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public QuerySelect getQuerySelectWhere() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE) return null;
-		return (QuerySelect)eContainer;
+		return (QuerySelect)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetQuerySelectWhere(QuerySelect newQuerySelectWhere, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newQuerySelectWhere, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE, msgs);
+		return msgs;
 	}
 
 	/**
@@ -311,15 +381,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setQuerySelectWhere(QuerySelect newQuerySelectWhere) {
-		if (newQuerySelectWhere != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE && newQuerySelectWhere != null)) {
+		if (newQuerySelectWhere != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE && newQuerySelectWhere != null)) {
 			if (EcoreUtil.isAncestor(this, newQuerySelectWhere))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newQuerySelectWhere != null)
 				msgs = ((InternalEObject)newQuerySelectWhere).eInverseAdd(this, SQLQueryModelPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newQuerySelectWhere, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE, msgs);
+			msgs = basicSetQuerySelectWhere(newQuerySelectWhere, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -333,7 +403,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
     public ValueExpressionCaseSearchContent getValueExprCaseSearchContent() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT) return null;
-		return (ValueExpressionCaseSearchContent)eContainer;
+		return (ValueExpressionCaseSearchContent)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValueExprCaseSearchContent(ValueExpressionCaseSearchContent newValueExprCaseSearchContent, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearchContent, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -342,15 +422,15 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setValueExprCaseSearchContent(ValueExpressionCaseSearchContent newValueExprCaseSearchContent) {
-		if (newValueExprCaseSearchContent != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT && newValueExprCaseSearchContent != null)) {
+		if (newValueExprCaseSearchContent != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT && newValueExprCaseSearchContent != null)) {
 			if (EcoreUtil.isAncestor(this, newValueExprCaseSearchContent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueExprCaseSearchContent != null)
 				msgs = ((InternalEObject)newValueExprCaseSearchContent).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueExprCaseSearchContent, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
+			msgs = basicSetValueExprCaseSearchContent(newValueExprCaseSearchContent, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -364,7 +444,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 */
   public SearchConditionNested getNest() {
 		if (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST) return null;
-		return (SearchConditionNested)eContainer;
+		return (SearchConditionNested)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetNest(SearchConditionNested newNest, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, msgs);
+		return msgs;
 	}
 
 	/**
@@ -373,183 +463,133 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
   public void setNest(SearchConditionNested newNest) {
-		if (newNest != eContainer || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST && newNest != null)) {
+		if (newNest != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST && newNest != null)) {
 			if (EcoreUtil.isAncestor(this, newNest))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newNest != null)
 				msgs = ((InternalEObject)newNest).eInverseAdd(this, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newNest, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, msgs);
+			msgs = basicSetNest(newNest, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, newNest, newNest));
 	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated NOT
-     */
-    public String getSQL() {
-        return super.getSQL();
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetUpdateStatement((QueryUpdateStatement)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetDeleteStatement((QueryDeleteStatement)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTableJoined((TableJoined)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetCombinedLeft((SearchConditionCombined)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetCombinedRight((SearchConditionCombined)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetQuerySelectHaving((QuerySelect)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetQuerySelectWhere((QuerySelect)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetValueExprCaseSearchContent((ValueExpressionCaseSearchContent)otherEnd, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetNest((SearchConditionNested)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSQL(String sqlText) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
+				return basicSetUpdateStatement(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
+				return basicSetDeleteStatement(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
+				return basicSetTableJoined(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
+				return basicSetCombinedLeft(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
+				return basicSetCombinedRight(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
+				return basicSetQuerySelectHaving(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
+				return basicSetQuerySelectWhere(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+				return basicSetValueExprCaseSearchContent(null, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
+				return basicSetNest(null, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
+			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
+				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DELETE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__TABLE_JOINED:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__COMBINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_HAVING:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__QUERY_SELECT_WHERE:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
-				case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NAME:
-				return getName();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEGATED_CONDITION:
 				return isNegatedCondition() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
@@ -571,33 +611,16 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
 				return getNest();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEGATED_CONDITION:
 				setNegatedCondition(((Boolean)newValue).booleanValue());
 				return;
@@ -629,31 +652,16 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 				setNest((SearchConditionNested)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEGATED_CONDITION:
 				setNegatedCondition(NEGATED_CONDITION_EDEFAULT);
 				return;
@@ -685,26 +693,16 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 				setNest((SearchConditionNested)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEGATED_CONDITION:
 				return negatedCondition != NEGATED_CONDITION_EDEFAULT;
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT:
@@ -726,8 +724,17 @@ public abstract class QuerySearchConditionImpl extends SQLQueryObjectImpl implem
 			case SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST:
 				return getNest() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public String getSQL() {
+        return super.getSQL();
+    }
 
 	/**
 	 * <!-- begin-user-doc -->

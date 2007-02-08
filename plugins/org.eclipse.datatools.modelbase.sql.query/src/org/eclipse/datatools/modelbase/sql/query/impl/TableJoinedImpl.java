@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableJoinedImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
+ * $Id: TableJoinedImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -106,7 +106,7 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getTableJoined();
+		return SQLQueryModelPackage.Literals.TABLE_JOINED;
 	}
 
 	/**
@@ -261,82 +261,25 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.TABLE_JOINED__NEST, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-					if (joinCondition != null)
-						msgs = ((InternalEObject)joinCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, null, msgs);
-					return basicSetJoinCondition((QuerySearchCondition)otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-					if (tableRefRight != null)
-						msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, null, msgs);
-					return basicSetTableRefRight((TableReference)otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-					if (tableRefLeft != null)
-						msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, null, msgs);
-					return basicSetTableRefLeft((TableReference)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				if (joinCondition != null)
+					msgs = ((InternalEObject)joinCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, null, msgs);
+				return basicSetJoinCondition((QuerySearchCondition)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				if (tableRefRight != null)
+					msgs = ((InternalEObject)tableRefRight).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, null, msgs);
+				return basicSetTableRefRight((TableReference)otherEnd, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				if (tableRefLeft != null)
+					msgs = ((InternalEObject)tableRefLeft).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, null, msgs);
+				return basicSetTableRefLeft((TableReference)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.TABLE_JOINED__NEST, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
-					return basicSetJoinCondition(null, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
-					return basicSetTableRefRight(null, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
-					return basicSetTableRefLeft(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -344,49 +287,25 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT, TableJoined.class, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__FROM_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.TABLE_JOINED__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_NESTED__NESTED_TABLE_REF, TableNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
+				return basicSetJoinCondition(null, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_RIGHT:
+				return basicSetTableRefRight(null, msgs);
+			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
+				return basicSetTableRefLeft(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.TABLE_JOINED__NAME:
-				return getName();
-			case SQLQueryModelPackage.TABLE_JOINED__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.TABLE_JOINED__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.TABLE_JOINED__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-				return getTableJoinedRight();
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-				return getTableJoinedLeft();
-			case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-				return getQuerySelect();
-			case SQLQueryModelPackage.TABLE_JOINED__NEST:
-				return getNest();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
 				return getJoinOperator();
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
@@ -396,45 +315,16 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
 				return getTableRefLeft();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-				setTableJoinedRight((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-				setTableJoinedLeft((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-				setQuerySelect((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__NEST:
-				setNest((TableNested)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
 				setJoinOperator((TableJoinedOperator)newValue);
 				return;
@@ -448,43 +338,16 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 				setTableRefLeft((TableReference)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-				setTableJoinedRight((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-				setTableJoinedLeft((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-				setQuerySelect((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.TABLE_JOINED__NEST:
-				setNest((TableNested)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
 				setJoinOperator(JOIN_OPERATOR_EDEFAULT);
 				return;
@@ -498,34 +361,16 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 				setTableRefLeft((TableReference)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.TABLE_JOINED__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.TABLE_JOINED__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.TABLE_JOINED__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.TABLE_JOINED__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.TABLE_JOINED__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_RIGHT:
-				return getTableJoinedRight() != null;
-			case SQLQueryModelPackage.TABLE_JOINED__TABLE_JOINED_LEFT:
-				return getTableJoinedLeft() != null;
-			case SQLQueryModelPackage.TABLE_JOINED__QUERY_SELECT:
-				return getQuerySelect() != null;
-			case SQLQueryModelPackage.TABLE_JOINED__NEST:
-				return getNest() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_OPERATOR:
 				return joinOperator != JOIN_OPERATOR_EDEFAULT;
 			case SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION:
@@ -535,7 +380,7 @@ public class TableJoinedImpl extends TableReferenceImpl implements TableJoined {
 			case SQLQueryModelPackage.TABLE_JOINED__TABLE_REF_LEFT:
 				return tableRefLeft != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

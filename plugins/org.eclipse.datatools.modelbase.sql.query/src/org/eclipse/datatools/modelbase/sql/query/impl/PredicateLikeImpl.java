@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateLikeImpl.java,v 1.3 2005/12/19 20:56:37 bpayton Exp $
+ * $Id: PredicateLikeImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -109,7 +109,7 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.eINSTANCE.getPredicateLike();
+		return SQLQueryModelPackage.Literals.PREDICATE_LIKE;
 	}
 
 	/**
@@ -264,112 +264,25 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLQueryModelPackage.PREDICATE_LIKE__NEST, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-					if (patternValueExpr != null)
-						msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, null, msgs);
-					return basicSetPatternValueExpr((QueryValueExpression)otherEnd, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-					if (matchingValueExpr != null)
-						msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, null, msgs);
-					return basicSetMatchingValueExpr((QueryValueExpression)otherEnd, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-					if (escapeValueExpr != null)
-						msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, null, msgs);
-					return basicSetEscapeValueExpr((QueryValueExpression)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+				if (patternValueExpr != null)
+					msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, null, msgs);
+				return basicSetPatternValueExpr((QueryValueExpression)otherEnd, msgs);
+			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+				if (matchingValueExpr != null)
+					msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, null, msgs);
+				return basicSetMatchingValueExpr((QueryValueExpression)otherEnd, msgs);
+			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+				if (escapeValueExpr != null)
+					msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, null, msgs);
+				return basicSetEscapeValueExpr((QueryValueExpression)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-					return eBasicSetContainer(null, SQLQueryModelPackage.PREDICATE_LIKE__NEST, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-					return basicSetPatternValueExpr(null, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-					return basicSetMatchingValueExpr(null, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-					return basicSetEscapeValueExpr(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -377,77 +290,25 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, QueryUpdateStatement.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_DELETE_STATEMENT__WHERE_CLAUSE, QueryDeleteStatement.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.TABLE_JOINED__JOIN_CONDITION, TableJoined.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__LEFT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION, SearchConditionCombined.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__HAVING_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.QUERY_SELECT__WHERE_CLAUSE, QuerySelect.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT__SEARCH_CONDITION, ValueExpressionCaseSearchContent.class, msgs);
-				case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-					return eContainer.eInverseRemove(this, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, SearchConditionNested.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+				return basicSetPatternValueExpr(null, msgs);
+			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+				return basicSetMatchingValueExpr(null, msgs);
+			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+				return basicSetEscapeValueExpr(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLQueryModelPackage.PREDICATE_LIKE__NAME:
-				return getName();
-			case SQLQueryModelPackage.PREDICATE_LIKE__DEPENDENCIES:
-				return getDependencies();
-			case SQLQueryModelPackage.PREDICATE_LIKE__DESCRIPTION:
-				return getDescription();
-			case SQLQueryModelPackage.PREDICATE_LIKE__LABEL:
-				return getLabel();
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_CONDITION:
-				return isNegatedCondition() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-				return getUpdateStatement();
-			case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-				return getDeleteStatement();
-			case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-				return getTableJoined();
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-				return getCombinedLeft();
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-				return getCombinedRight();
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-				return getQuerySelectHaving();
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-				return getQuerySelectWhere();
-			case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				return getValueExprCaseSearchContent();
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-				return getNest();
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_PREDICATE:
-				return isNegatedPredicate() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryModelPackage.PREDICATE_LIKE__HAS_SELECTIVITY:
-				return isHasSelectivity() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryModelPackage.PREDICATE_LIKE__SELECTIVITY_VALUE:
-				return getSelectivityValue();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
 				return isNotLike() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
@@ -457,72 +318,16 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
 				return getEscapeValueExpr();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NAME:
-				setName((String)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_CONDITION:
-				setNegatedCondition(((Boolean)newValue).booleanValue());
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-				setUpdateStatement((QueryUpdateStatement)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-				setDeleteStatement((QueryDeleteStatement)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-				setTableJoined((TableJoined)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-				setCombinedLeft((SearchConditionCombined)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-				setCombinedRight((SearchConditionCombined)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-				setQuerySelectHaving((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-				setQuerySelectWhere((QuerySelect)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-				setNest((SearchConditionNested)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_PREDICATE:
-				setNegatedPredicate(((Boolean)newValue).booleanValue());
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__HAS_SELECTIVITY:
-				setHasSelectivity(((Boolean)newValue).booleanValue());
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__SELECTIVITY_VALUE:
-				setSelectivityValue((Integer)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
 				setNotLike(((Boolean)newValue).booleanValue());
 				return;
@@ -536,70 +341,16 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 				setEscapeValueExpr((QueryValueExpression)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_CONDITION:
-				setNegatedCondition(NEGATED_CONDITION_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-				setUpdateStatement((QueryUpdateStatement)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-				setDeleteStatement((QueryDeleteStatement)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-				setTableJoined((TableJoined)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-				setCombinedLeft((SearchConditionCombined)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-				setCombinedRight((SearchConditionCombined)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-				setQuerySelectHaving((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-				setQuerySelectWhere((QuerySelect)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				setValueExprCaseSearchContent((ValueExpressionCaseSearchContent)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-				setNest((SearchConditionNested)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_PREDICATE:
-				setNegatedPredicate(NEGATED_PREDICATE_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__HAS_SELECTIVITY:
-				setHasSelectivity(HAS_SELECTIVITY_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__SELECTIVITY_VALUE:
-				setSelectivityValue(SELECTIVITY_VALUE_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
 				setNotLike(NOT_LIKE_EDEFAULT);
 				return;
@@ -613,52 +364,16 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 				setEscapeValueExpr((QueryValueExpression)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLQueryModelPackage.PREDICATE_LIKE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLQueryModelPackage.PREDICATE_LIKE__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLQueryModelPackage.PREDICATE_LIKE__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLQueryModelPackage.PREDICATE_LIKE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_CONDITION:
-				return negatedCondition != NEGATED_CONDITION_EDEFAULT;
-			case SQLQueryModelPackage.PREDICATE_LIKE__UPDATE_STATEMENT:
-				return getUpdateStatement() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__DELETE_STATEMENT:
-				return getDeleteStatement() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__TABLE_JOINED:
-				return getTableJoined() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_LEFT:
-				return getCombinedLeft() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__COMBINED_RIGHT:
-				return getCombinedRight() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_HAVING:
-				return getQuerySelectHaving() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__QUERY_SELECT_WHERE:
-				return getQuerySelectWhere() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__VALUE_EXPR_CASE_SEARCH_CONTENT:
-				return getValueExprCaseSearchContent() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEST:
-				return getNest() != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__NEGATED_PREDICATE:
-				return negatedPredicate != NEGATED_PREDICATE_EDEFAULT;
-			case SQLQueryModelPackage.PREDICATE_LIKE__HAS_SELECTIVITY:
-				return hasSelectivity != HAS_SELECTIVITY_EDEFAULT;
-			case SQLQueryModelPackage.PREDICATE_LIKE__SELECTIVITY_VALUE:
-				return SELECTIVITY_VALUE_EDEFAULT == null ? selectivityValue != null : !SELECTIVITY_VALUE_EDEFAULT.equals(selectivityValue);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
 				return notLike != NOT_LIKE_EDEFAULT;
 			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
@@ -668,7 +383,7 @@ public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
 				return escapeValueExpr != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**
