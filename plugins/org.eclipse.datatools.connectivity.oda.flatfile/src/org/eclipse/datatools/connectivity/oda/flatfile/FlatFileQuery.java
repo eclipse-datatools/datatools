@@ -933,7 +933,7 @@ public class FlatFileQuery implements IQuery
 		{
 			if ( !DataTypes.isValidType( aCT[i] ) )
 			{
-				throw new OdaException( Messages.getString( "query_SOURCE_DATA_ERROR" ) ); //$NON-NLS-1$
+				throw new OdaException( Messages.getString( "dataTypes_TYPE_NAME_INVALID" ) + aCT[i] ); //$NON-NLS-1$
 			}
 		}
 	}
