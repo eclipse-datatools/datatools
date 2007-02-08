@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToURIImpl.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToURIImpl.java,v 1.4 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -114,7 +114,7 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionValidateAccordingToURI();
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI;
 	}
 
 	/**
@@ -185,89 +185,8 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-					if (validateElement != null)
-						msgs = ((InternalEObject)validateElement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT, null, msgs);
-					return basicSetValidateElement((XMLValueFunctionValidateElement)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-					return basicSetValidateElement(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, XMLValueFunctionValidate.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
-		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__LABEL:
-				return getLabel();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-				return getValueFunctionValidate();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-				return getValidateElement();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
 				return isNoNamespace() ? Boolean.TRUE : Boolean.FALSE;
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
@@ -275,39 +194,16 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
 				return getSchemaLocationURI();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-				setValueFunctionValidate((XMLValueFunctionValidate)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-				setValidateElement((XMLValueFunctionValidateElement)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
 				setNoNamespace(((Boolean)newValue).booleanValue());
 				return;
@@ -318,37 +214,16 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 				setSchemaLocationURI((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-				setValueFunctionValidate((XMLValueFunctionValidate)null);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-				setValidateElement((XMLValueFunctionValidateElement)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
 				setNoNamespace(NO_NAMESPACE_EDEFAULT);
 				return;
@@ -359,30 +234,16 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 				setSchemaLocationURI(SCHEMA_LOCATION_URI_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALUE_FUNCTION_VALIDATE:
-				return getValueFunctionValidate() != null;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__VALIDATE_ELEMENT:
-				return validateElement != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
 				return noNamespace != NO_NAMESPACE_EDEFAULT;
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
@@ -390,7 +251,7 @@ public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunction
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
 				return SCHEMA_LOCATION_URI_EDEFAULT == null ? schemaLocationURI != null : !SCHEMA_LOCATION_URI_EDEFAULT.equals(schemaLocationURI);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAttributesDeclarationImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLAttributesDeclarationImpl.java,v 1.2 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -69,7 +69,7 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLAttributesDeclaration();
+		return SQLXMLQueryModelPackage.Literals.XML_ATTRIBUTES_DECLARATION;
 	}
 
 	/**
@@ -79,7 +79,17 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 	 */
     public XMLValueFunctionElement getValueFunctionElement() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT) return null;
-		return (XMLValueFunctionElement)eContainer;
+		return (XMLValueFunctionElement)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValueFunctionElement(XMLValueFunctionElement newValueFunctionElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newValueFunctionElement, SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -88,15 +98,15 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 	 * @generated
 	 */
     public void setValueFunctionElement(XMLValueFunctionElement newValueFunctionElement) {
-		if (newValueFunctionElement != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
+		if (newValueFunctionElement != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT && newValueFunctionElement != null)) {
 			if (EcoreUtil.isAncestor(this, newValueFunctionElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueFunctionElement != null)
 				msgs = ((InternalEObject)newValueFunctionElement).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__ATTRIBUTES_DECL, XMLValueFunctionElement.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueFunctionElement, SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT, msgs);
+			msgs = basicSetValueFunctionElement(newValueFunctionElement, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -117,85 +127,71 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT, msgs);
-				case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
-					return ((InternalEList)getAttributeDeclItem()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetValueFunctionElement((XMLValueFunctionElement)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
+				return ((InternalEList)getAttributeDeclItem()).basicAdd(otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT, msgs);
-				case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
-					return ((InternalEList)getAttributeDeclItem()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
+				return basicSetValueFunctionElement(null, msgs);
+			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
+				return ((InternalEList)getAttributeDeclItem()).basicRemove(otherEnd, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__ATTRIBUTES_DECL, XMLValueFunctionElement.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_ELEMENT__ATTRIBUTES_DECL, XMLValueFunctionElement.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
 				return getValueFunctionElement();
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
 				return getAttributeDeclItem();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
 				setValueFunctionElement((XMLValueFunctionElement)newValue);
 				return;
@@ -204,16 +200,16 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 				getAttributeDeclItem().addAll((Collection)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
 				setValueFunctionElement((XMLValueFunctionElement)null);
 				return;
@@ -221,22 +217,22 @@ public class XMLAttributesDeclarationImpl extends EObjectImpl implements XMLAttr
 				getAttributeDeclItem().clear();
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT:
 				return getValueFunctionElement() != null;
 			case SQLXMLQueryModelPackage.XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM:
 				return attributeDeclItem != null && !attributeDeclItem.isEmpty();
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //XMLAttributesDeclarationImpl

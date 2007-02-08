@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLNullHandlingType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLNullHandlingType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -100,7 +100,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType ABSENT_ON_NULL_LITERAL = new XMLNullHandlingType(ABSENT_ON_NULL, "ABSENT_ON_NULL");
+    public static final XMLNullHandlingType ABSENT_ON_NULL_LITERAL = new XMLNullHandlingType(ABSENT_ON_NULL, "ABSENT_ON_NULL", "ABSENT_ON_NULL");
 
 	/**
 	 * The '<em><b>EMPTY ON NULL</b></em>' literal object.
@@ -114,7 +114,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType EMPTY_ON_NULL_LITERAL = new XMLNullHandlingType(EMPTY_ON_NULL, "EMPTY_ON_NULL");
+    public static final XMLNullHandlingType EMPTY_ON_NULL_LITERAL = new XMLNullHandlingType(EMPTY_ON_NULL, "EMPTY_ON_NULL", "EMPTY_ON_NULL");
 
 	/**
 	 * The '<em><b>NIL ON NO CONTENT</b></em>' literal object.
@@ -128,7 +128,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType NIL_ON_NO_CONTENT_LITERAL = new XMLNullHandlingType(NIL_ON_NO_CONTENT, "NIL_ON_NO_CONTENT");
+    public static final XMLNullHandlingType NIL_ON_NO_CONTENT_LITERAL = new XMLNullHandlingType(NIL_ON_NO_CONTENT, "NIL_ON_NO_CONTENT", "NIL_ON_NO_CONTENT");
 
 	/**
 	 * The '<em><b>NIL ON NULL</b></em>' literal object.
@@ -142,7 +142,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType NIL_ON_NULL_LITERAL = new XMLNullHandlingType(NIL_ON_NULL, "NIL_ON_NULL");
+    public static final XMLNullHandlingType NIL_ON_NULL_LITERAL = new XMLNullHandlingType(NIL_ON_NULL, "NIL_ON_NULL", "NIL_ON_NULL");
 
 	/**
 	 * The '<em><b>NULL ON NULL</b></em>' literal object.
@@ -156,7 +156,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType NULL_ON_NULL_LITERAL = new XMLNullHandlingType(NULL_ON_NULL, "NULL_ON_NULL");
+    public static final XMLNullHandlingType NULL_ON_NULL_LITERAL = new XMLNullHandlingType(NULL_ON_NULL, "NULL_ON_NULL", "NULL_ON_NULL");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -170,7 +170,7 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLNullHandlingType NONE_LITERAL = new XMLNullHandlingType(NONE, "NONE");
+    public static final XMLNullHandlingType NONE_LITERAL = new XMLNullHandlingType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Null Handling Type</b></em>' enumerators.
@@ -197,15 +197,15 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Null Handling Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Null Handling Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLNullHandlingType get(String name) {
+    public static XMLNullHandlingType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLNullHandlingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -213,7 +213,23 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Null Handling Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Null Handling Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLNullHandlingType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLNullHandlingType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Null Handling Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -236,8 +252,8 @@ public final class XMLNullHandlingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLNullHandlingType(int value, String name) {
-		super(value, name);
+	private XMLNullHandlingType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLNullHandlingType

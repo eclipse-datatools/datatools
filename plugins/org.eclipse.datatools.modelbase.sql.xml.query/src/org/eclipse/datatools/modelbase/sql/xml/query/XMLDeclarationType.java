@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLDeclarationType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLDeclarationType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -67,7 +67,7 @@ public final class XMLDeclarationType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLDeclarationType EXCLUDING_XMLDECLARATION_LITERAL = new XMLDeclarationType(EXCLUDING_XMLDECLARATION, "EXCLUDING_XMLDECLARATION");
+    public static final XMLDeclarationType EXCLUDING_XMLDECLARATION_LITERAL = new XMLDeclarationType(EXCLUDING_XMLDECLARATION, "EXCLUDING_XMLDECLARATION", "EXCLUDING_XMLDECLARATION");
 
 	/**
 	 * The '<em><b>INCLUDING XMLDECLARATION</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class XMLDeclarationType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLDeclarationType INCLUDING_XMLDECLARATION_LITERAL = new XMLDeclarationType(INCLUDING_XMLDECLARATION, "INCLUDING_XMLDECLARATION");
+    public static final XMLDeclarationType INCLUDING_XMLDECLARATION_LITERAL = new XMLDeclarationType(INCLUDING_XMLDECLARATION, "INCLUDING_XMLDECLARATION", "INCLUDING_XMLDECLARATION");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class XMLDeclarationType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLDeclarationType NONE_LITERAL = new XMLDeclarationType(NONE, "NONE");
+    public static final XMLDeclarationType NONE_LITERAL = new XMLDeclarationType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Declaration Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class XMLDeclarationType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Declaration Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Declaration Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLDeclarationType get(String name) {
+    public static XMLDeclarationType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLDeclarationType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class XMLDeclarationType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Declaration Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Declaration Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLDeclarationType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLDeclarationType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Declaration Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class XMLDeclarationType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLDeclarationType(int value, String name) {
-		super(value, name);
+	private XMLDeclarationType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLDeclarationType

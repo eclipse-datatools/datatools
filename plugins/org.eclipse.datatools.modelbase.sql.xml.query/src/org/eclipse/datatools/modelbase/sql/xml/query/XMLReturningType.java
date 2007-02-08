@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLReturningType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLReturningType.java,v 1.3 2005/12/22 22:21:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -67,7 +67,7 @@ public final class XMLReturningType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLReturningType RETURNING_CONTENT_LITERAL = new XMLReturningType(RETURNING_CONTENT, "RETURNING_CONTENT");
+    public static final XMLReturningType RETURNING_CONTENT_LITERAL = new XMLReturningType(RETURNING_CONTENT, "RETURNING_CONTENT", "RETURNING_CONTENT");
 
 	/**
 	 * The '<em><b>RETURNING SEQUENCE</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class XMLReturningType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLReturningType RETURNING_SEQUENCE_LITERAL = new XMLReturningType(RETURNING_SEQUENCE, "RETURNING_SEQUENCE");
+    public static final XMLReturningType RETURNING_SEQUENCE_LITERAL = new XMLReturningType(RETURNING_SEQUENCE, "RETURNING_SEQUENCE", "RETURNING_SEQUENCE");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class XMLReturningType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLReturningType NONE_LITERAL = new XMLReturningType(NONE, "NONE");
+    public static final XMLReturningType NONE_LITERAL = new XMLReturningType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Returning Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class XMLReturningType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Returning Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Returning Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLReturningType get(String name) {
+    public static XMLReturningType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLReturningType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class XMLReturningType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Returning Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Returning Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLReturningType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLReturningType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Returning Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class XMLReturningType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLReturningType(int value, String name) {
-		super(value, name);
+	private XMLReturningType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLReturningType

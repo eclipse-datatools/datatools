@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLWhitespaceHandlingType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLWhitespaceHandlingType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -67,7 +67,7 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLWhitespaceHandlingType PRESERE_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(PRESERE_WHITESPACE, "PRESERE_WHITESPACE");
+    public static final XMLWhitespaceHandlingType PRESERE_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(PRESERE_WHITESPACE, "PRESERE_WHITESPACE", "PRESERE_WHITESPACE");
 
 	/**
 	 * The '<em><b>STRIP WHITESPACE</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLWhitespaceHandlingType STRIP_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(STRIP_WHITESPACE, "STRIP_WHITESPACE");
+    public static final XMLWhitespaceHandlingType STRIP_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(STRIP_WHITESPACE, "STRIP_WHITESPACE", "STRIP_WHITESPACE");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLWhitespaceHandlingType NONE_LITERAL = new XMLWhitespaceHandlingType(NONE, "NONE");
+    public static final XMLWhitespaceHandlingType NONE_LITERAL = new XMLWhitespaceHandlingType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Whitespace Handling Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLWhitespaceHandlingType get(String name) {
+    public static XMLWhitespaceHandlingType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLWhitespaceHandlingType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLWhitespaceHandlingType(int value, String name) {
-		super(value, name);
+	private XMLWhitespaceHandlingType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLWhitespaceHandlingType

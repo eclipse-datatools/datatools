@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryFactory.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
+ * $Id: SQLXMLQueryModelFactory.java,v 1.1 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage
  * @generated
  */
-public interface SQLXMLQueryModelFactory extends EFactory{
+public interface SQLXMLQueryModelFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    SQLXMLQueryModelFactory eINSTANCE = new org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelFactoryImpl();
+    SQLXMLQueryModelFactory eINSTANCE = org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>XML Value Function Concat</em>'.

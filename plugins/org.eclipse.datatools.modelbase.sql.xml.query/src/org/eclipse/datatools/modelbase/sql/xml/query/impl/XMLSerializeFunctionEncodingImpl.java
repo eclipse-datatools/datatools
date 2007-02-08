@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunctionEncodingImpl.java,v 1.3 2005/12/19 20:57:49 bpayton Exp $
+ * $Id: XMLSerializeFunctionEncodingImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -71,7 +71,7 @@ public class XMLSerializeFunctionEncodingImpl extends SQLQueryObjectImpl impleme
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLSerializeFunctionEncoding();
+		return SQLXMLQueryModelPackage.Literals.XML_SERIALIZE_FUNCTION_ENCODING;
 	}
 
 	/**
@@ -100,18 +100,12 @@ public class XMLSerializeFunctionEncodingImpl extends SQLQueryObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME:
+				return getEncodingName();
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
@@ -119,124 +113,40 @@ public class XMLSerializeFunctionEncodingImpl extends SQLQueryObjectImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__LABEL:
-				return getLabel();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME:
-				return getEncodingName();
-		}
-		return eDynamicGet(eFeature, resolve);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME:
 				setEncodingName((String)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME:
 				setEncodingName(ENCODING_NAME_EDEFAULT);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME:
 				return ENCODING_NAME_EDEFAULT == null ? encodingName != null : !ENCODING_NAME_EDEFAULT.equals(encodingName);
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

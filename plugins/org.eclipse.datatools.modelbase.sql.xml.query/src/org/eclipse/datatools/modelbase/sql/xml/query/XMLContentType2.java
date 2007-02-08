@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLContentType2.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLContentType2.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -78,7 +78,7 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType2 CONTENT_LITERAL = new XMLContentType2(CONTENT, "CONTENT");
+    public static final XMLContentType2 CONTENT_LITERAL = new XMLContentType2(CONTENT, "CONTENT", "CONTENT");
 
 	/**
 	 * The '<em><b>DOCUMENT</b></em>' literal object.
@@ -92,7 +92,7 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType2 DOCUMENT_LITERAL = new XMLContentType2(DOCUMENT, "DOCUMENT");
+    public static final XMLContentType2 DOCUMENT_LITERAL = new XMLContentType2(DOCUMENT, "DOCUMENT", "DOCUMENT");
 
 	/**
 	 * The '<em><b>SEQUENCE</b></em>' literal object.
@@ -106,7 +106,7 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType2 SEQUENCE_LITERAL = new XMLContentType2(SEQUENCE, "SEQUENCE");
+    public static final XMLContentType2 SEQUENCE_LITERAL = new XMLContentType2(SEQUENCE, "SEQUENCE", "SEQUENCE");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType2 NONE_LITERAL = new XMLContentType2(NONE, "NONE");
+    public static final XMLContentType2 NONE_LITERAL = new XMLContentType2(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Content Type2</b></em>' enumerators.
@@ -145,15 +145,15 @@ public final class XMLContentType2 extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Content Type2</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Content Type2</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLContentType2 get(String name) {
+    public static XMLContentType2 get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLContentType2 result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -161,7 +161,23 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Content Type2</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Content Type2</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLContentType2 getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLContentType2 result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Content Type2</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -182,8 +198,8 @@ public final class XMLContentType2 extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLContentType2(int value, String name) {
-		super(value, name);
+	private XMLContentType2(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLContentType2

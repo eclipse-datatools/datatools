@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLContentType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLContentType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -67,7 +67,7 @@ public final class XMLContentType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType CONTENT_LITERAL = new XMLContentType(CONTENT, "CONTENT");
+    public static final XMLContentType CONTENT_LITERAL = new XMLContentType(CONTENT, "CONTENT", "CONTENT");
 
 	/**
 	 * The '<em><b>DOCUMENT</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class XMLContentType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType DOCUMENT_LITERAL = new XMLContentType(DOCUMENT, "DOCUMENT");
+    public static final XMLContentType DOCUMENT_LITERAL = new XMLContentType(DOCUMENT, "DOCUMENT", "DOCUMENT");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class XMLContentType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLContentType NONE_LITERAL = new XMLContentType(NONE, "NONE");
+    public static final XMLContentType NONE_LITERAL = new XMLContentType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Content Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class XMLContentType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Content Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Content Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLContentType get(String name) {
+    public static XMLContentType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLContentType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class XMLContentType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Content Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Content Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLContentType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLContentType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Content Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class XMLContentType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLContentType(int value, String name) {
-		super(value, name);
+	private XMLContentType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLContentType

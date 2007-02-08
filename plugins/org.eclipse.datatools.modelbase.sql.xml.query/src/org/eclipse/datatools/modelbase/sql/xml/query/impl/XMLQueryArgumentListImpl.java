@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLQueryArgumentListImpl.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLQueryArgumentListImpl.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -96,7 +96,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLQueryArgumentList();
+		return SQLXMLQueryModelPackage.Literals.XML_QUERY_ARGUMENT_LIST;
 	}
 
 	/**
@@ -127,7 +127,17 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 */
     public XMLPredicateExists getPredicateExists() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS) return null;
-		return (XMLPredicateExists)eContainer;
+		return (XMLPredicateExists)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetPredicateExists(XMLPredicateExists newPredicateExists, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newPredicateExists, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, msgs);
+		return msgs;
 	}
 
 	/**
@@ -136,15 +146,15 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 * @generated
 	 */
     public void setPredicateExists(XMLPredicateExists newPredicateExists) {
-		if (newPredicateExists != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS && newPredicateExists != null)) {
+		if (newPredicateExists != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS && newPredicateExists != null)) {
 			if (EcoreUtil.isAncestor(this, newPredicateExists))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newPredicateExists != null)
 				msgs = ((InternalEObject)newPredicateExists).eInverseAdd(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, XMLPredicateExists.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newPredicateExists, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, msgs);
+			msgs = basicSetPredicateExists(newPredicateExists, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -170,7 +180,17 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 */
     public XMLValueFunctionQuery getValueFunctionQuery() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY) return null;
-		return (XMLValueFunctionQuery)eContainer;
+		return (XMLValueFunctionQuery)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY, msgs);
+		return msgs;
 	}
 
 	/**
@@ -179,15 +199,15 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 * @generated
 	 */
     public void setValueFunctionQuery(XMLValueFunctionQuery newValueFunctionQuery) {
-		if (newValueFunctionQuery != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
+		if (newValueFunctionQuery != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY && newValueFunctionQuery != null)) {
 			if (EcoreUtil.isAncestor(this, newValueFunctionQuery))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValueFunctionQuery != null)
 				msgs = ((InternalEObject)newValueFunctionQuery).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_ARG_LIST, XMLValueFunctionQuery.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValueFunctionQuery, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY, msgs);
+			msgs = basicSetValueFunctionQuery(newValueFunctionQuery, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -201,7 +221,17 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 */
     public XMLTableFunction getTableFunction() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION) return null;
-		return (XMLTableFunction)eContainer;
+		return (XMLTableFunction)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTableFunction(XMLTableFunction newTableFunction, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newTableFunction, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, msgs);
+		return msgs;
 	}
 
 	/**
@@ -210,15 +240,15 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 	 * @generated
 	 */
     public void setTableFunction(XMLTableFunction newTableFunction) {
-		if (newTableFunction != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION && newTableFunction != null)) {
+		if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION && newTableFunction != null)) {
 			if (EcoreUtil.isAncestor(this, newTableFunction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newTableFunction != null)
 				msgs = ((InternalEObject)newTableFunction).eInverseAdd(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, XMLTableFunction.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newTableFunction, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, msgs);
+			msgs = basicSetTableFunction(newTableFunction, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -227,102 +257,72 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN:
-					return ((InternalEList)getXqueryArgListChildren()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPredicateExists((XMLPredicateExists)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN:
+				return ((InternalEList)getXqueryArgListChildren()).basicAdd(otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetValueFunctionQuery((XMLValueFunctionQuery)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetTableFunction((XMLTableFunction)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN:
-					return ((InternalEList)getXqueryArgListChildren()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
+				return basicSetPredicateExists(null, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN:
+				return ((InternalEList)getXqueryArgListChildren()).basicRemove(otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
+				return basicSetValueFunctionQuery(null, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
+				return basicSetTableFunction(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, XMLPredicateExists.class, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_ARG_LIST, XMLValueFunctionQuery.class, msgs);
-				case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, XMLTableFunction.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_PREDICATE_EXISTS__XQUERY_ARG_LIST, XMLPredicateExists.class, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_QUERY__XQUERY_ARG_LIST, XMLValueFunctionQuery.class, msgs);
+			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__XQUERY_ARG_LIST, XMLTableFunction.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PASSING_MECHANISM:
 				return getPassingMechanism();
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
@@ -334,33 +334,16 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
 				return getTableFunction();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PASSING_MECHANISM:
 				setPassingMechanism((XMLPassingType)newValue);
 				return;
@@ -378,31 +361,16 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 				setTableFunction((XMLTableFunction)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PASSING_MECHANISM:
 				setPassingMechanism(PASSING_MECHANISM_EDEFAULT);
 				return;
@@ -419,26 +387,16 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 				setTableFunction((XMLTableFunction)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PASSING_MECHANISM:
 				return passingMechanism != PASSING_MECHANISM_EDEFAULT;
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS:
@@ -450,7 +408,7 @@ public class XMLQueryArgumentListImpl extends SQLQueryObjectImpl implements XMLQ
 			case SQLXMLQueryModelPackage.XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION:
 				return getTableFunction() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

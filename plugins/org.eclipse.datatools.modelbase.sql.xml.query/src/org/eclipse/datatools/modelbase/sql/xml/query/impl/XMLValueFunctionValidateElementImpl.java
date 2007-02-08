@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateElementImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLValueFunctionValidateElementImpl.java,v 1.2 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -79,7 +79,7 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLValueFunctionValidateElement();
+		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ELEMENT;
 	}
 
 	/**
@@ -175,7 +175,17 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 	 */
     public XMLValueFunctionValidateAccordingTo getValidateAccordingTo() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO) return null;
-		return (XMLValueFunctionValidateAccordingTo)eContainer;
+		return (XMLValueFunctionValidateAccordingTo)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetValidateAccordingTo(XMLValueFunctionValidateAccordingTo newValidateAccordingTo, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newValidateAccordingTo, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO, msgs);
+		return msgs;
 	}
 
 	/**
@@ -184,15 +194,15 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 	 * @generated
 	 */
     public void setValidateAccordingTo(XMLValueFunctionValidateAccordingTo newValidateAccordingTo) {
-		if (newValidateAccordingTo != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO && newValidateAccordingTo != null)) {
+		if (newValidateAccordingTo != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO && newValidateAccordingTo != null)) {
 			if (EcoreUtil.isAncestor(this, newValidateAccordingTo))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newValidateAccordingTo != null)
 				msgs = ((InternalEObject)newValidateAccordingTo).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALIDATE_ELEMENT, XMLValueFunctionValidateAccordingTo.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newValidateAccordingTo, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO, msgs);
+			msgs = basicSetValidateAccordingTo(newValidateAccordingTo, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -201,94 +211,64 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
-					if (validateElementNamespace != null)
-						msgs = ((InternalEObject)validateElementNamespace).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE, null, msgs);
-					return basicSetValidateElementNamespace((XMLValueFunctionValidateElementNamespace)otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
-					if (validateElementName != null)
-						msgs = ((InternalEObject)validateElementName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME, null, msgs);
-					return basicSetValidateElementName((XMLValueFunctionValidateElementName)otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
+				if (validateElementNamespace != null)
+					msgs = ((InternalEObject)validateElementNamespace).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE, null, msgs);
+				return basicSetValidateElementNamespace((XMLValueFunctionValidateElementNamespace)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
+				if (validateElementName != null)
+					msgs = ((InternalEObject)validateElementName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME, null, msgs);
+				return basicSetValidateElementName((XMLValueFunctionValidateElementName)otherEnd, msgs);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetValidateAccordingTo((XMLValueFunctionValidateAccordingTo)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
-					return basicSetValidateElementNamespace(null, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
-					return basicSetValidateElementName(null, msgs);
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
+				return basicSetValidateElementNamespace(null, msgs);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
+				return basicSetValidateElementName(null, msgs);
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
+				return basicSetValidateAccordingTo(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALIDATE_ELEMENT, XMLValueFunctionValidateAccordingTo.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALIDATE_ELEMENT, XMLValueFunctionValidateAccordingTo.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
 				return getValidateElementNamespace();
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
@@ -296,33 +276,16 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
 				return getValidateAccordingTo();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
 				setValidateElementNamespace((XMLValueFunctionValidateElementNamespace)newValue);
 				return;
@@ -333,31 +296,16 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 				setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
 				setValidateElementNamespace((XMLValueFunctionValidateElementNamespace)null);
 				return;
@@ -368,26 +316,16 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 				setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE:
 				return validateElementNamespace != null;
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME:
@@ -395,7 +333,7 @@ public class XMLValueFunctionValidateElementImpl extends SQLQueryObjectImpl impl
 			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO:
 				return getValidateAccordingTo() != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //XMLValueFunctionValidateElementImpl

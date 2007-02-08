@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryFactoryImpl.java,v 1.2 2005/12/19 20:57:49 bpayton Exp $
+ * $Id: SQLXMLQueryModelFactoryImpl.java,v 1.1 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -12,7 +12,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +25,25 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
  * @generated
  */
 public class SQLXMLQueryModelFactoryImpl extends EFactoryImpl implements SQLXMLQueryModelFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static SQLXMLQueryModelFactory init() {
+		try {
+			SQLXMLQueryModelFactory theSQLXMLQueryModelFactory = (SQLXMLQueryModelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/xml/query/SQLXMLQueryModel.ecore"); 
+			if (theSQLXMLQueryModelFactory != null) {
+				return theSQLXMLQueryModelFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SQLXMLQueryModelFactoryImpl();
+	}
+
 	/**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -101,46 +124,22 @@ public class SQLXMLQueryModelFactoryImpl extends EFactoryImpl implements SQLXMLQ
 	 */
     public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case SQLXMLQueryModelPackage.XML_PASSING_TYPE: {
-				XMLPassingType result = XMLPassingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE: {
-				XMLContentType result = XMLContentType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_DECLARATION_TYPE: {
-				XMLDeclarationType result = XMLDeclarationType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_RETURNING_TYPE: {
-				XMLReturningType result = XMLReturningType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_NULL_HANDLING_TYPE: {
-				XMLNullHandlingType result = XMLNullHandlingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_WHITESPACE_HANDLING_TYPE: {
-				XMLWhitespaceHandlingType result = XMLWhitespaceHandlingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_EMPTY_HANDLING_TYPE: {
-				XMLEmptyHandlingType result = XMLEmptyHandlingType.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
-			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE2: {
-				XMLContentType2 result = XMLContentType2.get(initialValue);
-				if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-				return result;
-			}
+			case SQLXMLQueryModelPackage.XML_PASSING_TYPE:
+				return createXMLPassingTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE:
+				return createXMLContentTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_DECLARATION_TYPE:
+				return createXMLDeclarationTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_RETURNING_TYPE:
+				return createXMLReturningTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_NULL_HANDLING_TYPE:
+				return createXMLNullHandlingTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_WHITESPACE_HANDLING_TYPE:
+				return createXMLWhitespaceHandlingTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_EMPTY_HANDLING_TYPE:
+				return createXMLEmptyHandlingTypeFromString(eDataType, initialValue);
+			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE2:
+				return createXMLContentType2FromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -154,21 +153,21 @@ public class SQLXMLQueryModelFactoryImpl extends EFactoryImpl implements SQLXMLQ
     public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case SQLXMLQueryModelPackage.XML_PASSING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLPassingTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLContentTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_DECLARATION_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLDeclarationTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_RETURNING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLReturningTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_NULL_HANDLING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLNullHandlingTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_WHITESPACE_HANDLING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLWhitespaceHandlingTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_EMPTY_HANDLING_TYPE:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLEmptyHandlingTypeToString(eDataType, instanceValue);
 			case SQLXMLQueryModelPackage.XML_CONTENT_TYPE2:
-				return instanceValue == null ? null : instanceValue.toString();
+				return convertXMLContentType2ToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -682,6 +681,166 @@ public class SQLXMLQueryModelFactoryImpl extends EFactoryImpl implements SQLXMLQ
     public XMLSerializeFunctionEncoding createXMLSerializeFunctionEncoding() {
 		XMLSerializeFunctionEncodingImpl xmlSerializeFunctionEncoding = new XMLSerializeFunctionEncodingImpl();
 		return xmlSerializeFunctionEncoding;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLPassingType createXMLPassingTypeFromString(EDataType eDataType, String initialValue) {
+		XMLPassingType result = XMLPassingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLPassingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLContentType createXMLContentTypeFromString(EDataType eDataType, String initialValue) {
+		XMLContentType result = XMLContentType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLContentTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLDeclarationType createXMLDeclarationTypeFromString(EDataType eDataType, String initialValue) {
+		XMLDeclarationType result = XMLDeclarationType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLDeclarationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLReturningType createXMLReturningTypeFromString(EDataType eDataType, String initialValue) {
+		XMLReturningType result = XMLReturningType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLReturningTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLNullHandlingType createXMLNullHandlingTypeFromString(EDataType eDataType, String initialValue) {
+		XMLNullHandlingType result = XMLNullHandlingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLNullHandlingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLWhitespaceHandlingType createXMLWhitespaceHandlingTypeFromString(EDataType eDataType, String initialValue) {
+		XMLWhitespaceHandlingType result = XMLWhitespaceHandlingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLWhitespaceHandlingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLEmptyHandlingType createXMLEmptyHandlingTypeFromString(EDataType eDataType, String initialValue) {
+		XMLEmptyHandlingType result = XMLEmptyHandlingType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLEmptyHandlingTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public XMLContentType2 createXMLContentType2FromString(EDataType eDataType, String initialValue) {
+		XMLContentType2 result = XMLContentType2.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertXMLContentType2ToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

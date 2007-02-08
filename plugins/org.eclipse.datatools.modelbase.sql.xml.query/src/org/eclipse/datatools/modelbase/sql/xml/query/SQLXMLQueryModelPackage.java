@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryPackage.java,v 1.3 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: SQLXMLQueryModelPackage.java,v 1.1 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface SQLXMLQueryModelPackage extends EPackage{
+public interface SQLXMLQueryModelPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -120,6 +120,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION__LABEL = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -464,7 +473,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION__FUNCTION = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__FUNCTION;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function</em>' class.
+	 * The number of structural features of the '<em>XML Value Function</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -526,6 +535,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_CONCAT__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_CONCAT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -888,7 +906,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST = XML_VALUE_FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Concat</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Concat</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -952,6 +970,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_ITEM__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -970,7 +997,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Namespace Declaration Item</em>' class.
+	 * The number of structural features of the '<em>XML Namespace Declaration Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1034,6 +1061,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_PREFIX__LABEL = XML_NAMESPACE_DECLARATION_ITEM__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_PREFIX__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1061,7 +1097,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_PREFIX__PREFIX = XML_NAMESPACE_DECLARATION_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Namespace Declaration Prefix</em>' class.
+	 * The number of structural features of the '<em>XML Namespace Declaration Prefix</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1125,6 +1161,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_DEFAULT__LABEL = XML_NAMESPACE_DECLARATION_ITEM__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_DEFAULT__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1152,7 +1197,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT = XML_NAMESPACE_DECLARATION_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Namespace Declaration Default</em>' class.
+	 * The number of structural features of the '<em>XML Namespace Declaration Default</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1214,6 +1259,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_ATTRIBUTE_DECLARATION_ITEM__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_ATTRIBUTE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -1531,7 +1585,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Attribute Declaration Item</em>' class.
+	 * The number of structural features of the '<em>XML Attribute Declaration Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1593,6 +1647,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_ELEMENT__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -1982,7 +2045,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST = XML_VALUE_FUNCTION_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Element</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Element</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -2044,6 +2107,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -2361,7 +2433,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Element Content Item</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Element Content Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -2423,6 +2495,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_FOREST__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_FOREST__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -2803,7 +2884,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_FOREST__NAMESPACES_DECL = XML_VALUE_FUNCTION_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Forest</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Forest</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -2865,6 +2946,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_COMMENT__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_COMMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -3227,7 +3317,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT = XML_VALUE_FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Comment</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Comment</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -3289,6 +3379,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_DOCUMENT__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_DOCUMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -3651,7 +3750,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT = XML_VALUE_FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Document</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Document</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -3713,6 +3812,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_PARSE__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PARSE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -4084,7 +4192,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_PARSE__PARSE_CONTENT = XML_VALUE_FUNCTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Parse</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Parse</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -4146,6 +4254,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_PI__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PI__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -4517,7 +4634,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_PI__PI_CONTENT = XML_VALUE_FUNCTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function PI</em>' class.
+	 * The number of structural features of the '<em>XML Value Function PI</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -4579,6 +4696,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_QUERY__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_QUERY__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -4959,7 +5085,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING = XML_VALUE_FUNCTION_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Query</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Query</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -5021,6 +5147,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_TEXT__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_TEXT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -5383,7 +5518,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_TEXT__TEXT_CONTENT = XML_VALUE_FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Text</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Text</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -5445,6 +5580,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_VALIDATE__LABEL = XML_VALUE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -5816,7 +5960,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO = XML_VALUE_FUNCTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -5878,6 +6022,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_EXPRESSION_CAST__LABEL = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_EXPRESSION_CAST__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -6195,7 +6348,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM = SQLQueryModelPackage.VALUE_EXPRESSION_CAST_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Expression Cast</em>' class.
+	 * The number of structural features of the '<em>XML Value Expression Cast</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -6257,6 +6410,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_PREDICATE__LABEL = SQLQueryModelPackage.PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE__COMMENTS = SQLQueryModelPackage.PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6376,7 +6538,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_PREDICATE__SELECTIVITY_VALUE = SQLQueryModelPackage.PREDICATE__SELECTIVITY_VALUE;
 
 	/**
-	 * The number of structural features of the the '<em>XML Predicate</em>' class.
+	 * The number of structural features of the '<em>XML Predicate</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -6438,6 +6600,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_PREDICATE_CONTENT__LABEL = XML_PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_CONTENT__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6557,7 +6728,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_PREDICATE_CONTENT__SELECTIVITY_VALUE = XML_PREDICATE__SELECTIVITY_VALUE;
 
 	/**
-	 * The number of structural features of the the '<em>XML Predicate Content</em>' class.
+	 * The number of structural features of the '<em>XML Predicate Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -6619,6 +6790,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_PREDICATE_DOCUMENT__LABEL = XML_PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_DOCUMENT__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6738,7 +6918,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_PREDICATE_DOCUMENT__SELECTIVITY_VALUE = XML_PREDICATE__SELECTIVITY_VALUE;
 
 	/**
-	 * The number of structural features of the the '<em>XML Predicate Document</em>' class.
+	 * The number of structural features of the '<em>XML Predicate Document</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -6800,6 +6980,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_PREDICATE_EXISTS__LABEL = XML_PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_EXISTS__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6937,7 +7126,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_PREDICATE_EXISTS__XQUERY_ARG_LIST = XML_PREDICATE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Predicate Exists</em>' class.
+	 * The number of structural features of the '<em>XML Predicate Exists</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -6999,6 +7188,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_PREDICATE_VALID__LABEL = XML_PREDICATE__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_VALID__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -7118,7 +7316,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_PREDICATE_VALID__SELECTIVITY_VALUE = XML_PREDICATE__SELECTIVITY_VALUE;
 
 	/**
-	 * The number of structural features of the the '<em>XML Predicate Valid</em>' class.
+	 * The number of structural features of the '<em>XML Predicate Valid</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -7182,6 +7380,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_QUERY_EXPRESSION__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_EXPRESSION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Xquery Expr Content</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7209,7 +7416,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Query Expression</em>' class.
+	 * The number of structural features of the '<em>XML Query Expression</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -7273,6 +7480,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_QUERY_ARGUMENT_LIST__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_ARGUMENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Passing Mechanism</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7318,7 +7534,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>XML Query Argument List</em>' class.
+	 * The number of structural features of the '<em>XML Query Argument List</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -7380,6 +7596,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_QUERY_ARGUMENT_ITEM__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_ARGUMENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7706,7 +7931,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Query Argument Item</em>' class.
+	 * The number of structural features of the '<em>XML Query Argument Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -7768,6 +7993,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_SERIALIZE_FUNCTION__LABEL = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8157,7 +8391,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION_FEATURE_COUNT + 4;
 
 	/**
-	 * The number of structural features of the the '<em>XML Serialize Function</em>' class.
+	 * The number of structural features of the '<em>XML Serialize Function</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -8219,6 +8453,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_SERIALIZE_FUNCTION_TARGET__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION_TARGET__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8536,7 +8779,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_SERIALIZE_FUNCTION_TARGET__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Serialize Function Target</em>' class.
+	 * The number of structural features of the '<em>XML Serialize Function Target</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -8598,6 +8841,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_AGGREGATE_FUNCTION__LABEL = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_AGGREGATE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8960,7 +9212,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Aggregate Function</em>' class.
+	 * The number of structural features of the '<em>XML Aggregate Function</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -9022,6 +9274,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9339,7 +9600,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Concat Content Item</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Concat Content Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -9401,6 +9662,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_COMMENT_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_COMMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9718,7 +9988,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Comment Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Comment Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -9780,6 +10050,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10097,7 +10376,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Document Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Document Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -10161,6 +10440,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_AGGREGATE_SORT_SPECIFICATION__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_AGGREGATE_SORT_SPECIFICATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Aggregate Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10179,7 +10467,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Aggregate Sort Specification</em>' class.
+	 * The number of structural features of the '<em>XML Aggregate Sort Specification</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -10241,6 +10529,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10558,7 +10855,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Forest Content Item</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Forest Content Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -10620,6 +10917,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_PARSE_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PARSE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10937,7 +11243,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Parse Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Parse Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -10999,6 +11305,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_PI_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PI_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -11316,7 +11631,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_PI_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function PI Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function PI Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -11378,6 +11693,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_TABLE_FUNCTION__LABEL = SQLQueryModelPackage.TABLE_FUNCTION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_FUNCTION__COMMENTS = SQLQueryModelPackage.TABLE_FUNCTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -11488,7 +11812,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_FUNCTION__NAMESPACES_DECL = SQLQueryModelPackage.TABLE_FUNCTION_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>XML Table Function</em>' class.
+	 * The number of structural features of the '<em>XML Table Function</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -11550,6 +11874,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_TEXT_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_TEXT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -11867,7 +12200,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Text Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Text Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -11929,6 +12262,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_VALUE_FUNCTION_VALIDATE_CONTENT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -12246,7 +12588,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_EXPR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate Content</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate Content</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12310,6 +12652,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_ITEM__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12319,7 +12670,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Table Column Definition Item</em>' class.
+	 * The number of structural features of the '<em>XML Table Column Definition Item</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12383,6 +12734,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL = XML_TABLE_COLUMN_DEFINITION_ITEM__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_REGULAR__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12428,7 +12788,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT = XML_TABLE_COLUMN_DEFINITION_ITEM_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>XML Table Column Definition Regular</em>' class.
+	 * The number of structural features of the '<em>XML Table Column Definition Regular</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12492,6 +12852,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__LABEL = XML_TABLE_COLUMN_DEFINITION_ITEM__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12501,7 +12870,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__TABLE_FUNCTION = XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION;
 
 	/**
-	 * The number of structural features of the the '<em>XML Table Column Definition Ordinality</em>' class.
+	 * The number of structural features of the '<em>XML Table Column Definition Ordinality</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12565,6 +12934,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12583,7 +12961,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALIDATE_ELEMENT = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate According To</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate According To</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12647,6 +13025,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__LABEL = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12692,7 +13079,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate According To URI</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate According To URI</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12756,6 +13143,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__LABEL = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12792,7 +13188,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate According To Identifier</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate According To Identifier</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12856,6 +13252,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Validate Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12865,7 +13270,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__VALIDATE_ELEMENT = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate Element Name</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate Element Name</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -12929,6 +13334,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>No Namespace</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12956,7 +13370,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate Element Namespace</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate Element Namespace</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13020,6 +13434,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACES_DECLARATION__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACES_DECLARATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Namespace Decltem List</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13056,7 +13479,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_NAMESPACES_DECLARATION__TABLE_FUNCTION = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of structural features of the the '<em>XML Namespaces Declaration</em>' class.
+	 * The number of structural features of the '<em>XML Namespaces Declaration</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13093,7 +13516,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM = 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Attributes Declaration</em>' class.
+	 * The number of structural features of the '<em>XML Attributes Declaration</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13157,6 +13580,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Null Handling Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13184,7 +13616,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Element Content List</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Element Content List</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13248,6 +13680,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_QUERY_RETURNING__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_QUERY_RETURNING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Returning Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13275,7 +13716,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Query Returning</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Query Returning</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13339,6 +13780,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Validate Element Namespace</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13366,7 +13816,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the the '<em>XML Value Function Validate Element</em>' class.
+	 * The number of structural features of the '<em>XML Value Function Validate Element</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13428,6 +13878,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @ordered
 	 */
     int XML_TABLE_COLUMN_DEFINITION_DEFAULT__LABEL = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_DEFAULT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -13745,7 +14204,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the the '<em>XML Table Column Definition Default</em>' class.
+	 * The number of structural features of the '<em>XML Table Column Definition Default</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -13809,6 +14268,15 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_SERIALIZE_FUNCTION_ENCODING__LABEL = SQLQueryModelPackage.SQL_QUERY_OBJECT__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION_ENCODING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Encoding Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13818,7 +14286,7 @@ public interface SQLXMLQueryModelPackage extends EPackage{
     int XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME = SQLQueryModelPackage.SQL_QUERY_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>XML Serialize Function Encoding</em>' class.
+	 * The number of structural features of the '<em>XML Serialize Function Encoding</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -15812,5 +16280,1566 @@ public interface SQLXMLQueryModelPackage extends EPackage{
 	 * @generated
 	 */
 	SQLXMLQueryModelFactory getSQLXMLQueryModelFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatImpl <em>XML Value Function Concat</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionConcat()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_CONCAT = eINSTANCE.getXMLValueFunctionConcat();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_CONCAT__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionConcat_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Concat Content List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_CONCAT__CONCAT_CONTENT_LIST = eINSTANCE.getXMLValueFunctionConcat_ConcatContentList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionImpl <em>XML Value Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunction()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION = eINSTANCE.getXMLValueFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationPrefixImpl <em>XML Namespace Declaration Prefix</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationPrefixImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLNamespaceDeclarationPrefix()
+		 * @generated
+		 */
+		EClass XML_NAMESPACE_DECLARATION_PREFIX = eINSTANCE.getXMLNamespaceDeclarationPrefix();
+
+		/**
+		 * The meta object literal for the '<em><b>Prefix</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_NAMESPACE_DECLARATION_PREFIX__PREFIX = eINSTANCE.getXMLNamespaceDeclarationPrefix_Prefix();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationDefaultImpl <em>XML Namespace Declaration Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLNamespaceDeclarationDefault()
+		 * @generated
+		 */
+		EClass XML_NAMESPACE_DECLARATION_DEFAULT = eINSTANCE.getXMLNamespaceDeclarationDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>No Default</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_NAMESPACE_DECLARATION_DEFAULT__NO_DEFAULT = eINSTANCE.getXMLNamespaceDeclarationDefault_NoDefault();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAttributeDeclarationItemImpl <em>XML Attribute Declaration Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAttributeDeclarationItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLAttributeDeclarationItem()
+		 * @generated
+		 */
+		EClass XML_ATTRIBUTE_DECLARATION_ITEM = eINSTANCE.getXMLAttributeDeclarationItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_ATTRIBUTE_DECLARATION_ITEM__VALUE_EXPR = eINSTANCE.getXMLAttributeDeclarationItem_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes Decl</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_ATTRIBUTE_DECLARATION_ITEM__ATTRIBUTES_DECL = eINSTANCE.getXMLAttributeDeclarationItem_AttributesDecl();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementImpl <em>XML Value Function Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionElement()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_ELEMENT = eINSTANCE.getXMLValueFunctionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_ELEMENT__ELEMENT_NAME = eINSTANCE.getXMLValueFunctionElement_ElementName();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_ELEMENT__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionElement_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespaces Decl</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT__NAMESPACES_DECL = eINSTANCE.getXMLValueFunctionElement_NamespacesDecl();
+
+		/**
+		 * The meta object literal for the '<em><b>Attributes Decl</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT__ATTRIBUTES_DECL = eINSTANCE.getXMLValueFunctionElement_AttributesDecl();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Content List</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT__ELEMENT_CONTENT_LIST = eINSTANCE.getXMLValueFunctionElement_ElementContentList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationItemImpl <em>XML Namespace Declaration Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespaceDeclarationItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLNamespaceDeclarationItem()
+		 * @generated
+		 */
+		EClass XML_NAMESPACE_DECLARATION_ITEM = eINSTANCE.getXMLNamespaceDeclarationItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_NAMESPACE_DECLARATION_ITEM__URI = eINSTANCE.getXMLNamespaceDeclarationItem_Uri();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespaces Decl</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_NAMESPACE_DECLARATION_ITEM__NAMESPACES_DECL = eINSTANCE.getXMLNamespaceDeclarationItem_NamespacesDecl();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementContentItemImpl <em>XML Value Function Element Content Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementContentItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionElementContentItem()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM = eINSTANCE.getXMLValueFunctionElementContentItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__VALUE_EXPR = eINSTANCE.getXMLValueFunctionElementContentItem_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Content List</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__ELEMENT_CONTENT_LIST = eINSTANCE.getXMLValueFunctionElementContentItem_ElementContentList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionForestImpl <em>XML Value Function Forest</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionForestImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionForest()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_FOREST = eINSTANCE.getXMLValueFunctionForest();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Handling Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_FOREST__NULL_HANDLING_OPTION = eINSTANCE.getXMLValueFunctionForest_NullHandlingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_FOREST__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionForest_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Forest Content List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_FOREST__FOREST_CONTENT_LIST = eINSTANCE.getXMLValueFunctionForest_ForestContentList();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespaces Decl</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_FOREST__NAMESPACES_DECL = eINSTANCE.getXMLValueFunctionForest_NamespacesDecl();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentImpl <em>XML Value Function Comment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionComment()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_COMMENT = eINSTANCE.getXMLValueFunctionComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_COMMENT__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionComment_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Comment Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_COMMENT__COMMENT_CONTENT = eINSTANCE.getXMLValueFunctionComment_CommentContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionDocumentImpl <em>XML Value Function Document</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionDocumentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionDocument()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_DOCUMENT = eINSTANCE.getXMLValueFunctionDocument();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionDocument_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Document Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT = eINSTANCE.getXMLValueFunctionDocument_DocumentContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionParseImpl <em>XML Value Function Parse</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionParseImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionParse()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_PARSE = eINSTANCE.getXMLValueFunctionParse();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_PARSE__CONTENT_OPTION = eINSTANCE.getXMLValueFunctionParse_ContentOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Whitespace Handling Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_PARSE__WHITESPACE_HANDLING_OPTION = eINSTANCE.getXMLValueFunctionParse_WhitespaceHandlingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Parse Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PARSE__PARSE_CONTENT = eINSTANCE.getXMLValueFunctionParse_ParseContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionPIImpl <em>XML Value Function PI</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionPIImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionPI()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_PI = eINSTANCE.getXMLValueFunctionPI();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_PI__TARGET_NAME = eINSTANCE.getXMLValueFunctionPI_TargetName();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_PI__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionPI_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>PI Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PI__PI_CONTENT = eINSTANCE.getXMLValueFunctionPI_PIContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionQueryImpl <em>XML Value Function Query</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionQueryImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionQuery()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_QUERY = eINSTANCE.getXMLValueFunctionQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Empty Handling Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_QUERY__EMPTY_HANDLING_OPTION = eINSTANCE.getXMLValueFunctionQuery_EmptyHandlingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_QUERY__XQUERY_EXPR = eINSTANCE.getXMLValueFunctionQuery_XqueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Arg List</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_QUERY__XQUERY_ARG_LIST = eINSTANCE.getXMLValueFunctionQuery_XqueryArgList();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Returning</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_QUERY__QUERY_RETURNING = eINSTANCE.getXMLValueFunctionQuery_QueryReturning();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionTextImpl <em>XML Value Function Text</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionTextImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionText()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_TEXT = eINSTANCE.getXMLValueFunctionText();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_TEXT__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionText_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Text Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_TEXT__TEXT_CONTENT = eINSTANCE.getXMLValueFunctionText_TextContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateImpl <em>XML Value Function Validate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidate()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE = eINSTANCE.getXMLValueFunctionValidate();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION = eINSTANCE.getXMLValueFunctionValidate_ContentOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Content</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT = eINSTANCE.getXMLValueFunctionValidate_ValidateContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate According To</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO = eINSTANCE.getXMLValueFunctionValidate_ValidateAccordingTo();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueExpressionCastImpl <em>XML Value Expression Cast</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueExpressionCastImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueExpressionCast()
+		 * @generated
+		 */
+		EClass XML_VALUE_EXPRESSION_CAST = eINSTANCE.getXMLValueExpressionCast();
+
+		/**
+		 * The meta object literal for the '<em><b>Passing Mechanism</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_EXPRESSION_CAST__PASSING_MECHANISM = eINSTANCE.getXMLValueExpressionCast_PassingMechanism();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateImpl <em>XML Predicate</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPredicate()
+		 * @generated
+		 */
+		EClass XML_PREDICATE = eINSTANCE.getXMLPredicate();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateContentImpl <em>XML Predicate Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPredicateContent()
+		 * @generated
+		 */
+		EClass XML_PREDICATE_CONTENT = eINSTANCE.getXMLPredicateContent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateDocumentImpl <em>XML Predicate Document</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateDocumentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPredicateDocument()
+		 * @generated
+		 */
+		EClass XML_PREDICATE_DOCUMENT = eINSTANCE.getXMLPredicateDocument();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateExistsImpl <em>XML Predicate Exists</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateExistsImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPredicateExists()
+		 * @generated
+		 */
+		EClass XML_PREDICATE_EXISTS = eINSTANCE.getXMLPredicateExists();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_PREDICATE_EXISTS__XQUERY_EXPR = eINSTANCE.getXMLPredicateExists_XqueryExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Arg List</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_PREDICATE_EXISTS__XQUERY_ARG_LIST = eINSTANCE.getXMLPredicateExists_XqueryArgList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateValidImpl <em>XML Predicate Valid</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLPredicateValidImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPredicateValid()
+		 * @generated
+		 */
+		EClass XML_PREDICATE_VALID = eINSTANCE.getXMLPredicateValid();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryExpressionImpl <em>XML Query Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryExpressionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLQueryExpression()
+		 * @generated
+		 */
+		EClass XML_QUERY_EXPRESSION = eINSTANCE.getXMLQueryExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Expr Content</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_QUERY_EXPRESSION__XQUERY_EXPR_CONTENT = eINSTANCE.getXMLQueryExpression_XqueryExprContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Exists</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_EXPRESSION__PREDICATE_EXISTS = eINSTANCE.getXMLQueryExpression_PredicateExists();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_EXPRESSION__VALUE_FUNCTION_QUERY = eINSTANCE.getXMLQueryExpression_ValueFunctionQuery();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentListImpl <em>XML Query Argument List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentListImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLQueryArgumentList()
+		 * @generated
+		 */
+		EClass XML_QUERY_ARGUMENT_LIST = eINSTANCE.getXMLQueryArgumentList();
+
+		/**
+		 * The meta object literal for the '<em><b>Passing Mechanism</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_QUERY_ARGUMENT_LIST__PASSING_MECHANISM = eINSTANCE.getXMLQueryArgumentList_PassingMechanism();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Exists</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_LIST__PREDICATE_EXISTS = eINSTANCE.getXMLQueryArgumentList_PredicateExists();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Arg List Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_LIST__XQUERY_ARG_LIST_CHILDREN = eINSTANCE.getXMLQueryArgumentList_XqueryArgListChildren();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_LIST__VALUE_FUNCTION_QUERY = eINSTANCE.getXMLQueryArgumentList_ValueFunctionQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_LIST__TABLE_FUNCTION = eINSTANCE.getXMLQueryArgumentList_TableFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentItemImpl <em>XML Query Argument Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLQueryArgumentItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLQueryArgumentItem()
+		 * @generated
+		 */
+		EClass XML_QUERY_ARGUMENT_ITEM = eINSTANCE.getXMLQueryArgumentItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Passing Mechanism</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_QUERY_ARGUMENT_ITEM__PASSING_MECHANISM = eINSTANCE.getXMLQueryArgumentItem_PassingMechanism();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Arg List</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_ITEM__XQUERY_ARG_LIST = eINSTANCE.getXMLQueryArgumentItem_XqueryArgList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_QUERY_ARGUMENT_ITEM__VALUE_EXPR = eINSTANCE.getXMLQueryArgumentItem_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionImpl <em>XML Serialize Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLSerializeFunction()
+		 * @generated
+		 */
+		EClass XML_SERIALIZE_FUNCTION = eINSTANCE.getXMLSerializeFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Content Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_SERIALIZE_FUNCTION__CONTENT_OPTION = eINSTANCE.getXMLSerializeFunction_ContentOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Serialize Version</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION = eINSTANCE.getXMLSerializeFunction_SerializeVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>Declaration Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_SERIALIZE_FUNCTION__DECLARATION_OPTION = eINSTANCE.getXMLSerializeFunction_DeclarationOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Serialize Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET = eINSTANCE.getXMLSerializeFunction_SerializeTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Serialize Encoding</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING = eINSTANCE.getXMLSerializeFunction_SerializeEncoding();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionTargetImpl <em>XML Serialize Function Target</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionTargetImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLSerializeFunctionTarget()
+		 * @generated
+		 */
+		EClass XML_SERIALIZE_FUNCTION_TARGET = eINSTANCE.getXMLSerializeFunctionTarget();
+
+		/**
+		 * The meta object literal for the '<em><b>Serialize Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION = eINSTANCE.getXMLSerializeFunctionTarget_SerializeFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_SERIALIZE_FUNCTION_TARGET__VALUE_EXPR = eINSTANCE.getXMLSerializeFunctionTarget_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAggregateFunctionImpl <em>XML Aggregate Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAggregateFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLAggregateFunction()
+		 * @generated
+		 */
+		EClass XML_AGGREGATE_FUNCTION = eINSTANCE.getXMLAggregateFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_AGGREGATE_FUNCTION__RETURNING_OPTION = eINSTANCE.getXMLAggregateFunction_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Sort Spec List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST = eINSTANCE.getXMLAggregateFunction_SortSpecList();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatContentItemImpl <em>XML Value Function Concat Content Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionConcatContentItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionConcatContentItem()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM = eINSTANCE.getXMLValueFunctionConcatContentItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Concat</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_FUNCTION_CONCAT = eINSTANCE.getXMLValueFunctionConcatContentItem_ValueFunctionConcat();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__VALUE_EXPR = eINSTANCE.getXMLValueFunctionConcatContentItem_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentContentImpl <em>XML Value Function Comment Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionCommentContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionCommentContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_COMMENT_CONTENT = eINSTANCE.getXMLValueFunctionCommentContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Comment</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_FUNCTION_COMMENT = eINSTANCE.getXMLValueFunctionCommentContent_ValueFunctionComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_COMMENT_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionCommentContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionDocumentContentImpl <em>XML Value Function Document Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionDocumentContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionDocumentContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_DOCUMENT_CONTENT = eINSTANCE.getXMLValueFunctionDocumentContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Document</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT = eINSTANCE.getXMLValueFunctionDocumentContent_ValueFunctionDocument();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionDocumentContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAggregateSortSpecificationImpl <em>XML Aggregate Sort Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAggregateSortSpecificationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLAggregateSortSpecification()
+		 * @generated
+		 */
+		EClass XML_AGGREGATE_SORT_SPECIFICATION = eINSTANCE.getXMLAggregateSortSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Aggregate Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION = eINSTANCE.getXMLAggregateSortSpecification_AggregateFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Order By Spec</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC = eINSTANCE.getXMLAggregateSortSpecification_OrderBySpec();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionForestContentItemImpl <em>XML Value Function Forest Content Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionForestContentItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionForestContentItem()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM = eINSTANCE.getXMLValueFunctionForestContentItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Forest</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_FUNCTION_FOREST = eINSTANCE.getXMLValueFunctionForestContentItem_ValueFunctionForest();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__VALUE_EXPR = eINSTANCE.getXMLValueFunctionForestContentItem_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionParseContentImpl <em>XML Value Function Parse Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionParseContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionParseContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_PARSE_CONTENT = eINSTANCE.getXMLValueFunctionParseContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Parse</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_FUNCTION_PARSE = eINSTANCE.getXMLValueFunctionParseContent_ValueFunctionParse();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PARSE_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionParseContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionPIContentImpl <em>XML Value Function PI Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionPIContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionPIContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_PI_CONTENT = eINSTANCE.getXMLValueFunctionPIContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function PI</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI = eINSTANCE.getXMLValueFunctionPIContent_ValueFunctionPI();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_PI_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionPIContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableFunctionImpl <em>XML Table Function</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableFunctionImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLTableFunction()
+		 * @generated
+		 */
+		EClass XML_TABLE_FUNCTION = eINSTANCE.getXMLTableFunction();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Row Pattern</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_TABLE_FUNCTION__TABLE_ROW_PATTERN = eINSTANCE.getXMLTableFunction_TableRowPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Xquery Arg List</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_FUNCTION__XQUERY_ARG_LIST = eINSTANCE.getXMLTableFunction_XqueryArgList();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Def List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_FUNCTION__COLUMN_DEF_LIST = eINSTANCE.getXMLTableFunction_ColumnDefList();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespaces Decl</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_FUNCTION__NAMESPACES_DECL = eINSTANCE.getXMLTableFunction_NamespacesDecl();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionTextContentImpl <em>XML Value Function Text Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionTextContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionTextContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_TEXT_CONTENT = eINSTANCE.getXMLValueFunctionTextContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Text</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_FUNCTION_TEXT = eINSTANCE.getXMLValueFunctionTextContent_ValueFunctionText();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_TEXT_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionTextContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateContentImpl <em>XML Value Function Validate Content</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateContentImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateContent()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_CONTENT = eINSTANCE.getXMLValueFunctionValidateContent();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Validate</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_FUNCTION_VALIDATE = eINSTANCE.getXMLValueFunctionValidateContent_ValueFunctionValidate();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_EXPR = eINSTANCE.getXMLValueFunctionValidateContent_ValueExpr();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionItemImpl <em>XML Table Column Definition Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionItemImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLTableColumnDefinitionItem()
+		 * @generated
+		 */
+		EClass XML_TABLE_COLUMN_DEFINITION_ITEM = eINSTANCE.getXMLTableColumnDefinitionItem();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION = eINSTANCE.getXMLTableColumnDefinitionItem_TableFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionRegularImpl <em>XML Table Column Definition Regular</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionRegularImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLTableColumnDefinitionRegular()
+		 * @generated
+		 */
+		EClass XML_TABLE_COLUMN_DEFINITION_REGULAR = eINSTANCE.getXMLTableColumnDefinitionRegular();
+
+		/**
+		 * The meta object literal for the '<em><b>Data Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE = eINSTANCE.getXMLTableColumnDefinitionRegular_DataType();
+
+		/**
+		 * The meta object literal for the '<em><b>Passing Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION = eINSTANCE.getXMLTableColumnDefinitionRegular_PassingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Column Pattern</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_COLUMN_PATTERN = eINSTANCE.getXMLTableColumnDefinitionRegular_TableColumnPattern();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Definition Default</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT = eINSTANCE.getXMLTableColumnDefinitionRegular_ColumnDefinitionDefault();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionOrdinalityImpl <em>XML Table Column Definition Ordinality</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionOrdinalityImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLTableColumnDefinitionOrdinality()
+		 * @generated
+		 */
+		EClass XML_TABLE_COLUMN_DEFINITION_ORDINALITY = eINSTANCE.getXMLTableColumnDefinitionOrdinality();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToImpl <em>XML Value Function Validate According To</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateAccordingTo()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO = eINSTANCE.getXMLValueFunctionValidateAccordingTo();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Validate</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALUE_FUNCTION_VALIDATE = eINSTANCE.getXMLValueFunctionValidateAccordingTo_ValueFunctionValidate();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Element</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALIDATE_ELEMENT = eINSTANCE.getXMLValueFunctionValidateAccordingTo_ValidateElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToURIImpl <em>XML Value Function Validate According To URI</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToURIImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateAccordingToURI()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI = eINSTANCE.getXMLValueFunctionValidateAccordingToURI();
+
+		/**
+		 * The meta object literal for the '<em><b>No Namespace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE = eINSTANCE.getXMLValueFunctionValidateAccordingToURI_NoNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Namespace URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI = eINSTANCE.getXMLValueFunctionValidateAccordingToURI_TargetNamespaceURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Location URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI = eINSTANCE.getXMLValueFunctionValidateAccordingToURI_SchemaLocationURI();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToIdentifierImpl <em>XML Value Function Validate According To Identifier</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateAccordingToIdentifierImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateAccordingToIdentifier()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER = eINSTANCE.getXMLValueFunctionValidateAccordingToIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Schema Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__SCHEMA_NAME = eINSTANCE.getXMLValueFunctionValidateAccordingToIdentifier_SchemaName();
+
+		/**
+		 * The meta object literal for the '<em><b>Registered XML Schema Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__REGISTERED_XML_SCHEMA_NAME = eINSTANCE.getXMLValueFunctionValidateAccordingToIdentifier_RegisteredXMLSchemaName();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementNameImpl <em>XML Value Function Validate Element Name</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementNameImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateElementName()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME = eINSTANCE.getXMLValueFunctionValidateElementName();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__VALIDATE_ELEMENT = eINSTANCE.getXMLValueFunctionValidateElementName_ValidateElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementNamespaceImpl <em>XML Value Function Validate Element Namespace</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementNamespaceImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateElementNamespace()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE = eINSTANCE.getXMLValueFunctionValidateElementNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>No Namespace</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__NO_NAMESPACE = eINSTANCE.getXMLValueFunctionValidateElementNamespace_NoNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace URI</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__NAMESPACE_URI = eINSTANCE.getXMLValueFunctionValidateElementNamespace_NamespaceURI();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__VALIDATE_ELEMENT = eINSTANCE.getXMLValueFunctionValidateElementNamespace_ValidateElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespacesDeclarationImpl <em>XML Namespaces Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLNamespacesDeclarationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLNamespacesDeclaration()
+		 * @generated
+		 */
+		EClass XML_NAMESPACES_DECLARATION = eINSTANCE.getXMLNamespacesDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Namespace Decltem List</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_NAMESPACES_DECLARATION__NAMESPACE_DECLTEM_LIST = eINSTANCE.getXMLNamespacesDeclaration_NamespaceDecltemList();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_ELEMENT = eINSTANCE.getXMLNamespacesDeclaration_ValueFunctionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Forest</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_NAMESPACES_DECLARATION__VALUE_FUNCTION_FOREST = eINSTANCE.getXMLNamespacesDeclaration_ValueFunctionForest();
+
+		/**
+		 * The meta object literal for the '<em><b>Table Function</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_NAMESPACES_DECLARATION__TABLE_FUNCTION = eINSTANCE.getXMLNamespacesDeclaration_TableFunction();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAttributesDeclarationImpl <em>XML Attributes Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLAttributesDeclarationImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLAttributesDeclaration()
+		 * @generated
+		 */
+		EClass XML_ATTRIBUTES_DECLARATION = eINSTANCE.getXMLAttributesDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_ATTRIBUTES_DECLARATION__VALUE_FUNCTION_ELEMENT = eINSTANCE.getXMLAttributesDeclaration_ValueFunctionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Attribute Decl Item</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_ATTRIBUTES_DECLARATION__ATTRIBUTE_DECL_ITEM = eINSTANCE.getXMLAttributesDeclaration_AttributeDeclItem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementContentListImpl <em>XML Value Function Element Content List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionElementContentListImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionElementContentList()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST = eINSTANCE.getXMLValueFunctionElementContentList();
+
+		/**
+		 * The meta object literal for the '<em><b>Null Handling Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__NULL_HANDLING_OPTION = eINSTANCE.getXMLValueFunctionElementContentList_NullHandlingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__VALUE_FUNCTION_ELEMENT = eINSTANCE.getXMLValueFunctionElementContentList_ValueFunctionElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Content List Children</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__ELEMENT_CONTENT_LIST_CHILDREN = eINSTANCE.getXMLValueFunctionElementContentList_ElementContentListChildren();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionQueryReturningImpl <em>XML Value Function Query Returning</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionQueryReturningImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionQueryReturning()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_QUERY_RETURNING = eINSTANCE.getXMLValueFunctionQueryReturning();
+
+		/**
+		 * The meta object literal for the '<em><b>Returning Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_QUERY_RETURNING__RETURNING_OPTION = eINSTANCE.getXMLValueFunctionQueryReturning_ReturningOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Passing Option</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_VALUE_FUNCTION_QUERY_RETURNING__PASSING_OPTION = eINSTANCE.getXMLValueFunctionQueryReturning_PassingOption();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Function Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_QUERY_RETURNING__VALUE_FUNCTION_QUERY = eINSTANCE.getXMLValueFunctionQueryReturning_ValueFunctionQuery();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementImpl <em>XML Value Function Validate Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLValueFunctionValidateElementImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLValueFunctionValidateElement()
+		 * @generated
+		 */
+		EClass XML_VALUE_FUNCTION_VALIDATE_ELEMENT = eINSTANCE.getXMLValueFunctionValidateElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Element Namespace</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAMESPACE = eINSTANCE.getXMLValueFunctionValidateElement_ValidateElementNamespace();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate Element Name</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ELEMENT_NAME = eINSTANCE.getXMLValueFunctionValidateElement_ValidateElementName();
+
+		/**
+		 * The meta object literal for the '<em><b>Validate According To</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_VALUE_FUNCTION_VALIDATE_ELEMENT__VALIDATE_ACCORDING_TO = eINSTANCE.getXMLValueFunctionValidateElement_ValidateAccordingTo();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionDefaultImpl <em>XML Table Column Definition Default</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLTableColumnDefinitionDefaultImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLTableColumnDefinitionDefault()
+		 * @generated
+		 */
+		EClass XML_TABLE_COLUMN_DEFINITION_DEFAULT = eINSTANCE.getXMLTableColumnDefinitionDefault();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_COLUMN_DEFINITION_DEFAULT__VALUE_EXPR = eINSTANCE.getXMLTableColumnDefinitionDefault_ValueExpr();
+
+		/**
+		 * The meta object literal for the '<em><b>Column Definition Regular</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference XML_TABLE_COLUMN_DEFINITION_DEFAULT__COLUMN_DEFINITION_REGULAR = eINSTANCE.getXMLTableColumnDefinitionDefault_ColumnDefinitionRegular();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionEncodingImpl <em>XML Serialize Function Encoding</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.XMLSerializeFunctionEncodingImpl
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLSerializeFunctionEncoding()
+		 * @generated
+		 */
+		EClass XML_SERIALIZE_FUNCTION_ENCODING = eINSTANCE.getXMLSerializeFunctionEncoding();
+
+		/**
+		 * The meta object literal for the '<em><b>Encoding Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute XML_SERIALIZE_FUNCTION_ENCODING__ENCODING_NAME = eINSTANCE.getXMLSerializeFunctionEncoding_EncodingName();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType <em>XML Passing Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLPassingType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLPassingType()
+		 * @generated
+		 */
+		EEnum XML_PASSING_TYPE = eINSTANCE.getXMLPassingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType <em>XML Content Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLContentType()
+		 * @generated
+		 */
+		EEnum XML_CONTENT_TYPE = eINSTANCE.getXMLContentType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLDeclarationType <em>XML Declaration Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLDeclarationType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLDeclarationType()
+		 * @generated
+		 */
+		EEnum XML_DECLARATION_TYPE = eINSTANCE.getXMLDeclarationType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType <em>XML Returning Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLReturningType()
+		 * @generated
+		 */
+		EEnum XML_RETURNING_TYPE = eINSTANCE.getXMLReturningType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLNullHandlingType <em>XML Null Handling Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLNullHandlingType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLNullHandlingType()
+		 * @generated
+		 */
+		EEnum XML_NULL_HANDLING_TYPE = eINSTANCE.getXMLNullHandlingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType <em>XML Whitespace Handling Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLWhitespaceHandlingType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLWhitespaceHandlingType()
+		 * @generated
+		 */
+		EEnum XML_WHITESPACE_HANDLING_TYPE = eINSTANCE.getXMLWhitespaceHandlingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLEmptyHandlingType <em>XML Empty Handling Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLEmptyHandlingType
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLEmptyHandlingType()
+		 * @generated
+		 */
+		EEnum XML_EMPTY_HANDLING_TYPE = eINSTANCE.getXMLEmptyHandlingType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType2 <em>XML Content Type2</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLContentType2
+		 * @see org.eclipse.datatools.modelbase.sql.xml.query.impl.SQLXMLQueryModelPackageImpl#getXMLContentType2()
+		 * @generated
+		 */
+		EEnum XML_CONTENT_TYPE2 = eINSTANCE.getXMLContentType2();
+
+	}
 
 } //SQLXMLQueryPackage

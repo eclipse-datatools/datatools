@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLEmptyHandlingType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLEmptyHandlingType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -67,7 +67,7 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLEmptyHandlingType EMPTY_ON_EMPTY_LITERAL = new XMLEmptyHandlingType(EMPTY_ON_EMPTY, "EMPTY_ON_EMPTY");
+    public static final XMLEmptyHandlingType EMPTY_ON_EMPTY_LITERAL = new XMLEmptyHandlingType(EMPTY_ON_EMPTY, "EMPTY_ON_EMPTY", "EMPTY_ON_EMPTY");
 
 	/**
 	 * The '<em><b>NULL ON EMPTY</b></em>' literal object.
@@ -81,7 +81,7 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLEmptyHandlingType NULL_ON_EMPTY_LITERAL = new XMLEmptyHandlingType(NULL_ON_EMPTY, "NULL_ON_EMPTY");
+    public static final XMLEmptyHandlingType NULL_ON_EMPTY_LITERAL = new XMLEmptyHandlingType(NULL_ON_EMPTY, "NULL_ON_EMPTY", "NULL_ON_EMPTY");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLEmptyHandlingType NONE_LITERAL = new XMLEmptyHandlingType(NONE, "NONE");
+    public static final XMLEmptyHandlingType NONE_LITERAL = new XMLEmptyHandlingType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Empty Handling Type</b></em>' enumerators.
@@ -119,15 +119,15 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Empty Handling Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Empty Handling Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLEmptyHandlingType get(String name) {
+    public static XMLEmptyHandlingType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLEmptyHandlingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -135,7 +135,23 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Empty Handling Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Empty Handling Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLEmptyHandlingType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLEmptyHandlingType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Empty Handling Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -155,8 +171,8 @@ public final class XMLEmptyHandlingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLEmptyHandlingType(int value, String name) {
-		super(value, name);
+	private XMLEmptyHandlingType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLEmptyHandlingType

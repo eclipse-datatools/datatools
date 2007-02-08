@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionRegularImpl.java,v 1.2 2005/12/19 20:57:49 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionRegularImpl.java,v 1.3 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -119,7 +119,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLTableColumnDefinitionRegular();
+		return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_REGULAR;
 	}
 
 	/**
@@ -252,54 +252,17 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
-					if (columnDefinitionDefault != null)
-						msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, null, msgs);
-					return basicSetColumnDefinitionDefault((XMLTableColumnDefinitionDefault)otherEnd, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+				if (columnDefinitionDefault != null)
+					msgs = ((InternalEObject)columnDefinitionDefault).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT, null, msgs);
+				return basicSetColumnDefinitionDefault((XMLTableColumnDefinitionDefault)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
-					return basicSetDataType(null, msgs);
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
-					return basicSetColumnDefinitionDefault(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
-		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -307,37 +270,23 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
+				return basicSetDataType(null, msgs);
+			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
+				return basicSetColumnDefinitionDefault(null, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
-				return getLabel();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-				return getTableFunction();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				return getDataType();
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
@@ -347,36 +296,16 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				return getColumnDefinitionDefault();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
-				setLabel((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-				setTableFunction((XMLTableFunction)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				setDataType((DataType)newValue);
 				return;
@@ -390,34 +319,16 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 				setColumnDefinitionDefault((XMLTableColumnDefinitionDefault)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-				setTableFunction((XMLTableFunction)null);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				setDataType((DataType)null);
 				return;
@@ -431,28 +342,16 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 				setColumnDefinitionDefault((XMLTableColumnDefinitionDefault)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__TABLE_FUNCTION:
-				return getTableFunction() != null;
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__DATA_TYPE:
 				return dataType != null;
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__PASSING_OPTION:
@@ -462,7 +361,7 @@ public class XMLTableColumnDefinitionRegularImpl extends XMLTableColumnDefinitio
 			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_REGULAR__COLUMN_DEFINITION_DEFAULT:
 				return columnDefinitionDefault != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 	/**

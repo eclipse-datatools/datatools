@@ -2,16 +2,30 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryPackageImpl.java,v 1.2 2005/12/17 01:52:31 bpayton Exp $
+ * $Id: SQLXMLQueryModelPackageImpl.java,v 1.1 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
+
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl;
 import org.eclipse.datatools.modelbase.sql.constraints.impl.SQLConstraintsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+
 import org.eclipse.datatools.modelbase.sql.datatypes.impl.SQLDataTypesPackageImpl;
 import org.eclipse.datatools.modelbase.sql.expressions.impl.SQLExpressionsPackageImpl;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
+
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+
+import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
+
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
+
 import org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl;
 import org.eclipse.datatools.modelbase.sql.routines.impl.SQLRoutinesPackageImpl;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SQLSchemaPackageImpl;
@@ -85,6 +99,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
@@ -579,16 +595,16 @@ public class SQLXMLQueryModelPackageImpl extends EPackageImpl implements SQLXMLQ
 		isInited = true;
 
 		// Initialize simple dependencies
-		EcorePackageImpl.init();
-		SQLQueryModelPackageImpl.init();
-		SQLSchemaPackageImpl.init();
-		SQLConstraintsPackageImpl.init();
-		SQLDataTypesPackageImpl.init();
-		SQLExpressionsPackageImpl.init();
-		SQLRoutinesPackageImpl.init();
-		SQLStatementsPackageImpl.init();
-		SQLTablesPackageImpl.init();
-		SQLAccessControlPackageImpl.init();
+		EcorePackage.eINSTANCE.eClass();
+		SQLQueryModelPackage.eINSTANCE.eClass();
+		SQLSchemaPackage.eINSTANCE.eClass();
+		SQLConstraintsPackage.eINSTANCE.eClass();
+		SQLDataTypesPackage.eINSTANCE.eClass();
+		SQLExpressionsPackage.eINSTANCE.eClass();
+		SQLRoutinesPackage.eINSTANCE.eClass();
+		SQLStatementsPackage.eINSTANCE.eClass();
+		SQLTablesPackage.eINSTANCE.eClass();
+		SQLAccessControlPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theSQLXMLQueryModelPackage.createPackageContents();
@@ -2490,8 +2506,8 @@ public class SQLXMLQueryModelPackageImpl extends EPackageImpl implements SQLXMLQ
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		SQLQueryModelPackageImpl theSQLQueryModelPackage = (SQLQueryModelPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLQueryModelPackage.eNS_URI);
-		SQLDataTypesPackageImpl theSQLDataTypesPackage = (SQLDataTypesPackageImpl)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
+		SQLQueryModelPackage theSQLQueryModelPackage = (SQLQueryModelPackage)EPackage.Registry.INSTANCE.getEPackage(SQLQueryModelPackage.eNS_URI);
+		SQLDataTypesPackage theSQLDataTypesPackage = (SQLDataTypesPackage)EPackage.Registry.INSTANCE.getEPackage(SQLDataTypesPackage.eNS_URI);
 
 		// Add supertypes to classes
 		xmlValueFunctionConcatEClass.getESuperTypes().add(this.getXMLValueFunction());

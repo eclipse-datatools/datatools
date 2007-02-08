@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateSortSpecificationImpl.java,v 1.1 2005/12/16 13:16:51 bpayton Exp $
+ * $Id: XMLAggregateSortSpecificationImpl.java,v 1.2 2005/12/22 22:21:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -68,7 +68,7 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.eINSTANCE.getXMLAggregateSortSpecification();
+		return SQLXMLQueryModelPackage.Literals.XML_AGGREGATE_SORT_SPECIFICATION;
 	}
 
 	/**
@@ -78,7 +78,17 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 	 */
     public XMLAggregateFunction getAggregateFunction() {
 		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION) return null;
-		return (XMLAggregateFunction)eContainer;
+		return (XMLAggregateFunction)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAggregateFunction(XMLAggregateFunction newAggregateFunction, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newAggregateFunction, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION, msgs);
+		return msgs;
 	}
 
 	/**
@@ -87,15 +97,15 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 	 * @generated
 	 */
     public void setAggregateFunction(XMLAggregateFunction newAggregateFunction) {
-		if (newAggregateFunction != eContainer || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION && newAggregateFunction != null)) {
+		if (newAggregateFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION && newAggregateFunction != null)) {
 			if (EcoreUtil.isAncestor(this, newAggregateFunction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (eContainer != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newAggregateFunction != null)
 				msgs = ((InternalEObject)newAggregateFunction).eInverseAdd(this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, XMLAggregateFunction.class, msgs);
-			msgs = eBasicSetContainer((InternalEObject)newAggregateFunction, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION, msgs);
+			msgs = basicSetAggregateFunction(newAggregateFunction, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
@@ -147,116 +157,69 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
-					if (eContainer != null)
-						msgs = eBasicRemoveFromContainer(msgs);
-					return eBasicSetContainer(otherEnd, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION, msgs);
-				default:
-					return eDynamicInverseAdd(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetAggregateFunction((XMLAggregateFunction)otherEnd, msgs);
 		}
-		if (eContainer != null)
-			msgs = eBasicRemoveFromContainer(msgs);
-		return eBasicSetContainer(otherEnd, featureID, msgs);
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
-		if (featureID >= 0) {
-			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DEPENDENCIES:
-					return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
-					return eBasicSetContainer(null, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION, msgs);
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC:
-					return basicSetOrderBySpec(null, msgs);
-				default:
-					return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-			}
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
+				return basicSetAggregateFunction(null, msgs);
+			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC:
+				return basicSetOrderBySpec(null, msgs);
 		}
-		return eBasicSetContainer(null, featureID, msgs);
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
-		if (eContainerFeatureID >= 0) {
-			switch (eContainerFeatureID) {
-				case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
-					return eContainer.eInverseRemove(this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, XMLAggregateFunction.class, msgs);
-				default:
-					return eDynamicBasicRemoveFromContainer(msgs);
-			}
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
+				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, XMLAggregateFunction.class, msgs);
 		}
-		return eContainer.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - eContainerFeatureID, null, msgs);
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-				return getEAnnotations();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__NAME:
-				return getName();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DEPENDENCIES:
-				return getDependencies();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DESCRIPTION:
-				return getDescription();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__LABEL:
-				return getLabel();
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
 				return getAggregateFunction();
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC:
 				return getOrderBySpec();
 		}
-		return eDynamicGet(eFeature, resolve);
+		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eSet(EStructuralFeature eFeature, Object newValue) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				getEAnnotations().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__NAME:
-				setName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				getDependencies().addAll((Collection)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DESCRIPTION:
-				setDescription((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__LABEL:
-				setLabel((String)newValue);
-				return;
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
 				setAggregateFunction((XMLAggregateFunction)newValue);
 				return;
@@ -264,31 +227,16 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 				setOrderBySpec((OrderBySpecification)newValue);
 				return;
 		}
-		eDynamicSet(eFeature, newValue);
+		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void eUnset(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-				getEAnnotations().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DEPENDENCIES:
-				getDependencies().clear();
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DESCRIPTION:
-				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
+	public void eUnset(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
 				setAggregateFunction((XMLAggregateFunction)null);
 				return;
@@ -296,32 +244,22 @@ public class XMLAggregateSortSpecificationImpl extends SQLQueryObjectImpl implem
 				setOrderBySpec((OrderBySpecification)null);
 				return;
 		}
-		eDynamicUnset(eFeature);
+		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public boolean eIsSet(EStructuralFeature eFeature) {
-		switch (eDerivedStructuralFeatureID(eFeature)) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__EANNOTATIONS:
-				return eAnnotations != null && !eAnnotations.isEmpty();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DEPENDENCIES:
-				return dependencies != null && !dependencies.isEmpty();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__DESCRIPTION:
-				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION:
 				return getAggregateFunction() != null;
 			case SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__ORDER_BY_SPEC:
 				return orderBySpec != null;
 		}
-		return eDynamicIsSet(eFeature);
+		return super.eIsSet(featureID);
 	}
 
 } //XMLAggregateSortSpecificationImpl

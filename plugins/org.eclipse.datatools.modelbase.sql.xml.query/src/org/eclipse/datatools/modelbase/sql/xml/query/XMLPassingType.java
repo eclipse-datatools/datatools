@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPassingType.java,v 1.2 2005/12/19 20:57:50 bpayton Exp $
+ * $Id: XMLPassingType.java,v 1.3 2005/12/22 22:21:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -74,7 +74,7 @@ public final class XMLPassingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLPassingType BY_REF_LITERAL = new XMLPassingType(BY_REF, "BY_REF");
+    public static final XMLPassingType BY_REF_LITERAL = new XMLPassingType(BY_REF, "BY_REF", "BY_REF");
 
 	/**
 	 * The '<em><b>BY VALUE</b></em>' literal object.
@@ -84,7 +84,7 @@ public final class XMLPassingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLPassingType BY_VALUE_LITERAL = new XMLPassingType(BY_VALUE, "BY_VALUE");
+    public static final XMLPassingType BY_VALUE_LITERAL = new XMLPassingType(BY_VALUE, "BY_VALUE", "BY_VALUE");
 
 	/**
 	 * The '<em><b>NONE</b></em>' literal object.
@@ -98,7 +98,7 @@ public final class XMLPassingType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-    public static final XMLPassingType NONE_LITERAL = new XMLPassingType(NONE, "NONE");
+    public static final XMLPassingType NONE_LITERAL = new XMLPassingType(NONE, "NONE", "NONE");
 
 	/**
 	 * An array of all the '<em><b>XML Passing Type</b></em>' enumerators.
@@ -122,15 +122,15 @@ public final class XMLPassingType extends AbstractEnumerator {
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Passing Type</b></em>' literal with the specified name.
+	 * Returns the '<em><b>XML Passing Type</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public static XMLPassingType get(String name) {
+    public static XMLPassingType get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			XMLPassingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(name)) {
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -138,7 +138,23 @@ public final class XMLPassingType extends AbstractEnumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>XML Passing Type</b></em>' literal with the specified value.
+	 * Returns the '<em><b>XML Passing Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static XMLPassingType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			XMLPassingType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the '<em><b>XML Passing Type</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -158,8 +174,8 @@ public final class XMLPassingType extends AbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private XMLPassingType(int value, String name) {
-		super(value, name);
+	private XMLPassingType(int value, String name, String literal) {
+		super(value, name, literal);
 	}
 
 } //XMLPassingType
