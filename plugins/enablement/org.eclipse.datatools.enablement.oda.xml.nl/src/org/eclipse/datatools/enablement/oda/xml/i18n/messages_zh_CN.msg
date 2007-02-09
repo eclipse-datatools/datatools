@@ -8,3 +8,4 @@ Query.InvalidQueryText=查询文本无效。
 RelationInformation.InputStringCannotBeNull=输入字符串不能为 null 或空白。 
 RelationInformation.InvalidDataTypeName=提供的数据类型名称无效。
 DateUtil.ConvertFails=转换为日期失败。 源:
+dataTypes.typeNameInvalid=数据类型名称无效:

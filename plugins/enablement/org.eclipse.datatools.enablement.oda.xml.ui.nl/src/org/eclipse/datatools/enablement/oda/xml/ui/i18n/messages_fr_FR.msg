@@ -54,6 +54,7 @@ error.emptyPath=L'URL du fichier est vide.
 error.xpath.canNotContainAttribute=L'expression XPath ne peut mettre en correspondance l'attribut XML.
 error.dataset.maxRowNumberError=Le nombre maximal de lignes doit être renseigné par un nombre.
 error.columnMapping.noMappingColumn=Veuillez mettre au moins une colonne en correspondance.
+error.columnMapping.tableMappingXPathNotExist=L'expression XPath de mise en correspondance de table n'existe pas.
 error.file.null=Toutes les URL sont vides. Vous n'avez donc pas sélectionné de source de données. Souhaitez-vous continuer ?
 error.columnMapping.sameColumnName=Le nom de colonne [{0}] existe déjà. Utilisez un autre nom.
 error.invalidXpath=L'expression XPath "{0}" n'est pas valide.

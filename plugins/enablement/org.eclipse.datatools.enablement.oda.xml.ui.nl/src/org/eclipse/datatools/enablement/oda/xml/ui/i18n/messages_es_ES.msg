@@ -54,6 +54,7 @@ error.emptyPath=La URL del archivo está vacía.
 error.xpath.canNotContainAttribute=No se puede asignar la expresión XPath a un atributo XML.
 error.dataset.maxRowNumberError=La fila máxima debe ser un número.
 error.columnMapping.noMappingColumn=Asigne al menos una columna.
+error.columnMapping.tableMappingXPathNotExist=La asignación de tablas XPath no existe.
 error.file.null=Todas las URL están vacías, lo que significa que no ha seleccionado ninguna fuente de datos. ¿Seguro que desea conservarlo?
 error.columnMapping.sameColumnName=El nombre de la columna [{0}] ya existe. Utilice otro nombre.
 error.invalidXpath=La expresión XPath  "{0}" no es válida.

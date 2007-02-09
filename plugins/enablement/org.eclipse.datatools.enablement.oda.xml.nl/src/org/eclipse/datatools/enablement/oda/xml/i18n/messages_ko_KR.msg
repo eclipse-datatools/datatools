@@ -8,3 +8,4 @@ Query.InvalidQueryText=쿼리 텍스트가 잘못되었습니다.
 RelationInformation.InputStringCannotBeNull=입력 문자열은 널(null)이거나 비워둘 수 없습니다. 
 RelationInformation.InvalidDataTypeName=제공된 데이터 형식 이름이 잘못되었습니다.
 DateUtil.ConvertFails=날짜로 변환하지 못했습니다. 원본:
+dataTypes.typeNameInvalid=데이터 형식 이름이 잘못되었습니다.

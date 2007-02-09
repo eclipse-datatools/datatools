@@ -54,6 +54,7 @@ error.emptyPath=Der URL der Datei enthält keine Daten
 error.xpath.canNotContainAttribute=Der XPath-Ausdruck kann nicht einem XML-Attribut zugeordnet werden.
 error.dataset.maxRowNumberError=Der Wert für die maximale Zeilenzahl muss eine Zahl sein.
 error.columnMapping.noMappingColumn=Ordnen Sie mindestens eine Spalte zu.
+error.columnMapping.tableMappingXPathNotExist=Es gibt keinen XPath für die Tabellenzuordnung.
 error.file.null=Keiner der URLs enthält Daten. Sie haben foglich keine Datenquelle ausgewählt. Soll diese Auswahl beibehalten werden?
 error.columnMapping.sameColumnName=Der Spaltenname [{0}] ist bereits vorhanden. Wählen Sie einen anderen Namen.
 error.invalidXpath=Der XPath-Ausdruck "{0}" ist ungültig.

@@ -54,6 +54,7 @@ error.emptyPath=파일 URL이 비어 있습니다.
 error.xpath.canNotContainAttribute=XPath 식이 XML 특성으로 매핑할 수 없습니다.
 error.dataset.maxRowNumberError=최대 행은 숫자여야 합니다.
 error.columnMapping.noMappingColumn=적어도 하나의 열을 매핑하십시오.
+error.columnMapping.tableMappingXPathNotExist=테이블 매핑 XPath가 없습니다.
 error.file.null=URL이 모두 비어 있습니다. 데이터 원본을 선택하지 않은 것입니다. 계속하시겠습니까?
 error.columnMapping.sameColumnName=열 이름 [{0}]이(가) 이미 있습니다. 다른 이름을 사용하십시오.
 error.invalidXpath=XPath 식"{0}"이(가) 잘못되었습니다.

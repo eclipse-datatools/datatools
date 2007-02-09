@@ -54,6 +54,7 @@ error.emptyPath=ファイルの URL が空白です。
 error.xpath.canNotContainAttribute=XPath 式は XML 属性にマッピングできません。
 error.dataset.maxRowNumberError=最大行数には、数値を指定してください。
 error.columnMapping.noMappingColumn=少なくとも 1 つの列をマッピングしてください。
+error.columnMapping.tableMappingXPathNotExist=テーブルをマッピングするための XPath が存在しません。
 error.file.null=データソースが選択されていないため、URL がすべて空白になっています。このまま続行しますか ?
 error.columnMapping.sameColumnName=列名 [{0}] はすでに使用されています。別の名前を使用してください。
 error.invalidXpath=XPath 式 "{0}" が無効です。

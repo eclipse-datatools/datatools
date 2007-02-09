@@ -8,3 +8,4 @@ Query.InvalidQueryText=Le texte de la requête est incorrect.
 RelationInformation.InputStringCannotBeNull=La chaîne d'entrée ne peut être ni nulle ni vierge. 
 RelationInformation.InvalidDataTypeName=Le nom du type de données fourni est incorrect.
 DateUtil.ConvertFails=Echec de la conversion en date. Source :
+dataTypes.typeNameInvalid=Le nom de type de données est incorrect :
