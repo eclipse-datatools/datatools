@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
@@ -51,6 +52,7 @@ abstract class OdaTemplateSection extends OptionTemplateSection
     private IFieldData m_fieldData;
     private IPluginModelBase m_initialModel;
     private NewPluginTemplateWizard m_templateWiz;
+    private IPluginModelBase m_executingModel;
 
     /*
      * (non-Javadoc)
@@ -338,11 +340,30 @@ abstract class OdaTemplateSection extends OptionTemplateSection
         wizard.addPage( page );
         markPagesAdded();
     }
-
+    
     /**
      * Returns the wizard page title defined by a subclass.
      */
     protected abstract String getWizardPageTitle();
+
+    /* (non-Javadoc)
+     * @see org.eclipse.pde.ui.templates.BaseOptionTemplateSection#execute(org.eclipse.core.resources.IProject, org.eclipse.pde.core.plugin.IPluginModelBase, org.eclipse.core.runtime.IProgressMonitor)
+     */
+    public void execute( IProject project, IPluginModelBase model,
+            IProgressMonitor monitor ) throws CoreException
+    {
+        // hold on to model being executed to make it available to subclass 
+        // to override as needed,
+        // before the generateFiles method is called in execute
+        m_executingModel = model;
+        super.execute( project, model, monitor );
+        m_executingModel = null;    // reset
+    }
+
+    protected IPluginModelBase getExecutingModel()
+    {
+        return m_executingModel;    // may be null if not called during execute
+    }
     
     /*
      * (non-Javadoc)
@@ -402,7 +423,7 @@ abstract class OdaTemplateSection extends OptionTemplateSection
         if( m_fieldData != null ) 
             return m_fieldData.getId();
         
-        // get the id from the template wizard
+        // obtain the id from the template wizard
         return getTemplateWizard().getData().getId();
     }
     
@@ -419,8 +440,30 @@ abstract class OdaTemplateSection extends OptionTemplateSection
         if( m_fieldData != null ) 
             return m_fieldData.getName();
         
-        // get the id from the template wizard
+        // obtain from the template wizard
         return getTemplateWizard().getData().getName();
+    }
+    
+    /**
+     * Returns the provider name provided by plug-in wizard in either the 
+     * model or fieldData used in initializeFields.
+     * Returns an empty string if none is found.
+     */
+    protected String getNewProviderName()
+    {
+        String name;
+        if( m_initialModel != null ) 
+            name = m_initialModel.getPluginBase().getProviderName();
+        else
+        {
+            // perhaps this is called after page is made visible
+            if( m_fieldData != null ) 
+                name = m_fieldData.getProvider();
+            else // obtain from the template wizard
+                name = getTemplateWizard().getData().getProvider();
+        }
+        
+        return ( name == null ) ? "" : name; //$NON-NLS-1$
     }
 
     /**
@@ -451,7 +494,11 @@ abstract class OdaTemplateSection extends OptionTemplateSection
      */
     protected String getDefaultDataSourceName()
     {
-        return getDefaultDriverBaseName() + SPACE_CHAR + 
+        String providerName = getNewProviderName();
+        if( providerName.length() > 0 )
+            providerName += SPACE_CHAR;
+        return providerName + 
+                getDefaultDriverBaseName() + SPACE_CHAR + 
                 Messages.baseSection_dataSourceNameSuffix;
     }
     
@@ -460,7 +507,11 @@ abstract class OdaTemplateSection extends OptionTemplateSection
      */
     protected String getDefaultDataSetName()
     {
-        return getDefaultDriverBaseName() + SPACE_CHAR +
+        String providerName = getNewProviderName();
+        if( providerName.length() > 0 )
+            providerName += SPACE_CHAR;
+        return providerName + 
+                getDefaultDriverBaseName() + SPACE_CHAR +
                 Messages.baseSection_dataSetNameSuffix;
     }
     

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.template.internal.ui;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.oda.template.ui.nls.Messages;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -136,6 +137,19 @@ class RuntimeTemplateSection extends OdaTemplateSection
         
         OdaPluginModeler modeler = new OdaPluginModeler( this );
         modeler.updateRuntimeModel( odaModel, runtimeExtension );    
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.pde.ui.templates.AbstractTemplateSection#generateFiles(org.eclipse.core.runtime.IProgressMonitor)
+     */
+    protected void generateFiles( IProgressMonitor monitor )
+            throws CoreException
+    {
+        // adjust the model's manifest headers to work around Bugzilla #172744
+        OdaPluginModeler modeler = new OdaPluginModeler( this );
+        modeler.adjustManifestHeaders( getExecutingModel(), true );
+        
+        super.generateFiles( monitor );
     }
     
     /*

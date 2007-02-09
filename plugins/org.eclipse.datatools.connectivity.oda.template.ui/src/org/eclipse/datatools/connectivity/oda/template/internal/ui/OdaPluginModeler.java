@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,9 @@ import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginModelFactory;
+import org.eclipse.pde.internal.core.ibundle.IBundle;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
+import org.osgi.framework.Constants;
 
 /**
  * A helper responsible for updating an ODA plug-in model with ODA-specific extensions
@@ -419,6 +422,33 @@ class OdaPluginModeler
         dataSetPageElement.setAttribute( "wizardPageClass",  //$NON-NLS-1$
                 getKeyPackageName() + ".CustomDataSetWizardPage" );  //$NON-NLS-1$
         dataSetUIElement.add( dataSetPageElement );
+    }
+    
+    /**
+     * Adjusts the model's bundle headers to trigger generation of needed entries
+     * in the manifest.mf of the new plug-in project (Bugzilla 172744).
+     * Using internal PDE API as an interim solution to work around 
+     * the PDE UI Template API's restrictions (Bugzilla 173393).
+     * @param odaModel      model being executed during project creation
+     * @param forRuntimeBundle  true for adjusting headers in the runtime bundle;
+     *                      false for the design-time bundle
+     */
+    void adjustManifestHeaders( IPluginModelBase odaModel, boolean forRuntimeBundle )
+    {
+        if( odaModel == null )
+            return;     // nothing to adjust, ignore
+
+        // model object type got changed in PDE UI Template 3.3M4 to 
+        // one of IBundlePluginModelBase, whose impl. stops generating needed headers;
+        // checks for this new type to proceed with adjustment
+        if( ! ( odaModel instanceof IBundlePluginModelBase ))
+            return;     // no need to adjust
+
+        // add missing header(s) in bundle to trigger its generation in manifest.mf
+        IBundle bundle = ((IBundlePluginModelBase) odaModel ).getBundleModel().getBundle();
+        bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
+        if( forRuntimeBundle )
+            bundle.setHeader( Constants.EXPORT_PACKAGE, getKeyPackageName() );        
     }
 
 }
