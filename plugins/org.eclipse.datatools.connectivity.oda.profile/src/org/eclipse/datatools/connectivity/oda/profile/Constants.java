@@ -28,6 +28,7 @@ public class Constants
      * A consumer application that wants to use this service must specify 
      * this application id as the value of the property key 
      * IPropertyProvider.ODA_CONSUMER_ID in a connection appContext map.
+     * @since 3.0.4
      */
     public static final String CONN_PROFILE_APPL_ID =
         "org.eclipse.datatools.connectivity.oda.profile.connectionPropertyService"; //$NON-NLS-1$

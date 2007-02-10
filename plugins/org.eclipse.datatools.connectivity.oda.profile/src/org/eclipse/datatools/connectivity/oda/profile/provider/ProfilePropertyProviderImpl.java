@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfilePro
 
 /**
  *  Provider of externalized properties defined in a linked connection profile.
+ *  @since 3.0.4
  */
 public class ProfilePropertyProviderImpl implements IPropertyProvider
 {
