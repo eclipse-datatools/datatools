@@ -9,7 +9,7 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.modelbase.sql,
  org.eclipse.datatools.connectivity.sqm.core,
- com.ibm.icu;bundle-version="[3.4.4,3.5.0)"
+ com.ibm.icu;bundle-version="[3.4.4,4.0.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.data.internal.core,
  org.eclipse.datatools.sqltools.data.internal.core.common,
