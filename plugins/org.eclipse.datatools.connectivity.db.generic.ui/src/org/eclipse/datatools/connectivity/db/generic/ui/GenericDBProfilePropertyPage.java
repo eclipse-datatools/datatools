@@ -75,9 +75,7 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		this.combo.setCategory(getDriverCategory());
 		this.combo.setNullDriverIsValid(false);
 		this.combo.createContents(content);
-		if (this.combo.getErrorMessage() != null) {
-			setErrorMessage(this.combo.getErrorMessage());
-		}
+
 		this.mDatabaseNameText = (Text) createLabelTextPair(
 				content,
 				GenericDBPlugin.getDefault().getResourceString(
@@ -264,6 +262,9 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 						Boolean.FALSE.toString())).booleanValue());
 
 		setErrorMessage(null);
+		if (this.combo.getErrorMessage() != null) {
+			setErrorMessage(this.combo.getErrorMessage());
+		}
 	}
 
 	private String getPropertyFromDriverInstance(String propertyID) {
