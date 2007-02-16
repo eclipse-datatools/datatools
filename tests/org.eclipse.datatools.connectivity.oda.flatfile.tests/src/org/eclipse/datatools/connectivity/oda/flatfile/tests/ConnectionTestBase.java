@@ -151,6 +151,19 @@ public abstract class ConnectionTestBase extends TestCase
 		}
 		assertTrue( hasOpenFailed );
 
+        // test open connection without HOME property
+        hasOpenFailed = false;
+        try
+        {
+            prop.clear( );
+            connection.open( prop );
+        }
+        catch ( OdaException e )
+        {
+            hasOpenFailed = true;
+        }
+        assertTrue( hasOpenFailed );
+
 		// test open connection with valid properties
 		hasOpenFailed = false;
 		try
