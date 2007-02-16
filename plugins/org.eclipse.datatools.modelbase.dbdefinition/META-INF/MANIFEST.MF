@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.modelbase.dbdefinition; singleton:=true
 Bundle-Version: 1.0.0.200609291
-Bundle-ClassPath: databasedefinition.jar
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.modelbase.dbdefinition,
