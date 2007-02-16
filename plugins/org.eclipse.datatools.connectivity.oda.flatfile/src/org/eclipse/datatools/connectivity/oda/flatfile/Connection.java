@@ -53,7 +53,7 @@ public class Connection implements IConnection
 	}
 
 	/**
-	 * 
+	 * Validate the HOME property exists and has specified an existing directory.
 	 * @param connProperties
 	 * @throws OdaException
 	 */
@@ -61,11 +61,17 @@ public class Connection implements IConnection
 			throws OdaException
 	{
 		String homeDir = connProperties.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
-		File file = new File( homeDir );
-		if ( file.exists( ) )
-			this.isOpen = true;
-		else
-			throw new OdaException( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_DB_DIR" ) //$NON-NLS-1$
+        if( homeDir != null )   // found property
+        {
+    		File file = new File( homeDir );
+    		if ( file.exists( ) )
+            {
+    			this.isOpen = true;
+                return;     // is valid, done
+            }
+        }
+
+		throw new OdaException( Messages.getString( "connection_CANNOT_OPEN_FLAT_FILE_DB_DIR" ) //$NON-NLS-1$
 					+ homeDir );
 	}
 
