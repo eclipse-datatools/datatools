@@ -17,6 +17,7 @@ package org.eclipse.datatools.connectivity.oda.profile;
 import java.io.File;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -34,6 +35,10 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 public class OdaProfileExplorer
 {
     private static OdaProfileExplorer sm_instance = null;
+    
+    // logging variables
+    private static final String sm_className = OdaProfileExplorer.class.getName();
+    private static Logger sm_logger;
 
     /**
      * Static method to return the singleton instance.
@@ -139,7 +144,7 @@ public class OdaProfileExplorer
     {
         if( storageFile == null )
         {
-            // TODO - add logging
+            getLogger().fine( "A null storageFile argument is specified. Using default profile storage location instead." ); //$NON-NLS-1$
             storageFile = defaultProfileStoreFile();
         }
         
@@ -228,6 +233,16 @@ public class OdaProfileExplorer
     {
         return ConnectionProfileMgmt.getStorageLocation().append( 
                     ConnectionProfileMgmt.FILENAME ).toFile();
+    }
+
+    /**
+     * Returns the class logger.
+     */
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+            sm_logger = Logger.getLogger( sm_className );
+        return sm_logger;
     }
 
 }

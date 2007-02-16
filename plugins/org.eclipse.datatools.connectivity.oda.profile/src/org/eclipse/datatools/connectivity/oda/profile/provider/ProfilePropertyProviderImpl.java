@@ -17,6 +17,8 @@ package org.eclipse.datatools.connectivity.oda.profile.provider;
 import java.io.File;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -30,6 +32,10 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfilePro
  */
 public class ProfilePropertyProviderImpl implements IPropertyProvider
 {
+    
+    // logging variables
+    private static final String sm_className = ProfilePropertyProviderImpl.class.getName();
+    private static Logger sm_logger;
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider#getDataSourceProperties(java.util.Properties, java.lang.Object)
@@ -37,6 +43,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     public Properties getDataSourceProperties( Properties candidateProperties,
             Object appContext ) throws OdaException
     {
+        final String methodName = "getDataSourceProperties"; //$NON-NLS-1$
+        
         IConnectionProfile connProfile = 
             getConnectionProfile( candidateProperties, appContext );
         if( connProfile == null )   // no linked profle
@@ -54,6 +62,17 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         Properties profileProps = connProfile.getBaseProperties();
         if( profileProps != null )
             mergedProps.putAll( profileProps );
+        
+        // log count of merged properties
+        if( getLogger().isLoggable( Level.FINER ) )
+        {
+            String logMsg = sm_className + "." + methodName + ": "; //$NON-NLS-1$ //$NON-NLS-2$
+            logMsg += "Number of Candidate Properties = " + candidateProperties.size(); //$NON-NLS-1$
+            logMsg += "; Number of Properties in profile = " + profileProps.size(); //$NON-NLS-1$
+            logMsg += "; Number of Merged Effective Properties = " + mergedProps.size(); //$NON-NLS-1$
+            getLogger().finer( logMsg );
+        }
+        
         return mergedProps;
     }
 
@@ -70,7 +89,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      * @throws OdaException
      */
     protected IConnectionProfile getConnectionProfile( Properties candidateProperties,
-            Object connPropContext ) throws OdaException
+            Object connPropContext ) 
     {
         String profileName = getProfileName( candidateProperties );
         if( profileName == null )
@@ -83,9 +102,24 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( profileStore == null )
             profileStore = getProfileStoreFile( candidateProperties );
         
-        // if null profile store file is specified, the default profile store path is used
-        return OdaProfileExplorer.getInstance()
-                    .getProfileByName( profileName, profileStore );
+        IConnectionProfile profile = null;
+        try
+        {
+            // if null profile store file is specified, the default profile store path is used
+            profile = OdaProfileExplorer.getInstance()
+                        .getProfileByName( profileName, profileStore );
+        }
+        catch( OdaException ex )
+        {
+            getLogger().warning( getStackTraceStrings( ex ) );
+        }
+        if( profile == null )
+        {
+            // log warning that no profile is found
+            getLogger().warning( "No connection profile is found by its specified name: " + profileName ); //$NON-NLS-1$
+        }
+        
+        return profile;
     }
     
     protected String getProfileName( Properties candidateProperties )
@@ -107,11 +141,11 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         if( propValue == null )
             return null;    // no non-null mapping for profile store file
         
-        if( propValue instanceof File )
+        if( ( propValue instanceof File ) && ((File) propValue ).exists() )
             return (File) propValue;
 
         // mapping contains a value of unexpected type
-        // TODO - log warning 
+        getLogger().warning( "getProfileStoreFile( Object ): Ignoring the PROFILE_STORE_FILE_PROP_KEY object in Connection Property Context.  The specified object must be an existing File."  );  //$NON-NLS-1$
         return null;        
     }
     
@@ -133,8 +167,33 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return profileStoreFile;
         
         // specified file path does not exist
-        // TODO - log warning
+        getLogger().warning( "getProfileStoreFile( Properties ): Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value in connection properties. The specified path does not exist in file system."); //$NON-NLS-1$
         return null;
+    }
+
+    /**
+     * Returns the class logger.
+     */
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+            sm_logger = Logger.getLogger( sm_className );
+        return sm_logger;
+    }
+    
+    /**
+     * Formats and returns the exception's stack trace as a string.
+     */
+    private static String getStackTraceStrings( Throwable ex )
+    {
+        String logMsg = ex.toString() + "\n"; //$NON-NLS-1$
+        Throwable cause = ( ex.getCause() != null ) ? ex.getCause() : ex;
+        StackTraceElement[] stacks = cause.getStackTrace();
+        for( int i = 0; i < stacks.length; i++ )
+        {
+            logMsg += stacks[i].toString() + "\n"; //$NON-NLS-1$
+        }
+        return logMsg;
     }
     
 }
