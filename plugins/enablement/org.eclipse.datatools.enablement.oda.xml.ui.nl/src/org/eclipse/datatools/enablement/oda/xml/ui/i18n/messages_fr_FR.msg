@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=Mise en correspondance de table
 xPathChoosePage.messages.xPathExpression=Expression &XPath
 xPathChoosePage.messages.xmlStructure=Structure XML
 xPathChoosePage.messages.xmlColumnMapping=Mise en correspondance de colonne
+xPathChoosePage.messages.xpathChange=Vérifiez que la mise en correspondance de table modifiée est compatible avec la mise en correspondance de colonne le cas échéant.   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=lignes de source de données

@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=表映射
 xPathChoosePage.messages.xPathExpression=XPath 表达式(&X)
 xPathChoosePage.messages.xmlStructure=XML 结构
 xPathChoosePage.messages.xmlColumnMapping=列映射
+xPathChoosePage.messages.xpathChange=确保更改的表映射与列映射兼容（如果适用）   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=源数据的行

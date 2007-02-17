@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=Asignación de tablas
 xPathChoosePage.messages.xPathExpression=Expresión &XPath
 xPathChoosePage.messages.xmlStructure=Estructura XML
 xPathChoosePage.messages.xmlColumnMapping=Asignación de columnas
+xPathChoosePage.messages.xpathChange=Asegúrese de que la asignación de tabla modificada es compatible con la asignación de columnas, cuando sea aplicable   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=líneas de fuente de datos

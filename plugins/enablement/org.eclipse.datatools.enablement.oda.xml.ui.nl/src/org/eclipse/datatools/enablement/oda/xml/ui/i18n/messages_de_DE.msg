@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=Tabellenzuordnung
 xPathChoosePage.messages.xPathExpression=&XPath-Ausdruck
 xPathChoosePage.messages.xmlStructure=XML-Struktur
 xPathChoosePage.messages.xmlColumnMapping=Spaltenzuordnung
+xPathChoosePage.messages.xpathChange=Stellen Sie sicher, dass die geänderte Tabellenzuordnung mit der Spaltenzuordnung kompatibel ist (falls zutreffend).   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=Quelldatenzeilen

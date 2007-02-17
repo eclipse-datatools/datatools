@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=테이블 매핑
 xPathChoosePage.messages.xPathExpression=XPath 식(&X)
 xPathChoosePage.messages.xmlStructure=XML 구조
 xPathChoosePage.messages.xmlColumnMapping=열 매핑
+xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되는지 확인하십시오.   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=원본 데이터 선

@@ -19,6 +19,7 @@ xPathChoosePage.messages.rowMapping=テーブルのマッピング
 xPathChoosePage.messages.xPathExpression=XPath 式(&X)
 xPathChoosePage.messages.xmlStructure=XML 構造
 xPathChoosePage.messages.xmlColumnMapping=列マッピング
+xPathChoosePage.messages.xpathChange=変更後のテーブルマッピングが列マッピングと互換性があることを確認してください (該当する場合)。   
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=ソースデータの行
