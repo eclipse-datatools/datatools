@@ -5,6 +5,7 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
+import org.eclipse.datatools.sqltools.common.ui.preferences.AbstractDBPreferenceFieldPage;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
@@ -30,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Li Huang
  *  
  */
-public class CodeAssistPage extends PreferencePage implements IWorkbenchPreferencePage
+public class CodeAssistPage extends AbstractDBPreferenceFieldPage
 {
 
     private Button _insertSingleProposal;
@@ -99,8 +100,9 @@ public class CodeAssistPage extends PreferencePage implements IWorkbenchPreferen
     /*
      * Initializes states of the controls from the preference store.
      */
-    private void initializeValues()
+    protected void initializeValues()
     {
+        super.initializeValues();
         _insertSingleProposal.setSelection(_store.getBoolean(PreferenceConstants.INSERT_SINGLE_PROPOSALS_AUTO));
 
         _showSystemTables.setSelection(_store.getBoolean(PreferenceConstants.SHOW_SYSTEM_TABLES));
@@ -198,6 +200,16 @@ public class CodeAssistPage extends PreferencePage implements IWorkbenchPreferen
         Composite page = createGeneralPage(parent);
 
         initializeValues();
+        // composite for vendor specific tabs
+        Composite tabs = new Composite(page, SWT.NONE);
+        tabs.setLayoutData(new GridData(GridData.FILL_BOTH));
+        GridLayout gdl =new GridLayout();
+        gdl.marginLeft = 0;
+        gdl.marginWidth = 0;
+        gdl.marginRight = 0;
+        gdl.marginBottom = 0;
+        tabs.setLayout(gdl);
+        super.createContents(tabs); 
 
         return page;
     }
@@ -216,6 +228,11 @@ public class CodeAssistPage extends PreferencePage implements IWorkbenchPreferen
         boolean activationEnabled = _enableAuto.getSelection();
         _autoActivationDelayText.setEnabled(activationEnabled);
         _autoActivationTriggersText.setEnabled(activationEnabled);
+    }
+
+    public String getPreferencePageId()
+    {
+        return "org.eclipse.datatools.sqltools.sqleditor.preferences.codeassist";
     }
 
 }
