@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.data.ui; singleton:=true
-Bundle-Version: 1.0.0.200612181
+Bundle-Version: 1.0.0.200702201
 Bundle-Activator: org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin
 Bundle-Vendor: %plugin.Provider
 Bundle-Localization: plugin
@@ -22,7 +22,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.sqltools.tabledataeditor,
  com.ibm.icu;bundle-version="[3.4.4,4.0.0)"
 Eclipse-LazyStart: true
-Provide-Package: org.eclipse.datatools.sqltools.data.internal.ui,
+Export-Package: org.eclipse.datatools.sqltools.data.internal.ui,
  org.eclipse.datatools.sqltools.data.internal.ui.editor,
  org.eclipse.datatools.sqltools.data.internal.ui.extract,
  org.eclipse.datatools.sqltools.data.internal.ui.load
