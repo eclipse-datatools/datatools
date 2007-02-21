@@ -16,6 +16,7 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizardPage;
 import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.swt.SWT;
@@ -93,6 +94,17 @@ public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
 					.getProfileName(), wizard.getProfileDescription(), wizard
 					.getProfileProviderID(), wizard.getParentProfile(), wizard
 					.getProfileIsAutoConnect());
+			
+			// ping fails if an error message is set for the page
+			// this fixes BZ 173568 - BTF
+			if (this.getErrorMessage() != null) {
+				MessageDialog.openError(getWizard().getContainer().getShell(),
+						ConnectivityUIPlugin.getDefault().getResourceString(
+								"actions.ping.failure"), //$NON-NLS-1$
+								this.getErrorMessage());
+				return;
+			}
+			
 			profile.setBaseProperties(wizard.getProfileProperties());
 
 			final Job pingJob = new PingJob(getShell(), profile);
