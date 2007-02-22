@@ -302,8 +302,6 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 		List catalogs = ((Database) parent).getCatalogs();
 		if (catalogs.size() == 0) {
 			// probably a legacy loader which doesn't support catalogs
-			System.err
-					.println("No catalogs found for database.  Update catalog loader to support catalogs.");
 			collection.add(nodeFactory.makeSchemaNode(SCHEMA, SCHEMA, parent));
 		}
 		else {
