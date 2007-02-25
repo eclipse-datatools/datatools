@@ -49,6 +49,20 @@ public class ParserParameters {
 	public static final String PARAM_STMT_TYPE = "__statement_type";
 
 	/**
+	 * Parser parameter type constant of type Boolean indicating only the routine header is interesting to the consumer. Can be combined with other routine types.
+	 * 
+	 * @see SQLParserConstants
+	 */
+	public static final String PARAM_HEADER_MODE = "__header_mode";
+	
+	/**
+	 * Parser parameter type constant of type Boolean indicating whether needs to link sql model object in the generated ast nodes.
+	 * @see IASTDeployable#setSQLModel
+	 * @see SQLParserConstants
+	 */
+	public static final String PARAM_LINK_SQL_MODEL = "__link_sql_model";
+	
+	/**
 	 * Parser parameter type constant indicating whether the
 	 * <code>ParseException</code> should be consumed during parsing. If the
 	 * parser is not accurate, this parameter should be set to true.

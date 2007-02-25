@@ -11,15 +11,19 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser.ast;
 
+
 /**
- * Interface for the parameter definition list section of a stored procedure
  * 
  * @author Hui Cao
- *
+ * 
  */
-public interface IASTSQLParamDefList
+public interface IASTRoutine extends IASTDeployable
 {
-    IASTSQLParam getParameter(int index);
 
-    int getParameterCount();
+    public abstract org.eclipse.datatools.sqltools.sql.parser.ast.Node getWithNode();
+
+    public abstract void setWithNode(org.eclipse.datatools.sqltools.sql.parser.ast.Node with);
+
+    public abstract IASTSQLParamDefList getParameDefList();
+
 }

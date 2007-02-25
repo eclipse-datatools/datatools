@@ -11,9 +11,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Abstract SQL parser. Vendor developers should extend this parser to support
@@ -27,6 +26,9 @@ import java.util.List;
  */
 public abstract class SQLParser implements SQLParserConstants
 {
+    private static String SEPARATOR = "(\r\n|\r|\n|\u0085|\u2028|\u2029)";
+    private static Pattern p = Pattern.compile("(.*"+SEPARATOR+")");
+
     /**
      * All concrete parsers should include this special invalid token to enable the content assist feature
      */
@@ -49,6 +51,7 @@ public abstract class SQLParser implements SQLParserConstants
     protected ParserParameters   _parameters             = new ParserParameters(false, SQLParserConstants.TYPE_SQL_ROOT);
 
     protected int fScope;
+    protected String _input = "";
 
     /**
      * Parses the given sql text using the default parameter. Records the abstract syntax tree nodes and accumulates
@@ -75,6 +78,7 @@ public abstract class SQLParser implements SQLParserConstants
     {
         ParserParameters oldParameters = _parameters;
         setParameters(parameters);
+        _input = text;
         ParsingResult result = doParse(text);
         result.setScope(getScope());
         setParameters(oldParameters);
@@ -172,6 +176,60 @@ public abstract class SQLParser implements SQLParserConstants
 //    	return TOKEN_TYPE_OTHER;
 //    }
     
+    /**
+     * Gets the start index of a Token for a String input
+     */
+     public int getStartIndex(Token t)
+     {
+         //calculate index
+         Matcher m = p.matcher(_input);
+         int i = 1;
+         int count = 0;
+         while (m.find() && i < t.beginLine)
+         {
+             i ++;
+             count = m.end(1);//Returns the index of the last character matched, plus one. (number of characters)
+         }
+         return count + t.beginColumn - 1;
+     }
+
+     /**
+     * Gets the end index of a Token for a String input
+     */
+     public int getEndIndex(Token t)
+     {
+         //calculate index
+         Matcher m = p.matcher(_input);
+         int i = 1;
+         int count = 0;
+         while (m.find() && i < t.endLine)
+         {
+             i ++;
+             count = m.end(1);//Returns the index of the last character matched, plus one.
+         }
+         return count + t.endColumn;
+     }
+
+     /**
+      * Gets the start and end index of a Token for a String input
+      */
+     public int[] getRange(Token t)
+     {
+         //calculate index
+         Matcher m = p.matcher(_input);
+         int i = 1;
+         int count = 0;
+         while (m.find() && i < t.endLine)
+         {
+             i ++;
+             count = m.end(1);//Returns the index of the last character matched, plus one.
+         }
+         int[] range = new int[2];
+         range[0] = count + t.beginColumn - 1;
+         range[1] = count + t.endColumn;
+         return range;
+     }
+     
 
     
 }

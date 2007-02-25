@@ -43,13 +43,13 @@ import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
  */
 public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 
-	ProcIdentifier _proc = null;
+	protected ProcIdentifier _proc = null;
 
-	SQLObject _routine = null;
+    protected SQLObject _routine = null;
 
-	IControlConnection _controlConn = null;
+    protected IControlConnection _controlConn = null;
 	
-	ParameterDescriptor[] _parameterDescriptors = null;
+    protected ParameterDescriptor[] _parameterDescriptors = null;
 
 	public SQLObjectItem(ProcIdentifier proc, SQLObject routine,
 			IControlConnection controlConn) {

@@ -11,7 +11,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser.ast;
 
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.swt.graphics.Image;
+
 
 /**
  * All the statements that can be deploied to db as a executable unit (Routine) should implement this interface
@@ -37,4 +39,22 @@ public interface IASTDeployable extends Node
      * @return
      */
     public int getType();
+    
+    /**
+     * Returns the corresponding procedural object sql model, such as <code>Routine</code>,<code>Trigger</code> or
+     * <code>Event</code>. Might be null if the parser didn't set the model first.
+     * 
+     * @return
+     */
+    public SQLObject getSQLModel();
+    
+    /**
+     * Associates a SQLObject with this AST node. Only intended for parser to call.
+     * @param model
+     */
+    public void setSQLModel(SQLObject model);
+
+    public Node getNameNode();
+
+    public void setNameNode(Node nameNode);
 }

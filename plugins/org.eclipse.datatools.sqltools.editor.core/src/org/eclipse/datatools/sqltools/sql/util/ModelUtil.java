@@ -329,6 +329,25 @@ public class ModelUtil {
     }
     
     /**
+     * Returns the database name by taking catalog into account.
+     * @param obj
+     * @return
+     */
+    public static Catalog getCatalog(EObject obj) {
+        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        while (container != null)
+        {
+            obj = container;
+            if (obj instanceof Catalog)
+            {
+                return ((Catalog)obj);
+            }
+            container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        }
+        return null;
+    }
+    
+    /**
      * Returns the schema name by looking up parent in the containment service.
      * @param 
      * @return
