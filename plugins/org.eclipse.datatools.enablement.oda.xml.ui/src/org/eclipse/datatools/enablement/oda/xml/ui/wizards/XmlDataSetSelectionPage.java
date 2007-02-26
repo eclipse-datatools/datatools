@@ -199,7 +199,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		layout.numColumns = 3;
 		layout.marginWidth = 0;
 		layout.marginHeight = 3;
-		layout.horizontalSpacing = 0;
+		layout.horizontalSpacing = 3;
 		layout.verticalSpacing = 0;
 
 		rowSelectionGroup.setLayout( layout );
@@ -418,7 +418,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			{
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 						.getDisplay( )
-						.getActiveShell( ), SWT.SAVE );
+						.getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
 						"*.xml", "*.*"
 				} );
