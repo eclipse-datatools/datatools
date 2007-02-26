@@ -13,7 +13,7 @@ package org.eclipse.datatools.connectivity.ui;
 import java.net.URL;
 
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
-import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -22,7 +22,7 @@ public class ProfileImageRegistry {
 
 	private static final String IMG_OBJ_SERVER_DEFAULT = "org.eclipse.datatools.connectivity.ui.server_default_obj.gif"; //$NON-NLS-1$
 
-	private static final String IMG_DESC_SERVER_DEFAULT = "icons/full/obj16/server_default_obj.gif"; //$NON-NLS-1$
+	private static final String IMG_DESC_SERVER_DEFAULT = "icons/full/obj16/server_obj.gif"; //$NON-NLS-1$
 
 	private static ProfileImageRegistry sInstance = new ProfileImageRegistry();
 
@@ -52,7 +52,7 @@ public class ProfileImageRegistry {
 	private ProfileImageRegistry() {
 		mImageRegistry = new ImageRegistry();
 		mImageRegistry.put(IMG_OBJ_SERVER_DEFAULT, ImageDescriptor
-				.createFromURL(ConnectivityPlugin.getDefault().getBundle()
+				.createFromURL(ConnectivityUIPlugin.getDefault().getBundle()
 						.getEntry(IMG_DESC_SERVER_DEFAULT)));
 	}
 }
