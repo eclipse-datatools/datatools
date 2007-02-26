@@ -41,8 +41,10 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -309,9 +311,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		TreeItem selected = this.selectedItem;
 		
-		if ( selected.getData( ) instanceof ATreeNode )
+		if ( selected.getData( ) instanceof TreeNodeData )
 		{
-			ATreeNode node = (ATreeNode) selected.getData( );
+			ATreeNode node = ((TreeNodeData) selected.getData( )).getTreeNode();
 			if ( node.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
 			{
 				return null;
@@ -325,9 +327,9 @@ public class XPathChoosePage extends DataSetWizardPage
 		while ( selected.getParentItem( ) != null )
 		{
 			selected = selected.getParentItem( );
-			if ( selected.getData( ) instanceof ATreeNode )
+			if ( selected.getData( ) instanceof TreeNodeData )
 			{
-				ATreeNode node = (ATreeNode) selected.getData( );
+				ATreeNode node = ((TreeNodeData) selected.getData( )).getTreeNode();
 				if ( node.getType( ) == ATreeNode.ELEMENT_TYPE )
 				{
 					rootPath = "/" + selected.getText( ) + rootPath;
@@ -380,7 +382,23 @@ public class XPathChoosePage extends DataSetWizardPage
 				else
 				{
 					Object[] childs = treeNode.getChildren( );
-					populateTreeItems( availableXmlTree, childs, 0 );
+					availableXmlTree.addListener(SWT.Expand, new Listener(){
+
+						public void handleEvent(Event event) {
+							TreeItem currentItem = (TreeItem)event.item;
+							
+							if ( ((TreeNodeData)currentItem.getData()).hasBeenExpandedOnce())
+								return;
+							
+							((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
+							currentItem.removeAll();
+							if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
+									&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
+								TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ) );
+
+						}});
+					
+					TreePopulationUtil.populateTreeItems( availableXmlTree, childs );
 				}
 			}
 		}
@@ -390,37 +408,6 @@ public class XPathChoosePage extends DataSetWizardPage
 					Messages.getString( "error.label" ),
 					e.getMessage( ),
 					e );
-		}
-	}
-
-	/**
-	 * populate tree items
-	 * @param tree
-	 * @param node
-	 */
-	private void populateTreeItems( Object tree, Object[] node, int level )
-	{
-		level++;
-		if( level > 10 )
-			return;
-		for ( int i = 0; i < node.length; i++ )
-		{
-			TreeItem treeItem;
-			if ( tree instanceof Tree )
-				treeItem = new TreeItem( (Tree) tree, 0 );
-			else
-				treeItem = new TreeItem( (TreeItem) tree, 0 );
-			ATreeNode treeNode = (ATreeNode) node[i];
-
-			treeItem.setData( treeNode );
-			int type = treeNode.getType( );
-			if ( type == ATreeNode.ATTRIBUTE_TYPE )
-				treeItem.setText( "@" + treeNode.getValue( ).toString( ) );
-			else
-				treeItem.setText( treeNode.getValue( ).toString( ) );
-			if ( treeNode.getChildren( ) != null
-					&& treeNode.getChildren( ).length > 0 )
-				populateTreeItems( treeItem, treeNode.getChildren( ), level );
 		}
 	}
 	
@@ -607,4 +594,6 @@ public class XPathChoosePage extends DataSetWizardPage
 		super.setVisible( visible );
 		getControl( ).setFocus( );
 	}
+	
+
 }

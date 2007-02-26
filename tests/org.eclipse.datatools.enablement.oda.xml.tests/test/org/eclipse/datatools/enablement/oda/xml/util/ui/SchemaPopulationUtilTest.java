@@ -239,6 +239,24 @@ public class SchemaPopulationUtilTest extends BaseTest
 			assertTrue( TestUtil.compareTextFile(
 					    new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_OUTPUT_SELFRECURSIVE),
 						new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_GOLDEN_SELFRECURSIVE)));
+			
+			file = new File( TestConstants.SCHEMA_POPULATION_UTIL_TEST_OUTPUT_COMPLEXRECURSIVE);
+			
+			if( file.exists() )
+				file.delete();
+			path = new File( file.getParent() );
+			if( !path.exists())
+				path.mkdir();
+			file.createNewFile();
+			fos = new FileOutputStream( file );
+			
+			printTree(SchemaPopulationUtil.getSchemaTree( TestConstants.TEST_XSD_COMPLEXRECURSIVE, null, true, 0 ),0,fos, true);
+			
+			fos.close();
+			
+			assertTrue( TestUtil.compareTextFile(
+					    new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_OUTPUT_COMPLEXRECURSIVE),
+						new File(TestConstants.SCHEMA_POPULATION_UTIL_TEST_GOLDEN_COMPLEXRECURSIVE)));
 	}
 	
 	private static void printTree( ATreeNode root, int level, FileOutputStream fos ) throws IOException
@@ -258,11 +276,10 @@ public class SchemaPopulationUtilTest extends BaseTest
 		String toBeWriten = space + root.getValue().toString()+":"+root.getType()+":"+level + (withType?(" dataType:" + root.getDataType( )):"");
 		fos.write( toBeWriten.getBytes());
 		fos.write(lineSeparator.getBytes());
-		
+		System.out.println( toBeWriten );
 		for(int i = 0; i < root.getChildren().length; i++)
 		{
 			printTree( (ATreeNode)(root.getChildren()[i]), level+1, fos, withType);
 		}
 	}
-
 }

@@ -49,7 +49,6 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
@@ -62,8 +61,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Tree;
@@ -501,7 +501,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		// TODO Automatically generate the available column xpath
 		String columnPath = "";
 		Object data = selectedItem.getData( );
-		if ( data instanceof ATreeNode )
+		if ( data instanceof TreeNodeData )
 		{
 			columnPath = generateXpathFromTreeItem( select );
 		}
@@ -520,14 +520,14 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		String columnPath = treeItem.getText( );
 
 		while ( treeItem.getParentItem( ) != null
-				&& treeItem.getParentItem( ).getData( ) instanceof ATreeNode )
+				&& treeItem.getParentItem( ).getData( ) instanceof TreeNodeData )
 		{
 			treeItem = treeItem.getParentItem( );
 
-			if ( ( (ATreeNode) treeItem.getData( ) ).getType( ) == ATreeNode.ELEMENT_TYPE
+			if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( ).getType( ) == ATreeNode.ELEMENT_TYPE
 					&& columnPath.trim( ).length( ) > 0 )
 				columnPath = treeItem.getText( ) + "/" + columnPath;
-			else if ( ( (ATreeNode) treeItem.getData( ) ).getType( ) == ATreeNode.ATTRIBUTE_TYPE )
+			else if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( ).getType( ) == ATreeNode.ATTRIBUTE_TYPE )
 				columnPath = columnPath + "/" + treeItem.getText( );
 		}
 		if ( !columnPath.startsWith( "/" ) )
@@ -851,6 +851,21 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, true, numberOfElement );
 			Object[] childs = treeNode.getChildren( );
 			populateTreeItems( availableXmlTree, childs, 0 );
+			availableXmlTree.addListener(SWT.Expand, new Listener(){
+
+				public void handleEvent(Event event) {
+					TreeItem currentItem = (TreeItem)event.item;
+					
+					if ( ((TreeNodeData)currentItem.getData()).hasBeenExpandedOnce())
+						return;
+					
+					((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
+					currentItem.removeAll();
+					if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
+							&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
+						TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ) );
+
+				}});
 			
 			if ( selectedItem == null )
 			{
@@ -878,8 +893,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	private void populateTreeItems( Object tree, Object[] node, int level )
 	{
 		level ++;
-		if( level > 10 )
-			return;
+		
 		for ( int i = 0; i < node.length; i++ )
 		{
 			TreeItem treeItem;
@@ -890,16 +904,15 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			else
 				treeItem = new TreeItem( (TreeItem) tree, 0 );
 			ATreeNode treeNode = (ATreeNode) node[i];
-
-			treeItem.setData( treeNode );
+			TreeNodeData data = new TreeNodeData( treeNode );
+			
+			treeItem.setData( data );
 			int type = treeNode.getType( );
 			if ( type == ATreeNode.ATTRIBUTE_TYPE )
 				treeItem.setText( "@" + treeNode.getValue( ).toString( ) );
 			else
 				treeItem.setText( treeNode.getValue( ).toString( ) );
-			if ( treeNode.getChildren( ) != null
-					&& treeNode.getChildren( ).length > 0 )
-				populateTreeItems( treeItem, treeNode.getChildren( ), level );
+			
 
 			String populateString = XPathPopulationUtil.populateColumnPath( selectedTreeItemText,
 					generateXpathFromTreeItem( treeItem ) );
@@ -916,12 +929,21 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					availableXmlTree.setFocus();
 					selectedItem = treeItem;
 				}
-				else
-					treeItem.setBackground( new Color( Display.getCurrent( ),
-							255,
-							255,
-							0 ) );
+				
 				setExpanded( treeItem );
+	
+			}
+			if ( treeNode.getChildren( ) != null
+					&& treeNode.getChildren( ).length > 0 )
+			{
+				if ( level > ( ( selectedTreeItemText == null || selectedTreeItemText.split( "/" ).length < 5 )
+						? 5 : selectedTreeItemText.split( "/" ).length ) )
+					new TreeItem( treeItem, 0 );
+				else
+				{
+					data.setHasBeenExpandedOnce( );
+					populateTreeItems( treeItem, treeNode.getChildren( ), level );
+				}
 			}
 		}
 	}
