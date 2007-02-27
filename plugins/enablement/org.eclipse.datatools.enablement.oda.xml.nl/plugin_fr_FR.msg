@@ -13,8 +13,8 @@
 ###############################################################################
 # NLS String
 ###############################################################################
-datasource.name=Source de données XML BIRT
-dataset.name=Jeu de données XML BIRT
+datasource.name=Source de données XML DTP
+dataset.name=Jeu de données XML DTP
 
 datasource.property.xmlFile=Fichier de source de données XML
 datasource.property.schemaFile=Fichier de schéma XML

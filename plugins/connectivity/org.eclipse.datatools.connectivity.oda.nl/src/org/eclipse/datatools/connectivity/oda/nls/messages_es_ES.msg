@@ -34,3 +34,7 @@ stringSubUtil_SUBSTITUTION_LIST_CANNOT_BE_NULL=La lista de sustitución de serie 
 stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=El valor de sustitución de serie no puede ser nulo.
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=La serie de texto no puede ser nula.
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=La correlación nombre-valor no puede ser nula.
+#
+profileProperty_PROFILE_NAME=Nombre de perfil de conexión
+profileProperty_PROFILE_STORE_PATH=URL de almacenamiento del perfil de conexión
+profileProperty_GROUP_PROPERTIES=Propiedades de perfil de conexión ODA

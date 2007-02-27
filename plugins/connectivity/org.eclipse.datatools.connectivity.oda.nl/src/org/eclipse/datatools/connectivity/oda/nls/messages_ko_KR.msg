@@ -34,3 +34,7 @@ stringSubUtil_SUBSTITUTION_LIST_CANNOT_BE_NULL=문자열 대체 목록은 널(null)일 수 
 stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=문자열 대체 값은 널(null)일 수 없습니다.
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=텍스트 문자열은 널(null)일 수 없습니다.
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=이름-값 맵핑은 널(null)일 수 없습니다.
+#
+profileProperty_PROFILE_NAME=연결 프로필 이름
+profileProperty_PROFILE_STORE_PATH=연결 프로필 저장 URL
+profileProperty_GROUP_PROPERTIES=ODA 연결 프로필 속성

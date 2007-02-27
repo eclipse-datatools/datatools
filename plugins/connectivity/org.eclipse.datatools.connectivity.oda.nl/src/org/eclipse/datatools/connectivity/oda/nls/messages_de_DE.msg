@@ -34,3 +34,7 @@ stringSubUtil_SUBSTITUTION_LIST_CANNOT_BE_NULL=Die Zeichenfolgensubstitutionslis
 stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=Der Zeichenfolgensubstitutionswert darf nicht Null sein.
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=Die Textzeichenfolge darf nicht Null sein.
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=Die Zuordnung Name-Wert darf nicht Null sein.
+#
+profileProperty_PROFILE_NAME=Name des Verbindungsprofils
+profileProperty_PROFILE_STORE_PATH=URL von Speicher für Verbindungsprofil
+profileProperty_GROUP_PROPERTIES=Eigenschaften von ODA-Verbindungsprofil

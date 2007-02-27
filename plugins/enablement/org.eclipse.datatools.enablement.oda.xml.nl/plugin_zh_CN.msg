@@ -13,8 +13,8 @@
 ###############################################################################
 # NLS String
 ###############################################################################
-datasource.name=BIRT XML 数据源
-dataset.name=BIRT XML 数据集
+datasource.name=DTP XML 数据源
+dataset.name=DTP XML 数据集
 
 datasource.property.xmlFile=XML 数据源文件
 datasource.property.schemaFile=XML 架构文件

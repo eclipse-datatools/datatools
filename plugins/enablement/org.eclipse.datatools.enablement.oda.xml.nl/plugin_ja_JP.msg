@@ -13,8 +13,8 @@
 ###############################################################################
 # NLS String
 ###############################################################################
-datasource.name=BIRT XML のデータソース
-dataset.name=BIRT XML のデータセット
+datasource.name=DTP XML のデータソース
+dataset.name=DTP XML のデータセット
 
 datasource.property.xmlFile=XML データソースファイル
 datasource.property.schemaFile=XML スキーマファイル

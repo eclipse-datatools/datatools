@@ -12,25 +12,25 @@
 ###############################################################################
 # NLS String
 ###############################################################################
-oda.xml.datasource=XML 数据源
-oda.xml.dataset=XML 数据集
+oda.xml.datasource=DTP XML 数据源
+oda.xml.dataset=DTP XML 数据集
 oda.xml.tablemapping=表映射
 oda.xml.columnmapping=列映射
 
-oda.data.source.id=org.eclipse.birt.report.data.oda.xml
+oda.data.source.id=org.eclipse.datatools.enablement.oda.xml
 oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 #
 ###############################################################################
 # NLS messages
 #
-plugin.name=BIRT XML File Designer
-oda.data.source.name=BIRT XML 文件
-connection.profile.name=BIRT XML 文件数据源连接配置文件
-newwizard.name=BIRT XML 文件数据源
-newwizard.description=创建 BIRT XML 文件连接配置文件
+plugin.name=DTP XML File Designer
+oda.data.source.name=DTP XML 文件
+connection.profile.name=DTP XML 文件数据源连接配置文件
+newwizard.name=DTP XML 文件数据源
+newwizard.description=创建 DTP XML 文件连接配置文件
 wizard.window.title=新建 XML 文件数据源配置文件
 wizard.data.source.page.title=定义 XML 文件和架构信息的 URL
-profile.propertypage.name=BIRT XML 文件数据源连接属性
+profile.propertypage.name=DTP XML 文件数据源连接属性
 preference.datasetpreview=XML 数据集
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
