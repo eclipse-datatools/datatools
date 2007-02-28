@@ -11,13 +11,9 @@
  *******************************************************************************/ 
 package org.eclipse.datatools.connectivity.ui.dse.views;
 
-import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.core.commands.operations.UndoContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.navigator.CommonNavigator;
-import org.eclipse.ui.operations.UndoRedoActionGroup;
 
 
 public class DataSourceExplorerView extends CommonNavigator {
@@ -29,5 +25,4 @@ public class DataSourceExplorerView extends CommonNavigator {
 	protected IAdaptable getInitialInput() {
 		return ProfileManager.getInstance();
 	}
-
 }
