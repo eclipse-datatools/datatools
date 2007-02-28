@@ -113,6 +113,7 @@ public interface SQLParserConstants
     public final static int TYPE_SQL_ALTER_INDEX       = 165;
     public final static int TYPE_SQL_DROP_VIEW         = 257;
     public final static int TYPE_SQL_SELECT_INTO       = 300;
+    public final static int TYPE_SQL_EVENT_CONDITION   = 301;
     /**
      * Indicates that only the routine header is interesting to the consumer. Can be combined with other routine types.
      */
