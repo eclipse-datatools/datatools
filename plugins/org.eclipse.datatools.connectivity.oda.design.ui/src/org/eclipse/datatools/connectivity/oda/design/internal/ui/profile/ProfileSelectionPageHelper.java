@@ -21,7 +21,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.DesignNameValidatorBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -74,7 +74,7 @@ class ProfileSelectionPageHelper
     private transient Tree m_odaDataSourceTree = null;
     private transient String m_treeFilter;
     private transient Properties m_dataSourceIDProperties = null;
-    private transient DesignNameValidatorBase m_designNameValidator;
+    private transient IDesignNameValidatorBase m_designNameValidator;
 
     ProfileSelectionPageHelper( WizardPage page )
     {
@@ -152,7 +152,7 @@ class ProfileSelectionPageHelper
      * Set the call-back validator provided by an ODA host, for validation of
      * the data source design named collected in the UI control.
      */
-    void setDesignNameValidator( DesignNameValidatorBase validator )
+    void setDesignNameValidator( IDesignNameValidatorBase validator )
     {
         m_designNameValidator = validator;
     }

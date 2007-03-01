@@ -317,7 +317,7 @@ public class DataSourceDesignSessionBase
      * user input of a design name.
      * @param validator
      */
-    protected void setDesignNameValidator( DesignNameValidatorBase validator )
+    protected void setDesignNameValidator( IDesignNameValidatorBase validator )
     {
         if( m_inCreateMode )    // in create new design mode
             ((ProfileSelectionWizardPage) getProfileSelectionWizard().getStartingPage() )
@@ -909,7 +909,7 @@ public class DataSourceDesignSessionBase
      * ODA connection profile selection page.
      * @since 3.0.4
 	 */	
-    public interface DesignNameValidatorBase
+    public interface IDesignNameValidatorBase
     {
         abstract boolean isValid( String designName ) throws OdaException;
     }

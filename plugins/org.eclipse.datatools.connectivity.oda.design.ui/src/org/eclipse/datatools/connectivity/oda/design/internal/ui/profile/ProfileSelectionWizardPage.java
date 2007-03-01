@@ -14,7 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
-import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.DesignNameValidatorBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -96,7 +96,7 @@ public class ProfileSelectionWizardPage extends WizardPage
     /**
      * For use by internal packages only.
      */
-    public void setDesignNameValidator( DesignNameValidatorBase validator )
+    public void setDesignNameValidator( IDesignNameValidatorBase validator )
     {
         getPageHelper().setDesignNameValidator( validator );
     }

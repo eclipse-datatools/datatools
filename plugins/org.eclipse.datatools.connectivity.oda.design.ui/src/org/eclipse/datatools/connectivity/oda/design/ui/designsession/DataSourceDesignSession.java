@@ -289,7 +289,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * @param   validator   interface for a call-back validator
      * @since 3.0.4
      */
-    public void setDesignNameValidator( DesignNameValidator validator )
+    public void setDesignNameValidator( IDesignNameValidator validator )
     {
         super.setDesignNameValidator( validator );
     }
@@ -409,7 +409,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      * ODA connection profile selection page.
      * @since 3.0.4
      */
-    public interface DesignNameValidator extends DesignNameValidatorBase
+    public interface IDesignNameValidator extends IDesignNameValidatorBase
     {
         /**
          * Validates whether the specified data source designName 
