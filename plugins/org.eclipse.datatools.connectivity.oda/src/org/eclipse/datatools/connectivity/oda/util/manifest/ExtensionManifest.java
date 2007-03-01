@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
@@ -150,8 +151,8 @@ public class ExtensionManifest
 	        return new Property[ 0 ];
 
         ArrayList properties = new ArrayList();
-        
-        // first convert top-level property elements
+
+        // first convert top-level property elements defined by an extension
 		for( int i = 0, size = propElements.length; i < size; i++ )
 		{
 			IConfigurationElement propElement = propElements[i];
@@ -173,10 +174,45 @@ public class ExtensionManifest
 				properties.add( new Property( groupedPropElement, groupName, groupDisplayName ) );
 			}
 		}
+        
+        // appends framework-defined properties, if not already defined by extension
+        // @since 3.0.4
+        if( ! containsProperty( ConnectionProfileProperty.PROFILE_NAME_PROP_KEY, properties ) )
+        {
+            properties.add( 
+                ConnectionProfileProperty.createPropertyDefinition( 
+                        ConnectionProfileProperty.PROFILE_NAME_PROP_KEY ) );
+        }
+        
+        if( ! containsProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY, properties ) )
+        {
+            properties.add( 
+                ConnectionProfileProperty.createPropertyDefinition( 
+                        ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY ) );
+        }
 		
         return (Property[]) properties.toArray( new Property[ properties.size() ] );
 	}
 
+    /**
+     * Determines whether the specified collection contains a property
+     * with the specified property name.
+     */
+    private static boolean containsProperty( String propertyName, ArrayList properties )
+    {
+        if( properties.isEmpty() )
+            return false;
+        
+        Iterator propsIter = properties.iterator();
+        while( propsIter.hasNext() )
+        {
+            Property aProp = (Property) propsIter.next();
+            if( aProp != null && propertyName.equals( aProp.getName() ) )
+                return true;
+        }
+        return false;
+    }
+    
 	/*
 	 * Parse and return the property visibility definitions.
 	 */
