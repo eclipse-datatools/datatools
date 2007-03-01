@@ -13,18 +13,21 @@ package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
-import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
+import org.eclipse.datatools.sqltools.plan.internal.PlanConstants;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.util.ILogger;
@@ -41,6 +44,8 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 
 /**
  * Saves the plans.
@@ -218,11 +223,15 @@ public class SavePlanAction extends Action
                 String enc = PlanViewPlugin.getDefault().getPreferenceStore().getString(
                         PreferenceConstants.EXPORT_FORMAT_PREF_ENCODING);
                 OutputStreamWriter osw = new OutputStreamWriter(fos, enc);
-                PrintWriter pw = new PrintWriter(osw);
-                pw.println("<?xml version=\"1.0\" encoding=\"" + enc + "\"?>");
-                pw.flush();
-                pw.print(document.getDocumentElement());
-                pw.flush();
+                if(document instanceof DocumentImpl)
+                {
+                    ((DocumentImpl)document).setXmlEncoding(enc);
+                    ((DocumentImpl)document).setInputEncoding(enc);
+                }
+                DOMSource source = new DOMSource(document.getDocumentElement());
+                StreamResult result = new StreamResult(osw);
+                Transformer transformer = TransformerFactory.newInstance().newTransformer();
+                transformer.transform(source, result);
             }
             catch (Exception e)
             {
