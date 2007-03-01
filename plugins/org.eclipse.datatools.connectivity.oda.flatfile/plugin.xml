@@ -3,7 +3,7 @@
 <!--
 /**
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.8 2006/06/27 23:38:29 lchan Exp $
+ * $Id: plugin.xml,v 1.9 2006/10/13 02:11:22 lzhu Exp $
  */
 -->
 
@@ -25,7 +25,7 @@
             odaVersion="3.0"
             driverClass="org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver"
             defaultDisplayName="%datasource.name"
-            id="org.eclipse.datatools.connectivity.oda.flatfile"
+            id="%oda.data.source.id"
             setThreadContextClassLoader="false">
          <properties>
             <property
@@ -134,4 +134,23 @@
                   odaScalarDataType="Decimal"/>
       </dataSet>
    </extension>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            id="%oda.data.source.id"
+            name="%oda.data.source.category.name"
+            parentCategory="%oda.parent.category.id"/>
+      <connectionProfile
+            category="%oda.data.source.id"
+            id="%oda.data.source.id"
+            name="%connection.profile.name"
+            pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"/>
+      <connectionFactory
+            id="org.eclipse.datatools.connectivity.oda.IConnection"
+            name="%oda.connection.factory.name"
+            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
+            profile="%oda.data.source.id"/>
+   </extension>
+   
 </plugin>

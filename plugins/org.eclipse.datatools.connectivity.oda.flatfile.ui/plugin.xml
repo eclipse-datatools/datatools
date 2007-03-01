@@ -3,7 +3,7 @@
 <!--
 /**
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.17 2006/04/22 03:02:29 lchan Exp $
+ * $Id: plugin.xml,v 1.18 2006/06/05 07:29:43 lzhu Exp $
  */
 -->
 
@@ -22,21 +22,6 @@
 
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
-      <category
-            id="%oda.data.source.id"
-            name="%oda.data.source.name"
-            parentCategory="%oda.parent.category.id"/>
-      <connectionProfile
-            category="%oda.data.source.id"
-            icon="icons/file.gif"
-            id="%oda.data.source.id"
-            name="%connection.profile.name"
-            pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"/>
-      <connectionFactory
-            id="org.eclipse.datatools.connectivity.oda.IConnection"
-            name="%oda.connection.factory.name"
-            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            profile="%oda.data.source.id"/>
       <newWizard
             id="%oda.data.source.id"
             name="%newwizard.name"
@@ -58,6 +43,7 @@
                value="%oda.data.source.id"/>
       </page>
    </extension>
+   
    <extension
          point="org.eclipse.datatools.connectivity.oda.design.ui.dataSource">
       <dataSourceUI id="%oda.data.source.id">
