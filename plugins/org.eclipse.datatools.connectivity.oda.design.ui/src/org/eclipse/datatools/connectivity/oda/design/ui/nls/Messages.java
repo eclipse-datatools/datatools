@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,11 +38,25 @@ public class Messages extends NLS
     public static String extension_mustInheritFromODAWizard;
     public static String extension_missingManifestElement;
     public static String extension_missingPropertyPage;
+    public static String profilePage_button_browse;
+    public static String profilePage_checkboxLabel_maintainLink;
+    public static String profilePage_checkboxLabel_useDefaultName;
+    public static String profilePage_checkboxTooltip_maintainLink;
+    public static String profilePage_error_emptyName;
+    public static String profilePage_error_invalidName;
+    public static String profilePage_label_dataSourceName;
+    public static String profilePage_label_profileStore;
+    public static String profilePage_odaTreeName;
+    public static String profilePage_pageLabel;
+    public static String profilePage_pageTitle;
+    public static String profilePage_selectProfileDefaultMessage;
     public static String wizard_dataSource_defaultTitle;
     public static String wizard_missingDataSourceId;
     public static String wizard_invalidManifest;
     public static String page_defaultDataSourceTitle;
     public static String designSession_invalidArgument;
+    public static String designSession_invalidEditApiCall;
+    public static String designSession_invalidNewDesignApiCall;
     public static String designSession_invalidProfileName;
     public static String designSession_missingDataSetUIElement;
     public static String manifest_missingAttributeValue;

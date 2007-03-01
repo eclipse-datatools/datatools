@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -85,9 +86,24 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
         DataSourceDesignSession newSession = 
             new DataSourceDesignSession( odaDataSourceId );
         
-        newSession.initNewDesign( newDataSourceName, 
-                                    profileRef, request );
+        newSession.initNewDesign( newDataSourceName, profileRef );
         return newSession;
+    }
+    
+    /**
+     * Starts a design session to create a new data source design instance,
+     * whose properties and their values are copied from,
+     * or referenced to, the given profile instance reference.
+     * <br>This method should be used when an ODA host designer
+     * wants to use the DTP ODA Profile Selection UI page for
+     * an user to select a connection profile instance.
+     * @return  a started design session, ready to create a new data source design
+     * @since 3.0.4
+     */
+    public static DataSourceDesignSession startNewDesignFromProfile()
+    {
+        // no specific ODA data source type is specified yet
+        return new DataSourceDesignSession();
     }
     
     /**
@@ -111,7 +127,10 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
                                 DesignSessionRequest request )
         throws OdaException
     {
-        super.restartNewDesign( odaDataSourceId, newDataSourceName, profileRef, request );
+        if( ! isInCreateMode() )
+            throw new OdaException( Messages.designSession_invalidNewDesignApiCall );
+        
+        super.restartNewDesign( odaDataSourceId, newDataSourceName, profileRef );
     }
 
     /**
@@ -254,8 +273,27 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     {
         return super.cancel();
     }
-
         
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase#setUseProfileSelectionPage(boolean)
+     * @since 3.0.4
+     */
+    public void setUseProfileSelectionPage( boolean use )
+    {
+        super.setUseProfileSelectionPage( use );
+    }
+
+    /**
+     * Assigns the specified design name validator to the wizard page that collects
+     * user input of a design name.
+     * @param   validator   interface for a call-back validator
+     * @since 3.0.4
+     */
+    public void setDesignNameValidator( DesignNameValidator validator )
+    {
+        super.setDesignNameValidator( validator );
+    }
+
     /**
      * Returns an ODA wizard for use within this design session
      * to create a new, extended ODA data source design instance.
@@ -265,6 +303,9 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      */
     public IWizard getNewWizard() throws OdaException
     {
+        if( ! isInCreateMode() )
+            throw new OdaException( Messages.designSession_invalidNewDesignApiCall );
+        
         return super.getNewWizard();
     }
 
@@ -278,7 +319,25 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      */
     public IWizardPage getWizardStartingPage() throws OdaException
     {
+        if( ! isInCreateMode() )
+            throw new OdaException( Messages.designSession_invalidNewDesignApiCall );
+        
         return super.getWizardStartingPage();
+    }
+
+    /**
+     * Returns the property page that allows an user to update 
+     * the selection of a connection profile.
+     * @return  a PropertyPage for use in a PreferenceDialog
+     * @throws OdaException
+     * @since 3.0.4
+     */
+    public PropertyPage getProfileSelectionPropertyPage() throws OdaException
+    {
+        if( ! isInEditMode() )
+            throw new OdaException( Messages.designSession_invalidEditApiCall );
+        
+        return super.getProfileSelectionEditorPage();
     }
 
     /**
@@ -290,6 +349,9 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
      */
     public PropertyPage getEditorPage() throws OdaException
     {
+        if( ! isInEditMode() )
+            throw new OdaException( Messages.designSession_invalidEditApiCall );
+        
         return super.getEditorPage();
     }
     
@@ -303,6 +365,9 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     public IAdaptable getEditPropertyPageElement()
         throws OdaException
     {
+        if( ! isInEditMode() )
+            throw new OdaException( Messages.designSession_invalidEditApiCall );
+        
         return super.getEditPropertyPageElement();
     }
         
@@ -337,5 +402,26 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
 
     }
 
-    
+    /**
+     * The public interface for call-back to an ODA design name validator
+     * provided by an ODA consumer application
+     * to validate the name of a data source design defined in the
+     * ODA connection profile selection page.
+     * @since 3.0.4
+     */
+    public interface DesignNameValidator extends DesignNameValidatorBase
+    {
+        /**
+         * Validates whether the specified data source designName 
+         * is valid in the context of the validator provider.
+         * @param designName    data source design name defined by an user
+         * @return  Returns true if designName is valid. Otherwise throws an
+         * OdaException with the appropriate error message for display
+         * on the UI page.  If the method simply returns false and does
+         * not throw an exception the page will display a generic error message.
+         */
+        public boolean isValid( String designName ) throws OdaException;
+        
+    }
+
 }

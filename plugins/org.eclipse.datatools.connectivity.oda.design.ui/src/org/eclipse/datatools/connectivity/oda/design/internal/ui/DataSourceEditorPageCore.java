@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -304,7 +304,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         
         return finishEditSession();
     }
-
+    
     /**
      * Returns the finished design session with a response
      * that contains the edited data source design.
@@ -324,7 +324,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
             throw new OdaException( Messages.common_notInDesignSession );
         }
         
-        // if no response is not available, perhaps performOk is not called;
+        // if response is not available, perhaps performOk is not called;
         // go ahead and trigger to finish the current edit session
         if( m_designSession.getResponse() == null )
             finishEditSession();
@@ -426,6 +426,25 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     {
         m_responseDesignerState = customDesignerState;
     }
+
+    /**
+     * Refresh this editor page's control display as needed to reflect
+     * the latest state of the data source design being edited.
+     * Refreshing may be needed when another editor page
+     * has updated the editing data source design instance.
+	 * @since 3.0.4
+     */
+    public void refresh()
+    {
+        refresh( getDataSourceProperties() );
+    }
+
+    /**
+     * Refresh this page's control display as needed to reflect
+     * the state of the specified data source design's connection properties.
+     * @param customConnectionProps
+     */
+    protected abstract void refresh( Properties customConnectionProps );
 
     /* (non-Javadoc)
      * @see org.eclipse.jface.dialogs.DialogPage#dispose()

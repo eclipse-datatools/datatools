@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -99,6 +99,17 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
     public String getOdaDataSourceId()
     {
         return super.getOdaDataSourceId();
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#refresh(java.util.Properties)
+	 * @since 3.0.4
+     */
+    protected void refresh( Properties customConnectionProps )
+    {
+        // default implementation does nothing;
+        // sub-class may override
     }
     
 }
