@@ -45,7 +45,7 @@ import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
+//import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 
 /**
  * Saves the plans.
@@ -223,11 +223,11 @@ public class SavePlanAction extends Action
                 String enc = PlanViewPlugin.getDefault().getPreferenceStore().getString(
                         PreferenceConstants.EXPORT_FORMAT_PREF_ENCODING);
                 OutputStreamWriter osw = new OutputStreamWriter(fos, enc);
-                if(document instanceof DocumentImpl)
-                {
-                    ((DocumentImpl)document).setXmlEncoding(enc);
-                    ((DocumentImpl)document).setInputEncoding(enc);
-                }
+//                if(document instanceof DocumentImpl)
+//                {
+//                    ((DocumentImpl)document).setXmlEncoding(enc);
+//                    ((DocumentImpl)document).setInputEncoding(enc);
+//                }
                 DOMSource source = new DOMSource(document.getDocumentElement());
                 StreamResult result = new StreamResult(osw);
                 Transformer transformer = TransformerFactory.newInstance().newTransformer();
