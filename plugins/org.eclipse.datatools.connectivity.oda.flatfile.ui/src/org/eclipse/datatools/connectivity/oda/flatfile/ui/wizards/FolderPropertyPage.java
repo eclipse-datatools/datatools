@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -67,10 +67,21 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		 * Obtains designer state, using
 		 *      getInitializationDesignerState(); 
 		 */
-		pageHelper.initCustomControl( profileProps );
+
+        pageHelper.initCustomControl( profileProps );
 
 		if ( !isSessionEditable( ) )
 			getControl( ).setEnabled( false );
 	}
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#refresh(java.util.Properties)
+     */
+    protected void refresh( Properties customConnectionProps  )
+    {
+        if( pageHelper != null )
+            pageHelper.initCustomControl( customConnectionProps );
+    }
 
 }
