@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,7 +37,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 
 /**
- * The ODA data source wizard base class implementation that 
+ * The internal ODA data source wizard base class implementation that 
  * looks up and adds customized wizard page to create an 
  * extended ODA connection profile instance.
  * <p>This wizard is part of the ODA Designer UI framework that 
@@ -258,6 +258,11 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     {
         m_linkedProfile = 
             new LinkedProfile( profileName, storageFile );
+    }
+
+    public void unsetLinkedProfile()
+    {
+        m_linkedProfile = null;        
     }
  
     private boolean hasLinkToProfile()

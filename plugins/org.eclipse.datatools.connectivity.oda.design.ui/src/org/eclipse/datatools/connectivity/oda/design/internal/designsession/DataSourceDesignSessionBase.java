@@ -130,12 +130,12 @@ public class DataSourceDesignSessionBase
         // a new data source wizard
         
         // verifies that the given profile does exist in cache;
-        // if wizard was initialize w/ same profileRef,
+        // if wizard was initialize w/ same profile instance,
         // do not change any user edits on wizard page
         Properties profileProps = null;
         String profileDesc = null;
         if( profileRef != null && 
-            ! profileRef.equals( m_wizardProfileRef ) )
+            ! profileRef.equalsIgnoreMaintainLink( m_wizardProfileRef ) )
         {
             profileProps = getProfileProperties( profileRef );
             profileDesc = profileRef.getDescription();
@@ -147,10 +147,11 @@ public class DataSourceDesignSessionBase
         // initialize wizard with given name and properties, if any;
         // and reset any previously linked profile
         initWizard( wizard, newDataSourceName, profileDesc, profileProps );
+        
         m_wizardProfileRef = profileRef;
-
-        if( profileRef != null && profileRef.maintainExternalLink() )
-            wizard.setLinkedProfile( profileRef.getName(), profileRef.getStorageFile() );
+        if( m_wizardProfileRef != null && m_wizardProfileRef.maintainExternalLink() )
+            wizard.setLinkedProfile( m_wizardProfileRef.getName(), 
+                                     m_wizardProfileRef.getStorageFile() );
     }
 
     protected void initEditDesign( DesignSessionRequest request,
@@ -450,6 +451,9 @@ public class DataSourceDesignSessionBase
         {
             wizard.setInitialProperties( dataSourceProps );
         }
+        
+        // reset any previously linked profile
+        wizard.unsetLinkedProfile();
     }
 
     /**
@@ -867,12 +871,32 @@ public class DataSourceDesignSessionBase
             return profileInstance;
         }
         
+        /**
+         * Compares this content with those of the specified instance.
+         * @param aProfileRef
+         * @return  true if the argument is not null and has same content;
+         *          false otherwise
+         */
         public boolean equals( ProfileReferenceBase aProfileRef )
         {
-            if( aProfileRef == null )
+            if( ! equalsIgnoreMaintainLink( aProfileRef ) )
                 return false;
             
-            if( this.m_maintainLink != aProfileRef.m_maintainLink )
+            return( this.m_maintainLink == aProfileRef.m_maintainLink );
+        }
+        
+        /**
+         * Compares this content with those of the specified instance,
+         * ignoring their maintain external link attribute values.
+         * @param aProfileRef
+         * @return  true if the argument is not null and has same content, except their
+         *          maintain external link attribute values;
+         *          false otherwise
+         * @since 3.0.4
+         */
+        public boolean equalsIgnoreMaintainLink( ProfileReferenceBase aProfileRef )
+        {
+            if( aProfileRef == null )
                 return false;
             
             if( this.m_storageFile != null &&
@@ -881,7 +905,7 @@ public class DataSourceDesignSessionBase
             if( m_storageFile == null && aProfileRef.m_storageFile != null )
                 return false;
            
-            // exact same non-null id is same profile instance; no need to check for name
+            // exact same non-null id means the same profile instance; no need to check for name
            if( this.m_instanceId != null && 
                this.m_instanceId.equals( aProfileRef.m_instanceId ) )
                 return true;  
