@@ -33,10 +33,6 @@ class RuntimeTemplateSection extends OdaTemplateSection
     static final String OPTION_NUM_CONN_PROPERTIES = "numConnProperties";  //$NON-NLS-1$
     static final String OPTION_NUM_QUERY_PROPERTIES = "numQueryProperties";  //$NON-NLS-1$
 
-    // extension points used in the generated plug-in
-    private static final String ODA_RUNTIME_EXT_PT =
-        "org.eclipse.datatools.connectivity.oda.dataSource"; //$NON-NLS-1$
-
     
     RuntimeTemplateSection( NewPluginTemplateWizard wiz )
     {
@@ -133,11 +129,15 @@ class RuntimeTemplateSection extends OdaTemplateSection
     {
         // calls inherited method to create extension
         IPluginExtension runtimeExtension = 
-                createExtension( ODA_RUNTIME_EXT_PT, true );
+                createExtension( OdaPluginModeler.ODA_RUNTIME_EXT_PT, true );
         
         OdaPluginModeler modeler = new OdaPluginModeler( this );
         modeler.updateRuntimeModel( odaModel, runtimeExtension );    
-    }
+
+        IPluginExtension profileExtension = 
+            createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_EXT_PT, true );
+        modeler.updateConnProfileRuntimeModel( odaModel, profileExtension );    
+}
 
     /* (non-Javadoc)
      * @see org.eclipse.pde.ui.templates.AbstractTemplateSection#generateFiles(org.eclipse.core.runtime.IProgressMonitor)
@@ -161,7 +161,11 @@ class RuntimeTemplateSection extends OdaTemplateSection
         return new IPluginReference[] 
                     { new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda",  //$NON-NLS-1$
-                        "3.0.3" ) };  //$NON-NLS-1$
+                        "3.0.4" ),  //$NON-NLS-1$
+                      new CompatiblePluginReference( 
+                        "org.eclipse.datatools.connectivity.oda.profile",  //$NON-NLS-1$
+                        "3.0.4" )   //$NON-NLS-1$
+                    };
     }
 
     /* (non-Javadoc)
@@ -169,7 +173,7 @@ class RuntimeTemplateSection extends OdaTemplateSection
      */
     public String getUsedExtensionPoint()
     {
-        return ODA_RUNTIME_EXT_PT;
+        return OdaPluginModeler.ODA_RUNTIME_EXT_PT;
     }
     
 }

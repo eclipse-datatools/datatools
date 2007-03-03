@@ -36,14 +36,6 @@ class DesignTimeTemplateSection extends OdaTemplateSection
     static final String OPTION_RUNTIME_DATA_SET_ID = "odaDataSetId";  //$NON-NLS-1$
     static final String OPTION_RUNTIME_DRIVER_CLASS = "odaDriverClass";  //$NON-NLS-1$
 
-    // extension points used in the generated plug-in
-    private static final String ODA_DESIGN_TIME_EXT_PT =
-        "org.eclipse.datatools.connectivity.oda.design.ui.dataSource"; //$NON-NLS-1$
-    private static final String CONNECTIVITY_PROFILE_EXT_PT =
-        "org.eclipse.datatools.connectivity.connectionProfile"; //$NON-NLS-1$
-    private static final String CONNECTIVITY_PROFILE_PAGE_EXT_PT =
-        "org.eclipse.ui.propertyPages"; //$NON-NLS-1$
-
     
     DesignTimeTemplateSection( NewPluginTemplateWizard wiz )
     {
@@ -176,15 +168,15 @@ class DesignTimeTemplateSection extends OdaTemplateSection
     {
         // calls inherited method to create extension
         IPluginExtension profileExtension = 
-            createExtension( CONNECTIVITY_PROFILE_EXT_PT, true );
+            createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_EXT_PT, true );
         IPluginExtension profilePageExtension = 
-            createExtension( CONNECTIVITY_PROFILE_PAGE_EXT_PT, true );
+            createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_PAGE_EXT_PT, true );
 
         OdaPluginModeler modeler = new OdaPluginModeler( this );
-        modeler.updateConnProfileModel( odaModel, profileExtension, profilePageExtension );    
+        modeler.updateConnProfileDesignerModel( odaModel, profileExtension, profilePageExtension );    
         
         IPluginExtension designerExtension = 
-                createExtension( ODA_DESIGN_TIME_EXT_PT, true );        
+                createExtension( OdaPluginModeler.ODA_DESIGN_TIME_EXT_PT, true );        
         modeler.updateDesignerModel( odaModel, designerExtension );    
     }
 
@@ -215,7 +207,7 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         return new IPluginReference[] 
                     { new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.design.ui",  //$NON-NLS-1$
-                        "3.0.3" ),  //$NON-NLS-1$
+                        "3.0.4" ),  //$NON-NLS-1$
                       new CompatiblePluginReference( 
                         odaRuntimePluginId,
                         null ) };
@@ -226,7 +218,7 @@ class DesignTimeTemplateSection extends OdaTemplateSection
      */
     public String getUsedExtensionPoint()
     {
-        return ODA_DESIGN_TIME_EXT_PT;
+        return OdaPluginModeler.ODA_DESIGN_TIME_EXT_PT;
     }
 
     /* (non-Javadoc)

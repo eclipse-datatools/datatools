@@ -35,11 +35,22 @@ import org.osgi.framework.Constants;
 class OdaPluginModeler
 {
     private static final String PROP_ODA_DATA_SOURCE_ID = "%oda.data.source.id";  //$NON-NLS-1$
+    private static final String PROP_DATA_SOURCE_NAME = "%data.source.name";  //$NON-NLS-1$
     private static final String ODA_PROFILE_FACTORY_CLASS = 
         "org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory";  //$NON-NLS-1$
     private static final String VALUE_TRUE = Boolean.toString( true );
     private static final String VALUE_FALSE = Boolean.toString( false );
     private static final Locale IDENTIFIER_LOCALE = OdaTemplateSection.IDENTIFIER_LOCALE;
+
+    // extension points used in the generated plug-ins
+    static final String ODA_RUNTIME_EXT_PT =
+        "org.eclipse.datatools.connectivity.oda.dataSource"; //$NON-NLS-1$
+    static final String ODA_DESIGN_TIME_EXT_PT =
+        "org.eclipse.datatools.connectivity.oda.design.ui.dataSource"; //$NON-NLS-1$
+    static final String CONNECTIVITY_PROFILE_EXT_PT =
+        "org.eclipse.datatools.connectivity.connectionProfile"; //$NON-NLS-1$
+    static final String CONNECTIVITY_PROFILE_PAGE_EXT_PT =
+        "org.eclipse.ui.propertyPages"; //$NON-NLS-1$
 
     private OdaTemplateSection m_section;    
 
@@ -65,7 +76,7 @@ class OdaPluginModeler
         odaModel.getPluginBase().setName( "%plugin.name" ); //$NON-NLS-1$
         
         IPluginExtension extension = runtimeExtension;
-        extension.setId( getOdaDataSourceId() );
+        extension.setId( PROP_ODA_DATA_SOURCE_ID );
         if ( ! extension.isInTheModel() )
             odaModel.getPluginBase().add( extension );
         
@@ -88,10 +99,10 @@ class OdaPluginModeler
         // dataSource element
         IPluginElement dataSourceElement = factory.createElement( extension );
         dataSourceElement.setName( "dataSource" ); //$NON-NLS-1$
-        dataSourceElement.setAttribute( "id", getOdaDataSourceId() ); //$NON-NLS-1$
+        dataSourceElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "driverClass", getKeyPackageName() + ".Driver" );  //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "odaVersion", "3.0" ); //$NON-NLS-1$ //$NON-NLS-2$
-        dataSourceElement.setAttribute( "defaultDisplayName", "%data.source.name"  ); //$NON-NLS-1$ //$NON-NLS-2$
+        dataSourceElement.setAttribute( "defaultDisplayName", PROP_DATA_SOURCE_NAME  ); //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "setThreadContextClassLoader" , VALUE_FALSE );//$NON-NLS-1$
         extension.add( dataSourceElement );
 
@@ -268,25 +279,21 @@ class OdaPluginModeler
             return m_odaScalarType;
         }
     }
-    
+ 
     /**
-     * Updates the specified connection profile extension and profile property page
-     * extension configuration based on the user-defined designer template options.
-     * And adds the updated extensions to the specified odaModel.
+     * Updates the specified connection profile extension configuration
+     * with runtime elements, based on the user-defined runtime template options.
+     * And adds the updated extension to the specified odaModel.
      * @param odaModel
      * @param profileExtension
-     * @param profilePageExtension
      * @throws CoreException
      */
-    void updateConnProfileModel( IPluginModelBase odaModel, 
-                            IPluginExtension profileExtension, 
-                            IPluginExtension profilePageExtension )
+    void updateConnProfileRuntimeModel( IPluginModelBase odaModel, 
+                                        IPluginExtension profileExtension )
         throws CoreException
     {
         if ( ! profileExtension.isInTheModel() )
             odaModel.getPluginBase().add( profileExtension );
-        if ( ! profilePageExtension.isInTheModel() )
-            odaModel.getPluginBase().add( profilePageExtension );
         
         IPluginModelFactory factory = odaModel.getPluginFactory();
         
@@ -295,7 +302,7 @@ class OdaPluginModeler
         IPluginElement categoryElement = factory.createElement( profileExtension );
         categoryElement.setName( "category" ); //$NON-NLS-1$
         categoryElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
-        categoryElement.setAttribute( "name", "%data.source.name" ); //$NON-NLS-1$ //$NON-NLS-2$
+        categoryElement.setAttribute( "name", PROP_DATA_SOURCE_NAME ); //$NON-NLS-1$ //$NON-NLS-2$
         categoryElement.setAttribute( "parentCategory",   //$NON-NLS-1$
                 "org.eclipse.datatools.connectivity.oda.profileCategory" ); //$NON-NLS-1$
         profileExtension.add( categoryElement );
@@ -307,7 +314,6 @@ class OdaPluginModeler
         profileElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         profileElement.setAttribute( "name", "%connection.profile.name" ); //$NON-NLS-1$ //$NON-NLS-2$
         profileElement.setAttribute( "pingFactory", ODA_PROFILE_FACTORY_CLASS ); //$NON-NLS-1$
-        profileElement.setAttribute( "icon", "icons/profile.gif" ); //$NON-NLS-1$ //$NON-NLS-2$
         profileExtension.add( profileElement );
          
         // connectionFactory element
@@ -317,8 +323,32 @@ class OdaPluginModeler
         factoryElement.setAttribute( "profile", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         factoryElement.setAttribute( "name", Messages.modeler_odaConnectionFactory ); //$NON-NLS-1$
         factoryElement.setAttribute( "class", ODA_PROFILE_FACTORY_CLASS ); //$NON-NLS-1$
-        profileExtension.add( factoryElement );
+        profileExtension.add( factoryElement );   
+    }
+
+    /**
+     * Updates the specified connection profile extension configuration
+     * with design ui elements, and the profile property page
+     * extension configuration, based on the user-defined designer template options.
+     * And adds the updated extensions to the specified odaModel.
+     * @param odaModel
+     * @param profileExtension
+     * @param profilePageExtension
+     * @throws CoreException
+     */
+    void updateConnProfileDesignerModel( IPluginModelBase odaModel, 
+                            IPluginExtension profileExtension, 
+                            IPluginExtension profilePageExtension )
+        throws CoreException
+    {
+        if ( ! profileExtension.isInTheModel() )
+            odaModel.getPluginBase().add( profileExtension );
+        if ( ! profilePageExtension.isInTheModel() )
+            odaModel.getPluginBase().add( profilePageExtension );
         
+        IPluginModelFactory factory = odaModel.getPluginFactory();
+        
+        // connectionProfile extension        
         // newWizard element
         IPluginElement profileWizElement = factory.createElement( profileExtension );
         profileWizElement.setName( "newWizard" ); //$NON-NLS-1$
