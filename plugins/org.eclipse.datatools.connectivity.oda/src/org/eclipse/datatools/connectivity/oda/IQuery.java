@@ -75,6 +75,8 @@ public interface IQuery
 	 * Multiple calls using the same property name may be allowed 
 	 * to assign multiple values to the same property.   
 	 * Its handling is specific to individual driver implementation.
+     * If a property name is not recognized by the driver,
+     * it should simply ignore, and not throw an exception.
 	 * <br>Each ODA extension property defined for a data set
 	 * triggers an ODA consumer to call this method
 	 * with corresponding property value, which could be null. 
@@ -119,7 +121,7 @@ public interface IQuery
 	
 	/**
 	 * Returns the metadata of the current result set for this prepared IQuery.  
-	 * This should only be called after prepare(). If the method is called before 
+	 * This can be called only after prepare(). If the method is called before 
 	 * the IQuery is executed, the returned metadata refers to its first result 
 	 * set.
 	 * @return	an IResultSetMetaData object.
@@ -266,7 +268,7 @@ public interface IQuery
 	 * @throws OdaException		if data source error occurs
 	 */
 	public void setTimestamp( int parameterId, Timestamp value ) throws OdaException;
-	
+
 	/**
 	 * Returns the 1-based index of the specified input parameter.
 	 * @param parameterName		name of the parameter.
