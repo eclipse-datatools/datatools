@@ -25,7 +25,9 @@ public interface IConnection
 	/**
 	 * Attempts to establish a connection based on the given connection 
 	 * properties.
-	 * It is up to individual ODA driver to process the properties.
+     * Its handling is specific to individual driver implementation.
+     * If any property name is not recognized by the driver,
+     * it should simply ignore, and not throw an exception.
 	 * <br>Note: An ODA driver may use the 
 	 * <code>org.eclipse.datatools.connectivity.oda.util.manifest</code>
 	 * utility package to obtain information on itself,
