@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"
+            name="%profile.asa.title"
+            pingFactory="org.eclipse.datatools.enablement.sybase.asa.JDBCASAConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.sybase.asa.SybaseASADBPropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.sybase.asa.JDBCASAConnectionFactory"
+            id="java.sql.Connection"
+            name="%JDBC Connection"
+            profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+      <newWizard
+            class="org.eclipse.datatools.enablement.sybase.asa.NewJDBCASAConnectionProfileWizard"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.sybase.asa.NewConnectionProfileWizard"
+            name="%profile.asa.wizard.title"
+            profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.sybase.asa.JDBCASAProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.sybase.asa.profileProperties"
+            name="%profile.asa.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+      </page>
+   </extension>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            file="runtime/vendors/Sybase_ASA_9.x/Sybase_ASA_9.x.xmi"
+            product="Sybase_ASA"
+            productDisplayString="%9.xProductString"
+            version="9.x"
+            versionDisplayString="%9.xVersionString">
+      </definition>
+	  <definition
+            file="runtime/vendors/Sybase_ASA_9.x/Sybase_ASA_9.x.xmi"
+            product="Sybase_ASA"
+            productDisplayString="%9.xProductString"
+            version="10.x"
+            versionDisplayString="%9.xVersionString">
+      </definition>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="Sybase_ASA_9.x.xmi"
+            target="runtime/vendors/Sybase_ASA_9.x/Sybase_ASA_9.x.xmi">
+      </mapping>
+   </extension>
+
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+      <catalog
+            version="9.x"
+            product="Sybase_ASA"
+            provider="org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogProvider">
+      </catalog>
+      <catalog
+            product="Sybase_ASA"
+            provider="org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogProvider"
+            version="10.x"/>
+   </extension>
+
+    <extension
+         point="org.eclipse.datatools.connectivity.driverExtension">     
+      <driverTemplate
+            createDefault="false"
+            emptyJarListIsOK="false"
+            id="org.eclipse.datatools.enablement.sybase.asa.drivertemplate"
+            jarList="jconn3.jar"
+            name="%asa.driver.template"
+            parentCategory="org.eclipse.datatools.enablement.sybase.asa.9x">
+         <properties>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.driverClass"
+                  name="Driver Class"
+                  value="com.sybase.jdbc3.jdbc.SybDriver"
+                  required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.vendor"
+                  name="Vendor"
+                  value="Sybase_ASA"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.version"
+                  name="Version"
+                  value="9.x"
+                  required="true"
+                  visible="false"/>   
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.databaseName"
+                  name="Database Name"
+                  value="asademo"
+                  required="true"
+                  visible="true"/>                             
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.URL"
+                  name="Connection URL"
+                  value="jdbc:sybase:Tds:host:port/database"
+                  required="true"
+                  visible="false"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.username"
+                  name="User ID"
+                  value="dba"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.connectivity.db.password"
+                  name="Password"
+                  value="sql"
+                  required="false"
+                  visible="true"/>
+  			<property 
+  				name="host" 
+  				value="localhost"
+  				visible="true" 
+  				id="com.sybase.stf.servers.jdbc.sybase.asa.host" /> 
+			<property 
+				name="port" 
+				value="2638" 
+				visible="true" 
+				id="com.sybase.stf.servers.jdbc.sybase.asa.port" /> 
+		  <property 
+		  			name="connectionProps" 
+		  			value="DYNAMIC_PREPARE=true" 
+		  			visible="false" 
+		  			id="org.eclipse.datatools.connectivity.db.generic.connectionproperties" /> 
+		  <property 
+		  			name="catalog" 
+		  			value="%" 
+		  			visible="false" 
+		  			id="org.eclipse.datatools.enablement.sybase.asa.catalog" /> 
+		  <property 
+		  			name="schema" 
+		  			value="%" 
+		  			visible="false" 
+		  			id="org.eclipse.datatools.enablement.sybase.asa.schema" /> 
+         </properties>
+      </driverTemplate>
+      <category
+            id="org.eclipse.datatools.enablement.sybase.asa.9x"
+            name="%9.xVersionString"
+            parentCategory="org.eclipse.datatools.enablement.sybase.asa.category"/>
+      <category
+            id="org.eclipse.datatools.enablement.sybase.asa.category"
+            name="%asa.category"
+            parentCategory="org.eclipse.datatools.enablement.sybase"/>
+   </extension> 
+
+  <extension point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
+  	<containment 
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
+  		class="SybaseASABaseEvent" 
+  		provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAEventContainmentProvider" /> 
+  	<containment 
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
+  		class="SybaseASABaseDatabase" 
+  		provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASADatabaseContainmentProvider" /> 
+  	<containment 
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
+  		class="SybaseASABaseSchema" 
+  		provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASASchemaContainmentProvider" /> 
+    <containment
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
+        class="SybaseASABaseUserDefinedType"
+        provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAUserDefinedTypeContainmentProvider"/>
+    <containment
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore" 
+        class="SybaseASAWebService"
+        provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAWebServiceContainmentProvider"/>
+    <containment
+  		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
+        class="SybaseASABasePredefinedDataType"
+        provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAPredefinedTypeContainmentProvider"/>
+  </extension>
+
+      <extension
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <navigatorContent
+               activeByDefault="true"
+               contentProvider="org.eclipse.datatools.enablement.sybase.asa.providers.SybaseASAContentProvider"
+               id="org.eclipse.datatools.enablement.sybase.asa.asaSqlModelContent"
+               labelProvider="org.eclipse.datatools.enablement.sybase.asa.providers.SybaseASALabelProviderExt"
+               name="%profile.asa.content"
+               priority="highest">
+            <enablement>
+            	<or>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.WebServicesFolder"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASASchema"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DataTypesFolder"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DBEventsFolder"/>
+	            </or>
+            </enablement>
+         </navigatorContent>
+      </extension>
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.enablement.sybase.asa.asaSqlModelContent"/>
+            </includes>
+         </viewerContentBinding>
+      </extension>  
+
+	<extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+		<contributor
+			type = "org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.DBEvent"
+			iconLocation = "/icons/event.gif"
+			displayType = "%events">
+		</contributor>
+  <contributor
+        displayType="Web Service"
+        iconLocation="/icons/webservice.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAWebService"/>
+  <contributor
+        displayType="Data Type"
+        iconLocation="/icons/DataType.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAPredefinedDataType"/>
+  <contributor
+        displayType="Proxy Table"
+        iconLocation="/icons/remotetable.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable"/>
+  <contributor
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.ProxyTableNode"/>
+	</extension>
+
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="false"
+          id="org.eclipse.datatools.enablement.sybase.asa.objectContribution1"
+          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+       <action
+             class="org.eclipse.datatools.enablement.sybase.asa.actions.ProfileASAMultiDBAction"
+             id="org.eclipse.datatools.enablement.sybase.asa.action1"
+             label="%wizard.asa.multi.action"/>
+       <visibility>
+          <and>
+             <objectClass name="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+             <objectState
+                   name="org.eclipse.datatools.profile.property.id"
+                   value="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
+          </and>
+       </visibility>
+    </objectContribution>
+ </extension>
+ 
+	  <extension
+	     point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+		  <generator
+		        version="9.x"
+		        product="Sybase_ASA"
+		        class="org.eclipse.datatools.enablement.sybase.asa.ddl.SybaseASADdlGenerator">
+		  </generator>
+		  <generator
+		        version="10.x"
+		        product="Sybase_ASA"
+		        class="org.eclipse.datatools.enablement.sybase.asa.ddl.SybaseASADdlGenerator">
+		  </generator>
+		  <delta
+            class="org.eclipse.datatools.enablement.sybase.deltaddl.SybaseDeltaDdlGeneration"
+            product="Sybase_ASA"
+            version="9.x"/>
+            
+           <delta
+            class="org.eclipse.datatools.enablement.sybase.deltaddl.SybaseDeltaDdlGeneration"
+            product="Sybase_ASA"
+            version="10.x"/>
+            
+	  </extension>
+      <extension
+         point="org.eclipse.datatools.enablement.sybase.deltaDdlGenProvider">
+	      <deltaDdlGenService
+	            class="Privilege"
+	            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+	            product="Sybase_ASA"
+	            provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASAPrivilegeDeltaDdlGenProvider"
+	            version="9.x"/>
+         <deltaDdlGenService
+               class="SybaseASABaseProcedure"
+               package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+               product="Sybase_ASA"
+               version="9.x"
+               provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASAProcedureDeltaDdlGenProvider"/>
+         <deltaDdlGenService
+               class="SybaseASABaseFunction"
+               package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+               product="Sybase_ASA"
+               version="9.x"
+               provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASAFunctionDeltaDdlGenProvider"/>
+         <deltaDdlGenService
+               class="SybaseASABaseTrigger"
+               package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+               product="Sybase_ASA"
+               version="9.x"
+               provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASATriggerDeltaDdlGenProvider"/>
+         <deltaDdlGenService
+               class="SybaseASABaseEvent"
+               package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+               product="Sybase_ASA"
+               version="9.x"
+               provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASAEventDeltaDdlGenProvider"/>
+         <deltaDdlGenService
+               class="SybaseASABaseViewTable"
+               package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+               product="Sybase_ASA"
+               provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASABaseViewTableDeltaDdlGenProvider"
+               version="9.x"/>
+          <deltaDdlGenService
+                class="SybaseASAIndex"
+                package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasaqlmodel.ecore"
+                product="Sybase_ASA"
+                provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASAIndexDeltaDdlGenProvider"
+                version="9.x"/>
+         <deltaDdlGenService
+	            class="SybaseASABasePrimaryKey"
+	            package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+	            product="Sybase_ASA"
+	            provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASAReferenceConstraintDeltaDdlGenProvider"
+	            version="9.x"/>
+         <deltaDdlGenService
+	            class="SybaseASAForeignKey"
+	            package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"
+	            product="Sybase_ASA"
+	            provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASAForeignKeyDeltaDdlGenProvider"
+	            version="9.x"/> 
+          <deltaDdlGenService
+	            class="SybaseASABaseUniqueConstraint"
+	            package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+	            product="Sybase_ASA"
+	            provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASAReferenceConstraintDeltaDdlGenProvider"
+	            version="9.x"/>
+          <deltaDdlGenService
+                class="CheckConstraint"
+                package="http:///org/eclipse/datatools/modelbase/sql/constraints.ecore"
+                product="Sybase_ASA"
+                provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASATableCheckConstraintDeltaDdlGenProvider"
+                version="9.x"/>
+          <deltaDdlGenService
+                class="SybaseASABaseColumnCheckConstraint"
+                package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+                product="Sybase_ASA"
+                provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.ASAColumnCheckConstraintDeltaDdlGenProvider"
+                version="9.x"/> 
+          <deltaDdlGenService
+                class="SybaseASATable"
+                package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"
+                product="Sybase_ASA"
+                provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASATableDeltaDdlGenProvider"
+                version="9.x"/> 
+		  <deltaDdlGenService
+                class="SybaseASABaseColumn"
+                package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+                product="Sybase_ASA"
+                provider="org.eclipse.datatools.enablement.sybase.asa.deltaddl.SybaseASAColumnDeltaDdlGenProvider"
+                version="9.x"/> 
+      </extension>
+ 
+ </plugin>  

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.asa.models/src"
+    modelPluginID="org.eclipse.datatools.enablement.sybase.asa.models" modelName="Sybaseasasqlmodel"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel sybaseasabasesqlmodel.genmodel#//sybaseasabasesqlmodel">
+  <foreignModel>sybaseasasqlmodel.ecore</foreignModel>
+  <genPackages prefix="Sybaseasasqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.asa.models"
+      disposableProviderFactory="true" ecorePackage="sybaseasasqlmodel.ecore#/">
+    <genEnums ecoreEnum="sybaseasasqlmodel.ecore#//IndexType">
+      <genEnumLiterals ecoreEnumLiteral="sybaseasasqlmodel.ecore#//IndexType/PRIMARY_KEY"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasasqlmodel.ecore#//IndexType/UNIQUE_CONSTRAINT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasasqlmodel.ecore#//IndexType/FOREIGN_CONSTRAINT"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasasqlmodel.ecore#//IndexType/INDEX"/>
+    </genEnums>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAEvent"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASADatabase">
+      <genOperations ecoreOperation="sybaseasasqlmodel.ecore#//SybaseASADatabase/isASA10"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAUserDefinedType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasasqlmodel.ecore#//SybaseASAUserDefinedType/checkCondition"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAPredefinedDataType"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASATable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasasqlmodel.ecore#//SybaseASATable/pctFree"/>
+      <genOperations ecoreOperation="sybaseasasqlmodel.ecore#//SybaseASATable/isPctFreeDefault"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAColumn"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAUniqueConstraint"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAPrimaryKey"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAForeignKey">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasasqlmodel.ecore#//SybaseASAForeignKey/checkOnCommit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasasqlmodel.ecore#//SybaseASAForeignKey/nullable"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasasqlmodel.ecore#//SybaseASAIndex/virtual"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasasqlmodel.ecore#//SybaseASAIndex/indexType"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASADBSpace"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAViewTable"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAFunction"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAProcedure"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASATempTable"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASATrigger"/>
+    <genClasses ecoreClass="sybaseasasqlmodel.ecore#//SybaseASAProxyTable"/>
+  </genPackages>
+</genmodel:GenModel>

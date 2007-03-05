@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase/src"
+    modelPluginID="org.eclipse.datatools.enablement.sybase" modelName="Sybasesqlmodel"
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel">
+  <foreignModel>sybasesqlmodel.ecore</foreignModel>
+  <genPackages prefix="Sybasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.models"
+      disposableProviderFactory="true" ecorePackage="sybasesqlmodel.ecore#/">
+    <genClasses ecoreClass="sybasesqlmodel.ecore#//SybaseParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseParameter/nullable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybasesqlmodel.ecore#//SybaseParameter/defaultValue"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
