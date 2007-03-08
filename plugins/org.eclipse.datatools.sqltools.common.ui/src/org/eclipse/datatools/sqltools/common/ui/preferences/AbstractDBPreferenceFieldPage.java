@@ -18,7 +18,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.common.ui.internal.Activator;
-import org.eclipse.datatools.sqltools.common.ui.internal.preferences.Messages;
+import org.eclipse.datatools.sqltools.common.ui.internal.Messages;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;

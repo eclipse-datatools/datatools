@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
@@ -1002,7 +1003,7 @@ public class SWTUtils
                 }
             }
             //Combo is an instance of Composite
-            if (children[i] instanceof Combo || children[i] instanceof Text) 
+            if (children[i] instanceof Combo || children[i] instanceof Text || children[i] instanceof Spinner) 
             {
                 children[i].addListener(SWT.Modify, listener);
                 children[i].addListener(SWT.Selection, listener);

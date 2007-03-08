@@ -1,14 +1,12 @@
-/*******************************************************************************
+/***********************************************************************************************************************
  * Copyright (c) 2004, 2005 Sybase, Inc. and others.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * 
+ * All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse
+ * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     Sybase, Inc. - initial API and implementation
- *******************************************************************************/
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.common.ui.util;
 
 /**
@@ -30,30 +28,29 @@ import org.eclipse.swt.graphics.Image;
 public class Images
 {
 
-    private static final String                               NAME_PREFIX                    = "org.eclipse.datatools.sqltools.common.ui";
-    private static final int                                  NAME_PREFIX_LENGTH             = NAME_PREFIX.length();
-    private static URL                                        _baseURL                       = null;
+    private static final String         NAME_PREFIX          = "org.eclipse.datatools.sqltools.common.ui";
+    private static final int            NAME_PREFIX_LENGTH   = NAME_PREFIX.length();
+    private static URL                  _baseURL             = null;
 
     // The plugin registry
-    private static ImageRegistry                              fgImageRegistry                = null;
-    private static HashMap                                    fgAvoidSWTErrorMap             = new HashMap();
+    private static ImageRegistry        fgImageRegistry      = null;
+    private static HashMap              fgAvoidSWTErrorMap   = new HashMap();
 
     static
     {
         String pathSuffix = "icons/";
         _baseURL = Activator.getDefault().getBundle().getEntry(pathSuffix);
     }
-     //------------------------------------------------------------------------------------------
-    private static final String                               T_OTHER                        = "other";
+    // ------------------------------------------------------------------------------------------
+    private static final String         T_OTHER              = "other";
 
-    public static final String                                IMG_OTHER_CHECKED              = NAME_PREFIX
-                                                                                                     + "checked.gif";
-    public static final String                                IMG_OTHER_UNCHECKED            = NAME_PREFIX
-                                                                                                     + "unchecked.gif";
-    public static final ImageDescriptor                       DESC_OTHER_CHECKED             = createManaged(T_OTHER,
-            IMG_OTHER_CHECKED);
-    public static final ImageDescriptor                       DESC_OTHER_UNCHECKED           = createManaged(T_OTHER,
-            IMG_OTHER_UNCHECKED);
+    public static final String          IMG_OTHER_CHECKED    = NAME_PREFIX + "checked.gif";
+    public static final String          IMG_OTHER_UNCHECKED  = NAME_PREFIX + "unchecked.gif";
+    public static final String          IMG_SAVEAS           = NAME_PREFIX + "saveas_wiz.png";                //$NON-NLS-1$
+
+    public static final ImageDescriptor DESC_OTHER_CHECKED   = createManaged(T_OTHER, IMG_OTHER_CHECKED);
+    public static final ImageDescriptor DESC_OTHER_UNCHECKED = createManaged(T_OTHER, IMG_OTHER_UNCHECKED);
+    public static final ImageDescriptor DESC_SAVEAS          = createManaged(T_OTHER, IMG_SAVEAS);
 
     /**
      * Returns the image managed under the given key in this registry.
@@ -94,7 +91,7 @@ public class Images
             fgAvoidSWTErrorMap.put(name, result);
             if (fgImageRegistry != null)
             {
-                //			    DmptoolPlugin.log_ErrorMessage("Internal Error: Image registry already defined"); //$NON-NLS-1$
+                // DmptoolPlugin.log_ErrorMessage("Internal Error: Image registry already defined"); //$NON-NLS-1$
             }
             return result;
         }
