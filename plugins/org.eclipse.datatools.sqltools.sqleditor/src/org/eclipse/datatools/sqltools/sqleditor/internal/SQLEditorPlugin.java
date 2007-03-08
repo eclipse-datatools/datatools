@@ -28,17 +28,16 @@ import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.sqleditor.internal.profile.SQLEditorProfileListener;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLCodeScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
+import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLContributionTemplateStore;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.templates.ContextTypeRegistry;
-import org.eclipse.jface.text.templates.persistence.TemplateStore;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.editors.text.templates.ContributionContextTypeRegistry;
-import org.eclipse.ui.editors.text.templates.ContributionTemplateStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -56,7 +55,7 @@ public class SQLEditorPlugin extends AbstractUIPlugin{
     private SQLCodeScanner         fCodeScanner;
 
     /** The template store. */
-    private TemplateStore                   _store;
+    private SQLContributionTemplateStore                   _store;
     /** The context type registry. */
     private ContributionContextTypeRegistry _registry;
 
@@ -207,11 +206,11 @@ public class SQLEditorPlugin extends AbstractUIPlugin{
      * 
      * @return the template store of this plug-in instance
      */
-    public TemplateStore getTemplateStore()
+    public SQLContributionTemplateStore getTemplateStore()
     {
         if (_store == null)
         {
-            _store = new ContributionTemplateStore(getTemplateContextTypeRegistry(), getDefault()
+            _store = new SQLContributionTemplateStore(getTemplateContextTypeRegistry(), getDefault()
                 .getPreferenceStore(), CUSTOM_TEMPLATES_KEY);
             try
             {

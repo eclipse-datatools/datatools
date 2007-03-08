@@ -26,14 +26,13 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
-import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
+import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParserProposalAdvisor;
@@ -46,6 +45,9 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLIntelligentTemplate;
+import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLTemplateProposal;
+import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLDBUtils;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLWordFinder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.text.BadLocationException;
@@ -53,7 +55,9 @@ import org.eclipse.jface.text.BadPartitioningException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentExtension3;
 import org.eclipse.jface.text.ITypedRegion;
+import org.eclipse.jface.text.contentassist.ContextInformation;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.templates.TemplateProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -216,7 +220,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 	 */
 	private ICompletionProposal[] getProposals(ParsingResult result,
 			ParserProposalAdvisor advisor) {
-		String user = getDefaultSchemaName(_editor.getConnectionInfo());
+		String user = SQLDBUtils.getDefaultSchemaName(_editor.getConnectionInfo());
 		
 		String[] parserProposals = advisor.getParserProposals(result);
 
@@ -406,7 +410,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
         boolean isStatementStart = cmdSize == cmds.size();
         ArrayList templateList = new SQLTemplateProposalsService().getProposals(_editor, _fDocumentOffset, _fWord, isStatementStart, _selection);
         ICompletionProposal[] templateResults = (ICompletionProposal[]) templateList
-            .toArray(new TemplateProposal[templateList.size()]);
+            .toArray(new SQLTemplateProposal[templateList.size()]);
 
         // concatenate arrays
         if (templateResults != null)
@@ -422,13 +426,6 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 	}
 
 
-	public static String getDefaultSchemaName(ISQLEditorConnectionInfo connInfo) {
-		DatabaseIdentifier dbid = new DatabaseIdentifier(connInfo.getConnectionProfileName());
-		String defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
-
-		return defaultSchemaName;
-	}
-	
 	/**
 	 * Finds the start offset of the current statement.
 	 * 
@@ -783,4 +780,92 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
         return templateResults;
     }
 
+    
+    public IContextInformation[] computeContextInformation(IDocument doc, ITypedRegion partition, int documentOffset,
+            Point selection)
+    {
+        IContextInformation[] contextInformations = null;
+        
+        contextInformations = computeTemplateContextInformation(doc, partition, documentOffset, selection);
+        
+        return contextInformations;
+    }
+
+    
+    private IContextInformation[] computeTemplateContextInformation(IDocument doc, ITypedRegion partition, int documentOffset,
+            Point selection)
+    {
+        String tempalteId = SQLEditorPlugin.getDefault().getPreferenceStore().getString(
+                TemplateConstant.INTELLIGENT_TEMPLATE);
+        if (tempalteId == null || tempalteId.trim().equals(""))
+        {
+            return null;
+        }
+        
+        String contextInfo = null;
+
+        SQLIntelligentTemplate template = SQLEditorPlugin.getDefault().getTemplateStore()
+                .getRegisteredIntelligentTemplate(tempalteId);
+        
+        if (template == null)
+        {
+            return null;
+        }
+        
+        String word = findWord(doc.get(), documentOffset);
+        contextInfo = template.getContextInformation(word);
+        
+        if (contextInfo != null)
+        {
+            return new ContextInformation[]{new ContextInformation(contextInfo, contextInfo)};
+        }
+        else
+        {
+            return null;
+        }
+    }
+    /**
+     * Find the qualified object identifier.
+     * @param text
+     * @param offset
+     * @return
+     */
+    private String findWord(String text, int offset)
+    {
+        // find word from variable's offset until white space is encountered.
+        int start = offset;
+        int end = offset;
+
+        for (int i = offset -1 ; i > 0; i--)
+        {
+            if (!isValidChar(text.charAt(i)))
+            {
+                break;
+            }
+            start--;
+        }
+        
+        for (int i = offset ; i < text.length(); i++)
+        {
+            if (!isValidChar(text.charAt(i)))
+            {
+                break;
+            }
+            end++;
+        }
+
+        return text.substring(start, end);
+    }
+    
+    private boolean isValidChar(char character)
+    {
+        if (character == ' ' || character == '\n' || character == '\t' || character == '\r' || character == '(' || character == ',' || character == ')')
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

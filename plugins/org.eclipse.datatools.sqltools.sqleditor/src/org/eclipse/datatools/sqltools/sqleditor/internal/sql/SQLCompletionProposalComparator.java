@@ -7,6 +7,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
 import java.util.Comparator;
 
+import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLTemplateProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.templates.TemplateProposal;
 
@@ -69,9 +70,9 @@ public class SQLCompletionProposalComparator implements Comparator
             ISQLCompletionProposal scp = (ISQLCompletionProposal) obj;
             return scp.getRelevance();
         }
-        else if (obj instanceof TemplateProposal)
+        else if (obj instanceof SQLTemplateProposal)
         {
-            TemplateProposal tp = (TemplateProposal) obj;
+            SQLTemplateProposal tp = (SQLTemplateProposal) obj;
             return tp.getRelevance();
         }
         // catch all

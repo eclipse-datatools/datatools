@@ -111,190 +111,7 @@ public class ModelUtil {
 	{
 		return findProceduralObject(proc, false);
 	}
-	
-    /**
-     * This method is used to find the table object in existing SQL modle.
-     * @param dbid
-     * @param dbname
-     * @param schemaName
-     * @param tableName
-     * @return
-     */
-    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName)
-    {
-        return findTableObject(dbid,dbname,schemaName,tableName,false);
-    }
-    
-    /**
-     * This method is used to find the table object in existing SQL modle.
-     * Attention: the method does not support ASE non-sharable temp table.
-     * @param dbid
-     * @param dbname
-     * @param schemaName
-     * @param tableName
-     * @param refresh
-     * @return
-     */
-    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh)
-    {
-        Database db = ProfileUtil.getDatabase(dbid);
-        if(db != null)
-        {
-            EList schemas = db.getSchemas();
-            if (schemas == null || schemas.size() == 0)
-            {
-                EList catalogs = db.getCatalogs();
-                if (catalogs != null)
-                {
-                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
-                    {
-                        Catalog catalog = (Catalog) iter.next();
-                        if (catalog.getName().equals(dbname))
-                        {
-                            schemas = (EList) catalog.getSchemas();
-                            break;
-                        }
-                    }
-                }
-            }
-           
-            for (Iterator i = schemas.iterator(); i.hasNext();)
-            {
-                Schema schema = (Schema) i.next();
-                if (schema.getName() != null && schema.getName().equals(schemaName))
-                {
-                    if (refresh)
-                    {
-                        ((ICatalogObject) schema).refresh();
-                    }
-                    for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
-                    {
-                        Table table = (Table) iter.next();
-                        //FIXME: 
-                        //handle non-sharable temp table for ASE,these code should be removed when
-                        //temp table catalog loader is ready
-                        if(tableName.startsWith("#"))
-                        {
-                            String tempTableNameInDB=table.getName();
-                            //Database will add 17 digital number after temp table name
-                            String nameWithoutPostfix = tempTableNameInDB.substring(tempTableNameInDB.length()-17, tempTableNameInDB.length());
-                            //ASE database does not add under score "_" as postfix, so we judge it firstly.
-                            if (nameWithoutPostfix.equals(tableName))
-                            {
-                                return table;
-                            }
-                            for(int k=nameWithoutPostfix.length();k>=0&&'_'==nameWithoutPostfix.charAt(k);k--)
-                            {
-                                if(tableName.equals(nameWithoutPostfix.substring(0, k)))
-                                {
-                                    return table;
-                                }
-                            }
-                            
-                        }
-                        else if (table.getName().equals(tableName))
-                        {
-                            return table;
-                        }
-                    }
-                }
-            }
-        }        
-        return null;
-    }
-    
-	/**
-	 * 
-	 * @param proc
-	 * @param refresh Whether to refresh the procedural object's parent folder
-	 * @return
-	 */
-	public static SQLObject findProceduralObject(ProcIdentifier proc, boolean refresh)
-	{
-		Database db = ProfileUtil.getDatabase(proc.getDatabaseIdentifier());
-		if (db != null) {
-			if (proc.getType() == ProcIdentifier.TYPE_EVENT) {
-				if (refresh) {
-					((ICatalogObject) db).refresh();
-				}
-				EList events = db.getEvents();
-				for (Iterator iter = events.iterator(); iter.hasNext();) {
-					Event routine = (Event) iter.next();
-					if (routine.getName().equals(proc.getProcName())) {
-						return routine;
-					}
-				}
-			} else {
-				EList schemas = db.getSchemas();
-				if (schemas == null || schemas.size() == 0) {
-					EList catalogs = db.getCatalogs();
-					if (catalogs != null) {
-						for (Iterator iter = catalogs.iterator(); iter
-								.hasNext();) {
-							Catalog catalog = (Catalog) iter.next();
-							if (catalog.getName()
-									.equals(proc.getDatabaseName())) {
-								
-								schemas = (EList) catalog.getSchemas();
-								break;
-							}
-						}
-					}
-				}
-
-				Iterator i = schemas.iterator();
-				for (; i.hasNext();) {
-					Schema schema = (Schema) i.next();
-					if (schema.getName() != null
-							&& schema.getName().equals(proc.getOwnerName())) {
-						// trigger is not routine in SQL model
-						if (proc.getType() == ProcIdentifier.TYPE_TRIGGER) {
-							EList tables = schema.getTables();
-							for (Iterator iter = tables.iterator(); iter
-									.hasNext();) {
-								Table table = (Table) iter.next();
-								if (table.getName().equals(proc.getTableName())) {
-									if (refresh
-											&& table instanceof ICatalogObject) {
-										((ICatalogObject) table).refresh();
-									}
-									EList triggers = table.getTriggers();
-									for (Iterator itera = triggers.iterator(); itera
-											.hasNext();) {
-										Trigger trigger = (Trigger) itera
-												.next();
-										if (table.getName().equals(
-												proc.getTableName())
-												&& trigger.getName().equals(
-														proc.getProcName())) {
-											return trigger;
-										}
-									}
-
-								}
-							}
-						} else if (proc.getType() == ProcIdentifier.TYPE_UDF
-								|| proc.getType() == ProcIdentifier.TYPE_SP) {
-							if (refresh) {
-								((ICatalogObject) schema).refresh();
-							}
-							EList routines = schema.getRoutines();
-							for (Iterator iter = routines.iterator(); iter
-									.hasNext();) {
-								Routine routine = (Routine) iter.next();
-								if (routine.getName()
-										.equals(proc.getProcName())) {
-									return routine;
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-	
+		
 	public static Database getDatabase(Schema schema)
 	{
 		Catalog catalog = schema.getCatalog();
@@ -462,5 +279,288 @@ public class ModelUtil {
         return authIds;
     }
 
+    /**
+     * This method is used to find the table object in existing SQL modle.
+     * @param dbid
+     * @param dbname
+     * @param schemaName
+     * @param tableName
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName)
+    {
+        return findTableObject(dbid,dbname,schemaName,tableName,false);
+    }
+    
+    /**
+     * This method is used to find the table object in existing SQL modle.
+     * Attention: the method does not support ASE non-sharable temp table.
+     * @param dbid
+     * @param dbname
+     * @param schemaName
+     * @param tableName
+     * @param refresh
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh)
+    {
+        return findTableObject(dbid, dbname, schemaName, tableName, refresh, true);
+    }
+    
+    /**
+     * This method is used to find the table object in existing SQL modle.
+     * Attention: the method does not support ASE non-sharable temp table.
+     * @param dbid
+     * @param dbname
+     * @param schemaName
+     * @param tableName
+     * @param refresh
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh,boolean caseSensitive )
+    {
+        Database db = ProfileUtil.getDatabase(dbid);
+        Table tableObject = null;
+        if(db != null)
+        {
+            EList schemas = db.getSchemas();
+            if (schemas == null || schemas.size() == 0)
+            {
+                EList catalogs = db.getCatalogs();
+                if (catalogs != null)
+                {
+                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
+                    {
+                        Catalog catalog = (Catalog) iter.next();
+                        if (equals(catalog.getName(), dbname, caseSensitive))
+                        {
+                            schemas = (EList) catalog.getSchemas();
+                            break;
+                        }
+                    }
+                }
+            }
+           
+            tableObject = findTableFromSchema(schemas, schemaName, tableName, caseSensitive, refresh);
+        }        
+        
+        
+        
+        
+        // Find table from other catalogs
+        if (tableObject == null)
+        {
+            EList schemas = db.getSchemas();
+            if (schemas != null || schemas.size() != 0)
+            {
+                EList catalogs = db.getCatalogs();
+                if (catalogs != null)
+                {
+                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
+                    {
+                        Catalog catalog = (Catalog) iter.next();
+                        if (!equals(catalog.getName(), dbname, caseSensitive))
+                        {
+                            schemas = (EList) catalog.getSchemas();
+                            tableObject = findTableFromSchema(schemas, schemaName, tableName, caseSensitive, refresh);
+                            if (tableObject != null)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return tableObject;
+    }
+    
+    
+    private static Table findTableFromSchema(EList schemas, String schemaName, String tableName, boolean caseSensitive, boolean refresh)
+    { 
+        Table tableObject = null;
+        for (Iterator i = schemas.iterator(); i.hasNext();)
+        {
+            Schema schema = (Schema) i.next();
+            if (schema.getName() != null && equals(schema.getName(), schemaName, caseSensitive))
+            {
+                if (refresh)
+                {
+                    ((ICatalogObject) schema).refresh();
+                }
+                for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
+                {
+                    Table table = (Table) iter.next();
+                    //FIXME: 
+                    //handle non-sharable temp table for ASE,these code should be removed when
+                    //temp table catalog loader is ready
+                    if(tableName.startsWith("#"))
+                    {
+                        String tempTableNameInDB=table.getName();
+                        //Database will add 17 digital number after temp table name
+                        String nameWithoutPostfix = tempTableNameInDB.substring(tempTableNameInDB.length()-17, tempTableNameInDB.length());
+                        //ASE database does not add under score "_" as postfix, so we judge it firstly.
+                        if (equals(nameWithoutPostfix, tableName, caseSensitive))
+                        {
+                            tableObject =  table;
+                        }
+                        for(int k=nameWithoutPostfix.length();k>=0&&'_'==nameWithoutPostfix.charAt(k);k--)
+                        {
+                            if(equals(tableName, nameWithoutPostfix.substring(0, k), caseSensitive))
+                            {
+                                tableObject = table;
+                            }
+                        }
+                        
+                    }
+                    else if (equals(table.getName(), tableName, caseSensitive))
+                    {
+                        tableObject = table;
+                    }
+                }
+            }
+        }
+        return tableObject;
+    }
+    /**
+     * 
+     * @param proc
+     * @param refresh Whether to refresh the procedural object's parent folder
+     * @return
+     */
+    public static SQLObject findProceduralObject(ProcIdentifier proc, boolean refresh)
+    {
+        return findProceduralObject(proc, refresh, true);
+    }
+    
+    
+    /**
+     * 
+     * @param proc
+     * @param refresh Whether to refresh the procedural object's parent folder
+     * @return
+     */
+    public static SQLObject findProceduralObject(ProcIdentifier proc, boolean refresh, boolean caseSensitive)
+    {
+        SQLObject object = null;
+        Database db = ProfileUtil.getDatabase(proc.getDatabaseIdentifier());
+        if (db != null)
+        {
+            if (proc.getType() == ProcIdentifier.TYPE_EVENT)
+            {
+                if (refresh)
+                {
+                    ((ICatalogObject) db).refresh();
+                }
+                EList events = db.getEvents();
+                for (Iterator iter = events.iterator(); iter.hasNext();)
+                {
+                    Event routine = (Event) iter.next();
+                    if (equals(routine.getName(), proc.getProcName(), caseSensitive))
+                    {
+                        object = routine;
+                    }
+                }
+            }
+            else
+            {
+                EList schemas = db.getSchemas();
+                if (schemas == null || schemas.size() == 0)
+                {
+                    EList catalogs = db.getCatalogs();
+                    if (catalogs != null)
+                    {
+                        for (Iterator iter = catalogs.iterator(); iter.hasNext();)
+                        {
+                            Catalog catalog = (Catalog) iter.next();
+                            schemas = (EList) catalog.getSchemas();
+                            object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
+                            if (object != null)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
+                }
 
+            }
+        }
+        return object;
+    }
+    
+    
+    private static SQLObject findProceduralObjectFromSchema(EList schemas, ProcIdentifier proc,
+            boolean caseSensitive, boolean refresh)
+    {
+        SQLObject object = null;
+        Iterator i = schemas.iterator();
+        for (; i.hasNext();)
+        {
+            Schema schema = (Schema) i.next();
+            if (schema.getName() != null && equals(schema.getName(), proc.getOwnerName(), caseSensitive))
+            {
+                // trigger is not routine in SQL model
+                if (proc.getType() == ProcIdentifier.TYPE_TRIGGER)
+                {
+                    EList tables = schema.getTables();
+                    for (Iterator iter = tables.iterator(); iter.hasNext();)
+                    {
+                        Table table = (Table) iter.next();
+                        if (equals(table.getName(), proc.getTableName(), caseSensitive))
+                        {
+                            if (refresh && table instanceof ICatalogObject)
+                            {
+                                ((ICatalogObject) table).refresh();
+                            }
+                            EList triggers = table.getTriggers();
+                            for (Iterator itera = triggers.iterator(); itera.hasNext();)
+                            {
+                                Trigger trigger = (Trigger) itera.next();
+                                if (equals(table.getName(), proc.getTableName(), caseSensitive)
+                                        && equals(trigger.getName(), proc.getProcName(), caseSensitive))
+                                {
+                                    object = trigger;
+                                }
+                            }
+
+                        }
+                    }
+                }
+                else if (proc.getType() == ProcIdentifier.TYPE_UDF || proc.getType() == ProcIdentifier.TYPE_SP)
+                {
+                    if (refresh)
+                    {
+                        ((ICatalogObject) schema).refresh();
+                    }
+                    EList routines = schema.getRoutines();
+                    for (Iterator iter = routines.iterator(); iter.hasNext();)
+                    {
+                        Routine routine = (Routine) iter.next();
+                        if (equals(routine.getName(), proc.getProcName(), caseSensitive))
+                        {
+                            object = routine;
+                        }
+                    }
+                }
+            }
+        }
+        return object;
+    }
+    
+    public static boolean equals(String object1, String object2, boolean caseSensitive)
+    {
+        if (caseSensitive)
+        {
+            return object1.equals(object2);
+        }
+        else
+        {
+            return object1.equalsIgnoreCase(object2);
+        }
+    }
+    
 }

@@ -27,9 +27,13 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDoubleClickStrat
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLWordStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
+import org.eclipse.jface.internal.text.html.HTMLTextPresenter;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IInformationControl;
+import org.eclipse.jface.text.IInformationControlCreator;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.TextAttribute;
@@ -46,7 +50,9 @@ import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
-import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * This class defines the editor add-ons; content assist, content formatter,
@@ -160,18 +166,40 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         // Configure how content assist information will appear.
         assistant.enableAutoActivation(store.getBoolean(PreferenceConstants.ENABLE_AUTO_ACTIVATION));
         assistant.setAutoActivationDelay(store.getInt(PreferenceConstants.AUTO_ACTIVATION_DELAY));
-        assistant.setProposalPopupOrientation( IContentAssistant.PROPOSAL_STACKED );
+        assistant.setProposalPopupOrientation( IContentAssistant.PROPOSAL_OVERLAY );
+        
+        assistant.setInformationControlCreator(getInformationControlCreator(sourceViewer));
+        
+        //In the future, a preference page will be added to customize foreground and background.
+        Color foreground= new Color(SQLEditorPlugin.getDisplay(), 0,0,0);
+        Color background= new Color(SQLEditorPlugin.getDisplay(), 255,255,255);
+        
         assistant.setContextInformationPopupOrientation( IContentAssistant.CONTEXT_INFO_ABOVE );
-        assistant.setContextInformationPopupBackground( SQLEditorPlugin.getDefault().getSQLColorProvider().getColor( new RGB( 150, 150, 0 )));
+        assistant.setContextInformationPopupForeground(foreground);
+        assistant.setContextInformationPopupBackground(background);
         //Set auto insert mode.
         assistant.enableAutoInsert(store.getBoolean(PreferenceConstants.INSERT_SINGLE_PROPOSALS_AUTO));
-        //Set to Carolina blue
-//        assistant.setContextInformationPopupBackground( SQLEditorPlugin.getDefault().getSQLColorProvider().getColor( new RGB( 0, 191, 255 )));
         
         return assistant;
         
     }
 
+	/*
+     * @see SourceViewerConfiguration#getInformationControlCreator(ISourceViewer)
+     * @since 2.0
+     * 
+     */
+    public IInformationControlCreator getInformationControlCreator(ISourceViewer sourceViewer)
+    {
+        return new IInformationControlCreator()
+        {
+            public IInformationControl createInformationControl(Shell parent)
+            {
+                return new DefaultInformationControl(parent, SWT.NONE, new HTMLTextPresenter(true));
+            }
+        };
+    }
+    
     /**
      * Creates, configures, and returns the ContentFormatter to use.
      * 

@@ -22,6 +22,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.TextPresentation;
+import org.eclipse.jface.text.contentassist.ContextInformation;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
@@ -40,34 +41,7 @@ import org.eclipse.swt.graphics.Point;
  */
 public class SQLCompletionProcessor implements IContentAssistProcessor {
 
-    /**
-     * Simple content assist tip closer. The tip is valid in a range of 5
-     * characters around its popup location.
-     */
-    protected static class Validator implements IContextInformationValidator, IContextInformationPresenter {
-        protected int fInstallOffset;
-
-        /**
-         * @see IContextInformationValidator#isContextInformationValid(int)
-         */
-        public boolean isContextInformationValid( int offset ) {
-            return Math.abs( fInstallOffset - offset ) < 5;
-        }
-
-        /**
-         * @see IContextInformationValidator#install(IContextInformation,
-         *      ITextViewer, int)
-         */
-        public void install( IContextInformation info, ITextViewer viewer, int offset ) {
-            fInstallOffset = offset;
-        }
-
-        public boolean updatePresentation( int position, TextPresentation presentation ) {
-            return true;
-        }
-    };
-
-    protected IContextInformationValidator fValidator = new Validator();
+    protected IContextInformationValidator fValidator = new SQLValidator();
 
     private ISQLCompletionEngine fParserCompletionEngine;
 	private Comparator fComparator               = new SQLCompletionProposalComparator();
@@ -131,35 +105,48 @@ public class SQLCompletionProcessor implements IContentAssistProcessor {
         return result;
     }
 
-    /**
-     * Returns a list of content-assist tips based on the specified location
-     * within the document that corresponds to the current cursor position
-     * within the text-editor control.
-     * 
-     * @param viewer the viewer whose document is used to compute the tips
-     * @param documentPosition a location within the document
-     * @return an array of content-assist tips
-     */
+    public IContextInformation[] computeContextInformation(ITextViewer viewer,
+	    int documentOffset) {
+	IContextInformation[] result = null;
 
-    public IContextInformation[] computeContextInformation( ITextViewer viewer, int documentOffset ) {
-        IContextInformation[] result = null;
-        return result;
+	try {
+	    IDocument doc = viewer.getDocument();
+	    ITypedRegion partition = null;
+
+	    if (documentOffset > 0) {
+		if (doc.getChar(documentOffset - 1) == ';') {
+		    partition = viewer.getDocument().getPartition(
+			    documentOffset);
+		} else {
+		    // for incomplete statement.
+		    partition = viewer.getDocument().getPartition(
+			    documentOffset - 1);
+		}
+	    } else {
+		partition = viewer.getDocument().getPartition(documentOffset);
+	    }
+
+	    Point selection = viewer.getSelectedRange();
+	    result = fParserCompletionEngine.computeContextInformation(doc,
+		    partition, documentOffset, selection);
+	} catch (BadLocationException x) {
+	}
+	return result;
     }
 
     /**
-     * Returns a string of characters which when pressed should automatically
-     * display content-assist proposals.
-     * 
-     * @see IContentAssistProcessor.getCompletionProposalAutoActivationCharacters()
-     * 
-     * @return string of characters
-     */
+         * Returns a string of characters which when pressed should
+         * automatically display content-assist proposals.
+         * 
+         * @see IContentAssistProcessor.getCompletionProposalAutoActivationCharacters()
+         * 
+         * @return string of characters
+         */
     public char[] getCompletionProposalAutoActivationCharacters() {
         // activation/trigger to invoke content assist
         IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
         String autoChars = store.getString(PreferenceConstants.AUTO_ACTIVATION_TRIGGER);
         return autoChars.toCharArray() ;
-        
     }
 
     /**

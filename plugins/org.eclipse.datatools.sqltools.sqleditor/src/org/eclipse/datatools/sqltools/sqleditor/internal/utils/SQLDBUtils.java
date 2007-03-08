@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 
@@ -114,6 +115,13 @@ public class SQLDBUtils {
         }
         
         return (((username == null || username.length() == 0 || password == null || password.length() == 0)) && !isDefaultUser( connInfo ));
+    }
+
+    public static String getDefaultSchemaName(ISQLEditorConnectionInfo connInfo) {
+    	DatabaseIdentifier dbid = new DatabaseIdentifier(connInfo.getConnectionProfileName());
+    	String defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
+    
+    	return defaultSchemaName;
     }
 
 //    /**

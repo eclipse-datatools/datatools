@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
+import org.eclipse.datatools.sqltools.sqleditor.internal.templates.SQLTemplateProposal;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -100,14 +101,14 @@ public class SQLTemplateProposalsService {
 					if (word.equals("")) //$NON-NLS-1$
 					{
 						if (isStatementStart) {
-							proposals.add(new TemplateProposal(templates[i],
+							proposals.add(new SQLTemplateProposal(editor, templates[i],
 									context, region, SQLEditorResources
 											.getImage("template_obj"),
 									SQLCompletionProposal.TEMPLATE));
 						}
 					} else if (SQLParserCompletionEngine.startsWithIgnoreCase(templates[i].getName(),
 							word)) {
-						proposals.add(new TemplateProposal(templates[i],
+						proposals.add(new SQLTemplateProposal(editor, templates[i],
 								context, region, SQLEditorResources
 										.getImage("template_obj"),
 								SQLCompletionProposal.TEMPLATE));
@@ -125,7 +126,7 @@ public class SQLTemplateProposalsService {
 								&& template.getPattern().indexOf(
 										_WORD_SELECTION) != -1 || (multipleLinesSelected && template
 								.getPattern().indexOf(_LINE_SELECTION) != -1))) {
-					proposals.add(new TemplateProposal(templates[i], context,
+					proposals.add(new SQLTemplateProposal(editor, templates[i], context,
 							region, SQLEditorResources
 							.getImage("template"),
 							SQLCompletionProposal.TEMPLATE));

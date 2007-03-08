@@ -22,6 +22,7 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
@@ -331,6 +332,11 @@ public class SQLCompletionEngine implements ISQLCompletionEngine {
      */
     public ISQLDBProposalsService getDBProposalsService() {
         return fDBProposalsService;
+    }
+
+    public IContextInformation[] computeContextInformation(IDocument doc, ITypedRegion partition, int documentOffset, Point selection)
+    {
+        return null;
     }
 
 }
