@@ -90,6 +90,10 @@ public class SQLEditorActionContributor extends TextEditorActionContributor {
      * @see EditorActionBarContributor#editorChanged
      */
     public void setActiveEditor( IEditorPart targetEditor ) {
+        if (targetEditor == null)
+        {
+            return;
+        }
         super.setActiveEditor( targetEditor );
 
         ITextEditor textEditor = null;

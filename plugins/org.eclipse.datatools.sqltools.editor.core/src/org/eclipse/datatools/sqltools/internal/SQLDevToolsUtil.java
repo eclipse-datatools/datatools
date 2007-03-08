@@ -40,7 +40,6 @@ import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.identifier.ValidatorMessage;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -192,7 +191,10 @@ public class SQLDevToolsUtil {
 
     /**
      * Returns DatabaseIdentifier for the database
-     * @param database
+     * <p>
+     * Caution: the database object must be the one created by DSE for this method to find the connection info
+     * </p>
+     * @param database 
      * @param catalogName if null, database.getName() will be used instead
      * @return
      */

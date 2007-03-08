@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.common.ui.dialog.SaveAsDialog;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -101,6 +102,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorActionDelegate;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPart;
@@ -125,7 +127,6 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  */
 public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 	
-
     /**
      * Internal implementation class for a change listener.
      */
@@ -267,7 +268,8 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     private SymbolInserter                                    _symbolInserter                   = null;
     private ArrayList                                         _profileListeners                 = new ArrayList();
     private InformationPresenter                              _informationPresenter;
-    
+    private IEditorPart                        _parentEditor                     = null;
+
     /**
      * Constructs an instance of this class. This is the default constructor.
      */
@@ -504,6 +506,24 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         ((ITextViewerExtension) sourceViewer).removeVerifyKeyListener(_symbolInserter);
 
     }
+    
+    /**
+     * Gets the multipage editor to which this sql editor belongs
+     * @param editor
+     */
+    public IEditorPart getParentEditor()
+    {
+        return _parentEditor;
+    }
+    
+    /**
+     * Sets the multipage editor to which this sql editor belongs
+     * @param editor
+     */
+    public void setParentEditor(IEditorPart editor)
+    {
+        _parentEditor = editor;
+    }
 
     /**
      * Abandons all modifications applied to this text editor's input element's
@@ -540,7 +560,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         setConnectionInfo(connInfo);
         setupDocumentPartitioner();
         runUpdater();
-
     }
 
     /**

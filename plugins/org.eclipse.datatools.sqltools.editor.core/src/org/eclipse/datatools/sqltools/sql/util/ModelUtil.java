@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.sql.util;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
@@ -34,7 +35,9 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 import org.eclipse.datatools.sqltools.sql.reference.internal.Datatype;
@@ -417,4 +420,47 @@ public class ModelUtil {
         }
         return dbdef;
     }
+
+    public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(SQLObject obj)
+	{
+        DatabaseVendorDefinitionId dbid = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId();
+	    DatabaseDefinition dbdef = getDatabaseDefinition(obj);
+	    if(dbdef != null) {
+            dbid = new DatabaseVendorDefinitionId(dbdef.getProduct(), dbdef.getVersion());
+	    }
+	    return dbid;
+	}
+    
+    /**
+     * Returns all the authorization identifiers
+     * 
+     * @param authid
+     * @param obj used to locate the catalog or database
+     * @return
+     */
+    public static List getAuthorizationIdentifiers(SQLObject obj )
+    {
+        Catalog catalog = ModelUtil.getCatalog(obj);
+        List authIds = null;
+        //TODO shall we request the base sql model change?
+        if (catalog != null)
+        {
+            EStructuralFeature feature = catalog.eClass().getEStructuralFeature("authorizationIds"); //$NON-NLS-1$
+            if (feature != null)
+            {
+                authIds = ((List) catalog.eGet(feature));
+            }
+        }
+        if (authIds == null || authIds.isEmpty())
+        {
+            EObject db = ContainmentServiceImpl.INSTANCE.getRootElement(obj);
+            if (db instanceof Database)
+            {
+                authIds = ((Database)db).getAuthorizationIds();
+            }
+        }
+        return authIds;
+    }
+
+
 }

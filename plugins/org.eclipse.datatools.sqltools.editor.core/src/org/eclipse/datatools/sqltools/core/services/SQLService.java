@@ -89,6 +89,11 @@ public class SQLService
 	        SQLParser parser = getSQLParser();
 	        IDocument doc = new Document(sql);
 	        ParsingResult result = parser.parse(sql, new ParserParameters(true));
+            if (result.getExceptions() != null && !result.getExceptions().isEmpty())
+            {
+                return new String[]{sql};
+            }
+
 	        IASTStart root = result.getRootNode();
 	        root.setDocument(doc);
 	        String group = "";
