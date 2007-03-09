@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.editor;
 
+import org.eclipse.datatools.sqltools.common.ui.util.HTMLTextPresenter;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
@@ -27,7 +28,6 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDoubleClickStrat
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLPartitionScanner;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLWordStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.utils.SQLColorProvider;
-import org.eclipse.jface.internal.text.html.HTMLTextPresenter;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.DefaultInformationControl;
 import org.eclipse.jface.text.IAutoEditStrategy;
