@@ -86,19 +86,20 @@ public class SQLDBProposalsRequest {
 				_table = tokens[2];
 			}
 			break;
-		case 2: // either table.col or schema.table or database.schema
+		case 2: // either table.col or schema.obj or database.schema
 			// check with parser on the current scope
 			if (_scope == SQLParser.SCOPE_COLUMNS) // table.col
 			{
 				// schema = tokens[0];
 				_table = tokens[0];
-			} else if (_scope == SQLParser.SCOPE_CATALOGS) // database.schema
+			} 
+            else if (_scope == SQLParser.SCOPE_CATALOGS) // database.schema
 			{
 				_database = tokens[0];
 				_schema = tokens[1];
-			} else if (_scope == SQLParser.SCOPE_SCHEMAS) {
-				_schema = tokens[0];
-			} else if (_scope == SQLParser.SCOPE_STORED_PROCEDURES) {
+			} 
+            else 
+            {
 				_schema = tokens[0];
 			}
 			break;
