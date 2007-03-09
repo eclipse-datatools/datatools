@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=열 매핑
 xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되는지 확인하십시오.   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=원본 데이터 선
+xmlDataSetSelectionPage.messages.lineofdata=줄 미리보기(&P)
 xmlDataSetSelectionPage.warning.errorReadXMLFile=파일[{0}]에서 XML 데이터를 읽는 도중 오류가 발생했습니다\n{1}. 계속하시겠습니까?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=모두 제거
 menu.menuItem.remove=제거
 lable.selectXmlFile=XML 소스의 URL을 입력하거나 소스 데이터가 포함된 파일을 찾습니다(&X).
 lable.selectXmlSchmaFile=XML 스키마의 URL을 입력하거나 스키마가 포함된 파일을\n 찾습니다. 사용 가능한 스키마가 없는 경우 아무 것도 입력하지 않습니다(&M).
-label.preview=먼저 미리 보기(&P)
+label.preview=소스 데이터 처음
 label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용
 RowMappingDialog.title=XPath 식을 선택하거나 편집합니다.
 RowMappingDialog.info=선택한 노드에 대해 미리 정의된 XPath 식 중 하나를 선택하거나\n 다른 식을 입력합니다.

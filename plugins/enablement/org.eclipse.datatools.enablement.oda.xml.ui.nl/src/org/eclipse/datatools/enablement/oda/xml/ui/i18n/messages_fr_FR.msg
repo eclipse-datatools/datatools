@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=Mise en correspondance de colonne
 xPathChoosePage.messages.xpathChange=Vérifiez que la mise en correspondance de table modifiée est compatible avec la mise en correspondance de colonne le cas échéant.   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=lignes de source de données
+xmlDataSetSelectionPage.messages.lineofdata=premières lignes de données source
 xmlDataSetSelectionPage.warning.errorReadXMLFile=Erreur lors de la lecture des données XML à partir du fichier [{0}]\n{1}. Voulez-vous tout de même continuer ?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=Supprimer tout
 menu.menuItem.remove=Supprimer
 lable.selectXmlFile=Entrez l'URL de la source &XML ou accédez au fichier contenant les données :
 lable.selectXmlSchmaFile=Entrez l'URL du schéma X&ML ou accédez au fichier contenant le\n schéma. Ne renseignez pas ce champ si aucun schéma n'est disponible :
-label.preview=&Afficher un aperçu d'abord
+label.preview=A&perçu des
 label.useXMLFileFromDataSource=Utiliser le fichier XML défini dans la source de données
 RowMappingDialog.title=Sélectionner ou modifier l'expression XPath.
 RowMappingDialog.info=Sélectionnez une des expressions XPath prédéfinies pour le noeud sélectionné ou\n entrez une autre expression :

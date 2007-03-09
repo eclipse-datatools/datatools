@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=Asignación de columnas
 xPathChoosePage.messages.xpathChange=Asegúrese de que la asignación de tabla modificada es compatible con la asignación de columnas, cuando sea aplicable   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=líneas de fuente de datos
+xmlDataSetSelectionPage.messages.lineofdata=líneas de datos fuente
 xmlDataSetSelectionPage.warning.errorReadXMLFile=Error al leer los datos XML del archivo [{0}]\n{1}. ¿Desea continuar?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=Quitar todos
 menu.menuItem.remove=Quitar
 lable.selectXmlFile=Introduzca la URL de la fuente &XML o busque el archivo que contiene los datos:
 lable.selectXmlSchmaFile=Introduzca la URL del esquema X&ML o busque el archivo que contiene el\n esquema. Déjelo vacío si no hay ningún esquema disponible:
-label.preview=&Previsualizar primero
+label.preview=&Previsualizar las primeras
 label.useXMLFileFromDataSource=Utilizar el archivo XML definido en la fuente de datos
 RowMappingDialog.title=Seleccione o edite la expresión XPath.
 RowMappingDialog.info=Seleccione una de las expresiones XPath predefinidas para el nodo que ha seleccionado o\n introduzca otra expresión:

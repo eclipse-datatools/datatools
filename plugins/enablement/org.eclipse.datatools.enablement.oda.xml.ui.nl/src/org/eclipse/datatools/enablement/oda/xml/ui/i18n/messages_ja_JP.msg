@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=列マッピング
 xPathChoosePage.messages.xpathChange=変更後のテーブルマッピングが列マッピングと互換性があることを確認してください (該当する場合)。   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=ソースデータの行
+xmlDataSetSelectionPage.messages.lineofdata=行をプレビュー(&P)
 xmlDataSetSelectionPage.warning.errorReadXMLFile=ファイル [{0}] {1} から XML データを読み込めません。\n続行しますか ?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=すべて削除
 menu.menuItem.remove=削除
 lable.selectXmlFile=XML ソースの URL を入力するか、データが入っているファイルを参照してください(&X) :
 lable.selectXmlSchmaFile=XML スキーマの URL を入力するか、スキーマが入っている\nファイルを参照してください。スキーマがない場合は、このフィールドを空白のままにしておいてください(&M) :
-label.preview=最初にプレビュー(&P)
+label.preview=ソースデータの最初の
 label.useXMLFileFromDataSource=データソースに定義されている XML ファイルを使用する
 RowMappingDialog.title=XPath 式の選択・編集
 RowMappingDialog.info=選択したノードに適用する定義済みの XPath 式を\n選択するか、別の式を入力してください :

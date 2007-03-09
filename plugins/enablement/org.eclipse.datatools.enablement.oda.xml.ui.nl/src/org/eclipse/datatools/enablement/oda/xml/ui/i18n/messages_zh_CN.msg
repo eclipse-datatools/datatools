@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=列映射
 xPathChoosePage.messages.xpathChange=确保更改的表映射与列映射兼容（如果适用）   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=源数据的行
+xmlDataSetSelectionPage.messages.lineofdata=行(&P)
 xmlDataSetSelectionPage.warning.errorReadXMLFile=从文件 [{0}] 读取 XML 数据时出错\n{1}。是否仍要继续?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=全部删除
 menu.menuItem.remove=删除
 lable.selectXmlFile=输入 XML 源的 URL，或浏览到包含该数据的文件(&X):
 lable.selectXmlSchmaFile=输入 XML 架构的 URL，或浏览到\n 包含该架构的文件。如果没有可用架构，请将此字段留空(&M):
-label.preview=预览前(&P)
+label.preview=预览源数据的前
 label.useXMLFileFromDataSource=使用数据源中定义的 XML 文件
 RowMappingDialog.title=选择或编辑 XPath 表达式。
 RowMappingDialog.info=选择您选择的节点的一个预定义 XPath 表达式 \n 或输入另一个表达式:

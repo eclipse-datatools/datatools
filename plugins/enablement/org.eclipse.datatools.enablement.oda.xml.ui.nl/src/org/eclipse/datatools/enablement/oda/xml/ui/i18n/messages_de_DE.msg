@@ -22,7 +22,7 @@ xPathChoosePage.messages.xmlColumnMapping=Spaltenzuordnung
 xPathChoosePage.messages.xpathChange=Stellen Sie sicher, dass die geänderte Tabellenzuordnung mit der Spaltenzuordnung kompatibel ist (falls zutreffend).   
 
 #sample xml data file page messages
-xmlDataSetSelectionPage.messages.lineofdata=Quelldatenzeilen
+xmlDataSetSelectionPage.messages.lineofdata=Zeilen der Quelldaten anzeigen
 xmlDataSetSelectionPage.warning.errorReadXMLFile=Fehler beim Lesen der XML-Daten in Datei [{0}]\n{1}. Dennoch fortfahren?
 
 #column mapping page messages
@@ -31,7 +31,7 @@ menu.menuItem.removeAll=Alles entfernen
 menu.menuItem.remove=Entfernen
 lable.selectXmlFile=Geben Sie den URL der &XML-Quelldatei an, oder suchen Sie die Datei mit den Daten:
 lable.selectXmlSchmaFile=Geben Sie den URL des X&ML-Schemas an, oder suchen\n Sie nach der Datei, die das\n Schema enthält. Lassen Sie das Feld leer, falls kein Schema vorhanden ist:
-label.preview=&Erstes Objekt anzeigen
+label.preview=&Erste
 label.useXMLFileFromDataSource=Die in der Datenquelle definierte XML-Datei verwenden
 RowMappingDialog.title=Wählen oder bearbeiten Sie den XPath-Ausdruck.
 RowMappingDialog.info=Wählen Sie für den gewählten Knoten einen der vordefinierten XPath-Ausdrücke,\n oder geben Sie einen anderen Ausdruck an:
