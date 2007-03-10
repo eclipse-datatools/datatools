@@ -2,13 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA-XML Driver
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml;singleton:=true
-Bundle-Version: 1.0.0.200702261
+Bundle-Version: 1.0.1.200703121
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.1,4.0.0)",
+Require-Bundle: org.eclipse.datatools.connectivity.oda;bundle-version="[3.0.4,4.0.0)",
  com.ibm.icu;bundle-version="[3.4.4,4.0.0)",
- org.apache.xerces;bundle-version="[2.8.0,3.0.0)"
+ org.apache.xerces;bundle-version="[2.8.0,3.0.0)",
+ org.eclipse.datatools.connectivity.oda.profile;bundle-version="[3.0.4,4.0.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.i18n;x-friends:="org.eclipse.birt.report.data.oda.xml",
