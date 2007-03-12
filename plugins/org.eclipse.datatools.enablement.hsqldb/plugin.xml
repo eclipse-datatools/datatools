@@ -78,13 +78,7 @@
          </properties>
       </driverTemplate>
    </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.sqm.core.catalog">
-      <catalog
-            product="HSQLDB"
-            provider="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBCatalogProvider"
-            version="1.8"/>
-   </extension>
+
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <connectionFactory
@@ -142,6 +136,13 @@
             <instanceof value="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBCatalogSchema"/>
          </triggerPoints>
       </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory">
+      <factory
+            class="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBDataModelElementFactory"
+            product="HSQLDB"
+            version="1.8"/>
    </extension>
 
 </plugin>
