@@ -19,7 +19,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS
 {
-    private static final String   RESOURCE_BUNDLE  = Messages.class.getName();
+    private static final String   RESOURCE_BUNDLE  = Messages.class.getPackage().getName()+".messages";
     private static ResourceBundle _resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE);
 
     private Messages()
