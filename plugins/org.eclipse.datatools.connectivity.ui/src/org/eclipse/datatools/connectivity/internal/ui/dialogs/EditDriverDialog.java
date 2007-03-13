@@ -349,8 +349,10 @@ public class EditDriverDialog extends TitleAreaDialog {
 		String testName = this.mDriverName;
 		Object obj = DriverManager.getInstance().getDriverInstanceByName(
 				testName);
-		if ((obj == null && !testName.equals(this.mPropertySet.getName()))
-				|| (obj != null && testName.equals(this.mPropertySet.getName()))) {
+
+		// changed the if slightly to fix BZ 176781 - BTF
+		if ((obj == null)||
+			    (obj != null && testName.equals(this.mPropertySet.getName()))) { 
 			isOk = true;
 			this.setErrorMessage(null);
 		}
