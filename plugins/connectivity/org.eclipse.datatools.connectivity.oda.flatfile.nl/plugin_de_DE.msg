@@ -1,6 +1,17 @@
+###############################################################################
+# Plug-in Profile Configuration
+#
+oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
+oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
+#
+###############################################################################
+# NLS String
+###############################################################################
 plugin.name=Laufzeittreiber für DTP-ODA-Flachdatei
 datasource.name=Datenquelle für Flachdatei
 dataset.name=Datensatz für Flachdatei
+oda.data.source.category.name=Unstrukturierte CSV-Dateien
+connection.profile.name=ODA-Verbindungsprofil für unstrukturierte Datenquelle
 
 datasource.property.home=Stamm&ordner
 datasource.property.csvdelimitertype=CSV-&Typ
@@ -16,3 +27,7 @@ property.value.comma=KOMMA
 property.value.semicolon=SEMIKOLON
 property.value.pipe=PIPE
 property.value.tab=TAB
+#
+#  Below NLS messages apply to all ODA data sources; should be re-factored
+#
+oda.connection.factory.name=ODA-Verbindungs-Factory

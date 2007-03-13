@@ -111,3 +111,7 @@ DriverClassBrowsePropertyDescriptor.jardialog.msg = g—p‚Å‚«‚é‚¢‚¸‚ê‚© 1 ‚Â‚ÌƒNƒ
 DriverClassBrowsePropertyDescriptor.noclasses.title = ƒhƒ‰ƒCƒoƒNƒ‰ƒX‚ª‚ ‚è‚Ü‚¹‚ñ
 DriverClassBrowsePropertyDescriptor.noclasses.msg = Œ»İ‚Ì jar ƒŠƒXƒg‚É‚ÍAg—p‚Å‚«‚éƒhƒ‰ƒCƒoƒNƒ‰ƒX‚ª‚ ‚è‚Ü‚¹‚ñB
 
+StatusBar.Connected = Ú‘±‚³‚ê‚Ä‚¢‚Ü‚·
+StatusBar.Disconnected = Ø’f‚³‚ê‚Ä‚¢‚Ü‚·
+StatusBar.ConnectedMessage = {0} ({1})
+

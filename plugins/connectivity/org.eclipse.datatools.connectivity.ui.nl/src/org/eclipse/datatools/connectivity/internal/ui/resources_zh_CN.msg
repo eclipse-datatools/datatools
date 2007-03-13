@@ -110,3 +110,7 @@ DriverClassBrowsePropertyDescriptor.jardialog.title = Jar 列表中的可用类
 DriverClassBrowsePropertyDescriptor.jardialog.msg = 选择可用类之一。
 DriverClassBrowsePropertyDescriptor.noclasses.title = 没有可用的驱动程序类
 DriverClassBrowsePropertyDescriptor.noclasses.msg = 没有可供当前 jar 列表使用的驱动程序类。
+
+StatusBar.Connected = 已连接
+StatusBar.Disconnected = 已断开连接
+StatusBar.ConnectedMessage = {0} ({1})

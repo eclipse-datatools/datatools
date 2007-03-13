@@ -110,3 +110,7 @@ DriverClassBrowsePropertyDescriptor.jardialog.title = Clases disponibles en la l
 DriverClassBrowsePropertyDescriptor.jardialog.msg = Seleccione una de las clases disponibles.
 DriverClassBrowsePropertyDescriptor.noclasses.title = Sin clases de controlador disponibles
 DriverClassBrowsePropertyDescriptor.noclasses.msg = No hay clases de controlador disponibles para la lista jar actual.
+
+StatusBar.Connected = Conectado
+StatusBar.Disconnected = Desconectado
+StatusBar.ConnectedMessage = {0} ({1})

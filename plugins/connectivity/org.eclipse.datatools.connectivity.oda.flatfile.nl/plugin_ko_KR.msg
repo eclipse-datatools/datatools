@@ -1,6 +1,17 @@
+###############################################################################
+# Plug-in Profile Configuration
+#
+oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
+oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
+#
+###############################################################################
+# NLS String
+###############################################################################
 plugin.name=DTP ODA 텍스트 파일 런타임 드라이버
 datasource.name=텍스트 파일 데이터 소스
 dataset.name=텍스트 파일 데이터 세트
+oda.data.source.category.name=CSV 플랫 파일
+connection.profile.name=ODA 플랫 파일 데이터 원본 연결 프로필
 
 datasource.property.home=홈 폴더(&F)
 datasource.property.csvdelimitertype=CSV 형식(&T)
@@ -16,3 +27,7 @@ property.value.comma=쉼표
 property.value.semicolon=세미콜론
 property.value.pipe=파이프
 property.value.tab=탭
+#
+#  Below NLS messages apply to all ODA data sources; should be re-factored
+#
+oda.connection.factory.name=ODA 연결 팩토리

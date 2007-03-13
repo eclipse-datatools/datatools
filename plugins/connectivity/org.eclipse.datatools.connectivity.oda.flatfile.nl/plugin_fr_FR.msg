@@ -1,6 +1,17 @@
+###############################################################################
+# Plug-in Profile Configuration
+#
+oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
+oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
+#
+###############################################################################
+# NLS String
+###############################################################################
 plugin.name=Pilote d'exécution de fichiers à plat ODA DTP
 datasource.name=Source de données de fichier à plat
 dataset.name=Ensemble de fichiers à plat
+oda.data.source.category.name=Fichiers plats CSV
+connection.profile.name=Profil de connexion de source de données sous forme de fichier plat ODA
 
 datasource.property.home=Dossier &racine
 datasource.property.csvdelimitertype=&Type CSV
@@ -16,3 +27,7 @@ property.value.comma=VIRGULE
 property.value.semicolon=POINT-VIRGULE
 property.value.pipe=BARRE DECIMALE
 property.value.tab=TABULATION
+#
+#  Below NLS messages apply to all ODA data sources; should be re-factored
+#
+oda.connection.factory.name=Génération de connexion ODA

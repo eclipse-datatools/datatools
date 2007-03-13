@@ -110,3 +110,7 @@ DriverClassBrowsePropertyDescriptor.jardialog.title = Jar 목록의 사용 가능한 클�
 DriverClassBrowsePropertyDescriptor.jardialog.msg = 사용 가능한 클래스 중 하나를 선택합니다.
 DriverClassBrowsePropertyDescriptor.noclasses.title = 사용 가능한 드라이버 클래스 없음
 DriverClassBrowsePropertyDescriptor.noclasses.msg = 현재 jar 목록에 사용 가능한 드라이버 클래스가 없습니다.
+
+StatusBar.Connected = 연결됨
+StatusBar.Disconnected = 연결 해제
+StatusBar.ConnectedMessage = {0} ({1})
