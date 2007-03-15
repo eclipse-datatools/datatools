@@ -96,11 +96,16 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	private boolean _showWarning = true;
 
 	private boolean _mustConnect = true;
-
+    
 	// The listener to notify of events
 	private Listener _listener;
 
 	private ISQLEditorConnectionInfo _connInfo = null;
+    
+    /**
+     * The supported database definition name list. If it is null, the default database definition name list will be returned.
+     */
+    private Collection _supportedDBDefinitionNames = null;
 
 	/**
 	 * @param parent
@@ -108,6 +113,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @param listener
 	 *            A listener to forward events to. Can be null if no listener is
 	 *            required.
+     * @param showWarning if warining is shown or not.
 	 */
 	public ConnectionInfoGroup(Composite parent, Listener listener,
 			boolean showWarning) {
@@ -117,7 +123,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	public ConnectionInfoGroup(Composite parent, Listener listener,
 			String profileName, String dbName, boolean showWarning,
 			boolean mustConnect) {
-		this(parent, listener, null, showWarning, false);
+		this(parent, listener, new SQLEditorConnectionInfo(null, profileName, dbName), showWarning, false);
 	}
 
 	/**
@@ -128,27 +134,44 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 *            required.
 	 * @param profileName
 	 *            the old profile name
-	 * @param dbType
-	 *            the initial selected db type, only useful when profileName is
-	 *            null
+     * @param showWarning if warining is shown or not.
+     * @param mustConnect if the connection profile must connect or not.
 	 */
 	public ConnectionInfoGroup(Composite parent, Listener listener,
 			ISQLEditorConnectionInfo connInfo, boolean showWarning,
 			boolean mustConnect) {
-		super(parent, SWT.NONE);
-		if (connInfo != null)
-		{
-			this._profileName = connInfo.getConnectionProfileName();
-			this._dbName = connInfo.getDatabaseName();
-			this._dbVendorId = connInfo.getDatabaseVendorDefinitionId();
-		}
-		
-		this._listener = listener;
-		this._showWarning = showWarning;
-		this._mustConnect = mustConnect;
-		createContents();
-		updateFields();
+        this(parent, listener, connInfo, showWarning, mustConnect, null);
 	}
+
+    /**
+     * 
+     * Creates a new Connection Info Group with the given profileName, dbName, supportedDBDefinitionNames.
+     * 
+     * @param parent The parent widget of the group
+     * @param connInfo The connection information @see SQLEditorConnectionInfo
+     * @param showWarning if warining is shown or not.
+     * @param mustConnect if the connection profile must connect or not.
+     * @param supportedDBDefinitionNames The supported datbase definition name list. 
+     */
+    public ConnectionInfoGroup(Composite parent, Listener listener,
+            ISQLEditorConnectionInfo connInfo, boolean showWarning,
+            boolean mustConnect, Collection supportedDBDefinitionNames) {
+        super(parent, SWT.NONE);
+        if (connInfo != null)
+        {
+            this._profileName = connInfo.getConnectionProfileName();
+            this._dbName = connInfo.getDatabaseName();
+            this._dbVendorId = connInfo.getDatabaseVendorDefinitionId();
+        }
+        
+        this._listener = listener;
+        this._showWarning = showWarning;
+        this._mustConnect = mustConnect;
+        _supportedDBDefinitionNames = supportedDBDefinitionNames;
+        createContents();
+        updateFields();
+        
+    }
 
 	/**
 	 * Returns the <code>ISQLEditorConnectionInfo</code> object specified by
@@ -524,7 +547,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 			public void focusGained(FocusEvent e) {
 				_combodbName.removeAll();
-				if (_checkBoxConnect.getSelection())
+				if (_checkBoxConnect != null && _checkBoxConnect.getSelection())
 				{
 					return;
 				}
@@ -587,15 +610,17 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		gridData4.grabExcessHorizontalSpace = true;
 		_comboType.setLayoutData(gridData4);
 
-		Collection supportedDBDefinitionNames = SQLToolsFacade
-				.getSupportedDBDefinitionNames();
-		_comboType.setItems((String[]) supportedDBDefinitionNames
+        if (_supportedDBDefinitionNames == null)
+		{
+            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+        }
+		_comboType.setItems((String[]) _supportedDBDefinitionNames
 				.toArray(new String[0]));
 		if (_profileName != null) {
 			selectTypebyProfile(_profileName);
-		} else if (supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
+		} else if (_supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
 			_comboType.setText(_dbVendorId.toString());
-		} else if (supportedDBDefinitionNames.size() > 0) {
+		} else if (_supportedDBDefinitionNames.size() > 0) {
 			SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
 			_comboType.setText(defaultConfig.getDatabaseVendorDefinitionId().toString());
 		}
@@ -673,5 +698,47 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		updateFields();
 		canFinish();
 	}
+    
+    /**
+     * Returns the ProfileType control for this Connection Info group.
+     * <p>
+     * May return <code>null</code> if the control
+     * has not been created yet.
+     * </p>
+     *
+     * @return the ProfileType control or <code>null</code>
+     */
+    public Combo getProfileTypeControl()
+    {
+        return _comboType;
+    }
+    
+    /**
+     * Returns the ProfileNames control for this Connection Info group.
+     * <p>
+     * May return <code>null</code> if the control
+     * has not been created yet.
+     * </p>
+     *
+     * @return the ProfileNames control or <code>null</code>
+     */
+    public Combo getProfileNamesControl()
+    {
+        return _comboProfileName;
+    }
+    
+    /**
+     * Returns the DbNames control for this Connection Info group.
+     * <p>
+     * May return <code>null</code> if the control
+     * has not been created yet.
+     * </p>
+     *
+     * @return the DbNames control or <code>null</code>
+     */
+    public Combo getDbNamesControl()
+    {
+        return _combodbName;
+    }
 
 }
