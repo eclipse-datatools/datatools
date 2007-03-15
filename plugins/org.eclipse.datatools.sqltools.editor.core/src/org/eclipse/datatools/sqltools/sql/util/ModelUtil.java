@@ -173,19 +173,33 @@ public class ModelUtil {
      * @return
      */
     public static String getSchemaName(EObject obj) {
+        Schema schema = getSchema(obj);
+        if (schema != null)
+        {
+            return schema.getName();
+        }
+        return null;
+    }
+	
+    /**
+     * Returns the schema by looking up parent in the containment service.
+     * @param 
+     * @return
+     */
+    public static Schema getSchema(EObject obj) {
         EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
         while (container != null)
         {
             obj = container;
             if (obj instanceof Schema)
             {
-                return ((Schema)obj).getName();
+                return ((Schema)obj);
             }
             container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
         }
         return null;
     }
-	
+    
 	public static IConnectionProfile getConnectionProfile(Database database) {
 		if (database != null) {
 			ConnectionInfo connInfo = DatabaseConnectionRegistry.getInstance()
