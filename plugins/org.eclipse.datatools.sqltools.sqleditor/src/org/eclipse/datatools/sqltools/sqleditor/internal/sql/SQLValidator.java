@@ -111,7 +111,7 @@ public class SQLValidator implements IContextInformationValidator, IContextInfor
 
         int charCount = 0;
         int offset = start;
-        while (offset <= end)
+        while (offset < end)
         {
             char curr = document.getChar(offset++);
             switch (curr)
