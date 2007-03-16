@@ -63,7 +63,7 @@
                   odaScalarDataType="Decimal"/>
       </dataSet>
 	  <dataSource
-            odaVersion="3.0.0"
+            odaVersion="3.1"
             driverClass="org.eclipse.datatools.enablement.oda.xml.impl.Driver"
             defaultDisplayName="%datasource.name"
             id="%oda.data.source.id"
