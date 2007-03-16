@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.9 2006/10/13 02:11:22 lzhu Exp $
+ * $Id: plugin.xml,v 1.10 2007/03/01 07:08:02 lchan Exp $
  */
 -->
 
@@ -22,7 +22,7 @@
    <extension
          point="org.eclipse.datatools.connectivity.oda.dataSource">
       <dataSource
-            odaVersion="3.0"
+            odaVersion="3.1"
             driverClass="org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver"
             defaultDisplayName="%datasource.name"
             id="%oda.data.source.id"
