@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,8 +20,10 @@ import java.sql.Types;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.util.logging.Level;
 import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * OdaObject is the base class for all Oda wrapper objects.  The 
@@ -290,7 +292,7 @@ class OdaObject
 	{
 		// this will log at a severe level because these runtime exceptions
 		// are thrown back to the caller and will halt the report generation
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.severe( exception );
 		
@@ -299,7 +301,7 @@ class OdaObject
 	
 	protected void handleError( OdaException exception ) throws OdaException
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.severe( exception );
 		
@@ -373,7 +375,7 @@ class OdaObject
 		// want to log the old exception because our new exception will have
 		// a different stack trace than the old one and the user will want 
 		// to see the old stack trace in the logs.
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.severe( exception );
 		
@@ -415,11 +417,22 @@ class OdaObject
 		handleUnsupportedOp( exception, context );
 		return Types.NULL;
 	}
+    
+    protected boolean isLoggable( Level level )
+    {
+        Logger logger = getLogger();
+        return ( logger != null ) ? logger.isLoggable( level ) : false;
+    }
+
+    private Logger getLogger()
+    {
+        return LogManager.getLogger( sm_loggerName );
+    }
 
 	protected void logUnsupportedOp( UnsupportedOperationException exception,
 									 String context )
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 		{
 		    String logMsg = exception.getLocalizedMessage();
@@ -433,14 +446,14 @@ class OdaObject
 	
 	protected void log( String context, String msg )
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.fine( context + msg );
 	}
     
     protected void logWarning( String context, String msg )
     {
-        Logger logger = LogManager.getLogger( sm_loggerName );
+        Logger logger = getLogger();
         if( logger != null )
             logger.warning( context + msg );
     }
@@ -462,28 +475,28 @@ class OdaObject
 
 	protected void logMethodCalled( String context )
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.fine( context + "Called." ); //$NON-NLS-1$
 	}
 	
 	protected void logMethodExit( String context )
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.fine( context + "Exiting." ); //$NON-NLS-1$
 	}
 		
 	protected void logMethodExitWithReturn( String context, Object obj )
 	{
-		Logger logger = LogManager.getLogger( sm_loggerName );
+		Logger logger = getLogger();
 		if( logger != null )
 			logger.fine( context + "Returns [ " + obj + " ]" ); //$NON-NLS-1$ //$NON-NLS-2$
 	}
     
     protected void logMethodExitWithReturnLen( String context, String obj )
     {
-        Logger logger = LogManager.getLogger( sm_loggerName );
+        Logger logger = getLogger();
         if( logger != null )
         {
             if( obj != null )
@@ -493,6 +506,17 @@ class OdaObject
         }
     }
 	
+    protected void logMethodNotImplemented( String context, String interfaceMethodSignature )
+    {
+        if( isLoggable( Level.FINE_LEVEL ) )
+            log( context, formatMethodNotImplementedMsg( interfaceMethodSignature ) );      
+    }
+    
+    protected String formatMethodNotImplementedMsg( String interfaceMethodSignature )
+    {
+        return NLS.bind( Messages.helper_methodNotImplemented, interfaceMethodSignature );
+    }
+    
 	protected OdaException newOdaException( String errorMsg )
 	{
 		return new OdaHelperException( errorMsg, null /* appendInfo */ );

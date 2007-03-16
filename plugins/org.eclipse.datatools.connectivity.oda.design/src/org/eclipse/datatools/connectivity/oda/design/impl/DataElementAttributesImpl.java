@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.5 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.6 2006/03/24 03:13:31 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -270,6 +270,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         case OdaScalarDataType.DATE:
         case OdaScalarDataType.TIME:
         case OdaScalarDataType.TIMESTAMP:
+        case OdaScalarDataType.BOOLEAN:
             setPrecision( PRECISION_EDEFAULT );
             break;
         case OdaScalarDataType.DOUBLE:
@@ -299,6 +300,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         case OdaScalarDataType.STRING:
         case OdaScalarDataType.BLOB:
         case OdaScalarDataType.CLOB:
+        case OdaScalarDataType.BOOLEAN:
             setScale( SCALE_EDEFAULT );
             break;
         case OdaScalarDataType.INTEGER:

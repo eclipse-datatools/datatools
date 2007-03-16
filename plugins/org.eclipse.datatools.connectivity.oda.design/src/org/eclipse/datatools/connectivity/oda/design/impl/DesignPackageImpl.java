@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.4 2006/03/24 03:13:31 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.5 2006/08/11 01:39:41 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -3314,6 +3314,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 OdaScalarDataType.DECIMAL_LITERAL );
         addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.BLOB_LITERAL );
         addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.CLOB_LITERAL );
+        addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.BOOLEAN_LITERAL );
 
         initEEnum( parameterModeEEnum, ParameterMode.class, "ParameterMode" ); //$NON-NLS-1$
         addEEnumLiteral( parameterModeEEnum, ParameterMode.IN_LITERAL );

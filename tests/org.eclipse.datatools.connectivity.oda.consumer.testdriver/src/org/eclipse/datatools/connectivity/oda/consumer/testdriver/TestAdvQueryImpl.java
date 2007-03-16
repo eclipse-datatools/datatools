@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -413,6 +413,40 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String parameterName, boolean value )
+            throws OdaException
+    {
+        setValue( parameterName, new Boolean( value ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(int, boolean)
+     */
+    public void setBoolean( int parameterId, boolean value )
+            throws OdaException
+    {
+        setValue( parameterId, new Boolean( value ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
+     */
+    public void setNull( String parameterName ) throws OdaException
+    {
+        setValue( parameterName, null );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(int)
+     */
+    public void setNull( int parameterId ) throws OdaException
+    {
+        setValue( parameterId, null );
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#findInParameter(java.lang.String)
      */
     public int findInParameter( String parameterName ) throws OdaException
@@ -516,9 +550,28 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     	TestParamMetaDataImpl paramMetaData = ( TestParamMetaDataImpl ) getParameterMetaData();
     	int index = paramMetaData.findOutParameter( parameterName );
     	if ( index == 0 )
-    		throw new OdaException( "Invalid output parameter name : " + parameterName );
-    	
+            throwInvalidParamNameException( parameterName );
+
     	return index;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getBoolean(int)
+     */
+    public boolean getBoolean( int parameterId ) throws OdaException 
+    {
+        checkOutputParameterIndex( parameterId );
+        m_wasNull = false;
+        return TestData.createBooleanFalseData();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getBoolean(java.lang.String)
+     */
+    public boolean getBoolean( String parameterName ) throws OdaException 
+    {
+        int index = getOutputParamIndex( parameterName );
+        return getBoolean( index );
     }
     
     /* (non-Javadoc)
@@ -887,10 +940,10 @@ public class TestAdvQueryImpl implements IAdvancedQuery
         return m_wasNull;	
     }
     
-    private void handleInvalidParamName( String parameterName )
+    private void throwInvalidParamNameException( String parameterName )
     	throws OdaException
     {
-    	throw new OdaException( "Invalid parameter name: " + parameterName );
+    	throw new OdaException( "Invalid output parameter name: " + parameterName );
     }
     
     private void checkInputParamIndex( int index ) throws OdaException

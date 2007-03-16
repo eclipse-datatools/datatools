@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 <<Your Company Name here>>
+ * Copyright (c) 2007 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -41,6 +41,15 @@ public class ParameterMetaData implements IParameterMetaData
         // TODO Auto-generated method stub
 		return IParameterMetaData.parameterModeIn;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterName(int)
+     */
+    public String getParameterName( int param ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        return null;    // name is not available
+    }
 
 	/* 
 	 * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterType(int)

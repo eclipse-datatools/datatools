@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -257,4 +257,22 @@ public class SimpleResultSet implements IResultSet
 		// TODO data source dependent
 		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(int)
+     */
+    public boolean getBoolean( int index ) throws OdaException
+    {
+        // TODO data source dependent
+        throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(java.lang.String)
+     */
+    public boolean getBoolean( String columnName ) throws OdaException
+    {
+        return getBoolean( findColumn( columnName ) );
+    }   
+    
 }

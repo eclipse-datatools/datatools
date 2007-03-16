@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -936,8 +936,192 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 			resetContextClassloader();
 		}
 	}
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String parameterName, boolean value )
+            throws OdaException
+    {
+        final String context = "OdaQuery.setBoolean( " + parameterName + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+                                value + " )\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.setBoolean( String, boolean )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setBoolean( parameterName, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
 
-	public void clearInParameters() throws OdaException
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(int, boolean)
+     */
+    public void setBoolean( int parameterId, boolean value )
+            throws OdaException
+    {
+        final String context = "OdaQuery.setBoolean( " + parameterId + ", "  //$NON-NLS-1$ //$NON-NLS-2$
+                                + value + " )\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.setBoolean( int, boolean )"; //$NON-NLS-1$
+        logMethodCalled( context );
+
+        try
+        {   
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setBoolean( parameterId, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
+     */
+    public void setNull( String parameterName ) throws OdaException
+    {
+        final String context = "OdaQuery.setNull( " + parameterName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IQuery.setNull( String )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setNull( parameterName );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(int)
+     */
+    public void setNull( int parameterId ) throws OdaException
+    {
+        final String context = "OdaQuery.setNull( " + parameterId + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IQuery.setNull( int )"; //$NON-NLS-1$
+        logMethodCalled( context );
+
+        try
+        {   
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setNull( parameterId );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }       
+    }
+
+    public void clearInParameters() throws OdaException
 	{
 	    final String context = "OdaQuery.clearInParameters()\t"; //$NON-NLS-1$
 		logMethodCalled( context );

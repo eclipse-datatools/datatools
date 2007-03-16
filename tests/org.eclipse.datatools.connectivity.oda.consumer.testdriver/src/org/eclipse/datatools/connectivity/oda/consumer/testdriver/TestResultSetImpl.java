@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -42,6 +42,14 @@ class TestResultSetImpl implements IResultSet
 		if ( isSmallResultSet )
 			m_numRows = 1;
 	}
+    
+    TestResultSetImpl( boolean hasOneRow, IResultSetMetaData rsmd )
+    {
+        m_resultSetMetaData = rsmd;
+        
+        if ( hasOneRow )
+            m_numRows = 1;
+    }
 	
 	public void close() throws OdaException 
 	{
@@ -51,7 +59,7 @@ class TestResultSetImpl implements IResultSet
 	public int findColumn(String columnName) throws OdaException 
 	{
 		int numCols = m_resultSetMetaData.getColumnCount();
-		for( int i = 1; i < numCols; i++ )
+		for( int i = 1; i <= numCols; i++ )
 		{
 			String name = m_resultSetMetaData.getColumnName( i );
 			if ( name.equals( columnName ) )
@@ -60,6 +68,19 @@ class TestResultSetImpl implements IResultSet
 		
 		throw new OdaException( "Unknown column name : " + columnName );
 	}
+
+    public boolean getBoolean( int index ) throws OdaException 
+    {
+        checkColumnIndex( index );
+        m_wasNull = false;
+        return TestData.createBooleanFalseData();
+    }
+
+    public boolean getBoolean( String columnName ) throws OdaException 
+    {
+        int index = findColumn( columnName );
+        return getBoolean( index );
+    }
 	
 	public BigDecimal getBigDecimal(int index) throws OdaException 
 	{

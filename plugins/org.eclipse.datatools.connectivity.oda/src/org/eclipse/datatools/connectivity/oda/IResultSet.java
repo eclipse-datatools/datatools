@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -254,6 +254,26 @@ public interface IResultSet
 	 * @since		3.0
 	 */
 	public IClob getClob( String columnName ) throws OdaException;
+
+    /**
+     * Gets the value of the designated column in the current row 
+     * as a boolean.
+     * @param index column number (1-based)
+     * @return      the boolean value in the specific column of the current row
+     * @throws OdaException     if data source error occurs
+     * @since       3.1
+     */
+    public boolean getBoolean( int index ) throws OdaException;
+
+    /**
+     * Gets the value of the designated column in the current row 
+     * as a boolean.
+     * @param columnName    column name
+     * @return  the boolean value in the specific column of the current row
+     * @throws OdaException     if data source error occurs
+     * @since       3.1
+     */
+    public boolean getBoolean( String columnName ) throws OdaException;
 
 	/**
 	 * Returns whether the value read from the previous get&lt;type&gt; method

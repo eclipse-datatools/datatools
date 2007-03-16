@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,6 +50,16 @@ public class TestData
     // Date data for Fri, 3 Nov 2006,
     // represented in milliseconds since January 1, 1970, 00:00:00 GMT
     private static final long DATE_DATA = 1162512000;    
+    
+    public static final boolean createBooleanTrueData()
+    {
+        return true;
+    }
+    
+    public static final boolean createBooleanFalseData()
+    {
+        return false;
+    }
     
     public static final BigDecimal createBigDecimalData()
     {

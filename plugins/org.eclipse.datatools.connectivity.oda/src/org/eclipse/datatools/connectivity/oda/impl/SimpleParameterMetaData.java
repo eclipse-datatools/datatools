@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,6 +41,15 @@ public class SimpleParameterMetaData implements IParameterMetaData
         // TODO data source dependent
 		return IParameterMetaData.parameterModeUnknown;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterName(int)
+     */
+    public String getParameterName( int param ) throws OdaException
+    {
+        // TODO data source dependent
+        return null;    // name is not available
+    }
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterType(int)

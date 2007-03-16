@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,13 +20,11 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import org.eclipse.datatools.connectivity.oda.IBlob;
-import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IParameterRowSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 
-abstract class TestParamRowSetImpl implements IParameterRowSet 
+abstract class TestParamRowSetImpl extends TestResultSetImpl implements IParameterRowSet 
 {
 	private IResultSetMetaData m_paramRowSetMetaData = null;
 	private Object[] m_paramVals = null;
@@ -45,6 +43,8 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 	TestParamRowSetImpl( boolean isTable, IResultSetMetaData paramRowSetMetaData ) 
 		throws OdaException
 	{
+        super( ! isTable, paramRowSetMetaData );
+        
 		m_isTable = isTable;
 		
 		m_paramRowSetMetaData = paramRowSetMetaData;
@@ -102,6 +102,24 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 		
 		return false;
 	}
+
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(int, boolean)
+     */
+    public void setBoolean( int columnIndex, boolean value )
+            throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String columnName, boolean value )
+            throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
 
 	public void setBigDecimal( int columnIndex, BigDecimal value )
 			throws OdaException 
@@ -177,14 +195,25 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 		throw new UnsupportedOperationException();
 	}
 
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setNull(int)
+     */
+    public void setNull( int columnIndex ) throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setNull(java.lang.String)
+     */
+    public void setNull( String columnName ) throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
 	public int size() throws OdaException
 	{
 		return m_paramRowSet.size();
-	}
-
-	public void close() throws OdaException
-	{
-		throw new UnsupportedOperationException();
 	}
 
 	public int findColumn( String columnName ) throws OdaException
@@ -198,66 +227,6 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 		return 0;
 	}
 
-	public BigDecimal getBigDecimal( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public BigDecimal getBigDecimal( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public IBlob getBlob( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public IBlob getBlob( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public IClob getClob( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public IClob getClob( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Date getDate( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Date getDate( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public double getDouble( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public double getDouble( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public int getInt( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public int getInt( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
 	public IResultSetMetaData getMetaData() throws OdaException
 	{
 		return m_paramRowSetMetaData;
@@ -266,36 +235,6 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 	public int getRow() throws OdaException
 	{
 		return m_cursorIndex;
-	}
-
-	public String getString( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public String getString( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Time getTime( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Time getTime( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Timestamp getTimestamp( int index ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
-	}
-
-	public Timestamp getTimestamp( String columnName ) throws OdaException
-	{
-		throw new UnsupportedOperationException();
 	}
 
 	public boolean next() throws OdaException
@@ -312,11 +251,6 @@ abstract class TestParamRowSetImpl implements IParameterRowSet
 	public void setMaxRows( int max ) throws OdaException
 	{
 		m_maxRows = max;
-	}
-
-	public boolean wasNull() throws OdaException
-	{
-		throw new UnsupportedOperationException();
 	}
 
 	protected TestParamRow getCurrentRow() throws OdaException

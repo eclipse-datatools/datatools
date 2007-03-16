@@ -155,7 +155,7 @@ This data type mapping facilitates all ODA consumers to map from the same set of
          <attribute name="odaScalarDataType" use="default" value="String">
             <annotation>
                <documentation>
-                  The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob and Clob.
+                  The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob and Boolean.
                </documentation>
             </annotation>
             <simpleType>
@@ -177,6 +177,8 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Blob">
                   </enumeration>
                   <enumeration value="Clob">
+                  </enumeration>
+                  <enumeration value="Boolean">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -216,6 +218,8 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Blob">
                   </enumeration>
                   <enumeration value="Clob">
+                  </enumeration>
+                  <enumeration value="Boolean">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -629,7 +633,7 @@ Its value must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; 
             &lt;dataTypeMapping
                   nativeDataType=&quot;BOOLEAN&quot;
                   nativeDataTypeCode=&quot;16&quot;
-                  odaScalarDataType=&quot;Integer&quot;/&gt;
+                  odaScalarDataType=&quot;Boolean&quot;/&gt;
             &lt;dataTypeMapping
                   nativeDataType=&quot;BLOB&quot;
                   nativeDataTypeCode=&quot;2004&quot;
@@ -674,7 +678,7 @@ These concrete classes are provided for use as templates or base classes to aid 
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         Copyright (c) 2004-2006 Actuate Corporation.
+         Copyright (c) 2004-2007 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>

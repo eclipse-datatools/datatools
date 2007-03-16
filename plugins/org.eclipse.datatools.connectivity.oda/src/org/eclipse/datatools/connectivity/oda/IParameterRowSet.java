@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -201,5 +201,40 @@ public interface IParameterRowSet extends IResultSet
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public void setTimestamp( String columnName, Timestamp value ) throws OdaException;	
+    
+    /**
+     * Sets the boolean value at the designated column.
+     * @param columnIndex   index of the column.
+     * @param value         the boolean value.
+     * @throws OdaException     if data source error occurs.
+     * @since 3.1
+     */
+    public void setBoolean( int columnIndex, boolean value ) throws OdaException;
+    
+    /**
+     * Sets the boolean value at the designated column.
+     * @param columnName    name of the column.
+     * @param value         the boolean value.
+     * @throws OdaException     if data source error occurs.
+     * @since 3.1
+     */
+    public void setBoolean( String columnName, boolean value ) throws OdaException;
+    
+    /**
+     * Sets a null value at the designated column.
+     * @param columnIndex   index of the column.
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setNull( int columnIndex ) throws OdaException;
+    
+    /**
+     * Sets a null value at the designated column.
+     * @param columnName    name of the column.
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setNull( String columnName ) throws OdaException;
+
 }
 

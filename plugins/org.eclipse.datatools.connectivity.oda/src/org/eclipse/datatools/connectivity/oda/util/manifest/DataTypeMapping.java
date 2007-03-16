@@ -251,6 +251,8 @@ public class DataTypeMapping
                                 new Integer( Types.BLOB )); 
             sm_odaTypeCodes.put( toOdaTypeKey( "Clob" ), //$NON-NLS-1$ 
                                 new Integer( Types.CLOB )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "Boolean" ), //$NON-NLS-1$ 
+                                new Integer( Types.BOOLEAN )); 
         }
         
         return sm_odaTypeCodes;        

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@
 
 package org.eclipse.datatools.connectivity.oda.consumer.testdriver;
 
+import java.sql.Types;
 import java.util.ArrayList;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
@@ -109,6 +110,8 @@ class TestResultSetMetaDataImpl implements IResultSetMetaData
 			TestColumnMetaData( 17, "TimeLabel", "TimeCol", 92, "TIME", -1, -1, columnNoNulls ) );
 		m_columns.add( new
 			TestColumnMetaData( 17, "TimestampLabel", "TimestampCol", 93, "TIMESTAMP", -1, -1, columnNoNulls ) );
+        m_columns.add( new
+            TestColumnMetaData( 5, "BooleanLabel", "BooleanCol", Types.BOOLEAN, "BOOLEAN", -1, -1, columnNoNulls ) );
 	}
 	
 	private TestColumnMetaData getCol( int index ) throws OdaException

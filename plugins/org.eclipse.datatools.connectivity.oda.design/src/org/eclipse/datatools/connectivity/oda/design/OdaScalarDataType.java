@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: OdaScalarDataType.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -142,6 +142,21 @@ public final class OdaScalarDataType extends AbstractEnumerator
     public static final int CLOB = 8;
 
     /**
+     * The '<em><b>Boolean</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Boolean</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #BOOLEAN_LITERAL
+     * @model name="Boolean"
+     * @generated
+     * @ordered
+     */
+    public static final int BOOLEAN = 9;
+
+    /**
      * The '<em><b>Date</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -232,24 +247,25 @@ public final class OdaScalarDataType extends AbstractEnumerator
     public static final OdaScalarDataType CLOB_LITERAL = new OdaScalarDataType(CLOB, "Clob"); //$NON-NLS-1$
 
     /**
+     * The '<em><b>Boolean</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #BOOLEAN
+     * @generated
+     * @ordered
+     */
+    public static final OdaScalarDataType BOOLEAN_LITERAL = new OdaScalarDataType(BOOLEAN, "Boolean"); //$NON-NLS-1$
+
+    /**
      * An array of all the '<em><b>Oda Scalar Data Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final OdaScalarDataType[] VALUES_ARRAY =
-        new OdaScalarDataType[]
-        {
-            DATE_LITERAL,
-            DOUBLE_LITERAL,
-            INTEGER_LITERAL,
-            STRING_LITERAL,
-            TIME_LITERAL,
-            TIMESTAMP_LITERAL,
-            DECIMAL_LITERAL,
-            BLOB_LITERAL,
-            CLOB_LITERAL,
-        };
+    private static final OdaScalarDataType[] VALUES_ARRAY = new OdaScalarDataType[]
+    { DATE_LITERAL, DOUBLE_LITERAL, INTEGER_LITERAL, STRING_LITERAL,
+            TIME_LITERAL, TIMESTAMP_LITERAL, DECIMAL_LITERAL, BLOB_LITERAL,
+            CLOB_LITERAL, BOOLEAN_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Oda Scalar Data Type</b></em>' enumerators.
@@ -288,15 +304,26 @@ public final class OdaScalarDataType extends AbstractEnumerator
     {
         switch (value)
         {
-            case DATE: return DATE_LITERAL;
-            case DOUBLE: return DOUBLE_LITERAL;
-            case INTEGER: return INTEGER_LITERAL;
-            case STRING: return STRING_LITERAL;
-            case TIME: return TIME_LITERAL;
-            case TIMESTAMP: return TIMESTAMP_LITERAL;
-            case DECIMAL: return DECIMAL_LITERAL;
-            case BLOB: return BLOB_LITERAL;
-            case CLOB: return CLOB_LITERAL;
+        case DATE:
+            return DATE_LITERAL;
+        case DOUBLE:
+            return DOUBLE_LITERAL;
+        case INTEGER:
+            return INTEGER_LITERAL;
+        case STRING:
+            return STRING_LITERAL;
+        case TIME:
+            return TIME_LITERAL;
+        case TIMESTAMP:
+            return TIMESTAMP_LITERAL;
+        case DECIMAL:
+            return DECIMAL_LITERAL;
+        case BLOB:
+            return BLOB_LITERAL;
+        case CLOB:
+            return CLOB_LITERAL;
+        case BOOLEAN:
+            return BOOLEAN_LITERAL;
         }
         return null;	
     }

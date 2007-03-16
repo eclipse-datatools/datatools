@@ -66,6 +66,7 @@
       <xsd:enumeration value="Decimal"/>
       <xsd:enumeration value="Blob"/>
       <xsd:enumeration value="Clob"/>
+      <xsd:enumeration value="Boolean"/>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="ParameterMode">

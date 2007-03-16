@@ -5,7 +5,7 @@
          id="org.eclipse.datatools.connectivity.oda.consumer.testdriver"
          point="org.eclipse.datatools.connectivity.oda.dataSource">
       <dataSource
-            odaVersion="3.0"
+            odaVersion="3.1"
             driverClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestDriverImpl"
             setThreadContextClassLoader="false"
             id="org.eclipse.datatools.connectivity.oda.consumer.testdriver"/>
@@ -46,6 +46,10 @@
                nativeDataType="CLOB"
                nativeDataTypeCode="98"
                odaScalarDataType="Clob"/>
+         <dataTypeMapping
+               nativeDataType="BOOLEAN"
+               nativeDataTypeCode="16"
+               odaScalarDataType="Boolean"/>
       </dataSet>
    </extension>
    

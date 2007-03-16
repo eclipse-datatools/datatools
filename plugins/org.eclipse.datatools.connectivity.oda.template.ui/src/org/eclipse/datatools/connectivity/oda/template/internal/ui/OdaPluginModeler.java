@@ -101,7 +101,7 @@ class OdaPluginModeler
         dataSourceElement.setName( "dataSource" ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "driverClass", getKeyPackageName() + ".Driver" );  //$NON-NLS-1$ //$NON-NLS-2$
-        dataSourceElement.setAttribute( "odaVersion", "3.0" ); //$NON-NLS-1$ //$NON-NLS-2$
+        dataSourceElement.setAttribute( "odaVersion", "3.1" ); //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "defaultDisplayName", PROP_DATA_SOURCE_NAME  ); //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "setThreadContextClassLoader" , VALUE_FALSE );//$NON-NLS-1$
         extension.add( dataSourceElement );
@@ -239,8 +239,9 @@ class OdaPluginModeler
                     new DataTypeMapping( java.sql.Types.DECIMAL, "BigDecimal", "Decimal" ),  //$NON-NLS-1$ //$NON-NLS-2$
                     new DataTypeMapping( java.sql.Types.DATE, "Date", "Date" ),  //$NON-NLS-1$ //$NON-NLS-2$
                     new DataTypeMapping( java.sql.Types.TIME, "Time", "Time" ),  //$NON-NLS-1$ //$NON-NLS-2$
-                    new DataTypeMapping( java.sql.Types.TIMESTAMP, "Timestamp", "Timestamp" )  //$NON-NLS-1$ //$NON-NLS-2$
-                    // excludes the more complex types by default
+                    new DataTypeMapping( java.sql.Types.TIMESTAMP, "Timestamp", "Timestamp" ),  //$NON-NLS-1$ //$NON-NLS-2$
+                    new DataTypeMapping( java.sql.Types.BOOLEAN, "Boolean", "Boolean" )  //$NON-NLS-1$ //$NON-NLS-2$
+                    // excludes the more complex data types by default
 //                  new DataTypeMapping( java.sql.Types.BLOB, "BLOB", "String" ),  //$NON-NLS-1$ //$NON-NLS-2$
 //                  new DataTypeMapping( java.sql.Types.CLOB, "CLOB", "String" )  //$NON-NLS-1$ //$NON-NLS-2$
                 };

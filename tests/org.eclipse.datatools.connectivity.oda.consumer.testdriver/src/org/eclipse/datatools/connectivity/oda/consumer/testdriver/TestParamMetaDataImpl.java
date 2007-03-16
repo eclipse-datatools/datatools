@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,8 +40,8 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 		    m_params.add( new TestParameterMetaData( "DateParamIn", Types.DATE, "DATE", -1, -1, 
 		    	IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
 		    
-		    // Notice that here the data type boolean is unknown in the plugin.xml.
-		    m_params.add( new TestParameterMetaData( "BooleanParamIn", Types.BOOLEAN, "Unknown type", -1, -1, 
+		    // Notice that here the data type is unknown in the plugin.xml.
+		    m_params.add( new TestParameterMetaData( "DummyParamIn", Types.NULL, "Unknown type", -1, -1, 
 		    	IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );    		
     	}
     	else if ( queryType == QUERY_TYPE_COMPLEX )
@@ -61,6 +61,8 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 		    	IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullableUnknown ) );
 		    m_params.add( new TestParameterMetaData( "TimestampParamIn", Types.TIMESTAMP, "TIMESTAMP", -1, -1, 
 		    	IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullableUnknown ) );
+            m_params.add( new TestParameterMetaData( "BooleanParamIn", Types.BOOLEAN, "BOOLEAN", -1, -1, 
+                IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullableUnknown ) );
     	}
     	else if ( queryType == QUERY_TYPE_ADVANCED )
     	{
@@ -95,6 +97,8 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 		    	IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
 		    m_params.add( new TestParameterMetaData( "StructParamOut", Types.STRUCT, "STRUCT", -1, -1, 
 			    IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
+            m_params.add( new TestParameterMetaData( "BooleanParamOut", Types.BOOLEAN, "BOOLEAN", -1, -1, 
+                IParameterMetaData.parameterModeOut, IParameterMetaData.parameterNullableUnknown ) );
     	}
     }
 
@@ -114,6 +118,13 @@ public class TestParamMetaDataImpl implements IParameterMetaData
     	return getParameter( index ).getMode();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterName(int)
+     */
+    public String getParameterName( int param ) throws OdaException
+    {
+        return null;
+    }
     
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterType(int)

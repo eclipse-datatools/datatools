@@ -1,6 +1,6 @@
 /*
  *****************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -139,7 +139,7 @@ public class PropertyProviderTest extends TestCase
 		// pass in empty property collection; 
 		// since consumer id was not specified in appContext, 
 		// this empty connProps should get used, and
-		// expects RuntimeException for missing home folder property
+		// expects Exception for missing home folder property
 		Properties connProps = new Properties();
 		
 		boolean caughtExpectedException = false;
@@ -151,6 +151,10 @@ public class PropertyProviderTest extends TestCase
 		{
             caughtExpectedException = true;
 		}
+        catch( OdaException ex )
+        {
+            caughtExpectedException = true;
+        }
 		assertTrue( caughtExpectedException );
 	}
 

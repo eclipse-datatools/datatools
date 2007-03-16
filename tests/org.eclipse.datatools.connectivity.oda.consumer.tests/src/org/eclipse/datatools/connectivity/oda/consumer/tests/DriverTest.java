@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDriver;
@@ -171,7 +172,7 @@ public class DriverTest extends OdaTestCase
 		try 
 		{
 			Bundle b = Platform.getBundle( getPluginName() );
-			pluginPath = Platform.asLocalURL( b.getEntry( "/" ) ).getFile();
+			pluginPath = FileLocator.toFileURL( b.getEntry( "/" ) ).getFile();
 		} 
 		catch ( IOException e ) 
 		{

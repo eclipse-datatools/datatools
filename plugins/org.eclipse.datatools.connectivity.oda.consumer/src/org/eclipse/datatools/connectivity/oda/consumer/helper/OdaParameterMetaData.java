@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -114,6 +114,55 @@ class OdaParameterMetaData extends OdaDriverObject
 			resetContextClassloader();
 		}
 	}
+
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterMetaData#getParameterName(int)
+     */
+    public String getParameterName( int param ) throws OdaException
+    {
+        final String context = "OdaParameterMetaData.getParameterName( " + param + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IParameterMetaData.getParameterName( int )"; //$NON-NLS-1$
+        logMethodCalled( context );
+    
+        try
+        {
+            setContextClassloader();
+            
+            String ret = getParameterMetaData().getParameterName( param );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            logMethodNotImplemented( context, unsupportedOpContext );
+            
+            // no need to throw an exception, just return value to indicate that 
+            // the name is not available during runtime 
+            String ret = null;          // name is not available
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }       
+        return null;
+    }
 
 	public int getParameterType( int param ) throws OdaException
 	{

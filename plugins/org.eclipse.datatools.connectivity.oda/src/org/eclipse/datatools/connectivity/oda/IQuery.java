@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -268,7 +268,41 @@ public interface IQuery
 	 * @throws OdaException		if data source error occurs
 	 */
 	public void setTimestamp( int parameterId, Timestamp value ) throws OdaException;
-
+    
+    /**
+     * Sets the designated parameter to the given boolean value.
+     * @param parameterName     name of the parameter.
+     * @param value             boolean value.
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setBoolean( String parameterName, boolean value ) throws OdaException;
+	
+    /**
+     * Sets the designated parameter to the given boolean value.
+     * @param parameterId       id of the parameter (1-based).
+     * @param value             boolean value
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setBoolean(int parameterId, boolean value ) throws OdaException;
+    
+    /**
+     * Sets the designated parameter to a null value.
+     * @param parameterName     name of the parameter.
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setNull( String parameterName ) throws OdaException;
+    
+    /**
+     * Sets the designated parameter to a null value.
+     * @param parameterId       id of the parameter (1-based).
+     * @throws OdaException     if data source error occurs
+     * @since 3.1
+     */
+    public void setNull( int parameterId ) throws OdaException;
+    
 	/**
 	 * Returns the 1-based index of the specified input parameter.
 	 * @param parameterName		name of the parameter.

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,7 +45,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	}
 
 	//------------------------------------------------------------------
-	//	IRowSet public interface methods
+	//	IParameterRowSet public interface methods
 	//------------------------------------------------------------------
 
 	public boolean absolute( int rowIndex ) throws OdaException
@@ -66,7 +66,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.absolute( int rowIndex )" ); //$NON-NLS-1$
+												   "IParameterRowSet.absolute( int rowIndex )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -99,7 +99,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.previous()" ); //$NON-NLS-1$
+												   "IParameterRowSet.previous()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -132,7 +132,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IRowSet.add()" ); //$NON-NLS-1$
+												  "IParameterRowSet.add()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -164,7 +164,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.clear()" ); //$NON-NLS-1$
+								 "IParameterRowSet.clear()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -197,7 +197,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetFalse( uoException,
-												   "IRowSet.isEmpty()" ); //$NON-NLS-1$
+												   "IParameterRowSet.isEmpty()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -230,7 +230,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			return handleUnsupportedOpAndRetZero( uoException,
-												  "IRowSet.size()" ); //$NON-NLS-1$
+												  "IParameterRowSet.size()" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -263,7 +263,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setint( int columnIndex, int value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setint( int columnIndex, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -296,7 +296,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setInt( String columnName, int value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setInt( String columnName, int value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -329,7 +329,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDouble( int columnIndex, double value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setDouble( int columnIndex, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -362,7 +362,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDouble( String columnName, double value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setDouble( String columnName, double value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -394,7 +394,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setBigDecimal( int columnIndex, BigDecimal value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setBigDecimal( int columnIndex, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -426,7 +426,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setBigDecimal( String columnName, BigDecimal value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setBigDecimal( String columnName, BigDecimal value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -459,7 +459,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowset.setString( int columnIndex, String value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setString( int columnIndex, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -492,7 +492,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException, 
-								 "IRowSet.setString( String columnName, String value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setString( String columnName, String value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -525,7 +525,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDate( int columnIndex, Date value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setDate( int columnIndex, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -558,7 +558,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setDate( String columnName, Date value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setDate( String columnName, Date value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -591,7 +591,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTime( int columnIndex, Time value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setTime( int columnIndex, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -624,7 +624,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTime( String columnName, Time value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setTime( String columnName, Time value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -657,7 +657,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTimestamp( int columnIndex, Timestamp value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setTimestamp( int columnIndex, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -690,7 +690,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 		catch( UnsupportedOperationException uoException )
 		{
 			handleUnsupportedOp( uoException,
-								 "IRowSet.setTimestamp( String columnName, Timestamp value )" ); //$NON-NLS-1$
+								 "IParameterRowSet.setTimestamp( String columnName, Timestamp value )" ); //$NON-NLS-1$
 		}
 		catch( RuntimeException rtException )
 		{
@@ -705,4 +705,185 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 			resetContextClassloader();
 		}
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(int, boolean)
+     */
+    public void setBoolean( int columnIndex, boolean value )
+            throws OdaException
+    {
+        final String context = "OdaRowSet.setBoolean( " + columnIndex + ", "  //$NON-NLS-1$ //$NON-NLS-2$
+                                + value + " )\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IParameterRowSet.setBoolean( int, boolean )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            getRowSet().setBoolean( columnIndex, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String columnName, boolean value )
+            throws OdaException
+    {
+        final String context = "OdaRowSet.setBoolean( " + columnName + ", "  //$NON-NLS-1$ //$NON-NLS-2$
+                                + value + " )\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IParameterRowSet.setBoolean( String, boolean )"; //$NON-NLS-1$        
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            getRowSet().setBoolean( columnName, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setNull(int)
+     */
+    public void setNull( int columnIndex ) throws OdaException
+    {
+        final String context = "OdaRowSet.setNull( " + columnIndex + " )\t";  //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IParameterRowSet.setNull( int )"; //$NON-NLS-1$                        
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            getRowSet().setNull( columnIndex );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }        
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setNull(java.lang.String)
+     */
+    public void setNull( String columnName ) throws OdaException
+    {
+        final String context = "OdaRowSet.setNull( " + columnName + " )\t";  //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IParameterRowSet.setNull( String )"; //$NON-NLS-1$                
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            getRowSet().setNull( columnName );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+    
 }

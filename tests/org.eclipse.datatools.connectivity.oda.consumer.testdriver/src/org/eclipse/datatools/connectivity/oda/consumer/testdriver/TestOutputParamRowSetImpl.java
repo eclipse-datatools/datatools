@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,6 +33,19 @@ public class TestOutputParamRowSetImpl extends TestParamRowSetImpl
 		// Table is not an option.
 		super( false, new TestResultSetMetaDataImpl( true ) );
 	}
+
+    public boolean getBoolean( int index ) throws OdaException 
+    {
+        checkColIndex( index );
+        m_wasNull = false;
+        return TestData.createBooleanFalseData();
+    }
+
+    public boolean getBoolean( String columnName ) throws OdaException 
+    {
+        int index = getColIndex( columnName );
+        return getBoolean( index );
+    }
 
 	public BigDecimal getBigDecimal(int index) throws OdaException 
 	{

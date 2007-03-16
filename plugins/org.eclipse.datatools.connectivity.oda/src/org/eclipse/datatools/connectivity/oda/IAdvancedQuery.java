@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -332,6 +332,24 @@ public interface IAdvancedQuery extends IQuery
 	 * @since		3.0
 	 */
 	public IClob getClob( int parameterId ) throws OdaException;
+    
+    /**
+     * Returns the boolean value from the designated output parameter.
+     * @param parameterName     name of the parameter.
+     * @return                  the boolean value.
+     * @throws OdaException     if data source error occurs.
+     * @since       3.1
+     */
+    public boolean getBoolean( String parameterName ) throws OdaException;
+    
+    /**
+     * Returns the boolean value from the designated output parameter.
+     * @param parameterId       id of the parameter (1-based).
+     * @return                  the boolean value.
+     * @throws OdaException     if data source error occurs.
+     * @since       3.1
+     */
+    public boolean getBoolean( int parameterId ) throws OdaException;
 	
 	/**
 	 * Returns the structure value from the designated output parameter.  

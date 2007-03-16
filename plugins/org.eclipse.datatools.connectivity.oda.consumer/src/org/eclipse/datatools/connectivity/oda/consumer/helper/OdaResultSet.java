@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -911,7 +911,101 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 		            switchContextClassloader(), getDriverClassLoader());
     }
 
-	public boolean wasNull() throws OdaException
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(int)
+     */
+    public boolean getBoolean( int index ) throws OdaException
+    {
+        final String context = "OdaResultSet.getBoolean( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IResultSet.getBoolean( int )"; //$NON-NLS-1$
+        logMethodCalled( context );
+    
+        try
+        {
+            setContextClassloader();
+            
+            boolean ret = getResultSet().getBoolean( index );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return false;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(java.lang.String)
+     */
+    public boolean getBoolean( String columnName ) throws OdaException
+    {
+        final String context = "OdaResultSet.getBoolean( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IResultSet.getBoolean( String )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            boolean ret = getResultSet().getBoolean( columnName );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return false;
+    }
+
+    public boolean wasNull() throws OdaException
 	{
 	    final String context = "OdaResultSet.wasNull()\t"; //$NON-NLS-1$
 		logMethodCalled( context );

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,24 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
 	{
 		super( isTable, new TestResultSetMetaDataImpl( false ) );
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(int, boolean)
+     */
+    public void setBoolean( int columnIndex, boolean value )
+            throws OdaException
+    {
+        setValue( columnIndex, new Boolean( value ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String columnName, boolean value )
+            throws OdaException
+    {
+        setValue( columnName, new Boolean( value ) );
+    }
 
 	public void setBigDecimal( int columnIndex, BigDecimal value )
 			throws OdaException 
@@ -101,6 +119,18 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
 	{
 		setValue( columnName, value );
 	}
+
+    public void setNull( int columnIndex )
+            throws OdaException
+    {
+        setValue( columnIndex, null );
+    }
+
+    public void setNull( String columnName )
+            throws OdaException
+    {
+        setValue( columnName, null );
+    }
 
 	private void setValue( int columnIndex, Object val ) throws OdaException
 	{

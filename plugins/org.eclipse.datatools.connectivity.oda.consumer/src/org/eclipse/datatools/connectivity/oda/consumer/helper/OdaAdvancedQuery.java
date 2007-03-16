@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -1292,7 +1292,108 @@ public class OdaAdvancedQuery extends OdaQuery
                                 getDriverClassLoader() );
     }
 
-	/*
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getBoolean(java.lang.String)
+     */
+    public boolean getBoolean( String parameterName ) throws OdaException
+    {
+        final String context = "OdaAdvancedQuery.getBoolean( " + parameterName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IAdvancedQuery.getBoolean( String )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            throwIfNotExecuted();
+            
+            boolean ret = false;
+            if( getDSMetaData().checkSupportForNamedParameters() )
+                ret = getAdvancedQuery().getBoolean( parameterName );
+            else
+            {   
+                int index = getAdvancedQuery().findOutParameter( parameterName );
+                ret = getAdvancedQuery().getBoolean( index );
+            }
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        return false;
+    }
+
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getBoolean(int)
+     */
+    public boolean getBoolean( int parameterId ) throws OdaException
+    {
+        final String context = "OdaAdvancedQuery.getBoolean( " + parameterId + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String unsupportedOpContext = "IAdvancedQuery.getBoolean( int )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            throwIfNotExecuted();
+            
+            boolean ret = getAdvancedQuery().getBoolean( parameterId );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.1 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }        
+        return false;
+    }
+
+    /*
 	 * (non-Javadoc)
 	 * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getRow(java.lang.String)
 	 */

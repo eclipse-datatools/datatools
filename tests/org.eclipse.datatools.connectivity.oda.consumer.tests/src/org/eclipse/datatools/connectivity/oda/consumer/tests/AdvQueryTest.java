@@ -1,5 +1,5 @@
 /*************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -367,6 +367,7 @@ public class AdvQueryTest extends ConnectionTest
 			prs.setString( 5, TestData.createStringData() );
 			prs.setTime( 6, TestData.createTimeData() );
 			prs.setTimestamp( 7, TestData.createTimestampData() );
+            prs.setBoolean( 8, TestData.createBooleanFalseData() );
 		}
 		else
 		{
@@ -377,6 +378,7 @@ public class AdvQueryTest extends ConnectionTest
 			prs.setString( "StringCol", TestData.createStringData() );
 			prs.setTime( "TimeCol", TestData.createTimeData() );
 			prs.setTimestamp( "TimestampCol", TestData.createTimestampData() );			
+            prs.setBoolean( "BooleanCol", TestData.createBooleanTrueData() );         
 		}
 	}
 	
@@ -623,6 +625,26 @@ public class AdvQueryTest extends ConnectionTest
 		{
 			checkGetParamValueBeforeExecutedError( e, isExecuted );
 		}
+        
+        try
+        {
+            boolean val = byPos ? 
+                    m_query.getBoolean( outParamStartIndex + 12 ) :
+                    m_query.getBoolean( "BooleanParamOut" );
+
+            if ( isExecuted )
+            {
+                boolean refVal = TestData.createBooleanFalseData();
+                assertEquals( val, refVal );
+                assertFalse( m_query.wasNull() );
+            }
+            else
+                fail(); // should not get here.
+        }
+        catch( OdaException e )
+        {
+            checkGetParamValueBeforeExecutedError( e, isExecuted );
+        }
 	}
 	
 	private void checkGetParamValueBeforeExecutedError( OdaException e, boolean isExecuted )

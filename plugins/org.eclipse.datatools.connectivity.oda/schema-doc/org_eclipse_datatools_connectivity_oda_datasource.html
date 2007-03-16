@@ -2,8 +2,8 @@
 <HTML>
 <HEAD><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <title>Open Data Access</title>
-<style>@import url("file:/D:/Lang/eclipse_32/plugins/org.eclipse.sdk_3.2.0.v20060605/book.css");</style>
-<style>@import url("file:/D:/Lang/eclipse_32/configuration/org.eclipse.osgi/bundles/129/1/.cp/schema.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_33M5/plugins/org.eclipse.sdk_3.3.0.v20070205/book.css");</style>
+<style>@import url("file:/D:/Lang/eclipse_33M5/configuration/org.eclipse.osgi/bundles/78/1/.cp/schema.css");</style>
 </HEAD>
 <BODY>
 <H1><CENTER>Open Data Access</CENTER></H1>
@@ -52,7 +52,7 @@ The definition of a type of data set supported by the dataSource extension.</p>
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.dataTypeMapping">dataTypeMapping</a> (<a href="#e.alternativeOdaDataType">alternativeOdaDataType</a>*)&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST dataTypeMapping</p>
-<p class=code id=dtdAttlist>nativeDataType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>nativeDataTypeCode&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>odaScalarDataType&nbsp;&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob) "String"&gt;</p>
+<p class=code id=dtdAttlist>nativeDataType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED<p class=code id=dtdAttlist>nativeDataTypeCode&nbsp;CDATA #REQUIRED<p class=code id=dtdAttlist>odaScalarDataType&nbsp;&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean) "String"&gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
 A data types mapping from a data provider's native data type to one or more ODA data types.  
@@ -62,11 +62,11 @@ This data type mapping facilitates all ODA consumers to map from the same set of
 <ul class=ConfigMarkup id=attlistDesc>
 <li><b>nativeDataType</b> - Native data type name (a string).  Used for information only.</li>
 <li><b>nativeDataTypeCode</b> - Native data type code (an integer). Its value must match one of the data type codes returned in the driver's ODA interface implementation.</li>
-<li><b>odaScalarDataType</b> - The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob and Clob.</li>
+<li><b>odaScalarDataType</b> - The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob and Boolean.</li>
 </ul>
 <br><p class=code id=dtd>&lt;!ELEMENT <a name="e.alternativeOdaDataType">alternativeOdaDataType</a> EMPTY&gt;</p>
 <p class=code id=dtd>&lt;!ATTLIST alternativeOdaDataType</p>
-<p class=code id=dtdAttlist>odaScalarDataType&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob) &gt;</p>
+<p class=code id=dtdAttlist>odaScalarDataType&nbsp;(Date|Double|Integer|String|Time|Timestamp|Decimal|Blob|Clob|Boolean) &gt;</p>
 <p></p>
 <p class=ConfigMarkup id=elementDesc>
 Provide an alternative mapping to an ODA scalar data type.</p>
@@ -297,7 +297,7 @@ Its value must match that of the corresponding <i>dataSource.id</i> or <i>dataSe
             <p class=code id=tag>&lt;dataTypeMapping
                   nativeDataType=<p class=code id=cstring>&quot;BOOLEAN&quot;</p><p class=code id=tag>
                   nativeDataTypeCode=<p class=code id=cstring>&quot;16&quot;</p><p class=code id=tag>
-                  odaScalarDataType=<p class=code id=cstring>&quot;Integer&quot;</p><p class=code id=tag>/&gt;</p>
+                  odaScalarDataType=<p class=code id=cstring>&quot;Boolean&quot;</p><p class=code id=tag>/&gt;</p>
             <p class=code id=tag>&lt;dataTypeMapping
                   nativeDataType=<p class=code id=cstring>&quot;BLOB&quot;</p><p class=code id=tag>
                   nativeDataTypeCode=<p class=code id=cstring>&quot;2004&quot;</p><p class=code id=tag>
@@ -326,7 +326,7 @@ These concrete classes are provided for use as templates or base classes to aid 
 
 <br>
 <p class=note id=copyright>
-Copyright (c) 2004-2006 Actuate Corporation.
+Copyright (c) 2004-2007 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
 <p></p>
 

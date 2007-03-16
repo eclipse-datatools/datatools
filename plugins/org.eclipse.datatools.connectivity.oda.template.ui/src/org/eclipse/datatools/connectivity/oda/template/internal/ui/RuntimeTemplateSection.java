@@ -161,7 +161,7 @@ class RuntimeTemplateSection extends OdaTemplateSection
         return new IPluginReference[] 
                     { new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda",  //$NON-NLS-1$
-                        "3.0.4" ),  //$NON-NLS-1$
+                        "3.1.0" ),  //$NON-NLS-1$
                       new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.profile",  //$NON-NLS-1$
                         "3.0.4" )   //$NON-NLS-1$

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 <<Your Company Name here>>
+ * Copyright (c) 2007 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -239,6 +239,44 @@ public class Query implements IQuery
         // TODO Auto-generated method stub
 		// only applies to input parameter
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(java.lang.String, boolean)
+     */
+    public void setBoolean( String parameterName, boolean value )
+            throws OdaException
+    {
+        // TODO Auto-generated method stub
+        // only applies to named input parameter
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(int, boolean)
+     */
+    public void setBoolean( int parameterId, boolean value )
+            throws OdaException
+    {
+        // TODO Auto-generated method stub       
+        // only applies to input parameter
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
+     */
+    public void setNull( String parameterName ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        // only applies to named input parameter
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(int)
+     */
+    public void setNull( int parameterId ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        // only applies to input parameter
+    }
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#findInParameter(java.lang.String)

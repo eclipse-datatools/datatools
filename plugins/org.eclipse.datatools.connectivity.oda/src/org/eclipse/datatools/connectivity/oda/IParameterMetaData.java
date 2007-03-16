@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -84,6 +84,17 @@ public interface IParameterMetaData
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public int getParameterMode( int param ) throws OdaException;
+    
+    /**
+     * Returns the name of the specific parameter.  
+     * Optional method; a parameter may or may not have a name.
+     * @param param 1-based index of the parameter.
+     * @return      the parameter name, or 
+     *              null if the name is not available or this parameter is not named.
+     * @throws OdaException     if data source error occurs.
+     * @since 3.1
+     */
+    public String getParameterName( int param ) throws OdaException;
 	
 	/**
 	 * Returns the data provider specific code of the parameter's data type.

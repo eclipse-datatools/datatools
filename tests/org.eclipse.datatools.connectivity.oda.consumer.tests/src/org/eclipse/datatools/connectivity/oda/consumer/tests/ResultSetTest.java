@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -99,6 +99,22 @@ public class ResultSetTest extends QueryTest
 			assertTrue( e.toString().indexOf( "Unknown column name" ) >= 0 );
 		}
 	}
+    
+    public final void testGetBoolean() throws OdaException 
+    {
+        boolean retVal = m_resultSet.next();
+        assertTrue( retVal );
+        
+        boolean expectedVal = TestData.createBooleanFalseData();
+        
+        // Test get value by column pos. defined in TestResultSetMetaDataImpl
+        boolean val = m_resultSet.getBoolean( 12 );
+        assertEquals( expectedVal, val );
+        
+        // Test get value by column name.
+        val = m_resultSet.getBoolean( "BooleanCol" );
+        assertEquals( expectedVal, val );
+    }
 	
 	public final void testGetBigDecimal() throws OdaException 
 	{
@@ -225,11 +241,11 @@ public class ResultSetTest extends QueryTest
 		
 		// Test get value by column pos.
 		int val = m_resultSet.getInt( 8 );
-		assertTrue( intVal == val );
+        assertEquals( intVal, val );
 		
 		// Test get value by column name.
 		val = m_resultSet.getInt( "IntCol" );
-		assertTrue( intVal == val );
+        assertEquals( intVal, val );
 	}
 	
 	public final void testGetResultSetMetaData() throws OdaException 
@@ -271,7 +287,7 @@ public class ResultSetTest extends QueryTest
 		doTestSetMaxRows( 10, 5, true /* setMax */);
 	}
 
-	public final void testGetString( int index ) throws OdaException 
+	public final void testGetString() throws OdaException 
 	{
 		boolean retVal = m_resultSet.next();
 		assertTrue( retVal );
@@ -287,7 +303,7 @@ public class ResultSetTest extends QueryTest
 		assertEquals( strVal, val );
 	}
 
-	public final void testGetTime( int index ) throws OdaException 
+	public final void testGetTime() throws OdaException 
 	{
 		boolean retVal = m_resultSet.next();
 		assertTrue( retVal );
@@ -303,7 +319,7 @@ public class ResultSetTest extends QueryTest
 		assertEquals( timeVal, val );
 	}
 	
-	public final void testGetTimestamp( int index ) throws OdaException 
+	public final void testGetTimestamp() throws OdaException 
 	{
 		boolean retVal = m_resultSet.next();
 		assertTrue( retVal );
