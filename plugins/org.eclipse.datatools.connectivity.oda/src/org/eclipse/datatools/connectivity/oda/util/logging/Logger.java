@@ -1,7 +1,7 @@
 //----------------------------------------------------------------------
 // Logger.java
 //
-// Copyright (c) 2004, 2005 Actuate Corporation.
+// Copyright (c) 2004, 2007 Actuate Corporation.
 // All rights reserved. This program and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -32,9 +32,9 @@ public class Logger
     private Level 		    		m_level;
     private Handler 		    	m_handler;
 
-    // private constructor to deal with handling the deprecated 
+    // Package-level constructor to deal with handling the deprecated 
     // use of the "global" logger
-    private Logger()
+    Logger()
     {
     	m_loggerName = "global"; //$NON-NLS-1$
     	

@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Consumer Helper Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer.tests;singleton:=true
 Bundle-Version: 3.1.0.200703161
-Bundle-Localization: plugin
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.junit;bundle-version="[3.8.1,4.0.0)",
  org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.1.0,4.0.0)",
