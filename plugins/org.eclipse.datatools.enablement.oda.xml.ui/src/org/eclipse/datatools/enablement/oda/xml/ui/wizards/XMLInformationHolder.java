@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 
 /**
@@ -95,30 +96,33 @@ public class XMLInformationHolder
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
+			Property xmlFile = dataSetDesign.getPrivateProperties( )
+				.findProperty( Constants.CONST_PROP_XML_FILE );
+			
 			setPropertyValue( Constants.CONST_PROP_XML_FILE,
-					dataSetDesign.getPrivateProperties( )
-							.findProperty( Constants.CONST_PROP_XML_FILE )
-							.getValue( ) );
-			String maxRow = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW )
-					.getValue( );
+					xmlFile == null?"":xmlFile.getValue( ));
+			Property maxRow = dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.CONST_PROP_MAX_ROW );
+					
 			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow : "-1" );
+					? maxRow.getValue( ) : "-1" );
 
 		}
 		// backward compatibility. should be removed when Model has done the
 		// backward.
 		else if ( dataSetDesign.getPublicProperties( ) != null )
 		{
+			Property xmlFile = dataSetDesign.getPublicProperties( )
+				.findProperty( Constants.CONST_PROP_XML_FILE );
 			setPropertyValue( Constants.CONST_PROP_XML_FILE,
-					dataSetDesign.getPublicProperties( )
-							.findProperty( Constants.CONST_PROP_XML_FILE )
-							.getValue( ) );
-			String maxRow = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW )
-					.getValue( );
+					xmlFile == null?"":xmlFile.getValue( ) );
+			
+			Property maxRow = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_MAX_ROW );
+			
 			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow : "-1" );
+					? maxRow.getValue( ) : "-1" );
+			
 			dataSetDesign.getPublicProperties( )
 					.unsetProperty( Constants.CONST_PROP_MAX_ROW );
 			dataSetDesign.getPublicProperties( )
@@ -127,17 +131,17 @@ public class XMLInformationHolder
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{
 			DataSourceDesign dataSourceDesign = dataSetDesign.getDataSourceDesign( );
-			String value = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_SCHEMA_FILELIST )
-					.getValue( );
-			if ( value != null )
-				setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-						value == null ? "" : value );
-			value = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_FILELIST )
-					.getValue( );
-			setPropertyValue( Constants.CONST_PROP_FILELIST, value == null ? ""
-					: value );
+			
+			Property schema = dataSourceDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_SCHEMA_FILELIST );
+			setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
+						schema == null ? "" : schema.getValue( ) );
+			
+			Property xmlFile  = dataSourceDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_FILELIST );
+					
+			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null ? ""
+					: xmlFile.getValue( ) );
 		}
 	}
 
