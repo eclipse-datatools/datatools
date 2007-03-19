@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.hsqldb;singleton:=true
-Bundle-Version: 1.0.0.200703122
+Bundle-Version: 1.0.0.200703191
 Bundle-Activator: org.eclipse.datatools.enablement.hsqldb.HSQLDBActivator
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
