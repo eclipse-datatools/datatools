@@ -61,76 +61,76 @@ import com.ibm.icu.util.StringTokenizer;
  */
 public class MySqlDdlBuilder {
 	protected final static String NEWLINE = System
-			.getProperty("line.separator");
-	protected final static String EMPTY_STRING = "";
-	protected final static String DOT = ".";
-	protected final static String SPACE = " ";
-	protected final static String COMMA = ",";
-	protected final static String QUOTE = "`";
-	protected final static String TAB = "\t";
-	protected final static String LEFT_PARENTHESIS = "(";
-	protected final static String RIGHT_PARENTHESIS = ")";
-	protected final static String DROP = "DROP";
-	protected final static String CREATE = "CREATE";
-	protected final static String ALTER = "ALTER";
-	protected final static String ADD = "ADD";
-	protected final static String DELETE = "DELETE";
-	protected final static String UPDATE = "UPDATE";
-	protected final static String CASCADE = "CASCADE";
-	protected final static String CASCADED = "CASCADED";
-	protected final static String CHANGE = "CHANGE";
-	protected final static String COLUMN = "COLUMN";
-	protected final static String LOCAL = "LOCAL";
-	protected final static String OPTION = "OPTION";
-	protected final static String RESTRICT = "RESTRICT";
-	protected final static String NULL = "NULL";
-	protected final static String NOT = "NOT";
-	protected final static String DEFAULT = "DEFAULT";
-	protected final static String SET = "SET";
-	protected final static String TRIGGER = "TRIGGER";
-	protected final static String TABLE = "TABLE";
-	protected final static String VIEW = "VIEW";
-	protected final static String INDEX = "INDEX";
-	protected final static String PROCEDURE = "PROCEDURE";
-	protected final static String CONSTRAINT = "CONSTRAINT";
-	protected final static String UNIQUE = "UNIQUE";
-	protected final static String CHECK = "CHECK";
-	protected final static String ENGINE = "ENGINE";
-	protected final static String ON = "ON";
-	protected final static String FOREIGN_KEY = "FOREIGN KEY";
-	protected final static String REFERENCES = "REFERENCES";
-	protected final static String PRIMARY_KEY = "PRIMARY KEY";
-	protected final static String DEFERRABLE = "DEFERRABLE";
-	protected final static String DEFERRED = "DEFERRED";
-	protected final static String INITIALLY = "INITIALLY";
-	protected final static String ALIAS = "ALIAS";
-	protected final static String AS = "AS";
-	protected final static String FOR = "FOR";
-	protected final static String LONG = "LONG";
-	protected final static String BLOB = "BLOB";
-	protected final static String DBCLOB = "DBCLOB";
-	protected final static String CLOB = "CLOB";
-	protected final static String VARCHAR = "VARCHAR";
-	protected final static String WITH = "WITH";
-	protected final static String COMPARISONS = "COMPARISONS";
-	protected final static String DATALINK = "DATALINK";
-	protected final static String VARGRAPHIC = "VARGRAPHIC";
-	protected final static String AFTER = "AFTER";
-	protected final static String BEFORE = "BEFORE";
-	protected final static String INSTEAD_OF = "INSTEAD OF";
-	protected final static String INSERT = "INSERT";
-	protected final static String NO = "NO";
-	protected final static String OF = "OF";
-	protected final static String REFERENCING = "REFERENCING";
-	protected final static String NEW = "NEW";
-	protected final static String OLD = "OLD";
-	protected final static String NEW_TABLE = "NEW_TABLE";
-	protected final static String OLD_TABLE = "OLD_TABLE";
-	protected final static String EACH = "EACH";
-	protected final static String ROW = "ROW";
-	protected final static String STATEMENT = "STATEMENT";
-	protected final static String WHEN = "WHEN";
-	protected final static String AUTO_INCREMENT = "AUTO_INCREMENT";
+			.getProperty("line.separator"); //$NON-NLS-1$
+	protected final static String EMPTY_STRING = ""; //$NON-NLS-1$
+	protected final static String DOT = "."; //$NON-NLS-1$
+	protected final static String SPACE = " "; //$NON-NLS-1$
+	protected final static String COMMA = ","; //$NON-NLS-1$
+	protected final static String QUOTE = "`"; //$NON-NLS-1$
+	protected final static String TAB = "\t"; //$NON-NLS-1$
+	protected final static String LEFT_PARENTHESIS = "("; //$NON-NLS-1$
+	protected final static String RIGHT_PARENTHESIS = ")"; //$NON-NLS-1$
+	protected final static String DROP = "DROP"; //$NON-NLS-1$
+	protected final static String CREATE = "CREATE"; //$NON-NLS-1$
+	protected final static String ALTER = "ALTER"; //$NON-NLS-1$
+	protected final static String ADD = "ADD"; //$NON-NLS-1$
+	protected final static String DELETE = "DELETE"; //$NON-NLS-1$
+	protected final static String UPDATE = "UPDATE"; //$NON-NLS-1$
+	protected final static String CASCADE = "CASCADE"; //$NON-NLS-1$
+	protected final static String CASCADED = "CASCADED"; //$NON-NLS-1$
+	protected final static String CHANGE = "CHANGE"; //$NON-NLS-1$
+	protected final static String COLUMN = "COLUMN"; //$NON-NLS-1$
+	protected final static String LOCAL = "LOCAL"; //$NON-NLS-1$
+	protected final static String OPTION = "OPTION"; //$NON-NLS-1$
+	protected final static String RESTRICT = "RESTRICT"; //$NON-NLS-1$
+	protected final static String NULL = "NULL"; //$NON-NLS-1$
+	protected final static String NOT = "NOT"; //$NON-NLS-1$
+	protected final static String DEFAULT = "DEFAULT"; //$NON-NLS-1$
+	protected final static String SET = "SET"; //$NON-NLS-1$
+	protected final static String TRIGGER = "TRIGGER"; //$NON-NLS-1$
+	protected final static String TABLE = "TABLE"; //$NON-NLS-1$
+	protected final static String VIEW = "VIEW"; //$NON-NLS-1$
+	protected final static String INDEX = "INDEX"; //$NON-NLS-1$
+	protected final static String PROCEDURE = "PROCEDURE"; //$NON-NLS-1$
+	protected final static String CONSTRAINT = "CONSTRAINT"; //$NON-NLS-1$
+	protected final static String UNIQUE = "UNIQUE"; //$NON-NLS-1$
+	protected final static String CHECK = "CHECK"; //$NON-NLS-1$
+	protected final static String ENGINE = "ENGINE"; //$NON-NLS-1$
+	protected final static String ON = "ON"; //$NON-NLS-1$
+	protected final static String FOREIGN_KEY = "FOREIGN KEY"; //$NON-NLS-1$
+	protected final static String REFERENCES = "REFERENCES"; //$NON-NLS-1$
+	protected final static String PRIMARY_KEY = "PRIMARY KEY"; //$NON-NLS-1$
+	protected final static String DEFERRABLE = "DEFERRABLE"; //$NON-NLS-1$
+	protected final static String DEFERRED = "DEFERRED"; //$NON-NLS-1$
+	protected final static String INITIALLY = "INITIALLY"; //$NON-NLS-1$
+	protected final static String ALIAS = "ALIAS"; //$NON-NLS-1$
+	protected final static String AS = "AS"; //$NON-NLS-1$
+	protected final static String FOR = "FOR"; //$NON-NLS-1$
+	protected final static String LONG = "LONG"; //$NON-NLS-1$
+	protected final static String BLOB = "BLOB"; //$NON-NLS-1$
+	protected final static String DBCLOB = "DBCLOB"; //$NON-NLS-1$
+	protected final static String CLOB = "CLOB"; //$NON-NLS-1$
+	protected final static String VARCHAR = "VARCHAR"; //$NON-NLS-1$
+	protected final static String WITH = "WITH"; //$NON-NLS-1$
+	protected final static String COMPARISONS = "COMPARISONS"; //$NON-NLS-1$
+	protected final static String DATALINK = "DATALINK"; //$NON-NLS-1$
+	protected final static String VARGRAPHIC = "VARGRAPHIC"; //$NON-NLS-1$
+	protected final static String AFTER = "AFTER"; //$NON-NLS-1$
+	protected final static String BEFORE = "BEFORE"; //$NON-NLS-1$
+	protected final static String INSTEAD_OF = "INSTEAD OF"; //$NON-NLS-1$
+	protected final static String INSERT = "INSERT"; //$NON-NLS-1$
+	protected final static String NO = "NO"; //$NON-NLS-1$
+	protected final static String OF = "OF"; //$NON-NLS-1$
+	protected final static String REFERENCING = "REFERENCING"; //$NON-NLS-1$
+	protected final static String NEW = "NEW"; //$NON-NLS-1$
+	protected final static String OLD = "OLD"; //$NON-NLS-1$
+	protected final static String NEW_TABLE = "NEW_TABLE"; //$NON-NLS-1$
+	protected final static String OLD_TABLE = "OLD_TABLE"; //$NON-NLS-1$
+	protected final static String EACH = "EACH"; //$NON-NLS-1$
+	protected final static String ROW = "ROW"; //$NON-NLS-1$
+	protected final static String STATEMENT = "STATEMENT"; //$NON-NLS-1$
+	protected final static String WHEN = "WHEN"; //$NON-NLS-1$ 
+	protected final static String AUTO_INCREMENT = "AUTO_INCREMENT"; //$NON-NLS-1$
 
     private HashMap createMap = new HashMap();
     private HashMap dropMap = new HashMap();
@@ -303,7 +303,7 @@ public class MySqlDdlBuilder {
 			MySqlCatalogTable mySqlTable = (MySqlCatalogTable) table;
 			String tableType = mySqlTable.getTableType();
 			if (tableType != null) {
-				statement += SPACE + ENGINE + "=" + tableType;
+				statement += SPACE + ENGINE + "=" + tableType; //$NON-NLS-1$
 			}
 		}
 
@@ -494,9 +494,9 @@ public class MySqlDdlBuilder {
         if (parentTable == null) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not generate a foreignKey constraint for table " +
+                    "Could not generate a foreignKey constraint for table " + //$NON-NLS-1$
                     foreignKey.getBaseTable(),
-                    new Throwable("No Index or Primary Key on referenced table")));
+                    new Throwable("No Index or Primary Key on referenced table"))); //$NON-NLS-1$
             return null;
 		}
 
@@ -560,7 +560,7 @@ public class MySqlDdlBuilder {
 		} else if (action == ReferentialActionType.SET_NULL_LITERAL) {
 			return SET + SPACE + NULL;
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	protected String getViewColumnList(ViewTable view) {
@@ -605,14 +605,14 @@ public class MySqlDdlBuilder {
 				+ dataType;
 		String defaultValue = column.getDefaultValue();
 		if (defaultValue != null) {
-            if (dataType.equals("DATETIME") ||
-                    dataType.equals("TIME") ||
-                    dataType.equals("DATE") ||
-                    dataType.equals("TIMESTAMP")) {
-                defaultValue = "'" + defaultValue.trim() + "'";
+            if (dataType.equals("DATETIME") || //$NON-NLS-1$
+                    dataType.equals("TIME") || //$NON-NLS-1$
+                    dataType.equals("DATE") || //$NON-NLS-1$
+                    dataType.equals("TIMESTAMP")) { //$NON-NLS-1$
+                defaultValue = "'" + defaultValue.trim() + "'";  //$NON-NLS-1$//$NON-NLS-2$
             }
-            if (defaultValue.equals("")){
-                defaultValue = "''";
+            if (defaultValue.equals("")){ //$NON-NLS-1$
+                defaultValue = "''"; //$NON-NLS-1$
             }
 			columnString = columnString + SPACE + DEFAULT + SPACE
 					+ defaultValue;
@@ -689,8 +689,8 @@ public class MySqlDdlBuilder {
 		} else {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "No column found for index " + index.getName(),
-                    new Throwable("Index has no columns")));
+                    "No column found for index " + index.getName(), //$NON-NLS-1$
+                    new Throwable("Index has no columns"))); //$NON-NLS-1$
 			return null;
 		}
 
@@ -719,8 +719,8 @@ public class MySqlDdlBuilder {
 		} else {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "No column found for index " + index.getName(),
-                    new Throwable("Index has no columns")));
+                    "No column found for index " + index.getName(), //$NON-NLS-1$
+                    new Throwable("Index has no columns"))); //$NON-NLS-1$
             return null;
 		}
 

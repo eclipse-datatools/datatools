@@ -36,7 +36,7 @@ public class MySqlCatalogSchema extends SchemaImpl implements ICatalogObject {
 	private static final long serialVersionUID = 3257567317125903160L;
 
 	private static final String[] POSSIBLE_TABLE_TYPE_COL_NAMES =
-            new String[] {"Types", "Type", "Engine"};
+            new String[] {"Types", "Type", "Engine"}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	private boolean tablesLoaded = false;
 
@@ -93,7 +93,7 @@ public class MySqlCatalogSchema extends SchemaImpl implements ICatalogObject {
 			if(catalogName == null || catalogName.trim().length() == 0){
 				connection.setCatalog(getName());
 			}
-			String query = "SHOW TABLE STATUS FROM `"+connection.getCatalog()+"`";
+			String query = "SHOW TABLE STATUS FROM `"+connection.getCatalog()+"`"; //$NON-NLS-1$ //$NON-NLS-2$
 			Statement s = connection.createStatement();
 			ResultSet r = s.executeQuery(query);
             ResultSetMetaData rmd = r.getMetaData();
@@ -110,11 +110,11 @@ public class MySqlCatalogSchema extends SchemaImpl implements ICatalogObject {
 //			String typeStr = version != null && version.startsWith("4.0") ? "Types" : "Engine";
 			while (r.next()) {
 				MySqlCatalogTable table = new MySqlCatalogTable();
-				table.setName(r.getString("Name"));
+				table.setName(r.getString("Name")); //$NON-NLS-1$
 				if(typeStr != null){
 					table.setTableType(r.getString(typeStr));
 				}
-				table.setAutoInc(r.getBoolean("Auto_increment"));
+				table.setAutoInc(r.getBoolean("Auto_increment")); //$NON-NLS-1$
 				tableList.add(table);
 			}
 			this.tablesLoaded = true;
@@ -123,7 +123,7 @@ public class MySqlCatalogSchema extends SchemaImpl implements ICatalogObject {
 		} catch (Exception e) {
 			MysqlPlugin.getDefault().getLog().log(
 					new Status(IStatus.ERROR, MysqlPlugin.ID, 0,
-							"Could not load the tables for database "
+							"Could not load the tables for database " //$NON-NLS-1$
 									+ this.getDatabase().getName(), e));
 		}
 

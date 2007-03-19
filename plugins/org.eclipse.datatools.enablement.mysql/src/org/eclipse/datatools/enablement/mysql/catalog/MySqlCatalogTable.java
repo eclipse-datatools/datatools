@@ -27,13 +27,11 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
-import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.IncrementType;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
@@ -161,24 +159,24 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 							.getPredefinedDataType(typeDefinition);
 					if (typeDefinition.isLengthSupported()) {
 						EStructuralFeature feature = type.eClass()
-								.getEStructuralFeature("length");
+								.getEStructuralFeature("length"); //$NON-NLS-1$
 						type.eSet(feature, new Integer(r.getInt(7)));
 					} else if (typeDefinition.isPrecisionSupported()) {
 						EStructuralFeature feature = type.eClass()
-								.getEStructuralFeature("precision");
+								.getEStructuralFeature("precision"); //$NON-NLS-1$
 						type.eSet(feature, new Integer(r.getInt(10)));
 					}
 
 					if (typeDefinition.isScaleSupported()) {
 						EStructuralFeature feature = type.eClass()
-								.getEStructuralFeature("scale");
+								.getEStructuralFeature("scale"); //$NON-NLS-1$
 						type.eSet(feature, new Integer(r.getInt(9)));
 					}
 					column.setContainedType(type);
 				}
 
 				final String nulls = r.getString(18);
-				if (nulls.equals("YES")) {
+				if (nulls.equals("YES")) { //$NON-NLS-1$
 					column.setNullable(true);
 				} else {
 					column.setNullable(false);
@@ -194,7 +192,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(
                     IStatus.ERROR, MysqlPlugin.ID, 0,
-                    "Could not load the Columns for table "
+                    "Could not load the Columns for table " //$NON-NLS-1$
                     + this.getName(), e));
 		}
 
@@ -204,12 +202,12 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 	private synchronized void loadIdentity(Connection connection) {
 		try {
 			Statement s = connection.createStatement();
-			final String query = "SHOW COLUMNS FROM " + this.getName();
+			final String query = "SHOW COLUMNS FROM " + this.getName(); //$NON-NLS-1$
 			ResultSet r = s.executeQuery(query);
 			while (r.next()) {
-				String extra = r.getString("Extra");
-				if (extra != null && extra.equalsIgnoreCase("auto_increment")) {
-					Column column = getColumn(r.getString("Field"));
+				String extra = r.getString("Extra"); //$NON-NLS-1$
+				if (extra != null && extra.equalsIgnoreCase("auto_increment")) { //$NON-NLS-1$
+					Column column = getColumn(r.getString("Field")); //$NON-NLS-1$
 					final Database database = this.getSchema().getDatabase();
 					final DatabaseDefinition databaseDefinition = RDBCorePlugin
 							.getDefault().getDatabaseDefinitionRegistry()
@@ -227,7 +225,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not load the identity type of coulumns for table "
+                    "Could not load the identity type of coulumns for table " //$NON-NLS-1$
                     + this.getName(), e));
 		}
 
@@ -249,7 +247,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not get the DatabaseMetaData from connection", e));
+                    "Could not get the DatabaseMetaData from connection", e)); //$NON-NLS-1$
 		}
 		this.pkLoaded = true;
 		this.eSetDeliver(deliver);
@@ -278,7 +276,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not get the DatabaseMetaData from connection", e));
+                    "Could not get the DatabaseMetaData from connection", e)); //$NON-NLS-1$
 		}
 		this.constraintLoaded = true;
 		this.eSetDeliver(deliver);
@@ -318,7 +316,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not load the primary keys for table "
+                    "Could not load the primary keys for table " //$NON-NLS-1$
                     + this.getName(), e));
 		}
 
@@ -337,10 +335,10 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 
 			MySqlCatalogForeignKey fk = null;
 			MySqlCatalogTable fkTable = null;
-			String fkTableName = "";
+			String fkTableName = ""; //$NON-NLS-1$
 			while (r.next()) {
 
-				final String fkTable_Name = r.getString("PKTABLE_NAME");
+				final String fkTable_Name = r.getString("PKTABLE_NAME"); //$NON-NLS-1$
 				if (!fkTableName.equals(fkTable_Name)) {
 					fkTable = this.getTable(fkTable_Name);
 
@@ -348,18 +346,18 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 						continue;
 					fkTableName = fkTable_Name;
 					fk = new MySqlCatalogForeignKey();
-					final String fkName = r.getString("FK_NAME");
+					final String fkName = r.getString("FK_NAME"); //$NON-NLS-1$
 					fk.setName(fkName);
 					if (fkTable.getPrimaryKey() != null) {
 						fk.setUniqueConstraint(fkTable.getPrimaryKey());
 					} else {
 						Index index = fkTable.findIndexWithColumnName(r
-								.getString("PKCOLUMN_NAME"));
+								.getString("PKCOLUMN_NAME")); //$NON-NLS-1$
 						if (index != null) {
 							fk.setUniqueIndex(index);
 						}
 					}
-					short updateRule = r.getShort("UPDATE_RULE");
+					short updateRule = r.getShort("UPDATE_RULE"); //$NON-NLS-1$
 					switch (updateRule) {
 					case DatabaseMetaData.importedKeyCascade:
 						fk.setOnUpdate(ReferentialActionType.CASCADE_LITERAL);
@@ -380,7 +378,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 						fk.setOnUpdate(ReferentialActionType.CASCADE_LITERAL);
 						break;
 					}
-					short deleteRule = r.getShort("DELETE_RULE");
+					short deleteRule = r.getShort("DELETE_RULE"); //$NON-NLS-1$
 					switch (deleteRule) {
 					case DatabaseMetaData.importedKeyCascade:
 						fk.setOnDelete(ReferentialActionType.CASCADE_LITERAL);
@@ -401,7 +399,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 						fk.setOnDelete(ReferentialActionType.CASCADE_LITERAL);
 						break;
 					}
-					short deferrability = r.getShort("DEFERRABILITY");
+					short deferrability = r.getShort("DEFERRABILITY"); //$NON-NLS-1$
 					switch (deferrability) {
 					case DatabaseMetaData.importedKeyInitiallyDeferred:
 						fk.setDeferrable(true);
@@ -419,7 +417,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 					super.getConstraints().add(fk);
 				}
 
-				String columnName = r.getString("FKCOLUMN_NAME");
+				String columnName = r.getString("FKCOLUMN_NAME"); //$NON-NLS-1$
 				Column column = getColumn(columnName);
 				fk.getMembers().add(column);
 			}
@@ -427,7 +425,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not load the foreign keys for table "
+                    "Could not load the foreign keys for table " //$NON-NLS-1$
                     + this.getName(), e));
 		}
 	}
@@ -469,7 +467,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 			ResultSet r = metaData.getIndexInfo(null, null, this.getName(),
 					false, false);
 			Index index = null;
-			String indexName = "";
+			String indexName = ""; //$NON-NLS-1$
 			PrimaryKey pk = this.getPrimaryKey();
 			while (r.next()) {
 				final String indName = r.getString(6);
@@ -499,9 +497,9 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 						member.setColumn(MySqlCatalogTable.getColumn(this,
 								column_name));
 						final String order = r.getString(10);
-						if (order.equals("A"))
+						if (order.equals("A")) //$NON-NLS-1$
 							member.setIncrementType(IncrementType.ASC_LITERAL);
-						else if (order.equals("D"))
+						else if (order.equals("D")) //$NON-NLS-1$
 							member.setIncrementType(IncrementType.DESC_LITERAL);
 
 						index.getMembers().add(member);
@@ -514,26 +512,26 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		} catch (Exception e) {
             MysqlPlugin.getDefault().getLog().log(new Status(IStatus.ERROR,
                     MysqlPlugin.ID, 0,
-                    "Could not load the indexes for table "
+                    "Could not load the indexes for table " //$NON-NLS-1$
                     + this.getName(), e));
 		}
 
 		this.eSetDeliver(deliver);
 	}
 
-	private UniqueConstraint getRefrencedUniqueConstraint(String pkSchema,
-			String pkTable, String pkName) {
-		BaseTable table = (BaseTable) this.getTable(pkTable);
-		Iterator it = table.getConstraints().iterator();
-		while (it.hasNext()) {
-			Constraint constraint = (Constraint) it.next();
-			if (constraint instanceof UniqueConstraint
-					&& constraint.getName().equals(pkName)) {
-				return (UniqueConstraint) constraint;
-			}
-		}
-		return null;
-	}
+//	private UniqueConstraint getRefrencedUniqueConstraint(String pkSchema,
+//			String pkTable, String pkName) {
+//		BaseTable table = (BaseTable) this.getTable(pkTable);
+//		Iterator it = table.getConstraints().iterator();
+//		while (it.hasNext()) {
+//			Constraint constraint = (Constraint) it.next();
+//			if (constraint instanceof UniqueConstraint
+//					&& constraint.getName().equals(pkName)) {
+//				return (UniqueConstraint) constraint;
+//			}
+//		}
+//		return null;
+//	}
 
 	private DatabaseDefinition getDatabaseDefinition() {
 		Database d = this.getSchema().getDatabase();
@@ -585,7 +583,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 
 		public void add(int seq, String name) {
 			Column column = this.getColumn(name);
-			String key = "k" + seq;
+			String key = "k" + seq; //$NON-NLS-1$
 			this.keyMap.put(key, column);
 		}
 

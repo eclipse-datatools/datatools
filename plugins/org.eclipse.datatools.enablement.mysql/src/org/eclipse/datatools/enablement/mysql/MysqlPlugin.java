@@ -26,7 +26,7 @@ public class MysqlPlugin extends Plugin {
 	// Resource bundle.
 	private ResourceBundle resourceBundle;
 
-	public static final String ID = "org.eclipse.wst.rdb.mysql";
+	public static final String ID = "org.eclipse.wst.rdb.mysql"; //$NON-NLS-1$
 
 	/**
 	 * The constructor.
@@ -79,7 +79,7 @@ public class MysqlPlugin extends Plugin {
 		try {
 			if (resourceBundle == null)
 				resourceBundle = ResourceBundle
-						.getBundle("org.eclipse.wst.rdb.mysql.MysqlPluginResources");
+						.getBundle("org.eclipse.wst.rdb.mysql.MysqlPluginResources"); //$NON-NLS-1$
 		} catch (MissingResourceException x) {
 			resourceBundle = null;
 		}
