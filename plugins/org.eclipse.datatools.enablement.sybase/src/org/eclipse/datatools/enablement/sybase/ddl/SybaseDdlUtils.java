@@ -26,7 +26,7 @@ public class SybaseDdlUtils implements IGenericDdlConstants, ISybaseDdlConstants
     {
         if (obj == null)
         {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         if (obj instanceof Table)
         {
@@ -47,6 +47,6 @@ public class SybaseDdlUtils implements IGenericDdlConstants, ISybaseDdlConstants
                 return ((SQLObject) obj).getName();
             }
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 }

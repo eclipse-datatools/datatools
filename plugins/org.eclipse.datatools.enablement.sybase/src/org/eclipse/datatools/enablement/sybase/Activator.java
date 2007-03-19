@@ -11,7 +11,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.datatools.enablement.sybase";
+	public static final String PLUGIN_ID = "org.eclipse.datatools.enablement.sybase"; //$NON-NLS-1$
 
     private static final int INTERNAL_ERROR = 100000000;
 

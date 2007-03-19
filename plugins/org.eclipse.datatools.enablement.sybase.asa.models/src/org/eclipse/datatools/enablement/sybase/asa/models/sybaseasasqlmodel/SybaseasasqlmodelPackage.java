@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelPackage.java,v 1.7 2007/02/08 01:41:36 linsong Exp $
+ * $Id: SybaseasasqlmodelPackage.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -34,7 +34,7 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNAME = "sybaseasasqlmodel";
+	String eNAME = "sybaseasasqlmodel"; //$NON-NLS-1$
 
     /**
      * The package namespace URI.
@@ -42,7 +42,7 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_URI = "http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore";
+	String eNS_URI = "http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"; //$NON-NLS-1$
 
     /**
      * The package namespace name.
@@ -50,7 +50,7 @@ public interface SybaseasasqlmodelPackage extends EPackage
 	 * <!-- end-user-doc -->
      * @generated
      */
-	String eNS_PREFIX = "SybaseASAModel";
+	String eNS_PREFIX = "SybaseASAModel"; //$NON-NLS-1$
 
     /**
      * The singleton instance of the package.

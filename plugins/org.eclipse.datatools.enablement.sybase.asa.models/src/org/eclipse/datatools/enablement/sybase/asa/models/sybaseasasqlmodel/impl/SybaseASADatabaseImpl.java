@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADatabaseImpl.java,v 1.7 2007/02/08 01:41:35 linsong Exp $
+ * $Id: SybaseASADatabaseImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -163,7 +163,7 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (ASECompatible: ");
+        result.append(" (ASECompatible: "); //$NON-NLS-1$
         result.append(aseCompatible);
         result.append(')');
         return result.toString();

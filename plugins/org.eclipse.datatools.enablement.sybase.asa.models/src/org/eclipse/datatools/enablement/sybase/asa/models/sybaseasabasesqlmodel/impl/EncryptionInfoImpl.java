@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EncryptionInfoImpl.java,v 1.3 2007/02/08 01:41:30 linsong Exp $
+ * $Id: EncryptionInfoImpl.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -271,11 +271,11 @@ public class EncryptionInfoImpl extends EObjectImpl implements EncryptionInfo
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (encryptedTable: ");
+        result.append(" (encryptedTable: "); //$NON-NLS-1$
         result.append(encryptedTable);
-        result.append(", encryptionKey: ");
-        result.append(encryptionKey);
-        result.append(", algorithm: ");
+        result.append(", encryptionKey: "); //$NON-NLS-1$
+        result.append(encryptionKey); 
+        result.append(", algorithm: "); //$NON-NLS-1$
         result.append(algorithm);
         result.append(')');
         return result.toString();

@@ -47,59 +47,59 @@ public class SybaseDatabaseObjecType
                                                                                    .getBundle("org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlGeneration"); //$NON-NLS-1$
 
     public static final SybaseDatabaseObjecType    DATABASE_TYPE              = new SybaseDatabaseObjecType(DATABASE,
-                                                                                   "Database", dmpresrce
-                                                                                           .getString("DATABASE_LABEL"));
-    public static final SybaseDatabaseObjecType    TABLE_TYPE                 = new SybaseDatabaseObjecType(TABLE, "Table",
-                                                                                   dmpresrce.getString("TABLE_LABEL"));
+                                                                                   "Database", dmpresrce //$NON-NLS-1$
+                                                                                           .getString("DATABASE_LABEL")); //$NON-NLS-1$
+    public static final SybaseDatabaseObjecType    TABLE_TYPE                 = new SybaseDatabaseObjecType(TABLE, "Table", //$NON-NLS-1$
+                                                                                   dmpresrce.getString("TABLE_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    PROCEDURE_TYPE             = new SybaseDatabaseObjecType(
                                                                                    PROCEDURE,
-                                                                                   "Procedure",
+                                                                                   "Procedure", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("PROCEDURE_LABEL"));
+                                                                                           .getString("PROCEDURE_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    USER_DEFINED_FUNCTION_TYPE = new SybaseDatabaseObjecType(
                                                                                    USER_DEFINED_FUNCTION,
-                                                                                   "User Defined function",
+                                                                                   "User Defined function", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("USER_DEFINED_FUNCTION_LABEL"));
-    public static final SybaseDatabaseObjecType    VIEW_TYPE                  = new SybaseDatabaseObjecType(VIEW, "View",
-                                                                                   dmpresrce.getString("VIEW_LABEL"));
+                                                                                           .getString("USER_DEFINED_FUNCTION_LABEL")); //$NON-NLS-1$
+    public static final SybaseDatabaseObjecType    VIEW_TYPE                  = new SybaseDatabaseObjecType(VIEW, "View", //$NON-NLS-1$
+                                                                                   dmpresrce.getString("VIEW_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    USER_DEFINED_DATATYPE_TYPE = new SybaseDatabaseObjecType(
                                                                                    USER_DEFINED_DATATYPE,
-                                                                                   "User Defined Datatype",
+                                                                                   "User Defined Datatype", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("USER_DEFINED_DATATYPE_LABEL"));
-    public static final SybaseDatabaseObjecType    EVENT_TYPE                 = new SybaseDatabaseObjecType(EVENT, "Event",
-                                                                                   dmpresrce.getString("EVENT_LABEL"));
+                                                                                           .getString("USER_DEFINED_DATATYPE_LABEL")); //$NON-NLS-1$
+    public static final SybaseDatabaseObjecType    EVENT_TYPE                 = new SybaseDatabaseObjecType(EVENT, "Event", //$NON-NLS-1$
+                                                                                   dmpresrce.getString("EVENT_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    CHECK_CONSTRAINT_TYPE      = new SybaseDatabaseObjecType(
                                                                                    CHECK_CONSTRAINT,
-                                                                                   "Check Constraint",
+                                                                                   "Check Constraint", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("CHECK_CONSTRAINT_LABEL"));
+                                                                                           .getString("CHECK_CONSTRAINT_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    UNIQUE_CONSTRAINT_TYPE     = new SybaseDatabaseObjecType(
                                                                                    UNIQUE_CONSTRAINT,
-                                                                                   "Unique Constraint",
+                                                                                   "Unique Constraint", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("UNIQUE_CONSTRAINT_LABEL"));
+                                                                                           .getString("UNIQUE_CONSTRAINT_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    PRIMARY_KEY_TYPE           = new SybaseDatabaseObjecType(
                                                                                    PRIMARY_KEY,
-                                                                                   "Primary Key",
+                                                                                   "Primary Key", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("PRIMARY_KEY_LABEL"));
+                                                                                           .getString("PRIMARY_KEY_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    FOREIGN_KEY_TYPE           = new SybaseDatabaseObjecType(
                                                                                    FOREIGN_KEY,
-                                                                                   "Foreign Key",
+                                                                                   "Foreign Key", //$NON-NLS-1$
                                                                                    dmpresrce
-                                                                                           .getString("FOREIGN_KEY_LABEL"));
-    public static final SybaseDatabaseObjecType    INDEX_TYPE                 = new SybaseDatabaseObjecType(INDEX, "Index",
-                                                                                   dmpresrce.getString("INDEX_LABEL"));
+                                                                                           .getString("FOREIGN_KEY_LABEL")); //$NON-NLS-1$
+    public static final SybaseDatabaseObjecType    INDEX_TYPE                 = new SybaseDatabaseObjecType(INDEX, "Index", //$NON-NLS-1$
+                                                                                   dmpresrce.getString("INDEX_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    TRIGGER_TYPE               = new SybaseDatabaseObjecType(TRIGGER,
-                                                                                   "Trigger", dmpresrce
-                                                                                           .getString("TRIGGER_LABEL"));
+                                                                                   "Trigger", dmpresrce //$NON-NLS-1$
+                                                                                           .getString("TRIGGER_LABEL")); //$NON-NLS-1$
     public static final SybaseDatabaseObjecType    DEFAULT_TYPE               = new SybaseDatabaseObjecType(DEFAULT,
-                                                                                   "Default", dmpresrce
-                                                                                           .getString("DEFAULT_LABEL"));
-    public static final SybaseDatabaseObjecType    RULE_TYPE                  = new SybaseDatabaseObjecType(RULE, "Rule",
-                                                                                   dmpresrce.getString("RULE_LABEL"));
+                                                                                   "Default", dmpresrce //$NON-NLS-1$
+                                                                                           .getString("DEFAULT_LABEL")); //$NON-NLS-1$
+    public static final SybaseDatabaseObjecType    RULE_TYPE                  = new SybaseDatabaseObjecType(RULE, "Rule", //$NON-NLS-1$
+                                                                                   dmpresrce.getString("RULE_LABEL")); //$NON-NLS-1$
 
     /**
      * @uml.property  name="dATABASE_OBJECTYPYE_ARRAY"

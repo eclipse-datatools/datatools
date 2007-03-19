@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelPackageImpl.java,v 1.7 2007/02/08 01:41:36 linsong Exp $
+ * $Id: SybaseasasqlmodelPackageImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -346,21 +346,21 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
         sybaseASATempTableEClass.getESuperTypes().add(theSybaseasabasesqlmodelPackage.getSybaseASABaseTempTable());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(sybaseASADatabaseEClass, SybaseASADatabase.class, "SybaseASADatabase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASADatabase_ASECompatible(), ecorePackage.getEBoolean(), "ASECompatible", null, 0, 1, SybaseASADatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASADatabaseEClass, SybaseASADatabase.class, "SybaseASADatabase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASADatabase_ASECompatible(), ecorePackage.getEBoolean(), "ASECompatible", null, 0, 1, SybaseASADatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASATableEClass, SybaseASATable.class, "SybaseASATable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASATable_Pctfree(), ecorePackage.getEInt(), "pctfree", "-1", 0, 1, SybaseASATable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASATableEClass, SybaseASATable.class, "SybaseASATable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASATable_Pctfree(), ecorePackage.getEInt(), "pctfree", "-1", 0, 1, SybaseASATable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(sybaseASAForeignKeyEClass, SybaseASAForeignKey.class, "SybaseASAForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASAForeignKey_CheckOnCommit(), ecorePackage.getEBoolean(), "checkOnCommit", null, 0, 1, SybaseASAForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAForeignKey_Nullable(), ecorePackage.getEBoolean(), "nullable", null, 0, 1, SybaseASAForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASAForeignKeyEClass, SybaseASAForeignKey.class, "SybaseASAForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASAForeignKey_CheckOnCommit(), ecorePackage.getEBoolean(), "checkOnCommit", null, 0, 1, SybaseASAForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAForeignKey_Nullable(), ecorePackage.getEBoolean(), "nullable", null, 0, 1, SybaseASAForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASAIndexEClass, SybaseASAIndex.class, "SybaseASAIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASAIndex_Virtual(), ecorePackage.getEBoolean(), "virtual", null, 0, 1, SybaseASAIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASAIndexEClass, SybaseASAIndex.class, "SybaseASAIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASAIndex_Virtual(), ecorePackage.getEBoolean(), "virtual", null, 0, 1, SybaseASAIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASATempTableEClass, SybaseASATempTable.class, "SybaseASATempTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASATempTable_Pctfree(), theEcorePackage.getEInt(), "pctfree", "-1", 0, 1, SybaseASATempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASATempTableEClass, SybaseASATempTable.class, "SybaseASATempTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASATempTable_Pctfree(), theEcorePackage.getEInt(), "pctfree", "-1", 0, 1, SybaseASATempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
         // Create resource
         createResource(eNS_URI);

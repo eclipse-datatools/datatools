@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TransactionOption.java,v 1.4 2007/02/28 01:02:34 hcao Exp $
+ * $Id: TransactionOption.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -75,7 +75,7 @@ public final class TransactionOption extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TransactionOption DELETE_LITERAL = new TransactionOption(DELETE, "DELETE", "DELETE");
+	public static final TransactionOption DELETE_LITERAL = new TransactionOption(DELETE, "DELETE", "DELETE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>PRESERVE</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class TransactionOption extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TransactionOption PRESERVE_LITERAL = new TransactionOption(PRESERVE, "PRESERVE", "PRESERVE");
+	public static final TransactionOption PRESERVE_LITERAL = new TransactionOption(PRESERVE, "PRESERVE", "PRESERVE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>NOT TRANSACTION</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class TransactionOption extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TransactionOption NOT_TRANSACTION_LITERAL = new TransactionOption(NOT_TRANSACTION, "NOT_TRANSACTION", "NOT_TRANSACTION");
+	public static final TransactionOption NOT_TRANSACTION_LITERAL = new TransactionOption(NOT_TRANSACTION, "NOT_TRANSACTION", "NOT_TRANSACTION"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Transaction Option</b></em>' enumerators.

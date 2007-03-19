@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseViewTableImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseViewTableImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -157,7 +157,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
 	 */
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
-		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");
+		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
     /**
@@ -243,7 +243,7 @@ public class SybaseASABaseViewTableImpl extends SybaseViewTableImpl implements S
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (withCheckOption: ");
+        result.append(" (withCheckOption: "); //$NON-NLS-1$
         result.append(withCheckOption);
         result.append(')');
         return result.toString();

@@ -41,7 +41,7 @@ public class SybaseASABaseViewTableDeltaDdlGenProvider extends AbstractDeltaDdlG
                 description = getSingleQuotedString(e.getDescription());
             }
             String objectName = builder.getName((SybaseASABaseViewTable) e, quoteIdentifiers, qualifyNames);
-            StringBuffer comment = new StringBuffer("");
+            StringBuffer comment = new StringBuffer(""); //$NON-NLS-1$
             comment.append(COMMENT).append(SPACE).append(ON).append(SPACE).append(VIEW).append(SPACE)
                     .append(objectName);
             comment.append(SPACE).append(IS).append(SPACE).append(description);

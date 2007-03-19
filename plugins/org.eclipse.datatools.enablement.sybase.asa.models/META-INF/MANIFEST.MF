@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa.models; singleton:=true
-Bundle-Version: 1.0.0.200703051
+Bundle-Version: 1.0.0.200703191
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel,

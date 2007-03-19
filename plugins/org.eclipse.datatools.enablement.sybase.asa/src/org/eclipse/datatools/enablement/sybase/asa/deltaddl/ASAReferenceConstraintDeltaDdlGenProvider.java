@@ -16,7 +16,7 @@ public class ASAReferenceConstraintDeltaDdlGenProvider extends ReferenceConstrai
     protected String generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
         sb.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(
                 (getName((Table) constraint.eContainer(), quoteIdentifiers, qualifyNames))).append(SPACE).append(
                 IGenericDdlConstants.RENAME).append(SPACE).append(

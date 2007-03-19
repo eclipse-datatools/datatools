@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseColumnCheckConstraintImpl.java,v 1.3 2007/02/08 01:41:32 linsong Exp $
+ * $Id: SybaseASABaseColumnCheckConstraintImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -85,7 +85,7 @@ public class SybaseASABaseColumnCheckConstraintImpl extends CheckConstraintImpl 
         if (newColumn != eInternalContainer() || (eContainerFeatureID != SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_COLUMN_CHECK_CONSTRAINT__COLUMN && newColumn != null))
         {
             if (EcoreUtil.isAncestor(this, newColumn))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
             NotificationChain msgs = null;
             if (eInternalContainer() != null)
                 msgs = eBasicRemoveFromContainer(msgs);

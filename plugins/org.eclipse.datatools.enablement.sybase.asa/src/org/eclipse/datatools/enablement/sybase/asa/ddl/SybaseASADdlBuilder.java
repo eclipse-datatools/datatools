@@ -280,7 +280,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         
         EventType type = evt.getEventType();
         String schedule = getEventSchedules(evt);
-        if (schedule != null && !schedule.trim().equals(""))
+        if (schedule != null && !schedule.trim().equals("")) //$NON-NLS-1$
         {
             sb.append(schedule).append(NEWLINE);
         }
@@ -314,7 +314,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
 
         //create description (not the comments inside source)
         String comment = createComment(event, quoteIdentifiers, qualifyNames);
-        if(comment != null && !comment.trim().equals(""))
+        if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             return new String[]{sb.toString(), comment};
         }
@@ -360,7 +360,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         
         SybaseASABaseProcedure proc = (SybaseASABaseProcedure)procedure;
         Source source = procedure.getSource();
-        String body = "";
+        String body = ""; //$NON-NLS-1$
         if (source != null && source.getBody() != null) {
             body = source.getBody();
         }
@@ -368,7 +368,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         if (QuickSQLParser.getInstance().match(body, QuickSQLParser.CREATE_PROC_HEADER_PATTERN))
         {
             //body already contains the header, which happens when the Procedure is loaded from database
-            if(comment != null && !comment.trim().equals(""))
+            if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
             {
                 return new String[]{body, comment};
             }
@@ -384,7 +384,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         sb.append(CREATE).append(SPACE).append(PROCEDURE).append(SPACE).append(getName(procedure, quoteIdentifiers, qualifyNames)).append(NEWLINE);
         
         int syntaxType = getSyntaxType(procedure);
-        String param = "";
+        String param = ""; //$NON-NLS-1$
         if (syntaxType == SYNTAX_TYPE_TSQL)
         {
             param = getTSQLParameters(procedure);
@@ -425,7 +425,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
 
         }
         
-        if(comment != null && !comment.trim().equals(""))
+        if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             return new String[]{sb.toString(), comment};
         }
@@ -472,7 +472,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         }
         else
         {
-            return "";
+            return ""; //$NON-NLS-1$
         }
     }
 
@@ -521,7 +521,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         String comment = createComment(function, quoteIdentifiers, qualifyNames);
         
         Source source = function.getSource();
-        String body = "";
+        String body = ""; //$NON-NLS-1$
         if (source != null && source.getBody() != null) {
             body = source.getBody();
         }
@@ -529,7 +529,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         if (QuickSQLParser.getInstance().match(body, QuickSQLParser.CREATE_FUNC_HEADER_PATTERN))
         {
             //body already contains the header, which happens when the function is loaded from database
-            if(comment != null && !comment.trim().equals(""))
+            if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
             {
                 return new String[]{body, comment};
             }
@@ -562,7 +562,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
             sb.append(body);
         }
         
-        if(comment != null && !comment.trim().equals(""))
+        if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             return new String[]{sb.toString(), comment};
         }
@@ -623,7 +623,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         if (QuickSQLParser.getInstance().match(bodyString, QuickSQLParser.CREATE_TRIGGER_HEADER_PATTERN))
         {
             //body already contains the header, which happens when the trigger source is loaded from database
-            if(comment != null && !comment.trim().equals(""))
+            if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
             {
                 return new String[]{bodyString, comment};
             }
@@ -633,7 +633,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         if (trig.getSybaseASABaseActionTime().getValue() == SybaseASABaseActionTime.ASE)
         {
             String tsqltrigger = createTSQLTrigger(trigger, quoteIdentifiers, qualifyNames);
-            if(comment != null && !comment.trim().equals(""))
+            if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
             {
                 return new String[]{tsqltrigger, comment};
             }
@@ -669,7 +669,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         sb.append(bodyString);
         
         
-        if(comment != null && !comment.trim().equals(""))
+        if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             return new String[]{sb.toString(), comment};
         }
@@ -679,7 +679,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
     
     private boolean notEmpty(String text)
     {
-        return text != null && !text.trim().equals("");
+        return text != null && !text.trim().equals(""); //$NON-NLS-1$
     }
 
     public String getTriggerReference(SybaseASABaseTrigger trig)
@@ -855,7 +855,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         String[] stat = super.grantPrivilege(privilege, quoteIdentifiers, qualifyNames, fullSyntax);
         if(stat == null || stat.length == 0)
         {
-            return new String[]{""};
+            return new String[]{""}; //$NON-NLS-1$
         }
         StringBuffer sb = new StringBuffer(stat[0]);
         if (privilege.isGrantable())
@@ -892,7 +892,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
     	
         List stats = new ArrayList();
         
-        StringBuffer viewDefinition = new StringBuffer("");
+        StringBuffer viewDefinition = new StringBuffer(""); //$NON-NLS-1$
         viewDefinition.append(CREATE).append(SPACE).append(VIEW).append(SPACE)
                 .append(getName(view, quoteIdentifiers, qualifyNames)).append(SPACE);
                
@@ -912,7 +912,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         
         //add comment for view
         String comment = createComment(view, quoteIdentifiers, qualifyNames);
-        if(comment != null && !comment.trim().equals(""))
+        if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             stats.add(comment);
         }
@@ -921,7 +921,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         while(i.hasNext()) {
             Column c = (Column) i.next();
             comment = createComment(c, quoteIdentifiers, qualifyNames);
-            if(comment != null && !comment.trim().equals(""))
+            if(comment != null && !comment.trim().equals("")) //$NON-NLS-1$
             {
                 stats.add(comment);
             }
@@ -1009,7 +1009,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         
         if (objectType != null)
         {
-            StringBuffer comment = new StringBuffer("");
+            StringBuffer comment = new StringBuffer(""); //$NON-NLS-1$
             comment.append(COMMENT).append(SPACE).append(ON).append(SPACE).append(objectType).append(SPACE)
                     .append(objectName);
             comment.append(SPACE).append(IS).append(SPACE).append(description);
@@ -1077,7 +1077,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         results.add(statement.toString());
         //remark (table + columns)
         String tableComment = createComment(table, quoteIdentifiers, qualifyNames);
-        if(tableComment != null && !tableComment.equals(""))
+        if(tableComment != null && !tableComment.equals("")) //$NON-NLS-1$
         {
             results.add(tableComment);
         }
@@ -1085,7 +1085,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         {
             Column column = (Column)table.getColumns().get(i);
             String colComment = createComment(column, quoteIdentifiers, qualifyNames);
-            if(colComment != null && !colComment.equals(""))
+            if(colComment != null && !colComment.equals("")) //$NON-NLS-1$
             {
                 results.add(colComment);
             }
@@ -1213,7 +1213,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         }
         //create description (not the comments inside source)
         String comment = createComment(index, quoteIdentifiers, qualifyNames);
-        if (comment != null && !comment.trim().equals(""))
+        if (comment != null && !comment.trim().equals("")) //$NON-NLS-1$
         {
             return new String[]
             {
@@ -1706,7 +1706,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         }
         if (routine.getExternalName() != null)
         {
-            if ("Java".equalsIgnoreCase(routine.getLanguage()))
+            if ("Java".equalsIgnoreCase(routine.getLanguage())) //$NON-NLS-1$
             {
                 return SYNTAX_TYPE_SQLJ;
             }

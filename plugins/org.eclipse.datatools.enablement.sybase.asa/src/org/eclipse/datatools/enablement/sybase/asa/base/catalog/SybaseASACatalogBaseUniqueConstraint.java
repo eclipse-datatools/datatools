@@ -9,7 +9,6 @@ import java.util.List;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
@@ -100,7 +99,7 @@ public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueCon
 			while(rs.next())
 			{
                 String colListStr = rs.getString(2);
-                boolean isClustered = rs.getString(3).equals("Y");
+                boolean isClustered = rs.getString(3).equals("Y"); //$NON-NLS-1$
                 
                 List columnList = SybaseASACatalogUtils.getSpecifiedColumns(colListStr, table.getColumns());
                 super.getMembers().clear();

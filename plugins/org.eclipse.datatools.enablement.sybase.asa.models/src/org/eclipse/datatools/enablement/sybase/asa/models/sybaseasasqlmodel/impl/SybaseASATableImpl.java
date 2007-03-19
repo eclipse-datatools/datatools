@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASATableImpl.java,v 1.3 2007/02/08 01:41:35 linsong Exp $
+ * $Id: SybaseASATableImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -163,7 +163,7 @@ public class SybaseASATableImpl extends SybaseASABaseTableImpl implements Sybase
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (pctfree: ");
+        result.append(" (pctfree: "); //$NON-NLS-1$
         result.append(pctfree);
         result.append(')');
         return result.toString();

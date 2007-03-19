@@ -48,7 +48,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
     private static final int ENABLE_IND = 3;
     private static final int LOCATION_IND = 4;
     
-    private static final String MODIFY = "MODIFY";
+    private static final String MODIFY = "MODIFY"; //$NON-NLS-1$
     
     public void processAlterStatement(SQLObject element, Map modifyRecordMap, boolean quoteIdentifiers,
             boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script, IProgressMonitor monitor)
@@ -80,8 +80,8 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
 
                     if (quoteIdentifiers)
                     {
-                        oldName = SQLUtil.quote(oldName, "\"");
-                        schemaName = SQLUtil.quote(schemaName, "\"");
+                        oldName = SQLUtil.quote(oldName, "\""); //$NON-NLS-1$
+                        schemaName = SQLUtil.quote(schemaName, "\""); //$NON-NLS-1$
                     }
 
                     if (qualifyNames)
@@ -116,7 +116,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                 }
                 else if (r.feature.getFeatureID() == SQLSchemaPackage.EVENT__CONDITION)
                 {
-                    if (event.getCondition() == null || event.getCondition().trim().equals(""))
+                    if (event.getCondition() == null || event.getCondition().trim().equals("")) //$NON-NLS-1$
                     {
                         alters[WHERE_IND] = WHERE + SPACE + NULL + NEWLINE;
                     }

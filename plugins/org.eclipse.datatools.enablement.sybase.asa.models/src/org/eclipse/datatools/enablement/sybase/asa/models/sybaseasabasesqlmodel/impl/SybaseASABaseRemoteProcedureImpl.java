@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseRemoteProcedureImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseRemoteProcedureImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -162,7 +162,7 @@ public class SybaseASABaseRemoteProcedureImpl extends SybaseASABaseProcedureImpl
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (location: ");
+        result.append(" (location: "); //$NON-NLS-1$
         result.append(location);
         result.append(')');
         return result.toString();

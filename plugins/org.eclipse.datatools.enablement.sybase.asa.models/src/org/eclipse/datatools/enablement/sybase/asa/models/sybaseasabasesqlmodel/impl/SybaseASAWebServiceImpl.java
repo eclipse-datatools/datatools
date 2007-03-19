@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASAWebServiceImpl.java,v 1.3 2007/02/08 01:41:30 linsong Exp $
+ * $Id: SybaseASAWebServiceImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -666,21 +666,21 @@ public class SybaseASAWebServiceImpl extends SQLObjectImpl implements SybaseASAW
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (service_id: ");
+        result.append(" (service_id: "); //$NON-NLS-1$
         result.append(service_id);
-        result.append(", service_type: ");
+        result.append(", service_type: "); //$NON-NLS-1$
         result.append(service_type);
-        result.append(", auth_required: ");
+        result.append(", auth_required: "); //$NON-NLS-1$
         result.append(auth_required);
-        result.append(", secure_required: ");
+        result.append(", secure_required: "); //$NON-NLS-1$
         result.append(secure_required);
-        result.append(", url_path: ");
+        result.append(", url_path: "); //$NON-NLS-1$
         result.append(url_path);
-        result.append(", user_name: ");
+        result.append(", user_name: "); //$NON-NLS-1$
         result.append(user_name);
-        result.append(", parameter: ");
+        result.append(", parameter: "); //$NON-NLS-1$
         result.append(parameter);
-        result.append(", statement: ");
+        result.append(", statement: "); //$NON-NLS-1$
         result.append(statement);
         result.append(')');
         return result.toString();

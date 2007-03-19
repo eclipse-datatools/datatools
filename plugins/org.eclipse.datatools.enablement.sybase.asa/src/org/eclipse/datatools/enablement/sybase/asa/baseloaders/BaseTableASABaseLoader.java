@@ -32,11 +32,11 @@ abstract public class BaseTableASABaseLoader extends TableASABaseLoader{
 
 	protected BaseTable baseTable;
 	
-	final public static String PRIMARY_KEY_TYPE = "P";
-	final public static String UNIQUE_CONSTRAINT_TYPE = "U";
-	final public static String FOREIGN_KEY_TYPE = "F";
-	final public static String TABLE_CHECK_CONSTRAINT_TYPE = "T";
-	final public static String COLUMN_CHECK_CONSTRAINT_TYPE = "C";
+	final public static String PRIMARY_KEY_TYPE = "P"; //$NON-NLS-1$
+	final public static String UNIQUE_CONSTRAINT_TYPE = "U"; //$NON-NLS-1$
+	final public static String FOREIGN_KEY_TYPE = "F"; //$NON-NLS-1$
+	final public static String TABLE_CHECK_CONSTRAINT_TYPE = "T"; //$NON-NLS-1$
+	final public static String COLUMN_CHECK_CONSTRAINT_TYPE = "C"; //$NON-NLS-1$
 	
 	public BaseTableASABaseLoader(BaseTable catalogTable) {
 		super(catalogTable);

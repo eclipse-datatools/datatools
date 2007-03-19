@@ -97,7 +97,7 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
     protected String[] generateGrantGOStatement(Privilege p, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
-        return new String[]{""};
+        return new String[]{""}; //$NON-NLS-1$
     }
 
     /**
@@ -113,6 +113,6 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
     protected String generateRevokeGOStatement(Privilege p, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
-        return "";
+        return ""; //$NON-NLS-1$
     }
 }

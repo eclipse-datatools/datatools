@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseColumnImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseColumnImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -395,11 +395,11 @@ public class SybaseASABaseColumnImpl extends ColumnImpl implements SybaseASABase
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (typeOfDefault: ");
-        result.append(typeOfDefault);
-        result.append(", unique: ");
+        result.append(" (typeOfDefault: "); //$NON-NLS-1$
+        result.append(typeOfDefault); 
+        result.append(", unique: "); //$NON-NLS-1$
         result.append(unique);
-        result.append(", isComputedColumn: ");
+        result.append(", isComputedColumn: "); //$NON-NLS-1$
         result.append(isComputedColumn);
         result.append(')');
         return result.toString();

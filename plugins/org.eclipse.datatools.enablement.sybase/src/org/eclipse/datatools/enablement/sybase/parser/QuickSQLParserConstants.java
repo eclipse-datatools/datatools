@@ -246,250 +246,250 @@ public interface QuickSQLParserConstants {
   int DESCRIPTION_STATE = 5;
 
   String[] tokenImage = {
-    "<EOF>",
-    "\" \"",
-    "\"\\n\"",
-    "\"\\r\"",
-    "\"\\t\"",
-    "\"--\"",
-    "<SINGLE_LINE_COMMENT>",
-    "<token of kind 7>",
-    "\"/*\"",
-    "\"/*\"",
-    "\"*/\"",
-    "<COMMENT_CONTENT>",
-    "<token of kind 12>",
-    "\"!%^&\"",
-    "\"add\"",
-    "\"alter\"",
-    "\"and\"",
-    "\"any\"",
-    "\"as\"",
-    "\"asc\"",
-    "\"at\"",
-    "\"authorization\"",
-    "\"avg\"",
-    "\"begin\"",
-    "\"between\"",
-    "\"break\"",
-    "\"browse\"",
-    "\"bulk\"",
-    "\"by\"",
-    "\"cascade\"",
-    "\"case\"",
-    "\"check\"",
-    "\"checkpoint\"",
-    "\"close\"",
-    "\"clustered\"",
-    "\"coalesce\"",
-    "\"commit\"",
-    "\"compute\"",
-    "\"confirm\"",
-    "\"connect\"",
-    "\"constraint\"",
-    "\"continue\"",
-    "\"controlrow\"",
-    "\"convert\"",
-    "\"count\"",
-    "\"create\"",
-    "\"current\"",
-    "\"cursor\"",
-    "\"database\"",
-    "\"dbcc\"",
-    "\"deallocate\"",
-    "\"declare\"",
-    "\"default\"",
-    "\"delete\"",
-    "\"desc\"",
-    "\"deterministic\"",
-    "\"disk\"",
-    "\"distinct\"",
-    "\"drop\"",
-    "\"dummy\"",
-    "\"dump\"",
-    "\"else\"",
-    "\"end\"",
-    "\"endtran\"",
-    "\"escape\"",
-    "\"except\"",
-    "\"exclusive\"",
-    "\"exec\"",
-    "\"execute\"",
-    "\"exists\"",
-    "\"exit\"",
-    "\"external\"",
-    "\"event\"",
-    "\"fetch\"",
-    "\"fillfactor\"",
-    "\"for\"",
-    "\"foreign\"",
-    "\"from\"",
-    "\"func\"",
-    "\"function\"",
-    "\"go\"",
-    "\"goto\"",
-    "\"grant\"",
-    "\"group\"",
-    "\"having\"",
-    "\"holdlock\"",
-    "\"identity\"",
-    "\"if\"",
-    "\"in\"",
-    "\"index\"",
-    "\"inout\"",
-    "\"insert\"",
-    "\"install\"",
-    "\"intersect\"",
-    "\"into\"",
-    "\"is\"",
-    "\"isolation\"",
-    "\"jar\"",
-    "\"join\"",
-    "\"key\"",
-    "\"kill\"",
-    "\"level\"",
-    "\"like\"",
-    "\"load\"",
-    "\"lock\"",
-    "\"max\"",
-    "\"min\"",
-    "\"modify\"",
-    "\"national\"",
-    "\"noholdlock\"",
-    "\"nonclustered\"",
-    "\"not\"",
-    "\"null\"",
-    "\"nullif\"",
-    "\"of\"",
-    "\"off\"",
-    "\"offsets\"",
-    "\"on\"",
-    "\"once\"",
-    "\"online\"",
-    "\"only\"",
-    "\"open\"",
-    "\"option\"",
-    "\"or\"",
-    "\"order\"",
-    "\"out\"",
-    "\"output\"",
-    "\"over\"",
-    "\"partition\"",
-    "\"perm\"",
-    "\"permanent\"",
-    "\"plan\"",
-    "\"prepare\"",
-    "\"primary\"",
-    "\"print\"",
-    "\"privileges\"",
-    "\"proc\"",
-    "\"procedure\"",
-    "\"processexit\"",
-    "\"proxy_table\"",
-    "\"public\"",
-    "\"quiesce\"",
-    "\"raiserror\"",
-    "\"read\"",
-    "\"readpast\"",
-    "\"readtext\"",
-    "\"reconfigure\"",
-    "\"references\"",
-    "\"remove\"",
-    "\"reorg\"",
-    "\"replace\"",
-    "\"replication\"",
-    "\"return\"",
-    "\"returns\"",
-    "\"revoke\"",
-    "\"role\"",
-    "\"rollback\"",
-    "\"rowcount\"",
-    "\"rows\"",
-    "\"rule\"",
-    "\"save\"",
-    "\"schema\"",
-    "\"select\"",
-    "\"set\"",
-    "\"setuser\"",
-    "\"shared\"",
-    "\"shutdown\"",
-    "\"some\"",
-    "\"statistics\"",
-    "\"stringsize\"",
-    "\"stripe\"",
-    "\"sum\"",
-    "\"table\"",
-    "\"temp\"",
-    "\"temporary\"",
-    "\"textsize\"",
-    "\"to\"",
-    "\"tran\"",
-    "\"transaction\"",
-    "\"trigger\"",
-    "\"truncate\"",
-    "\"union\"",
-    "\"unique\"",
-    "\"unpartition\"",
-    "\"update\"",
-    "\"use\"",
-    "\"user\"",
-    "\"using\"",
-    "\"values\"",
-    "\"varying\"",
-    "\"view\"",
-    "\"waitfor\"",
-    "\"when\"",
-    "\"where\"",
-    "\"while\"",
-    "\"with\"",
-    "\"work\"",
-    "\"writetext\"",
-    "\"SQLCODE\"",
-    "\"SQLSTATE\"",
-    "\"\\r\\n\"",
-    "\"~\"",
-    "<DESCRIPTION>",
-    "<INTEGER_LITERAL>",
-    "<FLOATING_POINT_LITERAL>",
-    "<EXPONENT>",
-    "<SINGLE_STRING_LITERAL>",
-    "<DOUBLE_STRING_LITERAL>",
-    "<BINARY_LITERAL>",
-    "<HEXDIGIT>",
-    "<MONEY_LITERAL>",
-    "<ID>",
-    "<SQUARE_BRACKET_ID>",
-    "<VAR_NAME_BODY>",
-    "<VAR_NAME>",
-    "<LABEL>",
-    "<GLOBAL_VAR_NAME>",
-    "<TEMP_TABLE_NAME>",
-    "<LETTER>",
-    "<DIGIT>",
-    "<SYMBOL>",
-    "\"||\"",
-    "\",\"",
-    "\";\"",
-    "\".\"",
-    "\"%rowtype\"",
-    "\"~\"",
-    "\"<\"",
-    "\"<=\"",
-    "\">\"",
-    "\">=\"",
-    "\"=\"",
-    "\"!=\"",
-    "\"(+)\"",
-    "\"(\"",
-    "\")\"",
-    "\"*\"",
-    "\"/\"",
-    "\"+\"",
-    "\"-\"",
-    "\"?\"",
-    "\"*=\"",
-    "\"=*\"",
-    "\">>\"",
+    "<EOF>", //$NON-NLS-1$
+    "\" \"", //$NON-NLS-1$
+    "\"\\n\"", //$NON-NLS-1$
+    "\"\\r\"", //$NON-NLS-1$
+    "\"\\t\"", //$NON-NLS-1$
+    "\"--\"", //$NON-NLS-1$
+    "<SINGLE_LINE_COMMENT>", //$NON-NLS-1$
+    "<token of kind 7>", //$NON-NLS-1$
+    "\"/*\"", //$NON-NLS-1$
+    "\"/*\"", //$NON-NLS-1$
+    "\"*/\"", //$NON-NLS-1$
+    "<COMMENT_CONTENT>", //$NON-NLS-1$
+    "<token of kind 12>", //$NON-NLS-1$
+    "\"!%^&\"", //$NON-NLS-1$
+    "\"add\"", //$NON-NLS-1$
+    "\"alter\"", //$NON-NLS-1$
+    "\"and\"", //$NON-NLS-1$
+    "\"any\"", //$NON-NLS-1$
+    "\"as\"", //$NON-NLS-1$
+    "\"asc\"", //$NON-NLS-1$
+    "\"at\"", //$NON-NLS-1$
+    "\"authorization\"", //$NON-NLS-1$
+    "\"avg\"", //$NON-NLS-1$
+    "\"begin\"", //$NON-NLS-1$
+    "\"between\"", //$NON-NLS-1$
+    "\"break\"", //$NON-NLS-1$
+    "\"browse\"", //$NON-NLS-1$
+    "\"bulk\"", //$NON-NLS-1$
+    "\"by\"", //$NON-NLS-1$
+    "\"cascade\"", //$NON-NLS-1$
+    "\"case\"", //$NON-NLS-1$
+    "\"check\"", //$NON-NLS-1$
+    "\"checkpoint\"", //$NON-NLS-1$
+    "\"close\"", //$NON-NLS-1$
+    "\"clustered\"", //$NON-NLS-1$
+    "\"coalesce\"", //$NON-NLS-1$
+    "\"commit\"", //$NON-NLS-1$
+    "\"compute\"", //$NON-NLS-1$
+    "\"confirm\"", //$NON-NLS-1$
+    "\"connect\"", //$NON-NLS-1$
+    "\"constraint\"", //$NON-NLS-1$
+    "\"continue\"", //$NON-NLS-1$
+    "\"controlrow\"", //$NON-NLS-1$
+    "\"convert\"", //$NON-NLS-1$
+    "\"count\"", //$NON-NLS-1$
+    "\"create\"", //$NON-NLS-1$
+    "\"current\"", //$NON-NLS-1$
+    "\"cursor\"", //$NON-NLS-1$
+    "\"database\"", //$NON-NLS-1$
+    "\"dbcc\"", //$NON-NLS-1$
+    "\"deallocate\"", //$NON-NLS-1$
+    "\"declare\"", //$NON-NLS-1$
+    "\"default\"", //$NON-NLS-1$
+    "\"delete\"", //$NON-NLS-1$
+    "\"desc\"", //$NON-NLS-1$
+    "\"deterministic\"", //$NON-NLS-1$
+    "\"disk\"", //$NON-NLS-1$
+    "\"distinct\"", //$NON-NLS-1$
+    "\"drop\"", //$NON-NLS-1$
+    "\"dummy\"", //$NON-NLS-1$
+    "\"dump\"", //$NON-NLS-1$
+    "\"else\"", //$NON-NLS-1$
+    "\"end\"", //$NON-NLS-1$
+    "\"endtran\"", //$NON-NLS-1$
+    "\"escape\"", //$NON-NLS-1$
+    "\"except\"", //$NON-NLS-1$
+    "\"exclusive\"", //$NON-NLS-1$
+    "\"exec\"", //$NON-NLS-1$
+    "\"execute\"", //$NON-NLS-1$
+    "\"exists\"", //$NON-NLS-1$
+    "\"exit\"", //$NON-NLS-1$
+    "\"external\"", //$NON-NLS-1$
+    "\"event\"", //$NON-NLS-1$
+    "\"fetch\"", //$NON-NLS-1$
+    "\"fillfactor\"", //$NON-NLS-1$
+    "\"for\"", //$NON-NLS-1$
+    "\"foreign\"", //$NON-NLS-1$
+    "\"from\"", //$NON-NLS-1$
+    "\"func\"", //$NON-NLS-1$
+    "\"function\"", //$NON-NLS-1$
+    "\"go\"", //$NON-NLS-1$
+    "\"goto\"", //$NON-NLS-1$
+    "\"grant\"", //$NON-NLS-1$
+    "\"group\"", //$NON-NLS-1$
+    "\"having\"", //$NON-NLS-1$
+    "\"holdlock\"", //$NON-NLS-1$
+    "\"identity\"", //$NON-NLS-1$
+    "\"if\"", //$NON-NLS-1$
+    "\"in\"", //$NON-NLS-1$
+    "\"index\"", //$NON-NLS-1$
+    "\"inout\"", //$NON-NLS-1$
+    "\"insert\"", //$NON-NLS-1$
+    "\"install\"", //$NON-NLS-1$
+    "\"intersect\"", //$NON-NLS-1$
+    "\"into\"", //$NON-NLS-1$
+    "\"is\"", //$NON-NLS-1$
+    "\"isolation\"", //$NON-NLS-1$
+    "\"jar\"", //$NON-NLS-1$
+    "\"join\"", //$NON-NLS-1$
+    "\"key\"", //$NON-NLS-1$
+    "\"kill\"", //$NON-NLS-1$
+    "\"level\"", //$NON-NLS-1$
+    "\"like\"", //$NON-NLS-1$
+    "\"load\"", //$NON-NLS-1$ 
+    "\"lock\"", //$NON-NLS-1$
+    "\"max\"", //$NON-NLS-1$
+    "\"min\"", //$NON-NLS-1$
+    "\"modify\"", //$NON-NLS-1$
+    "\"national\"", //$NON-NLS-1$
+    "\"noholdlock\"", //$NON-NLS-1$
+    "\"nonclustered\"", //$NON-NLS-1$
+    "\"not\"", //$NON-NLS-1$
+    "\"null\"", //$NON-NLS-1$
+    "\"nullif\"", //$NON-NLS-1$
+    "\"of\"", //$NON-NLS-1$
+    "\"off\"", //$NON-NLS-1$
+    "\"offsets\"", //$NON-NLS-1$
+    "\"on\"", //$NON-NLS-1$
+    "\"once\"", //$NON-NLS-1$
+    "\"online\"", //$NON-NLS-1$
+    "\"only\"", //$NON-NLS-1$
+    "\"open\"", //$NON-NLS-1$
+    "\"option\"", //$NON-NLS-1$
+    "\"or\"", //$NON-NLS-1$
+    "\"order\"", //$NON-NLS-1$
+    "\"out\"", //$NON-NLS-1$
+    "\"output\"", //$NON-NLS-1$
+    "\"over\"", //$NON-NLS-1$
+    "\"partition\"", //$NON-NLS-1$
+    "\"perm\"", //$NON-NLS-1$
+    "\"permanent\"", //$NON-NLS-1$
+    "\"plan\"", //$NON-NLS-1$
+    "\"prepare\"", //$NON-NLS-1$
+    "\"primary\"", //$NON-NLS-1$
+    "\"print\"", //$NON-NLS-1$
+    "\"privileges\"", //$NON-NLS-1$
+    "\"proc\"", //$NON-NLS-1$
+    "\"procedure\"", //$NON-NLS-1$
+    "\"processexit\"", //$NON-NLS-1$
+    "\"proxy_table\"", //$NON-NLS-1$
+    "\"public\"", //$NON-NLS-1$
+    "\"quiesce\"", //$NON-NLS-1$
+    "\"raiserror\"", //$NON-NLS-1$
+    "\"read\"", //$NON-NLS-1$
+    "\"readpast\"", //$NON-NLS-1$
+    "\"readtext\"", //$NON-NLS-1$
+    "\"reconfigure\"", //$NON-NLS-1$
+    "\"references\"", //$NON-NLS-1$
+    "\"remove\"", //$NON-NLS-1$
+    "\"reorg\"", //$NON-NLS-1$
+    "\"replace\"", //$NON-NLS-1$
+    "\"replication\"", //$NON-NLS-1$
+    "\"return\"", //$NON-NLS-1$
+    "\"returns\"", //$NON-NLS-1$
+    "\"revoke\"", //$NON-NLS-1$
+    "\"role\"", //$NON-NLS-1$
+    "\"rollback\"", //$NON-NLS-1$
+    "\"rowcount\"", //$NON-NLS-1$
+    "\"rows\"", //$NON-NLS-1$
+    "\"rule\"", //$NON-NLS-1$
+    "\"save\"", //$NON-NLS-1$
+    "\"schema\"", //$NON-NLS-1$
+    "\"select\"", //$NON-NLS-1$
+    "\"set\"", //$NON-NLS-1$
+    "\"setuser\"", //$NON-NLS-1$
+    "\"shared\"", //$NON-NLS-1$
+    "\"shutdown\"", //$NON-NLS-1$
+    "\"some\"", //$NON-NLS-1$
+    "\"statistics\"", //$NON-NLS-1$
+    "\"stringsize\"", //$NON-NLS-1$
+    "\"stripe\"", //$NON-NLS-1$
+    "\"sum\"", //$NON-NLS-1$
+    "\"table\"", //$NON-NLS-1$
+    "\"temp\"", //$NON-NLS-1$
+    "\"temporary\"", //$NON-NLS-1$
+    "\"textsize\"", //$NON-NLS-1$
+    "\"to\"", //$NON-NLS-1$
+    "\"tran\"", //$NON-NLS-1$
+    "\"transaction\"", //$NON-NLS-1$
+    "\"trigger\"", //$NON-NLS-1$
+    "\"truncate\"", //$NON-NLS-1$
+    "\"union\"", //$NON-NLS-1$
+    "\"unique\"", //$NON-NLS-1$
+    "\"unpartition\"",//$NON-NLS-1$
+    "\"update\"", //$NON-NLS-1$
+    "\"use\"", //$NON-NLS-1$
+    "\"user\"", //$NON-NLS-1$
+    "\"using\"", //$NON-NLS-1$ 
+    "\"values\"", //$NON-NLS-1$
+    "\"varying\"", //$NON-NLS-1$
+    "\"view\"", //$NON-NLS-1$
+    "\"waitfor\"", //$NON-NLS-1$
+    "\"when\"", //$NON-NLS-1$
+    "\"where\"", //$NON-NLS-1$
+    "\"while\"", //$NON-NLS-1$ 
+    "\"with\"", //$NON-NLS-1$
+    "\"work\"", //$NON-NLS-1$
+    "\"writetext\"", //$NON-NLS-1$
+    "\"SQLCODE\"", //$NON-NLS-1$
+    "\"SQLSTATE\"", //$NON-NLS-1$
+    "\"\\r\\n\"", //$NON-NLS-1$
+    "\"~\"", //$NON-NLS-1$
+    "<DESCRIPTION>", //$NON-NLS-1$
+    "<INTEGER_LITERAL>", //$NON-NLS-1$
+    "<FLOATING_POINT_LITERAL>", //$NON-NLS-1$
+    "<EXPONENT>", //$NON-NLS-1$
+    "<SINGLE_STRING_LITERAL>", //$NON-NLS-1$
+    "<DOUBLE_STRING_LITERAL>", //$NON-NLS-1$
+    "<BINARY_LITERAL>", //$NON-NLS-1$
+    "<HEXDIGIT>", //$NON-NLS-1$
+    "<MONEY_LITERAL>", //$NON-NLS-1$
+    "<ID>", //$NON-NLS-1$
+    "<SQUARE_BRACKET_ID>", //$NON-NLS-1$
+    "<VAR_NAME_BODY>", //$NON-NLS-1$
+    "<VAR_NAME>", //$NON-NLS-1$
+    "<LABEL>", //$NON-NLS-1$
+    "<GLOBAL_VAR_NAME>", //$NON-NLS-1$
+    "<TEMP_TABLE_NAME>", //$NON-NLS-1$
+    "<LETTER>", //$NON-NLS-1$
+    "<DIGIT>", //$NON-NLS-1$
+    "<SYMBOL>", //$NON-NLS-1$
+    "\"||\"", //$NON-NLS-1$
+    "\",\"", //$NON-NLS-1$
+    "\";\"", //$NON-NLS-1$
+    "\".\"", //$NON-NLS-1$
+    "\"%rowtype\"", //$NON-NLS-1$
+    "\"~\"", //$NON-NLS-1$
+    "\"<\"", //$NON-NLS-1$
+    "\"<=\"", //$NON-NLS-1$
+    "\">\"", //$NON-NLS-1$
+    "\">=\"", //$NON-NLS-1$
+    "\"=\"", //$NON-NLS-1$
+    "\"!=\"", //$NON-NLS-1$
+    "\"(+)\"", //$NON-NLS-1$
+    "\"(\"", //$NON-NLS-1$
+    "\")\"", //$NON-NLS-1$
+    "\"*\"", //$NON-NLS-1$
+    "\"/\"", //$NON-NLS-1$
+    "\"+\"", //$NON-NLS-1$
+    "\"-\"", //$NON-NLS-1$
+    "\"?\"", //$NON-NLS-1$
+    "\"*=\"", //$NON-NLS-1$
+    "\"=*\"", //$NON-NLS-1$
+    "\">>\"", //$NON-NLS-1$
   };
 
 }

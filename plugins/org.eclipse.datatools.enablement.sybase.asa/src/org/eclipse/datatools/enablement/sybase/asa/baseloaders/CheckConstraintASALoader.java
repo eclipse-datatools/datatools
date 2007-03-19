@@ -17,8 +17,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 public class CheckConstraintASALoader {
 
-	public static final String TABLE_CHECK_CONSTRAINT_TYPE = "T";
-	public static final String COLUMN_CHECK_CONSTRAINT_TYPE = "C";
+	public static final String TABLE_CHECK_CONSTRAINT_TYPE = "T"; //$NON-NLS-1$
+	public static final String COLUMN_CHECK_CONSTRAINT_TYPE = "C"; //$NON-NLS-1$
 	
 	protected CheckConstraint check;
 	protected Connection conn;

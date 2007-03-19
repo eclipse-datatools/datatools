@@ -66,8 +66,8 @@ public class SybaseASAFunctionDeltaDdlGenProvider implements IDeltaDdlGenProvide
 
                     if (quoteIdentifiers)
                     {
-                        oldName = SQLUtil.quote(oldName, "\"");
-                        schemaName = SQLUtil.quote(schemaName, "\"");
+                        oldName = SQLUtil.quote(oldName, "\""); //$NON-NLS-1$
+                        schemaName = SQLUtil.quote(schemaName, "\""); //$NON-NLS-1$
                     }
 
                     if (qualifyNames)

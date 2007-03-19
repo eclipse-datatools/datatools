@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: JavaSupportType.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: JavaSupportType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -90,7 +90,7 @@ public final class JavaSupportType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final JavaSupportType OFF_LITERAL = new JavaSupportType(OFF, "OFF", "OFF");
+	public static final JavaSupportType OFF_LITERAL = new JavaSupportType(OFF, "OFF", "OFF"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>ON</b></em>' literal object.
@@ -100,7 +100,7 @@ public final class JavaSupportType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final JavaSupportType ON_LITERAL = new JavaSupportType(ON, "ON", "ON");
+	public static final JavaSupportType ON_LITERAL = new JavaSupportType(ON, "ON", "ON"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>JDK13</b></em>' literal object.
@@ -110,7 +110,7 @@ public final class JavaSupportType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final JavaSupportType JDK13_LITERAL = new JavaSupportType(JDK13, "JDK13", "JDK '1.3'");
+	public static final JavaSupportType JDK13_LITERAL = new JavaSupportType(JDK13, "JDK13", "JDK '1.3'"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>JDK118</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class JavaSupportType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final JavaSupportType JDK118_LITERAL = new JavaSupportType(JDK118, "JDK118", "JDK '1.1.8'");
+	public static final JavaSupportType JDK118_LITERAL = new JavaSupportType(JDK118, "JDK118", "JDK '1.1.8'"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Java Support Type</b></em>' enumerators.

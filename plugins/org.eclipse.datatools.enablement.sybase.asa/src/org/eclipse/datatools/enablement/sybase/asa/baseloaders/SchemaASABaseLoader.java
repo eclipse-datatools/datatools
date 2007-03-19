@@ -2,12 +2,10 @@ package org.eclipse.datatools.enablement.sybase.asa.baseloaders;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
@@ -18,12 +16,10 @@ import org.eclipse.datatools.connectivity.sqm.loader.JDBCRoutineLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.SchemaObjectFilterProvider;
-import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader.ITableFactory;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseProcedure;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseProxyTable;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseRemoteProcedure;
-import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseSchema;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseTable;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseTempTable;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseUserDefinedDataType;
@@ -32,8 +28,6 @@ import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalog
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
-import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -121,12 +115,12 @@ public class SchemaASABaseLoader {
 	
 	public static class ASABaseTableLoader extends JDBCTableLoader {
 
-		final public static String BASE_TABLE = "BASE";
-		final public static String PROXY_TABLE = "PROXY TABLE";
+		final public static String BASE_TABLE = "BASE"; //$NON-NLS-1$
+		final public static String PROXY_TABLE = "PROXY TABLE"; //$NON-NLS-1$
 //		final public static String SYSTEM_TABLE = "SYSTEM TABLE";
-		final public static String TABLE_VIEW = "VIEW";
+		final public static String TABLE_VIEW = "VIEW"; //$NON-NLS-1$
 //		final public static String SYSTEM_VIEW = "SYSTEM VIEW";
-		final public static String GLOBAL_TEMP_TABLE = "GBL TEMP";
+		final public static String GLOBAL_TEMP_TABLE = "GBL TEMP"; //$NON-NLS-1$
 		
 		public ASABaseTableLoader(ICatalogObject catalogObject) {
 			super(catalogObject);
@@ -209,7 +203,7 @@ public class SchemaASABaseLoader {
 	
 	public static class ASABaseRoutineLoader extends JDBCRoutineLoader
 	{
-		final public static String REMOTE_SERVER = "REMOTE SERVER";
+		final public static String REMOTE_SERVER = "REMOTE SERVER"; //$NON-NLS-1$
 		
 		public ASABaseRoutineLoader(ICatalogObject catalogObj)
 		{

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADefaultWrapper.java,v 1.2 2007/02/08 01:41:33 linsong Exp $
+ * $Id: SybaseASADefaultWrapper.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -31,30 +31,30 @@ public interface SybaseASADefaultWrapper extends EObject
 {
     public static final String[] STRING_TYPE_SYSTEM_DEFAULTS  = new String[]
                                                               {
-        "timestamp", "utc timestamp", "last user", "current date", "current time", "current timestamp",
-        "current utc timestamp", "current user", "current publisher", "current database"
+        "timestamp", "utc timestamp", "last user", "current date", "current time", "current timestamp",   //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$//$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
+        "current utc timestamp", "current user", "current publisher", "current database"   //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$
                                                               };
     public static final String[] NUMERIC_TYPE_SYSTEM_DEFAULTS = new String[]
                                                               {
-        "autoincrement", "global autoincrement"
+        "autoincrement", "global autoincrement" //$NON-NLS-1$ //$NON-NLS-2$
                                                               };
     public static final String[] TIME_TYPE_SYSTEM_DEFAULTS    = new String[]
                                                               {
-                                                                  "current time"
+                                                                  "current time" //$NON-NLS-1$
                                                               };
     public static final String[] DATE_TYPE_SYSTEM_DEFAULTS    = new String[]
                                                               {
-                                                                  "current date"
+                                                                  "current date" //$NON-NLS-1$
                                                               };
     public static final String[] TS_TYPE_SYSTEM_DEFAULTS      = new String[]
                                                               {
-        "current timestamp", "current utc timestamp", "timestamp", "utc timestamp"
+        "current timestamp", "current utc timestamp", "timestamp", "utc timestamp"   //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$//$NON-NLS-4$
                                                               };
     public static final String[] BINARY_TYPE_SYSTEM_DEFAULTS  = new String[]
                                                               {
-        "current database", "current user", "current publisher", "last user"
+        "current database", "current user", "current publisher", "last user"  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$//$NON-NLS-4$
                                                               };
-    public static final String   GLOBAL_AUTOINCREMENT         = "global autoincrement";
+    public static final String   GLOBAL_AUTOINCREMENT         = "global autoincrement"; //$NON-NLS-1$
     
     /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.

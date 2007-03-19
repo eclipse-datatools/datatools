@@ -19,7 +19,7 @@ public class SybaseASADatabaseLoader extends SybaseASABaseDatabaseLoader{
 	}
 	
 	protected void processDbInfo2ResutSet(ResultSet rs) throws SQLException {
-		boolean isASECompatible = rs.getString(4).equalsIgnoreCase("Y");
+		boolean isASECompatible = rs.getString(4).equalsIgnoreCase("Y"); //$NON-NLS-1$
 		((SybaseASADatabase)database).setASECompatible(isASECompatible);
 		super.processDbInfo2ResutSet(rs);
 	}

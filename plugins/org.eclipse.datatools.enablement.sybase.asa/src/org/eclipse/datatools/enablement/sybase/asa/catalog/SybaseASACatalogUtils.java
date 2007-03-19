@@ -224,7 +224,7 @@ public class SybaseASACatalogUtils {
 
 	public static synchronized String retrieveRoutineObjectCode(
 			Connection conn, String schemaName, String routineName) throws SQLException{
-		String code = "";
+		String code = ""; //$NON-NLS-1$
 		
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
@@ -282,7 +282,7 @@ public class SybaseASACatalogUtils {
 	
 	public static synchronized String retrieveTriggerObjectCode(
 			Connection conn, String tableSchemaName, String tableName, String schemaName, String routineName) throws SQLException {
-		String code = "";
+		String code = ""; //$NON-NLS-1$
 		
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
@@ -290,10 +290,10 @@ public class SybaseASACatalogUtils {
 		int trigger_id = 0;
 		long table_id = 0;
 		try {
-            String sql = "SELECT T.trigger_id, T.table_id FROM "
-                + "SYS.SYSTRIGGER T JOIN SYS.SYSTABLE A ON T.table_id = A.table_id "
-                + "JOIN SYS.SYSUSERPERMS U on A.creator = U.user_id " + "WHERE T.trigger_name = ? AND "
-                + "A.table_name = ? AND " + "U.user_name = ?";
+            String sql = "SELECT T.trigger_id, T.table_id FROM " //$NON-NLS-1$
+                + "SYS.SYSTRIGGER T JOIN SYS.SYSTABLE A ON T.table_id = A.table_id " //$NON-NLS-1$
+                + "JOIN SYS.SYSUSERPERMS U on A.creator = U.user_id " + "WHERE T.trigger_name = ? AND " //$NON-NLS-1$ //$NON-NLS-2$
+                + "A.table_name = ? AND " + "U.user_name = ?"; //$NON-NLS-1$ //$NON-NLS-2$
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, routineName);
             stmt.setString(2, tableName);
@@ -465,7 +465,7 @@ public class SybaseASACatalogUtils {
 		if(sddt != null)
 			return true;
 		
-		Pattern p = Pattern.compile("global autoincrement\\(\\d+\\)");
+		Pattern p = Pattern.compile("global autoincrement\\(\\d+\\)"); //$NON-NLS-1$
 		Matcher m = p.matcher(defaultValue);
 		return m.matches();
 	}

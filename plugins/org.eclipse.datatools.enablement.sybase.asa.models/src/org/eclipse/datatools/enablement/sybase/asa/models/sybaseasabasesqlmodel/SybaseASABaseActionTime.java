@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseActionTime.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: SybaseASABaseActionTime.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -90,7 +90,7 @@ public final class SybaseASABaseActionTime extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SybaseASABaseActionTime BEFORE_LITERAL = new SybaseASABaseActionTime(BEFORE, "BEFORE", "BEFORE");
+	public static final SybaseASABaseActionTime BEFORE_LITERAL = new SybaseASABaseActionTime(BEFORE, "BEFORE", "BEFORE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>AFTER</b></em>' literal object.
@@ -100,7 +100,7 @@ public final class SybaseASABaseActionTime extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SybaseASABaseActionTime AFTER_LITERAL = new SybaseASABaseActionTime(AFTER, "AFTER", "AFTER");
+	public static final SybaseASABaseActionTime AFTER_LITERAL = new SybaseASABaseActionTime(AFTER, "AFTER", "AFTER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>RESOLVE</b></em>' literal object.
@@ -110,7 +110,7 @@ public final class SybaseASABaseActionTime extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SybaseASABaseActionTime RESOLVE_LITERAL = new SybaseASABaseActionTime(RESOLVE, "RESOLVE", "RESOLVE");
+	public static final SybaseASABaseActionTime RESOLVE_LITERAL = new SybaseASABaseActionTime(RESOLVE, "RESOLVE", "RESOLVE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>ASE</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class SybaseASABaseActionTime extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-    public static final SybaseASABaseActionTime ASE_LITERAL = new SybaseASABaseActionTime(ASE, "ASE", "ASE");
+    public static final SybaseASABaseActionTime ASE_LITERAL = new SybaseASABaseActionTime(ASE, "ASE", "ASE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Sybase ASA Base Action Time</b></em>' enumerators.

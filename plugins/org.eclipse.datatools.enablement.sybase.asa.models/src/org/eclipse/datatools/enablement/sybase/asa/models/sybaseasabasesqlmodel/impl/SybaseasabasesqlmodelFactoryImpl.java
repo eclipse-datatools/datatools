@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasabasesqlmodelFactoryImpl.java,v 1.4 2007/02/28 01:02:32 hcao Exp $
+ * $Id: SybaseasabasesqlmodelFactoryImpl.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -35,7 +35,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     {
         try
         {
-            SybaseasabasesqlmodelFactory theSybaseasabasesqlmodelFactory = (SybaseasabasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"); 
+            SybaseasabasesqlmodelFactory theSybaseasabasesqlmodelFactory = (SybaseasabasesqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"); //$NON-NLS-1$ 
             if (theSybaseasabasesqlmodelFactory != null)
             {
                 return theSybaseasabasesqlmodelFactory;
@@ -96,7 +96,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
             case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER: return createSybaseASABaseUser();
             case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER: return createSybaseASADefaultWrapper();
             default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -130,7 +130,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
             case SybaseasabasesqlmodelPackage.PARAMETER_TYPE:
                 return createParameterTypeFromString(eDataType, initialValue);
             default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");  //$NON-NLS-1$//$NON-NLS-2$
         }
     }
 
@@ -164,7 +164,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
             case SybaseasabasesqlmodelPackage.PARAMETER_TYPE:
                 return convertParameterTypeToString(eDataType, instanceValue);
             default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -473,7 +473,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public TransactionOption createTransactionOptionFromString(EDataType eDataType, String initialValue)
     {
         TransactionOption result = TransactionOption.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -495,7 +495,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public TypeOfDefault createTypeOfDefaultFromString(EDataType eDataType, String initialValue)
     {
         TypeOfDefault result = TypeOfDefault.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -517,7 +517,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public SybaseASABaseActionTime createSybaseASABaseActionTimeFromString(EDataType eDataType, String initialValue)
     {
         SybaseASABaseActionTime result = SybaseASABaseActionTime.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         return result;
     }
 
@@ -539,7 +539,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public EventType createEventTypeFromString(EDataType eDataType, String initialValue)
     {
         EventType result = EventType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -561,7 +561,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public JavaSupportType createJavaSupportTypeFromString(EDataType eDataType, String initialValue)
     {
         JavaSupportType result = JavaSupportType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         return result;
     }
 
@@ -583,7 +583,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public EventLocationType createEventLocationTypeFromString(EDataType eDataType, String initialValue)
     {
         EventLocationType result = EventLocationType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -605,7 +605,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public IntervalUnitType createIntervalUnitTypeFromString(EDataType eDataType, String initialValue)
     {
         IntervalUnitType result = IntervalUnitType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -627,7 +627,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public SystemDefinedDefaultType createSystemDefinedDefaultTypeFromString(EDataType eDataType, String initialValue)
     {
         SystemDefinedDefaultType result = SystemDefinedDefaultType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -649,7 +649,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public AllowNullType createAllowNullTypeFromString(EDataType eDataType, String initialValue)
     {
         AllowNullType result = AllowNullType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
         return result;
     }
 
@@ -671,7 +671,7 @@ public class SybaseasabasesqlmodelFactoryImpl extends EFactoryImpl implements Sy
     public ParameterType createParameterTypeFromString(EDataType eDataType, String initialValue)
     {
         ParameterType result = ParameterType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
         return result;
     }
 

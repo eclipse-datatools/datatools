@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasabasesqlmodelPackageImpl.java,v 1.4 2007/02/28 01:02:32 hcao Exp $
+ * $Id: SybaseasabasesqlmodelPackageImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -1746,185 +1746,185 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
         sybaseASABaseUserEClass.getESuperTypes().add(theSybasesqlmodelPackage.getSybaseAuthorizationIdentifier());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(sybaseASABaseEventEClass, SybaseASABaseEvent.class, "SybaseASABaseEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseEvent_EventType(), this.getEventType(), "eventType", "", 0, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseEvent_EventCreator(), theSQLSchemaPackage.getSchema(), null, "eventCreator", null, 1, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseEvent_Location(), this.getEventLocationType(), "location", null, 0, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseEvent_Schedules(), this.getSchedule(), this.getSchedule_Event(), "schedules", null, 0, -1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseEventEClass, SybaseASABaseEvent.class, "SybaseASABaseEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseEvent_EventType(), this.getEventType(), "eventType", "", 0, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEReference(getSybaseASABaseEvent_EventCreator(), theSQLSchemaPackage.getSchema(), null, "eventCreator", null, 1, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseEvent_Location(), this.getEventLocationType(), "location", null, 0, 1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASABaseEvent_Schedules(), this.getSchedule(), this.getSchedule_Event(), "schedules", null, 0, -1, SybaseASABaseEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseDatabaseEClass, SybaseASABaseDatabase.class, "SybaseASABaseDatabase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABaseDatabase_DataTypes(), this.getSybaseASABasePredefinedDataType(), this.getSybaseASABasePredefinedDataType_Database(), "dataTypes", null, 0, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseDatabase_WebServices(), this.getSybaseASAWebService(), this.getSybaseASAWebService_Database(), "webServices", null, 0, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseDatabase_DbSpaces(), this.getSybaseASABaseDBSpace(), this.getSybaseASABaseDBSpace_Database(), "dbSpaces", null, 1, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_DatabaseFileName(), ecorePackage.getEString(), "databaseFileName", null, 1, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_LogFileName(), ecorePackage.getEString(), "logFileName", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_MirrorFileName(), ecorePackage.getEString(), "mirrorFileName", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_Collation(), ecorePackage.getEString(), "collation", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_BlankPaddingOn(), ecorePackage.getEBoolean(), "blankPaddingOn", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_CheckSumOn(), ecorePackage.getEBoolean(), "checkSumOn", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_JConnectOn(), ecorePackage.getEBoolean(), "jConnectOn", "true", 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_PageSize(), ecorePackage.getEInt(), "pageSize", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseDatabase_EncryptionInfo(), this.getEncryptionInfo(), null, "encryptionInfo", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_JavaSupport(), this.getJavaSupportType(), "javaSupport", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseDatabase_PasswordCaseSensitive(), ecorePackage.getEBooleanObject(), "passwordCaseSensitive", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseDatabaseEClass, SybaseASABaseDatabase.class, "SybaseASABaseDatabase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABaseDatabase_DataTypes(), this.getSybaseASABasePredefinedDataType(), this.getSybaseASABasePredefinedDataType_Database(), "dataTypes", null, 0, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASABaseDatabase_WebServices(), this.getSybaseASAWebService(), this.getSybaseASAWebService_Database(), "webServices", null, 0, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASABaseDatabase_DbSpaces(), this.getSybaseASABaseDBSpace(), this.getSybaseASABaseDBSpace_Database(), "dbSpaces", null, 1, -1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_DatabaseFileName(), ecorePackage.getEString(), "databaseFileName", null, 1, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_LogFileName(), ecorePackage.getEString(), "logFileName", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_MirrorFileName(), ecorePackage.getEString(), "mirrorFileName", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_CaseSensitive(), ecorePackage.getEBoolean(), "caseSensitive", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_Collation(), ecorePackage.getEString(), "collation", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_BlankPaddingOn(), ecorePackage.getEBoolean(), "blankPaddingOn", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_CheckSumOn(), ecorePackage.getEBoolean(), "checkSumOn", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_JConnectOn(), ecorePackage.getEBoolean(), "jConnectOn", "true", 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(getSybaseASABaseDatabase_PageSize(), ecorePackage.getEInt(), "pageSize", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASABaseDatabase_EncryptionInfo(), this.getEncryptionInfo(), null, "encryptionInfo", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_JavaSupport(), this.getJavaSupportType(), "javaSupport", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDatabase_PasswordCaseSensitive(), ecorePackage.getEBooleanObject(), "passwordCaseSensitive", null, 0, 1, SybaseASABaseDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        EOperation op = addEOperation(sybaseASABaseDatabaseEClass, ecorePackage.getEBoolean(), "isBaseOnASA10", 0, 1);
+        EOperation op = addEOperation(sybaseASABaseDatabaseEClass, ecorePackage.getEBoolean(), "isBaseOnASA10", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASAWebServiceEClass, SybaseASAWebService.class, "SybaseASAWebService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASAWebService_Service_id(), ecorePackage.getELong(), "service_id", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Service_type(), ecorePackage.getEString(), "service_type", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Auth_required(), ecorePackage.getEString(), "auth_required", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Secure_required(), ecorePackage.getEString(), "secure_required", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Url_path(), ecorePackage.getEString(), "url_path", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_User_name(), theEcorePackage.getEString(), "user_name", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Parameter(), ecorePackage.getEString(), "parameter", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASAWebService_Statement(), ecorePackage.getEString(), "statement", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASAWebService_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_WebServices(), "database", null, 1, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASAWebServiceEClass, SybaseASAWebService.class, "SybaseASAWebService", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Service_id(), ecorePackage.getELong(), "service_id", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Service_type(), ecorePackage.getEString(), "service_type", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Auth_required(), ecorePackage.getEString(), "auth_required", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Secure_required(), ecorePackage.getEString(), "secure_required", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Url_path(), ecorePackage.getEString(), "url_path", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_User_name(), theEcorePackage.getEString(), "user_name", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Parameter(), ecorePackage.getEString(), "parameter", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASAWebService_Statement(), ecorePackage.getEString(), "statement", null, 0, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASAWebService_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_WebServices(), "database", null, 1, 1, SybaseASAWebService.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(encryptionInfoEClass, EncryptionInfo.class, "EncryptionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getEncryptionInfo_EncryptedTable(), ecorePackage.getEBoolean(), "encryptedTable", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEncryptionInfo_EncryptionKey(), ecorePackage.getEString(), "encryptionKey", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEncryptionInfo_Algorithm(), ecorePackage.getEString(), "algorithm", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(encryptionInfoEClass, EncryptionInfo.class, "EncryptionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getEncryptionInfo_EncryptedTable(), ecorePackage.getEBoolean(), "encryptedTable", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getEncryptionInfo_EncryptionKey(), ecorePackage.getEString(), "encryptionKey", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getEncryptionInfo_Algorithm(), ecorePackage.getEString(), "algorithm", null, 0, 1, EncryptionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseUserDefinedTypeEClass, SybaseASABaseUserDefinedType.class, "SybaseASABaseUserDefinedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseUserDefinedType_Nullable(), this.getAllowNullType(), "nullable", null, 0, 1, SybaseASABaseUserDefinedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseUserDefinedType_DefaultType(), this.getTypeOfDefault(), "defaultType", null, 0, 1, SybaseASABaseUserDefinedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseUserDefinedTypeEClass, SybaseASABaseUserDefinedType.class, "SybaseASABaseUserDefinedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseUserDefinedType_Nullable(), this.getAllowNullType(), "nullable", null, 0, 1, SybaseASABaseUserDefinedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseUserDefinedType_DefaultType(), this.getTypeOfDefault(), "defaultType", null, 0, 1, SybaseASABaseUserDefinedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseUserDefinedTypeEClass, ecorePackage.getEBoolean(), "isLiteralDefault", 0, 1);
+        op = addEOperation(sybaseASABaseUserDefinedTypeEClass, ecorePackage.getEBoolean(), "isLiteralDefault", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseUserDefinedTypeEClass, theEcorePackage.getEInt(), "getGlobalIncrementPartitionSize", 0, 1);
+        op = addEOperation(sybaseASABaseUserDefinedTypeEClass, theEcorePackage.getEInt(), "getGlobalIncrementPartitionSize", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASABasePredefinedDataTypeEClass, SybaseASABasePredefinedDataType.class, "SybaseASABasePredefinedDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABasePredefinedDataType_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_DataTypes(), "database", "", 1, 1, SybaseASABasePredefinedDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABasePredefinedDataTypeEClass, SybaseASABasePredefinedDataType.class, "SybaseASABasePredefinedDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABasePredefinedDataType_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_DataTypes(), "database", "", 1, 1, SybaseASABasePredefinedDataType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(sybaseASABaseTableEClass, SybaseASABaseTable.class, "SybaseASABaseTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABaseTable_DbSpace(), this.getSybaseASABaseDBSpace(), null, "dbSpace", null, 1, 1, SybaseASABaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseTableEClass, SybaseASABaseTable.class, "SybaseASABaseTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABaseTable_DbSpace(), this.getSybaseASABaseDBSpace(), null, "dbSpace", null, 1, 1, SybaseASABaseTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseTableEClass, theSQLSchemaPackage.getList(), "getCheckConstraints", 0, 1);
+        op = addEOperation(sybaseASABaseTableEClass, theSQLSchemaPackage.getList(), "getCheckConstraints", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseColumnEClass, SybaseASABaseColumn.class, "SybaseASABaseColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABaseColumn_ColumnConstraint(), this.getSybaseASABaseColumnCheckConstraint(), this.getSybaseASABaseColumnCheckConstraint_Column(), "columnConstraint", "", 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseColumn_TypeOfDefault(), this.getTypeOfDefault(), "typeOfDefault", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseColumn_Unique(), ecorePackage.getEBoolean(), "unique", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseColumn_IsComputedColumn(), ecorePackage.getEBoolean(), "isComputedColumn", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseColumnEClass, SybaseASABaseColumn.class, "SybaseASABaseColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABaseColumn_ColumnConstraint(), this.getSybaseASABaseColumnCheckConstraint(), this.getSybaseASABaseColumnCheckConstraint_Column(), "columnConstraint", "", 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(getSybaseASABaseColumn_TypeOfDefault(), this.getTypeOfDefault(), "typeOfDefault", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseColumn_Unique(), ecorePackage.getEBoolean(), "unique", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseColumn_IsComputedColumn(), ecorePackage.getEBoolean(), "isComputedColumn", null, 0, 1, SybaseASABaseColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseColumnEClass, ecorePackage.getEBoolean(), "isLiteralDefault", 0, 1);
+        op = addEOperation(sybaseASABaseColumnEClass, ecorePackage.getEBoolean(), "isLiteralDefault", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseColumnEClass, theEcorePackage.getEInt(), "getGlobalIncrementPartitionSize", 0, 1);
+        op = addEOperation(sybaseASABaseColumnEClass, theEcorePackage.getEInt(), "getGlobalIncrementPartitionSize", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseUniqueConstraintEClass, SybaseASABaseUniqueConstraint.class, "SybaseASABaseUniqueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseUniqueConstraint_Clustered(), ecorePackage.getEBoolean(), "clustered", null, 0, 1, SybaseASABaseUniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseUniqueConstraintEClass, SybaseASABaseUniqueConstraint.class, "SybaseASABaseUniqueConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseUniqueConstraint_Clustered(), ecorePackage.getEBoolean(), "clustered", null, 0, 1, SybaseASABaseUniqueConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABasePrimaryKeyEClass, SybaseASABasePrimaryKey.class, "SybaseASABasePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(sybaseASABasePrimaryKeyEClass, SybaseASABasePrimaryKey.class, "SybaseASABasePrimaryKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseForeignKeyEClass, SybaseASABaseForeignKey.class, "SybaseASABaseForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseForeignKey_RoleName(), theEcorePackage.getEString(), "roleName", null, 0, 1, SybaseASABaseForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseForeignKey_Clustered(), ecorePackage.getEBoolean(), "clustered", null, 0, 1, SybaseASABaseForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseForeignKeyEClass, SybaseASABaseForeignKey.class, "SybaseASABaseForeignKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseForeignKey_RoleName(), theEcorePackage.getEString(), "roleName", null, 0, 1, SybaseASABaseForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseForeignKey_Clustered(), ecorePackage.getEBoolean(), "clustered", null, 0, 1, SybaseASABaseForeignKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseIndexEClass, SybaseASABaseIndex.class, "SybaseASABaseIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABaseIndex_DbSpace(), this.getSybaseASABaseDBSpace(), null, "dbSpace", null, 1, 1, SybaseASABaseIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseIndexEClass, SybaseASABaseIndex.class, "SybaseASABaseIndex", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABaseIndex_DbSpace(), this.getSybaseASABaseDBSpace(), null, "dbSpace", null, 1, 1, SybaseASABaseIndex.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseDBSpaceEClass, SybaseASABaseDBSpace.class, "SybaseASABaseDBSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseDBSpace_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, SybaseASABaseDBSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseDBSpace_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_DbSpaces(), "database", "", 1, 1, SybaseASABaseDBSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseDBSpaceEClass, SybaseASABaseDBSpace.class, "SybaseASABaseDBSpace", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseDBSpace_FileName(), ecorePackage.getEString(), "fileName", null, 0, 1, SybaseASABaseDBSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSybaseASABaseDBSpace_Database(), this.getSybaseASABaseDatabase(), this.getSybaseASABaseDatabase_DbSpaces(), "database", "", 1, 1, SybaseASABaseDBSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(sybaseASABaseViewTableEClass, SybaseASABaseViewTable.class, "SybaseASABaseViewTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseViewTable_WithCheckOption(), ecorePackage.getEBoolean(), "withCheckOption", "false", 0, 1, SybaseASABaseViewTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSybaseASABaseViewTable_Statement(), theSQLStatementsPackage.getSQLStatement(), null, "statement", null, 0, 1, SybaseASABaseViewTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseViewTableEClass, SybaseASABaseViewTable.class, "SybaseASABaseViewTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseViewTable_WithCheckOption(), ecorePackage.getEBoolean(), "withCheckOption", "false", 0, 1, SybaseASABaseViewTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEReference(getSybaseASABaseViewTable_Statement(), theSQLStatementsPackage.getSQLStatement(), null, "statement", null, 0, 1, SybaseASABaseViewTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseFunctionEClass, SybaseASABaseFunction.class, "SybaseASABaseFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseFunction_OnExceptionResume(), ecorePackage.getEBoolean(), "onExceptionResume", null, 0, 1, SybaseASABaseFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseFunctionEClass, SybaseASABaseFunction.class, "SybaseASABaseFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseFunction_OnExceptionResume(), ecorePackage.getEBoolean(), "onExceptionResume", null, 0, 1, SybaseASABaseFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseProcedureEClass, SybaseASABaseProcedure.class, "SybaseASABaseProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseProcedure_OnExceptionResume(), ecorePackage.getEBoolean(), "onExceptionResume", null, 0, 1, SybaseASABaseProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseProcedureEClass, SybaseASABaseProcedure.class, "SybaseASABaseProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseProcedure_OnExceptionResume(), ecorePackage.getEBoolean(), "onExceptionResume", null, 0, 1, SybaseASABaseProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseTempTableEClass, SybaseASABaseTempTable.class, "SybaseASABaseTempTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseTempTable_TransactionOption(), this.getTransactionOption(), "transactionOption", null, 0, 1, SybaseASABaseTempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseTempTableEClass, SybaseASABaseTempTable.class, "SybaseASABaseTempTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseTempTable_TransactionOption(), this.getTransactionOption(), "transactionOption", null, 0, 1, SybaseASABaseTempTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseTriggerEClass, SybaseASABaseTrigger.class, "SybaseASABaseTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseTrigger_Order(), ecorePackage.getEInt(), "order", "1", 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseTrigger_SybaseASABaseActionTime(), this.getSybaseASABaseActionTime(), "sybaseASABaseActionTime", null, 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseTrigger_RemoteName(), ecorePackage.getEString(), "remoteName", "", 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASABaseTrigger_UpdateColumnType(), ecorePackage.getEBoolean(), "updateColumnType", null, 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseTriggerEClass, SybaseASABaseTrigger.class, "SybaseASABaseTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseTrigger_Order(), ecorePackage.getEInt(), "order", "1", 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(getSybaseASABaseTrigger_SybaseASABaseActionTime(), this.getSybaseASABaseActionTime(), "sybaseASABaseActionTime", null, 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseTrigger_RemoteName(), ecorePackage.getEString(), "remoteName", "", 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(getSybaseASABaseTrigger_UpdateColumnType(), ecorePackage.getEBoolean(), "updateColumnType", null, 0, 1, SybaseASABaseTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseTriggerEClass, ecorePackage.getEString(), "getOldName", 0, 1);
+        op = addEOperation(sybaseASABaseTriggerEClass, ecorePackage.getEString(), "getOldName", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseTriggerEClass, ecorePackage.getEString(), "getNewName", 0, 1);
+        op = addEOperation(sybaseASABaseTriggerEClass, ecorePackage.getEString(), "getNewName", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseTriggerEClass, null, "setOldName");
-        addEParameter(op, theEcorePackage.getEString(), "oldName", 0, 1);
+        op = addEOperation(sybaseASABaseTriggerEClass, null, "setOldName"); //$NON-NLS-1$
+        addEParameter(op, theEcorePackage.getEString(), "oldName", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseTriggerEClass, null, "setNewName");
-        addEParameter(op, theEcorePackage.getEString(), "newName", 0, 1);
+        op = addEOperation(sybaseASABaseTriggerEClass, null, "setNewName"); //$NON-NLS-1$
+        addEParameter(op, theEcorePackage.getEString(), "newName", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseProxyTableEClass, SybaseASABaseProxyTable.class, "SybaseASABaseProxyTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseProxyTable_RemoteObjectLocation(), ecorePackage.getEString(), "remoteObjectLocation", "", 0, 1, SybaseASABaseProxyTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseProxyTableEClass, SybaseASABaseProxyTable.class, "SybaseASABaseProxyTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseProxyTable_RemoteObjectLocation(), ecorePackage.getEString(), "remoteObjectLocation", "", 0, 1, SybaseASABaseProxyTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(sybaseASABaseColumnCheckConstraintEClass, SybaseASABaseColumnCheckConstraint.class, "SybaseASABaseColumnCheckConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSybaseASABaseColumnCheckConstraint_Column(), this.getSybaseASABaseColumn(), this.getSybaseASABaseColumn_ColumnConstraint(), "column", "", 1, 1, SybaseASABaseColumnCheckConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseColumnCheckConstraintEClass, SybaseASABaseColumnCheckConstraint.class, "SybaseASABaseColumnCheckConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSybaseASABaseColumnCheckConstraint_Column(), this.getSybaseASABaseColumn(), this.getSybaseASABaseColumn_ColumnConstraint(), "column", "", 1, 1, SybaseASABaseColumnCheckConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(scheduleEClass, Schedule.class, "Schedule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSchedule_Recurring(), ecorePackage.getEBoolean(), "recurring", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_StartTime(), theEcorePackage.getEDate(), "startTime", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_StopTime(), theEcorePackage.getEDate(), "stopTime", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_StartDate(), theEcorePackage.getEDate(), "startDate", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_DaysOfWeek(), theEcorePackage.getEInt(), "daysOfWeek", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_DaysOfMonth(), ecorePackage.getEInt(), "daysOfMonth", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_IntervalUnit(), this.getIntervalUnitType(), "intervalUnit", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSchedule_IntervalMount(), theEcorePackage.getEInt(), "intervalMount", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getSchedule_Event(), this.getSybaseASABaseEvent(), this.getSybaseASABaseEvent_Schedules(), "event", "", 1, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(scheduleEClass, Schedule.class, "Schedule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSchedule_Recurring(), ecorePackage.getEBoolean(), "recurring", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_StartTime(), theEcorePackage.getEDate(), "startTime", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_StopTime(), theEcorePackage.getEDate(), "stopTime", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_StartDate(), theEcorePackage.getEDate(), "startDate", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_DaysOfWeek(), theEcorePackage.getEInt(), "daysOfWeek", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_DaysOfMonth(), ecorePackage.getEInt(), "daysOfMonth", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_IntervalUnit(), this.getIntervalUnitType(), "intervalUnit", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSchedule_IntervalMount(), theEcorePackage.getEInt(), "intervalMount", null, 0, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSchedule_Event(), this.getSybaseASABaseEvent(), this.getSybaseASABaseEvent_Schedules(), "event", "", 1, 1, Schedule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
-        initEClass(sybaseASABaseRemoteProcedureEClass, SybaseASABaseRemoteProcedure.class, "SybaseASABaseRemoteProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseRemoteProcedure_Location(), ecorePackage.getEString(), "location", null, 0, 1, SybaseASABaseRemoteProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseRemoteProcedureEClass, SybaseASABaseRemoteProcedure.class, "SybaseASABaseRemoteProcedure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseRemoteProcedure_Location(), ecorePackage.getEString(), "location", null, 0, 1, SybaseASABaseRemoteProcedure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseParameterEClass, SybaseASABaseParameter.class, "SybaseASABaseParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASABaseParameter_ParmType(), this.getParameterType(), "parmType", null, 0, 1, SybaseASABaseParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASABaseParameterEClass, SybaseASABaseParameter.class, "SybaseASABaseParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASABaseParameter_ParmType(), this.getParameterType(), "parmType", null, 0, 1, SybaseASABaseParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseGroupEClass, SybaseASABaseGroup.class, "SybaseASABaseGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(sybaseASABaseGroupEClass, SybaseASABaseGroup.class, "SybaseASABaseGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseSchemaEClass, SybaseASABaseSchema.class, "SybaseASABaseSchema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(sybaseASABaseSchemaEClass, SybaseASABaseSchema.class, "SybaseASABaseSchema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getNormalTables", 0, 1);
+        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getNormalTables", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getTempTables", 0, 1);
+        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getTempTables", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getSystemTables", 0, 1);
+        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getSystemTables", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getProxyTables", 0, 1);
+        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getProxyTables", 0, 1); //$NON-NLS-1$
 
-        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getViewTables", 0, 1);
-        addEParameter(op, ecorePackage.getEBoolean(), "systemFlag", 0, 1);
+        op = addEOperation(sybaseASABaseSchemaEClass, theSQLSchemaPackage.getList(), "getViewTables", 0, 1); //$NON-NLS-1$
+        addEParameter(op, ecorePackage.getEBoolean(), "systemFlag", 0, 1); //$NON-NLS-1$
 
-        initEClass(sybaseASABaseUserEClass, SybaseASABaseUser.class, "SybaseASABaseUser", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(sybaseASABaseUserEClass, SybaseASABaseUser.class, "SybaseASABaseUser", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(sybaseASADefaultWrapperEClass, SybaseASADefaultWrapper.class, "SybaseASADefaultWrapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getSybaseASADefaultWrapper_Value(), ecorePackage.getEString(), "value", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASADefaultWrapper_IsLiteral(), ecorePackage.getEBoolean(), "isLiteral", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASADefaultWrapper_PartitionSize(), ecorePackage.getEInt(), "partitionSize", "-1", 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSybaseASADefaultWrapper_Type(), this.getTypeOfDefault(), "type", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(sybaseASADefaultWrapperEClass, SybaseASADefaultWrapper.class, "SybaseASADefaultWrapper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getSybaseASADefaultWrapper_Value(), ecorePackage.getEString(), "value", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASADefaultWrapper_IsLiteral(), ecorePackage.getEBoolean(), "isLiteral", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEAttribute(getSybaseASADefaultWrapper_PartitionSize(), ecorePackage.getEInt(), "partitionSize", "-1", 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(getSybaseASADefaultWrapper_Type(), this.getTypeOfDefault(), "type", null, 0, 1, SybaseASADefaultWrapper.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        addEOperation(sybaseASADefaultWrapperEClass, null, "parse");
+        addEOperation(sybaseASADefaultWrapperEClass, null, "parse"); //$NON-NLS-1$
 
         // Initialize enums and add enum literals
-        initEEnum(transactionOptionEEnum, TransactionOption.class, "TransactionOption");
+        initEEnum(transactionOptionEEnum, TransactionOption.class, "TransactionOption"); //$NON-NLS-1$
         addEEnumLiteral(transactionOptionEEnum, TransactionOption.DELETE_LITERAL);
         addEEnumLiteral(transactionOptionEEnum, TransactionOption.PRESERVE_LITERAL);
         addEEnumLiteral(transactionOptionEEnum, TransactionOption.NOT_TRANSACTION_LITERAL);
 
-        initEEnum(typeOfDefaultEEnum, TypeOfDefault.class, "TypeOfDefault");
+        initEEnum(typeOfDefaultEEnum, TypeOfDefault.class, "TypeOfDefault"); //$NON-NLS-1$
         addEEnumLiteral(typeOfDefaultEEnum, TypeOfDefault.NO_DEFAULT_LITERAL);
         addEEnumLiteral(typeOfDefaultEEnum, TypeOfDefault.USER_DEFINED_LITERAL);
         addEEnumLiteral(typeOfDefaultEEnum, TypeOfDefault.SYSTEM_DEFINED_LITERAL);
         addEEnumLiteral(typeOfDefaultEEnum, TypeOfDefault.COMPUTED_VALUE_LITERAL);
 
-        initEEnum(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.class, "SybaseASABaseActionTime");
+        initEEnum(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.class, "SybaseASABaseActionTime"); //$NON-NLS-1$
         addEEnumLiteral(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.BEFORE_LITERAL);
         addEEnumLiteral(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.AFTER_LITERAL);
         addEEnumLiteral(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.RESOLVE_LITERAL);
         addEEnumLiteral(sybaseASABaseActionTimeEEnum, SybaseASABaseActionTime.ASE_LITERAL);
 
-        initEEnum(eventTypeEEnum, EventType.class, "EventType");
+        initEEnum(eventTypeEEnum, EventType.class, "EventType"); //$NON-NLS-1$
         addEEnumLiteral(eventTypeEEnum, EventType.NOEVENTTYPE_LITERAL);
         addEEnumLiteral(eventTypeEEnum, EventType.BACKUPEND_LITERAL);
         addEEnumLiteral(eventTypeEEnum, EventType.CONNECT_LITERAL);
@@ -1941,23 +1941,23 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
         addEEnumLiteral(eventTypeEEnum, EventType.SERVERIDLE_LITERAL);
         addEEnumLiteral(eventTypeEEnum, EventType.TEMPDISKSPACE_LITERAL);
 
-        initEEnum(javaSupportTypeEEnum, JavaSupportType.class, "JavaSupportType");
+        initEEnum(javaSupportTypeEEnum, JavaSupportType.class, "JavaSupportType"); //$NON-NLS-1$
         addEEnumLiteral(javaSupportTypeEEnum, JavaSupportType.OFF_LITERAL);
         addEEnumLiteral(javaSupportTypeEEnum, JavaSupportType.ON_LITERAL);
         addEEnumLiteral(javaSupportTypeEEnum, JavaSupportType.JDK13_LITERAL);
         addEEnumLiteral(javaSupportTypeEEnum, JavaSupportType.JDK118_LITERAL);
 
-        initEEnum(eventLocationTypeEEnum, EventLocationType.class, "EventLocationType");
+        initEEnum(eventLocationTypeEEnum, EventLocationType.class, "EventLocationType"); //$NON-NLS-1$
         addEEnumLiteral(eventLocationTypeEEnum, EventLocationType.CONSOLIDATED_LITERAL);
         addEEnumLiteral(eventLocationTypeEEnum, EventLocationType.REMOTE_LITERAL);
         addEEnumLiteral(eventLocationTypeEEnum, EventLocationType.ALL_LITERAL);
 
-        initEEnum(intervalUnitTypeEEnum, IntervalUnitType.class, "IntervalUnitType");
+        initEEnum(intervalUnitTypeEEnum, IntervalUnitType.class, "IntervalUnitType"); //$NON-NLS-1$
         addEEnumLiteral(intervalUnitTypeEEnum, IntervalUnitType.HOURS_LITERAL);
         addEEnumLiteral(intervalUnitTypeEEnum, IntervalUnitType.MINUTES_LITERAL);
         addEEnumLiteral(intervalUnitTypeEEnum, IntervalUnitType.SECONDS_LITERAL);
 
-        initEEnum(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.class, "SystemDefinedDefaultType");
+        initEEnum(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.class, "SystemDefinedDefaultType"); //$NON-NLS-1$
         addEEnumLiteral(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.AUTOINCREMENT_LITERAL);
         addEEnumLiteral(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.CURRENT_DATABASE_LITERAL);
         addEEnumLiteral(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.CURRENT_REMOTE_USER_LITERAL);
@@ -1974,12 +1974,12 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
         addEEnumLiteral(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.CURRENT_PUBLISHER_LITERAL);
         addEEnumLiteral(systemDefinedDefaultTypeEEnum, SystemDefinedDefaultType.USER_LITERAL);
 
-        initEEnum(allowNullTypeEEnum, AllowNullType.class, "AllowNullType");
+        initEEnum(allowNullTypeEEnum, AllowNullType.class, "AllowNullType"); //$NON-NLS-1$
         addEEnumLiteral(allowNullTypeEEnum, AllowNullType.NULLABLE_LITERAL);
         addEEnumLiteral(allowNullTypeEEnum, AllowNullType.NOT_NULLABLE_LITERAL);
         addEEnumLiteral(allowNullTypeEEnum, AllowNullType.DATABASE_DEFAULT_LITERAL);
 
-        initEEnum(parameterTypeEEnum, ParameterType.class, "ParameterType");
+        initEEnum(parameterTypeEEnum, ParameterType.class, "ParameterType"); //$NON-NLS-1$
         addEEnumLiteral(parameterTypeEEnum, ParameterType.VARIABLE_LITERAL);
         addEEnumLiteral(parameterTypeEEnum, ParameterType.RESULT_LITERAL);
         addEEnumLiteral(parameterTypeEEnum, ParameterType.SQLSTATE_LITERAL);
@@ -2002,13 +2002,13 @@ public class SybaseasabasesqlmodelPackageImpl extends EPackageImpl implements Sy
      */
     protected void createGenModel_1Annotations()
     {
-        String source = "GenModel";													
+        String source = "GenModel";													 //$NON-NLS-1$
         addAnnotation
           (sybaseASABaseActionTimeEEnum, 
            source, 
            new String[] 
            {
-             "document", "In Sybase ASA, there are 3 kinds of action time for trigger which are: BEFORE, AFTER and RESOLVE.\r\nThe predefined action time enumeration in sql model can not meet our requirement. And we can not \r\nextends the predefined one since it\'s declared as final.\r\nThe actual action time for \"ASE\" type is \"AFTER\", but ASA treats it as another action time."
+             "document", "In Sybase ASA, there are 3 kinds of action time for trigger which are: BEFORE, AFTER and RESOLVE.\r\nThe predefined action time enumeration in sql model can not meet our requirement. And we can not \r\nextends the predefined one since it\'s declared as final.\r\nThe actual action time for \"ASE\" type is \"AFTER\", but ASA treats it as another action time." //$NON-NLS-1$ //$NON-NLS-2$
            });		
     }
 

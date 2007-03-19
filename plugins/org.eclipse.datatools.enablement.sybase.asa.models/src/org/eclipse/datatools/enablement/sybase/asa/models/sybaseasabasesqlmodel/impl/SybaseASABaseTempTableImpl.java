@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTempTableImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseTempTableImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -164,7 +164,7 @@ public class SybaseASABaseTempTableImpl extends TemporaryTableImpl implements Sy
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (transactionOption: ");
+        result.append(" (transactionOption: "); //$NON-NLS-1$
         result.append(transactionOption);
         result.append(')');
         return result.toString();

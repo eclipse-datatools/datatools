@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseFunctionImpl.java,v 1.4 2007/02/28 01:02:32 hcao Exp $
+ * $Id: SybaseASABaseFunctionImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -76,7 +76,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
 	 */
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
-		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");
+		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
 	}
 
     /**
@@ -183,7 +183,7 @@ public class SybaseASABaseFunctionImpl extends UserDefinedFunctionImpl implement
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (onExceptionResume: ");
+        result.append(" (onExceptionResume: "); //$NON-NLS-1$
         result.append(onExceptionResume);
         result.append(')');
         return result.toString();

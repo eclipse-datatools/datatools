@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalUnitType.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: IntervalUnitType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -75,7 +75,7 @@ public final class IntervalUnitType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final IntervalUnitType HOURS_LITERAL = new IntervalUnitType(HOURS, "HOURS", "HOURS");
+	public static final IntervalUnitType HOURS_LITERAL = new IntervalUnitType(HOURS, "HOURS", "HOURS"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>MINUTES</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class IntervalUnitType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final IntervalUnitType MINUTES_LITERAL = new IntervalUnitType(MINUTES, "MINUTES", "MINUTES");
+	public static final IntervalUnitType MINUTES_LITERAL = new IntervalUnitType(MINUTES, "MINUTES", "MINUTES"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>SECONDS</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class IntervalUnitType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final IntervalUnitType SECONDS_LITERAL = new IntervalUnitType(SECONDS, "SECONDS", "SECONDS");
+	public static final IntervalUnitType SECONDS_LITERAL = new IntervalUnitType(SECONDS, "SECONDS", "SECONDS"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Interval Unit Type</b></em>' enumerators.

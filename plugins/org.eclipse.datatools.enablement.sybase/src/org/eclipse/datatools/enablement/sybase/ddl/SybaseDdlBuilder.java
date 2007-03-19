@@ -115,7 +115,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
      */
     public String dropView(ViewTable view, boolean quoteIdentifiers, boolean qualifyNames)
     {
-        StringBuffer dropView = new StringBuffer("");
+        StringBuffer dropView = new StringBuffer(""); //$NON-NLS-1$
         dropView.append(DROP).append(SPACE).append(VIEW).append(SPACE).append(
                 getName(view, quoteIdentifiers, qualifyNames));
 
@@ -432,12 +432,12 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
             {};
         }
 
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
         String permissionString = assemblePermissionList(privilege, quoteIdentifiers, qualifyNames);
-        StringBuffer objectName = new StringBuffer("");
+        StringBuffer objectName = new StringBuffer(""); //$NON-NLS-1$
         if (privilege.getObject() == null)
         {
-            objectName.append("");
+            objectName.append(""); //$NON-NLS-1$
         }
         else if (privilege.getObject() instanceof Column)
         {
@@ -515,14 +515,14 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
          */
         if (privilege.eContainer() == null)
         {
-            return "";
+            return ""; //$NON-NLS-1$
         }
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
         String permissionString = assemblePermissionList(privilege, quoteIdentifiers, qualifyNames);
-        StringBuffer objectName = new StringBuffer("");
+        StringBuffer objectName = new StringBuffer(""); //$NON-NLS-1$
         if (privilege.getObject() == null)
         {
-            objectName.append("");
+            objectName.append(""); //$NON-NLS-1$
         }
         else if (privilege.getObject() instanceof Column)
         {
@@ -543,27 +543,27 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
 
     private String assemblePermissionList(Privilege privilege, boolean quoteIdentifiers, boolean qualifyNames)
     {
-        StringBuffer permissionList = new StringBuffer("");
+        StringBuffer permissionList = new StringBuffer(""); //$NON-NLS-1$
         if (privilege.getObject() == null)
         {
-            return "";
+            return ""; //$NON-NLS-1$
         }
         else if (privilege.getObject() instanceof Column)
         {
             Column col = (Column) privilege.getObject();
-            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()).append(LEFT_PARENTHESIS)
+            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()).append(LEFT_PARENTHESIS) //$NON-NLS-1$
                     .append(getName(col, quoteIdentifiers, false)).append(RIGHT_PARENTHESIS);
         }
         else
         {
-            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction());
+            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()); //$NON-NLS-1$
         }
         return permissionList.toString();
     }
 
     protected String getViewColumnList(ViewTable view, boolean quoteIdentifiers)
     {
-        StringBuffer columnsStr = new StringBuffer("");
+        StringBuffer columnsStr = new StringBuffer(""); //$NON-NLS-1$
         Iterator it = view.getColumns().iterator();
 
         if (view.getColumns().size() == 0)
@@ -640,7 +640,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         sb.append(type);
         if (defValue != null)
         {
-            sb.append("=").append(defValue);
+            sb.append("=").append(defValue); //$NON-NLS-1$
         }
         if(mode != null && (mode.equalsIgnoreCase(ParameterMode.INOUT_LITERAL.getLiteral()) || mode.equalsIgnoreCase(ParameterMode.OUT_LITERAL.getLiteral()))) {
             sb.append(SPACE).append(OUTPUT);

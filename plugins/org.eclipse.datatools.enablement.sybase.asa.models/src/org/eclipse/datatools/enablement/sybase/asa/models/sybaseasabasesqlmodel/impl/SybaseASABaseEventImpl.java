@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseEventImpl.java,v 1.4 2007/02/28 01:02:32 hcao Exp $
+ * $Id: SybaseASABaseEventImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -360,9 +360,9 @@ public class SybaseASABaseEventImpl extends EventImpl implements SybaseASABaseEv
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (eventType: ");
-        result.append(eventType);
-        result.append(", location: ");
+        result.append(" (eventType: "); //$NON-NLS-1$
+        result.append(eventType); 
+        result.append(", location: "); //$NON-NLS-1$
         result.append(location);
         result.append(')');
         return result.toString();

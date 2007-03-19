@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AllowNullType.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: AllowNullType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -75,7 +75,7 @@ public final class AllowNullType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final AllowNullType NULLABLE_LITERAL = new AllowNullType(NULLABLE, "Nullable", "Nullable");
+	public static final AllowNullType NULLABLE_LITERAL = new AllowNullType(NULLABLE, "Nullable", "Nullable"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Not Nullable</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class AllowNullType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final AllowNullType NOT_NULLABLE_LITERAL = new AllowNullType(NOT_NULLABLE, "Not_Nullable", "Not_Nullable");
+	public static final AllowNullType NOT_NULLABLE_LITERAL = new AllowNullType(NOT_NULLABLE, "Not_Nullable", "Not_Nullable"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Database Default</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class AllowNullType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final AllowNullType DATABASE_DEFAULT_LITERAL = new AllowNullType(DATABASE_DEFAULT, "Database_Default", "Database_Default");
+	public static final AllowNullType DATABASE_DEFAULT_LITERAL = new AllowNullType(DATABASE_DEFAULT, "Database_Default", "Database_Default"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Allow Null Type</b></em>' enumerators.

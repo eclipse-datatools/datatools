@@ -14,7 +14,6 @@ import org.eclipse.datatools.enablement.sybase.deltaddl.SybaseDeltaDdlGeneration
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
@@ -51,9 +50,9 @@ public class ASAForeignKeyDeltaDdlGenProvider extends ASAReferenceConstraintDelt
         if (feature.getFeatureID() == SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__DESCRIPTION
                 && fk.getDescription() != null && fk.getDescription().length() != 0)
         {
-            StringBuffer sb = new StringBuffer("");
-            sb.append("COMMENT").append(SPACE).append(ON).append(SPACE).append(FOREIGN_KEY).append(SPACE).append(
-                    getName((Table) fk.eContainer(), quoteIdentifiers, qualifyNames) + "."
+            StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
+            sb.append("COMMENT").append(SPACE).append(ON).append(SPACE).append(FOREIGN_KEY).append(SPACE).append( //$NON-NLS-1$
+                    getName((Table) fk.eContainer(), quoteIdentifiers, qualifyNames) + "." //$NON-NLS-1$
                             + getName(fk, quoteIdentifiers)).append(SPACE).append(ISybaseDdlConstants.IS).append(SPACE)
                     .append(getSingleQuotedString(fk.getDescription()));
             script.addAlterOtherStatements(sb.toString());

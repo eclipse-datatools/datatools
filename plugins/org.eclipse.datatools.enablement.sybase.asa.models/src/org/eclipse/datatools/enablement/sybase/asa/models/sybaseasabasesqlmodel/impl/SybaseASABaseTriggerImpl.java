@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTriggerImpl.java,v 1.6 2007/02/28 01:02:32 hcao Exp $
+ * $Id: SybaseASABaseTriggerImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -83,7 +83,7 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
      * @generated
      * @ordered
      */
-	protected static final String REMOTE_NAME_EDEFAULT = "";
+	protected static final String REMOTE_NAME_EDEFAULT = ""; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getRemoteName() <em>Remote Name</em>}' attribute.
@@ -393,13 +393,13 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (order: ");
+        result.append(" (order: "); //$NON-NLS-1$
         result.append(order);
-        result.append(", sybaseASABaseActionTime: ");
+        result.append(", sybaseASABaseActionTime: "); //$NON-NLS-1$
         result.append(sybaseASABaseActionTime);
-        result.append(", remoteName: ");
+        result.append(", remoteName: "); //$NON-NLS-1$
         result.append(remoteName);
-        result.append(", updateColumnType: ");
+        result.append(", updateColumnType: "); //$NON-NLS-1$
         result.append(updateColumnType);
         result.append(')');
         return result.toString();

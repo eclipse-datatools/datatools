@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SystemDefinedDefaultType.java,v 1.4 2007/02/28 01:02:34 hcao Exp $
+ * $Id: SystemDefinedDefaultType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -255,7 +255,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType AUTOINCREMENT_LITERAL = new SystemDefinedDefaultType(AUTOINCREMENT, "AUTOINCREMENT", "AUTOINCREMENT");
+	public static final SystemDefinedDefaultType AUTOINCREMENT_LITERAL = new SystemDefinedDefaultType(AUTOINCREMENT, "AUTOINCREMENT", "AUTOINCREMENT"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT DATABASE</b></em>' literal object.
@@ -265,7 +265,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_DATABASE_LITERAL = new SystemDefinedDefaultType(CURRENT_DATABASE, "CURRENT_DATABASE", "CURRENT DATABASE");
+	public static final SystemDefinedDefaultType CURRENT_DATABASE_LITERAL = new SystemDefinedDefaultType(CURRENT_DATABASE, "CURRENT_DATABASE", "CURRENT DATABASE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT REMOTE USER</b></em>' literal object.
@@ -275,7 +275,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_REMOTE_USER_LITERAL = new SystemDefinedDefaultType(CURRENT_REMOTE_USER, "CURRENT_REMOTE_USER", "CURRENT REMOTE USER");
+	public static final SystemDefinedDefaultType CURRENT_REMOTE_USER_LITERAL = new SystemDefinedDefaultType(CURRENT_REMOTE_USER, "CURRENT_REMOTE_USER", "CURRENT REMOTE USER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT UTC TIMESTAMP</b></em>' literal object.
@@ -285,7 +285,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_UTC_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(CURRENT_UTC_TIMESTAMP, "CURRENT_UTC_TIMESTAMP", "CURRENT UTC TIMESTAMP");
+	public static final SystemDefinedDefaultType CURRENT_UTC_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(CURRENT_UTC_TIMESTAMP, "CURRENT_UTC_TIMESTAMP", "CURRENT UTC TIMESTAMP"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>GLOBAL AUTOINCREMENT</b></em>' literal object.
@@ -295,7 +295,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType GLOBAL_AUTOINCREMENT_LITERAL = new SystemDefinedDefaultType(GLOBAL_AUTOINCREMENT, "GLOBAL_AUTOINCREMENT", "GLOBAL AUTOINCREMENT");
+	public static final SystemDefinedDefaultType GLOBAL_AUTOINCREMENT_LITERAL = new SystemDefinedDefaultType(GLOBAL_AUTOINCREMENT, "GLOBAL_AUTOINCREMENT", "GLOBAL AUTOINCREMENT"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>NULL</b></em>' literal object.
@@ -305,7 +305,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType NULL_LITERAL = new SystemDefinedDefaultType(NULL, "NULL", "NULL");
+	public static final SystemDefinedDefaultType NULL_LITERAL = new SystemDefinedDefaultType(NULL, "NULL", "NULL"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>TIMESTAMP</b></em>' literal object.
@@ -315,7 +315,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType TIMESTAMP_LITERAL = new SystemDefinedDefaultType(TIMESTAMP, "TIMESTAMP", "TIMESTAMP");
+	public static final SystemDefinedDefaultType TIMESTAMP_LITERAL = new SystemDefinedDefaultType(TIMESTAMP, "TIMESTAMP", "TIMESTAMP"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>UTC TIMESTAMP</b></em>' literal object.
@@ -325,7 +325,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType UTC_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(UTC_TIMESTAMP, "UTC_TIMESTAMP", "UTC TIMESTAMP");
+	public static final SystemDefinedDefaultType UTC_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(UTC_TIMESTAMP, "UTC_TIMESTAMP", "UTC TIMESTAMP"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>LAST USER</b></em>' literal object.
@@ -335,7 +335,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType LAST_USER_LITERAL = new SystemDefinedDefaultType(LAST_USER, "LAST_USER", "LAST USER");
+	public static final SystemDefinedDefaultType LAST_USER_LITERAL = new SystemDefinedDefaultType(LAST_USER, "LAST_USER", "LAST USER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT DATE</b></em>' literal object.
@@ -345,7 +345,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_DATE_LITERAL = new SystemDefinedDefaultType(CURRENT_DATE, "CURRENT_DATE", "CURRENT DATE");
+	public static final SystemDefinedDefaultType CURRENT_DATE_LITERAL = new SystemDefinedDefaultType(CURRENT_DATE, "CURRENT_DATE", "CURRENT DATE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT TIME</b></em>' literal object.
@@ -355,7 +355,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_TIME_LITERAL = new SystemDefinedDefaultType(CURRENT_TIME, "CURRENT_TIME", "CURRENT TIME");
+	public static final SystemDefinedDefaultType CURRENT_TIME_LITERAL = new SystemDefinedDefaultType(CURRENT_TIME, "CURRENT_TIME", "CURRENT TIME"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT TIMESTAMP</b></em>' literal object.
@@ -365,7 +365,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(CURRENT_TIMESTAMP, "CURRENT_TIMESTAMP", "CURRENT TIMESTAMP");
+	public static final SystemDefinedDefaultType CURRENT_TIMESTAMP_LITERAL = new SystemDefinedDefaultType(CURRENT_TIMESTAMP, "CURRENT_TIMESTAMP", "CURRENT TIMESTAMP"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT USER</b></em>' literal object.
@@ -375,7 +375,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_USER_LITERAL = new SystemDefinedDefaultType(CURRENT_USER, "CURRENT_USER", "CURRENT USER");
+	public static final SystemDefinedDefaultType CURRENT_USER_LITERAL = new SystemDefinedDefaultType(CURRENT_USER, "CURRENT_USER", "CURRENT USER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CURRENT PUBLISHER</b></em>' literal object.
@@ -385,7 +385,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType CURRENT_PUBLISHER_LITERAL = new SystemDefinedDefaultType(CURRENT_PUBLISHER, "CURRENT_PUBLISHER", "CURRENT PUBLISHER");
+	public static final SystemDefinedDefaultType CURRENT_PUBLISHER_LITERAL = new SystemDefinedDefaultType(CURRENT_PUBLISHER, "CURRENT_PUBLISHER", "CURRENT PUBLISHER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>USER</b></em>' literal object.
@@ -395,7 +395,7 @@ public final class SystemDefinedDefaultType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final SystemDefinedDefaultType USER_LITERAL = new SystemDefinedDefaultType(USER, "USER", "USER");
+	public static final SystemDefinedDefaultType USER_LITERAL = new SystemDefinedDefaultType(USER, "USER", "USER"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>System Defined Default Type</b></em>' enumerators.

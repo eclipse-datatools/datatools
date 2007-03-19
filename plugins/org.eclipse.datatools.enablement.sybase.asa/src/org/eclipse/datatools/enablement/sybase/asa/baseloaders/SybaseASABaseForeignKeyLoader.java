@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
@@ -77,7 +76,7 @@ public class SybaseASABaseForeignKeyLoader {
 
         char updateActinChar = SybaseASACatalogUtils.getCharValue(rs.getString(8));
         char deleteActinChar = SybaseASACatalogUtils.getCharValue(rs.getString(9));
-        boolean isClustered = rs.getString(3).equals("Y");
+        boolean isClustered = rs.getString(3).equals("Y"); //$NON-NLS-1$
         String remarks = rs.getString(4);
         
         Schema primarySchema = (Schema) SybaseASACatalogUtils

@@ -31,13 +31,13 @@ public class SybaseASACatalogBaseEvent extends SybaseASABaseEventImpl implements
 	protected Boolean eventInfoLoaded = Boolean.FALSE;
 	protected Boolean schedulesLoaded = Boolean.FALSE;
 	
-	final public static String REMOTE_LOCATION_TYPE_IN_DATABASE = "R";
-	final public static String CONSOLIDATED_LOCATION_TYPE_IN_DATABASE = "C";
-	final public static String ALL_LOCATION_TYPE_IN_DATABASE = "A";
+	final public static String REMOTE_LOCATION_TYPE_IN_DATABASE = "R"; //$NON-NLS-1$
+	final public static String CONSOLIDATED_LOCATION_TYPE_IN_DATABASE = "C"; //$NON-NLS-1$
+	final public static String ALL_LOCATION_TYPE_IN_DATABASE = "A"; //$NON-NLS-1$
 	
-	final public static String INTERNAL_UNIT_HOURS_IN_DATABASE = "HH";
-	final public static String INTERNAL_UNIT_MINUTES_IN_DATABASE = "NN";
-	final public static String INTERNAL_UNIT_SECONDS_IN_DATABASE = "SS";
+	final public static String INTERNAL_UNIT_HOURS_IN_DATABASE = "HH"; //$NON-NLS-1$
+	final public static String INTERNAL_UNIT_MINUTES_IN_DATABASE = "NN"; //$NON-NLS-1$
+	final public static String INTERNAL_UNIT_SECONDS_IN_DATABASE = "SS"; //$NON-NLS-1$
 	
 	public Database getCatalogDatabase() {
 		return this.getDatabase();
@@ -183,7 +183,7 @@ public class SybaseASACatalogBaseEvent extends SybaseASABaseEventImpl implements
 			while(rs.next())
 			{
                 String creator = rs.getString(1);
-                boolean enabled = rs.getString(2).equalsIgnoreCase("Y");
+                boolean enabled = rs.getString(2).equalsIgnoreCase("Y"); //$NON-NLS-1$
                 String location = rs.getString(3);
                 String action = rs.getString(4);
                 String condition = rs.getString(5);
@@ -210,7 +210,7 @@ public class SybaseASACatalogBaseEvent extends SybaseASABaseEventImpl implements
                 EventType eventType = EventType.get(sEventType);
                 if(sEventType != null && eventType == null)
                 {
-                	eventType = EventType.get("\"" + sEventType + "\"");
+                	eventType = EventType.get("\"" + sEventType + "\""); //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 
                 Schema schema = (Schema)SybaseASACatalogUtils.findElement(getCatalogDatabase().getSchemas(), creator);

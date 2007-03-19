@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseDBSpaceImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseDBSpaceImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -288,7 +288,7 @@ public class SybaseASABaseDBSpaceImpl extends SQLObjectImpl implements SybaseASA
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (fileName: ");
+        result.append(" (fileName: "); //$NON-NLS-1$
         result.append(fileName);
         result.append(')');
         return result.toString();

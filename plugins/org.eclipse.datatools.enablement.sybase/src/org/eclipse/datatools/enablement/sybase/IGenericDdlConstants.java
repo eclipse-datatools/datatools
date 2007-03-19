@@ -76,6 +76,6 @@ public interface IGenericDdlConstants
     public final static String ROW                  = "ROW"; //$NON-NLS-1$
     public final static String STATEMENT            = "STATEMENT"; //$NON-NLS-1$
     public final static String WHEN                 = "WHEN"; //$NON-NLS-1$
-    public final static String RENAME               = "RENAME";
-    public final static String MODIFY               = "MODIFY"; 
+    public final static String RENAME               = "RENAME"; //$NON-NLS-1$
+    public final static String MODIFY               = "MODIFY";  //$NON-NLS-1$
 }

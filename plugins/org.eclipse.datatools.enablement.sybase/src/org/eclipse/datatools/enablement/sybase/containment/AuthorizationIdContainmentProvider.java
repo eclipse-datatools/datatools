@@ -19,7 +19,7 @@ public class AuthorizationIdContainmentProvider extends AbstractContainmentProvi
 {
     public String getGroupId(EObject obj)
     {
-        return "authidgroup";
+        return "authidgroup"; //$NON-NLS-1$
     }
     public EObject getContainer(EObject obj)
     {

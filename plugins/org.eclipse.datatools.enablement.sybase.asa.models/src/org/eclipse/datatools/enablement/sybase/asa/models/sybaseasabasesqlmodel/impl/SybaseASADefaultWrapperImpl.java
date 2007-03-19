@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADefaultWrapperImpl.java,v 1.2 2007/02/08 01:41:30 linsong Exp $
+ * $Id: SybaseASADefaultWrapperImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -249,9 +249,9 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
      */
     public void parse()
     {
-        if(value == null || value.trim().equals(""))
+        if(value == null || value.trim().equals("")) //$NON-NLS-1$
         {
-            value = "";
+            value = ""; //$NON-NLS-1$
             type = TypeOfDefault.NO_DEFAULT_LITERAL;
         }
         else if(isComputed)
@@ -295,13 +295,13 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
     private static String unquote(String quoted)
     {
         String content = quoted;
-        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1)
+        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1) //$NON-NLS-1$ //$NON-NLS-2$
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'");
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'"); //$NON-NLS-1$ //$NON-NLS-2$
         }
-        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1)
+        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1) //$NON-NLS-1$ //$NON-NLS-2$
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\"");
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\""); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return content;
     }
@@ -408,13 +408,13 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: ");
+        result.append(" (value: "); //$NON-NLS-1$
         result.append(value);
-        result.append(", isLiteral: ");
+        result.append(", isLiteral: "); //$NON-NLS-1$
         result.append(isLiteral);
-        result.append(", partitionSize: ");
+        result.append(", partitionSize: "); //$NON-NLS-1$
         result.append(partitionSize);
-        result.append(", type: ");
+        result.append(", type: "); //$NON-NLS-1$
         result.append(type);
         result.append(')');
         return result.toString();

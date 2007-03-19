@@ -2,7 +2,6 @@ package org.eclipse.datatools.enablement.sybase.asa.deltaddl;
 
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumnCheckConstraint;
-import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -28,7 +27,7 @@ public class ASAColumnCheckConstraintDeltaDdlGenProvider extends ASATableCheckCo
 
         if (feature.getFeatureID() == SQLExpressionsPackage.SEARCH_CONDITION_DEFAULT__SQL)
         {
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
             sb.append(IGenericDdlConstants.ALTER).append(IGenericDdlConstants.SPACE).append(IGenericDdlConstants.TABLE).append(IGenericDdlConstants.SPACE).append(
                     getName((Table) columnCk.eContainer(), quoteIdentifiers, qualifyNames)).append(IGenericDdlConstants.SPACE).append(
                     IGenericDdlConstants.MODIFY).append(SPACE).append(

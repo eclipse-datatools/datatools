@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseUniqueConstraintImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseUniqueConstraintImpl.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -163,7 +163,7 @@ public class SybaseASABaseUniqueConstraintImpl extends UniqueConstraintImpl impl
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (clustered: ");
+        result.append(" (clustered: "); //$NON-NLS-1$
         result.append(clustered);
         result.append(')');
         return result.toString();

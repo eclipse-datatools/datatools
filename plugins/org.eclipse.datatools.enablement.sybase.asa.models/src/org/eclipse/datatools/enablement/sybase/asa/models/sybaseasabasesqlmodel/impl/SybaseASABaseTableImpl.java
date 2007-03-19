@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTableImpl.java,v 1.3 2007/02/08 01:41:32 linsong Exp $
+ * $Id: SybaseASABaseTableImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -114,7 +114,7 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 */
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
-		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");
+		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterType.java,v 1.4 2007/02/28 01:02:34 hcao Exp $
+ * $Id: ParameterType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -105,7 +105,7 @@ public final class ParameterType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final ParameterType VARIABLE_LITERAL = new ParameterType(VARIABLE, "VARIABLE", "VARIABLE");
+	public static final ParameterType VARIABLE_LITERAL = new ParameterType(VARIABLE, "VARIABLE", "VARIABLE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>RESULT</b></em>' literal object.
@@ -115,7 +115,7 @@ public final class ParameterType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final ParameterType RESULT_LITERAL = new ParameterType(RESULT, "RESULT", "RESULT");
+	public static final ParameterType RESULT_LITERAL = new ParameterType(RESULT, "RESULT", "RESULT"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>SQLSTATE</b></em>' literal object.
@@ -125,7 +125,7 @@ public final class ParameterType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final ParameterType SQLSTATE_LITERAL = new ParameterType(SQLSTATE, "SQLSTATE", "SQLSTATE");
+	public static final ParameterType SQLSTATE_LITERAL = new ParameterType(SQLSTATE, "SQLSTATE", "SQLSTATE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>SQLCODE</b></em>' literal object.
@@ -135,7 +135,7 @@ public final class ParameterType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final ParameterType SQLCODE_LITERAL = new ParameterType(SQLCODE, "SQLCODE", "SQLCODE");
+	public static final ParameterType SQLCODE_LITERAL = new ParameterType(SQLCODE, "SQLCODE", "SQLCODE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>RETURN</b></em>' literal object.
@@ -145,7 +145,7 @@ public final class ParameterType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final ParameterType RETURN_LITERAL = new ParameterType(RETURN, "RETURN", "RETURN");
+	public static final ParameterType RETURN_LITERAL = new ParameterType(RETURN, "RETURN", "RETURN"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Parameter Type</b></em>' enumerators.

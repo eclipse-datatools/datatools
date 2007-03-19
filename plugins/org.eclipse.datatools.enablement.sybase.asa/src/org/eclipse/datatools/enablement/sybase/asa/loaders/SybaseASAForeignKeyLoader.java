@@ -18,8 +18,8 @@ public class SybaseASAForeignKeyLoader extends SybaseASABaseForeignKeyLoader {
 	}
 	
 	protected void processFKInfoResultSet(ResultSet rs, EList memberContainmentList, EList refMemContainmentList) throws SQLException {
-		boolean isCheckOnCommit = rs.getString(10).equals("Y");
-		boolean isNullable = ("Y").equals(rs.getString(11));
+		boolean isCheckOnCommit = rs.getString(10).equals("Y"); //$NON-NLS-1$
+		boolean isNullable = ("Y").equals(rs.getString(11)); //$NON-NLS-1$
 		foreingKey.setNullable(isNullable);
 		foreingKey.setCheckOnCommit(isCheckOnCommit);
         super.processFKInfoResultSet(rs, memberContainmentList, refMemContainmentList);

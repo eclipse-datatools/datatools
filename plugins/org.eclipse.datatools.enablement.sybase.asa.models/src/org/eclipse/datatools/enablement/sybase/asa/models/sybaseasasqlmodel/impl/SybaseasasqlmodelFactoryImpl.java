@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.7 2007/02/08 01:41:35 linsong Exp $
+ * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -37,7 +37,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
     {
         try
         {
-            SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"); 
+            SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore");  //$NON-NLS-1$
             if (theSybaseasasqlmodelFactory != null)
             {
                 return theSybaseasasqlmodelFactory;
@@ -76,7 +76,7 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
             case SybaseasasqlmodelPackage.SYBASE_ASA_INDEX: return createSybaseASAIndex();
             case SybaseasasqlmodelPackage.SYBASE_ASA_TEMP_TABLE: return createSybaseASATempTable();
             default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 

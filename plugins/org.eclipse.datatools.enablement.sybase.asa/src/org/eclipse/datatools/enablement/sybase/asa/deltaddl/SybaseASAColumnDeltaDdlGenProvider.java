@@ -55,7 +55,7 @@ public class SybaseASAColumnDeltaDdlGenProvider extends AbstractDeltaDdlGenProvi
                     || f == SQLTablesPackage.eINSTANCE.getColumn_DefaultValue())
             {
                 
-                if( record.newValue == null || record.newValue.equals(""))
+                if( record.newValue == null || record.newValue.equals("")) //$NON-NLS-1$
                 {
                     if(flag2)
                     {
@@ -137,7 +137,7 @@ public class SybaseASAColumnDeltaDdlGenProvider extends AbstractDeltaDdlGenProvi
         else if (f == SQLTablesPackage.eINSTANCE.getColumn_GenerateExpression())
         {
             ValueExpression ve = (ValueExpression)newValue;
-            if (ve != null && ve.getSQL() != null && !ve.getSQL().equals(""))
+            if (ve != null && ve.getSQL() != null && !ve.getSQL().equals("")) //$NON-NLS-1$
             {
                 sb.append(SET).append(SPACE).append(COMPUTE).append(SPACE).append(LEFT_PARENTHESIS).append(ve.getSQL())
                         .append(RIGHT_PARENTHESIS);

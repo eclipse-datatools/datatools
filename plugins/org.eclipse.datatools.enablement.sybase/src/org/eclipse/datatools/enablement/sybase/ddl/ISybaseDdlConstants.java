@@ -16,22 +16,22 @@ public interface ISybaseDdlConstants
     public final static String COMMENT             = "COMMENT";            //$NON-NLS-1$
     public final static String IS                  = "IS";                 //$NON-NLS-1$
     public final static String COLUMN              = "COLUMN";             //$NON-NLS-1$
-    public final static String EVENT               = "EVENT";
+    public final static String EVENT               = "EVENT"; //$NON-NLS-1$
     public final static String ASC                 = "ASC";                //$NON-NLS-1$
     public final static String DESC                = "DESC";               //$NON-NLS-1$
     public final static String EQUAL               = "=";                   //$NON-NLS-1$
     public final static String CLUSTERED           = "CLUSTERED";          //$NON-NLS-1$
     public final static String NONCLUSTERED        = "NONCLUSTERED";       //$NON-NLS-1$
-    public final static String AT                  = "AT";
-    public final static String FILE                = "FILE";
-    public final static String REMOVE              = "REMOVE";
-    public final static String CHECKOPTION         = "WITH CHECK OPTION";
+    public final static String AT                  = "AT"; //$NON-NLS-1$
+    public final static String FILE                = "FILE"; //$NON-NLS-1$
+    public final static String REMOVE              = "REMOVE"; //$NON-NLS-1$
+    public final static String CHECKOPTION         = "WITH CHECK OPTION"; //$NON-NLS-1$
     public final static String CAST                = "CAST";               //$NON-NLS-1$
     public final static String LOCATOR             = "LOCATOR";            //$NON-NLS-1$
     public final static String EXTERNAL            = "EXTERNAL";           //$NON-NLS-1$
     public final static String COMMIT              = "COMMIT";              //$NON-NLS-1$
-    public static final String BEGIN               = "BEGIN";
-    public static final String END                 = "END";
+    public static final String BEGIN               = "BEGIN"; //$NON-NLS-1$
+    public static final String END                 = "END"; //$NON-NLS-1$
     public final static String WITH_RECOMPILE      = "WITH RECOMPILE";     //$NON-NLS-1$
     public final static String DETERMINISTIC       = "DETERMINISTIC";      //$NON-NLS-1$
     public final static String LANGUAGE            = "LAUNGUAGE";          //$NON-NLS-1$
@@ -45,22 +45,22 @@ public interface ISybaseDdlConstants
     public final static String LOG                 = "LOG";                //$NON-NLS-1$    
     
     // For privilege SQL statement
-    public final static String GRANT                = "GRANT";
-    public final static String SELECT_PRIVILEGE     = "SELECT";
-    public final static String INSERT_PRIVILEGE     = "INSERT";
-    public final static String UPDATE_PRIVILEGE     = "UPDATE";
-    public final static String DELETE_PRIVILEGE     = "DELETE";
-    public final static String ALTER_PRIVILEGE      = "ALTER";
-    public final static String REFERENCES_PRIVILEGE = "REFERENCES";
-    public final static String REFERENCE_PRIVILEGE  = "REFERENCE";
-    public final static String EXEC_PRIVILEGE       = "EXECUTE";
-    public final static String TO                   = "TO";
-    public final static String WITH_GRANT_OPTION    = "WITH GRANT OPTION";
-    public final static String REVOKE               = "REVOKE";
-    public final static String GO_FOR               = "GRANT OPTION FOR";
+    public final static String GRANT                = "GRANT"; //$NON-NLS-1$
+    public final static String SELECT_PRIVILEGE     = "SELECT"; //$NON-NLS-1$
+    public final static String INSERT_PRIVILEGE     = "INSERT"; //$NON-NLS-1$
+    public final static String UPDATE_PRIVILEGE     = "UPDATE"; //$NON-NLS-1$
+    public final static String DELETE_PRIVILEGE     = "DELETE"; //$NON-NLS-1$
+    public final static String ALTER_PRIVILEGE      = "ALTER"; //$NON-NLS-1$
+    public final static String REFERENCES_PRIVILEGE = "REFERENCES"; //$NON-NLS-1$
+    public final static String REFERENCE_PRIVILEGE  = "REFERENCE"; //$NON-NLS-1$
+    public final static String EXEC_PRIVILEGE       = "EXECUTE"; //$NON-NLS-1$
+    public final static String TO                   = "TO"; //$NON-NLS-1$
+    public final static String WITH_GRANT_OPTION    = "WITH GRANT OPTION"; //$NON-NLS-1$
+    public final static String REVOKE               = "REVOKE"; //$NON-NLS-1$
+    public final static String GO_FOR               = "GRANT OPTION FOR"; //$NON-NLS-1$
     
-    public final static String GO                   = "GO"; 
-    public final static String SEMICOLUMN          = ";"; 
+    public final static String GO                   = "GO";  //$NON-NLS-1$
+    public final static String SEMICOLUMN          = ";";  //$NON-NLS-1$
     public final static String SP_RENAME           = "sp_rename";                //$NON-NLS-1$    
     public final static String RENAME              = "RENAME";                //$NON-NLS-1$    
 }

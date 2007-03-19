@@ -61,7 +61,7 @@ public class ConstraintDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
     protected String generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
-        return "";
+        return ""; //$NON-NLS-1$
     }
     
     protected boolean needGenerateRenamingDdl(Constraint constraint)

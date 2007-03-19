@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseForeignKeyImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseForeignKeyImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -217,9 +217,9 @@ public class SybaseASABaseForeignKeyImpl extends ForeignKeyImpl implements Sybas
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (roleName: ");
+        result.append(" (roleName: "); //$NON-NLS-1$
         result.append(roleName);
-        result.append(", clustered: ");
+        result.append(", clustered: "); //$NON-NLS-1$
         result.append(clustered);
         result.append(')');
         return result.toString();

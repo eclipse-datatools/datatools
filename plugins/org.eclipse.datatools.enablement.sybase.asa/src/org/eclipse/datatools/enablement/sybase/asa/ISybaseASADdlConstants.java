@@ -27,7 +27,7 @@ public interface ISybaseASADdlConstants extends ISybaseDdlConstants
     public static final String   AND                      = "AND";                          //$NON-NLS-1$
     public final static String[] DAYS_OF_WEEK             =
                                                           {
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$//$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
                                                           };
 
     public final static int      SYNTAX_TYPE_TSQL         = 0;

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventType.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: EventType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -255,7 +255,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType NOEVENTTYPE_LITERAL = new EventType(NOEVENTTYPE, "NOEVENTTYPE", "NOEVENTTYPE");
+	public static final EventType NOEVENTTYPE_LITERAL = new EventType(NOEVENTTYPE, "NOEVENTTYPE", "NOEVENTTYPE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>BACKUPEND</b></em>' literal object.
@@ -265,7 +265,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType BACKUPEND_LITERAL = new EventType(BACKUPEND, "BACKUPEND", "BackupEnd");
+	public static final EventType BACKUPEND_LITERAL = new EventType(BACKUPEND, "BACKUPEND", "BackupEnd"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CONNECT</b></em>' literal object.
@@ -275,7 +275,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType CONNECT_LITERAL = new EventType(CONNECT, "CONNECT", "\"Connect\"");
+	public static final EventType CONNECT_LITERAL = new EventType(CONNECT, "CONNECT", "\"Connect\""); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>CONNECTFAILED</b></em>' literal object.
@@ -285,7 +285,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType CONNECTFAILED_LITERAL = new EventType(CONNECTFAILED, "CONNECTFAILED", "ConnectFailed");
+	public static final EventType CONNECTFAILED_LITERAL = new EventType(CONNECTFAILED, "CONNECTFAILED", "ConnectFailed"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>DATABASESTART</b></em>' literal object.
@@ -295,7 +295,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType DATABASESTART_LITERAL = new EventType(DATABASESTART, "DATABASESTART", "DatabaseStart");
+	public static final EventType DATABASESTART_LITERAL = new EventType(DATABASESTART, "DATABASESTART", "DatabaseStart"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>DBDISKSPACE</b></em>' literal object.
@@ -305,7 +305,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType DBDISKSPACE_LITERAL = new EventType(DBDISKSPACE, "DBDISKSPACE", "DBDiskSpace");
+	public static final EventType DBDISKSPACE_LITERAL = new EventType(DBDISKSPACE, "DBDISKSPACE", "DBDiskSpace"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>DISCONEECT</b></em>' literal object.
@@ -315,7 +315,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType DISCONEECT_LITERAL = new EventType(DISCONEECT, "DISCONEECT", "\"Disconnect\"");
+	public static final EventType DISCONEECT_LITERAL = new EventType(DISCONEECT, "DISCONEECT", "\"Disconnect\""); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>GLOBALAUTOINCREMENT</b></em>' literal object.
@@ -325,7 +325,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType GLOBALAUTOINCREMENT_LITERAL = new EventType(GLOBALAUTOINCREMENT, "GLOBALAUTOINCREMENT", "GlobalAutoincrement");
+	public static final EventType GLOBALAUTOINCREMENT_LITERAL = new EventType(GLOBALAUTOINCREMENT, "GLOBALAUTOINCREMENT", "GlobalAutoincrement"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>GROWDB</b></em>' literal object.
@@ -335,7 +335,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType GROWDB_LITERAL = new EventType(GROWDB, "GROWDB", "GrowDB");
+	public static final EventType GROWDB_LITERAL = new EventType(GROWDB, "GROWDB", "GrowDB"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>GROWLOG</b></em>' literal object.
@@ -345,7 +345,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType GROWLOG_LITERAL = new EventType(GROWLOG, "GROWLOG", "GrowLog");
+	public static final EventType GROWLOG_LITERAL = new EventType(GROWLOG, "GROWLOG", "GrowLog"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>GROWTEMP</b></em>' literal object.
@@ -355,7 +355,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType GROWTEMP_LITERAL = new EventType(GROWTEMP, "GROWTEMP", "GrowTemp");
+	public static final EventType GROWTEMP_LITERAL = new EventType(GROWTEMP, "GROWTEMP", "GrowTemp"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>LOGDISKSPACE</b></em>' literal object.
@@ -365,7 +365,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType LOGDISKSPACE_LITERAL = new EventType(LOGDISKSPACE, "LOGDISKSPACE", "LogDiskSpace");
+	public static final EventType LOGDISKSPACE_LITERAL = new EventType(LOGDISKSPACE, "LOGDISKSPACE", "LogDiskSpace"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>RAISERROR</b></em>' literal object.
@@ -375,7 +375,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType RAISERROR_LITERAL = new EventType(RAISERROR, "RAISERROR", "\"RAISERROR\"");
+	public static final EventType RAISERROR_LITERAL = new EventType(RAISERROR, "RAISERROR", "\"RAISERROR\""); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>SERVERIDLE</b></em>' literal object.
@@ -385,7 +385,7 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType SERVERIDLE_LITERAL = new EventType(SERVERIDLE, "SERVERIDLE", "ServerIdle");
+	public static final EventType SERVERIDLE_LITERAL = new EventType(SERVERIDLE, "SERVERIDLE", "ServerIdle"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>TEMPDISKSPACE</b></em>' literal object.
@@ -395,8 +395,8 @@ public final class EventType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventType TEMPDISKSPACE_LITERAL = new EventType(TEMPDISKSPACE, "TEMPDISKSPACE", "TempDiskSpace");
-
+	public static final EventType TEMPDISKSPACE_LITERAL = new EventType(TEMPDISKSPACE, "TEMPDISKSPACE", "TempDiskSpace"); //$NON-NLS-1$ //$NON-NLS-2$
+ 
     /**
      * An array of all the '<em><b>Event Type</b></em>' enumerators.
      * <!-- begin-user-doc -->

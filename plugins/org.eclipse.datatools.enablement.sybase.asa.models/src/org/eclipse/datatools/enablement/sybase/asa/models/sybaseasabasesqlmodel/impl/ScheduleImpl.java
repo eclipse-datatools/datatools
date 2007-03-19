@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ScheduleImpl.java,v 1.4 2007/02/28 01:02:32 hcao Exp $
+ * $Id: ScheduleImpl.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -439,7 +439,7 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
         if (newEvent != eInternalContainer() || (eContainerFeatureID != SybaseasabasesqlmodelPackage.SCHEDULE__EVENT && newEvent != null))
         {
             if (EcoreUtil.isAncestor(this, newEvent))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
             NotificationChain msgs = null;
             if (eInternalContainer() != null)
                 msgs = eBasicRemoveFromContainer(msgs);
@@ -651,21 +651,21 @@ public class ScheduleImpl extends SQLObjectImpl implements Schedule
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (recurring: ");
+        result.append(" (recurring: "); //$NON-NLS-1$
         result.append(recurring);
-        result.append(", startTime: ");
+        result.append(", startTime: "); //$NON-NLS-1$
         result.append(startTime);
-        result.append(", stopTime: ");
+        result.append(", stopTime: "); //$NON-NLS-1$
         result.append(stopTime);
-        result.append(", startDate: ");
+        result.append(", startDate: "); //$NON-NLS-1$
         result.append(startDate);
-        result.append(", daysOfWeek: ");
+        result.append(", daysOfWeek: "); //$NON-NLS-1$
         result.append(daysOfWeek);
-        result.append(", daysOfMonth: ");
+        result.append(", daysOfMonth: "); //$NON-NLS-1$
         result.append(daysOfMonth);
-        result.append(", intervalUnit: ");
+        result.append(", intervalUnit: "); //$NON-NLS-1$
         result.append(intervalUnit);
-        result.append(", intervalMount: ");
+        result.append(", intervalMount: "); //$NON-NLS-1$
         result.append(intervalMount);
         result.append(')');
         return result.toString();

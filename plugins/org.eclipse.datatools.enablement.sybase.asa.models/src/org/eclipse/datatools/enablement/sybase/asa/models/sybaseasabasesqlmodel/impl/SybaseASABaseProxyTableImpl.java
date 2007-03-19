@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseProxyTableImpl.java,v 1.3 2007/02/08 01:41:30 linsong Exp $
+ * $Id: SybaseASABaseProxyTableImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -35,7 +35,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
      * @generated
      * @ordered
      */
-	protected static final String REMOTE_OBJECT_LOCATION_EDEFAULT = "";
+	protected static final String REMOTE_OBJECT_LOCATION_EDEFAULT = ""; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getRemoteObjectLocation() <em>Remote Object Location</em>}' attribute.
@@ -162,7 +162,7 @@ public class SybaseASABaseProxyTableImpl extends SybaseASABaseTableImpl implemen
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (remoteObjectLocation: ");
+        result.append(" (remoteObjectLocation: "); //$NON-NLS-1$
         result.append(remoteObjectLocation);
         result.append(')');
         return result.toString();

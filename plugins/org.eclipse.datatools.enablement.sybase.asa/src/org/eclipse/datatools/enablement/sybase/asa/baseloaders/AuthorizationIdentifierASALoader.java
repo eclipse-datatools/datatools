@@ -95,7 +95,7 @@ public class AuthorizationIdentifierASALoader {
 					String ownerName = rs.getString(2);
 					String columnName = rs.getString(3);
 					int privilegeType = rs.getInt(4);
-					boolean isGrantable = rs.getString(5).equals("Y");
+					boolean isGrantable = rs.getString(5).equals("Y"); //$NON-NLS-1$
 					String grantorName = rs.getString(6);
 					
 					if(table == null)
@@ -149,7 +149,7 @@ public class AuthorizationIdentifierASALoader {
 			{
 				String routineName = rs.getString(1);
 				String ownerName = rs.getString(2);
-				boolean isExcutable = rs.getString(4).equals("Y");
+				boolean isExcutable = rs.getString(4).equals("Y"); //$NON-NLS-1$
 				if(isExcutable)
 				{
 					Privilege p = SQLAccessControlFactory.eINSTANCE.createPrivilege();

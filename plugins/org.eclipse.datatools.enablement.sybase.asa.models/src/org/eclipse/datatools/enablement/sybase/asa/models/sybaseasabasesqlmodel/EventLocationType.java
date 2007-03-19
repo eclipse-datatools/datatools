@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventLocationType.java,v 1.5 2007/02/28 02:24:49 hcao Exp $
+ * $Id: EventLocationType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -75,7 +75,7 @@ public final class EventLocationType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventLocationType CONSOLIDATED_LITERAL = new EventLocationType(CONSOLIDATED, "CONSOLIDATED", "CONSOLIDATED");
+	public static final EventLocationType CONSOLIDATED_LITERAL = new EventLocationType(CONSOLIDATED, "CONSOLIDATED", "CONSOLIDATED"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>REMOTE</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class EventLocationType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventLocationType REMOTE_LITERAL = new EventLocationType(REMOTE, "REMOTE", "REMOTE");
+	public static final EventLocationType REMOTE_LITERAL = new EventLocationType(REMOTE, "REMOTE", "REMOTE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>ALL</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class EventLocationType extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final EventLocationType ALL_LITERAL = new EventLocationType(ALL, "ALL", "ALL");
+	public static final EventLocationType ALL_LITERAL = new EventLocationType(ALL, "ALL", "ALL"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Event Location Type</b></em>' enumerators.

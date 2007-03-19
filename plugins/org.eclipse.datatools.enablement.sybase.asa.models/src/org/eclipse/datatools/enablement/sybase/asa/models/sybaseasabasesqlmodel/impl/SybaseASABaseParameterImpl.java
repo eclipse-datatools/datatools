@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseParameterImpl.java,v 1.4 2007/02/28 01:02:31 hcao Exp $
+ * $Id: SybaseASABaseParameterImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -396,13 +396,13 @@ public class SybaseASABaseParameterImpl extends ParameterImpl implements SybaseA
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nullable: ");
+        result.append(" (nullable: "); //$NON-NLS-1$
         result.append(nullable);
-        result.append(", defaultValue: ");
+        result.append(", defaultValue: "); //$NON-NLS-1$
         result.append(defaultValue);
-        result.append(", JDBCParameterType: ");
+        result.append(", JDBCParameterType: "); //$NON-NLS-1$
         result.append(jdbcParameterType);
-        result.append(", parmType: ");
+        result.append(", parmType: "); //$NON-NLS-1$
         result.append(parmType);
         result.append(')');
         return result.toString();

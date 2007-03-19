@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASAForeignKeyImpl.java,v 1.3 2007/02/08 01:41:35 linsong Exp $
+ * $Id: SybaseASAForeignKeyImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -217,9 +217,9 @@ public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl impleme
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (checkOnCommit: ");
+        result.append(" (checkOnCommit: "); //$NON-NLS-1$
         result.append(checkOnCommit);
-        result.append(", nullable: ");
+        result.append(", nullable: "); //$NON-NLS-1$
         result.append(nullable);
         result.append(')');
         return result.toString();

@@ -9,7 +9,6 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseColumn;
 import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseColumnCheckConstraint;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
@@ -78,14 +77,14 @@ public class SybaseASABaseColumnLoader {
 		int scale = rs.getInt(5);
 		String typeName = rs.getString(6);
 		String typeOwner = rs.getString(7);
-		boolean isNullable = rs.getString(8).equals("Y");
-		boolean isUnique = rs.getString(9).equals("Y");
+		boolean isNullable = rs.getString(8).equals("Y"); //$NON-NLS-1$
+		boolean isUnique = rs.getString(9).equals("Y"); //$NON-NLS-1$
 		char colType = SybaseASACatalogUtils.getCharValue(rs.getString(10));
 		String defaultValue = rs.getString(11);
 		String remarks = rs.getString(12);
 		
 		DataType type = null;
-		if(typeName == null || typeName.equals(""))
+		if(typeName == null || typeName.equals("")) //$NON-NLS-1$
 		{
 			type = SybaseASACatalogUtils.getASAPredefinedType(width, scale, domainName, dbDefn);
 		}

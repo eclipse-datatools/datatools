@@ -39,13 +39,13 @@ public class SQLUtil
     public static String unquote(String quoted)
     {
         String content = quoted;
-        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1)
+        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1)  //$NON-NLS-1$//$NON-NLS-2$
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'");
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'"); //$NON-NLS-1$ //$NON-NLS-2$
         }
-        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1)
+        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1)  //$NON-NLS-1$//$NON-NLS-2$
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\"");
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\"");  //$NON-NLS-1$//$NON-NLS-2$
         }
         return content;
     }

@@ -42,40 +42,40 @@ public interface QuickSQLParserTreeConstants
 
 
   public String[] jjtNodeName = {
-    "string_literal",
-    "any_stmt_token",
-    "id",
-    "string",
-    "id_string",
-    "id_or_string",
-    "prefix",
-    "prefix_list",
-    "object",
-    "idplus",
-    "variable",
-    "dyn_question_mark",
-    "number",
-    "constant",
-    "signed_const",
-    "unsigned_const",
-    "literal",
-    "null_stmt",
-    "length_spec",
-    "datatype",
-    "datatype_info",
-    "parameter",
-    "optional_param_default",
-    "param_options",
-    "out_option",
-    "any_chars",
-    "create_proc_header",
-    "create_func_header",
-    "create_trigger_header",
-    "create_event_header",
-    "parameters",
-    "routine_parameters",
-    "procparmdefault",
-    "error_skiptobefore",
-    "error_skiptobefore1",
-  };
+    "string_literal", //$NON-NLS-1$
+    "any_stmt_token", //$NON-NLS-1$
+    "id", //$NON-NLS-1$
+    "string", //$NON-NLS-1$
+    "id_string", //$NON-NLS-1$
+    "id_or_string", //$NON-NLS-1$
+    "prefix", //$NON-NLS-1$
+    "prefix_list", //$NON-NLS-1$
+    "object", //$NON-NLS-1$
+    "idplus", //$NON-NLS-1$
+    "variable", //$NON-NLS-1$
+    "dyn_question_mark", //$NON-NLS-1$
+    "number", //$NON-NLS-1$
+    "constant", //$NON-NLS-1$
+    "signed_const", //$NON-NLS-1$
+    "unsigned_const", //$NON-NLS-1$
+    "literal", //$NON-NLS-1$
+    "null_stmt", //$NON-NLS-1$
+    "length_spec", //$NON-NLS-1$
+    "datatype", //$NON-NLS-1$
+    "datatype_info", //$NON-NLS-1$
+    "parameter", //$NON-NLS-1$
+    "optional_param_default", //$NON-NLS-1$
+    "param_options", //$NON-NLS-1$
+    "out_option", //$NON-NLS-1$
+    "any_chars", //$NON-NLS-1$
+    "create_proc_header", //$NON-NLS-1$
+    "create_func_header", //$NON-NLS-1$
+    "create_trigger_header", //$NON-NLS-1$
+    "create_event_header", //$NON-NLS-1$
+    "parameters", //$NON-NLS-1$
+    "routine_parameters", //$NON-NLS-1$
+    "procparmdefault", //$NON-NLS-1$
+    "error_skiptobefore", //$NON-NLS-1$
+    "error_skiptobefore1", //$NON-NLS-1$
+  }; 
 }

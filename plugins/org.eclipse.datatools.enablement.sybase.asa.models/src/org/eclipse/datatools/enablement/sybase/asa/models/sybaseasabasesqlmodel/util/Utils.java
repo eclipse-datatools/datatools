@@ -21,7 +21,7 @@ public class Utils {
 	
 	static private boolean parseLiteralDefault(String defaultValue)
 	{
-		Pattern p = Pattern.compile("'.*'", Pattern.DOTALL);
+		Pattern p = Pattern.compile("'.*'", Pattern.DOTALL); //$NON-NLS-1$
 		Matcher m = p.matcher(defaultValue.trim());
 		return m.matches();
 	}
@@ -42,7 +42,7 @@ public class Utils {
 	{
 		int result = -1;
 		Pattern p = Pattern.compile(
-				"global\\s+autoincrement\\s*\\(\\s*(\\d+)\\s*\\)",
+				"global\\s+autoincrement\\s*\\(\\s*(\\d+)\\s*\\)", //$NON-NLS-1$
 				Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 		Matcher m = p.matcher(defaultValue.trim());
 		if(m.matches())

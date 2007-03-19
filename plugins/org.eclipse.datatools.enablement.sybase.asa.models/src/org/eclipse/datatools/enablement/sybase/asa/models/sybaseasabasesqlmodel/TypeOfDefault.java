@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TypeOfDefault.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: TypeOfDefault.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -90,7 +90,7 @@ public final class TypeOfDefault extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TypeOfDefault NO_DEFAULT_LITERAL = new TypeOfDefault(NO_DEFAULT, "NO_DEFAULT", "NO_DEFAULT");
+	public static final TypeOfDefault NO_DEFAULT_LITERAL = new TypeOfDefault(NO_DEFAULT, "NO_DEFAULT", "NO_DEFAULT"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>USER DEFINED</b></em>' literal object.
@@ -100,7 +100,7 @@ public final class TypeOfDefault extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TypeOfDefault USER_DEFINED_LITERAL = new TypeOfDefault(USER_DEFINED, "USER_DEFINED", "USER_DEFINED");
+	public static final TypeOfDefault USER_DEFINED_LITERAL = new TypeOfDefault(USER_DEFINED, "USER_DEFINED", "USER_DEFINED"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>SYSTEM DEFINED</b></em>' literal object.
@@ -110,7 +110,7 @@ public final class TypeOfDefault extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TypeOfDefault SYSTEM_DEFINED_LITERAL = new TypeOfDefault(SYSTEM_DEFINED, "SYSTEM_DEFINED", "SYSTEM_DEFINED");
+	public static final TypeOfDefault SYSTEM_DEFINED_LITERAL = new TypeOfDefault(SYSTEM_DEFINED, "SYSTEM_DEFINED", "SYSTEM_DEFINED"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>COMPUTED VALUE</b></em>' literal object.
@@ -120,7 +120,7 @@ public final class TypeOfDefault extends AbstractEnumerator {
      * @generated
      * @ordered
      */
-	public static final TypeOfDefault COMPUTED_VALUE_LITERAL = new TypeOfDefault(COMPUTED_VALUE, "COMPUTED_VALUE", "COMPUTED_VALUE");
+	public static final TypeOfDefault COMPUTED_VALUE_LITERAL = new TypeOfDefault(COMPUTED_VALUE, "COMPUTED_VALUE", "COMPUTED_VALUE"); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Type Of Default</b></em>' enumerators.

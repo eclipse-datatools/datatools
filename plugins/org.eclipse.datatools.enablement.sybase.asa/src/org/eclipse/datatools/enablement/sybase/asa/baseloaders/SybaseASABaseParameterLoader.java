@@ -1,7 +1,6 @@
 package org.eclipse.datatools.enablement.sybase.asa.baseloaders;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,14 +8,12 @@ import java.sql.SQLException;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.loader.JDBCProcedureColumnLoader;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseParameter;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelFactory;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.JDBCParameterType;
 import org.eclipse.datatools.modelbase.sql.datatypes.Domain;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
@@ -49,7 +46,7 @@ public class SybaseASABaseParameterLoader {
 			stmt = conn.prepareStatement(ASASQLs.QUERY_PARAMETER_INFO);
 			stmt.setString(1, schema.getName());
 			stmt.setString(2, routine.getName());
-			stmt.setString(3, "%");
+			stmt.setString(3, "%"); //$NON-NLS-1$
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
@@ -59,12 +56,12 @@ public class SybaseASABaseParameterLoader {
 				int scale = rs.getInt(5);
 				String typeName = rs.getString(6);
 				int parmtype = rs.getInt(7);
-				boolean parmModeIn = rs.getString(8).equals("Y");
-				boolean parmModeOut = rs.getString(9).equals("Y");
+				boolean parmModeIn = rs.getString(8).equals("Y"); //$NON-NLS-1$
+				boolean parmModeOut = rs.getString(9).equals("Y"); //$NON-NLS-1$
 				
 				SybaseASABaseParameter param = SybaseasabasesqlmodelFactory.eINSTANCE.createSybaseASABaseParameter();
 				param.setName(parmName);
-				if(typeName == null || typeName.equals(""))
+				if(typeName == null || typeName.equals("")) //$NON-NLS-1$
 				{
 					DatabaseDefinition dbDefn = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(database);
 					PredefinedDataType datatype = SybaseASACatalogUtils.getASAPredefinedType(width, scale, domainName, dbDefn);

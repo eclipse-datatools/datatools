@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseDatabaseImpl.java,v 1.3 2007/02/08 01:41:32 linsong Exp $
+ * $Id: SybaseASABaseDatabaseImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -939,27 +939,27 @@ public class SybaseASABaseDatabaseImpl extends DatabaseImpl implements SybaseASA
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (databaseFileName: ");
-        result.append(databaseFileName);
-        result.append(", logFileName: ");
+        result.append(" (databaseFileName: "); //$NON-NLS-1$
+        result.append(databaseFileName); 
+        result.append(", logFileName: "); //$NON-NLS-1$
         result.append(logFileName);
-        result.append(", mirrorFileName: ");
+        result.append(", mirrorFileName: "); //$NON-NLS-1$
         result.append(mirrorFileName);
-        result.append(", caseSensitive: ");
+        result.append(", caseSensitive: "); //$NON-NLS-1$
         result.append(caseSensitive);
-        result.append(", collation: ");
+        result.append(", collation: "); //$NON-NLS-1$
         result.append(collation);
-        result.append(", blankPaddingOn: ");
+        result.append(", blankPaddingOn: "); //$NON-NLS-1$
         result.append(blankPaddingOn);
-        result.append(", checkSumOn: ");
+        result.append(", checkSumOn: "); //$NON-NLS-1$
         result.append(checkSumOn);
-        result.append(", jConnectOn: ");
+        result.append(", jConnectOn: "); //$NON-NLS-1$
         result.append(jConnectOn);
-        result.append(", pageSize: ");
+        result.append(", pageSize: "); //$NON-NLS-1$
         result.append(pageSize);
-        result.append(", javaSupport: ");
+        result.append(", javaSupport: "); //$NON-NLS-1$
         result.append(javaSupport);
-        result.append(", passwordCaseSensitive: ");
+        result.append(", passwordCaseSensitive: "); //$NON-NLS-1$
         result.append(passwordCaseSensitive);
         result.append(')');
         return result.toString();

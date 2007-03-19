@@ -173,7 +173,7 @@ public abstract class TableASABaseLoader {
 		else
 		{//for ASA9
 			String strUnique = rs.getString(2);
-			isSysGen = strUnique.equals("U");
+			isSysGen = strUnique.equals("U"); //$NON-NLS-1$
 		}
 		index.setSystemGenerated(isSysGen);
 	}

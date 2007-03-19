@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseUserDefinedTypeImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABaseUserDefinedTypeImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -238,9 +238,9 @@ public class SybaseASABaseUserDefinedTypeImpl extends DomainImpl implements Syba
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (nullable: ");
+        result.append(" (nullable: "); //$NON-NLS-1$
         result.append(nullable);
-        result.append(", defaultType: ");
+        result.append(", defaultType: "); //$NON-NLS-1$
         result.append(defaultType);
         result.append(')');
         return result.toString();
