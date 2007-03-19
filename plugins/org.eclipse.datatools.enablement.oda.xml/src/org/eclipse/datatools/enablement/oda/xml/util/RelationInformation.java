@@ -197,8 +197,9 @@ public class RelationInformation
 	 * 
 	 * @param columnXpath
 	 * @return
+	 * @throws OdaException 
 	 */
-	static String getFilterValue(String columnXpath) 
+	static String getFilterValue(String columnXpath) throws OdaException 
 	{
 		String value = columnXpath.replaceAll( ".*\\Q[@\\E.*\\Q=\\E",
 				"" )
@@ -209,6 +210,8 @@ public class RelationInformation
 		if ( ( value.startsWith( "'" ) && value.endsWith( "'" ) )
 				|| ( value.startsWith( "\"" ) && value.endsWith( "\"" ) ) )
 			value = value.substring( 1, value.length( ) - 1 );
+		else 
+			throw new OdaException( Messages.getString( "RelationInformation.InvalidFilterDefinition" ));
 		return value;
 	}
 
