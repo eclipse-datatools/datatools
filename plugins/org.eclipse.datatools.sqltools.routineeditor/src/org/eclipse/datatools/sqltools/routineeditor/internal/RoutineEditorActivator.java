@@ -54,10 +54,10 @@ public class RoutineEditorActivator extends AbstractUIPlugin {
 	 * This method is called when the plug-in is stopped
 	 */
 	public void stop(BundleContext context) throws Exception {
-		super.stop(context);
 		plugin = null;
         SQLToolsProfileListenersManager pManager = SQLToolsProfileListenersManager.getInstance();
         pManager.removeProfileListener(_toolsLaunchProfileListener);
+        super.stop(context);
 	}
 
 	/**
