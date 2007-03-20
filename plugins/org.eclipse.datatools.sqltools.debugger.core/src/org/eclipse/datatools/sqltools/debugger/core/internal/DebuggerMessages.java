@@ -69,6 +69,7 @@ public final class DebuggerMessages extends NLS {
 	public static String SPLaunchConfigurationDelegate_AttachingConn;
 	public static String SPLaunchConfigurationDelegate_NoPermission;
 	public static String SPLaunchConfigurationDelegate_CreatingDebugger;
+	public static String SPLaunchConfigurationDelegate_Invalid_locator;
 	public static String perspective_DebuggerPerspective_activeWinNull1;
 	public static String perspective_DebuggerPerspective_activeWinNull2;
 	public static String perspective_DebuggerPerspective_changePerspectiveException;

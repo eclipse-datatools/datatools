@@ -31,6 +31,8 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
 
     private static final int INTERNAL_ERROR = 0;
     public static String PLUGIN_ID="org.eclipse.datatools.sqltools.debugger.core";
+    public static final String EXTENSION_POINT_SOURCE_LOCATORS= "sourceLocatorProvider";    //$NON-NLS-1$
+    
 	//The shared instance.
 	private static DebuggerCorePlugin plugin;
     private IDebugHandlerManager      _debugHandlerManager;
@@ -54,9 +56,9 @@ public class DebuggerCorePlugin extends AbstractUIPlugin {
 	}
 
 	public void stop(BundleContext context) throws Exception {
-		super.stop(context);
 		plugin = null;
 		_debugHandlerManager.dispose();
+		super.stop(context);
 	}
 	/**
 	 * Returns the shared instance.

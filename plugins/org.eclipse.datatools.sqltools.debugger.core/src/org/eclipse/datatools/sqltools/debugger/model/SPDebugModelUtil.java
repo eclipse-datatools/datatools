@@ -18,16 +18,18 @@ import java.util.List;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.routineeditor.RoutineAnnotationModel;
+import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IBreakpointManager;
+import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.IBreakpoint;
+import org.eclipse.debug.core.model.IDebugTarget;
+import org.eclipse.debug.core.model.IStackFrame;
 
 /**
  * Utility class to process routine debug model objects.
@@ -290,5 +292,46 @@ public class SPDebugModelUtil
                 // skip
             }
         }
+    }
+    
+    public static boolean isProcInDebugging(ProcIdentifier procid)
+    {
+        if (procid == null)
+        {
+            return false;
+        }
+        ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+        IDebugTarget[] targets = manager.getDebugTargets();
+        for (int i = 0; i < targets.length; i++)
+        {
+            if (targets[i] instanceof SPDebugTarget)
+            {
+                SPThread thread = ((SPDebugTarget)targets[i]).getSPThread();
+                if (thread == null)
+                {
+                    continue;
+                }
+                IStackFrame[] frames;
+                try
+                {
+                    frames = thread.getStackFrames();
+                    for (int j = 0; j < frames.length; j++)
+                    {
+                        if (frames[j] instanceof SPStackFrame)
+                        {
+                            ProcIdentifier debugProc = ((SPStackFrame)frames[j]).getProcIdentifier();
+                            if (procid.equalsByServer(debugProc))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                catch (DebugException e)
+                {
+                }
+            }
+        }
+        return false;
     }
 }

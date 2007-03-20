@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension-point id="sourceLocatorProvider" name="Routine Source Locator Provider" schema="schema/sourceLocatorProvider.exsd"/>
 
    <extension
          id="org.eclipse.datatools.sqltools.deugger.editorext.SQLDebuggerDocumentProvider"
