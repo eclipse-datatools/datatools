@@ -427,7 +427,7 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 					final String indSchema = r.getString(2);
 					index.setSchema(JDBCTable.getSchema(table,indSchema));
 
-					final boolean isUnqiue = r.getBoolean(4);
+					final boolean isUnqiue = !r.getBoolean(4);
 					index.setUnique(isUnqiue);
 
 					final short type = r.getShort(7);

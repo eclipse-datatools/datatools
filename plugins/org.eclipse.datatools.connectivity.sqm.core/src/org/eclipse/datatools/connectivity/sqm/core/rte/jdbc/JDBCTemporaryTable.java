@@ -428,7 +428,7 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 					final String indSchema = r.getString(2);
 					index.setSchema(JDBCTemporaryTable.getSchema(table,indSchema));
 
-					final boolean isUnqiue = r.getBoolean(4);
+					final boolean isUnqiue = !r.getBoolean(4);
 					index.setUnique(isUnqiue);
 
 					final short type = r.getShort(7);
