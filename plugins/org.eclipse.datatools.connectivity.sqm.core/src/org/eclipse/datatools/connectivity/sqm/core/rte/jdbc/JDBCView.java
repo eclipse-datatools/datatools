@@ -12,6 +12,8 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
@@ -44,13 +46,11 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 		synchronized (columnsLoaded) {
 			if (columnsLoaded.booleanValue()) {
 				columnsLoaded = Boolean.FALSE;
-				getColumnLoader().clearColumns(super.getColumns());
 			}
 		}
 		synchronized (indexesLoaded) {
 			if (indexesLoaded.booleanValue()) {
 				indexesLoaded = Boolean.FALSE;
-				getIndexLoader().clearIndexes(super.getIndex());
 			}
 		}
 		synchronized (supertableLoaded) {
@@ -83,12 +83,26 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 	}
 
 	private void loadColumns() {
+		boolean deliver = eDeliver();
 		try {
-			super.getColumns().addAll(getColumnLoader().loadColumns());
+			List container = super.getColumns();
+			List existingColumns = new ArrayList(container);
+
+			eSetDeliver(false);
+
+			container.clear();
+
+			getColumnLoader().loadColumns(container, existingColumns);
+
+			getColumnLoader().clearColumns(existingColumns);
+
 			columnsLoaded = Boolean.TRUE;
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 
@@ -112,12 +126,26 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 	}
 
 	private void loadIndexes() {
+		boolean deliver = eDeliver();
 		try {
-			super.getIndex().addAll(getIndexLoader().loadIndexes());
+			List container = super.getIndex();
+			List existingIndexes = new ArrayList(container);
+			
+			eSetDeliver(false);
+
+			container.clear();
+
+			getIndexLoader().loadIndexes(container, existingIndexes);
+
+			getIndexLoader().clearIndexes(existingIndexes);
+
 			indexesLoaded = Boolean.TRUE;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 	

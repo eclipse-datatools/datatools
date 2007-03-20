@@ -15,7 +15,8 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -72,30 +73,22 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 		synchronized (columnsLoaded) {
 			if (columnsLoaded.booleanValue()) {
 				columnsLoaded = Boolean.FALSE;
-				getColumnLoader().clearColumns(super.getColumns());
 			}
 		}
 		synchronized (ucsLoaded) {
 			if (ucsLoaded.booleanValue()) {
 				pkLoaded = Boolean.FALSE;
 				ucsLoaded = Boolean.FALSE;
-				getConstraintLoader().clearConstraints(super.getConstraints(),
-						Collections.singletonList(super.getPrimaryKey()));
-				getConstraintLoader().clearConstraints(super.getConstraints(),
-						super.getUniqueConstraints());
 			}
 		}
 		synchronized (fksLoaded) {
 			if (fksLoaded.booleanValue()) {
 				fksLoaded = Boolean.FALSE;
-				getConstraintLoader().clearConstraints(super.getConstraints(),
-						super.getForeignKeys());
 			}
 		}
 		synchronized (indexesLoaded) {
 			if (indexesLoaded.booleanValue()) {
 				indexesLoaded = Boolean.FALSE;
-				getIndexLoader().clearIndexes(super.getIndex());
 			}
 		}
 		synchronized (supertableLoaded) {
@@ -128,12 +121,26 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 	}
 
 	private void loadColumns() {
+		boolean deliver = eDeliver();
 		try {
-			super.getColumns().addAll(getColumnLoader().loadColumns());
+			List container = super.getColumns();
+			List existingColumns = new ArrayList(container);
+
+			eSetDeliver(false);
+
+			container.clear();
+
+			getColumnLoader().loadColumns(container, existingColumns);
+
+			getColumnLoader().clearColumns(existingColumns);
+
 			columnsLoaded = Boolean.TRUE;
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 
@@ -142,15 +149,7 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 			if (!pkLoaded.booleanValue())
 				loadUniqueConstraints();
 		}
-		Iterator allConstraints = super.getConstraints().iterator();
-		while( allConstraints.hasNext() ) {
-			Constraint currentConstraint = (Constraint)allConstraints.next();
-			if (currentConstraint instanceof PrimaryKey) {
-				return (PrimaryKey)currentConstraint;
-			}
-		}
-		
-		return null;
+		return internalGetPrimaryKey(super.getConstraints());
 	}
 
 	public List getUniqueConstraints() {
@@ -158,16 +157,7 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 			if (!ucsLoaded.booleanValue())
 				loadUniqueConstraints();
 		}
-		Vector uniqueConstraints = new Vector();
-		Iterator allConstraints = super.getConstraints().iterator();
-		while( allConstraints.hasNext() ) {
-			Constraint currentConstraint = (Constraint)allConstraints.next();
-			if (currentConstraint instanceof UniqueConstraint) {
-				uniqueConstraints.add(currentConstraint);
-			}
-		}
-		
-		return uniqueConstraints;
+		return internalGetUniqueConstraints(super.getConstraints());
 	}
 
 	public List getForeignKeys() {
@@ -175,16 +165,7 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 			if (!fksLoaded.booleanValue())
 				loadForeignKeys();
 		}
-		Vector foreignKeys = new Vector();
-		Iterator allConstraints = super.getConstraints().iterator();
-		while( allConstraints.hasNext() ) {
-			Constraint currentConstraint = (Constraint)allConstraints.next();
-			if (currentConstraint instanceof ForeignKey) {
-				foreignKeys.add(currentConstraint);
-			}
-		}
-		
-		return foreignKeys;
+		return internalGetForeignKeys(super.getConstraints());
 	}
 
 	public EList getConstraints() {
@@ -211,27 +192,53 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 	}
 
 	private void loadUniqueConstraints() {
+		boolean deliver = eDeliver();
 		try {
-			PrimaryKey pk = getConstraintLoader().loadPrimaryKey();
+			List container = super.getConstraints();
+			PrimaryKey existingPK = internalGetPrimaryKey(container);
+			PrimaryKey pk = getConstraintLoader().loadPrimaryKey(existingPK);
 			if (pk != null) {
-				super.getConstraints().add(pk);
+				if (existingPK == null) {
+					container.add(0, pk);
+				}
+				else if (!pk.equals(existingPK)) {
+					container.set(container.indexOf(existingPK), pk);
+				}
+				// else PK didn't change
+			}
+			else if (existingPK != null) {
+				container.remove(existingPK);
 			}
 			pkLoaded = Boolean.TRUE;
-			super.getConstraints().addAll(getConstraintLoader().loadUniqueConstraints(getPrimaryKey()));
+
+			List existingUCs = internalGetUniqueConstraints(container);
+			container.removeAll(existingUCs);
+			getConstraintLoader().loadUniqueConstraints(getPrimaryKey(),
+					container, existingUCs);
 			ucsLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		finally {
+			eSetDeliver(deliver);
+		}
 	}
 	
 	private void loadForeignKeys() {
+		boolean deliver = eDeliver();
 		try {
-			super.getConstraints().addAll(getConstraintLoader().loadForeignKeys());
+			List container = super.getConstraints();
+			List existingFKs = internalGetForeignKeys(container);
+			container.removeAll(existingFKs);
+			getConstraintLoader().loadForeignKeys(container, existingFKs);
 			fksLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 	
@@ -255,12 +262,26 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 	}
 
 	private void loadIndexes() {
+		boolean deliver = eDeliver();
 		try {
-			super.getIndex().addAll(getIndexLoader().loadIndexes());
+			List container = super.getIndex();
+			List existingIndexes = new ArrayList(container);
+			
+			eSetDeliver(false);
+
+			container.clear();
+
+			getIndexLoader().loadIndexes(container, existingIndexes);
+
+			getIndexLoader().clearIndexes(existingIndexes);
+
 			indexesLoaded = Boolean.TRUE;
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 	
@@ -291,6 +312,38 @@ public class JDBCTemporaryTable extends TemporaryTableImpl implements ICatalogOb
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private PrimaryKey internalGetPrimaryKey(Collection constraints) {
+		for( Iterator it = constraints.iterator(); it.hasNext(); ) {
+			Constraint currentConstraint = (Constraint)it.next();
+			if (currentConstraint instanceof PrimaryKey) {
+				return (PrimaryKey)currentConstraint;
+			}
+		}
+		return null;
+	}
+	
+	private List internalGetUniqueConstraints(Collection constraints) {
+		Vector uniqueConstraints = new Vector();
+		for( Iterator it = constraints.iterator(); it.hasNext(); ) {
+			Constraint currentConstraint = (Constraint)it.next();
+			if (currentConstraint instanceof UniqueConstraint) {
+				uniqueConstraints.add(currentConstraint);
+			}
+		}
+		return uniqueConstraints;
+	}
+	
+	private List internalGetForeignKeys(Collection constraints) {
+		Vector uniqueConstraints = new Vector();
+		for( Iterator it = constraints.iterator(); it.hasNext(); ) {
+			Constraint currentConstraint = (Constraint)it.next();
+			if (currentConstraint instanceof ForeignKey) {
+				uniqueConstraints.add(currentConstraint);
+			}
+		}
+		return uniqueConstraints;
 	}
 	
 	public boolean eIsSet(EStructuralFeature eFeature) {

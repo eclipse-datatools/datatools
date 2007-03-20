@@ -13,6 +13,8 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -57,19 +59,16 @@ public class JDBCSchema extends SchemaImpl implements ICatalogObject {
 		synchronized (tablesLoaded) {
 			if (tablesLoaded.booleanValue()) {
 				tablesLoaded = Boolean.FALSE;
-				getTableLoader().clearTables(super.getTables());
 			}
 		}
 		synchronized (routinesLoaded) {
 			if (routinesLoaded.booleanValue()) {
 				routinesLoaded = Boolean.FALSE;
-				getRoutineLoader().clearRoutines(super.getRoutines());
 			}
 		}
 		synchronized (udtsLoaded) {
 			if (udtsLoaded.booleanValue()) {
 				udtsLoaded = Boolean.FALSE;
-				getUDTLoader().clearUDTs(super.getUserDefinedTypes());
 			}
 		}
 
@@ -97,12 +96,26 @@ public class JDBCSchema extends SchemaImpl implements ICatalogObject {
 
 	private void loadTables() {
 		synchronized (tablesLoaded) {
+			boolean deliver = eDeliver();
 			try {
-				super.getTables().addAll(getTableLoader().loadTables());
+				List container = super.getTables();
+				List existingTables = new ArrayList(container);
+				
+				eSetDeliver(false);
+
+				container.clear();
+
+				getTableLoader().loadTables(container, existingTables);
+
+				getTableLoader().clearTables(existingTables);
+
 				tablesLoaded = Boolean.TRUE;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+			}
+			finally {
+				eSetDeliver(deliver);
 			}
 		}
 	}
@@ -134,12 +147,26 @@ public class JDBCSchema extends SchemaImpl implements ICatalogObject {
 
 	private void loadRoutines() {
 		synchronized (routinesLoaded) {
+			boolean deliver = eDeliver();
 			try {
-				super.getRoutines().addAll(getRoutineLoader().loadRoutines());
+				List container = super.getRoutines();
+				List existingRoutines = new ArrayList(container);
+				
+				eSetDeliver(false);
+
+				container.clear();
+
+				getRoutineLoader().loadRoutines(container, existingRoutines);
+
+				getRoutineLoader().clearRoutines(existingRoutines);
+
 				routinesLoaded = Boolean.TRUE;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+			}
+			finally {
+				eSetDeliver(deliver);
 			}
 		}
 	}
@@ -171,12 +198,26 @@ public class JDBCSchema extends SchemaImpl implements ICatalogObject {
 
 	private void loadUDTs() {
 		synchronized (routinesLoaded) {
+			boolean deliver = eDeliver();
 			try {
-				super.getUserDefinedTypes().addAll(getUDTLoader().loadUDTs());
+				List container = super.getUserDefinedTypes();
+				List existingUDTs = new ArrayList(container);
+				
+				eSetDeliver(false);
+
+				container.clear();
+
+				getUDTLoader().loadUDTs(container, existingUDTs);
+
+				getUDTLoader().clearUDTs(existingUDTs);
+
 				udtsLoaded = Boolean.TRUE;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
+			}
+			finally {
+				eSetDeliver(deliver);
 			}
 		}
 	}

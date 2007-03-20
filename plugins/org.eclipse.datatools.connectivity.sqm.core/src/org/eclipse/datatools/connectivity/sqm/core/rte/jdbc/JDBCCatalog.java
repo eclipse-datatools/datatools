@@ -12,6 +12,8 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
@@ -44,7 +46,6 @@ public class JDBCCatalog extends CatalogImpl implements ICatalogObject {
 		synchronized (schemasLoaded) {
 			if (schemasLoaded.booleanValue()) {
 				schemasLoaded = Boolean.FALSE;
-				getLoader().clearSchemas(super.getSchemas());
 			}
 		}
 
@@ -71,8 +72,18 @@ public class JDBCCatalog extends CatalogImpl implements ICatalogObject {
 	}
 
 	private void loadSchemas() {
+		boolean deliver = eDeliver();
 		try {
-			super.getSchemas().addAll(getLoader().loadSchemas());
+			List container = super.getSchemas();
+			List existingSchemas = new ArrayList(container);
+			
+			eSetDeliver(false);
+
+			container.clear();
+
+			getLoader().loadSchemas(container, existingSchemas);
+
+			getLoader().clearSchemas(existingSchemas);
 
 			schemasLoaded = Boolean.TRUE;
 
@@ -86,6 +97,9 @@ public class JDBCCatalog extends CatalogImpl implements ICatalogObject {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
 		}
 	}
 
