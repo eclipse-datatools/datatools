@@ -478,7 +478,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 						index.setName(indName);
 						index.setSchema(this.getSchema());
 
-						final boolean isUnqiue = r.getBoolean(4);
+						final boolean isUnqiue = !r.getBoolean(4);
 						index.setUnique(isUnqiue);
 
 						final short type = r.getShort(7);
