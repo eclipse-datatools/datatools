@@ -148,6 +148,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 						_databaseIdentifier, true);
 				setConnection(conn);
 				_connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
+                _closeCon = true;
         	}
             if (_groups.length > 1)
             {
@@ -268,7 +269,10 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             }
             try
             {
-                conService.closeConnection(getConnection(), _connid, _databaseIdentifier);
+                if (_closeCon)
+                {
+                    conService.closeConnection(getConnection(), _connid, _databaseIdentifier);
+                }
             }
             catch (SQLException e)
             {

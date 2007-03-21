@@ -98,12 +98,12 @@ public class SQLEditorPlugin extends AbstractUIPlugin{
      * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
      */
     public void stop( BundleContext context ) throws Exception {
-        super.stop( context );
         SQLToolsProfileListenersManager pManager = SQLToolsProfileListenersManager.getInstance();
         pManager.removeProfileListener(_sqlEditorProfileListener);
         SQLToolsConnectListenersManager cManager = SQLToolsConnectListenersManager.getInstance();
         cManager.removeConnectListener(_sqlEditorProfileListener);
 
+        super.stop( context );
     }
 
     /**

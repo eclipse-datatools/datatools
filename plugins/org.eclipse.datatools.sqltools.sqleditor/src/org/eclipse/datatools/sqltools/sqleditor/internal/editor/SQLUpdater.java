@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
@@ -58,7 +57,6 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
@@ -77,7 +75,6 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     private IResource          _resource;
     private String             _portableTarget         = "";
     private ArrayList          _staleAnnotations       = new ArrayList();
-    private boolean            _remembered             = false;
 	private ParsingResult _result;
 	private boolean            _needToParse            = true;
 	
@@ -365,6 +362,10 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         _input = input;
         _resource = input instanceof IFileEditorInput ? (IResource) ((IFileEditorInput) input).getFile()
             : (IResource) ResourcesPlugin.getWorkspace().getRoot();
+        if (_annotationModel != null)
+        {
+            removeMarkers();
+        }
         // the annotationModel is created in Editor.doSetInput(input) by the platform
         _annotationModel = _editor.getDocumentProvider().getAnnotationModel(input);
     }
@@ -374,32 +375,34 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
      */
     private void rememberAnnotations()
     {
-        //we must record the stale annotations before the document is changed so that there will be no dangling markers
-        _staleAnnotations = new ArrayList();
-        if (_annotationModel != null) {
-			for (Iterator iter = _annotationModel.getAnnotationIterator(); iter
-					.hasNext();) {
-				Annotation anno = (Annotation) iter.next();
-				if (anno instanceof MarkerAnnotation) {
-					IMarker marker = ((MarkerAnnotation) anno).getMarker();
-					String type = "";
-					try {
-						type = marker.getType();
-					} catch (CoreException e2) {
-						// marker does not exist
-						_staleAnnotations.add(anno);
-						continue;
-					}
-					// preserve user editable tasks
-					if (type.equals(EditorConstants.SYNTAX_MARKER_TYPE)
-							|| type
-									.equals(EditorConstants.PORTABILITY_MARKER_TYPE)) {
-						_staleAnnotations.add(anno);
-					}
-				}
-			}
-		}
-        _remembered = true;
+        synchronized (_staleAnnotations)
+        {
+            //we must record the stale annotations before the document is changed so that there will be no dangling markers
+            _staleAnnotations = new ArrayList();
+            if (_annotationModel != null) {
+                for (Iterator iter = _annotationModel.getAnnotationIterator(); iter
+                .hasNext();) {
+                    Annotation anno = (Annotation) iter.next();
+                    if (anno instanceof MarkerAnnotation) {
+                        IMarker marker = ((MarkerAnnotation) anno).getMarker();
+                        String type = "";
+                        try {
+                            type = marker.getType();
+                        } catch (CoreException e2) {
+                            // marker does not exist
+                            _staleAnnotations.add(anno);
+                            continue;
+                        }
+                        // preserve user editable tasks
+                        if (type.equals(EditorConstants.SYNTAX_MARKER_TYPE)
+                                || type
+                                .equals(EditorConstants.PORTABILITY_MARKER_TYPE)) {
+                            _staleAnnotations.add(anno);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -421,10 +424,6 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
      */
     public void removeMarkers(boolean group)
     {
-        if (!_remembered)
-        {
-            rememberAnnotations();
-        }
         if (group)
         {
             try
@@ -455,27 +454,29 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
      */
     private void removeRememberedMarkers()
     {
-        for (Iterator iter = _staleAnnotations.iterator(); iter.hasNext();)
+        synchronized (_staleAnnotations)
         {
-            Annotation anno = (Annotation) iter.next();
-            if (anno instanceof MarkerAnnotation)
+            for (Iterator iter = _staleAnnotations.iterator(); iter.hasNext();)
             {
-                IMarker marker = ((MarkerAnnotation) anno).getMarker();
-                try
+                Annotation anno = (Annotation) iter.next();
+                if (anno instanceof MarkerAnnotation)
                 {
-                    //after marker is removed, it disappeared in the problem view
-                    marker.delete();
-                    anno.markDeleted(true);
+                    IMarker marker = ((MarkerAnnotation) anno).getMarker();
+                    try
+                    {
+                        //after marker is removed, it disappeared in the problem view
+                        marker.delete();
+                        anno.markDeleted(true);
+                    }
+                    catch (CoreException e2)
+                    {
+                        SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_removemarker, e2); 
+                    }
                 }
-                catch (CoreException e2)
-                {
-                    SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_removemarker, e2); 
-                }
+                //after annotation is removed, it disappeared from the side bar
+                _annotationModel.removeAnnotation(anno);
             }
-            //after annotation is removed, it disappeared from the side bar
-            _annotationModel.removeAnnotation(anno);
         }
-        _remembered = false;
     }
 
     /**

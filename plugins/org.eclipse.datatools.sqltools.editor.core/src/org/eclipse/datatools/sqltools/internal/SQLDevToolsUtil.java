@@ -30,7 +30,6 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DBHelper;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IDatabaseSetting;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -238,22 +237,7 @@ public class SQLDevToolsUtil {
      */
     public static boolean getQuotedIdentifier(DatabaseIdentifier dbid)
     {
-        boolean quoted_id = false;
-        SQLDevToolsConfiguration factory = SQLToolsFacade.getConfiguration(null, dbid);
-        IDatabaseSetting config = factory.getDatabaseSetting(dbid);
-        if (config != null)
-        {
-            try
-            {
-                Boolean value = (Boolean)config.getConnectionConfigProperty( IDatabaseSetting.C_QUOTED_IDENTIFIER);
-                quoted_id = value.booleanValue();
-            }
-            catch (NotSupportedSettingException e)
-            {
-                EditorCorePlugin.getDefault().log( e);
-            }
-        }
-        return quoted_id;
+        return isQuotedIdentifierOn(dbid);
     }
     
     /**

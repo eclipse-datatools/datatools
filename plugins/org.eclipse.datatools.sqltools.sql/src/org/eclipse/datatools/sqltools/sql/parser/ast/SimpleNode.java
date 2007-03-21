@@ -513,6 +513,9 @@ public class SimpleNode implements Node
       return data;
     }
 
-    
+    public boolean exists()
+    {
+        return _firstToken != null && _lastToken != null && _lastToken.next != _firstToken;
+    }
 }
 

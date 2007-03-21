@@ -174,4 +174,6 @@ public interface Node {
      */
 	public Object jjtAccept(ISQLParserVisitor visitor, Object data);
 
+    public boolean exists();
+
 }
