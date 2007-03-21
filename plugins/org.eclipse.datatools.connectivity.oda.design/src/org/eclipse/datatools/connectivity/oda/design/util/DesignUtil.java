@@ -11,16 +11,21 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.7 2006/05/23 02:04:33 lchan Exp $
+ * $Id: DesignUtil.java,v 1.8 2006/11/15 08:12:27 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
@@ -281,6 +286,59 @@ public class DesignUtil
             throw new IllegalStateException( Messages.design_nullArgument );
     
         validateObject( dataSourceDesign );
+    }
+    
+    /**
+     * Converts the specified string representation of a file pathname,
+     * persisted in an oda design model, to its abstract representation.
+     * @param filePath  the string representation of a file
+     * @return  the abstract representation of a file pathname,
+     *          or null if the specified argument is null, invalid or
+     *          the file does not exist
+     * @see #convertFileToPath(File)
+     */
+    public static File convertPathToFile( String filePath )
+    {
+        if( filePath == null || filePath.length() == 0 )
+            return null;
+
+       // First try to parse the filePath argument as file name
+        File file = new File( filePath );
+        if( file.exists() )
+            return file;
+
+        // next try to parse the filePath argument as an url on web
+        try
+        {
+            URL url = new URL( filePath );
+            return new File( FileLocator.toFileURL( url ).getPath( ) );
+        }
+        catch( MalformedURLException e )
+        {
+            // TODO log warning
+            e.printStackTrace();
+        }
+        catch( IOException e )
+        {
+            // TODO log warning
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    /**
+     * Converts the specified file to a string representation
+     * that can be persisted in an oda design model.
+     * @param aFile the abstract representation of a file pathname
+     * @return  the string representation of the specified file,
+     *          or null if the specified argument is null
+     * @see #convertPathToFile(String)
+     */
+    public static String convertFileToPath( File aFile )
+    {
+        if( aFile == null )
+            return null;
+        return aFile.getPath();
     }
     
     private static Logger getLogger()

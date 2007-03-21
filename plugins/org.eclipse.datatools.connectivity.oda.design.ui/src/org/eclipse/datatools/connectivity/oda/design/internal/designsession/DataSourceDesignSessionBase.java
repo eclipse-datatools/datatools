@@ -15,11 +15,8 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.designsession;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -36,6 +33,7 @@ import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.Profile
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizardPage;
 import org.eclipse.jface.wizard.IWizard;
@@ -765,8 +763,7 @@ public class DataSourceDesignSessionBase
                 boolean maintainExternalLink )
         {
             m_instanceName = profileInstanceName;
-            if( storageFilePath != null )
-                m_storageFile = new File( storageFilePath );
+            m_storageFile = DesignUtil.convertPathToFile( storageFilePath );
             m_maintainLink = maintainExternalLink;
         }
 
@@ -808,23 +805,7 @@ public class DataSourceDesignSessionBase
         
         public String getStorageFilePath()
         {
-            try
-            {
-                return FileLocator.toFileURL( getStorageFile().toURI().toURL() )
-                        .getPath();
-            }
-            catch( MalformedURLException e )
-            {
-                // ignore invalid file
-            }
-            catch( IOException e )
-            {
-                // ignore invalid file
-            }
-            
-            // return file's absolute path instead
-            return getStorageFile() != null ?
-                    getStorageFile().getAbsolutePath() : null;
+            return DesignUtil.convertFileToPath( getStorageFile() );
         }
         
         public boolean maintainExternalLink()

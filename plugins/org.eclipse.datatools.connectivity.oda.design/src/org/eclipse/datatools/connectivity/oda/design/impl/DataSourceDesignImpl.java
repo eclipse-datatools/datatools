@@ -11,19 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.8 2006/05/23 02:04:33 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.9 2007/02/07 09:50:39 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -638,10 +636,7 @@ public class DataSourceDesignImpl extends EObjectImpl
     public File getLinkedProfileStoreFile()
     {
         String storeFilePath = getLinkedProfileStoreFilePath();
-        if( storeFilePath == null || storeFilePath.length() == 0 )
-            return null;
-
-        return new File( storeFilePath );
+        return DesignUtil.convertPathToFile( storeFilePath );
     }
 
     /* (non-Javadoc)
@@ -649,27 +644,7 @@ public class DataSourceDesignImpl extends EObjectImpl
      */
     public void setLinkedProfileStoreFile( File storageFile )
     {
-        if( storageFile == null )
-        {
-            setLinkedProfileStoreFilePath( null );
-            return; // done
-        }
-
-        String filePath = null;
-        try
-        {
-            filePath = FileLocator.toFileURL( storageFile.toURI().toURL() )
-                    .getPath();
-        }
-        catch( MalformedURLException e )
-        {
-            // ignore invalid file
-        }
-        catch( IOException e )
-        {
-            // ignore invalid file
-        }
-
+        String filePath = DesignUtil.convertFileToPath( storageFile );
         setLinkedProfileStoreFilePath( filePath );
     }
 
