@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -186,4 +186,26 @@ public abstract class DataSourceWizardPageCore extends
             this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
     }
     
+    /**
+     * Indicates whether the data source properties may be edited by
+     * a custom page in the current design session.  
+     * It takes into account whether an external connection profile 
+     * reference is maintained; in which case, any user edits on a
+     * custom page is ignored anyway, and thus the properties are not
+     * considered editable.
+     * It may be used by an extended wizard page for initialization
+     * of its customized control to be read-only.
+     * An extended wizard page may choose to honor or ignore such request.
+     * @return  true if the data source properties may be edited by
+     *          a custom page in the current design session; false otherwise
+     * @since 3.0.4
+     */
+    protected boolean isSessionEditable()
+    {
+        NewDataSourceWizardBase wizard = getOdaWizard();       
+        if( wizard == null )
+            return true;    // default
+        return wizard.isSessionEditable();       
+    }
+
 }

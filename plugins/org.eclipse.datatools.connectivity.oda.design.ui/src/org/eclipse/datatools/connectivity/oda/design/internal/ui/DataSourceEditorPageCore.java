@@ -85,7 +85,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     public Properties getDataSourceProperties()
     {
         Properties props = getProfileProperties();
-        if( props != null )   // associated with a profile
+        if( props != null )   // page element is associated with a profile
             return props;
         
         return getPageDataProperties();    // use own cached values
@@ -154,7 +154,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     /**
      * Provides a new data source design that can be edited
      * and applied in a design session's response.
-     * The editing data source is deep copied from the one
+     * The editing data source was deep copied from the one
      * provided in the design session's request.
      * @return
      */
@@ -278,20 +278,40 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     }
     
     /**
-     * Indicates whether the current design session should be
-     * an editable session or read-only.
-     * It may be used for initialization
-     * of the customized control of this extended editor page.
+     * Indicates whether the current design session has requested
+     * for an editable or read-only session.
+     * It may be used by an extended editor page for initialization
+     * of its customized control to be read-only.
      * An extended editor page may choose to honor or ignore such request.
      * @return
+     * @since 3.0.4
      */
-    protected boolean isSessionEditable()
+    protected boolean isEditableSessionRequested()
     {
         if( ! isInOdaDesignSession() )
             return true;    // default
         return m_designSession.getRequest().isEditable();       
     }
 
+    /**
+     * Indicates whether the data source properties may be edited by
+     * a custom page in the current design session.  
+     * It takes into account whether an external connection profile 
+     * reference is maintained; in which case, any user edits on a
+     * custom page is ignored anyway, and thus the properties are not
+     * considered editable.
+     * It may be used by an extended editor page for initialization
+     * of its customized control to be read-only.
+     * An extended editor page may choose to honor or ignore such request.
+     * @return  true if the data source properties may be edited by
+     *          a custom page in the current design session; false otherwise
+     */
+    protected boolean isSessionEditable()
+    {
+        return ( isEditableSessionRequested() &&
+                 ! getEditingDataSource().hasLinkToProfile() );
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.jface.preference.IPreferencePage#performOk()
      */

@@ -331,6 +331,28 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     {
         m_isInDesignSession = value;
     }
+    
+    /**
+     * Indicates whether the data source properties may be edited by
+     * the wizard's custom page in the current design session.  
+     * It takes into account whether an external connection profile 
+     * reference is maintained; in which case, any user edits on a
+     * custom page is ignored anyway, and thus the properties are not
+     * considered editable.
+     * It provides initialization data for the ODA wizard
+     * and its custom pages to set its customized control to be read-only.
+     * An extended wizard page may choose to honor or ignore such request.
+     * @return  true if the data source properties may be edited by
+     *          a custom page in the current design session; false otherwise
+     * @since 3.0.4
+     */
+    boolean isSessionEditable()
+    {
+        // a design session to create a new data source design
+        // is editable by default;
+        // check if using an external connection profile reference
+        return ! hasLinkToProfile();       
+    }
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard#performFinish()

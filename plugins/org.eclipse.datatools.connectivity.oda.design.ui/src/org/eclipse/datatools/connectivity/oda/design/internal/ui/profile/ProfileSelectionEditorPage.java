@@ -58,7 +58,7 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
 
         setPingButtonVisible( false );  
 
-        if ( ! isSessionEditable() )
+        if( ! isEditableSessionRequested() )
             getControl().setEnabled( false );
     }
     

@@ -133,6 +133,8 @@ class ProfileSelectionPageHelper
                     m_useDefaultDSNameCheckBox.setSelection( 
                             profileItem.getText().equals( 
                                 selectedProfile.getDataSourceDesignName() ) );
+                    m_profileID = profileItem.getData().toString();
+                    m_odaDataSourceID = profileItem.getParentItem().getData().toString();
                     setPageComplete( true );
                 }
             }
