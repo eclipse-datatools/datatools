@@ -15,12 +15,16 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterListener;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCSchemaLoader;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
@@ -29,6 +33,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class JDBCCatalog extends CatalogImpl implements ICatalogObject {
+
+	private static final long serialVersionUID = 8409098315478607573L;
 
 	public Database getCatalogDatabase() {
 		return getDatabase();
@@ -61,6 +67,17 @@ public class JDBCCatalog extends CatalogImpl implements ICatalogObject {
 	}
 
 	protected JDBCSchemaLoader createLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, SQLSchemaPackage.eINSTANCE.getSchema().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCSchemaLoader schemaLoader = (JDBCSchemaLoader) loader;
+			schemaLoader.setCatalogObject(this);
+			return schemaLoader;
+		}
 		return new JDBCSchemaLoader(this);
 	}
 

@@ -13,10 +13,15 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDTAttributeLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDTSuperTypeLoader;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
@@ -28,6 +33,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class JDBCStructuredUDT extends StructuredUserDefinedTypeImpl implements
 		ICatalogObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8270619856243796282L;
 	public Database getCatalogDatabase() {
 		return getSchema().getCatalog().getDatabase();
 	}
@@ -67,6 +76,18 @@ public class JDBCStructuredUDT extends StructuredUserDefinedTypeImpl implements
 	}
 
 	protected JDBCUDTAttributeLoader createParameterLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLDataTypesFactory.eINSTANCE.getSQLDataTypesPackage().getAttributeDefinition().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCUDTAttributeLoader parameterLoader = (JDBCUDTAttributeLoader) loader;
+			parameterLoader.setCatalogObject(this);
+			return parameterLoader;
+		}
 		return new JDBCUDTAttributeLoader(this);
 	}
 
@@ -97,6 +118,18 @@ public class JDBCStructuredUDT extends StructuredUserDefinedTypeImpl implements
 	}
 
 	protected JDBCUDTSuperTypeLoader createSuperLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLDataTypesFactory.eINSTANCE.getSQLDataTypesPackage().getUserDefinedType().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCUDTSuperTypeLoader superTypeLoader = (JDBCUDTSuperTypeLoader) loader;
+			superTypeLoader.setCatalogObject(this);
+			return superTypeLoader;
+		}
 		return new JDBCUDTSuperTypeLoader(this);
 	}
 

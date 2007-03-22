@@ -19,6 +19,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 public class JDBCDistinctUDT extends DistinctUserDefinedTypeImpl implements
 		ICatalogObject {
 
+	private static final long serialVersionUID = -8688928454166882219L;
+
 	public Database getCatalogDatabase() {
 		return getSchema().getCatalog().getDatabase();
 	}

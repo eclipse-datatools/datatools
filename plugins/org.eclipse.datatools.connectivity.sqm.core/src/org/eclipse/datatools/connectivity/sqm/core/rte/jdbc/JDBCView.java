@@ -15,11 +15,16 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableColumnLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableIndexLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableSuperTableLoader;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
@@ -30,6 +35,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class JDBCView extends ViewTableImpl implements ICatalogObject {
 
+	private static final long serialVersionUID = 2356307832803481033L;
+	
 	public Database getCatalogDatabase() {
 		return getSchema().getCatalog().getDatabase();
 	}
@@ -72,6 +79,18 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 	}
 
 	protected JDBCTableColumnLoader createColumnLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLTablesPackage.eINSTANCE.getColumn().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCTableColumnLoader tableColumnLoader = (JDBCTableColumnLoader) loader;
+			tableColumnLoader.setCatalogObject(this);
+			return tableColumnLoader;
+		}
 		return new JDBCTableColumnLoader(this);
 	}
 
@@ -115,6 +134,18 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 	}
 
 	protected JDBCTableIndexLoader createIndexLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLConstraintsPackage.eINSTANCE.getIndex().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCTableIndexLoader tableIndexLoader = (JDBCTableIndexLoader) loader;
+			tableIndexLoader.setCatalogObject(this);
+			return tableIndexLoader;
+		}
 		return new JDBCTableIndexLoader(this);
 	}
 
@@ -158,6 +189,18 @@ public class JDBCView extends ViewTableImpl implements ICatalogObject {
 	}
 
 	protected JDBCTableSuperTableLoader createSupertableLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLTablesPackage.eINSTANCE.getTable().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCTableSuperTableLoader tableSuperTableLoader = (JDBCTableSuperTableLoader) loader;
+			tableSuperTableLoader.setCatalogObject(this);
+			return tableSuperTableLoader;
+		}
 		return new JDBCTableSuperTableLoader(this);
 	}
 

@@ -15,12 +15,16 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterListener;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCCatalogLoader;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
@@ -62,6 +66,18 @@ public class JDBCDatabase extends DatabaseImpl implements ICatalogObject {
 	}
 	
 	protected JDBCCatalogLoader createLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, SQLSchemaPackage.eINSTANCE.getCatalog().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCCatalogLoader catLoader = (JDBCCatalogLoader) loader;
+			catLoader.setCatalogObject(this);
+			return catLoader;
+		}
+		
 		return new JDBCCatalogLoader(this);
 	}
 

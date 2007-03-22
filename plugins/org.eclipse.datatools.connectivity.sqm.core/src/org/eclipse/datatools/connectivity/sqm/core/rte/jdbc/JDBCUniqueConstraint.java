@@ -21,6 +21,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 public class JDBCUniqueConstraint extends PrimaryKeyImpl implements ICatalogObject {
 
+	private static final long serialVersionUID = -563457088179839389L;
+
 	public void refresh() {
 		RefreshManager.getInstance().referesh(this);
 	}

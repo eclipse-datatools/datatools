@@ -6,15 +6,16 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="Catalog" name="Catalog"/>
       </appInfo>
       <documentation>
-         [Enter description of this extension point.]
+         Provides a catalog loader and/or override catalog loader. 
       </documentation>
    </annotation>
 
    <element name="extension">
       <complexType>
-         <sequence>
-            <element ref="catalog" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
+         <choice>
+            <element ref="catalog"/>
+            <element ref="overrideLoader" minOccurs="1" maxOccurs="unbounded"/>
+         </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -60,6 +61,54 @@
                <documentation>
                   
                </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="overrideLoader">
+      <annotation>
+         <documentation>
+            &lt;P&gt;The overrideLoader extension allows implementers to override the catalog loader for a particular level of the JDBC SQL model. This only applies when the default JDBCobject and JDBC catalog loaders are being used in the framework. &lt;/P&gt;
+
+&lt;P&gt;Implementers can specify a replacement catalog loader for a particular DB definition/eclass combination. &lt;/P&gt;
+
+&lt;P&gt;Catalog loader classes need to extend JDBCBaseLoader and should really extend the particular level of loader class from the framework. For instance, if replacing the schema loader, the class should extend JDBCSchemaLoader. The loader also must implement a zero-argument constructor. Just pass in a null to the default constructor of the extended loader class. The catalog object will be set at an appropriate time when needed. &lt;/P&gt;
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="product" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Vendor name for the db definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="version" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Version name for the db definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="provider" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Catalog loader provider class. Should extend JDBCBaseLoader or one of the other default JDBC loaders and implement a zero-argument constructor.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="eclass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Eclass name to indicate which level of the model we&apos;re overriding the loader for. Should correspond to an interface name from the SQL model, i.e. Schema, Catalog, Routine, etc.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.ecore.EClass"/>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>

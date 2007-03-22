@@ -19,6 +19,9 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
 public class JDBCIndex extends IndexImpl implements ICatalogObject {
+
+	private static final long serialVersionUID = 7639411266165759718L;
+
 	public void refresh() {
 		RefreshManager.getInstance().referesh(this);
 	}

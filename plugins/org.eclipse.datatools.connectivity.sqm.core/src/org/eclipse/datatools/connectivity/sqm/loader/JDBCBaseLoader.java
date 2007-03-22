@@ -64,6 +64,15 @@ public class JDBCBaseLoader {
 	public ICatalogObject getCatalogObject() {
 		return mCatalogObject;
 	}
+	
+	/**
+	 * Set the base catalog object for the loader
+	 * Necessary to support the zero arg constructor
+	 * @param catalogObject
+	 */
+	public void setCatalogObject ( ICatalogObject catalogObject ) {
+		this.mCatalogObject = catalogObject;
+	}
 
 	/**
 	 * Initializes the active ConnectionFilter used by the loader. This method

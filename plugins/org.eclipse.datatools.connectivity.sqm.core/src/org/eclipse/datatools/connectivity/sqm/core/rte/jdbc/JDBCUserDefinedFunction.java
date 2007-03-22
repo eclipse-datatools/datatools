@@ -11,18 +11,27 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideManager;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDFColumnLoader;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 		ICatalogObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6800525292996291562L;
 	public void refresh() {
 		synchronized (parametersLoaded) {
 			if (parametersLoaded.booleanValue()) {
@@ -55,6 +64,18 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 	}
 
 	protected JDBCUDFColumnLoader createParameterLoader() {
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
+			getDefinition(this.getCatalogDatabase());
+	
+		JDBCBaseLoader loader =
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLTablesFactory.eINSTANCE.createColumn().eClass().getInstanceClassName());
+		
+		if (loader != null) {
+			JDBCUDFColumnLoader udfColumnLoader = (JDBCUDFColumnLoader) loader;
+			udfColumnLoader.setCatalogObject(this);
+			return udfColumnLoader;
+		}
 		return new JDBCUDFColumnLoader(this);
 	}
 

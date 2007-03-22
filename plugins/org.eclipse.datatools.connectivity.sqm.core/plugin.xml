@@ -10,6 +10,7 @@
    <extension-point id="ddlGeneration" name="%DDLGenerationExtensionPointName" schema="schema/ddlGeneration.exsd"/>
    <extension-point id="catalog" name="%CatalogExtensionPointName" schema="schema/catalog.exsd"/>
    <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
+   <extension-point id="overrideLoader" name="overrideLoader" schema="schema/overrideLoader.exsd"/>
 
    <extension
          point="org.eclipse.datatools.connectivity.sqm.core.logicalContainment">
