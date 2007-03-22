@@ -15,11 +15,15 @@
 package org.eclipse.datatools.connectivity.oda.profile.provider;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
@@ -162,13 +166,50 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             candidateProperties.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
         if( profileStoreFilePath == null || profileStoreFilePath.length() == 0 )
             return null;    // no profile file path specified
-        File profileStoreFile = new File( profileStoreFilePath );
-        if( profileStoreFile.exists() )
+        File profileStoreFile = getProfileStoreFile( profileStoreFilePath );
+        if( profileStoreFile != null )
             return profileStoreFile;
         
         // specified file path does not exist
-        getLogger().warning( "getProfileStoreFile( Properties ): Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value in connection properties. The specified path does not exist in file system."); //$NON-NLS-1$
+        getLogger().warning( "getProfileStoreFile( Properties ): " +   //$NON-NLS-1$
+                        "Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value in connection properties. " +   //$NON-NLS-1$
+                        "The specified path does not exist in file system." ); //$NON-NLS-1$
         return null;
+    }
+
+    /**
+     * Converts the specified string representation of a file pathname
+     * to its abstract representation.
+     * @param filePath  the string representation of a file
+     * @return  the abstract representation of a file pathname,
+     *          or null if the specified argument is null, invalid or
+     *          the file does not exist
+     */
+    protected File getProfileStoreFile( String filePath )
+    {
+        if( filePath == null || filePath.length() == 0 )
+            return null;
+
+       // First try to parse the filePath argument as file name
+        File file = new File( filePath );
+        if( file.exists() )
+            return file;
+
+        // next try to parse the filePath argument as an url on web
+        try
+        {
+            URL url = new URL( filePath );
+            return new File( FileLocator.toFileURL( url ).getPath() );
+        }
+        catch( MalformedURLException ex )
+        {
+            getLogger().warning( "getProfileStoreFile( String ): " + ex.toString() );  //$NON-NLS-1$
+        }
+        catch( IOException ex )
+        {
+            getLogger().warning( "getProfileStoreFile( String ): " + ex.toString() );  //$NON-NLS-1$
+        }
+        return null;        
     }
 
     /**
