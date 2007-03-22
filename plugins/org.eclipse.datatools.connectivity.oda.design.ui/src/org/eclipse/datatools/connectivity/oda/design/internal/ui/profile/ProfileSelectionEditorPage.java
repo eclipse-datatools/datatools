@@ -127,9 +127,18 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
     public Properties collectCustomProperties( Properties candidateProps )
     {
         ProfileReferenceBase profileRef = collectEditedProfileRef();
-        return ( profileRef != null ) ?
-                     profileRef.getProfileInstance().getBaseProperties() :
-                     candidateProps;
+        if( profileRef == null )
+            return candidateProps;  // has no changes
+        
+        // updates candidates with latest selected profile's properties,
+        // regardless of whether an external link is maintained;
+        // the external link will be used later to determine whether to
+        // apply these profile properties
+        Properties selectedProfileProps =
+            profileRef.getProfileInstance().getBaseProperties();
+        if( selectedProfileProps != null )
+            candidateProps.putAll( selectedProfileProps );
+        return candidateProps;
     }
 
     /* (non-Javadoc)
