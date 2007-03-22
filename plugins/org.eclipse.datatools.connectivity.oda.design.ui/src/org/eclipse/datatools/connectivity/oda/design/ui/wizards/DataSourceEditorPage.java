@@ -41,13 +41,13 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
                                         Properties profileProps );
 
     /**
-     * Update profile's custom properties with values collected in 
+     * Returns data source properties and corresponding values collected in 
      * custom page(s).
-     * @param profileProps  the current set of custom properties,
+     * @param dataSourceProps  the current set of custom and inherited properties,
      *                      before any updates in this page
-     * @return  the updated custom profile properties and values
+     * @return  the updated data source properties and corresponding values
      */
-    public abstract Properties collectCustomProperties( Properties profileProps );
+    public abstract Properties collectCustomProperties( Properties dataSourceProps );
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)

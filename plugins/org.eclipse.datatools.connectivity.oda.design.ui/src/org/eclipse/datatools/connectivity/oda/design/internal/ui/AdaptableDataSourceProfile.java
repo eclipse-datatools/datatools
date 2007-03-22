@@ -167,10 +167,19 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
      */
     public Properties getBaseProperties()
     {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().getBaseProperties();
-        
-        return DesignUtil.convertDataSourceProperties( getDataSourceDesign() );
+        // first get all the properties defined in the design definition,
+        // including inherited and custom ones
+        Properties designProps = 
+            DesignUtil.convertDataSourceProperties( getDataSourceDesign() );
+
+        if( hasLinkedProfile() )    // maintaining external reference
+        {
+            // override with linked profile's current properties and values
+            Properties linkedProfileProps = getLinkedProfile().getBaseProperties();
+            if( linkedProfileProps != null )
+                designProps.putAll( linkedProfileProps );
+        }
+        return designProps;
     }
 
     /* (non-Javadoc)
