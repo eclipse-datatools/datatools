@@ -122,7 +122,10 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 		List collection = new ArrayList (7);
 		collection.add(nodeFactory.makeTableNode(TABLE, TABLE, parent));
 		collection.add(nodeFactory.makeViewNode(VIEW, VIEW, parent));
-		collection.add(nodeFactory.makeStoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parent));
+		if (df.supportsStoredProcedures())
+		{
+			collection.add(nodeFactory.makeStoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parent));
+		}
 		collection.add(nodeFactory.makeUDFNode(UDF, UDF, parent));
 		if (df.supportsSequence())
 		{
