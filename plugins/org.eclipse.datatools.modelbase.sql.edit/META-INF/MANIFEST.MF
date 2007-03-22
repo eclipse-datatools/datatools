@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.datatools.modelbase.edit
+Bundle-SymbolicName: org.eclipse.datatools.modelbase.sql.edit
 Bundle-Version: 1.0.0.200702161
 Bundle-Activator: org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin$Implementation
 Bundle-Vendor: %providerName
