@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.8 2006/11/15 08:12:27 lchan Exp $
+ * $Id: DesignUtil.java,v 1.9 2007/03/21 06:31:41 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -296,6 +296,7 @@ public class DesignUtil
      *          or null if the specified argument is null, invalid or
      *          the file does not exist
      * @see #convertFileToPath(File)
+     * @since 3.0.4
      */
     public static File convertPathToFile( String filePath )
     {
@@ -333,6 +334,7 @@ public class DesignUtil
      * @return  the string representation of the specified file,
      *          or null if the specified argument is null
      * @see #convertPathToFile(String)
+     * @since 3.0.4
      */
     public static String convertFileToPath( File aFile )
     {
