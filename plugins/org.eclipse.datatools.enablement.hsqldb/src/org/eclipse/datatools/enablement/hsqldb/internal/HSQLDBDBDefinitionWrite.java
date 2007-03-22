@@ -46,6 +46,7 @@ public class HSQLDBDBDefinitionWrite {
 			databaseVendorDefinition.setVendor("HSQLDB"); //$NON-NLS-1$
 			databaseVendorDefinition.setVersion("1.8"); //$NON-NLS-1$
 			databaseVendorDefinition.setViewTriggerSupported(false);
+			databaseVendorDefinition.setStoredProcedureSupported(false);
 			databaseVendorDefinition.setMaximumIdentifierLength(64);
 			databaseVendorDefinition.setMaximumCommentLength(64);
 			databaseVendorDefinition.setSequenceSupported(true);

@@ -112,6 +112,16 @@
                value="org.eclipse.datatools.enablement.hsqldb.connectionProfile"/>
       </page>
    </extension>
+<!--
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+      <overrideLoader
+            provider="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBSchemaLoader"
+            eclass="org.eclipse.datatools.modelbase.sql.schema.Schema"
+            product="HSQLDB"
+            version="1.8"/>
+   </extension>
+
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
@@ -120,6 +130,7 @@
          </includes>
       </viewerContentBinding>
    </extension>
+
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -137,12 +148,5 @@
          </triggerPoints>
       </navigatorContent>
    </extension>
-   <extension
-         point="org.eclipse.datatools.connectivity.sqm.core.dataModelElementFactory">
-      <factory
-            class="org.eclipse.datatools.enablement.hsqldb.catalog.HSQLDBDataModelElementFactory"
-            product="HSQLDB"
-            version="1.8"/>
-   </extension>
-
+-->
 </plugin>
