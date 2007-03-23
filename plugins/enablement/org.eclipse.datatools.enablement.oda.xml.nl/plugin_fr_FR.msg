@@ -22,9 +22,9 @@ dataset.name=Jeu de données XML DTP
 
 datasource.property.xmlFile=Fichier de source de données XML
 datasource.property.schemaFile=Fichier de schéma XML
-oda.data.source.name=DTP XML Files
-connection.profile.name=DTP XML File Data Source Connection Profile
+oda.data.source.name=Fichiers XML DTP
+connection.profile.name=Profil de connexion de source de données sous forme de fichier XML DTP
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #
-oda.connection.factory.name=ODA Connection Factory
+oda.connection.factory.name=Génération de connexion ODA

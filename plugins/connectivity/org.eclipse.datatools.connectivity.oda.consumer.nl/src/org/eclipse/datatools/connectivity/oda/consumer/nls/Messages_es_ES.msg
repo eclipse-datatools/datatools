@@ -9,6 +9,7 @@ helper_cannotConstructConnectionFactory=No se puede crear la fábrica de conexion
 helper_inadequatePermissionsForCompatibility=No se puede proporcionar compatibilidad retroactiva porque los permisos no son adecuados.
 helper_connectionIsInactive=La conexión establecida con el origen de datos no está activa.
 helper_maxConcurrentStatementsReached=Se ha alcanzado el número máximo de sentencias simultáneas activas para esta conexión.
+helper_methodNotImplemented=El controlador ODA subyacente no ha implantado el método de interfaz API ({0} ).
 helper_prepareFailed=La preparación ha fallado.
 helper_cannotGetResultSetMdBeforePrepare=No se pueden obtener metadatos de conjunto de resultados antes de preparar la sentencia.
 helper_cannotExecuteBeforePrepare=No se puede ejecutar la sentencia antes de prepararla.

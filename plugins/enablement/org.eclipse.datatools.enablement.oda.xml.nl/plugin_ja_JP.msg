@@ -22,9 +22,9 @@ dataset.name=DTP XML のデータセット
 
 datasource.property.xmlFile=XML データソースファイル
 datasource.property.schemaFile=XML スキーマファイル
-oda.data.source.name=DTP XML Files
-connection.profile.name=DTP XML File Data Source Connection Profile
+oda.data.source.name=DTP XML ファイル
+connection.profile.name=DTP XML ファイルのデータソースの接続プロファイル
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #
-oda.connection.factory.name=ODA Connection Factory
+oda.connection.factory.name=ODA 接続ファクトリ

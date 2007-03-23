@@ -9,6 +9,7 @@ helper_cannotConstructConnectionFactory=Die Verbindungsfactory des ODA-Treibers 
 helper_inadequatePermissionsForCompatibility=Aufgrund unzulänglicher Berechtigungen kann keine Abwärtskompatibilität bereitgestellt werden.
 helper_connectionIsInactive=Die zur Datenquelle aufgebaute Verbindung ist nicht aktiv.
 helper_maxConcurrentStatementsReached=Für diese Verbindung wurde die maximale Anzahl gleichzeitig aktiver Anweisungen erreicht.
+helper_methodNotImplemented=Zugrunde liegener ODA-Treiber hat API-Schnittstellenmethode ({0} ) nicht implementiert.
 helper_prepareFailed=Die Vorbereitung ist fehlgeschlagen.
 helper_cannotGetResultSetMdBeforePrepare=Die Metadaten der Ergebnismenge können vor der Vorbereitung der Anweisung nicht festgelegt werden.
 helper_cannotExecuteBeforePrepare=Die Anweisung kann vor der Vorbereitung der Anweisung nicht ausgeführt werden.

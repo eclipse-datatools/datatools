@@ -9,6 +9,7 @@ helper_cannotConstructConnectionFactory=Impossible de créer la fabrique de conne
 helper_inadequatePermissionsForCompatibility=Impossible d'assurer une compatibilité amont en raison d'autorisations inadéquates.
 helper_connectionIsInactive=La connexion établie à la source de données n'est pas active.
 helper_maxConcurrentStatementsReached=Nombre maximal d'instructions actives simultanées atteint pour cette connexion.
+helper_methodNotImplemented=Le pilote ODA sous-jacent n''a pas mis en oeuvre la méthode d''interface API ({0}).
 helper_prepareFailed=Echec de la préparation.
 helper_cannotGetResultSetMdBeforePrepare=Impossible d'extraire les métadonnées de l'ensemble de résultats avant la préparation de l'instruction.
 helper_cannotExecuteBeforePrepare=Impossible d'exécuter l'instruction avant la préparation de l'instruction.

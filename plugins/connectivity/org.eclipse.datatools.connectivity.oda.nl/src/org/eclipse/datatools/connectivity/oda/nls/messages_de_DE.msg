@@ -37,4 +37,4 @@ stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=Die Zuordnung Name-Wert darf nicht N
 #
 profileProperty_PROFILE_NAME=Name des Verbindungsprofils
 profileProperty_PROFILE_STORE_PATH=URL von Speicher für Verbindungsprofil
-profileProperty_GROUP_PROPERTIES=Eigenschaften von ODA-Verbindungsprofil
+profileProperty_GROUP_PROPERTIES=Referenz für externes Verbindungsprofil

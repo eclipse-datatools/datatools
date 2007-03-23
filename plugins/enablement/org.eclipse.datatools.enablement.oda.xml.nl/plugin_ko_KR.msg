@@ -22,9 +22,9 @@ dataset.name=DTP XML 데이터 집합
 
 datasource.property.xmlFile=XML 데이터 원본 파일
 datasource.property.schemaFile=XML 스키마 파일
-oda.data.source.name=DTP XML Files
-connection.profile.name=DTP XML File Data Source Connection Profile
+oda.data.source.name=DTP XML 파일
+connection.profile.name=DTP XML 파일 데이터 원본 연결 프로필
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #
-oda.connection.factory.name=ODA Connection Factory
+oda.connection.factory.name=ODA 연결 팩토리

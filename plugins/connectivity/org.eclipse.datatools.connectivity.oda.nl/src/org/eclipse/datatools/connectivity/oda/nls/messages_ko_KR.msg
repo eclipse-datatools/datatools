@@ -37,4 +37,4 @@ stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=이름-값 맵핑은 널(null)일 수 없습니�
 #
 profileProperty_PROFILE_NAME=연결 프로필 이름
 profileProperty_PROFILE_STORE_PATH=연결 프로필 저장 URL
-profileProperty_GROUP_PROPERTIES=ODA 연결 프로필 속성
+profileProperty_GROUP_PROPERTIES=외부 연결 프로필 참조

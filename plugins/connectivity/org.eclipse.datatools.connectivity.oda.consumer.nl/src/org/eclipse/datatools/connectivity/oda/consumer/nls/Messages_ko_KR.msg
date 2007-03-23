@@ -9,6 +9,7 @@ helper_cannotConstructConnectionFactory=ODA 드라이버의 연결 팩토리를 작성할 수 �
 helper_inadequatePermissionsForCompatibility=부적합한 권한으로 인해 역호환성을 제공할 수 없습니다.
 helper_connectionIsInactive=데이터 소스에 대한 확립된 연결이 활성화되지 않았습니다.
 helper_maxConcurrentStatementsReached=이 연결에 대한 최대 활성 동시 명령문에 도달했습니다.
+helper_methodNotImplemented=기본 ODA 드라이버에 API 인터페이스 메서드가 구현되어 있지 않습니다({0}).
 helper_prepareFailed=준비에 실패했습니다.
 helper_cannotGetResultSetMdBeforePrepare=명령문이 준비되기 전에 결과 세트 메타데이터를 가져올 수 없습니다.
 helper_cannotExecuteBeforePrepare=명령문이 준비되기 전에 명령문을 실행할 수 없습니다.

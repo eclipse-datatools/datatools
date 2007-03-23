@@ -22,9 +22,9 @@ dataset.name=DTP XML 数据集
 
 datasource.property.xmlFile=XML 数据源文件
 datasource.property.schemaFile=XML 架构文件
-oda.data.source.name=DTP XML Files
-connection.profile.name=DTP XML File Data Source Connection Profile
+oda.data.source.name=DTP XML 文件
+connection.profile.name=DTP XML 文件数据源连接配置文件
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #
-oda.connection.factory.name=ODA Connection Factory
+oda.connection.factory.name=ODA 连接工厂

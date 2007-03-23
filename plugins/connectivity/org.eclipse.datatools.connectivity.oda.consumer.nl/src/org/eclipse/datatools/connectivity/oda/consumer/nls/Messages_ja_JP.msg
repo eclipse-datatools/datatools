@@ -9,6 +9,7 @@ helper_cannotConstructConnectionFactory=ODA ドライバーの接続ファクトリーを作成で
 helper_inadequatePermissionsForCompatibility=アクセス権が不十分なため、下位互換性を提供できません。
 helper_connectionIsInactive=確立済みのデータ・ソースへの接続が非アクティブです。
 helper_maxConcurrentStatementsReached=この接続は、アクティブ同時接続の最大数に達しました。
+helper_methodNotImplemented=基盤の ODA ドライバには API インターフェースメソッド ({0}) がインプリメントされていません。
 helper_prepareFailed=準備に失敗しました。
 helper_cannotGetResultSetMdBeforePrepare=ステートメントの準備前に結果セット・メタデータを取得することはできません。
 helper_cannotExecuteBeforePrepare=ステートメントの準備前にステートメントを実行することはできません。

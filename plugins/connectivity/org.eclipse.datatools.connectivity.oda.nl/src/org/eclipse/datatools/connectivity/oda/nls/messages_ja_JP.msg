@@ -37,4 +37,4 @@ stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=名前値マップは NULL にできません。
 #
 profileProperty_PROFILE_NAME=接続プロファイル名
 profileProperty_PROFILE_STORE_PATH=接続プロファイルストアの URL
-profileProperty_GROUP_PROPERTIES=ODA 接続プロファイルのプロパティ
+profileProperty_GROUP_PROPERTIES=接続プロファイルの外部参照

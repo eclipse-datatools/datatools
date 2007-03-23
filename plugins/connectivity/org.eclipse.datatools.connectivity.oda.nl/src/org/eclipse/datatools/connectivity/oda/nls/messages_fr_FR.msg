@@ -37,4 +37,4 @@ stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=La mappe nom-valeur ne peut pas être
 #
 profileProperty_PROFILE_NAME=Nom de profil de connexion
 profileProperty_PROFILE_STORE_PATH=URL de l'emplacement de stockage des profils de connexion
-profileProperty_GROUP_PROPERTIES=Propriétés des profils de connexion ODA
+profileProperty_GROUP_PROPERTIES=Référence du profil de connexion externe
