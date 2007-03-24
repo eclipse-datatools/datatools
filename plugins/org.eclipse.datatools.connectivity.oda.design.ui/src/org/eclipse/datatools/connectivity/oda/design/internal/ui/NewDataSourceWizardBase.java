@@ -243,15 +243,32 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     }
     
     /**
+     * Refresh the wizard and its custom page with given properties, 
+     * if it has any entries.
+     * Otherwise, keep wizard's existing properties.
+     * Refresh the custom page with the latest state.
+     * @param dataSourceProps
+	 * @since 3.0.4
+     */
+    public void refreshPropertiesIfExist( Properties dataSourceProps )
+    {
+        if( dataSourceProps != null && ! dataSourceProps.isEmpty() )
+        {
+            setInitialProperties( dataSourceProps );
+        } 
+        
+        getCustomWizardPage().refresh();
+    }
+    
+    /**
      * Initializes the wizard and its custom page with given properties.
      * This method may be called only after IWizard#addPages()is done.
      * @param props     a collection of properties in name value pairs
      */
-    public void setInitialProperties( Properties props )
+    private void setInitialProperties( Properties props )
     {
         m_profileProps = props;
         getCustomWizardPage().setInitialProperties( m_profileProps );
-        m_linkedProfile = null;     // reset
     }
 
     public void setLinkedProfile( String profileName, File storageFile )

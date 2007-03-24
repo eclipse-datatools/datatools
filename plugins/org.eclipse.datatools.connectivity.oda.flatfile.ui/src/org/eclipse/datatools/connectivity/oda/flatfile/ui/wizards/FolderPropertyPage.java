@@ -69,9 +69,6 @@ public class FolderPropertyPage extends DataSourceEditorPage
 		 */
 
         pageHelper.initCustomControl( profileProps );
-
-		if ( !isSessionEditable( ) )
-			getControl( ).setEnabled( false );
 	}
 
     /*
@@ -82,6 +79,9 @@ public class FolderPropertyPage extends DataSourceEditorPage
     {
         if( pageHelper != null )
             pageHelper.initCustomControl( customConnectionProps );
+        
+        // enable/disable all controls on page in respect of the editable session state
+        enableAllControls( getControl(), isSessionEditable() );
     }
 
 }

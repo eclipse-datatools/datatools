@@ -18,7 +18,9 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.DesignerUtil;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 /**
  * The abstract base class for implementation of a customized
@@ -110,6 +112,20 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
     {
         // default implementation does nothing;
         // sub-class may override
+    }
+
+    /**
+     * An utility method to enable/disable the specified control and all its nested
+     * children, according to the specified <code>enabled</code> state.
+     * The TestConnection button state is excluded from the state changes.
+     * This is typically used by an extended refresh method.
+     * @param aControl  a control
+     * @param enabled   the new enabled state
+     * @since 3.0.4
+     */
+    protected void enableAllControls( Control parent, boolean enabled )
+    {
+        DesignerUtil.enableAllControls( parent, enabled, this.btnPing );
     }
     
 }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -69,6 +69,16 @@ public class DefaultDataSourceWizardPage extends DataSourceWizardPage
         if( m_pageHelper == null )
             return;     // ignore, wait till createPageCustomControl to initialize
         m_pageHelper.initCustomControl( m_dataSourceProps );        
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#refresh()
+     */
+    public void refresh()
+    {
+        // enable/disable all controls on page in respect of the editable session state
+        enableAllControls( getControl(), isSessionEditable() );
     }
     
     /* (non-Javadoc)

@@ -133,7 +133,7 @@ public class DataSourceDesignSessionBase
         Properties profileProps = null;
         String profileDesc = null;
         if( profileRef != null && 
-            ! profileRef.equalsIgnoreMaintainLink( m_wizardProfileRef ) )
+            ! profileRef.equals( m_wizardProfileRef ) )
         {
             profileProps = getProfileProperties( profileRef );
             profileDesc = profileRef.getDescription();
@@ -144,12 +144,9 @@ public class DataSourceDesignSessionBase
         
         // initialize wizard with given name and properties, if any;
         // and reset any previously linked profile
-        initWizard( wizard, newDataSourceName, profileDesc, profileProps );
+        initWizard( wizard, newDataSourceName, profileDesc, profileProps, profileRef );
         
         m_wizardProfileRef = profileRef;
-        if( m_wizardProfileRef != null && m_wizardProfileRef.maintainExternalLink() )
-            wizard.setLinkedProfile( m_wizardProfileRef.getName(), 
-                                     m_wizardProfileRef.getStorageFile() );
     }
 
     protected void initEditDesign( DesignSessionRequest request,
@@ -420,7 +417,8 @@ public class DataSourceDesignSessionBase
     private void initWizard( NewDataSourceWizard wizard, 
                              String aDataSourceName,
                              String aDataSourceDesc,
-                             Properties dataSourceProps )
+                             Properties dataSourceProps,
+                             ProfileReferenceBase newProfileRef )
         throws OdaException
     {
         wizard.setInOdaDesignSession( true );
@@ -442,16 +440,16 @@ public class DataSourceDesignSessionBase
             profileNamePage.setPageComplete( true );
         }
         
-        // pass given properties to wizard for initialization;
-        // if none is specified, keep wizard's existing properties
-        if( dataSourceProps != null &&
-            ! dataSourceProps.isEmpty() )
-        {
-            wizard.setInitialProperties( dataSourceProps );
-        }
-        
         // reset any previously linked profile
         wizard.unsetLinkedProfile();
+        
+        if( newProfileRef != null && newProfileRef.maintainExternalLink() )
+            wizard.setLinkedProfile( newProfileRef.getName(), 
+                                     newProfileRef.getStorageFile() );
+        
+        // pass given properties to wizard for initialization;
+        // if none is specified, keep wizard's existing properties
+        wizard.refreshPropertiesIfExist( dataSourceProps );
     }
 
     /**

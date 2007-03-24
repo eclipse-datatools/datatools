@@ -56,7 +56,14 @@ public abstract class DataSourceWizardPageCore extends
      * closing a connection.
      */
     protected abstract void cleanup();
-    
+
+    /**
+     * Refresh this page's control display as needed to reflect
+     * the latest state of the data source design.
+     * @since 3.0.4
+     */
+    protected abstract void refresh();
+
     /*
      * Implements base class constructor.
      */

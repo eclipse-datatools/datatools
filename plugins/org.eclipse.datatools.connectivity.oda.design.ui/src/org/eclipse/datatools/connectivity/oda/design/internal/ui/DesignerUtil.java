@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,9 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.osgi.framework.Bundle;
 
 /**
@@ -101,4 +104,66 @@ public class DesignerUtil
         return newInstance;
     }
 
+    /**
+     * An utility method to enable/disable the specified parent control and 
+     * all its nested children, except the preservedButton if specified,
+     * according to the specified <code>enabled</code> state.
+     * The preservedButton's state is excluded from the state changes.
+     * @param aControl  a control
+     * @param enabled   the new enabled state
+     * @param preservedButton   the button whose enabled state is to be preserved;
+     *                          may be null
+     * @since 3.0.4
+     */
+    public static void enableAllControls( Control parent, boolean enabled,
+                                            Button preservedButton )
+    {
+        if( parent == null )
+            return;     // nothing to enable
+
+        if( preservedButton != null && preservedButton.isDisposed() )
+            preservedButton = null;     // can't access the button
+        
+        boolean isButtonEnabled = ( preservedButton != null ) ? 
+                                    preservedButton.isEnabled() : true;
+
+        enableAllControls( parent, enabled );
+        
+        // restore the previous state of the preserved button
+        if( preservedButton != null )
+        {
+            preservedButton.setEnabled( isButtonEnabled );
+            preservedButton.getParent().setEnabled( isButtonEnabled );
+            parent.setEnabled( isButtonEnabled );        
+        }
+        else
+            // in case the preservedButton is created later in enabled state 
+            parent.setEnabled( isButtonEnabled );        
+    }
+
+    /**
+     * Iteratively goes through all the children of the specified control
+     * and enable/disable them according to the specified <code>enabled</code> state.
+     * @param aControl  a control
+     * @param enabled   the new enabled state
+     * @since 3.0.4
+     */
+    public static void enableAllControls( Control aControl, boolean enabled )
+    {
+        if( aControl == null )
+            return;     // nothing to enable
+        
+        if( aControl instanceof Composite )
+        {
+            Control[] childControls = ((Composite) aControl).getChildren();
+            for( int i = 0; i < childControls.length; i++ )
+            {
+                enableAllControls( childControls[i], enabled );
+            }
+        }
+        
+        if( ! aControl.isDisposed() )
+            aControl.setEnabled( enabled );        
+    }
+    
 }
