@@ -44,7 +44,7 @@ public interface Group extends AuthorizationIdentifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>User</em>' reference list.
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getGroup_User()
-	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.User" derived="true"
+	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.User"
 	 * @generated
 	 */
 	EList getUser();
