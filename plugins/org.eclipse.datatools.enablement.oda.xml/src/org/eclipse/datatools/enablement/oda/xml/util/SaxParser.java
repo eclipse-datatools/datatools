@@ -201,13 +201,23 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 * @throws IllegalAccessException
 	 * @throws ClassNotFoundException
 	 */
-	private Object createXMLReader( ) throws InstantiationException, IllegalAccessException, ClassNotFoundException
+	private Object createXMLReader( ) throws InstantiationException,
+			IllegalAccessException, ClassNotFoundException
 	{
-		Object xmlReader = Thread.currentThread( )
-				.getContextClassLoader( )
-				.loadClass( "org.apache.xerces.parsers.SAXParser" )
-				.newInstance( );
-		return xmlReader;
+		try
+		{
+			Object xmlReader = Thread.currentThread( )
+					.getContextClassLoader( )
+					.loadClass( "org.apache.xerces.parsers.SAXParser" )
+					.newInstance( );
+			return xmlReader;
+		}
+		catch ( ClassNotFoundException e )
+		{
+			return Class.forName( "org.apache.xerces.parsers.SAXParser" )
+					.newInstance( );
+		}
+
 	}
 
 	/**
