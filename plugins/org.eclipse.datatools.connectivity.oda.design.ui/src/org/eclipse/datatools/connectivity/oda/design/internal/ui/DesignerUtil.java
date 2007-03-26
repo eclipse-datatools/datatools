@@ -142,7 +142,7 @@ public class DesignerUtil
     }
 
     /**
-     * Iteratively goes through all the children of the specified control
+     * Recursively goes through all the children of the specified control
      * and enable/disable them according to the specified <code>enabled</code> state.
      * @param aControl  a control
      * @param enabled   the new enabled state
