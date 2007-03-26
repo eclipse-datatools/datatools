@@ -263,9 +263,11 @@ class ProfileSelectionPageHelper
         {
             public void widgetSelected( SelectionEvent e )
             {
-                m_connectionProfilePath.setText( 
-                        new FileDialog( getShell() ).open() );
-            }
+				FileDialog dialog = new FileDialog( getShell() );
+				String text = dialog.open();
+				if( text != null )
+					m_connectionProfilePath.setText( text );
+			}
         } );
     }
 
@@ -295,6 +297,7 @@ class ProfileSelectionPageHelper
                 if( item == null )
                 {
                     m_dataSourceDesignName.setText( EMPTY_STRING );
+                    setMessage( Messages.profilePage_selectProfileDefaultMessage, IMessageProvider.ERROR );
                 }
                 else
                 {
