@@ -76,7 +76,14 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 		_profileName = profileName;
 		if (dbVendorId == null)
 		{
-			_dbVendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
+            if (_profileName == null)
+            {
+                _dbVendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId();
+            }
+            else
+            {
+                _dbVendorId = ProfileUtil.getDatabaseVendorDefinitionId(profileName);
+            }
 		}
 		else
 		{
