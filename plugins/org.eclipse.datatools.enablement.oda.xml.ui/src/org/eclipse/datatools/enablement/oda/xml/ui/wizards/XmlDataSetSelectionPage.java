@@ -23,7 +23,6 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -402,11 +401,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			}
 
 		} );
-		browseFolderButton = new Button( composite, SWT.PUSH );
-		data = new GridData( );
-		data.widthHint = convertHorizontalDLUsToPixels( IDialogConstants.BUTTON_WIDTH );
-     	browseFolderButton.setLayoutData( data );
-		browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
+		browseFolderButton = new Button( composite, SWT.NONE );
+	   	browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
 		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
