@@ -476,10 +476,12 @@ class OdaPluginModeler
             return;     // no need to adjust
 
         // add missing header(s) in bundle to trigger its generation in manifest.mf
-        IBundle bundle = ((IBundlePluginModelBase) odaModel ).getBundleModel().getBundle();
-        bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
         if( forRuntimeBundle )
-            bundle.setHeader( Constants.EXPORT_PACKAGE, getKeyPackageName() );        
+        {
+            IBundle bundle = ((IBundlePluginModelBase) odaModel ).getBundleModel().getBundle();
+//        bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
+            bundle.setHeader( Constants.EXPORT_PACKAGE, getKeyPackageName() );  
+        }
     }
 
 }
