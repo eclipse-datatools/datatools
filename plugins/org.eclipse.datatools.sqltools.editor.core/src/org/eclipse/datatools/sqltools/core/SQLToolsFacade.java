@@ -214,6 +214,11 @@ public class SQLToolsFacade
 		return defaultConfiguration;
     }
     
+    public static DatabaseVendorDefinitionId getDefaultDatabaseVendorDefinitionId()
+    {
+        return getDefaultConfiguration().getDatabaseVendorDefinitionId();
+    }
+    
     public static DatabaseVendorDefinitionId recognize(String product, String version)
     {
     	DatabaseVendorDefinitionId defaultId = getDefaultConfiguration().getDatabaseVendorDefinitionId();
