@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
@@ -165,6 +166,13 @@ public class SQLDBProposal {
             fGrandParentName = ((Table) fParentObject).getSchema().getName();
             fGrandGrandParentName = ModelUtil.getDatabaseName(((Table) fParentObject).getSchema());
             setImage( SQLEditorResources.getImage( "trigger" )); //$NON-NLS-1$
+        }
+        else if (dbObject instanceof Catalog)
+        {
+            fType = CATALOG_OBJTYPE;
+            fName = ((Catalog) dbObject).getName();
+            fParentObject = ((Catalog) dbObject).getDatabase();
+            setImage(SQLEditorResources.getImage( "database" ));
         }
 
     }

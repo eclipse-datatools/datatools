@@ -11,19 +11,20 @@
 
 package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
@@ -31,9 +32,6 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.reference.ITable;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
 
 /**
  * Provides database identifier proposal services for the editor, to support
@@ -182,6 +180,28 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 		}
 	}
 
+    /**
+     * Gets a <code>Schema</code> object with the given name from the given
+     * the database.
+     * 
+     * @param database
+     *            the database to search for the named schema
+     * @param schemaName
+     *            the name of the schema to find
+     * @return the <code>Schema</code> object with the given name
+     */
+    protected void loadCatalogs(Database database, boolean clear) {
+        if (clear) {
+            fDBProposalList.clear();
+        }
+        EList catalogsList = database.getCatalogs();
+
+        for (int i = 0; i < catalogsList.size(); i++) {
+            Catalog thisCatalog = (Catalog) catalogsList.get(i);
+            fDBProposalList.add(new SQLDBProposal(thisCatalog));
+        }
+    }
+    
 	/**
 	 * Gets the content assist request for database meta objects.
 	 * 
@@ -243,6 +263,10 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 		if (database != null) {
 			int proposalsType = request.getScope();
 
+            if ((proposalsType & SQLParserConstants.SCOPE_CATALOGS) == SQLParserConstants.SCOPE_CATALOGS) {
+                loadCatalogs(database, false);
+                return;
+            }
 			if ((proposalsType & SQLParserConstants.SCOPE_SCHEMAS) == SQLParserConstants.SCOPE_SCHEMAS) {
 				loadSchemas(database, request.getDatabase(), false);
 				return;
@@ -251,7 +275,12 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 				loadEvents(database, false);
 				return;
 			}
-			Schema schema = getSchema(database, request.getDatabase(), request.getSchema());
+            Schema schema = getSchema(database, fConnInfo.getDatabaseName(), request.getSchema());
+			if (request.getDatabase() != null)
+            {
+                schema = getSchema(database, request.getDatabase(), request.getSchema());
+            }
+            
 			if ((proposalsType & SQLParserConstants.SCOPE_TABLES) == SQLParserConstants.SCOPE_TABLES) {
 				loadTables(schema, false);
 				createAliasTableProposals(request, false);
@@ -266,12 +295,17 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 				loadTriggers(schema, false);
 			}
 
-			if ((proposalsType & SQLParserConstants.SCOPE_COLUMNS) == SQLParserConstants.SCOPE_COLUMNS) {
+			if ((proposalsType & SQLParserConstants.SCOPE_COLUMNS) == SQLParserConstants.SCOPE_COLUMNS 
+                 || (proposalsType & SQLParserConstants.SCOPE_WITHOUT_TABLE) == SQLParserConstants.SCOPE_WITHOUT_TABLE) {
 				String realTableName = request.getRealTable();
 				// get table prefix first, then get context tables
 
 				if (realTableName != null && realTableName.trim().length() > 0) {
 					Table table = null;
+                    if (schema == null)
+                    {
+                        return;
+                    }
 					EList tables = schema.getTables();
 					for (int i = 0; i < tables.size(); i++) {
 						table = (Table) tables.get(i);
@@ -288,22 +322,36 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 							org.eclipse.datatools.sqltools.sql.reference.ITable ref = (org.eclipse.datatools.sqltools.sql.reference.ITable) iter
 									.next();
 							Schema ctxSchema = schema;
-							if (ref.getOwner() != null) {
-								ctxSchema = getSchema(database, request.getDatabase(), ref
-										.getOwner());
-							}
-							if (ctxSchema == null) {
-								continue;
-							}
-							EList tables = ctxSchema.getTables();
-							for (int i = 0; i < tables.size(); i++) {
-								Table table = (Table) tables.get(i);
-								if (table.getName().equals(ref.getName())) {
-									loadColumns(table, false, ref
-											.getAliasName());
-									break;
-								}
-							}
+							if (ref.getOwner() != null)
+                            {
+                                ctxSchema = getSchema(database, fConnInfo.getDatabaseName(), ref.getOwner());
+                                if (ctxSchema == null)
+                                {
+                                    continue;
+                                }
+
+                                EList tables = ctxSchema.getTables();
+                                for (int i = 0; i < tables.size(); i++)
+                                {
+                                    Table table = (Table) tables.get(i);
+                                    if (table.getName().equals(ref.getName()))
+                                    {
+                                        loadColumns(table, false, ref.getAliasName());
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DatabaseIdentifier databaseIdentifier = new DatabaseIdentifier(fConnInfo
+                                        .getConnectionProfileName(), fConnInfo.getDatabaseName());
+                                Table table = ModelUtil.findTableObject(databaseIdentifier, database.getName(),
+                                        ctxSchema.getName(), ref.getName());
+                                if (table != null)
+                                {
+                                    loadColumns(table, false, ref.getAliasName());
+                                }
+                            }
 
 						}
 
@@ -434,11 +482,11 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 			if (clear) {
 				fDBProposalList.clear();
 			}
-			EList funcs = schema.getUDFs();
+			EList triggers = schema.getTriggers();
 
-			for (int i = 0; i < funcs.size(); i++) {
-				Function func = (Function) funcs.get(i);
-				fDBProposalList.add(new SQLDBProposal(func));
+			for (int i = 0; i < triggers.size(); i++) {
+                Trigger trigger = (Trigger) triggers.get(i);
+				fDBProposalList.add(new SQLDBProposal(trigger));
 			}
 		}
 	}
@@ -497,21 +545,9 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 				loaded = true;
 
 				/* Get the proposals from the connected database. */
-				try {
-					IProgressService progressService = PlatformUI
-							.getWorkbench().getProgressService();
-					progressService.busyCursorWhile( new IRunnableWithProgress() {
-						public void run(IProgressMonitor monitor) {
-							loadDBProposals(request);
-						}
-					});
-				} catch (InterruptedException e) {
-					/* do nothing */
-				} catch (InvocationTargetException e) {
-					/* do nothing */
-				}
-			}
-		}
+                loadDBProposals(request);
+            }
+        }
 
 		return loaded;
 	}
@@ -520,4 +556,7 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 		return fConnInfo;
 	}
 
+    public void setSQLEditorConnectionInfo(ISQLEditorConnectionInfo connectionInfo) {
+        fConnInfo = connectionInfo;
+    }
 }

@@ -10,14 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.FileEditorInputFactory;
 
 
 /** 
@@ -29,7 +26,6 @@ import org.eclipse.ui.part.FileEditorInputFactory;
 public class SQLEditorInputFactory implements IElementFactory {
 
     public final static String ID_FACTORY =  "org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory"; //$NON-NLS-1$
-    public final static String ID_FILE_EDITOR_INPUT = "SQLEditorFileEditorInput"; //$NON-NLS-1$
     public final static String ID_STORAGE_EDITOR_INPUT = "SQLEditorStorageEditorInput"; //$NON-NLS-1$
     
     public final static String KEY_CONN_INFO_CODE = "connInfoName"; //$NON-NLS-1$
@@ -50,37 +46,8 @@ public class SQLEditorInputFactory implements IElementFactory {
         // Get the editor input type from the memento.
         String editorInputType = memento.getString( KEY_EDITOR_INPUT_TYPE );
         
-        // Process a file editor input.
-        if (editorInputType.equals (ID_FILE_EDITOR_INPUT)) {
-            // Create a FileEditorInput from the memento.  We will use the file
-            // from it to create the SQLEditorFileEditorInput that we want to return.
-            FileEditorInputFactory fileInputFactory = new FileEditorInputFactory();
-            IAdaptable adaptable = fileInputFactory.createElement( memento );
-            if (adaptable instanceof FileEditorInput) {
-                FileEditorInput fileInput = (FileEditorInput) adaptable;
-                
-                // Get the file resource from the FileEditorInput.
-                IFile fileResource = fileInput.getFile();
-                if (fileResource != null) {
-                    // Create the SQLEditorFileEditorInput.
-                    SQLEditorFileEditorInput sqlFileInput = new SQLEditorFileEditorInput( fileResource );
-                    
-                    // Get the connection name from the memento, and use that to
-                    // get the ISQLEditorConnectionInfo using the ConnectionManager.  Put the
-                    // ISQLEditorConnectionInfo into the editor input object.
-                    ISQLEditorConnectionInfo connInfo = null;
-                    String connInfoCode = memento.getString(KEY_CONN_INFO_CODE);
-                    if (connInfoCode != null) {
-                        connInfo = SQLEditorConnectionInfo.decode(connInfoCode);
-                        sqlFileInput.setConnectionInfo( connInfo );
-                    }
-                    
-                    input = sqlFileInput;
-                }
-            }
-        }
         // Process a storage editor input
-        else if (editorInputType.equals (ID_STORAGE_EDITOR_INPUT)) {
+        if (editorInputType.equals (ID_STORAGE_EDITOR_INPUT)) {
             // Create a Storage object from the memento.
             String contentName = memento.getString( KEY_STORAGE_NAME );
             String contentString = memento.getString( KEY_STORAGE_CONTENT );
@@ -105,28 +72,6 @@ public class SQLEditorInputFactory implements IElementFactory {
         return input; 
     }
 
-    /**
-     * Saves the state of the given file editor input object in the given memento.
-     * 
-     * @param memento the storage area for object's state
-     * @param input the file editor input object that needs to be saved
-     */
-    public static void saveState(IMemento memento, SQLEditorFileEditorInput input) {
-        // Save the editor input type.
-        memento.putString( KEY_EDITOR_INPUT_TYPE, ID_FILE_EDITOR_INPUT );
-        
-        // Get the factory of the superclass to save the File part of the input.
-        FileEditorInputFactory.saveState( memento, input );
-        
-        // Save the connection name in the memento.
-        ISQLEditorConnectionInfo connInfo = input.getConnectionInfo();
-        if (connInfo != null) {
-            String connInfoCode = connInfo.encode(); 
-            memento.putString(KEY_CONN_INFO_CODE, connInfoCode );
-        }
-        
-    }
-    
     /**
      * Saves the state of the given storage editor input object in the given memento.
      * 

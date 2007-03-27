@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.sqltools.common.ui.dialog.SaveAsDialog;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -197,7 +196,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
     }
     
-    class AdaptedSourceViewer extends ProjectionViewer
+    public class AdaptedSourceViewer extends ProjectionViewer
     {
 
         /**
@@ -463,14 +462,19 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     	fAnnotationAccess = createAnnotationAccess();
         fOverviewRuler = createOverviewRuler(getSharedColors());
 
-        ISourceViewer viewer = new AdaptedSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
-            styles);
+        ISourceViewer viewer = doCreateSourceViewer(parent, ruler, styles);
         // ensure decoration support has been created and configured.
         getSourceViewerDecorationSupport(viewer);
         // ensure decoration support has been created and configured.
         getSourceViewerDecorationSupport(viewer);
 
         return viewer;
+    }
+
+    protected AdaptedSourceViewer doCreateSourceViewer(Composite parent, IVerticalRuler ruler, int styles)
+    {
+        return new AdaptedSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
+            styles);
     }
 
     /**
@@ -875,7 +879,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     	{
     		ISQLEditorConnectionInfo oldConnInfo = getConnectionInfo();
     		((ISQLEditorInput)getEditorInput()).setConnectionInfo(connInfo);
-    		
+            fDBProposalsService.setSQLEditorConnectionInfo(connInfo);
 
             if (connInfo != null && !connInfo.getDatabaseVendorDefinitionId().equals(oldConnInfo.getDatabaseVendorDefinitionId()))
     		{

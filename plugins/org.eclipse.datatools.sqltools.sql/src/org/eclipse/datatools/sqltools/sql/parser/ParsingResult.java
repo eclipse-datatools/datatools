@@ -483,17 +483,22 @@ public abstract class ParsingResult
 
         String[] objects = SQLUtil.splitDotStr(tableName);
         int length = objects.length;
+        String dbname = null;
         String owner = null;
         String name = null;
         switch (length)
         {
             case 1:
-                name = objects[0].trim();
+                name = trim(objects[0]);
                 break;
             case 2:
-                owner = objects[0].trim();
-                name = objects[1].trim();
+                owner = trim(objects[0]);
+                name = trim(objects[1]);
                 break;
+            case 3:
+                dbname= trim(objects[0]);
+                owner = trim(objects[1]);
+                name = trim(objects[2]);
             default:
                 break;
         }
@@ -543,6 +548,14 @@ public abstract class ParsingResult
 
     }
 
+    private String trim(String str)
+    {
+        if (str != null)
+        {
+            return str.trim();
+        }
+        return null;
+    }
     /**
      * Clear the content of the current table list.
      * If isContentAssist is true, just return.

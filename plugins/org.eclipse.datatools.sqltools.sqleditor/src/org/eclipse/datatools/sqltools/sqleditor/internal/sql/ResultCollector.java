@@ -279,6 +279,7 @@ public class ResultCollector
                 break;
             case SQLParser.SCOPE_COLUMNS:
             case SQLParser.SCOPE_COLUMNS | SQLParser.SCOPE_WITHOUT_TABLE:
+            case SQLParser.SCOPE_WITHOUT_TABLE:
                 setColumnList(proposals);
                 break;
             case SQLParser.SCOPE_TABLES:

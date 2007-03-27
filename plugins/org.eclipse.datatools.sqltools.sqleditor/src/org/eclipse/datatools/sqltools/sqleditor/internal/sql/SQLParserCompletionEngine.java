@@ -19,10 +19,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
@@ -31,7 +33,6 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
-import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
 import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
@@ -100,7 +101,6 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 	private int _fStartOffset;
 
 	private SQLEditor _editor;
-
 	/**
 	 * Set content assist scope.
 	 */
@@ -638,6 +638,23 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		String[] tokens = SQLUtil.splitDotStr(_fWord);
 		int indexInWord = _fWord.lastIndexOf('.') + 1;
 		int length = tokens.length;
+        String objectName = null;
+        String ownerName = null;
+        String dbName = null;
+        switch (length)
+        {
+            case 1:
+                objectName = tokens[0];
+                break;
+            case 2:
+                ownerName = tokens[0];
+                break;
+            case 3:
+                dbName = tokens[0];
+                ownerName = tokens[1];
+                objectName = tokens[2];
+        }
+
 		String checkword = tokens[length - 1]; // use the last item in the
 												// prefix
 		// in the case of "APP." checkword is null. We convert it into empty
@@ -677,8 +694,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			StringBuffer display = new StringBuffer();
 
 			SQLObject parentObject = (SQLObject)proposal.getParentObject();
-			boolean displayParent = !(parentObject instanceof Schema)
-					|| needsDisplayOwner(proposal, length) || notShowTable;
+			boolean displayParent = !notShowTable && needsDisplayOwner(proposal, length);
             
 			displayParent = displayParent && proposal.getDBObject() != null;
 			if (displayParent) {
@@ -688,17 +704,36 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			display.append(proposal.getName());
 			//always uses the longer name
 			String replace = display.length() > fullName.length()? display.toString(): fullName.toString();
-			display.insert(0, ' ');
+			if (length != 3)
+            {
+                display.insert(0, ' ');
+            }
 			
 			int relevance = getRelevance(proposal.getType());
 			int replaceOffset = _fWordOffset + 1;
 			// match the whole string
-			if (startsWithIgnoreCase(fullName.toString(), _fWord)) {
+			if (startsWithIgnoreCase(replace.toString(), _fWord)) {
 				result.add(new SQLCompletionProposal(replace,
 						replaceOffset, _fWord.length() + _selection.y, replace
 								.length(), image,
 						display.toString(), null, null, relevance));
 			}
+            else if (objectName != null && startsWithIgnoreCase(proposal.getName(), _fWord)){
+                result.add(new SQLCompletionProposal(replace, replaceOffset, _fWord.length() + _selection.y, replace
+                        .length(), image, display.toString(), null, null, relevance));
+            }
+            else if (length == 3 && startsWithIgnoreCase(name, objectName))
+            {
+                if (ownerName == null)
+                {
+                    replace = dbName + ".." + display.toString();
+                }
+                else if (proposal.getDBObject() instanceof Table)
+                {
+                    replace = ((Table) proposal.getDBObject()).getSchema().getName() + "." + display.toString();
+                }
+                result.add(new SQLCompletionProposal(replace, replaceOffset, _fWord.length() +_selection.y, replace.length(), image, display.toString(), null, null, relevance));
+            }
 //			// match only the last part, assuming the propoal must have been
 //			// filtered
 //			else if (startsWithIgnoreCase(name, checkword)) {
@@ -715,9 +750,10 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		return result;
 	}
 
+    
 	public boolean needsDisplayOwner(SQLDBProposal proposal, int length) {
 		if (proposal.getDBObject() instanceof Table
-				|| proposal.getDBObject() instanceof ViewTable) {
+				|| proposal.getDBObject() instanceof ViewTable || proposal.getDBObject() instanceof Column) {
 
 			boolean isShow = SQLEditorPlugin.getDefault().getPreferenceStore()
 					.getBoolean(PreferenceConstants.SHOW_OWNER_OF_TABLE);
@@ -734,7 +770,8 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			}
 		} else if (proposal.getDBObject() instanceof Event
 				|| proposal.getDBObject() instanceof Trigger
-				|| proposal.getDBObject() instanceof Database) {
+				|| proposal.getDBObject() instanceof Database
+                || proposal.getDBObject() instanceof Catalog) {
 			return false;
 		}
 		return true;

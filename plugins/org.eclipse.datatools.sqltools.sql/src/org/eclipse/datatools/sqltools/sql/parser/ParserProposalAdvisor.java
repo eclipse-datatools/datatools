@@ -82,6 +82,10 @@ public class ParserProposalAdvisor {
 		} else {
 			ParseException pe = (ParseException) result.getExceptions().get(
 					result.getExceptions().size() - 1);
+            if (pe.expectedTokenSequences == null)
+            {
+                return EMPTY;
+            }
 			String[] proposals = new String[pe.expectedTokenSequences.length];
 			for (int i = 0; i < pe.expectedTokenSequences.length; i++) {
 				StringBuffer sb = new StringBuffer();
