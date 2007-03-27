@@ -898,7 +898,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             {
             	public void run()
             	{
-            		refreshActionStatus();
+                    refreshActionStatus();
                     refreshConnectionStatus();
                     _fSQLUpdater.run();
                     fireConnectionProfileAttached();

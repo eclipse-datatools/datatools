@@ -111,7 +111,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	}
 	
 	public Database getDatabase() {
-		if (_database == null && _profileName != null && _databaseName != null) {
+		if (_database == null && _profileName != null ) {
 			_database = ProfileUtil.getDatabase(new DatabaseIdentifier(
 					_profileName, _databaseName));
 		}

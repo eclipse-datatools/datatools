@@ -12,7 +12,6 @@
 package org.eclipse.datatools.sqltools.core.profile;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,6 +35,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfoImpl;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.DBHelper;
@@ -226,7 +226,8 @@ public class ProfileUtil
      * factoryId (which is not defined by DTP connectivity layer yet), then get DatabaseDefinition from the
      * ISQLEditorConnectionInfo object; 2. find driver template, then get the vendor and version info from it. Since the latter
      * one allows us to do the job without having to connect, we'll use it in this method.
-     * 
+     * <b>CAUTION: This method stops pinging the server to get the version info, which means the version info got from this 
+     * method might be different with the real version.</b>
      * @param profileName
      * @return
      */
@@ -244,7 +245,8 @@ public class ProfileUtil
 			// because this should
 			// be the REAL info.
 			String vendor = getVendorInProperties(profile);
-			String version = getProductVersion(profileName);
+            //do not try to connect to get the REAL version, which might be annoying in some cases
+			String version = getVersionInProperties(profile);
 			if (vendor != null && version != null) {
 				vendorId = new DatabaseVendorDefinitionId(vendor, version);
 			} else {
@@ -419,44 +421,51 @@ public class ProfileUtil
     /**
 	 * Returns the SQL model <code>Database</code> object identified by
 	 * <code>databaseIdentifier</code>.
-	 * <p>
-	 * Note: this method can only return one Database object for one connection
-	 * profile. This problem should be addressed in multiple database
-	 * environment, such as ASE. TODO MO Catalog
-	 * </p>
+     * Shortcut to #getDatabase(databaseIdentifier, true)
+     * TODO This method is remained for backward compatibility. Callers of this API should revisit whether connect should be automatically performed.
 	 * 
 	 * @return the SQL model <code>Database</code> object
 	 */
     public static Database getDatabase(DatabaseIdentifier databaseIdentifier)
     {
-    	try {
-    		IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
-    		if (!profile.isConnected())
-    		{
-    			profile.connect();
-    		}
-    		IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
-			IConnection ic = mc.getConnection();
-			Object rawConn = ic.getRawConnection();
-			if (rawConn instanceof ConnectionInfo)
-			{
-				ConnectionInfo ci = (ConnectionInfo)rawConn;
-				//TODO MO catalog
-//				String expectedDB = databaseIdentifier.getDBname(); 
-//				String realDB = ci.getDatabaseName(); 
-//				if ( expectedDB != null && !expectedDB.equals(realDB))
-//				{
-//					//this should not happen if connection profile can handle multiple db well
-//					EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_wrong_database_name, (new Object[]{realDB,databaseIdentifier.getProfileName(),expectedDB})));
-//				}
-				return ci.getSharedDatabase();
-			}
-		} catch (NoSuchProfileException e) {
-			EditorCorePlugin.getDefault().log(e);
-		}
-		return null;
+		return getDatabase(databaseIdentifier, true);
     }
 
+    /**
+     * Returns the SQL model <code>Database</code> object identified by
+     * <code>databaseIdentifier</code>.
+     * 
+     * @return the SQL model <code>Database</code> object
+     */
+    public static Database getDatabase(DatabaseIdentifier databaseIdentifier, boolean connect)
+    {
+        try {
+            IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+            if (!profile.isConnected())
+            {
+                if (connect)
+                {
+                    profile.connect();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
+            IConnection ic = mc.getConnection();
+            Object rawConn = ic.getRawConnection();
+            if (rawConn instanceof ConnectionInfo)
+            {
+                ConnectionInfo ci = (ConnectionInfo)rawConn;
+                return ci.getSharedDatabase();
+            }
+        } catch (NoSuchProfileException e) {
+            EditorCorePlugin.getDefault().log(e);
+        }
+        return null;
+    }
+    
     /**
      * Gets the shared connection from the connection profile 
      * TODO Now this method delegates to IConnectionProfile, which doesn't manage a connection for each
@@ -659,64 +668,55 @@ public class ProfileUtil
     }
     
     /**
-	 * Retrieves the database name list located at the server identified by
-	 * profileName. This method will first try to get the database list from
-	 * DatabaseMetadata. if failed, will use the default database name defined
-	 * in the connection profile.
-	 * 
+     * Shortcut to #getDatabaseList(profileName, true)
+     * TODO This method is remained for backward compatibility. Callers of this API should revisit whether connect should be automatically performed.
 	 * @param profileName
 	 *            connection profile name
 	 * @return database name list.
 	 */
     public static List getDatabaseList(String profileName)
     {
-        List list = new ArrayList();
-        Connection conn = null;
-        ResultSet rs = null;
-        IConnectionProfile profile;
-		try {
-			profile = getProfile(profileName);
-		} catch (NoSuchProfileException e1) {
-			EditorCorePlugin.getDefault().log(e1);
-			return list;
-		}
-		String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
-		conn = connectProfile(profileName);
-		if (conn == null)
-		{
-			return list;
-		}
-		try {
+        return getDatabaseList(profileName, true);
+    }
 
-			rs = conn.getMetaData().getCatalogs();
-            while (rs.next())
+    /**
+     * Returns database name list from the connection profile name, only connect when required.
+     * 
+     * @param profileName
+     *            connection profile name
+     * @return database name list.
+     */
+    public static List getDatabaseList(String profileName, boolean connect)
+    {
+        List list = new ArrayList();
+        IConnectionProfile profile;
+        try {
+            profile = getProfile(profileName);
+            if (connect)
             {
-                list.add(rs.getObject("TABLE_CAT"));
+                connectProfile(profileName);
             }
-            if (list.isEmpty())
-            {
-            	if (dbname != null)
-            	{
-            		list.add(dbname);
-            	}
-            }
+        } catch (NoSuchProfileException e1) {
+            EditorCorePlugin.getDefault().log(e1);
+            return list;
         }
-        catch (Exception e)
+        String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
+
+        Database db = getDatabase(new DatabaseIdentifier(profileName, ""), connect);
+        if (db != null)
         {
-            EditorCorePlugin.getDefault().log(e);
-        }
-        finally
-        {
-            try
+            List catalogs = db.getCatalogs();
+            if (catalogs != null && !catalogs.isEmpty())
             {
-                if (rs != null)
+                for (Iterator it = catalogs.iterator(); it.hasNext();)
                 {
-                    rs.close();
+                    Catalog cat = (Catalog) it.next();
+                    list.add(cat.getName());
                 }
             }
-            catch (SQLException e)
+            else
             {
-            	EditorCorePlugin.getDefault().log(e);
+                list.add(dbname);
             }
         }
         return list;
@@ -966,5 +966,4 @@ public class ProfileUtil
 	    return profiles;
 	}
 
-    
 }

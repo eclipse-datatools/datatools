@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SetConnectionInfoAction;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
@@ -29,6 +30,15 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.text.source.IOverviewRuler;
+import org.eclipse.jface.text.source.IVerticalRuler;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
@@ -42,6 +52,45 @@ public class SQLScrapbookEditor extends SQLEditor {
 
 	public static final String EDITOR_ID = EditorConstants.SQLFILE_EDITOR_ID;
 	
+    public class ToolbarSourceViewer extends AdaptedSourceViewer implements Listener
+    {
+        private ConnectionInfoComposite connBar;
+        public ToolbarSourceViewer(Composite parent, IVerticalRuler verticalRuler,
+                IOverviewRuler overviewRuler, boolean showAnnotationsOverview, int styles)
+        {
+            super(parent, verticalRuler, overviewRuler, showAnnotationsOverview, styles);
+        }
+        
+        protected void createControl(Composite parent, int styles)
+        {
+            Composite fDefaultComposite= new Composite(parent, SWT.NONE);
+            GridLayout gridLayout = new GridLayout();
+            gridLayout.numColumns = 1;
+            gridLayout.horizontalSpacing = 0;
+            gridLayout.marginWidth = 0;
+            gridLayout.marginBottom = 0;
+            
+            fDefaultComposite.setLayout(gridLayout);
+            connBar = new ConnectionInfoComposite(fDefaultComposite, this, SQLScrapbookEditor.this.getConnectionInfo(), null, false, false);
+            fDefaultComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+            
+            connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+            
+            Composite textComposite= new Composite(fDefaultComposite, SWT.NONE);
+            textComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+            textComposite.setLayout(new FillLayout());
+            super.createControl(textComposite, styles);
+            
+        }
+
+        public void handleEvent(Event event)
+        {
+            String content = getDocument().get();
+            setConnectionInfo(connBar.getConnectionInfo());
+            getDocument().set(content);
+        }
+    }
+    
 	private class ProfileStatusChecker implements IPartListener2
 	{
 	    public void partActivated(IWorkbenchPartReference partRef) {
@@ -177,5 +226,16 @@ public class SQLScrapbookEditor extends SQLEditor {
         {
             super.doSave(monitor);
         }
+    }
+    
+    public void createPartControl(Composite parent)
+    {
+        super.createPartControl(parent);
+    }
+    
+    protected AdaptedSourceViewer doCreateSourceViewer(Composite parent, IVerticalRuler ruler, int styles)
+    {
+        return new ToolbarSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
+                styles);
     }
 }

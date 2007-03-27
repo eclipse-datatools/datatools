@@ -553,7 +553,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				}
 				String profileName = _comboProfileName.getText();
 				if (profileName != null) {
-					List list = ProfileUtil.getDatabaseList(profileName);
+					List list = ProfileUtil.getDatabaseList(profileName, _mustConnect);
 					Iterator iterator = list.iterator();
 					while (iterator.hasNext()) {
 						String dbname = iterator.next().toString();

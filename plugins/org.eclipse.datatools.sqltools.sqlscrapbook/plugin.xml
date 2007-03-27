@@ -73,4 +73,46 @@
             id="org.eclipse.datatools.sqltools.sqleditor.attachProfileAction"/>
    </extension>
    
+   <!-- Register a factory for recreating SQLEditorFileEditorInput objects when
+        the Workbench is restarted. -->
+   <extension 
+      point = "org.eclipse.ui.elementFactories"> 
+         <factory 
+            id ="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFileEditorInputFactory" 
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFileEditorInputFactory"> 
+         </factory> 
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet"
+            label="SQL Scrapbook Action Set"
+            visible="false">
+         <action
+               class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               icon="icons/qrydoc.gif"
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               label="Open SQL Scrapboo&amp;k"
+               toolbarPath="group.sqleditor.open"
+               tooltip="Open scrapbook to edit SQL statements">
+         </action>
+      </actionSet>
+   </extension> 
+   
+    <!-- next are how to hook DTP SQL Editor perspective/actions with other perspectives/actions of eclipse -->
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <!-- extension to the DTP editor perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.sqleditor.perspectives.EditorPerspective">
+	    	 <actionSet
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet">
+             </actionSet>
+
+            <!-- Add New SQL File Wizard shortcuts !-->
+            <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
+                  
+        </perspectiveExtension>
+
+    </extension>
+   
 </plugin>

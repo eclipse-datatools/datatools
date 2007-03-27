@@ -12,9 +12,9 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLEditorFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.views.execute.SQLScrapbookSelectConnectionAction;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorFileEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;

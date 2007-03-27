@@ -234,6 +234,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     
     public static SQLDevToolsConfiguration getDefaultConfiguration()
     {
+        ((SQLDevToolsConfigRegistryImpl)INSTANCE).init();
     	return DEFAULT_CONFIG;
     }
 

@@ -84,7 +84,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 			if (connectionInfo != null) encodedConnection = connectionInfo.encode();
 		}
 				
-		if ((encodedConnection == null) && (fileResource != null) && !fileResource.getFileExtension().equalsIgnoreCase("sqlpage")) {
+		if ((encodedConnection == null) && (fileResource != null) && !"sqlpage".equalsIgnoreCase(fileResource.getFileExtension())) {
 			// get encodedConnection from PersistentProperty
 			if (fileResource.exists()){
 				encodedConnection = SQLFileUtil.getEncodedConnectionInfo(fileResource);
@@ -94,7 +94,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 			
 		if (encodedConnection == null) encodedConnection = "";
 				
-		if ( (fileResource != null) && fileResource.getFileExtension().equalsIgnoreCase("sqlpage")) {
+		if ( (fileResource != null) && "sqlpage".equalsIgnoreCase(fileResource.getFileExtension())) {
 				// Do xml document (*.sqlpage file) with only encodedConnection and statementSQL
 				Map map = new HashMap();
 				map.put("encodedConnection", encodedConnection);
@@ -103,7 +103,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 				storageDocument = new Document(pageXML);				
 		}
 				
-		if ((encodedConnection != null) && (fileResource != null) && !fileResource.getFileExtension().equalsIgnoreCase("sqlpage")){
+		if ((encodedConnection != null) && (fileResource != null) && !"sqlpage".equalsIgnoreCase(fileResource.getFileExtension())){
 			// Save PersistentProperty encodedConnection for not *.sqlpage
 			SQLFileUtil.setEncodedConnectionInfo(fileResource, encodedConnection);
 		}
