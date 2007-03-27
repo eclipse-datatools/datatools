@@ -50,7 +50,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# complexNest#:#[//suburb]#:#{name;String;@name},{nest-2;String;../../nest},{nest-1;String;../nest},{nest0;String;/nest},{nest1;String;/suburb/nest},{nest3;String;suburb/suburb/nest},{nest4;String;suburb/suburb/suburb/nest}"
 			+ "#-# filter1#:#[//entry]#:#{b-bar1;String;/field[@b='bar1']},{b-bar2;String;/field[@b='bar2']},{b-bar9;String;/field[@b='bar9']},{a-foo;String;/field[@a='foo']}"
 			+ "#-# filter2#:#[//field]#:#{b-bar1;String;[@b='time']}"
-			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{b-bar1;String;}"
+			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{time;String;}"
+			+ "#-# filter4#:#[//Book[@type='fiction']]#:#{book.title;String;/Title},{book.author_paul;String;/Author[@type='firstclass']}"			
 			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}";
 
 	private RelationInformation ri;
@@ -701,13 +702,13 @@ public class SaxParserTest extends BaseTest
 	}
 	
 	/**
-	 * Test nest duplicate recusive xml files.
+	 * Test table filter
 	 * @throws OdaException
 	 * @throws IOException
 	 */
-	/*public void atest15( ) throws OdaException, IOException
+	public void test16( ) throws OdaException, IOException
 	{
-		File file = new File( TestConstants.SAX_PARSER_TEST15_OUTPUT_XML );
+		File file = new File( TestConstants.SAX_PARSER_TEST16_OUTPUT_XML );
 
 		if ( file.exists( ) )
 			file.delete( );
@@ -738,7 +739,51 @@ public class SaxParserTest extends BaseTest
 
 		fos.close( );
 
-		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST15_OUTPUT_XML ),
-				new File( TestConstants.SAX_PARSER_TEST15_GOLDEN_XML ) ) );
-	}*/
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST16_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST16_GOLDEN_XML ) ) );
+	}
+	
+	/**
+	 * Test mixed filter
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test17( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST17_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.MIXED_FILTER )
+				.createXMLDataInputStream( ),
+				ri,
+				"filter4", 
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST17_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST17_GOLDEN_XML ) ) );
+	}
+	
+	
 }

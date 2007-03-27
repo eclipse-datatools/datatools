@@ -128,7 +128,7 @@ public class RelationInformation
 			}
 			
 			//TODO support filter in table mapping.
-			/*if ( tableRawRoot.matches(".*\\Q[@\\E.*\\Q=\\E.*")) 
+			if ( tableRawRoot.matches(".*\\Q[@\\E.*\\Q=\\E.*")) 
 			{
 				String tableRootWithFilter = SaxParserUtil.processParentAxis( tableRawRoot );
 				
@@ -137,16 +137,15 @@ public class RelationInformation
 				String filterColumnXpath = tableRootWithFilter.replaceAll(
 						"\\Q=\\E.*", "]");
 				String filterOriginalColumnXpath = tableRawRoot.replaceAll("\\Q=\\E.*", "]");
-				String tempColumnName = SaxParserUtil.createTempColumnName(-1);
+				String tempColumnName = SaxParserUtil.createTempColumnName( filterColumnInfos.size() + 1 );
 
 				// TODO support multiple filters in one column.
 				tableInfo.addFilter(tempColumnName, value);
 
-				tableInfo.addColumn(new ColumnInfo( columns.length
-						+ filterColumnInfos.size() + 1, tempColumnName,
-						"String", tableRootWithFilter, filterColumnXpath,
+				tableInfo.addColumn(new ColumnInfo( columns.length + filterColumnInfos.size( ) + 1, tempColumnName,
+						"String", filterColumnXpath, null,
 						filterOriginalColumnXpath, null));
-			}*/
+			}
 			
 			this.tableInfos.put( temp[0].trim( ), tableInfo );
 		}

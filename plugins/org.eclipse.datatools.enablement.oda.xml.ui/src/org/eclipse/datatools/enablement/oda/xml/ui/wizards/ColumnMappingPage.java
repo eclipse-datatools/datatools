@@ -505,7 +505,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		{
 			columnPath = generateXpathFromTreeItem( select );
 		}
-		return XPathPopulationUtil.populateColumnPath( this.selectedTreeItemText,
+		return XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
 				columnPath );
 	}
 
@@ -923,7 +923,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				treeItem.setText( treeNode.getValue( ).toString( ) );
 			
 
-			String populateString = XPathPopulationUtil.populateColumnPath( selectedTreeItemText,
+			String populateString = XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
 					generateXpathFromTreeItem( treeItem ) );
 			if ( populateString != null )
 			{
@@ -955,6 +955,15 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				}
 			}
 		}
+	}
+
+	/**
+	 * Return the tailored root path without filter definition.
+	 * @return
+	 */
+	private String getRootPathWithOutFilter( )
+	{
+		return selectedTreeItemText.replaceAll( "\\Q[\\E.*\\Q]\\E", "" );
 	}
 	
 	// expand the tree

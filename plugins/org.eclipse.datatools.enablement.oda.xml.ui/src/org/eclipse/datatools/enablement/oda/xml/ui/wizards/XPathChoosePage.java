@@ -455,9 +455,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	private boolean isRootPathValid( )
 	{
 		return !(rootPath == null
-				|| rootPath.trim( ).length( ) == 0
-				|| rootPath.matches( ".*\\Q[\\E.*\\Q]\\E.*" )
-				|| rootPath.matches( ".*\\Q@\\E.*" ));
+				|| rootPath.trim( ).length( ) == 0);
 	}
 	
 	/**
