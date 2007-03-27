@@ -8,85 +8,144 @@
  * Contributors:
  *  Actuate Corporation  - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.datatools.enablement.oda.xml.util.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.xerces.impl.xs.XSAttributeGroupDecl;
+import org.apache.xerces.impl.xs.XSAttributeUseImpl;
+import org.apache.xerces.impl.xs.XSComplexTypeDecl;
+import org.apache.xerces.impl.xs.XSElementDecl;
+import org.apache.xerces.impl.xs.XSModelGroupImpl;
+import org.apache.xerces.impl.xs.XSParticleDecl;
+import org.apache.xerces.xs.XSAttributeDeclaration;
+import org.apache.xerces.xs.XSObjectList;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 
 /**
- * The instance of this class is used as tree node of the xml schema tree that is passed to 
- * gui.
+ * The instance of this class is used as tree node of the xml schema tree that
+ * is passed to gui.
  */
 public class ATreeNode
 {
+
 	//
 	public static final int ELEMENT_TYPE = 1;
 	public static final int ATTRIBUTE_TYPE = 2;
 	public static final int OTHER_TYPE = 0;
-	
-	//The value of certain tree node.
+
+	// The value of certain tree node.
 	private Object value;
-	
-	//The children list of certain tree node.
+
+	// The children list of certain tree node.
 	private ArrayList children;
-	
-	//The parent of tree node.
+
+	// The parent of tree node.
 	private ATreeNode parent;
-	
-	//The type of the tree node, may either attribute or element.
+
+	// The type of the tree node, may either attribute or element.
 	private int type;
-	
-	//The data type is the complex type that defined in an xsd file.
+
+	// The data type is the complex type that defined in an xsd file.
 	private String dataType;
 
-	private static HashMap xmlTypeToDataType = new HashMap();
-	
+	private static HashMap xmlTypeToDataType = new HashMap( );
+
 	static
 	{
 		try
 		{
-			xmlTypeToDataType.put( "string", DataTypes.getTypeString( DataTypes.STRING ) );
-			xmlTypeToDataType.put( "byte", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "decimal", DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
-			xmlTypeToDataType.put( "double", DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "float", DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "int", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "integer", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "negativeInteger", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonNegativeInteger", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonPositiveInteger", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "positiveInteger", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "short", DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "date", DataTypes.getTypeString( DataTypes.DATE ) );
-			xmlTypeToDataType.put( "dateTime", DataTypes.getTypeString( DataTypes.TIMESTAMP ) );
-			xmlTypeToDataType.put( "time", DataTypes.getTypeString( DataTypes.TIME ) );
+			xmlTypeToDataType.put( "string",
+					DataTypes.getTypeString( DataTypes.STRING ) );
+			xmlTypeToDataType.put( "byte",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "decimal",
+					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
+			xmlTypeToDataType.put( "double",
+					DataTypes.getTypeString( DataTypes.DOUBLE ) );
+			xmlTypeToDataType.put( "float",
+					DataTypes.getTypeString( DataTypes.DOUBLE ) );
+			xmlTypeToDataType.put( "int",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "integer",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "negativeInteger",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "nonNegativeInteger",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "nonPositiveInteger",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "positiveInteger",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "short",
+					DataTypes.getTypeString( DataTypes.INT ) );
+			xmlTypeToDataType.put( "date",
+					DataTypes.getTypeString( DataTypes.DATE ) );
+			xmlTypeToDataType.put( "dateTime",
+					DataTypes.getTypeString( DataTypes.TIMESTAMP ) );
+			xmlTypeToDataType.put( "time",
+					DataTypes.getTypeString( DataTypes.TIME ) );
 		}
 		catch ( OdaException e )
 		{
-			//Should not arrive here
+			// Should not arrive here
 		}
 	}
-	
+
 	private static String getDataType( String type ) throws OdaException
 	{
-		Object result =  xmlTypeToDataType.get( type );
-		if( result == null )
+		Object result = xmlTypeToDataType.get( type );
+		if ( result == null )
 			return type;
-		else 
+		else
 			return result.toString( );
-			
+
 	}
-	
+
+	private XSElementDecl element;
+	private XSAttributeDeclaration attr;
+
 	/**
 	 * 
-	 *
+	 * 
 	 */
-	protected ATreeNode( )
+	ATreeNode( )
 	{
-		children = new ArrayList( );
+		this.children = new ArrayList();
+	}
+
+	/**
+	 * 
+	 * @param element
+	 * @throws OdaException
+	 */
+	public ATreeNode( XSElementDecl element ) throws OdaException
+	{
+		this();
+		this.element = element;
+		this.value = element.getName( );
+		this.type = ELEMENT_TYPE;
+
+		if ( element.getTypeDefinition( ).getName( ) != null )
+			this.dataType = getDataType( element.getTypeDefinition( ).getName( ) );
+		else
+			this.dataType = getDataType( element.getName( ) );
+
+	}
+
+	private ATreeNode( XSAttributeDeclaration attrDeclaration )
+			throws OdaException
+	{
+		this();
+		this.attr = attrDeclaration;
+		this.value = this.attr.getName( );
+		this.type = ATTRIBUTE_TYPE;
+		this.dataType = getDataType( attrDeclaration.getTypeDefinition( )
+				.getName( ) );
 	}
 
 	/**
@@ -103,10 +162,86 @@ public class ATreeNode
 	 * Return the children of tree node.
 	 * 
 	 * @return
+	 * @throws OdaException
 	 */
-	public Object[] getChildren( )
+	public Object[] getChildren( ) throws OdaException
 	{
-		return children.toArray( );
+		if ( this.children.size( ) != 0 )
+			return this.children.toArray( );
+		List result = new ArrayList( );
+		if ( this.attr != null )
+			return result.toArray( );
+
+		if ( this.element != null )
+		{
+			if ( this.element.getTypeDefinition( ) instanceof XSComplexTypeDecl )
+			{
+				XSModelGroupImpl group = null;
+
+				if ( ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getParticle( ) != null )
+				{
+					group = (XSModelGroupImpl) ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getParticle( )
+							.getTerm( );
+
+					populateModelGroup( result, group );
+				}
+				if ( ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getAttrGrp( ) != null )
+				{
+					XSAttributeGroupDecl gp1 = ( (XSComplexTypeDecl) this.element.getTypeDefinition( ) ).getAttrGrp( );
+					XSObjectList list = gp1.getAttributeUses( );
+
+					for ( int i = 0; i < list.getLength( ); i++ )
+					{
+						XSAttributeUseImpl impl = (XSAttributeUseImpl) list.item( i );
+						ATreeNode node = new ATreeNode( impl.getAttrDeclaration( ) );
+						addNodeToChild( result, node );
+					}
+				}
+			}
+		}
+		return result.toArray( );
+	}
+
+	/**
+	 * 
+	 * @param result
+	 * @param group
+	 * @throws OdaException
+	 */
+	private void populateModelGroup( List result, XSModelGroupImpl group )
+			throws OdaException
+	{
+		for ( int i = 0; i < group.getParticles( ).getLength( ); i++ )
+		{
+			ATreeNode node = null;
+			Object o = ( (XSParticleDecl) group.getParticles( ).item( i ) ).getTerm( );
+			if ( o instanceof XSModelGroupImpl )
+			{
+				populateModelGroup( result, (XSModelGroupImpl) o );
+
+			}
+			else if ( o instanceof XSElementDecl )
+			{
+				node = new ATreeNode( (XSElementDecl) o );
+				addNodeToChild( result, node );
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param result
+	 * @param node
+	 */
+	private void addNodeToChild( List result, ATreeNode node )
+	{
+		for ( int i = 0; i < result.size( ); i++ )
+		{
+			if ( ( (ATreeNode) result.get( i ) ).getValue( )
+					.equals( node.getValue( ) ) )
+				return;
+		}
+		result.add( node );
 	}
 
 	/**
@@ -137,23 +272,9 @@ public class ATreeNode
 	public void addChild( Object child )
 	{
 		this.children.add( child );
-		((ATreeNode)child).parent = this;
+		( (ATreeNode) child ).parent = this;
 	}
 
-	/**
-	 * Add a group of child to the tree node.
-	 * 
-	 * @param children
-	 */
-	public void addChild( Object[] children)
-	{
-		for(int i=0;i< children.length;i++)
-		{
-			this.children.add(children[i]);
-			((ATreeNode)children[i]).parent = this;
-		}
-	}
-	
 	/**
 	 * Set the parent of the tree node.
 	 * 
@@ -164,25 +285,25 @@ public class ATreeNode
 		this.parent = parent;
 		parent.addChild( this );
 	}
-	
+
 	/*
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString()
+	public String toString( )
 	{
-		return value.toString();
+		return value.toString( );
 	}
-	
+
 	/**
 	 * Return the type of tree node.
 	 * 
 	 * @return
 	 */
-	public int getType()
+	public int getType( )
 	{
 		return type;
 	}
-	
+
 	/**
 	 * Set the type of tree node ( either attribute or element)
 	 * 
@@ -192,22 +313,24 @@ public class ATreeNode
 	{
 		this.type = type;
 	}
-	
+
 	/**
-	 * Return the data type of tree node. The data type is the complex type that defined in an xsd file.
+	 * Return the data type of tree node. The data type is the complex type that
+	 * defined in an xsd file.
 	 * 
 	 * @return
+	 * @throws OdaException
 	 */
-	public String getDataType()
+	public String getDataType( ) throws OdaException
 	{
 		return dataType;
 	}
-	
+
 	/**
 	 * Set the data type of tree node ( either attribute or element)
 	 * 
 	 * @param type
-	 * @throws OdaException 
+	 * @throws OdaException
 	 */
 	public void setDataType( String type ) throws OdaException
 	{

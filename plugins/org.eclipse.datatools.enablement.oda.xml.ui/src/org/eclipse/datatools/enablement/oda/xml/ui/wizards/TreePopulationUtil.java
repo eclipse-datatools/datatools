@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -26,11 +27,17 @@ final class TreePopulationUtil
 	 * populate tree items
 	 * @param tree
 	 * @param node
+	 * @throws OdaException 
 	 */
-	static void populateTreeItems( Object tree, Object[] node )
+	static void populateTreeItems( Object tree, Object[] node, boolean includeAttr ) throws OdaException
 	{
 		for ( int i = 0; i < node.length; i++ )
 		{
+			if ( !includeAttr )
+			{
+				if (((ATreeNode) node[i]).getType( ) == ATreeNode.ATTRIBUTE_TYPE)
+					continue;
+			}
 			TreeItem treeItem;
 			if ( tree instanceof TreeItem )
 		    	treeItem = new TreeItem( (TreeItem)tree, 0 );

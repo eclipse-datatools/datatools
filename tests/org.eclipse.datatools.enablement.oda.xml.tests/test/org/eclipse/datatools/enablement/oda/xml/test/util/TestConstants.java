@@ -39,6 +39,7 @@ public class TestConstants
 	public static final String TEST_XSD_COMPLEX = home+"test/org/eclipse/datatools/enablement/oda/xml/input/complex.xsd";
 	public static final String TEST_XSD_SELFRECURSIVE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/selfrecursive.xsd";
 	public static final String TEST_XSD_COMPLEXRECURSIVE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/complexrecursive.xsd";
+	public static final String TEST_XSD_COMPLEXRECURSIVE_1 = home+"test/org/eclipse/datatools/enablement/oda/xml/input/business-process.xsd";
 	public static final String NESTED_COMPLEXTYPE_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/input/nestedcomplextype.xsd";
 	public static final String DATATYPE_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/input/datatype.xsd";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_OUTPUT_NEST_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_NEST_XSD.txt";
@@ -47,8 +48,6 @@ public class TestConstants
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GOLDEN_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_XSD.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XSD.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XSD.txt";
-	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XSD_WITHOUT_ATTR = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XSD_WITHOUT_ATTR.txt";
-	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XSD_WITHOUT_ATTR = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XSD_WITHOUT_ATTR.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_OUTPUT_DATATYPE = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_DATATYPE.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GOLDEN_DATATYPE = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_DATATYPE.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_OUTPUT_GROUP = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_GROUP.txt";
@@ -67,8 +66,6 @@ public class TestConstants
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XSD_WITHOUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XSD_WITHOUT_XML.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_WITH_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XML_with_XSD.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML_WITH_XSD = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XML_with_XSD.txt";
-	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_WITHOUT_ATTR = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XML_WITHOUT_ATTR.txt";
-	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML_WITHOUT_ATTR = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XML_WITHOUT_ATTR.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_BOOKSTORE = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XML_BOOKSTORE.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML_BOOKSTORE = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XML_BOOKSTORE.txt";
 	

@@ -288,16 +288,16 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				String pathStr = createXPath( selectedItem );
 				String name = selectedItem.getText( );
 				int type = -1;
-				if ( selectedItem.getData( ) instanceof ATreeNode )
+				if ( selectedItem.getData( ) instanceof TreeNodeData )
 				{
 					// if the select treeItem is attribute, the name should not
 					// start with '@'
-					ATreeNode node = (ATreeNode) selectedItem.getData( );
-					if ( node.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
-						name = (String) node.getValue( );
+					TreeNodeData node = (TreeNodeData) selectedItem.getData( );
+					if ( node.getTreeNode( ).getType( ) == ATreeNode.ATTRIBUTE_TYPE )
+						name = (String) node.getTreeNode( ).getValue( );
 					try
 					{
-						type = DataTypes.getType( node.getDataType( ) );
+						type = DataTypes.getType( node.getTreeNode( ).getDataType( ) );
 					}
 					catch ( OdaException e1 )
 					{
@@ -848,7 +848,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			// Object url = StructureFactory.getModuleHandle( ).findResource(
 			// schemaFileName,IResourceLocator.LIBRARY );
 			// if( url != null )
-			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, true, numberOfElement );
+			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, numberOfElement );
 			Object[] childs = treeNode.getChildren( );
 			populateTreeItems( availableXmlTree, childs, 0 );
 			availableXmlTree.addListener(SWT.Expand, new Listener(){
@@ -861,9 +861,17 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					
 					((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
 					currentItem.removeAll();
-					if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
-							&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
-						TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ) );
+					try
+					{
+						if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
+								&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
+							TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ), true );
+					}
+					catch ( OdaException e )
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 				}});
 			
@@ -889,8 +897,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 * 
 	 * @param tree
 	 * @param node
+	 * @throws OdaException 
 	 */
-	private void populateTreeItems( Object tree, Object[] node, int level )
+	private void populateTreeItems( Object tree, Object[] node, int level ) throws OdaException
 	{
 		level ++;
 		

@@ -370,7 +370,7 @@ public class XPathChoosePage extends DataSetWizardPage
 				// ).findResource( fileName,IResourceLocator.LIBRARY );
 				//				
 				// if( url != null )
-				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, false, numberOfElement );
+				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, numberOfElement );
 				if ( treeNode == null || treeNode.getChildren( ).length == 0 )
 				{
 					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );
@@ -392,13 +392,21 @@ public class XPathChoosePage extends DataSetWizardPage
 							
 							((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
 							currentItem.removeAll();
-							if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
-									&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
-								TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ) );
+							try
+							{
+								if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
+										&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
+									TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ), false );
+							}
+							catch ( OdaException e )
+							{
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 
 						}});
 					
-					TreePopulationUtil.populateTreeItems( availableXmlTree, childs );
+					TreePopulationUtil.populateTreeItems( availableXmlTree, childs, false );
 				}
 			}
 		}
