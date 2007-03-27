@@ -32,6 +32,11 @@ public interface ISQLDBProposalsService {
     ISQLEditorConnectionInfo getSQLEditorConnectionInfo();
 
     /**
+     * Sets the <code>ISQLEditorConnectionInfo</code> used to provide content assist.
+     */
+    public void setSQLEditorConnectionInfo(ISQLEditorConnectionInfo connectionInfo);
+    
+    /**
 	 * Populates the list database of database object proposals (schemas,
 	 * tables, columns) using given list of tokens (DB identifiers) indicating
 	 * the start of the expression for which the user wants DB proposals. For

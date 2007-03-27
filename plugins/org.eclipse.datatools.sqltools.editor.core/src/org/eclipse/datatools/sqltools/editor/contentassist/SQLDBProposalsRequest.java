@@ -75,8 +75,9 @@ public class SQLDBProposalsRequest {
 			break;
 		case 3: // "database..", "database.schema.tab", or "schema.tab.col"; we
 			// read last 2 as one.
-			if (tokens[1] == null && tokens[2] == null) {
+			if (tokens[1] == null ) {
 				_database = tokens[0];
+                _table = tokens[2];
 			} else if (_scope == SQLParser.SCOPE_COLUMNS) {
 				_schema = tokens[0];
 				_table = tokens[1];
@@ -157,12 +158,7 @@ public class SQLDBProposalsRequest {
 		if (getSchema() == null) {
 			proposalType = SQLParserConstants.SCOPE_SCHEMAS;
 		} else {
-			if (proposalType == SQLParserConstants.SCOPE_DEFAULT) {
-				if (getTable() == null) {
-					proposalType = SQLParserConstants.SCOPE_TABLES;
-				}
-			} else if (proposalType == SQLParserConstants.SCOPE_COLUMNS
-					|| proposalType == SQLParserConstants.SCOPE_TRIGGERS) {
+			    if (proposalType == SQLParserConstants.SCOPE_COLUMNS) {
 				if (getTable() == null && getContextTables().isEmpty()) {
 					proposalType = SQLParserConstants.SCOPE_TABLES;
 				}
