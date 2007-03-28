@@ -554,25 +554,25 @@ public class ResultSet implements IResultSet
 		if ( stringValue != null )
 		{
 			if ( stringValue.equalsIgnoreCase( "true" ) )
-				return Boolean.TRUE;
+				return Boolean.TRUE.booleanValue( );
 			else if ( stringValue.equalsIgnoreCase( "false" ) )
-				return Boolean.FALSE;
+				return Boolean.FALSE.booleanValue( );
 			else
 			{
 				try
 				{
 					if ( Integer.parseInt( (String) stringValue ) == 0 )
-						return Boolean.FALSE;
+						return Boolean.FALSE.booleanValue( );
 					else
 						return Boolean.TRUE;
 				}
 				catch ( NumberFormatException e )
 				{
-					return Boolean.FALSE;
+					return Boolean.FALSE.booleanValue( );
 				}
 			}
 		}
-		return Boolean.FALSE;
+		return Boolean.FALSE.booleanValue( );
 	}
 	
 }
