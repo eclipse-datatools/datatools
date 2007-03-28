@@ -20,8 +20,9 @@ import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
-import org.eclipse.datatools.sqltools.core.services.ExecutionService;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.datatools.sqltools.routineeditor.ProcEditorInput;
+import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -273,7 +274,8 @@ public class RoutineUtil {
         {
             if (quoted_id == true)
             {
-                sb.append(SQLUtil.quote(proc.getProcName(), '"'));
+                String quotedName = SQLDevToolsUtil.quoteWhenNecessary(proc.getProcName(), proc.getDatabaseIdentifier(), "\"", IIdentifierValidator.IDENTIFIER_TYPE_EVENT);
+                sb.append(quotedName);
             }
             else
             {
@@ -287,7 +289,8 @@ public class RoutineUtil {
             {
                 String name = (String) iter.next();
                 String value =(String) values.get(name);
-                sb.append("\""+name+"\"").append("=").append("\'"+value+"\'").append(",");
+                String quotedName = SQLDevToolsUtil.quoteWhenNecessary(name, proc.getDatabaseIdentifier(), "\"", IIdentifierValidator.IDENTIFIER_TYPE_PARAMETER);
+                sb.append(quotedName).append("=").append(SQLUtil.quote(value, '\'')).append(",");
             }
 
             sb.deleteCharAt(sb.length() - 1); // remove the last ","
