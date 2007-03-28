@@ -113,7 +113,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.date" ),
 			Messages.getString( "datatypes.time" ),
-			Messages.getString( "datatypes.string" )
+			Messages.getString( "datatypes.string" ),
+			Messages.getString( "datatypes.boolean" )
 	};
 
 	private HashMap dataTypeDisplayNameMap = new HashMap( );
@@ -209,6 +210,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				Messages.getString( "datatypes.dateTime" ) );
 		dataTypeDisplayNameMap.put( "BIGDECIMAL",
 				Messages.getString( "datatypes.decimal" ) );
+		dataTypeDisplayNameMap.put( "BOOLEAN",
+				Messages.getString( "datatypes.boolean" ) );
 
 		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" );
 		dataTypeValueMape.put( Messages.getString( "datatypes.float" ),
@@ -221,6 +224,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				"TIMESTAMP" );
 		dataTypeValueMape.put( Messages.getString( "datatypes.decimal" ),
 				"BIGDECIMAL" );
+		dataTypeValueMape.put( Messages.getString( "datatypes.boolean" ),
+		        "BOOLEAN" );
 	}
 
 	/**
