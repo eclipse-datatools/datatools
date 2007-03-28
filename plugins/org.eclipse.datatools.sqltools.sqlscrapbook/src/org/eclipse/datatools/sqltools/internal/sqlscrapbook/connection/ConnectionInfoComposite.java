@@ -370,7 +370,10 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
                     }
                     if (_dbName != null)
                     {
-                        _combodbName.add(_dbName);
+                        if (_combodbName.getItemCount() == 0)
+                        {
+                            _combodbName.add(_dbName);
+                        }
                         _combodbName.setText(_dbName);
                     }
 
