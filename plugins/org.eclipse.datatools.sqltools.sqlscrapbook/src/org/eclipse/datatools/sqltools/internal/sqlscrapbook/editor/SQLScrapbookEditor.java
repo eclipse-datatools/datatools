@@ -71,9 +71,9 @@ public class SQLScrapbookEditor extends SQLEditor {
             gridLayout.marginBottom = 0;
             
             fDefaultComposite.setLayout(gridLayout);
-            connBar = new ConnectionInfoComposite(fDefaultComposite, this, SQLScrapbookEditor.this.getConnectionInfo(), null, false, false);
             fDefaultComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-            
+
+            connBar = new ConnectionInfoComposite(fDefaultComposite, this, SQLScrapbookEditor.this.getConnectionInfo(), null, false, false, null, false);
             connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
             
             Composite textComposite= new Composite(fDefaultComposite, SWT.NONE);

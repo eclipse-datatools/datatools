@@ -57,6 +57,8 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
 
     protected Pattern                                 PROFILE_AND_TYPE              = Pattern.compile("(.*)--(.*)\\z");
 
+    private GridLayout                                _layout                       = null;
+    
     private Label                                     _labelName                    = null;
 
     private Combo                                     _comboProfileName             = null;
@@ -92,12 +94,13 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
 
     public ConnectionInfoComposite(Composite parent, Listener listener, String profileName, String dbName)
     {
-        this(parent, listener, new SQLEditorConnectionInfo(null, profileName, dbName), null, false, false);
+        this(parent, listener, new SQLEditorConnectionInfo(null, profileName, dbName), null, false, false, null, false);
     }
 
     /**
      * 
-     * Creates a new Connection Info Group with the given profileName, dbName, supportedDBDefinitionNames.
+     * Creates a new Connection Info Group with the given profileName, dbName, supportedDBDefinitionNames. After the
+     * construction, clients should call init() to populate the controls.
      * 
      * @param parent The parent widget of the group
      * @param connInfo The connection information
@@ -105,10 +108,11 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
      * @param supportedDBDefinitionNames The supported datbase definition name list.
      * @param mustConnect if the connection profile must connect or not to retrieve the database list.
      * @param createProfiel if the create connection profile button show be visible
-     * 
+     * @param layout The GridLayout used to customize this composite's layout, can be null.
+     * @param lazyInit Tells the composite whether to populates the controls when asked to do so @see init()
      */
     public ConnectionInfoComposite(Composite parent, Listener listener, ISQLEditorConnectionInfo connInfo,
-            Collection supportedDBDefinitionNames, boolean mustConnect, boolean createProfile)
+            Collection supportedDBDefinitionNames, boolean mustConnect, boolean createProfile, GridLayout layout, boolean lazyInit)
     {
         super(parent, SWT.NONE);
         if (connInfo != null)
@@ -129,10 +133,12 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
         _supportedDBDefinitionNames = supportedDBDefinitionNames;
         this._mustConnect = mustConnect;
         this._createProfile = createProfile;
+        this._layout = layout;
         createContents();
-        init(_dbVendorId.toString(), _profileName, _dbName);
-        updateFields();
-
+        if (!lazyInit)
+        {
+            init();
+        }
     }
 
     /**
@@ -149,21 +155,23 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
     protected Control createContents()
     {
         // add controls to composite as necessary
-        GridLayout gridLayout1 = new GridLayout();
         GridLayout gridLayout2 = new GridLayout();
         GridData gridData3 = new GridData();
         GridData gridData4 = new GridData();
         GridData gridData5 = new GridData();
         GridData gridData6 = new GridData();
 
-        gridData6.horizontalAlignment = GridData.END;
+        gridData6.horizontalAlignment = GridData.HORIZONTAL_ALIGN_FILL;
         this.setLayoutData(gridData6);
-        gridLayout1.marginWidth = 0;
-        gridLayout1.numColumns = 4;
-        gridLayout1.marginHeight = 0;
-        gridLayout1.marginWidth = 12;
-
-        this.setLayout(gridLayout1);
+        if (_layout == null)
+        {
+            _layout = new GridLayout();
+            _layout.marginWidth = 0;
+            _layout.numColumns = 4;
+            _layout.marginHeight = 0;
+            _layout.marginWidth = 12;
+        }
+        this.setLayout(_layout);
 
         _labelName = new Label(this, SWT.NONE);
         _labelName.setText(Messages.SelectProfileDialog_profile_name); //$NON-NLS-1$
@@ -393,6 +401,15 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
     }
 
     /**
+     * Initializes the controls
+     */
+    public void init()
+    {
+        init(_dbVendorId.toString(), _profileName, _dbName);
+        updateFields();
+    }
+
+    /**
      * Refreshes the connection profile name combo box
      * 
      * @param dbVendorName
@@ -519,10 +536,13 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
      * 
      * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
      */
-    public void handleEvent(Event event) {
-        if (event.widget == _create) {
+    public void handleEvent(Event event)
+    {
+        if (event.widget == _create)
+        {
             SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByVendorIdentifier(_dbVendorId);
-            if (f == null) {
+            if (f == null)
+            {
                 return;
             }
             // FIXME: should invoke NewConnectionProfileWizard specific to the
@@ -531,57 +551,66 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
             String[] currentNames = getCurrentProfileNames();
             WizardDialog dlg = new WizardDialog(getShell(), wizard);
             int id = dlg.open();
-            if (id != IDialogConstants.CANCEL_ID) {
+            if (id != IDialogConstants.CANCEL_ID)
+            {
                 // refresh all the profile info so that we can select the newly
                 // created one
                 String[] newNames = getCurrentProfileNames();
                 String newProfile = getNewProfileName(currentNames, newNames);
-                if (newProfile != null) {
+                if (newProfile != null)
+                {
                     init(_dbVendorId.toString(), newProfile, null);
+                    updateFields();
                 }
                 notifyListener();
             }
         }
     }
-    
-    private String[] getCurrentProfileNames() {
-        IConnectionProfile profiles[] = ProfileManager.getInstance()
-                .getProfiles();
+
+    private String[] getCurrentProfileNames()
+    {
+        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
         String[] currentNames = new String[profiles.length];
-        for (int i = 0; i < profiles.length; i++) {
+        for (int i = 0; i < profiles.length; i++)
+        {
             currentNames[i] = profiles[i].getName();
         }
         return currentNames;
     }
 
     /**
-     * Finds the first profile name that does not exist in currentNames. This is
-     * used
+     * Finds the first profile name that does not exist in currentNames. This is used
      * 
      * @param currentNames
      * @param newNames
      * @return
      */
-    private String getNewProfileName(String[] currentNames, String[] newNames) {
-        if (currentNames != null && newNames != null) {
-            for (int i = 0; i < newNames.length; i++) {
+    private String getNewProfileName(String[] currentNames, String[] newNames)
+    {
+        if (currentNames != null && newNames != null)
+        {
+            for (int i = 0; i < newNames.length; i++)
+            {
                 boolean found = false;
-                for (int j = 0; j < currentNames.length; j++) {
-                    if (newNames[i].equals(currentNames[j])) {
+                for (int j = 0; j < currentNames.length; j++)
+                {
+                    if (newNames[i].equals(currentNames[j]))
+                    {
                         found = true;
                         break;
                     }
                 }
-                if (!found) {
+                if (!found)
+                {
                     return newNames[i];
                 }
             }
         }
-        if (currentNames == null && newNames != null && newNames.length > 0) {
+        if (currentNames == null && newNames != null && newNames.length > 0)
+        {
             return newNames[0];
         }
         return null;
     }
-
 
 }
