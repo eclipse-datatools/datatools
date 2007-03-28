@@ -530,7 +530,7 @@ public class ResultSet implements IResultSet
 	 */
 	public boolean getBoolean( String columnName ) throws OdaException
 	{
-		return stringToBoolean( getString( columnName ) );
+		return stringToBoolean( getString( columnName ) ).booleanValue( );
 	}
 
 	/*
@@ -538,41 +538,41 @@ public class ResultSet implements IResultSet
 	 */
 	public boolean getBoolean( int index ) throws OdaException
 	{
-		return stringToBoolean( getString( index ) );
+		return stringToBoolean( getString( index ) ).booleanValue( );
 	}
 	
 	/**
-     * Transform a String value to a boolean value
+     * Transform a String value to a Boolean value
      * 
      * @param stringValue String value
      * @return Corresponding boolean value
 	 * @throws OdaException 
      */
-    private boolean stringToBoolean( String stringValue ) throws OdaException
+    private Boolean stringToBoolean( String stringValue ) throws OdaException
 	{
 		testClosed( );
 		if ( stringValue != null )
 		{
 			if ( stringValue.equalsIgnoreCase( "true" ) )
-				return Boolean.TRUE.booleanValue( );
+				return Boolean.TRUE;
 			else if ( stringValue.equalsIgnoreCase( "false" ) )
-				return Boolean.FALSE.booleanValue( );
+				return Boolean.FALSE;
 			else
 			{
 				try
 				{
 					if ( Integer.parseInt( (String) stringValue ) == 0 )
-						return Boolean.FALSE.booleanValue( );
+						return Boolean.FALSE;
 					else
 						return Boolean.TRUE;
 				}
 				catch ( NumberFormatException e )
 				{
-					return Boolean.FALSE.booleanValue( );
+					return Boolean.FALSE;
 				}
 			}
 		}
-		return Boolean.FALSE.booleanValue( );
+		return Boolean.FALSE;
 	}
 	
 }
