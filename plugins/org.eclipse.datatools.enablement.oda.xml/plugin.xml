@@ -61,6 +61,9 @@
                   nativeDataType="BIGDECIMAL"
                   nativeDataTypeCode="2"
                   odaScalarDataType="Decimal"/>
+           <dataTypeMapping nativeDataType="BOOLEAN"
+                  nativeDataTypeCode="16"
+                  odaScalarDataType="Boolean"/>
       </dataSet>
 	  <dataSource
             odaVersion="3.1"
@@ -91,7 +94,7 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <category
             id="%oda.data.source.id"
-            name="%oda.data.source.name"
+            name="%oda.data.source.category.name"
             parentCategory="%oda.parent.category.id"/>
       <connectionProfile
             category="%oda.data.source.id"
@@ -103,7 +106,6 @@
             name="%oda.connection.factory.name"
             class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
             profile="%oda.data.source.id"/>
-   </extension>
-   
+   </extension>   
 </plugin>
 

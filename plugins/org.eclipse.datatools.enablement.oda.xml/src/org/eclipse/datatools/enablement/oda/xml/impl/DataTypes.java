@@ -33,6 +33,7 @@ public final class DataTypes
 	public static final int TIMESTAMP = Types.TIMESTAMP;
 	public static final int BLOB = Types.BLOB;
 	public static final int BIGDECIMAL = Types.NUMERIC; 
+	public static final int BOOLEAN = Types.BOOLEAN;
 	
 	private static final String XML_DATA_SOURCE_ID = 
 	        "org.eclipse.datatools.enablement.oda.xml"; //$NON-NLS-1$

@@ -12,14 +12,13 @@
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -40,7 +39,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.1 $ $Date: 2006/09/28 10:19:11 $
+ * @version $Revision: 1.2 $ $Date: 2006/09/29 02:15:34 $
  */
 public final class ColumnMappingTableViewer
 {
@@ -51,18 +50,6 @@ public final class ColumnMappingTableViewer
 	private Button btnDown;
 	private MenuItem itmRemove;
 	private MenuItem itmRemoveAll;
-
-	private static HashMap typeIdDisplayNameMapping = new HashMap();
-    static
-    {
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.TIMESTAMP ),Messages.getString("datatypes.dateTime") );
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.BIGDECIMAL ),Messages.getString("datatypes.decimal") );
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.DOUBLE ),Messages.getString("datatypes.float") );
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.INT ),Messages.getString("datatypes.integer") );
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.DATE ),Messages.getString("datatypes.date"));
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.TIME ),Messages.getString("datatypes.time"));
-    	typeIdDisplayNameMapping.put( new Integer( DataTypes.STRING ),Messages.getString("datatypes.string"));
-    }
     
 	/**
 	 * column mapping table viewer. it supplys the button of remove, up , down
@@ -274,8 +261,8 @@ public final class ColumnMappingTableViewer
 			element.setXPath( columnPath[i] );
 			try
 			{
-				//Set type to its display name.
-				element.setType( typeIdDisplayNameMapping.get(new Integer(DataTypes.getType(columnType[i]))).toString() );
+				// Set type to its display name.
+				element.setType( DataTypeUtil.getDataTypeDisplayName( DataTypes.getType( columnType[i] ) ) );
 			}
 			catch ( OdaException e )
 			{

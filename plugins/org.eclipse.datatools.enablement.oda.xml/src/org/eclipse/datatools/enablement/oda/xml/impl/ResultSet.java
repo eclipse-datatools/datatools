@@ -523,23 +523,56 @@ public class ResultSet implements IResultSet
 	{
 		throw new UnsupportedOperationException ();	
 	}
+	
+	    
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(java.lang.String)
+	 */
+	public boolean getBoolean( String columnName ) throws OdaException
+	{
+		return stringToBoolean( getString( columnName ) );
+	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(int)
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(int)
+	 */
+	public boolean getBoolean( int index ) throws OdaException
+	{
+		return stringToBoolean( getString( index ) );
+	}
+	
+	/**
+     * Transform a String value to a boolean value
+     * 
+     * @param stringValue String value
+     * @return Corresponding boolean value
+	 * @throws OdaException 
      */
-    public boolean getBoolean( int index ) throws OdaException
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException(); 
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBoolean(java.lang.String)
-     */
-    public boolean getBoolean( String columnName ) throws OdaException
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException(); 
-    }
-    
+    private boolean stringToBoolean( String stringValue ) throws OdaException
+	{
+		testClosed( );
+		if ( stringValue != null )
+		{
+			if ( stringValue.equalsIgnoreCase( "true" ) )
+				return Boolean.TRUE;
+			else if ( stringValue.equalsIgnoreCase( "false" ) )
+				return Boolean.FALSE;
+			else
+			{
+				try
+				{
+					if ( Integer.parseInt( (String) stringValue ) == 0 )
+						return Boolean.FALSE;
+					else
+						return Boolean.TRUE;
+				}
+				catch ( NumberFormatException e )
+				{
+					return Boolean.FALSE;
+				}
+			}
+		}
+		return Boolean.FALSE;
+	}
+	
 }

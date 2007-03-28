@@ -127,7 +127,8 @@ public class XPathChoosePage extends DataSetWizardPage
 			rootPath = "";
 
 		backupRootPath( );
-		xmlPathText.setText( rootPath );
+		if ( rootPath != null && rootPath.length( ) > 0 )
+			xmlPathText.setText( rootPath );
 	}
 	
 	private void backupRootPath( )

@@ -55,7 +55,8 @@ public class ColumnMappingDialog extends TrayDialog
         Messages.getString("datatypes.integer"), //$NON-NLS-1$
         Messages.getString("datatypes.date"),
         Messages.getString("datatypes.time"),
-        Messages.getString("datatypes.string")        
+        Messages.getString("datatypes.string"),  
+        Messages.getString("datatypes.boolean")        
     };
 
 	public ColumnMappingDialog( Shell parent, String title, String selectedItem, String xpath, int dataType )

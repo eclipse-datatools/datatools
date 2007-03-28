@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.1 $ $Date: 2006/09/28 10:19:11 $
+ * @version $Revision: 1.2 $ $Date: 2006/09/29 02:15:34 $
  */
 public final class ResultSetTableViewer
 {
@@ -301,6 +301,11 @@ public final class ResultSetTableViewer
 							case DataTypes.BLOB :
 							{
 								resultSet[rowCount][i] = String.valueOf( rs.getBlob( i + 1 ) );
+								break;
+							}
+							case DataTypes.BOOLEAN :
+							{
+								resultSet[rowCount][i] = String.valueOf( rs.getBoolean( i + 1 ) );
 								break;
 							}
 							default :

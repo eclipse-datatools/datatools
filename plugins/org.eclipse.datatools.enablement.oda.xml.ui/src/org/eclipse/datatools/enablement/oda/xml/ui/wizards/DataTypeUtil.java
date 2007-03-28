@@ -35,7 +35,8 @@ final class DataTypeUtil
     	displayNameDataTypeMapping.put( Messages.getString("datatypes.date"), new Integer( DataTypes.DATE )  );
     	displayNameDataTypeMapping.put( Messages.getString("datatypes.time"), new Integer( DataTypes.TIME ) );
     	displayNameDataTypeMapping.put( Messages.getString("datatypes.string"), new Integer( DataTypes.STRING ) );
-    
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.boolean"), new Integer( DataTypes.BOOLEAN ) );
+    	
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIMESTAMP ), Messages.getString("datatypes.dateTime") );
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BIGDECIMAL ), Messages.getString("datatypes.decimal"));
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DOUBLE ), Messages.getString("datatypes.float"));
@@ -43,6 +44,7 @@ final class DataTypeUtil
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DATE ),Messages.getString("datatypes.date"));
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIME ), Messages.getString("datatypes.time"));
     	dataTypeDisplayNameMapping.put( new Integer( DataTypes.STRING ), Messages.getString("datatypes.string"));
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BOOLEAN ), Messages.getString("datatypes.boolean"));
     }
     
     /**

@@ -112,7 +112,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.date" ),
 			Messages.getString( "datatypes.time" ),
-			Messages.getString( "datatypes.string" )
+			Messages.getString( "datatypes.string" ),
+			Messages.getString( "datatypes.boolean" )
 	};
 	
 	/**

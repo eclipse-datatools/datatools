@@ -89,6 +89,8 @@ public class ATreeNode
 					DataTypes.getTypeString( DataTypes.TIMESTAMP ) );
 			xmlTypeToDataType.put( "time",
 					DataTypes.getTypeString( DataTypes.TIME ) );
+			xmlTypeToDataType.put( "boolean",
+					DataTypes.getTypeString( DataTypes.BOOLEAN ) );
 		}
 		catch ( OdaException e )
 		{
