@@ -257,7 +257,7 @@ public class FolderSelectionPageHelper
 			ssvSelected = true;
 		if ( CommonConstants.DELIMITER_PIPE.equals( delimiterType ) )
 			vsvBarSelected = true;
-		if ( CommonConstants.DELIMITER_TAB.endsWith( delimiterType ) )
+		if ( CommonConstants.DELIMITER_TAB.equals( delimiterType ) )
 			tsvSelected = true;
 
 		flatfileCSVRadioBox.setSelection( csvSelected );
