@@ -288,8 +288,7 @@ public class ResultSet implements IResultSet
      */
     public boolean getBoolean( int index ) throws OdaException
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException();
+         return stringToBoolean( getString( index ) );
     }
 
     /* (non-Javadoc)
@@ -297,8 +296,7 @@ public class ResultSet implements IResultSet
      */
     public boolean getBoolean( String columnName ) throws OdaException
     {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException();
+    	return stringToBoolean( getString( columnName ) );
     }
 
     /*
@@ -488,4 +486,35 @@ public class ResultSet implements IResultSet
     	this.wasNull = true;
         return null;
     }
+    
+    /**
+	 * Transform a string to boolean value
+	 * @param stringValue
+	 * @return
+	 */
+	private boolean stringToBoolean( String stringValue )
+	{
+		if ( stringValue != null )
+		{
+			if ( stringValue.equalsIgnoreCase( "true" ) )
+				return Boolean.TRUE;
+			else if ( stringValue.equalsIgnoreCase( "false" ) )
+				return Boolean.FALSE;
+			else
+			{
+				try
+				{
+					if ( Integer.parseInt( (String) stringValue ) == 0 )
+						return Boolean.FALSE;
+					else
+						return Boolean.TRUE;
+				}
+				catch ( NumberFormatException e )
+				{
+					return Boolean.FALSE;
+				}
+			}
+		}
+		return Boolean.FALSE;
+	}
 }

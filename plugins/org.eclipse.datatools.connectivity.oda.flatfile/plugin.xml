@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.10 2007/03/01 07:08:02 lchan Exp $
+ * $Id: plugin.xml,v 1.11 2007/03/16 11:47:16 lchan Exp $
  */
 -->
 
@@ -132,6 +132,10 @@
                   nativeDataType="BIGDECIMAL"
                   nativeDataTypeCode="2"
                   odaScalarDataType="Decimal"/>
+            <dataTypeMapping 
+                  nativeDataType="BOOLEAN"
+                  nativeDataTypeCode="16"
+                  odaScalarDataType="Boolean"/>
       </dataSet>
    </extension>
    
