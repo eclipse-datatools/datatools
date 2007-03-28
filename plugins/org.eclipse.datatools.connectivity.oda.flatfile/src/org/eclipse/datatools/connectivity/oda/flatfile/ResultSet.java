@@ -288,7 +288,7 @@ public class ResultSet implements IResultSet
      */
     public boolean getBoolean( int index ) throws OdaException
     {
-         return stringToBoolean( getString( index ) );
+         return stringToBoolean( getString( index ) ).booleanValue( );
     }
 
     /* (non-Javadoc)
@@ -296,7 +296,7 @@ public class ResultSet implements IResultSet
      */
     public boolean getBoolean( String columnName ) throws OdaException
     {
-    	return stringToBoolean( getString( columnName ) );
+    	return stringToBoolean( getString( columnName ) ).booleanValue( );
     }
 
     /*
@@ -492,14 +492,14 @@ public class ResultSet implements IResultSet
 	 * @param stringValue
 	 * @return
 	 */
-	private boolean stringToBoolean( String stringValue )
+	private Boolean stringToBoolean( String stringValue )
 	{
 		if ( stringValue != null )
 		{
 			if ( stringValue.equalsIgnoreCase( "true" ) )
-				return Boolean.TRUE;
+				return Boolean.TRUE.booleanValue( );
 			else if ( stringValue.equalsIgnoreCase( "false" ) )
-				return Boolean.FALSE;
+				return Boolean.FALSE.booleanValue( );
 			else
 			{
 				try
