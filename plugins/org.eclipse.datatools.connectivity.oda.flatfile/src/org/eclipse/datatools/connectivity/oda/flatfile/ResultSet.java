@@ -497,9 +497,9 @@ public class ResultSet implements IResultSet
 		if ( stringValue != null )
 		{
 			if ( stringValue.equalsIgnoreCase( "true" ) )
-				return Boolean.TRUE.booleanValue( );
+				return Boolean.TRUE;
 			else if ( stringValue.equalsIgnoreCase( "false" ) )
-				return Boolean.FALSE.booleanValue( );
+				return Boolean.FALSE;
 			else
 			{
 				try
