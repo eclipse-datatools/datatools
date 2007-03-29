@@ -249,20 +249,24 @@ public class SQLDevToolsUtil {
     public static boolean isQuotedIdentifierOn(DatabaseIdentifier databaseIdentifier)
     {
         boolean quotedIdentifier = false;
-//        Object quotedIdentifierCfg = null;
-//        try
-//        {
-//        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(null, databaseIdentifier); 
-//            quotedIdentifierCfg = conf.getDatabaseSetting(databaseIdentifier)
-//                .getConnectionConfigProperty(IDatabaseSetting.C_QUOTED_IDENTIFIER);
-//        }
-//        catch (NotSupportedSettingException e)
-//        {
-//        }
-//        if (quotedIdentifierCfg instanceof Boolean)
-//        {
-//            quotedIdentifier = ((Boolean) quotedIdentifierCfg).booleanValue();
-//        }
+        Object quotedIdentifierCfg = null;
+        try
+        {
+        	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(null, databaseIdentifier); 
+            if (conf == null || conf.getDatabaseSetting(databaseIdentifier) == null)
+            {
+                return false;
+            }
+            quotedIdentifierCfg = conf.getDatabaseSetting(databaseIdentifier)
+                .getConnectionConfigProperty(IDatabaseSetting.C_QUOTED_IDENTIFIER);
+        }
+        catch (NotSupportedSettingException e)
+        {
+        }
+        if (quotedIdentifierCfg instanceof Boolean)
+        {
+            quotedIdentifier = ((Boolean) quotedIdentifierCfg).booleanValue();
+        }
         return quotedIdentifier;
     }
 
