@@ -55,6 +55,7 @@ public class SQLScrapbookEditor extends SQLEditor {
     public class ToolbarSourceViewer extends AdaptedSourceViewer implements Listener
     {
         private ConnectionInfoComposite connBar;
+        private boolean fromToolbar = false; 
         public ToolbarSourceViewer(Composite parent, IVerticalRuler verticalRuler,
                 IOverviewRuler overviewRuler, boolean showAnnotationsOverview, int styles)
         {
@@ -86,7 +87,9 @@ public class SQLScrapbookEditor extends SQLEditor {
         public void handleEvent(Event event)
         {
             String content = getDocument().get();
+            fromToolbar = true;
             setConnectionInfo(connBar.getConnectionInfo());
+            fromToolbar = false;
             getDocument().set(content);
         }
     }
@@ -207,7 +210,14 @@ public class SQLScrapbookEditor extends SQLEditor {
 			SQLFileUtil.setEncodedConnectionInfo(((IFileEditorInput)getEditorInput()).getFile(), connInfo.encode());
 		}
 		// refresh title tooltip
-        setTitleToolTip(getTitleToolTip());		
+        setTitleToolTip(getTitleToolTip());
+        //updates the internal toolbar when user changes the connection info
+        if (!((ToolbarSourceViewer)getSV()).fromToolbar)
+        {
+            ((ToolbarSourceViewer) getSV()).connBar.init(
+                    getConnectionInfo().getDatabaseVendorDefinitionId().toString(), getConnectionInfo()
+                            .getConnectionProfileName(), getConnectionInfo().getDatabaseName());
+        }
 	}	
 
 	public void dispose() {
@@ -238,4 +248,5 @@ public class SQLScrapbookEditor extends SQLEditor {
         return new ToolbarSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
                 styles);
     }
+    
 }

@@ -414,7 +414,7 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
      * 
      * @param dbVendorName
      */
-    private void init(String dbVendorName, String initialProfName, String initialDBName)
+    public void init(String dbVendorName, String initialProfName, String initialDBName)
     {
         synchronized (_inInit)
         {
