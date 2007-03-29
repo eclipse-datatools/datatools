@@ -21,8 +21,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorInputFactory;
-import org.eclipse.ui.IMemento;
 import org.eclipse.ui.part.FileEditorInput;
 
 /**
@@ -127,26 +125,6 @@ public class SQLEditorFileEditorInput extends FileEditorInput implements ISQLEdi
 	public ISQLEditorConnectionInfo getConnectionInfo() {
 		return fConnInfo;
 	}
-
-    /**
-     * Returns the id of the element factory which should be used to re-create this
-     * object.
-     * 
-     * @see org.eclipse.ui.IPersistableElement#getFactoryId()
-     */
-    public String getFactoryId() {
-        return SQLEditorInputFactory.ID_FACTORY;
-    }
-
-    /**
-     * Saves the state of the object in the given memento.
-     * 
-     * @param memento the storage area for object's state
-     * @see org.eclipse.ui.IPersistableElement#saveState(org.eclipse.ui.IMemento)
-     */
-    public void saveState(IMemento memento) {
-        SQLFileEditorInputFactory.saveState( memento, this );
-    }
 
 	/**
 	 * Sets the <code>ISQLEditorConnectionInfo</code> associated with this input to the given 

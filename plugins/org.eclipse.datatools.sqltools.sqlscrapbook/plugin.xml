@@ -78,8 +78,8 @@
    <extension 
       point = "org.eclipse.ui.elementFactories"> 
          <factory 
-            id ="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFileEditorInputFactory" 
-            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLFileEditorInputFactory"> 
+            id ="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditorInputFactory" 
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditorInputFactory"> 
          </factory> 
    </extension>
    <extension

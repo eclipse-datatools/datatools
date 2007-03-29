@@ -21,6 +21,7 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.texteditor.AbstractDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -162,5 +163,26 @@ public class SQLScrapbookEditorInput extends SQLEditorFileEditorInput implements
     public void setConnectionAction(IAction setConnectionAction) {
         this.connectionAction = setConnectionAction;
     }
+
+    /**
+     * Returns the id of the element factory which should be used to re-create this
+     * object.
+     * 
+     * @see org.eclipse.ui.IPersistableElement#getFactoryId()
+     */
+    public String getFactoryId() {
+        return SQLScrapbookEditorInputFactory.ID_FACTORY;
+    }
+
+    /**
+     * Saves the state of the object in the given memento.
+     * 
+     * @param memento the storage area for object's state
+     * @see org.eclipse.ui.IPersistableElement#saveState(org.eclipse.ui.IMemento)
+     */
+    public void saveState(IMemento memento) {
+        SQLScrapbookEditorInputFactory.saveState( memento, this );
+    }
+
 
 }
