@@ -219,7 +219,7 @@ public class ModelUtil {
 	 * @return
 	 */
 	public static EList getSchemas(Database database, String catalogName) {
-		if (catalogName == null)
+		if (catalogName == null || catalogName.equals(""))
 		{
 			catalogName = database.getName();
 		}
@@ -242,6 +242,22 @@ public class ModelUtil {
 		return schemas;
 	}
 
+	/**
+	 * Returns the schema object with the given name
+	 */
+	public static Schema findSchema(Database database, String catalogName, String schemaName) {
+	    EList schemas = getSchemas(database, catalogName);
+        for (Iterator it = schemas.iterator(); it.hasNext();)
+        {
+            Schema schema = (Schema) it.next();
+            if (schema.getName().equals(schemaName))
+            {
+                return schema;
+            }
+        }
+	    return null;
+	}
+	
 	public static DatabaseDefinition getDatabaseDefinition(SQLObject obj)
     {
         Object database = ContainmentServiceImpl.INSTANCE.getRootElement(obj);

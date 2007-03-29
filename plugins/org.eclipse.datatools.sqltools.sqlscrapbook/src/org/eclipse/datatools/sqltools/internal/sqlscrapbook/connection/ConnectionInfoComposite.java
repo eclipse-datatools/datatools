@@ -80,8 +80,6 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
 
     protected ISQLEditorConnectionInfo                _connInfo                     = null;
 
-    private Boolean                                   _inInit                       = Boolean.TRUE;
-
     private boolean                                   _mustConnect                  = false;
 
     private boolean                                   _createProfile                = false;
@@ -360,34 +358,7 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
 
             public void focusGained(FocusEvent e)
             {
-                synchronized (_inInit)
-                {
-                    _inInit = Boolean.TRUE;
-
-                    readControlValues();
-                    _combodbName.removeAll();
-                    if (_profileName != null)
-                    {
-                        List list = ProfileUtil.getDatabaseList(_profileName, _mustConnect);
-                        Iterator iterator = list.iterator();
-                        while (iterator.hasNext())
-                        {
-                            String dbname = iterator.next().toString();
-                            _combodbName.add(dbname);
-                        }
-                    }
-                    if (_dbName != null)
-                    {
-                        if (_combodbName.getItemCount() == 0)
-                        {
-                            _combodbName.add(_dbName);
-                        }
-                        _combodbName.setText(_dbName);
-                    }
-
-                    _inInit = Boolean.FALSE;
-                }
-
+                initDBNames();
             }
 
             public void focusLost(FocusEvent e)
@@ -406,7 +377,6 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
     public void init()
     {
         init(_dbVendorId.toString(), _profileName, _dbName);
-        updateFields();
     }
 
     /**
@@ -416,86 +386,121 @@ public class ConnectionInfoComposite extends Composite implements SelectionListe
      */
     public void init(String dbVendorName, String initialProfName, String initialDBName)
     {
-        synchronized (_inInit)
+        setConnectionInfo(dbVendorName, initialProfName, initialDBName);
+        
+        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
+        if (_supportedDBDefinitionNames == null)
         {
-            _inInit = Boolean.TRUE;
-            IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
-            ;
-            if (_supportedDBDefinitionNames == null)
-            {
-                _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
-            }
+            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+        }
 
-            ArrayList rightProfiles = new ArrayList();
-            String selectedName = null;
+        ArrayList rightProfiles = new ArrayList();
+        String selectedName = null;
 
-            for (int i = 0; i < profiles.length; i++)
+        for (int i = 0; i < profiles.length; i++)
+        {
+            DatabaseVendorDefinitionId dbVendorId = ProfileUtil
+                    .getDatabaseVendorDefinitionId(profiles[i].getName());
+            if (_supportedDBDefinitionNames.contains(dbVendorId.toString()))
             {
-                DatabaseVendorDefinitionId dbVendorId = ProfileUtil
-                        .getDatabaseVendorDefinitionId(profiles[i].getName());
-                if (_supportedDBDefinitionNames.contains(dbVendorId.toString()))
+                String itemName = constructItemName(dbVendorId.toString(), profiles[i].getName());
+                rightProfiles.add(itemName);
+                if (_profileName != null && profiles[i].getName().equals(_profileName))
                 {
-                    String itemName = constructItemName(dbVendorId.toString(), profiles[i].getName());
-                    rightProfiles.add(itemName);
-                    if (initialProfName != null && profiles[i].getName().equals(initialProfName))
-                    {
-                        selectedName = itemName;
-                    }
+                    selectedName = itemName;
                 }
             }
-            for (Iterator it = _supportedDBDefinitionNames.iterator(); it.hasNext();)
-            {
-                String name = (String) it.next();
-                rightProfiles.add(constructItemName(name, ""));
-            }
+        }
+        for (Iterator it = _supportedDBDefinitionNames.iterator(); it.hasNext();)
+        {
+            String name = (String) it.next();
+            rightProfiles.add(constructItemName(name, ""));
+        }
 
-            Collections.sort(rightProfiles);
+        Collections.sort(rightProfiles);
 
-            _comboProfileName.setItems((String[]) rightProfiles.toArray(new String[]
-            {}));
+        _comboProfileName.setItems((String[]) rightProfiles.toArray(new String[]
+        {}));
 
-            if (selectedName == null)
+        if (selectedName == null)
+        {
+            if (_dbVendorId != null)
             {
-                if (dbVendorName != null)
-                {
-                    selectedName = constructItemName(dbVendorName, "");
-                }
-                else
-                {
-                    SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
-                    selectedName = constructItemName(defaultConfig.getDatabaseVendorDefinitionId().toString(), "");
-                }
-            }
-
-            if (selectedName != null)
-            {
-                _comboProfileName.setText(selectedName);
-            }
-            else if (_comboProfileName.getItemCount() > 0)
-            {
-                _comboProfileName.select(0);
-            }
-
-            IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(initialProfName);
-            if (ProfileUtil.isDatabaseProfile(connectionProfile))
-            {
-                _combodbName.setEnabled(true);
+                selectedName = constructItemName(_dbVendorId.toString(), "");
             }
             else
             {
-                _combodbName.setEnabled(false);
+                SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
+                selectedName = constructItemName(defaultConfig.getDatabaseVendorDefinitionId().toString(), "");
             }
-            if (initialDBName != null && !initialDBName.equals(""))
-            {
-                _combodbName.setText(initialDBName);
-            }
-
-            updateFields();
-            _inInit = Boolean.FALSE;
         }
 
+        if (selectedName != null)
+        {
+            _comboProfileName.setText(selectedName);
+        }
+        else if (_comboProfileName.getItemCount() > 0)
+        {
+            _comboProfileName.select(0);
+        }
+
+        IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(_profileName);
+        if (ProfileUtil.isDatabaseProfile(connectionProfile))
+        {
+            _combodbName.setEnabled(true);
+        }
+        else
+        {
+            _combodbName.setEnabled(false);
+        }
+        initDBNames();
+        if (_dbName != null && !_dbName.equals(""))
+        {
+            _combodbName.setText(_dbName);
+        }
+
+        updateFields();
     }
 
+    private void initDBNames()
+    {
+        _combodbName.removeAll();
+        if (_profileName != null)
+        {
+            List list = ProfileUtil.getDatabaseList(_profileName, _mustConnect);
+            Iterator iterator = list.iterator();
+            while (iterator.hasNext())
+            {
+                String dbname = iterator.next().toString();
+                _combodbName.add(dbname);
+            }
+        }
+        if (_dbName != null)
+        {
+            if (_combodbName.getItemCount() == 0)
+            {
+                _combodbName.add(_dbName);
+            }
+            _combodbName.setText(_dbName);
+        }
+    }
+
+    private void setConnectionInfo(String dbVendorName, String initialProfName, String initialDBName)
+    {
+        _profileName = initialProfName;
+        _dbName = initialDBName;
+        if (dbVendorName == null)
+        {
+            _dbVendorId = DATABASE_VENDOR_DEFINITION_ID;
+        }
+        else
+        {
+            _dbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
+        }
+        _connInfo = new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName);
+        
+    }
+    
     private String constructItemName(String type, String name)
     {
         if (name == null || name.trim().equals(""))

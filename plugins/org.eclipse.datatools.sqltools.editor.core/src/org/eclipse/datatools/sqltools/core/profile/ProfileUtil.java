@@ -689,9 +689,8 @@ public class ProfileUtil
     public static List getDatabaseList(String profileName, boolean connect)
     {
         List list = new ArrayList();
-        IConnectionProfile profile;
         try {
-            profile = getProfile(profileName);
+            getProfile(profileName);
             if (connect)
             {
                 connectProfile(profileName);
@@ -700,7 +699,6 @@ public class ProfileUtil
             EditorCorePlugin.getDefault().log(e1);
             return list;
         }
-        String dbname = profile.getBaseProperties().getProperty(DATABASENAME);
 
         Database db = getDatabase(new DatabaseIdentifier(profileName, ""), connect);
         if (db != null)
@@ -716,7 +714,7 @@ public class ProfileUtil
             }
             else
             {
-                list.add(dbname);
+                list.add(db.getName());
             }
         }
         return list;

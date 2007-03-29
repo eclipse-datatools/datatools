@@ -90,7 +90,7 @@
             visible="false">
          <action
                class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
-               icon="images/qrydoc.gif"
+               icon="images/scrapbook.gif"
                id="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
                label="Open SQL Scrapboo&amp;k"
                toolbarPath="group.sqleditor.open"
