@@ -66,7 +66,7 @@ class ProfileSelectionPageHelper
 
     private transient Label m_dataSourceNameLabel = null;
     private transient Text m_connectionProfilePath = null;
-    private transient Text m_dataSourceDesignName = null;
+    private transient Text m_dataSourceDesignNameControl = null;
     private transient Button m_linkRefCheckBox = null;
     private transient String m_profileID;
     private transient String m_odaDataSourceID;
@@ -75,6 +75,8 @@ class ProfileSelectionPageHelper
     private transient String m_treeFilter;
     private transient Properties m_dataSourceIDProperties = null;
     private transient IDesignNameValidatorBase m_designNameValidator;
+    
+    private String m_dataSourceDesignName = EMPTY_STRING;
 
     ProfileSelectionPageHelper( WizardPage page )
     {
@@ -142,10 +144,13 @@ class ProfileSelectionPageHelper
             m_linkRefCheckBox.setSelection( profileRef.maintainExternalLink() ); 
         }
         
-        m_dataSourceDesignName.setText( selectedProfile.getDataSourceDesignName() );
-
+        // initializes the designName variable first, which is checked 
+        // by the name control's modify listener
+        m_dataSourceDesignName = selectedProfile.getDataSourceDesignName();
+        m_dataSourceDesignNameControl.setText( m_dataSourceDesignName );
+        
         // when editing an existing data source design, hide controls to
-        // disallow change of the design name
+        // disallow user from changing the design name
         if( inEditMode() )
             setDataSourceNameEditorVisible( false );
     }
@@ -169,7 +174,7 @@ class ProfileSelectionPageHelper
         if( isPageComplete() )
             return new ProfileSelection(
                 m_odaDataSourceID,
-                m_dataSourceDesignName.getText().trim(),
+                m_dataSourceDesignName,
                 new ProfileReferenceBase( m_profileID,
                         new Path( m_connectionProfilePath.getText() ).toFile( ),
                         m_linkRefCheckBox.getSelection() ) );
@@ -296,19 +301,42 @@ class ProfileSelectionPageHelper
 
                 if( item == null )
                 {
-                    m_dataSourceDesignName.setText( EMPTY_STRING );
+                    setSelectedDataSourceName( EMPTY_STRING );
                     setMessage( Messages.profilePage_selectProfileDefaultMessage, IMessageProvider.ERROR );
                 }
                 else
                 {
                     m_profileID = item.getData().toString();
                     m_odaDataSourceID = item.getParentItem().getData().toString();
-                    m_dataSourceDesignName.setText( item.getText( ) );
+                    setSelectedDataSourceName( item.getText() );
                 }
             }
         } );
 
         populateTree( );
+    }
+
+    private void setSelectedDataSourceName( String name )
+    {
+        String trimmedName = name.trim();
+        m_dataSourceDesignNameControl.setText( trimmedName );   
+        // setText triggers its modifyListener to update data source design name if appropriate
+    }
+    
+    /**
+     * Updates the data source design name only if creating a new design.
+     */
+    private void setDataSourceDesignName( String name )
+    {
+        /* when editing an existing data source design, 
+         * do not allow to change the design name from this page
+         */
+        if( inEditMode() )
+            return;
+        
+        // updates design name only when creating a new design
+        assert( name != null );
+        m_dataSourceDesignName = name.trim();
     }
 
     /**
@@ -358,9 +386,8 @@ class ProfileSelectionPageHelper
      */
     private void resetTreeViewer( )
     {
-        m_dataSourceDesignName.setText( EMPTY_STRING );
         m_odaDataSourceTree.removeAll( );
-        setPageComplete( false );
+        setSelectedDataSourceName( EMPTY_STRING );
     }
     
     /**
@@ -545,7 +572,7 @@ class ProfileSelectionPageHelper
                     // reset the design name to the default
                     TreeItem item = getSelectedProfileItem();
                     if( item != null )
-                        m_dataSourceDesignName.setText( item.getText( ) );
+                        setSelectedDataSourceName( item.getText() );
                 }
                 
                 enableDataSourceNameEditor( ! m_useDefaultDSNameCheckBox.getSelection() );
@@ -558,18 +585,16 @@ class ProfileSelectionPageHelper
 
         layoutData = new GridData( GridData.FILL_HORIZONTAL );
         layoutData.horizontalSpan = 2;
-        m_dataSourceDesignName = new Text( composite, SWT.BORDER );
-        m_dataSourceDesignName.setLayoutData( layoutData );
-        m_dataSourceDesignName.addModifyListener( new ModifyListener( ) 
+        m_dataSourceDesignNameControl = new Text( composite, SWT.BORDER );
+        m_dataSourceDesignNameControl.setLayoutData( layoutData );
+        m_dataSourceDesignNameControl.addModifyListener( new ModifyListener( ) 
         {
             public void modifyText( ModifyEvent e )
             {
-                // name change is ignored in edit mode, no need to validate
-                if( inEditMode() )
-                    return;     
-                
+                setDataSourceDesignName( m_dataSourceDesignNameControl.getText() );
+
                 String invalidMessage = null;
-                if ( isNameBlank( ) )
+                if( isDesignNameBlank() )
                 {
                     setPageComplete( false );
                     setMessage( Messages.profilePage_error_emptyName, IMessageProvider.ERROR );
@@ -616,9 +641,9 @@ class ProfileSelectionPageHelper
     /**
      * Validate whether the data source design name is blank
      */
-    private boolean isNameBlank( )
+    private boolean isDesignNameBlank( )
     {
-        return m_dataSourceDesignName.getText().trim().length() == 0;
+        return m_dataSourceDesignName == null || m_dataSourceDesignName.length() == 0;
     }
 
     /**
@@ -632,7 +657,7 @@ class ProfileSelectionPageHelper
         {
             try
             {
-                if( m_designNameValidator.isValid( m_dataSourceDesignName.getText().trim() ))
+                if( m_designNameValidator.isValid( m_dataSourceDesignName ) )
                     return null;    // is valid, no error message
                 else    // validator did not throw exception to provide error message, 
                         // use default error message
@@ -653,14 +678,14 @@ class ProfileSelectionPageHelper
     private void enableDataSourceNameEditor( boolean bool )
     {
         m_dataSourceNameLabel.setEnabled( bool );
-        m_dataSourceDesignName.setEnabled( bool );
+        m_dataSourceDesignNameControl.setEnabled( bool );
     }
     
     private void setDataSourceNameEditorVisible( boolean visible )
     {
         m_useDefaultDSNameCheckBox.setVisible( visible );
         m_dataSourceNameLabel.setVisible( visible );
-        m_dataSourceDesignName.setVisible( visible );
+        m_dataSourceDesignNameControl.setVisible( visible );
     }
     
     private boolean inEditMode()

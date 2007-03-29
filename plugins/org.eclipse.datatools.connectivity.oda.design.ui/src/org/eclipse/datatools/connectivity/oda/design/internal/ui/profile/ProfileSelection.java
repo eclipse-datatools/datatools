@@ -33,6 +33,8 @@ class ProfileSelection
                                 ProfileReferenceBase profileRef )
     {
         m_odaDataSourceId = odaDataSourceId;
+        if( newDataSourceName == null )
+            newDataSourceName = ""; //$NON-NLS-1$
         m_dataSourceDesignName = newDataSourceName;
         m_profileRef = profileRef;
     }
