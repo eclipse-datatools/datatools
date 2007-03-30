@@ -49,8 +49,13 @@ public class ConnectionProfileMoveChange extends Change {
 	}
 
 	public Object[] getAffectedObjects() {
-		return new Object[] { mSourceRepository == null ? ProfileManager
-				.getInstance() : mSourceRepository};
+		Object o = null;
+		if (mSourceRepository == null) {
+			o = ProfileManager.getInstance();
+		} else {
+			o = mSourceRepository;
+		}
+		return new Object[] { o };
 	}
 
 	public String getName() {
@@ -128,10 +133,14 @@ public class ConnectionProfileMoveChange extends Change {
 					.getMessage(), e);
 			throw new CoreException(status);
 		}
-
+		Object o = null;
+		if (oldParent == null) {
+			o = ProfileManager.getInstance();
+		} else {
+			o = oldParent;
+		}
 		return new ConnectionProfileMoveChange(mProfileToMove,
-				new MoveArguments(oldParent == null ? ProfileManager
-						.getInstance() : oldParent, mArguments
+				new MoveArguments(o, mArguments
 						.getUpdateReferences()));
 	}
 

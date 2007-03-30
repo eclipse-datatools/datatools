@@ -72,11 +72,15 @@ public class DuplicateProfileAction extends Action implements IActionDelegate {
 	
 	private void refactor (IConnectionProfile profile) throws CoreException {
     	//  Refactor for rename
+		Object o = null;
+		if (profile.getParentProfile() == null) {
+			o = ProfileManager.getInstance();
+		} else {
+			o = profile.getParentProfile();
+		}
     	PerformRefactoringOperation refOperation = new PerformRefactoringOperation(
 				new CopyRefactoring(new ConnectionProfileCopyProcessor(
-						new IConnectionProfile[] { profile}, profile
-								.getParentProfile() == null ? ProfileManager
-								.getInstance() : profile.getParentProfile())),
+						new IConnectionProfile[] { profile}, o)),
 				CheckConditionsOperation.ALL_CONDITIONS);
     	try 
     	{
