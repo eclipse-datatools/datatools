@@ -150,10 +150,8 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         // to the data source design; 
         // ignores any data source design name change
         ProfileReferenceBase profileRef = collectEditedProfileRef();
-        if( profileRef == null )
-            return design;  // no change needed
         
-        if( profileRef.maintainExternalLink() )
+        if( profileRef != null && profileRef.maintainExternalLink() )
         {
             design.setLinkedProfileName( profileRef.getName() );
             design.setLinkedProfileStoreFile( profileRef.getStorageFile() );

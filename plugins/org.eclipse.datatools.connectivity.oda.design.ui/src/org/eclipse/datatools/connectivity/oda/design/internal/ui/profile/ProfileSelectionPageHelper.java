@@ -171,25 +171,37 @@ class ProfileSelectionPageHelper
      */
     ProfileSelection collectProfileSelection()
     {
-        if( isPageComplete() )
-            return new ProfileSelection(
+        if( m_odaDataSourceID == null || m_profileID == null ||
+            ! isPageComplete() )
+            return null;
+            
+        return new ProfileSelection(
                 m_odaDataSourceID,
                 m_dataSourceDesignName,
                 new ProfileReferenceBase( m_profileID,
                         new Path( m_connectionProfilePath.getText() ).toFile( ),
                         m_linkRefCheckBox.getSelection() ) );
-        return null;
-    }
+     }
     
     private boolean isPageComplete()
     {
+        boolean isPageComplete = true;
         if ( m_wizardPage != null )
-            return m_wizardPage.isPageComplete();
-
-        if ( m_propertyPage != null )
-            return m_propertyPage.isValid();
+            isPageComplete = m_wizardPage.isPageComplete();
+        else if ( m_propertyPage != null )
+            isPageComplete = m_propertyPage.isValid();
+        else
+            isPageComplete = ( getMessageType() != IMessageProvider.ERROR );
         
-        return getMessageType() != IMessageProvider.ERROR;
+        if( ! isPageComplete )      // page itself is not complete
+            return isPageComplete;  // no need to do extra checking
+        
+        // the page itself considers itself complete, next 
+        // check if external reference is selected, must have a selected profile
+        if( m_linkRefCheckBox != null && m_linkRefCheckBox.getSelection() )
+            isPageComplete = ( m_odaDataSourceID != null && m_profileID != null );
+        
+        return isPageComplete;
     }
     
     private void setPageComplete( boolean complete )
@@ -202,7 +214,7 @@ class ProfileSelectionPageHelper
         if( complete )
             setMessage( EMPTY_STRING, IMessageProvider.NONE );
         else
-            setMessage( Messages.profilePage_selectProfileDefaultMessage, IMessageProvider.ERROR );
+            setDefaultMessageAsError( true );
     }
 
     private void setMessage( String newMessage, int newType )
@@ -216,6 +228,12 @@ class ProfileSelectionPageHelper
                 newMessage = Messages.profilePage_pageTitle;    
             m_propertyPage.setMessage( newMessage, newType );
         }
+    }
+
+    private void setDefaultMessageAsError( boolean isError )
+    {
+        int newType = isError ? IMessageProvider.ERROR : IMessageProvider.NONE;
+        setMessage( Messages.profilePage_selectProfileDefaultMessage, newType );
     }
     
     int getMessageType()
@@ -254,7 +272,13 @@ class ProfileSelectionPageHelper
 
                     public void run( )
                     {
-                        populateTree( );
+                       populateTree( );
+                       
+                       // clear any previously selected profile settings
+                       clearSelectedProfile();
+                       setSelectedDataSourceName( EMPTY_STRING );
+                       boolean isError = ( hasConnectionProfilePath() );
+                       setDefaultMessageAsError( isError );
                     }
                 } );
             }
@@ -301,8 +325,9 @@ class ProfileSelectionPageHelper
 
                 if( item == null )
                 {
+                    clearSelectedProfile();
                     setSelectedDataSourceName( EMPTY_STRING );
-                    setMessage( Messages.profilePage_selectProfileDefaultMessage, IMessageProvider.ERROR );
+                    setDefaultMessageAsError( true );
                 }
                 else
                 {
@@ -318,9 +343,18 @@ class ProfileSelectionPageHelper
 
     private void setSelectedDataSourceName( String name )
     {
+        if( m_dataSourceDesignNameControl == null )
+            return;     // nothing to set
+        
         String trimmedName = name.trim();
         m_dataSourceDesignNameControl.setText( trimmedName );   
         // setText triggers its modifyListener to update data source design name if appropriate
+    }
+
+    private void clearSelectedProfile()
+    {
+        m_profileID = null;
+        m_odaDataSourceID = null;
     }
     
     /**
@@ -344,10 +378,10 @@ class ProfileSelectionPageHelper
      */
     private void populateTree( )
     {
+        resetTreeViewer();
         if( ! hasConnectionProfilePath() )
             return;
 
-        resetTreeViewer( );
         generateDataSourceIdentifiers( );
 
         TreeItem root = new TreeItem( m_odaDataSourceTree, SWT.NONE );
@@ -386,8 +420,8 @@ class ProfileSelectionPageHelper
      */
     private void resetTreeViewer( )
     {
-        m_odaDataSourceTree.removeAll( );
-        setSelectedDataSourceName( EMPTY_STRING );
+        if( m_odaDataSourceTree != null )
+            m_odaDataSourceTree.removeAll( );
     }
     
     /**
@@ -504,7 +538,7 @@ class ProfileSelectionPageHelper
         }
         catch ( OdaException ex )
         {
-            setMessage( "Invalid path for a connection profile store", IMessageProvider.ERROR);
+            setMessage( Messages.profilePage_error_invalidProfileStorePath, IMessageProvider.ERROR );
         }
 
         return null;
@@ -633,7 +667,11 @@ class ProfileSelectionPageHelper
                 // editing of selected profile is allowed only if a link is maintained
                 boolean maintainLink = m_linkRefCheckBox.getSelection();
                 m_odaDataSourceTree.setEnabled( maintainLink );
-               
+
+                if( isPageComplete() )
+                    setMessage( EMPTY_STRING, IMessageProvider.NONE );
+                else
+                    setDefaultMessageAsError( maintainLink );
             }
         } );
     }
@@ -697,5 +735,4 @@ class ProfileSelectionPageHelper
     {
         return m_connectionProfilePath.getText().trim().length() > 0;
     }
-
 }

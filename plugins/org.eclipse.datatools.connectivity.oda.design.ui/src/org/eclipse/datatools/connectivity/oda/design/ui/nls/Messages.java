@@ -44,6 +44,7 @@ public class Messages extends NLS
     public static String profilePage_checkboxTooltip_maintainLink;
     public static String profilePage_error_emptyName;
     public static String profilePage_error_invalidName;
+    public static String profilePage_error_invalidProfileStorePath;
     public static String profilePage_label_dataSourceName;
     public static String profilePage_label_profileStore;
     public static String profilePage_odaTreeName;

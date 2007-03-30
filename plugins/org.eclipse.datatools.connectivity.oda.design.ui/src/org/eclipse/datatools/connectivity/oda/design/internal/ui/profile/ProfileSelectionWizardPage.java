@@ -50,6 +50,7 @@ public class ProfileSelectionWizardPage extends WizardPage
     public void createControl( Composite parent )
     {
         setControl( getPageHelper().createControl( parent ) );
+        setPageComplete( false );
     }
     
     public ProfileSelection collectProfileSelection()
