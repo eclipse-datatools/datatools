@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -15,15 +15,14 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider;
+import org.eclipse.datatools.connectivity.ui.dse.DSEPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.internal.navigator.NavigatorContentService;
-import org.eclipse.ui.internal.navigator.extensions.SafeDelegateTreeContentProvider;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.IExtensionStateModel;
+import org.eclipse.ui.navigator.INavigatorContentService;
 
 /**
  * @author shongxum, brianf
@@ -34,7 +33,7 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	IViewPart view = null;
 	Object currentInput = ResourcesPlugin.getWorkspace().getRoot();
 	boolean currentState = true;
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -42,6 +41,10 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	 */
 	public void init(IViewPart view) {
 		this.view = view;
+		if (view instanceof CommonNavigator) {
+			IExtensionStateModel stateModel = ((CommonNavigator)view).getNavigatorContentService().findStateModel(DSEPlugin.SERVERS_VIEW_CONTENT_EXTENSION_ID);
+			currentState = stateModel.getBooleanProperty(DSEPlugin.PROP_SHOW_CATEGORIES);
+		}
 
 	}
 
@@ -51,8 +54,8 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
-		boolean check = action.isChecked();
-		changeShowCategorySetting(check);
+		currentState = action.isChecked();
+		changeShowCategorySetting(currentState);
 	}
 
 	/*
@@ -63,42 +66,32 @@ public class ShowCategoryAction implements IViewActionDelegate {
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		action.setEnabled(true);
+		action.setChecked(currentState);
 	}
-	
+
 	/**
 	 * Set the show category setting on the content provider.
+	 * 
 	 * @param flag
 	 */
-	private void changeShowCategorySetting ( boolean flag ) {
+	private void changeShowCategorySetting(boolean flag) {
 		if (view instanceof CommonNavigator) {
 			CommonNavigator commonNav = (CommonNavigator) view;
 			if (currentInput == null) {
 				// do nothing
 			}
-			else if (currentInput instanceof ICategory ||
-					currentInput instanceof ProfileManager ||
-					currentInput instanceof IWorkspaceRoot ||
-					currentInput instanceof IConnectionProfile ) {
-				NavigatorContentService ncs = (NavigatorContentService) commonNav.getNavigatorContentService();
-				ITreeContentProvider[] providers = 
-					ncs.findRootContentProviders(currentInput);
-				if (providers != null && providers.length > 0) {
-					for (int i = 0; i < providers.length; i++) {
-						ITreeContentProvider ncp = null;
-						if (providers[i] instanceof SafeDelegateTreeContentProvider) {
-							SafeDelegateTreeContentProvider sdtcp = (SafeDelegateTreeContentProvider) providers[i];
-							ncp = sdtcp.getDelegateContentProvider();
-						}
-						else {
-							ncp = (ITreeContentProvider) providers[i];
-						}
-						if (ncp instanceof ConnectionProfileContentProvider ) {
-							ConnectionProfileContentProvider provider =
-								(ConnectionProfileContentProvider) ncp;
-							provider.setShowCategories(flag);
-						}
-					}
-				}
+			else if (currentInput instanceof ICategory
+					|| currentInput instanceof ProfileManager
+					|| currentInput instanceof IWorkspaceRoot
+					|| currentInput instanceof IConnectionProfile) {
+				INavigatorContentService ncs = commonNav
+						.getNavigatorContentService();
+				IExtensionStateModel stateModel = ncs
+						.findStateModel(DSEPlugin.SERVERS_VIEW_CONTENT_EXTENSION_ID);
+
+				stateModel.setBooleanProperty(DSEPlugin.PROP_SHOW_CATEGORIES,
+						flag);
+
 				commonNav.getCommonViewer().refresh();
 				if (flag)
 					commonNav.getCommonViewer().expandToLevel(2);

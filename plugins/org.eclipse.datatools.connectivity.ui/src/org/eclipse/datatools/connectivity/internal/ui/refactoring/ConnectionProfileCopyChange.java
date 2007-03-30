@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -15,18 +15,17 @@ import java.text.MessageFormat;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
-import org.eclipse.ltk.core.refactoring.NullChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CopyArguments;
 import org.eclipse.ltk.core.refactoring.participants.DeleteArguments;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ltk.core.refactoring.participants.ReorgExecutionLog;
 
 /**
  * Duplicates a profile and adds an undo action (delete duplicate).
@@ -36,15 +35,18 @@ import org.eclipse.swt.widgets.Shell;
 public class ConnectionProfileCopyChange extends Change {
 
 	private IConnectionProfile mProfileToDuplicate;
-
+	private IConnectionProfile mNewProfile;
+	private CopyArguments mArguments;
+	
 	/**
 	 * @param profile
 	 * @param args
 	 */
-	public ConnectionProfileCopyChange(IConnectionProfile profile, CopyArguments args)
+	public ConnectionProfileCopyChange(IConnectionProfile profile, CopyArguments arguments)
 	{
 		super();
 		mProfileToDuplicate = profile;
+		mArguments = arguments;
 	}
 
 	/* (non-Javadoc)
@@ -71,7 +73,7 @@ public class ConnectionProfileCopyChange extends Change {
 		RefactoringStatus result = new RefactoringStatus();
 
 		// Make sure the element exists
-		if (mProfileToDuplicate == null || ProfileManager.getInstance().getProfileByName(mProfileToDuplicate.getName()) == null)
+		if (mProfileToDuplicate == null)
 		{
 			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCopyChange.error.ProfileDoesNotExist"));
 		}
@@ -86,7 +88,7 @@ public class ConnectionProfileCopyChange extends Change {
 	{
 		CompositeChange undo = new CompositeChange(getName());
 		undo.markAsSynthetic();
-		undo.add(duplicateProfile(pm));
+		undo.add(copyProfile(pm));
 		return undo;
 	}
 
@@ -95,30 +97,46 @@ public class ConnectionProfileCopyChange extends Change {
 	 */
 	public Object getModifiedElement()
 	{
+		// RJC: I think this should be the underlying repository
+		// return mArguments.getDestination();
 		return mProfileToDuplicate;
 	}
 
+	public Object[] getAffectedObjects() {
+		return new Object[] { mArguments.getDestination()};
+	}
+
+	public Object getAdapter(Class adapter)
+	{
+		if (adapter.isAssignableFrom(ReorgExecutionLog.class))
+		{
+			return mArguments.getExecutionLog();
+		}
+		return super.getAdapter(adapter);
+	}
+	
 	/**
 	 * @param pm
 	 * @return
 	 */
-	private Change duplicateProfile(IProgressMonitor pm) {
+	private Change copyProfile(IProgressMonitor pm) throws CoreException {
 		try {
-			String newProfile = ProfileManager.getInstance().duplicateProfile(
-					mProfileToDuplicate);
-			IConnectionProfile profile = ProfileManager.getInstance()
-					.getProfileByName(newProfile);
-			if (profile.isAutoConnect())
-				profile.connect();
-			
-			return new ConnectionProfileBaseDeleteChange(profile, new DeleteArguments());
+			Object destination = mArguments.getDestination();
+			IConnectionProfile repo = destination instanceof IConnectionProfile ? (IConnectionProfile) destination
+					: null;
+			mNewProfile = InternalProfileManager.getInstance().copyProfile(
+					mProfileToDuplicate,
+					repo,
+					mArguments.getExecutionLog()
+							.getNewName(mProfileToDuplicate));
+			return new ConnectionProfileBaseDeleteChange(mNewProfile,
+					new DeleteArguments());
 		}
 		catch (ConnectionProfileException e) {
-			Shell shell = new Shell();
-			ExceptionHandler.showException(shell, ConnectivityUIPlugin
-					.getDefault().getResourceString("CPCopyChange.title.error"), e //$NON-NLS-1$
+			Status status = new Status(Status.ERROR, ConnectivityUIPlugin
+					.getDefault().getBundle().getSymbolicName(), -1, e
 					.getMessage(), e);
-			return new NullChange();
+			throw new CoreException(status);
 		}
 	}
 

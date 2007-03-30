@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -140,7 +140,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	 * @see org.eclipse.datatools.connectivity.IConnectionProfileProvider#getCategory()
 	 */
 	public ICategory getCategory() {
-		return ConnectionProfileManager.getInstance().getCategory(mCategory);
+		return InternalProfileManager.getInstance().getCategory(mCategory);
 	}
 
 	/*

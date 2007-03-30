@@ -57,6 +57,16 @@
       <category
             id="org.eclipse.datatools.connectivity"
             name="%category.name.connectionProfiles"/>
+      <wizard
+            category="org.eclipse.datatools.connectivity"
+            class="org.eclipse.datatools.connectivity.internal.ui.wizards.NewRepositoryWizard"
+            icon="icons/driver_category_obj.gif"
+            id="org.eclipse.datatools.connectivity.ui.wizard.newrepositorywizard"
+            name="%Extension.NewRepositoryWizard.Name">
+         <description>
+            %Extension.NewRepositoryWizard.Description
+         </description>
+      </wizard>
    </extension>
 
    <extension
@@ -111,6 +121,6 @@
                <contentExtension pattern="org.eclipse.datatools.connectivity.repositoryContent"/>
             </includes>
          </viewerContentBinding>
-      </extension>  
+      </extension>
 
 </plugin>

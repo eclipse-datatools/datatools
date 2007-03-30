@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -13,15 +13,26 @@ package org.eclipse.datatools.connectivity.ui.wizards;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.connectivity.internal.ui.RepositoriesDropList;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizardPage;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -36,10 +47,10 @@ import org.eclipse.ui.PlatformUI;
 public class NewConnectionProfileWizardPage extends BaseWizardPage {
 
 	private Text mCPName;
-
 	private Text mCPDesc;
-
 	private Button mAutoConnect;
+	private Button mLocalRepository;
+	private RepositoriesDropList mRepositories;
 
 	private String mCPNameStr;
 	private String mCPDescStr;
@@ -67,7 +78,7 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 		setDescription(ConnectivityUIPlugin.getDefault().getResourceString(
 				"NewConnectionProfileWizardPage.desc")); //$NON-NLS-1$
 	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -104,8 +115,95 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 						"NewConnectionProfileWizardPage.cp_desc")); //$NON-NLS-1$
 		mCPDesc = new Text(composite, SWT.BORDER);
 		mCPDesc.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		// Separate
+
+		mLocalRepository = new Button(composite, SWT.CHECK);
+		gd = new GridData();
+		gd.horizontalSpan = 2;
+		mLocalRepository.setLayoutData(gd);
+		mLocalRepository.setText(ConnectivityUIPlugin.getDefault()
+				.getResourceString(
+						"NewConnectionProfileWizardPage.localRepository")); //$NON-NLS-1$
+		mLocalRepository.setSelection(true);
+		mLocalRepository.addSelectionListener(new SelectionAdapter() {
+
+			public void widgetSelected(SelectionEvent arg0) {
+				handleLocalRepositoryChecked();
+			}
+			
+		});
+
 		Label label = new Label(composite, SWT.NONE);
+		label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+				"NewConnectionProfileWizardPage.chooseRepository")); //$NON-NLS-1$
+		mRepositories = new RepositoriesDropList(
+				getWizard() instanceof NewConnectionProfileWizard ? (ConnectionProfileProvider) ConnectionProfileManager
+						.getInstance().getProvider(
+								((NewConnectionProfileWizard) getWizard())
+										.getProfileProviderID())
+						: null, composite);
+		mRepositories.getCombo().setLayoutData(
+				new GridData(GridData.FILL_HORIZONTAL));
+		mRepositories
+				.setInput(ProfileManager
+						.getInstance()
+						.getProfilesByCategory(
+								IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID));
+		mRepositories.getCombo().setEnabled(!mLocalRepository.getSelection());
+		mRepositories.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				validate();
+			}
+			
+		});
+		if (mRepositories.hasRepositories()) {
+			if (getWizard() instanceof NewConnectionProfileWizard) {
+				IConnectionProfileProvider icpp = ConnectionProfileManager
+						.getInstance().getProvider(
+								((NewConnectionProfileWizard) getWizard())
+										.getProfileProviderID());
+				if (icpp.getConnectionFactories().containsKey(
+						IConnectionProfileRepository.class.getName())) {
+					// prevent nesting of repositories
+					mLocalRepository.setEnabled(false);
+					mLocalRepository.setVisible(false);
+					label.setVisible(false);
+					mRepositories.getCombo().setVisible(false);
+				}
+				else {
+					IConnectionProfile parentProfile = ProfileManager
+							.getInstance().getProfileByName(
+									((NewConnectionProfileWizard) getWizard())
+											.getParentProfile());
+					if (parentProfile == null) {
+						mRepositories.getCombo().select(0);
+					}
+					else {
+						mRepositories.setSelection(new StructuredSelection(
+								parentProfile), true);
+						if (mRepositories.getSelection().isEmpty()) {
+							mRepositories.getCombo().select(0);
+						}
+						else {
+							mLocalRepository.setSelection(false);
+							handleLocalRepositoryChecked();
+						}
+					}
+				}
+			}
+			else {
+				mRepositories.getCombo().select(0);
+			}
+		}
+		else {
+			mLocalRepository.setEnabled(false);
+			mLocalRepository.setVisible(false);
+			label.setVisible(false);
+			mRepositories.getCombo().setVisible(false);
+		}
+
+		// Separate
+		label = new Label(composite, SWT.NONE);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = 2;
 		label.setLayoutData(gd);
@@ -133,28 +231,38 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 		}
 
 		setControl(composite);
-		setPageComplete(false);
-		if (mCPName.getText().length() > 0)
-			setPageComplete(true);
 
+		validate();
+		setErrorMessage(null);
+		
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
 				IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_PAGE);
 	}
 
 	private void handleModify() {
+		validate();
+	}
+	
+	private void handleLocalRepositoryChecked() {
+		mRepositories.getCombo().setEnabled(!mLocalRepository.getSelection());
+		validate();
+	}
+	
+	private void validate() {
 		String errorMessage = null;
 		String cpName = mCPName.getText();
 		if (cpName == null || cpName.trim().length() == 0) {
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
 		}
-		else {
-			if (ProfileManager.getInstance().getProfileByName(cpName) != null) {
-				errorMessage = ConnectivityUIPlugin
-						.getDefault()
-						.getResourceString(
-								"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$
-			}
+		else if (ProfileManager.getInstance().getProfileByName(cpName) != null) {
+			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
+					"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$
+		}
+		else if (!mLocalRepository.getSelection()
+				&& mRepositories.getSelection().isEmpty()) {
+			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
+					"NewConnectionProfileWizardPage.Status.NoRepository"); //$NON-NLS-1$
 		}
 		setErrorMessage(errorMessage);
 		setPageComplete(errorMessage == null);
@@ -241,4 +349,13 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 
 		return data;
 	}
+	
+	public IConnectionProfile getRepository() {
+		if (mLocalRepository.getSelection()) {
+			return null;
+		}
+		return (IConnectionProfile) ((IStructuredSelection) mRepositories
+				.getSelection()).getFirstElement();
+	}
+	
 }

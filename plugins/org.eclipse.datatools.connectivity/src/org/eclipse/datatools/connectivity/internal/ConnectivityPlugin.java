@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -28,6 +28,7 @@ public class ConnectivityPlugin extends Plugin {
 	public static final int INTERNAL_ERROR = 10001;
 	
 	public static final String PLUGIN_ID = "org.eclipse.datatools.connectivity";//$NON-NLS-1$
+	public static final String PROP_SYSTEM_REPOSITORIES_ENABLED = "org.eclipse.datatools.connectivity.repositoriesEnabled";//$NON-NLS-1$
 
 	// The shared instance.
 	private static ConnectivityPlugin plugin;

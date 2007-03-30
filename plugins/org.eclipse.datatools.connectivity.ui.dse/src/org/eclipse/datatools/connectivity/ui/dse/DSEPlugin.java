@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -27,6 +27,8 @@ public class DSEPlugin extends AbstractUIPlugin {
 	public static final String SERVERS_VIEW_VIEWER_ID = "org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"; //$NON-NLS-1$
 
 	public static final String SERVERS_VIEW_CONTENT_EXTENSION_ID = "org.eclipse.datatools.connectivity.dsexplorer.content"; //$NON-NLS-1$
+	
+	public static final String PROP_SHOW_CATEGORIES = "showCategories"; //$NON-NLS-1$
 
 	// The shared instance.
 	private static DSEPlugin plugin;

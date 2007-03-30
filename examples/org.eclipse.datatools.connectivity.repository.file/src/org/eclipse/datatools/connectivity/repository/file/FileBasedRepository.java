@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -55,6 +55,11 @@ public class FileBasedRepository extends ConnectionProfileRepositoryBase {
 	}
 
 	public boolean supportsProfileType(String providerID) {
+		// we support 'em all
+		return true;
+	}
+
+	public boolean supportsCategory(String id) {
 		// we support 'em all
 		return true;
 	}

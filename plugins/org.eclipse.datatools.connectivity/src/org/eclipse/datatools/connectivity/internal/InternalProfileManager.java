@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -94,7 +94,8 @@ public class InternalProfileManager {
 	 */
 	public ICategory getCategory(String catID) {
 		ConnectionProfileManager cpm = ConnectionProfileManager.getInstance();
-		return cpm.getCategory(catID);
+		CategoryProvider cp = cpm.getCategory(catID);
+		return cp == null ? null : cp.createCategory(null);
 	}
 
 	/**
@@ -106,11 +107,10 @@ public class InternalProfileManager {
 		Collection col = ConnectionProfileManager.getInstance().getCategories()
 				.values();
 		ArrayList cats = new ArrayList(col.size());
-		ICategory cat;
 		for (Iterator itr = col.iterator(); itr.hasNext();) {
-			cat = (ICategory) itr.next();
-			if (cat.getParent() == null)
-				cats.add(cat);
+			CategoryProvider cp = (CategoryProvider) itr.next();
+			if (cp.getParent() == null)
+				cats.add(cp.createCategory(null));
 		}
 		return (ICategory[]) cats.toArray(new ICategory[cats.size()]);
 	}
@@ -146,7 +146,8 @@ public class InternalProfileManager {
 	 * @param name
 	 * @return IConnectionProfile
 	 */
-	public IConnectionProfile getProfileByName(String name) {
+	public IConnectionProfile getProfileByName(String name,
+			boolean checkRepositories) {
 		IConnectionProfile[] cps = getProfiles(false);
 		IConnectionProfile cp = null;
 		for (int i = 0; i < cps.length; i++) {
@@ -155,8 +156,12 @@ public class InternalProfileManager {
 				break;
 			}
 		}
-		for (Iterator it = mRepositories.iterator(); cp == null && it.hasNext(); ) {
-			cp = ((IConnectionProfileRepository)it.next()).getProfileByName(name);
+		if (checkRepositories) {
+			for (Iterator it = mRepositories.iterator(); cp == null
+					&& it.hasNext();) {
+				cp = ((IConnectionProfileRepository) it.next())
+						.getProfileByName(name);
+			}
 		}
 		return cp;
 	}
@@ -214,10 +219,10 @@ public class InternalProfileManager {
 	 * @param baseProperties
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties)
 			throws ConnectionProfileException {
-		createProfile(name, description, providerID, baseProperties, "", false); //$NON-NLS-1$
+		return createProfile(name, description, providerID, baseProperties, "", false); //$NON-NLS-1$
 	}
 
 	/**
@@ -230,10 +235,10 @@ public class InternalProfileManager {
 	 * @param parentProfile
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties, String parentProfile)
 			throws ConnectionProfileException {
-		createProfile(name, description, providerID, baseProperties,
+		return createProfile(name, description, providerID, baseProperties,
 				parentProfile, false);
 	}
 
@@ -248,7 +253,7 @@ public class InternalProfileManager {
 	 * @param autoConnect
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties, String parentProfile,
 			boolean autoConnect) throws ConnectionProfileException {
 		ConnectionProfile profile = new ConnectionProfile(name, description,
@@ -264,6 +269,7 @@ public class InternalProfileManager {
 			repo.addProfile(profile);
 		}
 		profile.setCreated();
+		return profile;
 	}
 
 	/**
@@ -283,26 +289,32 @@ public class InternalProfileManager {
 					new Object[] { cp.getName(), new Integer(i)});
 			i++;
 		}
-		while (getProfileByName(profileName) != null);
-		//RJC: TODO: Fix this.  Need to copy all the properties, not just the
-		// base properties.
-		Properties props = (Properties) cp.getBaseProperties().clone();
-		createProfile(profileName, cp.getDescription(), cp.getProviderId(),
-				props, cp.getParentProfile() == null ? "" : cp //$NON-NLS-1$
-						.getParentProfile().getName(), cp.isAutoConnect());
-		
-		// now that we have the base profile and its properties set, 
+		while (getProfileByName(profileName,false) != null);
+		IConnectionProfile newProfile = copyProfile(profile,profile.getParentProfile(),profileName);
+		return newProfile.getName();
+	}
+	
+	public IConnectionProfile copyProfile(IConnectionProfile source,
+			IConnectionProfile repo, String newName)
+			throws ConnectionProfileException {
+		Properties props = (Properties) source.getBaseProperties().clone();
+		IConnectionProfile newProfile = createProfile(newName, source
+				.getDescription(), source.getProviderId(), props,
+				repo == null ? new String() : repo.getName(), source
+						.isAutoConnect());
+
+		// now that we have the base profile and its properties set,
 		// walk through any extended properties and grab those also
-		IConnectionProfile dupeProfile = getInstance().getProfileByName(profileName);
-		Set extensionIDs = cp.getPropertiesMap().keySet();
+		Set extensionIDs = ((ConnectionProfile) source).getPropertiesMap()
+				.keySet();
 		Iterator iter = extensionIDs.iterator();
 		while (iter.hasNext()) {
 			String key = (String) iter.next();
-			Properties oldProps = cp.getProperties(key);
+			Properties oldProps = source.getProperties(key);
 			Properties newProps = (Properties) oldProps.clone();
-			dupeProfile.setProperties(key, newProps);
+			newProfile.setProperties(key, newProps);
 		}
-		return profileName;
+		return newProfile;
 	}
 
 	/**
@@ -347,6 +359,8 @@ public class InternalProfileManager {
 				return;
 			}
 		}
+		
+		((ConnectionProfile)profile).setRepository(null);
 
 		// add new profile to profile caches
 
@@ -365,6 +379,39 @@ public class InternalProfileManager {
 		if (profile.isAutoConnect()) {
 			profile.connect(null);
 		}
+	}
+	
+	public void removeProfile(IConnectionProfile profile)
+			throws ConnectionProfileException {
+		if (profile.getParentProfile() != null) {
+			return;
+		}
+
+		IConnectionProfile[] oldProfiles = mProfiles;
+		mProfiles = new IConnectionProfile[oldProfiles.length - 1];
+		int oldIndex = 0, oldCount = oldProfiles.length;
+		for (int newIndex = 0, newCount = oldCount - 1; oldIndex < oldCount
+				&& newIndex < newCount; ++oldIndex, ++newIndex) {
+			if (oldProfiles[oldIndex].equals(profile)) {
+				// remove this profile
+				--newIndex;
+				continue;
+			}
+			mProfiles[newIndex] = oldProfiles[oldIndex];
+		}
+		if (oldIndex != oldProfiles.length
+				&& !oldProfiles[oldProfiles.length-1].equals(profile)) {
+			// Don't know how this happened, but the profile is not contained by
+			// this repository. All that work for nothing.
+			mProfiles = oldProfiles;
+			return;
+		}
+
+		mIsDirty = true;
+
+		fireProfileDeleted(profile);
+
+		saveChanges();
 	}
 
 	/**
@@ -692,7 +739,7 @@ public class InternalProfileManager {
 		IConnectionProfile parentProfile = profile.getParentProfile();
 		if (parentProfile != null) {
 			IManagedConnection imc = parentProfile.getManagedConnection(IConnectionProfileRepository.class.getName());
-			if (imc != null && imc.getConnection() != null ) {
+			if (imc != null && imc.getConnection() != null) {
 				return (IConnectionProfileRepository)imc.getConnection().getRawConnection();
 			}
 		}

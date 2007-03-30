@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -78,13 +78,15 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	}
 	
 	private void doFinish() throws CoreException {
-    	//  Refactor for finish
-    	PerformChangeOperation refOperation = new PerformChangeOperation(
-    			new ConnectionProfileCreateChange(mProfilePage.getProfileName(),
-    					mProfilePage.getProfileDescription(), mProviderID,
-    					getProfileProperties(), getParentProfile(),
-    					mProfilePage.getAutoConnect(),
-    					getShell()));
+    	// Refactor for finish
+		IConnectionProfile repo = mProfilePage.getRepository();
+		PerformChangeOperation refOperation = new PerformChangeOperation(
+				new ConnectionProfileCreateChange(
+						mProfilePage.getProfileName(), mProfilePage
+								.getProfileDescription(), mProviderID,
+						getProfileProperties(), repo == null ? null : repo
+								.getName(), mProfilePage.getAutoConnect(),
+						getShell()));
     	try 
     	{
     		ResourcesPlugin.getWorkspace().run(refOperation, null);

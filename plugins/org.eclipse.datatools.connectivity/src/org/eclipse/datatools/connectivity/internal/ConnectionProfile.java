@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -46,6 +46,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ProfileRule;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 
@@ -168,7 +169,7 @@ public class ConnectionProfile extends PlatformObject implements
 		if (mParentProfile == null || mParentProfile.length() == 0) {
 			return null;
 		}
-		return InternalProfileManager.getInstance().getProfileByName(mParentProfile);
+		return ProfileManager.getInstance().getProfileByName(mParentProfile);
 	}
 
 	
@@ -179,6 +180,12 @@ public class ConnectionProfile extends PlatformObject implements
 	
 	public void setRepository(IConnectionProfileRepository repository) {
 		mRepository = repository;
+		if (mRepository == null) {
+			mParentProfile = null;
+		}
+		else {
+			mParentProfile = mRepository.getRepositoryProfile().getName();
+		}
 	}
 
 	/*
@@ -286,7 +293,20 @@ public class ConnectionProfile extends PlatformObject implements
 	 * @see org.eclipse.datatools.connectivity.IConnectionProfile#getCategory()
 	 */
 	public ICategory getCategory() {
-		return mProvider.getCategory();
+		ICategory cat = mProvider.getCategory();
+		IConnectionProfile parent = getParentProfile();
+		if (parent == null || !parent.isConnected()) {
+			return cat;
+		}
+		IManagedConnection imc = parent
+				.getManagedConnection(IConnectionProfileRepository.class
+						.getName());
+		if (imc == null || imc.getConnection() == null) {
+			return cat;
+		}
+		IConnectionProfileRepository repo = (IConnectionProfileRepository) imc
+				.getConnection().getRawConnection();
+		return repo.getCategory(cat.getId());
 	}
 
 	/*

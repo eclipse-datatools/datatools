@@ -79,7 +79,7 @@ public class ProfileManager implements IAdaptable {
 	 * @return IConnectionProfile
 	 */
 	public IConnectionProfile getProfileByName(String name) {
-		return InternalProfileManager.getInstance().getProfileByName(name);
+		return InternalProfileManager.getInstance().getProfileByName(name,true);
 	}
 
 	/**

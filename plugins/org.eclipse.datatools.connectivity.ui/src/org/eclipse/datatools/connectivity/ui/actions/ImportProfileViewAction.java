@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -13,16 +13,17 @@ package org.eclipse.datatools.connectivity.ui.actions;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ImportProfilesDialog;
+import org.eclipse.datatools.connectivity.ui.RefreshProfileJob;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
@@ -66,10 +67,10 @@ public class ImportProfileViewAction extends Action implements
 	 * @see org.eclipse.jface.action.IAction#run()
 	 */
 	public void run() {
-		ImportProfilesDialog dlg = new ImportProfilesDialog(shell);
+		final ImportProfilesDialog dlg = new ImportProfilesDialog(shell);
 		int ret = dlg.open();
 		if (ret == Window.OK) {
-			IConnectionProfile[] profiles = dlg.getProfiles();
+			final IConnectionProfile[] profiles = dlg.getProfiles();
 			if (profiles == null) {
 				ExceptionHandler.showException(shell,
 						ConnectivityUIPlugin.getDefault().getResourceString(
@@ -77,31 +78,79 @@ public class ImportProfileViewAction extends Action implements
 								.getMessage(), dlg.getException());
 				return;
 			}
-			ProfileManager manager = ProfileManager.getInstance();
-			Cursor cursor = new Cursor(Display.getDefault(), SWT.CURSOR_WAIT);
-			shell.setCursor(cursor);
-			try {
-				for (int i = 0; i < profiles.length; i++) {
-					if (manager.getProfileByName(profiles[i].getName()) == null) {
-						manager.addProfile(profiles[i]);
+			// Check to see if we need to import these into another repo
+			if (dlg.getUseLocalRepository()) {
+				BusyIndicator.showWhile(shell.getDisplay(), new Runnable() {
+
+					public void run() {
+						ProfileManager manager = ProfileManager.getInstance();
+						try {
+							for (int i = 0; i < profiles.length; i++) {
+								if (manager.getProfileByName(profiles[i]
+										.getName()) == null) {
+									manager.addProfile(profiles[i]);
+								}
+								else if (dlg.isOverwritten()) {
+									manager.modifyProfile(profiles[i]);
+								}
+								if (commonNav != null)
+									commonNav.getCommonViewer().refresh(
+											profiles[i]);
+							}
+						}
+						catch (ConnectionProfileException e) {
+							ExceptionHandler.showException(shell,
+									ConnectivityUIPlugin.getDefault()
+											.getResourceString(
+													"dialog.title.error"), e //$NON-NLS-1$
+											.getMessage(), e);
+						}
 					}
-					else if (dlg.isOverwritten()) {
-						manager.modifyProfile(profiles[i]);
+				});
+			}
+			else {
+				BusyIndicator.showWhile(shell.getDisplay(), new Runnable() {
+
+					public void run() {
+						try {
+							IConnectionProfile repoProfile = dlg
+									.getSelectedRepository();
+							IConnectionProfileRepository repo = (IConnectionProfileRepository) repoProfile
+									.getManagedConnection(
+											IConnectionProfileRepository.class
+													.getName()).getConnection()
+									.getRawConnection();
+							for (int i = 0; i < profiles.length; i++) {
+								if (!repo.supportsProfileType(profiles[i]
+										.getProviderId())
+										|| !((ConnectionProfileProvider) profiles[i]
+												.getProvider())
+												.compatibleWithRepository(repoProfile)) {
+									continue;
+								}
+								if (repo
+										.getProfileByName(profiles[i].getName()) == null) {
+									repo.addProfile(profiles[i]);
+								}
+								else if (dlg.isOverwritten()) {
+									repo.modifyProfile(profiles[i]);
+								}
+								if (commonNav != null)
+									RefreshProfileJob
+											.scheduleRefreshProfileJob(
+													profiles[i], commonNav
+															.getCommonViewer());
+							}
+						}
+						catch (ConnectionProfileException e) {
+							ExceptionHandler.showException(shell,
+									ConnectivityUIPlugin.getDefault()
+											.getResourceString(
+													"dialog.title.error"), e //$NON-NLS-1$
+											.getMessage(), e);
+						}
 					}
-					if (commonNav != null)
-						commonNav.getCommonViewer().refresh(profiles[i]);
-				}
-			}
-			catch (ConnectionProfileException e) {
-				ExceptionHandler.showException(shell,
-						ConnectivityUIPlugin.getDefault().getResourceString(
-								"dialog.title.error"), e //$NON-NLS-1$
-								.getMessage(), e);
-			}
-			finally {
-				shell.setCursor(null);
-				cursor.dispose();
-				cursor = null;
+				});
 			}
 		}
 	}

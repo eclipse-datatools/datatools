@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -10,18 +10,23 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.RepositoriesDropList;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,6 +47,10 @@ public class ImportProfilesDialog extends Dialog {
 
 	private Text txtFile;
 
+	private Button mLocalRepository;
+	
+	private RepositoriesDropList mRepositories;
+
 	private Button btnOverwrite;
 
 	private Throwable mException;
@@ -49,6 +58,10 @@ public class ImportProfilesDialog extends Dialog {
 	private IConnectionProfile[] mProfiles;
 
 	private boolean mOverwrite;
+	
+	private boolean mUseLocalRepository;
+	
+	private IConnectionProfile mRepository;
 
 	public ImportProfilesDialog(Shell parentShell) {
 		super(parentShell);
@@ -117,6 +130,74 @@ public class ImportProfilesDialog extends Dialog {
 							.getResourceString(
 									"ImportProfilesDialog.btnOverwrite.text")); //$NON-NLS-1$
 		}
+		{
+			Label spacer = new Label(container,SWT.NONE);
+			GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+			gd.heightHint = 20;
+			gd.horizontalSpan = 3;
+			spacer.setLayoutData(gd);
+			
+			Label separator = new Label(container,SWT.SEPARATOR|SWT.HORIZONTAL);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			gd.horizontalSpan = 3;
+			separator.setLayoutData(gd);
+
+			mLocalRepository = new Button(container, SWT.CHECK);
+			gd = new GridData();
+			gd.horizontalSpan = 3;
+			mLocalRepository.setLayoutData(gd);
+			mLocalRepository.setText(ConnectivityUIPlugin.getDefault()
+					.getResourceString(
+							"NewConnectionProfileWizardPage.localRepository")); //$NON-NLS-1$
+			mUseLocalRepository = true;
+			mLocalRepository.setSelection(mUseLocalRepository);
+			mLocalRepository.addSelectionListener(new SelectionAdapter() {
+
+				public void widgetSelected(SelectionEvent arg0) {
+					mUseLocalRepository = mLocalRepository.getSelection();
+					mRepositories.getCombo().setEnabled(!mUseLocalRepository);
+				}
+				
+			});
+
+			Label label = new Label(container, SWT.NONE);
+			label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+					"NewConnectionProfileWizardPage.chooseRepository")); //$NON-NLS-1$
+			mRepositories = new RepositoriesDropList(null, container);
+			gd = new GridData(GridData.FILL_HORIZONTAL);
+			gd.horizontalSpan = 2;
+			mRepositories.getCombo().setLayoutData(gd);
+			mRepositories
+					.setInput(ProfileManager
+							.getInstance()
+							.getProfilesByCategory(
+									IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID));
+			mRepositories
+					.addSelectionChangedListener(new ISelectionChangedListener() {
+
+						public void selectionChanged(SelectionChangedEvent event) {
+							ISelection selection = event.getSelection();
+							if (selection.isEmpty()) {
+								mRepository = null;
+							}
+							else {
+								mRepository = (IConnectionProfile) ((IStructuredSelection) selection)
+										.getFirstElement();
+							}
+						}
+
+					});
+			mRepositories.getCombo()
+					.setEnabled(!mLocalRepository.getSelection());
+			if (!mRepositories.hasRepositories()) {
+				mLocalRepository.setEnabled(false);
+				mLocalRepository.setVisible(false);
+				label.setVisible(false);
+				separator.setVisible(false);
+				mRepositories.getCombo().setVisible(false);
+			}
+
+		}
 
 		return container;
 	}
@@ -145,6 +226,14 @@ public class ImportProfilesDialog extends Dialog {
 	public boolean isOverwritten() {
 		return mOverwrite;
 	}
+	
+	public boolean getUseLocalRepository() {
+		return mUseLocalRepository;
+	}
+	
+	public IConnectionProfile getSelectedRepository() {
+		return mRepository;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -157,6 +246,13 @@ public class ImportProfilesDialog extends Dialog {
 					.getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
 					ConnectivityUIPlugin.getDefault().getResourceString(
 							"actions.export.nofile")); //$NON-NLS-1$
+			return;
+		}
+		else if (!mUseLocalRepository && mRepository == null) {
+			MessageDialog.openError(getShell(), ConnectivityUIPlugin
+					.getDefault().getResourceString("dialog.title.error"), //$NON-NLS-1$
+					ConnectivityUIPlugin.getDefault().getResourceString(
+							"actions.export.norepository")); //$NON-NLS-1$
 			return;
 		}
 		try {

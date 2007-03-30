@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2006 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,14 +14,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
+import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
+import org.eclipse.datatools.connectivity.internal.CategoryProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 
@@ -193,6 +197,22 @@ public abstract class ConnectionProfileRepositoryBase implements
 		}
 	}
 
+	public void removeProfile(IConnectionProfile profile)
+			throws ConnectionProfileException {
+		if (!getRepositoryProfile().equals(profile.getParentProfile())) {
+			return;
+		}
+
+		if (getProfileByName(profile.getName()) != null) {
+
+			mProfiles.remove(profile.getName());
+
+			fireProfileDeleted(profile);
+
+			save();
+		}
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -301,7 +321,8 @@ public abstract class ConnectionProfileRepositoryBase implements
 		else {
 			mProfiles = new HashMap(profiles.size());
 			for (Iterator it = profiles.iterator(); it.hasNext();) {
-				IConnectionProfile profile = (IConnectionProfile) it.next();
+				ConnectionProfile profile = (ConnectionProfile) it.next();
+				profile.setRepository(this);
 				mProfiles.put(profile.getName(), profile);
 				profile.addPropertySetListener(mPropertySetListener);
 			}
@@ -359,6 +380,31 @@ public abstract class ConnectionProfileRepositoryBase implements
 		mProfiles.clear();
 		mProfiles = null;
 		InternalProfileManager.getInstance().removeRepository(this);
+	}
+
+	public ICategory getCategory(String catID) {
+		if (supportsCategory(catID)) {
+			CategoryProvider cp = ConnectionProfileManager.getInstance()
+					.getCategory(catID);
+			return cp == null ? null : cp.createCategory(this);
+		}
+		return null;
+	}
+
+	public ICategory[] getRootCategories() {
+		Collection allRootCategories = ConnectionProfileManager.getInstance()
+				.getCategories().values();
+		List rootCategories = new ArrayList(allRootCategories.size());
+		for (Iterator it = allRootCategories.iterator(); it.hasNext();) {
+			CategoryProvider cp = (CategoryProvider) it.next();
+			if (cp.getParent() == null
+					&& !IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID
+							.equals(cp.getId()) && supportsCategory(cp.getId())) {
+				rootCategories.add(cp.createCategory(this));
+			}
+		}
+		return (ICategory[]) rootCategories
+				.toArray(new ICategory[rootCategories.size()]);
 	}
 
 }

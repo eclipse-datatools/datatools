@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,16 +14,12 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizard;
-import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvider;
-import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IViewActionDelegate;
@@ -37,7 +33,7 @@ import org.eclipse.ui.IViewPart;
  */
 public class AddProfileViewAction extends Action implements IViewActionDelegate {
 
-	private ICategory category;
+	private String categoryID;
 	private IConnectionProfile parentProfile;
 	private int returnCode;
 	private IConnectionProfile addedProfile;
@@ -54,17 +50,14 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 * @param category
 	 */
 	public AddProfileViewAction(ICategory category) {
-		this();
-		this.category = category;
+		this(category.getId());
 	}
 	
 	/**
 	 * @param categoryID
 	 */
 	public AddProfileViewAction ( String categoryID ) {
-		this();
-		this.category = 
-			ConnectionProfileManager.getInstance().getCategory(categoryID);
+		this.categoryID = categoryID;
 	}
 
 	/*
@@ -84,36 +77,7 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		NewCPWizard wizard;
 		WizardDialog wizardDialog;
 
-		ViewerFilter viewerFilter = new ViewerFilter() {
-
-			public boolean select(Viewer viewer, Object parentElement,
-					Object element) {
-				if (category == null)
-					return true;
-				CPWizardNode wizardNode = (CPWizardNode) element;
-				if (!(wizardNode.getProvider() instanceof IWizardCategoryProvider)) {
-					ICategory cat = ConnectionProfileManager.getInstance()
-							.getProvider(
-									((ProfileWizardProvider) wizardNode
-											.getProvider()).getProfile())
-							.getCategory();
-					// Only display wizards belong to a specific category or a
-					// parent category
-					while (cat != null) {
-						if (cat.getId().equals(category.getId()))
-							return true;
-						else
-							cat = cat.getParent();
-					}
-				}
-				else {
-					if (((IWizardCategoryProvider) wizardNode.getProvider())
-							.getId().equals(category.getId()))
-						return true;
-				}
-				return false;
-			}
-		};
+		ViewerFilter viewerFilter = new NewCPWizardCategoryFilter(categoryID);
 		wizard = new NewCPWizard(viewerFilter,parentProfile);
 		wizardDialog = new WizardDialog(ConnectivityUIPlugin.getDefault()
 				.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
@@ -152,24 +116,16 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 * @param category
 	 */
 	public void setCategory ( ICategory category ) {
-		this.category = category;
+		setCategory(category == null ? null : category.getId());
 	}
 	
 	/**
 	 * @param categoryID
 	 */
 	public void setCategory ( String categoryID ) {
-		this.category = 
-			ConnectionProfileManager.getInstance().getCategory(categoryID);
+		this.categoryID = categoryID;
 	}
 
-	/**
-	 * @return
-	 */
-	public ICategory getCategory () {
-		return this.category;
-	}
-	
 	public void setParentProfile(IConnectionProfile profile) {
 		parentProfile = profile;
 	}

@@ -58,6 +58,20 @@
                tooltip="%DSE.AddCP.tooltip">
          </action>
          <action
+               class="org.eclipse.datatools.connectivity.ui.actions.AddRepositoryViewAction"
+               icon="icons/full/clcl16/add_server.gif"
+               id="org.eclipse.datatools.connectivity.internal.ui.viewactions.addrepository"
+               label="%DSE.AddRepo.label"
+               style="push"
+               toolbarPath="slotn"
+               tooltip="%DSE.AddRepo.tooltip">
+              <visibility>
+                 <systemProperty
+                       name="org.eclipse.datatools.connectivity.repositoriesEnabled"
+                       value="true"/>
+              </visibility>
+         </action>
+         <action
                state="false"
                style="push"
                toolbarPath="slot1"
@@ -230,6 +244,17 @@
                </or>
             </enablement>
          </actionProvider>
+         <dropAssistant
+               class="org.eclipse.datatools.connectivity.ui.dse.dnd.ConnectionProfileDropAssistant"
+               id="org.eclipse.datatools.connectivity.ui.dse.dnd.connectionProfileDropAssistant">
+            <possibleDropTargets>
+            	<or>
+            		<adapt type="org.eclipse.datatools.connectivity.ICategory"/>
+            		<instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+            		<instanceof value="org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode" />
+            	</or>
+            </possibleDropTargets>
+         </dropAssistant>
          <commonSorter
                class="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileSorter"
                id="org.eclipse.datatools.connectivity.ui.dse.commonSorter"/>

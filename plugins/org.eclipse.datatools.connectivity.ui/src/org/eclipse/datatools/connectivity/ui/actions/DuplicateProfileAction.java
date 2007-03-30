@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,6 +14,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCopyProcessor;
@@ -72,8 +73,11 @@ public class DuplicateProfileAction extends Action implements IActionDelegate {
 	private void refactor (IConnectionProfile profile) throws CoreException {
     	//  Refactor for rename
     	PerformRefactoringOperation refOperation = new PerformRefactoringOperation(
-    			new CopyRefactoring(new ConnectionProfileCopyProcessor(profile)), 
-    				CheckConditionsOperation.ALL_CONDITIONS);
+				new CopyRefactoring(new ConnectionProfileCopyProcessor(
+						new IConnectionProfile[] { profile}, profile
+								.getParentProfile() == null ? ProfileManager
+								.getInstance() : profile.getParentProfile())),
+				CheckConditionsOperation.ALL_CONDITIONS);
     	try 
     	{
     		ResourcesPlugin.getWorkspace().run(refOperation, null);

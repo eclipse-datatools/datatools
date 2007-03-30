@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 
 /**
  * @author rcernich, shongxum
@@ -97,8 +98,8 @@ public class ConnectionProfileManager {
 		return mCategories;
 	}
 
-	public ICategory getCategory(String id) {
-		return (ICategory) getCategories().get(id);
+	public CategoryProvider getCategory(String id) {
+		return (CategoryProvider) getCategories().get(id);
 	}
 
 	public IConfigurationType getConfigurationType(String id) {
@@ -170,6 +171,8 @@ public class ConnectionProfileManager {
 		}
 		
 		registerConnectionFactoryAdapters();
+		
+		initializeRepositoriesEnabledProperty();
 	}
 
 	private void processConnectionProfile(IConfigurationElement element) {
@@ -239,4 +242,21 @@ public class ConnectionProfileManager {
 		}
 	}
 
+	private void initializeRepositoriesEnabledProperty() {
+		for (Iterator it = mProviders.values().iterator(); it.hasNext();) {
+			ConnectionProfileProvider cpp = (ConnectionProfileProvider) it
+					.next();
+			for (ICategory cat = cpp.getCategory(); cat != null; cat = cat
+					.getParent()) {
+				if (IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID
+						.equals(cat.getId())) {
+					System
+							.setProperty(
+									ConnectivityPlugin.PROP_SYSTEM_REPOSITORIES_ENABLED,
+									Boolean.TRUE.toString());
+					return;
+				}
+			}
+		}
+	}
 }
