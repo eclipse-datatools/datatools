@@ -58,7 +58,7 @@ public class SQLScrapbookEditorInputFactory extends SQLEditorInputFactory implem
                 IFile fileResource = fileInput.getFile();
                 if (fileResource != null) {
                     // Create the SQLEditorFileEditorInput.
-                    SQLEditorFileEditorInput sqlFileInput = new SQLEditorFileEditorInput( fileResource );
+                    SQLScrapbookEditorInput sqlFileInput = new SQLScrapbookEditorInput( fileResource );
                     
                     // Get the connection name from the memento, and use that to
                     // get the ISQLEditorConnectionInfo using the ConnectionManager.  Put the
