@@ -53,5 +53,16 @@ public class XMLPropertyPage extends DataSourceEditorPage
 
         m_pageHelper.createCustomControl( parent );
         m_pageHelper.initCustomControl( profileProps );
-    }    
+    }
+    
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#refresh(java.util.Properties)
+     */
+    protected void refresh( Properties customConnectionProps  )
+    {       
+        // enable/disable all controls on page in respect of the editable session state
+        enableAllControls( getControl(), isSessionEditable() );
+    }
 }

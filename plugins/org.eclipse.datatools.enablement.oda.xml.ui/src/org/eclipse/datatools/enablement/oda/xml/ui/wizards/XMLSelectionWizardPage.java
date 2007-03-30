@@ -68,5 +68,14 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
 		super.setVisible( visible );
 		getControl( ).setFocus( );
 	}
-
+	
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#refresh()
+     */
+    public void refresh()
+    {
+        // enable/disable all controls on page in respect of the editable session state
+        enableAllControls( getControl(), isSessionEditable() );
+    }
 }
