@@ -44,6 +44,8 @@ import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfile
  * @author shongxum
  */
 public class InternalProfileManager {
+	
+	public static String PROFILE_PATH_SEPARATOR = "::";
 
 	private static InternalProfileManager mManager = null;
 
@@ -164,6 +166,47 @@ public class InternalProfileManager {
 			}
 		}
 		return cp;
+	}
+	
+	public IConnectionProfile getProfileByPath(String path) {
+		if (path == null || path.length() == 0) {
+			return null;
+		}
+
+		int separator = path.indexOf(PROFILE_PATH_SEPARATOR);
+		if (separator < 0) {
+			return getProfileByName(path, false);
+		}
+		return getProfileByPath(getProfileByName(path.substring(0, separator),
+				false), path.substring(separator
+				+ PROFILE_PATH_SEPARATOR.length()));
+	}
+
+	private IConnectionProfile getProfileByPath(IConnectionProfile parent,
+			String path) {
+		if (parent == null
+				|| parent.getProvider().getConnectionFactory(
+						IConnectionProfileRepository.class.getName()) == null
+				|| path == null || path.length() == 0) {
+			return null;
+		}
+
+		IManagedConnection imc = parent
+				.getManagedConnection(IConnectionProfileRepository.class
+						.getName());
+		if (imc == null || !imc.isConnected() || imc.getConnection() == null) {
+			return null;
+		}
+
+		IConnectionProfileRepository repo = (IConnectionProfileRepository) imc
+				.getConnection().getRawConnection();
+		int separator = path.indexOf(PROFILE_PATH_SEPARATOR);
+		if (separator < 0) {
+			return repo.getProfileByName(path);
+		}
+		return getProfileByPath(repo.getProfileByName(path.substring(0,
+				separator)), path.substring(separator
+				+ PROFILE_PATH_SEPARATOR.length()));
 	}
 
 	/**

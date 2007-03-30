@@ -115,6 +115,16 @@ public class ConnectionProfile extends PlatformObject implements
 	public String getName() {
 		return mName;
 	}
+	
+	public String getProfilePath() {
+		if (mParentProfile == null) {
+			return getName();
+		}
+		else {
+			return ((ConnectionProfile) getParentProfile()).getProfilePath()
+					+ InternalProfileManager.PROFILE_PATH_SEPARATOR + getName();
+		}
+	}
 
 	/*
 	 * For internal use only
