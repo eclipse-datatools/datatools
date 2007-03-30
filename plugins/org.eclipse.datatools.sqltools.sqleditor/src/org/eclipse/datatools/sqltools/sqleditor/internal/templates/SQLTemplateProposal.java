@@ -510,7 +510,8 @@ public class SQLTemplateProposal implements ICompletionProposal, ICompletionProp
             {
                 return null;
             }
-            if (((SQLTemplate) _template).getId().startsWith(TemplateConstant.INTELLIGENT_TEMPLATE))
+            
+            if ( (_template instanceof SQLTemplate) && ((SQLTemplate) _template).getId().startsWith(TemplateConstant.INTELLIGENT_TEMPLATE))
             {
                 String str = null;
                 str = "<B><CENTER>" + _template.getPattern() + "</B> </CENTER><BR>";

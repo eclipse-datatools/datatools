@@ -812,7 +812,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 
         ArrayList templateList = new SQLTemplateProposalsService().getProposals(_editor, _fDocumentOffset, _fWord, true, _selection);
         ICompletionProposal[] templateResults = (ICompletionProposal[]) templateList
-            .toArray(new TemplateProposal[templateList.size()]);
+            .toArray(new SQLTemplateProposal[templateList.size()]);
 
         return templateResults;
     }
