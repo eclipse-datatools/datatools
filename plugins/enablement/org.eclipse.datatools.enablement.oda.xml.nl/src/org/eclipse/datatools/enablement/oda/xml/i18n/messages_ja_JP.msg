@@ -7,5 +7,6 @@ Query.ResultSetClosed=結果セットを閉じました。
 Query.InvalidQueryText=クエリテキストが無効です。
 RelationInformation.InputStringCannotBeNull=入力文字列は null または空白にできません。 
 RelationInformation.InvalidDataTypeName=指定されたデータ型の名前が無効です。
+RelationInformation.InvalidFilterDefinition=フィルタの定義が無効です。 
 DateUtil.ConvertFails=日付に変換できません。ソース :
 dataTypes.typeNameInvalid=無効なデータ型名 :

@@ -7,5 +7,6 @@ Query.ResultSetClosed=Ergebnis ist geschlossen.
 Query.InvalidQueryText=Der Abfragetext ist ungültig.
 RelationInformation.InputStringCannotBeNull=Die Eingabe-Zeichenfolge darf nicht leer oder gleich Null sein. 
 RelationInformation.InvalidDataTypeName=Der angegebene Datentypname ist ungültig.
+RelationInformation.InvalidFilterDefinition=Die Filterdefinition ist ungültig. 
 DateUtil.ConvertFails=Konvertierung in Datum ist fehlgeschlagen. Quelle:
 dataTypes.typeNameInvalid=Datentypname ungültig:
