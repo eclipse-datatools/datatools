@@ -122,7 +122,7 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 			String[] drop = ddlg
 					.dropSQLObjects(
 							sqlElements,
-							EngineeringOptionID.getOptionValueByID(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER,opts),
+							SQLDevToolsUtil.isQuotedIdentifierOn(_proc.getDatabaseIdentifier()),
 							true, null);
 			// we alway use "true" instead of
 			// opts[GenericDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME].getBoolean()
