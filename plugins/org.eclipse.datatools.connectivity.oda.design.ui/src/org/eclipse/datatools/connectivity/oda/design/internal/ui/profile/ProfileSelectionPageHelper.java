@@ -171,8 +171,7 @@ class ProfileSelectionPageHelper
      */
     ProfileSelection collectProfileSelection()
     {
-        if( m_odaDataSourceID == null || m_profileID == null ||
-            ! isPageComplete() )
+        if( ! hasSelectedProfile() || ! isPageComplete() )
             return null;
             
         return new ProfileSelection(
@@ -199,7 +198,7 @@ class ProfileSelectionPageHelper
         // the page itself considers itself complete, next 
         // check if external reference is selected, must have a selected profile
         if( m_linkRefCheckBox != null && m_linkRefCheckBox.getSelection() )
-            isPageComplete = ( m_odaDataSourceID != null && m_profileID != null );
+            isPageComplete = hasSelectedProfile();
         
         return isPageComplete;
     }
@@ -351,6 +350,11 @@ class ProfileSelectionPageHelper
         // setText triggers its modifyListener to update data source design name if appropriate
     }
 
+    private boolean hasSelectedProfile()
+    {
+        return ( m_profileID != null && m_odaDataSourceID != null );
+    }
+    
     private void clearSelectedProfile()
     {
         m_profileID = null;
@@ -638,9 +642,12 @@ class ProfileSelectionPageHelper
                     setPageComplete( false );
                     setMessage( invalidMessage, IMessageProvider.ERROR );
                 }
-                else
+                else    // name value is ok
                 {
-                    setPageComplete( true );
+                    // when creating a new data source, the name must be associated
+                    // with a profile selection either by import or reference
+                    boolean isNameOk = inEditMode() ? true : hasSelectedProfile();
+                    setPageComplete( isNameOk );
                 }
             }
         } );
