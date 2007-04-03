@@ -189,8 +189,15 @@ public class SaxParserConsumer implements ISaxParserConsumer
 					continue;
 				}
 
-				if (namesOfColumns[i].startsWith("-$TEMP_XML_COLUMN$-"))
+				if (namesOfColumns[i].startsWith(SaxParserUtil.TEMPCOLUMNNAMEPREFIX))
+				{
 					os[i] = value;
+				}
+				else if ( namesOfColumns[i].startsWith( SaxParserUtil.ROOTTEMPCOLUMNNAMEPREFIX ))
+				{
+					if ( os[i] == null )
+						os[i] = value;
+				}
 				else if (os[i] == null
 						&& isCurrentColumnValid(namesOfColumns[i]))
 					os[i] = value;
@@ -245,14 +252,15 @@ public class SaxParserConsumer implements ISaxParserConsumer
 				this.cachedRootRows.remove( path );
 				if( this.cachedRootRows.size( )>0)
 					return;
-				if ( !isCurrentRowValid( ) )
-					return;
-				cachedResultSetRowNo++;
-				currentAvailableMaxLineNo++;
-				if ( cachedResultSetRowNo > Constants.CACHED_RESULT_SET_LENGTH - 1 )
+				if ( isCurrentRowValid( ) )
 				{
-					sp.setStart( false );
-					cachedResultSetRowNo = 0;
+					cachedResultSetRowNo++;
+					currentAvailableMaxLineNo++;
+					if ( cachedResultSetRowNo > Constants.CACHED_RESULT_SET_LENGTH - 1 )
+					{
+						sp.setStart( false );
+						cachedResultSetRowNo = 0;
+					}
 				}
 				if( this.cachedOrderedTempRowRoots.size( ) > 0 )
 				{
@@ -262,6 +270,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 						String[] result = (String[])this.cachedTempRows.get( this.cachedOrderedTempRowRoots.get( i ) );
 						this.cachedTempRows.remove( this.cachedOrderedTempRowRoots.get( i ) );
 						this.cachedResultSet[this.cachedResultSetRowNo] = result;
+						if ( !isCurrentRowValid( ) )
+							continue;
 						this.cachedResultSetRowNo++;
 						this.currentAvailableMaxLineNo++;
 						if ( cachedResultSetRowNo > Constants.CACHED_RESULT_SET_LENGTH - 1 )

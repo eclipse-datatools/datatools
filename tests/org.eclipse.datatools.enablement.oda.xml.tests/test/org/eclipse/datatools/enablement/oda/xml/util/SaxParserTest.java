@@ -52,7 +52,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# filter2#:#[//field]#:#{b-bar1;String;[@b='time']}"
 			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{time;String;}"
 			+ "#-# filter4#:#[//Book[@type='fiction']]#:#{book.title;String;/Title},{book.author_paul;String;/Author[@type='firstclass']}"			
-			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}";
+			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}"
+			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}";
 
 	private RelationInformation ri;
 
@@ -786,4 +787,45 @@ public class SaxParserTest extends BaseTest
 	}
 	
 	
+	/**
+	 * Test nested table root filter.
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test18( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST18_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.NESTED_TABLE_ROOT_FILTER)
+				.createXMLDataInputStream( ),
+				ri,
+				"nestedTableRootFilter", 
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST18_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST18_GOLDEN_XML ) ) );
+	}
 }

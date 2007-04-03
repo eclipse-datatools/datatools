@@ -1,0 +1,38 @@
+<company name="company" type="companyType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Schema.xsd">
+  <properties/>
+
+  <employee type="employeeType1">
+    <properties>
+      <property name="firstName" value="Michael"/>
+      <property name="lastName" value="Jordan"/>
+    </properties>
+
+    <employee type="employeeType2">
+      <properties>
+        <property name="firstName" value="Christ"/>
+	<property name="lastName" value="Young"/>
+      </properties>
+
+      <employee type="employeeType1">
+        <properties>
+          <property name="firstName" value="Andrew"/>
+	  <property name="lastName" value="Jackson"/>
+        </properties>
+
+        <employee type="employeeType4">
+          <properties>
+            <property name="firstName" value="Orlando"/>
+	    <property name="lastName" value="Martinez"/>
+          </properties>
+
+          <employee type="employeeType5">
+            <properties>
+              <property name="firstName" value="Rod"/>
+	      <property name="lastName" value="Owen"/>
+            </properties>
+          </employee>
+        </employee>
+      </employee>
+    </employee>
+  </employee>
+</company>

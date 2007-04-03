@@ -188,7 +188,7 @@ public class XMLRelationInfoUtil
 		try
 		{
 			info = new RelationInformation( tableStr );
-			String rootPath = info.getTableRootPath( tableName );
+			String rootPath = info.getTableOriginalRootPath( tableName );
 			tableStr = tableStr.replaceFirst( "\\Q" + rootPath + "\\E", xPath );
 		}
 		catch ( OdaException e )

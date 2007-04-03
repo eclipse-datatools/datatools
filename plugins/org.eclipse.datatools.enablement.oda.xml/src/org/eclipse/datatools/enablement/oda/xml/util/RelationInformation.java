@@ -73,7 +73,7 @@ public class RelationInformation
 			String tableName = temp[0].trim();
 			String tableRawRoot = temp[1].substring( 1, temp[1].length( ) - 1 ).trim( );
 			TableInfo tableInfo = new TableInfo( tableName,
-					tableRawRoot.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", "") );
+					tableRawRoot );
 			
 			// ////////////////////////////////
 			String[] columns = temp[2].trim( ).split( CONST_COLUMN_DELIMITER );
@@ -137,7 +137,7 @@ public class RelationInformation
 				String filterColumnXpath = tableRootWithFilter.replaceAll(
 						"\\Q=\\E.*", "]");
 				String filterOriginalColumnXpath = tableRawRoot.replaceAll("\\Q=\\E.*", "]");
-				String tempColumnName = SaxParserUtil.createTempColumnName( filterColumnInfos.size() + 1 );
+				String tempColumnName = SaxParserUtil.createTableRootTempColumnNameForFilter( );
 
 				// TODO support multiple filters in one column.
 				tableInfo.addFilter(tempColumnName, value);
@@ -443,7 +443,7 @@ class TableInfo
 	{
 		this.tableName = tableName;
 		this.originalRootPath = rootPath;
-		String temp = SaxParserUtil.processParentAxis( originalRootPath );
+		String temp = SaxParserUtil.processParentAxis( originalRootPath.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", ""));
 		if( "//".equals( temp ))
 			this.rootPath = "//*";
 		else
@@ -570,7 +570,7 @@ class TableInfo
 		List l = new ArrayList();
 		for( int i = 0; i < temp.length; i ++ )
 		{
-			if( temp[i].matches( "\\Q-$TEMP_XML_COLUMN$-\\E.*" ))
+			if( SaxParserUtil.isTempColumn(temp[i]))
 				break;
 			else
 				l.add( temp[i] );

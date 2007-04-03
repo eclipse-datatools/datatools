@@ -16,7 +16,8 @@ package org.eclipse.datatools.enablement.oda.xml.util;
  */
 public class SaxParserUtil
 {
-	private static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
+	public static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
+	public static final String ROOTTEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN_ROOT$-";
 	/**
 	 * 
 	 * @param path
@@ -95,6 +96,16 @@ public class SaxParserUtil
 	}
 	
 	/**
+	 * Create a temp column name for root filter. The temp column are used for filtering.
+	 * 
+	 * @param index
+	 * @return
+	 */
+	static String createTableRootTempColumnNameForFilter( )
+	{
+		return ROOTTEMPCOLUMNNAMEPREFIX;
+	}
+	/**
 	 * Return if the given column name stands for a temp column.
 	 * 
 	 * @param name
@@ -105,6 +116,6 @@ public class SaxParserUtil
 		if( name == null )
 			return false;
 		else
-			return name.startsWith( TEMPCOLUMNNAMEPREFIX );
+			return name.startsWith( TEMPCOLUMNNAMEPREFIX ) || name.startsWith( ROOTTEMPCOLUMNNAMEPREFIX );
 	}
 }
