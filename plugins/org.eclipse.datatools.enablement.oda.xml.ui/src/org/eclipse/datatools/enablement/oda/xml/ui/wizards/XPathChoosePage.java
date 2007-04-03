@@ -114,10 +114,10 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void initializeControl( )
 	{
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = getXSDFileURI( );
+		xmlFileName = getInitXMLFileURI( );
 	
-		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
+		String queryText = getInitQueryText( );
 
 		String tableName = XMLRelationInfoUtil.getTableName( queryText );
 		if ( tableName != null )
@@ -145,12 +145,38 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.rowMapping" );
 		XMLInformationHolder.start( dataSetDesign );
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		
+		refresh( );
+	}
+	
+	protected void refresh( )
+	{
+		xmlFileName = getXMLFileURI( );
+		xsdFileName = getXSDFileURI( );
 
 		populateXMLTree( );
 		backupRootPath( );
-		this.setMessage( DEFAULT_MESSAGE );
+		setMessage( DEFAULT_MESSAGE );
+	}
+	
+	protected String getXSDFileURI( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+	}
+
+	protected String getInitXMLFileURI( )
+	{
+		return getXMLFileURI( );
+	}
+
+	protected String getXMLFileURI( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+	}
+	
+	protected String getInitQueryText( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 	}
 
     /**
@@ -573,13 +599,29 @@ public class XPathChoosePage extends DataSetWizardPage
     private void savePage( DataSetDesign dataSetDesign ) throws OdaException
 	{
 		if ( dataSetDesign != null
-				&& dataSetDesign.getQueryText( ) != null
-				&& !dataSetDesign.getQueryText( )
+				&& getQueryText( dataSetDesign ) != null
+				&& !getQueryText( dataSetDesign )
 						.equals( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) ) )
 		{
-			DataSetDesignPopulator.populateResultSet( dataSetDesign );
-			dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+			setQueryText( dataSetDesign,
+					XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+			updateDesign( dataSetDesign );
 		}
+	}
+    
+	protected void updateDesign( DataSetDesign dataSetDesign )
+	{
+		DataSetDesignPopulator.populateResultSet( dataSetDesign );
+	}
+
+	protected String getQueryText( DataSetDesign dataSetDesign )
+	{
+		return dataSetDesign.getQueryText( );
+	}
+
+	protected void setQueryText( DataSetDesign dataSetDesign, String queryText )
+	{
+		dataSetDesign.setQueryText( queryText );
 	}
     
 	/*

@@ -161,9 +161,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private void initializeControl( )
 	{
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
+		xsdFileName = getXSDFileURI( );
+		xmlFileName = getInitXMLFileURI( );
+		String queryText = getInitQueryText( );
 		tableName = XMLRelationInfoUtil.getTableName( queryText );
 
 		if ( tableName != null && tableName.trim( ).length( ) > 0 )
@@ -203,8 +203,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	public void refresh( )
 	{
 		selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
-		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = getXSDFileURI( );
+		xmlFileName = getXMLFileURI( );
 		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
 			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		if ( selectedTreeItemText != null )
@@ -212,6 +212,26 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			selectedItem = null;
 			populateXMLTree( );
 		}	
+	}
+	
+	protected String getXSDFileURI( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+	}
+	
+	protected String getInitXMLFileURI( )
+	{
+		return getXMLFileURI( );
+	}
+	
+	protected String getXMLFileURI( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+	}
+	
+	protected String getInitQueryText( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 	}
 	
 	/*
@@ -826,6 +846,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private void populateXMLTree( )
 	{
+		if ( !needsPopulate( xsdFileName, xmlFileName ) )
+			return;
+		
 		try
 		{
 			this.treeNode = null;
@@ -892,6 +915,11 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		{
 			e.printStackTrace( );
 		}
+	}
+	
+	protected boolean needsPopulate( String xsdFile, String xmlFile )
+	{
+		return true;
 	}
 
 	/**
@@ -1394,18 +1422,35 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	{
 		if ( dataSetDesign != null )
 		{
-			if ( dataSetDesign.getQueryText( ) == null )
+			if ( getQueryText( dataSetDesign ) == null )
 			{
-				dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+				setQueryText( dataSetDesign,
+						XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 			}
-			if ( dataSetDesign.getQueryText( ) != null
-					&& !dataSetDesign.getQueryText( )
-							.equals( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) ) )
+			if ( getQueryText( dataSetDesign ) != null
+					&& !getQueryText( dataSetDesign ).equals( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) ) )
 			{
-				DataSetDesignPopulator.populateResultSet( dataSetDesign );
-				dataSetDesign.setQueryText( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+				setQueryText( dataSetDesign,
+						XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+				
+				updateDesign(dataSetDesign);
 			}
 		}
+	}
+	
+	protected void updateDesign( DataSetDesign dataSetDesign )
+	{
+		DataSetDesignPopulator.populateResultSet( dataSetDesign );
+	}
+	
+	protected String getQueryText( DataSetDesign dataSetDesign )
+	{
+		return dataSetDesign.getQueryText( );
+	}
+
+	protected void setQueryText( DataSetDesign dataSetDesign, String queryText )
+	{
+		dataSetDesign.setQueryText( queryText );
 	}
 	
 	public void addListener( ILabelProviderListener listener )
