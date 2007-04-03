@@ -125,7 +125,7 @@ class ClobReader extends OdaObject
             if( numSkipped != numToSkip )
             {
                 bufferedStream.close();
-                logMethodExitWithReturn( context, null ); //$NON-NLS-1$
+                logMethodExitWithReturn( context, null );
                 return null;    // not able to skip to given position
             }
         }

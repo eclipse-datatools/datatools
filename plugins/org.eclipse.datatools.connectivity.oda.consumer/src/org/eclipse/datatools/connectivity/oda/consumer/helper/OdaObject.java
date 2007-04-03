@@ -500,9 +500,9 @@ class OdaObject
         if( logger != null )
         {
             if( obj != null )
-                logger.fine( context + "Returns a string with length [" + obj.length() + "]" );
+                logger.fine( context + "Returns a string with length [" + obj.length() + "]" ); //$NON-NLS-1$ //$NON-NLS-2$
             else
-                logger.fine( context + "Returns string [ null ]" );
+                logger.fine( context + "Returns string [ null ]" ); //$NON-NLS-1$
         }
     }
 	
