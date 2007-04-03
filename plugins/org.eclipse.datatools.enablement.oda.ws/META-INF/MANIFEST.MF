@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws; singleton:=true
+Bundle-Version: 1.0.0.200704031
+Bundle-ClassPath: .,
+ src
+Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.Activator
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity.oda;bundle-version="3.0.3",
+ org.eclipse.datatools.connectivity.oda.profile,
+ org.eclipse.datatools.enablement.oda.xml,
+ org.wsdl4j
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.enablement.oda.ws.impl,
+ org.eclipse.datatools.enablement.oda.ws.soap,
+ org.eclipse.datatools.enablement.oda.ws.util

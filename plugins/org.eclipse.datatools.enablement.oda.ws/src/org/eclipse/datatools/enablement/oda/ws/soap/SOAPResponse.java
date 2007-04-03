@@ -1,0 +1,68 @@
+/*******************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation  - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.datatools.enablement.oda.ws.soap;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
+
+/**
+ * 
+ */
+
+public class SOAPResponse
+{
+
+	public static final int INPUT_STREAM = 0;
+	public static final int ERROR_STREAM = 1;
+
+	private InputStream inputStream;
+	private int streamType;
+	private String streamInfo = "";
+
+	public SOAPResponse( InputStream inputStream )
+	{
+		this( inputStream, INPUT_STREAM, "" );
+	}
+
+	public SOAPResponse( InputStream inputStream, int streamType,
+			String streamInfo )
+	{
+		this.inputStream = inputStream;
+		this.streamType = streamType;
+		this.streamInfo = streamInfo;
+	}
+
+	public InputStream getInputStream( )
+	{
+		return inputStream;
+	}
+
+	public int getStreamType( )
+	{
+		return streamType;
+	}
+
+	public String getStreamInfo( )
+	{
+		return streamInfo;
+	}
+
+	public void close( ) throws IOException
+	{
+		if ( WSUtil.isNull( inputStream ) )
+			return;
+		inputStream.close( );
+	}
+
+}
