@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.data.internal.core;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
@@ -148,13 +150,23 @@ public class DataCorePlugin extends Plugin
     
     public static String quoteIdentifier(Database db, String s)
     {
-//        String delim = RDBCorePlugin.getDefault().getConnectionManager().getConnectionInfo(o).getIdentifierQuoteString();
-//        if (delim == null || delim.length() == 0)
-//            delim = "\""; //$NON-NLS-1$
-    	String delim = DQ;
-		DatabaseDefinitionRegistry dbDefRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
-		DatabaseDefinition dbDef =  dbDefRegistry.getDefinition(db);
-		delim = dbDef.getIdentifierQuoteString();
+    	String delim = null;
+    	if (db instanceof ICatalogObject) {
+    		Connection conn = ((ICatalogObject)db).getConnection();
+    		if (conn != null) {
+    			try {
+					delim = conn.getMetaData().getIdentifierQuoteString();
+				}
+				catch (SQLException e) {
+					// we fall back to the db def below
+				}
+    		}
+    	}
+    	if (delim == null) {
+    		DatabaseDefinitionRegistry dbDefRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
+    		DatabaseDefinition dbDef =  dbDefRegistry.getDefinition(db);
+    		delim = dbDef.getIdentifierQuoteString();
+    	}
         if (!SQ.equals(delim) && !delim.equals(SQ2)){
             delim = DQ; 
         }
