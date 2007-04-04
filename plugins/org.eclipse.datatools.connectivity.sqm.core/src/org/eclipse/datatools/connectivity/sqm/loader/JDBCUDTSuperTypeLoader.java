@@ -20,6 +20,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a UDT's super type object. This class
  * may be specialized as necessary to meet a particular vendor's needs.
@@ -108,10 +110,21 @@ public class JDBCUDTSuperTypeLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		UserDefinedType udt = getUserDefinedType();
-		Schema schema = udt.getSchema();
-		return getCatalogObject().getConnection().getMetaData().getSuperTypes(
-				schema.getCatalog().getName(), schema.getName(), udt.getName());
+		try {
+			UserDefinedType udt = getUserDefinedType();
+			Schema schema = udt.getSchema();
+			return getCatalogObject().getConnection().getMetaData().getSuperTypes(
+					schema.getCatalog().getName(), schema.getName(), udt.getName());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getSuperTypes()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

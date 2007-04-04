@@ -40,6 +40,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a table's constraint objects (e.g. PK,
  * FK, etc.). This class may be specialized as necessary to meet a particular
@@ -443,11 +445,22 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createPrimaryKeyResultSet() throws SQLException {
-		Table table = getTable();
-		Schema schema = table.getSchema();
-		return getCatalogObject().getConnection().getMetaData().getPrimaryKeys(
-				schema.getCatalog().getName(), schema.getName(),
-				table.getName());
+		try {
+			Table table = getTable();
+			Schema schema = table.getSchema();
+			return getCatalogObject().getConnection().getMetaData().getPrimaryKeys(
+					schema.getCatalog().getName(), schema.getName(),
+					table.getName());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getPrimaryKeys()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**
@@ -464,11 +477,22 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createUniqueConstraintResultSet() throws SQLException {
-		Table table = getTable();
-		Schema schema = table.getSchema();
-		return getCatalogObject().getConnection().getMetaData()
-				.getExportedKeys(schema.getCatalog().getName(),
-						schema.getName(), table.getName());
+		try {
+			Table table = getTable();
+			Schema schema = table.getSchema();
+			return getCatalogObject().getConnection().getMetaData()
+					.getExportedKeys(schema.getCatalog().getName(),
+							schema.getName(), table.getName());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getExportedKeys()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**
@@ -485,11 +509,22 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createForeignKeyResultSet() throws SQLException {
-		Table table = getTable();
-		Schema schema = table.getSchema();
-		return getCatalogObject().getConnection().getMetaData()
-				.getImportedKeys(schema.getCatalog().getName(),
-						schema.getName(), table.getName());
+		try {
+			Table table = getTable();
+			Schema schema = table.getSchema();
+			return getCatalogObject().getConnection().getMetaData()
+					.getImportedKeys(schema.getCatalog().getName(),
+							schema.getName(), table.getName());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getImportedKeys()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

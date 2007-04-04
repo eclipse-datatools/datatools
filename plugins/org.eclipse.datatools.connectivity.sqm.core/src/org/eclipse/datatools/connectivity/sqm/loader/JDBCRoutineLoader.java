@@ -27,6 +27,8 @@ import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.ecore.EClass;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a database's routine (SP, UDF)
  * objects. This class may be specialized as necessary to meet a particular
@@ -223,10 +225,21 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		Schema schema = getSchema();
-		return getCatalogObject().getConnection().getMetaData().getProcedures(
-				schema.getCatalog().getName(), schema.getName(),
-				getJDBCFilterPattern());
+		try {
+			Schema schema = getSchema();
+			return getCatalogObject().getConnection().getMetaData()
+					.getProcedures(schema.getCatalog().getName(),
+							schema.getName(), getJDBCFilterPattern());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getProcedures()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

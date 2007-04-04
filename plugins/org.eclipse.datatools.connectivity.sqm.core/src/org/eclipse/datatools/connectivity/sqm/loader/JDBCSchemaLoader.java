@@ -25,6 +25,8 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCSchema;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a database's schema objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
@@ -166,7 +168,17 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		return getCatalogObject().getConnection().getMetaData().getSchemas();
+		try {
+			return getCatalogObject().getConnection().getMetaData()
+					.getSchemas();
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(MessageFormat.format(
+					Messages.Error_Unsupported_DatabaseMetaData_Method,
+					new Object[] { "java.sql.DatabaseMetaData.getSchemas()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

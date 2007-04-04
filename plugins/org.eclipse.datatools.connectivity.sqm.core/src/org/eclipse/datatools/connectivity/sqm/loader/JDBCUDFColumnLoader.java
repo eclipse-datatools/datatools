@@ -39,6 +39,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a database's catalog objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
@@ -206,13 +208,24 @@ public class JDBCUDFColumnLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		UserDefinedFunction udf = getUserDefinedFunction();
-		Schema schema = udf.getSchema();
-		// Note, this should change to getFunctionColumns() when/if we switch
-		// to JDBC 4
-		return getCatalogObject().getConnection().getMetaData()
-				.getProcedureColumns(schema.getCatalog().getName(),
-						schema.getName(), udf.getName(), null);
+		try {
+			UserDefinedFunction udf = getUserDefinedFunction();
+			Schema schema = udf.getSchema();
+			// Note, this should change to getFunctionColumns() when/if we switch
+			// to JDBC 4
+			return getCatalogObject().getConnection().getMetaData()
+					.getProcedureColumns(schema.getCatalog().getName(),
+							schema.getName(), udf.getName(), null);
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getProcedureColumns()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

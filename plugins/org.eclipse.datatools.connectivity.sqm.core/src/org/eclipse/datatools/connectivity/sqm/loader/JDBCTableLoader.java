@@ -37,6 +37,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
 import org.eclipse.emf.ecore.EClass;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a database's catalog objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
@@ -256,10 +258,19 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		Schema schema = getSchema();
-		return getCatalogObject().getConnection().getMetaData().getTables(
-				schema.getCatalog().getName(), schema.getName(),
-				getJDBCFilterPattern(), null);
+		try {
+			Schema schema = getSchema();
+			return getCatalogObject().getConnection().getMetaData().getTables(
+					schema.getCatalog().getName(), schema.getName(),
+					getJDBCFilterPattern(), null);
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(MessageFormat.format(
+					Messages.Error_Unsupported_DatabaseMetaData_Method,
+					new Object[] { "java.sql.DatabaseMetaData.getTables()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

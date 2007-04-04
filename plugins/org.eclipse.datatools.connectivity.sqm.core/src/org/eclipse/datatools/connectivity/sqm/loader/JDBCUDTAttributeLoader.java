@@ -36,6 +36,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a UDT's attribute objects. This class
  * may be specialized as necessary to meet a particular vendor's needs.
@@ -204,11 +206,22 @@ public class JDBCUDTAttributeLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		UserDefinedType udt = getUserDefinedType();
-		Schema schema = udt.getSchema();
-		return getCatalogObject().getConnection().getMetaData().getAttributes(
-				schema.getCatalog().getName(), schema.getName(), udt.getName(),
-				"%");
+		try {
+			UserDefinedType udt = getUserDefinedType();
+			Schema schema = udt.getSchema();
+			return getCatalogObject().getConnection().getMetaData().getAttributes(
+					schema.getCatalog().getName(), schema.getName(), udt.getName(),
+					"%");
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getAttributes()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

@@ -39,6 +39,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a SP's parameter objects. This class
  * may be specialized as necessary to meet a particular vendor's needs.
@@ -205,11 +207,22 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		Procedure procedure = getProcedure();
-		Schema schema = procedure.getSchema();
-		return getCatalogObject().getConnection().getMetaData()
-				.getProcedureColumns(schema.getCatalog().getName(),
-						schema.getName(), procedure.getName(), null);
+		try {
+			Procedure procedure = getProcedure();
+			Schema schema = procedure.getSchema();
+			return getCatalogObject().getConnection().getMetaData()
+					.getProcedureColumns(schema.getCatalog().getName(),
+							schema.getName(), procedure.getName(), null);
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getProcedureColumns()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

@@ -18,6 +18,8 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a table's super table objects. This
  * class may be specialized as necessary to meet a particular vendor's needs.
@@ -87,11 +89,22 @@ public class JDBCTableSuperTableLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		Table table = getTable();
-		Schema schema = table.getSchema();
-		return getCatalogObject().getConnection().getMetaData().getSuperTables(
-				schema.getCatalog().getName(), schema.getName(),
-				table.getName());
+		try {
+			Table table = getTable();
+			Schema schema = table.getSchema();
+			return getCatalogObject().getConnection().getMetaData().getSuperTables(
+					schema.getCatalog().getName(), schema.getName(),
+					table.getName());
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(
+					MessageFormat
+							.format(
+									Messages.Error_Unsupported_DatabaseMetaData_Method,
+									new Object[] { "java.sql.DatabaseMetaData.getSuperTables()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**

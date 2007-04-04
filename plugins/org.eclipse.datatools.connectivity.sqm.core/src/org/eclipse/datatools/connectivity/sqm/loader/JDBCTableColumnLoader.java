@@ -38,6 +38,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.ibm.icu.text.MessageFormat;
+
 /**
  * Base loader implementation for loading a table's column objects. This class
  * may be specialized as necessary to meet a particular vendor's needs.
@@ -239,11 +241,20 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 	 * @throws SQLException if an error occurs
 	 */
 	protected ResultSet createResultSet() throws SQLException {
-		Table table = getTable();
-		Schema schema = table.getSchema();
-		return getCatalogObject().getConnection().getMetaData().getColumns(
-				schema.getCatalog().getName(), schema.getName(),
-				table.getName(), null);
+		try {
+			Table table = getTable();
+			Schema schema = table.getSchema();
+			return getCatalogObject().getConnection().getMetaData().getColumns(
+					schema.getCatalog().getName(), schema.getName(),
+					table.getName(), null);
+		}
+		catch (RuntimeException e) {
+			SQLException error = new SQLException(MessageFormat.format(
+					Messages.Error_Unsupported_DatabaseMetaData_Method,
+					new Object[] { "java.sql.DatabaseMetaData.getColumns()"})); //$NON-NLS-1$
+			error.initCause(e);
+			throw error;
+		}
 	}
 
 	/**
