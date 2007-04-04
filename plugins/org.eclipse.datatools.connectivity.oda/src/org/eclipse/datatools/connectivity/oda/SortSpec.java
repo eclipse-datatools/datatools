@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -198,7 +198,9 @@ public class SortSpec
 	{
 		int count = doGetSortKeyCount();
 		if( index < 1 || index > count )
-			throw new IndexOutOfBoundsException( "Index: " + index + ", Count: " + count );
+			throw new IndexOutOfBoundsException( 
+                    Messages.bind( Messages.sortSpec_INDEX_OUT_OF_BOUND,
+                            new Integer( index ), new Integer( count ) ));
 	}
 	
 	/**
@@ -275,8 +277,8 @@ public class SortSpec
 	public String toString()
 	{
 		// override default toString() for convenient debugging and logging
-		return "Sort Mode: " + sortModeAsString( m_sortMode ) + 
-			   ", Sort Keys: " + m_sortKeys;
+		return "Sort Mode: " + sortModeAsString( m_sortMode ) +  //$NON-NLS-1$
+			   ", Sort Keys: " + m_sortKeys; //$NON-NLS-1$
 	}
 	
 	/* 
@@ -287,14 +289,14 @@ public class SortSpec
 		switch( sortOrder )
 		{
 			case sortAsc:
-				return "Ascending";
+				return "Ascending"; //$NON-NLS-1$
 				
 			case sortDesc:
-				return "Descending";
+				return "Descending"; //$NON-NLS-1$
 				
 			default:
 				// addSortKey() validation should ensure correct value
-				return "";
+				return ""; //$NON-NLS-1$
 		}
 	}
 	
@@ -306,20 +308,20 @@ public class SortSpec
 		switch( sortMode )
 		{
 			case IDataSetMetaData.sortModeNone:
-				return "sortModeNone";
+				return "sortModeNone"; //$NON-NLS-1$
 			
 			case IDataSetMetaData.sortModeSingleOrder:
-				return "sortModeSingleOrder";
+				return "sortModeSingleOrder"; //$NON-NLS-1$
 			
 			case IDataSetMetaData.sortModeColumnOrder:
-				return "sortModeColumnOrder";
+				return "sortModeColumnOrder"; //$NON-NLS-1$
 			
 			case IDataSetMetaData.sortModeSingleColumn:
-				return "sortModeSingleColumn";
+				return "sortModeSingleColumn"; //$NON-NLS-1$
 			
 			default:
 				// constructor checks ensure correct values
-				return "";
+				return ""; //$NON-NLS-1$
 		}
 	}
 	
@@ -351,8 +353,8 @@ public class SortSpec
 		
 		public String toString()
 		{
-			return "{" + m_columnName + ", " + 
-				   sortOrderAsString( m_sortOrder ) + "}";
+			return "{" + m_columnName + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
+				   sortOrderAsString( m_sortOrder ) + "}"; //$NON-NLS-1$
 		}
 	}
 }

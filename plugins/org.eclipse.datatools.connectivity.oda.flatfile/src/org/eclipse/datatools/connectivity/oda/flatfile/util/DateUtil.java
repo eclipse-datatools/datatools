@@ -83,8 +83,8 @@ public final class DateUtil
 		DateFormat dateFormat = null;
 		Date resultDate = null;
 		
-		boolean existTime = source.matches( ".*[0-9]+:[0-9]+:[0-9]+.*" )
-				|| source.matches( ".*[0-9]+:[0-9]+.*" );
+		boolean existTime = source.matches( ".*[0-9]+:[0-9]+:[0-9]+.*" ) //$NON-NLS-1$
+				|| source.matches( ".*[0-9]+:[0-9]+.*" ); //$NON-NLS-1$
 
 		for ( int i = DEFAULT_DATE_STYLE; i <= DateFormat.SHORT; i++ )
 		{
@@ -177,7 +177,7 @@ public final class DateUtil
 		}
 		catch ( ParseException e1 )
 		{
-			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) );
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
 		}
 	}
 }

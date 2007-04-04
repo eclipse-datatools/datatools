@@ -53,7 +53,8 @@ public class Messages extends NLS
     public static String profileProperty_GROUP_PROPERTIES;
     public static String profileProperty_PROFILE_NAME;
     public static String profileProperty_PROFILE_STORE_PATH;
-    
+
+    public static String sortSpec_INDEX_OUT_OF_BOUND;    
 	public static String sortSpec_INVALID_SORT_MODE_SPECIFIED;
 	public static String sortSpec_NULL_COLUMN_NAME_SPECIFIED;
 	public static String sortSpec_INVALID_COLUMN_NAME_SPECIFIED;

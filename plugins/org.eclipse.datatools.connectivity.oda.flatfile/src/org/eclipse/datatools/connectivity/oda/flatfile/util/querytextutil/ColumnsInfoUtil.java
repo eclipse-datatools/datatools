@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil;
@@ -22,6 +22,7 @@ import java.util.List;
 public class ColumnsInfoUtil
 {
 
+    private static String EMPTY_STRING = ""; //$NON-NLS-1$
 	/**
 	 * 
 	 * 
@@ -96,7 +97,7 @@ public class ColumnsInfoUtil
 		char[] columnsInfoChars = columnsInfo.toCharArray( );
 		boolean isEscaped = false;
 		String[] columnInfo = {
-				"", "", ""
+		        EMPTY_STRING, EMPTY_STRING, EMPTY_STRING
 		};
 		int index = 0;
 
@@ -160,7 +161,7 @@ public class ColumnsInfoUtil
 						columnsInfoList.add( columnInfo );
 						index = 0;
 						columnInfo = new String[3];
-						columnInfo[0] = columnInfo[1] = columnInfo[2] = "";
+						columnInfo[0] = columnInfo[1] = columnInfo[2] = EMPTY_STRING;
 					}
 				}
 			}

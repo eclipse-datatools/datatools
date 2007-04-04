@@ -93,7 +93,7 @@ public class Connection implements IConnection
 				connProperties.setProperty( CommonConstants.CONN_DELIMITER_TYPE,
 						delimiterName );
 			else
-				throw new OdaException( Messages.getString( "Unsupported_Delimiter" ) );
+				throw new OdaException( Messages.getString( "Unsupported_Delimiter" ) ); //$NON-NLS-1$
 		}
 	}
 
