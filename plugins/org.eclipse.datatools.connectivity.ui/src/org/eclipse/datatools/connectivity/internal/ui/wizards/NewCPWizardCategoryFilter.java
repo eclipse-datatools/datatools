@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import org.eclipse.datatools.connectivity.ICategory;
+import org.eclipse.datatools.connectivity.internal.CategoryProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
@@ -35,7 +36,8 @@ public class NewCPWizardCategoryFilter extends ViewerFilter {
 							((ProfileWizardProvider) wizardNode
 									.getProvider()).getProfile())
 					.getCategory();
-			if (categoryID == null) {
+			if (categoryID == null
+					|| categoryID.equals(CategoryProvider.ID_CATEGORY_UNKNOWN)) {
 				// Filter out repositories
 				while (cat != null) {
 					if (IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID

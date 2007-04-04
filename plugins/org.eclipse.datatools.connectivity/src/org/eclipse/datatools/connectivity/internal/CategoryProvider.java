@@ -24,6 +24,10 @@ import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfile
  * @author shongxum
  */
 public class CategoryProvider {
+	
+	public static final CategoryProvider UNKNOWN_CATEGORY = new CategoryProvider();
+
+	public static final String ID_CATEGORY_UNKNOWN = "org.eclipse.datatools.connectivity.category.unknown"; //$NON-NLS-1$
 
 	public static final String ATTR_ID = "id"; //$NON-NLS-1$
 
@@ -42,6 +46,13 @@ public class CategoryProvider {
 	 */
 	public CategoryProvider(IConfigurationElement element) {
 		init(element);
+	}
+	
+	private CategoryProvider() {
+		mName = ConnectivityPlugin.getDefault().getResourceString(
+				"Category.Name.Unknown");
+		mId = ID_CATEGORY_UNKNOWN;
+		mParentCategory = null;
 	}
 
 	/**

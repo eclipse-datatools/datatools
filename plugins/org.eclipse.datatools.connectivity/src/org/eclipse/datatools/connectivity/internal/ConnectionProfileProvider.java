@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.internal;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,6 +83,20 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	public ConnectionProfileProvider(IConfigurationElement element) {
 		super();
 		init(element);
+	}
+	
+	public ConnectionProfileProvider(String id) {
+		mName = ConnectivityPlugin.getDefault().getResourceString("NullConnectionProfileProvider.name");
+		mId = id;
+		mIconURL = null;
+		mCategory = CategoryProvider.ID_CATEGORY_UNKNOWN;
+		mConfigType = null;
+		mFileExt = null;
+		mProfileExtensions = Collections.EMPTY_MAP;
+		mConnectionFactories = Collections.EMPTY_MAP;
+		mElement = null;
+		mMaintainConnection = false;
+		mPropertiesPersistenceHook = DEFAULT_PROPERTIES_PERSISTENCE_HOOK;
 	}
 
 	/*
@@ -235,7 +250,8 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	}
 
 	private void processIconAttr() {
-		String iconAttr = mElement.getAttribute(ATTR_ICON);
+		String iconAttr = mElement == null ? null : mElement
+				.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
 			mIconURL = Platform.getBundle(mElement.getContributor().getName())
 					.getEntry(iconAttr);

@@ -89,7 +89,19 @@ public class ConnectionProfileManager {
 	}
 
 	public IConnectionProfileProvider getProvider(String id) {
-		return (IConnectionProfileProvider) getProviders().get(id);
+		Map providers = getProviders();
+		IConnectionProfileProvider provider = (IConnectionProfileProvider) getProviders()
+				.get(id);
+		if (provider == null) {
+			provider = new ConnectionProfileProvider(id);
+			providers.put(id, provider);
+			Map categories = getCategories();
+			if (!categories.containsKey(CategoryProvider.ID_CATEGORY_UNKNOWN)) {
+				categories.put(CategoryProvider.ID_CATEGORY_UNKNOWN,
+						CategoryProvider.UNKNOWN_CATEGORY);
+			}
+		}
+		return provider;
 	}
 
 	public Map getCategories() {
