@@ -88,33 +88,33 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
 	private static final String ALL_CSV_EXTENSION = "*.csv"; //$NON-NLS-1$
 	private static final String CSV_EXTENSION = ".csv"; //$NON-NLS-1$
-	private static final String ALL_SSV_EXTENSION = "*.ssv";
+	private static final String ALL_SSV_EXTENSION = "*.ssv"; //$NON-NLS-1$
 	private static final String SSV_EXTENSION = ".ssv"; //$NON-NLS-1$
-	private static final String ALL_TSV_EXTENSION = "*.tsv";
-	private static final String TSV_EXTENSION = ".tsv";
-	private static final String ALL_PSV_EXTENSION = "*.psv";
-	private static final String PSV_EXTENSION = ".psv";
+	private static final String ALL_TSV_EXTENSION = "*.tsv"; //$NON-NLS-1$
+	private static final String TSV_EXTENSION = ".tsv"; //$NON-NLS-1$
+	private static final String ALL_PSV_EXTENSION = "*.psv"; //$NON-NLS-1$
+	private static final String PSV_EXTENSION = ".psv"; //$NON-NLS-1$
 	private static final String ALL_TXT_EXTENSION = "*.txt"; //$NON-NLS-1$
 	private static final String TXT_EXTENSION = ".txt"; //$NON-NLS-1$
 	private static final String MATCH_ALL_FILES = "*.*"; //$NON-NLS-1$
 
-	private static final String queryTextDelimiter = ":";
-	private static final String columnsInfoStartSymbol = "{";
-	private static final String columnsInfoEndSymbol = "}";
+	private static final String queryTextDelimiter = ":"; //$NON-NLS-1$
+	private static final String columnsInfoStartSymbol = "{"; //$NON-NLS-1$
+	private static final String columnsInfoEndSymbol = "}"; //$NON-NLS-1$
 
-	private static String name = Messages.getString( "editor.title.name" );
-	private static String originalName = Messages.getString( "editor.title.originalName" );
-	private static String dataType = Messages.getString( "editor.title.type" );
+	private static String name = Messages.getString( "editor.title.name" ); //$NON-NLS-1$
+	private static String originalName = Messages.getString( "editor.title.originalName" ); //$NON-NLS-1$
+	private static String dataType = Messages.getString( "editor.title.type" ); //$NON-NLS-1$
 
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.float" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.date" ),
-			Messages.getString( "datatypes.time" ),
-			Messages.getString( "datatypes.string" ),
-			Messages.getString( "datatypes.boolean" )
+			Messages.getString( "datatypes.date" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.time" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.string" ), //$NON-NLS-1$
+			Messages.getString( "datatypes.boolean" ) //$NON-NLS-1$
 	};
 
 	private HashMap dataTypeDisplayNameMap = new HashMap( );
@@ -196,36 +196,36 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createColumnTypeMap( )
 	{
-		dataTypeDisplayNameMap.put( "INT",
-				Messages.getString( "datatypes.integer" ) );
-		dataTypeDisplayNameMap.put( "DOUBLE",
-				Messages.getString( "datatypes.float" ) );
-		dataTypeDisplayNameMap.put( "STRING",
-				Messages.getString( "datatypes.string" ) );
-		dataTypeDisplayNameMap.put( "DATE",
-				Messages.getString( "datatypes.date" ) );
-		dataTypeDisplayNameMap.put( "TIME",
-				Messages.getString( "datatypes.time" ) );
-		dataTypeDisplayNameMap.put( "TIMESTAMP",
-				Messages.getString( "datatypes.dateTime" ) );
-		dataTypeDisplayNameMap.put( "BIGDECIMAL",
-				Messages.getString( "datatypes.decimal" ) );
-		dataTypeDisplayNameMap.put( "BOOLEAN",
-				Messages.getString( "datatypes.boolean" ) );
+		dataTypeDisplayNameMap.put( "INT", //$NON-NLS-1$
+				Messages.getString( "datatypes.integer" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "DOUBLE", //$NON-NLS-1$
+				Messages.getString( "datatypes.float" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "STRING", //$NON-NLS-1$
+				Messages.getString( "datatypes.string" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "DATE", //$NON-NLS-1$
+				Messages.getString( "datatypes.date" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "TIME", //$NON-NLS-1$
+				Messages.getString( "datatypes.time" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "TIMESTAMP", //$NON-NLS-1$
+				Messages.getString( "datatypes.dateTime" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "BIGDECIMAL", //$NON-NLS-1$
+				Messages.getString( "datatypes.decimal" ) ); //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( "BOOLEAN", //$NON-NLS-1$
+				Messages.getString( "datatypes.boolean" ) ); //$NON-NLS-1$
 
-		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.float" ),
-				"DOUBLE" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.string" ),
-				"STRING" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.date" ), "DATE" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.time" ), "TIME" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.dateTime" ),
-				"TIMESTAMP" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.decimal" ),
-				"BIGDECIMAL" );
-		dataTypeValueMape.put( Messages.getString( "datatypes.boolean" ),
-		        "BOOLEAN" );
+		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" ); //$NON-NLS-1$ //$NON-NLS-2$
+		dataTypeValueMape.put( Messages.getString( "datatypes.float" ), //$NON-NLS-1$
+				"DOUBLE" ); //$NON-NLS-1$
+		dataTypeValueMape.put( Messages.getString( "datatypes.string" ), //$NON-NLS-1$
+				"STRING" ); //$NON-NLS-1$
+		dataTypeValueMape.put( Messages.getString( "datatypes.date" ), "DATE" ); //$NON-NLS-1$ //$NON-NLS-2$
+		dataTypeValueMape.put( Messages.getString( "datatypes.time" ), "TIME" ); //$NON-NLS-1$ //$NON-NLS-2$
+		dataTypeValueMape.put( Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
+				"TIMESTAMP" ); //$NON-NLS-1$
+		dataTypeValueMape.put( Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
+				"BIGDECIMAL" ); //$NON-NLS-1$
+		dataTypeValueMape.put( Messages.getString( "datatypes.boolean" ), //$NON-NLS-1$
+		        "BOOLEAN" ); //$NON-NLS-1$
 	}
 
 	/**
@@ -434,7 +434,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		btnAdd = new Button( btnComposite, SWT.NONE );
 		btnAdd.setImage( PlatformUI.getWorkbench( )
 				.getSharedImages( )
-				.getImage( ISharedImages.IMG_TOOL_FORWARD ) ); //$NON-NLS-1$
+				.getImage( ISharedImages.IMG_TOOL_FORWARD ) );
 		btnAdd.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -446,7 +446,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		btnRemove = new Button( btnComposite, SWT.NONE );
 		btnRemove.setImage( PlatformUI.getWorkbench( )
 				.getSharedImages( )
-				.getImage( ISharedImages.IMG_TOOL_DELETE ) );//$NON-NLS-1$
+				.getImage( ISharedImages.IMG_TOOL_DELETE ) );
 		btnRemove.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -477,13 +477,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		TableColumn column = new TableColumn( selectedColumnsViewer.getTable( ),
 				SWT.NONE );
-		column.setText( Messages.getString( "editor.title.name" ) );
+		column.setText( Messages.getString( "editor.title.name" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
 		column = new TableColumn( selectedColumnsViewer.getTable( ), SWT.NONE );
-		column.setText( Messages.getString( "editor.title.originalName" ) );
+		column.setText( Messages.getString( "editor.title.originalName" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
 		column = new TableColumn( selectedColumnsViewer.getTable( ), SWT.NONE );
-		column.setText( Messages.getString( "editor.title.type" ) );
+		column.setText( Messages.getString( "editor.title.type" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
 
 		selectedColumnsViewer.getTable( ).setLayoutData( data );
@@ -677,7 +677,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						}
 						else
 						{
-							setMessage( Messages.getString( "error.duplicatedNameValueOrEmpty" ),
+							setMessage( Messages.getString( "error.duplicatedNameValueOrEmpty" ), //$NON-NLS-1$
 									WARNING );
 						}
 					}
@@ -726,7 +726,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	private boolean isEmpty( String value )
 	{
-		return ( value.trim( ).equals( "" ) );
+		return ( value.trim( ).equals( "" ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -754,7 +754,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		for ( int j = 0; j < existedColumns.size( ); j++ )
 		{
-			if ( ( columnName + "_" + count ).equals( ( (String[]) savedSelectedColumnsInfoList.get( j ) )[0] ) )
+			if ( ( columnName + "_" + count ).equals( ( (String[]) savedSelectedColumnsInfoList.get( j ) )[0] ) ) //$NON-NLS-1$
 			{
 				count++;
 				j = -1;
@@ -831,7 +831,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					|| fileName.endsWith( SSV_EXTENSION )
 					|| fileName.endsWith( TSV_EXTENSION ) || fileName.endsWith( PSV_EXTENSION ) ) )
 			{
-				setMessage( Messages.getString( "warning.fileExtensionInvalid" ),
+				setMessage( Messages.getString( "warning.fileExtensionInvalid" ), //$NON-NLS-1$
 						WARNING );
 			}
 			else
@@ -982,7 +982,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		catch ( OdaException e )
 		{
-			setMessage( e.getLocalizedMessage( ), ERROR ); //$NON-NLS-1$
+			setMessage( e.getLocalizedMessage( ), ERROR );
 			updateExceptionInfo( );
 			return new ArrayList( );
 		}
@@ -1024,7 +1024,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( dataTypeDisplayNameMap.get( type.toUpperCase( ) ) != null )
 			return (String) dataTypeDisplayNameMap.get( type.toUpperCase( ) );
 		else
-			return Messages.getString( "datatypes.string" );
+			return Messages.getString( "datatypes.string" ); //$NON-NLS-1$
 	}
 
 	/**
@@ -1037,7 +1037,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		if ( dataTypeValueMape.get( displayName ) != null )
 			return (String) dataTypeValueMape.get( displayName );
 		else
-			return "STRING";
+			return "STRING"; //$NON-NLS-1$
 	}
 
 	/**
@@ -1183,7 +1183,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private String getQuery( )
 	{
 		if ( selectedColumnsViewer.getTable( ).getItemCount( ) == 0 )
-			return "";
+			return ""; //$NON-NLS-1$
 		
 		String tableName = null;
 		StringBuffer buf = new StringBuffer( );
@@ -1215,9 +1215,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					for ( int i = 0; i < columnChars.length; i++ )
 					{
 						if ( columnChars[i] == '"' )
-							sb.append( "\\\"" );
+							sb.append( "\\\"" ); //$NON-NLS-1$
 						else if ( columnChars[i] == '\\' )
-							sb.append( "\\\\" );
+							sb.append( "\\\\" ); //$NON-NLS-1$
 						else
 							sb.append( columnChars[i] );
 					}
@@ -1270,7 +1270,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		catch ( OdaException e )
 		{
-			setMessage( e.getLocalizedMessage( ), ERROR ); //$NON-NLS-1$
+			setMessage( e.getLocalizedMessage( ), ERROR );
 			updateExceptionInfo( );
 		}
 
@@ -1505,7 +1505,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			if ( count == 0 )
 				addedColumns[0] = addedColumnNames[i];
 			else
-				addedColumns[0] = addedColumnNames[i] + "_" + count;
+				addedColumns[0] = addedColumnNames[i] + "_" + count; //$NON-NLS-1$
 
 			addedColumns[1] = addedColumnNames[i];
 			addedColumns[2] = getColumnTypeName( addedColumnNames[i] );
@@ -1656,7 +1656,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				+ CommonConstants.DELIMITER_SPACE + queryTextDelimiter
 				+ CommonConstants.DELIMITER_SPACE + columnsInfoStartSymbol
 				+ createSelectedColumnsInfoString( )
-				+ columnsInfoEndSymbol : "";
+				+ columnsInfoEndSymbol : ""; //$NON-NLS-1$
 		return queryText;
 	}
 
@@ -1669,7 +1669,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private String createSelectedColumnsInfoString( )
 	{
-		String prop = "";
+		String prop = ""; //$NON-NLS-1$
 		// If the length is equal to 2 then we have a valid query
 
 		for ( int i = 0; i < savedSelectedColumnsInfoList.size( ); i++ )
@@ -1682,7 +1682,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			for ( int m = 0; m < columnNameChars.length; m++ )
 			{
 				if ( ColumnsInfoUtil.isColumnsInfoKeyWord( columnNameChars[m] ) )
-					columnNameBuf.append( "\\" + columnNameChars[m] );
+					columnNameBuf.append( "\\" + columnNameChars[m] ); //$NON-NLS-1$
 				else
 					columnNameBuf.append( columnNameChars[m] );
 
@@ -1697,7 +1697,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			for ( int m = 0; m < originalColumnNameChars.length; m++ )
 			{
 				if ( ColumnsInfoUtil.isColumnsInfoKeyWord( originalColumnNameChars[m] ) )
-					originalColumnNameBuf.append( "\\"
+					originalColumnNameBuf.append( "\\" //$NON-NLS-1$
 							+ originalColumnNameChars[m] );
 				else
 					originalColumnNameBuf.append( originalColumnNameChars[m] );

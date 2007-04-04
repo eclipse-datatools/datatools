@@ -383,7 +383,7 @@ public class FolderSelectionPageHelper
 
 		flatfileStyleGroup = new Group( composite, SWT.SHADOW_NONE );
 		GridLayout groupGridLayout = new GridLayout( );
-		flatfileStyleGroup.setToolTipText( Messages.getString( "tooltip.flatfilestyle" ) );
+		flatfileStyleGroup.setToolTipText( Messages.getString( "tooltip.flatfilestyle" ) ); //$NON-NLS-1$
 		groupGridLayout.numColumns = 4;
 		GridData ggd = new GridData( );
 		ggd.horizontalAlignment = GridData.FILL;
@@ -398,28 +398,28 @@ public class FolderSelectionPageHelper
 		flatfileCSVRadioBox.setLayoutData( gd );
 		flatfileCSVRadioBox.pack( );
 		flatfileCSVRadioBox.setSelection( true );
-		flatfileCSVRadioBox.setToolTipText( Messages.getString( "tooltip.csv" ) );
+		flatfileCSVRadioBox.setToolTipText( Messages.getString( "tooltip.csv" ) ); //$NON-NLS-1$
 
 		flatfileSSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
 		flatfileSSVRadioBox.setText( Messages.getString( "label.flatfileSemicolon" ) ); //$NON-NLS-1$
 		flatfileSSVRadioBox.setLayoutData( gd );
 		flatfileSSVRadioBox.pack( );
 		flatfileSSVRadioBox.setSelection( false );
-		flatfileSSVRadioBox.setToolTipText( Messages.getString( "tooltip.ssv" ) );
+		flatfileSSVRadioBox.setToolTipText( Messages.getString( "tooltip.ssv" ) ); //$NON-NLS-1$
 
 		flatfileTSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfileTSVRadioBox.setText( Messages.getString( "label.flatfileTab" ) );
+		flatfileTSVRadioBox.setText( Messages.getString( "label.flatfileTab" ) ); //$NON-NLS-1$
 		flatfileTSVRadioBox.setLayoutData( gd );
 		flatfileTSVRadioBox.pack( );
 		flatfileTSVRadioBox.setSelection( false );
-		flatfileTSVRadioBox.setToolTipText( Messages.getString( "tooltip.tsv" ) );
+		flatfileTSVRadioBox.setToolTipText( Messages.getString( "tooltip.tsv" ) ); //$NON-NLS-1$
 
 		flatfilePSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfilePSVRadioBox.setText( Messages.getString( "label.flatfilePipe" ) );
+		flatfilePSVRadioBox.setText( Messages.getString( "label.flatfilePipe" ) ); //$NON-NLS-1$
 		flatfilePSVRadioBox.setLayoutData( gd );
 		flatfilePSVRadioBox.pack( );
 		flatfilePSVRadioBox.setSelection( false );
-		flatfilePSVRadioBox.setToolTipText( Messages.getString( "tooltip.psv" ) );
+		flatfilePSVRadioBox.setToolTipText( Messages.getString( "tooltip.psv" ) ); //$NON-NLS-1$
 
 		flatfileStyleGroup.pack( );
 	}
@@ -431,10 +431,10 @@ public class FolderSelectionPageHelper
 	private void setupColumnNameLineCheckBox( Composite composite )
 	{
 		Label labelFill = new Label( composite, SWT.NONE );
-		labelFill.setText( "" );
+		labelFill.setText( "" ); //$NON-NLS-1$
 
 		columnNameLineCheckBox = new Button( composite, SWT.CHECK );
-		columnNameLineCheckBox.setToolTipText( Messages.getString( "tooltip.columnnameline" ) );
+		columnNameLineCheckBox.setToolTipText( Messages.getString( "tooltip.columnnameline" ) ); //$NON-NLS-1$
 		GridData gd = new GridData( );
 		gd.horizontalSpan = 3;
 		columnNameLineCheckBox.setLayoutData( gd );
@@ -462,7 +462,7 @@ public class FolderSelectionPageHelper
 	private void setupTypeLineCheckBox( Composite composite )
 	{
 		typeLineCheckBox = new Button( composite, SWT.CHECK );
-		typeLineCheckBox.setToolTipText( Messages.getString( "tooltip.typeline" ) );
+		typeLineCheckBox.setToolTipText( Messages.getString( "tooltip.typeline" ) ); //$NON-NLS-1$
 		GridData data = new GridData( );
 		data.horizontalSpan = 3;
 		typeLineCheckBox.setLayoutData( data );
