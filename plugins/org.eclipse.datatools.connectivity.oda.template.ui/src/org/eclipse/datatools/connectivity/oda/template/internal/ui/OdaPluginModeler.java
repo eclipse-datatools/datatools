@@ -102,7 +102,7 @@ class OdaPluginModeler
         dataSourceElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "driverClass", getKeyPackageName() + ".Driver" );  //$NON-NLS-1$ //$NON-NLS-2$
         dataSourceElement.setAttribute( "odaVersion", "3.1" ); //$NON-NLS-1$ //$NON-NLS-2$
-        dataSourceElement.setAttribute( "defaultDisplayName", PROP_DATA_SOURCE_NAME  ); //$NON-NLS-1$ //$NON-NLS-2$
+        dataSourceElement.setAttribute( "defaultDisplayName", PROP_DATA_SOURCE_NAME  ); //$NON-NLS-1$
         dataSourceElement.setAttribute( "setThreadContextClassLoader" , VALUE_FALSE );//$NON-NLS-1$
         extension.add( dataSourceElement );
 
@@ -303,7 +303,7 @@ class OdaPluginModeler
         IPluginElement categoryElement = factory.createElement( profileExtension );
         categoryElement.setName( "category" ); //$NON-NLS-1$
         categoryElement.setAttribute( "id", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
-        categoryElement.setAttribute( "name", PROP_DATA_SOURCE_NAME ); //$NON-NLS-1$ //$NON-NLS-2$
+        categoryElement.setAttribute( "name", PROP_DATA_SOURCE_NAME ); //$NON-NLS-1$
         categoryElement.setAttribute( "parentCategory",   //$NON-NLS-1$
                 "org.eclipse.datatools.connectivity.oda.profileCategory" ); //$NON-NLS-1$
         profileExtension.add( categoryElement );
