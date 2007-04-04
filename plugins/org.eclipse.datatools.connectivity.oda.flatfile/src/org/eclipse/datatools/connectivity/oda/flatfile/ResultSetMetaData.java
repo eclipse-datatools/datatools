@@ -39,7 +39,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	public ResultSetMetaData( ResultSetMetaDataHelper rsmdHelper ) throws OdaException
 	{
 		if( rsmdHelper == null )
-			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) );
+			throw new OdaException( Messages.getString( "common_ARGUMENT_CANNOT_BE_NULL" ) ); //$NON-NLS-1$
 		
 		this.columnNames = rsmdHelper.getColumnNames( );
 		this.columnTypeNames = rsmdHelper.getColumnTypes( );

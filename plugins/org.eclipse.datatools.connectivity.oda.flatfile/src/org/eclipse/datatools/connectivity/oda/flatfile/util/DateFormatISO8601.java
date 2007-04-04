@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.datatools.connectivity.oda.flatfile.util;
@@ -14,6 +14,9 @@ package org.eclipse.datatools.connectivity.oda.flatfile.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
+import org.eclipse.osgi.util.NLS;
 
 
 
@@ -52,10 +55,11 @@ public class DateFormatISO8601
 			{
 			}
 		}
-		// for the String can not be parsed, throws a BirtException
+		// for the String can not be parsed, throws an Exception
 		if ( resultDate == null )
 		{
-			throw new ParseException( "an not convert the value of " + source,
+			throw new ParseException( 
+			        NLS.bind( Messages.getString( "dateFormatISO_cannotConvert" ), source ), //$NON-NLS-1$
 					0 );
 		}
 
@@ -73,10 +77,10 @@ public class DateFormatISO8601
 		s = s.trim( );
 		if ( s.indexOf( 'T' ) < 12 )
 		{
-			s = s.replaceFirst( "T", " " );
+			s = s.replaceFirst( "T", " " ); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		
-		int zoneIndex = s.indexOf( "GMT" );
+		int zoneIndex = s.indexOf( "GMT" ); //$NON-NLS-1$
 		if( zoneIndex > 0 )
 		{
 			return s.substring( 0, zoneIndex ).trim( );

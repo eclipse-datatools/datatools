@@ -335,7 +335,7 @@ public class FlatFileDataReader
 		boolean startDoubleQuote = false;
 		boolean finishAnElement = false;
 		boolean hasConsectiveTwoDoubleQuotes = false;
-		String currentString = "";
+		String currentString = ""; //$NON-NLS-1$
 		//int x;
 
 		for ( int i = 0; i < chars.length; i++ )
@@ -390,19 +390,19 @@ public class FlatFileDataReader
 					if ( hasConsectiveTwoDoubleQuotes )
 					{
 						if ( currentString.trim( ).length( ) != 0 )
-							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 						else
 							hasConsectiveTwoDoubleQuotes = false;
 					}
 
 					result.add( currentString );
-					currentString = "";
+					currentString = ""; //$NON-NLS-1$
 					finishAnElement = false;
 				}
 				else
 				{
 					if ( finishAnElement == true && chars[i] != ' ' )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 					currentString += chars[i];
 				}
 			}
@@ -411,7 +411,7 @@ public class FlatFileDataReader
 				if ( chars[i] == '"' )
 				{
 					if ( !startDoubleQuote )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 					else
 					{
 						result.add( currentString );
@@ -422,7 +422,7 @@ public class FlatFileDataReader
 				else if ( chars[i] == this.delimiter )
 				{
 					result.add( currentString );
-					result.add( "" );
+					result.add( "" ); //$NON-NLS-1$
 					finishAnElement = false;
 				}
 				else
@@ -439,7 +439,7 @@ public class FlatFileDataReader
 				|| ( startDoubleQuote && !finishAnElement ) )
 		{
 			if ( currentString.trim( ).length( ) != 0 )
-				throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+				throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 		}
 
 		return result;
@@ -495,7 +495,7 @@ public class FlatFileDataReader
 	public static boolean isEmptyRow( String row ) throws OdaException
 	{
 		if ( row == null )
-			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
+			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
 
 		return row.trim( ).length( ) <= 0;
 	}
@@ -648,7 +648,7 @@ public class FlatFileDataReader
 					rowSet[i][j] = temp[j].trim( );
 				else
 				{
-					throw new OdaException( Messages.getString( "data_read_error" ) );
+					throw new OdaException( Messages.getString( "data_read_error" ) ); //$NON-NLS-1$
 				}
 			}
 		}
@@ -666,7 +666,7 @@ public class FlatFileDataReader
 
 		for ( int i = 0; i < columnCount; i++ )
 		{
-			tempColumnNames[i] = "COLUMN_" + ( i + 1 );
+			tempColumnNames[i] = "COLUMN_" + ( i + 1 ); //$NON-NLS-1$
 		}
 
 		return tempColumnNames;
@@ -698,7 +698,7 @@ public class FlatFileDataReader
 			if ( location != -1 )
 			{
 				if ( location >= vTemp.size( ) )
-					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) );
+					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
 				sArray[i] = vTemp.elementAt( location ).toString( );
 			}
 		}

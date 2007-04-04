@@ -152,7 +152,7 @@ public class FlatFileQuery implements IQuery
 			prepareMetaData( formattedQuery, colInfo );
 		}
 		else
-			throw new OdaException( Messages.getString( "common_NULL_QUERY_TEXT" ) );
+			throw new OdaException( Messages.getString( "common_NULL_QUERY_TEXT" ) ); //$NON-NLS-1$
 	}
 
 	/*
@@ -808,7 +808,7 @@ public class FlatFileQuery implements IQuery
 
 		for ( int i = 0; i < columnCount; i++ )
 		{
-			tempColumnNames[i] = "COLUMN_" + ( i + 1 );
+			tempColumnNames[i] = "COLUMN_" + ( i + 1 ); //$NON-NLS-1$
 		}
 
 		return tempColumnNames;
@@ -825,7 +825,7 @@ public class FlatFileQuery implements IQuery
 
 		for ( int i = 0; i < columnCount; i++ )
 		{
-			tempColumnTypes[i] = "STRING";
+			tempColumnTypes[i] = "STRING"; //$NON-NLS-1$
 		}
 
 		return tempColumnTypes;
@@ -1022,7 +1022,7 @@ public class FlatFileQuery implements IQuery
 				: createTempColumnTypes( ffdsr.getColumnCount( ) );
 				
 		if ( allColumnNames.length != allColumnTypes.length )
-			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) );
+			throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
 
 		// the array that contains the column names read from command
 		String[] queryColumnNames = null;
@@ -1198,7 +1198,7 @@ public class FlatFileQuery implements IQuery
 				this.startingPosition = 0;
 			}
 
-			String candidate = "";
+			String candidate = ""; //$NON-NLS-1$
 			int stopIn = CHARBUFFSIZE;
 
 			if ( isLastCharBuff( ) )
@@ -1242,7 +1242,7 @@ public class FlatFileQuery implements IQuery
 
 			String nextLine = readLine( );
 
-			return candidate + ( nextLine == null ? "" : nextLine );
+			return candidate + ( nextLine == null ? "" : nextLine ); //$NON-NLS-1$
 		}
 
 		/**

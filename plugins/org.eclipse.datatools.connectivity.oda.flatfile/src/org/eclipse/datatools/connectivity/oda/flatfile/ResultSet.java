@@ -459,7 +459,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-            	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0];
+            	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0]; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             	return Timestamp.valueOf( stringValue );
             }
             catch( IllegalArgumentException e )
@@ -496,9 +496,9 @@ public class ResultSet implements IResultSet
 	{
 		if ( stringValue != null )
 		{
-			if ( stringValue.equalsIgnoreCase( "true" ) )
+			if ( stringValue.equalsIgnoreCase( "true" ) ) //$NON-NLS-1$
 				return Boolean.TRUE;
-			else if ( stringValue.equalsIgnoreCase( "false" ) )
+			else if ( stringValue.equalsIgnoreCase( "false" ) ) //$NON-NLS-1$
 				return Boolean.FALSE;
 			else
 			{

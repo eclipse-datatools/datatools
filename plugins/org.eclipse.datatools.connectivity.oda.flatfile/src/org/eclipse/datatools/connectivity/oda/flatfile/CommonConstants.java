@@ -25,17 +25,17 @@ public final class CommonConstants
 	public static final String CONN_INCLCOLUMNNAME_PROP = "INCLCOLUMNNAME"; //$NON-NLS-1$
 	public static final String CONN_INCLTYPELINE_PROP = "INCLTYPELINE"; //$NON-NLS-1$
 	public static final String CONN_DEFAULT_CHARSET = "UTF-8"; //$NON-NLS-1$
-	public static final String CONN_DELIMITER_TYPE = "DELIMTYPE";
+	public static final String CONN_DELIMITER_TYPE = "DELIMTYPE"; //$NON-NLS-1$
 
 	public static final String DELIMITER_COMMA = "COMMA"; //$NON-NLS-1$
-	public static final String DELIMITER_COMMA_VALUE = ",";
+	public static final String DELIMITER_COMMA_VALUE = ","; //$NON-NLS-1$
 	// added for flatfiles seperated by semicolon
 	public static final String DELIMITER_SEMICOLON = "SEMICOLON"; //$NON-NLS-1$
-	public static final String DELIMITER_SEMICOLON_VALUE = ";";
-	public static final String DELIMITER_PIPE = "PIPE";
-	public static final String DELIMITER_PIPE_VALUE = "|";
-	public static final String DELIMITER_TAB = "TAB";
-	public static final String DELIMITER_TAB_VALUE = "\t";
+	public static final String DELIMITER_SEMICOLON_VALUE = ";"; //$NON-NLS-1$
+	public static final String DELIMITER_PIPE = "PIPE"; //$NON-NLS-1$
+	public static final String DELIMITER_PIPE_VALUE = "|"; //$NON-NLS-1$
+	public static final String DELIMITER_TAB = "TAB"; //$NON-NLS-1$
+	public static final String DELIMITER_TAB_VALUE = "\t"; //$NON-NLS-1$
 
 	public static final String DELIMITER_SPACE = " "; //$NON-NLS-1$
 	public static final char DELIMITER_DOUBLEQUOTE = '"'; //$NON-NLS-1$

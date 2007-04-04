@@ -69,7 +69,7 @@ public class QueryTextUtil
 		String trimmedQueryText = queryText.trim( );
 		
 		String[] splittedQueryText = {
-				"", ""
+				"", "" //$NON-NLS-1$ //$NON-NLS-2$
 		};
 		boolean inQuote = false;
 		boolean isEscaped = false;
@@ -98,7 +98,7 @@ public class QueryTextUtil
 		}
 
 		if ( inQuote )
-			throw new OdaException( Messages.getString( "query_text_error" ) );
+			throw new OdaException( Messages.getString( "query_text_error" ) ); //$NON-NLS-1$
 
 		if ( delimiterIndex != -1
 				&& columnsInfoBeginIndex != -1 )
@@ -113,7 +113,7 @@ public class QueryTextUtil
 				&& columnsInfoBeginIndex == -1 )
 			splittedQueryText[0] = trimmedQueryText;
 		else
-			throw new OdaException( Messages.getString( "query_text_error" ) );
+			throw new OdaException( Messages.getString( "query_text_error" ) ); //$NON-NLS-1$
 
 		return splittedQueryText;
 	}
