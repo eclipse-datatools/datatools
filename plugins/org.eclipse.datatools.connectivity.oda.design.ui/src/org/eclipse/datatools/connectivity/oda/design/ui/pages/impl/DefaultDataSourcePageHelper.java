@@ -500,7 +500,7 @@ public class DefaultDataSourcePageHelper
             if ( isPropRequired( i ) && isEmpty( propVal ) )
             {
                 setMessage( Messages.ui_requiredFieldsMissingValue, 
-                		IMessageProvider.WARNING ); //$NON-NLS-1$
+                		IMessageProvider.WARNING );
                 return;
             }
         }

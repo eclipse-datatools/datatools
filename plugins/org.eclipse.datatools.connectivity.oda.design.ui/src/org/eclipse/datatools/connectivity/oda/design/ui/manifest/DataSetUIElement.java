@@ -48,7 +48,7 @@ public class DataSetUIElement
         throws OdaException
     {
         m_dataSetElement = dataSetElement;
-        m_id = dataSetElement.getAttribute( ID_ATRIBUTE_NAME ); //$NON-NLS-1$
+        m_id = dataSetElement.getAttribute( ID_ATRIBUTE_NAME );
         if( m_id == null || m_id.length() == 0 )
             throw new OdaException( 
                     Messages.bind( Messages.manifest_missingAttributeValue,
