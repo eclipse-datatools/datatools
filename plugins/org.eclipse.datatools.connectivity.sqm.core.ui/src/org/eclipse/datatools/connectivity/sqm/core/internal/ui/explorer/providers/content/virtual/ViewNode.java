@@ -37,8 +37,15 @@ public class ViewNode extends VirtualNode implements IViewNode, IFilterNode
         return GroupID.VIEW;
     }
 
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.VIEW_FILTER;
-    }
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.VIEW_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.VIEW_FILTER;
+	}
+
 }

@@ -36,8 +36,14 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
         return GroupID.USER_DEFINED_TYPE;
     }
 
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.USER_DEFINED_TYPE_FILTER;
-    }
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.USER_DEFINED_TYPE_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.USER_DEFINED_TYPE_FILTER;
+	}
 }

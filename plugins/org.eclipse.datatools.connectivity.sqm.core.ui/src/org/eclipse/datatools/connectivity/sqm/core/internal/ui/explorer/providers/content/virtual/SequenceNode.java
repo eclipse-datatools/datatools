@@ -36,8 +36,14 @@ public class SequenceNode extends VirtualNode implements ISequenceNode, IFilterN
         return GroupID.SEQUENCE;
     }
 
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.SEQUENCE_FILTER;
-    }
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.SEQUENCE_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.SEQUENCE_FILTER;
+	}
 }

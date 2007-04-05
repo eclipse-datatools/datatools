@@ -35,8 +35,15 @@ public class StoredProcedureNode extends VirtualNode implements IStoredProcedure
     {
         return GroupID.PROCEDURE;
     }
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.STORED_PROCEDURE_FILTER;
-    }
+
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.STORED_PROCEDURE_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.STORED_PROCEDURE_FILTER;
+	}
 }

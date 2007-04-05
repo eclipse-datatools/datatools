@@ -36,8 +36,14 @@ public class TableNode extends VirtualNode implements ITableNode, IFilterNode
         return GroupID.TABLE;
     }
 
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.TABLE_FILTER;
-    }
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.TABLE_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.TABLE_FILTER;
+	}
 }

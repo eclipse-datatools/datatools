@@ -94,7 +94,12 @@ public class JDBCBaseLoader {
 		if (mActiveFilter != null
 				&& ConnectionFilter.OPERATOR_LIKE.equals(mActiveFilter
 						.getOperator())) {
-			return mActiveFilter.getPattern();
+			String pattern = mActiveFilter.getPattern();
+			if (pattern.startsWith("'") && pattern.endsWith("'")) {
+				// Strip off leading and trailing "'"
+				pattern = pattern.substring(1, pattern.length() - 1);
+			}
+			return pattern;
 		}
 		return null;
 	}

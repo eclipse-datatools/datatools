@@ -10,9 +10,9 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
 import java.util.Collections;
 import java.util.Set;
-import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.Vector;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConnectionFilterImpl implements ConnectionFilter {
@@ -142,18 +142,18 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		boolean isFiltered(String name);
 	}
 
-	private static class LikeFilter implements IFilter {
+	private static class NotLikeFilter implements IFilter {
 
 		Pattern pattern;
 
-		LikeFilter(String pattern) {
+		NotLikeFilter(String pattern) {
 			String regex;
 			if (pattern == null || pattern.length() < 2) {
 				regex = new String();
 			}
 			else {
-				regex = pattern.substring(1, pattern.length() - 1).replace('%',
-						'*').replace('_', '?');
+				regex = pattern.substring(1, pattern.length() - 1).replaceAll("%",
+						".*").replaceAll("_", ".?");
 			}
 			this.pattern = Pattern.compile(regex);
 		}
@@ -163,9 +163,9 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		}
 	}
 
-	private static class NotLikeFilter extends LikeFilter {
+	private static class LikeFilter extends NotLikeFilter {
 
-		NotLikeFilter(String pattern) {
+		LikeFilter(String pattern) {
 			super(pattern);
 		}
 
@@ -174,20 +174,20 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		}
 	}
 
-	private static class InFilter implements IFilter {
+	private static class NotInFilter implements IFilter {
+		
+		static Pattern regex = Pattern.compile("'(.*?)'");
 
 		Set values;
 
-		InFilter(String pattern) {
+		NotInFilter(String pattern) {
 			if (pattern == null || pattern.length() < 2) {
 				values = Collections.EMPTY_SET;
 			}
 			else {
 				values = new TreeSet();
-				for (StringTokenizer tokenizer = new StringTokenizer(
-						pattern.substring(1, pattern.length() - 1).replaceAll(
-								"'", ""), ","); tokenizer.hasMoreTokens(); values
-						.add(tokenizer.nextToken())) {
+				for (Matcher m = regex.matcher(pattern); m.find(); values.add(m
+						.group(1))) {
 				}
 			}
 		}
@@ -197,9 +197,9 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		}
 	}
 
-	private static class NotInFilter extends InFilter {
+	private static class InFilter extends NotInFilter {
 
-		NotInFilter(String pattern) {
+		InFilter(String pattern) {
 			super(pattern);
 		}
 

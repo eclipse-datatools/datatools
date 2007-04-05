@@ -15,6 +15,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 
 
 /**
@@ -36,8 +37,12 @@ public class SchemaNode extends VirtualNode implements ISchemaNode, IFilterNode
         return GroupID.SCHEMA;
     }
 
-    public String getFilterName()
-    {
-        return ConnectionFilter.SCHEMA_FILTER;
-    }
+    public String getFilterName() {
+		Object parent = getParent();
+		if (parent instanceof Catalog) {
+			return ((Catalog) parent).getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.SCHEMA_FILTER;
+		}
+		return ConnectionFilter.SCHEMA_FILTER;
+	}
 }

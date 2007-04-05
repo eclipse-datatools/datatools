@@ -37,8 +37,14 @@ public class UDFNode extends VirtualNode implements IUDFNode, IFilterNode
         return GroupID.FUNCTION;
     }
 
-    public String getFilterName()
-    {
-        return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
-    }
+    public String getFilterName() {
+		Schema schema = (Schema) getParent();
+		if (schema.getCatalog() == null) {
+			return schema.getName() + IFilterNode.SEPARATOR
+					+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+		}
+		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+				+ schema.getName() + IFilterNode.SEPARATOR
+				+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+	}
 }
