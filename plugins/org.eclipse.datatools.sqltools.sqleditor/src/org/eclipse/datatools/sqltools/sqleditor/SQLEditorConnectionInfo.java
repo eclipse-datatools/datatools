@@ -28,7 +28,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
-	public static ISQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLToolsFacade.getDefaultDatabaseVendorDefinitionId()); 
+	public static ISQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLToolsFacade.getNonSpecificDatabaseVendorDefinitionId()); 
 	private DatabaseVendorDefinitionId _dbVendorId = null;
 	private DatabaseVendorDefinition _dbVendor = null;
 	private String _profileName = null;

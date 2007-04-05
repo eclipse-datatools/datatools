@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceRuleFactory;
@@ -75,7 +76,8 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     private IResource          _resource;
     private String             _portableTarget         = "";
     private ArrayList          _staleAnnotations       = new ArrayList();
-	private ParsingResult _result;
+    private boolean            _remembered             = false;
+    private ParsingResult _result;
 	private boolean            _needToParse            = true;
 	
     /**
@@ -303,6 +305,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         //since we will always refresh the task markers each time we parse the sql text, there's no
         //need to persist them.
         marker.setAttribute(IMarker.TRANSIENT, true);
+        marker.setAttribute(IMarker.SOURCE_ID, getMarkerSourceId());
         Token errorToken = ex.currentToken.next;
         int start = 0;
         int end = 0;
@@ -362,10 +365,6 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         _input = input;
         _resource = input instanceof IFileEditorInput ? (IResource) ((IFileEditorInput) input).getFile()
             : (IResource) ResourcesPlugin.getWorkspace().getRoot();
-        if (_annotationModel != null)
-        {
-            removeMarkers();
-        }
         // the annotationModel is created in Editor.doSetInput(input) by the platform
         _annotationModel = _editor.getDocumentProvider().getAnnotationModel(input);
     }
@@ -402,6 +401,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                     }
                 }
             }
+            _remembered = true;
         }
     }
 
@@ -424,6 +424,11 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
      */
     public void removeMarkers(boolean group)
     {
+        //if the document is not changed but the editor already contains syntax errors
+        if (!_remembered)
+        {
+            rememberAnnotations();
+        }
         if (group)
         {
             try
@@ -476,7 +481,41 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 //after annotation is removed, it disappeared from the side bar
                 _annotationModel.removeAnnotation(anno);
             }
+            _remembered = false;
         }
+        try
+        {
+            if (_resource instanceof IFile)
+            {
+                _resource.deleteMarkers(EditorConstants.SYNTAX_MARKER_TYPE, false, IResource.DEPTH_ZERO);
+                _resource.deleteMarkers(EditorConstants.PORTABILITY_MARKER_TYPE, false, IResource.DEPTH_ZERO);
+            }
+            else
+            {
+                IMarker[] markers = _resource.findMarkers(EditorConstants.SYNTAX_MARKER_TYPE, false, IResource.DEPTH_ZERO);
+                String markerSourceId = getMarkerSourceId();
+                for (int i = 0; i < markers.length; i++)
+                {
+                    if (markerSourceId.equals(markers[i].getAttribute(IMarker.SOURCE_ID)))
+                    {
+                        markers[i].delete();
+                    }
+                }
+                markers = _resource.findMarkers(EditorConstants.PORTABILITY_MARKER_TYPE, false, IResource.DEPTH_ZERO);
+                for (int i = 0; i < markers.length; i++)
+                {
+                    if (markerSourceId.equals(markers[i].getAttribute(IMarker.SOURCE_ID)))
+                    {
+                        markers[i].delete();
+                    }
+                }
+            }
+        }
+        catch (CoreException e)
+        {
+            SQLEditorPlugin.getDefault().log(SQLEditorResources.SQLUpdater_error_removemarker, e); 
+        }
+        
     }
 
     /**
@@ -586,5 +625,10 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     public void setNeedToParse(boolean needToParse)
     {
         _needToParse = needToParse;
+    }
+    
+    private String getMarkerSourceId()
+    {
+        return "SQLEditor:" + _editor.hashCode() + ":" + this.hashCode();
     }
 }

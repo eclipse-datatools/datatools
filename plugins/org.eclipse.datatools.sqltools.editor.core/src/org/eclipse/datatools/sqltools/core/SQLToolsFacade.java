@@ -213,10 +213,23 @@ public class SQLToolsFacade
     	}
 		return defaultConfiguration;
     }
-    
+
+    /**
+     * Returns the DatabaseVendorDefinitionId which contributes to the sql dev tools framework as a default configuration.
+     * @return
+     */
     public static DatabaseVendorDefinitionId getDefaultDatabaseVendorDefinitionId()
     {
         return getDefaultConfiguration().getDatabaseVendorDefinitionId();
+    }
+    
+    /**
+     * Returns the DatabaseVendorDefinitionId which is not bind to any database
+     * @return
+     */
+    public static DatabaseVendorDefinitionId getNonSpecificDatabaseVendorDefinitionId()
+    {
+        return SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId();
     }
     
     public static DatabaseVendorDefinitionId recognize(String product, String version)

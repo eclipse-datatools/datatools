@@ -190,4 +190,9 @@ public class SQLEditorStorageEditorInput implements IStorageEditorInput, ISQLEdi
         fStorage = storage;
     }
 
+    public boolean isConnectionRequired()
+    {
+        return false;
+    }
+
 } // end class

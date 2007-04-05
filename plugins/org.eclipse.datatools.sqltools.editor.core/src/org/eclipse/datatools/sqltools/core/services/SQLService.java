@@ -14,6 +14,8 @@ package org.eclipse.datatools.sqltools.core.services;
 
 import java.util.ArrayList;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.internal.core.Messages;
@@ -27,6 +29,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLDelimiter;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLStatementElement;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
+import org.eclipse.datatools.sqltools.sql.updater.ProceduralObjectSourceUpdater;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.osgi.util.NLS;
@@ -152,5 +155,14 @@ public class SQLService
     public IIdentifierValidator getIdentifierValidator()
     {
     	return null;
+    }
+    
+    /**
+     * Returns the ProceduralObjectSourceUpdater object used to update the source of the given sql object 
+     * @return
+     */
+    public ProceduralObjectSourceUpdater getProceduralObjectSourceUpdater(SQLObject object, DatabaseDefinition dbDefinition)
+    {
+        return null;
     }
 }

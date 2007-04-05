@@ -23,4 +23,6 @@ public interface ISQLEditorInput extends IEditorInput {
     
     public ISQLEditorConnectionInfo getConnectionInfo();
     
+    public boolean isConnectionRequired();
+    
 }

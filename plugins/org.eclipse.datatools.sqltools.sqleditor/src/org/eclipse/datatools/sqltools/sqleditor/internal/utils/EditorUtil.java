@@ -98,7 +98,7 @@ public class EditorUtil
 				SQLEditorPlugin.getDefault().log(e);
 			}
 			//(external)file editors can be saved in disconnected mode
-            if (input instanceof ISQLEditorInput && !(input instanceof FileEditorInput || input instanceof ILocationProvider))
+            if (input instanceof ISQLEditorInput && ((ISQLEditorInput)input).isConnectionRequired())
             {
                 ISQLEditorInput sqlEditorInput = (ISQLEditorInput) input;
                 ISQLEditorConnectionInfo info = sqlEditorInput.getConnectionInfo();

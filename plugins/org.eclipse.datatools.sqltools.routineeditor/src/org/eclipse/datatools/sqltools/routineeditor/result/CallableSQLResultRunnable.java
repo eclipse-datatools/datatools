@@ -397,6 +397,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
     	ArrayList params = new ArrayList();
     	for (int i = 0; i < pws.length; i++) {
     		ParameterDescriptor pd = pws[i].getParameterDescriptor();
+            //filter out result and return parameters
+            if (pd.getParmType() == DatabaseMetaData.procedureColumnResult || pd.getParmType() == DatabaseMetaData.procedureColumnReturn)
+            {
+                continue;
+            }
 			Parameter param = new Parameter(pd.getName(), pd.getParamTypeAsString(), pws[i].getInValue(), pd.getTypeName(), pws[i].getOutValue());
 			params.add(param);
 		}

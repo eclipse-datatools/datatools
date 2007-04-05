@@ -49,7 +49,7 @@ public class SQLDevToolsConfiguration implements IAdaptable {
 	private static SQLDevToolsConfiguration _instance = new SQLDevToolsConfiguration();
 
 	protected SQLDevToolsConfiguration() {
-		_dbdefinitionId = new DatabaseVendorDefinitionId(Messages.DefaultDBFactory_vendor, Messages.DefaultDBFactory_version);
+		_dbdefinitionId = new DatabaseVendorDefinitionId(Messages.DefaultDBFactory_vendor, "");
 	}
 
 	public static SQLDevToolsConfiguration getDefaultInstance() {
