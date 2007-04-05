@@ -22,6 +22,7 @@ public class ResultCollector
     private ArrayList _tableList             = new ArrayList();
     private ArrayList _viewList              = new ArrayList();
     private ArrayList _storedProcedureList   = new ArrayList();
+    private ArrayList _functionList          = new ArrayList();
     private ArrayList _triggerList           = new ArrayList();
     private ArrayList _eventList             = new ArrayList();
     private ArrayList _reservedKeywordList   = new ArrayList();
@@ -114,6 +115,21 @@ public class ResultCollector
         _storedProcedureList = procedureList;
     }
 
+    /**
+     * @return Returns the storedProcedureList.
+     */
+    public ArrayList getFunctionList()
+    {
+        return _functionList;
+    }
+    
+    /**
+     * @param procedureList The storedProcedureList to set.
+     */
+    public void setFunctionList(ArrayList procedureList)
+    {
+        _functionList = procedureList;
+    }    
     /**
      * @return Returns the tableList.
      */
@@ -239,7 +255,7 @@ public class ResultCollector
     {
         _results = new ArrayList[] 
         {
-            _databaseList, _columnList, _tableList, _viewList, _storedProcedureList, _triggerList,
+            _databaseList, _columnList, _tableList, _viewList, _storedProcedureList, _functionList, _triggerList,
                 _eventList, _reservedKeywordList, _unreservedKeywordList, _variableList, _operator
         }
         ;
@@ -292,6 +308,12 @@ public class ResultCollector
             case SQLParser.SCOPE_STORED_PROCEDURES:
                 setStoredProcedureList(proposals);
                 break;
+            case SQLParser.SCOPE_FUNCTIONS:
+            	setFunctionList(proposals);
+            	break;
+            case SQLParser.SCOPE_STORED_PROCEDURES| SQLParser.SCOPE_FUNCTIONS:
+            	setStoredProcedureList(proposals);
+            	break;            	
             case SQLParser.SCOPE_TRIGGERS:
                 setTriggerList(proposals);
                 break;
