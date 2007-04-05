@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
@@ -265,7 +266,10 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
      */
     public boolean hasChildren(Object element)
     {
-    	return true;
+    	if (element instanceof IConnectionProfile)
+    		return ((IConnectionProfile)element).isConnected();
+    	return getChildren(element).length > 0;
+//    	return true;
 //        return (isServerExplorerViewer ()) ? 
 //                element instanceof IConnectionNode && 
 //                ((IConnectionNode)element).getConnectionInfo().getSharedDatabase() == null ? false : true : false;
