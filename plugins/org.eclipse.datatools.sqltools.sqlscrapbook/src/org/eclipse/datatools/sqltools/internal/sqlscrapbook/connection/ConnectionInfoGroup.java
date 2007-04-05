@@ -323,6 +323,11 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		if (e.widget == _comboType) {
 			refreshProfileNames(_comboType.getText(), null);
 		}
+        else if (e.widget == _comboProfileName)
+        {
+            selectTypebyProfile(_comboProfileName.getText());
+        }
+            
 		updateFields();
 		canFinish();
 
@@ -383,25 +388,10 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @return true if so, otherwise false
 	 */
 	public boolean canFinish() {
-		IConnectionProfile connectionProfile = ProfileManager.getInstance()
-				.getProfileByName(_profileName);
-		//_comboType must not be empty
-		if (!SWTUtils.notEmpty(_comboType))
-		{
+		if (_mustConnect && !SWTUtils.notEmpty(_comboProfileName)) {
 			return false;
 		}
-		// OK is disabled if profileName is selected and database name is empty.
-		else if (!SWTUtils.notEmpty(_comboProfileName)) {
-			return true;
-		}
-		else
-		{
-			//Database connection profile must have database name
-			if ( SWTUtils.notEmpty(_combodbName) || !ProfileUtil.isDatabaseProfile(connectionProfile) ) {
-				return true;
-			}
-		}
-		return false;
+		return true;
 	}
 
 	public String getWarning() {
@@ -454,21 +444,29 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * 
 	 */
 	private void updateFields() {
-		if (_comboType.getText() != null && !"".equals(_comboType.getText())) //$NON-NLS-1$
-		{
-			_dbVendorId = new DatabaseVendorDefinitionId(_comboType.getText());
-		}
-		// set _profileName to "" has no meaning
-		if (_comboProfileName.getText() != null
-				&& !"".equals(_comboProfileName.getText())) { //$NON-NLS-1$
-			_profileName = _comboProfileName.getText();
-		} else {
-			_profileName = null;
-		}
-		if (_combodbName != null && _combodbName.getText() != null
-				&& !"".equals(_combodbName.getText())) { //$NON-NLS-1$
-			_dbName = _combodbName.getText();
-		}
+        if (_comboType.getText() != null && !"".equals(_comboType.getText())) //$NON-NLS-1$
+        {
+            _dbVendorId = new DatabaseVendorDefinitionId(_comboType.getText());
+        }
+        else
+        {
+            _dbVendorId = AbstractConnectionInfoComposite.DATABASE_VENDOR_DEFINITION_ID;
+        }
+        // set _profileName to "" has no meaning
+        if (_comboProfileName.getText() != null
+                && !"".equals(_comboProfileName.getText())) { //$NON-NLS-1$
+            _profileName = _comboProfileName.getText();
+        } else {
+            _profileName = null;
+        }
+        if (_combodbName != null && _combodbName.getText() != null
+                && !"".equals(_combodbName.getText())) { //$NON-NLS-1$
+            _dbName = _combodbName.getText();
+        }
+        else
+        {
+            _dbName = null;
+        }
 
 	}
 
@@ -530,9 +528,9 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	private void createComboDbName(Composite composite) {
 		org.eclipse.swt.layout.GridData gridData5 = new org.eclipse.swt.layout.GridData();
-		// see bug 132294, when database name can not be loaded, we should allow
-		// user to input manually.
-		_combodbName = new Combo(composite, SWT.NONE);
+		// the combo used to be created using SWT.NONE to resolve bug 132294,
+        // but now that empty database name is allowed, it's changed back to readonly 
+		_combodbName = new Combo(composite, SWT.READ_ONLY);
 		gridData5.horizontalAlignment = org.eclipse.swt.layout.GridData.FILL;
 		gridData5.verticalAlignment = org.eclipse.swt.layout.GridData.CENTER;
 		gridData5.grabExcessHorizontalSpace = true;
@@ -560,6 +558,15 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 						_combodbName.add(dbname);
 					}
 				}
+                if (_dbName != null)
+                {
+                    if (_combodbName.getItemCount() == 0)
+                    {
+                        _combodbName.add(_dbName);
+                    }
+                    _combodbName.setText(_dbName);
+                }
+                _combodbName.add("", 0);
 
 			}
 
@@ -616,14 +623,14 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
         }
 		_comboType.setItems((String[]) _supportedDBDefinitionNames
 				.toArray(new String[0]));
+        _comboType.add("", 0);//add empty type to the first element to group all connection profiles
 		if (_profileName != null) {
 			selectTypebyProfile(_profileName);
 		} else if (_supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
 			_comboType.setText(_dbVendorId.toString());
-		} else if (_supportedDBDefinitionNames.size() > 0) {
-			SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
-			_comboType.setText(defaultConfig.getDatabaseVendorDefinitionId().toString());
-		}
+        } else if (_supportedDBDefinitionNames.size() > 0) {
+            _comboType.select(0);
+        }
 		_comboType.addSelectionListener(this);
 
 	}
@@ -634,6 +641,10 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * creation)
 	 */
 	private void selectTypebyProfile(String profileName) {
+        if (profileName == null || profileName.equals(""))
+        {
+            return;
+        }
 		SQLDevToolsConfiguration factory = SQLToolsFacade
 				.getConfigurationByProfileName(profileName);
 		if (factory != null) {
@@ -650,38 +661,41 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @param dbVendorName
 	 */
 	private void refreshProfileNames(String dbVendorName, String initialProfName) {
-		if (dbVendorName == null || dbVendorName.equals("")) { //$NON-NLS-1$
-			//$NON-NLS-1$
-			return;
-		}
-		DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
-		SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
-		SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
-		// there will be only one instance for each type of configuration, so we
-		// can use == here
-		boolean isDefault = selectedConfig == defaultConfig;
-		
-		IConnectionProfile profiles[] = ProfileManager.getInstance()
-				.getProfiles();
-		;
-		ArrayList rightProfiles = new ArrayList();
+        ArrayList rightProfiles = new ArrayList();
+        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
+        if (dbVendorName == null || dbVendorName.equals("") || dbVendorName.equals(AbstractConnectionInfoComposite.DATABASE_VENDOR_DEFINITION_ID.toString())) { //$NON-NLS-1$
+            for (int i = 0; i < profiles.length; i++) {
+                rightProfiles.add(profiles[i].getName());
+            }
+        }
+        else
+        {
+            DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
+            SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
+            SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
+            // there will be only one instance for each type of configuration, so we
+            // can use == here
+            boolean isDefault = selectedConfig == defaultConfig;
+            
 
-		for (int i = 0; i < profiles.length; i++) {
-			DatabaseVendorDefinitionId dbVendorId = ProfileUtil
-					.getDatabaseVendorDefinitionId(profiles[i].getName());
-			if (selectedDbVendorId.equals(dbVendorId)) {
-				rightProfiles.add(profiles[i].getName());
-			}else if (isDefault)
-			{
-				SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
-				if (selectedConfig == config)
-				{
-					rightProfiles.add(profiles[i].getName());
-				}
-			}
-		}
+            for (int i = 0; i < profiles.length; i++) {
+                DatabaseVendorDefinitionId dbVendorId = ProfileUtil
+                        .getDatabaseVendorDefinitionId(profiles[i].getName());
+                if (selectedDbVendorId.equals(dbVendorId)) {
+                    rightProfiles.add(profiles[i].getName());
+                }else if (isDefault)
+                {
+                    SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
+                    if (selectedConfig == config)
+                    {
+                        rightProfiles.add(profiles[i].getName());
+                    }
+                }
+            }
 
-		Collections.sort(rightProfiles);
+        }
+
+        Collections.sort(rightProfiles);
 
 		rightProfiles.add(0, new String("")); //$NON-NLS-1$
 		_comboProfileName.setItems((String[]) rightProfiles

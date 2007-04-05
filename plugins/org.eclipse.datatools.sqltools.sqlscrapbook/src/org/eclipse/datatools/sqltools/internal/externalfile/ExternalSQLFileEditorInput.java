@@ -278,4 +278,9 @@ public class ExternalSQLFileEditorInput implements IPathEditorInput, IStorageEdi
             fConnInfo = connInfo;
         }
     }
+
+    public boolean isConnectionRequired()
+    {
+        return false;
+    }
 }

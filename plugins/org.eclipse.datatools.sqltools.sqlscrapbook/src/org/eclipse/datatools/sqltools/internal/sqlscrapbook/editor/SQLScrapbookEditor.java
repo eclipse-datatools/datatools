@@ -20,7 +20,8 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SetConnectionInfoAction;
-import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.AbstractConnectionInfoComposite;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite2;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
@@ -54,7 +55,8 @@ public class SQLScrapbookEditor extends SQLEditor {
 	
     public class ToolbarSourceViewer extends AdaptedSourceViewer implements Listener
     {
-        private ConnectionInfoComposite connBar;
+        private AbstractConnectionInfoComposite connBar;
+        private boolean initialized = false;
         public ToolbarSourceViewer(Composite parent, IVerticalRuler verticalRuler,
                 IOverviewRuler overviewRuler, boolean showAnnotationsOverview, int styles)
         {
@@ -73,8 +75,12 @@ public class SQLScrapbookEditor extends SQLEditor {
             fDefaultComposite.setLayout(gridLayout);
             fDefaultComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-            connBar = new ConnectionInfoComposite(fDefaultComposite, this, SQLScrapbookEditor.this.getConnectionInfo(), null, false, false, null, false);
+            connBar = new ConnectionInfoComposite2(fDefaultComposite, SWT.NONE, this, SQLScrapbookEditor.this
+                    .getConnectionInfo(), null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
+                    | AbstractConnectionInfoComposite.STYLE_SHOW_STATUS | AbstractConnectionInfoComposite.STYLE_SINGLE_GROUP | AbstractConnectionInfoComposite.STYLE_LAZY_INIT);
             connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+            ((GridLayout)connBar.getLayout()).marginWidth = 12;
+            
             
             Composite textComposite= new Composite(fDefaultComposite, SWT.NONE);
             textComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -88,6 +94,19 @@ public class SQLScrapbookEditor extends SQLEditor {
             String content = getDocument().get();
             doSetConnectionInfo(connBar.getConnectionInfo());
             getDocument().set(content);
+        }
+        
+        public void refreshConnectionStatus()
+        {
+            if (connBar != null)
+            {
+                if (!initialized)
+                {
+                    connBar.init();
+                    initialized = true;
+                }
+                connBar.refreshConnectionStatus();
+            }
         }
     }
     
@@ -203,9 +222,14 @@ public class SQLScrapbookEditor extends SQLEditor {
 	public void setConnectionInfo(ISQLEditorConnectionInfo connInfo) {
 		this.doSetConnectionInfo(connInfo);
         //updates the internal toolbar when user changes the connection info
-        ((ToolbarSourceViewer) getSV()).connBar.init(
-                getConnectionInfo().getDatabaseVendorDefinitionId().toString(), getConnectionInfo()
+        getSite().getShell().getDisplay().asyncExec(new Runnable(){
+            public void run()
+            {
+                ((ToolbarSourceViewer) getSV()).connBar.init(
+                        getConnectionInfo().getDatabaseVendorDefinitionId().toString(), getConnectionInfo()
                         .getConnectionProfileName(), getConnectionInfo().getDatabaseName());
+            }
+        });
 	}	
 
 	protected void doSetConnectionInfo(ISQLEditorConnectionInfo connInfo) {
@@ -247,4 +271,13 @@ public class SQLScrapbookEditor extends SQLEditor {
                 styles);
     }
     
+    public void refreshConnectionStatus()
+    {
+        super.refreshConnectionStatus();
+        if (getSV() != null)
+        {
+            ((ToolbarSourceViewer)getSV()).refreshConnectionStatus();
+        }
+    }
+
 }

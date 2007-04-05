@@ -144,4 +144,9 @@ public class SQLEditorFileEditorInput extends FileEditorInput implements ISQLEdi
 		}
 	}
 
+    public boolean isConnectionRequired()
+    {
+        return false;
+    }
+
 }

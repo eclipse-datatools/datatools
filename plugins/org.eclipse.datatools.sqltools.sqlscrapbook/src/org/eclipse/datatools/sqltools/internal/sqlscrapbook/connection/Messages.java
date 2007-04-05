@@ -32,8 +32,16 @@ public final class Messages extends NLS {
 	public static String SelectProfileGroup_error_init;
 	public static String SelectProfileDialog_noprofile;
 	public static String SelectProfileDialog_wrongprofile;
+	public static String ConnectionInfoGroup_profile;
+	public static String ConnectionInfoGroup_profile_group;
+	public static String ConnectionInfoGroup_name;
+	public static String ConnectionInfoGroup_database;
+	public static String ConnectionInfoGroup_status;
+	public static String ConnectionInfoGroup_type;
+	public static String ConnectionInfoGroup_status_connected;
+	public static String ConnectionInfoGroup_status_disconnected;
 
-	static {
+    static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
 
