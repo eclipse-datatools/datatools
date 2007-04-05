@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
@@ -71,7 +72,7 @@ public class SaveAsDialog extends TitleAreaDialog
     private boolean                   _first         = true;
     private String                    _content;
     private static final String       ENCODING       = "UTF-8";
-    
+    private IEditorPart               _editor;
     /**
      * Creates a new Save As dialog for no specific file.
      * 
@@ -298,7 +299,7 @@ public class SaveAsDialog extends TitleAreaDialog
                         file.setCharset(ENCODING, new NullProgressMonitor()); //$NON-NLS-1$
 
                         IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-                        IDE.openEditor(page, file, true);
+                        _editor = IDE.openEditor(page, file, true);
                     }
 
                 }
@@ -383,5 +384,10 @@ public class SaveAsDialog extends TitleAreaDialog
         }
 
         return true;
+    }
+
+    public IEditorPart getEditor()
+    {
+        return _editor;
     }
 }
