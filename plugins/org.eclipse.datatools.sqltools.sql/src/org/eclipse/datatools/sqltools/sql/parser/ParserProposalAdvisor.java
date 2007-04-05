@@ -11,8 +11,10 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sql.parser;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 
@@ -80,23 +82,29 @@ public class ParserProposalAdvisor {
 				|| result.getExceptions().size() == 0) {
 			return EMPTY;
 		} else {
-			ParseException pe = (ParseException) result.getExceptions().get(
-					result.getExceptions().size() - 1);
-            if (pe.expectedTokenSequences == null)
-            {
-                return EMPTY;
-            }
-			String[] proposals = new String[pe.expectedTokenSequences.length];
-			for (int i = 0; i < pe.expectedTokenSequences.length; i++) {
-				StringBuffer sb = new StringBuffer();
-				for (int j = 0; j < pe.expectedTokenSequences[i].length; j++) {
-					sb.append(pe.tokenImage[pe.expectedTokenSequences[i][j]]);
-//							.append(" "); //$NON-NLS-1$
+			List list = new ArrayList();
+			//Exceptions may be more than one, so should get all exceptions.
+			for (int i = 0; i < result.getExceptions().size(); i ++)
+			{
+				if (result.getExceptions().get(i) instanceof ParseException) {
+					ParseException pe = (ParseException) result.getExceptions()
+							.get(i);
+					if (pe.expectedTokenSequences == null) {
+						return EMPTY;
+					}
+					String[] proposals = new String[pe.expectedTokenSequences.length];
+					for (int j = 0; j < pe.expectedTokenSequences.length; j++) {
+						StringBuffer sb = new StringBuffer();
+						sb.append(pe.tokenImage[pe.expectedTokenSequences[j][0]]);
+						String expected = removeQuotes(sb.toString());
+						if (!list.contains(expected))
+						{
+							list.add(expected);
+						}
+					}
 				}
-				String expected = removeQuotes(sb.toString());
-				proposals[i] = expected;
 			}
-			return proposals;
+			return (String[]) list.toArray(new String[list.size()]);
 
 		}
 	}
