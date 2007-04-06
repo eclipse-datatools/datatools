@@ -81,7 +81,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     private String             _portableTarget         = "";
     private ArrayList          _staleAnnotations       = new ArrayList();
     private boolean            _remembered             = false;
-    private ParsingResult _result;
+    private ParsingResult      _result;
 	private boolean            _needToParse            = true;
 	
     /**
