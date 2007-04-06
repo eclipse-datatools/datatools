@@ -21,7 +21,11 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileAnnotationModel;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLUtility;
+import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqleditor.SQLStorageAnnotationModel;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.IAnnotationModel;
@@ -124,6 +128,10 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
         if (element instanceof ILocationProvider)
         {
             return new ExternalSQLFileAnnotationModel(((ILocationProvider)element).getPath(element));
+        }
+        if (element instanceof SQLEditorStorageEditorInput)
+        {
+            return new SQLStorageAnnotationModel((SQLEditorStorage)((SQLEditorStorageEditorInput)element).getStorage() );
         }
 		return super.createAnnotationModel(element);
 	}
