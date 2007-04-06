@@ -69,6 +69,10 @@ import org.eclipse.ui.texteditor.MarkerAnnotation;
  */
 public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeListener
 {
+    /**
+     * Key for the sql syntax and portability markers 
+     */
+    public static final String SOURCE_ID         = "SQL_SOURCE_ID";
     private SQLEditor          _editor                 = null;
     private SQLOutlinePage     _fOutlinePage           = null;
     private IEditorInput       _input                  = null;
@@ -305,7 +309,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
         //since we will always refresh the task markers each time we parse the sql text, there's no
         //need to persist them.
         marker.setAttribute(IMarker.TRANSIENT, true);
-        marker.setAttribute(IMarker.SOURCE_ID, getMarkerSourceId());
+        marker.setAttribute(SOURCE_ID, getMarkerSourceId());
         Token errorToken = ex.currentToken.next;
         int start = 0;
         int end = 0;
@@ -496,7 +500,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 String markerSourceId = getMarkerSourceId();
                 for (int i = 0; i < markers.length; i++)
                 {
-                    if (markerSourceId.equals(markers[i].getAttribute(IMarker.SOURCE_ID)))
+                    if (markerSourceId.equals(markers[i].getAttribute(SOURCE_ID)))
                     {
                         markers[i].delete();
                     }
@@ -504,7 +508,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 markers = _resource.findMarkers(EditorConstants.PORTABILITY_MARKER_TYPE, false, IResource.DEPTH_ZERO);
                 for (int i = 0; i < markers.length; i++)
                 {
-                    if (markerSourceId.equals(markers[i].getAttribute(IMarker.SOURCE_ID)))
+                    if (markerSourceId.equals(markers[i].getAttribute(SOURCE_ID)))
                     {
                         markers[i].delete();
                     }
