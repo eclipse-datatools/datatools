@@ -61,13 +61,14 @@ error.columnMapping.sameColumnName=列名 [{0}] はすでに使用されています。別の名前
 error.invalidXpath=XPath 式 "{0}" が無効です。
 
 #data types for column mapping
-datatypes.dateTime=タイムスタンプ
+datatypes.dateTime=Timestamp
 datatypes.decimal=BigDecimal
 datatypes.float=Double
-datatypes.integer=整数値
+datatypes.integer=Integer
 datatypes.string=String
 datatypes.date=Date
 datatypes.time=Time
+datatypes.boolean=Boolean
 
 #column name in column mapping table
 columnName.name=名前

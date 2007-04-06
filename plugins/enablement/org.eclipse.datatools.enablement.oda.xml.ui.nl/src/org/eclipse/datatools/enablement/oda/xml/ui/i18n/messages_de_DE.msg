@@ -68,6 +68,7 @@ datatypes.integer=Ganzzahl
 datatypes.string=String
 datatypes.date=Date
 datatypes.time=Time
+datatypes.boolean=Boolesch
 
 #column name in column mapping table
 columnName.name=Name

@@ -25,6 +25,7 @@ datatypes.integer=정수
 datatypes.string=문자열
 datatypes.date=날짜
 datatypes.time=시간
+datatypes.boolean=부울
 
 tooltip.flatfilestyle=자세한 내용을 보려면 마우스를 각 플랫 파일 스타일로 이동하십시오.
 tooltip.csv=쉼표-{ , }로 구분된 값

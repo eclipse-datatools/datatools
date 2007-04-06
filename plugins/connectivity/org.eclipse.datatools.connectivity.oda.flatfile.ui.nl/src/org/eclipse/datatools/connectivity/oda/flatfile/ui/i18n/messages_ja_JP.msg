@@ -25,6 +25,7 @@ datatypes.integer=Integer
 datatypes.string=String
 datatypes.date=Date
 datatypes.time=Time
+datatypes.boolean=Boolean
 
 tooltip.flatfilestyle=フラットファイルの各スタイルにマウスのポインタを置くと詳しい説明が表示されます。
 tooltip.csv=値をコンマ { , } で区切る

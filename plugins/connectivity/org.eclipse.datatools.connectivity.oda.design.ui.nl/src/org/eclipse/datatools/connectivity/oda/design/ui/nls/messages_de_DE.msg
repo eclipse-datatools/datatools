@@ -37,3 +37,4 @@ profilePage_error_emptyName=Der Datenquellname darf nicht leer sein.
 profilePage_checkboxTooltip_maintainLink=Verwenden Sie stets die externalisierten Eigenschaftswerte des Speichers für Verbindungsprofile in der Datenquelle.
 profilePage_checkboxLabel_maintainLink=&Externalisierte Eigenschaften im Speicher für Verbindungsprofile verwenden
 profilePage_error_invalidName=Datenquellname ist ungültig.
+profilePage_error_invalidProfileStorePath=Ungültiger Pfad für Verbindungsprofilspeicher

@@ -25,6 +25,7 @@ datatypes.integer=Ganzzahl
 datatypes.string=Zeichenfolge
 datatypes.date=Datum
 datatypes.time=Zeit
+datatypes.boolean=Boolesch
 
 tooltip.flatfilestyle=Für weitere Informationen bewegen Sie die Maus zu jedem Flatfile-Stil.
 tooltip.csv=Durch Komma { , } getrennte Werte

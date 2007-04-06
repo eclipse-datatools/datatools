@@ -37,3 +37,4 @@ profilePage_error_emptyName=데이터 원본 이름은 비어 있지 않아야 함
 profilePage_checkboxTooltip_maintainLink=데이터 원본에서 연결 프로필 저장의 외부화된 속성 값을 항상 사용하십시오.
 profilePage_checkboxLabel_maintainLink=연결 프로필 저장의 외부화된 속성(&E) 사용
 profilePage_error_invalidName=데이터 원본 이름이 잘못되었습니다.
+profilePage_error_invalidProfileStorePath=연결 프로필 저장소에 대한 잘못된 경로

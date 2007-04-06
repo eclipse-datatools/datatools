@@ -25,6 +25,7 @@ datatypes.integer=Entero
 datatypes.string=String
 datatypes.date=Fecha
 datatypes.time=Hora
+datatypes.boolean=Booleano
 
 tooltip.flatfilestyle=Mueva el puntero del ratón sobre cada estilo de archivo sin formato para obtener más información
 tooltip.csv=Valores separados por comas {,}

@@ -68,6 +68,7 @@ datatypes.integer=整数
 datatypes.string=字符串
 datatypes.date=日期
 datatypes.time=时间
+datatypes.boolean=布尔
 
 #column name in column mapping table
 columnName.name=名称

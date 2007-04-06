@@ -68,6 +68,7 @@ datatypes.integer=정수
 datatypes.string=문자열
 datatypes.date=날짜
 datatypes.time=시간
+datatypes.boolean=부울
 
 #column name in column mapping table
 columnName.name=이름

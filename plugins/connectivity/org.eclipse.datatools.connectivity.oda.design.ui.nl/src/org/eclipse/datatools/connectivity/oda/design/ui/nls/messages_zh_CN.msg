@@ -37,3 +37,4 @@ profilePage_error_emptyName=数据源名称不能为空。
 profilePage_checkboxTooltip_maintainLink=始终使用数据源中连接配置文件存储的外部化属性值。
 profilePage_checkboxLabel_maintainLink=使用连接配置文件存储中的外部化属性(&E)
 profilePage_error_invalidName=数据源名称无效。
+profilePage_error_invalidProfileStorePath=连接配置文件存储的无效路径

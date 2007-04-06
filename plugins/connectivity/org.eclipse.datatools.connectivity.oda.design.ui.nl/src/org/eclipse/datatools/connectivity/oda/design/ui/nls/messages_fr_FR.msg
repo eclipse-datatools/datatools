@@ -37,3 +37,4 @@ profilePage_error_emptyName=Le nom de la source de données doit être renseigné.
 profilePage_checkboxTooltip_maintainLink=Toujours utiliser les valeurs de propriété externalisées de l'emplacement de stockage des profils de connexion dans la source de données.
 profilePage_checkboxLabel_maintainLink=Utiliser les propriétés &externalisées dans l'emplacement de stockage des profils de connexion
 profilePage_error_invalidName=Le nom de la source de données n'est pas valide.
+profilePage_error_invalidProfileStorePath=Chemin de l'emplacement de stockage des profils de connexion incorrect

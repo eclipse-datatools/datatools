@@ -68,6 +68,7 @@ datatypes.integer=Entier
 datatypes.string=Chaîne
 datatypes.date=Date
 datatypes.time=Heure
+datatypes.boolean=Booléen
 
 #column name in column mapping table
 columnName.name=Nom

@@ -25,6 +25,7 @@ datatypes.integer=Entier
 datatypes.string=Chaîne
 datatypes.date=Date
 datatypes.time=Heure
+datatypes.boolean=Booléen
 
 tooltip.flatfilestyle=Déplacez la souris sur chaque style de fichier plat pour en savoir plus
 tooltip.csv=Valeurs séparées par une virgule-{ , }

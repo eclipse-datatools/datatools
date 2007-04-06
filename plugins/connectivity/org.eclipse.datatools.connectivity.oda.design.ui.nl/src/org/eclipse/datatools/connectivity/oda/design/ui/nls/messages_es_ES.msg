@@ -37,3 +37,4 @@ profilePage_error_emptyName=El nombre de la fuente de datos no puede estar vacío
 profilePage_checkboxTooltip_maintainLink=Utilice siempre los valores de propiedad externalizados del almacenamiento del perfil de conexión en la fuente de datos.
 profilePage_checkboxLabel_maintainLink=Utilizar propiedades &externalizadas en el almacenamiento de perfil de conexión
 profilePage_error_invalidName=El nombre de la fuente de datos no es válido.
+profilePage_error_invalidProfileStorePath=Ruta no válida para almacenamiento de perfil de conexión

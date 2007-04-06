@@ -10,3 +10,4 @@ RelationInformation.InvalidDataTypeName=제공된 데이터 형식 이름이 잘못되었습니다
 RelationInformation.InvalidFilterDefinition=필터 정의가 잘못되었습니다. 
 DateUtil.ConvertFails=날짜로 변환하지 못했습니다. 원본:
 dataTypes.typeNameInvalid=잘못된 데이터 형식 이름:
+ui.invalidXSDFile=제공된 XSD 파일이 잘못되었습니다.

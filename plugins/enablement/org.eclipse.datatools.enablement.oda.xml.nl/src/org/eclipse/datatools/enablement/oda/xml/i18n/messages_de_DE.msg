@@ -10,3 +10,4 @@ RelationInformation.InvalidDataTypeName=Der angegebene Datentypname ist ungültig
 RelationInformation.InvalidFilterDefinition=Die Filterdefinition ist ungültig. 
 DateUtil.ConvertFails=Konvertierung in Datum ist fehlgeschlagen. Quelle:
 dataTypes.typeNameInvalid=Datentypname ungültig:
+ui.invalidXSDFile=Die angegebene XSD-Datei ist ungültig.

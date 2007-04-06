@@ -37,3 +37,4 @@ profilePage_error_emptyName=データソース名は空白にできません。
 profilePage_checkboxTooltip_maintainLink=データソースには、常に接続プロファイルストアの外部化したプロパティ値を使用します。
 profilePage_checkboxLabel_maintainLink=接続プロファイルストアの外部化したプロパティ値を使用する(&E)
 profilePage_error_invalidName=データソース名が無効です。
+profilePage_error_invalidProfileStorePath=接続プロファイルストアのパスが無効です。

@@ -68,6 +68,7 @@ datatypes.integer=Entero
 datatypes.string=String
 datatypes.date=Fecha
 datatypes.time=Hora
+datatypes.boolean=Booleano
 
 #column name in column mapping table
 columnName.name=Nombre
