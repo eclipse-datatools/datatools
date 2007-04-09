@@ -27,7 +27,7 @@ public interface DerbyModelFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	DerbyModelFactory eINSTANCE = new org.eclipse.datatools.modelbase.derby.impl.DerbyModelFactoryImpl();
+	DerbyModelFactory eINSTANCE = org.eclipse.datatools.modelbase.derby.impl.DerbyModelFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Synonym</em>'.

@@ -120,6 +120,15 @@ public interface DerbyModelPackage extends EPackage {
 	int SYNONYM__LABEL = SQLTablesPackage.TABLE__LABEL;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__COMMENTS = SQLTablesPackage.TABLE__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -219,7 +228,7 @@ public interface DerbyModelPackage extends EPackage {
 	int SYNONYM__TABLE = SQLTablesPackage.TABLE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the the '<em>Synonym</em>' class.
+	 * The number of structural features of the '<em>Synonym</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -257,5 +266,38 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 */
 	DerbyModelFactory getDerbyModelFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals  {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.derby.impl.SynonymImpl <em>Synonym</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.derby.impl.SynonymImpl
+		 * @see org.eclipse.datatools.modelbase.derby.impl.DerbyModelPackageImpl#getSynonym()
+		 * @generated
+		 */
+		EClass SYNONYM = eINSTANCE.getSynonym();
+
+		/**
+		 * The meta object literal for the '<em><b>Table</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SYNONYM__TABLE = eINSTANCE.getSynonym_Table();
+
+	}
 
 } //DerbyModelPackage

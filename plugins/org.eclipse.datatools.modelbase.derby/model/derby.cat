@@ -1,7 +1,7 @@
 
 (object Petal
-    version    	50
-    _written   	"Rose 8.5.0506.2811"
+    version    	47
+    _written   	"Rose 8.0.0303.1400"
     charSet    	0)
 
 (object Class_Category "derby"
@@ -29,6 +29,11 @@
 	    name       	"prefix"
 	    value      	(value Text "DerbyModel")))
     quid       	"430FB3680175"
+    visible_categories 	(list visibility_relationship_list
+	(object Visibility_Relationship
+	    quid       	"461538850365"
+	    supplier   	"Logical View::SQLModel"
+	    quidu      	"3E9B1F8201C1"))
     exportControl 	"Public"
     logical_models 	(list unit_reference_list
 	(object Class "Synonym"
@@ -69,7 +74,7 @@
 		(object ClassView "Class" "Logical View::SQLModel::Tables::Table" @1
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeOperation 	TRUE
-		    location   	(1325, 768)
+		    location   	(572, 234)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -81,17 +86,17 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@1
-			location   	(1230, 693)
+			location   	(460, 159)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	190
+			max_width  	224
 			justify    	0
 			label      	"Table")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"3E9B1FB60047"
-		    width      	208
+		    width      	242
 		    height     	174
 		    annotation 	8
 		    autoResize 	TRUE)
@@ -99,7 +104,7 @@
 		    ShowCompartmentStereotypes 	TRUE
 		    IncludeAttribute 	TRUE
 		    IncludeOperation 	TRUE
-		    location   	(378, 728)
+		    location   	(603, 856)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -111,22 +116,22 @@
 			default_color 	TRUE)
 		    label      	(object ItemLabel
 			Parent_View 	@2
-			location   	(277, 677)
+			location   	(483, 805)
 			fill_color 	13434879
 			nlines     	1
-			max_width  	202
+			max_width  	240
 			justify    	0
 			label      	"Synonym")
 		    icon_style 	"Icon"
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"430FB4900025"
-		    width      	220
+		    width      	258
 		    height     	126
 		    annotation 	8
 		    autoResize 	TRUE)
 		(object AssociationViewNew "$UNNAMED$0" @3
-		    location   	(834, 1085)
+		    location   	(919, 533)
 		    font       	(object Font
 			size       	10
 			face       	"Arial"
@@ -142,7 +147,7 @@
 		    roleview_list 	(list RoleViews
 			(object RoleView "$UNNAMED$1" @4
 			    Parent_View 	@3
-			    location   	(456, 357)
+			    location   	(541, -195)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -158,13 +163,15 @@
 			    client     	@3
 			    supplier   	@1
 			    vertices   	(list Points
-				(834, 1085)
-				(881, 1122)
-				(1220, 849))
-			    line_style 	0
+				(919, 533)
+				(919, 244)
+				(693, 244))
+			    line_style 	3
+			    origin_attachment 	(919, 533)
+			    terminal_attachment 	(693, 244)
 			    label      	(object SegLabel @5
 				Parent_View 	@4
-				location   	(1214, 923)
+				location   	(745, 191)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -185,7 +192,7 @@
 				orientation 	1))
 			(object RoleView "$UNNAMED$2" @6
 			    Parent_View 	@3
-			    location   	(456, 357)
+			    location   	(541, -195)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -201,12 +208,15 @@
 			    client     	@3
 			    supplier   	@2
 			    vertices   	(list Points
-				(834, 1085)
-				(459, 791))
-			    line_style 	0
+				(919, 533)
+				(919, 862)
+				(732, 862))
+			    line_style 	3
+			    origin_attachment 	(919, 533)
+			    terminal_attachment 	(732, 862)
 			    label      	(object SegLabel @7
 				Parent_View 	@6
-				location   	(464, 864)
+				location   	(784, 916)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -231,8 +241,6 @@
 		    quidu      	"430FC70B03C8"
 		    client     	@2
 		    supplier   	@1
-		    vertices   	(list Points
-			(444, 664)
-			(831, 306)
-			(1231, 680))
-		    line_style 	0)))))
+		    line_style 	3
+		    origin_attachment 	(600, 793)
+		    terminal_attachment 	(600, 320))))))
