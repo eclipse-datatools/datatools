@@ -39,6 +39,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
 import org.eclipse.datatools.sqltools.sql.parser.ParserProposalAdvisor;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
@@ -242,9 +243,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 				{
 					if (SQLParser.SCOPE_DEFINE_VARIABLES != result.getScope()) {
 						resultCollector.setVariableList(new ArrayList(Arrays
-								.asList(createVarProposals(result.getVariables(
-										result.getRootNode().getDocument(),
-										_fDocumentOffset), replacementOffset, replacementLength))));
+								.asList(createVarProposals(result.getEntries(SQLParserConstants.PARAMETERS), replacementOffset, replacementLength))));
 						break;
 					}
 				}

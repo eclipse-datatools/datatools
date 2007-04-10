@@ -723,7 +723,33 @@ public abstract class ParsingResult
      */
     public String[] getEntries(String type)
     {
-    	return new String[0];
+        String[] items = null;
+        List objects = objects = (ArrayList) fEntries.get(type);
+        
+        if (objects == null)
+        {
+            return new String[0];
+        }
+        
+        items = new String[objects.size()];
+        for(int i=0;i<objects.size();i++)
+        {
+            Object current = objects.get(i);
+            if (current instanceof Token)
+            {
+                items[i] = ((Token) current).image;
+                if (items[i].startsWith("@"))
+                {
+                    items[i] = items[i].substring(1);//remove the @ from the names
+                }
+            }
+            else
+            {
+                items[i] = (String)current;//tables,columns are saved as strings.
+            }
+        }
+
+        return items != null ?items:new String[0];
     }
 
 }
