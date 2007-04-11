@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access"/>
       </appInfo>
       <documentation>
-         This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
+         [Platform API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
       </documentation>
    </annotation>
 
