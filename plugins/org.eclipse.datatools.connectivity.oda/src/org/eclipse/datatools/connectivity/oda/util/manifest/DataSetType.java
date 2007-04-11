@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Properties;
@@ -80,8 +81,11 @@ public class DataSetType
 			// if multiple properties elements exist, use the last one
 		    IConfigurationElement propertiesElement =
 	            propertiesElements[ propertiesElements.length - 1 ];
-		    m_properties = ExtensionManifest.getPropertyDefinitions( propertiesElement );
-		    m_propsVisibility = ExtensionManifest.getPropertyVisibilities( propertiesElement );
+
+		    ArrayList extensionProps = ExtensionManifest.getPropertyDefinitions( propertiesElement );
+            m_properties = (Property[]) extensionProps.toArray( new Property[ extensionProps.size() ] );      
+
+            m_propsVisibility = ExtensionManifest.getPropertyVisibilities( propertiesElement );
 		}
         
         // relationship element

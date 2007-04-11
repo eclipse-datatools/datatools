@@ -43,6 +43,7 @@ public class ExtensionManifest
 	private RuntimeInterface m_runtime;
 	private Hashtable m_dataSetTypes;
 	private TraceLogging m_traceLogging;
+    private Property[] m_extensionDefinedProperties = null;
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_dataSourceElement;
@@ -118,7 +119,13 @@ public class ExtensionManifest
 			// if multiple properties elements exist, use the last one
 		    IConfigurationElement propertiesElement =
 	            propertiesElements[ propertiesElements.length - 1 ];
-		    m_properties = getPropertyDefinitions( propertiesElement );
+		    
+		    ArrayList extensionProps = getPropertyDefinitions( propertiesElement );		    
+		    m_extensionDefinedProperties = (Property[]) extensionProps.toArray( new Property[ extensionProps.size() ] );      
+
+		    // appends framework-defined data source properties to extension-defined ones
+		    m_properties = addDataSourceFrameworkProperties( extensionProps );
+		    
 		    m_propsVisibility = getPropertyVisibilities( propertiesElement );
 		}
         
@@ -138,20 +145,20 @@ public class ExtensionManifest
     }
 
     /* 
-     * Parse and return all the property definitions, 
+     * Parse and return all the extension-defined property definitions, 
      * combining both top-level and grouped properties.
      */ 
-	static Property[] getPropertyDefinitions( IConfigurationElement propertiesElement )
+    static ArrayList getPropertyDefinitions( IConfigurationElement propertiesElement )
 		throws OdaException
 	{
 		IConfigurationElement[] propElements = propertiesElement.getChildren( "property" ); //$NON-NLS-1$
 		IConfigurationElement[] propGroupElements = propertiesElement.getChildren( "propertyGroup" ); //$NON-NLS-1$
 	    int numProperties = propElements.length + propGroupElements.length;
+
+	    ArrayList properties = new ArrayList();
 	    if ( numProperties <= 0 )
-	        return new Property[ 0 ];
-
-        ArrayList properties = new ArrayList();
-
+	        return properties;     // returns an empty list
+ 
         // first convert top-level property elements defined by an extension
 		for( int i = 0, size = propElements.length; i < size; i++ )
 		{
@@ -174,24 +181,35 @@ public class ExtensionManifest
 				properties.add( new Property( groupedPropElement, groupName, groupDisplayName ) );
 			}
 		}
+		
+        return properties;
+	}
+
+    /**
+     * Appends framework-defined data source properties to specified collection, 
+     * if not already defined.
+	 * @since 3.1
+     */
+    private Property[] addDataSourceFrameworkProperties( ArrayList propDefinitions )
+	{
+        if( propDefinitions == null )
+            propDefinitions = new ArrayList();
         
-        // appends framework-defined properties, if not already defined by extension
-        // @since 3.0.4
-        if( ! containsProperty( ConnectionProfileProperty.PROFILE_NAME_PROP_KEY, properties ) )
+        if( ! containsProperty( ConnectionProfileProperty.PROFILE_NAME_PROP_KEY, propDefinitions ) )
         {
-            properties.add( 
+            propDefinitions.add( 
                 ConnectionProfileProperty.createPropertyDefinition( 
                         ConnectionProfileProperty.PROFILE_NAME_PROP_KEY ) );
         }
         
-        if( ! containsProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY, properties ) )
+        if( ! containsProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY, propDefinitions ) )
         {
-            properties.add( 
+            propDefinitions.add( 
                 ConnectionProfileProperty.createPropertyDefinition( 
                         ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY ) );
         }
-		
-        return (Property[]) properties.toArray( new Property[ properties.size() ] );
+        
+        return (Property[]) propDefinitions.toArray( new Property[ propDefinitions.size() ] );	    
 	}
 
     /**
@@ -418,7 +436,7 @@ public class ExtensionManifest
 	
 	/**
      * Returns an array of Property definition instances that represent
-     * all the properties defined by this data source extension.
+     * all the properties defined and inherited by this data source extension.
      * The collection includes both top-level properties and
      * those in a group, and could be defined as either visible or hidden.
      * @return  an array of all property definitions; 
@@ -426,12 +444,31 @@ public class ExtensionManifest
 	 */
 	public Property[] getProperties()
 	{
-	    if ( m_properties == null )
-	    {
-	        // creates an empty array to return
-	        m_properties = new Property[ 0 ];
-	    }
-	    return m_properties;
+	    return getProperties( true );
+	}
+
+	/**
+     * Returns an array of Property definition instances that represent
+     * all the properties defined by this data source extension, plus
+     * optionally include inherited ones.
+     * The collection includes both top-level properties and
+     * those in a group, and could be defined as either visible or hidden.
+	 * @param includeInheritedProps    indicates whether to include
+	 *          property definitions inherited from the ODA framework
+     * @return  an array of all property definitions; 
+     *          an empty array is returned if no properties are defined.
+	 * @since 3.1
+	 */
+	public Property[] getProperties( boolean includeInheritedProps )
+	{
+	    Property[] props = includeInheritedProps ? 
+	                        m_properties : m_extensionDefinedProperties;
+        if ( props == null )
+        {
+            // creates an empty array to return
+            props = new Property[ 0 ];
+        }
+        return props;
 	}
 
     /**
