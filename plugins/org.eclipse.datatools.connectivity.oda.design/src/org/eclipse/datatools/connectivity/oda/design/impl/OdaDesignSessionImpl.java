@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.6 2006/03/07 05:06:04 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -104,6 +104,20 @@ public class OdaDesignSessionImpl extends EObjectImpl implements
         DesignSessionRequest newRequest = DesignFactory.eINSTANCE
                 .createDesignSessionRequest();
         newRequest.setNewDataAccessDesign( dataSourceDesign );
+
+        setRequest( newRequest );
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewRequest(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+     * @generated NOT
+     */
+    public void setNewRequest( DataSetDesign dataSetDesign )
+    {
+        DesignSessionRequest newRequest = DesignFactory.eINSTANCE
+                                            .createDesignSessionRequest();
+        newRequest.setNewDataAccessDesign( dataSetDesign );
 
         setRequest( newRequest );
     }

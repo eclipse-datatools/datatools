@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.7 2006/03/07 05:06:04 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.8 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -77,6 +77,17 @@ public interface OdaDesignSession extends EObject
      * @generated NOT
      */
     void setNewRequest( DataSourceDesign dataSourceDesign );
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#getRequest <em>Request</em>}' containment reference
+     * with a new request associated with the given data set design. 
+     * @param dataSetDesign
+     * @since 3.0.4
+     * @see #setRequest(DesignSessionRequest)
+     * @generated NOT
+     */
+    void setNewRequest( DataSetDesign dataSetDesign );
 
     /**
      * Returns the value of the '<em><b>Response</b></em>' containment reference.
