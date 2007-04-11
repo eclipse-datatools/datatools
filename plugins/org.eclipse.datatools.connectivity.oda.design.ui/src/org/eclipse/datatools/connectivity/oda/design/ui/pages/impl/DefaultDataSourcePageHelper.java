@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -62,8 +62,9 @@ public class DefaultDataSourcePageHelper
     private DefaultDataSourcePropertyPage m_propertyPage = null;
     private transient Control m_propCtrls[] = null;
     private ExtensionManifest m_manifest = null;
-    private Property[] m_dataSourceManifestProps = null;
-    private Properties m_dataSourceManifestPropsVisibility = null;
+    private Property[] m_extendedManifestProps = null;
+    private Property[] m_manifestProps = null;
+    private Properties m_manifestPropsVisibility = null;
     private org.eclipse.datatools.connectivity.oda.design.Properties
     	m_dataSourceDesignProps = null;
     private ArrayList m_orderedPropNameList = null;
@@ -91,8 +92,29 @@ public class DefaultDataSourcePageHelper
     
     private void init()
     {
-        m_dataSourceManifestProps = getManifest().getProperties();
-        m_dataSourceManifestPropsVisibility = getManifest().getPropertiesVisibility();    
+        // get manifest properties that this page would provide UI control
+        m_manifestProps = getEditableManifestProperties();
+        m_manifestPropsVisibility = getManifest().getPropertiesVisibility();    
+
+        // get all inherited and extension-defined property definitions
+        m_extendedManifestProps = getManifest().getProperties( true );
+    }
+
+    /**
+     * Returns manifest properties that this page would provide UI control
+     * for user input.
+     * @return  an array of ODA property definition, including group
+     *          definition if available
+     */
+    protected Property[] getEditableManifestProperties()
+    {
+        /* the default data source page does not provide UI control to edit the
+         * connection profile properties, since they are expected to be edited
+         * by the dedicated ProfileSelection pages;
+         * returns just the extension defined properties, excluding
+         * those inherited profile properties from the manifest list
+         */
+        return getManifest().getProperties( false );
     }
     
     protected void createCustomControl( Composite parent ) throws OdaException
@@ -159,7 +181,8 @@ public class DefaultDataSourcePageHelper
             if ( propVal == null )
                 propVal = EMPTY_STRING;
             
-            props.setProperty( getPropName( i ), propVal );
+            String propName = getPropName( i );
+            props.setProperty( propName, propVal );
         }
         
         return props;
@@ -318,7 +341,7 @@ public class DefaultDataSourcePageHelper
     }
     
     protected org.eclipse.datatools.connectivity.oda.design.Property
-	getDesignProperty( String propName )
+	    getDesignProperty( String propName )
 	{
     	if ( m_dataSourceDesignProps == null )
     		return null;
@@ -526,17 +549,12 @@ public class DefaultDataSourcePageHelper
 
     protected ArrayList getOrderedPropNameList()
     {
-    	// Check if we already have the ordered prop name list.
+    	// Check if we already have the ordered property name list
     	if ( m_orderedPropNameList != null )
-    	{
-    		// If the ordered prop name list has already been prepared,
-    		// just return it.
     		return m_orderedPropNameList;
-    	}
 
-    	// Form a list of ordered prop names.  This list keeps track
-    	// of the actually ordering of the props while being
-    	// displayed in the GUI.
+    	// Form a list of ordered property names.  This list keeps track
+    	// of the actual sequence of the properties to be displayed in the UI page
     	ArrayList orderedPropNameList = new ArrayList();
 
     	// There are two cases:
@@ -546,12 +564,12 @@ public class DefaultDataSourcePageHelper
     	//       but not in the manifest, they will be displayed first.
     	//     - Then the props which are common to the data source design
     	//       and the manifest will be displayed.
-    	// (2) If the data source design does not exist, the manifest props 
+    	// (2) If a data source design does not exist, the manifest props 
     	//     will be used.
     	
-    	if ( m_dataSourceDesignProps != null )
+    	if( m_dataSourceDesignProps != null )
     	{
-        	// First, we loop through all the data source design public 
+        	// First, we iterate through all the data source design public 
         	// props.  Add the ones that aren't existing in the manifest to the
         	// ordered prop name list.  We choose to display them first.
     		EList propList = m_dataSourceDesignProps.getProperties();
@@ -559,42 +577,49 @@ public class DefaultDataSourcePageHelper
     		{
     			org.eclipse.datatools.connectivity.oda.design.Property prop
     				= ( org.eclipse.datatools.connectivity.oda.design.Property ) propList.get( i );
-    			if ( getManifestProp( prop.getName() ) == null )
+    			if( getExtendedManifestProp( prop.getName() ) == null )
     			{
-    				// This prop only exists in the data source design.
-    				// add it to the ordered name list.
+    			    /* this property is only defined in the data source design,
+    			     * and not found in the extension manifest list
+    			     * of extension-defined and framework-defined properties,
+    			     * add it to the ordered property name list
+    			     */
     				orderedPropNameList.add( prop.getName() );
     			}
     		}
     		
-        	// Then we loop through all the manifest props and find the 
-        	// common ones among the data source props.  Add them to the 
-    		// ordered prop name list.  Notice that the loop is approached
-    		// from the manifest properties' side because only
-    		// the manifest props has grouping information and that 
-    		// needs to be preserved.
-    		for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+        	/* next we iterate through all the manifest properties intended for UI control, and 
+    		 * filter/include only those that are also defined in the data source design.
+    		 * Note that the loop is made on the manifest property collection
+    		 * because it contains property defintion that has grouping information,
+    		 * whereas the property defintion defined in data source design
+    		 * has no group info.
+    		 */
+    		for( int i = 0; i < m_manifestProps.length; i++ )
     		{
-    			Property prop = m_dataSourceManifestProps[ i ];
-    			if ( getDesignProperty( prop.getName() ) != null )
+    			Property prop = m_manifestProps[ i ];
+                assert( prop != null );
+    			String propName = prop.getName();
+    			if( getDesignProperty( propName ) != null )  // also defined in dataSourceDesign
     			{
-    				orderedPropNameList.add( prop.getName() );    				
+    			    orderedPropNameList.add( propName );    				
     			}
     		}
     	}
     	else
     	{
-    		// Data Source Design does not exist.  We just use all
-    		// the props in the manifest.
-    		for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+    		// Data Source Design does not exist, simply use all
+    		// the properties in the manifest intended for UI control
+    		for( int i = 0; i < m_manifestProps.length; i++ )
     		{
-    			Property prop = m_dataSourceManifestProps[ i ];
+    			Property prop = m_manifestProps[ i ];
     			assert( prop != null );
    				orderedPropNameList.add( prop.getName() );    				
     		}    		
     	}
     	
-    	return orderedPropNameList;
+    	m_orderedPropNameList = orderedPropNameList;
+    	return m_orderedPropNameList;
     }
     
     protected void setupPropFields( Composite composite )
@@ -628,7 +653,7 @@ public class DefaultDataSourcePageHelper
             {
             	// This property belongs to a group.  See if this is 
             	// a new group or an existing group.
-            	if ( haveSameGroup( propGroupName, curGroupName ) == false )
+            	if ( hasSameGroup( propGroupName, curGroupName ) == false )
             	{
             		String propName = getPropName( i );
             		assert( propName != null );
@@ -687,7 +712,7 @@ public class DefaultDataSourcePageHelper
     	return ( name == null || name.length() == 0 );
     }
     
-    protected boolean haveSameGroup( String propGroupName, String curGroupName )
+    protected boolean hasSameGroup( String propGroupName, String curGroupName )
     {
     	if ( isEmpty( propGroupName ) != isEmpty( curGroupName ) )
     		return false;
@@ -697,13 +722,26 @@ public class DefaultDataSourcePageHelper
     	
     	return ( propGroupName.equals( curGroupName ) );
     }
-
+    
+    private Property getExtendedManifestProp( String propName )
+    {
+        return getManifestProp( m_extendedManifestProps, propName );
+    }
+    
     protected Property getManifestProp( String propName )
     {
-    	for( int i = 0; i < m_dataSourceManifestProps.length; i++ )
+        return getManifestProp( m_manifestProps, propName );
+    }
+    
+    private Property getManifestProp( Property[] properties, String propName )
+    {
+        if( properties == null )
+            return null;
+        
+    	for( int i = 0; i < properties.length; i++ )
     	{
-    		if ( m_dataSourceManifestProps[ i ].getName().equals( propName ) )
-    			return m_dataSourceManifestProps[ i ];
+    		if ( properties[ i ].getName().equals( propName ) )
+    			return properties[ i ];
     	}
     	
     	return null;
@@ -764,7 +802,7 @@ public class DefaultDataSourcePageHelper
     		return null;
     	
     	boolean boolVal = 
-    		( prop.isVisible( m_dataSourceManifestPropsVisibility ) == false );
+    		( prop.isVisible( m_manifestPropsVisibility ) == false );
     	
         return new Boolean( boolVal );
     }
@@ -776,7 +814,7 @@ public class DefaultDataSourcePageHelper
     		return null;
     	
     	boolean boolVal = 
-    		( prop.isEditable( m_dataSourceManifestPropsVisibility ) == false ) ;
+    		( prop.isEditable( m_manifestPropsVisibility ) == false ) ;
     	
     	return new Boolean( boolVal );
     }

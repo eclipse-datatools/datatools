@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -125,7 +125,8 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         for( int i = 0; i < publicPropDefns.length; i++ )
         {
             String propName = publicPropDefns[i].getName();
-            String propValue = utilProps.getProperty( propName );
+            String propValue = ( utilProps != null ) ?
+                                utilProps.getProperty( propName ) : null;
             designProps.setProperty( propName, propValue );
         }
         return designProps;
